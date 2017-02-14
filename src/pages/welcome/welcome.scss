@@ -2,9 +2,23 @@ page-welcome {
     ion-slide {
         background-color: #eeeeee;
     }
-    
+    .startapp{
+        width: 170px;
+        height: 50px;
+        position: relative;
+        bottom: 150px;
+        border-radius: 8px;
+        color: #fff;
+        background: none;
+        border: 1px solid #fff;
+    }
+    .slide-zoom{
+        height: 100%;
+    }
     ion-slide img {
-        height: 70vh !important;
-        width: auto !important;
+        // height: 70vh !important;
+        // width: auto !important;
+        height:100% !important;
+        width: 100% !important;
     }
 }

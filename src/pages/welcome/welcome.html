@@ -6,32 +6,25 @@
 -->
 
 
-<ion-content padding>
-<ion-slides pager>
+<ion-content>
+	<ion-slides pager>
 
-	<ion-slide>
-		<img src="images/welcome_01.jpg" />
-	</ion-slide>
+		<ion-slide>
+			<img src="assets/images/welcome_01.jpg" />
+		</ion-slide>
 
-	<ion-slide>
-		<img src="images/welcome_02.jpg" />
-	</ion-slide>
+		<ion-slide>
+			<img src="assets/images/welcome_02.jpg" />
+		</ion-slide>
 
-	<ion-slide>
-		<img src="images/welcome_03.jpg" />
-	</ion-slide>
-	<ion-slide>
-		<ion-row>
-			<ion-col>
-				<img src="images/welcome_04.jpg" />
-			</ion-col>
-		</ion-row>
-		<ion-row>
-			<ion-col>
-				<button light (click)="goToHome()">立即启动</button>
-			</ion-col>
-		</ion-row>
-	</ion-slide>
+		<ion-slide>
+			<img src="assets/images/welcome_03.jpg" />
+		</ion-slide>
+		<ion-slide>
+			<img src="assets/images/welcome_04.jpg" />
+			<button light (click)="goToHome()" class="startapp" >开启镜库世界</button>
+			<!--<button ion-button color="light" (click)="goToHome()" clear>开启镜库世界</button>-->
+		</ion-slide>
 
-</ion-slides>
+	</ion-slides>
 </ion-content>

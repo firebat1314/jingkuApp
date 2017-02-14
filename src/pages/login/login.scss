@@ -1,0 +1,30 @@
+page-login {
+    .content {
+        background: url(../assets/images/bg_login_02.jpg) center bottom no-repeat;
+        background-size: 100%;
+    }
+    ion-list {
+        padding-top: 287px;
+    }
+    .item {
+        color: #fff;
+        background: none;
+    }
+    .item-input {
+        padding: 0;
+    }
+    .item-input .item-inner {
+        padding-left: 45px;
+        background: url(../assets/icon/icon_03.png) 3px center no-repeat;
+        background-size: 20px;
+    }
+    .item-block:last-child .item-inner {
+        background-image: url(../assets/icon/icon_07.png);
+    }
+    .btn-wrap {
+        padding: 0 40px;
+    }
+    .form-wrap {
+        padding: 0 40px;
+    }
+}

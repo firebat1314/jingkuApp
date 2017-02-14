@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams } from 'ionic-angular';
+import { NavController, NavParams, App, ModalController, ViewController } from 'ionic-angular';
+import { LoginPage } from '../login/login';
 
 /*
   Generated class for the My page.
@@ -13,10 +14,17 @@ import { NavController, NavParams } from 'ionic-angular';
 })
 export class MyPage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {}
+  constructor(
+    public viewCtrl: ViewController,
+    public navCtrl: NavController,
+    public app: App,
+    public modalCtrl: ModalController
+  ) { }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad MyPages');
   }
-
+  Logout() {
+    this.app.getRootNav().push(LoginPage);
+  }
 }
