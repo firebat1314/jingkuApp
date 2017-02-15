@@ -1,0 +1,36 @@
+page-signup {
+    .content .list{
+        margin-left: 5px;
+        margin-right: 5px;
+        margin-bottom: 5px;
+        .item-input{
+            min-height: 62px;
+        }
+        .certified-img{
+            width: 19%;
+            display: flex;
+            align-items: center;
+            ion-icon{
+                font-size: 27px;
+            }
+        }
+    }
+    .certified-img-box{
+        .input-wrapper{
+            border-right: 1px solid #c8c7cc;
+        }
+    }
+    .login{
+        float: right;
+        margin-bottom: 20px;
+        .text{
+            display: inline-block;
+            vertical-align: -webkit-baseline-middle;
+            color: #999;    
+        }
+    }
+    .btn-register{
+        width: 80%;
+        margin: 0 auto;
+    }
+}

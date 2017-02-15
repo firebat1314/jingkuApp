@@ -10,21 +10,27 @@
         <div class="logo">
             <img src="assets/icon/icon_login_03.png" height="" width="100px">
         </div>
-        <ion-list>
+        <form #loginForm="ngForm" novalidate>
+            <ion-list>
+                <ion-item>
+                    <ion-input [(ngModel)]="loginInfo.username" clearInput="true" name="username" type="text" #username="ngModel" spellcheck="false" autocapitalize="off"
+                        required>
+                    </ion-input>
+                </ion-item>
 
-            <ion-item>
-                <ion-input type="text" placeholder=""></ion-input>
-            </ion-item>
+                <ion-item>
+                    <ion-input [(ngModel)]="loginInfo.password" clearInput="true" name="password" type="password" #password="ngModel" required>
+                    </ion-input>
+                </ion-item>
 
-            <ion-item>
-                <ion-input type="password" placeholder=""></ion-input>
-            </ion-item>
-
-        </ion-list>
-
-        <div class="btn-wrap">
-            <button ion-button color="light" (click)="goToHome()" large round block>登录</button>
-            <button ion-button color="light" (click)="goToHome()" large round block outline>注册</button>
-        </div>
+            </ion-list>
+            <div class="forgot-password">
+                <button ion-button clear small color="light" >忘记密码？</button>
+            </div>
+            <div class="btn-wrap">
+                <button ion-button color="light" [disabled]="!loginForm.valid" (click)="goToHome(loginForm)" type="submit" large round block>登录</button>
+                <button ion-button color="light" (click)="goSignup()" large round block outline>注册</button>
+            </div>
+        </form>
     </div>
 </ion-content>

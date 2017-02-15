@@ -1,6 +1,6 @@
 page-login {
     .content {
-        background: url(../assets/images/bg_login.jpg) center bottom no-repeat;
+        background: url(../assets/images/bg_login.jpg) center top no-repeat;
         background-size: 100%;
     }
     .form-wrap {
@@ -13,14 +13,15 @@ page-login {
     .logo{
         text-align: center;
         width: 100%;
-        margin-bottom: 75px;
+        margin-bottom: 50px;
     }
     .logo img{
         width: 206px;
         max-width: 206px;
     }
-    ion-list {
+    ion-list.list {
         padding-top: 0;
+        margin-bottom: 3px;
     }
     .item {
         color: #fff;
@@ -36,6 +37,14 @@ page-login {
     }
     .item-block:last-child .item-inner {
         background-image: url(../assets/icon/icon_07.png);
+    }
+    .forgot-password{
+        overflow: hidden;
+        margin-bottom: 30px;
+    }
+    .forgot-password button{
+        float: right;
+        
     }
     .btn-wrap {
         padding: 0 40px;

@@ -10,26 +10,31 @@ import { LoginPage } from '../pages/login/login';
   templateUrl: 'app.html'
 })
 export class MyApp {
-  rootPage:any;
+  rootPage: any;
 
   constructor(platform: Platform, public storage: Storage) {
     // 初次进入app引导页面
-    this.storage.get('firstIn').then((result) => { 
-        if(result){  
-          this.rootPage = LoginPage; 
-          this.storage.set('firstIn', false);
-        }else{
-          this.storage.set('firstIn', true);
-          this.rootPage = WelcomePage;
+    this.storage.get('hasLoggedIn').then((result) => {
+      if (result) {
+        this.rootPage = TabsPage;
+      } else {
+        this.storage.get('firstIn').then((result) => {
+          if (result) {
+            this.rootPage = LoginPage;
+          } else {
+            this.rootPage = WelcomePage;
+            this.storage.set('firstIn', 'NO');
+          }
         }
+        )
       }
-    );
+    });
     platform.ready().then(() => {
       // Okay, so the platform is ready and our plugins are available.
       // Here you can do any higher level native things you might need.
       Splashscreen.hide();
-      StatusBar.overlaysWebView(true); // let status bar overlay webview
-      StatusBar.backgroundColorByHexString('#ffffff'); // set status bar to white
+      StatusBar.overlaysWebView(false); // let status bar overlay webview
+      StatusBar.backgroundColorByHexString('#bdbdbd'); // set status bar to white
     });
   }
 }

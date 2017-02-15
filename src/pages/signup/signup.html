@@ -1,0 +1,56 @@
+<!--
+  Generated template for the Signup page.
+
+  See http://ionicframework.com/docs/v2/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>注册</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content>
+  <form #signupForm="ngForm" novalidate>
+    <ion-list>
+      <ion-item>
+        <ion-label color="primary" fixed><span color="google">*</span>　账户名</ion-label>
+        <ion-input [(ngModel)]="signupInfo.user_name" name="user_name" #username="ngModel" type="text"  placeholder="请输入用户名" clearInput required></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label color="primary" fixed><span color="google">*</span>　手机号</ion-label>
+        <ion-input [(ngModel)]="signupInfo.mobile_phone" name="mobile_phone" #username="ngModel" type="tel" placeholder="请输入手机号" clearInput required></ion-input>
+      </ion-item>
+      <ion-item class="certified-img-box">
+        <ion-label color="primary" fixed><span color="google">*</span>　验证码</ion-label>
+        <ion-input [(ngModel)]="signupInfo.str_verify" name="str_verify" #username="ngModel" type="number" placeholder="请输入图像验证码" clearInput required></ion-input>
+        <div class="certified-img" item-right>
+          <img src="../assets/icon/certified-img_03.jpg" alt="">
+          <button ion-button icon-only clear small><ion-icon ios="ios-refresh" md="md-refresh"></ion-icon></button>
+        </div>
+      </ion-item>
+      <ion-item>
+        <ion-label color="primary" fixed><span color="google">*</span>　短信验证</ion-label>
+        <ion-input [(ngModel)]="signupInfo.Phone_code" name="Phone_code" #username="ngModel" type="number" placeholder="请输入短信验证码" clearInput required></ion-input>
+        <button ion-button outline round color="dark" item-right>获取验证码</button>
+      </ion-item>
+      <ion-item>
+        <ion-label color="primary" fixed><span color="google">*</span>　密码</ion-label>
+        <ion-input [(ngModel)]="signupInfo.password" name="password" #username="ngModel" type="password" placeholder="6-2位字母、数字组成" clearInput required></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label color="primary" fixed><span color="google">*</span>　确认密码</ion-label>
+        <ion-input [(ngModel)]="signupInfo.cpassword" name="cpassword" #username="ngModel" type="password" placeholder="6-2位字母、数字组成" clearInput required></ion-input>
+      </ion-item>
+    </ion-list>
+    <div class="login">
+      <span class="text">已有账号？</span>
+      <button ion-button outline small color="danger">登录</button>
+    </div>
+    <button ion-button block color="dark" large class="btn-register"  [disabled]="!loginForm.valid">注册</button>
+  </form>
+
+</ion-content>
