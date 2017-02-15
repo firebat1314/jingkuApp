@@ -1,10 +1,26 @@
 page-login {
     .content {
-        background: url(../assets/images/bg_login_02.jpg) center bottom no-repeat;
+        background: url(../assets/images/bg_login.jpg) center bottom no-repeat;
         background-size: 100%;
     }
+    .form-wrap {
+        padding: 0 40px;
+        display: flex;
+        flex-direction:column;
+        justify-content: center;
+        height: 100%;
+    }
+    .logo{
+        text-align: center;
+        width: 100%;
+        margin-bottom: 75px;
+    }
+    .logo img{
+        width: 206px;
+        max-width: 206px;
+    }
     ion-list {
-        padding-top: 287px;
+        padding-top: 0;
     }
     .item {
         color: #fff;
@@ -24,7 +40,5 @@ page-login {
     .btn-wrap {
         padding: 0 40px;
     }
-    .form-wrap {
-        padding: 0 40px;
-    }
+    
 }
