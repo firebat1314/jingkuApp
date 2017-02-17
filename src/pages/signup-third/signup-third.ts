@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams } from 'ionic-angular';
+import { NavController, NavParams,Events } from 'ionic-angular';
+import { LoginPage } from '../login/login';
 
 /*
   Generated class for the SignupThird page.
@@ -12,11 +13,40 @@ import { NavController, NavParams } from 'ionic-angular';
   templateUrl: 'signup-third.html'
 })
 export class SignupThirdPage {
-
-  constructor(public navCtrl: NavController, public navParams: NavParams) {}
+  private username:String;
+  constructor(
+    public navCtrl: NavController,
+   public navParams: NavParams,
+   private events:Events
+   ) {
+     this.events.subscribe("user:signupFirst", (userEventData) => {
+        this.username = userEventData;
+        console.log(userEventData)
+    })
+    this.time()
+   }
+  private wait: number = 3;
+  private time() {
+    if (this.wait == 0) {
+      this.toLogin()
+      this.wait = 3;
+      return
+    } else {
+      let self = this;
+      setTimeout(function () {
+        self.wait--;
+        self.time();
+      }, 1000)
+    }
+  }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad SignupThirdPage');
+  }
+  toLogin(){
+    this.navCtrl.push(LoginPage,{
+      username:this.username
+    })
   }
 
 }

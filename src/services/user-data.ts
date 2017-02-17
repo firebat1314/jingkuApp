@@ -53,6 +53,7 @@ export class UserData {
                     self.setToken(data.data.token);
                     self.storage.set(this.HAS_LOGGED_IN, true);
                     self.hasLogin = true;
+                    console.log(11)                    
                     self.events.publish("user:login", user.username);
                 }
             },

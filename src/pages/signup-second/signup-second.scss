@@ -6,6 +6,15 @@ page-signup-second {
         .item-label-fixed{
             min-height: 62px;
         }
+        .select-wrapper .input-wrapper{
+            display: flex;
+            justify-content: space-around;
+            padding: 15px;
+            ion-select{
+                border: 1px solid #ccc;
+
+            }
+        }
     }
     .tool{
         display: flex;
@@ -20,7 +29,7 @@ page-signup-second {
             }
         }
     }
-    
+
     .btn-register{
         width: 80%;
         margin: 0 auto;

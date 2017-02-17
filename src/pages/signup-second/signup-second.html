@@ -24,49 +24,39 @@
       </ion-item>
       <ion-item>
         <ion-label color="primary" fixed>　QQ</ion-label>
-        <ion-input [(ngModel)]="signupTwoForm.qq" name="qq" #username="ngModel" type="tel" placeholder="请输入你的QQ好" clearInput required></ion-input>
+        <ion-input [(ngModel)]="signupTwoForm.qq" name="qq" #username="ngModel" type="number" placeholder="请输入你的QQ好" clearInput required></ion-input>
       </ion-item>
       <ion-item>
         <ion-label color="primary" fixed><span ion-text color="google">*</span>　公司名称</ion-label>
-        <ion-input [(ngModel)]="signupTwoForm.company" name="company" #username="ngModel" type="number" placeholder="请输入你的公司名称" clearInput
+        <ion-input [(ngModel)]="signupTwoForm.company" name="company" #username="ngModel" type="text" placeholder="请输入你的公司名称" clearInput
           required></ion-input>
       </ion-item>
-      <ion-item>
-        <ion-select [(ngModel)]="province" name="province" cancelText="取消" okText="确定" title="省">
-          <ion-option value="f" selected="true">Female</ion-option>
+      <ion-item class="select-wrapper">
+        <ion-select [(ngModel)]="province" name="province" placeholder="选择省" cancelText="取消" okText="确定" [selectOptions]="{title:'省'}">
+          <ion-option value="f" selected="true" checked="true">Female</ion-option>
           <ion-option value="m">Male</ion-option>
         </ion-select>
-        <ion-select [(ngModel)]="city" name="city" cancelText="取消" okText="确定"  title="城市">
-          <ion-option value="bacon" checked="true">Bacon</ion-option>
+        <ion-select [(ngModel)]="city" name="city" placeholder="选择市" cancelText="取消" okText="确定" [selectOptions]="{title:'市'}">
+          <ion-option value="bacon">Bacon</ion-option>
           <ion-option value="olives">Black Olives</ion-option>
-          <ion-option value="xcheese" checked="true">Extra Cheese</ion-option>
-          <ion-option value="peppers">Green Peppers</ion-option>
-          <ion-option value="mushrooms">Mushrooms</ion-option>
-          <ion-option value="onions">Onions</ion-option>
-          <ion-option value="pepperoni">Pepperoni</ion-option>
-          <ion-option value="pineapple">Pineapple</ion-option>
-          <ion-option value="sausage">Sausage</ion-option>
-          <ion-option value="Spinach">Spinach</ion-option>
+          <ion-option value="xcheese">Black Olives</ion-option>
         </ion-select>
-        <ion-select [(ngModel)]="district" name="district" cancelText="取消" okText="确定" title="地区">
-          <ion-option value="bacon" checked="true">Bacon</ion-option>
+        <ion-select [(ngModel)]="district" name="district" placeholder="选择区" cancelText="取消" okText="确定" [selectOptions]="{title:'区'}">
+          <ion-option value="bacon">Bacon</ion-option>
           <ion-option value="olives">Black Olives</ion-option>
-          <ion-option value="xcheese" checked="true">Extra Cheese</ion-option>
-          <ion-option value="peppers">Green Peppers</ion-option>
-          <ion-option value="mushrooms">Mushrooms</ion-option>
-          <ion-option value="onions">Onions</ion-option>
-          <ion-option value="pepperoni">Pepperoni</ion-option>
-          <ion-option value="pineapple">Pineapple</ion-option>
-          <ion-option value="sausage">Sausage</ion-option>
-          <ion-option value="Spinach">Spinach</ion-option>
+          <ion-option value="xcheese">Black Olives</ion-option>
         </ion-select>
       </ion-item>
       <ion-item>
         <ion-label color="primary" fixed><span ion-text color="google">*</span>　营业执照</ion-label>
+        <!--<button ion-button [style.backgroundColor]="'#666'" item-center icon-top>
+          <ion-icon name="star"></ion-icon>
+            选择文件
+          </button>-->
       </ion-item>
       <ion-item>
         <ion-label color="primary" fixed><span ion-text color="google">*</span>　推荐人编码</ion-label>
-        <ion-input [(ngModel)]="signupTwoForm.cpassword" name="cpassword" #username="ngModel" type="password" placeholder="如有推荐人，请填写"
+        <ion-input [(ngModel)]="signupTwoForm.cpassword" name="cpassword" #username="ngModel" type="text" placeholder="请填写推荐人编码"
           clearInput required></ion-input>
       </ion-item>
     </ion-list>
@@ -79,6 +69,6 @@
         <button ion-button outline small color="danger" (click)="toLoginPage()">登录</button>
       </div>
     </div>
-    <button ion-button block color="dark" large class="btn-register" [disabled]="!signupTwoForm.valid">注册</button>
+    <button ion-button block color="dark" large class="btn-register" [disabled]="!signupTwoForm.valid" (click)="toThirdPage()">注册</button>
   </form>
 </ion-content>

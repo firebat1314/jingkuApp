@@ -1,6 +1,7 @@
 import { NgModule, ErrorHandler } from '@angular/core';
 import { Storage } from '@ionic/storage';
 import { HttpModule }   from '@angular/http';
+import { BrowserModule } from "@angular/platform-browser";
 
 import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
 import { MyApp } from './app.component';
@@ -13,8 +14,12 @@ import { WelcomePage } from '../pages/welcome/welcome';
 import { LoginPage } from '../pages/login/login';
 import { SignupPage } from '../pages/signup/signup';
 import { SignupSecondPage } from '../pages/signup-second/signup-second';
+import { SignupThirdPage } from '../pages/signup-third/signup-third';
+import {DirectiveTestPage} from "../pages/directive-test/directive-test";
 
 import { UserData } from "../services/user-data";
+
+import { MyDirective } from "../components/my-directive/my-directive";
 
 @NgModule({
   declarations: [
@@ -27,14 +32,18 @@ import { UserData } from "../services/user-data";
     WelcomePage,
     LoginPage,
     SignupPage,
-    SignupSecondPage
+    SignupSecondPage,
+    SignupThirdPage,
+    MyDirective,
+    DirectiveTestPage
   ],
   imports: [
     IonicModule.forRoot(MyApp,{
       backButtonText: '',
       tabsHideOnSubPages: true,
       tabsPlacement: 'bottom',
-    }, {})
+    }),
+    BrowserModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -47,7 +56,9 @@ import { UserData } from "../services/user-data";
     WelcomePage,
     LoginPage,
     SignupPage,
-    SignupSecondPage
+    SignupSecondPage,
+    SignupThirdPage,
+    DirectiveTestPage
   ],
   providers: [{provide: ErrorHandler, useClass: IonicErrorHandler},Storage,UserData]
 })

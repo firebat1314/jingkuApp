@@ -4,9 +4,8 @@ import { Http } from "@angular/http";
 import { Storage } from '@ionic/storage';
 import { UserData } from "../../services/user-data";
 
-import { SignupSecondPage } from '../signup-second/signup-second';
 import { LoginPage } from '../login/login';
-
+import { SignupSecondPage } from '../signup-second/signup-second';
 
 /*
   Generated class for the Signup page.
@@ -31,7 +30,7 @@ export class SignupPage {
     private events: Events,
     public http: Http
   ) {
-    this.getImg()
+    this.getImg();
   }
 
   registerBtn() {
@@ -40,9 +39,9 @@ export class SignupPage {
       data => {
         console.log(data)
         this.navCtrl.push(SignupSecondPage);
+        self.events.publish("user:signupFirst", self.signupInfo.username);
         if (data.status == 1) {
-          self.userData.setUsername(self.signupInfo.username);
-          self.events.publish("user:signupFirst", self.signupInfo.username);
+          self.userData.setUsername(self.signupInfo.username)
         }
       },
       error => {
@@ -59,15 +58,35 @@ export class SignupPage {
       codeSet: '0'
     }).subscribe(
       data => {
-        console.log(data)
+        console.log(data);
         if (data.status == 200) {
 
         }
       },
       error => {
-        console.log(error)
+        console.log(error);
       }
       );
+  }
+  private wait: number = 60;
+  private disabled: Boolean = false;
+  private value: String = '发送验证码';
+  private time() {
+    console.log(111)
+    if (this.wait == 0) {
+      this.disabled = false;
+      this.value = "发送验证码";
+      this.wait = 60;
+      return
+    } else {
+      this.disabled = true;
+      this.value = "(" + this.wait + ")秒后重新发送";
+      let self = this;
+      setTimeout(function () {
+        self.wait--;
+        self.time();
+      }, 1000)
+    }
   }
 
   getMobileCode() {
@@ -79,17 +98,17 @@ export class SignupPage {
       data => {
         console.log(data)
         if (data.status == 1) {
-
+          this.time();
         }
       },
       error => {
-        console.log(error)
+        console.log(error);
       }
       )
   }
 
-  toLoginPage(){
-    this.navCtrl.push(LoginPage)
+  toLoginPage() {
+    this.navCtrl.push(LoginPage);
   }
 
   ionViewDidLoad() {

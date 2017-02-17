@@ -6,13 +6,18 @@
 -->
 <ion-header>
 
-  <ion-navbar>
-    <ion-title>SignupThird</ion-title>
+  <ion-navbar hideBackButton="true"  >
+    <ion-title>注册</ion-title>
   </ion-navbar>
 
 </ion-header>
 
 
 <ion-content padding>
-
+    <div class="main-content">
+      <img src="../../assets/icon/signup_second_01.png" width="80%" alt="">
+      <p [style.fontWeight]="'700'" >注册成功</p>
+      <p>{{wait}}S后转跳到登录页面</p>
+      <button ion-button outline strong (click)="toLogin()" >点击登录</button>
+    </div>
 </ion-content>

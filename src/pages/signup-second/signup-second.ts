@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
 import { LoginPage } from '../login/login';
+import { SignupThirdPage } from '../signup-third/signup-third';
 
 /*
   Generated class for the SignupSecond page.
@@ -14,13 +15,17 @@ import { LoginPage } from '../login/login';
 })
 export class SignupSecondPage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {}
-  
+  constructor(public navCtrl: NavController, public navParams: NavParams) { }
+
   ionViewDidLoad() {
     console.log('ionViewDidLoad SignupSecondPage');
   }
 
-  toLoginPage(){
+  toLoginPage() {
     this.navCtrl.push(LoginPage)
+  }
+
+  toThirdPage() {
+    this.navCtrl.push(SignupThirdPage);
   }
 }

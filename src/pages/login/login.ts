@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { NgForm } from '@angular/forms';
+import { Storage } from '@ionic/storage';
 
 import { NavController, NavParams, Events, ToastController } from 'ionic-angular';
 import { TabsPage } from '../tabs/tabs';
@@ -7,6 +8,7 @@ import { SignupPage } from '../signup/signup';
 
 import { UserData } from "../../services/user-data";
 import { AnalyticsServices } from "../../services/analytics";
+
 
 /*
   Generated class for the Login page.
@@ -23,18 +25,22 @@ export class LoginPage {
   private loginInfo: { username?: string, password?: string } = {};
   private submitted = false;
   private isLoginError = false;
+  private signedName: String;
   constructor(
     public navCtrl: NavController,
     private userData: UserData,
     private events: Events,
     private toastCtrl: ToastController,
     public navParams: NavParams,
-    public analytics: AnalyticsServices
+    public analytics: AnalyticsServices,
+    private storage: Storage
   ) {
     this.init();
     this.eventHandle();
+    this.signedName = navParams.get('username');
+    this.userData.getUsername().then((data) => { this.loginInfo.username = this.signedName || data || '' })
   }
-  init(){
+  init() {
     // this.loginInfo.username = this.userData.getUsername();
   }
   goToHome(form: NgForm) {
@@ -60,6 +66,7 @@ export class LoginPage {
     this.events.subscribe("user:login:error", () => {
       self.isLoginError = true;
     });
+     
   }
   goSignup() {
     this.navCtrl.push(SignupPage);
