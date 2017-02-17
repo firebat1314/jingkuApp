@@ -1,0 +1,84 @@
+<!--
+  Generated template for the SignupSecond page.
+
+  See http://ionicframework.com/docs/v2/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>注册</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content>
+  <form #signupTwoForm="ngForm">
+
+    <ion-list class="list-wrap">
+      <ion-item>
+        <ion-label color="primary" fixed><span ion-text color="google">*</span>　姓名</ion-label>
+        <ion-input [(ngModel)]="signupTwoForm.true_name" name="true_name" #username="ngModel" type="text" placeholder="请输入真实姓名" clearInput
+          required></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label color="primary" fixed>　QQ</ion-label>
+        <ion-input [(ngModel)]="signupTwoForm.qq" name="qq" #username="ngModel" type="tel" placeholder="请输入你的QQ好" clearInput required></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label color="primary" fixed><span ion-text color="google">*</span>　公司名称</ion-label>
+        <ion-input [(ngModel)]="signupTwoForm.company" name="company" #username="ngModel" type="number" placeholder="请输入你的公司名称" clearInput
+          required></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-select [(ngModel)]="province" name="province" cancelText="取消" okText="确定" title="省">
+          <ion-option value="f" selected="true">Female</ion-option>
+          <ion-option value="m">Male</ion-option>
+        </ion-select>
+        <ion-select [(ngModel)]="city" name="city" cancelText="取消" okText="确定"  title="城市">
+          <ion-option value="bacon" checked="true">Bacon</ion-option>
+          <ion-option value="olives">Black Olives</ion-option>
+          <ion-option value="xcheese" checked="true">Extra Cheese</ion-option>
+          <ion-option value="peppers">Green Peppers</ion-option>
+          <ion-option value="mushrooms">Mushrooms</ion-option>
+          <ion-option value="onions">Onions</ion-option>
+          <ion-option value="pepperoni">Pepperoni</ion-option>
+          <ion-option value="pineapple">Pineapple</ion-option>
+          <ion-option value="sausage">Sausage</ion-option>
+          <ion-option value="Spinach">Spinach</ion-option>
+        </ion-select>
+        <ion-select [(ngModel)]="district" name="district" cancelText="取消" okText="确定" title="地区">
+          <ion-option value="bacon" checked="true">Bacon</ion-option>
+          <ion-option value="olives">Black Olives</ion-option>
+          <ion-option value="xcheese" checked="true">Extra Cheese</ion-option>
+          <ion-option value="peppers">Green Peppers</ion-option>
+          <ion-option value="mushrooms">Mushrooms</ion-option>
+          <ion-option value="onions">Onions</ion-option>
+          <ion-option value="pepperoni">Pepperoni</ion-option>
+          <ion-option value="pineapple">Pineapple</ion-option>
+          <ion-option value="sausage">Sausage</ion-option>
+          <ion-option value="Spinach">Spinach</ion-option>
+        </ion-select>
+      </ion-item>
+      <ion-item>
+        <ion-label color="primary" fixed><span ion-text color="google">*</span>　营业执照</ion-label>
+      </ion-item>
+      <ion-item>
+        <ion-label color="primary" fixed><span ion-text color="google">*</span>　推荐人编码</ion-label>
+        <ion-input [(ngModel)]="signupTwoForm.cpassword" name="cpassword" #username="ngModel" type="password" placeholder="如有推荐人，请填写"
+          clearInput required></ion-input>
+      </ion-item>
+    </ion-list>
+    <div class="tool" padding>
+      <div class="agree">
+        <ion-checkbox disabled="true" color="google"></ion-checkbox> 我已同意并阅读<span ion-text color="google">《用户协议》</span>
+      </div>
+      <div class="login">
+        <span class="text">已有账号？</span>
+        <button ion-button outline small color="danger" (click)="toLoginPage()">登录</button>
+      </div>
+    </div>
+    <button ion-button block color="dark" large class="btn-register" [disabled]="!signupTwoForm.valid">注册</button>
+  </form>
+</ion-content>

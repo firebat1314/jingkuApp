@@ -12,6 +12,7 @@ import { MyPage } from '../pages/my/my';
 import { WelcomePage } from '../pages/welcome/welcome';
 import { LoginPage } from '../pages/login/login';
 import { SignupPage } from '../pages/signup/signup';
+import { SignupSecondPage } from '../pages/signup-second/signup-second';
 
 import { UserData } from "../services/user-data";
 
@@ -25,7 +26,8 @@ import { UserData } from "../services/user-data";
     TabsPage,
     WelcomePage,
     LoginPage,
-    SignupPage
+    SignupPage,
+    SignupSecondPage
   ],
   imports: [
     IonicModule.forRoot(MyApp,{
@@ -44,7 +46,8 @@ import { UserData } from "../services/user-data";
     TabsPage,
     WelcomePage,
     LoginPage,
-    SignupPage
+    SignupPage,
+    SignupSecondPage
   ],
   providers: [{provide: ErrorHandler, useClass: IonicErrorHandler},Storage,UserData]
 })
