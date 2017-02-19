@@ -27,7 +27,7 @@ export class MyPage {
     console.log('ionViewDidLoad MyPages');
   }
   Logout() {
-    this.app.getRootNav().push(LoginPage);
+    this.app.getRootNav().setRoot(LoginPage);
     this.storage.set('hasLoggedIn',false);
   }
 }

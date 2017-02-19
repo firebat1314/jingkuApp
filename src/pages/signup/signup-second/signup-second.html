@@ -14,34 +14,32 @@
 
 
 <ion-content>
-  <form #signupTwoForm="ngForm">
+  <form #signupTwoForm="ngForm" novalidate>
 
     <ion-list class="list-wrap">
       <ion-item>
         <ion-label color="primary" fixed><span ion-text color="google">*</span>　姓名</ion-label>
-        <ion-input [(ngModel)]="signupTwoForm.true_name" name="true_name" #username="ngModel" type="text" placeholder="请输入真实姓名" clearInput
-          required></ion-input>
+        <ion-input required clearInput [(ngModel)]="signupTwoForm.true_name" name="true_name" type="text" placeholder="请输入真实姓名" ></ion-input>
       </ion-item>
       <ion-item>
         <ion-label color="primary" fixed>　QQ</ion-label>
-        <ion-input [(ngModel)]="signupTwoForm.qq" name="qq" #username="ngModel" type="number" placeholder="请输入你的QQ好" clearInput required></ion-input>
+        <ion-input required clearInput [(ngModel)]="signupTwoForm.qq" name="qq" type="number" placeholder="请输入你的QQ好" ></ion-input>
       </ion-item>
       <ion-item>
         <ion-label color="primary" fixed><span ion-text color="google">*</span>　公司名称</ion-label>
-        <ion-input [(ngModel)]="signupTwoForm.company" name="company" #username="ngModel" type="text" placeholder="请输入你的公司名称" clearInput
-          required></ion-input>
+        <ion-input required clearInput [(ngModel)]="signupTwoForm.company" name="company" type="text" placeholder="请输入你的公司名称" ></ion-input>
       </ion-item>
       <ion-item class="select-wrapper">
-        <ion-select [(ngModel)]="province" name="province" placeholder="选择省" cancelText="取消" okText="确定" [selectOptions]="{title:'省'}">
+        <ion-select required [(ngModel)]="province" name="province" placeholder="选择省" cancelText="取消" okText="确定" [selectOptions]="{title:'省'}">
           <ion-option value="f" selected="true" checked="true">Female</ion-option>
           <ion-option value="m">Male</ion-option>
         </ion-select>
-        <ion-select [(ngModel)]="city" name="city" placeholder="选择市" cancelText="取消" okText="确定" [selectOptions]="{title:'市'}">
+        <ion-select required [(ngModel)]="city" name="city" placeholder="选择市" cancelText="取消" okText="确定" [selectOptions]="{title:'市'}">
           <ion-option value="bacon">Bacon</ion-option>
           <ion-option value="olives">Black Olives</ion-option>
           <ion-option value="xcheese">Black Olives</ion-option>
         </ion-select>
-        <ion-select [(ngModel)]="district" name="district" placeholder="选择区" cancelText="取消" okText="确定" [selectOptions]="{title:'区'}">
+        <ion-select required [(ngModel)]="district" name="district" placeholder="选择区" cancelText="取消" okText="确定" [selectOptions]="{title:'区'}">
           <ion-option value="bacon">Bacon</ion-option>
           <ion-option value="olives">Black Olives</ion-option>
           <ion-option value="xcheese">Black Olives</ion-option>
@@ -56,8 +54,7 @@
       </ion-item>
       <ion-item>
         <ion-label color="primary" fixed><span ion-text color="google">*</span>　推荐人编码</ion-label>
-        <ion-input [(ngModel)]="signupTwoForm.cpassword" name="cpassword" #username="ngModel" type="text" placeholder="请填写推荐人编码"
-          clearInput required></ion-input>
+        <ion-input clearInput required [(ngModel)]="signupTwoForm.cpassword" name="cpassword" type="text" placeholder="请填写推荐人编码"></ion-input>
       </ion-item>
     </ion-list>
     <div class="tool" padding>
@@ -69,6 +66,6 @@
         <button ion-button outline small color="danger" (click)="toLoginPage()">登录</button>
       </div>
     </div>
-    <button ion-button block color="dark" large class="btn-register" [disabled]="!signupTwoForm.valid" (click)="toThirdPage()">注册</button>
+    <button ion-button block color="dark" large class="btn-register" type="submit" [disabled]="!signupTwoForm.form.valid" (click)="toThirdPage()">注册</button>
   </form>
 </ion-content>

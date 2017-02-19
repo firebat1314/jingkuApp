@@ -14,44 +14,44 @@
 
 
 <ion-content>
-  <form #signupForm="ngForm" novalidate>
+  <form #signupForm="ngForm"  (ngSubmit)="logForm(signupForm)" novalidate>
     <ion-list>
       <ion-item>
         <ion-label color="primary" fixed><span ion-text color="google">*</span>　账户名</ion-label>
-        <ion-input [(ngModel)]="signupInfo.user_name" name="user_name" #username="ngModel" type="text"  placeholder="请输入用户名" clearInput required></ion-input>
+        <ion-input required clearInput [(ngModel)]="signupInfo.user_name"  ngControl="title" name="user_name" type="text" placeholder="请输入用户名"></ion-input>
       </ion-item>
       <ion-item>
         <ion-label color="primary" fixed><span ion-text color="google">*</span>　手机号</ion-label>
-        <ion-input [(ngModel)]="signupInfo.mobile_phone" name="mobile_phone" type="tel" placeholder="请输入手机号" clearInput required></ion-input>
+        <ion-input required clearInput [(ngModel)]="signupInfo.mobile_phone" name="mobile_phone" type="tel" placeholder="请输入手机号"></ion-input>
       </ion-item>
       <ion-item class="certified-img-box">
         <ion-label color="primary" fixed><span ion-text color="google">*</span>　验证码</ion-label>
-        <ion-input [(ngModel)]="signupInfo.str_verify" name="str_verify" type="number" placeholder="验证码" clearInput required></ion-input>
+        <ion-input required clearInput [(ngModel)]="signupInfo.str_verify" name="str_verify" type="number" placeholder="验证码"></ion-input>
         <div class="certified-img" item-right>
           <img src="http://v401app.jingkoo.net/Login/verify/length/4/fontSize/12/useNoise/false" alt="">
-          <button ion-button icon-only clear small  (click)="getImg()"><ion-icon ios="ios-refresh" md="md-refresh" ></ion-icon></button>
+          <button ion-button icon-only clear small (click)="getImg()"><ion-icon ios="ios-refresh" md="md-refresh" ></ion-icon></button>
         </div>
       </ion-item>
       <ion-item>
         <ion-label color="primary" fixed><span ion-text color="google">*</span>　短信验证</ion-label>
-        <ion-input [(ngModel)]="signupInfo.Phone_code" name="Phone_code" type="number" placeholder="请输入短信验证码" clearInput required></ion-input>
-        <button ion-button outline round color="dark" item-right  (click)="getMobileCode()" [disabled]="disabled" >{{value}}</button>
+        <ion-input required clearInput [(ngModel)]="signupInfo.Phone_code" name="Phone_code" type="number" placeholder="请输入短信验证码"></ion-input>
+        <button ion-button outline round color="dark" item-right (click)="getMobileCode()" [disabled]="disabled">{{value}}</button>
       </ion-item>
       <ion-item>
         <ion-label color="primary" fixed><span ion-text color="google">*</span>　密码</ion-label>
-        <ion-input [(ngModel)]="signupInfo.password" name="password" type="password" placeholder="6-2位字母、数字组成" clearInput required></ion-input>
+        <ion-input required clearInput [(ngModel)]="signupInfo.password" name="password" type="password" placeholder="6-2位字母、数字组成"></ion-input>
       </ion-item>
       <ion-item>
         <ion-label color="primary" fixed><span ion-text color="google">*</span>　确认密码</ion-label>
-        <ion-input [(ngModel)]="signupInfo.cpassword" name="cpassword" type="password" placeholder="6-2位字母、数字组成" clearInput required></ion-input>
+        <ion-input required clearInput [(ngModel)]="signupInfo.cpassword" name="cpassword" type="password" placeholder="6-2位字母、数字组成"></ion-input>
       </ion-item>
     </ion-list>
     <div class="login">
       <span class="text">已有账号？</span>
       <button ion-button outline small color="danger" (click)="toLoginPage()">登录</button>
     </div>
-    <button ion-button block color="dark" large class="btn-register"  (click)="registerBtn()" >注册</button> 
-     <!--[disabled]="!signupForm.valid"-->
+    <button ion-button block color="dark" large class="btn-register" (click)="registerBtn()" [disabled]="!signupForm.form.valid">注册</button>
+    <!---->
   </form>
 
 </ion-content>

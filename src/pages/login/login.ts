@@ -1,10 +1,10 @@
 import { Component } from '@angular/core';
-import { NgForm } from '@angular/forms';
 import { Storage } from '@ionic/storage';
 
 import { NavController, NavParams, Events, ToastController } from 'ionic-angular';
 import { TabsPage } from '../tabs/tabs';
 import { SignupPage } from '../signup/signup';
+import { ForgotPage } from '../forgot/forgot';
 
 import { UserData } from "../../services/user-data";
 import { AnalyticsServices } from "../../services/analytics";
@@ -26,6 +26,7 @@ export class LoginPage {
   private submitted = false;
   private isLoginError = false;
   private signedName: String;
+  public forgotpage
   constructor(
     public navCtrl: NavController,
     private userData: UserData,
@@ -33,19 +34,19 @@ export class LoginPage {
     private toastCtrl: ToastController,
     public navParams: NavParams,
     public analytics: AnalyticsServices,
-    private storage: Storage
+    private storage: Storage,
   ) {
     this.init();
     this.eventHandle();
+    this.forgotpage = ForgotPage;
     this.signedName = navParams.get('username');
     this.userData.getUsername().then((data) => { this.loginInfo.username = this.signedName || data || '' })
   }
   init() {
     // this.loginInfo.username = this.userData.getUsername();
   }
-  goToHome(form: NgForm) {
+  goToHome(form) {
     if (form.valid) {
-      console.log(form)
       this.userData.login(this.loginInfo);
     }
   };

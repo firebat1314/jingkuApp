@@ -14,6 +14,9 @@
 // To declare rules for a specific mode, create a child rule
 // for the .md, .ios, or .wp mode classes. The mode class is
 // automatically applied to the <body> element in the app.
+.tabs-md .tabbar {
+    background: #fff;
+}
 ion-item.item{
     padding-left:0;
 }
@@ -25,4 +28,5 @@ ion-title.title-md{
   width: 100%;
   height: 100%;
   text-align: center;
+  z-index:-1;
 }

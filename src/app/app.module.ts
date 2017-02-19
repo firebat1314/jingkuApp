@@ -1,6 +1,6 @@
 import { NgModule, ErrorHandler } from '@angular/core';
 import { Storage } from '@ionic/storage';
-import { HttpModule }   from '@angular/http';
+import { HttpModule } from '@angular/http';
 import { BrowserModule } from "@angular/platform-browser";
 
 import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
@@ -13,9 +13,11 @@ import { MyPage } from '../pages/my/my';
 import { WelcomePage } from '../pages/welcome/welcome';
 import { LoginPage } from '../pages/login/login';
 import { SignupPage } from '../pages/signup/signup';
-import { SignupSecondPage } from '../pages/signup-second/signup-second';
-import { SignupThirdPage } from '../pages/signup-third/signup-third';
-import {DirectiveTestPage} from "../pages/directive-test/directive-test";
+import { SignupSecondPage } from '../pages/signup/signup-second/signup-second';
+import { SignupThirdPage } from '../pages/signup/signup-third/signup-third';
+import { DirectiveTestPage } from "../pages/directive-test/directive-test";
+import { ForgotPage } from "../pages/forgot/forgot";
+import { ForgotTwoPage } from "../pages/forgot/forgot-two/forgot-two";
 
 import { UserData } from "../services/user-data";
 
@@ -35,31 +37,33 @@ import { MyDirective } from "../components/my-directive/my-directive";
     SignupSecondPage,
     SignupThirdPage,
     MyDirective,
-    DirectiveTestPage
+    DirectiveTestPage,
+    ForgotPage,
+    ForgotTwoPage
   ],
   imports: [
-    IonicModule.forRoot(MyApp,{
+    IonicModule.forRoot(MyApp, {
       backButtonText: '',
-      tabsHideOnSubPages: true,
+      // tabsHideOnSubPages: true,
       tabsPlacement: 'bottom',
-    }),
+      pageTransition: 'ios-transition'
+    }, {
+        links: [
+          { component: HomePage, name: 'sss', segment: 'home' }
+        ]
+      }),
     BrowserModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [
     MyApp,
-    AboutPage,
-    ContactPage,
-    HomePage,
-    MyPage,
-    TabsPage,
+    AboutPage,ContactPage,HomePage,MyPage,TabsPage,
     WelcomePage,
     LoginPage,
-    SignupPage,
-    SignupSecondPage,
-    SignupThirdPage,
-    DirectiveTestPage
+    SignupPage,SignupSecondPage,SignupThirdPage,
+    DirectiveTestPage,
+    ForgotPage,ForgotTwoPage
   ],
-  providers: [{provide: ErrorHandler, useClass: IonicErrorHandler},Storage,UserData]
+  providers: [{ provide: ErrorHandler, useClass: IonicErrorHandler }, Storage, UserData]
 })
-export class AppModule {}
+export class AppModule { }

@@ -1,0 +1,38 @@
+<!--
+  Generated template for the ForgotTwo page.
+
+  See http://ionicframework.com/docs/v2/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>找回密码</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+<form #secondForm="ngForm" novalidate>
+    <ion-list>
+
+      <ion-item>
+        <ion-label color="primary" fixed><span ion-text color="google">*</span>　短信验证</ion-label>
+        <ion-input required clearInput name="Phone_code" type="number" placeholder="请输入短信验证码"></ion-input>
+        <button ion-button outline round color="dark" item-right [disabled]="disabled">{{value}}</button>
+      </ion-item>
+      <ion-item>
+        <ion-label color="primary" fixed><span ion-text color="google">*</span>　密码</ion-label>
+        <ion-input required clearInput name="password" type="password" placeholder="6-2位字母、数字组成"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label color="primary" fixed><span ion-text color="google">*</span>　确认密码</ion-label>
+        <ion-input required clearInput name="cpassword" type="password" placeholder="6-2位字母、数字组成"></ion-input>
+      </ion-item>
+    </ion-list>
+    
+    <button ion-button block color="dark" type="submit" large [disabled]="!secondForm.form.valid">确认</button>
+    <!---->
+  </form>
+</ion-content>

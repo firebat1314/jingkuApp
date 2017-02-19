@@ -5,7 +5,7 @@ import { Storage } from '@ionic/storage';
 import { UserData } from "../../services/user-data";
 
 import { LoginPage } from '../login/login';
-import { SignupSecondPage } from '../signup-second/signup-second';
+import { SignupSecondPage } from './signup-second/signup-second';
 
 /*
   Generated class for the Signup page.
@@ -49,7 +49,9 @@ export class SignupPage {
       }
     );
   }
-
+  logForm(signupForm){
+    console.log(signupForm)
+  }
   getImg() {
     this.userData.getVerificationImg({
       fontSize: '20',

@@ -11,13 +11,15 @@ import { MyPage } from '../my/my';
 export class TabsPage {
   // this tells the tabs component which Pages
   // should be each tab's root Page
-  @ViewChild('tabs') tabs: Tabs;
+  @ViewChild("tabs") tabs: Tabs;
   tab1Root: any = HomePage;
   tab2Root: any = AboutPage;
   tab3Root: any = ContactPage;
   tab4Root: any = MyPage;
 
-  constructor() {
-
-  }
+  constructor() {}
+    
+ /* ionViewDidLoad() {
+    console.log(this.tabs);
+  }*/
 }

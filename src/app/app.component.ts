@@ -12,9 +12,14 @@ import { LoginPage } from '../pages/login/login';
 export class MyApp {
   rootPage: any;
   backButtonPressed: boolean = false;  //用于判断返回键是否触发
-  @ViewChild('content') nav: Nav;
+  @ViewChild(Nav) nav: Nav;
 
-  constructor(public ionicApp: IonicApp, public platform: Platform, public toastCtrl: ToastController, public storage: Storage) {
+  constructor(
+    public ionicApp: IonicApp,
+    public platform: Platform,
+    public toastCtrl: ToastController,
+    public storage: Storage
+  ) {
     // 初次进入app引导页面
     this.storage.get('hasLoggedIn').then((result) => {
       if (result) {
@@ -31,32 +36,36 @@ export class MyApp {
         )
       }
     });
-    platform.ready().then(() => {
-      // Okay, so the platform is ready and our plugins are available.
-      // Here you can do any higher level native things you might need.
-      Splashscreen.hide();
-      StatusBar.overlaysWebView(false); // let status bar overlay webview
-      StatusBar.backgroundColorByHexString('#bdbdbd'); // set status bar to white
-      this.registerBackButtonAction();//注册返回按键事件
-    });
-  }
-  registerBackButtonAction() {
-    this.platform.registerBackButtonAction(() => {
-      //如果想点击返回按钮隐藏toast或loading或Overlay就把下面加上
-      // this.ionicApp._toastPortal.getActive() || this.ionicApp._loadingPortal.getActive() || this.ionicApp._overlayPortal.getActive()
-      let activePortal = this.ionicApp._modalPortal.getActive();
-      if (activePortal) {
-        activePortal.dismiss().catch(() => { });
-        activePortal.onDidDismiss(() => { });
-        return;
-      }
-      let activeVC = this.nav.getActive();
-      let tabs = activeVC.instance.tabs;
-      let activeNav = tabs.getSelected();
-      return activeNav.canGoBack() ? activeNav.pop() : this.showExit()
-    }, 1);
+    this.initializeApp();//注册返回按键事件
   }
 
+  initializeApp() {
+    this.platform.ready().then(() => {
+      Splashscreen.hide();
+      StatusBar.backgroundColorByName('darkGray'); // set status bar to white
+      //注册返回按键事件
+      this.platform.registerBackButtonAction((): any => {
+        console.log(this.nav)
+        let activeVC = this.nav.getActive();
+        let page = activeVC.instance;
+        //当前页面非tab栏
+        if (!(page instanceof TabsPage)) {
+          if (!this.nav.canGoBack()) {
+            return this.showExit();
+          }
+          return this.nav.pop();
+        }
+        let tabs = page.tabs;
+        let activeNav = tabs.getSelected();
+        if (!activeNav.canGoBack()) {
+          //当前页面为tab栏，退出APP
+          return this.showExit();
+        }
+        //当前页面为tab栏的子页面，正常返回
+        return activeNav.pop();
+      }, 101);
+    });
+  }
   //双击退出提示框
   showExit() {
     if (this.backButtonPressed) { //当触发标志为true时，即2秒内双击返回按键则退出APP

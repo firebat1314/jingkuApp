@@ -43,7 +43,7 @@ $colors: (
 // App iOS Variables
 // --------------------------------------------------
 // iOS only Sass variables can go here
-$cordova-ios-statusbar-padding:       20px;
+
 
 
 
@@ -51,14 +51,11 @@ $cordova-ios-statusbar-padding:       20px;
 // --------------------------------------------------
 // Material Design only Sass variables can go here
 
-$tabs-md-tab-text-color:#ccc;
-$tabs-md-tab-icon-color: #ccc;
 // Use the primary color as the background for the toolbar-md-background
-$toolbar-md-background: color($colors, light);
+$toolbar-md-background:   color($colors, light);
+$cordova-ios-statusbar-padding:       20px;
 $cordova-md-statusbar-padding:           29px;
-
 // Change the color of the segment button text
-$toolbar-md-active-color:                 #fff;
 $text-input-md-show-focus-highlight:false;
 // App Windows Variables
 // --------------------------------------------------
