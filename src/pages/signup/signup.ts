@@ -23,13 +23,18 @@ export class SignupPage {
     mobile_phone?: String,
     str_verify?: String
   } = {};
+  private skey;
   constructor(
     public navCtrl: NavController,
     public navParams: NavParams,
     private userData: UserData,
     private events: Events,
-    public http: Http
+    public http: Http,
+    public storage: Storage
   ) {
+    this.storage.get('skey').then((value) => {
+      this.skey = value
+    })
     this.getImg();
   }
 
@@ -49,20 +54,26 @@ export class SignupPage {
       }
     );
   }
-  logForm(signupForm){
+  logForm(signupForm) {
     console.log(signupForm)
   }
+  private verifyImg;
   getImg() {
+
     this.userData.getVerificationImg({
       fontSize: '20',
       length: '6',
       useNoise: 'false',
-      codeSet: '0'
+      codeSet: '0',
+      skey: this.skey
     }).subscribe(
       data => {
         console.log(data);
-        if (data.status == 200) {
-
+        if (data.status == 1) {
+          this.verifyImg = data.data.captcha +'?'+ Math.random();
+          this.skey = data.data.skey;
+          console.log(this.verifyImg)
+          this.storage.set('skey', this.skey)
         }
       },
       error => {
@@ -73,8 +84,8 @@ export class SignupPage {
   private wait: number = 60;
   private disabled: Boolean = false;
   private value: String = '发送验证码';
+  private timer:any;
   private time() {
-    console.log(111)
     if (this.wait == 0) {
       this.disabled = false;
       this.value = "发送验证码";
@@ -95,7 +106,8 @@ export class SignupPage {
     this.userData.getMobileCode({
       type: 'reg',
       mobile: this.signupInfo.mobile_phone,
-      verify: this.signupInfo.str_verify
+      verify: this.signupInfo.str_verify,
+      skey:this.skey
     }).subscribe(
       data => {
         console.log(data)

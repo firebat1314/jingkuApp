@@ -1,15 +1,167 @@
 <ion-header>
-  <ion-navbar>
-    <ion-searchbar
-      [(ngModel)]="myInput"
-      [showCancelButton]="shouldShowCancel"
-      (ionInput)="onInput($event)"
-      (ionCancel)="onCancel($event)">
-    </ion-searchbar>
-  </ion-navbar>
+    <ion-navbar mode="ios">
+        <ion-buttons start>
+            <button ion-button clear icon-only icon-left [navPush]="cityPage">
+        <img src="./assets/icon/homepage_03.png" width="20px" class="add_icon">
+        北京
+      </button>
+        </ion-buttons>
+        <ion-searchbar [navPush]="SearchPage" [(ngModel)]="myHomeSearch" (ionInput)="onInput($event)" (ionCancel)="onCancel($event)" placeholder="搜索镜库上平/店铺" animated spellcheck="true" mode="ios">
+        </ion-searchbar>
+        <ion-buttons end>
+            <button ion-button clear icon-only icon-left><img src="./assets/icon/homepage_09.png" width="20px"></button>
+        </ion-buttons>
+    </ion-navbar>
 </ion-header>
 
-<ion-content padding>
-  
-  <button ion-button (click)="toTest()" >direvtive test</button>
+<ion-content>
+    <div class="banner-wrapper">
+        <ion-slides autoplay="3000" loop="true" pagger effect="coverflow" speed="500">
+            <ion-slide>
+                <img src="./assets/icon/homepage_38.png" />
+            </ion-slide>
+            <ion-slide>
+                <img src="./assets/icon/homepage_38.png" />
+            </ion-slide>
+            <ion-slide>
+                <img src="./assets/icon/homepage_38.png" />
+            </ion-slide>
+        </ion-slides>
+    </div>
+    <div class="btn-tool" padding>
+        <div class="top">
+            <div>
+                <img src="./assets/icon/homepage_15.png" alt="">
+                <span>关注</span>
+            </div>
+            <div>
+                <img src="./assets/icon/homepage_18.png" alt="">
+                <span>充值</span>
+            </div>
+            <div>
+                <img src="./assets/icon/homepage_21.png" alt="">
+                <span>闪购</span>
+            </div>
+            <div>
+                <img src="./assets/icon/homepage_23.png" alt="">
+                <span>品牌</span>
+            </div>
+        </div>
+        <div class="bottom">
+            <div>
+                <img src="./assets/icon/homepage_29.png" alt="">
+                <span>白条</span>
+            </div>
+            <div>
+                <img src="./assets/icon/homepage_32.png" alt="">
+                <span>优惠券</span>
+            </div>
+            <div>
+                <img src="./assets/icon/homepage_30.png" alt="">
+                <span>积分商城</span>
+            </div>
+            <div>
+                <img src="./assets/icon/homepage_31.png" alt="">
+                <span>镜库设计</span>
+            </div>
+
+        </div>
+    </div>
+    <div class="parting-line"></div>
+    <!--热门类型-->
+    <div class="hot-group home-content" padding>
+        <div class="title">
+            <span class="txt">热门品类</span>
+            <span class="more">更多&gt;</span>
+        </div>
+        <div class="main">
+            <div class="banner">
+                <img src="./assets/icon/homepage_38.png" alt="">
+            </div>
+            <ion-grid>
+                <ion-row>
+                    <ion-col width-33>
+                        <img src="./assets/icon/homepage_proup01.jpg" alt="">
+                        <span>隐形眼镜</span>
+                    </ion-col>
+                    <ion-col width-33>
+                        <img src="./assets/icon/homepage_proup01.jpg" alt="">
+                        <span>隐形眼镜</span>
+                    </ion-col>
+                    <ion-col width-33>
+                        <img src="./assets/icon/homepage_proup01.jpg" alt="">
+                        <span>隐形眼镜</span>
+                    </ion-col>
+                </ion-row>
+                <ion-row>
+                    <ion-col width-33>
+                        <img src="./assets/icon/homepage_proup01.jpg" alt="">
+                        <span>隐形眼镜</span>
+                    </ion-col>
+                    <ion-col width-33>
+                        <img src="./assets/icon/homepage_proup01.jpg" alt="">
+                        <span>隐形眼镜</span>
+                    </ion-col>
+                    <ion-col width-33>
+                        <img src="./assets/icon/homepage_proup01.jpg" alt="">
+                        <span>隐形眼镜</span>
+                    </ion-col>
+                </ion-row>
+                <ion-row>
+                    <ion-col width-33>
+                        <img src="./assets/icon/homepage_proup01.jpg" alt="">
+                        <span>隐形眼镜</span>
+                    </ion-col>
+                    <ion-col width-33>
+                        <img src="./assets/icon/homepage_proup01.jpg" alt="">
+                        <span>隐形眼镜</span>
+                    </ion-col>
+                    <ion-col width-33>
+                        <img src="./assets/icon/homepage_proup01.jpg" alt="">
+                        <span>隐形眼镜</span>
+                    </ion-col>
+                </ion-row>
+            </ion-grid>
+        </div>
+    </div>
+    <div class="parting-line"></div>
+    <div class="hot-brand home-content" padding>
+        <div class="title">
+            <span class="txt">热门品牌</span>
+            <span class="more">更多&gt;</span>
+        </div>
+        <div class="main">
+
+        </div>
+    </div>
+    <div class="parting-line"></div>
+    <div class="handpick home-content" padding>
+        <div class="title">
+            <span class="txt">精选专题</span>
+        </div>
+        <div class="main">
+
+        </div>
+    </div>
+    <div class="parting-line"></div>
+    <div class="good-shop home-content" padding>
+        <div class="title">
+            <span class="txt">好点推荐</span>
+            <span class="more">更多&gt;</span>
+        </div>
+        <div class="main">
+
+        </div>
+    </div>
+    <div class="parting-line"></div>
+    <div class="hot-other home-content" padding>
+        <div class="title">
+            <span class="txt">热门单品</span>
+            <span class="more">更多&gt;</span>
+        </div>
+        <div class="main">
+
+        </div>
+    </div>
+    <!--<button ion-button [navPush]="DirectiveTestPage">direvtive test</button>-->
 </ion-content>

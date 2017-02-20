@@ -2,6 +2,7 @@ import { Injectable } from "@angular/core";
 import { Http, Response } from "@angular/http";
 import { Events } from "ionic-angular";
 import { Storage } from '@ionic/storage';
+import { Headers, RequestOptions } from '@angular/http';
 // Add the RxJS Observable operators.
 import '../app/rxjs-operators';
 
@@ -51,6 +52,7 @@ export class UserData {
                 if (data.status == 1) {
                     self.setUsername(user.username);
                     self.setToken(data.data.token);
+
                     self.storage.set(this.HAS_LOGGED_IN, true);
                     self.hasLogin = true;
                     self.events.publish("user:login", user.username);
@@ -62,6 +64,37 @@ export class UserData {
             );
     }
 
+    public httpGetWithAuth(url?: string) {
+        let userToken;
+        this.getToken().then((value) => {
+            userToken = value;
+        });
+
+        var headers = new Headers();
+        headers.append('Content-Type', 'application/json');
+        headers.append('Authorization',  'Basic ' + btoa(userToken) + ':');
+        let options = new RequestOptions({ headers: headers });
+        return this.http.get('http://v401app.jingkoo.net/Index/ads/int_pos_id/3/int_size/10', options).toPromise()
+            .then(res => res.json())
+            .catch(err => {
+                this.handleError(err);
+            });
+    }
+    public httpPostWithAuth(url: string, body: any) {
+        let userToken;
+        this.getToken().then((value) => {
+            userToken = value;
+        });
+        let headers = new Headers();
+        headers.append('Content-Type', 'application/json');
+        headers.append('Authorization', 'Basic ' + btoa(userToken) + ':');
+        let options = new RequestOptions({ headers: headers });
+        return this.http.post(url, body, options).toPromise()
+            .then(res => res.json())
+            .catch(err => {
+                this.handleError(err);
+            });
+    }
 
     signupFirst(user) {
         let payload = {
@@ -75,7 +108,7 @@ export class UserData {
         return this.http.post(this.ip + "/Login/register/step/one", payload)
             .map(this.extractData)
             .catch(this.handleError)
-            
+
     }
 
     getVerificationImg(data) {
@@ -83,15 +116,15 @@ export class UserData {
         return this.http.post(this.ip + '/Login/verify', data)
             .map(this.extractData)
             .catch(this.handleError)
-            
+
     }
 
-    getMobileCode(data){
+    getMobileCode(data) {
         console.log(data)
         return this.http.post(this.ip + '/Login/getMobileCode', data)
             .map(this.extractData)
             .catch(this.handleError)
-            
+
     }
 
     logout() {
@@ -106,9 +139,8 @@ export class UserData {
     }
 
     getToken() {
-        return this.storage.get("token").then((value) => {
-            return value;
-        });
+        return this.storage.get("token");
+
     }
 
     setUsername(username) {
@@ -116,9 +148,7 @@ export class UserData {
     }
 
     getUsername() {
-        return this.storage.get("username").then((value) => {
-            return value;
-        });
+        return this.storage.get("username");
     }
 
     isLogin() {

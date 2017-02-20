@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams,Events } from 'ionic-angular';
+import { NavController, NavParams, Events } from 'ionic-angular';
 import { LoginPage } from '../../login/login';
 
 /*
@@ -13,18 +13,18 @@ import { LoginPage } from '../../login/login';
   templateUrl: 'signup-third.html'
 })
 export class SignupThirdPage {
-  private username:String;
+  private username: String;
   constructor(
     public navCtrl: NavController,
-   public navParams: NavParams,
-   private events:Events
-   ) {
-     this.events.subscribe("user:signupFirst", (userEventData) => {
-        this.username = userEventData;
-        console.log(userEventData)
+    public navParams: NavParams,
+    private events: Events
+  ) {
+    this.events.subscribe("user:signupFirst", (userEventData) => {
+      this.username = userEventData;
+      console.log(userEventData)
     })
     this.time()
-   }
+  }
   private wait: number = 3;
   private time() {
     if (this.wait == 0) {
@@ -43,9 +43,9 @@ export class SignupThirdPage {
   ionViewDidLoad() {
     console.log('ionViewDidLoad SignupThirdPage');
   }
-  toLogin(){
-    this.navCtrl.push(LoginPage,{
-      username:this.username
+  toLogin() {
+    this.navCtrl.push(LoginPage, {
+      username: this.username
     })
   }
 

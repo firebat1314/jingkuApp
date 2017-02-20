@@ -18,6 +18,11 @@ import { SignupThirdPage } from '../pages/signup/signup-third/signup-third';
 import { DirectiveTestPage } from "../pages/directive-test/directive-test";
 import { ForgotPage } from "../pages/forgot/forgot";
 import { ForgotTwoPage } from "../pages/forgot/forgot-two/forgot-two";
+import { ForgotThreePage } from "../pages/forgot/forgot-three/forgot-three";
+import { CityPage } from '../pages/home/city/city'
+import { SearchPage } from '../pages/home/search/search'
+import { DetailsPage } from '../pages/home/details/details'
+
 
 import { UserData } from "../services/user-data";
 
@@ -28,18 +33,17 @@ import { MyDirective } from "../components/my-directive/my-directive";
     MyApp,
     AboutPage,
     ContactPage,
-    HomePage,
+    HomePage,CityPage,SearchPage,DetailsPage,
     MyPage,
     TabsPage,
     WelcomePage,
     LoginPage,
-    SignupPage,
-    SignupSecondPage,
-    SignupThirdPage,
+    SignupPage,SignupSecondPage,SignupThirdPage,
     MyDirective,
     DirectiveTestPage,
-    ForgotPage,
-    ForgotTwoPage
+    ForgotPage,ForgotTwoPage,ForgotThreePage,
+
+    
   ],
   imports: [
     IonicModule.forRoot(MyApp, {
@@ -57,7 +61,11 @@ import { MyDirective } from "../components/my-directive/my-directive";
   bootstrap: [IonicApp],
   entryComponents: [
     MyApp,
-    AboutPage,ContactPage,HomePage,MyPage,TabsPage,
+    AboutPage,
+    ContactPage,
+    HomePage,CityPage,SearchPage,DetailsPage,
+    MyPage,
+    TabsPage,
     WelcomePage,
     LoginPage,
     SignupPage,SignupSecondPage,SignupThirdPage,
