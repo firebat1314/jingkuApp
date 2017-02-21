@@ -1,8 +1,7 @@
 import { Injectable } from "@angular/core";
-import { Http, Response } from "@angular/http";
+import { Http, Response,Headers, RequestOptions } from "@angular/http";
 import { Events } from "ionic-angular";
 import { Storage } from '@ionic/storage';
-import { Headers, RequestOptions } from '@angular/http';
 // Add the RxJS Observable operators.
 import '../app/rxjs-operators';
 
@@ -47,20 +46,19 @@ export class UserData {
             .map(this.extractData)
             .catch(this.handleError)
             .subscribe(
-            data => {
-                console.log(data)
-                if (data.status == 1) {
-                    self.setUsername(user.username);
-                    self.setToken(data.data.token);
-
-                    self.storage.set(this.HAS_LOGGED_IN, true);
-                    self.hasLogin = true;
-                    self.events.publish("user:login", user.username);
+                data => {
+                    console.log(data)
+                    if (data.status == 1) {
+                        self.setUsername(user.username);
+                        self.setToken(data.data.token);
+                        self.storage.set(this.HAS_LOGGED_IN, true);
+                        self.hasLogin = true;
+                        // self.events.publish("user:login", user.username);
+                    };
+                },
+                error => {
+                    // self.events.publish("user:login:error");
                 }
-            },
-            error => {
-                self.events.publish("user:login:error");
-            }
             );
     }
 
@@ -120,7 +118,6 @@ export class UserData {
     }
 
     getMobileCode(data) {
-        console.log(data)
         return this.http.post(this.ip + '/Login/getMobileCode', data)
             .map(this.extractData)
             .catch(this.handleError)

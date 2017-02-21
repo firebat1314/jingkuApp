@@ -32,10 +32,7 @@ export class SignupPage {
     public http: Http,
     public storage: Storage
   ) {
-    this.storage.get('skey').then((value) => {
-      this.skey = value
-    })
-    this.getImg();
+    this.getSkey();
   }
 
   registerBtn() {
@@ -55,14 +52,30 @@ export class SignupPage {
     );
   }
   logForm(signupForm) {
-    console.log(signupForm)
+    //console.log(signupForm)
   }
   private verifyImg;
-  getImg() {
-
+  private getSkey() {
     this.userData.getVerificationImg({
-      fontSize: '20',
-      length: '6',
+      fontSize: '12',
+      length: '4',
+      useNoise: 'false',
+      codeSet: '0',
+    }).subscribe(
+      data => {
+        console.log(data);
+        if (data.status == 1) {
+          this.skey = data.data.skey;
+          this.getImg()
+        }
+      }
+      )
+  }
+
+  private getImg() {
+    this.userData.getVerificationImg({
+      fontSize: '12',
+      length: '4',
       useNoise: 'false',
       codeSet: '0',
       skey: this.skey
@@ -70,10 +83,8 @@ export class SignupPage {
       data => {
         console.log(data);
         if (data.status == 1) {
-          this.verifyImg = data.data.captcha +'?'+ Math.random();
-          this.skey = data.data.skey;
-          console.log(this.verifyImg)
-          this.storage.set('skey', this.skey)
+          this.verifyImg = data.data.captcha + '?' + Math.random();
+          this.skey = data.data.skey
         }
       },
       error => {
@@ -84,7 +95,7 @@ export class SignupPage {
   private wait: number = 60;
   private disabled: Boolean = false;
   private value: String = '发送验证码';
-  private timer:any;
+  private timer: any;
   private time() {
     if (this.wait == 0) {
       this.disabled = false;
@@ -107,15 +118,18 @@ export class SignupPage {
       type: 'reg',
       mobile: this.signupInfo.mobile_phone,
       verify: this.signupInfo.str_verify,
-      skey:this.skey
+      skey: this.skey
     }).subscribe(
       data => {
         console.log(data)
         if (data.status == 1) {
           this.time();
+        } else if (data.status == 0) {
+          this.getImg();
         }
       },
       error => {
+        this.getImg();
         console.log(error);
       }
       )
