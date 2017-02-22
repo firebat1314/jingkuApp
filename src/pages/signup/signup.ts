@@ -37,7 +37,7 @@ export class SignupPage {
 
   registerBtn() {
     let self = this;
-    this.userData.signupFirst(this.signupInfo).subscribe(
+    this.userData.signupFirst(this.signupInfo).then(
       data => {
         console.log(data)
         this.navCtrl.push(SignupSecondPage);
@@ -61,7 +61,7 @@ export class SignupPage {
       length: '4',
       useNoise: 'false',
       codeSet: '0',
-    }).subscribe(
+    }).then(
       data => {
         console.log(data);
         if (data.status == 1) {
@@ -79,7 +79,7 @@ export class SignupPage {
       useNoise: 'false',
       codeSet: '0',
       skey: this.skey
-    }).subscribe(
+    }).then(
       data => {
         console.log(data);
         if (data.status == 1) {
@@ -119,7 +119,7 @@ export class SignupPage {
       mobile: this.signupInfo.mobile_phone,
       verify: this.signupInfo.str_verify,
       skey: this.skey
-    }).subscribe(
+    }).then(
       data => {
         console.log(data)
         if (data.status == 1) {

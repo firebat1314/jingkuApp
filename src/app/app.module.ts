@@ -25,6 +25,8 @@ import { DetailsPage } from '../pages/home/details/details'
 
 
 import { UserData } from "../services/user-data";
+import { Native } from "../providers/native";
+import { HttpService } from "../providers/http-service";
 
 import { MyDirective } from "../components/my-directive/my-directive";
 
@@ -41,9 +43,7 @@ import { MyDirective } from "../components/my-directive/my-directive";
     SignupPage,SignupSecondPage,SignupThirdPage,
     MyDirective,
     DirectiveTestPage,
-    ForgotPage,ForgotTwoPage,ForgotThreePage,
-
-    
+    ForgotPage,ForgotTwoPage,ForgotThreePage
   ],
   imports: [
     IonicModule.forRoot(MyApp, {
@@ -72,6 +72,6 @@ import { MyDirective } from "../components/my-directive/my-directive";
     DirectiveTestPage,
     ForgotPage,ForgotTwoPage
   ],
-  providers: [{ provide: ErrorHandler, useClass: IonicErrorHandler }, Storage, UserData]
+  providers: [{ provide: ErrorHandler, useClass: IonicErrorHandler }, Storage, UserData,Native,HttpService]
 })
 export class AppModule { }

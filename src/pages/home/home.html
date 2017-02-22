@@ -17,15 +17,10 @@
 <ion-content>
     <div class="banner-wrapper">
         <ion-slides autoplay="3000" loop="true" pagger effect="coverflow" speed="500">
-            <ion-slide>
-                <img src="./assets/icon/homepage_38.png" />
+            <ion-slide *ngFor="let item of bannerImgs">
+                <img src="{{item.ad_img}}" />}
             </ion-slide>
-            <ion-slide>
-                <img src="./assets/icon/homepage_38.png" />
-            </ion-slide>
-            <ion-slide>
-                <img src="./assets/icon/homepage_38.png" />
-            </ion-slide>
+
         </ion-slides>
     </div>
     <div class="btn-tool" padding>

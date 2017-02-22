@@ -26,7 +26,8 @@ export class LoginPage {
   private submitted = false;
   private isLoginError = false;
   private signedName: String;
-  public forgotpage
+  public forgotpage;
+
   constructor(
     public navCtrl: NavController,
     private userData: UserData,
@@ -37,7 +38,7 @@ export class LoginPage {
     private storage: Storage,
   ) {
     this.init();
-    this.eventHandle();
+
     this.forgotpage = ForgotPage;
     this.signedName = navParams.get('username');
     this.userData.getUsername().then((data) => { this.loginInfo.username = this.signedName || data || '' })
@@ -46,28 +47,28 @@ export class LoginPage {
     // this.loginInfo.username = this.userData.getUsername();
   }
   goToHome(form) {
-    if (form.valid) {
-      this.userData.login(this.loginInfo);
-    }
-  };
-  eventHandle() {
     let self = this;
-    this.events.subscribe("user:login", (userEventData) => {
-      let toast = self.toastCtrl.create({
-        message: "欢迎回来," + userEventData,
-        duration: 2000,
-        position: "top"
-      });
-      toast.present();
-      this.submitted = true;
-      self.analytics.trackEvent("Login", "Successful");
-      self.navCtrl.push(TabsPage);
-    });
-
-    this.events.subscribe("user:login:error", () => {
-      self.isLoginError = true;
-    });
-     
+    if (form.valid) {
+      this.userData.login(this.loginInfo).then(data => {
+        console.log(data)
+        if (data.status == 1) {
+          self.userData.setUsername(self.loginInfo.username);
+          self.userData.setToken(data.data.token);
+          self.userData.storage.set(self.userData.HAS_LOGGED_IN, true);
+          self.userData.hasLogin = true;
+          // self.events.publish("user:login", user.username);
+          let toast = self.toastCtrl.create({
+            message: "欢迎回来," + self.loginInfo.username,
+            duration: 2000,
+            position: "top"
+          });
+          toast.present();
+          self.submitted = true;
+          self.analytics.trackEvent("Login", "Successful");//google分析
+          self.navCtrl.push(TabsPage);
+        }
+      })
+    }
   }
   goSignup() {
     this.navCtrl.push(SignupPage);
