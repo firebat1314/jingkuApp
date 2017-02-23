@@ -14,11 +14,12 @@
     </ion-navbar>
 </ion-header>
 
-<ion-content>
+<ion-content (ionScroll)="scrollHeight()">
     <div class="banner-wrapper">
-        <ion-slides autoplay="3000" loop="true" pagger effect="coverflow" speed="500">
+        <ion-slides #bannerSlide loop="true" pager (ionSlideWillChange)="change()" effect="coverflow">
+            <!-- -->
             <ion-slide *ngFor="let item of bannerImgs">
-                <img src="{{item.ad_img}}" />}
+                <img src="{{ item.ad_img }}" />
             </ion-slide>
 
         </ion-slides>
@@ -74,60 +75,46 @@
                 <img src="./assets/icon/homepage_38.png" alt="">
             </div>
             <ion-grid>
-                <ion-row>
-                    <ion-col width-33>
-                        <img src="./assets/icon/homepage_proup01.jpg" alt="">
-                        <span>隐形眼镜</span>
-                    </ion-col>
-                    <ion-col width-33>
-                        <img src="./assets/icon/homepage_proup01.jpg" alt="">
-                        <span>隐形眼镜</span>
-                    </ion-col>
-                    <ion-col width-33>
-                        <img src="./assets/icon/homepage_proup01.jpg" alt="">
-                        <span>隐形眼镜</span>
-                    </ion-col>
-                </ion-row>
-                <ion-row>
-                    <ion-col width-33>
-                        <img src="./assets/icon/homepage_proup01.jpg" alt="">
-                        <span>隐形眼镜</span>
-                    </ion-col>
-                    <ion-col width-33>
-                        <img src="./assets/icon/homepage_proup01.jpg" alt="">
-                        <span>隐形眼镜</span>
-                    </ion-col>
-                    <ion-col width-33>
-                        <img src="./assets/icon/homepage_proup01.jpg" alt="">
-                        <span>隐形眼镜</span>
-                    </ion-col>
-                </ion-row>
-                <ion-row>
-                    <ion-col width-33>
-                        <img src="./assets/icon/homepage_proup01.jpg" alt="">
-                        <span>隐形眼镜</span>
-                    </ion-col>
-                    <ion-col width-33>
-                        <img src="./assets/icon/homepage_proup01.jpg" alt="">
-                        <span>隐形眼镜</span>
-                    </ion-col>
-                    <ion-col width-33>
-                        <img src="./assets/icon/homepage_proup01.jpg" alt="">
-                        <span>隐形眼镜</span>
+                <ion-row wrap>
+                    <ion-col *ngFor="let item of categoryAddetatils" width-33>
+                        <img src="{{item.ad_img}}" alt="{{item.ad_name}}">
+                        <!--<span>隐形眼镜</span>-->
                     </ion-col>
                 </ion-row>
             </ion-grid>
         </div>
     </div>
     <div class="parting-line"></div>
+    <!--热门品牌-->
     <div class="hot-brand home-content" padding>
         <div class="title">
             <span class="txt">热门品牌</span>
             <span class="more">更多&gt;</span>
         </div>
         <div class="main">
-
+            <div>
+                <img src="./assets/icon/homepage_49.png" alt="">
+            </div>
+            <div>
+                <img src="./assets/icon/homepage_49.png" alt="">
+            </div>
+            <div>
+                <img src="./assets/icon/homepage_49.png" alt="">
+            </div>
+            <div>
+                <img src="./assets/icon/homepage_49.png" alt="">
+            </div>
+            <div>
+                <img src="./assets/icon/homepage_49.png" alt="">
+            </div>
+            <div>
+                <img src="./assets/icon/homepage_49.png" alt="">
+            </div>
+            <div>
+                <img src="./assets/icon/homepage_53.png" alt="">
+            </div>
         </div>
+
     </div>
     <div class="parting-line"></div>
     <div class="handpick home-content" padding>
@@ -135,17 +122,37 @@
             <span class="txt">精选专题</span>
         </div>
         <div class="main">
+            <div class="show">
+                <img src="./assets/icon/homepage_55.png" alt="">
+            </div>
+            <div class="pick">
+                <!--<ion-scroll scrollX="true">
+                    <div *ngFor="let item of handpickDetails">
+                        <img src="./assets/icon/homepage_57.png" alt="">
+                    </div>
+                </ion-scroll>-->
+                <ion-slides slidesPerView="3" loop="true" parallax="true">
+                    <ion-slide *ngFor="let item of handpickDetails">
+                        <img src="./assets/icon/homepage_57.png" />
+                    </ion-slide>
 
+                </ion-slides>
+
+            </div>
         </div>
     </div>
     <div class="parting-line"></div>
     <div class="good-shop home-content" padding>
         <div class="title">
-            <span class="txt">好点推荐</span>
+            <span class="txt">好店推荐</span>
             <span class="more">更多&gt;</span>
         </div>
         <div class="main">
-
+            <ion-slides loop="true" parallax="true">
+                <ion-slide *ngFor="let item of handpickDetails">
+                    <img src="./assets/icon/homepage_67.png" />
+                </ion-slide>
+            </ion-slides>
         </div>
     </div>
     <div class="parting-line"></div>
@@ -155,8 +162,45 @@
             <span class="more">更多&gt;</span>
         </div>
         <div class="main">
-
+            <div class="card-wrap">
+                <div class="img" padding><img src="./assets/icon/homepage_71.png" alt=""></div>
+                <div class="info" padding>
+                    <div class="text">博士伦美瞳明透亮眸半年巴拉巴拉巴拉巴</div>
+                    <div class="price">￥4545</div>
+                </div>
+            </div>
+            <div class="card-wrap">
+                <div class="img" padding><img src="./assets/icon/homepage_71.png" alt=""></div>
+                <div class="info" padding>
+                    <div class="text">博士伦美瞳明透亮眸半年巴拉巴拉巴拉巴</div>
+                    <div class="price">￥4545</div>
+                </div>
+            </div>
+            <div class="card-wrap">
+                <div class="img" padding><img src="./assets/icon/homepage_71.png" alt=""></div>
+                <div class="info" padding>
+                    <div class="text">博士伦美瞳明透亮眸半年巴拉巴拉巴拉巴</div>
+                    <div class="price">￥4545</div>
+                </div>
+            </div>
+            <div class="card-wrap">
+                <div class="img" padding><img src="./assets/icon/homepage_71.png" alt=""></div>
+                <div class="info" padding>
+                    <div class="text">博士伦美瞳明透亮眸半年巴拉巴拉巴拉巴</div>
+                    <div class="price">￥4545</div>
+                </div>
+            </div>
+            <div class="card-wrap">
+                <div class="img" padding><img src="./assets/icon/homepage_71.png" alt=""></div>
+                <div class="info" padding>
+                    <div class="text">博士伦美瞳明透亮眸半年巴拉巴拉巴拉巴</div>
+                    <div class="price">￥4545</div>
+                </div>
+            </div>
         </div>
     </div>
+    <ion-fab right bottom>
+        <button ion-fab color="dark" (click)="scrollToTop()"><img src="./assets/icon/gotop.png"   *ngIf="showBackTopBtn"></button>
+    </ion-fab>
     <!--<button ion-button [navPush]="DirectiveTestPage">direvtive test</button>-->
 </ion-content>

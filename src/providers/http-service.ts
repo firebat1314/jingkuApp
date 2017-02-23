@@ -15,9 +15,15 @@ export class HttpService {
   constructor(public http: UserData) {
     console.log('Hello HttpService Provider');
   }
-  getHomebanner(data?) {
+  getHomebanner(data?:Object) {
     return this.http.get(this.ip + '/Index/ads/int_pos_id/3/int_size/10', data)
   }
+  getCategoryAd(data?:Object){
+    return this.http.get(this.ip + '/Index/ads/int_pos_id/27/int_size/10', data)
+  }
+  getHandpickDetails(data?:Object){
+    return this.http.get(this.ip + '/Index/get_category_recommend_goods/type/hot', data)
+  }
 
-
+  
 }

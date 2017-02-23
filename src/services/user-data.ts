@@ -24,7 +24,7 @@ export class UserData {
     ) { }
 
     public login(payload) {
-        
+
         return this.post(this.ip + '/Login/index', payload);
     }
 
@@ -74,11 +74,11 @@ export class UserData {
         return this.storage.get("username");
     }
 
-    setStorage(key,value){
+    setStorage(key, value) {
         this.storage.set(key, value);
     }
 
-    getStorage(key){
+    getStorage(key) {
         this.storage.get(key);
     }
 
@@ -145,13 +145,13 @@ export class UserData {
      * @return {any}
      */
     private handleSuccess(result) {
-            this.native.hideLoading();
-            if (result && !result.status) {
-                this.native.showToast(result.info);
-            }
-            return result;
+        this.native.hideLoading();
+        if (result && !result.status) {
+            this.native.showToast(result.info);
         }
-        /**
+        return result;
+    }
+    /**
      * 请求失败处理函数
      * @param error
      * @return {{success: boolean, msg: string}}

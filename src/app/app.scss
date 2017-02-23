@@ -1,6 +1,4 @@
 // http://ionicframework.com/docs/v2/theming/
-
-
 // App Global Sass
 // --------------------------------------------------
 // Put style rules here that you want to apply globally. These
@@ -17,16 +15,36 @@
 .tabs-md .tabbar {
     background: #fff;
 }
-ion-item.item{
-    padding-left:0;
+
+ion-item.item {
+    padding-left: 0;
 }
-ion-title.title-md{
-  position: absolute;
-  top: 0;
-  left: 0;
-  padding: 0 90px 1px;
-  width: 100%;
-  height: 100%;
-  text-align: center;
-  z-index:-1;
+
+ion-title.title-md {
+    position: absolute;
+    top: 0;
+    left: 0;
+    padding: 0 90px 1px;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    z-index: -1;
+}
+
+button.swiper-pagination-bullet {
+    border: 1px solid #000;
+}
+
+.swiper-pagination-bullet {
+    width: 13px;
+    height: 13px;
+    display: inline-block;
+    border-radius: 2px;
+    background: #fff;
+    pointer-events: auto;
+    opacity: 1;
+}
+
+.swiper-pagination-bullet-active {
+    background: #000;
 }

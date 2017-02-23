@@ -1,0 +1,5 @@
+{
+  "dependencies": {
+    "iscroll": "registry:npm/iscroll#5.1.3+20160723033700"
+  }
+}
