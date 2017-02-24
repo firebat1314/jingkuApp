@@ -6,13 +6,30 @@
 -->
 <ion-header>
 
-  <ion-navbar>
-    <ion-title>Search</ion-title>
-  </ion-navbar>
+    <ion-navbar>
+        <ion-searchbar [navPush]="SearchPage" [(ngModel)]="myHomeSearch" placeholder="搜索镜库上平/店铺" animated="false" spellcheck="true" mode="ios" showCancelButton="true" cancelButtonText="取消"></ion-searchbar>
+    </ion-navbar>
 
 </ion-header>
 
 
 <ion-content padding>
-
+    <div class="head">
+        <div>热门搜索</div>
+        <div>换一换</div>
+    </div>
+    <div class="btns">
+        <button ion-button outline color="dark">隐形眼镜</button>
+        <button ion-button outline color="dark">隐形眼镜</button>
+        <button ion-button outline color="dark">隐形眼镜</button>
+        <button ion-button outline color="dark">隐形眼镜眼镜眼镜</button>
+        <button ion-button outline color="dark">隐形眼镜</button>
+        <button ion-button outline color="dark">隐形眼镜眼镜</button>
+        <button ion-button outline color="dark">隐形眼镜</button>
+        <button ion-button outline color="dark">隐形眼镜</button>
+        <button ion-button outline color="dark">隐形眼镜眼镜眼镜</button>
+        <button ion-button outline color="dark">隐形眼镜眼镜眼镜</button>
+        <button ion-button outline color="dark">隐形眼镜眼镜眼镜</button>
+        <button ion-button outline color="dark">隐形眼镜</button>
+    </div>
 </ion-content>

@@ -22,6 +22,15 @@ import { ForgotThreePage } from "../pages/forgot/forgot-three/forgot-three";
 import { CityPage } from '../pages/home/city/city'
 import { SearchPage } from '../pages/home/search/search'
 import { DetailsPage } from '../pages/home/details/details'
+import { BrandListPage } from '../pages/home/brand-list/brand-list'
+import { AttentionPage } from '../pages/home/attention/attention'
+import { FastbuyPage } from '../pages/home/fastbuy/fastbuy'
+import { GlassesDesignPage } from '../pages/home/glasses-design/glasses-design'
+import { IntegralstorePage } from '../pages/home/integralstore/integralstore'
+import { RechargePage } from '../pages/home/recharge/recharge'
+import { WhitebarPage } from '../pages/home/whitebar/whitebar'
+import { DiscountCouponPage } from '../pages/home/discount-coupon/discount-coupon'
+import { MessagePage } from '../pages/home/message/message'
 
 
 import { UserData } from "../services/user-data";
@@ -29,21 +38,22 @@ import { Native } from "../providers/native";
 import { HttpService } from "../providers/http-service";
 
 import { MyDirective } from "../components/my-directive/my-directive";
+import { ImgTabs } from "../components/img-tabs/img-tabs";
 
 @NgModule({
   declarations: [
     MyApp,
     AboutPage,
     ContactPage,
-    HomePage,CityPage,SearchPage,DetailsPage,
+    HomePage, CityPage, SearchPage, DetailsPage, BrandListPage, AttentionPage, FastbuyPage, GlassesDesignPage, IntegralstorePage, RechargePage,WhitebarPage,DiscountCouponPage,MessagePage,
     MyPage,
     TabsPage,
     WelcomePage,
     LoginPage,
-    SignupPage,SignupSecondPage,SignupThirdPage,
-    MyDirective,
+    SignupPage, SignupSecondPage, SignupThirdPage,
+    MyDirective, ImgTabs,
     DirectiveTestPage,
-    ForgotPage,ForgotTwoPage,ForgotThreePage
+    ForgotPage, ForgotTwoPage, ForgotThreePage
   ],
   imports: [
     IonicModule.forRoot(MyApp, {
@@ -53,7 +63,8 @@ import { MyDirective } from "../components/my-directive/my-directive";
       pageTransition: 'ios-transition'
     }, {
         links: [
-          { component: HomePage, name: 'sss', segment: 'home' }
+          { component: HomePage, segment: 'home' },
+          { component: CityPage, segment: 'city' }
         ]
       }),
     BrowserModule
@@ -63,15 +74,15 @@ import { MyDirective } from "../components/my-directive/my-directive";
     MyApp,
     AboutPage,
     ContactPage,
-    HomePage,CityPage,SearchPage,DetailsPage,
+    HomePage, CityPage, SearchPage, DetailsPage, BrandListPage, AttentionPage, FastbuyPage, GlassesDesignPage, IntegralstorePage, RechargePage,WhitebarPage,DiscountCouponPage,MessagePage,
     MyPage,
     TabsPage,
     WelcomePage,
     LoginPage,
-    SignupPage,SignupSecondPage,SignupThirdPage,
+    SignupPage, SignupSecondPage, SignupThirdPage,
     DirectiveTestPage,
-    ForgotPage,ForgotTwoPage
+    ForgotPage, ForgotTwoPage
   ],
-  providers: [{ provide: ErrorHandler, useClass: IonicErrorHandler }, Storage, UserData,Native,HttpService]
+  providers: [{ provide: ErrorHandler, useClass: IonicErrorHandler }, Storage, UserData, Native, HttpService]
 })
 export class AppModule { }

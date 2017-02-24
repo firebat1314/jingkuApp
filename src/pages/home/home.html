@@ -2,21 +2,20 @@
     <ion-navbar mode="ios">
         <ion-buttons start>
             <button ion-button clear icon-only icon-left [navPush]="cityPage">
-        <img src="./assets/icon/homepage_03.png" width="20px" class="add_icon">
-        北京
-      </button>
+                <img src="./assets/icon/homepage_03.png" width="20px" class="add_icon">
+                北京
+            </button>
         </ion-buttons>
-        <ion-searchbar [navPush]="SearchPage" [(ngModel)]="myHomeSearch" (ionInput)="onInput($event)" (ionCancel)="onCancel($event)" placeholder="搜索镜库上平/店铺" animated spellcheck="true" mode="ios">
-        </ion-searchbar>
+        <ion-searchbar [navPush]="SearchPage" [(ngModel)]="myHomeSearch" (ionInput)="onInput($event)" (ionCancel)="onCancel($event)" placeholder="搜索镜库上平/店铺" animated="false" spellcheck="true" mode="ios"></ion-searchbar>
         <ion-buttons end>
-            <button ion-button clear icon-only icon-left><img src="./assets/icon/homepage_09.png" width="20px"></button>
+            <button ion-button clear icon-only icon-left [navPush]="MessagePage"><img src="./assets/icon/homepage_09.png" width="20px"></button>
         </ion-buttons>
     </ion-navbar>
 </ion-header>
 
 <ion-content (ionScroll)="scrollHeight()">
     <div class="banner-wrapper">
-        <ion-slides #bannerSlide loop="true" pager (ionSlideWillChange)="change()" effect="coverflow">
+        <ion-slides #bannerSlide loop="true" pager (ionSlideWillChange)="change()">
             <!-- -->
             <ion-slide *ngFor="let item of bannerImgs">
                 <img src="{{ item.ad_img }}" />
@@ -26,37 +25,37 @@
     </div>
     <div class="btn-tool" padding>
         <div class="top">
-            <div>
+            <div [navPush]="AttentionPage">
                 <img src="./assets/icon/homepage_15.png" alt="">
                 <span>关注</span>
             </div>
-            <div>
+            <div [navPush]="RechargePage">
                 <img src="./assets/icon/homepage_18.png" alt="">
                 <span>充值</span>
             </div>
-            <div>
+            <div [navPush]="FastbuyPage">
                 <img src="./assets/icon/homepage_21.png" alt="">
                 <span>闪购</span>
             </div>
-            <div>
+            <div [navPush]="BrandListPage">
                 <img src="./assets/icon/homepage_23.png" alt="">
                 <span>品牌</span>
             </div>
         </div>
         <div class="bottom">
-            <div>
+            <div [navPush]="WhitebarPage">
                 <img src="./assets/icon/homepage_29.png" alt="">
                 <span>白条</span>
             </div>
-            <div>
+            <div [navPush]="DiscountCouponPage">
                 <img src="./assets/icon/homepage_32.png" alt="">
                 <span>优惠券</span>
             </div>
-            <div>
+            <div [navPush]="IntegralstorePage">
                 <img src="./assets/icon/homepage_30.png" alt="">
                 <span>积分商城</span>
             </div>
-            <div>
+            <div [navPush]="GlassesDesignPage">
                 <img src="./assets/icon/homepage_31.png" alt="">
                 <span>镜库设计</span>
             </div>
@@ -131,7 +130,7 @@
                         <img src="./assets/icon/homepage_57.png" alt="">
                     </div>
                 </ion-scroll>-->
-                <ion-slides slidesPerView="3" loop="true" parallax="true">
+                <ion-slides slidesPerView="3" parallax="true">
                     <ion-slide *ngFor="let item of handpickDetails">
                         <img src="./assets/icon/homepage_57.png" />
                     </ion-slide>
@@ -199,8 +198,9 @@
             </div>
         </div>
     </div>
-    <ion-fab right bottom>
-        <button ion-fab color="dark" (click)="scrollToTop()"><img src="./assets/icon/gotop.png"   *ngIf="showBackTopBtn"></button>
+    <span *ngIf="showBackTopBtn"></span>
+    <ion-fab right bottom *ngIf="showBackTopBtn" (click)="scrollToTop()">
+        <button ion-fab color="dark" mini><ion-icon name="md-arrow-up" ></ion-icon></button>
     </ion-fab>
     <!--<button ion-button [navPush]="DirectiveTestPage">direvtive test</button>-->
 </ion-content>

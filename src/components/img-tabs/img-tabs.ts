@@ -1,4 +1,4 @@
-import { Directive } from '@angular/core';
+import { Directive , Input, Output, EventEmitter} from '@angular/core';
 
 /*
   Generated class for the ImgTabs directive.
@@ -10,9 +10,31 @@ import { Directive } from '@angular/core';
   selector: '[img-tabs]' // Attribute selector
 })
 export class ImgTabs {
-
+  @Input("slides") slides: string[] = [];  
+  @Input("pageNumber") pageNumber: number = 5;  
+  @Output("slideClick") slideClick = new EventEmitter<number>();  
   constructor() {
     console.log('Hello ImgTabs Directive');
   }
 
+  
+  mySlideOptions;  
+  selectedIndex: number = 0;  
+
+  ngOnInit() {  
+    this.mySlideOptions = {  
+      loop: false,  
+      autoplay: false,  
+      initialSlide: 0,  
+      pager: false,  
+      slidesPerView: this.pageNumber,  
+      paginationHide: true,  
+      paginationClickable: true  
+    };  
+  }  
+  
+  onClick(index) {  
+    this.selectedIndex = index;  
+    this.slideClick.emit(index);  
+  }  
 }

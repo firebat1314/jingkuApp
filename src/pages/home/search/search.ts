@@ -1,5 +1,5 @@
-import { Component } from '@angular/core';
-import { NavController, NavParams } from 'ionic-angular';
+import { Component,ViewChild } from '@angular/core';
+import { NavController, NavParams,Searchbar } from 'ionic-angular';
 
 /*
   Generated class for the Search page.
@@ -12,11 +12,14 @@ import { NavController, NavParams } from 'ionic-angular';
   templateUrl: 'search.html'
 })
 export class SearchPage {
+  myHomeSearch: String = '';
+  @ViewChild(Searchbar) searchbar: Searchbar;
 
   constructor(public navCtrl: NavController, public navParams: NavParams) {}
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad SearchPage');
+    this.searchbar.setFocus();
   }
 
 }

@@ -1,6 +1,6 @@
 import { Component, ViewChild } from '@angular/core';
 
-import { NavController, Events, Slides,Content } from 'ionic-angular';
+import { NavController, Events, Slides, Content } from 'ionic-angular';
 import { FormBuilder } from '@angular/forms';
 
 
@@ -8,9 +8,20 @@ import { DirectiveTestPage } from '../directive-test/directive-test'
 import { CityPage } from './city/city'
 import { SearchPage } from './search/search'
 import { DetailsPage } from './details/details'
+import { BrandListPage } from './brand-list/brand-list'
+import { AttentionPage } from './attention/attention'
+import { FastbuyPage } from './fastbuy/fastbuy'
+import { GlassesDesignPage } from './glasses-design/glasses-design'
+import { IntegralstorePage } from './integralstore/integralstore'
+import { RechargePage } from './recharge/recharge'
+import { WhitebarPage } from './whitebar/whitebar'
+import { DiscountCouponPage } from './discount-coupon/discount-coupon'
+import { MessagePage } from './message/message'
 
 import { UserData } from "../../services/user-data";
 import { HttpService } from "../../providers/http-service";
+
+import { ImgTabs } from "../../conponents/img-tabs/img-tabs";
 
 
 @Component({
@@ -26,19 +37,29 @@ export class HomePage {
   cityPage = CityPage;
   DetailsPage = DetailsPage;
   SearchPage = SearchPage;
+  BrandListPage = BrandListPage;
+  AttentionPage = AttentionPage;
+  FastbuyPage = FastbuyPage;
+  GlassesDesignPage= GlassesDesignPage;
+  IntegralstorePage = IntegralstorePage;
+  RechargePage = RechargePage;
+  WhitebarPage = WhitebarPage;
+  DiscountCouponPage = DiscountCouponPage;
+  MessagePage = MessagePage;
+
   myHomeSearch: String = '';
   bannerImgs;
   categoryAddetatils;
   handpickDetails;
-  showBackTopBtn:Boolean = true;
-  
+  showBackTopBtn: Boolean = true;
+  mySlideOptions;
+
   constructor(
     public navCtrl: NavController,
     private userData: UserData,
     private events: Events,
     private httpService: HttpService,
-    private formBuilder: FormBuilder,
-
+    private formBuilder: FormBuilder
   ) {
 
     this.getBannerImg();
@@ -46,15 +67,14 @@ export class HomePage {
     this.getHandpickDetails();
 
   }
-  
+
   getBannerImg() {
+
+    let self = this;
     this.httpService.getHomebanner().then(res => {
-      console.log(res)
-      let self = this;
+      console.log(res);
       this.bannerImgs = res.data;//获取轮播图
-      setTimeout(function() {
-        self.slides.update();//刷新轮播图
-      }, 1000);
+      
     })
   }
   getCategoryAd() {
@@ -69,12 +89,13 @@ export class HomePage {
       this.handpickDetails = res.data;
     })
   }
-  change(){
-    
+  change() {
+
     console.log(this.slides.getActiveIndex())
   }
   ionViewDidLoad() {
     console.log('ionViewDidLoad HomePage');
+    this.slides.update();//刷新轮播图
   }
 
   onCancel(event) {
@@ -87,16 +108,14 @@ export class HomePage {
 
   scrollToTop() {
     this.content.scrollToTop();
-  }
+  };
 
-  scrollHeight(){
-    if(this.content.scrollTop > 400){
-
+  scrollHeight() {
+    if (this.content.scrollTop >= 400) {
       console.log(this.content.scrollTop)
       this.showBackTopBtn = true;
-    }else{
+    } else {
       this.showBackTopBtn = false;
-    }
-  }
-
+    };
+  };
 }
