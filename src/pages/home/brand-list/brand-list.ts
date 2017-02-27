@@ -12,11 +12,18 @@ import { NavController, NavParams } from 'ionic-angular';
   templateUrl: 'brand-list.html'
 })
 export class BrandListPage {
-  myHomeSearch:String = '';
-  constructor(public navCtrl: NavController, public navParams: NavParams) {}
+  myHomeSearch: String = '';
+  constructor(public navCtrl: NavController, public navParams: NavParams) { }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad BrandListPage');
   }
+  doRefresh(refresher) {
+    console.log('Begin async operation', refresher);
 
+    setTimeout(() => {
+      console.log('Async operation has ended');
+      refresher.complete();
+    }, 2000);
+  }
 }

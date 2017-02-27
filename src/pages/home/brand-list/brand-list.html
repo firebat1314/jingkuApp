@@ -28,7 +28,7 @@
         <div>
             <button ion-button clear icon-right>
               价格
-            <ion-icon name="ios-funnel-outline"></ion-icon>
+            <ion-icon name="sort"></ion-icon>
           </button>
         </div>
         <div>
@@ -42,6 +42,10 @@
 
 
 <ion-content padding>
+    <ion-refresher (ionRefresh)="doRefresh($event)" pullMax="60">
+        <ion-refresher-content refreshingSpinner="1" pullingIcon="0"></ion-refresher-content>
+    </ion-refresher>
+
     <div class="card-wrap">
         <div class="img" padding><img src="./assets/icon/homepage_71.png" alt=""></div>
         <div class="info" padding>

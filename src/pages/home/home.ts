@@ -40,7 +40,7 @@ export class HomePage {
   BrandListPage = BrandListPage;
   AttentionPage = AttentionPage;
   FastbuyPage = FastbuyPage;
-  GlassesDesignPage= GlassesDesignPage;
+  GlassesDesignPage = GlassesDesignPage;
   IntegralstorePage = IntegralstorePage;
   RechargePage = RechargePage;
   WhitebarPage = WhitebarPage;
@@ -74,7 +74,8 @@ export class HomePage {
     this.httpService.getHomebanner().then(res => {
       console.log(res);
       this.bannerImgs = res.data;//获取轮播图
-      
+      this.slides.update();//刷新轮播图
+
     })
   }
   getCategoryAd() {
@@ -95,7 +96,6 @@ export class HomePage {
   }
   ionViewDidLoad() {
     console.log('ionViewDidLoad HomePage');
-    this.slides.update();//刷新轮播图
   }
 
   onCancel(event) {
@@ -108,14 +108,14 @@ export class HomePage {
 
   scrollToTop() {
     this.content.scrollToTop();
-  };
+  }
 
   scrollHeight() {
-    if (this.content.scrollTop >= 400) {
-      console.log(this.content.scrollTop)
-      this.showBackTopBtn = true;
-    } else {
-      this.showBackTopBtn = false;
-    };
-  };
+    // if (this.content.scrollTop > 400) {
+    //   this.showBackTopBtn = true;
+    // } else if (this.content.scrollTop <= 400) {
+    //   this.showBackTopBtn = false;
+    // }
+    // console.log(this.showBackTopBtn, this.content.scrollTop)
+  }
 }

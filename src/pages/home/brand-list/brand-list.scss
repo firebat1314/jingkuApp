@@ -15,7 +15,9 @@ page-brand-list {
             }
             .button {
                 margin: 0 auto;
-                height: 2rem;
+                height: 3rem;
+                width: 100%;
+                color: #b3b3b3;
             }
         }
     }
@@ -23,6 +25,7 @@ page-brand-list {
         display: flex;
         flex-wrap: wrap;
         justify-content: space-between;
+        background-color: #fff;
         .card-wrap {
             border: 1px solid #e6e6e6;
             border-radius: 4px;
