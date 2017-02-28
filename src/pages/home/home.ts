@@ -67,6 +67,11 @@ export class HomePage {
     this.getHandpickDetails();
 
   }
+  ngOnInit() {
+    
+    this.slides.update();//刷新轮播图
+    this.slides.startAutoplay();
+  }
 
   getBannerImg() {
 
@@ -74,7 +79,7 @@ export class HomePage {
     this.httpService.getHomebanner().then(res => {
       console.log(res);
       this.bannerImgs = res.data;//获取轮播图
-      this.slides.update();//刷新轮播图
+
 
     })
   }

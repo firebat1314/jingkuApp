@@ -1,0 +1,19 @@
+my-toolbar {
+    display: flex;
+    justify-content: space-around;
+    >div {
+        width: 25%;
+        border-right: 1px solid #e0e0e0;
+        display: flex;
+        justify-content: center;
+        &:last-child {
+            border: none;
+        }
+        .button {
+            margin: 0 auto;
+            height: 3rem;
+            width: 100%;
+            color: #b3b3b3;
+        }
+    }
+}

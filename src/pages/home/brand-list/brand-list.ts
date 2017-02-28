@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
 
+import { SingleCardComponent } from '../../../components/single-card/single-card'
+
 /*
   Generated class for the BrandList page.
 
@@ -9,7 +11,7 @@ import { NavController, NavParams } from 'ionic-angular';
 */
 @Component({
   selector: 'page-brand-list',
-  templateUrl: 'brand-list.html'
+  templateUrl: 'brand-list.html',
 })
 export class BrandListPage {
   myHomeSearch: String = '';

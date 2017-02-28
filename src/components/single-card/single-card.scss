@@ -1,0 +1,26 @@
+single-card {
+    border: 1px solid #e6e6e6;
+    border-radius: 4px;
+    width: 49%;
+    margin-bottom: 5px;
+    display: inline-block;
+    .img {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        box-shadow: 0px -3px 6px #e6e6e6 inset;
+    }
+    .info {
+        .text {
+            color: #808080;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+            overflow: hidden;
+            margin-bottom: 5px;
+        }
+        .price {
+            color: #e60000;
+            font-weight: 700;
+        }
+    }
+}

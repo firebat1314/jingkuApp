@@ -2,7 +2,7 @@ import { NgModule, ErrorHandler } from '@angular/core';
 import { Storage } from '@ionic/storage';
 import { HttpModule } from '@angular/http';
 import { BrowserModule } from "@angular/platform-browser";
-
+/*页面*/
 import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
 import { MyApp } from './app.component';
 import { AboutPage } from '../pages/about/about';
@@ -31,14 +31,17 @@ import { RechargePage } from '../pages/home/recharge/recharge'
 import { WhitebarPage } from '../pages/home/whitebar/whitebar'
 import { DiscountCouponPage } from '../pages/home/discount-coupon/discount-coupon'
 import { MessagePage } from '../pages/home/message/message'
-
-
+/*服务*/
 import { UserData } from "../services/user-data";
 import { Native } from "../providers/native";
 import { HttpService } from "../providers/http-service";
-
+/*指令*/
 import { MyDirective } from "../components/my-directive/my-directive";
 import { ImgTabs } from "../components/img-tabs/img-tabs";
+/*组件*/
+import { SingleCardComponent } from '../components/single-card/single-card'
+import { MyToolbarComponent } from '../components/my-toolbar/my-toolbar'
+import { SingleFoodsItemComponent } from '../components/single-foods-item/single-foods-item'
 
 @NgModule({
   declarations: [
@@ -52,8 +55,10 @@ import { ImgTabs } from "../components/img-tabs/img-tabs";
     LoginPage,
     SignupPage, SignupSecondPage, SignupThirdPage,
     MyDirective, ImgTabs,
+    SingleCardComponent,MyToolbarComponent,SingleFoodsItemComponent,
     DirectiveTestPage,
-    ForgotPage, ForgotTwoPage, ForgotThreePage
+    ForgotPage, ForgotTwoPage, ForgotThreePage,
+    
   ],
   imports: [
     IonicModule.forRoot(MyApp, {
@@ -80,6 +85,7 @@ import { ImgTabs } from "../components/img-tabs/img-tabs";
     WelcomePage,
     LoginPage,
     SignupPage, SignupSecondPage, SignupThirdPage,
+    SingleCardComponent,MyToolbarComponent,SingleFoodsItemComponent,
     DirectiveTestPage,
     ForgotPage, ForgotTwoPage
   ],
