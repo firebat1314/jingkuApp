@@ -14,7 +14,7 @@ export class SingleFoodsItemComponent {
 
   constructor() {
     console.log('Hello SingleFoodsItem Component');
-    this.animateClass = { 'fade-in-left-item': true };
+    this.animateClass = { 'fade-in-item': true };
   }
   @Input() data: any;
   @Input() events: any;
@@ -38,7 +38,7 @@ export class SingleFoodsItemComponent {
     for (let i = 0; i < that.data.items.length; i++) {
       setTimeout(function () {
         that.animateItems.push(that.data.items[i]);
-      }, 200 * i);
+      }, 100 * i);
     }
   }
 }

@@ -7,11 +7,12 @@
 <ion-header>
 
     <ion-navbar>
-        <ion-searchbar [navPush]="SearchPage" [(ngModel)]="myHomeSearch" (ionInput)="onInput($event)" (ionCancel)="onCancel($event)" placeholder="博士伦" animated="false" spellcheck="true" mode="ios">
-        </ion-searchbar>
-        <ion-buttons end>
-            <button ion-button clear icon-only icon-left><ion-icon name="md-list" ></ion-icon></button>
-        </ion-buttons>
+        <ion-searchbar [navPush]="SearchPage" [(ngModel)]="myHomeSearch" (ionInput)="onInput($event)" (ionCancel)="onCancel($event)"
+            placeholder="博士伦" animated="false" spellcheck="true" mode="ios">
+            </ion-searchbar>
+            <ion-buttons end>
+                <button ion-button clear icon-only icon-left><ion-icon name="md-list" ></ion-icon></button>
+            </ion-buttons>
     </ion-navbar>
     <ion-toolbar>
         <my-toolbar></my-toolbar>
@@ -19,7 +20,7 @@
 </ion-header>
 
 
-<ion-content padding>
+<ion-content>
     <ion-refresher (ionRefresh)="doRefresh($event)" pullMax="60">
         <ion-refresher-content refreshingSpinner="1" pullingIcon="0"></ion-refresher-content>
     </ion-refresher>
@@ -29,11 +30,6 @@
     <single-card></single-card>
     <single-card></single-card>
     <single-card></single-card>-->
-    <single-foods-item></single-foods-item>
-    <single-foods-item></single-foods-item>
-    <single-foods-item></single-foods-item>
-    <single-foods-item></single-foods-item>
-    <single-foods-item></single-foods-item>
-    <single-foods-item></single-foods-item>
-    <single-foods-item></single-foods-item>
+    <single-foods-item [data]="data"></single-foods-item>
+
 </ion-content>

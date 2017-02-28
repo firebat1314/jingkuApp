@@ -14,8 +14,8 @@
 </ion-header>
 
 <ion-content (ionScrollEnd)="scrollHeight()">
-    <div class="banner-wrapper">
-        <ion-slides #bannerSlide loop="true" pager (ionSlideWillChange)="change()">
+    <div class="banner-wrapper" *ngIf="bannerImgs" >
+        <ion-slides #bannerSlide autoplay="4000" loop="true" pager>
             <!-- -->
             <ion-slide *ngFor="let item of bannerImgs">
                 <img src="{{ item.ad_img }}" />

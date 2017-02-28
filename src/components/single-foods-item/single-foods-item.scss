@@ -1,8 +1,15 @@
 single-foods-item {
-    .fade-in-left-item {
-        -webkit-animation: fadeInLeft 800ms;
-        -moz-animation: fadeInLeft 800ms;
-        -o-animation: fadeInLeft 800ms;
-        animation: fadeInLeft 800ms;
+    .fade-in-item {
+        animation: fadeIn 800ms;
+    }
+    .item-inner{
+        margin-bottom: -1px;
+    }
+    ion-item.item{
+        border-bottom: 1px solid #dedede;
+        ion-thumbnail img{
+            width: 100px;
+            height: 100px;
+        }
     }
 }

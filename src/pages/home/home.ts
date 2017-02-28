@@ -68,18 +68,17 @@ export class HomePage {
 
   }
   ngOnInit() {
-    
-    this.slides.update();//刷新轮播图
-    this.slides.startAutoplay();
   }
+  ngAfterViewInit() {
 
+  }
   getBannerImg() {
 
     let self = this;
     this.httpService.getHomebanner().then(res => {
       console.log(res);
       this.bannerImgs = res.data;//获取轮播图
-
+      //this.slides.update();//刷新轮播图
 
     })
   }
@@ -95,10 +94,7 @@ export class HomePage {
       this.handpickDetails = res.data;
     })
   }
-  change() {
 
-    console.log(this.slides.getActiveIndex())
-  }
   ionViewDidLoad() {
     console.log('ionViewDidLoad HomePage');
   }
