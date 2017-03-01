@@ -68,6 +68,11 @@ export class HomePage {
 
   }
   ngOnInit() {
+    this.httpService.getCategoryRecommendGoodsBest().then((res => {
+       console.log("精品商品"+res)
+        this.getCategoryRecommendGoods = res.data;
+    }))
+    
   }
   ngAfterViewInit() {
 
@@ -75,22 +80,28 @@ export class HomePage {
   getBannerImg() {
 
     let self = this;
-    this.httpService.getHomebanner().then(res => {
-      console.log(res);
+    this.httpService.getHomebanner().then((res) => {
+      console.log("轮播图"+res);
       this.bannerImgs = res.data;//获取轮播图
       //this.slides.update();//刷新轮播图
 
     })
   }
   getCategoryAd() {
-    this.httpService.getCategoryAd().then(res => {
-      console.log(res)
+    this.httpService.getCategoryAd().then((res) => {
+      console.log("热门品类"+res)
       this.categoryAddetatils = res.data;
     })
   }
+  getCategoryRecommendGoods(){
+    this.httpService.getCategoryRecommendGoods().then((res) => {
+      console.log("新品"+res)
+      this.getCategoryRecommendGoods = res.data;
+    })
+  }
   getHandpickDetails() {
-    this.httpService.getHandpickDetails().then(res => {
-      console.log(res)
+    this.httpService.getHandpickDetails().then((res) => {
+      console.log("热门商品"+res)
       this.handpickDetails = res.data;
     })
   }
