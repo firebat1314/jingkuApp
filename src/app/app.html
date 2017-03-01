@@ -1,14 +1,15 @@
-<ion-menu side="right" type="overlay" swipeEnabled="true" [content]="content">
-
-    <ion-header>
-        <ion-toolbar>
-            <ion-title>侧栏</ion-title>
-        </ion-toolbar>
-    </ion-header>
+<ion-menu class="main-menu" padding side="right" type="overlay" swipeEnabled="true" [content]="content">
 
     <ion-content>
+        <meun-item></meun-item>
+        <meun-item></meun-item>
+        <meun-item [showRange]="true"></meun-item>
+        <meun-item></meun-item>
 
     </ion-content>
-
+    <ion-footer>
+        <button full ion-button>重置</button>
+        <button full ion-button>取消</button>
+    </ion-footer>
 </ion-menu>
 <ion-nav [root]="rootPage" #content></ion-nav>

@@ -1,15 +1,39 @@
 single-foods-item {
-    .fade-in-item {
-        animation: fadeIn 800ms;
-    }
-    .item-inner{
+    .item-inner {
         margin-bottom: -1px;
     }
-    ion-item.item{
+    ion-item.item {
         border-bottom: 1px solid #dedede;
-        ion-thumbnail img{
+        ion-thumbnail img {
             width: 100px;
             height: 100px;
+        }
+        h2 {
+            white-space: pre-wrap;
+            text-overflow: ellipsis;
+            width: 100%;
+            overflow: hidden;
+            height: 40px;
+        }
+        h3 {
+            color: color($colors, danger);
+            font-weight: 700;
+            margin: 10px 0px;
+        }
+        .chips {
+            display: flex;
+            >div {
+                /* width: 42px; */
+                border-radius: 5px;
+                background: red;
+                color: #fff;
+                text-align: center;
+                height: 25px;
+                line-height: 25px;
+                padding: 0 5px;
+                margin-right: 5px;
+                font-size: 13px;
+            }
         }
     }
 }

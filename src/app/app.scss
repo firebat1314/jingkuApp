@@ -17,6 +17,31 @@
 }
 
 
+/*菜单样式*/
+
+.main-menu meun-item .body {
+    border-bottom: 1px solid #e6e6e6;
+}
+
+.main-menu meun-item:last-child .body {
+    border: 0;
+}
+
+.main-menu ion-footer {
+    display: flex;
+}
+
+.main-menu ion-footer .button {
+    margin: 0;
+    width: 50%;
+    background: #333333;
+}
+
+.main-menu ion-footer .button:first-child {
+    background: #cccccc;
+}
+
+
 /*搜索框图标*/
 
 .searchbar-ios .searchbar-search-icon {
@@ -87,6 +112,13 @@ button.swiper-pagination-bullet {
 
 .swiper-pagination-bullet-active {
     background: #000;
+}
+
+
+/*fadeIn animate*/
+
+.fade-in-item {
+    animation: fadeIn 800ms;
 }
 
 @font-face {

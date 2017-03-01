@@ -1,0 +1,23 @@
+<!--
+  Generated template for the MeunItem component.
+
+  See https://angular.io/docs/ts/latest/api/core/index/ComponentMetadata-class.html
+  for more info on Angular 2 Components.
+-->
+<div class="head">
+    <span class="title">品牌</span>
+    <span class="all">全部<ion-icon name="ios-arrow-down" ></ion-icon></span>
+</div>
+<div class="body">
+    <div>视康</div>
+    <div>视康</div>
+    <div>视康</div>
+    <div>视康</div>
+    <div>视康</div>
+    <div>视康</div>
+    <ion-item *ngIf="showRange">
+        <ion-range mode="ios" debounce="500" pin="true" dualKnobs="true">
+            <!-- [(ngModel)]="brightness"-->
+        </ion-range>
+    </ion-item>
+</div>

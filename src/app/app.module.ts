@@ -31,6 +31,7 @@ import { RechargePage } from '../pages/home/recharge/recharge'
 import { WhitebarPage } from '../pages/home/whitebar/whitebar'
 import { DiscountCouponPage } from '../pages/home/discount-coupon/discount-coupon'
 import { MessagePage } from '../pages/home/message/message'
+import { ParticularsPage } from '../pages/home/particulars/particulars'
 /*服务*/
 import { UserData } from "../services/user-data";
 import { Native } from "../providers/native";
@@ -42,20 +43,21 @@ import { ImgTabs } from "../components/img-tabs/img-tabs";
 import { SingleCardComponent } from '../components/single-card/single-card'
 import { MyToolbarComponent } from '../components/my-toolbar/my-toolbar'
 import { SingleFoodsItemComponent } from '../components/single-foods-item/single-foods-item'
+import { MeunItemComponent } from '../components/meun-item/meun-item'
 
 @NgModule({
   declarations: [
     MyApp,
     AboutPage,
     ContactPage,
-    HomePage, CityPage, SearchPage, DetailsPage, BrandListPage, AttentionPage, FastbuyPage, GlassesDesignPage, IntegralstorePage, RechargePage,WhitebarPage,DiscountCouponPage,MessagePage,
+    HomePage, CityPage, SearchPage, DetailsPage, BrandListPage, AttentionPage, FastbuyPage, GlassesDesignPage, IntegralstorePage, RechargePage,WhitebarPage,DiscountCouponPage,MessagePage,ParticularsPage,
     MyPage,
     TabsPage,
     WelcomePage,
     LoginPage,
     SignupPage, SignupSecondPage, SignupThirdPage,
     MyDirective, ImgTabs,
-    SingleCardComponent,MyToolbarComponent,SingleFoodsItemComponent,
+    SingleCardComponent,MyToolbarComponent,SingleFoodsItemComponent,MeunItemComponent,
     DirectiveTestPage,
     ForgotPage, ForgotTwoPage, ForgotThreePage,
     
@@ -63,7 +65,7 @@ import { SingleFoodsItemComponent } from '../components/single-foods-item/single
   imports: [
     IonicModule.forRoot(MyApp, {
       backButtonText: '',
-      // tabsHideOnSubPages: true,
+      tabsHideOnSubPages: true,
       tabsPlacement: 'bottom',
       pageTransition: 'ios-transition'
     }, {
@@ -79,13 +81,13 @@ import { SingleFoodsItemComponent } from '../components/single-foods-item/single
     MyApp,
     AboutPage,
     ContactPage,
-    HomePage, CityPage, SearchPage, DetailsPage, BrandListPage, AttentionPage, FastbuyPage, GlassesDesignPage, IntegralstorePage, RechargePage,WhitebarPage,DiscountCouponPage,MessagePage,
+    HomePage, CityPage, SearchPage, DetailsPage, BrandListPage, AttentionPage, FastbuyPage, GlassesDesignPage, IntegralstorePage, RechargePage,WhitebarPage,DiscountCouponPage,MessagePage,ParticularsPage,
     MyPage,
     TabsPage,
     WelcomePage,
     LoginPage,
     SignupPage, SignupSecondPage, SignupThirdPage,
-    SingleCardComponent,MyToolbarComponent,SingleFoodsItemComponent,
+    SingleCardComponent,MyToolbarComponent,SingleFoodsItemComponent,MeunItemComponent,
     DirectiveTestPage,
     ForgotPage, ForgotTwoPage
   ],

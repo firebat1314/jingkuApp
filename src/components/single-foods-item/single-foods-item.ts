@@ -1,5 +1,7 @@
 import { Component, Input } from '@angular/core';
 
+import { ParticularsPage } from '../../pages/home/particulars/particulars'
+
 /*
   Generated class for the SingleFoodsItem component.
 
@@ -21,6 +23,7 @@ export class SingleFoodsItemComponent {
 
   animateItems = [];
   animateClass: any;
+  ParticularsPage:any= ParticularsPage;
 
 
 
@@ -38,7 +41,7 @@ export class SingleFoodsItemComponent {
     for (let i = 0; i < that.data.items.length; i++) {
       setTimeout(function () {
         that.animateItems.push(that.data.items[i]);
-      }, 100 * i);
+      }, 200 * i);
     }
   }
 }

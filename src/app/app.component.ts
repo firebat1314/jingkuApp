@@ -6,6 +6,9 @@ import { StatusBar, Splashscreen } from 'ionic-native';
 import { TabsPage } from '../pages/tabs/tabs';
 import { WelcomePage } from '../pages/welcome/welcome';
 import { LoginPage } from '../pages/login/login';
+import { ParticularsPage } from '../pages/home/particulars/particulars'
+
+
 @Component({
   templateUrl: 'app.html'
 })
@@ -23,11 +26,11 @@ export class MyApp {
     // 初次进入app引导页面
     this.storage.get('hasLoggedIn').then((result) => {
       if (result) {
-        this.rootPage = TabsPage;
+        this.rootPage = ParticularsPage;
       } else {
         this.storage.get('firstIn').then((result) => {
           if (result) {
-            this.rootPage = LoginPage;
+            this.rootPage = LoginPage;/*LoginPage*/
           } else {
             this.rootPage = WelcomePage;
             this.storage.set('firstIn', 'NO');

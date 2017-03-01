@@ -6,12 +6,20 @@
 -->
 
 <ion-list>
-  <ion-item [ngClass]="animateClass" *ngFor="let item of animateItems; let i = index;" (click)="onEvent('onItemClick', item.title, $event)">
-    <ion-thumbnail  item-left>
+
+    <ion-item [ngClass]="animateClass" [navPush]="ParticularsPage" [navParams]="{}" *ngFor="let item of animateItems; let i = index;">
+        <ion-thumbnail item-left>
             <img [src]="item.image" alt="{{item.title}}" />
-    </ion-thumbnail >
-    <h2>{{item.title}}</h2>
-    <h3>Don't Know What To Do!</h3>
-    <p>I've had a pretty messed up day. If we just...</p>
-  </ion-item>
+        </ion-thumbnail>
+        <h2>{{item.title}}</h2>
+        <h3>￥{{item.price}}</h3>
+        <div class="chips">
+            <div>SALE</div>
+            <div>HOT</div>
+            <div>NEW</div>
+        </div>
+
+
+
+    </ion-item>
 </ion-list>

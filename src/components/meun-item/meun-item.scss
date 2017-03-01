@@ -1,0 +1,41 @@
+meun-item {
+    .head {
+        height: 40px;
+        display: flex;
+        justify-content: space-between;
+        font-size: 20px;
+        align-items: center;
+        .all {
+            color: #acacac;
+            font-size: 15px;
+            ion-icon {
+                margin-left: 3px;
+            }
+        }
+    }
+    .body {
+        display: flex;
+        justify-content: space-around;
+        flex-wrap: wrap;
+        align-content: space-around;
+        padding-bottom: 18px;
+        >div {
+            padding: 10px 0;
+            margin-top: 10px;
+            border-radius: 3px;
+            text-align: center;
+            background-color: #f5f5f5;
+            width: 30%;
+            color: #acacac;
+        }
+        .range-ios .range-knob {
+            border: 1px solid #bbb;
+            background: #fff url(../assets/icon/menu_shoplist_03.png) center center no-repeat;
+            background-size: 64%;
+        }
+        .select {
+            background-color: #cccccc;
+            color: #fff;
+        }
+    }
+}

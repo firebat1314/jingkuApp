@@ -3,6 +3,8 @@ import { NavController, NavParams } from 'ionic-angular';
 
 import { SingleCardComponent } from '../../../components/single-card/single-card'
 
+import { ParticularsPage } from '../particulars/particulars'
+
 /*
   Generated class for the BrandList page.
 
@@ -15,144 +17,91 @@ import { SingleCardComponent } from '../../../components/single-card/single-card
 })
 export class BrandListPage {
   myHomeSearch: String = '';
+  listStyleflag:Boolean;
+  ParticularsPage:any= ParticularsPage;
+
   data =  {
           items: [
               {
                   id: 1,
-                  title: 'Isaac Raid',
+                  title: '博士伦美瞳明透亮眸半年时段博士伦美瞳明透亮眸半年时段博士伦美瞳明透亮眸半年时段balbalbalalabalabalabala',
+                  price:'450.00',
                   image: 'assets/icon/homepage_71.png',
-                  favorite: true
-              },
-              {
-                  id: 2,
-                  title: 'Jason Graham',
+              },{
+                  id: 1,
+                  title: '博士伦美瞳明透亮眸半年时段博士伦美瞳明透亮眸半年时段博士伦美瞳明透亮眸半年时段balbalbalalabalabalabala',
+                  price:'450.00',
                   image: 'assets/icon/homepage_71.png',
-                  favorite: false
-              },
-              {
-                  id: 3,
-                  title: 'Abigail Ross',
+              },{
+                  id: 1,
+                  title: '博士伦美瞳明透亮眸半年时段博士伦美瞳明透亮眸半年时段博士伦美瞳明透亮眸半年时段balbalbalalabalabalabala',
+                  price:'450.00',
                   image: 'assets/icon/homepage_71.png',
-                  favorite: true
-              },
-              {
-                  id: 4,
-                  title: 'Justin Rutherford',
+              },{
+                  id: 1,
+                  title: '博士伦美瞳明透亮眸半年时段博士伦美瞳明透亮眸半年时段博士伦美瞳明透亮眸半年时段balbalbalalabalabalabala',
+                  price:'450.00',
                   image: 'assets/icon/homepage_71.png',
-                  favorite: false
-              },
-              {
-                  id: 5,
-                  title: 'Nicholas Henderson',
+              },{
+                  id: 1,
+                  title: '博士伦美瞳明透亮眸半年时段博士伦美瞳明透亮眸半年时段博士伦美瞳明透亮眸半年时段balbalbalalabalabalabala',
+                  price:'450.00',
                   image: 'assets/icon/homepage_71.png',
-                  favorite: false
-              },
-              {
-                  id: 6,
-                  title: 'Elizabeth Mackenzie',
+              },{
+                  id: 1,
+                  title: '博士伦美瞳明透亮眸半年时段博士伦美瞳明透亮眸半年时段博士伦美瞳明透亮眸半年时段balbalbalalabalabalabala',
+                  price:'450.00',
                   image: 'assets/icon/homepage_71.png',
-                  favorite: true
-              },
-              {
-                  id: 7,
-                  title: 'Melanie Ferguson',
+              },{
+                  id: 1,
+                  title: '博士伦美瞳明透亮眸半年时段博士伦美瞳明透亮眸半年时段博士伦美瞳明透亮眸半年时段balbalbalalabalabalabala',
+                  price:'450.00',
                   image: 'assets/icon/homepage_71.png',
-                  favorite: false
-              },
-              {
-                  id: 8,
-                  title: 'Fiona Kelly',
+              },{
+                  id: 1,
+                  title: '博士伦美瞳明透亮眸半年时段博士伦美瞳明透亮眸半年时段博士伦美瞳明透亮眸半年时段balbalbalalabalabalabala',
+                  price:'450.00',
                   image: 'assets/icon/homepage_71.png',
-                  favorite: true
-              },
-              {
-                  id: 9,
-                  title: 'Nicholas King',
+              },{
+                  id: 1,
+                  title: '博士伦美瞳明透亮眸半年时段博士伦美瞳明透亮眸半年时段博士伦美瞳明透亮眸半年时段balbalbalalabalabalabala',
+                  price:'450.00',
                   image: 'assets/icon/homepage_71.png',
-                  favorite: true
-              },
-              {
-                  id: 10,
-                  title: 'Victoria Mitchell',
+              },{
+                  id: 1,
+                  title: '博士伦美瞳明透亮眸半年时段博士伦美瞳明透亮眸半年时段博士伦美瞳明透亮眸半年时段balbalbalalabalabalabala',
+                  price:'450.00',
                   image: 'assets/icon/homepage_71.png',
-                  favorite: true
-              },
-              {
-                  id: 5,
-                  title: 'Nicholas Henderson',
+              },{
+                  id: 1,
+                  title: '博士伦美瞳明透亮眸半年时段博士伦美瞳明透亮眸半年时段博士伦美瞳明透亮眸半年时段balbalbalalabalabalabala',
+                  price:'450.00',
                   image: 'assets/icon/homepage_71.png',
-                  favorite: false
-              },
-              {
-                  id: 6,
-                  title: 'Elizabeth Mackenzie',
+              },{
+                  id: 1,
+                  title: '博士伦美瞳明透亮眸半年时段博士伦美瞳明透亮眸半年时段博士伦美瞳明透亮眸半年时段balbalbalalabalabalabala',
+                  price:'450.00',
                   image: 'assets/icon/homepage_71.png',
-                  favorite: true
-              },
-              {
-                  id: 7,
-                  title: 'Melanie Ferguson',
+              },{
+                  id: 1,
+                  title: '博士伦美瞳明透亮眸半年时段博士伦美瞳明透亮眸半年时段博士伦美瞳明透亮眸半年时段balbalbalalabalabalabala',
+                  price:'450.00',
                   image: 'assets/icon/homepage_71.png',
-                  favorite: false
-              },
-              {
-                  id: 8,
-                  title: 'Fiona Kelly',
+              },{
+                  id: 1,
+                  title: '博士伦美瞳明透亮眸半年时段博士伦美瞳明透亮眸半年时段博士伦美瞳明透亮眸半年时段balbalbalalabalabalabala',
+                  price:'450.00',
                   image: 'assets/icon/homepage_71.png',
-                  favorite: true
-              },
-              {
-                  id: 9,
-                  title: 'Nicholas King',
+              },{
+                  id: 1,
+                  title: '博士伦美瞳明透亮眸半年时段博士伦美瞳明透亮眸半年时段博士伦美瞳明透亮眸半年时段balbalbalalabalabalabala',
+                  price:'450.00',
                   image: 'assets/icon/homepage_71.png',
-                  favorite: true
-              },
-              {
-                  id: 10,
-                  title: 'Victoria Mitchell',
-                  image: 'assets/icon/homepage_71.png',
-                  favorite: true
-              },
-              {
-                  id: 5,
-                  title: 'Nicholas Henderson',
-                  image: 'assets/icon/homepage_71.png',
-                  favorite: false
-              },
-              {
-                  id: 6,
-                  title: 'Elizabeth Mackenzie',
-                  image: 'assets/icon/homepage_71.png',
-                  favorite: true
-              },
-              {
-                  id: 7,
-                  title: 'Melanie Ferguson',
-                  image: 'assets/icon/homepage_71.png',
-                  favorite: false
-              },
-              {
-                  id: 8,
-                  title: 'Fiona Kelly',
-                  image: 'assets/icon/homepage_71.png',
-                  favorite: true
-              },
-              {
-                  id: 9,
-                  title: 'Nicholas King',
-                  image: 'assets/icon/homepage_71.png',
-                  favorite: true
-              },
-              {
-                  id: 10,
-                  title: 'Victoria Mitchell',
-                  image: 'assets/icon/homepage_71.png',
-                  favorite: true
               }
           ]
       };
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) { }
+  constructor(public navCtrl: NavController, public navParams: NavParams) {}
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad BrandListPage');

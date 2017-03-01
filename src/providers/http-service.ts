@@ -24,6 +24,8 @@ export class HttpService {
   getHandpickDetails(data?:Object){
     return this.http.get(this.ip + '/Index/get_category_recommend_goods/type/hot', data)
   }
-
+  getGoodsGallery(data?:Object){
+      return this.http.get(this.ip + '/Goods/get_goods_gallery', data)
+  }
   
 }

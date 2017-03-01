@@ -14,7 +14,7 @@
 </ion-header>
 
 <ion-content (ionScrollEnd)="scrollHeight()">
-    <div class="banner-wrapper" *ngIf="bannerImgs" >
+    <div class="banner-wrapper" *ngIf="bannerImgs">
         <ion-slides #bannerSlide autoplay="4000" loop="true" pager>
             <!-- -->
             <ion-slide *ngFor="let item of bannerImgs">
@@ -161,12 +161,7 @@
             <span class="more">更多&gt;</span>
         </div>
         <div class="main">
-            <single-card></single-card>
-            <single-card></single-card>
-            <single-card></single-card>
-            <single-card></single-card>
-            <single-card></single-card>
-            <single-card></single-card>
+            <!--<single-foods-card  ></single-foods-card>-->
 
         </div>
     </div>

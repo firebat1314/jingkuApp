@@ -1,0 +1,53 @@
+<!--
+  Generated template for the Particulars page.
+
+  See http://ionicframework.com/docs/v2/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+    <ion-navbar>
+        <ion-title>商品详情</ion-title>
+    </ion-navbar>
+
+</ion-header>
+
+
+<ion-content>
+    <div class="imgs">
+        <ion-slides loop="true" parallax="true">
+            <ion-slide *ngFor="let item of [{},{},{},{}]">
+                <ion-card>
+                    <img src="./assets/icon/shangpinxiangqing.jpg" />
+                    <!--<div class="card-title">Amsterdam</div>-->
+                    <!--<div class="card-subtitle">64 Listings</div>-->
+                </ion-card>
+
+            </ion-slide>
+        </ion-slides>
+    </div>
+    <div class="price_time">
+        <div class="left">
+            <p>￥<span class="number">250.00</span>每人限购：99副</p>
+            <p>商品总量：1000件</p>
+        </div>
+        <div class="right">
+            <p>距离结束还剩 ：</p>
+            <p><span class="time">12</span>天<span class="time">12</span>时<span class="time">12</span>分<span class="time">12</span></p>
+        </div>
+    </div>
+    <div class="info">
+        <div class="title">
+            【德国蔡司】多功能护理液多功能护理液多功能护理液多功能护理液
+        </div>
+        <div class="body">
+            批发价&nbsp;：<span class="now-price">￥<span class="number">789</span></span><span class="old-price">￥<span>999</span></span>&nbsp;<span class="rush-icon">抢购</span>
+
+        </div>
+        <div class="bottom">
+            <div>建议零售价&nbsp;：<span class="offer-price">￥1234</span></div>
+            <div>商品编号&nbsp;：589223</div>
+        </div>
+    </div>
+    <div class="background"></div>
+</ion-content>
