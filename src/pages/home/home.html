@@ -6,10 +6,11 @@
                 北京
             </button>
         </ion-buttons>
-        <ion-searchbar [navPush]="SearchPage" [(ngModel)]="myHomeSearch" (ionInput)="onInput($event)" (ionCancel)="onCancel($event)" placeholder="搜索镜库上平/店铺" animated="false" spellcheck="true" mode="ios"></ion-searchbar>
-        <ion-buttons right>
-            <button ion-button clear icon-only icon-left [navPush]="MessagePage"><img src="./assets/icon/homepage_09.png" width="20px"></button>
-        </ion-buttons>
+        <ion-searchbar [navPush]="SearchPage" [(ngModel)]="myHomeSearch" (ionInput)="onInput($event)" (ionCancel)="onCancel($event)"
+            placeholder="搜索镜库上平/店铺" animated="false" spellcheck="true" mode="ios"></ion-searchbar>
+            <ion-buttons right>
+                <button ion-button clear icon-only icon-left [navPush]="MessagePage"><img src="./assets/icon/homepage_09.png" width="20px"></button>
+            </ion-buttons>
     </ion-navbar>
 </ion-header>
 
@@ -91,23 +92,8 @@
             <span class="more">更多&gt;</span>
         </div>
         <div class="main">
-            <div>
-                <img src="./assets/icon/homepage_49.png" alt="">
-            </div>
-            <div>
-                <img src="./assets/icon/homepage_49.png" alt="">
-            </div>
-            <div>
-                <img src="./assets/icon/homepage_49.png" alt="">
-            </div>
-            <div>
-                <img src="./assets/icon/homepage_49.png" alt="">
-            </div>
-            <div>
-                <img src="./assets/icon/homepage_49.png" alt="">
-            </div>
-            <div>
-                <img src="./assets/icon/homepage_49.png" alt="">
+            <div *ngFor="let item of getBrands">
+                <img src="{{item.brand_logo}}" alt="{{item.brand_name}}">
             </div>
             <div>
                 <img src="./assets/icon/homepage_53.png" alt="">
@@ -131,8 +117,8 @@
                     </div>
                 </ion-scroll>-->
                 <ion-slides slidesPerView="3" parallax="true">
-                    <ion-slide *ngFor="let item of handpickDetails">
-                        <img src="./assets/icon/homepage_57.png" />
+                    <ion-slide *ngFor="let item of getCategoryRecommendGoodsHot">
+                        <img src="./assets/icon/homepage_67.png" />
                     </ion-slide>
 
                 </ion-slides>
@@ -161,7 +147,7 @@
             <span class="more">更多&gt;</span>
         </div>
         <div class="main">
-            <!--<single-foods-card  ></single-foods-card>-->
+            <single-foods-card *ngIf="handpickDetails" [data]="handpickDetails"></single-foods-card>
 
         </div>
     </div>

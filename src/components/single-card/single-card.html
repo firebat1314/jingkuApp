@@ -4,10 +4,19 @@
   See https://angular.io/docs/ts/latest/api/core/index/ComponentMetadata-class.html
   for more info on Angular 2 Components.
 -->
-<div class="card-wrap" [ngClass]="animateClass" [navPush]="ParticularsPage" [navParams]="{}" *ngFor="let item of animateItems; let i = index;">
+<div class="card-wrap" (press)="tapEvent($event)" [ngClass]="animateClass" [navPush]="ParticularsPage" [navParams]="{}" *ngFor="let item of animateItems; let i = index;">
     <div class="img" padding><img src="./assets/icon/homepage_71.png" alt=""></div>
     <div class="info" padding>
-        <div class="text">博士伦美瞳明透亮眸半年巴拉巴拉巴拉巴</div>
-        <div class="price">￥4545</div>
+        <div class="text">{{item.short_name}}</div>
+        <div class="price">{{item.market_price}}</div>
     </div>
+    <ion-fab center middle>
+        <button ion-fab mini><ion-icon name="add"></ion-icon></button>
+        <ion-fab-list side="top">
+            <button ion-fab><ion-icon name="logo-vimeo"></ion-icon></button>
+        </ion-fab-list>
+        <ion-fab-list side="bottom">
+            <button ion-fab><ion-icon name="logo-vimeo"></ion-icon></button>
+        </ion-fab-list>
+    </ion-fab>
 </div>

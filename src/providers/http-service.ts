@@ -15,28 +15,31 @@ export class HttpService {
   constructor(public http: UserData) {
     console.log('Hello HttpService Provider');
   }
-  getHomebanner(data?:Object) {//轮播图
+  getHomebanner(data?: Object) {//轮播图
     return this.http.get(this.ip + '/Index/ads/int_pos_id/3/int_size/10', data)
   }
-  getCategoryAd(data?:Object){//2、热门品类下的广告
+  getCategoryAd(data?: Object) {//2、热门品类下的广告
     return this.http.get(this.ip + '/Index/ads/int_pos_id/27/int_size/10', data)
   }
-  getHandpickDetails(data?:Object){//（1）4、精选专题下热门商品
+  getHandpickDetails(data?: Object) {//（1）4、精选专题下热门商品
     return this.http.get(this.ip + '/Index/get_category_recommend_goods/type/hot', data)
   }
-  getGoodsGallery(data?:Object){//5、商品详情页
-      return this.http.get(this.ip + '/Goods/get_goods_gallery', data)
+
+  getCategoryRecommendGoods(data?: Object) {//（3）新品
+    return this.http.get(this.ip + '/Index/get_category_recommend_goods/type/new', data)
   }
-  getCategoryRecommendGoods(data?:Object){//（3）新品
-      return this.http.get(this.ip + '/Index/get_category_recommend_goods/type/new', data)
+  getCategoryRecommendGoodsBest(data?: Object) {//（2）精品商品
+    return this.http.get(this.ip + '/Index/get_category_recommend_goods/type/best', data)
   }
-  getCategoryRecommendGoodsBest(data?:Object){//（2）精品商品
-      return this.http.get(this.ip + '/Index/get_category_recommend_goods/type/best', data)
+  getCategoryRecommendGoodsHot(data?: Object) {//4、精选专题下的商品列表
+    return this.http.get(this.ip + '/Index/get_category_recommend_goods/type/hot', data)
   }
-   getCategoryRecommendGoodsHot(data?:Object){//4、精选专题下的商品列表
-      return this.http.get(this.ip + '/Index/get_category_recommend_goods/type/hot', data)
+  getBrands(data?: Object) {//3、热门品牌下的品牌列表
+    return this.http.get(this.ip + '/Index/get_brands', data)
   }
-   getBrands(data?:Object){//3、热门品牌下的品牌列表
-      return this.http.get(this.ip + '/Index/get_brands', data)
+
+  /*商品详情页*/
+  getGoodsGallery(data?: Object) {
+    return this.http.get(this.ip + '/Goods/get_goods_gallery', data)
   }
 }

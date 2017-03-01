@@ -20,8 +20,8 @@ export class BrandListPage {
   listStyleflag:Boolean;
   ParticularsPage:any= ParticularsPage;
 
-  data =  {
-          items: [
+  data =  
+           [
               {
                   id: 1,
                   title: '博士伦美瞳明透亮眸半年时段博士伦美瞳明透亮眸半年时段博士伦美瞳明透亮眸半年时段balbalbalalabalabalabala',
@@ -99,7 +99,7 @@ export class BrandListPage {
                   image: 'assets/icon/homepage_71.png',
               }
           ]
-      };
+      
 
   constructor(public navCtrl: NavController, public navParams: NavParams) {}
 

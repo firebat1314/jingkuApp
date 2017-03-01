@@ -48,11 +48,15 @@ export class HomePage {
   MessagePage = MessagePage;
 
   myHomeSearch: String = '';
+  showBackTopBtn: Boolean = true;
   bannerImgs;
   categoryAddetatils;
   handpickDetails;
-  showBackTopBtn: Boolean = true;
   mySlideOptions;
+  getCategoryRecommendGoods;
+  getCategoryRecommendGoodsBest;
+  getCategoryRecommendGoodsHot;
+  getBrands;
 
   constructor(
     public navCtrl: NavController,
@@ -61,49 +65,44 @@ export class HomePage {
     private httpService: HttpService,
     private formBuilder: FormBuilder
   ) {
-
-    this.getBannerImg();
-    this.getCategoryAd();
-    this.getHandpickDetails();
+this.httpService.getHomebanner().then((res) => {
+      console.log("轮播图", res);
+      this.bannerImgs = res.data;//获取轮播图
+      //this.slides.update();//刷新轮播图
+    })
+    this.httpService.getCategoryAd().then((res) => {
+      console.log("热门品类", res)
+      this.categoryAddetatils = res.data;
+    })
+    this.httpService.getHandpickDetails().then((res) => {
+      console.log("热门商品", res)
+      this.handpickDetails = res.data;
+    })
+    this.httpService.getCategoryRecommendGoods().then((res) => {
+      console.log("新品", res)
+      this.getCategoryRecommendGoods = res.data;
+    })
+    this.httpService.getCategoryRecommendGoodsBest().then(((res) => {
+      console.log("精品商品", res)
+      this.getCategoryRecommendGoodsBest = res.data;
+    }))
+    this.httpService.getCategoryRecommendGoodsHot().then(((res) => {
+      console.log("精选专题下的商品列表", res)
+      this.getCategoryRecommendGoodsHot = res.data;
+    }))
+    this.httpService.getBrands().then(((res) => {
+      console.log("热门品牌下的品牌列表", res)
+      this.getBrands = res.data;
+    }))
 
   }
   ngOnInit() {
-    this.httpService.getCategoryRecommendGoodsBest().then((res => {
-       console.log("精品商品"+res)
-        this.getCategoryRecommendGoods = res.data;
-    }))
     
+
+
   }
   ngAfterViewInit() {
 
-  }
-  getBannerImg() {
-
-    let self = this;
-    this.httpService.getHomebanner().then((res) => {
-      console.log("轮播图"+res);
-      this.bannerImgs = res.data;//获取轮播图
-      //this.slides.update();//刷新轮播图
-
-    })
-  }
-  getCategoryAd() {
-    this.httpService.getCategoryAd().then((res) => {
-      console.log("热门品类"+res)
-      this.categoryAddetatils = res.data;
-    })
-  }
-  getCategoryRecommendGoods(){
-    this.httpService.getCategoryRecommendGoods().then((res) => {
-      console.log("新品"+res)
-      this.getCategoryRecommendGoods = res.data;
-    })
-  }
-  getHandpickDetails() {
-    this.httpService.getHandpickDetails().then((res) => {
-      console.log("热门商品"+res)
-      this.handpickDetails = res.data;
-    })
   }
 
   ionViewDidLoad() {

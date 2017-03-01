@@ -89,10 +89,15 @@ page-home {
             border-left: 1px solid #e0e0e0;
             >div {
                 width: 25%;
-                border-left: 1px solid #e0e0e0;
+                border-right: 1px solid #e0e0e0;
                 border-bottom: 1px solid #e0e0e0;
+                height: 90px;
+                overflow: hidden;
+                display: flex;
+                align-items: center;
                 img {
                     display: block;
+                    width: 100%;
                 }
                 &:last-child {
                     width: 50%;

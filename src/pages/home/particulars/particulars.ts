@@ -16,7 +16,7 @@ import { HttpService } from "../../../providers/http-service";
 export class ParticularsPage {
 
   constructor(public navCtrl: NavController, public navParams: NavParams,private http:HttpService) {
-    this.http.getGoodsGallery().then((res) => {
+    this.http.getGoodsGallery({id:4994}).then((res) => {
       console.log(res);
     })
   }
