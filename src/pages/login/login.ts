@@ -55,6 +55,7 @@ export class LoginPage {
           self.userData.setUsername(self.loginInfo.username);
           self.userData.setToken(data.data.token);
           self.userData.storage.set(self.userData.HAS_LOGGED_IN, true);
+          localStorage.setItem('token', data.data.token);
           self.userData.hasLogin = true;
           // self.events.publish("user:login", user.username);
           let toast = self.toastCtrl.create({

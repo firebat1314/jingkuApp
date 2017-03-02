@@ -33,7 +33,9 @@
         </div>
         <div class="right">
             <p>距离结束还剩 ：</p>
-            <p><span class="time">12</span>天<span class="time">12</span>时<span class="time">12</span>分<span class="time">12</span></p>
+            <p>
+                <countdown [endDate]="endDate"></countdown>
+            </p>
         </div>
     </div>
     <div class="info">
@@ -50,4 +52,7 @@
         </div>
     </div>
     <div class="background"></div>
+    <div class="price-info">
+
+    </div>
 </ion-content>

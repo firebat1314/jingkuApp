@@ -95,10 +95,8 @@ export class UserData {
         });
     }
     public get(url: string, paramObj?: any) {
-        let userToken;
-        this.getToken().then((value) => {
-            userToken = value;
-        });
+                let userToken = localStorage.getItem('token');
+
         this.native.showLoading();
         var headers = new Headers();
         headers.append('Content-Type', 'application/json');
@@ -110,10 +108,7 @@ export class UserData {
             .catch(error => this.handleError(error));
     }
     public post(url: string, paramObj: any) {
-        let userToken;
-        this.getToken().then((value) => {
-            userToken = value;
-        });
+        let userToken = localStorage.getItem('token');
         this.native.showLoading();
         let headers = new Headers();
         headers.append('Content-Type', 'application/json');
@@ -125,10 +120,8 @@ export class UserData {
             .catch(error => this.handleError(error));
     }
     public postBody(url: string, paramObj: any) {
-        let userToken;
-        this.getToken().then((value) => {
-            userToken = value;
-        });
+                let userToken = localStorage.getItem('token');
+
         this.native.showLoading();
         let headers = new Headers();
         headers.append('Content-Type', 'application/json');

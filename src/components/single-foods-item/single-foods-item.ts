@@ -38,9 +38,9 @@ export class SingleFoodsItemComponent {
 
   ngAfterViewInit() {
     let that = this;
-    for (let i = 0; i < that.data.items.length; i++) {
+    for (let i = 0; i < that.data.length; i++) {
       setTimeout(function () {
-        that.animateItems.push(that.data.items[i]);
+        that.animateItems.push(that.data[i]);
       }, 200 * i);
     }
   }

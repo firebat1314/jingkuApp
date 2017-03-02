@@ -44,6 +44,7 @@ import { SingleCardComponent } from '../components/single-card/single-card'
 import { MyToolbarComponent } from '../components/my-toolbar/my-toolbar'
 import { SingleFoodsItemComponent } from '../components/single-foods-item/single-foods-item'
 import { MeunItemComponent } from '../components/meun-item/meun-item'
+import { CountdownComponent } from '../components/countdown/countdown'
 
 @NgModule({
   declarations: [
@@ -57,7 +58,7 @@ import { MeunItemComponent } from '../components/meun-item/meun-item'
     LoginPage,
     SignupPage, SignupSecondPage, SignupThirdPage,
     MyDirective, ImgTabs,
-    SingleCardComponent,MyToolbarComponent,SingleFoodsItemComponent,MeunItemComponent,
+    SingleCardComponent,MyToolbarComponent,SingleFoodsItemComponent,MeunItemComponent,CountdownComponent,
     DirectiveTestPage,
     ForgotPage, ForgotTwoPage, ForgotThreePage,
     
@@ -87,7 +88,7 @@ import { MeunItemComponent } from '../components/meun-item/meun-item'
     WelcomePage,
     LoginPage,
     SignupPage, SignupSecondPage, SignupThirdPage,
-    SingleCardComponent,MyToolbarComponent,SingleFoodsItemComponent,MeunItemComponent,
+    SingleCardComponent,MyToolbarComponent,SingleFoodsItemComponent,MeunItemComponent,CountdownComponent,
     DirectiveTestPage,
     ForgotPage, ForgotTwoPage
   ],
