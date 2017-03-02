@@ -26,6 +26,7 @@ export class SingleCardComponent {
   animateClass: any;
   animateItems = [];
   ParticularsPage: any = ParticularsPage;
+  showBtn:Boolean = false;
 
   ngAfterViewInit() {
     console.log(this.element);
@@ -43,7 +44,8 @@ export class SingleCardComponent {
   }
 
   tapEvent(e){
-    console.log(e)
+    console.log("长按指令",e)
+    this.showBtn = !this.showBtn
   }
 
   ngOnDestroy() {

@@ -57,4 +57,24 @@ export class HttpService {
   getSupplierInfo(data?: Object) {//获取供应商信息
     return this.http.get(this.ip + '/Goods/get_supplier_info', data)
   }
+  getGoodsCollect(data?: Object) {//商品关注
+    return this.http.get(this.ip + '/Goods/get_goods_collect', data)
+  }
+  collectDel(data?: Object) {//取消商品关注
+    return this.http.get(this.ip + '/Goods/collect_del', data)
+  }
+  getBonus(data?: Object) {//优惠券列表
+    return this.http.get(this.ip + '/Goods/get_bonus', data)
+  }
+  sendByUser(data?: Object) {//领取优惠券
+    return this.http.get(this.ip + '/Goods/send_by_user', data)
+  }
+  getGoodsFittings(data?: Object) {//组合商品\关联商品
+    return this.http.get(this.ip + '/Goods/get_goods_fittings', data)
+  }
+  searchGoods(data?: Object) {//商品搜索列表页
+    return this.http.post(this.ip + '/Search/search_goods', data)
+  }
+
+
 }

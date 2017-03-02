@@ -14,11 +14,11 @@
 
 
 <ion-content>
-    <div class="imgs">
-        <ion-slides loop="true" parallax="true">
-            <ion-slide *ngFor="let item of [{},{},{},{}]">
+    <div class="imgs" *ngIf="getGoodsGallery">
+        <ion-slides loop="true" parallax="true" *ngIf="getGoodsGallery">
+            <ion-slide *ngFor="let item of getGoodsGallery">
                 <ion-card>
-                    <img src="./assets/icon/shangpinxiangqing.jpg" />
+                    <img src="{{item.img_url}}" />
                     <!--<div class="card-title">Amsterdam</div>-->
                     <!--<div class="card-subtitle">64 Listings</div>-->
                 </ion-card>
@@ -38,21 +38,130 @@
             </p>
         </div>
     </div>
-    <div class="info">
+    <div class="info" *ngIf="getGoodsInfo">
         <div class="title">
-            【德国蔡司】多功能护理液多功能护理液多功能护理液多功能护理液
+            {{getGoodsInfo.goods_name}}
         </div>
         <div class="body">
-            批发价&nbsp;：<span class="now-price">￥<span class="number">789</span></span><span class="old-price">￥<span>999</span></span>&nbsp;<span class="rush-icon">抢购</span>
+            批发价&nbsp;：<span class="now-price">￥<span class="number">{{getGoodsInfo.shop_price}}</span></span><span class="old-price">￥<span>{{getGoodsInfo.old_shop_price}}</span></span>&nbsp;<span class="rush-icon">抢购</span>
 
         </div>
         <div class="bottom">
-            <div>建议零售价&nbsp;：<span class="offer-price">￥1234</span></div>
-            <div>商品编号&nbsp;：589223</div>
+            <div>建议零售价&nbsp;：<span class="offer-price">￥{{getGoodsInfo.market_price}}</span></div>
+            <div>商品编号&nbsp;：{{getGoodsInfo.goods_sn}}</div>
         </div>
     </div>
     <div class="background"></div>
     <div class="price-info">
+        <div class="main">
+            <div class="info-item">
+                <span>一盒起批</span>
+                <span>￥253.2</span>
+            </div>
+            <div class="info-item">
+                <span>一盒起批</span>
+                <span>￥253.2</span>
+            </div>
+            <div class="info-item">
+                <span>一盒起批</span>
+                <span>￥253.2</span>
+            </div>
+            <div class="info-item">
+                <span>一盒起批</span>
+                <span>￥253.2</span>
+            </div>
+            <div class="info-item">
+                <span>一盒起批</span>
+                <span>￥253.2</span>
+            </div>
+            <div class="info-item">
+                <span>一盒起批</span>
+                <span>￥253.2</span>
+            </div>
+            <div class="info-item">
+                <span>一盒起批</span>
+                <span>￥253.2</span>
+            </div>
+        </div>
+        <div class="right">
+            <ion-icon name="ios-arrow-forward"></ion-icon>
+        </div>
+    </div>
+    <div class="background"></div>
+    <div class="coupon" item-padding>
+        <ion-list mode="md">
+            <ion-item>
+                领券
+                <img src="./assets/icon/images/particulars_03.jpg" alt="">
+                <img src="./assets/icon/images/particulars_03.jpg" alt="">
+                <ion-note item-right>
+                    点击领取
+                </ion-note>
+                <ion-icon name="ios-arrow-forward" item-right></ion-icon>
+            </ion-item>
+            <ion-item>
+                <img src="./assets/icon/images/particulars_09.jpg" style="height: 20px;" alt=""> <span>买一盒送一盒</span>
+
+                <ion-icon name="ios-arrow-forward" item-right></ion-icon>
+            </ion-item>
+            <ion-item>
+
+                <img src="./assets/icon/images/particulars_09.jpg" style="height: 20px;" alt=""> <span>买一盒送一盒</span>
+
+                <ion-icon name="ios-arrow-forward" item-right></ion-icon>
+            </ion-item>
+        </ion-list>
 
     </div>
+    <div class="background"></div>
+    <div class="to-adress" item-padding>
+        <ion-item no-lines>
+            发货地：北京
+            <ion-note>
+                配送时间：预计7-14个工作日送达
+            </ion-note>
+        </ion-item>
+    </div>
+    <div class="background"></div>
+    <div class="will-address" item-padding>
+        <ion-item no-lines>
+            送至：北京<span class="nogoods">（无货）</span>
+            <ion-note item-right>
+                点击领取
+            </ion-note>
+            <ion-icon name="ios-arrow-forward" item-right></ion-icon>
+        </ion-item>
+        <div class="bottom">
+            <ion-note item-right>
+                快递：该商品满99包邮，运费10元
+            </ion-note>
+        </div>
+    </div>
+    <div class="background"></div>
+    <div class="attribute">
+        <ion-item no-lines item-padding>
+            送至：光度、规格等
+            <ion-icon name="ios-arrow-forward" item-right></ion-icon>
+
+        </ion-item>
+    </div>
+    <div class="background"></div>
+    <div class="warning-show">请用电脑下单！</div>
 </ion-content>
+<ion-footer>
+    <div class="left">
+        <div>
+            <img src="./assets/icon/images/particulars_17.jpg" alt=""><span>客服</span>
+        </div>
+        <div>
+            <img src="./assets/icon/images/particulars_20.jpg" alt=""> <span>关注</span>
+        </div>
+        <div>
+            <img src="./assets/icon/images/particulars_23.jpg" alt=""> <span>店铺</span>
+        </div>
+
+    </div>
+    <div class="right">
+        <span>暂不支持手机下单</span>
+    </div>
+</ion-footer>

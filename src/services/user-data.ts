@@ -99,7 +99,7 @@ export class UserData {
 
         this.native.showLoading();
         var headers = new Headers();
-        headers.append('Authorization', 'Basic ' + btoa(userToken) + ':');
+        headers.append('Authorization', userToken);
         let options = new RequestOptions({ headers: headers });
         return this.http.get(url + this.toQueryString(paramObj), options)
             .toPromise()
@@ -110,7 +110,7 @@ export class UserData {
         let userToken: string = localStorage.getItem('token');
         this.native.showLoading();
         let headers = new Headers();
-        headers.append('Authorization', 'Basic ' + btoa(userToken) + ':');
+        headers.append('Authorization', userToken);
         let options = new RequestOptions({ headers: headers });
         return this.http.post(url, paramObj, options)
             .toPromise()
@@ -122,7 +122,7 @@ export class UserData {
 
         this.native.showLoading();
         let headers = new Headers();
-        headers.append('Authorization', 'Basic ' + btoa(userToken) + ':');
+        headers.append('Authorization', userToken);
         let options = new RequestOptions({ headers: headers });
         return this.http.post(url, this.toBodyString(paramObj), options)
             .toPromise()
