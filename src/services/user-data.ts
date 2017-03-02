@@ -95,11 +95,10 @@ export class UserData {
         });
     }
     public get(url: string, paramObj?: any) {
-                let userToken = localStorage.getItem('token');
+        let userToken = localStorage.getItem('token');
 
         this.native.showLoading();
         var headers = new Headers();
-        headers.append('Content-Type', 'application/json');
         headers.append('Authorization', 'Basic ' + btoa(userToken) + ':');
         let options = new RequestOptions({ headers: headers });
         return this.http.get(url + this.toQueryString(paramObj), options)
@@ -108,10 +107,9 @@ export class UserData {
             .catch(error => this.handleError(error));
     }
     public post(url: string, paramObj: any) {
-        let userToken = localStorage.getItem('token');
+        let userToken: string = localStorage.getItem('token');
         this.native.showLoading();
         let headers = new Headers();
-        headers.append('Content-Type', 'application/json');
         headers.append('Authorization', 'Basic ' + btoa(userToken) + ':');
         let options = new RequestOptions({ headers: headers });
         return this.http.post(url, paramObj, options)
@@ -120,11 +118,10 @@ export class UserData {
             .catch(error => this.handleError(error));
     }
     public postBody(url: string, paramObj: any) {
-                let userToken = localStorage.getItem('token');
+        let userToken = localStorage.getItem('token');
 
         this.native.showLoading();
         let headers = new Headers();
-        headers.append('Content-Type', 'application/json');
         headers.append('Authorization', 'Basic ' + btoa(userToken) + ':');
         let options = new RequestOptions({ headers: headers });
         return this.http.post(url, this.toBodyString(paramObj), options)
