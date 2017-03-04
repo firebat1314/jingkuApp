@@ -9,17 +9,14 @@
 
     <ion-item [ngClass]="animateClass" [navPush]="ParticularsPage" [navParams]="{}" *ngFor="let item of animateItems; let i = index;">
         <ion-thumbnail item-left>
-            <img [src]="item.image" alt="{{item.title}}" />
+            <img [src]="item.goods_img" alt="{{item.title}}" />
         </ion-thumbnail>
-        <h2>{{item.title}}</h2>
-        <h3>￥{{item.price}}</h3>
+        <h2>{{item.short_name}}</h2>
+        <h3>￥{{item.market_price}}</h3>
         <div class="chips">
             <div>SALE</div>
             <div>HOT</div>
             <div>NEW</div>
         </div>
-
-
-
     </ion-item>
 </ion-list>

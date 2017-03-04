@@ -6,11 +6,10 @@
                 北京
             </button>
         </ion-buttons>
-        <ion-searchbar [navPush]="SearchPage" [(ngModel)]="myHomeSearch" (ionInput)="onInput($event)" (ionCancel)="onCancel($event)"
-            placeholder="搜索镜库上平/店铺" animated="false" spellcheck="true" mode="ios"></ion-searchbar>
-            <ion-buttons right>
-                <button ion-button clear icon-only icon-left [navPush]="MessagePage"><img src="./assets/icon/homepage_09.png" width="20px"></button>
-            </ion-buttons>
+        <ion-searchbar [navPush]="SearchPage" [(ngModel)]="myHomeSearch" (ionInput)="onInput($event)" (ionCancel)="onCancel($event)" placeholder="搜索镜库上平/店铺" animated="false" spellcheck="true" mode="ios"></ion-searchbar>
+        <ion-buttons right>
+            <button ion-button clear icon-only icon-left [navPush]="MessagePage"><img src="./assets/icon/homepage_09.png" width="20px"></button>
+        </ion-buttons>
     </ion-navbar>
 </ion-header>
 
@@ -135,7 +134,9 @@
         <div class="main">
             <ion-slides loop="true" parallax="true">
                 <ion-slide *ngFor="let item of handpickDetails">
-                    <img src="./assets/icon/homepage_67.png" />
+                    <ion-card>
+                        <img src="./assets/icon/homepage_67.png" />
+                    </ion-card>
                 </ion-slide>
             </ion-slides>
         </div>
@@ -144,7 +145,7 @@
     <div class="hot-other home-content" padding>
         <div class="title">
             <span class="txt">热门单品</span>
-            <span class="more">更多&gt;</span>
+            <span class="more" [navPush]="BrandListPage" [navParams]="{list:'singleHot'}">更多&gt;</span>
         </div>
         <div class="main">
             <single-foods-card *ngIf="handpickDetails" [data]="handpickDetails"></single-foods-card>

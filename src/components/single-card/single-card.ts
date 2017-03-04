@@ -38,11 +38,13 @@ export class SingleCardComponent {
         setTimeout(function () {
           that.animateItems.push(that.data[i]);
         }, 200 * i);
-      }
+      }   
     }
 
   }
-
+keyDown(){
+  console.log(111)
+}
   tapEvent(e){
     console.log("长按指令",e)
     this.showBtn = !this.showBtn

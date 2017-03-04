@@ -27,6 +27,10 @@ export class ParticularsPage {
   getGoodsFittings;
   collectDel;
   searchGoods;
+
+  selectGroupRecommend = "group";
+  selectPicArguments = "pic";
+
   constructor(public navCtrl: NavController, public navParams: NavParams, private http: HttpService) {
     this.http.getGoodsGallery({ goods_id: 4994 }).then((res) => {
       console.log("商品详情的相册图片轮播", res);
@@ -34,7 +38,7 @@ export class ParticularsPage {
     });
     this.http.getPriceSection({ goods_id: 4994 }).then((res) => {
       console.log("获取商品价格优惠区间", res);
-      this.getPriceSection = res.data;
+      this.getPriceSection = res;
     });
     this.http.getGoodsInfo({ goods_id: 4994 }).then((res) => {
       console.log("商品详情信息", res);

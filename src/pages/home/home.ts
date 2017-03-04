@@ -46,6 +46,7 @@ export class HomePage {
   WhitebarPage = WhitebarPage;
   DiscountCouponPage = DiscountCouponPage;
   MessagePage = MessagePage;
+  
 
   myHomeSearch: String = '';
   showBackTopBtn: Boolean = true;
@@ -65,7 +66,7 @@ export class HomePage {
     private httpService: HttpService,
     private formBuilder: FormBuilder
   ) {
-this.httpService.getHomebanner().then((res) => {
+    this.httpService.getHomebanner().then((res) => {
       console.log("轮播图", res);
       this.bannerImgs = res.data;//获取轮播图
       //this.slides.update();//刷新轮播图
@@ -75,7 +76,7 @@ this.httpService.getHomebanner().then((res) => {
       this.categoryAddetatils = res.data;
     })
     this.httpService.getHandpickDetails().then((res) => {
-      console.log("热门商品", res)
+      console.log("精选专题下热门商品", res)
       this.handpickDetails = res.data;
     })
     this.httpService.getCategoryRecommendGoods().then((res) => {

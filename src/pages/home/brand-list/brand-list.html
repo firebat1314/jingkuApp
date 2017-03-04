@@ -26,8 +26,29 @@
     <ion-refresher (ionRefresh)="doRefresh($event)" pullMax="60">
         <ion-refresher-content refreshingSpinner="1" pullingIcon="0"></ion-refresher-content>
     </ion-refresher>
-    <single-foods-card [data]="data" *ngIf="!listStyleflag" padding></single-foods-card>
+    <div *ngIf="data">
+        <single-foods-card [data]="data" *ngIf="!listStyleflag" padding></single-foods-card>
 
-    <single-foods-item [data]="data" *ngIf="listStyleflag"></single-foods-item>
+        <single-foods-item [data]="data" *ngIf="listStyleflag"></single-foods-item>
+    </div>
 
+    <ion-infinite-scroll (ionInfinite)="doInfinite($event)">
+        <ion-infinite-scroll-content loadingSpinner="bubbles" loadingText="正在加载...">
+        </ion-infinite-scroll-content>
+    </ion-infinite-scroll>
 </ion-content>
+<ion-footer>
+    <ion-toolbar color="light">
+        <ion-buttons start>
+            <button ion-button>
+                上一页
+            </button>
+        </ion-buttons>
+        <ion-title>1/250</ion-title>
+        <ion-buttons end>
+            <button ion-button>
+                下一页
+            </button>
+        </ion-buttons>
+    </ion-toolbar>
+</ion-footer>
