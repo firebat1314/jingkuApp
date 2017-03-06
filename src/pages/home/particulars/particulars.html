@@ -18,7 +18,7 @@
         <ion-slides loop="true" parallax="true" *ngIf="getGoodsGallery">
             <ion-slide *ngFor="let item of getGoodsGallery">
                 <ion-card>
-                    <img src="{{item.img_url}}" />
+                    <img src="{{item.img_url}}" imageViewer />
                     <!--<div class="card-title">Amsterdam</div>-->
                     <!--<div class="card-subtitle">64 Listings</div>-->
                 </ion-card>
@@ -90,7 +90,7 @@
     </div>
     <div class="background"></div>
     <div class="coupon" item-padding>
-        <ion-list mode="md">
+        <ion-list mode="md" (click)="presentModal('优惠券')">
             <ion-item>
                 领券
                 <img src="./assets/icon/images/particulars_03.jpg" alt="">
@@ -100,12 +100,12 @@
                 </ion-note>
                 <ion-icon name="ios-arrow-forward" item-right></ion-icon>
             </ion-item>
-            <ion-item>
+            <ion-item (click)="presentModal('买一盒送一盒',$event)">
                 <img src="./assets/icon/images/particulars_09.jpg" style="height: 20px;" alt=""> <span>买一盒送一盒</span>
 
                 <ion-icon name="ios-arrow-forward" item-right></ion-icon>
             </ion-item>
-            <ion-item>
+            <ion-item (click)="presentModal('买一盒送一盒',$event)">
 
                 <img src="./assets/icon/images/particulars_09.jpg" style="height: 20px;" alt=""> <span>买一盒送一盒</span>
 
@@ -115,7 +115,7 @@
 
     </div>
     <div class="background"></div>
-    <div class="to-adress" item-padding>
+    <div class="to-adress" (click)="presentModal('发货地址')" item-padding>
         <ion-item no-lines>
             发货地：北京
             <ion-note>
@@ -125,7 +125,7 @@
     </div>
     <div class="background"></div>
     <div class="will-address" item-padding>
-        <ion-item no-lines>
+        <ion-item no-lines (click)="presentModal('配送地址')">
             送至：北京<span class="nogoods">（无货）</span>
             <ion-icon name="ios-arrow-forward" item-right></ion-icon>
         </ion-item>
@@ -137,14 +137,14 @@
     </div>
     <div class="background"></div>
     <div class="attribute" item-padding>
-        <ion-item no-lines>
+        <ion-item (click)="presentModal('选择商品属性')" no-lines>
             选择
             <ion-icon name="ios-arrow-forward" item-right></ion-icon>
         </ion-item>
     </div>
     <div class="background"></div>
     <div class="goods-service">
-        <ion-item no-lines item-padding>
+        <ion-item no-lines item-padding (click)="presentModal('商品服务保障')">
             <ion-icon name="md-basket" item-left></ion-icon>
             商品服务保障
             <ion-icon name="ios-arrow-forward" item-right></ion-icon>
@@ -249,7 +249,7 @@
                         <div class="wrap">
                             <div class="goods">
                                 <div class="top">
-                                    <ion-checkbox></ion-checkbox>
+                                    <ion-checkbox mode="ios"></ion-checkbox>
                                     <img src="./assets/icon/shangpinxiangqing.jpg" alt="">
                                 </div>
                                 <div class="bottom">
@@ -391,23 +391,29 @@
     </div>
     <div class="background"></div>
 
-    <div class="warning-show">请用电脑下单！</div>
+    <div class="warning-show">
+        <span>请用电脑下单！</span>
+    </div>
 </ion-content>
 <ion-footer>
-    <div class="left">
-        <div>
-            <img src="./assets/icon/images/particulars_17.jpg" alt=""><span>客服</span>
-        </div>
-        <div>
-            <img src="./assets/icon/images/particulars_20.jpg" alt=""> <span>关注</span>
-        </div>
-        <div>
-            <img src="./assets/icon/images/particulars_23.jpg" alt=""> <span>店铺</span>
-        </div>
+    <ion-toolbar>
+        <div class="main">
+            <div class="left">
+                <div>
+                    <img src="./assets/icon/images/particulars_17.jpg" alt=""><span>客服</span>
+                </div>
+                <div>
+                    <img src="./assets/icon/images/particulars_20.jpg" alt=""> <span>关注</span>
+                </div>
+                <div>
+                    <img src="./assets/icon/images/particulars_23.jpg" alt=""> <span>店铺</span>
+                </div>
 
-    </div>
+            </div>
 
-    <div class="right">
-        <span>暂不支持手机下单</span>
-    </div>
+            <div class="right">
+                <span>暂不支持手机下单</span>
+            </div>
+        </div>
+    </ion-toolbar>
 </ion-footer>

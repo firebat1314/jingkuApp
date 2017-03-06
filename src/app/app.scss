@@ -16,6 +16,10 @@
     background: #fff;
 }
 
+.toolbar {
+    padding: 0 4px;
+}
+
 
 /*菜单样式*/
 
@@ -112,6 +116,21 @@ button.swiper-pagination-bullet {
 
 .swiper-pagination-bullet-active {
     background: #000;
+}
+
+
+/*modal样式*/
+
+ion-modal ion-backdrop {
+    visibility: visible;
+}
+
+.modal-wrapper {
+    position: absolute;
+    left: 0;
+    height: 50%;
+    width: 100%;
+    bottom: 0;
 }
 
 

@@ -4,6 +4,7 @@ single-foods-item {
     }
     ion-item.item {
         border-bottom: 1px solid #dedede;
+        position: relative;
         ion-thumbnail img {
             width: 100px;
             height: 100px;
@@ -33,6 +34,27 @@ single-foods-item {
                 padding: 0 5px;
                 margin-right: 5px;
                 font-size: 13px;
+            }
+        }
+        .background {
+            width: 100%;
+            height: 100%;
+            opacity: 0.5;
+            background: #000;
+            position: absolute;
+            top: 0;
+            left: 0;
+            z-index: 1;
+            animation: fade 1s;
+        }
+        ion-fab[middle] {
+            display: flex;
+            margin-left: -61px;
+            button {
+                margin-right: 10px;
+                &:last-child {
+                    margin-right: 0;
+                }
             }
         }
     }

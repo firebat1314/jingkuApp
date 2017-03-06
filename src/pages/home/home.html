@@ -1,15 +1,19 @@
 <ion-header>
     <ion-navbar>
-        <ion-buttons left>
-            <button ion-button clear icon-only icon-left [navPush]="cityPage">
+        <ion-toolbar>
+            <ion-buttons left>
+                <button ion-button clear icon-only icon-left [navPush]="cityPage">
                 <img src="./assets/icon/homepage_03.png" width="20px" class="add_icon">
                 北京
             </button>
-        </ion-buttons>
-        <ion-searchbar [navPush]="SearchPage" [(ngModel)]="myHomeSearch" (ionInput)="onInput($event)" (ionCancel)="onCancel($event)" placeholder="搜索镜库上平/店铺" animated="false" spellcheck="true" mode="ios"></ion-searchbar>
-        <ion-buttons right>
-            <button ion-button clear icon-only icon-left [navPush]="MessagePage"><img src="./assets/icon/homepage_09.png" width="20px"></button>
-        </ion-buttons>
+            </ion-buttons>
+            <ion-searchbar [navPush]="SearchPage" [(ngModel)]="myHomeSearch" (ionInput)="onInput($event)" (ionCancel)="onCancel($event)" placeholder="搜索镜库上平/店铺" animated="false" animated spellcheck="true" mode="ios">
+            </ion-searchbar>
+
+            <ion-buttons right>
+                <button ion-button clear icon-only icon-left [navPush]="MessagePage"><img src="./assets/icon/homepage_09.png" width="20px"></button>
+            </ion-buttons>
+        </ion-toolbar>
     </ion-navbar>
 </ion-header>
 

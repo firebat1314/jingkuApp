@@ -45,7 +45,7 @@ export class MyApp {
   initializeApp() {
     this.platform.ready().then(() => {
       Splashscreen.hide();
-      StatusBar.backgroundColorByName('darkGray'); // set status bar to white
+      StatusBar.backgroundColorByHexString('#ffffff'); // set status bar to white
       //注册返回按键事件
       this.platform.registerBackButtonAction((): any => {
         console.log(this.nav)

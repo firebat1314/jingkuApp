@@ -2,6 +2,8 @@ import { NgModule, ErrorHandler } from '@angular/core';
 import { Storage } from '@ionic/storage';
 import { HttpModule } from '@angular/http';
 import { BrowserModule } from "@angular/platform-browser";
+import { IonicImageViewerModule } from 'ionic-img-viewer';
+import { IonicImageLoader } from 'ionic-image-loader';
 /*页面*/
 import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
 import { MyApp } from './app.component';
@@ -32,6 +34,7 @@ import { WhitebarPage } from '../pages/home/whitebar/whitebar'
 import { DiscountCouponPage } from '../pages/home/discount-coupon/discount-coupon'
 import { MessagePage } from '../pages/home/message/message'
 import { ParticularsPage } from '../pages/home/particulars/particulars'
+import {ParticularsModalPage} from '../pages/home/particulars-modal/particulars-modal'
 /*服务*/
 import { UserData } from "../services/user-data";
 import { Native } from "../providers/native";
@@ -51,44 +54,47 @@ import { CountdownComponent } from '../components/countdown/countdown'
     MyApp,
     AboutPage,
     ContactPage,
-    HomePage, CityPage, SearchPage, DetailsPage, BrandListPage, AttentionPage, FastbuyPage, GlassesDesignPage, IntegralstorePage, RechargePage,WhitebarPage,DiscountCouponPage,MessagePage,ParticularsPage,
+    HomePage, CityPage, SearchPage, DetailsPage, BrandListPage, AttentionPage, FastbuyPage, GlassesDesignPage, IntegralstorePage, RechargePage, WhitebarPage, DiscountCouponPage, MessagePage, ParticularsPage,ParticularsModalPage,
     MyPage,
     TabsPage,
     WelcomePage,
     LoginPage,
     SignupPage, SignupSecondPage, SignupThirdPage,
     MyDirective, ImgTabs,
-    SingleCardComponent,MyToolbarComponent,SingleFoodsItemComponent,MeunItemComponent,CountdownComponent,
+    SingleCardComponent, MyToolbarComponent, SingleFoodsItemComponent, MeunItemComponent, CountdownComponent,
     DirectiveTestPage,
     ForgotPage, ForgotTwoPage, ForgotThreePage,
-    
+
   ],
   imports: [
     IonicModule.forRoot(MyApp, {
       backButtonText: '',
       tabsHideOnSubPages: true,
       tabsPlacement: 'bottom',
-      pageTransition: 'ios-transition'
+      pageTransition: 'ios-transition',
+      mode:'md'
     }, {
         links: [
           { component: HomePage, segment: 'home' },
           { component: CityPage, segment: 'city' }
         ]
       }),
-    BrowserModule
+    BrowserModule,
+    IonicImageViewerModule,
+    IonicImageLoader
   ],
   bootstrap: [IonicApp],
   entryComponents: [
     MyApp,
     AboutPage,
     ContactPage,
-    HomePage, CityPage, SearchPage, DetailsPage, BrandListPage, AttentionPage, FastbuyPage, GlassesDesignPage, IntegralstorePage, RechargePage,WhitebarPage,DiscountCouponPage,MessagePage,ParticularsPage,
+    HomePage, CityPage, SearchPage, DetailsPage, BrandListPage, AttentionPage, FastbuyPage, GlassesDesignPage, IntegralstorePage, RechargePage, WhitebarPage, DiscountCouponPage, MessagePage, ParticularsPage,ParticularsModalPage,
     MyPage,
     TabsPage,
     WelcomePage,
     LoginPage,
     SignupPage, SignupSecondPage, SignupThirdPage,
-    SingleCardComponent,MyToolbarComponent,SingleFoodsItemComponent,MeunItemComponent,CountdownComponent,
+    SingleCardComponent, MyToolbarComponent, SingleFoodsItemComponent, MeunItemComponent, CountdownComponent,
     DirectiveTestPage,
     ForgotPage, ForgotTwoPage
   ],

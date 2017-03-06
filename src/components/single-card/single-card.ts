@@ -1,5 +1,6 @@
-import { Component, Input, ElementRef } from '@angular/core';
+import { Component, Input, ElementRef ,ViewChild} from '@angular/core';
 import { ParticularsPage } from '../../pages/home/particulars/particulars'
+import {  } from 'ionic-angular';
 
 /*
   Generated class for the SingleCard component.
@@ -26,7 +27,7 @@ export class SingleCardComponent {
   animateClass: any;
   animateItems = [];
   ParticularsPage: any = ParticularsPage;
-  showBtn:Boolean = false;
+  
 
   ngAfterViewInit() {
     console.log(this.element);
@@ -36,21 +37,26 @@ export class SingleCardComponent {
     if (this.data) {
       for (let i = 0; i < that.data.length; i++) {
         setTimeout(function () {
+          that.data[i].showBtn = false;
           that.animateItems.push(that.data[i]);
         }, 200 * i);
       }   
     }
 
   }
-keyDown(){
-  console.log(111)
-}
-  tapEvent(e){
+  clearBtn(){
+    for(let i = 0;i < this.animateItems.length;i++){
+      this.animateItems[i].showBtn = false;
+    }
+  }
+  tapEvent(item,e){
     console.log("长按指令",e)
-    this.showBtn = !this.showBtn
+    this.clearBtn();
+    item.showBtn=true;
   }
 
   ngOnDestroy() {
     console.log("销毁指令")
+    this.clearBtn()
   }
 }

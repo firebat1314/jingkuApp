@@ -7,14 +7,17 @@
 <ion-header>
 
     <ion-navbar>
-        <ion-searchbar [navPush]="SearchPage" [(ngModel)]="myHomeSearch" (ionInput)="onInput($event)" (ionCancel)="onCancel($event)" placeholder="博士伦" animated="false" spellcheck="true" mode="ios">
-        </ion-searchbar>
-        <ion-buttons end>
-            <button ion-button clear icon-only icon-left (click)="listStyleflag=!listStyleflag">
+
+        <ion-toolbar>
+            <ion-searchbar [navPush]="SearchPage" [(ngModel)]="myHomeSearch" (ionInput)="onInput($event)" (ionCancel)="onCancel($event)" placeholder="博士伦" animated="false" spellcheck="true" mode="ios">
+            </ion-searchbar>
+            <ion-buttons end>
+                <button ion-button clear icon-only icon-left (click)="listStyleflag=!listStyleflag">
                 <ion-icon name="md-list" *ngIf="!listStyleflag" ></ion-icon>
                 <ion-icon name="md-apps" *ngIf="listStyleflag" ></ion-icon>
                 </button>
-        </ion-buttons>
+            </ion-buttons>
+        </ion-toolbar>
     </ion-navbar>
     <ion-toolbar>
         <my-toolbar></my-toolbar>
@@ -39,13 +42,13 @@
 </ion-content>
 <ion-footer>
     <ion-toolbar color="light">
-        <ion-buttons start>
+        <ion-buttons left>
             <button ion-button>
                 上一页
             </button>
         </ion-buttons>
         <ion-title>1/250</ion-title>
-        <ion-buttons end>
+        <ion-buttons right>
             <button ion-button>
                 下一页
             </button>

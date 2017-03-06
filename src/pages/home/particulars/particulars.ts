@@ -1,8 +1,9 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams } from 'ionic-angular';
+import { NavController, NavParams, ModalController } from 'ionic-angular';
 /*http服务*/
 import { HttpService } from "../../../providers/http-service";
 
+import { ParticularsModalPage } from "../particulars-modal/particulars-modal"
 /*
   Generated class for the Particulars page.
 
@@ -14,24 +15,29 @@ import { HttpService } from "../../../providers/http-service";
   templateUrl: 'particulars.html'
 })
 export class ParticularsPage {
-  private endDate = '1488530474470';
+  private endDate = '1488532474470';
   private getGoodsGallery;
   private getPriceSection;
   private getGoodsInfo;
-  getGoodsParameter;
-  getGoodsSaleCity;
-  getSupplierInfo;
-  getGoodsCollect;
-  getBonus;
-  sendByUser;
-  getGoodsFittings;
-  collectDel;
-  searchGoods;
+  private getGoodsParameter;
+  private getGoodsSaleCity;
+  private getSupplierInfo;
+  private getGoodsCollect;
+  private getBonus;
+  private sendByUser;
+  private getGoodsFittings;
+  private collectDel;
+  private searchGoods;
 
-  selectGroupRecommend = "group";
-  selectPicArguments = "pic";
+  private selectGroupRecommend = "group";
+  private selectPicArguments = "pic";
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, private http: HttpService) {
+  constructor(
+    public navCtrl: NavController,
+    public navParams: NavParams,
+    private http: HttpService,
+    public modalCtrl: ModalController
+  ) {
     this.http.getGoodsGallery({ goods_id: 4994 }).then((res) => {
       console.log("商品详情的相册图片轮播", res);
       this.getGoodsGallery = res.data;
@@ -80,6 +86,19 @@ export class ParticularsPage {
       console.log("商品搜索列表页", res);
       this.searchGoods = res.data;
     });
+
+
+
+  }
+  presentModal(str,evt) {
+    if(evt){
+      evt.stopPropagation();
+    }
+    let modal = this.modalCtrl.create(ParticularsModalPage,{name:str});
+    modal.onDidDismiss(data => {
+     console.log(data);
+   });
+    modal.present();
   }
   ngOnInit() {
 

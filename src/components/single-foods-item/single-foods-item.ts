@@ -41,7 +41,28 @@ export class SingleFoodsItemComponent {
     for (let i = 0; i < that.data.length; i++) {
       setTimeout(function () {
         that.animateItems.push(that.data[i]);
+                  that.data[i].showBtn = false;
+
       }, 200 * i);
     }
+  }
+  clearBtn(){
+    for(let i = 0;i < this.animateItems.length;i++){
+      this.animateItems[i].showBtn = false;
+    }
+  }
+  close(item,e){
+    e.stopPropagation();
+    item.showBtn = false;
+
+  }
+  tapEvent(item,e){
+    console.log("长按指令",e)
+    this.clearBtn();
+    item.showBtn=true;
+  }
+    ngOnDestroy() {
+    console.log("销毁指令")
+    this.clearBtn()
   }
 }

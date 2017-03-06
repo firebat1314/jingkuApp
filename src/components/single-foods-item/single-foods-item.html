@@ -7,7 +7,7 @@
 
 <ion-list>
 
-    <ion-item [ngClass]="animateClass" [navPush]="ParticularsPage" [navParams]="{}" *ngFor="let item of animateItems; let i = index;">
+    <ion-item [ngClass]="animateClass" (press)="tapEvent(item,$event)" [navPush]="ParticularsPage" [navParams]="{}" *ngFor="let item of animateItems; let i = index;">
         <ion-thumbnail item-left>
             <img [src]="item.goods_img" alt="{{item.title}}" />
         </ion-thumbnail>
@@ -18,5 +18,11 @@
             <div>HOT</div>
             <div>NEW</div>
         </div>
+        <div class="background" (click)="close(item,$event)" *ngIf="item.showBtn"></div>
+
+        <ion-fab middle center #fab *ngIf="item.showBtn">
+            <button color="light" ion-fab>购物车</button>
+            <button color="danger" ion-fab>关注</button>
+        </ion-fab>
     </ion-item>
 </ion-list>

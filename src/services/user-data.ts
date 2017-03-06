@@ -108,6 +108,7 @@ export class UserData {
     }
     public post(url: string, paramObj: any) {
         let userToken: string = localStorage.getItem('token');
+        
         this.native.showLoading();
         let headers = new Headers();
         headers.append('Authorization', 'Basic ' + btoa(userToken + ':'));

@@ -15,11 +15,15 @@ export class SearchPage {
   myHomeSearch: String = '';
   @ViewChild(Searchbar) searchbar: Searchbar;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {}
-
+  constructor(public navCtrl: NavController, public navParams: NavParams) {
+    
+  }
+  ngAfterViewInit(){
+    console.log(this.searchbar)
+  }
   ionViewDidLoad() {
     console.log('ionViewDidLoad SearchPage');
-    this.searchbar.setFocus();
+    
   }
 
 }
