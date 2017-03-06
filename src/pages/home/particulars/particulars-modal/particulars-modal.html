@@ -1,0 +1,150 @@
+<!--
+  Generated template for the ParticularsModal page.
+
+  See http://ionicframework.com/docs/v2/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+
+<div *ngIf="title=='选择商品属性'">
+
+</div>
+<ion-header *ngIf="title=='选择商品属性'?false:true">
+    <ion-toolbar>
+        <ion-buttons end>
+            <button ion-button (click)="dismiss()"><ion-icon name="md-close" ></ion-icon></button>
+        </ion-buttons>
+
+        <ion-title>
+            {{title}}
+        </ion-title>
+
+    </ion-toolbar>
+</ion-header>
+
+<ion-content class="outer-content">
+    <div class="attr" *ngIf="title=='选择商品属性'">
+        <ion-item padding no-lines>
+            <ion-thumbnail item-left>
+                <img src="./assets/icon/images/particulars_2_10.jpg">
+            </ion-thumbnail>
+            <h2>【卡尔蔡司】XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX</h2>
+            <p>商品编号：45454545454</p>
+            <p>￥450.00</p>
+        </ion-item>
+        <div class="background"></div>
+        <ion-grid>
+            <ion-row class="table-head">
+                <ion-col width-25>价格</ion-col>
+                <ion-col width-25>光度</ion-col>
+                <ion-col width-25>库存</ion-col>
+                <ion-col width-25>数量</ion-col>
+            </ion-row>
+            <ion-row>
+                <ion-col width-25>￥450.00</ion-col>
+                <ion-col width-25>0.00</ion-col>
+                <ion-col width-25>121</ion-col>
+                <ion-col width-25>
+                    <count-input (updateNumberI)="numberIChange($event)" [value]="2"></count-input>
+                </ion-col>
+            </ion-row>
+            <ion-row>
+                <ion-col width-25>￥450.00</ion-col>
+                <ion-col width-25>0.00</ion-col>
+                <ion-col width-25>50</ion-col>
+                <ion-col width-25>
+                    <count-input></count-input>
+                </ion-col>
+            </ion-row>
+            <ion-row>
+                <ion-col width-25>￥450.00</ion-col>
+                <ion-col width-25>0.00</ion-col>
+                <ion-col width-25>50</ion-col>
+                <ion-col width-25>
+                    <count-input></count-input>
+                </ion-col>
+            </ion-row>
+            <ion-row>
+                <ion-col width-25>￥450.00</ion-col>
+                <ion-col width-25>0.00</ion-col>
+                <ion-col width-25>50</ion-col>
+                <ion-col width-25>
+                    <count-input></count-input>
+                </ion-col>
+            </ion-row>
+        </ion-grid>
+    </div>
+    <div *ngIf="title=='商品服务保障'">
+        <ion-list>
+            <ion-item>
+                <ion-avatar item-left>
+                    <img src="./assets/icon/images/particulars_2_20.jpg">
+                </ion-avatar>
+                <h2>交易担保</h2>
+                <p>该商品XXXXXXXXXXXXXXXXXXXXXXX</p>
+            </ion-item>
+            <ion-item>
+                <ion-avatar item-left>
+                    <img src="./assets/icon/images/particulars_2_20.jpg">
+                </ion-avatar>
+                <h2>交易担保</h2>
+                <p>该商品XXXXXXXXXXXXXXXXXXXXXXX</p>
+            </ion-item>
+            <ion-item>
+                <ion-avatar item-left>
+                    <img src="./assets/icon/images/particulars_2_20.jpg">
+                </ion-avatar>
+                <h2>交易担保</h2>
+                <p>该商品XXXXXXXXXXXXXXXXXXXXXXX</p>
+            </ion-item>
+            <ion-item>
+                <ion-avatar item-left>
+                    <img src="./assets/icon/images/particulars_2_20.jpg">
+                </ion-avatar>
+                <h2>交易担保</h2>
+                <p>该商品XXXXXXXXXXXXXXXXXXXXXXX</p>
+            </ion-item>
+        </ion-list>
+    </div>
+    <div class="privilege" *ngIf="title=='优惠券'">
+        <p style="padding-left: 10px;">可领优惠券</p>
+        <div class="main">
+            <div class="left">
+                <div><span class="price">￥<span>30</span></span>【满200元可用】</div>
+                <div>仅可购买博士伦一系列产品全平台可用</div>
+                <div>2014.8.13--2015.3.23</div>
+                <div class="upcoming">即将到来</div>
+            </div>
+            <div class="right">
+            </div>
+        </div>
+        <div class="main">
+            <div class="left">
+                <div><span class="price">￥<span>30</span></span>【满200元可用】</div>
+                <div>仅可购买博士伦一系列产品全平台可用</div>
+                <div>2014.8.13--2015.3.23</div>
+                <div class="upcoming">即将到来</div>
+            </div>
+            <div class="right">
+            </div>
+        </div>
+        <div class="main">
+            <div class="left">
+                <div><span class="price">￥<span>30</span></span>【满200元可用】</div>
+                <div>仅可购买博士伦一系列产品全平台可用</div>
+                <div>2014.8.13--2015.3.23</div>
+                <div class="upcoming">即将到来</div>
+            </div>
+            <div class="right">
+            </div>
+        </div>
+    </div>
+</ion-content>
+<ion-footer>
+    <ion-toolbar *ngIf="title=='选择商品属性'">
+        <div class="result">
+            <span>合计：￥1203.00</span>
+            <span>共十件</span>
+        </div>
+    </ion-toolbar>
+    <button ion-button (click)="dismiss()" large full class="modal-button">完成</button>
+</ion-footer>

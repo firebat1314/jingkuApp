@@ -2,8 +2,8 @@ import { Component, ViewChild } from '@angular/core';
 import { Tabs } from "ionic-angular";
 
 import { HomePage } from '../home/home';
-import { AboutPage } from '../about/about';
-import { ContactPage } from '../contact/contact';
+import { ClassifyPage } from '../classify/classify';
+import { CarPage } from '../car/car';
 import { MyPage } from '../my/my';
 @Component({
   templateUrl: 'tabs.html'
@@ -13,8 +13,8 @@ export class TabsPage {
   // should be each tab's root Page
   @ViewChild("tabs") tabs: Tabs;
   tab1Root: any = HomePage;
-  tab2Root: any = AboutPage;
-  tab3Root: any = ContactPage;
+  tab2Root: any = ClassifyPage;
+  tab3Root: any = CarPage;
   tab4Root: any = MyPage;
 
   constructor() {}

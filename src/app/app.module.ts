@@ -7,8 +7,8 @@ import { IonicImageLoader } from 'ionic-image-loader';
 /*页面*/
 import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
 import { MyApp } from './app.component';
-import { AboutPage } from '../pages/about/about';
-import { ContactPage } from '../pages/contact/contact';
+import { ClassifyPage } from '../pages/classify/classify';
+import { CarPage } from '../pages/car/car';
 import { HomePage } from '../pages/home/home';
 import { TabsPage } from '../pages/tabs/tabs';
 import { MyPage } from '../pages/my/my';
@@ -34,7 +34,7 @@ import { WhitebarPage } from '../pages/home/whitebar/whitebar'
 import { DiscountCouponPage } from '../pages/home/discount-coupon/discount-coupon'
 import { MessagePage } from '../pages/home/message/message'
 import { ParticularsPage } from '../pages/home/particulars/particulars'
-import {ParticularsModalPage} from '../pages/home/particulars-modal/particulars-modal'
+import {ParticularsModalPage} from '../pages/home/particulars/particulars-modal/particulars-modal'
 /*服务*/
 import { UserData } from "../services/user-data";
 import { Native } from "../providers/native";
@@ -48,12 +48,13 @@ import { MyToolbarComponent } from '../components/my-toolbar/my-toolbar'
 import { SingleFoodsItemComponent } from '../components/single-foods-item/single-foods-item'
 import { MeunItemComponent } from '../components/meun-item/meun-item'
 import { CountdownComponent } from '../components/countdown/countdown'
+import { CountInputComponent } from '../components/count-input/count-input'
 
 @NgModule({
   declarations: [
     MyApp,
-    AboutPage,
-    ContactPage,
+    ClassifyPage,
+    CarPage,
     HomePage, CityPage, SearchPage, DetailsPage, BrandListPage, AttentionPage, FastbuyPage, GlassesDesignPage, IntegralstorePage, RechargePage, WhitebarPage, DiscountCouponPage, MessagePage, ParticularsPage,ParticularsModalPage,
     MyPage,
     TabsPage,
@@ -61,7 +62,7 @@ import { CountdownComponent } from '../components/countdown/countdown'
     LoginPage,
     SignupPage, SignupSecondPage, SignupThirdPage,
     MyDirective, ImgTabs,
-    SingleCardComponent, MyToolbarComponent, SingleFoodsItemComponent, MeunItemComponent, CountdownComponent,
+    SingleCardComponent, MyToolbarComponent, SingleFoodsItemComponent, MeunItemComponent, CountdownComponent,CountInputComponent,
     DirectiveTestPage,
     ForgotPage, ForgotTwoPage, ForgotThreePage,
 
@@ -86,15 +87,15 @@ import { CountdownComponent } from '../components/countdown/countdown'
   bootstrap: [IonicApp],
   entryComponents: [
     MyApp,
-    AboutPage,
-    ContactPage,
+    ClassifyPage,
+    CarPage,
     HomePage, CityPage, SearchPage, DetailsPage, BrandListPage, AttentionPage, FastbuyPage, GlassesDesignPage, IntegralstorePage, RechargePage, WhitebarPage, DiscountCouponPage, MessagePage, ParticularsPage,ParticularsModalPage,
     MyPage,
     TabsPage,
     WelcomePage,
     LoginPage,
     SignupPage, SignupSecondPage, SignupThirdPage,
-    SingleCardComponent, MyToolbarComponent, SingleFoodsItemComponent, MeunItemComponent, CountdownComponent,
+    SingleCardComponent, MyToolbarComponent, SingleFoodsItemComponent, MeunItemComponent, CountdownComponent,CountInputComponent,
     DirectiveTestPage,
     ForgotPage, ForgotTwoPage
   ],

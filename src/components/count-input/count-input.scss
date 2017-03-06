@@ -1,0 +1,16 @@
+count-input {
+    display: flex;
+    font-size: 1.6rem;
+    align-items: center;
+    span {
+        padding: 0 10px;
+    }
+    input {
+        width: 50%;
+        border: 1px solid #808080;
+        border-radius: 2px;
+        color: red;
+        text-align: center;
+        height: 30px;
+    }
+}

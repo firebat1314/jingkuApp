@@ -1,0 +1,82 @@
+page-particulars-modal.ion-page {
+    .toolbar-background-md {
+        background: #fafafa;
+        margin: 0;
+    }
+    .modal-button {
+        margin: 0;
+    }
+    .result {
+        display: flex;
+        justify-content: flex-end;
+        align-items: center;
+        span:first-child {
+            font-size: 1.7rem;
+            color: red;
+            margin-right: 10px;
+        }
+        span:last-child {
+            color: #808080;
+        }
+    }
+    .privilege {
+        .main {
+            display: flex;
+            border: 1px solid #7986cb;
+            justify-content: space-between;
+            height: 100px;
+            background: url(../assets/icon/images/particulars_3_03.jpg) right top no-repeat;
+            background-size: auto 100%;
+            margin: 10px;
+            color: #8a8a8a;
+            .left {
+                div:first-child {
+                    color: #000;
+                }
+                .upcoming {
+                    position: absolute;
+                    top: 10px;
+                    right: -10px;
+                    ;
+                    color: #fff;
+                    padding: 2px 5px;
+                    background: #7986cb;
+                }
+                display: flex;
+                justify-content: space-around;
+                flex-direction: column;
+                height: 100%;
+                padding-left: 20px;
+                padding-bottom: 10px;
+                position: relative;
+                .price {
+                    color: #7986cb;
+                    span {
+                        font-size: 40px;
+                    }
+                }
+            }
+            .right {
+                img {
+                    height: 100%;
+                }
+            }
+        }
+    }
+    .attr {
+        p:last-child {
+            font-size: 2rem;
+            color: red;
+        }
+        ion-row {
+            text-align: center;
+            border-bottom: 0.5px solid #e0e0e0;
+            color: #808080;
+            font-size: 1.6rem;
+            padding: 10px 0;
+            ion-col:last-child {
+                padding: 0;
+            }
+        }
+    }
+}

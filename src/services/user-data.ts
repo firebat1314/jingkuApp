@@ -97,7 +97,7 @@ export class UserData {
     public get(url: string, paramObj?: any) {
         let userToken = localStorage.getItem('token');
 
-        this.native.showLoading();
+        // this.native.showLoading();
         var headers = new Headers();
         headers.append('Authorization', 'Basic ' + btoa(userToken + ':'));
         let options = new RequestOptions({ headers: headers });
@@ -109,7 +109,7 @@ export class UserData {
     public post(url: string, paramObj: any) {
         let userToken: string = localStorage.getItem('token');
         
-        this.native.showLoading();
+        // this.native.showLoading();
         let headers = new Headers();
         headers.append('Authorization', 'Basic ' + btoa(userToken + ':'));
         let options = new RequestOptions({ headers: headers });
@@ -136,7 +136,7 @@ export class UserData {
      * @return {any}
      */
     private handleSuccess(result) {
-        this.native.hideLoading();
+        // this.native.hideLoading();
         if (result && !result.status) {
             this.native.showToast(result.info);
         }
@@ -148,7 +148,7 @@ export class UserData {
      * @return {{success: boolean, msg: string}}
      */
     private handleError(error: Response | any) {
-        this.native.hideLoading();
+        // this.native.hideLoading();
         let msg: string = '请求失败';
         if (error.status == 400) {
             msg = '请求无效';

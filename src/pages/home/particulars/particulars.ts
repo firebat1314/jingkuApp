@@ -3,7 +3,7 @@ import { NavController, NavParams, ModalController } from 'ionic-angular';
 /*http服务*/
 import { HttpService } from "../../../providers/http-service";
 
-import { ParticularsModalPage } from "../particulars-modal/particulars-modal"
+import { ParticularsModalPage } from "./particulars-modal/particulars-modal"
 /*
   Generated class for the Particulars page.
 
@@ -38,6 +38,19 @@ export class ParticularsPage {
     private http: HttpService,
     public modalCtrl: ModalController
   ) {
+
+  }
+  presentModal(str, evt) {
+    if (evt) {
+      evt.stopPropagation();
+    }
+    let modal = this.modalCtrl.create(ParticularsModalPage, { name: str });
+    modal.onDidDismiss(data => {
+      console.log(data);
+    });
+    modal.present();
+  }
+  ngOnInit() {
     this.http.getGoodsGallery({ goods_id: 4994 }).then((res) => {
       console.log("商品详情的相册图片轮播", res);
       this.getGoodsGallery = res.data;
@@ -53,6 +66,7 @@ export class ParticularsPage {
     this.http.getGoodsParameter({ goods_id: 4994 }).then((res) => {
       console.log("获取商品参数", res);
       this.getGoodsParameter = res.data;
+      // console.log(JSON.stringify(res.data))
     });
     this.http.getGoodsSaleCity({ goods_id: 4994 }).then((res) => {
       console.log("获取商品的销售区域", res);
@@ -86,21 +100,8 @@ export class ParticularsPage {
       console.log("商品搜索列表页", res);
       this.searchGoods = res.data;
     });
-
-
-
   }
-  presentModal(str,evt) {
-    if(evt){
-      evt.stopPropagation();
-    }
-    let modal = this.modalCtrl.create(ParticularsModalPage,{name:str});
-    modal.onDidDismiss(data => {
-     console.log(data);
-   });
-    modal.present();
-  }
-  ngOnInit() {
+  ngAfterViewInit() {
 
   }
   ionViewDidLoad() {

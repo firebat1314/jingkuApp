@@ -4,6 +4,7 @@ import { Platform, ToastController, Nav, IonicApp } from 'ionic-angular';
 import { StatusBar, Splashscreen } from 'ionic-native';
 
 import { TabsPage } from '../pages/tabs/tabs';
+import { ClassifyPage } from '../pages/classify/classify';
 import { WelcomePage } from '../pages/welcome/welcome';
 import { LoginPage } from '../pages/login/login';
 import { ParticularsPage } from '../pages/home/particulars/particulars'

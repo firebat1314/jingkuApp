@@ -14,8 +14,8 @@
 
 
 <ion-content>
-    <div class="imgs" *ngIf="getGoodsGallery">
-        <ion-slides loop="true" parallax="true" *ngIf="getGoodsGallery">
+    <div class="imgs">
+        <ion-slides loop="true" parallax="true">
             <ion-slide *ngFor="let item of getGoodsGallery">
                 <ion-card>
                     <img src="{{item.img_url}}" imageViewer />
@@ -28,8 +28,8 @@
     </div>
     <div class="price_time">
         <div class="left">
-            <p>￥<span class="number">250.00</span>每人限购：99副</p>
-            <p>商品总量：1000件</p>
+            <p>￥<span class="number">222</span>每人限购：99副</p>
+            <p>商品总量：{{getGoodsInfo?getGoodsInfo.goods_number:''}}件</p>
         </div>
         <div class="right">
             <p>距离结束还剩 ：</p>
@@ -138,7 +138,7 @@
     <div class="background"></div>
     <div class="attribute" item-padding>
         <ion-item (click)="presentModal('选择商品属性')" no-lines>
-            选择
+            选择：规格、光度等
             <ion-icon name="ios-arrow-forward" item-right></ion-icon>
         </ion-item>
     </div>
@@ -159,13 +159,13 @@
         </div>
     </div>
     <div class="background"></div>
-    <div class="store" padding>
+    <div class="store" *ngIf="getSupplierInfo">
         <div class="head">
             <ion-item no-lines>
                 <ion-thumbnail item-left>
-                    <img src="./assets/icon/images/particulars_2_10.jpg">
+                    <img src="{{getSupplierInfo.logo}}">
                 </ion-thumbnail>
-                <h2>沙弗龙殿</h2>
+                <h2>{{getSupplierInfo.name}}</h2>
             </ion-item>
         </div>
         <div class="data">
@@ -371,7 +371,7 @@
             <ion-segment-button value="pic">
                 套餐组合
             </ion-segment-button>
-            <ion-segment-button value="Arguments">
+            <ion-segment-button value="arguments">
                 为你推荐
             </ion-segment-button>
         </ion-segment>
@@ -386,9 +386,22 @@
 
                 <img src="./assets/icon/images/particulars_2_34.jpg" alt="">
             </div>
-            <div class="arguments" *ngSwitchCase="'arguments'"></div>
+            <div class="arguments" *ngSwitchCase="'arguments'">
+                <div class="wrapper">
+                    <div *ngFor="let item of getGoodsParameter">
+                        <div class="name">{{item.name}}：<span>{{item.value}}</span></div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
+    <div class="background"></div>
+    <div class="background"></div>
+    <div class="background"></div>
+    <div class="background"></div>
+    <div class="background"></div>
+    <div class="background"></div>
+    <div class="background"></div>
     <div class="background"></div>
 
     <div class="warning-show">

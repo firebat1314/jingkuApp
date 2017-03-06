@@ -119,6 +119,14 @@ button.swiper-pagination-bullet {
 }
 
 
+/*背景间隔*/
+
+.background {
+    height: 10px;
+    background: #f7f7f7;
+}
+
+
 /*modal样式*/
 
 ion-modal ion-backdrop {
@@ -128,7 +136,7 @@ ion-modal ion-backdrop {
 .modal-wrapper {
     position: absolute;
     left: 0;
-    height: 50%;
+    height: 60%;
     width: 100%;
     bottom: 0;
 }

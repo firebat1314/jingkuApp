@@ -233,9 +233,23 @@ page-particulars {
         }
     }
     .pic-and-arguments {
-        .check {
-            margin-top: 10px;
-            text-align: center;
+        .pic {
+            .check {
+                margin-top: 10px;
+                text-align: center;
+            }
+        }
+        .arguments {
+            .wrapper {
+                display: flex;
+                flex-wrap: wrap;
+                justify-content: space-around;
+                >div {
+                    border-bottom: #000 1px dashed;
+                    width: 40%;
+                    padding: 10px;
+                }
+            }
         }
     }
     ion-footer {

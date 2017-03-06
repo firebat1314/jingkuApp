@@ -76,5 +76,7 @@ export class HttpService {
     return this.http.post(this.ip + '/Search/search_goods', data)
   }
 
-
+testapi(data?: Object) {//商品搜索列表页
+    return this.http.post('http://v601admin.jingkoo.net/Api/Scheme/order_bonus', data)
+  }
 }

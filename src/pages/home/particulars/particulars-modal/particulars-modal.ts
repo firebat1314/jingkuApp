@@ -13,6 +13,7 @@ import { NavController, NavParams, ViewController } from 'ionic-angular';
 })
 export class ParticularsModalPage {
   title:String;
+  value:number;
   constructor(
     public navCtrl: NavController,
     public navParams: NavParams,
@@ -23,6 +24,9 @@ export class ParticularsModalPage {
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad ParticularsModalPage');
+  }
+  numberIChange(value:number){
+    this.value = value;
   }
   dismiss(data?: any) {
     // using the injected ViewController this page
