@@ -1,4 +1,12 @@
 page-classify {
+    .mysearchbar {
+        .toolbar-background-md {
+            background-color: #f5f5f5;
+        }
+        .searchbar-ios .searchbar-input {
+            background: #fff;
+        }
+    }
     .segment-style {
         width: 46%;
         margin: 0 auto;
@@ -29,7 +37,7 @@ page-classify {
                 border-bottom: 0;
             }
             img {
-                width: 47%;
+                width: 42%;
             }
         }
     }
