@@ -32,8 +32,8 @@
             <p>商品总量：{{getGoodsInfo.goods_number}}件</p>
         </div>
         <div class="right">
-            <p *ngIf="getGoodsInfo.type==2">距离活动结束还剩 ：</p>
-            <p *ngIf="getGoodsInfo.type==1">距离活动开始还剩 ：</p>
+            <p *ngIf="getGoodsInfo.type==2">距离活动结束还剩：</p>
+            <p *ngIf="getGoodsInfo.type==1">距离活动开始还剩：</p>
             <p>
                 <countdown [endDate]="getGoodsInfo.down_time"></countdown>
             </p>
@@ -57,8 +57,8 @@
         <!-- *ngIf="getPriceSection.status!=0"-->
         <div class="main">
             <div class="info-item" *ngFor="let item of getPriceSection.data">
-                <span *ngIf="max_num">{{item.number+'-'}}{{item.max_num}}盒</span>
-                <span *ngIf="!max_num">大于{{item.number}}盒</span>
+                <span *ngIf="item.max_num">{{item.number+'-'}}{{item.max_num}}盒</span>
+                <span *ngIf="!item.max_num">大于{{item.number}}盒</span>
                 <span>{{item.format_price}}</span>
             </div>
         </div>
@@ -387,26 +387,24 @@
     </div>-->
 </ion-content>
 <ion-footer>
-    <ion-toolbar>
-        <div class="main">
-            <div class="left">
-                <div>
-                    <ion-icon name="ios-home-outline"></ion-icon><span>客服</span>
-                </div>
-                <div (click)="beCareFor()">
-                    <ion-icon *ngIf="getGoodsInfo&&getGoodsInfo.is_collect" color="danger" name="ios-heart"></ion-icon>
-                    <ion-icon *ngIf="getGoodsInfo&&!getGoodsInfo.is_collect" name="ios-heart-outline"></ion-icon>
-                    <span>关注</span>
-                </div>
-                <div>
-                    <ion-icon name="ios-home-outline"></ion-icon> <span>店铺</span>
-                </div>
-
+    <div class="main">
+        <div class="left">
+            <div>
+                <ion-icon name="ios-home-outline"></ion-icon><span>客服</span>
+            </div>
+            <div (click)="beCareFor()">
+                <ion-icon *ngIf="getGoodsInfo&&getGoodsInfo.is_collect" color="danger" name="ios-heart"></ion-icon>
+                <ion-icon *ngIf="getGoodsInfo&&!getGoodsInfo.is_collect" name="ios-heart-outline"></ion-icon>
+                <span>关注</span>
+            </div>
+            <div>
+                <ion-icon name="ios-home-outline"></ion-icon> <span>店铺</span>
             </div>
 
-            <div class="right">
-                <span>暂不支持手机下单</span>
-            </div>
         </div>
-    </ion-toolbar>
+
+        <div class="right">
+            <span>暂不支持手机下单</span>
+        </div>
+    </div>
 </ion-footer>

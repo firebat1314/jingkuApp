@@ -9,7 +9,7 @@
 
 </div>
 <ion-header *ngIf="title=='选择商品属性'?false:true">
-    <ion-toolbar>
+    <ion-toolbar color="modalHeadTool">
         <ion-buttons end>
             <button ion-button (click)="dismiss()"><ion-icon name="md-close" ></ion-icon></button>
         </ion-buttons>
@@ -23,7 +23,7 @@
 
 <ion-content class="outer-content">
     <div class="attr" *ngIf="title=='选择商品属性'">
-        <ion-item padding no-lines>
+        <ion-item no-lines>
             <ion-thumbnail item-left>
                 <img src="./assets/icon/images/particulars_2_10.jpg">
             </ion-thumbnail>
@@ -106,7 +106,7 @@
         </ion-list>
     </div>
     <div class="privilege" *ngIf="title=='优惠券'">
-        <!--<p style="padding-left: 10px;">可领优惠券</p>-->
+        <p style="padding-left: 10px;">可领优惠券</p>
         <div class="main" *ngFor="let item of getBonus" [ngClass]="{'alreadyget': item.is_get == 1,'canget':item.is_get == 0}">
             <div class="left">
                 <div><span class="price">¥<span>{{item.int_type_money}}</span></span>【满{{item.min_goods_amount}}可用】</div>
@@ -116,6 +116,7 @@
             <div class="right">
             </div>
         </div>
+
     </div>
 </ion-content>
 <ion-footer>
@@ -125,5 +126,5 @@
             <span>共十件</span>
         </div>
     </ion-toolbar>
-    <button ion-button (click)="dismiss()" large full class="modal-button">完成</button>
+    <button color="modalBtn" no-margin ion-button (click)="dismiss()" large full class="modal-button">完成</button>
 </ion-footer>

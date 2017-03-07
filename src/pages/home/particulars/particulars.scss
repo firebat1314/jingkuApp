@@ -1,4 +1,5 @@
 page-particulars {
+    $toolbar-md-title-text-color: #999999;
     .ion-ios-arrow-forward {
         color: #999999;
     }
@@ -60,7 +61,7 @@ page-particulars {
         .body {
             color: rgb(100, 100, 100);
             .now-price {
-                color: rgb(229, 0, 0);
+                color: #e50000;
                 margin-right: 8px;
                 .number {
                     font-size: 22px;
@@ -69,7 +70,7 @@ page-particulars {
             }
             .old-price {
                 text-decoration: line-through;
-                color: rgb(201, 201, 201);
+                color: #d0d0d0;
                 margin-right: 10px;
             }
             .rush-icon {
@@ -124,7 +125,7 @@ page-particulars {
                 flex-direction: column;
                 text-align: center;
                 span:last-child {
-                    color: red;
+                    color: #e50000;
                 }
             }
         }
@@ -256,13 +257,13 @@ page-particulars {
         .main {
             display: flex;
             min-height: 5.6rem;
+            font-size: 1.5rem;
             .left {
                 flex: 3;
                 background-color: #fff;
                 display: flex;
                 border-top: 1px solid #f5f5f5;
                 border-left: 1px solid #f5f5f5;
-                font-size: 18px;
                 >div {
                     border-right: 1px solid #f5f5f5;
                     border-bottom: 1px solid #f5f5f5;
@@ -271,6 +272,9 @@ page-particulars {
                     flex-direction: column;
                     justify-content: center;
                     align-items: center;
+                    .icon {
+                        font-size: 1.5em;
+                    }
                     img {
                         height: 30%;
                         margin-bottom: 4px;
@@ -286,6 +290,9 @@ page-particulars {
                 color: #fff;
             }
         }
+    }
+    .activated {
+        //background: red;
     }
     .warning-show {
         width: 100%;

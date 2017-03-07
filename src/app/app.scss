@@ -16,10 +16,6 @@
     background: #fff;
 }
 
-.toolbar {
-    padding: 0;
-}
-
 [padding] h1:first-child,
 [padding] h2:first-child,
 [padding] h3:first-child,
@@ -138,16 +134,21 @@ button.swiper-pagination-bullet {
 
 /*modal样式*/
 
-ion-modal ion-backdrop {
-    visibility: visible;
-}
-
-.modal-wrapper {
-    position: absolute;
-    left: 0;
-    height: 60%;
-    width: 100%;
-    bottom: 0;
+ion-modal {
+    .toolbar {
+        min-height: 44px;
+    }
+    ion-backdrop {
+        visibility: visible;
+    }
+    .modal-wrapper {
+        position: absolute;
+        top: initial;
+        left: 0;
+        width: 100%;
+        height: 500px;
+        bottom: 0;
+    }
 }
 
 
@@ -156,6 +157,9 @@ ion-modal ion-backdrop {
 .fade-in-item {
     animation: fadeIn 800ms;
 }
+
+
+/*iconfont*/
 
 @font-face {
     font-family: "Ionicons";
