@@ -13,13 +13,15 @@ import { NavController, NavParams,Searchbar } from 'ionic-angular';
 })
 export class SearchPage {
   myHomeSearch: String = '';
-  @ViewChild(Searchbar) searchbar: Searchbar;
+  @ViewChild(Searchbar) mySearchBar: Searchbar;
 
   constructor(public navCtrl: NavController, public navParams: NavParams) {
     
   }
   ngAfterViewInit(){
-    console.log(this.searchbar)
+    setTimeout(()=>{
+      this.mySearchBar.setFocus();
+    },2000)
   }
   ionViewDidLoad() {
     console.log('ionViewDidLoad SearchPage');

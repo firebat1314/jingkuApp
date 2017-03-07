@@ -14,12 +14,14 @@ import { NavController, NavParams, ViewController } from 'ionic-angular';
 export class ParticularsModalPage {
   title:String;
   value:number;
+  getBonus;
   constructor(
     public navCtrl: NavController,
     public navParams: NavParams,
     public viewCtrl: ViewController
   ) { 
-    this.title = this.navParams.get('name')
+    this.title = this.navParams.get('name');
+    this.getBonus = this.navParams.get('getBonus')
   }
 
   ionViewDidLoad() {

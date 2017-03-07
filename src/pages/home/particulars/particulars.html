@@ -14,7 +14,7 @@
 
 
 <ion-content>
-    <div class="imgs">
+    <div class="imgs" *ngIf="getGoodsInfo">
         <ion-slides loop="true" parallax="true">
             <ion-slide *ngFor="let item of getGoodsGallery">
                 <ion-card>
@@ -26,15 +26,16 @@
             </ion-slide>
         </ion-slides>
     </div>
-    <div class="price_time">
+    <div class="price_time" *ngIf="getGoodsInfo&&getGoodsInfo.is_pre">
         <div class="left">
-            <p>￥<span class="number">222</span>每人限购：99副</p>
-            <p>商品总量：{{getGoodsInfo?getGoodsInfo.goods_number:''}}件</p>
+            <p>￥<span class="number">{{getGoodsInfo.shop_price}}</span>每人限购：99副</p>
+            <p>商品总量：{{getGoodsInfo.goods_number}}件</p>
         </div>
         <div class="right">
-            <p>距离结束还剩 ：</p>
+            <p *ngIf="getGoodsInfo.type==2">距离活动结束还剩 ：</p>
+            <p *ngIf="getGoodsInfo.type==1">距离活动开始还剩 ：</p>
             <p>
-                <countdown [endDate]="endDate"></countdown>
+                <countdown [endDate]="getGoodsInfo.down_time"></countdown>
             </p>
         </div>
     </div>
@@ -52,36 +53,13 @@
         </div>
     </div>
     <div class="background"></div>
-    <div class="price-info">
+    <div class="price-info" *ngIf="getPriceSection&&getPriceSection.status!=0">
         <!-- *ngIf="getPriceSection.status!=0"-->
         <div class="main">
-            <div class="info-item">
-                <span>一盒起批</span>
-                <span>￥253.2</span>
-            </div>
-            <div class="info-item">
-                <span>一盒起批</span>
-                <span>￥253.2</span>
-            </div>
-            <div class="info-item">
-                <span>一盒起批</span>
-                <span>￥253.2</span>
-            </div>
-            <div class="info-item">
-                <span>一盒起批</span>
-                <span>￥253.2</span>
-            </div>
-            <div class="info-item">
-                <span>一盒起批</span>
-                <span>￥253.2</span>
-            </div>
-            <div class="info-item">
-                <span>一盒起批</span>
-                <span>￥253.2</span>
-            </div>
-            <div class="info-item">
-                <span>一盒起批</span>
-                <span>￥253.2</span>
+            <div class="info-item" *ngFor="let item of getPriceSection.data">
+                <span *ngIf="max_num">{{item.number+'-'}}{{item.max_num}}盒</span>
+                <span *ngIf="!max_num">大于{{item.number}}盒</span>
+                <span>{{item.format_price}}</span>
             </div>
         </div>
         <div class="right">
@@ -404,22 +382,24 @@
     <div class="background"></div>
     <div class="background"></div>
 
-    <div class="warning-show">
+    <!--<div class="warning-show">
         <span>请用电脑下单！</span>
-    </div>
+    </div>-->
 </ion-content>
 <ion-footer>
     <ion-toolbar>
         <div class="main">
             <div class="left">
                 <div>
-                    <img src="./assets/icon/images/particulars_17.jpg" alt=""><span>客服</span>
+                    <ion-icon name="ios-home-outline"></ion-icon><span>客服</span>
+                </div>
+                <div (click)="beCareFor()">
+                    <ion-icon *ngIf="getGoodsInfo&&getGoodsInfo.is_collect" color="danger" name="ios-heart"></ion-icon>
+                    <ion-icon *ngIf="getGoodsInfo&&!getGoodsInfo.is_collect" name="ios-heart-outline"></ion-icon>
+                    <span>关注</span>
                 </div>
                 <div>
-                    <img src="./assets/icon/images/particulars_20.jpg" alt=""> <span>关注</span>
-                </div>
-                <div>
-                    <img src="./assets/icon/images/particulars_23.jpg" alt=""> <span>店铺</span>
+                    <ion-icon name="ios-home-outline"></ion-icon> <span>店铺</span>
                 </div>
 
             </div>

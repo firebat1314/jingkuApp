@@ -106,33 +106,12 @@
         </ion-list>
     </div>
     <div class="privilege" *ngIf="title=='优惠券'">
-        <p style="padding-left: 10px;">可领优惠券</p>
-        <div class="main">
+        <!--<p style="padding-left: 10px;">可领优惠券</p>-->
+        <div class="main" *ngFor="let item of getBonus" [ngClass]="{'alreadyget': item.is_get == 1,'canget':item.is_get == 0}">
             <div class="left">
-                <div><span class="price">￥<span>30</span></span>【满200元可用】</div>
-                <div>仅可购买博士伦一系列产品全平台可用</div>
-                <div>2014.8.13--2015.3.23</div>
-                <div class="upcoming">即将到来</div>
-            </div>
-            <div class="right">
-            </div>
-        </div>
-        <div class="main">
-            <div class="left">
-                <div><span class="price">￥<span>30</span></span>【满200元可用】</div>
-                <div>仅可购买博士伦一系列产品全平台可用</div>
-                <div>2014.8.13--2015.3.23</div>
-                <div class="upcoming">即将到来</div>
-            </div>
-            <div class="right">
-            </div>
-        </div>
-        <div class="main">
-            <div class="left">
-                <div><span class="price">￥<span>30</span></span>【满200元可用】</div>
-                <div>仅可购买博士伦一系列产品全平台可用</div>
-                <div>2014.8.13--2015.3.23</div>
-                <div class="upcoming">即将到来</div>
+                <div><span class="price">¥<span>{{item.int_type_money}}</span></span>【满{{item.min_goods_amount}}可用】</div>
+                <div>{{item.suppliers_name}}</div>
+                <div>{{item.use_end_date}}--{{item.use_start_date}}</div>
             </div>
             <div class="right">
             </div>

@@ -35,6 +35,9 @@ import { DiscountCouponPage } from '../pages/home/discount-coupon/discount-coupo
 import { MessagePage } from '../pages/home/message/message'
 import { ParticularsPage } from '../pages/home/particulars/particulars'
 import {ParticularsModalPage} from '../pages/home/particulars/particulars-modal/particulars-modal'
+//分类页
+import {SubnavPage1Page} from '../pages/classify/subnav-page1/subnav-page1'
+import {SubnavPage2Page} from '../pages/classify/subnav-page2/subnav-page2'
 /*服务*/
 import { UserData } from "../services/user-data";
 import { Native } from "../providers/native";
@@ -53,7 +56,7 @@ import { CountInputComponent } from '../components/count-input/count-input'
 @NgModule({
   declarations: [
     MyApp,
-    ClassifyPage,
+    ClassifyPage,SubnavPage1Page,SubnavPage2Page,
     CarPage,
     HomePage, CityPage, SearchPage, DetailsPage, BrandListPage, AttentionPage, FastbuyPage, GlassesDesignPage, IntegralstorePage, RechargePage, WhitebarPage, DiscountCouponPage, MessagePage, ParticularsPage,ParticularsModalPage,
     MyPage,
@@ -87,7 +90,7 @@ import { CountInputComponent } from '../components/count-input/count-input'
   bootstrap: [IonicApp],
   entryComponents: [
     MyApp,
-    ClassifyPage,
+    ClassifyPage,SubnavPage1Page,SubnavPage2Page,
     CarPage,
     HomePage, CityPage, SearchPage, DetailsPage, BrandListPage, AttentionPage, FastbuyPage, GlassesDesignPage, IntegralstorePage, RechargePage, WhitebarPage, DiscountCouponPage, MessagePage, ParticularsPage,ParticularsModalPage,
     MyPage,

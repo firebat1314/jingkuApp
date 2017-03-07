@@ -7,6 +7,11 @@
 <ion-header>
 
     <ion-toolbar>
+        <ion-buttons left>
+            <button (click)="pop()" ion-button clear icon-only icon-left [navPush]="cityPage">
+                <ion-icon name="ios-arrow-back"></ion-icon>
+            </button>
+        </ion-buttons>
         <div class="segment-style">
             <ion-segment mode="ios" (click)="goToSlide()" [(ngModel)]="classSelect" color="primary">
                 <ion-segment-button value="classify">
@@ -22,7 +27,7 @@
         </div>
     </ion-toolbar>
     <ion-toolbar class="mysearchbar">
-        <ion-searchbar mode="ios" (ionInput)="getItems($event)" debounce="500" placeholder="搜索品牌、分类或者关注" animated="true">
+        <ion-searchbar mode="ios" #mySearchBar (ionInput)="getItems($event)" debounce="500" placeholder="搜索品牌、分类或者关注" animated="true">
         </ion-searchbar>
     </ion-toolbar>
 </ion-header>
@@ -31,17 +36,8 @@
 <ion-content>
     <ion-slides #mySlides (ionSlideDidChange)="slideChanged()">
         <ion-slide>
-            <div class="classify-wrap">
-                <div><img src="./assets/icon/images/classIfy_1_03.jpg" alt=""><span>隐形</span></div>
-                <div><img src="./assets/icon/images/classIfy_1_05.jpg" alt=""><span>美瞳</span></div>
-                <div><img src="./assets/icon/images/classIfy_1_09.jpg" alt=""><span>护理液</span></div>
-                <div><img src="./assets/icon/images/classIfy_1_10.jpg" alt=""><span>眼镜片</span></div>
-                <div><img src="./assets/icon/images/classIfy_1_13.jpg" alt=""><span>眼镜架</span></div>
-                <div><img src="./assets/icon/images/classIfy_1_15.jpg" alt=""><span>太阳镜</span></div>
-                <div><img src="./assets/icon/images/classIfy_1_20.jpg" alt=""><span>配件</span></div>
-                <div><img src="./assets/icon/images/classIfy_1_22.jpg" alt=""><span>工具</span></div>
-                <div><img src="./assets/icon/images/classIfy_1_25.jpg" alt=""><span>美妆商城</span></div>
-            </div>
+            <ion-nav [root]="root" #myNav></ion-nav>
+
         </ion-slide>
         <ion-slide class="brand">
             <div class="brand-wrap">1</div>

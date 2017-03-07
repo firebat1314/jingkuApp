@@ -39,7 +39,8 @@ export class CountdownComponent implements AfterViewInit, OnDestroy {
   // 每一秒更新时间差
   ngAfterViewInit() {
     this.timer = setInterval(() => {
-      this.diff = this.endDate - Date.now();
+      this.endDate -= 1000;
+      this.diff = this.endDate;
     }, 1000);
   }
 

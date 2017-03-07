@@ -1,4 +1,4 @@
-page-particulars-modal.ion-page {
+page-particulars-modal {
     .toolbar-background-md {
         background: #fafafa;
         margin: 0;
@@ -25,8 +25,13 @@ page-particulars-modal.ion-page {
             border: 1px solid #7986cb;
             justify-content: space-between;
             height: 100px;
-            background: url(../assets/icon/images/particulars_3_03.jpg) right top no-repeat;
-            background-size: auto 100%;
+            &.alreadyget {
+                background: url(../assets/icon/images/particulars_3_03.jpg) right top/auto 100% no-repeat;
+            }
+            &.canget {
+                background: url(../assets/icon/images/particulars_3_06.jpg) right top/auto 100% no-repeat;
+            }
+            &.finish {}
             margin: 10px;
             color: #8a8a8a;
             .left {
@@ -52,7 +57,8 @@ page-particulars-modal.ion-page {
                 .price {
                     color: #7986cb;
                     span {
-                        font-size: 40px;
+                        font-size: 34px;
+                        margin-left: 3px;
                     }
                 }
             }
