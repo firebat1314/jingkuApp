@@ -16,13 +16,12 @@
         </ion-toolbar>
     </ion-navbar>
 </ion-header>
-
 <ion-content (ionScrollEnd)="scrollHeight()">
     <div class="banner-wrapper" *ngIf="bannerImgs">
         <ion-slides #bannerSlide autoplay="4000" loop="true" pager>
             <!-- -->
             <ion-slide *ngFor="let item of bannerImgs">
-                <img src="{{ item.ad_img }}" />
+                <img (click)="clickBanner(item)" src="{{ item.ad_img }}" />
             </ion-slide>
 
         </ion-slides>
@@ -120,12 +119,34 @@
                     </div>
                 </ion-scroll>-->
                 <ion-slides slidesPerView="3" parallax="true">
-                    <ion-slide *ngFor="let item of getCategoryRecommendGoodsHot">
+                    <ion-slide *ngFor="let item of handpickDetails">
                         <img src="./assets/icon/homepage_67.png" />
                     </ion-slide>
-
                 </ion-slides>
-
+            </div>
+        </div>
+        <div class="main">
+            <div class="show">
+                <img src="./assets/icon/homepage_55.png" alt="">
+            </div>
+            <div class="pick">
+                <ion-slides slidesPerView="3" parallax="true">
+                    <ion-slide *ngFor="let item of getCategoryRecommendGoodsBest">
+                        <img src="./assets/icon/homepage_67.png" />
+                    </ion-slide>
+                </ion-slides>
+            </div>
+        </div>
+        <div class="main">
+            <div class="show">
+                <img src="./assets/icon/homepage_55.png" alt="">
+            </div>
+            <div class="pick">
+                <ion-slides slidesPerView="3" parallax="true">
+                    <ion-slide *ngFor="let item of getCategoryRecommendGoods">
+                        <img src="./assets/icon/homepage_67.png" />
+                    </ion-slide>
+                </ion-slides>
             </div>
         </div>
     </div>
@@ -153,7 +174,6 @@
         </div>
         <div class="main">
             <single-foods-card *ngIf="handpickDetails" [data]="handpickDetails"></single-foods-card>
-
         </div>
     </div>
     <ion-fab right bottom *ngIf="showBackTopBtn" (click)="scrollToTop()">

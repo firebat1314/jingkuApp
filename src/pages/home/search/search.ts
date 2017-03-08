@@ -21,7 +21,7 @@ export class SearchPage {
   ngAfterViewInit(){
     setTimeout(()=>{
       this.mySearchBar.setFocus();
-    },2000)
+    },1000)
   }
   ionViewDidLoad() {
     console.log('ionViewDidLoad SearchPage');

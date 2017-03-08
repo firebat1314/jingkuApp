@@ -1,0 +1,44 @@
+page-dredge-more-city {
+    .checkbox-wrapper {
+        /*display: flex;
+        flex-wrap: wrap;
+        justify-content: space-around;*/
+        padding: 0 10px;
+        overflow: hidden;
+        >div {
+            text-align: center;
+            padding: 7px 0px;
+            background: #d9d9d9;
+            color: #fff;
+            width: 23%;
+            margin: 6px 1%;
+            float: left;
+            &.active {
+                background-color: #d9d9d9;
+            }
+        }
+    }
+    .textarea {
+        textarea {
+            width: 92%;
+            margin: 0px auto;
+            display: block;
+            height: 6rem;
+            border-radius: 4px;
+            border: 1px solid rgb(179, 179, 179);
+            padding: 5px;
+        }
+    }
+    .idcard {
+        display: flex;
+        align-items: center;
+    }
+    ion-footer {
+        display: flex;
+        .button {
+            margin: 0;
+            width: 50%;
+            border-radius: 0;
+        }
+    }
+}

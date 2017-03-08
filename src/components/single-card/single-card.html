@@ -5,7 +5,7 @@
   for more info on Angular 2 Components.
 -->
 <ion-card *ngFor="let item of animateItems; let i = index;" mode="md">
-    <div class="card-wrap" (press)="tapEvent(item,$event)" [ngClass]="animateClass" [navPush]="ParticularsPage" [navParams]="{}">
+    <div class="card-wrap" (press)="tapEvent(item,$event)" [ngClass]="animateClass" [navPush]="ParticularsPage" [navParams]="{goodsId:item.id}">
         <div class="img" padding><img src="./assets/icon/homepage_71.png" alt=""></div>
         <div class="info" padding>
             <div class="text">{{item.short_name}}</div>

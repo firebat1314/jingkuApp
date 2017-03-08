@@ -131,7 +131,7 @@ export class UserData {
             .catch(error => this.handleError(error));
     }
     /**
-     * 请求失败处理函数
+     * 请求成功处理函数
      * @param result
      * @return {any}
      */

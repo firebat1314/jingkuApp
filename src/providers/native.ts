@@ -1,6 +1,6 @@
-import {Injectable} from '@angular/core';
-import {ToastController, LoadingController, Platform} from 'ionic-angular';
-import {Camera, AppVersion, Toast, ImagePicker} from 'ionic-native';
+import { Injectable } from '@angular/core';
+import { ToastController, LoadingController, Platform } from 'ionic-angular';
+import { Camera, AppVersion, Toast, ImagePicker } from 'ionic-native';
 declare var LocationPlugin;
 declare var AMapNavigation;
 
@@ -9,8 +9,8 @@ export class Native {
   private loading;
 
   constructor(private platform: Platform,
-              private toastCtrl: ToastController,
-              private loadingCtrl: LoadingController) {
+    private toastCtrl: ToastController,
+    private loadingCtrl: LoadingController) {
   }
 
   /**
@@ -42,9 +42,12 @@ export class Native {
    * @param message 信息内容
    * @param duration 显示时长
    */
-  showToast = (message: string, duration: number = 2000) => {
+  showToast (message: string, duration:number = 2000) {
+   
     if (this.isMobile()) {
-      Toast.show(message, String(duration), 'center').subscribe();
+      Toast.show(message, 'short', 'center').subscribe(toast => {
+        console.log(toast);
+      });
     } else {
       this.toastCtrl.create({
         message: message,
@@ -196,7 +199,7 @@ export class Native {
     return new Promise((resolve, reject) => {
       if (this.isMobile()) {
         LocationPlugin.getLocation(data => {
-          resolve({'lng': data.longitude, 'lat': data.latitude});
+          resolve({ 'lng': data.longitude, 'lat': data.latitude });
         }, msg => {
           console.error('定位错误消息' + msg);
           alert(msg.indexOf('缺少定位权限') == -1 ? ('错误消息：' + msg) : '缺少定位权限，请在手机设置中开启');
@@ -204,7 +207,7 @@ export class Native {
         });
       } else {
         console.log('非手机环境,即测试环境返回固定坐标');
-        resolve({'lng': 113.350912, 'lat': 23.119495});
+        resolve({ 'lng': 113.350912, 'lat': 23.119495 });
       }
     });
   }
@@ -223,14 +226,14 @@ export class Native {
           lng: startPoint.lng,
           lat: startPoint.lat
         }, {
-          lng: endPoint.lng,
-          lat: endPoint.lat
-        }, type, function (message) {
-          resolve(message);//非手机环境,即测试环境返回固定坐标
-        }, function (message) {
-          alert('导航失败:' + message);
-          reject('导航失败');
-        });
+            lng: endPoint.lng,
+            lat: endPoint.lat
+          }, type, function (message) {
+            resolve(message);//非手机环境,即测试环境返回固定坐标
+          }, function (message) {
+            alert('导航失败:' + message);
+            reject('导航失败');
+          });
       } else {
         this.showToast('非手机环境不能导航');
       }

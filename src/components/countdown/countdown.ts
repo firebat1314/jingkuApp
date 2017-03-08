@@ -25,10 +25,10 @@ export class CountdownComponent implements AfterViewInit, OnDestroy {
   
   private set diff(val) {
     let date = new Date(val)
-    this.day = date.getDate();
-    this.hour = date.getHours();
-    this.minute = date.getMinutes();
-    this.second = date.getSeconds();
+    this.day = date.getDate()||0;
+    this.hour = date.getHours()||0;
+    this.minute = date.getMinutes()||0;
+    this.second = date.getSeconds()||0;
   }
 
   // 定时器

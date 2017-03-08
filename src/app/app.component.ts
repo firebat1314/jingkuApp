@@ -8,6 +8,7 @@ import { ClassifyPage } from '../pages/classify/classify';
 import { WelcomePage } from '../pages/welcome/welcome';
 import { LoginPage } from '../pages/login/login';
 import { ParticularsPage } from '../pages/home/particulars/particulars'
+import { DredgeMoreCityPage } from '../pages/home/particulars/dredge-more-city/dredge-more-city'
 
 
 @Component({
@@ -27,7 +28,7 @@ export class MyApp {
     // 初次进入app引导页面
     this.storage.get('hasLoggedIn').then((result) => {
       if (result) {
-        this.rootPage = ParticularsPage;
+        this.rootPage = TabsPage;
       } else {
         this.storage.get('firstIn').then((result) => {
           if (result) {

@@ -22,6 +22,29 @@
 </ion-header>
 
 <ion-content class="outer-content">
+
+
+    <div class="privilege" *ngIf="title=='优惠券'">
+        <p style="padding-left: 10px;">可领优惠券</p>
+        <div class="main" *ngFor="let item of getBonus" [ngClass]="{'alreadyget': item.is_get == 1,'canget':item.is_get == 0}">
+            <div class="left">
+                <div><span class="price">¥<span>{{item.int_type_money}}</span></span>【满{{item.min_goods_amount}}可用】</div>
+                <div>{{item.suppliers_name}}</div>
+                <div>{{item.use_end_date}}--{{item.use_start_date}}</div>
+            </div>
+            <div class="right">
+            </div>
+        </div>
+
+    </div>
+    <div class="onemore" *ngIf="title=='买一盒送一盒'">
+        <ion-list>
+            <button ion-item *ngFor="let item of [{},{},{},{},{}]">
+                <span class="redfont" padding-horizontal>赠品</span>买4盒送一盒
+            </button>
+
+        </ion-list>
+    </div>
     <div class="attr" *ngIf="title=='选择商品属性'">
         <ion-item no-lines>
             <ion-thumbnail item-left>
@@ -105,18 +128,14 @@
             </ion-item>
         </ion-list>
     </div>
-    <div class="privilege" *ngIf="title=='优惠券'">
-        <p style="padding-left: 10px;">可领优惠券</p>
-        <div class="main" *ngFor="let item of getBonus" [ngClass]="{'alreadyget': item.is_get == 1,'canget':item.is_get == 0}">
-            <div class="left">
-                <div><span class="price">¥<span>{{item.int_type_money}}</span></span>【满{{item.min_goods_amount}}可用】</div>
-                <div>{{item.suppliers_name}}</div>
-                <div>{{item.use_end_date}}--{{item.use_start_date}}</div>
-            </div>
-            <div class="right">
-            </div>
-        </div>
-
+    <div class="sendto" *ngIf="title=='配送地址'">
+        <ion-list radio-group>
+            <ion-item mode="ios" *ngFor="let item of sendto">
+                <ion-label>{{item.region_name}}</ion-label>
+                <ion-icon color="danger" name="ios-pin-outline" item-left></ion-icon>
+                <ion-radio mode="ios" color="danger" value="{{item.gaid}}"></ion-radio>
+            </ion-item>
+        </ion-list>
     </div>
 </ion-content>
 <ion-footer>
@@ -126,5 +145,6 @@
             <span>共十件</span>
         </div>
     </ion-toolbar>
-    <button color="modalBtn" no-margin ion-button (click)="dismiss()" large full class="modal-button">完成</button>
+    <button *ngIf="title!='配送地址'" color="modalBtn" no-margin ion-button (click)="dismiss()" large full class="modal-button">完成</button>
+    <button *ngIf="title=='配送地址'" color="modalBtn" no-margin ion-button (click)="dredgeMoreCity()" large full class="modal-button">开通更多城市</button>
 </ion-footer>

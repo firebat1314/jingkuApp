@@ -62,6 +62,15 @@ page-particulars-modal {
             }
         }
     }
+    .onemore {
+        .redfont {
+            color: #e72626;
+            border: 1px solid #e72626;
+            border-radius: 3px;
+            padding: 0 10px;
+            margin: 0 10px;
+        }
+    }
     .attr {
         p:last-child {
             font-size: 2rem;

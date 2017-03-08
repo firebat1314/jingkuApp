@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams, ViewController } from 'ionic-angular';
 
+// import { CityPage } from "../../city/city"
+import {DredgeMoreCityPage} from '../dredge-more-city/dredge-more-city'
 /*
   Generated class for the ParticularsModal page.
 
@@ -15,13 +17,15 @@ export class ParticularsModalPage {
   title:String;
   value:number;
   getBonus;
+  sendto;
   constructor(
     public navCtrl: NavController,
     public navParams: NavParams,
     public viewCtrl: ViewController
   ) { 
     this.title = this.navParams.get('name');
-    this.getBonus = this.navParams.get('getBonus')
+    this.getBonus = this.navParams.get('getBonus');
+    this.sendto = this.navParams.get('sendto');
   }
 
   ionViewDidLoad() {
@@ -29,6 +33,9 @@ export class ParticularsModalPage {
   }
   numberIChange(value:number){
     this.value = value;
+  }
+  dredgeMoreCity(){
+    this.navCtrl.push(DredgeMoreCityPage)
   }
   dismiss(data?: any) {
     // using the injected ViewController this page
