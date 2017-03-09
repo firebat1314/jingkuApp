@@ -20,11 +20,14 @@ page-particulars {
     .imgs {
         width: 100%;
         ion-card {
+            height: 250px;
             width: 70%;
             margin: 10px auto;
             padding: 10px;
+            display: flex;
+            justify-content: center;
             img {
-                margin: 0 auto;
+                margin: auto auto;
             }
         }
     }
@@ -194,6 +197,7 @@ page-particulars {
             .note-wrap {
                 display: flex;
                 align-items: center;
+                justify-content: space-around;
                 ion-note {
                     display: flex;
                     align-items: center;

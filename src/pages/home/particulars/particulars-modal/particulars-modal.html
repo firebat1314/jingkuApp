@@ -25,7 +25,7 @@
 
 
     <div class="privilege" *ngIf="title=='优惠券'">
-        <p style="padding-left: 10px;">可领优惠券</p>
+        <p style="padding-left: 10px;" *ngIf="getBonus&&getBonus.length!=0">可领优惠券</p>
         <div class="main" *ngFor="let item of getBonus" [ngClass]="{'alreadyget': item.is_get == 1,'canget':item.is_get == 0}">
             <div class="left">
                 <div><span class="price">¥<span>{{item.int_type_money}}</span></span>【满{{item.min_goods_amount}}可用】</div>

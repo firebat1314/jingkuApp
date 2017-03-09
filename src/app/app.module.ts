@@ -34,13 +34,13 @@ import { WhitebarPage } from '../pages/home/whitebar/whitebar'
 import { DiscountCouponPage } from '../pages/home/discount-coupon/discount-coupon'
 import { MessagePage } from '../pages/home/message/message'
 import { ParticularsPage } from '../pages/home/particulars/particulars'
-import {ParticularsModalPage} from '../pages/home/particulars/particulars-modal/particulars-modal'
-import {DredgeMoreCityPage} from '../pages/home/particulars/dredge-more-city/dredge-more-city'
-import {PopoverContentPage} from "../pages/home/particulars/dredge-more-city/popover-content/popover-content"
-
+import { ParticularsModalPage } from '../pages/home/particulars/particulars-modal/particulars-modal'
+import { DredgeMoreCityPage } from '../pages/home/particulars/dredge-more-city/dredge-more-city'
+import { PopoverContentPage } from "../pages/home/particulars/dredge-more-city/popover-content/popover-content"
 //分类页
-import {SubnavPage1Page} from '../pages/classify/subnav-page1/subnav-page1'
-import {SubnavPage2Page} from '../pages/classify/subnav-page2/subnav-page2'
+import { SubnavPage1Page } from '../pages/classify/subnav-page1/subnav-page1'
+import { SubnavPage2Page } from '../pages/classify/subnav-page2/subnav-page2'
+import { MoreBrandPage } from "../pages/classify/more-brand/more-brand"
 /*服务*/
 import { UserData } from "../services/user-data";
 import { Native } from "../providers/native";
@@ -59,16 +59,16 @@ import { CountInputComponent } from '../components/count-input/count-input'
 @NgModule({
   declarations: [
     MyApp,
-    ClassifyPage,SubnavPage1Page,SubnavPage2Page,
+    ClassifyPage, SubnavPage1Page, SubnavPage2Page, MoreBrandPage,
     CarPage,
-    HomePage, CityPage, SearchPage, DetailsPage, BrandListPage, AttentionPage, FastbuyPage, GlassesDesignPage, IntegralstorePage, RechargePage, WhitebarPage, DiscountCouponPage, MessagePage, ParticularsPage,ParticularsModalPage,DredgeMoreCityPage,PopoverContentPage,
+    HomePage, CityPage, SearchPage, DetailsPage, BrandListPage, AttentionPage, FastbuyPage, GlassesDesignPage, IntegralstorePage, RechargePage, WhitebarPage, DiscountCouponPage, MessagePage, ParticularsPage, ParticularsModalPage, DredgeMoreCityPage, PopoverContentPage,
     MyPage,
     TabsPage,
     WelcomePage,
     LoginPage,
     SignupPage, SignupSecondPage, SignupThirdPage,
     MyDirective, ImgTabs,
-    SingleCardComponent, MyToolbarComponent, SingleFoodsItemComponent, MeunItemComponent, CountdownComponent,CountInputComponent,
+    SingleCardComponent, MyToolbarComponent, SingleFoodsItemComponent, MeunItemComponent, CountdownComponent, CountInputComponent,
     DirectiveTestPage,
     ForgotPage, ForgotTwoPage, ForgotThreePage,
 
@@ -79,7 +79,7 @@ import { CountInputComponent } from '../components/count-input/count-input'
       tabsHideOnSubPages: true,
       tabsPlacement: 'bottom',
       pageTransition: 'ios-transition',
-      mode:'md'
+      mode: 'md'
     }, {
         links: [
           { component: HomePage, segment: 'home' },
@@ -93,15 +93,15 @@ import { CountInputComponent } from '../components/count-input/count-input'
   bootstrap: [IonicApp],
   entryComponents: [
     MyApp,
-    ClassifyPage,SubnavPage1Page,SubnavPage2Page,
+    ClassifyPage, SubnavPage1Page, SubnavPage2Page, MoreBrandPage,
     CarPage,
-    HomePage, CityPage, SearchPage, DetailsPage, BrandListPage, AttentionPage, FastbuyPage, GlassesDesignPage, IntegralstorePage, RechargePage, WhitebarPage, DiscountCouponPage, MessagePage, ParticularsPage,ParticularsModalPage,DredgeMoreCityPage,PopoverContentPage,
+    HomePage, CityPage, SearchPage, DetailsPage, BrandListPage, AttentionPage, FastbuyPage, GlassesDesignPage, IntegralstorePage, RechargePage, WhitebarPage, DiscountCouponPage, MessagePage, ParticularsPage, ParticularsModalPage, DredgeMoreCityPage, PopoverContentPage,
     MyPage,
     TabsPage,
     WelcomePage,
     LoginPage,
     SignupPage, SignupSecondPage, SignupThirdPage,
-    SingleCardComponent, MyToolbarComponent, SingleFoodsItemComponent, MeunItemComponent, CountdownComponent,CountInputComponent,
+    SingleCardComponent, MyToolbarComponent, SingleFoodsItemComponent, MeunItemComponent, CountdownComponent, CountInputComponent,
     DirectiveTestPage,
     ForgotPage, ForgotTwoPage
   ],

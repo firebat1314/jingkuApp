@@ -1,6 +1,6 @@
 import { Injectable } from "@angular/core";
 import { Http, Response, Headers, RequestOptions } from "@angular/http";
-import { Events } from "ionic-angular";
+import { Events, AlertController,App } from "ionic-angular";
 import { Storage } from '@ionic/storage';
 
 // Add the RxJS Observable operators.
@@ -8,22 +8,25 @@ import '../app/rxjs-operators';
 
 import { Observable } from 'rxjs/Observable';
 import { Native } from '../providers/native';
+import { LoginPage } from "../pages/login/login";
 
 @Injectable()
 export class UserData {
     public HAS_LOGGED_IN = "hasLoggedIn";
     public hasLogin = false;
     private ip = 'http://v401app.jingkoo.net';  // URL to web API
-
+    private showToastTime = true;
 
     constructor(
         private events: Events,
         private http: Http,
         public storage: Storage,
-        private native: Native
+        private native: Native,
+        private alertCtrl: AlertController,
+        public appCtrl: App
     ) { }
 
-    public login(payload) {
+    login(payload) {
 
         return this.post(this.ip + '/Login/index', payload);
     }
@@ -65,7 +68,6 @@ export class UserData {
         return this.storage.get("token");
 
     }
-
     setUsername(username) {
         this.storage.set("username", username);
     }
@@ -82,18 +84,6 @@ export class UserData {
         this.storage.get(key);
     }
 
-    isLogin() {
-        return this.hasLogin;
-    };
-
-    // return a promise
-    hasLoggedIn() {
-        let self = this;
-        return this.storage.get(this.HAS_LOGGED_IN).then((value) => {
-            self.hasLogin = value === "true";
-            return self.hasLogin;
-        });
-    }
     public get(url: string, paramObj?: any) {
         let userToken = localStorage.getItem('token');
 
@@ -108,7 +98,7 @@ export class UserData {
     }
     public post(url: string, paramObj: any) {
         let userToken: string = localStorage.getItem('token');
-        
+
         // this.native.showLoading();
         let headers = new Headers();
         headers.append('Authorization', 'Basic ' + btoa(userToken + ':'));
@@ -150,21 +140,33 @@ export class UserData {
     private handleError(error: Response | any) {
         // this.native.hideLoading();
         let msg: string = '请求失败';
-        if (error.status == 400) {
-            msg = '请求无效';
-            console.log('请检查参数类型是否匹配');
-        } else if (error.status == 404) {
-            msg = '请求链接不存在，请联系管理员';
-            console.error(msg + '，请检查路径是否正确');
-        } else if (error.status == 500) {
-            msg = '服务器出错，请稍后再试';
-        } else if (error.status == 0) {
-            msg = '请求地址错误或后台服务未启动';
-        }
-        if (!this.native.isConnecting()) {
-            msg = '没有网络,请求发送失败';
+        if (error.status == 401) {
+            msg = '用户失效，请重新登陆';
+           
+            console.log('账号登陆异常');
         }
         console.log(error);
+        if (this.showToastTime) {
+            this.native.showToast(msg);
+            this.showToastTime = false;
+             let alert = this.alertCtrl.create({
+                title: '提示',
+                subTitle: '用户失效，请重新登陆',
+                buttons: [{
+                    text: '确定',
+                    handler: () => {
+                        let navTransition = alert.dismiss();
+                        navTransition.then(() => {
+                            // this.appCtrl.getRootNav().push(LoginPage);
+                        });
+                    }
+                }],
+                enableBackdropDismiss: false
+            });
+            alert.present();
+            setTimeout(() => this.showToastTime = true, 2000);
+        }
+
         return { success: false, msg: msg };
     }
     /*private handleError(error: Response | any) {

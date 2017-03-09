@@ -1,5 +1,5 @@
 import { Component, ViewChild } from '@angular/core';
-import { NavController, NavParams, Content } from 'ionic-angular';
+import { NavController, NavParams } from 'ionic-angular';
 
 /*
   Generated class for the SubnavPage2 page.
@@ -12,7 +12,6 @@ import { NavController, NavParams, Content } from 'ionic-angular';
   templateUrl: 'subnav-page2.html'
 })
 export class SubnavPage2Page {
-  @ViewChild(Content) myContent: Content;
 
   constructor(public navCtrl: NavController, public navParams: NavParams) { }
 
@@ -20,7 +19,6 @@ export class SubnavPage2Page {
     console.log('ionViewDidLoad SubnavPage2Page');
   }
   ngAfterViewChecked(){
-    console.log(this.myContent.contentBottom)
     
   }
   ngAfterViewInit() {

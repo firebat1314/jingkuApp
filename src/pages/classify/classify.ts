@@ -1,7 +1,9 @@
 import { Component, ViewChild } from '@angular/core';
-import { NavController, NavParams, Slides,Searchbar,Nav } from 'ionic-angular';
+import { NavController, NavParams, Slides, Searchbar, Nav } from 'ionic-angular';
 
 import { SubnavPage1Page } from './subnav-page1/subnav-page1'
+import { HttpService } from "../../providers/http-service";
+import { MoreBrandPage } from "./more-brand/more-brand";
 /*
   Generated class for the Classify page.
 
@@ -14,43 +16,84 @@ import { SubnavPage1Page } from './subnav-page1/subnav-page1'
 })
 export class ClassifyPage {
   classSelect: any = 'classify';
+  careSelect:any = 'shop';
   root = SubnavPage1Page;
-  showBackBtn:boolean = false;
-  @ViewChild('mySlides') mySlides: Slides;
-  @ViewChild('mySearchBar') mySearchBar:Searchbar;
-  @ViewChild('myNav') myNav:Nav;
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
-    
-    
+  showBackBtn: boolean = false;
+  showCheckBox:boolean = false;
+
+  getCategorys;
+  getChildrenCaCtegory;
+  categoryGoods;
+  getGoodsAttribute;
+
+  // slides = ['s1', 's2', 's3', 's4', 's5', 's1', 's2', 's3', 's4', 's5'];
+  // pageSlides = 7;
+  // onSlideClick(event) {
+  //   console.log(event)
+  // }
+
+  // @ViewChild('mySlides') mySlides: Slides;
+  @ViewChild('mySearchBar') mySearchBar: Searchbar;
+  @ViewChild('myNav') myNav: Nav;
+  constructor(
+    public navCtrl: NavController,
+    public navParams: NavParams,
+    public httpService: HttpService,
+  ) {
+
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad ClassifyPage');
   }
-  ngAfterViewInit(){
-    
+  ngOnInit() {
+    this.httpService.getCategorys().then((res) => {
+      console.log('获取九大分类', res)
+      this.getCategorys = res.data;
+    })
+    this.httpService.getChildrenCaCtegory().then((res) => {
+      console.log('获取九大分类下的子分类', res)
+      this.getChildrenCaCtegory = res;
+    })
+    this.httpService.categoryGoods().then((res) => {
+      console.log('商品分类列表页(筛选)', res)
+      this.categoryGoods = res;
+    })
+    this.httpService.getGoodsAttribute().then((res) => {
+      console.log('获取初始商品属性', res)
+      this.getGoodsAttribute = res;
+    })
+  }
+  ngAfterViewInit() {
+
   }
   goToSlide() {
-    switch (this.classSelect) {
+    /*switch (this.classSelect) {
       case 'classify': this.mySlides.slideTo(0); break;
       case 'brand': this.mySlides.slideTo(1); break;
       case 'care': this.mySlides.slideTo(2);
-    }
+    }*/
   }
-  pop(){
-    if(this.myNav.canGoBack()){
+  goToMoreBrand() {
+    this.navCtrl.push(MoreBrandPage)
+  }
+  pop() {
+    if (this.myNav.canGoBack()) {
       this.myNav.pop();
     }
   }
-  getFous(){
+  getFous() {
     this.mySearchBar.setFocus();
   }
   slideChanged() {
-    switch (this.mySlides.getActiveIndex()) {
+    /*switch (this.mySlides.getActiveIndex()) {
       case 0: this.classSelect = 'classify'; break;
       case 1: this.classSelect = 'brand'; break;
       case 2: this.classSelect = 'care';
-    }
-
+    }*/
+  }
+  panEvent(e) {
+    e.stopPopagation;
+    console.log(e)
   }
 }

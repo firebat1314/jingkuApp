@@ -1,0 +1,16 @@
+page-more-brand {
+    .top {
+        img {
+            width: 100%;
+        }
+    }
+    .main {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        >div {
+            width: 32%;
+            margin-bottom: 0.5rem;
+        }
+    }
+}

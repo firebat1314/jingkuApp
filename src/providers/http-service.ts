@@ -75,8 +75,20 @@ export class HttpService {
   searchGoods(data?: Object) {//商品搜索列表页
     return this.http.post(this.ip + '/Search/search_goods', data)
   }
-
-testapi(data?: Object) {//商品搜索列表页
-    return this.http.post('http://v601admin.jingkoo.net/Api/Scheme/order_bonus', data)
+  /**
+   * 商品分类列表页
+   */
+  getCategorys(data?: Object) {//（1）获取九大分类
+    return this.http.post(this.ip + '/Category/get_categorys', data)
   }
+  getChildrenCaCtegory(data?: Object) {//（2）获取九大分类下的子分类
+    return this.http.post(this.ip + '/Category/get_children_category', data)
+  }
+  categoryGoods(data?: Object) {//（3）商品分类列表页(筛选)
+    return this.http.post(this.ip + '/Category/category_goods', data)
+  }
+  getGoodsAttribute(data?: Object) {//（13）获取初始商品属性
+    return this.http.post(this.ip + '/Goods/get_goods_attribute', data)
+  }
+
 }
