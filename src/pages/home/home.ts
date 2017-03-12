@@ -35,6 +35,8 @@ export class HomePage {
 
   @ViewChild('bannerSlide') slides: Slides;
   @ViewChild(Content) content: Content;
+  myHomeSearch: String = '';
+  showBackTopBtn: Boolean = true;
 
   DirectiveTestPage = DirectiveTestPage;
   cityPage = CityPage;
@@ -50,9 +52,6 @@ export class HomePage {
   DiscountCouponPage = DiscountCouponPage;
   MessagePage = MessagePage;
 
-
-  myHomeSearch: String = '';
-  showBackTopBtn: Boolean = true;
   bannerImgs;
   categoryAddetatils;
   handpickDetails;
@@ -107,6 +106,10 @@ export class HomePage {
   ngAfterViewInit() {
 
   }
+  onSlideClick(event) {
+    console.log(event)
+  }
+
   clickBanner(item) {
     if (item.link_type.type_name == 'category') {
       this.navCtrl.push(ClassifyPage, {

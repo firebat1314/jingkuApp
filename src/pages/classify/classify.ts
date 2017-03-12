@@ -1,5 +1,5 @@
 import { Component, ViewChild } from '@angular/core';
-import { NavController, NavParams, Slides, Searchbar, Nav } from 'ionic-angular';
+import { NavController, NavParams, Content, Slides, Searchbar, Nav } from 'ionic-angular';
 
 import { SubnavPage1Page } from './subnav-page1/subnav-page1'
 import { HttpService } from "../../providers/http-service";
@@ -16,25 +16,20 @@ import { MoreBrandPage } from "./more-brand/more-brand";
 })
 export class ClassifyPage {
   classSelect: any = 'classify';
-  careSelect:any = 'shop';
+  careSelect: any = 'shop';
   root = SubnavPage1Page;
   showBackBtn: boolean = false;
-  showCheckBox:boolean = false;
+  showCheckBox: boolean = false;
 
   getCategorys;
   getChildrenCaCtegory;
   categoryGoods;
   getGoodsAttribute;
 
-  // slides = ['s1', 's2', 's3', 's4', 's5', 's1', 's2', 's3', 's4', 's5'];
-  // pageSlides = 7;
-  // onSlideClick(event) {
-  //   console.log(event)
-  // }
-
-  // @ViewChild('mySlides') mySlides: Slides;
   @ViewChild('mySearchBar') mySearchBar: Searchbar;
   @ViewChild('myNav') myNav: Nav;
+  @ViewChild(Content) content: Content;
+
   constructor(
     public navCtrl: NavController,
     public navParams: NavParams,
@@ -63,9 +58,28 @@ export class ClassifyPage {
       console.log('获取初始商品属性', res)
       this.getGoodsAttribute = res;
     })
+
+  }
+  checkBoxToggle() {
+    this.showCheckBox = !this.showCheckBox;
+    console.log('content更新~')
+  }
+  ngOnDestroy() {
+    this.showCheckBox = false;
   }
   ngAfterViewInit() {
-
+    if (this.classSelect == "classify") {
+      setInterval(() => {
+        if (!this.myNav.canGoBack()) {
+          this.showBackBtn = false;
+        } else {
+          this.showBackBtn = true;
+        }
+      }, 1000)
+    }
+  }
+  ngAfterContentChecked() {
+    this.content.resize();
   }
   goToSlide() {
     /*switch (this.classSelect) {

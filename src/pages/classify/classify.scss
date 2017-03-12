@@ -5,6 +5,10 @@ page-classify {
             text-align: initial;
         }
     }
+    .slide-zoom {
+        height: 100%;
+        overflow: scroll;
+    }
     ion-header {
         ion-toolbar {
             &:last-child {
@@ -36,95 +40,118 @@ page-classify {
             }
         }
     }
-    .slide-zoom {
-        height: 100%;
-        overflow: scroll;
+    .classify-wrap {
+        ion-nav {
+            .scroll-content {
+                margin-bottom: 0 !important;
+            }
+            .fixed-content {
+                margin-bottom: 0 !important;
+            }
+        }
     }
-    .brand-wrap {
-        .title {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 16px;
-            .txt {
-                border-left: 10px solid #000;
-                // font-weight: 700;
-                font-size: 2rem;
-                padding-left: 5px;
+    .wrapper {
+        display: flex;
+        flex-direction: column;
+        .brand-wrap {
+            .title {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                margin-bottom: 16px;
+                .txt {
+                    border-left: 10px solid #000;
+                    // font-weight: 700;
+                    font-size: 2rem;
+                    padding-left: 5px;
+                }
+                .more {
+                    color: #666;
+                    font-size: 1.5rem;
+                }
             }
-            .more {
-                color: #666;
-                font-size: 1.5rem;
-            }
-        }
-        @mixin body1 {
-            min-width: 241px;
-            margin-right: 1.6rem;
-            &:last-child {
-                margin-right: 0;
-            }
-            img {
-                border-radius: 3px;
-            }
-            border-radius: 3px;
-            h3 {
-                color: #666;
-            }
-            span {
-                color: #808080;
-            }
-        }
-        @mixin body2 {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: space-between;
-            >div {
-                width: 32%;
-                margin-bottom: 0.5rem;
-            }
-        }
-        .top-scrollbar {
-            overflow-x: scroll;
-            display: flex;
-            padding: 10px 0;
-            border-bottom: 1px solid #e6e6e6;
-            >div {
-                min-width: 84px;
-                font-size: 1.3rem;
-                text-align: center;
+            @mixin body1 {
+                min-width: 241px;
                 margin-right: 1.6rem;
-                height: 100%;
+                &:last-child {
+                    margin-right: 0;
+                }
                 img {
-                    height: 28px;
-                    margin: 5px 0;
+                    border-radius: 3px;
+                }
+                border-radius: 3px;
+                h3 {
+                    color: #666;
+                }
+                span {
+                    color: #808080;
                 }
             }
-        }
-        .fore1-jinxuan {
-            .body {
+            @mixin body2 {
                 display: flex;
-                overflow-x: scroll;
+                flex-wrap: wrap;
+                justify-content: space-between;
                 >div {
-                    @include body1
+                    width: 33%;
+                    margin-bottom: 0.2rem;
+                    img {
+                        width: 100%;
+                    }
                 }
             }
-        }
-        .fore-huanxin {
-            .body {
+            .top-scrollbar {
+                overflow-x: scroll;
                 display: flex;
-                overflow-x: scroll;
+                padding: 10px 0;
+                border-bottom: 1px solid #e6e6e6;
                 >div {
-                    @include body1
+                    min-width: 84px;
+                    font-size: 1.3rem;
+                    text-align: center;
+                    margin-right: 1.6rem;
+                    height: 100%;
+                    img {
+                        height: 28px;
+                        margin: 5px 0;
+                    }
                 }
             }
-        }
-        .fore-remen {
-            .body {
-                @include body2
+            .fore1-jinxuan {
+                .body {
+                    display: flex;
+                    overflow-x: scroll;
+                    >div {
+                        @include body1
+                    }
+                }
             }
-        }
-        .fore-yinxing {
-            .body {
+            .fore-huanxin {
+                .body {
+                    display: flex;
+                    overflow-x: scroll;
+                    >div {
+                        @include body1
+                    }
+                }
+            }
+            .fore-remen {
+                .body {
+                    @include body2
+                }
+            }
+            .fore-yinxing {
+                .body {
+                    .top {
+                        img {
+                            width: 100%;
+                        }
+                    }
+                    .main {
+                        @include body2
+                    }
+                }
+            }
+            .fore-meitong {
                 .top {
                     img {
                         width: 100%;
@@ -135,94 +162,91 @@ page-classify {
                 }
             }
         }
-        .fore-meitong {
-            .top {
-                img {
-                    width: 100%;
+        .care-wrap {
+            .item-wrap {
+                display: flex;
+                align-items: center;
+            }
+            @keyframes checkbox-in {
+                from {
+                    width: 0;
+                    margin-left: 0;
+                }
+                to {
+                    width: 21px;
+                    margin-left: 16px;
                 }
             }
-            .main {
-                @include body2
-            }
-        }
-    }
-    .care-wrap {
-        height: 100%;
-        .item-wrap {
-            display: flex;
-            align-items: center;
-        }
-        @keyframes checkbox-in {
-            from {
-                width: 0;
-                padding: 0;
-            }
-            to {
-                width: 21px;
-                padding: 16px;
-            }
-        }
-        @keyframes checkbox-out {
-            from {
-                width: 21px;
-                padding: 16px;
-            }
-            to {
-                width: 0;
-                padding: 0;
-            }
-        }
-        .activein {
-            animation: checkbox-in 0.2s;
-        }
-        .activeout {
-            animation: checkbox-out 0.2s;
-        }
-        .shop {
-            height: 100%;
-            .type {
-                color: #fff;
-                padding: 1px 8px;
-                background: #e60000;
-                border-radius: 3px;
-                display: inline-block;
-                margin-top: 5px;
-            }
-            ion-note {
-                color: #808080;
-                font-size: 1.4rem;
-            }
-            .noshop-show {
-                height: 100%;
-                display: flex;
-                flex-direction: column;
-                justify-content: center;
-                align-items: center;
-                img {
-                    width: 16rem;
+            @keyframes checkbox-out {
+                from {
+                    width: 21px;
+                    margin-left: 16px;
+                }
+                to {
+                    width: 0;
+                    margin-left: 0;
                 }
             }
-        }
-        .goods {
-            height: 100%;
-            .label-md {
-                margin-bottom: 0;
+            .activein {
+                animation: checkbox-in 0.2s;
             }
-            .right-bottom {
-                display: flex;
-                justify-content: space-between;
-                align-items: center;
-                color: #e60000;
-                margin-top: 10px;
+            .activeout {
+                animation: checkbox-out 0.2s;
             }
-            .nogoods-show {
-                height: 100%;
-                display: flex;
-                flex-direction: column;
-                justify-content: center;
-                align-items: center;
-                img {
-                    width: 16rem;
+            .shop {
+                .type {
+                    color: #fff;
+                    padding: 1px 8px;
+                    background: #e60000;
+                    border-radius: 3px;
+                    display: inline-block;
+                    margin-top: 5px;
+                }
+                ion-note {
+                    color: #808080;
+                    font-size: 1.4rem;
+                }
+                .noshop-show {
+                    height: 100%;
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: center;
+                    align-items: center;
+                    img {
+                        width: 16rem;
+                    }
+                }
+            }
+            .goods {
+                .label-md {
+                    margin-bottom: 0;
+                    h2 {
+                        color: #666;
+                        white-space: pre-wrap;
+                        font-size: 1.4rem;
+                        text-overflow: -o-ellipsis-lastline;
+                        overflow: hidden;
+                        text-overflow: ellipsis;
+                        display: -webkit-box;
+                        -webkit-line-clamp: 2;
+                        -webkit-box-orient: vertical;
+                    }
+                }
+                .right-bottom {
+                    display: flex;
+                    justify-content: space-between;
+                    align-items: center;
+                    color: #e60000;
+                    margin-top: 10px;
+                }
+                .nogoods-show {
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: center;
+                    align-items: center;
+                    img {
+                        width: 16rem;
+                    }
                 }
             }
         }

@@ -29,6 +29,7 @@
     <ion-refresher (ionRefresh)="doRefresh($event)" pullMax="60">
         <ion-refresher-content refreshingSpinner="1" pullingIcon="0"></ion-refresher-content>
     </ion-refresher>
+
     <div *ngIf="data">
         <single-foods-card [data]="data" *ngIf="!listStyleflag" padding></single-foods-card>
 

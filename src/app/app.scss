@@ -16,6 +16,10 @@
     background: #fff;
 }
 
+.toolbar-md {
+    padding: 0 4px;
+}
+
 [padding] h1:first-child,
 [padding] h2:first-child,
 [padding] h3:first-child,
@@ -88,8 +92,6 @@
     width: 70%;
 }
 
-ion-backdrop {}
-
 ion-item.item {
     padding-left: 0;
 }
@@ -152,6 +154,27 @@ ion-modal {
 }
 
 
+/*alter style*/
+
+.alert-style {
+    .alert-button-group {
+        padding: 8px 0 0 0;
+        .alert-button {
+            width: 50%;
+            margin: 0;
+            padding: 13px 0;
+            border-top: 1px solid #e0e0e0;
+            &:first-child {
+                border-right: 1px solid #e0e0e0;
+            }
+            .button-inner {
+                justify-content: center;
+            }
+        }
+    }
+}
+
+
 /*fadeIn animate*/
 
 .fade-in-item {
@@ -163,12 +186,12 @@ ion-modal {
 
 @font-face {
     font-family: "Ionicons";
-    src: url('../assets/iconfont.eot?t=1487915321701');
+    src: url('../assets/iconfont.eot?t=1489129564619');
     /* IE9*/
-    src: url('../assets/myFont/iconfont.eot?t=1487915321701#iefix') format('embedded-opentype'), /* IE6-IE8 */
-    url('../assets/myFont/iconfont.woff?t=1487915321701') format('woff'), /* chrome, firefox */
-    url('../assets/myFont/iconfont.ttf?t=1487915321701') format('truetype'), /* chrome, firefox, opera, Safari, Android, iOS 4.2+*/
-    url('../assets/myFont/iconfont.svg?t=1487915321701#iconfont') format('svg');
+    src: url('../assets/myFont/iconfont.eot?t=1489129564619#iefix') format('embedded-opentype'), /* IE6-IE8 */
+    url('../assets/myFont/iconfont.woff?t=1489129564619') format('woff'), /* chrome, firefox */
+    url('../assets/myFont/iconfont.ttf?t=1489129564619') format('truetype'), /* chrome, firefox, opera, Safari, Android, iOS 4.2+*/
+    url('../assets/myFont/iconfont.svg?t=1489129564619#iconfont') format('svg');
     /* iOS 4.1- */
 }
 
@@ -222,8 +245,80 @@ ion-modal {
     content: "\e622";
 }
 
+.ion-md-xiaoxi:before,
+.ion-ios-xiaoxi:before,
+.ion-ios-xiaoxi-outline:before {
+    content: "\e6b6";
+}
+
+.ion-md-fapiao:before,
+.ion-ios-fapiao:before,
+.ion-ios-fapiao-outline:before {
+    content: "\e602";
+}
+
+.ion-md-bao:before,
+.ion-ios-bao:before,
+.ion-ios-bao-outline:before {
+    content: "\3622";
+}
+
+.ion-md-shop:before,
+.ion-ios-shop:before,
+.ion-ios-shop-outline:before {
+    content: "\e62b";
+}
+
+.ion-md-liebiao:before,
+.ion-ios-liebiao:before,
+.ion-ios-liebiao-outline:before {
+    content: "\e62c";
+}
+
+.ion-md-baitiao1:before,
+.ion-ios-baitiao1:before,
+.ion-ios-baitiao1-outline:before {
+    content: "\e62e";
+}
+
+.ion-md-fanhui:before,
+.ion-ios-fanhui:before,
+.ion-ios-fanhui-outline:before {
+    content: "\e63a";
+}
+
+.ion-md-bao1:before,
+.ion-ios-bao1:before,
+.ion-ios-bao1-outline:before {
+    content: "\e63e";
+}
+
+.ion-md-xiu:before,
+.ion-ios-xiu:before,
+.ion-ios-xiu-outline:before {
+    content: "\e61c";
+}
+
+.ion-md-sort-up-copy:before,
+.ion-ios-sort-up-copy:before,
+.ion-ios-sort-up-copy-outline:before {
+    content: "\e603";
+}
+
 .ion-md-sort1:before,
 .ion-ios-sort1:before,
 .ion-ios-sort1-outline:before {
-    content: "\e6bc";
+    content: "\e604";
+}
+
+.ion-md-anquanbaozhang-xianxing:before,
+.ion-ios-anquanbaozhang:before,
+.ion-ios-anquanbaozhang-outline:before {
+    content: "\e88c";
+}
+
+.ion-md-ti:before,
+.ion-ios-ti:before,
+.ion-ios-ti-outline:before {
+    content: "\e605";
 }

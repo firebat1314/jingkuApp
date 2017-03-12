@@ -12,8 +12,6 @@ export class ImgTabs {
     console.log('Hello ImgTabs Component');
   }
 
-  
-  mySlideOptions;  
   selectedIndex: number = 0;  
 
   ngOnInit() {  

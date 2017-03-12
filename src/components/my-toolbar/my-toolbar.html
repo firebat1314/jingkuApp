@@ -4,7 +4,7 @@
   See https://angular.io/docs/ts/latest/api/core/index/ComponentMetadata-class.html
   for more info on Angular 2 Components.
 -->
-<div>
+<div (click)="click($event)">
     <button ion-button clear icon-right>
       综合
       <ion-icon name="md-arrow-dropdown"></ion-icon>
@@ -18,12 +18,19 @@
 <div>
     <button ion-button clear icon-right>
       价格
-    <ion-icon name="sort"></ion-icon>
+      <div>
+        <div [ngStyle]="{'height':'7px'}">
+            <ion-icon [ngStyle]="{'font-size':'1.5rem'}" name="md-arrow-dropup"></ion-icon>
+        </div>
+        <div [ngStyle]="{'height':'13px'}">
+            <ion-icon [ngStyle]="{'font-size':'1.5rem'}" name="md-arrow-dropdown"></ion-icon>
+        </div>
+      </div>
   </button>
 </div>
 <div>
-    <button menuToggle ion-button clear icon-right>
+    <button ion-button clear icon-right menuToggle>
       筛选
-      <ion-icon name="ios-funnel-outline"></ion-icon>
+      <ion-icon name="ios-funnel-outline" [ngStyle]="{'font-size':'2rem'}"></ion-icon>
     </button>
 </div>

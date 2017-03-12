@@ -13,6 +13,9 @@ meun-item {
             }
         }
     }
+    .item.item-block .item-inner {
+        border: 0;
+    }
     .body {
         display: flex;
         justify-content: space-around;

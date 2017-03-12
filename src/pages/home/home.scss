@@ -36,10 +36,6 @@ page-home {
             }
         }
     }
-    .parting-line {
-        height: 10px;
-        background-color: #efefef;
-    }
     .home-content .title {
         display: flex;
         justify-content: space-between;
@@ -107,35 +103,29 @@ page-home {
     }
     .handpick {
         .main {
-            .pick {
-                /*
-                height: 150px;
-                white-space: nowrap;
-                overflow: hidden;
-                ion-scroll {
-                    height: 100%;
-                    .scroll-content {
-                        padding: 16px 0 16px;
-                        .scroll-zoom-wrapper div {
-                            margin-right: 10px;
-                        }
-                    }
-                }
-                div {
-                    height: 100%;
-                    display: inline-block;
-                    img {
-                        height: 100%;
-                    }
-                }*/
-            }
+            margin-bottom: 10px;
         }
     }
     .good-shop {
         .main {
             ion-slides {
                 .swiper-slide {
-                    padding: 20px;
+                    padding: 0 20px 20px;
+                    margin-bottom: 10px;
+                    .card {
+                        position: relative;
+                        .collect {
+                            width: 100%;
+                            position: absolute;
+                            top: 0;
+                            left: 0;
+                            display: flex;
+                            justify-content: space-between;
+                            color: #fff;
+                            padding: 10px;
+                            font-size: 1.5rem;
+                        }
+                    }
                 }
             }
         }

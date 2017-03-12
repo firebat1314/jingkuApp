@@ -19,7 +19,6 @@
 <ion-content (ionScrollEnd)="scrollHeight()">
     <div class="banner-wrapper" *ngIf="bannerImgs">
         <ion-slides #bannerSlide autoplay="4000" loop="true" pager>
-            <!-- -->
             <ion-slide *ngFor="let item of bannerImgs">
                 <img (click)="clickBanner(item)" src="{{ item.ad_img }}" />
             </ion-slide>
@@ -65,8 +64,8 @@
 
         </div>
     </div>
-    <div class="parting-line"></div>
-    <!--热门类型-->
+    <div class="background"></div>
+    <!--——————————————————————————————————————————热门类型——————————————————————————————————————————-->
     <div class="hot-group home-content" padding>
         <div class="title">
             <span class="txt">热门品类</span>
@@ -86,8 +85,8 @@
             </ion-grid>
         </div>
     </div>
-    <div class="parting-line"></div>
-    <!--热门品牌-->
+    <div class="background"></div>
+    <!--——————————————————————————————————————————热门品牌——————————————————————————————————————————-->
     <div class="hot-brand home-content" padding>
         <div class="title">
             <span class="txt">热门品牌</span>
@@ -101,72 +100,49 @@
                 <img src="./assets/icon/homepage_53.png" alt="">
             </div>
         </div>
-
     </div>
-    <div class="parting-line"></div>
+    <div class="background"></div>
+    <!--——————————————————————————————————————————精选专题——————————————————————————————————————————-->
     <div class="handpick home-content" padding>
         <div class="title">
             <span class="txt">精选专题</span>
         </div>
         <div class="main">
-            <div class="show">
-                <img src="./assets/icon/homepage_55.png" alt="">
-            </div>
-            <div class="pick">
-                <!--<ion-scroll scrollX="true">
-                    <div *ngFor="let item of handpickDetails">
-                        <img src="./assets/icon/homepage_57.png" alt="">
-                    </div>
-                </ion-scroll>-->
-                <ion-slides slidesPerView="3" parallax="true">
-                    <ion-slide *ngFor="let item of handpickDetails">
-                        <img src="./assets/icon/homepage_67.png" />
-                    </ion-slide>
-                </ion-slides>
-            </div>
+            <img-tabs2 (slideClick)="onSlideClick($event)" [slides]="getCategoryRecommendGoods" [pageNumber]="3"></img-tabs2>
         </div>
         <div class="main">
-            <div class="show">
-                <img src="./assets/icon/homepage_55.png" alt="">
-            </div>
-            <div class="pick">
-                <ion-slides slidesPerView="3" parallax="true">
-                    <ion-slide *ngFor="let item of getCategoryRecommendGoodsBest">
-                        <img src="./assets/icon/homepage_67.png" />
-                    </ion-slide>
-                </ion-slides>
-            </div>
+            <img-tabs2 (slideClick)="onSlideClick($event)" [slides]="getCategoryRecommendGoods" [pageNumber]="3"></img-tabs2>
         </div>
         <div class="main">
-            <div class="show">
-                <img src="./assets/icon/homepage_55.png" alt="">
-            </div>
-            <div class="pick">
-                <ion-slides slidesPerView="3" parallax="true">
-                    <ion-slide *ngFor="let item of getCategoryRecommendGoods">
-                        <img src="./assets/icon/homepage_67.png" />
-                    </ion-slide>
-                </ion-slides>
-            </div>
+            <img-tabs2 (slideClick)="onSlideClick($event)" [slides]="getCategoryRecommendGoods" [pageNumber]="3"></img-tabs2>
         </div>
     </div>
-    <div class="parting-line"></div>
+    <div class="background"></div>
+    <!--——————————————————————————————————————————好店推荐——————————————————————————————————————————-->
     <div class="good-shop home-content" padding>
         <div class="title">
             <span class="txt">好店推荐</span>
             <span class="more">更多&gt;</span>
         </div>
         <div class="main">
-            <ion-slides loop="true" parallax="true">
+            <ion-slides loop="true" parallax="true" pager>
                 <ion-slide *ngFor="let item of handpickDetails">
                     <ion-card>
                         <img src="./assets/icon/homepage_67.png" />
+                        <div class="collect">
+                            <div class="left">
+                                <ion-icon name="md-heart-outline"></ion-icon>
+                                <ion-icon name="md-heart"></ion-icon>收藏
+                            </div>
+                            <div class="right">21212121人已收藏</div>
+                        </div>
                     </ion-card>
                 </ion-slide>
             </ion-slides>
         </div>
     </div>
-    <div class="parting-line"></div>
+    <div class="background"></div>
+    <!--——————————————————————————————————————————热门单品——————————————————————————————————————————-->
     <div class="hot-other home-content" padding>
         <div class="title">
             <span class="txt">热门单品</span>
@@ -177,7 +153,7 @@
         </div>
     </div>
     <ion-fab right bottom *ngIf="showBackTopBtn" (click)="scrollToTop()">
-        <button ion-fab color="dark" mini><ion-icon name="top" ></ion-icon></button>
+        <button ion-fab color="dark" mini><ion-icon name="ios-arrow-round-up" ></ion-icon></button>
     </ion-fab>
     <!--<button ion-button [navPush]="DirectiveTestPage">direvtive test</button>-->
 </ion-content>

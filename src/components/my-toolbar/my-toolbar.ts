@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ElementRef } from '@angular/core';
 
 /*
   Generated class for the MyToolbar component.
@@ -14,8 +14,15 @@ export class MyToolbarComponent {
 
   text: string;
 
-  constructor() {
+  constructor(
+    public element: ElementRef
+  ) {
     console.log('Hello MyToolbar Component');
   }
-
+  ngAfterViewInit(){
+    console.log(this.element)
+  }
+  click(event){
+    console.log(event)
+  }
 }

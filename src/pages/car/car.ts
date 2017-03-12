@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams } from 'ionic-angular';
+import { NavController, NavParams, AlertController } from 'ionic-angular';
+import { Native } from "../../providers/native";
+
 
 /*
   Generated class for the Car page.
@@ -12,11 +14,36 @@ import { NavController, NavParams } from 'ionic-angular';
   templateUrl: 'car.html'
 })
 export class CarPage {
-
-  constructor(public navCtrl: NavController, public navParams: NavParams) {}
-
+  isEdit:boolean= false;
+  constructor(
+    public navCtrl: NavController,
+    public navParams: NavParams,
+    public native: Native,
+    public alertCtrl: AlertController
+  ) { }
   ionViewDidLoad() {
     console.log('ionViewDidLoad CarPage');
   }
-
+  showConfirm() {
+    let confirm = this.alertCtrl.create({
+      cssClass:'alert-style',
+      subTitle: '确认删除该商品吗？',
+      buttons: [
+        {
+          text: '取消',
+          cssClass:'asdasda',
+          handler: () => {
+            console.log('Disagree clicked');
+          }
+        },
+        {
+          text: '确认',
+          handler: () => {
+            console.log('Agree clicked');
+          }
+        }
+      ],
+    }); 
+    confirm.present();
+  }
 }

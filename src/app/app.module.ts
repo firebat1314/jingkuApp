@@ -1,11 +1,11 @@
 import { NgModule, ErrorHandler } from '@angular/core';
+import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
 import { Storage } from '@ionic/storage';
 import { HttpModule } from '@angular/http';
 import { BrowserModule } from "@angular/platform-browser";
 import { IonicImageViewerModule } from 'ionic-img-viewer';
 import { IonicImageLoader } from 'ionic-image-loader';
 /*页面*/
-import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
 import { MyApp } from './app.component';
 import { ClassifyPage } from '../pages/classify/classify';
 import { CarPage } from '../pages/car/car';
@@ -47,14 +47,15 @@ import { Native } from "../providers/native";
 import { HttpService } from "../providers/http-service";
 /*指令*/
 import { MyDirective } from "../components/my-directive/my-directive";
-import { ImgTabs } from "../components/img-tabs/img-tabs";
 /*组件*/
+import { ImgTabs } from "../components/img-tabs/img-tabs";
 import { SingleCardComponent } from '../components/single-card/single-card'
 import { MyToolbarComponent } from '../components/my-toolbar/my-toolbar'
 import { SingleFoodsItemComponent } from '../components/single-foods-item/single-foods-item'
 import { MeunItemComponent } from '../components/meun-item/meun-item'
 import { CountdownComponent } from '../components/countdown/countdown'
 import { CountInputComponent } from '../components/count-input/count-input'
+import { ImgTabs2Component } from "../components/img-tabs2/img-tabs2";
 
 @NgModule({
   declarations: [
@@ -68,7 +69,7 @@ import { CountInputComponent } from '../components/count-input/count-input'
     LoginPage,
     SignupPage, SignupSecondPage, SignupThirdPage,
     MyDirective, ImgTabs,
-    SingleCardComponent, MyToolbarComponent, SingleFoodsItemComponent, MeunItemComponent, CountdownComponent, CountInputComponent,
+    SingleCardComponent, MyToolbarComponent, SingleFoodsItemComponent, MeunItemComponent, CountdownComponent, CountInputComponent,ImgTabs2Component,
     DirectiveTestPage,
     ForgotPage, ForgotTwoPage, ForgotThreePage,
 
@@ -101,7 +102,7 @@ import { CountInputComponent } from '../components/count-input/count-input'
     WelcomePage,
     LoginPage,
     SignupPage, SignupSecondPage, SignupThirdPage,
-    SingleCardComponent, MyToolbarComponent, SingleFoodsItemComponent, MeunItemComponent, CountdownComponent, CountInputComponent,
+    SingleCardComponent, MyToolbarComponent, SingleFoodsItemComponent, MeunItemComponent, CountdownComponent, CountInputComponent,ImgTabs2Component,
     DirectiveTestPage,
     ForgotPage, ForgotTwoPage
   ],

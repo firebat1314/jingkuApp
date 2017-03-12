@@ -10,11 +10,15 @@ single-foods-item {
             height: 100px;
         }
         h2 {
+            color: #666;
             white-space: pre-wrap;
-            text-overflow: ellipsis;
-            width: 100%;
+            font-size: 1.4rem;
+            text-overflow: -o-ellipsis-lastline;
             overflow: hidden;
-            height: 40px;
+            text-overflow: ellipsis;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
         }
         h3 {
             color: color($colors, danger);

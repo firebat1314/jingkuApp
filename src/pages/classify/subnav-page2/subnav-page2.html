@@ -5,8 +5,22 @@
   Ionic pages and navigation.
 -->
 
-
-<ion-content padding>
-    子页面
-    <button ion-button navPop>返回</button>
+<ion-content>
+    <!--<button ion-button navPop>返回</button>-->
+    <ion-list>
+        <div *ngFor="let group of [{show:''},{show:''},{show:''},{show:''},{show:''},{show:''}]">
+            <div class="collapsible-header" (click)="group.show=!group.show">
+                <ion-item padding-left>
+                    <h2>蔡司眼镜</h2>
+                    <p>说点什么好呢</p>
+                    <ion-icon color="colorsix" [ngClass]="{'rotate': group.show }" name="ios-arrow-down" item-right></ion-icon>
+                </ion-item>
+            </div>
+            <div class="item-accordion" [ngClass]="{'active':group.show}" [hidden]="!group.show ">
+                <ion-item padding-left (click)="onEvent($event)">
+                    <h3>巴拉巴拉</h3>
+                </ion-item>
+            </div>
+        </div>
+    </ion-list>
 </ion-content>
