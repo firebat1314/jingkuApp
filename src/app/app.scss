@@ -175,6 +175,29 @@ ion-modal {
 }
 
 
+/*classSelectStyle*/
+
+.classSelectStyle {
+    min-height: 50px;
+    .segment-button {
+        height: 2.7rem;
+        line-height: 2.5rem;
+    }
+    .segment-md .segment-button {
+        border: none;
+        font-size: 1.6rem;
+        border-right: 1px solid #e0e0e0;
+        &:last-child {
+            border: none;
+        }
+    }
+    .bar-buttons-md[right] {
+        position: absolute;
+        right: 0;
+    }
+}
+
+
 /*fadeIn animate*/
 
 .fade-in-item {

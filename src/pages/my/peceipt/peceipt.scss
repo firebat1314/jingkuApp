@@ -1,0 +1,134 @@
+page-peceipt {
+    .classSelectStyle {
+        border-top: 1px solid #bab8b9;
+    }
+    .receiptSskFor {
+        .an-invoice {
+            padding: 5px;
+            .main {
+                padding: 15px;
+                display: flex;
+                border-bottom: 1px solid #e0e0e0;
+                .type {
+                    margin-right: 10px;
+                    padding-top: 5px;
+                    img {
+                        width: 24px;
+                    }
+                }
+                .right {
+                    >div:first-child {
+                        font-size: 1.8rem;
+                        span {
+                            color: #526bb5;
+                            font-size: 1.5rem;
+                        }
+                    }
+                    >div:last-child {
+                        margin: 6px 0;
+                        font-size: 1.5rem;
+                        color: #999;
+                    }
+                }
+            }
+            .bottom {
+                display: flex;
+                justify-content: flex-end;
+                padding: 5px;
+                .button {
+                    padding: 0 2em;
+                }
+            }
+        }
+    }
+    .receiptList {
+        .reminder {
+            padding: 15px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border-bottom: map-get($colors, border) 1px solid;
+            >div {
+                padding: 6px 26px;
+                color: #999;
+                border-radius: 30px;
+                background: #f7f7f7;
+                ion-icon {
+                    color: #526bb5;
+                }
+            }
+        }
+        .fore.time {
+            display: flex;
+            align-items: center;
+            padding-left: 46px;
+            .name {
+                width: 10rem;
+            }
+            .show {
+                display: flex;
+                .text {
+                    width: 83px;
+                    border: #999 1px solid;
+                    border-right: none;
+                    border-bottom-left-radius: 4px;
+                    border-top-left-radius: 4px;
+                }
+                .btn {
+                    padding: 6px 11px;
+                    color: #fff;
+                    border-radius: 2px;
+                    background: #526bb5;
+                    height: 34px;
+                    margin-right: 10px;
+                }
+            }
+        }
+        .fore {
+            padding: 18px 0 18px 30px;
+            font-size: 1.6rem;
+            border-bottom: map-get($colors, border) 1px solid;
+            &:last-child {
+                border: none;
+            }
+            .name {
+                display: inline-block;
+                width: 12rem;
+            }
+            .value {
+                color: #999;
+                font-size: 1.4rem;
+            }
+        }
+    }
+    .receiptInfo {
+        .head {
+            padding: 10px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: #999;
+        }
+        .fore {
+            padding: 18px 0 18px 30px;
+            font-size: 1.6rem;
+            border-bottom: map-get($colors, border) 1px solid;
+            .name {
+                display: inline-block;
+                width: 12rem;
+            }
+            .value {
+                color: #999;
+                font-size: 1.4rem;
+            }
+        }
+        .bottom {
+            display: flex;
+            justify-content: flex-end;
+            padding: 5px;
+            .button {
+                padding: 0 2em;
+            }
+        }
+    }
+}

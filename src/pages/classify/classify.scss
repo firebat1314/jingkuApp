@@ -22,22 +22,6 @@ page-classify {
                     background: #fff;
                 }
             }
-            .segment-md .segment-button {
-                border: none;
-                font-size: 1.6rem;
-                &:first-child {
-                    border-right: 1px solid #e0e0e0;
-                }
-            }
-            .segment-style {
-                width: 55%;
-                margin: 0 auto;
-                overflow: hidden;
-            }
-            .bar-buttons-md[right] {
-                position: absolute;
-                right: 0;
-            }
         }
     }
     .classify-wrap {

@@ -1,33 +1,51 @@
 import { Component } from '@angular/core';
-import { NavController, App, ModalController, ViewController } from 'ionic-angular';
+import { NavController, ModalController, ViewController } from 'ionic-angular';
 import { LoginPage } from '../login/login';
-import { Storage } from '@ionic/storage';
 
-/*
-  Generated class for the My page.
+import { SettingPage } from "./setting/setting";
+import { AllOrdersPage } from "./all-orders/all-orders";
+import { AccountAssetPage } from "./account-asset/account-asset";
+import { AccountProcessPage } from "./account-process/account-process";
+import { PeceiptPage } from "./peceipt/peceipt";
+import { AccountAreaApplicationPage } from "./account-area-application/account-area-application";
+import { AccountCollectGoodsPage } from "./account-collect-goods/account-collect-goods";
+import { AccountCollectStorePage } from "./account-collect-store/account-collect-store";
+import { AccountHistoryPage } from "./account-history/account-history";
+import { AccountServicePage } from "./account-service/account-service";
+import { AccountHelperPage } from "./account-helper/account-helper";
+import { AccountManagementPage } from "./account-management/account-management";
 
-  See http://ionicframework.com/docs/v2/components/#navigation for more info on
-  Ionic pages and navigation.
-*/
 @Component({
   selector: 'page-my',
   templateUrl: 'my.html'
 })
 export class MyPage {
+  SettingPage = SettingPage;
+  PeceiptPage = PeceiptPage;
+  AllOrdersPage =AllOrdersPage;
+  AccountAssetPage= AccountAssetPage;
+  AccountProcessPage= AccountProcessPage;
+  AccountAreaApplicationPage= AccountAreaApplicationPage;
+  AccountCollectGoodsPage= AccountCollectGoodsPage;
+  AccountCollectStorePage= AccountCollectStorePage;
+  AccountHistoryPage= AccountHistoryPage;
+  AccountServicePage= AccountServicePage;
+  AccountHelperPage= AccountHelperPage;
+  AccountManagementPage = AccountManagementPage;
+
 
   constructor(
     public viewCtrl: ViewController,
     public navCtrl: NavController,
-    public app: App,
     public modalCtrl: ModalController,
-    public storage:Storage
   ) { }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad MyPages');
   }
-  Logout() {
-    this.app.getRootNav().setRoot(LoginPage);
-    this.storage.set('hasLoggedIn',false);
+
+
+  goSettingPage(){
+    this.navCtrl.push(SettingPage)
   }
 }

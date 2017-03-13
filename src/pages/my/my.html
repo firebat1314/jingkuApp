@@ -7,12 +7,143 @@
 <ion-header>
 
     <ion-navbar>
+        <button ion-button clear icon-only (click)="goSettingPage()">
+            <ion-icon name="ios-settings-outline"></ion-icon>
+        </button>
         <ion-title>我的</ion-title>
+        <ion-buttons right>
+            <button ion-button clear icon-only icon-left right [navPush]="MessagePage"><img src="./assets/icon/images/user_cener_1_03.png" width="20"></button>
+        </ion-buttons>
     </ion-navbar>
 
 </ion-header>
 
 
-<ion-content padding>
-    <button ion-button block round (click)="Logout()">退出登录</button>
+<ion-content>
+    <div class="avatar">
+        <ion-list no-margin>
+            <ion-item padding-left no-lines mode="ios" style="border-bottom: 0.5px solid #e0e0e0;">
+                <ion-avatar item-left>
+                    <img src="./assets/icon/images/brand_1_10.jpg">
+                </ion-avatar>
+                <h2>人走茶凉</h2>
+                <p class="vip">
+                    <ion-img src="./assets/icon/images/user_cener_1_04_03.png"></ion-img>
+                    <ion-note>铜牌会员</ion-note>
+                </p>
+                <button [navPush]="AccountManagementPage" color="gray" ion-button round outline icon-left item-right>
+                    <ion-icon><img style="width:1.3rem;" src="./assets/icon/images/user_cener_1_11.png" alt=""></ion-icon>
+                    账号管理
+                </button>
+            </ion-item>
+            <ion-item padding-left [navPush]="AllOrdersPage" no-lines mode="ios" style="border-bottom: 0.5px solid #e0e0e0;">
+                <ion-icon item-left><img src="./assets/icon/images/user_cener_1_15.png" alt=""></ion-icon>
+                全部订单
+                <ion-icon color="gray" name="ios-arrow-forward" item-right></ion-icon>
+            </ion-item>
+            <ion-item>
+                <div class="indent-info">
+                    <div>
+                        <div class="number">54</div>
+                        <div class="text">待付款</div>
+                    </div>
+                    <div>
+                        <div class="number">54</div>
+                        <div class="text">代发货</div>
+                    </div>
+                    <div>
+                        <div class="number">54</div>
+                        <div class="text">待收货</div>
+                    </div>
+                    <div>
+                        <div class="number">54</div>
+                        <div class="text">返修退换</div>
+                    </div>
+                </div>
+            </ion-item>
+        </ion-list>
+    </div>
+    <div class="background"></div>
+    <div class="myAssets">
+        <ion-list no-margin>
+            <ion-item [navPush]="AccountAssetPage" padding-left no-lines mode="ios" style="border-bottom: 0.5px solid #e0e0e0;">
+                <ion-icon item-left><img src="./assets/icon/images/user_cener_1_19.png" alt=""></ion-icon>
+                我的资产
+            </ion-item>
+            <ion-item padding-left>
+                <div class="myAssets-info">
+                    <div>
+                        <div class="number">4张可用</div>
+                        <div class="text">优惠券</div>
+                    </div>
+                    <div>
+                        <div class="number">54</div>
+                        <div class="text">积分</div>
+                    </div>
+                    <div>
+                        <div class="number">121212.00</div>
+                        <div class="text">余额</div>
+                    </div>
+                    <div>
+                        <div class="number">敬请期待</div>
+                        <div class="text">白条</div>
+                    </div>
+                </div>
+            </ion-item>
+        </ion-list>
+    </div>
+    <div class="background"></div>
+    <ion-list no-margin>
+        <ion-item [navPush]="AccountAssetPage" padding-left mode="ios">
+            <ion-icon item-left><img src="./assets/icon/images/user_cener_1_23.png" alt=""></ion-icon>
+            来镜加工
+            <ion-icon color="gray" name="ios-arrow-forward" item-right></ion-icon>
+        </ion-item>
+        <ion-item [navPush]="PeceiptPage" padding-left mode="ios" [navPush]="PeceiptPage">
+            <ion-icon item-left><img src="./assets/icon/images/user_cener_1_26.png" alt=""></ion-icon>
+            发票管理
+            <ion-icon color="gray" name="ios-arrow-forward" item-right></ion-icon>
+        </ion-item>
+    </ion-list>
+    <div class="background"></div>
+    <ion-list no-margin>
+        <ion-item [navPush]="AccountAreaApplicationPage" padding-left mode="ios">
+            <ion-icon item-left><img src="./assets/icon/images/user_cener_1_28.png" alt=""></ion-icon>
+            地区申请
+            <ion-icon color="gray" name="ios-arrow-forward" item-right></ion-icon>
+        </ion-item>
+    </ion-list>
+    <div class="background"></div>
+    <ion-list no-margin>
+        <ion-item [navPush]="AccountCollectGoodsPage" padding-left mode="ios">
+            <ion-icon item-left><img src="./assets/icon/images/user_cener_1_30.png" alt=""></ion-icon>
+            收藏的商品
+            <ion-icon color="gray" name="ios-arrow-forward" item-right></ion-icon>
+        </ion-item>
+        <ion-item [navPush]="AccountCollectStorePage" padding-left mode="ios">
+            <ion-icon item-left><img src="./assets/icon/images/user_cener_1_32.png" alt=""></ion-icon>
+            收藏的店铺
+            <ion-icon color="gray" name="ios-arrow-forward" item-right></ion-icon>
+        </ion-item>
+        <ion-item [navPush]="AccountHistoryPage" padding-left mode="ios">
+            <ion-icon item-left><img src="./assets/icon/images/user_cener_1_34.png" alt=""></ion-icon>
+            浏览记录
+            <ion-icon color="gray" name="ios-arrow-forward" item-right></ion-icon>
+        </ion-item>
+    </ion-list>
+    <div class="background"></div>
+    <ion-list no-margin>
+        <ion-item [navPush]="AccountServicePage" padding-left mode="ios">
+            <ion-icon item-left><img src="./assets/icon/images/user_cener_1_36.png" alt=""></ion-icon>
+            镜库客服
+            <ion-icon color="gray" name="ios-arrow-forward" item-right></ion-icon>
+        </ion-item>
+        <ion-item [navPush]="AccountHelperPage" padding-left mode="ios">
+            <ion-icon item-left><img src="./assets/icon/images/user_cener_1_38.png" alt=""></ion-icon>
+            帮助中心
+            <ion-icon color="gray" name="ios-arrow-forward" item-right></ion-icon>
+        </ion-item>
+    </ion-list>
+    <div class="background"></div>
+
 </ion-content>

@@ -53,13 +53,6 @@ export class UserData {
         return this.post(this.ip + '/Login/getMobileCode', data)
     }
 
-    logout() {
-        this.storage.remove(this.HAS_LOGGED_IN);
-        this.storage.remove("token");
-        this.storage.remove("username");
-        this.events.publish("user:logout");
-    }
-
     setToken(token) {
         this.storage.set("token", token);
     }

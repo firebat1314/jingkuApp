@@ -68,15 +68,15 @@ export class ClassifyPage {
     this.showCheckBox = false;
   }
   ngAfterViewInit() {
-    if (this.classSelect == "classify") {
-      setInterval(() => {
+    setInterval(() => {
+      if (this.classSelect == "classify") {
         if (!this.myNav.canGoBack()) {
           this.showBackBtn = false;
         } else {
           this.showBackBtn = true;
         }
-      }, 1000)
-    }
+      }
+    }, 1000)
   }
   ngAfterContentChecked() {
     this.content.resize();

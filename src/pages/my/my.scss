@@ -1,3 +1,45 @@
 page-my {
-
+    @mixin info {
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        div {
+            text-align: center;
+            .text {
+                color: map_get($colors, gray);
+                margin-top: 5px;
+                font-size: 1.2rem;
+            }
+        }
+    }
+    .item>ion-icon:first-child img {
+        width: 2rem;
+    }
+    .avatar {
+        .indent-info {
+            @include info
+        }
+        .item {
+            h2 {
+                font-size: 2rem;
+            }
+            .vip {
+                display: flex;
+                margin-top: 10px;
+                ion-img {
+                    margin-right: 10px;
+                }
+            }
+        }
+        .item ion-avatar ion-img,
+        .item ion-avatar img {
+            width: 90px;
+            height: 90px;
+        }
+    }
+    .myAssets {
+        .myAssets-info {
+            @include info
+        }
+    }
 }
