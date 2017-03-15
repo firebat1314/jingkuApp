@@ -134,17 +134,24 @@ export class UserData {
         // this.native.hideLoading();
         let msg: string = '请求失败';
         if (error.status == 401) {
-            msg = '用户失效，请重新登陆';
-           
-            console.log('账号登陆异常');
+            msg = '数据加载出错~';
+            if (error.statusText == 'Unauthorized') {
+                msg = '用户失效，请重新登陆';
+                this.myAlert(msg)
+            }
+            console.log(msg);
         }
         console.log(error);
+
+        return { success: false, msg: msg };
+    }
+    myAlert(msg){
         if (this.showToastTime) {
             this.native.showToast(msg);
             this.showToastTime = false;
              let alert = this.alertCtrl.create({
                 title: '提示',
-                subTitle: '用户失效，请重新登陆',
+                subTitle: msg,
                 buttons: [{
                     text: '确定',
                     handler: () => {
@@ -159,8 +166,6 @@ export class UserData {
             alert.present();
             setTimeout(() => this.showToastTime = true, 2000);
         }
-
-        return { success: false, msg: msg };
     }
     /*private handleError(error: Response | any) {
         // In a real world app, we might use a remote logging infrastructure

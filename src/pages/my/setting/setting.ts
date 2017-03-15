@@ -1,7 +1,8 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams, App } from 'ionic-angular';
+import { NavController, NavParams, App, AlertController } from 'ionic-angular';
 import { LoginPage } from "../../login/login";
 import { Storage } from '@ionic/storage';
+import { AboutUsPage } from "./about-us/about-us";
 
 /*
   Generated class for the Setting page.
@@ -20,16 +21,60 @@ export class SettingPage {
     public navParams: NavParams,
     public app: App,
     public storage: Storage,
-
+    public alert: AlertController
   ) { }
-
+  goAboutUs(){
+    this.navCtrl.push(AboutUsPage);
+  }
+  clearCathe() {
+    let myalert = this.alert.create({
+      subTitle: '确定清除本地缓存？',
+      cssClass: 'alert-style',
+      buttons: [
+        {
+          text: '取消',
+          role: 'cancel',
+          handler: () => {
+            console.log('Cancel clicked');
+          }
+        },
+        {
+          text: '确认',
+          handler: () => {
+            console.log('ok clicked');
+          }
+        }
+      ]
+    });
+    myalert.present();
+  }
+  signOut() {
+    let myalert = this.alert.create({
+      subTitle: '确定退出登陆？',
+      cssClass: 'alert-style',
+      buttons: [
+        {
+          text: '取消',
+          role: 'cancel',
+          handler: () => {
+            console.log('Cancel clicked');
+          }
+        },
+        {
+          text: '确认',
+          handler: () => {
+            console.log('ok clicked');
+            this.app.getRootNav().setRoot(LoginPage);
+            this.storage.set('hasLoggedIn', false);
+            this.storage.remove("token");
+            this.storage.remove("username");
+          }
+        }
+      ]
+    });
+    myalert.present();
+  }
   ionViewDidLoad() {
     console.log('ionViewDidLoad SettingPage');
-  }
-  Logout() {
-    this.app.getRootNav().setRoot(LoginPage);
-    this.storage.set('hasLoggedIn', false);
-    this.storage.remove("token");
-    this.storage.remove("username");
   }
 }

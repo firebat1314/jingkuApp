@@ -5,10 +5,8 @@
   Ionic pages and navigation.
 -->
 <ion-header>
-
-    <ion-navbar>
-
-        <ion-toolbar>
+    <ion-toolbar>
+        <ion-navbar>
             <ion-searchbar [navPush]="SearchPage" [(ngModel)]="myHomeSearch" (ionInput)="onInput($event)" (ionCancel)="onCancel($event)" placeholder="博士伦" animated="false" spellcheck="true" mode="ios">
             </ion-searchbar>
             <ion-buttons end>
@@ -17,8 +15,8 @@
                 <ion-icon name="md-apps" *ngIf="listStyleflag" ></ion-icon>
                 </button>
             </ion-buttons>
-        </ion-toolbar>
-    </ion-navbar>
+        </ion-navbar>
+    </ion-toolbar>
     <ion-toolbar>
         <my-toolbar></my-toolbar>
     </ion-toolbar>
@@ -36,7 +34,7 @@
         <single-foods-item [data]="data" *ngIf="listStyleflag"></single-foods-item>
     </div>
 
-    <ion-infinite-scroll (ionInfinite)="doInfinite($event)">
+    <ion-infinite-scroll *ngIf="" (ionInfinite)="doInfinite($event)">
         <ion-infinite-scroll-content loadingSpinner="bubbles" loadingText="正在加载...">
         </ion-infinite-scroll-content>
     </ion-infinite-scroll>

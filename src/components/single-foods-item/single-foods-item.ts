@@ -23,9 +23,7 @@ export class SingleFoodsItemComponent {
 
   animateItems = [];
   animateClass: any;
-  ParticularsPage:any= ParticularsPage;
-
-
+  ParticularsPage: any = ParticularsPage;
 
   onEvent(event: string, item: any, e: any) {
     if (e) {
@@ -35,33 +33,32 @@ export class SingleFoodsItemComponent {
       this.events[event](item);
     }
   }
-
   ngAfterViewInit() {
     let that = this;
     for (let i = 0; i < that.data.length; i++) {
       setTimeout(function () {
         that.animateItems.push(that.data[i]);
-                  that.data[i].showBtn = false;
+        that.data[i].showBtn = false;
 
-      }, 200 * i);
+      }, 80 * i);
     }
   }
-  clearBtn(){
-    for(let i = 0;i < this.animateItems.length;i++){
+  clearBtn() {
+    for (let i = 0; i < this.animateItems.length; i++) {
       this.animateItems[i].showBtn = false;
     }
   }
-  close(item,e){
+  close(item, e) {
     e.stopPropagation();
     item.showBtn = false;
 
   }
-  tapEvent(item,e){
-    console.log("长按指令",e)
+  tapEvent(item, e) {
+    console.log("长按指令", e)
     this.clearBtn();
-    item.showBtn=true;
+    item.showBtn = true;
   }
-    ngOnDestroy() {
+  ngOnDestroy() {
     console.log("销毁指令")
     this.clearBtn()
   }

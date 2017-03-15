@@ -19,10 +19,7 @@
             <ion-slide *ngFor="let item of getGoodsGallery">
                 <ion-card>
                     <img src="{{item.img_url}}" imageViewer />
-                    <!--<div class="card-title">Amsterdam</div>-->
-                    <!--<div class="card-subtitle">64 Listings</div>-->
                 </ion-card>
-
             </ion-slide>
         </ion-slides>
     </div>
@@ -34,7 +31,7 @@
         <div class="right" [ngSwitch]="getGoodsInfo.type">
             <p *ngSwitchCase="2">距离活动结束还剩：</p>
             <p *ngSwitchCase="1">距离活动开始还剩：</p>
-            <p *ngSwitchDefault>这里是倒计时~</p>
+            <p *ngSwitchDefault>(^_^)</p>
             <p *ngIf="getGoodsInfo.down_time">
                 <countdown [endDate]="getGoodsInfo.down_time"></countdown>
             </p>
@@ -68,71 +65,57 @@
         </div>
     </div>
     <div class="background"></div>
-    <div class="coupon" item-padding>
-        <ion-list mode="md" (click)="presentModal('优惠券')">
-            <ion-item>
-                领券
-                <img src="./assets/icon/images/particulars_03.jpg" alt="">
+    <div class="coupon">
+        <ion-list mode="md" no-margin>
+            <button mode="ios" (click)="presentModal('优惠券')" ion-item>
+                    领券
+                <!--<img src="./assets/icon/images/particulars_03.jpg" alt="">-->
                 <ion-note item-right>
                     点击领取
                 </ion-note>
-                <ion-icon name="ios-arrow-forward" item-right></ion-icon>
-            </ion-item>
-            <ion-item (click)="presentModal('买一盒送一盒',$event)">
+            </button>
+            <button mode="ios" ion-item (click)="presentModal('买一盒送一盒',$event)">
                 <img src="./assets/icon/images/particulars_09.jpg" style="height: 20px;" alt=""> <span>买一盒送一盒</span>
-
-                <ion-icon name="ios-arrow-forward" item-right></ion-icon>
-            </ion-item>
-            <!--<ion-item (click)="presentModal('买一盒送一盒',$event)">
-
-                <img src="./assets/icon/images/particulars_09.jpg" style="height: 20px;" alt=""> <span>买一盒送一盒</span>
-
-                <ion-icon name="ios-arrow-forward" item-right></ion-icon>
-            </ion-item>-->
+            </button>
         </ion-list>
+    </div>
+    <div class="background"></div>
+    <button mode="ios" ion-item no-lines (click)="presentModal('发货地址')">
+        发货地：北京
+        <ion-note>
+            配送时间：预计7-14个工作日送达
+        </ion-note>
+    </button>
 
-    </div>
     <div class="background"></div>
-    <div class="to-adress" (click)="presentModal('发货地址')" item-padding>
-        <ion-item no-lines>
-            发货地：北京
-            <ion-note>
-                配送时间：预计7-14个工作日送达
-            </ion-note>
-        </ion-item>
-    </div>
-    <div class="background"></div>
-    <div class="will-address" item-padding>
-        <ion-item no-lines (click)="presentModal('配送地址')">
+    <div class="will-address">
+        <button mode="ios" ion-item (click)="presentModal('配送地址')">
             送至：北京<span class="nogoods">（无货）</span>
-            <ion-icon name="ios-arrow-forward" item-right></ion-icon>
-        </ion-item>
-        <div class="bottom">
+        </button>
+        <button ion-item no-lines>
             <ion-note>
                 快递：该商品满99包邮，运费10元
             </ion-note>
-        </div>
+        </button>
     </div>
     <div class="background"></div>
-    <div class="attribute" item-padding>
-        <ion-item (click)="presentModal('选择商品属性')" no-lines>
+    <div class="attribute">
+        <button mode="ios" ion-item (click)="presentModal('选择商品属性')" no-lines>
             选择：规格、光度等
-            <ion-icon name="ios-arrow-forward" item-right></ion-icon>
-        </ion-item>
+        </button>
     </div>
     <div class="background"></div>
     <div class="goods-service">
-        <ion-item mode="ios" no-lines item-padding (click)="presentModal('商品服务保障')">
+        <button ion-item mode="ios" no-lines (click)="presentModal('商品服务保障')">
             <ion-icon name="bao1" item-left></ion-icon>
             商品服务保障
-            <ion-icon name="ios-arrow-forward" item-right></ion-icon>
-        </ion-item>
+        </button>
         <div class="bottom">
             <ion-note>
                 <img src="./assets/icon/images/particulars_05_03.jpg" alt=""> 正品保障
             </ion-note>
             <ion-note>
-                <img src="./assets/icon/images/particulars_05_05.jpg" alt=""> 白条支付
+                <ion-icon color="danger" name="baitiao1"></ion-icon> 白条支付
             </ion-note>
         </div>
     </div>
@@ -162,15 +145,13 @@
         </div>
         <div class="btn">
             <button ion-button icon-right icon-left color="dark" outline>
-                 <ion-icon>
-                     <img src="./assets/icon/images/particulars_23.jpg">
-                </ion-icon>
+                 <ion-icon name="shop"></ion-icon>
                 进入店铺
                 <ion-icon name="ios-arrow-forward"></ion-icon>
             </button>
         </div>
         <ion-list class="safeguard" no-margin>
-            <ion-item>
+            <button mode="ios" no-lines ion-item>
                 <div class="note-wrap">
                     <ion-note>
                         <ion-icon>
@@ -197,29 +178,28 @@
                         普通发票
                     </ion-note>
                 </div>
-                <ion-icon name="ios-arrow-forward" item-right></ion-icon>
-            </ion-item>
-            <ion-item mode="ios" no-lines>
-                <ion-icon item-left>
-                    <img src="./assets/icon/images/particulars_2_30.jpg">
-                </ion-icon>
+            </button>
+            <button ion-item no-lines>
+                <ion-icon item-left name="ios-pin-outline"></ion-icon>
                 <ion-note>
                     北京市朝阳区.............
                 </ion-note>
                 <ion-icon item-right name="ios-call"></ion-icon>
-            </ion-item>
+            </button>
         </ion-list>
     </div>
     <div class="background"></div>
     <div class="group-and-recommend">
-        <ion-segment [(ngModel)]="selectGroupRecommend" mode="md">
-            <ion-segment-button value="group">
-                套餐组合
-            </ion-segment-button>
-            <ion-segment-button value="recommend">
-                为你推荐
-            </ion-segment-button>
-        </ion-segment>
+        <div class="segment-style">
+            <ion-segment [(ngModel)]="selectGroupRecommend" mode="md">
+                <ion-segment-button value="group">
+                    套餐组合
+                </ion-segment-button>
+                <ion-segment-button value="recommend">
+                    为你推荐
+                </ion-segment-button>
+            </ion-segment>
+        </div>
         <div [ngSwitch]="selectGroupRecommend">
             <div class="group" *ngSwitchCase="'group'">
                 <ion-slides pager>
@@ -377,10 +357,7 @@
     <div class="background"></div>
     <div class="background"></div>
     <div class="background"></div>
-    <div class="background"></div>
-    <div class="background"></div>
-    <div class="background"></div>
-    <div class="background"></div>
+
 
     <!--<div class="warning-show">
         <span>请用电脑下单！</span>
@@ -388,19 +365,25 @@
 </ion-content>
 <ion-footer>
     <div class="main">
-        <div class="left">
+        <div class="left" [ngSwitch]="getGoodsInfo?.is_collect">
             <div>
-                <ion-icon name="ios-home-outline"></ion-icon>
+                <ion-icon style="font-weight: 700;" name="mess"></ion-icon>
                 <span>客服</span>
             </div>
-            <div (click)="beCareFor()">
-                <ion-icon *ngIf="getGoodsInfo&&getGoodsInfo.is_collect" color="danger" name="ios-heart"></ion-icon>
-                <span *ngIf="getGoodsInfo&&getGoodsInfo.is_collect">已关注</span>
-                <ion-icon *ngIf="getGoodsInfo&&!getGoodsInfo.is_collect" name="ios-heart-outline"></ion-icon>
-                <span *ngIf="getGoodsInfo&&!getGoodsInfo.is_collect">关注</span>
+            <div *ngSwitchCase="1" (click)="beCareFor()">
+                <ion-icon style="font-weight: 700;" color="danger" name="ios-heart"></ion-icon>
+                <span>已关注</span>
+            </div>
+            <div *ngSwitchCase="0" (click)="beCareFor()">
+                <ion-icon style="font-weight: 700;" name="ios-heart-outline"></ion-icon>
+                <span>关注</span>
+            </div>
+            <div *ngSwitchDefault (click)="beCareFor()">
+                <ion-icon style="font-weight: 700;" name="ios-heart-outline"></ion-icon>
+                <span>关注</span>
             </div>
             <div>
-                <ion-icon name="ios-home-outline"></ion-icon>
+                <ion-icon name="shop"></ion-icon>
                 <span>店铺</span>
             </div>
         </div>

@@ -40,7 +40,7 @@
                 <!--<img src="./assets/icon/images/user_cener_2_06.png" alt="">-->
             </div>
             <div class="bottom">
-                <button ion-button color="dark" (click)="goInvoiceQualificationPage()">索取</button>
+                <button ion-button color="dark" (click)="goInvoiceAskFor1Page()">索取</button>
             </div>
             <div class="background"></div>
         </div>
@@ -56,7 +56,7 @@
                 <!--<img src="./assets/icon/images/user_cener_2_06.png" alt="">-->
             </div>
             <div class="bottom">
-                <button ion-button color="dark" (click)="goInvoiceQualificationPage()">索取</button>
+                <button ion-button color="dark" (click)="goInvoiceAskFor1Page()">索取</button>
             </div>
             <div class="background"></div>
         </div>
@@ -72,7 +72,7 @@
                 <!--<img src="./assets/icon/images/user_cener_2_06.png" alt="">-->
             </div>
             <div class="bottom">
-                <button ion-button color="dark" (click)="goInvoiceQualificationPage()">索取</button>
+                <button ion-button color="dark" (click)="goInvoiceAskFor1Page()">索取</button>
             </div>
             <div class="background"></div>
         </div>
@@ -158,7 +158,7 @@
     </div>
     <div class="receiptInfo" *ngSwitchCase="'receiptInfo'">
         <div class="head">
-            <button ion-button color="blueBtn">新增发票资质</button>发票资质审核通过后不可删除修改
+            <button ion-button color="blueBtn" (click)="goInvoiceQualificationPage()">新增发票资质</button>发票资质审核通过后不可删除修改
         </div>
         <div class="background"></div>
         <div class="an-invoice">

@@ -92,9 +92,10 @@
     width: 70%;
 }
 
-ion-item.item {
+
+/*ion-item.item {
     padding-left: 0;
-}
+}*/
 
 ion-title.title-md {
     position: absolute;
@@ -175,10 +176,12 @@ ion-modal {
 }
 
 
-/*classSelectStyle*/
+/*segment-style*/
 
-.classSelectStyle {
+.segment-style {
     min-height: 50px;
+    border-bottom: 1px solid #e0e0e0;
+    display: flex;
     .segment-button {
         height: 2.7rem;
         line-height: 2.5rem;

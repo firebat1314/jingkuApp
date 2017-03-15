@@ -6,17 +6,17 @@
 -->
 
 <div class="show">
-    <img src="./assets/icon/homepage_55.png" alt="">{{selectedIndex}}
+    <img (click)="goParticulars()" src="{{ slides?slides[selectedIndex]?.goods_img:'' }}" alt="">
 </div>
 <div class="pick">
     <ion-slides class="slide-title" [slidesPerView]="pageNumber" paginationHide='true' paginationClickable='true'>
         <ion-slide *ngFor="let slide of slides; let i = index;">
             <div (click)="onClick(i)">
                 <div class="slide-title-unit" [ngClass]="{'slide-title-active': selectedIndex == i}">
-                    <img src="./assets/icon/homepage_67.png" alt="">
+                    <img src="{{slide?.thumb}}" alt="{{slide?.name}}">
                     <div class="info">
-                        <div class="name">啊实打实大苏打撒打算啊实打实</div>
-                        <div class="price">￥4520.0</div>
+                        <div class="name">{{slide?.name}}</div>
+                        <div class="price">{{slide?.market_price}}</div>
                     </div>
                 </div>
             </div>

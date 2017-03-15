@@ -54,7 +54,6 @@ export class HomePage {
 
   bannerImgs;
   categoryAddetatils;
-  handpickDetails;
   mySlideOptions;
   getCategoryRecommendGoods;
   getCategoryRecommendGoodsBest;
@@ -86,20 +85,16 @@ export class HomePage {
       console.log("热门品牌下的品牌列表", res)
       this.getBrands = res.data;
     }))
-    this.httpService.getHandpickDetails().then((res) => {
-      console.log("精选专题下热门商品", res)
-      this.handpickDetails = res.data;
-    })
     this.httpService.getCategoryRecommendGoodsHot().then(((res) => {
-      console.log("精选专题下的商品列表", res)
+      console.log("精选专题下的热门", res)
       this.getCategoryRecommendGoodsHot = res.data;
     }))
     this.httpService.getCategoryRecommendGoods().then((res) => {
-      console.log("新品", res)
+      console.log("精选专题下新品", res)
       this.getCategoryRecommendGoods = res.data;
     })
     this.httpService.getCategoryRecommendGoodsBest().then(((res) => {
-      console.log("精品商品", res)
+      console.log("精选专题下最好", res)
       this.getCategoryRecommendGoodsBest = res.data;
     }))
   }
@@ -107,22 +102,24 @@ export class HomePage {
 
   }
   onSlideClick(event) {
-    console.log(event)
+    // console.log(event)
   }
 
   clickBanner(item) {
     if (item.link_type.type_name == 'category') {
-      this.navCtrl.push(ClassifyPage, {
+      this.navCtrl.parent.select(1);
+      /*this.navCtrl.push(ClassifyPage, {
         categoryId: item.link_type.type_value
-      })
+      })*/
     } else if (item.link_type.type_name == 'goods') {
       this.navCtrl.push(ParticularsPage, {
         goodsId: item.link_type.type_value
       })
     } else if (item.link_type.type_name == "brand") {
-      this.navCtrl.push(ClassifyPage, {
+      this.navCtrl.parent.select(1);
+      /*this.navCtrl.push(ClassifyPage, {
         brandId: item.link_type.type_value
-      })
+      })*/
     }
   }
   ionViewDidLoad() {

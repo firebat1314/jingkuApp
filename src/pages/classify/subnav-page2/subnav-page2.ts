@@ -1,5 +1,7 @@
 import { Component, ViewChild } from '@angular/core';
 import { NavController, NavParams, Content } from 'ionic-angular';
+import { HttpService } from "../../../providers/http-service";
+import { BrandListPage } from "../../home/brand-list/brand-list";
 
 /*
   Generated class for the SubnavPage2 page.
@@ -12,19 +14,30 @@ import { NavController, NavParams, Content } from 'ionic-angular';
   templateUrl: 'subnav-page2.html'
 })
 export class SubnavPage2Page {
+  catId: any;
 
-
-  @ViewChild(Content) myContent: Content;
-
-  constructor(public navCtrl: NavController, public navParams: NavParams) { }
-
+  getChildrenCaCtegory;
+  constructor(
+    public navCtrl: NavController,
+    public navParams: NavParams,
+    public httpService:HttpService
+  ) {
+    this.catId = this.navParams.get('catId');
+  }
+  ngOnInit(){
+    this.httpService.getChildrenCaCtegory({cat_id:this.catId}).then((res)=>{
+      console.log('子分类',res);
+      this.getChildrenCaCtegory = res.data;
+    })
+  }
   ionViewDidLoad() {
     console.log('ionViewDidLoad SubnavPage2Page');
   }
   ngAfterViewInit() { }
-  onEvent(e) {
+  onEvent(id,e) {
     if (e) {
       e.stopPropagation();
     }
+    this.navCtrl.parent.push(BrandListPage,{listId:id})
   }
 }

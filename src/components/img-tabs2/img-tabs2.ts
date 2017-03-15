@@ -1,4 +1,6 @@
 import { Component, Input, EventEmitter, Output } from '@angular/core';
+import { NavController } from 'ionic-angular';
+import { ParticularsPage } from "../../pages/home/particulars/particulars";
 
 /*
   Generated class for the ImgTabs2 component.
@@ -13,13 +15,19 @@ import { Component, Input, EventEmitter, Output } from '@angular/core';
 export class ImgTabs2Component {
   selectedIndex: number = 0;
 
-  @Input("slides") slides: string[] = [];
+  @Input("slides") slides = [];
   @Input("pageNumber") pageNumber: number = 5;
   @Output("slideClick") slideClick = new EventEmitter<number>();
-  constructor() {
+  constructor(
+    public navCtrl:NavController
+  ) {
     console.log('Hello ImgTabs2 Component');
   }
-
+  goParticulars(){
+    this.navCtrl.push(ParticularsPage,{
+      goodsId:this.slides[this.selectedIndex].id
+    })
+  }
   onClick(index) {
     this.selectedIndex = index;
     this.slideClick.emit(index);

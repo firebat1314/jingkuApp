@@ -13,6 +13,24 @@
 </ion-header>
 
 
-<ion-content padding>
-
+<ion-content>
+    <button [navPush]="AccountInfoPage" ion-item mode="ios" no-lines>
+        <ion-thumbnail item-left>
+             <img style="border-radius: 50%;" src="./assets/icon/images/brand_1_10.jpg">
+        </ion-thumbnail>
+        <h2>人走茶凉</h2>
+    </button>
+    <div class="background"></div>
+    <button [navPush]="AccountInfoPage" ion-item mode="ios">
+        <h2>个人信息</h2>
+    </button>
+    <button [navPush]="MemberCenterPage" ion-item mode="ios">
+        <h2>会员中心</h2>
+    </button>
+    <button [navPush]="ShippingAddressPage" ion-item mode="ios">
+        <h2>收获地址</h2>
+    </button>
+    <button [navPush]="AccountSecurityPage" ion-item mode="ios">
+        <h2>账号安全</h2>
+    </button>
 </ion-content>

@@ -21,8 +21,6 @@ export class ClassifyPage {
   showBackBtn: boolean = false;
   showCheckBox: boolean = false;
 
-  getCategorys;
-  getChildrenCaCtegory;
   categoryGoods;
   getGoodsAttribute;
 
@@ -34,22 +32,12 @@ export class ClassifyPage {
     public navCtrl: NavController,
     public navParams: NavParams,
     public httpService: HttpService,
-  ) {
-
-  }
-
+  ) {}
   ionViewDidLoad() {
     console.log('ionViewDidLoad ClassifyPage');
   }
   ngOnInit() {
-    this.httpService.getCategorys().then((res) => {
-      console.log('获取九大分类', res)
-      this.getCategorys = res.data;
-    })
-    this.httpService.getChildrenCaCtegory().then((res) => {
-      console.log('获取九大分类下的子分类', res)
-      this.getChildrenCaCtegory = res;
-    })
+
     this.httpService.categoryGoods().then((res) => {
       console.log('商品分类列表页(筛选)', res)
       this.categoryGoods = res;
@@ -58,7 +46,6 @@ export class ClassifyPage {
       console.log('获取初始商品属性', res)
       this.getGoodsAttribute = res;
     })
-
   }
   checkBoxToggle() {
     this.showCheckBox = !this.showCheckBox;

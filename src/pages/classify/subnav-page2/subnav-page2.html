@@ -8,18 +8,20 @@
 <ion-content>
     <!--<button ion-button navPop>返回</button>-->
     <ion-list>
-        <div *ngFor="let group of [{show:''},{show:''},{show:''},{show:''},{show:''},{show:''}]">
+        <div *ngFor="let group of getChildrenCaCtegory">
             <div class="collapsible-header" (click)="group.show=!group.show">
                 <ion-item padding-left>
-                    <h2>蔡司眼镜</h2>
-                    <p>说点什么好呢</p>
+                    <h2>{{group.cat_name}}</h2>
+                    <p> </p>
                     <ion-icon color="colorsix" [ngClass]="{'rotate': group.show }" name="ios-arrow-down" item-right></ion-icon>
                 </ion-item>
             </div>
-            <div class="item-accordion" [ngClass]="{'active':group.show}" [hidden]="!group.show ">
-                <ion-item padding-left (click)="onEvent($event)">
-                    <h3>巴拉巴拉</h3>
-                </ion-item>
+            <div class="item-accordion" [ngStyle]="{'height':group.show?group.cat_list.length*50+'px':0}" [hidden]="!group.show ">
+                <ion-list no-margin>
+                    <ion-item padding-left *ngFor="let item of group.cat_list" (click)="onEvent(item.cat_id,$event)">
+                        <h3>{{item.cat_name}}</h3>
+                    </ion-item>
+                </ion-list>
             </div>
         </div>
     </ion-list>

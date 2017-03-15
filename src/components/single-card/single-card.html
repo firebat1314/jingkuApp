@@ -6,10 +6,10 @@
 -->
 <ion-card *ngFor="let item of animateItems; let i = index;" mode="md">
     <div class="card-wrap" (press)="tapEvent(item,$event)" [ngClass]="animateClass" [navPush]="ParticularsPage" [navParams]="{goodsId:item.id}">
-        <div class="img" padding><img src="./assets/icon/homepage_71.png" alt=""></div>
+        <div class="img" padding><img src="{{item?.thumb}}" alt="{{item.short_name}}<"></div>
         <div class="info" padding>
             <div class="text">{{item.short_name}}</div>
-            <div class="price">{{item.market_price}}</div>
+            <div class="price">{{item.shop_price}}</div>
         </div>
         <!--<ion-fab center middle *ngIf="showBtn" >
             <button ion-fab mini><ion-icon name="add"></ion-icon></button>

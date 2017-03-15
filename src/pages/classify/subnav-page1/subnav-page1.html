@@ -7,14 +7,7 @@
 
 <ion-content>
     <div class="classify-wrap">
-        <div (click)="gotwo()"><img src="./assets/icon/images/classIfy_1_03.jpg" alt=""><span>隐形</span></div>
-        <div><img src="./assets/icon/images/classIfy_1_05.jpg" alt=""><span>美瞳</span></div>
-        <div><img src="./assets/icon/images/classIfy_1_09.jpg" alt=""><span>护理液</span></div>
-        <div><img src="./assets/icon/images/classIfy_1_10.jpg" alt=""><span>眼镜片</span></div>
-        <div><img src="./assets/icon/images/classIfy_1_13.jpg" alt=""><span>眼镜架</span></div>
-        <div><img src="./assets/icon/images/classIfy_1_15.jpg" alt=""><span>太阳镜</span></div>
-        <div><img src="./assets/icon/images/classIfy_1_20.jpg" alt=""><span>配件</span></div>
-        <div><img src="./assets/icon/images/classIfy_1_22.jpg" alt=""><span>工具</span></div>
-        <div><img src="./assets/icon/images/classIfy_1_25.jpg" alt=""><span>美妆商城</span></div>
+        <div (click)="gotwo(item.cat_id)" *ngFor="let item of getCategorys"><img src="{{item.thumb}}" alt=""><span>{{item.cat_name}}</span></div>
+
     </div>
 </ion-content>

@@ -39,7 +39,8 @@ export class ParticularsPage {
     private http: HttpService,
     public modalCtrl: ModalController
   ) {
-    this.goodsId = this.navParams.get('goodsId');
+    this.goodsId = this.navParams.get('goodsId')||'3994';
+    console.log(this.goodsId)
   }
   presentModal(str, evt) {
     if (evt) {evt.stopPropagation()}

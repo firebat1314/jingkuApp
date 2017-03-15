@@ -21,98 +21,19 @@ export class BrandListPage {
     listStyleflag: Boolean;
     ParticularsPage: any = ParticularsPage;
 
-
-    constructor(public navCtrl: NavController, public navParams: NavParams, public httpService: HttpService) {
-        console.log(this.navParams.get('list'))
-
-    }
-    ngAfterViewInit() {
-        if (this.navParams.get('list') == 'singleHot') {
-            this.httpService.getHandpickDetails().then((res) => {
-                this.data = res.data;
-                console.log(this.data)
-            })
-        } else {
-            this.data = [
-                {
-                    id: 1,
-                    short_name: '博士伦美瞳明透亮眸半年时段博士伦美瞳明透亮眸半年时段博士伦美瞳明透亮眸半年时段balbalbalalabalabalabala',
-                    market_price: '450.00',
-                    goods_img: 'assets/icon/homepage_71.png',
-                }, {
-                    id: 1,
-                    short_name: '博士伦美瞳明透亮眸半年时段博士伦美瞳明透亮眸半年时段博士伦美瞳明透亮眸半年时段balbalbalalabalabalabala',
-                    market_price: '450.00',
-                    goods_img: 'assets/icon/homepage_71.png',
-                }, {
-                    id: 1,
-                    short_name: '博士伦美瞳明透亮眸半年时段博士伦美瞳明透亮眸半年时段博士伦美瞳明透亮眸半年时段balbalbalalabalabalabala',
-                    market_price: '450.00',
-                    goods_img: 'assets/icon/homepage_71.png',
-                }, {
-                    id: 1,
-                    short_name: '博士伦美瞳明透亮眸半年时段博士伦美瞳明透亮眸半年时段博士伦美瞳明透亮眸半年时段balbalbalalabalabalabala',
-                    market_price: '450.00',
-                    goods_img: 'assets/icon/homepage_71.png',
-                }, {
-                    id: 1,
-                    short_name: '博士伦美瞳明透亮眸半年时段博士伦美瞳明透亮眸半年时段博士伦美瞳明透亮眸半年时段balbalbalalabalabalabala',
-                    market_price: '450.00',
-                    goods_img: 'assets/icon/homepage_71.png',
-                }, {
-                    id: 1,
-                    short_name: '博士伦美瞳明透亮眸半年时段博士伦美瞳明透亮眸半年时段博士伦美瞳明透亮眸半年时段balbalbalalabalabalabala',
-                    market_price: '450.00',
-                    goods_img: 'assets/icon/homepage_71.png',
-                }, {
-                    id: 1,
-                    short_name: '博士伦美瞳明透亮眸半年时段博士伦美瞳明透亮眸半年时段博士伦美瞳明透亮眸半年时段balbalbalalabalabalabala',
-                    market_price: '450.00',
-                    goods_img: 'assets/icon/homepage_71.png',
-                }, {
-                    id: 1,
-                    short_name: '博士伦美瞳明透亮眸半年时段博士伦美瞳明透亮眸半年时段博士伦美瞳明透亮眸半年时段balbalbalalabalabalabala',
-                    market_price: '450.00',
-                    goods_img: 'assets/icon/homepage_71.png',
-                }, {
-                    id: 1,
-                    short_name: '博士伦美瞳明透亮眸半年时段博士伦美瞳明透亮眸半年时段博士伦美瞳明透亮眸半年时段balbalbalalabalabalabala',
-                    market_price: '450.00',
-                    goods_img: 'assets/icon/homepage_71.png',
-                }, {
-                    id: 1,
-                    short_name: '博士伦美瞳明透亮眸半年时段博士伦美瞳明透亮眸半年时段博士伦美瞳明透亮眸半年时段balbalbalalabalabalabala',
-                    market_price: '450.00',
-                    goods_img: 'assets/icon/homepage_71.png',
-                }, {
-                    id: 1,
-                    short_name: '博士伦美瞳明透亮眸半年时段博士伦美瞳明透亮眸半年时段博士伦美瞳明透亮眸半年时段balbalbalalabalabalabala',
-                    market_price: '450.00',
-                    goods_img: 'assets/icon/homepage_71.png',
-                }, {
-                    id: 1,
-                    short_name: '博士伦美瞳明透亮眸半年时段博士伦美瞳明透亮眸半年时段博士伦美瞳明透亮眸半年时段balbalbalalabalabalabala',
-                    market_price: '450.00',
-                    goods_img: 'assets/icon/homepage_71.png',
-                }
-            ];
-        }
-    }
+    listId:any;
     data: Array<any>;
 
-    doInfinite(infiniteScroll) {
-        console.log('Begin async operation');
-
-        setTimeout(() => {
-            for (let i = 0; i < 30; i++) {
-                this.data.push(this.data.length);
-            }
-
-            console.log('Async operation has ended');
-            infiniteScroll.complete();
-        }, 500);
+    constructor(public navCtrl: NavController, public navParams: NavParams, public httpService: HttpService) {
+        this.listId = this.navParams.get('listId')
+        console.log('列表ID:',this.listId)
     }
-
+    ngAfterViewInit() {
+        this.httpService.categoryGoods({cat_id:this.listId}).then((res) => {
+            this.data = res.goods;
+            console.log('商品列表',res)
+        })
+    }
     ionViewDidLoad() {
         console.log('ionViewDidLoad BrandListPage');
     }
@@ -123,5 +44,12 @@ export class BrandListPage {
             console.log('Async operation has ended');
             refresher.complete();
         }, 2000);
+    }
+    doInfinite(infiniteScroll) {
+        console.log('Begin async operation');
+        setTimeout(() => {
+            console.log('Async operation has ended');
+            infiniteScroll.complete();
+        }, 500);
     }
 }

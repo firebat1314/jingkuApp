@@ -12,7 +12,7 @@
                 <ion-icon name="ios-arrow-back"></ion-icon>
             </button>
         </ion-buttons>
-        <div class="segment-style">
+        <div class="head-segment-style">
             <ion-segment mode="ios" (click)="goToSlide()" [(ngModel)]="classSelect" color="primary">
                 <ion-segment-button value="classify">
                     分类
@@ -25,7 +25,7 @@
                 </ion-segment-button>
             </ion-segment>
         </div>
-        <ion-buttons *ngIf="classSelect=='care'" right>
+        <ion-buttons class="editBtn" *ngIf="classSelect=='care'" right>
             <button ion-button clear (click)="checkBoxToggle()">
                 <span *ngIf="!showCheckBox">编辑</span>
                 <span *ngIf="showCheckBox">取消</span>
@@ -36,7 +36,7 @@
         <ion-searchbar mode="ios" #mySearchBar (ionInput)="getItems($event)" debounce="500" placeholder="搜索品牌、分类或者关注" animated="true">
         </ion-searchbar>
     </ion-toolbar>
-    <ion-toolbar class="classSelectStyle" *ngIf="classSelect=='care'">
+    <ion-toolbar class="segment-style" *ngIf="classSelect=='care'">
         <ion-segment [(ngModel)]="careSelect">
             <ion-segment-button value="shop">
                 关注的店铺

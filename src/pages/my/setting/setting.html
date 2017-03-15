@@ -13,7 +13,27 @@
 </ion-header>
 
 
-<ion-content padding>
-    <button ion-button block round (click)="Logout()">退出登录</button>
+<ion-content>
+
+
+    <ion-item padding-left no-lines>
+        <ion-label> 接收通知</ion-label>
+        <ion-toggle mode="ios" color="favorite" checked="false"></ion-toggle>
+    </ion-item>
+    <div class="background"></div>
+
+    <ion-list class="list1">
+        <button (click)="clearCathe()" mode="ios" ion-item>
+                清理缓存
+                <ion-note item-right>100M</ion-note>
+            </button>
+        <button (click)="goAboutUs()" mode="ios" ion-item>
+                关于我们
+            </button>
+    </ion-list>
+
+    <div padding class="logout-btn">
+        <button large ion-button block (click)="signOut()">退出登录</button>
+    </div>
 
 </ion-content>

@@ -46,13 +46,19 @@ import { MoreBrandPage } from "../pages/classify/more-brand/more-brand";
 /*————————————————————————————————购物车页————————————————————————————————*/
 
 /*————————————————————————————————用户中心————————————————————————————————*/
-import { AccountInfoPage } from "../pages/my/account-info/account-info";
-import { SettingPage } from "../pages/my/setting/setting";
+
+/*-----------用户管理----------*/
 import { AccountManagementPage } from "../pages/my/account-management/account-management";
-import { AccountSecurityPage } from "../pages/my/account-security/account-security";
+import { ShippingAddressPage } from "../pages/my/account-management/shipping-address/shipping-address";
+import { AccountInfoPage } from "../pages/my/account-management/account-info/account-info";
+import { MemberCenterPage } from "../pages/my/account-management/member-center/member-center";
+import { AccountSecurityPage } from "../pages/my/account-management/account-security/account-security";
+import { ChangePhoneNumberPage } from "../pages/my/account-management/account-security/change-phone-number/change-phone-number";
+import { ChangePasswordPage } from "../pages/my/account-management/account-security/change-password/change-password";
+/*---------------------*/
+import { SettingPage } from "../pages/my/setting/setting";
 import { AllOrdersPage } from "../pages/my/all-orders/all-orders";
 import { CouponPage } from "../pages/my/coupon/coupon";
-import { MemberCenterPage } from "../pages/my/member-center/member-center";
 import { PeceiptPage } from "../pages/my/peceipt/peceipt";
 import { AccountAssetPage } from "../pages/my/account-asset/account-asset";
 import { AccountHelperPage } from "../pages/my/account-helper/account-helper";
@@ -65,6 +71,7 @@ import { AccountProcessPage } from "../pages/my/account-process/account-process"
 import { InvoiceQualificationPage } from "../pages/my/peceipt/invoice-qualification/invoice-qualification";
 import { InvoiceAskFor2Page } from "../pages/my/peceipt/invoice-ask-for2/invoice-ask-for2";
 import { InvoiceAskFor1Page } from "../pages/my/peceipt/invoice-ask-for1/invoice-ask-for1";
+import { AboutUsPage } from "../pages/my/setting/about-us/about-us";
 /*————————————————————————————————服务————————————————————————————————*/
 import { UserData } from "../services/user-data";
 import { Native } from "../providers/native";
@@ -83,13 +90,14 @@ import { ImgTabs2Component } from "../components/img-tabs2/img-tabs2";
 
 
 
+
 @NgModule({
   declarations: [
     MyApp,
     ClassifyPage, SubnavPage1Page, SubnavPage2Page, MoreBrandPage,
     CarPage,
     HomePage, CityPage, SearchPage, DetailsPage, BrandListPage, AttentionPage, FastbuyPage, GlassesDesignPage, IntegralstorePage, RechargePage, WhitebarPage, DiscountCouponPage, MessagePage, ParticularsPage, ParticularsModalPage, DredgeMoreCityPage, PopoverContentPage,
-    MyPage,SettingPage,AccountManagementPage,AccountSecurityPage,AllOrdersPage,CouponPage,MemberCenterPage,PeceiptPage,AccountAssetPage,AccountProcessPage,AccountAreaApplicationPage,AccountCollectGoodsPage,AccountCollectStorePage,AccountHistoryPage,AccountServicePage,AccountHelperPage,AccountInfoPage,InvoiceQualificationPage,InvoiceAskFor2Page,InvoiceAskFor1Page,
+    MyPage,SettingPage,AccountManagementPage,AccountSecurityPage,AllOrdersPage,CouponPage,MemberCenterPage,PeceiptPage,AccountAssetPage,AccountProcessPage,AccountAreaApplicationPage,AccountCollectGoodsPage,AccountCollectStorePage,AccountHistoryPage,AccountServicePage,AccountHelperPage,AccountInfoPage,InvoiceQualificationPage,InvoiceAskFor2Page,InvoiceAskFor1Page,AboutUsPage,ShippingAddressPage,ChangePhoneNumberPage,ChangePasswordPage,
     TabsPage,
     WelcomePage,
     LoginPage,
@@ -123,7 +131,7 @@ import { ImgTabs2Component } from "../components/img-tabs2/img-tabs2";
     ClassifyPage, SubnavPage1Page, SubnavPage2Page, MoreBrandPage,
     CarPage,
     HomePage, CityPage, SearchPage, DetailsPage, BrandListPage, AttentionPage, FastbuyPage, GlassesDesignPage, IntegralstorePage, RechargePage, WhitebarPage, DiscountCouponPage, MessagePage, ParticularsPage, ParticularsModalPage, DredgeMoreCityPage, PopoverContentPage,
-    MyPage,SettingPage,AccountManagementPage,AccountSecurityPage,AllOrdersPage,CouponPage,MemberCenterPage,PeceiptPage,AccountAssetPage,AccountProcessPage,AccountAreaApplicationPage,AccountCollectGoodsPage,AccountCollectStorePage,AccountHistoryPage,AccountServicePage,AccountHelperPage,AccountInfoPage,InvoiceQualificationPage,InvoiceAskFor2Page,InvoiceAskFor1Page,
+    MyPage,SettingPage,AccountManagementPage,AccountSecurityPage,AllOrdersPage,CouponPage,MemberCenterPage,PeceiptPage,AccountAssetPage,AccountProcessPage,AccountAreaApplicationPage,AccountCollectGoodsPage,AccountCollectStorePage,AccountHistoryPage,AccountServicePage,AccountHelperPage,AccountInfoPage,InvoiceQualificationPage,InvoiceAskFor2Page,InvoiceAskFor1Page,AboutUsPage,ShippingAddressPage,ChangePhoneNumberPage,ChangePasswordPage,
     TabsPage,
     WelcomePage,
     LoginPage,

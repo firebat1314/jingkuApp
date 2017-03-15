@@ -10,6 +10,8 @@ import { LoginPage } from '../pages/login/login';
 import { ParticularsPage } from '../pages/home/particulars/particulars'
 import { DredgeMoreCityPage } from '../pages/home/particulars/dredge-more-city/dredge-more-city'
 import { PeceiptPage } from "../pages/my/peceipt/peceipt";
+import { SettingPage } from "../pages/my/setting/setting";
+import { AccountManagementPage } from "../pages/my/account-management/account-management";
 
 
 @Component({
@@ -29,11 +31,11 @@ export class MyApp {
     // 初次进入app引导页面
     this.storage.get('hasLoggedIn').then((result) => {
       if (result) {
-        this.rootPage = TabsPage;
+        this.rootPage = AccountManagementPage;
       } else {
         this.storage.get('firstIn').then((result) => {
           if (result) {
-            this.rootPage = LoginPage;/*LoginPage*/
+            this.rootPage = LoginPage;
           } else {
             this.rootPage = WelcomePage;
             this.storage.set('firstIn', 'NO');

@@ -2,8 +2,8 @@ img-tabs2 {
     // $slide-height-large: 50px;
     .show {
         img {
-            width: 100%;
             display: block;
+            margin: 0 auto;
             border-radius: 5px;
         }
     }
@@ -13,6 +13,9 @@ img-tabs2 {
             padding: 0;
             .slide-title-unit {
                 padding: 5px;
+                >img {
+                    font-size: 1.3rem;
+                }
                 .info {
                     .name {
                         padding: 0px 1px;

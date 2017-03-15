@@ -2,21 +2,21 @@ import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
 
 /*
-  Generated class for the AccountSecurity page.
+  Generated class for the ChangePhoneNumber page.
 
   See http://ionicframework.com/docs/v2/components/#navigation for more info on
   Ionic pages and navigation.
 */
 @Component({
-  selector: 'page-account-security',
-  templateUrl: 'account-security.html'
+  selector: 'page-change-phone-number',
+  templateUrl: 'change-phone-number.html'
 })
-export class AccountSecurityPage {
+export class ChangePhoneNumberPage {
 
   constructor(public navCtrl: NavController, public navParams: NavParams) {}
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad AccountSecurityPage');
+    console.log('ionViewDidLoad ChangePhoneNumberPage');
   }
 
 }

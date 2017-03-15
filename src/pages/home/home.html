@@ -20,7 +20,6 @@
             <ion-slide *ngFor="let item of bannerImgs">
                 <img (click)="clickBanner(item)" src="{{ item.ad_img }}" />
             </ion-slide>
-
         </ion-slides>
     </div>
     <div class="btn-tool" padding>
@@ -37,7 +36,7 @@
                 <img src="./assets/icon/homepage_21.png" alt="">
                 <span>闪购</span>
             </div>
-            <div [navPush]="BrandListPage">
+            <div>
                 <img src="./assets/icon/homepage_23.png" alt="">
                 <span>品牌</span>
             </div>
@@ -75,7 +74,7 @@
             </div>
             <ion-grid>
                 <ion-row wrap>
-                    <ion-col *ngFor="let item of categoryAddetatils" width-33>
+                    <ion-col *ngFor="let item of categoryAddetatils" [navPush]="BrandListPage" [navParams]="{listId:item.ad_id}" width-33>
                         <img src="{{item.ad_img}}" alt="{{item.ad_name}}">
                         <!--<span>隐形眼镜</span>-->
                     </ion-col>
@@ -106,13 +105,13 @@
             <span class="txt">精选专题</span>
         </div>
         <div class="main">
-            <img-tabs2 (slideClick)="onSlideClick($event)" [slides]="getCategoryRecommendGoods" [pageNumber]="3"></img-tabs2>
+            <img-tabs2 (slideClick)="onSlideClick($event)" [slides]="getCategoryRecommendGoodsHot" [pageNumber]="3"></img-tabs2>
         </div>
         <div class="main">
             <img-tabs2 (slideClick)="onSlideClick($event)" [slides]="getCategoryRecommendGoods" [pageNumber]="3"></img-tabs2>
         </div>
         <div class="main">
-            <img-tabs2 (slideClick)="onSlideClick($event)" [slides]="getCategoryRecommendGoods" [pageNumber]="3"></img-tabs2>
+            <img-tabs2 (slideClick)="onSlideClick($event)" [slides]="getCategoryRecommendGoodsBest" [pageNumber]="3"></img-tabs2>
         </div>
     </div>
     <div class="background"></div>
@@ -124,9 +123,9 @@
         </div>
         <div class="main">
             <ion-slides loop="true" parallax="true" pager>
-                <ion-slide *ngFor="let item of handpickDetails">
+                <ion-slide *ngFor="let item of bannerImgs">
                     <ion-card>
-                        <img src="./assets/icon/homepage_67.png" />
+                        <img src="{{item?.ad_img}}" />
                         <div class="collect">
                             <div class="left">
                                 <ion-icon name="md-heart-outline"></ion-icon>
@@ -147,7 +146,7 @@
             <span class="more" [navPush]="BrandListPage" [navParams]="{list:'singleHot'}">更多&gt;</span>
         </div>
         <div class="main">
-            <single-foods-card *ngIf="handpickDetails" [data]="handpickDetails"></single-foods-card>
+            <single-foods-card *ngIf="getCategoryRecommendGoodsHot" [data]="getCategoryRecommendGoodsHot"></single-foods-card>
         </div>
     </div>
     <ion-fab right bottom *ngIf="showBackTopBtn" (click)="scrollToTop()">

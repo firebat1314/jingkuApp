@@ -18,7 +18,7 @@ export class Native {
    * @return {boolean}
    */
   isMobile() {
-    return this.platform.is('mobile');/* && !this.platform.is('mobileweb')*/
+    return this.platform.is('mobile') && !this.platform.is('mobileweb');/**/
   }
   isMobileweb(){
     return this.platform.is('mobileweb');

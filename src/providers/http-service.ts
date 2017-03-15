@@ -21,10 +21,6 @@ export class HttpService {
   getCategoryAd(data?: Object) {//热门品类下的广告
     return this.http.get(this.ip + '/Index/ads/int_pos_id/27/int_size/10', data)
   }
-  getHandpickDetails(data?: Object) {//精选专题下热门商品
-    return this.http.get(this.ip + '/Index/get_category_recommend_goods/type/hot', data)
-  }
-
   getCategoryRecommendGoods(data?: Object) {//新品
     return this.http.get(this.ip + '/Index/get_category_recommend_goods/type/new', data)
   }
@@ -79,16 +75,16 @@ export class HttpService {
    * 商品分类列表页
    */
   getCategorys(data?: Object) {//（1）获取九大分类
-    return this.http.post(this.ip + '/Category/get_categorys', data)
+    return this.http.get(this.ip + '/Category/get_categorys', data)
   }
   getChildrenCaCtegory(data?: Object) {//（2）获取九大分类下的子分类
-    return this.http.post(this.ip + '/Category/get_children_category', data)
+    return this.http.get(this.ip + '/Category/get_children_category', data)
   }
   categoryGoods(data?: Object) {//（3）商品分类列表页(筛选)
-    return this.http.post(this.ip + '/Category/category_goods', data)
+    return this.http.get(this.ip + '/Category/category_goods', data)
   }
   getGoodsAttribute(data?: Object) {//（13）获取初始商品属性
-    return this.http.post(this.ip + '/Goods/get_goods_attribute', data)
+    return this.http.get(this.ip + '/Goods/get_goods_attribute', data)
   }
 
 }

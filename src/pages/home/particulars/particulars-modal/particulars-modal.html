@@ -22,11 +22,9 @@
 </ion-header>
 
 <ion-content class="outer-content">
-
-
     <div class="privilege" *ngIf="title=='优惠券'">
         <p style="padding-left: 10px;" *ngIf="getBonus&&getBonus.length!=0">可领优惠券</p>
-        <div class="main" *ngFor="let item of getBonus" [ngClass]="{'alreadyget': item.is_get == 1,'canget':item.is_get == 0}">
+        <div class="main" *ngFor="let item of getBonus" (click)="getPrivilege(item.is_get)" [ngClass]="{'alreadyget': item.is_get == 1,'canget':item.is_get == 0}">
             <div class="left">
                 <div><span class="price">¥<span>{{item.int_type_money}}</span></span>【满{{item.min_goods_amount}}可用】</div>
                 <div>{{item.suppliers_name}}</div>
@@ -35,14 +33,12 @@
             <div class="right">
             </div>
         </div>
-
     </div>
     <div class="onemore" *ngIf="title=='买一盒送一盒'">
         <ion-list>
             <button ion-item *ngFor="let item of [{},{},{},{},{}]">
                 <span class="redfont" padding-horizontal>赠品</span>买4盒送一盒
             </button>
-
         </ion-list>
     </div>
     <div class="attr" *ngIf="title=='选择商品属性'">

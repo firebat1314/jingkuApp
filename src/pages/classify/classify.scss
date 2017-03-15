@@ -14,6 +14,14 @@ page-classify {
             &:last-child {
                 border-top: #e0e0e0 1px solid;
             }
+            .head-segment-style {
+                width: 25rem;
+                margin: 0 auto;
+            }
+            .editBtn {
+                position: absolute;
+                right: 5px;
+            }
             .mysearchbar {
                 .toolbar-background-md {
                     background-color: #f5f5f5;
