@@ -55,6 +55,9 @@ import { MemberCenterPage } from "../pages/my/account-management/member-center/m
 import { AccountSecurityPage } from "../pages/my/account-management/account-security/account-security";
 import { ChangePhoneNumberPage } from "../pages/my/account-management/account-security/change-phone-number/change-phone-number";
 import { ChangePasswordPage } from "../pages/my/account-management/account-security/change-password/change-password";
+import { RealnamePage } from "../pages/my/account-management/account-info/realname/realname";
+import { QqPage } from "../pages/my/account-management/account-info/qq/qq";
+import { AddShippingAddressPage } from "../pages/my/account-management/add-shipping-address/add-shipping-address";
 /*---------------------*/
 import { SettingPage } from "../pages/my/setting/setting";
 import { AllOrdersPage } from "../pages/my/all-orders/all-orders";
@@ -87,8 +90,8 @@ import { MeunItemComponent } from '../components/meun-item/meun-item';
 import { CountdownComponent } from '../components/countdown/countdown';
 import { CountInputComponent } from '../components/count-input/count-input';
 import { ImgTabs2Component } from "../components/img-tabs2/img-tabs2";
-
-
+import { CompanynamePage } from "../pages/my/account-management/account-info/companyname/companyname";
+import { PhoneNumberFilter } from "../pipes/phone-number-filter";
 
 
 @NgModule({
@@ -97,7 +100,7 @@ import { ImgTabs2Component } from "../components/img-tabs2/img-tabs2";
     ClassifyPage, SubnavPage1Page, SubnavPage2Page, MoreBrandPage,
     CarPage,
     HomePage, CityPage, SearchPage, DetailsPage, BrandListPage, AttentionPage, FastbuyPage, GlassesDesignPage, IntegralstorePage, RechargePage, WhitebarPage, DiscountCouponPage, MessagePage, ParticularsPage, ParticularsModalPage, DredgeMoreCityPage, PopoverContentPage,
-    MyPage,SettingPage,AccountManagementPage,AccountSecurityPage,AllOrdersPage,CouponPage,MemberCenterPage,PeceiptPage,AccountAssetPage,AccountProcessPage,AccountAreaApplicationPage,AccountCollectGoodsPage,AccountCollectStorePage,AccountHistoryPage,AccountServicePage,AccountHelperPage,AccountInfoPage,InvoiceQualificationPage,InvoiceAskFor2Page,InvoiceAskFor1Page,AboutUsPage,ShippingAddressPage,ChangePhoneNumberPage,ChangePasswordPage,
+    MyPage,SettingPage,AccountManagementPage,AccountSecurityPage,AllOrdersPage,CouponPage,MemberCenterPage,PeceiptPage,AccountAssetPage,AccountProcessPage,AccountAreaApplicationPage,AccountCollectGoodsPage,AccountCollectStorePage,AccountHistoryPage,AccountServicePage,AccountHelperPage,AccountInfoPage,InvoiceQualificationPage,InvoiceAskFor2Page,InvoiceAskFor1Page,AboutUsPage,ShippingAddressPage,ChangePhoneNumberPage,ChangePasswordPage,RealnamePage,QqPage,AddShippingAddressPage,CompanynamePage,
     TabsPage,
     WelcomePage,
     LoginPage,
@@ -107,6 +110,7 @@ import { ImgTabs2Component } from "../components/img-tabs2/img-tabs2";
     DirectiveTestPage,
     ForgotPage, ForgotTwoPage, ForgotThreePage,
 
+    PhoneNumberFilter
   ],
   imports: [
     IonicModule.forRoot(MyApp, {
@@ -131,7 +135,7 @@ import { ImgTabs2Component } from "../components/img-tabs2/img-tabs2";
     ClassifyPage, SubnavPage1Page, SubnavPage2Page, MoreBrandPage,
     CarPage,
     HomePage, CityPage, SearchPage, DetailsPage, BrandListPage, AttentionPage, FastbuyPage, GlassesDesignPage, IntegralstorePage, RechargePage, WhitebarPage, DiscountCouponPage, MessagePage, ParticularsPage, ParticularsModalPage, DredgeMoreCityPage, PopoverContentPage,
-    MyPage,SettingPage,AccountManagementPage,AccountSecurityPage,AllOrdersPage,CouponPage,MemberCenterPage,PeceiptPage,AccountAssetPage,AccountProcessPage,AccountAreaApplicationPage,AccountCollectGoodsPage,AccountCollectStorePage,AccountHistoryPage,AccountServicePage,AccountHelperPage,AccountInfoPage,InvoiceQualificationPage,InvoiceAskFor2Page,InvoiceAskFor1Page,AboutUsPage,ShippingAddressPage,ChangePhoneNumberPage,ChangePasswordPage,
+    MyPage,SettingPage,AccountManagementPage,AccountSecurityPage,AllOrdersPage,CouponPage,MemberCenterPage,PeceiptPage,AccountAssetPage,AccountProcessPage,AccountAreaApplicationPage,AccountCollectGoodsPage,AccountCollectStorePage,AccountHistoryPage,AccountServicePage,AccountHelperPage,AccountInfoPage,InvoiceQualificationPage,InvoiceAskFor2Page,InvoiceAskFor1Page,AboutUsPage,ShippingAddressPage,ChangePhoneNumberPage,ChangePasswordPage,RealnamePage,QqPage,AddShippingAddressPage,CompanynamePage,
     TabsPage,
     WelcomePage,
     LoginPage,

@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
+import { AddShippingAddressPage } from "../add-shipping-address/add-shipping-address";
 
 /*
   Generated class for the ShippingAddress page.
@@ -12,7 +13,7 @@ import { NavController, NavParams } from 'ionic-angular';
   templateUrl: 'shipping-address.html'
 })
 export class ShippingAddressPage {
-
+  AddShippingAddressPage:any = AddShippingAddressPage
   constructor(public navCtrl: NavController, public navParams: NavParams) {}
 
   ionViewDidLoad() {

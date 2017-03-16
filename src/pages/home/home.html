@@ -6,8 +6,11 @@
                     北京
                 </button>
         </ion-buttons>
-        <ion-searchbar [navPush]="SearchPage" [(ngModel)]="myHomeSearch" (ionInput)="onInput($event)" (ionCancel)="onCancel($event)" placeholder="搜索镜库上平/店铺" animated="false" animated spellcheck="true" mode="ios">
-        </ion-searchbar>
+        <div style="position: relative">
+            <ion-searchbar [(ngModel)]="myHomeSearch" (ionInput)="onInput($event)" (ionCancel)="onCancel($event)" placeholder="搜索镜库上平/店铺" animated mode="ios">
+            </ion-searchbar>
+            <div class="mark-searchbar" [navPush]="SearchPage"></div>
+        </div>
 
         <ion-buttons right>
             <button ion-button clear icon-only icon-left [navPush]="MessagePage"><img src="./assets/icon/homepage_09.png" width="20px"></button>
@@ -63,7 +66,7 @@
     </div>
     <div class="background"></div>
     <!--——————————————————————————————————————————热门类型——————————————————————————————————————————-->
-    <div class="hot-group home-content" padding>
+    <div class="hot-group home-content" *ngIf="categoryAddetatils" padding>
         <div class="title">
             <span class="txt">热门品类</span>
             <span class="more">更多&gt;</span>
@@ -75,7 +78,7 @@
             <ion-grid>
                 <ion-row wrap>
                     <ion-col *ngFor="let item of categoryAddetatils" [navPush]="BrandListPage" [navParams]="{listId:item.ad_id}" width-33>
-                        <img src="{{item.ad_img}}" alt="{{item.ad_name}}">
+                        <img src="{{item.ad_img}}" alt="">
                         <!--<span>隐形眼镜</span>-->
                     </ion-col>
                 </ion-row>
@@ -84,7 +87,7 @@
     </div>
     <div class="background"></div>
     <!--——————————————————————————————————————————热门品牌——————————————————————————————————————————-->
-    <div class="hot-brand home-content" padding>
+    <div class="hot-brand home-content" *ngIf="getBrands" padding>
         <div class="title">
             <span class="txt">热门品牌</span>
             <span class="more">更多&gt;</span>
@@ -100,7 +103,7 @@
     </div>
     <div class="background"></div>
     <!--——————————————————————————————————————————精选专题——————————————————————————————————————————-->
-    <div class="handpick home-content" padding>
+    <div class="handpick home-content" *ngIf="getCategoryRecommendGoodsHot" padding>
         <div class="title">
             <span class="txt">精选专题</span>
         </div>
@@ -116,7 +119,7 @@
     </div>
     <div class="background"></div>
     <!--——————————————————————————————————————————好店推荐——————————————————————————————————————————-->
-    <div class="good-shop home-content" padding>
+    <div class="good-shop home-content" *ngIf="bannerImgs" padding>
         <div class="title">
             <span class="txt">好店推荐</span>
             <span class="more">更多&gt;</span>
@@ -140,13 +143,13 @@
     </div>
     <div class="background"></div>
     <!--——————————————————————————————————————————热门单品——————————————————————————————————————————-->
-    <div class="hot-other home-content" padding>
+    <div class="hot-other home-content" *ngIf="getCategoryRecommendGoodsHot" padding>
         <div class="title">
             <span class="txt">热门单品</span>
             <span class="more" [navPush]="BrandListPage" [navParams]="{list:'singleHot'}">更多&gt;</span>
         </div>
         <div class="main">
-            <single-foods-card *ngIf="getCategoryRecommendGoodsHot" [data]="getCategoryRecommendGoodsHot"></single-foods-card>
+            <single-foods-card [data]="getCategoryRecommendGoodsHot"></single-foods-card>
         </div>
     </div>
     <ion-fab right bottom *ngIf="showBackTopBtn" (click)="scrollToTop()">

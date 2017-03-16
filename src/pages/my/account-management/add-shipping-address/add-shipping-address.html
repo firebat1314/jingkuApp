@@ -1,0 +1,44 @@
+<!--
+  Generated template for the AddShippingAddress page.
+
+  See http://ionicframework.com/docs/v2/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+    <ion-navbar>
+        <ion-title>添加收获地址</ion-title>
+        <ion-buttons end>
+            <button ion-button clear>删除</button>
+        </ion-buttons>
+    </ion-navbar>
+
+</ion-header>
+
+
+<ion-content>
+    <ion-list>
+
+        <ion-item>
+            <ion-label mode="ios" fixed>收货人姓名</ion-label>
+            <ion-input required clearInput type="text" value="" placeholder="弗兰克"></ion-input>
+        </ion-item>
+
+        <ion-item>
+            <ion-label mode="ios" fixed>手机号码</ion-label>
+            <ion-input required clearInput type="number" placeholder="手机号码"></ion-input>
+        </ion-item>
+        <ion-item detail-push>
+            <ion-label mode="ios" fixed>所在地区</ion-label>
+            <ion-note>
+                北京市　北京市　朝阳区　后现代城
+            </ion-note>
+        </ion-item>
+
+        <ion-item>
+            <ion-label mode="ios" fixed>详细地址</ion-label>
+            <ion-textarea type="text" placeholder="弗兰克"></ion-textarea>
+
+        </ion-item>
+    </ion-list>
+</ion-content>

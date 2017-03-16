@@ -12,6 +12,7 @@ import { DredgeMoreCityPage } from '../pages/home/particulars/dredge-more-city/d
 import { PeceiptPage } from "../pages/my/peceipt/peceipt";
 import { SettingPage } from "../pages/my/setting/setting";
 import { AccountManagementPage } from "../pages/my/account-management/account-management";
+import { BrandListPage } from "../pages/home/brand-list/brand-list";
 
 
 @Component({
@@ -31,7 +32,7 @@ export class MyApp {
     // 初次进入app引导页面
     this.storage.get('hasLoggedIn').then((result) => {
       if (result) {
-        this.rootPage = AccountManagementPage;
+        this.rootPage = TabsPage;
       } else {
         this.storage.get('firstIn').then((result) => {
           if (result) {

@@ -1,3 +1,14 @@
 page-change-phone-number {
-
+    .item {
+        min-height: 6.4rem;
+    }
+    .item .item-button {
+        padding: 1.7rem 2em;
+    }
+    .certified-img {
+        display: flex;
+        align-items: center;
+        margin: 0;
+        border-left: 1px solid #e0e0e0;
+    }
 }

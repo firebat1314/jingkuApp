@@ -1,4 +1,5 @@
-import { Component,Input } from '@angular/core';
+import { Component, Input,ElementRef,ViewChild } from '@angular/core';
+import { Events } from "ionic-angular";
 
 /*
   Generated class for the MeunItem component.
@@ -11,12 +12,22 @@ import { Component,Input } from '@angular/core';
   templateUrl: 'meun-item.html'
 })
 export class MeunItemComponent {
+  data;
 
-  @Input() showRange:Boolean;
-
-  constructor() {
+  @Input() showRange: Boolean;
+@ViewChild('click') click;
+  constructor(
+    public events: Events,
+    public element:ElementRef
+  ) {
     console.log('Hello MeunItem Component');
-
+    this.events.subscribe('user:listFilter', (res) => {
+      console.log(res)
+      this.data = res;
+    });
   }
-
+  ngAfterViewInit(){
+    console.log(this.click)
+    console.log(this.element)
+  }
 }

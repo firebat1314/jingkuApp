@@ -26,12 +26,19 @@ single-foods-card {
         margin: 0 0 10px 0;
         display: inline-block;
         position: relative;
+        box-shadow: none;
         .card-wrap {
+            display: flex;
+            flex-direction: column;
             .img {
                 display: flex;
                 justify-content: center;
                 align-items: center;
                 box-shadow: 0px -3px 6px #e6e6e6 inset;
+                min-height: 180px;
+                img {
+                    width: auto;
+                }
             }
             .info {
                 .text {

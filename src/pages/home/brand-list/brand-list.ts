@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams } from 'ionic-angular';
+import { NavController, NavParams, Events } from 'ionic-angular';
 
 import { SingleCardComponent } from '../../../components/single-card/single-card'
 
@@ -21,17 +21,23 @@ export class BrandListPage {
     listStyleflag: Boolean;
     ParticularsPage: any = ParticularsPage;
 
-    listId:any;
+    listId: any;
     data: Array<any>;
 
-    constructor(public navCtrl: NavController, public navParams: NavParams, public httpService: HttpService) {
-        this.listId = this.navParams.get('listId')
-        console.log('列表ID:',this.listId)
+    constructor(
+        public navCtrl: NavController,
+        public navParams: NavParams,
+        public httpService: HttpService,
+        public events: Events
+    ) {
+        this.listId = this.navParams.get('listId');
+        console.log('列表ID:', this.listId)
     }
     ngAfterViewInit() {
-        this.httpService.categoryGoods({cat_id:this.listId}).then((res) => {
+        this.httpService.categoryGoods({ cat_id: this.listId }).then((res) => {
             this.data = res.goods;
-            console.log('商品列表',res)
+            this.events.publish('user:listFilter', res);
+            console.log('商品列表', res)
         })
     }
     ionViewDidLoad() {

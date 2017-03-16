@@ -1,4 +1,4 @@
-import { Component, Input, ElementRef ,ViewChild} from '@angular/core';
+import { Component, Input} from '@angular/core';
 import { ParticularsPage } from '../../pages/home/particulars/particulars'
 import {  } from 'ionic-angular';
 
@@ -14,9 +14,7 @@ import {  } from 'ionic-angular';
 })
 export class SingleCardComponent {
 
-  constructor(
-    public element:ElementRef
-  ) {
+  constructor() {
     console.log('Hello SingleCard Component');
     this.animateClass = { 'fade-in-item': true };
 
@@ -30,8 +28,6 @@ export class SingleCardComponent {
   
 
   ngAfterViewInit() {
-    console.log(this.element);
-    // console.log(this.element.nativeElement)
     let that = this;
     // console.log(that.data)
     if (this.data) {

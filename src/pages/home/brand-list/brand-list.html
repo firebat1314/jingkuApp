@@ -34,7 +34,7 @@
         <single-foods-item [data]="data" *ngIf="listStyleflag"></single-foods-item>
     </div>
 
-    <ion-infinite-scroll *ngIf="" (ionInfinite)="doInfinite($event)">
+    <ion-infinite-scroll (ionInfinite)="doInfinite($event)">
         <ion-infinite-scroll-content loadingSpinner="bubbles" loadingText="正在加载...">
         </ion-infinite-scroll-content>
     </ion-infinite-scroll>

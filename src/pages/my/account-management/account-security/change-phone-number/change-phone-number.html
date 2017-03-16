@@ -13,6 +13,35 @@
 </ion-header>
 
 
-<ion-content padding>
+<ion-content>
+    <form>
+        <ion-list>
 
+            <ion-item>
+                <ion-label mode="ios" fixed>手机号</ion-label>
+                <ion-input required clearInput type="number" placeholder="请填写新手机号"></ion-input>
+            </ion-item>
+            <ion-item>
+                <ion-label mode="ios" fixed>验证码</ion-label>
+                <ion-input required clearInput type="number" placeholder="请输入图形验证码"></ion-input>
+                <div class="certified-img" item-right>
+                    <img src="./assets/icon/certified-img_03.jpg" alt="" (click)="getImg()">
+                    <button ion-button icon-only clear small (click)="getImg()"><ion-icon style="font-size: 2em;color: #999;" name="refresh"></ion-icon></button>
+                </div>
+            </ion-item>
+            <ion-item>
+                <ion-label mode="ios" fixed>短信验证</ion-label>
+                <ion-input required clearInput type="number" placeholder="请输入验证码"></ion-input>
+                <button ion-button outline round color="dark" item-right (click)="time()" [disabled]="disabled">{{value}}</button>
+            </ion-item>
+            <!--<ion-item>
+            <ion-label color="primary" fixed><span ion-text color="google">*</span>　短信验证</ion-label>
+            <ion-input required clearInput type="number" placeholder="请输入短信验证码"></ion-input>
+            <button ion-button outline ronumberund color="dark" item-right (click)="getMobileCode()" [disabled]="disabled">{{value}}</button>
+        </ion-item>-->
+        </ion-list>
+        <div padding>
+            <button ion-button large block>提交</button>
+        </div>
+    </form>
 </ion-content>

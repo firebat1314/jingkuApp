@@ -18,5 +18,24 @@ export class ChangePhoneNumberPage {
   ionViewDidLoad() {
     console.log('ionViewDidLoad ChangePhoneNumberPage');
   }
-
+  private wait: number = 60;
+  private disabled: Boolean = false;
+  private value: String = '发送验证码';
+  private timer: any;
+  private time() {
+    if (this.wait == 0) {
+      this.disabled = false;
+      this.value = "发送验证码";
+      this.wait = 60;
+      return;
+    } else {
+      this.disabled = true;
+      this.value = "(" + this.wait + ")秒后重新发送";
+      let self = this;
+      setTimeout(function () {
+        self.wait--;
+        self.time();
+      }, 1000)
+    }
+  }
 }
