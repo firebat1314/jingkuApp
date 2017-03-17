@@ -21,8 +21,9 @@ export class ClassifyPage {
   showBackBtn: boolean = false;
   showCheckBox: boolean = false;
 
-  categoryGoods;
-  getGoodsAttribute;
+  categoryGoods: any;
+  getGoodsAttribute: any;
+    getCategorys: any;
 
   @ViewChild('mySearchBar') mySearchBar: Searchbar;
   @ViewChild('myNav') myNav: Nav;
@@ -37,7 +38,10 @@ export class ClassifyPage {
     console.log('ionViewDidLoad ClassifyPage');
   }
   ngOnInit() {
-
+    this.httpService.getCategorys().then((res) => {
+      console.log('获取九大分类', res)
+      this.getCategorys = res.data;
+    })
     this.httpService.categoryGoods().then((res) => {
       console.log('商品分类列表页(筛选)', res)
       this.categoryGoods = res;

@@ -4,6 +4,11 @@ import { NavController, NavParams, ModalController } from 'ionic-angular';
 import { HttpService } from "../../../providers/http-service";
 
 import { ParticularsModalPage } from "./particulars-modal/particulars-modal"
+import { ParticularsModalMeitongPage } from "./particulars-modal-meitong/particulars-modal-meitong";
+import { ParticularsModalHuliPage } from "./particulars-modal-huli/particulars-modal-huli";
+import { ParticularsModalTaiyangPage } from "./particulars-modal-taiyang/particulars-modal-taiyang";
+import { ParticularsModalJingpianPage } from "./particulars-modal-jingpian/particulars-modal-jingpian";
+import { ParticularsModalJingjiaPage } from "./particulars-modal-jingjia/particulars-modal-jingjia";
 /*
   Generated class for the Particulars page.
 
@@ -15,23 +20,24 @@ import { ParticularsModalPage } from "./particulars-modal/particulars-modal"
   templateUrl: 'particulars.html'
 })
 export class ParticularsPage {
-  private getGoodsGallery;
-  private getPriceSection;
-  private getGoodsInfo;
-  private getGoodsParameter;
-  private getGoodsSaleCity;
-  private getSupplierInfo;
-  private getBonus;
-  private sendByUser;
-  private getGoodsFittings;
-  private collectDel;
-  private searchGoods;
-  private care;
+  getLinkedGoods: any;
+  getGoodsAttribute: any;
+  getGoodsGallery: any;
+  getPriceSection: any;
+  getGoodsInfo: any;
+  getGoodsParameter: any;
+  getGoodsSaleCity: any;
+  getSupplierInfo: any;
+  getBonus: any;
+  getGoodsFittings: any;
+  collectDel: any;
+  searchGoods: any;
+  care: any;
 
-  private selectGroupRecommend = "group";
-  private selectPicArguments = "pic";
+  selectGroupRecommend = "group";
+  selectPicArguments = "pic";
 
-  private goodsId:number;
+  goodsId: number;
 
   constructor(
     public navCtrl: NavController,
@@ -39,17 +45,75 @@ export class ParticularsPage {
     private http: HttpService,
     public modalCtrl: ModalController
   ) {
-    this.goodsId = this.navParams.get('goodsId')||'3994';
+    this.goodsId = this.navParams.get('goodsId') || '3994';
     console.log(this.goodsId)
   }
-  presentModal(str, evt) {
-    if (evt) {evt.stopPropagation()}
-    let modal = this.modalCtrl.create(ParticularsModalPage, { name: str, getBonus: this.getBonus,sendto:this.getGoodsSaleCity });
+  presentModal(str) {
+    let modal = this.modalCtrl.create(ParticularsModalPage, { name: str, getBonus: this.getBonus, sendto: this.getGoodsSaleCity });
     modal.onDidDismiss(data => {
       console.log(data);
     });
     modal.present();
   }
+  presentModalAttr() {
+    let modal;
+    if (this.getGoodsAttribute.status == 1) {
+      if (this.getGoodsAttribute.goods_type == 'goods_spectacles') {
+        console.log("goods_type ☞'goods_spectacles'");
+        modal = this.modalCtrl.create(ParticularsModalJingjiaPage, { data: this.getGoodsAttribute,type:'goods_spectacles',headData:this.getGoodsInfo });
+        modal.onDidDismiss(data => {
+          console.log(data);
+        });
+        modal.present();
+      }
+      if (this.getGoodsAttribute.goods_type == 'goods') {
+        this.http.getAttrList({ goods_id: this.goodsId }).then((res) => {
+          console.log("goods_type ☞'goods'", res);
+          modal = this.modalCtrl.create(ParticularsModalJingjiaPage, { data: res,type:'goods',headData:this.getGoodsInfo });
+          modal.onDidDismiss(data => {
+            console.log(data);
+          });
+          modal.present();
+        });
+      }
+    }
+  }
+  presentModalJingpian() {
+    let modal = this.modalCtrl.create(ParticularsModalJingpianPage, {});
+    modal.onDidDismiss(data => {
+      console.log(data);
+    });
+    modal.present();
+  }
+  presentModalJingjia() {
+    let modal = this.modalCtrl.create(ParticularsModalJingjiaPage, {});
+    modal.onDidDismiss(data => {
+      console.log(data);
+    });
+    modal.present();
+  }
+  presentModalMeitong() {
+    let modal = this.modalCtrl.create(ParticularsModalMeitongPage, {});
+    modal.onDidDismiss(data => {
+      console.log(data);
+    });
+    modal.present();
+  }
+  presentModalHuli() {
+    let modal = this.modalCtrl.create(ParticularsModalHuliPage, {});
+    modal.onDidDismiss(data => {
+      console.log(data);
+    });
+    modal.present();
+  }
+  presentModalTaiyang() {
+    let modal = this.modalCtrl.create(ParticularsModalTaiyangPage, {});
+    modal.onDidDismiss(data => {
+      console.log(data);
+    });
+    modal.present();
+  }
+
   ngOnInit() {
     this.http.getGoodsGallery({ goods_id: this.goodsId }).then((res) => {
       console.log("商品详情的相册图片轮播", res);
@@ -66,7 +130,6 @@ export class ParticularsPage {
     this.http.getGoodsParameter({ goods_id: this.goodsId }).then((res) => {
       console.log("获取商品参数", res);
       this.getGoodsParameter = res.data;
-      // console.log(JSON.stringify(res.data))
     });
     this.http.getGoodsSaleCity({ goods_id: this.goodsId }).then((res) => {
       console.log("获取商品的销售区域", res);
@@ -80,22 +143,26 @@ export class ParticularsPage {
       console.log("优惠券列表", res);
       this.getBonus = res.data;
     });
-    this.http.sendByUser({ goods_id: this.goodsId }).then((res) => {
-      console.log("领取优惠券", res);
-      this.sendByUser = res.data;
-    });
     this.http.getGoodsFittings({ goods_id: this.goodsId }).then((res) => {
-      console.log("组合商品、关联商品", res);
+      console.log("组合商品", res);
       this.getGoodsFittings = res.data;
+    });
+    this.http.getLinkedGoods({ goods_id: this.goodsId }).then((res) => {
+      console.log("关联商品", res);
+      this.getLinkedGoods = res.data;
     });
     this.http.searchGoods({ goods_id: this.goodsId }).then((res) => {
       console.log("商品搜索列表页", res);
       this.searchGoods = res.data;
     });
-  }
-  ngOnChanges() {
+    this.http.getGoodsAttribute({ goods_id: this.goodsId }).then((res) => {
+      console.log("商品初始属性", res);
+      this.getGoodsAttribute = res;
+      // console.log(JSON.stringify(res.data))
+    });
 
   }
+  /*---关注----*/
   beCareFor() {
     if (this.getGoodsInfo.is_collect) {
       this.http.collectDel({ goods_id: 3994 }).then((res) => {

@@ -33,7 +33,6 @@ export class HttpService {
   getBrands(data?: Object) {//热门品牌下的品牌列表
     return this.http.get(this.ip + '/Index/get_brands', data)
   }
-
   /*商品详情页*/
   getGoodsGallery(data?: Object) {//商品详情的相册图片轮播
     return this.http.get(this.ip + '/Goods/get_goods_gallery', data)
@@ -65,8 +64,11 @@ export class HttpService {
   sendByUser(data?: Object) {//领取优惠券
     return this.http.get(this.ip + '/Goods/send_by_user', data)
   }
-  getGoodsFittings(data?: Object) {//组合商品\关联商品
+  getGoodsFittings(data?: Object) {//组合商品
     return this.http.get(this.ip + '/Goods/get_goods_fittings', data)
+  }
+  getLinkedGoods(data?: Object) {//（12）关联商品
+    return this.http.get(this.ip + '/Goods/get_linked_goods', data)
   }
   searchGoods(data?: Object) {//商品搜索列表页
     return this.http.post(this.ip + '/Search/search_goods', data)
@@ -86,5 +88,11 @@ export class HttpService {
   getGoodsAttribute(data?: Object) {//（13）获取初始商品属性
     return this.http.get(this.ip + '/Goods/get_goods_attribute', data)
   }
-
+  getAttrList(data?: Object) {//如果返回的(good_type) 商品类型是goods_spectacles 根据所选球镜，获取柱镜列表
+    return this.http.get(this.ip + '/Goods/get_attr_list', data)
+  }
+  getZhujing(data?: Object) {//如果返回的(good_type) 商品类型是goods再调用接口如下
+    return this.http.get(this.ip + '/Goods/get_zhujing', data)
+  }
+  
 }

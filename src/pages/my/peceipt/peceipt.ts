@@ -16,7 +16,8 @@ import { InvoiceAskFor1Page } from "./invoice-ask-for1/invoice-ask-for1";
   templateUrl: 'peceipt.html'
 })
 export class PeceiptPage {
-  receiptTool:any = 'receiptInfo'
+  receiptTool:any = 'receiptInfo';
+  myDate:any;
   constructor(public navCtrl: NavController, public navParams: NavParams) {}
 
 

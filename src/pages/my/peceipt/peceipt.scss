@@ -73,6 +73,15 @@ page-peceipt {
                     border-right: none;
                     border-bottom-left-radius: 4px;
                     border-top-left-radius: 4px;
+                    position: relative;
+                    display: flex;
+                    justify-content: flex-start;
+                    align-items: center;
+                    width: 100px;
+                    // background: url(../assets/icon/images/user_cener_1_39_03.png) left center/auto 100% no-repeat;
+                    ion-datetime {
+                        padding: 0;
+                    }
                 }
                 .btn {
                     padding: 6px 11px;

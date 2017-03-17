@@ -12,7 +12,7 @@ import { Component,Input,Output,EventEmitter } from '@angular/core';
 })
 export class CountInputComponent {
 
-  @Input() value = 1;
+  @Input() value = 0;
  @Output() updateNumberI:EventEmitter<number> = new EventEmitter();
   constructor() {
     console.log('Hello CountInput Component');

@@ -6,7 +6,7 @@
 -->
 
 
-<ion-header no-border *ngIf="title=='选择商品属性'?false:true">
+<ion-header no-border>
     <ion-toolbar color="modalHeadTool">
         <ion-buttons end>
             <button ion-button (click)="dismiss()"><ion-icon name="md-close" ></ion-icon></button>
@@ -22,7 +22,7 @@
 <ion-content class="outer-content">
     <div class="privilege" *ngIf="title=='优惠券'">
         <!--<p style="padding-left: 10px;" *ngIf="getBonus&&getBonus.length!=0">可领优惠券</p>-->
-        <div class="main" *ngFor="let item of getBonus" (click)="getPrivilege(item.is_get)" [ngClass]="{'alreadyget': item.is_get == 1,'canget':item.is_get == 0}">
+        <div class="main" *ngFor="let item of getBonus" (click)="getPrivilege(item.is_get,item.type_id)" [ngClass]="{'alreadyget': item.is_get == 1,'canget':item.is_get == 0,'cantget':item.is_get == 1||item.is_get == 2}">
             <div class="left">
                 <div><span class="price">¥<span>{{item.int_type_money}}</span></span>【满{{item.min_goods_amount}}可用】</div>
                 <div>{{item.suppliers_name}}</div>
@@ -32,63 +32,12 @@
             </div>
         </div>
     </div>
-    <div class="onemore" *ngIf="title=='买一盒送一盒'">
+    <div class="onemore" *ngIf="title=='赠送'">
         <ion-list>
             <button ion-item *ngFor="let item of [{},{},{},{},{}]">
                 <span class="redfont" padding-horizontal>赠品</span>买4盒送一盒
             </button>
         </ion-list>
-    </div>
-    <div class="attr" *ngIf="title=='选择商品属性'">
-        <ion-item no-lines>
-            <ion-thumbnail item-left>
-                <img src="./assets/icon/images/particulars_2_10.jpg">
-            </ion-thumbnail>
-            <h2>【卡尔蔡司】XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX</h2>
-            <p>商品编号：45454545454</p>
-            <p>￥450.00</p>
-        </ion-item>
-        <div class="background"></div>
-        <ion-grid>
-            <ion-row class="table-head">
-                <ion-col width-25>价格</ion-col>
-                <ion-col width-25>光度</ion-col>
-                <ion-col width-25>库存</ion-col>
-                <ion-col width-25>数量</ion-col>
-            </ion-row>
-            <ion-row>
-                <ion-col width-25>￥450.00</ion-col>
-                <ion-col width-25>0.00</ion-col>
-                <ion-col width-25>121</ion-col>
-                <ion-col width-25>
-                    <count-input (updateNumberI)="numberIChange($event)" [value]="2"></count-input>
-                </ion-col>
-            </ion-row>
-            <ion-row>
-                <ion-col width-25>￥450.00</ion-col>
-                <ion-col width-25>0.00</ion-col>
-                <ion-col width-25>50</ion-col>
-                <ion-col width-25>
-                    <count-input></count-input>
-                </ion-col>
-            </ion-row>
-            <ion-row>
-                <ion-col width-25>￥450.00</ion-col>
-                <ion-col width-25>0.00</ion-col>
-                <ion-col width-25>50</ion-col>
-                <ion-col width-25>
-                    <count-input></count-input>
-                </ion-col>
-            </ion-row>
-            <ion-row>
-                <ion-col width-25>￥450.00</ion-col>
-                <ion-col width-25>0.00</ion-col>
-                <ion-col width-25>50</ion-col>
-                <ion-col width-25>
-                    <count-input></count-input>
-                </ion-col>
-            </ion-row>
-        </ion-grid>
     </div>
     <div *ngIf="title=='商品服务保障'">
         <ion-list>
@@ -133,12 +82,6 @@
     </div>
 </ion-content>
 <ion-footer>
-    <ion-toolbar *ngIf="title=='选择商品属性'">
-        <div class="result">
-            <span>合计：￥1203.00</span>
-            <span>共10件</span>
-        </div>
-    </ion-toolbar>
     <button *ngIf="title!='配送地址'" color="modalBtn" no-margin ion-button (click)="dismiss()" large full class="modal-button">完成</button>
     <button *ngIf="title=='配送地址'" color="modalBtn" no-margin ion-button (click)="dredgeMoreCity()" large full class="modal-button">开通更多城市</button>
 </ion-footer>

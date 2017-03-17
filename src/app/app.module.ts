@@ -37,6 +37,11 @@ import { DiscountCouponPage } from '../pages/home/discount-coupon/discount-coupo
 import { MessagePage } from '../pages/home/message/message';
 import { ParticularsPage } from '../pages/home/particulars/particulars';
 import { ParticularsModalPage } from '../pages/home/particulars/particulars-modal/particulars-modal';
+import { ParticularsModalMeitongPage } from "../pages/home/particulars/particulars-modal-meitong/particulars-modal-meitong";
+import { ParticularsModalHuliPage } from "../pages/home/particulars/particulars-modal-huli/particulars-modal-huli";
+import { ParticularsModalTaiyangPage } from "../pages/home/particulars/particulars-modal-taiyang/particulars-modal-taiyang";
+import { ParticularsModalJingpianPage } from "../pages/home/particulars/particulars-modal-jingpian/particulars-modal-jingpian";
+import { ParticularsModalJingjiaPage } from "../pages/home/particulars/particulars-modal-jingjia/particulars-modal-jingjia";
 import { DredgeMoreCityPage } from '../pages/home/particulars/dredge-more-city/dredge-more-city';
 import { PopoverContentPage } from "../pages/home/particulars/dredge-more-city/popover-content/popover-content";
 /*————————————————————————————————分类页————————————————————————————————*/
@@ -46,7 +51,6 @@ import { MoreBrandPage } from "../pages/classify/more-brand/more-brand";
 /*————————————————————————————————购物车页————————————————————————————————*/
 
 /*————————————————————————————————用户中心————————————————————————————————*/
-
 /*-----------用户管理----------*/
 import { AccountManagementPage } from "../pages/my/account-management/account-management";
 import { ShippingAddressPage } from "../pages/my/account-management/shipping-address/shipping-address";
@@ -93,23 +97,28 @@ import { ImgTabs2Component } from "../components/img-tabs2/img-tabs2";
 import { CompanynamePage } from "../pages/my/account-management/account-info/companyname/companyname";
 import { PhoneNumberFilter } from "../pipes/phone-number-filter";
 
-
 @NgModule({
   declarations: [
     MyApp,
-    ClassifyPage, SubnavPage1Page, SubnavPage2Page, MoreBrandPage,
-    CarPage,
-    HomePage, CityPage, SearchPage, DetailsPage, BrandListPage, AttentionPage, FastbuyPage, GlassesDesignPage, IntegralstorePage, RechargePage, WhitebarPage, DiscountCouponPage, MessagePage, ParticularsPage, ParticularsModalPage, DredgeMoreCityPage, PopoverContentPage,
-    MyPage,SettingPage,AccountManagementPage,AccountSecurityPage,AllOrdersPage,CouponPage,MemberCenterPage,PeceiptPage,AccountAssetPage,AccountProcessPage,AccountAreaApplicationPage,AccountCollectGoodsPage,AccountCollectStorePage,AccountHistoryPage,AccountServicePage,AccountHelperPage,AccountInfoPage,InvoiceQualificationPage,InvoiceAskFor2Page,InvoiceAskFor1Page,AboutUsPage,ShippingAddressPage,ChangePhoneNumberPage,ChangePasswordPage,RealnamePage,QqPage,AddShippingAddressPage,CompanynamePage,
-    TabsPage,
     WelcomePage,
     LoginPage,
     SignupPage, SignupSecondPage, SignupThirdPage,
-    MyDirective, ImgTabs,
-    SingleCardComponent, MyToolbarComponent, SingleFoodsItemComponent, MeunItemComponent, CountdownComponent, CountInputComponent,ImgTabs2Component,
-    DirectiveTestPage,
     ForgotPage, ForgotTwoPage, ForgotThreePage,
-
+    TabsPage,
+    /*——————————————————购物车——————————————————*/
+    CarPage,
+    /*——————————————————home栏——————————————————*/
+    HomePage, CityPage, SearchPage, DetailsPage, BrandListPage, AttentionPage, FastbuyPage, GlassesDesignPage, IntegralstorePage, RechargePage, WhitebarPage, DiscountCouponPage, MessagePage, ParticularsPage, ParticularsModalPage, DredgeMoreCityPage, PopoverContentPage, ParticularsModalMeitongPage, ParticularsModalHuliPage, ParticularsModalTaiyangPage, ParticularsModalJingpianPage,ParticularsModalJingjiaPage,
+    /*——————————————————分类栏——————————————————*/
+    ClassifyPage, SubnavPage1Page, SubnavPage2Page, MoreBrandPage,
+    /*——————————————————我的栏——————————————————*/
+    MyPage, SettingPage, AccountManagementPage, AccountSecurityPage, AllOrdersPage, CouponPage, MemberCenterPage, PeceiptPage, AccountAssetPage, AccountProcessPage, AccountAreaApplicationPage, AccountCollectGoodsPage, AccountCollectStorePage, AccountHistoryPage, AccountServicePage, AccountHelperPage, AccountInfoPage, InvoiceQualificationPage, InvoiceAskFor2Page, InvoiceAskFor1Page, AboutUsPage, ShippingAddressPage, ChangePhoneNumberPage, ChangePasswordPage, RealnamePage, QqPage, AddShippingAddressPage, CompanynamePage,
+    /*——————————————————组件——————————————————*/
+    SingleCardComponent, MyToolbarComponent, SingleFoodsItemComponent, MeunItemComponent, CountdownComponent, CountInputComponent, ImgTabs2Component,
+    DirectiveTestPage,
+    /*——————————————————指令——————————————————*/
+    MyDirective, ImgTabs,
+    /*——————————————————过滤器——————————————————*/
     PhoneNumberFilter
   ],
   imports: [
@@ -131,18 +140,35 @@ import { PhoneNumberFilter } from "../pipes/phone-number-filter";
   ],
   bootstrap: [IonicApp],
   entryComponents: [
+    /*    MyApp,
+        ClassifyPage, SubnavPage1Page, SubnavPage2Page, MoreBrandPage,
+        CarPage,
+        HomePage, CityPage, SearchPage, DetailsPage, BrandListPage, AttentionPage, FastbuyPage, GlassesDesignPage, IntegralstorePage, RechargePage, WhitebarPage, DiscountCouponPage, MessagePage, ParticularsPage, ParticularsModalPage, DredgeMoreCityPage, PopoverContentPage,
+        MyPage,SettingPage,AccountManagementPage,AccountSecurityPage,AllOrdersPage,CouponPage,MemberCenterPage,PeceiptPage,AccountAssetPage,AccountProcessPage,AccountAreaApplicationPage,AccountCollectGoodsPage,AccountCollectStorePage,AccountHistoryPage,AccountServicePage,AccountHelperPage,AccountInfoPage,InvoiceQualificationPage,InvoiceAskFor2Page,InvoiceAskFor1Page,AboutUsPage,ShippingAddressPage,ChangePhoneNumberPage,ChangePasswordPage,RealnamePage,QqPage,AddShippingAddressPage,CompanynamePage,
+        TabsPage,
+        WelcomePage,
+        LoginPage,
+        SignupPage, SignupSecondPage, SignupThirdPage,
+        SingleCardComponent, MyToolbarComponent, SingleFoodsItemComponent, MeunItemComponent, CountdownComponent, CountInputComponent,ImgTabs2Component,
+        DirectiveTestPage,
+        ForgotPage, ForgotTwoPage*/
     MyApp,
-    ClassifyPage, SubnavPage1Page, SubnavPage2Page, MoreBrandPage,
-    CarPage,
-    HomePage, CityPage, SearchPage, DetailsPage, BrandListPage, AttentionPage, FastbuyPage, GlassesDesignPage, IntegralstorePage, RechargePage, WhitebarPage, DiscountCouponPage, MessagePage, ParticularsPage, ParticularsModalPage, DredgeMoreCityPage, PopoverContentPage,
-    MyPage,SettingPage,AccountManagementPage,AccountSecurityPage,AllOrdersPage,CouponPage,MemberCenterPage,PeceiptPage,AccountAssetPage,AccountProcessPage,AccountAreaApplicationPage,AccountCollectGoodsPage,AccountCollectStorePage,AccountHistoryPage,AccountServicePage,AccountHelperPage,AccountInfoPage,InvoiceQualificationPage,InvoiceAskFor2Page,InvoiceAskFor1Page,AboutUsPage,ShippingAddressPage,ChangePhoneNumberPage,ChangePasswordPage,RealnamePage,QqPage,AddShippingAddressPage,CompanynamePage,
-    TabsPage,
     WelcomePage,
     LoginPage,
     SignupPage, SignupSecondPage, SignupThirdPage,
-    SingleCardComponent, MyToolbarComponent, SingleFoodsItemComponent, MeunItemComponent, CountdownComponent, CountInputComponent,ImgTabs2Component,
-    DirectiveTestPage,
-    ForgotPage, ForgotTwoPage
+    ForgotPage, ForgotTwoPage, ForgotThreePage,
+    TabsPage,
+    /*——————————————————购物车——————————————————*/
+    CarPage,
+    /*——————————————————home栏——————————————————*/
+    HomePage, CityPage, SearchPage, DetailsPage, BrandListPage, AttentionPage, FastbuyPage, GlassesDesignPage, IntegralstorePage, RechargePage, WhitebarPage, DiscountCouponPage, MessagePage, ParticularsPage, ParticularsModalPage, DredgeMoreCityPage, PopoverContentPage, ParticularsModalMeitongPage, ParticularsModalHuliPage, ParticularsModalTaiyangPage, ParticularsModalJingpianPage,ParticularsModalJingjiaPage,
+    /*——————————————————分类栏——————————————————*/
+    ClassifyPage, SubnavPage1Page, SubnavPage2Page, MoreBrandPage,
+    /*——————————————————我的栏——————————————————*/
+    MyPage, SettingPage, AccountManagementPage, AccountSecurityPage, AllOrdersPage, CouponPage, MemberCenterPage, PeceiptPage, AccountAssetPage, AccountProcessPage, AccountAreaApplicationPage, AccountCollectGoodsPage, AccountCollectStorePage, AccountHistoryPage, AccountServicePage, AccountHelperPage, AccountInfoPage, InvoiceQualificationPage, InvoiceAskFor2Page, InvoiceAskFor1Page, AboutUsPage, ShippingAddressPage, ChangePhoneNumberPage, ChangePasswordPage, RealnamePage, QqPage, AddShippingAddressPage, CompanynamePage,
+    /*——————————————————组件——————————————————*/
+    SingleCardComponent, MyToolbarComponent, SingleFoodsItemComponent, MeunItemComponent, CountdownComponent, CountInputComponent, ImgTabs2Component,
+    DirectiveTestPage
   ],
   providers: [{ provide: ErrorHandler, useClass: IonicErrorHandler }, Storage, UserData, Native, HttpService]
 })

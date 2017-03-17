@@ -1,17 +1,4 @@
 page-particulars-modal {
-    .result {
-        display: flex;
-        justify-content: flex-end;
-        align-items: center;
-        span:first-child {
-            font-size: 1.7rem;
-            color: red;
-            margin-right: 10px;
-        }
-        span:last-child {
-            color: #808080;
-        }
-    }
     .privilege {
         .main {
             display: flex;
@@ -23,6 +10,9 @@ page-particulars-modal {
             }
             &.canget {
                 background: url(../assets/icon/images/particulars_3_06.jpg) right top/auto 100% no-repeat;
+            }
+            &.cantget {
+                opacity: .4;
             }
             &.finish {}
             margin: 10px;
@@ -73,20 +63,5 @@ page-particulars-modal {
             vertical-align: middle;
         }
     }
-    .attr {
-        p:last-child {
-            font-size: 2rem;
-            color: red;
-        }
-        ion-row {
-            text-align: center;
-            border-bottom: 0.5px solid #e0e0e0;
-            color: #808080;
-            font-size: 1.6rem;
-            padding: 10px 0;
-            ion-col:last-child {
-                padding: 0;
-            }
-        }
-    }
+    .attr {}
 }
