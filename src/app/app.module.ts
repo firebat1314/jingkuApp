@@ -127,7 +127,8 @@ import { PhoneNumberFilter } from "../pipes/phone-number-filter";
       tabsHideOnSubPages: true,
       tabsPlacement: 'bottom',
       pageTransition: 'ios-transition',
-      mode: 'md'
+      mode: 'md',
+      activator:"highlight"
     }, {
         links: [
           { component: HomePage, segment: 'home' },

@@ -29,12 +29,12 @@
                 <ion-input required clearInput [(ngModel)]="signupInfo.str_verify" name="str_verify" type="number" placeholder="验证码"></ion-input>
                 <div class="certified-img" item-right>
                     <img [src]="verifyImg" alt="" (click)="getImg()">
-                    <button ion-button icon-only clear small (click)="getImg()"><ion-icon ios="ios-refresh" md="md-refresh" ></ion-icon></button>
+                    <ion-icon (click)="getImg()" ios="ios-refresh" md="md-refresh"></ion-icon>
                 </div>
             </ion-item>
             <ion-item>
                 <ion-label color="primary" fixed><span ion-text color="google">*</span>　短信验证</ion-label>
-                <ion-input required clearInput [(ngModel)]="signupInfo.Phone_code" name="Phone_code" type="number" placeholder="请输入短信验证码"></ion-input>
+                <ion-input required clearInput [(ngModel)]="signupInfo.Phone_code" name="Phone_code" type="number" placeholder="短信验证码"></ion-input>
                 <button ion-button outline round color="dark" item-right (click)="getMobileCode()" [disabled]="disabled">{{value}}</button>
             </ion-item>
             <ion-item>
@@ -43,7 +43,7 @@
             </ion-item>
             <ion-item>
                 <ion-label color="primary" fixed><span ion-text color="google">*</span>　确认密码</ion-label>
-                <ion-input required clearInput [(ngModel)]="signupInfo.cpassword" name="cpassword" type="password" placeholder="6-2位字母、数字组成"></ion-input>
+                <ion-input required clearInput [(ngModel)]="signupInfo.cpassword" name="cpassword" type="password" placeholder="请确认密码"></ion-input>
             </ion-item>
         </ion-list>
         <div class="login">

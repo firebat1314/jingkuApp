@@ -71,7 +71,6 @@ export class SignupPage {
       }
       )
   }
-
   private getImg() {
     this.userData.getVerificationImg({
       fontSize: '12',
@@ -101,7 +100,7 @@ export class SignupPage {
       this.disabled = false;
       this.value = "发送验证码";
       this.wait = 60;
-      return
+      return;
     } else {
       this.disabled = true;
       this.value = "(" + this.wait + ")秒后重新发送";

@@ -16,9 +16,15 @@
     background: #fff;
 }
 
+
+/*————————————————————————————————————工具栏————————————————————————————————————*/
+
 .toolbar-md {
     padding: 0 4px;
 }
+
+
+/*————————————————————————————————————item border颜色————————————————————————————————————*/
 
 .item-ios.item-block .item-inner {
     border-bottom-color: #e0e0e0;
@@ -34,7 +40,7 @@
 }
 
 
-/*菜单样式*/
+/*————————————————————————————————————菜单样式————————————————————————————————————*/
 
 .main-menu meun-item .body {
     border-bottom: 1px solid #e6e6e6;
@@ -59,7 +65,7 @@
 }
 
 
-/*搜索框图标*/
+/*————————————————————————————————————搜索框图标————————————————————————————————————*/
 
 .searchbar-ios .searchbar-search-icon {
     background-image: url(../assets/icon/homepage_06.png);
@@ -67,7 +73,7 @@
 }
 
 
-/*下拉刷新样式*/
+/*————————————————————————————————————下拉刷新样式————————————————————————————————————*/
 
 .refresher-refreshing .spinner {
     background: url(../assets/icon/refreshing.gif) center center no-repeat;
@@ -90,16 +96,30 @@
 }
 
 
-/*菜单样式*/
+/*————————————————————————————————————菜单样式————————————————————————————————————*/
 
 .menu-inner {
     width: 70%;
 }
 
 
+/*————————————————————————————————————选择器样式————————————————————————————————————*/
+
+.picker-md .picker-toolbar {
+    justify-content: space-between;
+    background: #fafafa;
+}
+
+
+/*————————————————————————————————————item样式————————————————————————————————————*/
+
+
 /*ion-item.item {
     padding-left: 0;
 }*/
+
+
+/*————————————————————————————————————android导航栏字体居中————————————————————————————————————*/
 
 ion-title.title-md {
     position: absolute;
@@ -111,6 +131,9 @@ ion-title.title-md {
     text-align: center;
     z-index: -1;
 }
+
+
+/*————————————————————————————————————轮播图按钮样式————————————————————————————————————*/
 
 button.swiper-pagination-bullet {
     border: 1px solid #000;
@@ -131,7 +154,7 @@ button.swiper-pagination-bullet {
 }
 
 
-/*背景间隔*/
+/*————————————————————————————————————间隔背景————————————————————————————————————*/
 
 .background {
     height: 10px;
@@ -139,7 +162,7 @@ button.swiper-pagination-bullet {
 }
 
 
-/*modal样式*/
+/*————————————————————————————————————modal样式————————————————————————————————————*/
 
 ion-modal {
     .toolbar {
@@ -159,7 +182,7 @@ ion-modal {
 }
 
 
-/*alter style*/
+/*————————————————————————————————————alter样式————————————————————————————————————*/
 
 .alert-style {
     .alert-button-group {
@@ -180,7 +203,7 @@ ion-modal {
 }
 
 
-/*segment-style*/
+/*————————————————————————————————————segment-style————————————————————————————————————*/
 
 .segment-style {
     min-height: 50px;

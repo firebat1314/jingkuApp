@@ -11,18 +11,15 @@
             <img src="./assets/icon/icon_login_03.png" height="" width="100px">
         </div>
         <form #loginForm="ngForm" novalidate>
-            <ion-list>
-                <ion-item>
-                    <ion-input [(ngModel)]="loginInfo.username" clearInput="true" name="username" type="text" spellcheck="false" autocapitalize="off" required>
-                    </ion-input>
-                </ion-item>
+            <ion-item>
+                <ion-input [(ngModel)]="loginInfo.username" clearInput="true" name="username" type="text" spellcheck="false" autocapitalize="off" required>
+                </ion-input>
+            </ion-item>
 
-                <ion-item>
-                    <ion-input [(ngModel)]="loginInfo.password" clearInput="true" name="password" type="password" required>
-                    </ion-input>
-                </ion-item>
-
-            </ion-list>
+            <ion-item>
+                <ion-input [(ngModel)]="loginInfo.password" clearInput="true" name="password" type="password" required>
+                </ion-input>
+            </ion-item>
             <div class="forgot-password">
                 <button ion-button clear small color="light" [navPush]="forgotpage">忘记密码？</button>
             </div>

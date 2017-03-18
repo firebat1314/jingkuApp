@@ -18,8 +18,8 @@ import { InvoiceAskFor1Page } from "./invoice-ask-for1/invoice-ask-for1";
 export class PeceiptPage {
   receiptTool:any = 'receiptInfo';
   myDate:any;
+  // maxTime:any = '2017-3-17';
   constructor(public navCtrl: NavController, public navParams: NavParams) {}
-
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad PeceiptPage');

@@ -1,37 +1,56 @@
 page-signup-second {
-    .content .list-wrap{
-        margin-left: 15px;
-        margin-right: 15px;
+    .content .list-wrap {
         margin-bottom: 5px;
-        .item-label-fixed{
+        .item-label-fixed {
             min-height: 62px;
         }
-        .select-wrapper .input-wrapper{
+        .select-wrapper .input-wrapper {
             display: flex;
             justify-content: space-around;
             padding: 15px;
-            ion-select{
+            ion-select {
                 border: 1px solid #ccc;
-
+                width: 30%;
             }
         }
     }
-    .tool{
+    .zhizhao {
+        [item-content] {
+            display: flex;
+            align-items: center;
+            .add-zhizhao {
+                height: 5rem;
+                width: 5rem;
+                display: flex;
+                font-size: 1.3rem;
+                flex-direction: column;
+                align-items: center;
+                background: #e0e0e0;
+                border-radius: 3px;
+                color: #fff;
+                justify-content: center;
+                margin: 10px 0;
+                margin-right: 20px;
+                ion-icon {
+                    font-size: 3rem;
+                }
+            }
+        }
+    }
+    .tool {
         display: flex;
-        justify-content: space-between; 
-        .login{
-            float: right; 
-            margin-bottom: 20px;
-            .text{
+        justify-content: space-between;
+        .agree {
+            display: flex;
+            align-items: center;
+        }
+        .login {
+            float: right;
+            .text {
                 display: inline-block;
                 vertical-align: -webkit-baseline-middle;
-                color: #999;    
+                color: #999;
             }
         }
-    }
-
-    .btn-register{
-        width: 80%;
-        margin: 0 auto;
     }
 }

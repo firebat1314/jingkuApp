@@ -6,18 +6,18 @@ page-login {
     .form-wrap {
         padding: 0 40px;
         display: flex;
-        flex-direction:column;
+        flex-direction: column;
         justify-content: center;
         height: 100%;
     }
-    .logo{
+    .logo {
         text-align: center;
         width: 100%;
         margin-bottom: 50px;
-    }
-    .logo img{
-        width: 206px;
-        max-width: 206px;
+        img {
+            width: 206px;
+            max-width: 206px;
+        }
     }
     ion-list.list {
         padding-top: 0;
@@ -26,28 +26,26 @@ page-login {
     .item {
         color: #fff;
         background: none;
-    }
-    .item-input {
-        padding: 0;
-    }
-    .item-input .item-inner {
-        padding-left: 45px;
-        background: url(../assets/icon/icon_03.png) 3px center no-repeat;
-        background-size: 20px;
+        .item-input {
+            padding: 0;
+        }
+        .item-inner {
+            padding-left: 45px;
+            background: url(../assets/icon/icon_03.png) 3px center no-repeat;
+            background-size: 20px;
+        }
     }
     .item-block:last-child .item-inner {
         background-image: url(../assets/icon/icon_07.png);
     }
-    .forgot-password{
+    .forgot-password {
         overflow: hidden;
         margin-bottom: 30px;
-    }
-    .forgot-password button{
-        float: right;
-        
+        button {
+            float: right;
+        }
     }
     .btn-wrap {
         padding: 0 40px;
     }
-    
 }
