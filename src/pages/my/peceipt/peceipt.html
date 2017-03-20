@@ -91,10 +91,11 @@
                 <div class="show">
                     <div class="text">
                         <ion-datetime cancelText="取消" doneText="确定" displayFormat="YYYY-MM-DD" min="2015" max="2017-10-31" [(ngModel)]="myDate"></ion-datetime>
+                        <div class="btn">
+                            <img src="./assets/icon/images/user_cener_1_39_03.png">
+                        </div>
                     </div>
-                    <div class="btn">
-                        <img src="./assets/icon/images/user_cener_1_39_03.png">
-                    </div>
+
                     <div class="btn">搜索</div>
                 </div>
             </div>
@@ -161,30 +162,6 @@
     <div class="receiptInfo" *ngSwitchCase="'receiptInfo'">
         <div class="head">
             <button ion-button color="blueBtn" (click)="goInvoiceQualificationPage()">新增发票资质</button>发票资质审核通过后不可删除修改
-        </div>
-        <div class="background"></div>
-        <div class="an-invoice">
-            <ion-list padding-left no-margin>
-                <div class="fore">
-                    <span class="name">发票类型：</span>
-                    <span class="value">镜库网</span>
-                </div>
-                <div class="fore">
-                    <span class="name">发票抬头：</span>
-                    <span class="value">镜库网</span>
-                </div>
-                <div class="fore">
-                    <span class="name">申请时间：</span>
-                    <span class="value">2.15-5-16</span>
-                </div>
-                <div class="fore">
-                    <span class="name">资质审核：</span>
-                    <span class="value">镜库网</span>
-                </div>
-            </ion-list>
-            <div class="bottom">
-                <button ion-button color="dark">修改</button>
-            </div>
         </div>
         <div class="background"></div>
         <div class="an-invoice">

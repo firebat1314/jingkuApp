@@ -13,6 +13,83 @@
 </ion-header>
 
 
-<ion-content padding>
-
+<ion-content>
+    <div class="top">
+        <div>您选择了<span class="count">3</span>条单据开票发票</div>
+        <div>代开票金额:<span class="price">￥3000.00</span></div>
+    </div>
+    <div class="background"></div>
+    <div class="receipt-info">
+        <div class="title">发票信息</div>
+        <div>
+            <ion-checkbox mode="ios"></ion-checkbox>
+            <span>企业</span>
+            <span>孙山杉</span>
+            <span>普通发票</span>
+        </div>
+        <div>
+            <ion-checkbox mode="ios"></ion-checkbox>
+            <span>企业</span>
+            <span>孙山杉</span>
+            <span>普通发票</span>
+        </div>
+        <div>
+            <ion-checkbox mode="ios"></ion-checkbox>
+            <span>企业</span>
+            <span>孙山杉</span>
+            <span>普通发票</span>
+        </div>
+    </div>
+    <div class="background"></div>
+    <div class="receipt-address">
+        <div class="title">
+            <div>
+                寄送地址
+                <ion-note>将以快递（免费）方式寄送给您</ion-note>
+            </div>
+            <div style="color:#526bb5;">管理寄送地址</div>
+        </div>
+        <div ion-item no-lines>
+            <ion-checkbox item-left mode="ios"></ion-checkbox>
+            <div item-content>
+                <div>
+                    <span class="name">孙山杉</span><span class="phone">{{'13100668641'|phonenumberfilter}}</span>
+                </div>
+                <div class="address">
+                    北京-北京-北京-北京-北京-北京-北京-北京-北京-北京-北京-北京-北京
+                </div>
+            </div>
+        </div>
+        <div ion-item no-lines>
+            <ion-checkbox item-left mode="ios"></ion-checkbox>
+            <div item-content>
+                <div>
+                    <span class="name">孙山杉</span><span class="phone">{{'13100668641'|phonenumberfilter}}</span>
+                </div>
+                <div class="address">
+                    北京-北京-北京-北京-北京-北京-北京-北京-北京-北京-北京-北京-北京
+                </div>
+            </div>
+        </div>
+        <div ion-item no-lines>
+            <ion-checkbox item-left mode="ios"></ion-checkbox>
+            <div item-content>
+                <div>
+                    <span class="name">孙山杉</span><span class="phone">{{'13100668641'|phonenumberfilter}}</span>
+                </div>
+                <div class="address">
+                    北京-北京-北京-北京-北京-北京-北京-北京-北京-北京-北京-北京-北京
+                </div>
+            </div>
+        </div>
+    </div>
 </ion-content>
+
+<ion-footer>
+    <ion-toolbar no-padding>
+        <div class="btns">
+            <button ion-button no-margin full large color="cancelBtn">取消</button>
+            <button ion-button no-margin full large color="dark">确定</button>
+        </div>
+    </ion-toolbar>
+</ion-footer>

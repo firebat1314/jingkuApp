@@ -98,6 +98,7 @@ export class SignupPage {
   private time() {
     if (this.wait == 0) {
       this.disabled = false;
+      this.timer = null;
       this.value = "发送验证码";
       this.wait = 60;
       return;
@@ -105,7 +106,7 @@ export class SignupPage {
       this.disabled = true;
       this.value = "(" + this.wait + ")秒后重新发送";
       let self = this;
-      setTimeout(function () {
+      this.timer = setTimeout(function () {
         self.wait--;
         self.time();
       }, 1000)

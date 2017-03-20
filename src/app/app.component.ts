@@ -13,6 +13,8 @@ import { PeceiptPage } from "../pages/my/peceipt/peceipt";
 import { SettingPage } from "../pages/my/setting/setting";
 import { AccountManagementPage } from "../pages/my/account-management/account-management";
 import { BrandListPage } from "../pages/home/brand-list/brand-list";
+import { InvoiceQualificationPage } from "../pages/my/peceipt/invoice-qualification/invoice-qualification";
+import { CouponPage } from "../pages/my/coupon/coupon";
 
 
 @Component({

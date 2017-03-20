@@ -4,23 +4,7 @@ page-signup {
         .item-input {
             min-height: 62px;
         }
-        .certified-img {
-            display: flex;
-            align-items: center;
-            margin: 0;
-            border-left: 1px solid #e0e0e0;
-            margin-left: 10px;
-            ion-icon {
-                color: #999;
-                font-size: 1.5em;
-                margin: 0 10px;
-            }
-        }
-    }
-    .certified-img-box {
-        .input-wrapper {
-            border-right: 1px solid #c8c7cc;
-        }
+        @include certified-img;
     }
     .login {
         float: right;

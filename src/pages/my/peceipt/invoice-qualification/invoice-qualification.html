@@ -13,6 +13,83 @@
 </ion-header>
 
 
-<ion-content padding>
-
+<ion-content>
+    <div class="item" padding-left>
+        <ion-label fixed>开具类型：</ion-label>
+        <ion-checkbox color="danger" mode="ios"></ion-checkbox><span>普通发票</span>
+        <ion-checkbox color="danger" mode="ios"></ion-checkbox><span>增值税专用发票</span>
+    </div>
+    <div class="background"></div>
+    <div class="item" padding-left>
+        <ion-label fixed>开票抬头：</ion-label>
+        <input type="text">
+    </div>
+    <div class="background"></div>
+    <div class="item" padding-left>
+        <ion-label fixed>发票类型：</ion-label>
+        <ion-checkbox color="danger" mode="ios"></ion-checkbox><span>普通发票</span>
+        <ion-checkbox color="danger" mode="ios"></ion-checkbox><span>增值税专用发票</span>
+    </div>
+    <div class="main">
+        <div>
+            <div class="name">税务等级单位名称：</div>
+            <div class="input"><input type="text"></div>
+        </div>
+        <div>
+            <div class="name">税务登记证号：</div>
+            <div class="input"><input type="text"></div>
+        </div>
+        <div>
+            <div class="name">基本户开户银行名称：</div>
+            <div class="input"><input type="text"></div>
+        </div>
+        <div>
+            <div class="name">基本户开户账号：</div>
+            <div class="input"><input type="text"></div>
+        </div>
+        <div>
+            <div class="name">注册场所地址：</div>
+            <div class="input"><input type="text"></div>
+        </div>
+        <div>
+            <div class="name">注册固定电话：</div>
+            <div class="input"><input type="text"></div>
+        </div>
+        <div>
+            <div class="name">营业执照复印件：</div>
+            <div class="input">
+                <div class="fuyin" item-center icon-top>
+                    <ion-icon name="md-add"></ion-icon>
+                    选择文件
+                </div>
+            </div>
+        </div>
+        <div>
+            <div class="name">税务登记复印件：</div>
+            <div class="input">
+                <div class="fuyin" item-center icon-top>
+                    <ion-icon name="md-add"></ion-icon>
+                    选择文件
+                </div>
+            </div>
+        </div>
+        <div>
+            <div class="name">一般纳税人资格认证复印件：</div>
+            <div class="input">
+                <div class="fuyin" item-center icon-top>
+                    <ion-icon name="md-add"></ion-icon>
+                    选择文件
+                </div>
+            </div>
+        </div>
+    </div>
 </ion-content>
+
+<ion-footer>
+    <ion-toolbar no-padding>
+        <div class="btns">
+            <button ion-button no-margin full large navPop color="cancelBtn">取消</button>
+            <button ion-button no-margin full large color="dark">确认资质</button>
+        </div>
+    </ion-toolbar>
+</ion-footer>

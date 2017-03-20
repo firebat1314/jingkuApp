@@ -53,6 +53,8 @@
         <div>北京</div>
         <div>北京</div>
         <div>北京</div>
+        <div>北京</div>
+        <div>北京</div>
     </div>
     <p ion-text color="colorsix" padding-horizontal>申请原因：</p>
     <ion-textarea class="textarea"></ion-textarea>
@@ -72,7 +74,9 @@
     <div *ngIf="image2" text-center><img src="{{image2}}" alt=""></div>
 </ion-content>
 <ion-footer>
-    <button large ion-button color="cancelBtn">取消</button>
-    <button large ion-button color="dark">确定</button>
+    <ion-toolbar no-padding>
+        <button large ion-button color="cancelBtn">取消</button>
+        <button large ion-button color="dark">确定</button>
+    </ion-toolbar>
 
 </ion-footer>

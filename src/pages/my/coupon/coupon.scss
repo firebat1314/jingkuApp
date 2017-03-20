@@ -1,3 +1,94 @@
 page-coupon {
-
+    .content {
+        .unused,
+        .stale,
+        .used {
+            background: #f7f7f7;
+            height: 100%;
+            .no-coupon {
+                text-align: center;
+                color: #999;
+                .img {
+                    width: 13rem;
+                    height: 13rem;
+                    border-radius: 50%;
+                    border: 2px solid #cbced0;
+                    margin: 50px auto 10px;
+                    background: url(../assets/images/images/coupon_4_03.png) center center/50% 50% no-repeat;
+                }
+            }
+            .item {
+                background: #fff;
+                display: flex;
+                height: 100px;
+                margin-bottom: 10px;
+                &:last-child {
+                    margin: 0;
+                }
+                .fore {
+                    width: 100px;
+                    color: #fff;
+                    text-align: center;
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: center;
+                    background: url(../assets/images/images/coupon_1_03.png) left center/100% 100% no-repeat;
+                    .price {
+                        margin-bottom: 5px;
+                        font-size: 2rem;
+                        span {
+                            font-size: 3rem;
+                        }
+                    }
+                }
+                .main {
+                    color: #999;
+                    margin-left: 20px;
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: space-around;
+                    .name {
+                        span {
+                            color: #5068b4;
+                            border: 1px solid #5068b4;
+                            padding: 1px 2px;
+                            border-radius: 2px;
+                        }
+                    }
+                }
+            }
+        }
+        .stale {
+            .item {
+                background: #fff url(../assets/images/images/coupon_3_03.png) right top no-repeat;
+                .fore {
+                    background: url(../assets/images/images/coupon_2_03.png) left center/100% 100% no-repeat;
+                }
+                .main {
+                    .name {
+                        span {
+                            color: #999;
+                            border: 1px solid #999;
+                        }
+                    }
+                }
+            }
+        }
+        .used {
+            .item {
+                background: #fff url(../assets/images/images/coupon_2_06.png) right top no-repeat;
+                .fore {
+                    background: url(../assets/images/images/coupon_2_03.png) left center/100% 100% no-repeat;
+                }
+                .main {
+                    .name {
+                        span {
+                            color: #999;
+                            border: 1px solid #999;
+                        }
+                    }
+                }
+            }
+        }
+    }
 }

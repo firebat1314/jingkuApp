@@ -14,6 +14,7 @@ import { AccountHistoryPage } from "./account-history/account-history";
 import { AccountServicePage } from "./account-service/account-service";
 import { AccountHelperPage } from "./account-helper/account-helper";
 import { AccountManagementPage } from "./account-management/account-management";
+import { CouponPage } from "./coupon/coupon";
 
 @Component({
   selector: 'page-my',
@@ -22,17 +23,17 @@ import { AccountManagementPage } from "./account-management/account-management";
 export class MyPage {
   SettingPage = SettingPage;
   PeceiptPage = PeceiptPage;
-  AllOrdersPage =AllOrdersPage;
-  AccountAssetPage= AccountAssetPage;
-  AccountProcessPage= AccountProcessPage;
-  AccountAreaApplicationPage= AccountAreaApplicationPage;
-  AccountCollectGoodsPage= AccountCollectGoodsPage;
-  AccountCollectStorePage= AccountCollectStorePage;
-  AccountHistoryPage= AccountHistoryPage;
-  AccountServicePage= AccountServicePage;
-  AccountHelperPage= AccountHelperPage;
+  AllOrdersPage = AllOrdersPage;
+  AccountAssetPage = AccountAssetPage;
+  AccountProcessPage = AccountProcessPage;
+  AccountAreaApplicationPage = AccountAreaApplicationPage;
+  AccountCollectGoodsPage = AccountCollectGoodsPage;
+  AccountCollectStorePage = AccountCollectStorePage;
+  AccountHistoryPage = AccountHistoryPage;
+  AccountServicePage = AccountServicePage;
+  AccountHelperPage = AccountHelperPage;
   AccountManagementPage = AccountManagementPage;
-
+  CouponPage = CouponPage;
 
   constructor(
     public viewCtrl: ViewController,
@@ -45,7 +46,7 @@ export class MyPage {
   }
 
 
-  goSettingPage(){
+  goSettingPage() {
     this.navCtrl.push(SettingPage)
   }
 }

@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
+import { InvoiceAskFor2Page } from "../invoice-ask-for2/invoice-ask-for2";
 
 /*
   Generated class for the InvoiceAskFor1 page.
@@ -12,11 +13,15 @@ import { NavController, NavParams } from 'ionic-angular';
   templateUrl: 'invoice-ask-for1.html'
 })
 export class InvoiceAskFor1Page {
+  showSearch:boolean = false;
 
+  InvoiceAskFor2Page = InvoiceAskFor2Page;
   constructor(public navCtrl: NavController, public navParams: NavParams) {}
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad InvoiceAskFor1Page');
   }
-
+  goInvoiceAskFor2Page(){
+    this.navCtrl.push(InvoiceAskFor2Page)
+  }
 }

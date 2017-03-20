@@ -68,7 +68,6 @@ page-peceipt {
             .show {
                 display: flex;
                 .text {
-                    width: 83px;
                     border: #999 1px solid;
                     border-right: none;
                     border-bottom-left-radius: 4px;
@@ -77,8 +76,16 @@ page-peceipt {
                     display: flex;
                     justify-content: flex-start;
                     align-items: center;
-                    width: 100px;
-                    // background: url(../assets/icon/images/user_cener_1_39_03.png) left center/auto 100% no-repeat;
+                    width: 140px;
+                    position: relative;
+                    margin-right: 10px;
+                    padding-left: 5px;
+                    .btn {
+                        position: absolute;
+                        top: -1px;
+                        right: 0;
+                        z-index: -1;
+                    }
                     ion-datetime {
                         padding: 0;
                     }
@@ -89,7 +96,6 @@ page-peceipt {
                     border-radius: 2px;
                     background: #526bb5;
                     height: 34px;
-                    margin-right: 10px;
                 }
             }
         }
@@ -117,6 +123,9 @@ page-peceipt {
             justify-content: center;
             align-items: center;
             color: #999;
+            .button {
+                margin-right: 10px;
+            }
         }
         .fore {
             padding: 18px 0 18px 30px;

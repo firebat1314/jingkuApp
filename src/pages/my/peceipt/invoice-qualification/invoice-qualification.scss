@@ -1,3 +1,61 @@
 page-invoice-qualification {
-
+    input {
+        border: 1px solid #e0e0e0;
+        padding-left: 5px;
+        height: 40px;
+        border-radius: 2px;
+    }
+    .item {
+        display: flex;
+        align-items: center;
+        ion-label {
+            font-size: 1.6rem;
+        }
+        ion-checkbox {
+            margin-right: 10px;
+        }
+        span {
+            margin-right: 20px;
+            &:last-child {
+                margin: 0;
+            }
+        }
+        input {
+            height: 30px;
+        }
+    }
+    .main {
+        >div {
+            display: flex;
+            padding: 10px 0;
+            .name {
+                width: 40%;
+                text-align: right;
+                color: #999;
+                margin-right: 10px;
+            }
+            .input {
+                .fuyin {
+                    height: 7rem;
+                    width: 7rem;
+                    display: flex;
+                    font-size: 1.3rem;
+                    flex-direction: column;
+                    align-items: center;
+                    background: #e0e0e0;
+                    border-radius: 3px;
+                    color: #fff;
+                    justify-content: center;
+                    ion-icon {
+                        font-size: 5rem;
+                    }
+                }
+            }
+        }
+    }
+    ion-footer {
+        .btns {
+            display: flex;
+        }
+    }
 }

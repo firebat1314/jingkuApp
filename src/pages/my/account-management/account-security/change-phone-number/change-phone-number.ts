@@ -38,4 +38,7 @@ export class ChangePhoneNumberPage {
       }, 1000)
     }
   }
+  changePhoneNumber(changePhoneNumber){
+    console.log(changePhoneNumber)
+  }
 }

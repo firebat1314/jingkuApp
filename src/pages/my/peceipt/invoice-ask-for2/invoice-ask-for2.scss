@@ -1,3 +1,70 @@
 page-invoice-ask-for2 {
-
+    .top {
+        color: #808080;
+        display: flex;
+        justify-content: space-between;
+        padding: 13px 10px;
+        .count {
+            color: #333;
+            font-size: 1.8rem;
+        }
+        .price {
+            font-size: 1.8rem;
+            color: #e60000;
+        }
+    }
+    .receipt-info {
+        color: #808080;
+        .title {
+            padding: 15px 10px;
+            font-size: 1.6rem;
+            color: #333;
+        }
+        >div {
+            padding: 10px 5px;
+            margin: 0 5px;
+            border-bottom: 1px solid map-get($colors, border);
+            display: flex;
+            &:last-child {
+                border: none;
+            }
+            span {
+                margin-left: 10px;
+            }
+        }
+    }
+    .receipt-address {
+        .title {
+            padding: 15px 10px;
+            font-size: 1.6rem;
+            color: #333;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            ion-note {
+                margin-left: 10px;
+                font-size: 1.3rem;
+            }
+        }
+        .item {
+            border-top: 1px solid map-get($colors, border);
+            color: #808080;
+            padding: 10px 10px;
+            .name {
+                margin-right: 20px;
+            }
+            .address {
+                font-size: 1.3rem;
+                margin: 5px 0;
+            }
+        }
+    }
+    ion-footer {
+        .btns {
+            display: flex;
+            .button {
+                width: 50%;
+            }
+        }
+    }
 }

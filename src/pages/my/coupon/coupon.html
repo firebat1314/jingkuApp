@@ -9,10 +9,94 @@
     <ion-navbar>
         <ion-title>优惠券</ion-title>
     </ion-navbar>
-
+    <ion-toolbar class="segment-style">
+        <ion-segment [(ngModel)]="couponSelect">
+            <ion-segment-button value="unused">
+                未使用
+            </ion-segment-button>
+            <ion-segment-button value="stale">
+                已过期
+            </ion-segment-button>
+            <ion-segment-button value="used">
+                已使用
+            </ion-segment-button>
+        </ion-segment>
+    </ion-toolbar>
 </ion-header>
 
 
-<ion-content padding>
-
+<ion-content [ngSwitch]="couponSelect">
+    <div padding class="unused" *ngSwitchCase="'unused'">
+        <div class="no-coupon">
+            <div class="img"></div>
+            <div class="text">您还没有优惠券哦！</div>
+        </div>
+        <div class="item">
+            <div class="fore">
+                <div class="price">￥<span>40</span></div>
+                <div class="canbe">满200元可用</div>
+            </div>
+            <div class="main">
+                <div class="name"><span>沙弗龙旗舰店点卷</span></div>
+                <div>仅限购买隐形眼镜部分商品</div>
+                <div class="time">2017.5.02 10:5:55 到期</div>
+            </div>
+        </div>
+        <div class="item">
+            <div class="fore">
+                <div class="price">￥<span>40</span></div>
+                <div class="canbe">满200元可用</div>
+            </div>
+            <div class="main">
+                <div class="name"><span>沙弗龙旗舰店点卷</span></div>
+                <div>仅限购买隐形眼镜部分商品</div>
+                <div class="time">2017.5.02 10:5:55 到期</div>
+            </div>
+        </div>
+        <div class="item">
+            <div class="fore">
+                <div class="price">￥<span>40</span></div>
+                <div class="canbe">满200元可用</div>
+            </div>
+            <div class="main">
+                <div class="name"><span>沙弗龙旗舰店点卷</span></div>
+                <div>仅限购买隐形眼镜部分商品</div>
+                <div class="time">2017.5.02 10:5:55 到期</div>
+            </div>
+        </div>
+    </div>
+    <div padding class="stale" *ngSwitchCase="'stale'">
+        <div class="no-coupon">
+            <div class="img"></div>
+            <div class="text">您还没有优惠券哦！</div>
+        </div>
+        <div class="item">
+            <div class="fore">
+                <div class="price">￥<span>40</span></div>
+                <div class="canbe">满200元可用</div>
+            </div>
+            <div class="main">
+                <div class="name"><span>沙弗龙旗舰店点卷</span></div>
+                <div>仅限购买隐形眼镜部分商品</div>
+                <div class="time">2017.5.02 10:5:55 到期</div>
+            </div>
+        </div>
+    </div>
+    <div padding class="used" *ngSwitchCase="'used'">
+        <div class="no-coupon">
+            <div class="img"></div>
+            <div class="text">您还没有使用过优惠券哦！</div>
+        </div>
+        <div class="item">
+            <div class="fore">
+                <div class="price">￥<span>40</span></div>
+                <div class="canbe">满200元可用</div>
+            </div>
+            <div class="main">
+                <div class="name"><span>沙弗龙旗舰店点卷</span></div>
+                <div>仅限购买隐形眼镜部分商品</div>
+                <div class="time">2017.5.02 10:5:55 到期</div>
+            </div>
+        </div>
+    </div>
 </ion-content>
