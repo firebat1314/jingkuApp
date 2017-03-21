@@ -3,8 +3,10 @@ import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
 import { Storage } from '@ionic/storage';
 import { HttpModule } from '@angular/http';
 import { BrowserModule } from "@angular/platform-browser";
+/*————————————————————————————————插件————————————————————————————————*/
 import { IonicImageViewerModule } from 'ionic-img-viewer';
 import { IonicImageLoader } from 'ionic-image-loader';
+import { CityPickerModule  } from "ionic2-city-picker/dist/city-picker.module";
 /*————————————————————————————————base页————————————————————————————————*/
 import { MyApp } from './app.component';
 import { TabsPage } from '../pages/tabs/tabs';
@@ -75,6 +77,14 @@ import { AccountCollectStorePage } from "../pages/my/account-collect-store/accou
 import { AccountCollectGoodsPage } from "../pages/my/account-collect-goods/account-collect-goods";
 import { AccountAreaApplicationPage } from "../pages/my/account-area-application/account-area-application";
 import { AccountProcessPage } from "../pages/my/account-process/account-process";
+import { AccountJifenPage } from "../pages/my/account-jifen/account-jifen";
+import { AccountBalancePage } from "../pages/my/account-balance/account-balance";
+import { AccountWithdrawPage } from "../pages/my/account-withdraw/account-withdraw";
+import { AccountWithdrawSucceedPage } from "../pages/my/account-withdraw-succeed/account-withdraw-succeed";
+import { AccountMoneyDetailPage } from "../pages/my/account-money-detail/account-money-detail";
+import { PaymentMethodPage } from "../pages/my/all-orders/payment-method/payment-method";
+import { OrdersDetailPage } from "../pages/my/all-orders/orders-detail/orders-detail";
+import { WriteOrdersPage } from "../pages/my/all-orders/write-orders/write-orders";
 import { InvoiceQualificationPage } from "../pages/my/peceipt/invoice-qualification/invoice-qualification";
 import { InvoiceAskFor2Page } from "../pages/my/peceipt/invoice-ask-for2/invoice-ask-for2";
 import { InvoiceAskFor1Page } from "../pages/my/peceipt/invoice-ask-for1/invoice-ask-for1";
@@ -97,6 +107,7 @@ import { ImgTabs2Component } from "../components/img-tabs2/img-tabs2";
 import { CompanynamePage } from "../pages/my/account-management/account-info/companyname/companyname";
 import { PhoneNumberFilter } from "../pipes/phone-number-filter";
 
+
 @NgModule({
   declarations: [
     MyApp,
@@ -112,7 +123,7 @@ import { PhoneNumberFilter } from "../pipes/phone-number-filter";
     /*——————————————————分类栏——————————————————*/
     ClassifyPage, SubnavPage1Page, SubnavPage2Page, MoreBrandPage,
     /*——————————————————我的栏——————————————————*/
-    MyPage, SettingPage, AccountManagementPage, AccountSecurityPage, AllOrdersPage, CouponPage, MemberCenterPage, PeceiptPage, AccountAssetPage, AccountProcessPage, AccountAreaApplicationPage, AccountCollectGoodsPage, AccountCollectStorePage, AccountHistoryPage, AccountServicePage, AccountHelperPage, AccountInfoPage, InvoiceQualificationPage, InvoiceAskFor2Page, InvoiceAskFor1Page, AboutUsPage, ShippingAddressPage, ChangePhoneNumberPage, ChangePasswordPage, RealnamePage, QqPage, AddShippingAddressPage, CompanynamePage,
+    MyPage, SettingPage, AccountManagementPage, AccountSecurityPage, AllOrdersPage, CouponPage, MemberCenterPage, PeceiptPage, AccountAssetPage, AccountProcessPage, AccountAreaApplicationPage, AccountCollectGoodsPage, AccountCollectStorePage, AccountHistoryPage, AccountServicePage, AccountHelperPage, AccountInfoPage, InvoiceQualificationPage, InvoiceAskFor2Page, InvoiceAskFor1Page, AboutUsPage, ShippingAddressPage, ChangePhoneNumberPage, ChangePasswordPage, RealnamePage, QqPage, AddShippingAddressPage, CompanynamePage,AccountJifenPage,AccountBalancePage,AccountWithdrawPage,AccountMoneyDetailPage,AccountWithdrawSucceedPage,PaymentMethodPage,OrdersDetailPage,WriteOrdersPage,
     /*——————————————————组件——————————————————*/
     SingleCardComponent, MyToolbarComponent, SingleFoodsItemComponent, MeunItemComponent, CountdownComponent, CountInputComponent, ImgTabs2Component,
     DirectiveTestPage,
@@ -137,22 +148,11 @@ import { PhoneNumberFilter } from "../pipes/phone-number-filter";
       }),
     BrowserModule,
     IonicImageViewerModule,
-    IonicImageLoader
+    IonicImageLoader,
+    CityPickerModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [
-    /*    MyApp,
-        ClassifyPage, SubnavPage1Page, SubnavPage2Page, MoreBrandPage,
-        CarPage,
-        HomePage, CityPage, SearchPage, DetailsPage, BrandListPage, AttentionPage, FastbuyPage, GlassesDesignPage, IntegralstorePage, RechargePage, WhitebarPage, DiscountCouponPage, MessagePage, ParticularsPage, ParticularsModalPage, DredgeMoreCityPage, PopoverContentPage,
-        MyPage,SettingPage,AccountManagementPage,AccountSecurityPage,AllOrdersPage,CouponPage,MemberCenterPage,PeceiptPage,AccountAssetPage,AccountProcessPage,AccountAreaApplicationPage,AccountCollectGoodsPage,AccountCollectStorePage,AccountHistoryPage,AccountServicePage,AccountHelperPage,AccountInfoPage,InvoiceQualificationPage,InvoiceAskFor2Page,InvoiceAskFor1Page,AboutUsPage,ShippingAddressPage,ChangePhoneNumberPage,ChangePasswordPage,RealnamePage,QqPage,AddShippingAddressPage,CompanynamePage,
-        TabsPage,
-        WelcomePage,
-        LoginPage,
-        SignupPage, SignupSecondPage, SignupThirdPage,
-        SingleCardComponent, MyToolbarComponent, SingleFoodsItemComponent, MeunItemComponent, CountdownComponent, CountInputComponent,ImgTabs2Component,
-        DirectiveTestPage,
-        ForgotPage, ForgotTwoPage*/
     MyApp,
     WelcomePage,
     LoginPage,
@@ -162,11 +162,11 @@ import { PhoneNumberFilter } from "../pipes/phone-number-filter";
     /*——————————————————购物车——————————————————*/
     CarPage,
     /*——————————————————home栏——————————————————*/
-    HomePage, CityPage, SearchPage, DetailsPage, BrandListPage, AttentionPage, FastbuyPage, GlassesDesignPage, IntegralstorePage, RechargePage, WhitebarPage, DiscountCouponPage, MessagePage, ParticularsPage, ParticularsModalPage, DredgeMoreCityPage, PopoverContentPage, ParticularsModalMeitongPage, ParticularsModalHuliPage, ParticularsModalTaiyangPage, ParticularsModalJingpianPage,ParticularsModalJingjiaPage,
+    HomePage, CityPage, SearchPage, DetailsPage, BrandListPage, AttentionPage, FastbuyPage, GlassesDesignPage, IntegralstorePage, RechargePage, WhitebarPage, DiscountCouponPage, MessagePage, ParticularsPage, ParticularsModalPage, DredgeMoreCityPage, PopoverContentPage, ParticularsModalMeitongPage, ParticularsModalHuliPage, ParticularsModalTaiyangPage, ParticularsModalJingpianPage,ParticularsModalJingjiaPage,AccountBalancePage,
     /*——————————————————分类栏——————————————————*/
     ClassifyPage, SubnavPage1Page, SubnavPage2Page, MoreBrandPage,
     /*——————————————————我的栏——————————————————*/
-    MyPage, SettingPage, AccountManagementPage, AccountSecurityPage, AllOrdersPage, CouponPage, MemberCenterPage, PeceiptPage, AccountAssetPage, AccountProcessPage, AccountAreaApplicationPage, AccountCollectGoodsPage, AccountCollectStorePage, AccountHistoryPage, AccountServicePage, AccountHelperPage, AccountInfoPage, InvoiceQualificationPage, InvoiceAskFor2Page, InvoiceAskFor1Page, AboutUsPage, ShippingAddressPage, ChangePhoneNumberPage, ChangePasswordPage, RealnamePage, QqPage, AddShippingAddressPage, CompanynamePage,
+    MyPage, SettingPage, AccountManagementPage, AccountSecurityPage, AllOrdersPage, CouponPage, MemberCenterPage, PeceiptPage, AccountAssetPage, AccountProcessPage, AccountAreaApplicationPage, AccountCollectGoodsPage, AccountCollectStorePage, AccountHistoryPage, AccountServicePage, AccountHelperPage, AccountInfoPage, InvoiceQualificationPage, InvoiceAskFor2Page, InvoiceAskFor1Page, AboutUsPage, ShippingAddressPage, ChangePhoneNumberPage, ChangePasswordPage, RealnamePage, QqPage, AddShippingAddressPage, CompanynamePage,AccountJifenPage,AccountWithdrawPage,AccountMoneyDetailPage,AccountWithdrawSucceedPage,PaymentMethodPage,OrdersDetailPage,WriteOrdersPage,
     /*——————————————————组件——————————————————*/
     SingleCardComponent, MyToolbarComponent, SingleFoodsItemComponent, MeunItemComponent, CountdownComponent, CountInputComponent, ImgTabs2Component,
     DirectiveTestPage

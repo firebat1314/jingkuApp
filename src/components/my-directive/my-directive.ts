@@ -29,5 +29,6 @@ export class MyDirective {
 
   private highlight(color: string) {
     this.renderer.setElementStyle(this.el.nativeElement, 'backgroundColor', color);
+    // console.log(this.renderer,this.el.nativeElement)
   }
 }

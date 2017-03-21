@@ -1,0 +1,21 @@
+page-account-balance {
+    .head {
+        div {
+            overflow: hidden;
+        }
+        background: url(../assets/images/images/member_center_02.jpg) left top/100% 100% no-repeat;
+        text-align: center;
+        color: #fff;
+        padding: 5px 0 30px;
+        p {
+            margin: 0;
+        }
+    }
+    .btn {
+        display: flex;
+        justify-content: space-around;
+        .button {
+            width: 45%;
+        }
+    }
+}

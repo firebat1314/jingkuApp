@@ -94,5 +94,10 @@ export class HttpService {
   getZhujing(data?: Object) {//如果返回的(good_type) 商品类型是goods再调用接口如下
     return this.http.get(this.ip + '/Goods/get_zhujing', data)
   }
-  
+  /**
+   * 个人中心页
+   */
+   getCityJsonData(){
+     return this.http.get('./assets/data/city-data.json')
+   }
 }

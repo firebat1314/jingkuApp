@@ -27,18 +27,25 @@ export class ChangePhoneNumberPage {
       this.disabled = false;
       this.value = "发送验证码";
       this.wait = 60;
+      clearInterval(this.timer);
       return;
     } else {
       this.disabled = true;
       this.value = "(" + this.wait + ")秒后重新发送";
       let self = this;
-      setTimeout(function () {
+      this.timer = setTimeout(function () {
         self.wait--;
         self.time();
       }, 1000)
     }
   }
+  getImg(){
+    
+  }
   changePhoneNumber(changePhoneNumber){
     console.log(changePhoneNumber)
+  }
+  ngOnDestroy(){
+    clearInterval(this.timer);
   }
 }

@@ -1,0 +1,82 @@
+page-orders-detail {
+    .content {
+        background: #f7f7f7;
+        .fore1 {
+            display: flex;
+            justify-content: space-between;
+            background: #fff;
+            div:first-child {
+                color: #666;
+            }
+            div:last-child {
+                color: #e60000;
+                font-size: 1.6rem;
+            }
+        }
+        .fore2 {
+            margin: 0 0 10px 0;
+            background: url(../assets/images/images/allorders_1_03.png) 10px top repeat-x, url(../assets/images/images/allorders_1_03.png) 10px bottom repeat-x;
+            background-color: #fff;
+            color: #666;
+            .user {
+                margin-bottom: 10px;
+                display: flex;
+                justify-content: space-between;
+                .name {
+                    font-size: 1.6rem;
+                }
+                .phone {
+                    color: #333;
+                }
+            }
+        }
+        .fore3 {
+            padding: 0 10px;
+            margin-bottom: 10px;
+            background: #fff;
+            .item {
+                .item-inner {
+                    margin-left: 10px;
+                }
+                border-bottom: 1px solid #e0e0e0;
+                [item-content] {
+                    .my-content {
+                        display: flex;
+                        color: #4d4d4d;
+                        .left {
+                            color: #999;
+                            font-size: 1.2rem;
+                            h2 {
+                                color: #4d4d4d;
+                                white-space: pre-wrap;
+                                font-size: 1.6rem;
+                                text-overflow: -o-ellipsis-lastline;
+                                overflow: hidden;
+                                text-overflow: ellipsis;
+                                display: -webkit-box;
+                                -webkit-line-clamp: 2;
+                                -webkit-box-orient: vertical;
+                                margin-bottom: 10px;
+                            }
+                        }
+                        .right {
+                            color: #000;
+                            text-align: right;
+                            min-width: 80px;
+                            .count {
+                                margin-top: 10px;
+                                color: #999;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+    ion-footer {
+        .button {
+            width: 50%;
+            height: 100%;
+        }
+    }
+}

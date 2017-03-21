@@ -15,6 +15,8 @@ import { AccountServicePage } from "./account-service/account-service";
 import { AccountHelperPage } from "./account-helper/account-helper";
 import { AccountManagementPage } from "./account-management/account-management";
 import { CouponPage } from "./coupon/coupon";
+import { AccountJifenPage } from "./account-jifen/account-jifen";
+import { AccountBalancePage } from "./account-balance/account-balance";
 
 @Component({
   selector: 'page-my',
@@ -34,7 +36,8 @@ export class MyPage {
   AccountHelperPage = AccountHelperPage;
   AccountManagementPage = AccountManagementPage;
   CouponPage = CouponPage;
-
+  AccountJifenPage = AccountJifenPage;
+  AccountBalancePage = AccountBalancePage;
   constructor(
     public viewCtrl: ViewController,
     public navCtrl: NavController,

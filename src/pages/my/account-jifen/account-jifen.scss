@@ -1,3 +1,22 @@
 page-account-jifen {
-
+    .head {
+        background: url(../assets/images/images/jifen_1_02.jpg) no-repeat top left/100% 100%;
+        padding-top: 10px;
+        color: #fff;
+        text-align: center;
+        padding: 20px 10px;
+        h2 {
+            margin-top: 0.8rem;
+        }
+    }
+    .item {
+        p,
+        ion-note {
+            color: #999;
+            font-size: 1.4rem;
+        }
+        p {
+            margin-top: 8px;
+        }
+    }
 }

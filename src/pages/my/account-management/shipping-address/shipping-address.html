@@ -7,7 +7,7 @@
 <ion-header>
 
     <ion-navbar>
-        <ion-title>收获地址</ion-title>
+        <ion-title>收货地址</ion-title>
     </ion-navbar>
 
 </ion-header>
@@ -66,4 +66,9 @@
         </div>
     </div>
     <ion-item detail-push mode="ios" no-lines margin-top [navPush]="AddShippingAddressPage">添加收获地址</ion-item>
+    <div class="no-add">
+        <div class="img"></div>
+        <div class="text">暂无收货地址</div>
+        <p><button ion-button outline [navPush]="AddShippingAddressPage">+添加收货地址</button></p>
+    </div>
 </ion-content>

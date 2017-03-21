@@ -23,6 +23,10 @@
     padding: 0 4px;
 }
 
+ion-toolbar {
+    border-top: 1px solid #e0e0e0;
+}
+
 
 /*————————————————————————————————————item border颜色————————————————————————————————————*/
 
@@ -40,7 +44,7 @@
 }
 
 
-/*————————————————————————————————————菜单CSS————————————————————————————————————*/
+/*————————————————————————————————————menu CSS————————————————————————————————————*/
 
 .main-menu meun-item .body {
     border-bottom: 1px solid #e6e6e6;
@@ -62,6 +66,10 @@
 
 .main-menu ion-footer .button:first-child {
     background: #cccccc;
+}
+
+.menu-inner {
+    width: 70%;
 }
 
 
@@ -96,14 +104,7 @@
 }
 
 
-/*————————————————————————————————————菜单CSS————————————————————————————————————*/
-
-.menu-inner {
-    width: 70%;
-}
-
-
-/*————————————————————————————————————选择器CSS————————————————————————————————————*/
+/*————————————————————————————————————时间选择器CSS————————————————————————————————————*/
 
 .picker-md .picker-toolbar {
     justify-content: space-between;
@@ -112,6 +113,38 @@
 
 
 /*————————————————————————————————————itemCSS————————————————————————————————————*/
+
+
+/*----------浏览记录+分类------------*/
+
+@mixin slidingList1 {
+    .item-wrap {
+        display: flex;
+        align-items: center;
+        .item {
+            margin-bottom: 0;
+            h2 {
+                color: #666;
+                white-space: pre-wrap;
+                font-size: 1.4rem;
+                text-overflow: -o-ellipsis-lastline;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                display: -webkit-box;
+                -webkit-line-clamp: 2;
+                -webkit-box-orient: vertical;
+            }
+            .right-bottom {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                color: #e60000;
+                margin-top: 23px;
+                font-weight: 700;
+            }
+        }
+    }
+}
 
 
 /*ion-item.item {

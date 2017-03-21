@@ -158,91 +158,41 @@ page-classify {
             }
         }
         .care-wrap {
-            .item-wrap {
+            .activein {}
+            .shop .noshop-show,
+            .goods .nogoods-show {
+                margin-top: 50px;
+                height: 100%;
                 display: flex;
+                flex-direction: column;
+                justify-content: center;
                 align-items: center;
-            }
-            @keyframes checkbox-in {
-                from {
-                    width: 0;
-                    margin-left: 0;
+                img {
+                    width: 13rem;
                 }
-                to {
-                    width: 21px;
-                    margin-left: 16px;
-                }
-            }
-            @keyframes checkbox-out {
-                from {
-                    width: 21px;
-                    margin-left: 16px;
-                }
-                to {
-                    width: 0;
-                    margin-left: 0;
-                }
-            }
-            .activein {
-                animation: checkbox-in 0.2s;
-            }
-            .activeout {
-                animation: checkbox-out 0.2s;
             }
             .shop {
-                .type {
-                    color: #fff;
-                    padding: 1px 8px;
-                    background: #e60000;
-                    border-radius: 3px;
-                    display: inline-block;
-                    margin-top: 5px;
-                }
-                ion-note {
-                    color: #808080;
-                    font-size: 1.4rem;
-                }
-                .noshop-show {
-                    height: 100%;
+                .item-wrap {
                     display: flex;
-                    flex-direction: column;
-                    justify-content: center;
                     align-items: center;
-                    img {
-                        width: 16rem;
+                    .type {
+                        color: #fff;
+                        padding: 1px 8px;
+                        background: #e60000;
+                        border-radius: 3px;
+                        display: inline-block;
+                        margin-top: 5px;
+                    }
+                    ion-note {
+                        color: #808080;
+                        font-size: 1.4rem;
                     }
                 }
+                .noshop-show {}
             }
             .goods {
-                .label-md {
-                    margin-bottom: 0;
-                    h2 {
-                        color: #666;
-                        white-space: pre-wrap;
-                        font-size: 1.4rem;
-                        text-overflow: -o-ellipsis-lastline;
-                        overflow: hidden;
-                        text-overflow: ellipsis;
-                        display: -webkit-box;
-                        -webkit-line-clamp: 2;
-                        -webkit-box-orient: vertical;
-                    }
-                }
-                .right-bottom {
-                    display: flex;
-                    justify-content: space-between;
-                    align-items: center;
-                    color: #e60000;
-                    margin-top: 10px;
-                }
-                .nogoods-show {
-                    display: flex;
-                    flex-direction: column;
-                    justify-content: center;
-                    align-items: center;
-                    img {
-                        width: 16rem;
-                    }
-                }
+                @include slidingList1;
+                .nogoods-show {}
             }
         }
     }

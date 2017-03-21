@@ -1,9 +1,3 @@
-<!--
-  Generated template for the Recharge page.
-
-  See http://ionicframework.com/docs/v2/components/#navigation for more info on
-  Ionic pages and navigation.
--->
 <ion-header>
 
     <ion-navbar>
@@ -14,5 +8,11 @@
 
 
 <ion-content padding>
-
+    <form novalidata>
+        <div required clearInput class="text">请输入金额</div>
+        <input type="number">
+        <div padding>
+            <button color="dark" large ion-button block>确认</button>
+        </div>
+    </form>
 </ion-content>

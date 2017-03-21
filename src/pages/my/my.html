@@ -43,19 +43,19 @@
             </ion-item>
             <ion-item>
                 <div class="indent-info">
-                    <div>
+                    <div [navPush]="AllOrdersPage" [navParams]="{index:1}">
                         <div class="number">54</div>
                         <div class="text">待付款</div>
                     </div>
-                    <div>
+                    <div [navPush]="AllOrdersPage" [navParams]="{index:2}">
                         <div class="number">54</div>
                         <div class="text">代发货</div>
                     </div>
-                    <div>
+                    <div [navPush]="AllOrdersPage" [navParams]="{index:3}">
                         <div class="number">54</div>
                         <div class="text">待收货</div>
                     </div>
-                    <div>
+                    <div [navPush]="AllOrdersPage" [navParams]="{index:4}">
                         <div class="number">54</div>
                         <div class="text">返修退换</div>
                     </div>
@@ -76,11 +76,11 @@
                         <div class="number">4张可用</div>
                         <div class="text">优惠券</div>
                     </div>
-                    <div>
+                    <div [navPush]="AccountJifenPage">
                         <div class="number">54</div>
                         <div class="text">积分</div>
                     </div>
-                    <div>
+                    <div [navPush]="AccountBalancePage">
                         <div class="number">121212.00</div>
                         <div class="text">余额</div>
                     </div>

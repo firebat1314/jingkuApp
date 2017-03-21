@@ -8,11 +8,47 @@
 
     <ion-navbar>
         <ion-title>浏览记录</ion-title>
+        <ion-buttons right>
+            <button ion-button clear (click)="showCheckBoxChange()">{{showCheckBox?'完成':'编辑'}}</button>
+        </ion-buttons>
     </ion-navbar>
 
 </ion-header>
 
 
-<ion-content padding>
-
+<ion-content>
+    <ion-list>
+        <div class="item-wrap" *ngFor="let item of [{},{},{},{},{},{},{}]">
+            <div margin-left [ngClass]="{'activein':showCheckBox}" *ngIf="showCheckBox">
+                <ion-checkbox color="dark" mode="ios"></ion-checkbox>
+            </div>
+            <ion-item-sliding>
+                <ion-item>
+                    <ion-thumbnail item-left>
+                        <img src="./assets/icon/images/brand_1_10.jpg">
+                    </ion-thumbnail>
+                    <h2>博士伦名巴拉巴拉巴拉巴拉巴拉巴拉巴拉巴拉巴拉巴拉巴拉巴拉巴拉巴拉巴拉巴拉巴拉巴拉巴拉巴拉</h2>
+                    <p class="right-bottom">
+                        <span class="price">￥450.00</span>
+                    </p>
+                </ion-item>
+                <ion-item-options side="right">
+                    <button ion-button color="danger">
+                        删除
+                    </button>
+                </ion-item-options>
+            </ion-item-sliding>
+        </div>
+    </ion-list>
 </ion-content>
+
+<ion-footer *ngIf="showCheckBox">
+    <ion-toolbar no-padding>
+        <div class="wrap">
+            <div class="left-box">
+                <ion-checkbox mode="ios"></ion-checkbox>全选
+            </div>
+            <button no-margin ion-button full large color="dark">删除</button>
+        </div>
+    </ion-toolbar>
+</ion-footer>

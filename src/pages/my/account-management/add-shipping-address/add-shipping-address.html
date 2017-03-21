@@ -20,7 +20,7 @@
     <ion-list>
         <ion-item>
             <ion-label mode="ios" fixed>收货人姓名</ion-label>
-            <ion-input required clearInput type="text" value="" placeholder="弗兰克"></ion-input>
+            <ion-input required clearInput type="text" value="" placeholder="请填写"></ion-input>
         </ion-item>
 
         <ion-item>
@@ -29,15 +29,17 @@
         </ion-item>
         <ion-item mode="ios" detail-push>
             <ion-label mode="ios" fixed>所在地区</ion-label>
-            <ion-note>
-                北京市　北京市　朝阳区　后现代城
-            </ion-note>
+            <city-picker item-content [cancelText]="'取消'" [doneText]="'完成'" [separator]="' - '" [citiesData]="cityData" [(ngModel)]="cityName" (ionChange)="cityChange($event)">
+            </city-picker>
         </ion-item>
 
         <ion-item>
             <ion-label mode="ios" fixed>详细地址</ion-label>
-            <ion-textarea type="text" placeholder="弗兰克"></ion-textarea>
+            <ion-textarea type="text" placeholder="请填写"></ion-textarea>
 
         </ion-item>
     </ion-list>
+    <div padding>
+        <button ion-button large block>保存</button>
+    </div>
 </ion-content>

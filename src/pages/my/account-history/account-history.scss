@@ -1,3 +1,19 @@
 page-account-history {
-
+    @include slidingList1;
+    .wrap {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        .left-box {
+            display: flex;
+            align-items: center;
+            margin-left: 16px;
+            ion-checkbox {
+                margin-right: 10px;
+            }
+        }
+        .button {
+            flex-basis: 100px;
+        }
+    }
 }

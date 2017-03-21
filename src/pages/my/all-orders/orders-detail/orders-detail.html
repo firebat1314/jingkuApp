@@ -1,0 +1,83 @@
+<!--
+  Generated template for the OrdersDetail page.
+
+  See http://ionicframework.com/docs/v2/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+    <ion-navbar>
+        <ion-title>订单详情</ion-title>
+    </ion-navbar>
+
+</ion-header>
+
+
+<ion-content>
+    <div class="fore1" padding>
+        <div>订单号：5454545454</div>
+        <div>待发货</div>
+    </div>
+    <div class="fore2" padding>
+        <div class="user">
+            <div class="name">收货人：孙山杉</div>
+            <div class="phone">{{'13100668641'|phonenumberfilter}}</div>
+        </div>
+        <div class="address">北京市北京市北京市北京市北京市北京市北京市北京市北京市北京市北京市北京市北京市北京市北京市北京市</div>
+    </div>
+    <div class="fore3">
+        <ion-item-divider>
+            <ion-icon item-left name="shop"></ion-icon>
+            镜库旗舰店&nbsp;
+            <ion-icon name="ios-arrow-forward"></ion-icon>
+        </ion-item-divider>
+        <ion-item no-lines (click)="goOrdersDetailPage()">
+            <ion-thumbnail item-left>
+                <img src="./assets/icon/images/brand_1_10.jpg">
+            </ion-thumbnail>
+            <div item-content>
+                <div class="my-content">
+                    <div class="left">
+                        <h2>凯米旗舰店凯米旗舰店凯米旗舰店凯米旗舰店凯米旗舰店凯米旗舰店凯米旗舰店凯米旗舰店</h2>
+                        <div>棕色（XXXXX）</div>
+                    </div>
+                    <div class="right">
+                        <div>￥520.00</div>
+                        <div class="count">X1</div>
+                    </div>
+                </div>
+            </div>
+        </ion-item>
+        <ion-item no-lines (click)="goOrdersDetailPage()">
+            <ion-thumbnail item-left>
+                <img src="./assets/icon/images/brand_1_10.jpg">
+            </ion-thumbnail>
+            <div item-content>
+                <div class="my-content">
+                    <div class="left">
+                        <h2>凯米旗舰店凯米旗舰店凯米旗舰店凯米旗舰店凯米旗舰店凯米旗舰店凯米旗舰店凯米旗舰店</h2>
+                        <div>棕色（XXXXX）</div>
+                    </div>
+                    <div class="right">
+                        <div>￥520.00</div>
+                        <div class="count">X1</div>
+                    </div>
+                </div>
+            </div>
+        </ion-item>
+    </div>
+    <div class="background"></div>
+    <div class="fore4" padding>
+
+    </div>
+    <div class="background"></div>
+    <div class="fore5"></div>
+    <div class="background"></div>
+</ion-content>
+
+<ion-footer>
+    <ion-toolbar>
+        <button ion-button large pull color="cancelBtn">订单跟踪</button>
+        <button ion-button large pull color="dark">确认收货</button>
+    </ion-toolbar>
+</ion-footer>

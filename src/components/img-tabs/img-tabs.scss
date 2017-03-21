@@ -8,13 +8,14 @@ img-tabs {
         padding: 0;
     }
     .slide-title-unit {
-        padding-bottom: 8px;
+        display: inline-block;
         font-size: 14px;
+        width: 60%;
         height: $slide-height-small;
         line-height: $slide-height-small;
     }
     .slide-title-active {
         color: map_get($colors, primary);
-        border-bottom: 3px solid map_get($colors, primary);
+        border-bottom: 1px solid map_get($colors, danger);
     }
 }

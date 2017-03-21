@@ -4,15 +4,185 @@
   See http://ionicframework.com/docs/v2/components/#navigation for more info on
   Ionic pages and navigation.
 -->
-<ion-header>
+<ion-header no-border>
 
     <ion-navbar>
         <ion-title>所有订单</ion-title>
     </ion-navbar>
-
+    <ion-toolbar no-padding>
+        <img-tabs #mytabs [slides]="['全部','待还款','待发货','待收货','返修退换']" (slideClick)="pageIndex=$event" [pageNumber]="4"></img-tabs>
+        <div class="background"></div>
+    </ion-toolbar>
 </ion-header>
 
-
-<ion-content padding>
-
+<ion-content>
+    <div class="all" *ngIf="pageIndex==0">
+        <div class="single-shop">
+            <ion-item-divider>
+                <ion-icon item-left name="shop"></ion-icon>
+                镜库旗舰店&nbsp;
+                <ion-icon name="ios-arrow-forward"></ion-icon>
+                <button item-right ion-button clear color="danger">代付款</button>
+            </ion-item-divider>
+            <ion-item no-lines (click)="goOrdersDetailPage()">
+                <ion-thumbnail item-left>
+                    <img src="./assets/icon/images/brand_1_10.jpg">
+                </ion-thumbnail>
+                <div item-content>
+                    <div class="my-content">
+                        <div class="left">
+                            <h2>凯米旗舰店凯米旗舰店凯米旗舰店凯米旗舰店凯米旗舰店凯米旗舰店凯米旗舰店凯米旗舰店</h2>
+                            <div>棕色（XXXXX）</div>
+                        </div>
+                        <div class="right">
+                            <div>￥520.00</div>
+                            <div class="count">X1</div>
+                        </div>
+                    </div>
+                </div>
+            </ion-item>
+            <div class="result">
+                <span class="count">共100件商品</span>&nbsp;&nbsp;<span class="price">合计: <span>￥520.00</span></span>
+            </div>
+            <div class="btn">
+                <button ion-button outline>取消订单</button>
+                <button ion-button color="dark">去支付</button>
+            </div>
+        </div>
+    </div>
+    <div class="repayment" *ngIf="pageIndex==1">
+        <div class="single-shop">
+            <ion-item-divider>
+                <ion-icon item-left name="shop"></ion-icon>
+                镜库旗舰店&nbsp;
+                <ion-icon name="ios-arrow-forward"></ion-icon>
+                <button item-right ion-button clear color="danger">待付款</button>
+            </ion-item-divider>
+            <ion-item no-lines>
+                <ion-thumbnail item-left>
+                    <img src="./assets/icon/images/brand_1_10.jpg">
+                </ion-thumbnail>
+                <div item-content>
+                    <div class="my-content">
+                        <div class="left">
+                            <h2>凯米旗舰店凯米旗舰店凯米旗舰店凯米旗舰店凯米旗舰店凯米旗舰店凯米旗舰店凯米旗舰店</h2>
+                            <div>棕色（XXXXX）</div>
+                        </div>
+                        <div class="right">
+                            <div>￥520.00</div>
+                            <div class="count">X1</div>
+                        </div>
+                    </div>
+                </div>
+            </ion-item>
+            <div class="result">
+                <span class="count">共100件商品</span>&nbsp;&nbsp;<span class="price">合计: <span>￥520.00</span></span>
+            </div>
+            <div class="btn">
+                <button ion-button outline>取消订单</button>
+                <button ion-button color="dark">去支付</button>
+            </div>
+        </div>
+    </div>
+    <div class="shipments" *ngIf="pageIndex==2">
+        <div class="single-shop">
+            <ion-item-divider>
+                <ion-icon item-left name="shop"></ion-icon>
+                镜库旗舰店&nbsp;
+                <ion-icon name="ios-arrow-forward"></ion-icon>
+                <button item-right ion-button clear color="danger">待发货</button>
+            </ion-item-divider>
+            <ion-item no-lines>
+                <ion-thumbnail item-left>
+                    <img src="./assets/icon/images/brand_1_10.jpg">
+                </ion-thumbnail>
+                <div item-content>
+                    <div class="my-content">
+                        <div class="left">
+                            <h2>凯米旗舰店凯米旗舰店凯米旗舰店凯米旗舰店凯米旗舰店凯米旗舰店凯米旗舰店凯米旗舰店</h2>
+                            <div>棕色（XXXXX）</div>
+                        </div>
+                        <div class="right">
+                            <div>￥520.00</div>
+                            <div class="count">X1</div>
+                        </div>
+                    </div>
+                </div>
+            </ion-item>
+            <div class="result">
+                <span class="count">共100件商品</span>&nbsp;&nbsp;<span class="price">合计: <span>￥520.00</span></span>
+            </div>
+            <div class="btn">
+                <button ion-button color="dark">再次购买</button>
+            </div>
+        </div>
+    </div>
+    <div class="receiving" *ngIf="pageIndex==3">
+        <div class="single-shop">
+            <ion-item-divider>
+                <ion-icon item-left name="shop"></ion-icon>
+                镜库旗舰店&nbsp;
+                <ion-icon name="ios-arrow-forward"></ion-icon>
+                <button item-right ion-button clear color="danger">待收货</button>
+            </ion-item-divider>
+            <ion-item no-lines>
+                <ion-thumbnail item-left>
+                    <img src="./assets/icon/images/brand_1_10.jpg">
+                </ion-thumbnail>
+                <div item-content>
+                    <div class="my-content">
+                        <div class="left">
+                            <h2>凯米旗舰店凯米旗舰店凯米旗舰店凯米旗舰店凯米旗舰店凯米旗舰店凯米旗舰店凯米旗舰店</h2>
+                            <div>棕色（XXXXX）</div>
+                        </div>
+                        <div class="right">
+                            <div>￥520.00</div>
+                            <div class="count">X1</div>
+                        </div>
+                    </div>
+                </div>
+            </ion-item>
+            <div class="result">
+                <span class="count">共100件商品</span>&nbsp;&nbsp;<span class="price">合计: <span>￥520.00</span></span>
+            </div>
+            <div class="btn">
+                <button ion-button outline>订单跟踪</button>
+                <button ion-button color="dark">确认收货</button>
+            </div>
+        </div>
+    </div>
+    <div class="repairs" *ngIf="pageIndex==4">
+        <div class="single-shop">
+            <ion-item-divider>
+                <ion-icon item-left name="shop"></ion-icon>
+                镜库旗舰店&nbsp;
+                <ion-icon name="ios-arrow-forward"></ion-icon>
+                <button item-right ion-button clear color="danger">代付款</button>
+            </ion-item-divider>
+            <ion-item no-lines>
+                <ion-thumbnail item-left>
+                    <img src="./assets/icon/images/brand_1_10.jpg">
+                </ion-thumbnail>
+                <div item-content>
+                    <div class="my-content">
+                        <div class="left">
+                            <h2>凯米旗舰店凯米旗舰店凯米旗舰店凯米旗舰店凯米旗舰店凯米旗舰店凯米旗舰店凯米旗舰店</h2>
+                            <div>棕色（XXXXX）</div>
+                        </div>
+                        <div class="right">
+                            <div>￥520.00</div>
+                            <div class="count">X1</div>
+                        </div>
+                    </div>
+                </div>
+            </ion-item>
+            <div class="result">
+                <span class="count">共100件商品</span>&nbsp;&nbsp;<span class="price">合计: <span>￥520.00</span></span>
+            </div>
+            <div class="btn">
+                <button ion-button outline>取消订单</button>
+                <button ion-button color="dark">去支付</button>
+            </div>
+        </div>
+    </div>
 </ion-content>

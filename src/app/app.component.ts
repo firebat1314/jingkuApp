@@ -15,7 +15,7 @@ import { AccountManagementPage } from "../pages/my/account-management/account-ma
 import { BrandListPage } from "../pages/home/brand-list/brand-list";
 import { InvoiceQualificationPage } from "../pages/my/peceipt/invoice-qualification/invoice-qualification";
 import { CouponPage } from "../pages/my/coupon/coupon";
-
+import { AccountJifenPage } from "../pages/my/account-jifen/account-jifen";
 
 @Component({
   templateUrl: 'app.html'
