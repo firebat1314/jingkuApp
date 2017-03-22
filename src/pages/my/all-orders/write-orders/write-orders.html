@@ -6,13 +6,104 @@
 -->
 <ion-header>
 
-  <ion-navbar>
-    <ion-title>WriteOrders</ion-title>
-  </ion-navbar>
+    <ion-navbar>
+        <ion-title>填写订单</ion-title>
+    </ion-navbar>
 
 </ion-header>
 
 
-<ion-content padding>
+<ion-content>
+    <div class="fore1">
+        <div>收货人<span class="phone">{{'13100668641'|phonenumberfilter}}</span></div>
+        <div>北京市北京市北京市北京市北京市北京市北京市北京市11111</div>
+    </div>
+    <div class="background"></div>
+    <ion-list class="fore2">
+        <ion-item-divider>
+            货品清单
+        </ion-item-divider>
+        <ion-item-divider>
+            <span ion-text color="danger">订单1: </span>镜库旗舰店
+        </ion-item-divider>
+        <ion-item no-lines>
+            <ion-thumbnail item-left>
+                <img src="./assets/icon/images/brand_1_10.jpg">
+            </ion-thumbnail>
+            <h2>凯米旗舰店凯米旗舰店凯米旗舰店凯米旗舰店凯米旗舰店凯米旗舰店</h2>
+            <span class="type">促销</span>
+        </ion-item>
+        <div class="attr-wrap">
+            <div class="one">
+                <div class="left">
+                    <div class="top">
+                        <div>球镜：<span class="color">1.00</span></div>
+                        <div>球镜：<span class="color">1.00</span></div>
+                        <div>球镜：<span class="color">1.00</span></div>
+                        <div>球镜：<span class="color">1.00</span></div>
+                        <div>球镜：<span class="color">1.00</span></div>
+                        <div>球镜：<span class="color">1.00</span></div>
+                        <div>球镜：<span class="color">1.00</span></div>
+                        <div>球镜：<span class="color">1.00</span></div>
+                    </div>
+                    <div class="bottom">
+                        <div>单价：<span class="color">￥1.00/副</span></div>
+                    </div>
+                </div>
+                <div class="right">
+                    <div class="price color">￥500.00</div>
+                    <div class="count">1副</div>
+                </div>
+            </div>
+            <div class="one">
+                <div class="left">
+                    <div class="top">
+                        <div>球镜：<span class="color">1.00</span></div>
+                        <div>球镜：<span class="color">1.00</span></div>
+                        <div>球镜：<span class="color">1.00</span></div>
+                        <div>球镜：<span class="color">1.00</span></div>
+                        <div>球镜：<span class="color">1.00</span></div>
+                        <div>球镜：<span class="color">1.00</span></div>
+                        <div>球镜：<span class="color">1.00</span></div>
+                        <div>球镜：<span class="color">1.00</span></div>
+                    </div>
+                    <div class="bottom">
+                        <div>单价：<span class="color">￥1.00/副</span></div>
+                    </div>
+                </div>
+                <div class="right">
+                    <div class="price color">￥500.00</div>
+                    <div class="count">1副</div>
+                </div>
+            </div>
+        </div>
+        <div class="option" margin-right>
+            <ion-item mode="ios" detail-push>
+                配送方式
+                <ion-note item-right>
+                    商家配送
+                </ion-note>
+            </ion-item>
+            <ion-item mode="ios" detail-push>
+                配送方式
+                <ion-note item-right>
+                    商家配送
+                </ion-note>
+            </ion-item>
 
+        </div>
+
+
+    </ion-list>
 </ion-content>
+
+<ion-footer>
+    <div class="pagefoot">
+        <div class="left">
+            合计：<span class="price">￥200.00</span>
+        </div>
+        <div class="right">
+            <div ion-button no-margin full large color="dark">提交订单</div>
+        </div>
+    </div>
+</ion-footer>

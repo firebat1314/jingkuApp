@@ -6,10 +6,12 @@ page-all-orders {
         padding: 0 10px;
         margin-bottom: 10px;
         background: #fff;
-        .item {
+        .item-divider {
             .item-inner {
-                margin-left: 10px;
+                margin-left: 0;
             }
+        }
+        .item {
             border-bottom: 1px solid #e0e0e0;
             [item-content] {
                 .my-content {

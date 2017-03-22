@@ -20,7 +20,7 @@ export class MyToolbarComponent {
     console.log('Hello MyToolbar Component');
   }
   ngAfterViewInit(){
-    console.log(this.element)
+    // console.log(this.element)
   }
   click(event){
     console.log(event)

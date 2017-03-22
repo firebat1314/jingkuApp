@@ -28,8 +28,10 @@ export class AllOrdersPage {
       this.mytabs.selectedIndex = this.navParams.get('index');
     }
   }
-
   goOrdersDetailPage() {
     this.navCtrl.push(OrdersDetailPage);
+  }
+  goWriteOrdersPage(){
+    this.navCtrl.push(WriteOrdersPage);
   }
 }

@@ -95,6 +95,12 @@ export class HttpService {
     return this.http.get(this.ip + '/Goods/get_zhujing', data)
   }
   /**
+   * 购物车
+   */
+  getFlowGoods(data?: Object) {//购物车商品
+    return this.http.get(this.ip + '/Flow/get_flow_goods', data)
+  }
+  /**
    * 个人中心页
    */
    getCityJsonData(){

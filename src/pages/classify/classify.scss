@@ -175,6 +175,9 @@ page-classify {
                 .item-wrap {
                     display: flex;
                     align-items: center;
+                    h2 {
+                        @include ellipsis_2;
+                    }
                     .type {
                         color: #fff;
                         padding: 1px 8px;

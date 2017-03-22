@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams, AlertController } from 'ionic-angular';
-import { Native } from "../../providers/native";
-
+import { Native } from "../../providers/native"; 
+import { HttpService } from "../../providers/http-service";
 
 /*
   Generated class for the Car page.
@@ -19,8 +19,13 @@ export class CarPage {
     public navCtrl: NavController,
     public navParams: NavParams,
     public native: Native,
-    public alertCtrl: AlertController
-  ) { }
+    public alertCtrl: AlertController,
+    public httpService:HttpService
+  ) {
+      this.httpService.getFlowGoods().then((res) => {
+          console.log(res)
+      })
+   }
   ionViewDidLoad() {
     console.log('ionViewDidLoad CarPage');
   }

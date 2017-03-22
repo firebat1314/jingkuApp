@@ -18,5 +18,8 @@ export class OrdersDetailPage {
   ionViewDidLoad() {
     console.log('ionViewDidLoad OrdersDetailPage');
   }
-
+  clickAftermarket(evt){
+    evt.stopPropagation();
+  }
+  
 }

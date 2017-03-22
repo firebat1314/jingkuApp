@@ -12,13 +12,14 @@
     <ion-slides class="slide-title" [slidesPerView]="pageNumber" paginationHide='true' paginationClickable='true'>
         <ion-slide *ngFor="let slide of slides; let i = index;">
             <div (click)="onClick(i)">
-                <div class="slide-title-unit" [ngClass]="{'slide-title-active': selectedIndex == i}">
+                <div class="slide-title-unit">
                     <div class="img"><img src="{{slide?.thumb}}" alt=""></div>
                     <div class="info">
                         <div class="name">{{slide?.name}}</div>
                         <div class="price">{{slide?.market_price}}</div>
                     </div>
                 </div>
+                <div class="bg-mark" *ngIf="selectedIndex == i"></div>
             </div>
         </ion-slide>
         <ion-slide>

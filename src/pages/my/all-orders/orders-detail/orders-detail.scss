@@ -18,6 +18,7 @@ page-orders-detail {
             background: url(../assets/images/images/allorders_1_03.png) 10px top repeat-x, url(../assets/images/images/allorders_1_03.png) 10px bottom repeat-x;
             background-color: #fff;
             color: #666;
+            padding: 20px 10px;
             .user {
                 margin-bottom: 10px;
                 display: flex;
@@ -35,10 +36,10 @@ page-orders-detail {
             margin-bottom: 10px;
             background: #fff;
             .item {
-                .item-inner {
-                    margin-left: 10px;
-                }
                 border-bottom: 1px solid #e0e0e0;
+                &:last-child {
+                    border: none;
+                }
                 [item-content] {
                     .my-content {
                         display: flex;
@@ -67,16 +68,78 @@ page-orders-detail {
                                 margin-top: 10px;
                                 color: #999;
                             }
+                            .button {
+                                background: #e6e6e6;
+                                color: #333;
+                            }
                         }
                     }
                 }
             }
         }
+        .fore4 {
+            background: #fff;
+            padding: 0 10px;
+            color: #808080;
+            line-height: 2.3rem;
+            .top {
+                display: flex;
+                justify-content: space-between;
+                padding: 10px 0;
+                border-bottom: 1px solid #e0e0e0;
+            }
+            .bottom {
+                padding: 10px 0;
+                div:first-child {
+                    display: flex;
+                    justify-content: space-between;
+                }
+            }
+        }
+        .fore5 {
+            padding: 10px;
+            color: #808080;
+            background: #fff;
+            line-height: 2.3rem;
+            margin-bottom: 10px;
+            .top {
+                border-bottom: 1px solid #e0e0e0;
+                padding-bottom: 10px;
+                >div {
+                    display: flex;
+                    justify-content: space-between;
+                    .price {
+                        color: #e60000;
+                    }
+                }
+            }
+            .bottom {
+                padding: 10px 0;
+                text-align: right;
+                .price {
+                    color: #e60000;
+                    font-size: 1.6rem;
+                    font-weight: 500;
+                }
+            }
+        }
     }
     ion-footer {
-        .button {
-            width: 50%;
-            height: 100%;
+        .result {
+            text-align: right;
+            color: #808080;
+            background: #fff;
+            padding: 10px;
+            border-top: 1px solid #e0e0e0;
+            .price {
+                color: #e60000;
+                font-size: 1.6rem;
+                margin-left: 10px;
+                font-weight: 500;
+            }
+        }
+        .foot-button {
+            display: flex;
         }
     }
 }

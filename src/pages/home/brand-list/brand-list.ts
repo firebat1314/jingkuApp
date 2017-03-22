@@ -1,9 +1,8 @@
-import { Component } from '@angular/core';
-import { NavController, NavParams, Events } from 'ionic-angular';
+import { Component,ViewChild } from '@angular/core';
+import { NavController, NavParams, Events,Content } from 'ionic-angular';
 
 import { SingleCardComponent } from '../../../components/single-card/single-card'
 
-import { ParticularsPage } from '../particulars/particulars'
 import { HttpService } from "../../../providers/http-service";
 
 /*
@@ -19,11 +18,21 @@ import { HttpService } from "../../../providers/http-service";
 export class BrandListPage {
     myHomeSearch: String = '';
     listStyleflag: Boolean;
-    ParticularsPage: any = ParticularsPage;
-
     listId: any;
     data: Array<any>;
+    res:any;
+    currentPage:number = 1;
 
+    paramsData = {
+        cat_id: this.listId,
+        brand_id:'',
+        filter:'',
+        min_price:'',
+        max_price:'',
+        order:'',
+        stort:'',
+    }
+    @ViewChild(Content) mycontent:Content;
     constructor(
         public navCtrl: NavController,
         public navParams: NavParams,
@@ -34,8 +43,15 @@ export class BrandListPage {
         console.log('列表ID:', this.listId)
     }
     ngAfterViewInit() {
-        this.httpService.categoryGoods({ cat_id: this.listId }).then((res) => {
+        this.getListData();
+    }
+    ngAfterViewChecked(){
+        this.mycontent.resize();
+    }
+    getListData() {
+        this.httpService.categoryGoods(this.paramsData).then((res) => {
             this.data = res.goods;
+            this.res = res;
             this.events.publish('user:listFilter', res);
             console.log('商品列表', res)
         })
@@ -43,19 +59,22 @@ export class BrandListPage {
     ionViewDidLoad() {
         console.log('ionViewDidLoad BrandListPage');
     }
+    
     doRefresh(refresher) {
         console.log('Begin async operation', refresher);
-
-        setTimeout(() => {
-            console.log('Async operation has ended');
-            refresher.complete();
-        }, 2000);
+        this.httpService.categoryGoods(this.paramsData).then((res) => {
+            setTimeout(() => {
+                refresher.complete();
+            }, 500);
+            if (res.status == 1) {
+                this.data = res.goods;
+            }
+        })
     }
-    doInfinite(infiniteScroll) {
-        console.log('Begin async operation');
-        setTimeout(() => {
-            console.log('Async operation has ended');
-            infiniteScroll.complete();
-        }, 500);
+    previousPage(){
+        this.currentPage--;
+    }
+    nextPage(){
+        this.currentPage++;
     }
 }

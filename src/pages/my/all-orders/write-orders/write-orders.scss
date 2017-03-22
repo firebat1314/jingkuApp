@@ -1,3 +1,85 @@
 page-write-orders {
-
+    .fore1 {
+        background: url(../assets/images/images/allorders_1_03.png) 10px bottom repeat-x;
+        padding: 20px 20px;
+        color: #808080;
+        >div:first-child {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            color: #666;
+            margin-bottom: 10px;
+            font-size: 1.5rem;
+            font-weight: 500;
+        }
+    }
+    .fore2 {
+        ion-item-divider.item {
+            font-weight: 500;
+            font-size: 1.5rem;
+        }
+        .item {
+            display: flex;
+            align-items: center;
+            h2 {
+                @include ellipsis_2;
+            }
+            .type {
+                color: #fff;
+                padding: 1px 8px;
+                background: #e60000;
+                border-radius: 3px;
+                display: inline-block;
+                margin-top: 5px;
+                font-size: 1rem;
+            }
+        }
+        .attr-wrap {
+            border-bottom: 1px solid #dedede;
+            margin: 10px 16px;
+            margin-bottom: 0;
+            .one {
+                background: #f7f7f7;
+                border-radius: 3px;
+                display: flex;
+                color: #808080;
+                padding: 10px;
+                line-height: 2rem;
+                margin-bottom: 10px;
+                .color {
+                    color: #4c4c4c;
+                }
+                .left {
+                    .top {
+                        >div {
+                            float: left;
+                            width: 50%;
+                        }
+                    }
+                    .bottom {
+                        clear: both;
+                    }
+                }
+                .right {
+                    text-align: right;
+                    font-size: 1.6rem;
+                    font-weight: 500;
+                }
+            }
+        }
+    }
+    .pagefoot {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        .left {
+            margin-left: 10px;
+            .price {
+                color: #e60000;
+            }
+        }
+        .right {
+            width: 100px;
+        }
+    }
 }

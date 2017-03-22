@@ -28,16 +28,13 @@ single-foods-item {
         .chips {
             display: flex;
             >div {
-                /* width: 42px; */
                 border-radius: 5px;
                 background: red;
                 color: #fff;
                 text-align: center;
-                height: 25px;
-                line-height: 25px;
-                padding: 0 5px;
+                padding: 3px 5px;
                 margin-right: 5px;
-                font-size: 13px;
+                font-size: 1rem;
             }
         }
         .background {

@@ -16,6 +16,9 @@ import { BrandListPage } from "../pages/home/brand-list/brand-list";
 import { InvoiceQualificationPage } from "../pages/my/peceipt/invoice-qualification/invoice-qualification";
 import { CouponPage } from "../pages/my/coupon/coupon";
 import { AccountJifenPage } from "../pages/my/account-jifen/account-jifen";
+import { AllOrdersPage } from "../pages/my/all-orders/all-orders";
+import { WriteOrdersPage } from "../pages/my/all-orders/write-orders/write-orders";
+
 
 @Component({
   templateUrl: 'app.html'

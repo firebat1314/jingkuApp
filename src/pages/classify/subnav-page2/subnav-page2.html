@@ -13,12 +13,12 @@
                 <ion-item padding-left>
                     <h2>{{group.cat_name}}</h2>
                     <p> </p>
-                    <ion-icon color="colorsix" [ngClass]="{'rotate': group.show }" name="ios-arrow-down" item-right></ion-icon>
+                    <ion-icon *ngIf="group?.cat_list" color="colorsix" [ngClass]="{'rotate': group.show }" name="ios-arrow-down" item-right></ion-icon>
                 </ion-item>
             </div>
-            <div class="item-accordion" [ngStyle]="{'height':group.show?group.cat_list.length*50+'px':0}" [hidden]="!group.show ">
+            <div class="item-accordion" [ngStyle]="{'height':group.show?group?.cat_list?.length*50+'px':0}" [hidden]="!group.show ">
                 <ion-list no-margin>
-                    <ion-item padding-left *ngFor="let item of group.cat_list" (click)="onEvent(item.cat_id,$event)">
+                    <ion-item padding-left *ngFor="let item of group?.cat_list" (click)="onEvent(item.cat_id,$event)">
                         <h3>{{item.cat_name}}</h3>
                     </ion-item>
                 </ion-list>

@@ -44,6 +44,7 @@
                     <div class="right">
                         <div>￥520.00</div>
                         <div class="count">X1</div>
+                        <div ion-button small (click)="clickAftermarket($event)">申请售后</div>
                     </div>
                 </div>
             </div>
@@ -61,6 +62,25 @@
                     <div class="right">
                         <div>￥520.00</div>
                         <div class="count">X1</div>
+                        <div ion-button small>申请售后</div>
+                    </div>
+                </div>
+            </div>
+        </ion-item>
+        <ion-item no-lines (click)="goOrdersDetailPage()">
+            <ion-thumbnail item-left>
+                <img src="./assets/icon/images/brand_1_10.jpg">
+            </ion-thumbnail>
+            <div item-content>
+                <div class="my-content">
+                    <div class="left">
+                        <h2>凯米旗舰店凯米旗舰店凯米旗舰店凯米旗舰店凯米旗舰店凯米旗舰店凯米旗舰店凯米旗舰店</h2>
+                        <div>棕色（XXXXX）</div>
+                    </div>
+                    <div class="right">
+                        <div>￥520.00</div>
+                        <div class="count">X1</div>
+                        <div ion-button small>申请售后</div>
                     </div>
                 </div>
             </div>
@@ -68,16 +88,49 @@
     </div>
     <div class="background"></div>
     <div class="fore4" padding>
-
+        <div class="top">
+            <div>支付方式</div>
+            <div>在线支付</div>
+        </div>
+        <div class="bottom">
+            <div>
+                <div>配送方式</div>
+                <div>普通快递</div>
+            </div>
+            <div>由商家选择合作快递为您配送</div>
+        </div>
     </div>
     <div class="background"></div>
-    <div class="fore5"></div>
+    <div class="fore5">
+        <div class="top">
+            <div class="">
+                <span>购物金额小计：</span>
+                <span class="price">￥5000</span>
+            </div>
+            <div>
+                <span>+配送费用：</span>
+                <span class="price">￥5000</span>
+            </div>
+            <div>
+                <span>+获赠积分：</span>
+                <span class="price">￥5000</span>
+            </div>
+        </div>
+        <div class="bottom">
+            <div>实付款:<span class="price">￥500.00</span></div>
+            <div class="date">下单时间:2016.4.21 10:4:40</div>
+        </div>
+    </div>
     <div class="background"></div>
 </ion-content>
 
-<ion-footer>
-    <ion-toolbar>
-        <button ion-button large pull color="cancelBtn">订单跟踪</button>
-        <button ion-button large pull color="dark">确认收货</button>
-    </ion-toolbar>
+<ion-footer no-border>
+    <div class="result">
+        <span class="count">共10件</span>
+        <span class="price">合计:￥500.00</span>
+    </div>
+    <div class="foot-button">
+        <button ion-button large full no-margin color="cancelBtn">订单跟踪</button>
+        <button ion-button large full no-margin color="dark">确认收货</button>
+    </div>
 </ion-footer>

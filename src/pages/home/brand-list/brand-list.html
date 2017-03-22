@@ -33,22 +33,17 @@
 
         <single-foods-item [data]="data" *ngIf="listStyleflag"></single-foods-item>
     </div>
-
-    <ion-infinite-scroll (ionInfinite)="doInfinite($event)">
-        <ion-infinite-scroll-content loadingSpinner="bubbles" loadingText="正在加载...">
-        </ion-infinite-scroll-content>
-    </ion-infinite-scroll>
 </ion-content>
-<ion-footer>
+<ion-footer *ngIf="res?.pages>1">
     <ion-toolbar color="light">
         <ion-buttons left>
-            <button ion-button>
+            <button (click)="previousPage()" ion-button>
                 上一页
             </button>
         </ion-buttons>
-        <ion-title>1/250</ion-title>
+        <ion-title>{{currentPage}}/{{res?.pages}}</ion-title>
         <ion-buttons right>
-            <button ion-button>
+            <button (click)="nextPage()" ion-button>
                 下一页
             </button>
         </ion-buttons>
