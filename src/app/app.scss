@@ -44,35 +44,6 @@ ion-toolbar {
 }
 
 
-/*————————————————————————————————————menu CSS————————————————————————————————————*/
-
-.main-menu meun-item .body {
-    border-bottom: 1px solid #e6e6e6;
-}
-
-.main-menu meun-item:last-child .body {
-    border: 0;
-}
-
-.main-menu ion-footer {
-    display: flex;
-}
-
-.main-menu ion-footer .button {
-    margin: 0;
-    width: 50%;
-    background: #333333;
-}
-
-.main-menu ion-footer .button:first-child {
-    background: #cccccc;
-}
-
-.menu-inner {
-    width: 70%;
-}
-
-
 /*————————————————————————————————————搜索框图标————————————————————————————————————*/
 
 .searchbar-ios .searchbar-search-icon {

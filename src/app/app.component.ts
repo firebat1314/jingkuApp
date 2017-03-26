@@ -77,7 +77,7 @@ export class MyApp {
         }
         //当前页面为tab栏的子页面，正常返回
         return activeNav.pop();
-      }, 101);
+      }, 1);
     });
   }
   //双击退出提示框

@@ -33,7 +33,8 @@ export class SingleFoodsItemComponent {
       this.events[event](item);
     }
   }
-  ngAfterViewInit() {
+  ngOnChanges() {
+    this.animateItems = [];
     let that = this;
     for (let i = 0; i < that.data.length; i++) {
       setTimeout(function () {
@@ -43,6 +44,7 @@ export class SingleFoodsItemComponent {
       }, 80 * i);
     }
   }
+
   clearBtn() {
     for (let i = 0; i < this.animateItems.length; i++) {
       this.animateItems[i].showBtn = false;

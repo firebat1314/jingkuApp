@@ -67,7 +67,7 @@ export class HttpService {
   getGoodsFittings(data?: Object) {//组合商品
     return this.http.get(this.ip + '/Goods/get_goods_fittings', data)
   }
-  getLinkedGoods(data?: Object) {//（12）关联商品
+  getLinkedGoods(data?: Object) {//关联商品
     return this.http.get(this.ip + '/Goods/get_linked_goods', data)
   }
   searchGoods(data?: Object) {//商品搜索列表页
@@ -76,16 +76,16 @@ export class HttpService {
   /**
    * 商品分类列表页
    */
-  getCategorys(data?: Object) {//（1）获取九大分类
+  getCategorys(data?: Object) {//获取九大分类
     return this.http.get(this.ip + '/Category/get_categorys', data)
   }
-  getChildrenCaCtegory(data?: Object) {//（2）获取九大分类下的子分类
+  getChildrenCaCtegory(data?: Object) {//获取九大分类下的子分类
     return this.http.get(this.ip + '/Category/get_children_category', data)
   }
-  categoryGoods(data?: Object) {//（3）商品分类列表页(筛选)
+  categoryGoods(data?: Object) {//商品分类列表页(筛选)
     return this.http.get(this.ip + '/Category/category_goods', data)
   }
-  getGoodsAttribute(data?: Object) {//（13）获取初始商品属性
+  getGoodsAttribute(data?: Object) {//获取初始商品属性
     return this.http.get(this.ip + '/Goods/get_goods_attribute', data)
   }
   getAttrList(data?: Object) {//如果返回的(good_type) 商品类型是goods_spectacles 根据所选球镜，获取柱镜列表
@@ -94,11 +94,20 @@ export class HttpService {
   getZhujing(data?: Object) {//如果返回的(good_type) 商品类型是goods再调用接口如下
     return this.http.get(this.ip + '/Goods/get_zhujing', data)
   }
+  addToCartSpecJp(data?: Object) {//镜片商品加入购物车
+    return this.http.post(this.ip + '/Goods/add_to_cart_spec_jp', data)
+  }
+  addToCartSpec(data?: Object) {//普通商品加入购物车
+    return this.http.post(this.ip + '/Goods/add_to_cart_spec', data)
+  }
   /**
    * 购物车
    */
   getFlowGoods(data?: Object) {//购物车商品
     return this.http.get(this.ip + '/Flow/get_flow_goods', data)
+  }
+   changeNumCart(data?: Object) {//改变购物车数量
+    return this.http.get(this.ip + '/Flow/change_num_cart', data)
   }
   /**
    * 个人中心页

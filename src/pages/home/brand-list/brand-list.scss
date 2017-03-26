@@ -1,1 +1,29 @@
-page-brand-list {}
+page-brand-list {
+    .segment .segment-button {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        .myicon {
+            margin-left: 5px;
+            margin-left: 4px;
+            &.sortdown {
+                >div:first-child ion-icon {
+                    color: #ccc;
+                }
+            }
+            &.sortup {
+                >div:last-child ion-icon {
+                    color: #ccc;
+                }
+            }
+            &.sort {
+                color: #ccc;
+            }
+        }
+        ion-icon {
+            line-height: normal;
+            font-size: 2rem;
+            color: #666;
+        }
+    }
+}

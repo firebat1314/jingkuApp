@@ -1,33 +1,35 @@
-import { Component, Input,ElementRef,ViewChild } from '@angular/core';
+import { Component, Input, ViewChild } from '@angular/core';
 import { Events } from "ionic-angular";
+import { ChecklistModel, RadiolistModel } from "../../providers/ChecklistModel";
 
-/*
-  Generated class for the MeunItem component.
-
-  See https://angular.io/docs/ts/latest/api/core/index/ComponentMetadata-class.html
-  for more info on Angular 2 Components.
-*/
 @Component({
-  selector: 'meun-item',
-  templateUrl: 'meun-item.html'
+	selector: 'meun-item',
+	templateUrl: 'meun-item.html'
 })
 export class MeunItemComponent {
-  data;
+	data: any;
+	price: any = { lower: 0, upper: 2000 };
+	filterParams: any = {
+		min_price: this.price.lower,
+		max_price: this.price.upper,
+		brand_id:0,
+		cat_id:null
+	}
+	radiolist3 = new RadiolistModel(this.filterParams)
+	radiolist2 = new RadiolistModel(this.filterParams)
+	radiolist = new RadiolistModel(this.price)
 
-  @Input() showRange: Boolean;
-@ViewChild('click') click;
-  constructor(
-    public events: Events,
-    public element:ElementRef
-  ) {
-    console.log('Hello MeunItem Component');
-    this.events.subscribe('user:listFilter', (res) => {
-      console.log(res)
-      this.data = res;
-    });
-  }
-  ngAfterViewInit(){
-    console.log(this.click)
-    console.log(this.element)
-  }
+	constructor(
+		public events: Events
+	) {
+		this.events.subscribe('user:listFilter', (res) => {
+			this.data = res;
+		});
+		
+	}
+	confirm() {
+		// console.log("我一共选择了：", this.filterParams);
+		this.events.publish('user:filterParams', this.filterParams)
+	}
 }
+

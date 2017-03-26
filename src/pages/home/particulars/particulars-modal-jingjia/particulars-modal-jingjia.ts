@@ -15,6 +15,8 @@ export class ParticularsModalJingjiaPage {
   headData: any;
   type: any;
   data: any;
+
+  goodsCount:number=0;
   constructor(
     public navCtrl: NavController, public navParams: NavParams, public viewCtrl: ViewController
   ) {
@@ -33,5 +35,6 @@ export class ParticularsModalJingjiaPage {
   }
   numberIChange($event){
     console.log($event)
+    this.goodsCount = $event;
   }
 }

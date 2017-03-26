@@ -1,6 +1,9 @@
 page-write-orders {
+    .content {
+        background: #f7f7f7;
+    }
     .fore1 {
-        background: url(../assets/images/images/allorders_1_03.png) 10px bottom repeat-x;
+        background: #fff url(../assets/images/images/allorders_1_03.png) 10px bottom repeat-x;
         padding: 20px 20px;
         color: #808080;
         >div:first-child {
@@ -14,6 +17,7 @@ page-write-orders {
         }
     }
     .fore2 {
+        background: #fff;
         ion-item-divider.item {
             font-weight: 500;
             font-size: 1.5rem;
@@ -65,6 +69,42 @@ page-write-orders {
                     font-size: 1.6rem;
                     font-weight: 500;
                 }
+            }
+        }
+        .option {
+            .input {
+                text-align: center;
+                padding: 10px 0;
+                input {
+                    border: 1px solid #e0e0e0;
+                    border-radius: 4px;
+                    width: 90%;
+                    height: 4rem;
+                    padding: 0 10px;
+                }
+            }
+        }
+        .result {
+            border-top: 1px solid #dedede;
+            text-align: right;
+            padding: 10px;
+            .price {
+                color: #e60000;
+                font-size: 1.6rem;
+            }
+        }
+    }
+    .fore3 {
+        color: #666;
+        padding: 10px 16px;
+        background: #fff;
+        margin-bottom: 10px;
+        >div {
+            display: flex;
+            justify-content: space-between;
+            line-height: 2rem;
+            .price {
+                color: #e60000;
             }
         }
     }

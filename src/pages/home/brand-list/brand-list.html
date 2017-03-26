@@ -17,8 +17,47 @@
             </ion-buttons>
         </ion-navbar>
     </ion-toolbar>
-    <ion-toolbar>
-        <my-toolbar></my-toolbar>
+    <ion-toolbar class="segment-style">
+        <!--<my-toolbar></my-toolbar>-->
+        <ion-segment [(ngModel)]="mytool" (ionChange)="mytoolChange()" color="primary">
+            <ion-segment-button value="all">
+                综合
+                <div [ngClass]="allStatus==false?'sortup':'sortdown'" class="myicon">
+                    <div [ngStyle]="{'height':'7px'}">
+                        <ion-icon name="md-arrow-dropup"></ion-icon>
+                    </div>
+                    <div>
+                        <ion-icon name="md-arrow-dropdown"></ion-icon>
+                    </div>
+                </div>
+            </ion-segment-button>
+            <ion-segment-button value="sales_num">
+                销量
+                <div [ngClass]="salesNumStatus==false?'sortup':'sortdown'" class="myicon">
+                    <div [ngStyle]="{'height':'7px'}">
+                        <ion-icon name="md-arrow-dropup"></ion-icon>
+                    </div>
+                    <div>
+                        <ion-icon name="md-arrow-dropdown"></ion-icon>
+                    </div>
+                </div>
+            </ion-segment-button>
+            <ion-segment-button value="shop_price">
+                价格
+                <div [ngClass]="shopPriceStatus==false?'sortup':'sortdown'" class="myicon">
+                    <div [ngStyle]="{'height':'7px'}">
+                        <ion-icon name="md-arrow-dropup"></ion-icon>
+                    </div>
+                    <div>
+                        <ion-icon name="md-arrow-dropdown"></ion-icon>
+                    </div>
+                </div>
+            </ion-segment-button>
+            <ion-segment-button menuToggle>
+                筛选
+                <ion-icon name="ios-funnel-outline" [ngStyle]="{'font-size':'2rem'}"></ion-icon>
+            </ion-segment-button>
+        </ion-segment>
     </ion-toolbar>
 </ion-header>
 
