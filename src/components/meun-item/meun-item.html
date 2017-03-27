@@ -30,12 +30,12 @@
                 <div>{{price.upper}}</div>
             </div>
         </div>
-        <div class="body" *ngIf="item.name=='商品属性'">
-            <div *ngFor="let group of item?.data"></div>
+        <div class="selectedbox" *ngIf="item.data.length!=0&&item.name=='商品属性'">
+            <ion-select *ngFor="let group of item?.data;let i = index;" placeholder="{{group.attr_name}}" [(ngModel)]="group.selected" okText="确定" cancelText="取消" [selectOptions]="{subTitle: group.attr_name}">
+                <ion-option *ngFor="let subgroup of group?.values;let i = index;" [value]="subgroup.id">{{subgroup.value}}</ion-option>
+            </ion-select>
         </div>
     </div>
-
-
 </ion-content>
 <ion-footer>
     <button full ion-button>重置</button>

@@ -1,4 +1,4 @@
-import { Component, Input, ViewChild } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { Events } from "ionic-angular";
 import { ChecklistModel, RadiolistModel } from "../../providers/ChecklistModel";
 
@@ -13,11 +13,14 @@ export class MeunItemComponent {
 		min_price: this.price.lower,
 		max_price: this.price.upper,
 		brand_id:0,
-		cat_id:null
+		cat_id:null,
+		attr_id:null,
+		filter:''
 	}
-	radiolist3 = new RadiolistModel(this.filterParams)
-	radiolist2 = new RadiolistModel(this.filterParams)
 	radiolist = new RadiolistModel(this.price)
+	radiolist2 = new RadiolistModel(this.filterParams)
+	radiolist3 = new RadiolistModel(this.filterParams)
+	radiolist4 = new RadiolistModel(this.filterParams.attr_id)
 
 	constructor(
 		public events: Events
@@ -25,11 +28,20 @@ export class MeunItemComponent {
 		this.events.subscribe('user:listFilter', (res) => {
 			this.data = res;
 		});
-		
 	}
+
 	confirm() {
-		// console.log("我一共选择了：", this.filterParams);
-		this.events.publish('user:filterParams', this.filterParams)
+		var filter = [];
+		this.filterParams.filter='';
+		var data = this.data.goods_attr_arr[3].data
+		for(let i = 0;i < data.length;i++){
+			if(data[i].selected||data[i].selected==0){
+				filter.push(data[i].selected);
+			}
+		}
+		this.filterParams.filter = filter.join('.');
+		console.log("我一共选择了：", this.filterParams);
+		this.events.publish('user:filterParams', this.filterParams);
 	}
 }
 

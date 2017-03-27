@@ -26,7 +26,8 @@ export class BrandListPage {
     paramsData = {
         cat_id: this.listId,
         order: '',
-        stort: 'DESC'
+        stort: 'DESC',
+        filter: ''
     }
     allStatus = false;
     salesNumStatus = false;
@@ -49,11 +50,25 @@ export class BrandListPage {
             this.getListData();
         });
     }
+    ionViewDidLoad() {
+        console.log('ionViewDidLoad BrandListPage');
+    }
     ngAfterViewInit() {
         this.getListData();
     }
     ngAfterViewChecked() {
         this.mycontent.resize();
+    }
+    ngOnDestroy() {
+        this.events.unsubscribe('user:filterParams')
+    }
+    getListData() {
+        this.httpService.categoryGoods(this.paramsData).then((res) => {
+            this.data = res.goods;
+            this.res = res;
+            this.events.publish('user:listFilter', res);
+            console.log('商品列表', res)
+        })
     }
     mytoolChange() {//——_——|||.....
         if (this.mytool == 'all') {
@@ -99,21 +114,6 @@ export class BrandListPage {
             }
         }
     }
-    getListData() {
-        this.httpService.categoryGoods(this.paramsData).then((res) => {
-            this.data = res.goods;
-            this.res = res;
-            this.events.publish('user:listFilter', res);
-            console.log('商品列表', res)
-        })
-    }
-    ngOnChanges() {
-        console.log(1)
-    }
-    ionViewDidLoad() {
-        console.log('ionViewDidLoad BrandListPage');
-    }
-
     doRefresh(refresher) {
         console.log('Begin async operation', refresher);
         this.httpService.categoryGoods(this.paramsData).then((res) => {

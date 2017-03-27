@@ -42,7 +42,7 @@
             <div *ngFor="let group of item.goods_attr">{{group.attr_val}}</div>
             <div>{{item.product_number}}</div>
             <div style="min-width: 150px;" col-2>
-                <count-input (updateNumberI)="numberIChange($event)"></count-input>
+                <count-input (updateNumberI)="group.count = $event"></count-input>
             </div>
         </div>
     </div>
@@ -51,7 +51,7 @@
     <ion-toolbar>
         <div class="result">
             <span>合计：￥{{goodsCount}}</span>
-            <span>共10件</span>
+            <span>共{{goodsCount}}件</span>
         </div>
     </ion-toolbar>
     <div class="btns">

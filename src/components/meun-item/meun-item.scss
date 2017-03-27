@@ -20,7 +20,6 @@ meun-item {
             }
         }
         .body {
-            border-bottom: 1px solid #e6e6e6;
             display: flex;
             justify-content: flex-start;
             flex-wrap: wrap;
@@ -44,9 +43,26 @@ meun-item {
                 }
             }
         }
-    }
-    &:last-child .body {
-        border: 0;
+        .selectedbox {
+            margin-bottom: 40px;
+            overflow: hidden;
+            ion-select {
+                width: 32%;
+                float: left;
+                border-radius: 3px;
+                border: 1px solid #e0e0e0;
+                position: relative;
+                padding: 10px 10px;
+                margin-right: 1%;
+                margin-bottom: 10px;
+                &:nth-child(3n) {
+                    margin-right: 0;
+                }
+            }
+        }
+        &:last-child .body {
+            margin-bottom: 30px;
+        }
     }
     .range {
         position: relative;

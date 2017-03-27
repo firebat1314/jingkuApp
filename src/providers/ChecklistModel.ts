@@ -88,4 +88,15 @@ export class RadiolistModel {
       }
       console.log(this.item);
    }
+   toggleItem4(item, items): void {
+      console.log(item);
+      if (item.selected == 1) {
+         item.selected = 0;
+         this.item = null;
+      } else if(item.selected == 0){
+         item.selected = 1;
+         this.item = item.attr_id;
+      }
+      console.log(this.item);
+   }
 }
