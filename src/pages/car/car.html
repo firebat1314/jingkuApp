@@ -9,7 +9,7 @@
     <ion-navbar>
         <ion-title>购物车</ion-title>
         <ion-buttons right>
-            <button ion-button clear (click)="isEdit=!isEdit">{{isEdit?'取消':'编辑'}}</button>
+            <button ion-button clear *ngIf="carDetails?.suppliers_goods_list?.length!=0" (click)="isEdit=!isEdit">{{isEdit?'取消':'编辑'}}</button>
         </ion-buttons>
     </ion-navbar>
 
@@ -17,194 +17,74 @@
 
 
 <ion-content>
-    <div class="single-shop">
+    <div class="single-shop" *ngFor="let item of carDetails?.suppliers_goods_list">
         <div class="single-shop-head">
-            <ion-checkbox mode="ios" margin-left></ion-checkbox>
+            <ion-checkbox [(ngModel)]="item.selected" [checked]="carDetails?.selected" mode="ios" margin-left></ion-checkbox>
             <ion-item mode="ios" no-lines margin-left>
                 <ion-icon color="colorsix" item-left name="shop"></ion-icon>
-                镜库旗舰店&nbsp;
+                {{item.title}}&nbsp;
                 <ion-icon color="colorsix" name="ios-arrow-forward"></ion-icon>
                 <button item-right ion-button clear color="danger">优惠券</button>
             </ion-item>
         </div>
-        <div class="single-shop-goods">
+        <div class="single-shop-goods" *ngFor="let item2 of item.goods_list ">
             <div class="single-shop-goods-head">
                 <div margin-left>
-                    <ion-checkbox color="dark" mode="ios"></ion-checkbox>
+                    <ion-checkbox [(ngModel)]="item2.selected" [checked]="item.selected" color="dark" mode="ios"></ion-checkbox>
                 </div>
                 <ion-item margin-left no-lines>
                     <ion-thumbnail item-left>
-                        <img src="./assets/icon/images/brand_1_10.jpg">
+                        <img src="{{item2.goods_thumb}}">
                     </ion-thumbnail>
-                    <h2>凯米旗舰店凯米旗舰店凯米旗舰店凯米旗舰店凯米旗舰店凯米旗舰店凯米旗舰店凯米旗舰店</h2>
+                    <h2>{{item2.goods_name}}</h2>
                     <span class="type">促销</span>
                 </ion-item>
             </div>
             <ion-list class="single-shop-goods-body">
-                <div class="item-wrap">
-                    <div margin-left>
-                        <ion-checkbox color="dark" mode="ios"></ion-checkbox>
-                    </div>
+                <div class="item-wrap" *ngFor="let item3 of item2.attrs;">
+                    <!--<div margin-left>
+                        <ion-checkbox [(ngModel)]="item3.selected" [checked]="item2.selected" color="dark" mode="ios"></ion-checkbox>
+                    </div>-->
                     <div margin-left class="sliding-item-box">
-                        <ion-item-sliding no-lines>
-                            <ion-item>
+                        <ion-item-sliding>
+                            <ion-item no-lines>
                                 <div class="goodsinfo">
                                     <div class="attr">
-                                        <span>镜球：1.00</span>
-                                        <span>镜球：1.00</span>
-                                        <span>镜片颜色：渐进茶</span>
-                                        <span>镜片颜色：渐进茶</span>
-                                        <span>镜片颜色：渐进茶</span>
-                                        <span>镜片颜色：渐进茶</span>
+                                        <span *ngFor="let item4 of item3?.arr_attr;">{{item4}}</span>
+                                        <span *ngIf="item3.qiujing">球镜：{{item3.qiujing}}</span>
+                                        <span *ngIf="item3.zhouwei">轴位：{{item3.qiujing}}</span>
+                                        <span *ngIf="item3.zhujing">柱镜：{{item3.qiujing}}</span>
                                     </div>
                                     <div class="bottom">
-                                        <div class="price">￥450.00</div>
+                                        <div class="price">{{item3?.goods_price}}</div>
                                         <div class="number">
-                                            <count-input></count-input>
+                                            <count-input (updateNumberI)="numberChangeI($event,item3)" [lock]="inputLock" [value]="item3?.goods_number"></count-input>
                                         </div>
                                     </div>
                                 </div>
                             </ion-item>
                             <ion-item-options side="right">
-                                <button ion-button color="danger" (click)="showConfirm()">删除</button>
-                            </ion-item-options>
-                        </ion-item-sliding>
-                    </div>
-                </div>
-                <div class="item-wrap">
-                    <div margin-left>
-                        <ion-checkbox color="dark" mode="ios"></ion-checkbox>
-                    </div>
-                    <div margin-left class="sliding-item-box">
-                        <ion-item-sliding no-lines>
-                            <ion-item>
-                                <div class="goodsinfo">
-                                    <div class="attr">
-                                        <span>镜球：1.00</span>
-                                        <span>镜球：1.00</span>
-                                        <span>镜片颜色：渐进茶</span>
-                                        <span>镜片颜色：渐进茶</span>
-                                        <span>镜片颜色：渐进茶</span>
-                                        <span>镜片颜色：渐进茶</span>
-                                    </div>
-                                    <div class="bottom">
-                                        <div class="price">￥450.00</div>
-                                        <div class="number">
-                                            <count-input></count-input>
-                                        </div>
-                                    </div>
-                                </div>
-                            </ion-item>
-                            <ion-item-options side="right">
-                                <button ion-button color="danger" (click)="showConfirm()">删除</button>
+                                <button ion-button color="danger" (click)="deleteItem(item3)">删除</button>
                             </ion-item-options>
                         </ion-item-sliding>
                     </div>
                 </div>
             </ion-list>
         </div>
-        <div class="single-shop-little-result">小计: <span class="red">￥520.00</span>&nbsp;&nbsp;共5件</div>
-    </div>
-    <div class="background"></div>
-    <div class="single-shop">
-        <div class="single-shop-head">
-            <ion-checkbox mode="ios" margin-left></ion-checkbox>
-            <ion-item mode="ios" no-lines margin-left>
-                <ion-icon color="colorsix" item-left name="shop"></ion-icon>
-                镜库旗舰店&nbsp;
-                <ion-icon color="colorsix" name="ios-arrow-forward"></ion-icon>
-                <button item-right ion-button clear color="danger">优惠券</button>
-            </ion-item>
-        </div>
-        <div class="single-shop-goods">
-            <div class="single-shop-goods-head">
-                <div margin-left>
-                    <ion-checkbox color="dark" mode="ios"></ion-checkbox>
-                </div>
-                <ion-item margin-left no-lines>
-                    <ion-thumbnail item-left>
-                        <img src="./assets/icon/images/brand_1_10.jpg">
-                    </ion-thumbnail>
-                    <h2>凯米旗舰店凯米旗舰店凯米旗舰店凯米旗舰店凯米旗舰店凯米旗舰店凯米旗舰店凯米旗舰店</h2>
-                    <span class="type">促销</span>
-                </ion-item>
-            </div>
-            <ion-list class="single-shop-goods-body">
-                <div class="item-wrap">
-                    <div margin-left>
-                        <ion-checkbox color="dark" mode="ios"></ion-checkbox>
-                    </div>
-                    <div margin-left class="sliding-item-box">
-                        <ion-item-sliding>
-                            <ion-item no-lines>
-                                <div class="goodsinfo">
-                                    <div class="attr">
-                                        <span>镜球：1.00</span>
-                                        <span>镜球：1.00</span>
-                                        <span>镜片颜色：渐进茶</span>
-                                        <span>镜片颜色：渐进茶</span>
-                                        <span>镜片颜色：渐进茶</span>
-                                        <span>镜片颜色：渐进茶</span>
-                                    </div>
-                                    <div class="bottom">
-                                        <div class="price">￥450.00</div>
-                                        <div class="number">
-                                            <count-input></count-input>
-                                        </div>
-                                    </div>
-                                </div>
-                            </ion-item>
-                            <ion-item-options side="right">
-                                <button ion-button color="danger" (click)="showConfirm()">删除</button>
-                            </ion-item-options>
-                        </ion-item-sliding>
-                    </div>
-                </div>
-                <div class="item-wrap">
-                    <div margin-left>
-                        <ion-checkbox color="dark" mode="ios"></ion-checkbox>
-                    </div>
-                    <div margin-left class="sliding-item-box">
-                        <ion-item-sliding>
-                            <ion-item no-lines>
-                                <div class="goodsinfo">
-                                    <div class="attr">
-                                        <span>镜球：1.00</span>
-                                        <span>镜球：1.00</span>
-                                        <span>镜片颜色：渐进茶</span>
-                                        <span>镜片颜色：渐进茶</span>
-                                        <span>镜片颜色：渐进茶</span>
-                                        <span>镜片颜色：渐进茶</span>
-                                    </div>
-                                    <div class="bottom">
-                                        <div class="price">￥450.00</div>
-                                        <div class="number">
-                                            <count-input></count-input>
-                                        </div>
-                                    </div>
-                                </div>
-                            </ion-item>
-                            <ion-item-options side="right">
-                                <button ion-button color="danger" (click)="showConfirm()">删除</button>
-                            </ion-item-options>
-                        </ion-item-sliding>
-                    </div>
-                </div>
-            </ion-list>
-        </div>
-        <div class="single-shop-little-result">小计: <span class="red">￥520.00</span>&nbsp;&nbsp;共5件</div>
+        <div class="single-shop-little-result">小计: <span class="red">¥{{item?.goods_price_total}}</span>&nbsp;&nbsp;共{{item?.goods_count}}件</div>
+        <div class="background"></div>
     </div>
 </ion-content>
-<ion-footer>
+<ion-footer *ngIf="carDetails?.suppliers_goods_list?.length!=0">
     <div class="car-accounts">
         <div class="left">
-            <div class="select-all" margin-horizontal>
-                <ion-checkbox margin-right color="dark" mode="ios"></ion-checkbox>
+            <div class="select-all" margin-horizontal *ngIf="carDetails">
+                <ion-checkbox [(ngModel)]="carDetails.selected" margin-right color="dark" mode="ios"></ion-checkbox>
                 全选
             </div>
-            <div *ngIf="!isEdit" class="price">合计：￥520.00</div>
+            <div *ngIf="!isEdit" class="price">合计：¥{{carDetails?.total?.goods_amount}}</div>
         </div>
-        <div *ngIf="!isEdit" class="right">去结算(10)</div>
+        <div *ngIf="!isEdit" class="right">去结算({{carDetails?.total?.real_goods_count}})</div>
         <div *ngIf="isEdit" class="attention-and-delete">
             <button ion-button outline color="dark">移入关注</button>
             <button ion-button color="dark">　删除　</button>

@@ -57,6 +57,9 @@ page-car {
                     }
                     .sliding-item-box {
                         width: 100%;
+                        .item {
+                            padding-left: 0;
+                        }
                     }
                     &:last-child .sliding-item-box {
                         border-bottom: 1px solid #e0e0e0;

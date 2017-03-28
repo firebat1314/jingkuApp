@@ -13,19 +13,24 @@ import { Component, Input, Output, EventEmitter } from '@angular/core';
 export class CountInputComponent {
 
   @Input() value = 0;
+  @Input() lock = false;
   @Output() updateNumberI: EventEmitter<number> = new EventEmitter();
   constructor() {
     console.log('Hello CountInput Component');
   }
   increase() {
-    this.value++
+    if (this.lock) {
+      return;
+    }
+    this.value++;
     this.updateNumberI.emit(this.value);
   }
   reduce() {
-    this.value--
     if (this.value <= 0) {
-      this.value = 0
+      this.value = 0;
+      return;
     }
+    this.value--;
     this.updateNumberI.emit(this.value);
   }
 }

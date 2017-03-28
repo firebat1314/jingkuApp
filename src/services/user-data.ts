@@ -1,6 +1,6 @@
 import { Injectable } from "@angular/core";
 import { Http, Response, Headers, RequestOptions } from "@angular/http";
-import { Events, AlertController,App } from "ionic-angular";
+import { Events, AlertController, App } from "ionic-angular";
 import { Storage } from '@ionic/storage';
 
 // Add the RxJS Observable operators.
@@ -15,7 +15,6 @@ export class UserData {
     public HAS_LOGGED_IN = "hasLoggedIn";
     public hasLogin = false;
     private ip = 'http://v401app.jingkoo.net';  // URL to web API
-    private showToastTime = true;
 
     constructor(
         private events: Events,
@@ -80,7 +79,7 @@ export class UserData {
     public get(url: string, paramObj?: any) {
         let userToken = localStorage.getItem('token');
 
-        // this.native.showLoading();
+        this.LoadingDelay();
         var headers = new Headers();
         headers.append('Authorization', 'Basic ' + btoa(userToken + ':'));
         let options = new RequestOptions({ headers: headers });
@@ -92,7 +91,7 @@ export class UserData {
     public post(url: string, paramObj: any) {
         let userToken: string = localStorage.getItem('token');
 
-        // this.native.showLoading();
+        this.LoadingDelay();
         let headers = new Headers();
         headers.append('Authorization', 'Basic ' + btoa(userToken + ':'));
         let options = new RequestOptions({ headers: headers });
@@ -103,8 +102,7 @@ export class UserData {
     }
     public postBody(url: string, paramObj: any) {
         let userToken = localStorage.getItem('token');
-
-        // this.native.showLoading();
+        this.LoadingDelay();
         let headers = new Headers();
         headers.append('Authorization', 'Basic ' + btoa(userToken + ':'));
         let options = new RequestOptions({ headers: headers });
@@ -119,7 +117,7 @@ export class UserData {
      * @return {any}
      */
     private handleSuccess(result) {
-        // this.native.hideLoading();
+        this.native.hideLoading();
         if (result && !result.status) {
             this.native.showToast(result.info);
         }
@@ -130,14 +128,19 @@ export class UserData {
      * @param error
      * @return {{success: boolean, msg: string}}
      */
+    private showToastTime = true;
     private handleError(error: Response | any) {
-        // this.native.hideLoading();
+        this.native.hideLoading();
         let msg: string = '请求失败';
         if (error.status == 401) {
             msg = '数据加载出错~';
             if (error.statusText == 'Unauthorized') {
                 msg = '用户失效，请重新登陆';
-                this.myAlert(msg)
+                if (this.showToastTime) {
+                    this.showToastTime = false;
+                    this.myAlert(msg);
+                }
+                setTimeout(() => this.showToastTime = true, 2000);
             }
             console.log(msg);
         }
@@ -145,27 +148,30 @@ export class UserData {
 
         return { success: false, msg: msg };
     }
-    myAlert(msg){
+    LoadingDelay() {
         if (this.showToastTime) {
-            this.native.showToast(msg);
             this.showToastTime = false;
-             let alert = this.alertCtrl.create({
-                title: '提示',
-                subTitle: msg,
-                buttons: [{
-                    text: '确定',
-                    handler: () => {
-                        let navTransition = alert.dismiss();
-                        navTransition.then(() => {
-                            // this.appCtrl.getRootNav().push(LoginPage);
-                        });
-                    }
-                }],
-                enableBackdropDismiss: false
-            });
-            alert.present();
-            setTimeout(() => this.showToastTime = true, 2000);
+            this.native.showLoading();
         }
+        setTimeout(() => this.showToastTime = true, 2000);
+    }
+    myAlert(msg) {
+        this.native.showToast(msg);
+        let alert = this.alertCtrl.create({
+            title: '提示',
+            subTitle: msg,
+            buttons: [{
+                text: '确定',
+                handler: () => {
+                    let navTransition = alert.dismiss();
+                    navTransition.then(() => {
+                        // this.appCtrl.getRootNav().push(LoginPage);
+                    });
+                }
+            }],
+            enableBackdropDismiss: false
+        });
+        alert.present();
     }
     /*private handleError(error: Response | any) {
         // In a real world app, we might use a remote logging infrastructure

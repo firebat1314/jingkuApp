@@ -1,5 +1,5 @@
 import { Component, ViewChild } from '@angular/core';
-import { Tabs } from "ionic-angular";
+import { Tabs, Events } from "ionic-angular";
 
 import { HomePage } from '../home/home';
 import { ClassifyPage } from '../classify/classify';
@@ -16,10 +16,16 @@ export class TabsPage {
   tab2Root: any = ClassifyPage;
   tab3Root: any = CarPage;
   tab4Root: any = MyPage;
+  carNumber: number;
+  constructor(
+    public events: Events
+  ) {
+    this.events.subscribe('user:carNumber', (res) => {
+      this.carNumber = res;
+    })
+  }
 
-  constructor() {}
-    
- /* ionViewDidLoad() {
-    console.log(this.tabs);
-  }*/
+  /* ionViewDidLoad() {
+     console.log(this.tabs);
+   }*/
 }

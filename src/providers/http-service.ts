@@ -106,13 +106,82 @@ export class HttpService {
   getFlowGoods(data?: Object) {//购物车商品
     return this.http.get(this.ip + '/Flow/get_flow_goods', data)
   }
-   changeNumCart(data?: Object) {//改变购物车数量
+  changeNumCart(data?: Object) {//改变购物车数量
     return this.http.get(this.ip + '/Flow/change_num_cart', data)
+  }
+  dropCartGoods(data?: Object) {//(3)删除购物车中单独选择的商品
+    return this.http.get(this.ip + '/Flow/drop_cart_goods', data)
+  }
+  dropCartGoodsSelect(data?: Object) {//(3)(4)删除购物车中全选的商品
+    return this.http.get(this.ip + '/Flow/drop_cart_goods_select', data)
+  }
+  checkout(data?: Object) {//(4)(5)购物车去结算
+    return this.http.get(this.ip + '/Flow/checkout', data)
   }
   /**
    * 个人中心页
    */
-   getCityJsonData(){
-     return this.http.get('./assets/data/city-data.json')
-   }
+  getCityJsonData(data?: Object) {
+    return this.http.get('./assets/data/city-data.json', data)
+  }
+  usercount(data?: Object) {//个人中心获取用户统计
+    return this.http.get(this.ip + '/User/usercount', data)
+  }
+  userInfo(data?: Object) {//获取用户资料
+    return this.http.get(this.ip +'/User/user_info', data)
+  }
+  getUserBonus(data?: Object) {//（1）个人中心优惠券
+    return this.http.get(this.ip +'/User/get_user_bonus', data)
+  }
+  editPwd(data?: Object) {//（4）修改密码
+    return this.http.post(this.ip +'/User/edit_pwd', data)
+  }
+  editMobile(data?: Object) {//（5）修改手机号
+    return this.http.post(this.ip +'/User/edit_mobile', data)
+  }
+  logout(data?: Object) {//（6）退出登录
+    return this.http.post(this.ip +'/User/logout', data)
+  }
+  watch(data?: Object) {//（7）个人中心浏览记录
+    return this.http.get(this.ip +'/User/watch', data)
+  }
+  delWatch(data?: Object) {//（8）删除浏览记录
+    return this.http.get(this.ip +'/User/del_watch', data)
+  }
+  addressList(data?: Object) {//（9）收货地址管理
+    return this.http.get(this.ip +'/User/address_list', data)
+  }
+  delAddress(data?: Object) {//（10）删除收货地址
+    return this.http.get(this.ip +'/User/del_address', data)
+  }
+  AddressDetail(data?: Object) {//（11）收货地址详情
+    return this.http.get(this.ip +'/User/edit_address', data)
+  }
+  editAddress(data?: Object) {//（12）编辑收货地址
+    return this.http.post(this.ip +'/User/edit_address', data)
+  }
+  changeRegion(data?: Object) {//（13）改变城市联动
+    return this.http.get(this.ip +'/User/change_region', data)
+  }
+  help(data?: Object) {//（14）帮助中心
+    return this.http.get(this.ip +'/User/help', data)
+  }
+  regionApply(data?: Object) {//（15）地区申请页
+    return this.http.get(this.ip +'/User/region_apply', data)
+  }
+  postRegionApply(data?: Object) {//（16）地区申请页提交
+    return this.http.post(this.ip +'/User/region_apply', data)
+  }
+  collectionList(data?: Object) {//（17）收藏的商品列表
+    return this.http.get(this.ip +'/User/collection_list', data)
+  }
+  delCollectionGoods(data?: Object) {//（18）取消收藏商品
+    return this.http.get(this.ip +'/User/del_collection_goods', data)
+  }
+  collectionShop(data?: Object) {//（19）收藏店铺列表
+    return this.http.get(this.ip +'/User/collection_shop', data)
+  }
+  delCollectionShop(data?: Object) {//（20）取消收藏店铺
+    return this.http.get(this.ip +'/User/del_collection_shop', data)
+  }
 }
