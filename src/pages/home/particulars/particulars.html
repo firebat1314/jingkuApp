@@ -69,9 +69,9 @@
             <button mode="ios" (click)="presentModal('优惠券')" ion-item>
                     领券
                 <!--<img src="./assets/icon/images/particulars_03.jpg" alt="">-->
-                <ion-note item-right>
+                <!--<ion-note item-right>
                     点击领取
-                </ion-note>
+                </ion-note>-->
             </button>
             <button mode="ios" ion-item (click)="presentModal('赠送')">
                 <img src="./assets/icon/images/particulars_09.jpg" style="height: 20px;" alt=""> <span>买一盒送一盒</span>
@@ -88,14 +88,14 @@
 
     <div class="background"></div>
     <div class="will-address">
-        <button mode="ios" ion-item (click)="presentModal('配送地址')">
-            送至：北京<span class="nogoods">（无货）</span>
+        <button mode="ios" ion-item no-lines (click)="presentModal('配送地址')">
+            送至：北京<span class="nogoods"></span>
         </button>
-        <ion-item no-lines>
+        <!--<ion-item no-lines>
             <ion-note>
                 快递：该商品满99包邮，运费10元
             </ion-note>
-        </ion-item>
+        </ion-item>-->
     </div>
     <div class="background"></div>
     <div class="attribute">
@@ -110,12 +110,18 @@
             商品服务保障
         </button>
         <div class="bottom">
-            <ion-note>
-                <img src="./assets/icon/images/particulars_05_03.jpg" alt=""> 正品保障
+            <ion-note *ngIf="getGoodsInfo?.additional?.is_true">
+                <img src="./assets/icon/images/particulars_05_03.png" alt=""> 正品保障
             </ion-note>
-            <ion-note>
+            <ion-note *ngIf="getGoodsInfo?.additional?.is_hdfk">
+                <img src="./assets/icon/images/particulars_05_04.png" alt=""> 货到付款
+            </ion-note>
+            <ion-note *ngIf="getGoodsInfo?.additional?.is_inv">
+                <img src="./assets/icon/images/particulars_2_16.png" alt=""> 可退换货
+            </ion-note>
+            <!--<ion-note>
                 <ion-icon color="danger" name="baitiao1"></ion-icon> 白条支付
-            </ion-note>
+            </ion-note>-->
         </div>
     </div>
     <div class="background"></div>
@@ -150,39 +156,32 @@
             </button>
         </div>
         <ion-list class="safeguard" no-margin>
-            <button mode="ios" no-lines ion-item>
+            <button mode="ios" ion-item>
                 <div class="note-wrap">
-                    <ion-note>
+                    <!--<ion-note><ion-icon><img src="./assets/icon/images/particulars_2_20.jpg"></ion-icon>担保交易</ion-note>
+                    <ion-note><ion-icon><img src="./assets/icon/images/particulars_2_14.jpg"></ion-icon>客户自提</ion-note>
+                    <ion-note><ion-icon><img src="./assets/icon/images/particulars_2_16.jpg"></ion-icon>返修退换货</ion-note>-->
+                    <ion-note *ngIf="getSupplierInfo.inv_type==1||getSupplierInfo.inv_type==3">
                         <ion-icon>
-                            <img src="./assets/icon/images/particulars_2_20.jpg">
-                        </ion-icon>
-                        <span>担保交易</span>
-                    </ion-note>
-                    <ion-note>
-                        <ion-icon>
-                            <img src="./assets/icon/images/particulars_2_14.jpg">
-                        </ion-icon>
-                        客户自提
-                    </ion-note>
-                    <ion-note>
-                        <ion-icon>
-                            <img src="./assets/icon/images/particulars_2_16.jpg">
-                        </ion-icon>
-                        返修退换货
-                    </ion-note>
-                    <ion-note>
-                        <ion-icon>
-                            <img src="./assets/icon/images/particulars_2_18.jpg">
+                            <img src="./assets/icon/images/particulars_2_18.png">
                         </ion-icon>
                         普通发票
                     </ion-note>
+                    <ion-note *ngIf="getSupplierInfo.inv_type==2||getSupplierInfo.inv_type==3">
+                        <ion-icon>
+                            <img src="./assets/icon/images/particulars_2_19.png">
+                        </ion-icon>
+                        增值发票
+                    </ion-note>
                 </div>
             </button>
-            <button ion-item no-lines>
+            <div ion-item mode="ios" no-lines>
                 <ion-icon item-left name="ios-pin-outline"></ion-icon>
                 <ion-note>{{getSupplierInfo.region}}</ion-note>
-                <ion-icon item-right name="ios-call"></ion-icon>
-            </button>
+                <div ion-button icon-only item-right clear (click)="openCallNumber()">
+                    <ion-icon name="ios-call"></ion-icon>
+                </div>
+            </div>
         </ion-list>
     </div>
     <div class="background"></div>
@@ -199,106 +198,16 @@
         </div>
         <div [ngSwitch]="selectGroupRecommend">
             <div class="group" *ngSwitchCase="'group'">
-                <ion-slides pager>
-                    <ion-slide>
-                        <div class="wrap">
-                            <div class="goods">
-                                <div class="top">
-                                    <ion-checkbox mode="ios"></ion-checkbox>
-                                    <img src="./assets/icon/shangpinxiangqing.jpg" alt="">
-                                </div>
-                                <div class="bottom">
-                                    <h6>博士伦美瞳两名士大夫士大夫</h6>
-                                    <h6>￥450</h6>
-                                </div>
+                <ion-slides *ngIf="getGoodsFittings" slidesPerView="3" pager>
+                    <ion-slide *ngFor="let item of getGoodsFittings">
+                        <div class="goods">
+                            <div class="top">
+                                <ion-checkbox mode="ios"></ion-checkbox>
+                                <img src="{{item.goods_thumb}}" alt="">
                             </div>
-                            <div class="goods">
-                                <div class="top">
-                                    <ion-checkbox></ion-checkbox>
-                                    <img src="./assets/icon/shangpinxiangqing.jpg" alt="">
-                                </div>
-                                <div class="bottom">
-                                    <h6>博士伦美瞳两名士大夫士大夫</h6>
-                                    <h6>￥450</h6>
-                                </div>
-                            </div>
-                            <div class="goods">
-                                <div class="top">
-                                    <ion-checkbox></ion-checkbox>
-                                    <img src="./assets/icon/shangpinxiangqing.jpg" alt="">
-                                </div>
-                                <div class="bottom">
-                                    <h6>博士伦美瞳两名士大夫士大夫</h6>
-                                    <h6>￥450</h6>
-                                </div>
-                            </div>
-                        </div>
-                    </ion-slide>
-                    <ion-slide>
-                        <div class="wrap">
-                            <div class="goods">
-                                <div class="top">
-                                    <ion-checkbox></ion-checkbox>
-                                    <img src="./assets/icon/shangpinxiangqing.jpg" alt="">
-                                </div>
-                                <div class="bottom">
-                                    <h6>博士伦美瞳两名士大夫士大夫</h6>
-                                    <h6>￥450</h6>
-                                </div>
-                            </div>
-                            <div class="goods">
-                                <div class="top">
-                                    <ion-checkbox></ion-checkbox>
-                                    <img src="./assets/icon/shangpinxiangqing.jpg" alt="">
-                                </div>
-                                <div class="bottom">
-                                    <h6>博士伦美瞳两名士大夫士大夫</h6>
-                                    <h6>￥450</h6>
-                                </div>
-                            </div>
-                            <div class="goods">
-                                <div class="top">
-                                    <ion-checkbox></ion-checkbox>
-                                    <img src="./assets/icon/shangpinxiangqing.jpg" alt="">
-                                </div>
-                                <div class="bottom">
-                                    <h6>博士伦美瞳两名士大夫士大夫</h6>
-                                    <h6>￥450</h6>
-                                </div>
-                            </div>
-                        </div>
-                    </ion-slide>
-                    <ion-slide>
-                        <div class="wrap">
-                            <div class="goods">
-                                <div class="top">
-                                    <ion-checkbox></ion-checkbox>
-                                    <img src="./assets/icon/shangpinxiangqing.jpg" alt="">
-                                </div>
-                                <div class="bottom">
-                                    <h6>博士伦美瞳两名士大夫士大夫</h6>
-                                    <h6>￥450</h6>
-                                </div>
-                            </div>
-                            <div class="goods">
-                                <div class="top">
-                                    <ion-checkbox></ion-checkbox>
-                                    <img src="./assets/icon/shangpinxiangqing.jpg" alt="">
-                                </div>
-                                <div class="bottom">
-                                    <h6>博士伦美瞳两名士大夫士大夫</h6>
-                                    <h6>￥450</h6>
-                                </div>
-                            </div>
-                            <div class="goods">
-                                <div class="top">
-                                    <ion-checkbox></ion-checkbox>
-                                    <img src="./assets/icon/shangpinxiangqing.jpg" alt="">
-                                </div>
-                                <div class="bottom">
-                                    <h6>博士伦美瞳两名士大夫士大夫</h6>
-                                    <h6>￥450</h6>
-                                </div>
+                            <div class="bottom">
+                                <h6>{{item.short_name}}</h6>
+                                <h6>{{item.fittings_price}}</h6>
                             </div>
                         </div>
                     </ion-slide>

@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { NavController, ModalController, ViewController } from 'ionic-angular';
-import { LoginPage } from '../login/login';
+import { HttpService } from "../../providers/http-service";
 
 import { SettingPage } from "./setting/setting";
 import { AllOrdersPage } from "./all-orders/all-orders";
@@ -23,31 +23,44 @@ import { AccountBalancePage } from "./account-balance/account-balance";
   templateUrl: 'my.html'
 })
 export class MyPage {
-  SettingPage = SettingPage;
-  PeceiptPage = PeceiptPage;
-  AllOrdersPage = AllOrdersPage;
-  AccountAssetPage = AccountAssetPage;
-  AccountProcessPage = AccountProcessPage;
-  AccountAreaApplicationPage = AccountAreaApplicationPage;
-  AccountCollectGoodsPage = AccountCollectGoodsPage;
-  AccountCollectStorePage = AccountCollectStorePage;
-  AccountHistoryPage = AccountHistoryPage;
-  AccountServicePage = AccountServicePage;
-  AccountHelperPage = AccountHelperPage;
-  AccountManagementPage = AccountManagementPage;
-  CouponPage = CouponPage;
-  AccountJifenPage = AccountJifenPage;
-  AccountBalancePage = AccountBalancePage;
+  SettingPage: any = SettingPage;
+  PeceiptPage: any = PeceiptPage;
+  AllOrdersPage: any = AllOrdersPage;
+  AccountAssetPage: any = AccountAssetPage;
+  AccountProcessPage: any = AccountProcessPage;
+  AccountAreaApplicationPage: any = AccountAreaApplicationPage;
+  AccountCollectGoodsPage: any = AccountCollectGoodsPage;
+  AccountCollectStorePage: any = AccountCollectStorePage;
+  AccountHistoryPage: any = AccountHistoryPage;
+  AccountServicePage: any = AccountServicePage;
+  AccountHelperPage: any = AccountHelperPage;
+  AccountManagementPage: any = AccountManagementPage;
+  CouponPage: any = CouponPage;
+  AccountJifenPage: any = AccountJifenPage;
+  AccountBalancePage: any = AccountBalancePage;
+
+  usercount: any;
+  userInfo: any;
   constructor(
     public viewCtrl: ViewController,
     public navCtrl: NavController,
     public modalCtrl: ModalController,
+    public httpService: HttpService
   ) { }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad MyPages');
   }
-
+  ngOnInit() {
+    this.httpService.usercount().then((res) => {
+      console.log('（1）个人中心获取用户统计☞',res)
+      this.usercount = res;
+    })
+    this.httpService.userInfo().then((res) => {
+      console.log('（2）获取用户资料☞',res)
+      this.userInfo = res;
+    })
+  }
 
   goSettingPage() {
     this.navCtrl.push(SettingPage)

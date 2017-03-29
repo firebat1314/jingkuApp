@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { ToastController, LoadingController, Platform } from 'ionic-angular';
-import { Camera, AppVersion, Toast, ImagePicker } from 'ionic-native';
+import { Camera, AppVersion, Toast, ImagePicker, CallNumber } from 'ionic-native';
 declare var LocationPlugin;
 declare var AMapNavigation;
 
@@ -11,7 +11,7 @@ export class Native {
 	constructor(
 		private platform: Platform,
 		private toastCtrl: ToastController,
-		private loadingCtrl: LoadingController
+		private loadingCtrl: LoadingController,
 	) { }
 
 	/**
@@ -47,9 +47,10 @@ export class Native {
 	 */
 	showToastTime: boolean = false;
 
-	showToast(message: string, duration: number = 2000) {
+	showToast = (message: string, duration: number = 2000) => {
 
 		if (this.isMobile()) {
+			console.log('isMobile:', this.isMobile())
 			Toast.show(message, 'short', 'center').subscribe((toast) => {
 				console.log(toast);
 			});
@@ -70,14 +71,23 @@ export class Native {
 	 */
 	showLoading = (content: string = '') => {
 		this.loading = this.loadingCtrl.create({
-			content: content
+			content: content,
+			showBackdrop: false,
+			cssClass: 'loading-style'
 		});
 		this.loading.present();
 		setTimeout(() => {//最长显示20秒
 			this.loading.dismiss();
 		}, 10000);
 	};
-
+	/**
+	 * 手机拨号
+	 */
+	openCallNumber(numberToCall,bypassAppChooser) {
+		CallNumber.callNumber(numberToCall, bypassAppChooser)
+			.then(() => console.log('Launched dialer!'))
+			.catch(() => console.log('Error launching dialer'));
+	}
 	/**
 	 * 关闭loading
 	 */

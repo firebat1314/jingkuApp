@@ -2,6 +2,21 @@ page-car {
     .list {
         margin: 0;
     }
+    .nothings-show {
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        .img {
+            width: 13rem;
+            height: 13rem;
+            border-radius: 50%;
+            border: 2px solid #cbced0;
+            margin: 50px auto 10px;
+            background: url(../assets/images/images/no-car_1_03.png) center center/50% 50% no-repeat;
+        }
+    }
     @mixin item-style {
         display: flex;
         align-items: center;
@@ -24,6 +39,9 @@ page-car {
             }
         }
         .single-shop-goods {
+            .item {
+                padding-left: 0;
+            }
             .single-shop-goods-head {
                 @include item-style;
                 .label {
@@ -57,9 +75,6 @@ page-car {
                     }
                     .sliding-item-box {
                         width: 100%;
-                        .item {
-                            padding-left: 0;
-                        }
                     }
                     &:last-child .sliding-item-box {
                         border-bottom: 1px solid #e0e0e0;

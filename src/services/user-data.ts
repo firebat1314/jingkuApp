@@ -77,9 +77,9 @@ export class UserData {
     }
 
     public get(url: string, paramObj?: any) {
+        // this.native.showLoading();
+        // this.LoadingDelay();
         let userToken = localStorage.getItem('token');
-
-        this.LoadingDelay();
         var headers = new Headers();
         headers.append('Authorization', 'Basic ' + btoa(userToken + ':'));
         let options = new RequestOptions({ headers: headers });
@@ -89,9 +89,9 @@ export class UserData {
             .catch(error => this.handleError(error));
     }
     public post(url: string, paramObj: any) {
+        // this.native.showLoading();
+        // this.LoadingDelay();
         let userToken: string = localStorage.getItem('token');
-
-        this.LoadingDelay();
         let headers = new Headers();
         headers.append('Authorization', 'Basic ' + btoa(userToken + ':'));
         let options = new RequestOptions({ headers: headers });
@@ -101,8 +101,9 @@ export class UserData {
             .catch(error => this.handleError(error));
     }
     public postBody(url: string, paramObj: any) {
+        // this.native.showLoading();
+        // this.LoadingDelay();
         let userToken = localStorage.getItem('token');
-        this.LoadingDelay();
         let headers = new Headers();
         headers.append('Authorization', 'Basic ' + btoa(userToken + ':'));
         let options = new RequestOptions({ headers: headers });
@@ -117,7 +118,7 @@ export class UserData {
      * @return {any}
      */
     private handleSuccess(result) {
-        this.native.hideLoading();
+        // this.native.hideLoading();
         if (result && !result.status) {
             this.native.showToast(result.info);
         }
@@ -130,7 +131,7 @@ export class UserData {
      */
     private showToastTime = true;
     private handleError(error: Response | any) {
-        this.native.hideLoading();
+        // this.native.hideLoading();
         let msg: string = '请求失败';
         if (error.status == 401) {
             msg = '数据加载出错~';
@@ -150,8 +151,8 @@ export class UserData {
     }
     LoadingDelay() {
         if (this.showToastTime) {
-            this.showToastTime = false;
             this.native.showLoading();
+            this.showToastTime = false;
         }
         setTimeout(() => this.showToastTime = true, 2000);
     }

@@ -40,7 +40,6 @@ export class SingleFoodsItemComponent {
       setTimeout(function () {
         that.animateItems.push(that.data[i]);
         that.data[i].showBtn = false;
-
       }, 80 * i);
     }
   }
@@ -56,12 +55,10 @@ export class SingleFoodsItemComponent {
 
   }
   tapEvent(item, e) {
-    console.log("长按指令", e)
     this.clearBtn();
     item.showBtn = true;
   }
   ngOnDestroy() {
-    console.log("销毁指令")
     this.clearBtn()
   }
 }

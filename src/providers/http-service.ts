@@ -124,13 +124,13 @@ export class HttpService {
   getCityJsonData(data?: Object) {
     return this.http.get('./assets/data/city-data.json', data)
   }
-  usercount(data?: Object) {//个人中心获取用户统计
+  usercount(data?: Object) {//（1）个人中心获取用户统计
     return this.http.get(this.ip + '/User/usercount', data)
   }
-  userInfo(data?: Object) {//获取用户资料
+  userInfo(data?: Object) {//（2）获取用户资料
     return this.http.get(this.ip +'/User/user_info', data)
   }
-  getUserBonus(data?: Object) {//（1）个人中心优惠券
+  getUserBonus(data?: Object) {//（3）个人中心优惠券
     return this.http.get(this.ip +'/User/get_user_bonus', data)
   }
   editPwd(data?: Object) {//（4）修改密码

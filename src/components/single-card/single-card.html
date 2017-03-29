@@ -25,7 +25,7 @@
     <div class="background" (click)="item.showBtn=false" *ngIf="item.showBtn"></div>
 
     <ion-fab center middle #fab *ngIf="item.showBtn">
-        <button color="light" ion-fab>购物车</button>
+        <button color="light" ion-fab [navPush]="ParticularsPage" [navParams]="{goodsId:item.id}">购物车</button>
         <button color="danger" ion-fab>关注</button>
     </ion-fab>
 </ion-card>

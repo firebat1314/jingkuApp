@@ -19,19 +19,19 @@ export class BrandListPage {
     myHomeSearch: String = '';
     listStyleflag: Boolean;
     listId: any;
-    data: Array<any>;//列表
-    res: any;  //列表属性
+    data;
     currentPage: number = 1;//当前页
     mytool = 'all';//当前筛选
     paramsData = {
         cat_id: this.listId,
+        size:20,
         order: '',
         stort: 'DESC',
         filter: ''
     }
-    allStatus = false;
-    salesNumStatus = false;
-    shopPriceStatus = false;
+    allStatus = true;
+    salesNumStatus = true;
+    shopPriceStatus = true;
 
     @ViewChild(Content) mycontent: Content;
     constructor(
@@ -60,21 +60,30 @@ export class BrandListPage {
         this.mycontent.resize();
     }
     ngOnDestroy() {
+        //退出页面取消时间订阅
         this.events.unsubscribe('user:filterParams')
     }
-    getListData() {
-        this.httpService.categoryGoods(this.paramsData).then((res) => {
-            this.data = res.goods;
-            this.res = res;
+    getListData(params?) {
+        this.httpService.categoryGoods(Object.assign(this.paramsData,params)).then((res) => {
+            this.data = res;
             this.events.publish('user:listFilter', res);
             console.log('商品列表', res)
         })
     }
+    searchGoods(){
+        this.currentPage = 1;
+        this.getListData({
+            keywords:this.myHomeSearch
+        })
+    }
+    onInput(event){
+        this.searchGoods()
+    }
     mytoolChange() {//——_——|||.....
         if (this.mytool == 'all') {
             this.paramsData.order = '';
-            this.salesNumStatus = false;
-            this.shopPriceStatus = false;
+            this.salesNumStatus = true;
+            this.shopPriceStatus = true;
             if (this.allStatus) {
                 this.paramsData.stort = 'ASC';
                 this.allStatus = false;
@@ -87,8 +96,8 @@ export class BrandListPage {
         }
         if (this.mytool == 'sales_num') {
             this.paramsData.order = 'sales_num';
-            this.shopPriceStatus = false;
-            this.allStatus = false;
+            this.shopPriceStatus = true;
+            this.allStatus = true;
             if (this.salesNumStatus) {
                 this.paramsData.stort = 'ASC';
                 this.salesNumStatus = false;
@@ -101,8 +110,8 @@ export class BrandListPage {
         }
         if (this.mytool == 'shop_price') {
             this.paramsData.order = 'shop_price';
-            this.salesNumStatus = false;
-            this.allStatus = false;
+            this.salesNumStatus = true;
+            this.allStatus = true;
             if (this.shopPriceStatus) {
                 this.paramsData.stort = 'ASC';
                 this.shopPriceStatus = false;
@@ -121,14 +130,27 @@ export class BrandListPage {
                 refresher.complete();
             }, 500);
             if (res.status == 1) {
-                this.data = res.goods;
+                this.data = res;
+                console.log('商品列表', res)
             }
         })
     }
     previousPage() {
+        if(this.currentPage<=1){return}
         this.currentPage--;
+        let pagingParam = Object.assign({page:this.currentPage},this.paramsData);
+        this.httpService.categoryGoods(pagingParam).then((res) => {
+            this.data = res;
+            console.log('商品列表', res)
+        })
     }
     nextPage() {
+        if(this.currentPage>=this.data.pages){return}
         this.currentPage++;
+        let pagingParam = Object.assign({page:this.currentPage},this.paramsData);
+        this.httpService.categoryGoods(pagingParam).then((res) => {
+            this.data = res;
+            console.log('商品列表', res)
+        })
     }
 }

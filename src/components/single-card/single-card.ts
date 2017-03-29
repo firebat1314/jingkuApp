@@ -17,7 +17,6 @@ export class SingleCardComponent {
   constructor() {
     console.log('Hello SingleCard Component');
     this.animateClass = { 'fade-in-item': true };
-
   }
   @Input() data: any;
   @Input() events: any;
@@ -45,13 +44,11 @@ export class SingleCardComponent {
     }
   }
   tapEvent(item, e) {
-    console.log("长按指令", e)
     this.clearBtn();
     item.showBtn = true;
   }
 
   ngOnDestroy() {
-    console.log("销毁指令")
     this.clearBtn()
   }
 }

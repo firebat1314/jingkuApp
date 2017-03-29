@@ -7,7 +7,7 @@
 <ion-header>
     <ion-toolbar>
         <ion-navbar>
-            <ion-searchbar [navPush]="SearchPage" [(ngModel)]="myHomeSearch" (ionInput)="onInput($event)" (ionCancel)="onCancel($event)" placeholder="博士伦" animated="false" spellcheck="true" mode="ios">
+            <ion-searchbar [(ngModel)]="myHomeSearch" (ionInput)="onInput($event)" placeholder="博士伦" animated="false" spellcheck="true" type="text" debounce="1000" mode="ios">
             </ion-searchbar>
             <ion-buttons end>
                 <button ion-button clear icon-only icon-left (click)="listStyleflag=!listStyleflag">
@@ -68,19 +68,19 @@
     </ion-refresher>
 
     <div *ngIf="data">
-        <single-foods-card [data]="data" *ngIf="!listStyleflag" padding></single-foods-card>
+        <single-foods-card [data]="data.goods" *ngIf="!listStyleflag" padding></single-foods-card>
 
-        <single-foods-item [data]="data" *ngIf="listStyleflag"></single-foods-item>
+        <single-foods-item [data]="data.goods" *ngIf="listStyleflag"></single-foods-item>
     </div>
 </ion-content>
-<ion-footer *ngIf="res?.pages>1">
+<ion-footer>
     <ion-toolbar color="light">
         <ion-buttons left>
             <button (click)="previousPage()" ion-button>
                 上一页
             </button>
         </ion-buttons>
-        <ion-title>{{currentPage}}/{{res?.pages}}</ion-title>
+        <ion-title>{{currentPage}}/{{data?.pages}}</ion-title>
         <ion-buttons right>
             <button (click)="nextPage()" ion-button>
                 下一页

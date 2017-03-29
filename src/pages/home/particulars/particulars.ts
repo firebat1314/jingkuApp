@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 import { NavController, NavParams, ModalController } from 'ionic-angular';
 /*http服务*/
 import { HttpService } from "../../../providers/http-service";
+import { Native } from "../../../providers/native";
+
 
 import { ParticularsModalPage } from "./particulars-modal/particulars-modal"
 import { ParticularsModalMeitongPage } from "./particulars-modal-meitong/particulars-modal-meitong";
@@ -43,7 +45,8 @@ export class ParticularsPage {
     public navCtrl: NavController,
     public navParams: NavParams,
     private http: HttpService,
-    public modalCtrl: ModalController
+    public modalCtrl: ModalController,
+    public native:Native
   ) {
     this.goodsId = this.navParams.get('goodsId') || '3994';
     console.log(this.goodsId)
@@ -151,10 +154,6 @@ export class ParticularsPage {
       console.log("关联商品", res);
       this.getLinkedGoods = res.data;
     });
-    this.http.searchGoods({ goods_id: this.goodsId }).then((res) => {
-      console.log("商品搜索列表页", res);
-      this.searchGoods = res.data;
-    });
     this.http.getGoodsAttribute({ goods_id: this.goodsId }).then((res) => {
       console.log("商品初始属性", res);
       this.getGoodsAttribute = res;
@@ -179,6 +178,9 @@ export class ParticularsPage {
         }
       });
     }
+  }
+  openCallNumber(){
+    this.native.openCallNumber(this.getSupplierInfo.mobile,true);
   }
   ngAfterViewInit() {
 
