@@ -27,7 +27,7 @@ export class HttpService {
   getCategoryRecommendGoodsBest(data?: Object) {//精品商品
     return this.http.get(this.ip + '/Index/get_category_recommend_goods/type/best', data)
   }
-  getCategoryRecommendGoodsHot(data?: Object) {//精选专题下的商品列表
+  getCategoryRecommendGoodsHot(data?: Object) {//精选专题下的热门商品列表
     return this.http.get(this.ip + '/Index/get_category_recommend_goods/type/hot', data)
   }
   getBrands(data?: Object) {//热门品牌下的品牌列表
@@ -88,11 +88,11 @@ export class HttpService {
   getGoodsAttribute(data?: Object) {//获取初始商品属性
     return this.http.get(this.ip + '/Goods/get_goods_attribute', data)
   }
-  getAttrList(data?: Object) {//如果返回的(good_type) 商品类型是goods_spectacles 根据所选球镜，获取柱镜列表
-    return this.http.get(this.ip + '/Goods/get_attr_list', data)
-  }
-  getZhujing(data?: Object) {//如果返回的(good_type) 商品类型是goods再调用接口如下
+  getZhujing(data?: Object) {//如果返回的(good_type) 商品类型是goods_spectacles 根据所选球镜，获取柱镜列表
     return this.http.get(this.ip + '/Goods/get_zhujing', data)
+  }
+  getAttrList(data?: Object) {//如果返回的(good_type) 商品类型是goods再调用接口如下
+    return this.http.get(this.ip + '/Goods/get_attr_list', data)
   }
   addToCartSpecJp(data?: Object) {//镜片商品加入购物车
     return this.http.post(this.ip + '/Goods/add_to_cart_spec_jp', data)

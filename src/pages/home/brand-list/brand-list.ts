@@ -24,7 +24,7 @@ export class BrandListPage {
     mytool = 'all';//当前筛选
     paramsData = {
         cat_id: this.listId,
-        size:20,
+        size: 20,
         order: '',
         stort: 'DESC',
         filter: ''
@@ -63,20 +63,32 @@ export class BrandListPage {
         //退出页面取消时间订阅
         this.events.unsubscribe('user:filterParams')
     }
+    doRefresh(refresher) {
+        console.log('Begin async operation', refresher);
+        this.httpService.categoryGoods(this.paramsData).then((res) => {
+            setTimeout(() => {
+                refresher.complete();
+            }, 500);
+            if (res.status == 1) {
+                this.data = res;
+                console.log('商品列表', res)
+            }
+        })
+    }
     getListData(params?) {
-        this.httpService.categoryGoods(Object.assign(this.paramsData,params)).then((res) => {
+        this.httpService.categoryGoods(Object.assign(this.paramsData, params)).then((res) => {
             this.data = res;
             this.events.publish('user:listFilter', res);
             console.log('商品列表', res)
         })
     }
-    searchGoods(){
+    searchGoods() {
         this.currentPage = 1;
         this.getListData({
-            keywords:this.myHomeSearch
+            keywords: this.myHomeSearch
         })
     }
-    onInput(event){
+    onInput(event) {
         this.searchGoods()
     }
     mytoolChange() {//——_——|||.....
@@ -123,31 +135,19 @@ export class BrandListPage {
             }
         }
     }
-    doRefresh(refresher) {
-        console.log('Begin async operation', refresher);
-        this.httpService.categoryGoods(this.paramsData).then((res) => {
-            setTimeout(() => {
-                refresher.complete();
-            }, 500);
-            if (res.status == 1) {
-                this.data = res;
-                console.log('商品列表', res)
-            }
-        })
-    }
     previousPage() {
-        if(this.currentPage<=1){return}
+        if (this.currentPage <= 1) { return }
         this.currentPage--;
-        let pagingParam = Object.assign({page:this.currentPage},this.paramsData);
+        let pagingParam = Object.assign({ page: this.currentPage }, this.paramsData);
         this.httpService.categoryGoods(pagingParam).then((res) => {
             this.data = res;
             console.log('商品列表', res)
         })
     }
     nextPage() {
-        if(this.currentPage>=this.data.pages){return}
+        if (this.currentPage >= this.data.pages) { return }
         this.currentPage++;
-        let pagingParam = Object.assign({page:this.currentPage},this.paramsData);
+        let pagingParam = Object.assign({ page: this.currentPage }, this.paramsData);
         this.httpService.categoryGoods(pagingParam).then((res) => {
             this.data = res;
             console.log('商品列表', res)

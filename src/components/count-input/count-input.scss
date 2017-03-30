@@ -6,6 +6,9 @@ count-input {
     span {
         padding: 0 10px;
         font-size: 3rem;
+        &:first-child {
+            font-size: 2rem;
+        }
     }
     input {
         width: 65px;

@@ -27,10 +27,12 @@ export class CountInputComponent {
   }
   reduce() {
     if (this.value <= 0) {
-      this.value = 0;
       return;
     }
     this.value--;
+    this.updateNumberI.emit(this.value);
+  }
+  inputEvent(){
     this.updateNumberI.emit(this.value);
   }
 }

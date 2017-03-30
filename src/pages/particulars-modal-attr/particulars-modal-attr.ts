@@ -2,21 +2,21 @@ import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
 
 /*
-  Generated class for the ParticularsModalTaiyang page.
+  Generated class for the ParticularsModalAttr page.
 
   See http://ionicframework.com/docs/v2/components/#navigation for more info on
   Ionic pages and navigation.
 */
 @Component({
-  selector: 'page-particulars-modal-taiyang',
-  templateUrl: 'particulars-modal-taiyang.html'
+  selector: 'page-particulars-modal-attr',
+  templateUrl: 'particulars-modal-attr.html'
 })
-export class ParticularsModalTaiyangPage {
+export class ParticularsModalAttrPage {
 
   constructor(public navCtrl: NavController, public navParams: NavParams) {}
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad ParticularsModalTaiyangPage');
+    console.log('ionViewDidLoad ParticularsModalAttrPage');
   }
 
 }

@@ -39,11 +39,8 @@ import { DiscountCouponPage } from '../pages/home/discount-coupon/discount-coupo
 import { MessagePage } from '../pages/home/message/message';
 import { ParticularsPage } from '../pages/home/particulars/particulars';
 import { ParticularsModalPage } from '../pages/home/particulars/particulars-modal/particulars-modal';
-import { ParticularsModalMeitongPage } from "../pages/home/particulars/particulars-modal-meitong/particulars-modal-meitong";
-import { ParticularsModalHuliPage } from "../pages/home/particulars/particulars-modal-huli/particulars-modal-huli";
-import { ParticularsModalTaiyangPage } from "../pages/home/particulars/particulars-modal-taiyang/particulars-modal-taiyang";
-import { ParticularsModalJingpianPage } from "../pages/home/particulars/particulars-modal-jingpian/particulars-modal-jingpian";
-import { ParticularsModalJingjiaPage } from "../pages/home/particulars/particulars-modal-jingjia/particulars-modal-jingjia";
+import { ParticularsModalAttrPage } from "../pages/home/particulars/particulars-modal-attr/particulars-modal-attr";
+
 import { DredgeMoreCityPage } from '../pages/home/particulars/dredge-more-city/dredge-more-city';
 import { PopoverContentPage } from "../pages/home/particulars/dredge-more-city/popover-content/popover-content";
 /*————————————————————————————————分类页————————————————————————————————*/
@@ -119,7 +116,7 @@ import { PhoneNumberFilter } from "../pipes/phone-number-filter";
     /*——————————————————购物车——————————————————*/
     CarPage,
     /*——————————————————home栏——————————————————*/
-    HomePage, CityPage, SearchPage, DetailsPage, BrandListPage, AttentionPage, FastbuyPage, GlassesDesignPage, IntegralstorePage, RechargePage, WhitebarPage, DiscountCouponPage, MessagePage, ParticularsPage, ParticularsModalPage, DredgeMoreCityPage, PopoverContentPage, ParticularsModalMeitongPage, ParticularsModalHuliPage, ParticularsModalTaiyangPage, ParticularsModalJingpianPage,ParticularsModalJingjiaPage,
+    HomePage, CityPage, SearchPage, DetailsPage, BrandListPage, AttentionPage, FastbuyPage, GlassesDesignPage, IntegralstorePage, RechargePage, WhitebarPage, DiscountCouponPage, MessagePage, ParticularsPage, ParticularsModalPage, DredgeMoreCityPage, PopoverContentPage, ParticularsModalAttrPage,
     /*——————————————————分类栏——————————————————*/
     ClassifyPage, SubnavPage1Page, SubnavPage2Page, MoreBrandPage,
     /*——————————————————我的栏——————————————————*/
@@ -162,11 +159,11 @@ import { PhoneNumberFilter } from "../pipes/phone-number-filter";
     /*——————————————————购物车——————————————————*/
     CarPage,
     /*——————————————————home栏——————————————————*/
-    HomePage, CityPage, SearchPage, DetailsPage, BrandListPage, AttentionPage, FastbuyPage, GlassesDesignPage, IntegralstorePage, RechargePage, WhitebarPage, DiscountCouponPage, MessagePage, ParticularsPage, ParticularsModalPage, DredgeMoreCityPage, PopoverContentPage, ParticularsModalMeitongPage, ParticularsModalHuliPage, ParticularsModalTaiyangPage, ParticularsModalJingpianPage,ParticularsModalJingjiaPage,AccountBalancePage,
+    HomePage, CityPage, SearchPage, DetailsPage, BrandListPage, AttentionPage, FastbuyPage, GlassesDesignPage, IntegralstorePage, RechargePage, WhitebarPage, DiscountCouponPage, MessagePage, ParticularsPage, ParticularsModalPage, DredgeMoreCityPage, PopoverContentPage,ParticularsModalAttrPage,
     /*——————————————————分类栏——————————————————*/
     ClassifyPage, SubnavPage1Page, SubnavPage2Page, MoreBrandPage,
     /*——————————————————我的栏——————————————————*/
-    MyPage, SettingPage, AccountManagementPage, AccountSecurityPage, AllOrdersPage, CouponPage, MemberCenterPage, PeceiptPage, AccountAssetPage, AccountProcessPage, AccountAreaApplicationPage, AccountCollectGoodsPage, AccountCollectStorePage, AccountHistoryPage, AccountServicePage, AccountHelperPage, AccountInfoPage, InvoiceQualificationPage, InvoiceAskFor2Page, InvoiceAskFor1Page, AboutUsPage, ShippingAddressPage, ChangePhoneNumberPage, ChangePasswordPage, RealnamePage, QqPage, AddShippingAddressPage, CompanynamePage,AccountJifenPage,AccountWithdrawPage,AccountMoneyDetailPage,AccountWithdrawSucceedPage,PaymentMethodPage,OrdersDetailPage,WriteOrdersPage,
+    MyPage, SettingPage, AccountManagementPage, AccountSecurityPage, AllOrdersPage, CouponPage, MemberCenterPage, PeceiptPage, AccountAssetPage, AccountProcessPage, AccountAreaApplicationPage, AccountCollectGoodsPage, AccountCollectStorePage, AccountHistoryPage, AccountServicePage, AccountHelperPage, AccountInfoPage, InvoiceQualificationPage, InvoiceAskFor2Page, InvoiceAskFor1Page, AboutUsPage, ShippingAddressPage, ChangePhoneNumberPage, ChangePasswordPage, RealnamePage, QqPage, AddShippingAddressPage, CompanynamePage,AccountJifenPage,AccountWithdrawPage,AccountBalancePage,AccountMoneyDetailPage,AccountWithdrawSucceedPage,PaymentMethodPage,OrdersDetailPage,WriteOrdersPage,
     /*——————————————————组件——————————————————*/
     SingleCardComponent, MyToolbarComponent, SingleFoodsItemComponent, MeunItemComponent, CountdownComponent, CountInputComponent, ImgTabs2Component,
     DirectiveTestPage

@@ -50,8 +50,7 @@
         </div>
     </div>
     <div class="background"></div>
-    <div class="price-info" *ngIf="getPriceSection&&getPriceSection.status!=0">
-        <!-- *ngIf="getPriceSection.status!=0"-->
+    <div class="price-info" *ngIf="getPriceSection?.status==1">
         <div class="main">
             <div class="info-item" *ngFor="let item of getPriceSection.data">
                 <span *ngIf="item.max_num">{{item.number+'-'}}{{item.max_num}}盒</span>
@@ -157,7 +156,7 @@
         </div>
         <ion-list class="safeguard" no-margin>
             <button mode="ios" ion-item>
-                <div class="note-wrap">
+                <div class="note-wrap" *ngIf="getSupplierInfo.inv_type!=0">
                     <!--<ion-note><ion-icon><img src="./assets/icon/images/particulars_2_20.jpg"></ion-icon>担保交易</ion-note>
                     <ion-note><ion-icon><img src="./assets/icon/images/particulars_2_14.jpg"></ion-icon>客户自提</ion-note>
                     <ion-note><ion-icon><img src="./assets/icon/images/particulars_2_16.jpg"></ion-icon>返修退换货</ion-note>-->
@@ -198,8 +197,8 @@
         </div>
         <div [ngSwitch]="selectGroupRecommend">
             <div class="group" *ngSwitchCase="'group'">
-                <ion-slides *ngIf="getGoodsFittings" slidesPerView="3" pager>
-                    <ion-slide *ngFor="let item of getGoodsFittings">
+                <ion-slides slidesPerView="3" pager *ngIf="getGoodsFittings?.status==1">
+                    <ion-slide *ngFor="let item of getGoodsFittings.data">
                         <div class="goods">
                             <div class="top">
                                 <ion-checkbox mode="ios"></ion-checkbox>
@@ -215,15 +214,18 @@
             </div>
 
             <div class="recommend" *ngSwitchCase="'recommend'">
-                <ion-slides pager>
-                    <ion-slide>
-
-                    </ion-slide>
-                    <ion-slide>
-
-                    </ion-slide>
-                    <ion-slide>
-
+                <ion-slides slidesPerView="3" pager>
+                    <ion-slide *ngFor="let item of getCategoryRecommendGoodsHot">
+                        <div class="goods">
+                            <div class="top">
+                                <ion-checkbox mode="ios"></ion-checkbox>
+                                <img src="{{item.thumb}}" alt="">
+                            </div>
+                            <div class="bottom">
+                                <h6>{{item.short_name}}</h6>
+                                <h6>{{item.shop_price}}</h6>
+                            </div>
+                        </div>
                     </ion-slide>
                 </ion-slides>
             </div>
@@ -261,10 +263,6 @@
     </div>
     <div class="background"></div>
     <div class="background"></div>
-    <div class="background"></div>
-    <div class="background"></div>
-
-
     <!--<div class="warning-show">
         <span>请用电脑下单！</span>
     </div>-->

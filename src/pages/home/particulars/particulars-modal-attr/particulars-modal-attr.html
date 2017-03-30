@@ -1,0 +1,90 @@
+<ion-content>
+    <ion-item no-lines>
+        <ion-thumbnail item-left>
+            <img src="{{headData.goods_thumb}}">
+        </ion-thumbnail>
+        <h2>{{headData.goods_name}}</h2>
+        <p>商品编号：{{headData.goods_sn}}</p>
+        <p>{{headData.market_price_formated}}</p>
+    </ion-item>
+    <div class="background"></div>
+    <div *ngIf="type=='goods'" class="goods_main">
+        <table>
+            <tr>
+                <th>价格</th>
+                <th *ngFor="let item of data.data[0].goods_attr">{{item.attr_name}}</th>
+                <th>库存</th>
+                <th>数量</th>
+            </tr>
+            <tr *ngFor="let item of data.data">
+                <td>{{item.price}}</td>
+                <td *ngFor="let group of item.goods_attr">{{group.attr_val}}</td>
+                <td>{{item.product_number}}</td>
+                <td>
+                    <count-input (updateNumberI)="numberIChange($event,item)"></count-input>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div *ngIf="type=='goods_spectacles'" class="goods_spectacles_main">
+        <div class="title">请选择蔡司1.56非球面镜片信息</div>
+        <div class="fore" *ngFor="let it of goods">
+            <div class="top">
+                <ion-select placeholder="选择球镜" [(ngModel)]="it.qiujing" (ionChange)="qiujingChange(it.qiujing)" [selectOptions]="{subTitle: '选择球镜'}" okText="确定" cancelText="取消">
+                    <ion-option *ngFor="let item of data.spectacles_properties.list">{{item}}</ion-option>
+                </ion-select>
+                <ion-select [disabled]="!getZhujingList" [(ngModel)]="it.zhujing" placeholder="选择柱镜" [selectOptions]="{subTitle: '选择柱镜'}" okText="确定" cancelText="取消">
+                    <ion-option *ngFor="let item of getZhujingList?.data">{{item}}</ion-option>
+                </ion-select>
+                <div class="input">
+                    <input type="text" [(ngModel)]="it.zhouwei" placeholder="填写轴位">
+                </div>
+                <ion-select *ngFor="let item of data.specification;let i=index" [(ngModel)]="it.spc" placeholder="{{item.name}}" [selectOptions]="{subTitle: item.name}" okText="确定" cancelText="取消">
+                    <ion-option *ngFor="let item1 of item?.values">{{item1.label}}</ion-option>
+                </ion-select>
+            </div>
+            <div class="bottom">
+                <div>¥250.00</div>
+                <div>
+                    <count-input (updateNumberI)="it.number=$event"></count-input>
+                </div>
+            </div>
+        </div>
+
+        <div class="handle">
+            <button ion-button color="light" (click)="increasedJP()">点击新增一行 ＋</button>
+            <button ion-button [disabled]="goods?.length<=1" color="light" (click)="removeJP()">点击删除一行 －</button>
+        </div>
+    </div>
+</ion-content>
+<ion-footer>
+    <ion-toolbar>
+        <div class="result">
+            <span>合计：￥{{goodsCount||0}}</span>
+            <span>共{{goodsCount||0}}件</span>
+        </div>
+    </ion-toolbar>
+    <div class="btns">
+        <button color="cancelBtn" no-margin ion-button large full class="modal-button" (click)="addToCart()">加入购物车</button>
+        <button color="modalBtn" no-margin ion-button large full class="modal-button">立即购买</button>
+    </div>
+
+</ion-footer>
+<!--    <div class="main">
+        <ion-grid>
+            <ion-row align-items-center class="table-head">
+                <ion-col>价格</ion-col>
+                <ion-col *ngFor="let item of data.data[0].goods_attr">{{item.attr_name}}</ion-col>
+                <ion-col>库存</ion-col>
+                <ion-col style="min-width: 150px;" col-2>数量</ion-col>
+            </ion-row>
+            <ion-row align-items-center *ngFor="let item of data.data">
+                <ion-col class="price">{{item.price}}</ion-col>
+                <ion-col *ngFor="let group of item.goods_attr">{{group.attr_val}}</ion-col>
+                <ion-col>{{item.product_number}}</ion-col>
+                <ion-col col-2>
+                    <count-input (updateNumberI)="numberIChange($event)"></count-input>
+                </ion-col>
+            </ion-row>
+        </ion-grid>
+    </div>-->

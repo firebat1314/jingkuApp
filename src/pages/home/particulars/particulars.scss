@@ -201,11 +201,15 @@ page-particulars {
         }
     }
     .group-and-recommend {
-        .group {
+        .group,
+        .recommend {
             display: flex;
             padding: 18px 0;
             flex-wrap: nowrap;
             min-height: 26px;
+            .swiper-pagination {
+                bottom: 0;
+            }
             .goods {
                 padding: 10px;
                 display: flex;
@@ -213,6 +217,7 @@ page-particulars {
                 .top {
                     display: flex;
                     align-items: center;
+                    justify-content: space-around;
                 }
                 .bottom {
                     h6 {

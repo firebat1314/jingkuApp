@@ -29,10 +29,10 @@ export class MyApp {
   @ViewChild(Nav) nav: Nav;
 
   constructor(
-    public ionicApp: IonicApp,
     public platform: Platform,
     public toastCtrl: ToastController,
-    public storage: Storage
+    public storage: Storage,
+    public ionicApp: IonicApp,
   ) {
     // 初次进入app引导页面
     this.storage.get('hasLoggedIn').then((result) => {
@@ -59,9 +59,15 @@ export class MyApp {
       StatusBar.backgroundColorByHexString('#ffffff'); // set status bar to white
       //注册返回按键事件
       this.platform.registerBackButtonAction((): any => {
-        console.log(this.nav)
+        console.log('nav:', this.nav)
         let activeVC = this.nav.getActive();
         let page = activeVC.instance;
+        let activePortal = this.ionicApp._modalPortal.getActive() || this.ionicApp._toastPortal.getActive() || this.ionicApp._loadingPortal.getActive() || this.ionicApp._overlayPortal.getActive();
+        if (activePortal) {
+          activePortal.dismiss().catch(() => { });
+          activePortal.onDidDismiss(() => { });
+          return;
+        }
         //当前页面非tab栏
         if (!(page instanceof TabsPage)) {
           if (!this.nav.canGoBack()) {
@@ -77,7 +83,9 @@ export class MyApp {
         }
         //当前页面为tab栏的子页面，正常返回
         return activeNav.pop();
+
       }, 1);
+
     });
   }
   //双击退出提示框

@@ -9,7 +9,7 @@
     <ion-navbar>
         <ion-title>购物车</ion-title>
         <ion-buttons right>
-            <button ion-button clear *ngIf="carDetails?.suppliers_goods_list?.length!=0" (click)="isEdit=!isEdit">{{isEdit?'取消':'编辑'}}</button>
+            <button ion-button clear *ngIf="carDetails||carDetails?.suppliers_goods_list?.length!=0" (click)="isEdit=!isEdit">{{isEdit?'取消':'编辑'}}</button>
         </ion-buttons>
     </ion-navbar>
 
@@ -17,6 +17,9 @@
 
 
 <ion-content>
+    <ion-refresher (ionRefresh)="doRefresh($event)" pullMax="60">
+        <ion-refresher-content refreshingSpinner="1" pullingIcon="0"></ion-refresher-content>
+    </ion-refresher>
     <div class="nothings-show" *ngIf="carDetails?.suppliers_goods_list.length==0">
         <div class="img"></div>
         <h1>暂无商品</h1>
@@ -87,7 +90,7 @@
         </div>
     </ion-list>
 </ion-content>
-<ion-footer *ngIf="carDetails?.suppliers_goods_list?.length!=0">
+<ion-footer *ngIf="carDetails||carDetails?.suppliers_goods_list?.length!=0">
     <div class="car-accounts">
         <div class="left">
             <div class="select-all" margin-horizontal *ngIf="carDetails">

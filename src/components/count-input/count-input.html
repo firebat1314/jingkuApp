@@ -5,6 +5,6 @@
   for more info on Angular 2 Components.
 -->
 
-<span (click)="reduce()">-</span>
-<input type="number" value="{{value}}">
+<span (click)="reduce()">—</span>
+<input type="number" [(ngModel)]="value" (input)="inputEvent()">
 <span (click)="increase()">+</span>

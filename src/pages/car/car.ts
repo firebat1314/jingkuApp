@@ -34,10 +34,23 @@ export class CarPage {
   ionViewDidLoad() {
     console.log('ionViewDidLoad CarPage');
   }
-  getFlowGoods() {
+  /*下拉刷新*/
+  doRefresh(refresher) {
+    this.getFlowGoods(function(){
+      setTimeout(() => {
+        refresher.complete();
+      }, 500);
+    })
+  }
+  getFlowGoods(success?) {
     this.httpService.getFlowGoods().then((res) => {
       console.log(res)
-      this.carDetails = res;
+      if(success){
+        success();
+      }
+      if (res.status == 1) {
+        this.carDetails = res;
+      }
       // this.carDetails.selected = true;
       // this.calculateTotal();
     })

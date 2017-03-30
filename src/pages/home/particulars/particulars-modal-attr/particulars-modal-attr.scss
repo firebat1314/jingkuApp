@@ -1,0 +1,139 @@
+page-particulars-modal-attr {
+    .content {
+        background: #f7f7f7;
+    }
+    .item p:last-child {
+        font-size: 2rem;
+        color: red;
+    }
+    .price {
+        color: map-get($colors, danger);
+    }
+    .goods_main {
+        background: #fff;
+        overflow: scroll;
+        color: #808080;
+        font-size: 1.6rem;
+        margin-bottom: 10px;
+        tr {
+            height: 47px;
+            border-bottom: 1px solid #e0e0e0;
+            &:last-child {
+                border: 0;
+            }
+            th {
+                min-width: 100px;
+            }
+            td {
+                text-align: center;
+                &:first-child {
+                    color: #e60000;
+                }
+            }
+        }
+    }
+    .goods_spectacles_main {
+        .title {
+            background: #fff;
+            color: #808080;
+            padding: 10px;
+        }
+        .fore {
+            background: #fff;
+            margin-bottom: 10px;
+            .top {
+                overflow: hidden;
+                border-bottom: 1px solid #e0e0e0;
+                padding: 10px 0;
+                ion-select,
+                .input {
+                    width: 45%;
+                    border-radius: 8%;
+                    float: left;
+                    border: 1px solid #e0e0e0;
+                    position: relative;
+                    margin: 0 2.5% 10px;
+                    padding: 10px;
+                }
+                .input {
+                    padding: 10px;
+                    input {
+                        border: 0;
+                    }
+                }
+            }
+            .bottom {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                padding: 10px;
+                font-size: 1.6rem;
+                div:first-child {
+                    color: #e60000;
+                }
+            }
+        }
+        .handle {
+            background: #fff;
+            display: flex;
+            justify-content: space-around;
+            padding: 5px 0;
+            margin-bottom: 20px;
+            >button {
+                border: 1px solid #e0e0e0;
+            }
+        }
+    }
+    ion-row {
+        border-bottom: 0.5px solid #e0e0e0;
+        color: #808080;
+        font-size: 1.6rem;
+        ion-col {
+            text-align: center;
+        }
+    }
+    ion-footer {
+        .btns {
+            display: flex;
+            button {
+                width: 50%;
+            }
+        }
+        .result {
+            display: flex;
+            justify-content: flex-end;
+            align-items: center;
+            span:first-child {
+                font-size: 1.7rem;
+                color: red;
+                margin-right: 10px;
+            }
+            span:last-child {
+                color: #808080;
+            }
+        }
+    }
+}
+
+
+/*page-particulars-modal-jingjia {
+    .item p:last-child {
+        font-size: 2rem;
+        color: red;
+    }
+    .price {
+        color: map-get($colors, danger);
+    }
+    .main {
+        overflow: scroll;
+    }
+    ion-row {
+        border-bottom: 0.5px solid #e0e0e0;
+        color: #808080;
+        font-size: 1.6rem;
+        ion-col {
+            text-align: center;
+            min-width: 100px;
+        }
+    }
+}*/
