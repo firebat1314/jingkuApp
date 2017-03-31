@@ -3,7 +3,7 @@ import { NavController, NavParams, ViewController } from 'ionic-angular';
 import { HttpService } from "../../../../providers/http-service";
 
 export class goodsSpectaclesParams {
-	number = 0;//所填写的商品的数量
+	number = 1;//所填写的商品的数量
 	spc = [];//商品选择的属性
 	qiujing = '';//所选的球镜
 	zhujing = '';//所选的柱镜
@@ -30,7 +30,6 @@ export class ParticularsModalAttrPage {
 	zhouweiArr: Array<any> = [];
 
 	qiujing: string;
-	getZhujingList: any;
 	/*自定义镜片信息项目*/
 	goods: Array<any> = [new goodsSpectaclesParams];
 	constructor(
@@ -65,12 +64,12 @@ export class ParticularsModalAttrPage {
 	}
 	qiujingChange(item) {
 		this.httpService.getZhujing({
-			item: item,
+			item: item.qiujing,
 			goods_id: this.goodsId
 		}).then((res) => {
 			console.log('镜柱属性：', res)
 			if (res.status == 1) {
-				this.getZhujingList = res;
+				item.getZhujingList = res;
 			}
 		})
 	}
@@ -81,18 +80,24 @@ export class ParticularsModalAttrPage {
 		this.goods.splice(-1);
 	}
 	getGoodsParamsArrs() {
-		var arr = [];
+		this.memberArr = [];
+		this.qiujingArr = [];
+		var spcArr = [];
+		this.zhujingArr = [];
+		this.zhouweiArr = [];
+		for (let i = 0; i < this.data.specification.length; i++) {
+			spcArr.push([]);
+		}
 		for (let i = 0; i < this.goods.length; i++) {
 			this.memberArr.push(this.goods[i].number);
 			this.qiujingArr.push(this.goods[i].qiujing);
 			this.zhujingArr.push(this.goods[i].zhujing);
 			this.zhouweiArr.push(this.goods[i].zhouwei);
-			// for (var j = 0; j < this.data.specification.length; j++) {
-			// 	var element = this.data.specification[j].spc;
-			// 	arr.push(element);
-			// 	this.spcArr.push(arr);
-			// }
+			for (var j = 0; j < this.data.specification.length; j++) {
+				spcArr[j].push(this.goods[i][this.data.specification[j].name])
+			}
 		}
+		this.spcArr = spcArr;
 	}
 	addToCart() {
 		if (this.type == 'goods') {
@@ -110,11 +115,14 @@ export class ParticularsModalAttrPage {
 			// this.viewCtrl.dismiss();
 			this.getGoodsParamsArrs()
 			this.httpService.addToCartSpecJp({
-				number: this.memberArr,//所填写的商品的数量
-				spc: null,//商品选择的属性
-				qiujing: this.qiujingArr,//所选的球镜
-				zhujing: this.zhujingArr,//所选的柱镜
-				zhouwei: this.zhouweiArr//所填写的轴位
+				goods_id: this.goodsId,
+				goods: {
+					member: this.memberArr,//所填写的商品的数量
+					spc: this.spcArr,//商品选择的属性
+					qiujing: this.qiujingArr,//所选的球镜
+					zhujing: this.zhujingArr,//所选的柱镜
+					zhouwei: this.zhouweiArr//所填写的轴位
+				}
 			}).then((res) => {
 				console.log(res)
 			})

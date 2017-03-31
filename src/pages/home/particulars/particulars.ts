@@ -46,7 +46,62 @@ export class ParticularsPage {
 		public native: Native
 	) {
 		this.goodsId = this.navParams.get('goodsId') || '5676';/*3994*/
-		console.log(this.goodsId)
+		console.log("商品ID:", this.goodsId)
+	}
+	ngOnInit() {
+		this.getHttpDetails();
+	}
+	ngAfterViewInit() { }
+	getHttpDetails(finished?) {
+		this.http.getGoodsGallery({ goods_id: this.goodsId }).then((res) => {
+			console.log("商品详情的相册图片轮播", res);
+			if (res.status == 1) { this.getGoodsGallery = res.data; }
+			this.http.getPriceSection({ goods_id: this.goodsId }).then((res) => {
+				console.log("获取商品价格优惠区间", res);
+				if (res.status == 1) { this.getPriceSection = res; }
+				this.http.getGoodsInfo({ goods_id: this.goodsId }).then((res) => {
+					console.log("商品详情信息", res);
+					if (res.status == 1) { this.getGoodsInfo = res.data; }
+					this.http.getGoodsParameter({ goods_id: this.goodsId }).then((res) => {
+						console.log("获取商品参数", res);
+						if (res.status == 1) { this.getGoodsParameter = res.data; }
+						this.http.getSupplierInfo({ goods_id: this.goodsId }).then((res) => {
+							console.log("获取供应商信息", res);
+							if (res.status == 1) { this.getSupplierInfo = res.data; }
+							this.http.getGoodsFittings({ goods_id: this.goodsId }).then((res) => {
+								console.log("组合商品", res);
+								if (res.status == 1) { this.getGoodsFittings = res; }
+								this.http.getLinkedGoods({ goods_id: this.goodsId }).then((res) => {
+									console.log("关联商品", res);
+									if (res.status == 1) { this.getLinkedGoods = res.data; }
+									this.http.getBonus({ goods_id: this.goodsId }).then((res) => {
+										console.log("优惠券列表", res);
+										if (res.status == 1) { this.getBonus = res.data; }
+										this.http.getGoodsSaleCity({ goods_id: this.goodsId }).then((res) => {
+											console.log("获取商品的销售区域", res);
+											if (res.status == 1) { this.getGoodsSaleCity = res.data; }
+											this.http.getCategoryRecommendGoodsHot({}).then((res) => {
+												console.log('为你推荐：', res)
+												if (res.status == 1) { this.getCategoryRecommendGoodsHot = res.data; }
+												if (finished) { finished() }
+											})
+										});
+									});
+								});
+							});
+						});
+					});
+				});
+			});
+		});
+	}
+	/*下拉刷新*/
+	doRefresh(refresher) {
+		this.getHttpDetails(() => {
+			setTimeout(() => {
+				refresher.complete();
+			}, 500);
+		});
 	}
 	presentModal(str) {
 		let modal = this.modalCtrl.create(ParticularsModalPage, { name: str, getBonus: this.getBonus, sendto: this.getGoodsSaleCity });
@@ -55,7 +110,6 @@ export class ParticularsPage {
 		});
 		modal.present();
 	}
-
 	presentModalAttr() {
 		this.http.getGoodsAttribute({ goods_id: this.goodsId }).then((res) => {
 			console.log("商品初始属性", res);
@@ -81,50 +135,7 @@ export class ParticularsPage {
 		});
 		modal.present();
 	}
-	ngOnInit() {
-		this.http.getGoodsGallery({ goods_id: this.goodsId }).then((res) => {
-			console.log("商品详情的相册图片轮播", res);
-			this.getGoodsGallery = res.data;
-		});
-		this.http.getPriceSection({ goods_id: this.goodsId }).then((res) => {
-			console.log("获取商品价格优惠区间", res);
-			this.getPriceSection = res;
-		});
-		this.http.getGoodsInfo({ goods_id: this.goodsId }).then((res) => {
-			console.log("商品详情信息", res);
-			this.getGoodsInfo = res.data;
-		});
-		this.http.getGoodsParameter({ goods_id: this.goodsId }).then((res) => {
-			console.log("获取商品参数", res);
-			this.getGoodsParameter = res.data;
-		});
 
-		this.http.getSupplierInfo({ goods_id: this.goodsId }).then((res) => {
-			console.log("获取供应商信息", res);
-			this.getSupplierInfo = res.data;
-		});
-		this.http.getGoodsFittings({ goods_id: this.goodsId }).then((res) => {
-			console.log("组合商品", res);
-			this.getGoodsFittings = res;
-		});
-		this.http.getLinkedGoods({ goods_id: this.goodsId }).then((res) => {
-			console.log("关联商品", res);
-			this.getLinkedGoods = res.data;
-		});
-		this.http.getBonus({ goods_id: this.goodsId }).then((res) => {
-			console.log("优惠券列表", res);
-			this.getBonus = res.data;
-		});
-		this.http.getGoodsSaleCity({ goods_id: this.goodsId }).then((res) => {
-			console.log("获取商品的销售区域", res);
-			this.getGoodsSaleCity = res.data;
-		});
-		this.http.getCategoryRecommendGoodsHot({}).then((res) => {
-			console.log('为你推荐：', res)
-			this.getCategoryRecommendGoodsHot = res.data
-		})
-	}
-	ngAfterViewInit() { }
 	ionViewDidLoad() {
 		console.log('ionViewDidLoad ParticularsPage');
 	}

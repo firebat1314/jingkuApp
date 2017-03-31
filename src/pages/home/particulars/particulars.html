@@ -14,6 +14,9 @@
 
 
 <ion-content>
+    <ion-refresher (ionRefresh)="doRefresh($event)" pullMax="60">
+        <ion-refresher-content refreshingSpinner="1" pullingIcon="0"></ion-refresher-content>
+    </ion-refresher>
     <div class="imgs" *ngIf="getGoodsInfo">
         <ion-slides parallax="true">
             <ion-slide *ngFor="let item of getGoodsGallery">

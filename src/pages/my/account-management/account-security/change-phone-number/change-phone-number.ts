@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
+import { HttpService } from "../../../../../providers/http-service";
 
 /*
   Generated class for the ChangePhoneNumber page.
@@ -13,11 +14,24 @@ import { NavController, NavParams } from 'ionic-angular';
 })
 export class ChangePhoneNumberPage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {}
+  formData = {
+    mobile: '',
+    str_verify: '',
+    mobile_verify: ''
+  }
+
+
+  constructor(
+    public navCtrl: NavController,
+    public navParams: NavParams,
+    public httpService: HttpService
+  ) { }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad ChangePhoneNumberPage');
+    this.getSkey()
   }
+
   private wait: number = 60;
   private disabled: Boolean = false;
   private value: String = '发送验证码';
@@ -25,9 +39,9 @@ export class ChangePhoneNumberPage {
   private time() {
     if (this.wait == 0) {
       this.disabled = false;
+      this.timer = null;
       this.value = "发送验证码";
       this.wait = 60;
-      clearInterval(this.timer);
       return;
     } else {
       this.disabled = true;
@@ -39,13 +53,60 @@ export class ChangePhoneNumberPage {
       }, 1000)
     }
   }
-  getImg(){
-    
+  verifyImg: string;
+  skey: string;
+
+  getSkey() {
+    this.httpService.getVerificationImg({
+      fontSize: '12',
+      length: '4',
+      useNoise: 'false',
+      codeSet: '0',
+    }).then((data) => {
+      if (data.status == 1) {
+        this.skey = data.data.skey;
+        this.getImg()
+      }
+    })
   }
-  changePhoneNumber(changePhoneNumber){
-    console.log(changePhoneNumber)
+  getImg() {
+    this.httpService.getVerificationImg({
+      fontSize: '12',
+      length: '4',
+      useNoise: 'false',
+      codeSet: '0',
+      skey: this.skey
+    }).then((data) => {
+      if (data.status == 1) {
+        this.verifyImg = data.data.captcha + '?' + Math.random();
+        this.skey = data.data.skey
+      }
+    });
   }
-  ngOnDestroy(){
+  getMobileCode() {
+    this.httpService.getMobileCode({
+      type: 'reg',
+      mobile: this.formData.mobile,
+      verify: this.formData.str_verify,
+      skey: this.skey
+    }).then(data => {
+      if (data.status) {
+        this.time();
+      } else {
+        this.getSkey();
+      }
+    })
+  }
+  onSubmit(event) {
+    console.log(event)
+  }
+  onsubmit() {
+    this.httpService.editMobile(this.formData).then((res) => {
+      console.log(res);
+
+    })
+  }
+  ngOnDestroy() {
     clearInterval(this.timer);
   }
 }

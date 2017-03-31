@@ -4,7 +4,7 @@ page-coupon {
         .stale,
         .used {
             background: #f7f7f7;
-            height: 100%;
+            min-height: 100%;
             .no-coupon {
                 text-align: center;
                 color: #999;
@@ -33,11 +33,12 @@ page-coupon {
                     flex-direction: column;
                     justify-content: center;
                     background: url(../assets/images/images/coupon_1_03.png) left center/100% 100% no-repeat;
+                    padding: 5px 5px;
                     .price {
                         margin-bottom: 5px;
                         font-size: 2rem;
                         span {
-                            font-size: 3rem;
+                            font-size: 2.3rem;
                         }
                     }
                 }

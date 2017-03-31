@@ -47,7 +47,7 @@
                         <ion-checkbox [(ngModel)]="item2.selected" (ionChange)="checkGoods(item2)" [checked]="item.selected" color="dark" mode="ios"></ion-checkbox>
                     </div>
                     <ion-item margin-left no-lines>
-                        <ion-thumbnail item-left>
+                        <ion-thumbnail item-lefet>
                             <img src="{{item2.goods_thumb}}">
                         </ion-thumbnail>
                         <h2>{{item2.goods_name}}</h2>
@@ -64,10 +64,10 @@
                                 <ion-item no-lines>
                                     <div class="goodsinfo">
                                         <div class="attr">
-                                            <span *ngFor="let item4 of item3?.arr_attr;">{{item4}}</span>
                                             <span *ngIf="item3.qiujing">球镜：{{item3.qiujing}}</span>
-                                            <span *ngIf="item3.zhouwei">轴位：{{item3.qiujing}}</span>
-                                            <span *ngIf="item3.zhujing">柱镜：{{item3.qiujing}}</span>
+                                            <span *ngIf="item3.zhujing">柱镜：{{item3.zhujing}}</span>
+                                            <span *ngIf="item3.zhouwei">轴位：{{item3.zhouwei}}</span>
+                                            <span *ngFor="let item4 of item3?.arr_attr;">{{item4}}</span>
                                         </div>
                                         <div class="bottom">
                                             <div class="price">{{item3?.goods_price}}</div>
@@ -90,8 +90,8 @@
         </div>
     </ion-list>
 </ion-content>
-<ion-footer *ngIf="carDetails||carDetails?.suppliers_goods_list?.length!=0">
-    <div class="car-accounts">
+<ion-footer>
+    <div class="car-accounts" *ngIf="carDetails?.suppliers_goods_list?.length!=0">
         <div class="left">
             <div class="select-all" margin-horizontal *ngIf="carDetails">
                 <ion-checkbox [(ngModel)]="carDetails.selected" margin-right color="dark" mode="ios"></ion-checkbox>

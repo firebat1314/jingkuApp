@@ -26,76 +26,57 @@
 
 
 <ion-content [ngSwitch]="couponSelect">
+    <ion-refresher (ionRefresh)="doRefresh($event)" pullMax="60">
+        <ion-refresher-content refreshingSpinner="1" pullingIcon="0"></ion-refresher-content>
+    </ion-refresher>
     <div padding class="unused" *ngSwitchCase="'unused'">
-        <div class="no-coupon">
+        <div class="no-coupon" *ngIf="unusedBonusData?.data.length==0">
             <div class="img"></div>
             <div class="text">您还没有优惠券哦！</div>
         </div>
-        <div class="item">
+        <div class="item" *ngFor="let item of unusedBonusData?.data">
             <div class="fore">
-                <div class="price">￥<span>40</span></div>
-                <div class="canbe">满200元可用</div>
+                <div class="price">￥<span>{{item.type_money}}</span></div>
+                <div class="canbe">满{{item.min_goods_amount}}元可用</div>
             </div>
             <div class="main">
-                <div class="name"><span>沙弗龙旗舰店点卷</span></div>
-                <div>仅限购买隐形眼镜部分商品</div>
-                <div class="time">2017.5.02 10:5:55 到期</div>
-            </div>
-        </div>
-        <div class="item">
-            <div class="fore">
-                <div class="price">￥<span>40</span></div>
-                <div class="canbe">满200元可用</div>
-            </div>
-            <div class="main">
-                <div class="name"><span>沙弗龙旗舰店点卷</span></div>
-                <div>仅限购买隐形眼镜部分商品</div>
-                <div class="time">2017.5.02 10:5:55 到期</div>
-            </div>
-        </div>
-        <div class="item">
-            <div class="fore">
-                <div class="price">￥<span>40</span></div>
-                <div class="canbe">满200元可用</div>
-            </div>
-            <div class="main">
-                <div class="name"><span>沙弗龙旗舰店点卷</span></div>
-                <div>仅限购买隐形眼镜部分商品</div>
-                <div class="time">2017.5.02 10:5:55 到期</div>
+                <div class="name"><span>{{item.type_name}}</span></div>
+                <div>(仅限购买隐形眼镜部分商品)!</div>
+                <div class="time">{{item.use_end_date}} 到期</div>
             </div>
         </div>
     </div>
     <div padding class="stale" *ngSwitchCase="'stale'">
-        <div class="no-coupon">
+        <div class="no-coupon" *ngIf="staleBonusData?.data.length==0">
             <div class="img"></div>
             <div class="text">您还没有优惠券哦！</div>
         </div>
-        <div class="item">
+        <div class="item" *ngFor="let item of staleBonusData?.data">
             <div class="fore">
-                <div class="price">￥<span>40</span></div>
-                <div class="canbe">满200元可用</div>
+                <div class="price">￥<span>{{item.type_money}}</span></div>
+                <div class="canbe">满{{item.min_goods_amount}}元可用</div>
             </div>
             <div class="main">
-                <div class="name"><span>沙弗龙旗舰店点卷</span></div>
-                <div>仅限购买隐形眼镜部分商品</div>
-                <div class="time">2017.5.02 10:5:55 到期</div>
+                <div class="name"><span>{{item.type_name}}</span></div>
+                <div>(仅限购买隐形眼镜部分商品)!</div>
+                <div class="time">{{item.use_end_date}} 到期</div>
             </div>
         </div>
     </div>
     <div padding class="used" *ngSwitchCase="'used'">
-        <div class="no-coupon">
+        <div class="no-coupon" *ngIf="usedBonusData?.data.length==0">
             <div class="img"></div>
             <div class="text">您还没有使用过优惠券哦！</div>
         </div>
-        <div class="item">
+        <div class="item" *ngFor="let item of usedBonusData?.data">
             <div class="fore">
-                <div class="price">￥<span>40</span></div>
-                <div class="canbe">满200元可用</div>
+                <div class="price">￥<span>{{item.type_money}}</span></div>
+                <div class="canbe">满{{item.min_goods_amount}}元可用</div>
             </div>
             <div class="main">
-                <div class="name"><span>沙弗龙旗舰店点卷</span></div>
-                <div>仅限购买隐形眼镜部分商品</div>
-                <div class="time">2017.5.02 10:5:55 到期</div>
+                <div class="name"><span>{{item.type_name}}</span></div>
+                <div>(仅限购买隐形眼镜部分商品)!</div>
+                <div class="time">{{item.use_end_date}} 到期</div>
             </div>
         </div>
     </div>

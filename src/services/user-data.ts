@@ -1,80 +1,24 @@
 import { Injectable } from "@angular/core";
 import { Http, Response, Headers, RequestOptions } from "@angular/http";
-import { Events, AlertController, App } from "ionic-angular";
+import { Events, AlertController } from "ionic-angular";
 import { Storage } from '@ionic/storage';
 
 // Add the RxJS Observable operators.
 import '../app/rxjs-operators';
-
 import { Observable } from 'rxjs/Observable';
+
 import { Native } from '../providers/native';
 import { LoginPage } from "../pages/login/login";
 
 @Injectable()
 export class UserData {
-    public HAS_LOGGED_IN = "hasLoggedIn";
-    public hasLogin = false;
-    private ip = 'http://v401app.jingkoo.net';  // URL to web API
-
+ 
     constructor(
         private events: Events,
         private http: Http,
-        public storage: Storage,
         private native: Native,
         private alertCtrl: AlertController,
-        public appCtrl: App
     ) { }
-
-    login(payload) {
-
-        return this.post(this.ip + '/Login/index', payload);
-    }
-
-    signupFirst(user) {
-        let payload = {
-            user_name: user.user_name,
-            password: user.password,
-            cpassword: user.cpassword,
-            str_verify: user.str_verify,
-            mobile_phone: user.mobile_phone,
-            Phone_code: user.Phone_code
-        };
-        return this.post(this.ip + "/Login/register/step/one", payload)
-
-    }
-
-    getVerificationImg(data) {
-        console.log(data)
-        return this.post(this.ip + '/Login/verify', data)
-    }
-
-    getMobileCode(data) {
-        return this.post(this.ip + '/Login/getMobileCode', data)
-    }
-
-    setToken(token) {
-        this.storage.set("token", token);
-    }
-
-    getToken() {
-        return this.storage.get("token");
-
-    }
-    setUsername(username) {
-        this.storage.set("username", username);
-    }
-
-    getUsername() {
-        return this.storage.get("username");
-    }
-
-    setStorage(key, value) {
-        this.storage.set(key, value);
-    }
-
-    getStorage(key) {
-        this.storage.get(key);
-    }
 
     public get(url: string, paramObj?: any) {
         // this.native.showLoading();

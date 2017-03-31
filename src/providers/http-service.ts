@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import 'rxjs/add/operator/map';
 
 import { UserData } from "../services/user-data";
+import { Storage } from '@ionic/storage';
 
 /*
   Generated class for the HttpService provider.
@@ -11,10 +12,50 @@ import { UserData } from "../services/user-data";
 */
 @Injectable()
 export class HttpService {
+  public HAS_LOGGED_IN = "hasLoggedIn";
+  public hasLogin = false;
   private ip = 'http://v401app.jingkoo.net';  // URL to web API
-  constructor(public http: UserData) {
+  
+  constructor(public http: UserData, private storage: Storage) {
     console.log('Hello HttpService Provider');
   }
+
+  setToken(token) {
+    this.storage.set("token", token);
+  }
+
+  getToken() {
+    return this.storage.get("token");
+  }
+  setUsername(username) {
+    this.storage.set("username", username);
+  }
+
+  getUsername() {
+    return this.storage.get("username");
+  }
+
+  setStorage(key, value) {
+    this.storage.set(key, value);
+  }
+
+  getStorage(key) {
+    this.storage.get(key);
+  }
+
+  login(data?: Object) {//登录
+    return this.http.post(this.ip + '/Login/index', data)
+  }
+  signupFirst(data?: Object) {//注册
+    return this.http.post(this.ip + '/Login/register/step/one', data)
+  }
+  getVerificationImg(data?: Object) {//图片验证码
+    return this.http.post(this.ip + '/Login/verify', data)
+  }
+  getMobileCode(data?: Object) {//短信验证码
+    return this.http.post(this.ip + '/Login/getMobileCode', data)
+  }
+  /*首页*/
   getHomebanner(data?: Object) {//轮播图
     return this.http.get(this.ip + '/Index/ads/int_pos_id/3/int_size/10', data)
   }
@@ -128,60 +169,60 @@ export class HttpService {
     return this.http.get(this.ip + '/User/usercount', data)
   }
   userInfo(data?: Object) {//（2）获取用户资料
-    return this.http.get(this.ip +'/User/user_info', data)
+    return this.http.get(this.ip + '/User/user_info', data)
   }
   getUserBonus(data?: Object) {//（3）个人中心优惠券
-    return this.http.get(this.ip +'/User/get_user_bonus', data)
+    return this.http.get(this.ip + '/User/get_user_bonus', data)
   }
   editPwd(data?: Object) {//（4）修改密码
-    return this.http.post(this.ip +'/User/edit_pwd', data)
+    return this.http.post(this.ip + '/User/edit_pwd', data)
   }
   editMobile(data?: Object) {//（5）修改手机号
-    return this.http.post(this.ip +'/User/edit_mobile', data)
+    return this.http.post(this.ip + '/User/edit_mobile', data)
   }
   logout(data?: Object) {//（6）退出登录
-    return this.http.post(this.ip +'/User/logout', data)
+    return this.http.post(this.ip + '/User/logout', data)
   }
   watch(data?: Object) {//（7）个人中心浏览记录
-    return this.http.get(this.ip +'/User/watch', data)
+    return this.http.get(this.ip + '/User/watch', data)
   }
   delWatch(data?: Object) {//（8）删除浏览记录
-    return this.http.get(this.ip +'/User/del_watch', data)
+    return this.http.get(this.ip + '/User/del_watch', data)
   }
   addressList(data?: Object) {//（9）收货地址管理
-    return this.http.get(this.ip +'/User/address_list', data)
+    return this.http.get(this.ip + '/User/address_list', data)
   }
   delAddress(data?: Object) {//（10）删除收货地址
-    return this.http.get(this.ip +'/User/del_address', data)
+    return this.http.get(this.ip + '/User/del_address', data)
   }
   AddressDetail(data?: Object) {//（11）收货地址详情
-    return this.http.get(this.ip +'/User/edit_address', data)
+    return this.http.get(this.ip + '/User/edit_address', data)
   }
   editAddress(data?: Object) {//（12）编辑收货地址
-    return this.http.post(this.ip +'/User/edit_address', data)
+    return this.http.post(this.ip + '/User/edit_address', data)
   }
   changeRegion(data?: Object) {//（13）改变城市联动
-    return this.http.get(this.ip +'/User/change_region', data)
+    return this.http.get(this.ip + '/User/change_region', data)
   }
   help(data?: Object) {//（14）帮助中心
-    return this.http.get(this.ip +'/User/help', data)
+    return this.http.get(this.ip + '/User/help', data)
   }
   regionApply(data?: Object) {//（15）地区申请页
-    return this.http.get(this.ip +'/User/region_apply', data)
+    return this.http.get(this.ip + '/User/region_apply', data)
   }
   postRegionApply(data?: Object) {//（16）地区申请页提交
-    return this.http.post(this.ip +'/User/region_apply', data)
+    return this.http.post(this.ip + '/User/region_apply', data)
   }
   collectionList(data?: Object) {//（17）收藏的商品列表
-    return this.http.get(this.ip +'/User/collection_list', data)
+    return this.http.get(this.ip + '/User/collection_list', data)
   }
   delCollectionGoods(data?: Object) {//（18）取消收藏商品
-    return this.http.get(this.ip +'/User/del_collection_goods', data)
+    return this.http.get(this.ip + '/User/del_collection_goods', data)
   }
   collectionShop(data?: Object) {//（19）收藏店铺列表
-    return this.http.get(this.ip +'/User/collection_shop', data)
+    return this.http.get(this.ip + '/User/collection_shop', data)
   }
   delCollectionShop(data?: Object) {//（20）取消收藏店铺
-    return this.http.get(this.ip +'/User/del_collection_shop', data)
+    return this.http.get(this.ip + '/User/del_collection_shop', data)
   }
 }

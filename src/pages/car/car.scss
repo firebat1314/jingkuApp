@@ -8,6 +8,7 @@ page-car {
         flex-direction: column;
         justify-content: center;
         align-items: center;
+        background: #fff;
         .img {
             width: 13rem;
             height: 13rem;
@@ -120,9 +121,8 @@ page-car {
         }
     }
     ion-footer {
-        height: 56px;
         .car-accounts {
-            height: 100%;
+            height: 50px;
             display: flex;
             justify-content: space-between;
             background: #fff;

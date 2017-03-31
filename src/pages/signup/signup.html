@@ -18,7 +18,7 @@
         <ion-list>
             <ion-item>
                 <ion-label color="primary" fixed><span ion-text color="google">*</span>　账户名</ion-label>
-                <ion-input required clearInput [(ngModel)]="signupInfo.user_name" ngControl="title" name="user_name" type="text" placeholder="请输入用户名"></ion-input>
+                <ion-input required clearInput [(ngModel)]="signupInfo.user_name" name="user_name" type="text" placeholder="请输入用户名"></ion-input>
             </ion-item>
             <ion-item>
                 <ion-label color="primary" fixed><span ion-text color="google">*</span>　手机号</ion-label>
@@ -28,7 +28,7 @@
                 <ion-label color="primary" fixed><span ion-text color="google">*</span>　验证码</ion-label>
                 <ion-input required clearInput [(ngModel)]="signupInfo.str_verify" name="str_verify" type="number" placeholder="验证码"></ion-input>
                 <div class="certified-img" item-right>
-                    <img [src]="verifyImg" alt="" (click)="getImg()">
+                    <img [src]="verifyImg||'./assets/icon/certified-img_03.jpg'" alt="" (click)="getImg()">
                     <ion-icon (click)="getImg()" ios="ios-refresh" md="md-refresh"></ion-icon>
                 </div>
             </ion-item>

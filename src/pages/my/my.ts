@@ -46,22 +46,35 @@ export class MyPage {
     public navCtrl: NavController,
     public modalCtrl: ModalController,
     public httpService: HttpService
-  ) { }
+  ) {
+    
+  }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad MyPages');
   }
   ngOnInit() {
+    this.httpResult()
+  }
+  httpResult(finish?) {
     this.httpService.usercount().then((res) => {
-      console.log('（1）个人中心获取用户统计☞',res)
-      this.usercount = res;
-    })
-    this.httpService.userInfo().then((res) => {
-      console.log('（2）获取用户资料☞',res)
-      this.userInfo = res;
+      console.log('（1）个人中心获取用户统计☞', res)
+      if (res.status == 1) { this.usercount = res; }
+      this.httpService.userInfo().then((res) => {
+        console.log('（2）获取用户资料☞', res)
+        if (res.status == 1) { this.userInfo = res; }
+        if (finish) { finish(); }
+      })
     })
   }
-
+  /*下拉刷新*/
+  doRefresh(refresher) {
+    this.httpResult(() => {
+      setTimeout(() => {
+        refresher.complete();
+      }, 500);
+    })
+  }
   goSettingPage() {
     this.navCtrl.push(SettingPage)
   }

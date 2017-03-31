@@ -6,6 +6,7 @@ import { UserData } from "../../services/user-data";
 
 import { LoginPage } from '../login/login';
 import { SignupSecondPage } from './signup-second/signup-second';
+import { HttpService } from "../../providers/http-service";
 
 /*
   Generated class for the Signup page.
@@ -18,11 +19,14 @@ import { SignupSecondPage } from './signup-second/signup-second';
   templateUrl: 'signup.html'
 })
 export class SignupPage {
-  private signupInfo: {
-    username?: String,
-    mobile_phone?: String,
-    str_verify?: String
-  } = {};
+  private signupInfo = {
+    user_name: '',
+    mobile_phone: '',
+    password: '',
+    cpassword: '',
+    Phone_code: '',
+    str_verify: ''
+  };
   private skey;
   constructor(
     public navCtrl: NavController,
@@ -30,33 +34,36 @@ export class SignupPage {
     private userData: UserData,
     private events: Events,
     public http: Http,
-    public storage: Storage
+    public storage: Storage,
+    public httpService: HttpService
+
   ) {
     this.getSkey();
   }
 
   registerBtn() {
-    let self = this;
-    this.userData.signupFirst(this.signupInfo).then(
+    console.log('注册填写信息：', this.signupInfo)
+    this.httpService.signupFirst(this.signupInfo).then(
       data => {
         console.log(data)
         this.navCtrl.push(SignupSecondPage);
-        self.events.publish("user:signupFirst", self.signupInfo.username);
+        this.events.publish("user:signupFirst", this.signupInfo.user_name);
         if (data.status == 1) {
-          self.userData.setUsername(self.signupInfo.username)
+          this.httpService.setUsername(this.signupInfo.user_name)
         }
       },
       error => {
-        self.events.publish("user:signupFirst:error");
+        console.log('注册出错')
+        this.events.publish("user:signupFirst:error");
       }
     );
   }
   logForm(signupForm) {
-    //console.log(signupForm)
+    console.log(signupForm)
   }
   private verifyImg;
   private getSkey() {
-    this.userData.getVerificationImg({
+    this.httpService.getVerificationImg({
       fontSize: '12',
       length: '4',
       useNoise: 'false',
@@ -72,7 +79,7 @@ export class SignupPage {
       )
   }
   private getImg() {
-    this.userData.getVerificationImg({
+    this.httpService.getVerificationImg({
       fontSize: '12',
       length: '4',
       useNoise: 'false',
@@ -114,25 +121,19 @@ export class SignupPage {
   }
 
   getMobileCode() {
-    this.userData.getMobileCode({
+    this.httpService.getMobileCode({
       type: 'reg',
       mobile: this.signupInfo.mobile_phone,
       verify: this.signupInfo.str_verify,
       skey: this.skey
-    }).then(
-      data => {
-        console.log(data)
-        if (data.status == 1) {
-          this.time();
-        } else if (data.status == 0) {
-          this.getImg();
-        }
-      },
-      error => {
+    }).then(data => {
+      console.log(data)
+      if (data.status) {
+        this.time();
+      } else  {
         this.getImg();
-        console.log(error);
       }
-      )
+    })
   }
 
   toLoginPage() {

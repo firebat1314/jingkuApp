@@ -30,17 +30,17 @@
         <div class="title">请选择蔡司1.56非球面镜片信息</div>
         <div class="fore" *ngFor="let it of goods">
             <div class="top">
-                <ion-select placeholder="选择球镜" [(ngModel)]="it.qiujing" (ionChange)="qiujingChange(it.qiujing)" [selectOptions]="{subTitle: '选择球镜'}" okText="确定" cancelText="取消">
+                <ion-select placeholder="选择球镜" [(ngModel)]="it.qiujing" (ionChange)="qiujingChange(it)" [selectOptions]="{subTitle: '选择球镜'}" okText="确定" cancelText="取消">
                     <ion-option *ngFor="let item of data.spectacles_properties.list">{{item}}</ion-option>
                 </ion-select>
-                <ion-select [disabled]="!getZhujingList" [(ngModel)]="it.zhujing" placeholder="选择柱镜" [selectOptions]="{subTitle: '选择柱镜'}" okText="确定" cancelText="取消">
-                    <ion-option *ngFor="let item of getZhujingList?.data">{{item}}</ion-option>
+                <ion-select [disabled]="!it.getZhujingList" [(ngModel)]="it.zhujing" placeholder="选择柱镜" [selectOptions]="{subTitle: '选择柱镜'}" okText="确定" cancelText="取消">
+                    <ion-option *ngFor="let item of it.getZhujingList?.data">{{item}}</ion-option>
                 </ion-select>
                 <div class="input">
                     <input type="text" [(ngModel)]="it.zhouwei" placeholder="填写轴位">
                 </div>
-                <ion-select *ngFor="let item of data.specification;let i=index" [(ngModel)]="it.spc" placeholder="{{item.name}}" [selectOptions]="{subTitle: item.name}" okText="确定" cancelText="取消">
-                    <ion-option *ngFor="let item1 of item?.values">{{item1.label}}</ion-option>
+                <ion-select *ngFor="let item of data.specification;let i=index" [(ngModel)]="it[item.name]" placeholder="{{item.name}}" [selectOptions]="{subTitle: item.name}" okText="确定" cancelText="取消">
+                    <ion-option *ngFor="let item1 of item?.values" value="{{item1.id}}">{{item1.label}}</ion-option>
                 </ion-select>
             </div>
             <div class="bottom">

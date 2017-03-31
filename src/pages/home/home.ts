@@ -67,36 +67,46 @@ export class HomePage {
     private httpService: HttpService,
     private formBuilder: FormBuilder
   ) {
-
+    this.getHomeData()
   }
-  ngOnInit() {
-    this.httpService.getHomebanner({
-      int_pos_id: 36
-    }).then((res) => {
+
+  getHomeData(finish?) {
+    this.httpService.getHomebanner({ int_pos_id: 36 }).then((res) => {
       console.log("轮播图", res);
       //this.slides.update();//刷新轮播图
-      this.bannerImgs = res.data;//获取轮播图
+      if (res.status == 1) { this.bannerImgs = res.data; }
+      this.httpService.getCategoryAd().then((res) => {
+        console.log("热门品类", res)
+        if (res.status == 1) { this.categoryAddetatils = res.data; }
+        this.httpService.getBrands().then(((res) => {
+          console.log("热门品牌下的品牌列表", res)
+          if (res.status == 1) { this.getBrands = res.data; }
+          this.httpService.getCategoryRecommendGoodsHot().then(((res) => {
+            console.log("精选专题下的热门", res)
+            if (res.status == 1) { this.getCategoryRecommendGoodsHot = res.data; }
+            this.httpService.getCategoryRecommendGoods().then((res) => {
+              console.log("精选专题下新品", res)
+              if (res.status == 1) { this.getCategoryRecommendGoods = res.data; }
+              this.httpService.getCategoryRecommendGoodsBest().then(((res) => {
+                console.log("精选专题下最好", res)
+                if (res.status == 1) { this.getCategoryRecommendGoodsBest = res.data; }
+                if (finish) {
+                  finish();
+                }
+              }))
+            })
+          }))
+        }))
+      })
     })
-    this.httpService.getCategoryAd().then((res) => {
-      console.log("热门品类", res)
-      this.categoryAddetatils = res.data;
+  }
+  /*下拉刷新*/
+  doRefresh(refresher) {
+    this.getHomeData(() => {
+      setTimeout(() => {
+        refresher.complete();
+      }, 500);
     })
-    this.httpService.getBrands().then(((res) => {
-      console.log("热门品牌下的品牌列表", res)
-      this.getBrands = res.data;
-    }))
-    this.httpService.getCategoryRecommendGoodsHot().then(((res) => {
-      console.log("精选专题下的热门", res)
-      this.getCategoryRecommendGoodsHot = res.data;
-    }))
-    this.httpService.getCategoryRecommendGoods().then((res) => {
-      console.log("精选专题下新品", res)
-      this.getCategoryRecommendGoods = res.data;
-    })
-    this.httpService.getCategoryRecommendGoodsBest().then(((res) => {
-      console.log("精选专题下最好", res)
-      this.getCategoryRecommendGoodsBest = res.data;
-    }))
   }
   ngAfterViewInit() {
 

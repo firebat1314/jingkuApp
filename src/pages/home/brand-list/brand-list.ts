@@ -70,6 +70,7 @@ export class BrandListPage {
                 refresher.complete();
             }, 500);
             if (res.status == 1) {
+                this.currentPage = 1;
                 this.data = res;
                 console.log('商品列表', res)
             }

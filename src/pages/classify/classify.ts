@@ -22,8 +22,7 @@ export class ClassifyPage {
   showCheckBox: boolean = false;
 
   categoryGoods: any;
-  getGoodsAttribute: any;
-    getCategorys: any;
+  getCategorys: any;
 
   @ViewChild('mySearchBar') mySearchBar: Searchbar;
   @ViewChild('myNav') myNav: Nav;
@@ -33,7 +32,7 @@ export class ClassifyPage {
     public navCtrl: NavController,
     public navParams: NavParams,
     public httpService: HttpService,
-  ) {}
+  ) { }
   ionViewDidLoad() {
     console.log('ionViewDidLoad ClassifyPage');
   }
@@ -45,10 +44,6 @@ export class ClassifyPage {
     this.httpService.categoryGoods().then((res) => {
       console.log('商品分类列表页(筛选)', res)
       this.categoryGoods = res;
-    })
-    this.httpService.getGoodsAttribute().then((res) => {
-      console.log('获取初始商品属性', res)
-      this.getGoodsAttribute = res;
     })
   }
   checkBoxToggle() {

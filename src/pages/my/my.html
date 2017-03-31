@@ -20,13 +20,16 @@
 
 
 <ion-content>
-    <div class="avatar">
+    <ion-refresher (ionRefresh)="doRefresh($event)" pullMax="60">
+        <ion-refresher-content refreshingSpinner="1" pullingIcon="0"></ion-refresher-content>
+    </ion-refresher>
+    <div class="avatar" *ngIf="userInfo||usercount">
         <ion-list no-margin>
             <ion-item padding-left no-lines mode="ios" style="border-bottom: 0.5px solid #e0e0e0;">
                 <ion-avatar item-left>
-                    <img src="./assets/icon/images/brand_1_10.jpg">
+                    <img src="{{userInfo?.data?.avatar||'./assets/icon/images/brand_1_10.jpg'}}">
                 </ion-avatar>
-                <h2>人走茶凉</h2>
+                <h2>{{userInfo?.data?.username}}</h2>
                 <p class="vip">
                     <ion-img src="./assets/icon/images/user_cener_1_04_03.png"></ion-img>
                     <ion-note>铜牌会员</ion-note>
@@ -44,19 +47,19 @@
             <ion-item>
                 <div class="indent-info">
                     <div [navPush]="AllOrdersPage" [navParams]="{index:1}">
-                        <div class="number">54</div>
+                        <div class="number">{{usercount?.data?.unpay||0}}</div>
                         <div class="text">待付款</div>
                     </div>
                     <div [navPush]="AllOrdersPage" [navParams]="{index:2}">
-                        <div class="number">54</div>
+                        <div class="number">{{usercount?.data?.shipping||0}}</div>
                         <div class="text">代发货</div>
                     </div>
                     <div [navPush]="AllOrdersPage" [navParams]="{index:3}">
-                        <div class="number">54</div>
+                        <div class="number">{{usercount?.data?.unshipping||0}}</div>
                         <div class="text">待收货</div>
                     </div>
                     <div [navPush]="AllOrdersPage" [navParams]="{index:4}">
-                        <div class="number">54</div>
+                        <div class="number">{{usercount?.data?.return||0}}</div>
                         <div class="text">返修退换</div>
                     </div>
                 </div>
@@ -73,15 +76,15 @@
             <ion-item padding-left>
                 <div class="myAssets-info">
                     <div [navPush]="CouponPage">
-                        <div class="number">4张可用</div>
+                        <div class="number">{{usercount?.data?.bonus_count||0}}张可用</div>
                         <div class="text">优惠券</div>
                     </div>
                     <div [navPush]="AccountJifenPage">
-                        <div class="number">54</div>
+                        <div class="number">{{userInfo?.data?.integral||0}}</div>
                         <div class="text">积分</div>
                     </div>
                     <div [navPush]="AccountBalancePage">
-                        <div class="number">121212.00</div>
+                        <div class="number">{{usercount?.data?.user_money||0}}</div>
                         <div class="text">余额</div>
                     </div>
                     <div>

@@ -8,6 +8,7 @@ import { ForgotPage } from '../forgot/forgot';
 
 import { UserData } from "../../services/user-data";
 import { AnalyticsServices } from "../../services/analytics";
+import { HttpService } from "../../providers/http-service";
 
 
 /*
@@ -30,43 +31,43 @@ export class LoginPage {
 
   constructor(
     public navCtrl: NavController,
+    public navParams: NavParams,
     private userData: UserData,
     private events: Events,
     private toastCtrl: ToastController,
-    public navParams: NavParams,
     public analytics: AnalyticsServices,
     private storage: Storage,
+    public httpService:HttpService
   ) {
     this.init();
 
     this.forgotpage = ForgotPage;
     this.signedName = navParams.get('username');
-    this.userData.getUsername().then((data) => { this.loginInfo.username = this.signedName || data || '' })
+    this.httpService.getUsername().then((data) => { this.loginInfo.username = this.signedName || data || '' })
   }
   init() {
     // this.loginInfo.username = this.userData.getUsername();
   }
   goToHome(form) {
-    let self = this;
     if (form.valid) {
-      this.userData.login(this.loginInfo).then(data => {
+      this.httpService.login(this.loginInfo).then(data => {
         console.log(data)
         if (data.status == 1) {
-          self.userData.setUsername(self.loginInfo.username);
-          self.userData.setToken(data.data.token);
-          self.userData.storage.set(self.userData.HAS_LOGGED_IN, true);
+          this.httpService.setUsername(this.loginInfo.username);
+          this.httpService.setToken(data.data.token);
+          this.httpService.setStorage(this.httpService.HAS_LOGGED_IN, true);
           localStorage.setItem('token', data.data.token);
-          self.userData.hasLogin = true;
-          // self.events.publish("user:login", user.username);
-          let toast = self.toastCtrl.create({
-            message: "欢迎回来," + self.loginInfo.username,
+          this.httpService.hasLogin = true;
+          // this.events.publish("user:login", user.username);
+          let toast = this.toastCtrl.create({
+            message: "欢迎回来," + this.loginInfo.username,
             duration: 2000,
             position: "top"
           });
           toast.present();
-          self.submitted = true;
-          self.analytics.trackEvent("Login", "Successful");//google分析
-          self.navCtrl.push(TabsPage);
+          this.submitted = true;
+          this.analytics.trackEvent("Login", "Successful");//google分析
+          this.navCtrl.push(TabsPage);
         }
       })
     }

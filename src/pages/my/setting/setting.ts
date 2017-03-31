@@ -3,6 +3,7 @@ import { NavController, NavParams, App, AlertController } from 'ionic-angular';
 import { LoginPage } from "../../login/login";
 import { Storage } from '@ionic/storage';
 import { AboutUsPage } from "./about-us/about-us";
+import { HttpService } from "../../../providers/http-service";
 
 /*
   Generated class for the Setting page.
@@ -21,9 +22,10 @@ export class SettingPage {
     public navParams: NavParams,
     public app: App,
     public storage: Storage,
-    public alert: AlertController
+    public alert: AlertController,
+    public httpService: HttpService
   ) { }
-  goAboutUs(){
+  goAboutUs() {
     this.navCtrl.push(AboutUsPage);
   }
   clearCathe() {
@@ -64,10 +66,13 @@ export class SettingPage {
           text: '确认',
           handler: () => {
             console.log('ok clicked');
-            this.app.getRootNav().setRoot(LoginPage);
-            this.storage.set('hasLoggedIn', false);
-            this.storage.remove("token");
-            this.storage.remove("username");
+            this.httpService.logout().then((res) => {
+              console.log(res)
+              this.app.getRootNav().setRoot(LoginPage);
+              this.storage.set('hasLoggedIn', false);
+              this.storage.remove("token");
+              this.storage.remove("username");
+            })
           }
         }
       ]
