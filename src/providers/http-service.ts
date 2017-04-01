@@ -187,13 +187,13 @@ export class HttpService {
     return this.http.get(this.ip + '/User/watch', data)
   }
   delWatch(data?: Object) {//（8）删除浏览记录
-    return this.http.get(this.ip + '/User/del_watch', data)
+    return this.http.post(this.ip + '/User/del_watch', data)
   }
   addressList(data?: Object) {//（9）收货地址管理
     return this.http.get(this.ip + '/User/address_list', data)
   }
   delAddress(data?: Object) {//（10）删除收货地址
-    return this.http.get(this.ip + '/User/del_address', data)
+    return this.http.post(this.ip + '/User/del_address', data)
   }
   AddressDetail(data?: Object) {//（11）收货地址详情
     return this.http.get(this.ip + '/User/edit_address', data)

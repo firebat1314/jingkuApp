@@ -47,7 +47,7 @@
                         <ion-checkbox [(ngModel)]="item2.selected" (ionChange)="checkGoods(item2)" [checked]="item.selected" color="dark" mode="ios"></ion-checkbox>
                     </div>
                     <ion-item margin-left no-lines>
-                        <ion-thumbnail item-lefet>
+                        <ion-thumbnail item-left>
                             <img src="{{item2.goods_thumb}}">
                         </ion-thumbnail>
                         <h2>{{item2.goods_name}}</h2>
@@ -91,9 +91,9 @@
     </ion-list>
 </ion-content>
 <ion-footer>
-    <div class="car-accounts" *ngIf="carDetails?.suppliers_goods_list?.length!=0">
+    <div class="car-accounts" *ngIf="carDetails&&carDetails?.suppliers_goods_list?.length!=0">
         <div class="left">
-            <div class="select-all" margin-horizontal *ngIf="carDetails">
+            <div class="select-all" margin-horizontal>
                 <ion-checkbox [(ngModel)]="carDetails.selected" margin-right color="dark" mode="ios"></ion-checkbox>
                 全选
             </div>

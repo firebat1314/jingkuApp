@@ -37,8 +37,8 @@ export class CarPage {
   getFlowGoods(finished?) {
     this.httpService.getFlowGoods().then((res) => {
       console.log(res)
-      if(finished){finished();}
       if (res.status == 1) {this.carDetails = res;}
+      if(finished){finished();}
       // this.carDetails.selected = true;
       // this.calculateTotal();
     })

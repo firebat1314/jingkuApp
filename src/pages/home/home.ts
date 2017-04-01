@@ -35,7 +35,6 @@ export class HomePage {
 
   @ViewChild('bannerSlide') slides: Slides;
   @ViewChild(Content) content: Content;
-  myHomeSearch: String = '';
   showBackTopBtn: Boolean = true;
 
   DirectiveTestPage = DirectiveTestPage;
@@ -67,13 +66,12 @@ export class HomePage {
     private httpService: HttpService,
     private formBuilder: FormBuilder
   ) {
-    this.getHomeData()
+    this.getHomeData();
   }
 
   getHomeData(finish?) {
     this.httpService.getHomebanner({ int_pos_id: 36 }).then((res) => {
       console.log("轮播图", res);
-      //this.slides.update();//刷新轮播图
       if (res.status == 1) { this.bannerImgs = res.data; }
       this.httpService.getCategoryAd().then((res) => {
         console.log("热门品类", res)
@@ -90,9 +88,7 @@ export class HomePage {
               this.httpService.getCategoryRecommendGoodsBest().then(((res) => {
                 console.log("精选专题下最好", res)
                 if (res.status == 1) { this.getCategoryRecommendGoodsBest = res.data; }
-                if (finish) {
-                  finish();
-                }
+                if (finish) { finish(); }
               }))
             })
           }))
@@ -105,6 +101,8 @@ export class HomePage {
     this.getHomeData(() => {
       setTimeout(() => {
         refresher.complete();
+        this.slides.update();//刷新轮播图
+
       }, 500);
     })
   }
@@ -134,14 +132,6 @@ export class HomePage {
   }
   ionViewDidLoad() {
     console.log('ionViewDidLoad HomePage');
-  }
-
-  onCancel(event) {
-
-  }
-
-  onInput(event) {
-
   }
 
   scrollToTop() {

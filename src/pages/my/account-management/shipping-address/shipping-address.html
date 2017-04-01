@@ -14,59 +14,26 @@
 
 
 <ion-content>
-    <div class="address-wrap">
+    <div class="address-wrap" *ngFor="let item of addressList?.data">
         <div class="top">
             <ion-item>
-                <h2>孙山杉　<span>13100668641</span></h2>
-                <p>北京市朝阳区百子湾后现代城4号楼c座706北京市朝阳区百子湾后现代城4号楼c座706</p>
+                <h2>{{item.consignee}}　<span>{{item.mobile|phonenumberfilter}}</span></h2>
+                <p>{{item.address}}</p>
             </ion-item>
         </div>
         <div class="bottom">
             <div class="checkbox">
-                <ion-checkbox mode="ios"></ion-checkbox>默认地址
+                <ion-checkbox [checked]="item.selected==1" mode="ios"></ion-checkbox>默认地址
             </div>
             <div class="btns">
-                <button ion-button outline>删除</button>
-                <button ion-button>编辑</button>
+                <button ion-button outline (click)="deleteOne(item.address_id)">删除</button>
+                <button ion-button [navPush]="AddShippingAddressPage" [navParams]="{addId:item.address_id}">编辑</button>
             </div>
         </div>
     </div>
-    <div class="address-wrap">
-        <div class="top">
-            <ion-item>
-                <h2>孙山杉　<span>13100668641</span></h2>
-                <p>北京市朝阳区百子湾后现代城4号楼c座706北京市朝阳区百子湾后现代城4号楼c座706</p>
-            </ion-item>
-        </div>
-        <div class="bottom">
-            <div class="checkbox">
-                <ion-checkbox mode="ios"></ion-checkbox>默认地址
-            </div>
-            <div class="btns">
-                <button ion-button outline>删除</button>
-                <button ion-button>编辑</button>
-            </div>
-        </div>
-    </div>
-    <div class="address-wrap">
-        <div class="top">
-            <ion-item>
-                <h2>孙山杉　<span>13100668641</span></h2>
-                <p>北京市朝阳区百子湾后现代城4号楼c座706北京市朝阳区百子湾后现代城4号楼c座706</p>
-            </ion-item>
-        </div>
-        <div class="bottom">
-            <div class="checkbox">
-                <ion-checkbox mode="ios"></ion-checkbox>默认地址
-            </div>
-            <div class="btns">
-                <button ion-button outline>删除</button>
-                <button ion-button>编辑</button>
-            </div>
-        </div>
-    </div>
+
     <ion-item detail-push mode="ios" no-lines margin-top [navPush]="AddShippingAddressPage">添加收获地址</ion-item>
-    <div class="no-add">
+    <div class="no-add" *ngIf="addressList?.data?.length==0">
         <div class="img"></div>
         <div class="text">暂无收货地址</div>
         <p><button ion-button outline [navPush]="AddShippingAddressPage">+添加收货地址</button></p>

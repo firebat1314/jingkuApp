@@ -17,29 +17,28 @@
 
 
 <ion-content>
-    <ion-list>
-        <ion-item>
-            <ion-label mode="ios" fixed>收货人姓名</ion-label>
-            <ion-input required clearInput type="text" value="" placeholder="请填写"></ion-input>
-        </ion-item>
-
-        <ion-item>
-            <ion-label mode="ios" fixed>手机号码</ion-label>
-            <ion-input required clearInput type="number" placeholder="手机号码"></ion-input>
-        </ion-item>
-        <ion-item mode="ios" detail-push>
-            <ion-label mode="ios" fixed>所在地区</ion-label>
-            <city-picker item-content [cancelText]="'取消'" [doneText]="'完成'" [separator]="' - '" [citiesData]="cityData" [(ngModel)]="cityName" (ionChange)="cityChange($event)">
-            </city-picker>
-        </ion-item>
-
-        <ion-item>
-            <ion-label mode="ios" fixed>详细地址</ion-label>
-            <ion-textarea type="text" placeholder="请填写"></ion-textarea>
-
-        </ion-item>
-    </ion-list>
-    <div padding>
-        <button ion-button large block>保存</button>
-    </div>
+    <form novalidate #addAddress="ngForm">
+        <ion-list>
+            <ion-item>
+                <ion-label mode="ios" fixed>收货人姓名</ion-label>
+                <ion-input required clearInput type="text" value="{{addressDetails?.address_info?.consignee}}" placeholder="请填写" [(ngModel)]="formData.consignee" name="consignee"></ion-input>
+            </ion-item>
+            <ion-item>
+                <ion-label mode="ios" fixed>手机号码</ion-label>
+                <ion-input required clearInput type="number" value="{{addressDetails?.address_info?.mobile}}" placeholder="手机号码" [(ngModel)]="formData.mobile" name="mobile"></ion-input>
+            </ion-item>
+            <ion-item mode="ios" detail-push>
+                <ion-label mode="ios" fixed>所在地区</ion-label>
+                <city-picker item-content margin-left cancelText="取消" doneText="完成" separator="-" [citiesData]="cityData" [(ngModel)]="cityName" name="cityName" (ionChange)="cityChange($event)">
+                </city-picker>
+            </ion-item>
+            <ion-item>
+                <ion-label mode="ios" fixed>详细地址</ion-label>
+                <ion-textarea type="text" required clearInput value="{{addressDetails?.address_info?.address}}" placeholder="请填写" [(ngModel)]="formData.address" name="address"></ion-textarea>
+            </ion-item>
+        </ion-list>
+        <div padding>
+            <button ion-button large block [disabled]="!addAddress.form.valid">保存</button>
+        </div>
+    </form>
 </ion-content>

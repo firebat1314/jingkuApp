@@ -49,19 +49,36 @@ export class ParticularsModalAttrPage {
 	ionViewDidLoad() {
 		console.log('ionViewDidLoad ParticularsModalJingjiaPage');
 	}
+	/*关闭modal弹出*/
 	dismiss(data?: any) {
 		this.viewCtrl.dismiss(data);
 	}
+	/*普通商品参数*/
 	numberIChange($event, item) {
 		console.log($event)
 		item.goods_attr_number = $event;
-		if (this.attrId.indexOf(item.goods_attr_id) == -1) {
+		var index = this.attrId.indexOf(item.goods_attr_id)
+		if (index == -1) {
 			this.attrId.push(item.goods_attr_id);
 			this.attrNumber.push(item.goods_attr_number);
 		} else {
-			this.attrNumber[this.attrId.indexOf(item.goods_attr_id)] = item.goods_attr_number;
+			if (this.attrNumber[index] == 1) {
+				this.attrId.splice(index, 1);
+				this.attrNumber.splice(index, 1);
+			} else {
+				this.attrNumber[index] = item.goods_attr_number;
+			}
 		}
+		console.log(this.attrId, this.attrNumber)
 	}
+	/*镜片商品添加删除 项目*/
+	increasedJP() {
+		this.goods.push(new goodsSpectaclesParams);
+	}
+	removeJP() {
+		this.goods.splice(-1);
+	}
+	/*根据球镜选择柱镜*/
 	qiujingChange(item) {
 		this.httpService.getZhujing({
 			item: item.qiujing,
@@ -73,12 +90,41 @@ export class ParticularsModalAttrPage {
 			}
 		})
 	}
-	increasedJP() {
-		this.goods.push(new goodsSpectaclesParams);
+	/*添加到购物车*/
+	addToCart() {
+		/*普通商品添加到购物车*/
+		if (this.type == 'goods') {
+			this.httpService.addToCartSpec({
+				goods_id: this.goodsId,
+				goods: { member: this.attrNumber, spec: this.attrId }
+			}).then((res) => {
+				console.log(res)
+				if (res.status == 1) {
+					this.viewCtrl.dismiss();
+				}
+			})
+		}
+		/*镜片商品添加到购物车*/
+		if (this.type == 'goods_spectacles') {
+			// this.viewCtrl.dismiss();
+			this.getGoodsParamsArrs()
+			this.httpService.addToCartSpecJp({
+				goods_id: this.goodsId,
+				goods: {
+					member: this.memberArr,//所填写的商品的数量
+					spc: this.spcArr,//商品选择的属性
+					qiujing: this.qiujingArr,//所选的球镜
+					zhujing: this.zhujingArr,//所选的柱镜
+					zhouwei: this.zhouweiArr//所填写的轴位
+				}
+			}).then((res) => {
+				console.log(res)
+			})
+			console.log(this.spcArr)
+			console.log(this.goods)
+		}
 	}
-	removeJP() {
-		this.goods.splice(-1);
-	}
+	/*镜片商品参数*/
 	getGoodsParamsArrs() {
 		this.memberArr = [];
 		this.qiujingArr = [];
@@ -98,36 +144,5 @@ export class ParticularsModalAttrPage {
 			}
 		}
 		this.spcArr = spcArr;
-	}
-	addToCart() {
-		if (this.type == 'goods') {
-			this.httpService.addToCartSpec({
-				goods_id: this.goodsId,
-				goods: { member: this.attrNumber, spec: this.attrId }
-			}).then((res) => {
-				console.log(res)
-				if (res.status == 1) {
-					this.viewCtrl.dismiss();
-				}
-			})
-		}
-		if (this.type == 'goods_spectacles') {
-			// this.viewCtrl.dismiss();
-			this.getGoodsParamsArrs()
-			this.httpService.addToCartSpecJp({
-				goods_id: this.goodsId,
-				goods: {
-					member: this.memberArr,//所填写的商品的数量
-					spc: this.spcArr,//商品选择的属性
-					qiujing: this.qiujingArr,//所选的球镜
-					zhujing: this.zhujingArr,//所选的柱镜
-					zhouwei: this.zhouweiArr//所填写的轴位
-				}
-			}).then((res) => {
-				console.log(res)
-			})
-			console.log(this.spcArr)
-			console.log(this.goods)
-		}
 	}
 }

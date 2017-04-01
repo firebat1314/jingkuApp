@@ -34,12 +34,13 @@ page-dredge-more-city {
         align-items: center;
     }
     ion-footer {
-        display: flex;
-        .button {
-            margin: 0;
-            width: 50%;
-            float: left;
-            border-radius: 0;
+        .btns {
+            display: flex;
+            .button {
+                margin: 0;
+                width: 50%;
+                border-radius: 0;
+            }
         }
     }
 }

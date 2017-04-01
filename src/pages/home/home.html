@@ -7,8 +7,7 @@
                 </button>
         </ion-buttons>
         <div style="position: relative">
-            <ion-searchbar [(ngModel)]="myHomeSearch" (ionInput)="onInput($event)" (ionCancel)="onCancel($event)" placeholder="搜索镜库上平/店铺" animated mode="ios">
-            </ion-searchbar>
+            <ion-searchbar placeholder="搜索镜库上平/店铺" animated mode="ios"></ion-searchbar>
             <div class="mark-searchbar" [navPush]="SearchPage"></div>
         </div>
 
@@ -22,9 +21,9 @@
         <ion-refresher-content refreshingSpinner="1" pullingIcon="0"></ion-refresher-content>
     </ion-refresher>
     <div class="banner-wrapper" *ngIf="bannerImgs">
-        <ion-slides #bannerSlide autoplay="4000" loop="true" pager>
+        <ion-slides #bannerSlide autoplay="4000" loop="false" pager>
             <ion-slide *ngFor="let item of bannerImgs">
-                <img (click)="clickBanner(item)" src="{{ item.ad_img }}" />
+                <img (click)="clickBanner(item)" [src]="item.ad_img" />
             </ion-slide>
         </ion-slides>
     </div>

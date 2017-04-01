@@ -17,7 +17,8 @@ export class ChangePhoneNumberPage {
   formData = {
     mobile: '',
     str_verify: '',
-    mobile_verify: ''
+    mobile_verify: '',
+    skey: ''
   }
 
 
@@ -65,6 +66,7 @@ export class ChangePhoneNumberPage {
     }).then((data) => {
       if (data.status == 1) {
         this.skey = data.data.skey;
+        this.formData.skey = this.skey;
         this.getImg()
       }
     })
@@ -79,13 +81,13 @@ export class ChangePhoneNumberPage {
     }).then((data) => {
       if (data.status == 1) {
         this.verifyImg = data.data.captcha + '?' + Math.random();
-        this.skey = data.data.skey
+        this.skey = data.data.skey;
       }
     });
   }
   getMobileCode() {
     this.httpService.getMobileCode({
-      type: 'reg',
+      type: 'change',
       mobile: this.formData.mobile,
       verify: this.formData.str_verify,
       skey: this.skey

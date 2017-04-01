@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { ToastController, LoadingController, Platform } from 'ionic-angular';
+import { ToastController, LoadingController, Platform, AlertController } from 'ionic-angular';
 import { Camera, AppVersion, Toast, ImagePicker, CallNumber } from 'ionic-native';
 declare var LocationPlugin;
 declare var AMapNavigation;
@@ -12,6 +12,7 @@ export class Native {
 		private platform: Platform,
 		private toastCtrl: ToastController,
 		private loadingCtrl: LoadingController,
+		private alertCtrl: AlertController
 	) { }
 
 	/**
@@ -51,7 +52,7 @@ export class Native {
 
 		if (this.isMobile()) {
 			console.log('isMobile:', this.isMobile())
-			Toast.show(message, 'short', 'center').subscribe((toast) => {
+			Toast.show(message, '500', 'center').subscribe((toast) => {
 				console.log(toast);
 			});
 		} else {
@@ -63,8 +64,6 @@ export class Native {
 			}).present();
 		}
 	};
-
-
 	/**
 	 * 统一调用此方法显示loading
 	 * @param content 显示的内容
@@ -81,18 +80,41 @@ export class Native {
 		}, 10000);
 	};
 	/**
+	 * 关闭loading
+	 */
+	hideLoading = () => this.loading.dismiss();
+	/**
 	 * 手机拨号
 	 */
-	openCallNumber(numberToCall,bypassAppChooser) {
+	openCallNumber(numberToCall, bypassAppChooser) {
 		CallNumber.callNumber(numberToCall, bypassAppChooser)
 			.then(() => console.log('Launched dialer!'))
 			.catch(() => console.log('Error launching dialer'));
 	}
 	/**
-	 * 关闭loading
+	 * 确认弹窗
 	 */
-	hideLoading = () => this.loading.dismiss();
-
+	openAlertBox(title, confirmHandler, cancelHandler?) {
+		let confirm = this.alertCtrl.create({
+			cssClass: 'alert-style',
+			subTitle: title,
+			buttons: [
+				{
+					text: '取消',
+					handler: () => {
+						if (cancelHandler) { cancelHandler(); }
+					}
+				},
+				{
+					text: '确认',
+					handler: () => {
+						confirmHandler()
+					}
+				}
+			],
+		});
+		confirm.present();
+	}
 	/**
 	 * 使用cordova-plugin-camera获取照片的base64
 	 * @param options
@@ -104,7 +126,7 @@ export class Native {
 				sourceType: Camera.PictureSourceType.CAMERA,//图片来源,CAMERA:拍照,PHOTOLIBRARY:相册
 				destinationType: Camera.DestinationType.DATA_URL,//默认返回base64字符串,DATA_URL:base64   FILE_URI:图片路径
 				quality: 90,//图像质量，范围为0 - 100
-				allowEdit: true,//选择图片前是否允许编辑
+				allowEdit: false,//选择图片前是否允许编辑
 				encodingType: Camera.EncodingType.JPEG,
 				targetWidth: 800,//缩放图像的宽度（像素）
 				targetHeight: 800,//缩放图像的高度（像素）
