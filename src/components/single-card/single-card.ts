@@ -1,6 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { ParticularsPage } from '../../pages/home/particulars/particulars'
-import { } from 'ionic-angular';
+import { HttpService } from "../../providers/http-service";
 
 /*
   Generated class for the SingleCard component.
@@ -14,7 +14,9 @@ import { } from 'ionic-angular';
 })
 export class SingleCardComponent {
 
-  constructor() {
+  constructor(
+    public httpService: HttpService
+  ) {
     console.log('Hello SingleCard Component');
     this.animateClass = { 'fade-in-item': true };
   }
@@ -47,7 +49,14 @@ export class SingleCardComponent {
     this.clearBtn();
     item.showBtn = true;
   }
-
+  onCollect(item) {
+    this.httpService.batchGoodsCollect({ goods_ids: [item.goods_id] }).then((res) => {
+      console.log(res)
+      if (res.status == 1) {
+        item.is_collect = 1;
+      }
+    })
+  }
   ngOnDestroy() {
     this.clearBtn()
   }

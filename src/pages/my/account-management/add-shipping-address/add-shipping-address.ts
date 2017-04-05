@@ -1,14 +1,10 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams } from 'ionic-angular';
+import { NavController, NavParams, Events } from 'ionic-angular';
 import { HttpService } from "../../../../providers/http-service";
+import { Native } from "../../../../providers/native";
+import { ShippingAddressPage } from "../shipping-address/shipping-address";
 
 
-/*
-  Generated class for the AddShippingAddress page.
-
-  See http://ionicframework.com/docs/v2/components/#navigation for more info on
-  Ionic pages and navigation.
-*/
 @Component({
   selector: 'page-add-shipping-address',
   templateUrl: 'add-shipping-address.html'
@@ -21,23 +17,27 @@ export class AddShippingAddressPage {
   addressDetails;
 
   formData = {
-    address_ids: '',
-    consignee: '',
-    province: '',
-    city: '',
-    district: '',
-    address: '',
-    mobile: ''
+    address_ids: '1',
+    consignee: '1',
+    province: '1',
+    city: '1',
+    district: '1',
+    address: '1',
+    mobile: '13100668641'
   }
   constructor(
     public navCtrl: NavController,
     public navParams: NavParams,
-    public httpService: HttpService
+    public httpService: HttpService,
+    public native: Native,
+    public events: Events
   ) {
     this.addressId = this.navParams.get('addId');
+    console.log('收货地址id==>', this.addressId);
     this.setCityPickerData();
-    this.getAddressDetails()
-
+    if (this.addressId != undefined) {
+      this.getAddressDetails();
+    }
   }
 
   ionViewDidLoad() {
@@ -53,6 +53,37 @@ export class AddShippingAddressPage {
     this.httpService.getCityJsonData().then(data => {
       this.cityData = data;
     });
+  }
+  deleteThis() {
+    this.native.openAlertBox('确认删除？', () => {
+      this.httpService.delAddress({ address_ids: [this.addressId] }).then((res) => {
+        console.log("删除收货地址==>", res)
+        if (res.status == 1) {
+          this.events.publish('updateAddress');
+          this.navCtrl.pop();
+        }
+      })
+    })
+  }
+  onsubmit() {
+    if (this.addressId != undefined) {
+      this.httpService.editAddress().then((res) => {
+        console.log(res);
+        if (res.status == 1) {
+          this.events.publish('updateAddress');
+          this.navCtrl.pop();
+        }
+      })
+    } else {
+      this.httpService.addAddress(this.formData).then((res) => {
+        console.log(res);
+        if (res.status == 1) {
+          this.events.publish('updateAddress');
+          this.navCtrl.pop();
+        }
+
+      })
+    }
   }
   /**
    * 城市选择器被改变时触发的事件

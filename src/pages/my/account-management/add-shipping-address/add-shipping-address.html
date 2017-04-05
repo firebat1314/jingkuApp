@@ -9,7 +9,7 @@
     <ion-navbar>
         <ion-title>添加收获地址</ion-title>
         <ion-buttons end>
-            <button ion-button clear>删除</button>
+            <button ion-button clear (click)="deleteThis()" *ngIf="addressId!=undefined">删除</button>
         </ion-buttons>
     </ion-navbar>
 
@@ -38,7 +38,7 @@
             </ion-item>
         </ion-list>
         <div padding>
-            <button ion-button large block [disabled]="!addAddress.form.valid">保存</button>
+            <button ion-button large block (click)="onsubmit()">保存</button>
         </div>
     </form>
 </ion-content>

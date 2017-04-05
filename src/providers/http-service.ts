@@ -201,6 +201,9 @@ export class HttpService {
   editAddress(data?: Object) {//（12）编辑收货地址
     return this.http.post(this.ip + '/User/edit_address', data)
   }
+  addAddress(data?: Object) {//（12.1）添加收货地址
+    return this.http.post(this.ip + '/User/add_address', data)
+  }
   changeRegion(data?: Object) {//（13）改变城市联动
     return this.http.get(this.ip + '/User/change_region', data)
   }
@@ -214,15 +217,18 @@ export class HttpService {
     return this.http.post(this.ip + '/User/region_apply', data)
   }
   collectionList(data?: Object) {//（17）收藏的商品列表
-    return this.http.get(this.ip + '/User/collection_list', data)
+    return this.http.post(this.ip + '/User/collection_list', data)
   }
   delCollectionGoods(data?: Object) {//（18）取消收藏商品
-    return this.http.get(this.ip + '/User/del_collection_goods', data)
+    return this.http.post(this.ip + '/User/del_collection_goods', data)
   }
   collectionShop(data?: Object) {//（19）收藏店铺列表
-    return this.http.get(this.ip + '/User/collection_shop', data)
+    return this.http.post(this.ip + '/User/collection_shop', data)
   }
   delCollectionShop(data?: Object) {//（20）取消收藏店铺
-    return this.http.get(this.ip + '/User/del_collection_shop', data)
+    return this.http.post(this.ip + '/User/del_collection_shop', data)
+  }
+  batchGoodsCollect(data?: Object) {//批量关注商品
+    return this.http.post(this.ip + '/Flow/batch_goods_collect', data)
   }
 }

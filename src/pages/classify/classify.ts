@@ -4,6 +4,8 @@ import { NavController, NavParams, Content, Slides, Searchbar, Nav } from 'ionic
 import { SubnavPage1Page } from './subnav-page1/subnav-page1'
 import { HttpService } from "../../providers/http-service";
 import { MoreBrandPage } from "./more-brand/more-brand";
+import { ParticularsPage } from "../home/particulars/particulars";
+import { Native } from "../../providers/native";
 /*
   Generated class for the Classify page.
 
@@ -15,14 +17,15 @@ import { MoreBrandPage } from "./more-brand/more-brand";
   templateUrl: 'classify.html'
 })
 export class ClassifyPage {
-  classSelect: any = 'classify';
-  careSelect: any = 'shop';
+  collectionList: any;
+  collectionShop: any;
+  getCategorys: any;
+  classSelect: any = 'classify';//brand or classify or care
+  careSelect: any = 'shop';//shop or goods
   root = SubnavPage1Page;
   showBackBtn: boolean = false;
   showCheckBox: boolean = false;
 
-  categoryGoods: any;
-  getCategorys: any;
 
   @ViewChild('mySearchBar') mySearchBar: Searchbar;
   @ViewChild('myNav') myNav: Nav;
@@ -32,26 +35,12 @@ export class ClassifyPage {
     public navCtrl: NavController,
     public navParams: NavParams,
     public httpService: HttpService,
-  ) { }
+    public native: Native
+  ) {
+    this.getHttpData();
+  }
   ionViewDidLoad() {
     console.log('ionViewDidLoad ClassifyPage');
-  }
-  ngOnInit() {
-    this.httpService.getCategorys().then((res) => {
-      console.log('获取九大分类', res)
-      this.getCategorys = res.data;
-    })
-    this.httpService.categoryGoods().then((res) => {
-      console.log('商品分类列表页(筛选)', res)
-      this.categoryGoods = res;
-    })
-  }
-  checkBoxToggle() {
-    this.showCheckBox = !this.showCheckBox;
-    console.log('content更新~')
-  }
-  ngOnDestroy() {
-    this.showCheckBox = false;
   }
   ngAfterViewInit() {
     setInterval(() => {
@@ -64,36 +53,79 @@ export class ClassifyPage {
       }
     }, 1000)
   }
-  ngAfterContentChecked() {
-    this.content.resize();
+  ngOnDestroy() {
+    this.showCheckBox = false;
   }
-  goToSlide() {
-    /*switch (this.classSelect) {
-      case 'classify': this.mySlides.slideTo(0); break;
-      case 'brand': this.mySlides.slideTo(1); break;
-      case 'care': this.mySlides.slideTo(2);
-    }*/
+  getHttpData(finished?) {
+    this.httpService.getCategorys().then((res) => {
+      console.log('获取九大分类', res)
+      if (res.status == 1) { this.getCategorys = res.data; }
+      this.httpService.collectionShop({ size: 10 }).then((res) => {
+        console.log('收藏店铺列表', res)
+        if (res.status == 1) { this.collectionShop = res; }
+        this.httpService.collectionList({ size: 10 }).then((res) => {
+          console.log('收藏店商品列表', res)
+          if (res.status == 1) { this.collectionList = res; }
+          if (finished) { finished(); }
+        })
+      })
+    })
   }
+  /*下拉刷新*/
+  doRefresh(refresher) {
+    if (this.classSelect == 'care') {
+      this.httpService.collectionShop({ size: 10 }).then((res) => {
+        console.log('收藏店铺列表', res)
+        if (res.status == 1) { this.collectionShop = res; }
+        this.httpService.collectionList({ size: 10 }).then((res) => {
+          console.log('收藏店商品列表', res)
+          if (res.status == 1) { this.collectionList = res; }
+          setTimeout(() => {
+            refresher.complete();
+          }, 500);
+        })
+      })
+    }
+  }
+  //转跳品牌列表页
   goToMoreBrand() {
     this.navCtrl.push(MoreBrandPage)
   }
+  //分类页后退按钮
   pop() {
     if (this.myNav.canGoBack()) {
       this.myNav.pop();
     }
   }
-  getFous() {
-    this.mySearchBar.setFocus();
+  /*when care page*/
+  checkBoxToggle() {
+    this.showCheckBox = !this.showCheckBox;
+    this.content.resize();//更新content容器
+    console.log('content更新~')
   }
-  slideChanged() {
-    /*switch (this.mySlides.getActiveIndex()) {
-      case 0: this.classSelect = 'classify'; break;
-      case 1: this.classSelect = 'brand'; break;
-      case 2: this.classSelect = 'care';
-    }*/
+  unfollowShop(suppliers_id, index) {
+    this.native.openAlertBox('确认取消关注改商铺', () => {
+      this.httpService.delCollectionShop({ shop_ids: [suppliers_id] }).then((res) => {
+        console.log(res);
+        if (res.status == 1) {
+          this.native.showToast('已取消关注~')
+          this.collectionShop.data.splice(index, 1);
+        }
+      })
+    })
   }
-  panEvent(e) {
-    e.stopPopagation;
-    console.log(e)
+  unfollowGoods(goods_id, index) {
+    this.native.openAlertBox('确认取消关注改商铺', () => {
+      this.httpService.delCollectionGoods({ rec_ids: [goods_id] }).then((res) => {
+        console.log(res);
+        if (res.status == 1) {
+          this.native.showToast('已取消关注~')
+          this.collectionList.data.splice(index, 1);
+        }
+      })
+    })
+  }
+  joinCar(goods_id) {
+    this.navCtrl.push(ParticularsPage, { goodsId: goods_id });
   }
 }

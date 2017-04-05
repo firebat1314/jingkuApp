@@ -13,7 +13,7 @@ import { InvoiceAskFor2Page } from "../invoice-ask-for2/invoice-ask-for2";
   templateUrl: 'invoice-ask-for1.html'
 })
 export class InvoiceAskFor1Page {
-  showSearch:boolean = false;
+  showSearch:boolean = true;
 
   InvoiceAskFor2Page = InvoiceAskFor2Page;
   constructor(public navCtrl: NavController, public navParams: NavParams) {}

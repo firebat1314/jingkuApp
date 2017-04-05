@@ -13,7 +13,7 @@
             </button>
         </ion-buttons>
         <div class="head-segment-style">
-            <ion-segment mode="ios" (click)="goToSlide()" [(ngModel)]="classSelect" color="primary">
+            <ion-segment mode="ios" [(ngModel)]="classSelect" color="primary">
                 <ion-segment-button value="classify">
                     分类
                 </ion-segment-button>
@@ -50,6 +50,9 @@
 
 
 <ion-content [ngSwitch]="classSelect">
+    <ion-refresher (ionRefresh)="doRefresh($event)" pullMax="60">
+        <ion-refresher-content refreshingSpinner="1" pullingIcon="0"></ion-refresher-content>
+    </ion-refresher>
     <div class="wrapper">
         <div *ngSwitchCase="'classify'" class="classify-wrap">
             <ion-nav [root]="root" swipeBackEnabled="true" #myNav></ion-nav>
@@ -132,7 +135,7 @@
         </div>
         <div *ngSwitchCase="'care'" [ngSwitch]="careSelect" class="care-wrap">
             <div class="shop" *ngSwitchCase="'shop'">
-                <div class="noshop-show">
+                <div class="noshop-show" *ngIf="collectionShop?.count=='0'">
                     <img src="./assets/icon/images/brand_2_03.jpg" alt="">
                     <h1>暂无收藏</h1>
                     <ion-note>
@@ -143,30 +146,28 @@
                     </p>
                 </div>
                 <ion-list>
-                    <div class="item-wrap" *ngFor="let item of [{},{},{},{},{},{},{}]">
+                    <div class="item-wrap" *ngFor="let item of collectionShop?.data;let i = index">
                         <div margin-left [ngClass]="{'activein':showCheckBox}" *ngIf="showCheckBox">
                             <ion-checkbox color="dark" mode="ios" [(ngModel)]="pepperoni"></ion-checkbox>
                         </div>
                         <ion-item-sliding>
                             <ion-item>
                                 <ion-avatar item-left>
-                                    <img src="./assets/icon/images/brand_1_10.jpg">
+                                    <img src="{{item.logo||'./assets/icon/images/brand_1_10.jpg'}}">
                                 </ion-avatar>
-                                <h2>凯米旗舰店</h2>
-                                <span class="type">促销</span>
-                                <ion-note item-right>1.0个人关注</ion-note>
+                                <h2>{{item.suppliers_name}}</h2>
+                                <span class="type">促销???</span>
+                                <ion-note item-right>1.0个人关注???</ion-note>
                             </ion-item>
                             <ion-item-options side="right">
-                                <button ion-button color="danger">
-                                取消关注
-                            </button>
+                                <button ion-button color="danger" (click)="unfollowShop(item.csid,i)">取消关注</button>
                             </ion-item-options>
                         </ion-item-sliding>
                     </div>
                 </ion-list>
             </div>
             <div class="goods" *ngSwitchCase="'goods'">
-                <div class="nogoods-show">
+                <div class="nogoods-show" *ngIf="collectionList?.count=='0'">
                     <img src="./assets/icon/images/brand_2_03.jpg" alt="">
                     <h1>暂无收藏</h1>
                     <ion-note>
@@ -177,25 +178,23 @@
                     </p>
                 </div>
                 <ion-list>
-                    <div class="item-wrap" *ngFor="let item of [{},{},{},{},{},{},{}]">
+                    <div class="item-wrap" *ngFor="let item of collectionList?.data;let i = index">
                         <div margin-left [ngClass]="{'activein':showCheckBox}" *ngIf="showCheckBox">
                             <ion-checkbox color="dark" mode="ios" [(ngModel)]="pepperoni"></ion-checkbox>
                         </div>
                         <ion-item-sliding>
                             <ion-item>
                                 <ion-thumbnail item-left>
-                                    <img src="./assets/icon/images/brand_1_10.jpg">
+                                    <img src="{{item.img||'./assets/icon/images/brand_1_10.jpg'}}">
                                 </ion-thumbnail>
-                                <h2>博士伦名巴拉巴拉巴拉巴拉巴拉巴拉巴拉巴拉巴拉巴拉巴拉巴拉巴拉巴拉巴拉巴拉巴拉巴拉巴拉巴拉</h2>
+                                <h2>{{item.goods_name}}</h2>
                                 <p class="right-bottom">
-                                    <span class="price">￥450.00</span>
-                                    <button ion-button outline>加入购物车</button>
+                                    <span class="price">{{item.shop_price}}</span>
+                                    <button ion-button outline (click)="joinCar(item.goods_id)">加入购物车</button>
                                 </p>
                             </ion-item>
                             <ion-item-options side="right">
-                                <button ion-button color="danger">
-                                    取消关注
-                                </button>
+                                <button ion-button color="danger" (click)="unfollowGoods(item.rec_id,i)">取消关注</button>
                             </ion-item-options>
                         </ion-item-sliding>
                     </div>
@@ -205,6 +204,5 @@
     </div>
 </ion-content>
 <ion-footer *ngIf="classSelect=='care'&&showCheckBox">
-    <button ion-button full large no-margin color="dark" *ngIf="careSelect=='shop'">取消关注</button>
-    <button ion-button full large no-margin color="dark" *ngIf="careSelect=='goods'">一键加入购物车</button>
+    <button ion-button full large no-margin color="dark">取消关注</button>
 </ion-footer>

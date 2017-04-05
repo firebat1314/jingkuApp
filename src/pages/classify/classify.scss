@@ -48,6 +48,7 @@ page-classify {
     .wrapper {
         display: flex;
         flex-direction: column;
+        background: #fff;
         .brand-wrap {
             .title {
                 display: flex;
@@ -185,6 +186,8 @@ page-classify {
                         border-radius: 3px;
                         display: inline-block;
                         margin-top: 5px;
+                        font-size: small;
+                        padding: 2px 5px;
                     }
                     ion-note {
                         color: #808080;

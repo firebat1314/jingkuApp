@@ -24,6 +24,7 @@ export class UserData {
         // this.native.showLoading();
         // this.LoadingDelay();
         let userToken = localStorage.getItem('token');
+        console.log(userToken)
         var headers = new Headers();
         headers.append('Authorization', 'Basic ' + btoa(userToken + ':'));
         let options = new RequestOptions({ headers: headers });

@@ -76,7 +76,7 @@
                 </ion-note>-->
             </button>
             <button mode="ios" ion-item (click)="presentModal('赠送')">
-                <img src="./assets/icon/images/particulars_09.jpg" style="height: 20px;" alt=""> <span>买一盒送一盒</span>
+                <img src="./assets/icon/images/particulars_09.jpg" style="height: 20px;" alt=""> <span>买一盒送一盒？？？</span>
             </button>
         </ion-list>
     </div>
@@ -138,28 +138,28 @@
         </div>
         <div class="data">
             <div>
-                <span>0</span>
+                <span>0???</span>
                 <span>新品</span>
             </div>
             <div>
-                <span>0</span>
+                <span>0???</span>
                 <span>促销</span>
             </div>
             <div>
-                <span>0</span>
+                <span>0???</span>
                 <span>热销</span>
             </div>
         </div>
         <div class="btn">
             <button ion-button icon-right icon-left color="dark" outline>
-                 <ion-icon name="shop"></ion-icon>
+                <ion-icon name="shop"></ion-icon>
                 进入店铺
                 <ion-icon name="ios-arrow-forward"></ion-icon>
             </button>
         </div>
         <ion-list class="safeguard" no-margin>
-            <button mode="ios" ion-item>
-                <div class="note-wrap" *ngIf="getSupplierInfo.inv_type!=0">
+            <div mode="ios" ion-item detail-push *ngIf="getSupplierInfo.inv_type!=0">
+                <div class="note-wrap">
                     <!--<ion-note><ion-icon><img src="./assets/icon/images/particulars_2_20.jpg"></ion-icon>担保交易</ion-note>
                     <ion-note><ion-icon><img src="./assets/icon/images/particulars_2_14.jpg"></ion-icon>客户自提</ion-note>
                     <ion-note><ion-icon><img src="./assets/icon/images/particulars_2_16.jpg"></ion-icon>返修退换货</ion-note>-->
@@ -176,7 +176,7 @@
                         增值发票
                     </ion-note>
                 </div>
-            </button>
+            </div>
             <div ion-item mode="ios" no-lines>
                 <ion-icon item-left name="ios-pin-outline"></ion-icon>
                 <ion-note>{{getSupplierInfo.region}}</ion-note>
@@ -298,8 +298,8 @@
         <div class="right">
             <!--<button color="cancelBtn" no-margin ion-button large full class="modal-button">暂不支持手机下单</button>-->
             <div class="btns">
-                <button color="cancelBtn" no-margin ion-button large full class="modal-button">加入购物车</button>
-                <button color="modalBtn" no-margin ion-button large full class="modal-button">立即购买</button>
+                <button color="cancelBtn" no-margin ion-button large full class="modal-button" (click)="presentModalAttr()">加入购物车</button>
+                <button color="modalBtn" no-margin ion-button large full class="modal-button" (click)="presentModalAttr()">立即购买</button>
             </div>
         </div>
     </div>
