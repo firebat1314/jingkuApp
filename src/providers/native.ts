@@ -149,7 +149,7 @@ export class Native {
 	getPictureByCamera = (options = {}) => {
 		return new Promise((resolve) => {
 			this.getPicture(Object.assign({
-				sourceType: Camera.PictureSourceType.CAMERA
+				sourceType: Camera.PictureSourceType.CAMERA,
 			}, options)).then(imgData => {
 				resolve(imgData);
 			}).catch(err => {
@@ -157,7 +157,6 @@ export class Native {
 			});
 		});
 	};
-
 
 	/**
 	 * 通过图库获取照片
@@ -167,7 +166,7 @@ export class Native {
 	getPictureByPhotoLibrary = (options = {}) => {
 		return new Promise((resolve) => {
 			this.getPicture(Object.assign({
-				sourceType: Camera.PictureSourceType.PHOTOLIBRARY
+				sourceType: Camera.PictureSourceType.PHOTOLIBRARY,
 			}, options)).then(imgData => {
 				resolve(imgData);
 			}).catch(err => {

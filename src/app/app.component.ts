@@ -1,6 +1,6 @@
 import { Component, ViewChild } from '@angular/core';
 import { Storage } from '@ionic/storage';
-import { Platform, ToastController, Nav, IonicApp } from 'ionic-angular';
+import { Platform, ToastController, Nav, IonicApp, Events } from 'ionic-angular';
 import { StatusBar, Splashscreen } from 'ionic-native';
 
 import { TabsPage } from '../pages/tabs/tabs';
@@ -33,6 +33,7 @@ export class MyApp {
     public toastCtrl: ToastController,
     public storage: Storage,
     public ionicApp: IonicApp,
+    private events: Events
   ) {
     // 初次进入app引导页面
     this.storage.get('hasLoggedIn').then((result) => {
@@ -51,8 +52,14 @@ export class MyApp {
       }
     });
     this.initializeApp();//注册返回按键事件
+    //用户失效事件
+    this.events.subscribe('signOut', () => {
+      this.nav.setRoot(LoginPage)
+    })
   }
-
+  ngOnDestroy(){
+    this.events.unsubscribe("signOut");
+  }
   initializeApp() {
     this.platform.ready().then(() => {
       Splashscreen.hide();

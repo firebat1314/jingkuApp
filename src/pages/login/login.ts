@@ -6,7 +6,6 @@ import { TabsPage } from '../tabs/tabs';
 import { SignupPage } from '../signup/signup';
 import { ForgotPage } from '../forgot/forgot';
 
-import { UserData } from "../../services/user-data";
 import { AnalyticsServices } from "../../services/analytics";
 import { HttpService } from "../../providers/http-service";
 
@@ -32,21 +31,15 @@ export class LoginPage {
   constructor(
     public navCtrl: NavController,
     public navParams: NavParams,
-    private userData: UserData,
     private events: Events,
     private toastCtrl: ToastController,
     public analytics: AnalyticsServices,
     private storage: Storage,
     public httpService:HttpService
   ) {
-    this.init();
-
     this.forgotpage = ForgotPage;
     this.signedName = navParams.get('username');
     this.httpService.getUsername().then((data) => { this.loginInfo.username = this.signedName || data || '' })
-  }
-  init() {
-    // this.loginInfo.username = this.userData.getUsername();
   }
   goToHome(form) {
     if (form.valid) {

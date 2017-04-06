@@ -12,7 +12,7 @@ import { LoginPage } from "../pages/login/login";
 
 @Injectable()
 export class UserData {
- 
+
     constructor(
         private events: Events,
         private http: Http,
@@ -102,17 +102,14 @@ export class UserData {
         setTimeout(() => this.showToastTime = true, 2000);
     }
     myAlert(msg) {
-        this.native.showToast(msg);
+        // this.native.showToast(msg);
         let alert = this.alertCtrl.create({
             title: '提示',
             subTitle: msg,
             buttons: [{
                 text: '确定',
                 handler: () => {
-                    let navTransition = alert.dismiss();
-                    navTransition.then(() => {
-                        // this.appCtrl.getRootNav().push(LoginPage);
-                    });
+                    this.events.publish('signOut');
                 }
             }],
             enableBackdropDismiss: false
