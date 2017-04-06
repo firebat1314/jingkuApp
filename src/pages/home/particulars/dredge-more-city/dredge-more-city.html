@@ -14,68 +14,35 @@
 
 
 <ion-content>
-    <div class="head">
-        <p ion-text color="colorsix" padding-horizontal>已开通城市：北京 北京 北京 北京</p>
-        <p ion-text color="colorsix" padding-horizontal>未开通城市：（点击即可，可多选）</p>
-    </div>
-
-    <div class="checkbox-wrapper">
-        <div>北京</div>
-        <div>北京</div>
-        <div>北京</div>
-        <div>北京</div>
-        <div>北京</div>
-        <div>北京</div>
-        <div>北京</div>
-        <div>北京</div>
-        <div>北京</div>
-        <div>北京</div>
-        <div>北京</div>
-        <div>北京</div>
-        <div>北京</div>
-        <div>北京</div>
-        <div>北京</div>
-        <div>北京</div>
-        <div>北京</div>
-        <div>北京</div>
-        <div>北京</div>
-        <div>北京</div>
-        <div>北京</div>
-        <div>北京</div>
-        <div>北京</div>
-        <div>北京</div>
-        <div>北京</div>
-        <div>北京</div>
-        <div>北京</div>
-        <div>北京</div>
-        <div>北京</div>
-        <div>北京</div>
-        <div>北京</div>
-        <div>北京</div>
-        <div>北京</div>
-        <div>北京</div>
-        <div>北京</div>
-    </div>
-    <p ion-text color="colorsix" padding-horizontal>申请原因：</p>
-    <ion-textarea class="textarea"></ion-textarea>
-    <p ion-text color="colorsix" padding-horizontal>申请人：</p>
-    <ion-textarea class="textarea"></ion-textarea>
-    <p class="idcard" ion-text color="colorsix" padding-horizontal>
-        身份证正面：
-        <button ion-button color="dark" (click)="opanNative(0)" margin-horizontal>选择文件</button>
-        <span ion-text *ngIf="!image1" color="danger">未选择任何文件</span>
-    </p>
-    <div *ngIf="image1" text-center><img src="{{image1}}" alt=""></div>
-    <p class="idcard" ion-text color="colorsix" padding-horizontal>
-        身份证反面：
-        <button ion-button color="dark" (click)="opanNative(1)" margin-horizontal>选择文件</button>
-        <span ion-text *ngIf="!image2" color="danger">未选择任何文件</span>
-    </p>
-    <div *ngIf="image2" text-center><img src="{{image2}}" alt=""></div>
+    <form action="" novalidate #dredgeCity="ngForm">
+        <div class="head">
+            <p ion-text color="colorsix" padding-horizontal>已开通城市：<span *ngFor="let item of reginArr?.user_citys">{{item.region_name}} </span></p>
+            <p ion-text color="colorsix" padding-horizontal>未开通城市：(点击即可，可多选)</p>
+        </div>
+        <div class="checkbox-wrapper">
+            <div *ngFor="let item of reginArr?.no_user_citys" [ngClass]="{'selected':item.selected}" (click)="selectCity(item)">{{item.region_name}}</div>
+        </div>
+        <p ion-text color="colorsix" padding-horizontal>申请原因：</p>
+        <ion-textarea class="textarea" required [(ngModel)]="formData.reason" name="reason"></ion-textarea>
+        <p ion-text color="colorsix" padding-horizontal>手机号：</p>
+        <ion-textarea class="textarea" required [(ngModel)]="formData.phone" name="phone"></ion-textarea>
+        <p class="idcard" ion-text color="colorsix" padding-horizontal>
+            身份证正面：
+            <button ion-button color="dark" (click)="opanNative(0)" margin-horizontal>选择文件</button>
+            <span ion-text *ngIf="!image1" color="danger">未选择任何文件</span>
+        </p>
+        <div *ngIf="image1" text-center><img src="{{image1}}" alt=""></div>
+        <p class="idcard" ion-text color="colorsix" padding-horizontal>
+            身份证反面：
+            <button ion-button color="dark" (click)="opanNative(1)" margin-horizontal>选择文件</button>
+            <span ion-text *ngIf="!image2" color="danger">未选择任何文件</span>
+        </p>
+        <div *ngIf="image2" text-center><img src="{{image2}}" alt=""></div>
+    </form>
 </ion-content>
 <ion-footer>
     <div class="btns">
         <button large ion-button color="cancelBtn">取消</button>
-        <button large ion-button color="dark">确定</button>
+        <button large ion-button color="dark" [disabled]="!dredgeCity.form.valid" (click)="onsubmit()">确定</button>
     </div>
 </ion-footer>

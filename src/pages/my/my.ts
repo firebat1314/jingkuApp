@@ -17,6 +17,8 @@ import { AccountManagementPage } from "./account-management/account-management";
 import { CouponPage } from "./coupon/coupon";
 import { AccountJifenPage } from "./account-jifen/account-jifen";
 import { AccountBalancePage } from "./account-balance/account-balance";
+import { DredgeMoreCityPage } from "../home/particulars/dredge-more-city/dredge-more-city";
+
 
 @Component({
   selector: 'page-my',
@@ -38,6 +40,7 @@ export class MyPage {
   CouponPage: any = CouponPage;
   AccountJifenPage: any = AccountJifenPage;
   AccountBalancePage: any = AccountBalancePage;
+  DredgeMoreCityPage: any = DredgeMoreCityPage;
 
   usercount: any;
   userInfo: any;

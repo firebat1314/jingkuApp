@@ -57,7 +57,7 @@ export class HttpService {
   }
   /*首页*/
   getHomebanner(data?: Object) {//轮播图
-    return this.http.get(this.ip + '/Index/ads/int_pos_id/3/int_size/10', data)
+    return this.http.get(this.ip + '/Index/ads', data)
   }
   getCategoryAd(data?: Object) {//热门品类下的广告
     return this.http.get(this.ip + '/Index/ads/int_pos_id/27/int_size/10', data)

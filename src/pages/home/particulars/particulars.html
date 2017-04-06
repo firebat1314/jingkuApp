@@ -111,7 +111,7 @@
             <ion-icon name="bao1" item-left></ion-icon>
             商品服务保障
         </button>
-        <div class="bottom">
+        <div class="bottom" *ngIf="getGoodsInfo?.additional?.is_true||getGoodsInfo?.additional?.is_hdfk||getGoodsInfo?.additional?.is_inv">
             <ion-note *ngIf="getGoodsInfo?.additional?.is_true">
                 <img src="./assets/icon/images/particulars_05_03.png" alt=""> 正品保障
             </ion-note>

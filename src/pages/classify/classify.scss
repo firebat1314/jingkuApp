@@ -159,19 +159,6 @@ page-classify {
             }
         }
         .care-wrap {
-            .activein {}
-            .shop .noshop-show,
-            .goods .nogoods-show {
-                margin-top: 50px;
-                height: 100%;
-                display: flex;
-                flex-direction: column;
-                justify-content: center;
-                align-items: center;
-                img {
-                    width: 13rem;
-                }
-            }
             .shop {
                 .item-wrap {
                     display: flex;
@@ -194,11 +181,9 @@ page-classify {
                         font-size: 1.4rem;
                     }
                 }
-                .noshop-show {}
             }
             .goods {
                 @include slidingList1;
-                .nogoods-show {}
             }
         }
     }

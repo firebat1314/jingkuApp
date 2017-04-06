@@ -13,8 +13,10 @@ page-dredge-more-city {
             width: 23%;
             margin: 6px 1%;
             float: left;
-            &.active {
-                background-color: #d9d9d9;
+            padding: 10px 7px;
+            &.selected {
+                background: #333;
+                color: #fff;
             }
         }
     }
@@ -32,6 +34,9 @@ page-dredge-more-city {
     .idcard {
         display: flex;
         align-items: center;
+    }
+    img {
+        max-width: 80%;
     }
     ion-footer {
         .btns {

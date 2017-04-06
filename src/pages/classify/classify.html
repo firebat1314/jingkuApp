@@ -135,11 +135,11 @@
         </div>
         <div *ngSwitchCase="'care'" [ngSwitch]="careSelect" class="care-wrap">
             <div class="shop" *ngSwitchCase="'shop'">
-                <div class="noshop-show" *ngIf="collectionShop?.count=='0'">
+                <div class="nodata-show" *ngIf="collectionShop?.count=='0'">
                     <img src="./assets/icon/images/brand_2_03.jpg" alt="">
                     <h1>暂无收藏</h1>
                     <ion-note>
-                        去收藏你喜欢的商品吧~
+                        去收藏你喜欢的店铺吧~
                     </ion-note>
                     <p>
                         <button ion-button outline color="drak">去首页逛逛</button>
@@ -148,7 +148,7 @@
                 <ion-list>
                     <div class="item-wrap" *ngFor="let item of collectionShop?.data;let i = index">
                         <div margin-left [ngClass]="{'activein':showCheckBox}" *ngIf="showCheckBox">
-                            <ion-checkbox color="dark" mode="ios" [(ngModel)]="pepperoni"></ion-checkbox>
+                            <ion-checkbox color="dark" mode="ios" [(ngModel)]="item.selected"></ion-checkbox>
                         </div>
                         <ion-item-sliding>
                             <ion-item>
@@ -167,7 +167,7 @@
                 </ion-list>
             </div>
             <div class="goods" *ngSwitchCase="'goods'">
-                <div class="nogoods-show" *ngIf="collectionList?.count=='0'">
+                <div class="nodata-show" *ngIf="collectionList?.count=='0'">
                     <img src="./assets/icon/images/brand_2_03.jpg" alt="">
                     <h1>暂无收藏</h1>
                     <ion-note>
@@ -180,7 +180,7 @@
                 <ion-list>
                     <div class="item-wrap" *ngFor="let item of collectionList?.data;let i = index">
                         <div margin-left [ngClass]="{'activein':showCheckBox}" *ngIf="showCheckBox">
-                            <ion-checkbox color="dark" mode="ios" [(ngModel)]="pepperoni"></ion-checkbox>
+                            <ion-checkbox color="dark" mode="ios" [(ngModel)]="item.selected"></ion-checkbox>
                         </div>
                         <ion-item-sliding>
                             <ion-item>
@@ -203,6 +203,6 @@
         </div>
     </div>
 </ion-content>
-<ion-footer *ngIf="classSelect=='care'&&showCheckBox">
-    <button ion-button full large no-margin color="dark">取消关注</button>
+<ion-footer *ngIf="classSelect=='care'&&showCheckBox&&(collectionList?.count!='0'||collectionShop?.count!='0')">
+    <button ion-button full large no-margin color="dark" (click)="confirmForCollection()">取消关注</button>
 </ion-footer>

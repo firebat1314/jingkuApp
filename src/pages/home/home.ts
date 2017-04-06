@@ -70,7 +70,7 @@ export class HomePage {
   }
 
   getHomeData(finish?) {
-    this.httpService.getHomebanner({ int_pos_id: 36 }).then((res) => {
+    this.httpService.getHomebanner({ int_pos_id: 3 }).then((res) => {
       console.log("轮播图", res);
       if (res.status == 1) { this.bannerImgs = res.data; }
       this.httpService.getCategoryAd().then((res) => {
@@ -101,8 +101,7 @@ export class HomePage {
     this.getHomeData(() => {
       setTimeout(() => {
         refresher.complete();
-        this.slides.update();//刷新轮播图
-
+        // this.slides.update();//刷新轮播图
       }, 500);
     })
   }

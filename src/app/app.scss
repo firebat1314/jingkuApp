@@ -88,12 +88,30 @@ ion-toolbar {
 .loading-style {}
 
 
+/*————————————————————————————————————无数据显示页 CSS————————————————————————————————————*/
+
+.nodata-show {
+    height: 100%;
+    display: flex;
+    background: #fff;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    img {
+        width: 13rem;
+    }
+}
+
+
 /*————————————————————————————————————itemCSS————————————————————————————————————*/
 
 
 /*----------浏览记录+分类------------*/
 
 @mixin slidingList1 {
+    .list {
+        background: #fff;
+    }
     .item-wrap {
         display: flex;
         align-items: center;

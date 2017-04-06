@@ -66,13 +66,13 @@ export class SettingPage {
           text: '确认',
           handler: () => {
             console.log('ok clicked');
-            this.httpService.logout().then((res) => {
-              console.log(res)
+            // this.httpService.logout().then((res) => {
+              // console.log(res)
               this.app.getRootNav().setRoot(LoginPage);
               this.storage.set('hasLoggedIn', false);
               this.storage.remove("token");
               this.storage.remove("username");
-            })
+            // })
           }
         }
       ]

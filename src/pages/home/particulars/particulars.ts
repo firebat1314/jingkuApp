@@ -45,7 +45,7 @@ export class ParticularsPage {
     public modalCtrl: ModalController,
     public native: Native
   ) {
-    this.goodsId = this.navParams.get('goodsId') || '5676';/*3994*/
+    this.goodsId = this.navParams.get('goodsId') || '3994';/*3994 5676*/
     console.log("商品ID:", this.goodsId)
   }
   ngOnInit() {

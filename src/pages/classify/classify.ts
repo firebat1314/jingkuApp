@@ -17,14 +17,17 @@ import { Native } from "../../providers/native";
   templateUrl: 'classify.html'
 })
 export class ClassifyPage {
-  collectionList: any;
-  collectionShop: any;
-  getCategorys: any;
+  collectionList: any;//收藏商品列表
+  collectionShop: any;//收藏店铺列表
+  getCategorys: any;//获取分类信息
   classSelect: any = 'classify';//brand or classify or care
   careSelect: any = 'shop';//shop or goods
   root = SubnavPage1Page;
-  showBackBtn: boolean = false;
-  showCheckBox: boolean = false;
+  showBackBtn: boolean = false;//显示分类栏返回按钮
+  showCheckBox: boolean = false;//显示取消关注复选框
+
+  selectedShopArr: Array<any>;
+  selectedGoodsArr: Array<any>;
 
 
   @ViewChild('mySearchBar') mySearchBar: Searchbar;
@@ -72,7 +75,7 @@ export class ClassifyPage {
     })
   }
   /*下拉刷新*/
-  doRefresh(refresher) {
+  doRefresh(refresher?) {
     if (this.classSelect == 'care') {
       this.httpService.collectionShop({ size: 10 }).then((res) => {
         console.log('收藏店铺列表', res)
@@ -81,7 +84,7 @@ export class ClassifyPage {
           console.log('收藏店商品列表', res)
           if (res.status == 1) { this.collectionList = res; }
           setTimeout(() => {
-            refresher.complete();
+            if (refresher) { refresher.complete(); }
           }, 500);
         })
       })
@@ -109,7 +112,7 @@ export class ClassifyPage {
         console.log(res);
         if (res.status == 1) {
           this.native.showToast('已取消关注~')
-          this.collectionShop.data.splice(index, 1);
+          this.doRefresh();
         }
       })
     })
@@ -120,12 +123,52 @@ export class ClassifyPage {
         console.log(res);
         if (res.status == 1) {
           this.native.showToast('已取消关注~')
-          this.collectionList.data.splice(index, 1);
+          this.doRefresh();
         }
       })
     })
   }
   joinCar(goods_id) {
     this.navCtrl.push(ParticularsPage, { goodsId: goods_id });
+  }
+  //批量取消关注按钮
+  confirmForCollection() {
+    this.selectedShopArr = [];
+    this.selectedGoodsArr = [];
+    if (this.careSelect == 'shop') {
+      this.native.openAlertBox('是否取消关注选中店铺？', () => {
+        console.log(this.selectedShopArr)
+        this.httpService.delCollectionShop({ shop_ids: this.selectedShopArr }).then((res) => {
+          console.log(res);
+          if (res.status == 1) {
+            this.native.showToast('已取消关注~');
+            this.doRefresh();
+          }
+        })
+      })
+      for (let i = 0; i < this.collectionShop.data.length; i++) {
+        if (this.collectionShop.data[i].selected) {
+          this.selectedShopArr.push(this.collectionShop.data[i].csid)
+        }
+      }
+    }
+    if (this.careSelect == 'goods') {
+      this.native.openAlertBox('是否取消关注选中商品？', () => {
+        console.log(this.selectedGoodsArr)
+        this.httpService.delCollectionGoods({ rec_ids: this.selectedGoodsArr }).then((res) => {
+          console.log(res);
+          if (res.status == 1) {
+            this.native.showToast('已取消关注~');
+            this.doRefresh();
+          }
+        })
+      })
+      for (let i = 0; i < this.collectionList.data.length; i++) {
+        if (this.collectionList.data[i].selected) {
+          this.selectedGoodsArr.push(this.collectionList.data[i].rec_id)
+        }
+      }
+    }
+
   }
 }

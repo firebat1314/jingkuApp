@@ -1,3 +1,23 @@
 page-account-collect-store {
-
+    .item-wrap {
+        display: flex;
+        align-items: center;
+        h2 {
+            @include ellipsis_2;
+        }
+        .type {
+            color: #fff;
+            padding: 1px 8px;
+            background: #e60000;
+            border-radius: 3px;
+            display: inline-block;
+            margin-top: 5px;
+            font-size: small;
+            padding: 2px 5px;
+        }
+        ion-note {
+            color: #808080;
+            font-size: 1.4rem;
+        }
+    }
 }

@@ -1,6 +1,7 @@
 import { Component, Input } from '@angular/core';
 
 import { ParticularsPage } from '../../pages/home/particulars/particulars'
+import { HttpService } from "../../providers/http-service";
 
 /*
   Generated class for the SingleFoodsItem component.
@@ -14,7 +15,9 @@ import { ParticularsPage } from '../../pages/home/particulars/particulars'
 })
 export class SingleFoodsItemComponent {
 
-  constructor() {
+  constructor(
+    public httpService: HttpService
+  ) {
     console.log('Hello SingleFoodsItem Component');
     this.animateClass = { 'fade-in-item': true };
   }
@@ -57,6 +60,14 @@ export class SingleFoodsItemComponent {
   tapEvent(item, e) {
     this.clearBtn();
     item.showBtn = true;
+  }
+  onCollect(item) {
+    this.httpService.getGoodsCollect({ goods_id: item.goods_id }).then((res) => {
+      console.log(res)
+      if (res.status == 1) {
+        item.is_collect = 1;
+      }
+    })
   }
   ngOnDestroy() {
     this.clearBtn()

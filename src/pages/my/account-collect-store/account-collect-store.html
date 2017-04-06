@@ -13,6 +13,39 @@
 </ion-header>
 
 
-<ion-content padding>
+<ion-content>
+    <ion-refresher (ionRefresh)="doRefresh($event)" pullMax="60">
+        <ion-refresher-content refreshingSpinner="1" pullingIcon="0"></ion-refresher-content>
+    </ion-refresher>
 
+    <div class="nodata-show" *ngIf="collectionShop?.count=='0'">
+        <img src="./assets/icon/images/brand_2_03.jpg" alt="">
+        <h1>暂无收藏</h1>
+        <ion-note>
+            去收藏你喜欢的店铺吧~
+        </ion-note>
+        <p>
+            <button ion-button outline color="drak">去首页逛逛</button>
+        </p>
+    </div>
+    <ion-list *ngIf="collectionShop?.count!='0'">
+        <div class="item-wrap" *ngFor="let item of collectionShop?.data;let i = index">
+            <div margin-left [ngClass]="{'activein':showCheckBox}" *ngIf="showCheckBox">
+                <ion-checkbox color="dark" mode="ios" [(ngModel)]="item.selected"></ion-checkbox>
+            </div>
+            <ion-item-sliding>
+                <ion-item>
+                    <ion-avatar item-left>
+                        <img src="{{item.logo||'./assets/icon/images/brand_1_10.jpg'}}">
+                    </ion-avatar>
+                    <h2>{{item.suppliers_name}}</h2>
+                    <span class="type">促销???</span>
+                    <ion-note item-right>1.0个人关注???</ion-note>
+                </ion-item>
+                <ion-item-options side="right">
+                    <button ion-button color="danger" (click)="unfollowShop(item.csid,i)">取消关注</button>
+                </ion-item-options>
+            </ion-item-sliding>
+        </div>
+    </ion-list>
 </ion-content>

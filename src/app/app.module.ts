@@ -134,7 +134,6 @@ import { PhoneNumberFilter } from "../pipes/phone-number-filter";
       backButtonText: '',
       tabsHideOnSubPages: true,
       tabsPlacement: 'bottom',
-      pageTransition: 'ios-transition',
       mode: 'md',
       activator:"highlight"
     }, {

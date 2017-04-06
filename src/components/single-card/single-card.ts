@@ -50,7 +50,7 @@ export class SingleCardComponent {
     item.showBtn = true;
   }
   onCollect(item) {
-    this.httpService.batchGoodsCollect({ goods_ids: [item.goods_id] }).then((res) => {
+    this.httpService.getGoodsCollect({ goods_id: item.goods_id }).then((res) => {
       console.log(res)
       if (res.status == 1) {
         item.is_collect = 1;
