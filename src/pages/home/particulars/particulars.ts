@@ -131,7 +131,9 @@ export class ParticularsPage {
   openAttrModal(res, type) {
     let modal = this.modalCtrl.create(ParticularsModalAttrPage, { data: res, type: type, headData: this.getGoodsInfo, id: this.goodsId });
     modal.onDidDismiss(data => {
-      console.log(data);
+      if(data){
+        console.log(data);
+      }
     });
     modal.present();
   }
@@ -166,6 +168,9 @@ export class ParticularsPage {
           console.log("goods_type ☞'goods'", res);
           this.http.addToCartSpec().then((res) => {
             console.log('普通商品加入购物车：', res)
+            if (res.status == 1) {
+              this.native.showToast('已经加入购物车~')
+            }
           })
         })
       }
@@ -173,6 +178,9 @@ export class ParticularsPage {
         console.log("goods_type ☞'goods_spectacles'");
         this.http.addToCartSpecJp().then((res) => {
           console.log('镜片商品加入购物车：', res)
+          if (res.status == 1) {
+            this.native.showToast('已经加入购物车~')
+          }
         })
       }
     }

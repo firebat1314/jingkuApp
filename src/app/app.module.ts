@@ -82,6 +82,11 @@ import { AccountMoneyDetailPage } from "../pages/my/account-money-detail/account
 import { PaymentMethodPage } from "../pages/my/all-orders/payment-method/payment-method";
 import { OrdersDetailPage } from "../pages/my/all-orders/orders-detail/orders-detail";
 import { WriteOrdersPage } from "../pages/my/all-orders/write-orders/write-orders";
+import { OrderModalShippingPage } from "../pages/my/all-orders/write-orders/order-modal-shipping/order-modal-shipping";
+import { OrderModalDistributionPage } from "../pages/my/all-orders/write-orders/order-modal-distribution/order-modal-distribution";
+import { OrderModalCouponPage } from "../pages/my/all-orders/write-orders/order-modal-coupon/order-modal-coupon";
+import { OrderModalPaymentPage } from "../pages/my/all-orders/write-orders/order-modal-payment/order-modal-payment";
+
 import { InvoiceQualificationPage } from "../pages/my/peceipt/invoice-qualification/invoice-qualification";
 import { InvoiceAskFor2Page } from "../pages/my/peceipt/invoice-ask-for2/invoice-ask-for2";
 import { InvoiceAskFor1Page } from "../pages/my/peceipt/invoice-ask-for1/invoice-ask-for1";
@@ -103,6 +108,7 @@ import { CountInputComponent } from '../components/count-input/count-input';
 import { ImgTabs2Component } from "../components/img-tabs2/img-tabs2";
 import { CompanynamePage } from "../pages/my/account-management/account-info/companyname/companyname";
 import { PhoneNumberFilter } from "../pipes/phone-number-filter";
+import { NothingComponent } from "../components/nothing/nothing";
 
 
 @NgModule({
@@ -120,9 +126,9 @@ import { PhoneNumberFilter } from "../pipes/phone-number-filter";
     /*——————————————————分类栏——————————————————*/
     ClassifyPage, SubnavPage1Page, SubnavPage2Page, MoreBrandPage,
     /*——————————————————我的栏——————————————————*/
-    MyPage, SettingPage, AccountManagementPage, AccountSecurityPage, AllOrdersPage, CouponPage, MemberCenterPage, PeceiptPage, AccountAssetPage, AccountProcessPage, AccountAreaApplicationPage, AccountCollectGoodsPage, AccountCollectStorePage, AccountHistoryPage, AccountServicePage, AccountHelperPage, AccountInfoPage, InvoiceQualificationPage, InvoiceAskFor2Page, InvoiceAskFor1Page, AboutUsPage, ShippingAddressPage, ChangePhoneNumberPage, ChangePasswordPage, RealnamePage, QqPage, AddShippingAddressPage, CompanynamePage,AccountJifenPage,AccountBalancePage,AccountWithdrawPage,AccountMoneyDetailPage,AccountWithdrawSucceedPage,PaymentMethodPage,OrdersDetailPage,WriteOrdersPage,
+    MyPage, SettingPage, AccountManagementPage, AccountSecurityPage, AllOrdersPage, CouponPage, MemberCenterPage, PeceiptPage, AccountAssetPage, AccountProcessPage, AccountAreaApplicationPage, AccountCollectGoodsPage, AccountCollectStorePage, AccountHistoryPage, AccountServicePage, AccountHelperPage, AccountInfoPage, InvoiceQualificationPage, InvoiceAskFor2Page, InvoiceAskFor1Page, AboutUsPage, ShippingAddressPage, ChangePhoneNumberPage, ChangePasswordPage, RealnamePage, QqPage, AddShippingAddressPage, CompanynamePage,AccountJifenPage,AccountBalancePage,AccountWithdrawPage,AccountMoneyDetailPage,AccountWithdrawSucceedPage,PaymentMethodPage,OrdersDetailPage,WriteOrdersPage,OrderModalShippingPage,OrderModalDistributionPage,OrderModalCouponPage,OrderModalPaymentPage,
     /*——————————————————组件——————————————————*/
-    SingleCardComponent, MyToolbarComponent, SingleFoodsItemComponent, MeunItemComponent, CountdownComponent, CountInputComponent, ImgTabs2Component,
+    SingleCardComponent, MyToolbarComponent, SingleFoodsItemComponent, MeunItemComponent, CountdownComponent, CountInputComponent, ImgTabs2Component,NothingComponent,
     DirectiveTestPage,
     /*——————————————————指令——————————————————*/
     MyDirective, ImgTabs,
@@ -162,9 +168,9 @@ import { PhoneNumberFilter } from "../pipes/phone-number-filter";
     /*——————————————————分类栏——————————————————*/
     ClassifyPage, SubnavPage1Page, SubnavPage2Page, MoreBrandPage,
     /*——————————————————我的栏——————————————————*/
-    MyPage, SettingPage, AccountManagementPage, AccountSecurityPage, AllOrdersPage, CouponPage, MemberCenterPage, PeceiptPage, AccountAssetPage, AccountProcessPage, AccountAreaApplicationPage, AccountCollectGoodsPage, AccountCollectStorePage, AccountHistoryPage, AccountServicePage, AccountHelperPage, AccountInfoPage, InvoiceQualificationPage, InvoiceAskFor2Page, InvoiceAskFor1Page, AboutUsPage, ShippingAddressPage, ChangePhoneNumberPage, ChangePasswordPage, RealnamePage, QqPage, AddShippingAddressPage, CompanynamePage,AccountJifenPage,AccountWithdrawPage,AccountBalancePage,AccountMoneyDetailPage,AccountWithdrawSucceedPage,PaymentMethodPage,OrdersDetailPage,WriteOrdersPage,
+    MyPage, SettingPage, AccountManagementPage, AccountSecurityPage, AllOrdersPage, CouponPage, MemberCenterPage, PeceiptPage, AccountAssetPage, AccountProcessPage, AccountAreaApplicationPage, AccountCollectGoodsPage, AccountCollectStorePage, AccountHistoryPage, AccountServicePage, AccountHelperPage, AccountInfoPage, InvoiceQualificationPage, InvoiceAskFor2Page, InvoiceAskFor1Page, AboutUsPage, ShippingAddressPage, ChangePhoneNumberPage, ChangePasswordPage, RealnamePage, QqPage, AddShippingAddressPage, CompanynamePage,AccountJifenPage,AccountWithdrawPage,AccountBalancePage,AccountMoneyDetailPage,AccountWithdrawSucceedPage,PaymentMethodPage,OrdersDetailPage,WriteOrdersPage,OrderModalShippingPage,OrderModalDistributionPage,OrderModalCouponPage,OrderModalPaymentPage,
     /*——————————————————组件——————————————————*/
-    SingleCardComponent, MyToolbarComponent, SingleFoodsItemComponent, MeunItemComponent, CountdownComponent, CountInputComponent, ImgTabs2Component,
+    SingleCardComponent, MyToolbarComponent, SingleFoodsItemComponent, MeunItemComponent, CountdownComponent, CountInputComponent, ImgTabs2Component,NothingComponent,
     DirectiveTestPage
   ],
   providers: [{ provide: ErrorHandler, useClass: IonicErrorHandler }, Storage, UserData, Native, HttpService]

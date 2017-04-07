@@ -16,11 +16,11 @@ export class TabsPage {
   tab2Root: any = ClassifyPage;
   tab3Root: any = CarPage;
   tab4Root: any = MyPage;
-  carNumber: number;
+  carNumber: number = 0;
   constructor(
     public events: Events
   ) {
-    this.events.subscribe('user:carNumber', (res) => {
+    this.events.subscribe('car:goodsCount', (res) => {
       this.carNumber = res;
     })
   }

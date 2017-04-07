@@ -1,0 +1,19 @@
+nothing {
+    .nothings-show {
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        background: #fff;
+        .img {
+            width: 13rem;
+            height: 13rem;
+            border-radius: 50%;
+            border: 2px solid #cbced0;
+            background-position: center center;
+            background-size: 50% 50%;
+            background-repeat: no-repeat;
+        }
+    }
+}

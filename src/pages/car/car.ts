@@ -3,6 +3,7 @@ import { NavController, NavParams, AlertController, Events } from 'ionic-angular
 import { Native } from "../../providers/native";
 import { HttpService } from "../../providers/http-service";
 import { HomePage } from "../home/home";
+import { WriteOrdersPage } from "../my/all-orders/write-orders/write-orders";
 
 /*
   Generated class for the Car page.
@@ -27,7 +28,7 @@ export class CarPage {
     public native: Native,
     public alertCtrl: AlertController,
     public httpService: HttpService,
-    public event: Events
+    public events: Events
   ) {
     this.getFlowGoods();
   }
@@ -37,7 +38,10 @@ export class CarPage {
   getFlowGoods(finished?) {
     this.httpService.getFlowGoods().then((res) => {
       console.log(res)
-      if (res.status == 1) {this.carDetails = res;}
+      if (res.status == 1) {
+        this.carDetails = res;
+        this.events.publish('car:goodsCount',res.total.real_goods_count);
+      }
       if(finished){finished();}
       // this.carDetails.selected = true;
       // this.calculateTotal();
@@ -69,6 +73,7 @@ export class CarPage {
             this.httpService.dropCartGoods({ rec_id: item3.rec_id }).then((res) => {
               if (res.status == 1) {
                 this.getFlowGoods();
+                this.native.showToast('删除成功~')
               }
             })
           }
@@ -85,6 +90,12 @@ export class CarPage {
       this.checkedArray.splice(index, 1);
     }
     console.log(this.checkedArray);
+    this.httpService.selectChangePrice({rec_ids:this.checkedArray}).then((res)=>{
+      console.log(res);
+      if(res.status==1){
+        this.getFlowGoods();
+      }
+    })
   }
   numberChangeI(event, item) {
     item.goods_number = event;
@@ -99,6 +110,9 @@ export class CarPage {
       }
     });
     // this.calculateTotal();
+  }
+  goAccounts(){
+    this.navCtrl.push(WriteOrdersPage);
   }
   /*——————————————————————————————————————————————————————————————————*/
   /*  calculateTotal() {//购物车总价格

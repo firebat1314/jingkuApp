@@ -141,6 +141,9 @@ export class HttpService {
   addToCartSpec(data?: Object) {//普通商品加入购物车
     return this.http.post(this.ip + '/Goods/add_to_cart_spec', data)
   }
+  changeGoodsNumber(data?: Object) {//改变商品数量 获取价格
+    return this.http.post(this.ip + '/Goods/change_goods_number', data)
+  }
   /**
    * 购物车
    */
@@ -153,11 +156,29 @@ export class HttpService {
   dropCartGoods(data?: Object) {//(3)删除购物车中单独选择的商品
     return this.http.get(this.ip + '/Flow/drop_cart_goods', data)
   }
-  dropCartGoodsSelect(data?: Object) {//(3)(4)删除购物车中全选的商品
+  dropCartGoodsSelect(data?: Object) {//删除购物车中全选的商品
     return this.http.get(this.ip + '/Flow/drop_cart_goods_select', data)
+  }
+  selectChangePrice(data?: Object) {//选中改变价格
+    return this.http.post(this.ip + '/Flow/select_change_price', data)
+  }
+  changeConsignee(data?: Object) {//选择收货人信息
+    return this.http.get(this.ip + '/Flow/change_consignee', data)
+  }
+  selectPayment(data?: Object) {//选择支付方式
+    return this.http.get(this.ip + '/Flow/select_payment', data)
+  }
+  selectShippinSuppliers(data?: Object) {//选择配送方式
+    return this.http.get(this.ip + '/Flow/select_shippin_suppliers', data)
+  }
+  suppliersBouns(data?: Object) {//使用优惠券
+    return this.http.get(this.ip + '/Flow/suppliers_bouns', data)
   }
   checkout(data?: Object) {//(4)(5)购物车去结算
     return this.http.get(this.ip + '/Flow/checkout', data)
+  }
+  submitOrder(data?: Object) {//提交订单
+    return this.http.get(this.ip + '/Flow/done', data)
   }
   /**
    * 个人中心页

@@ -14,103 +14,83 @@
 
 
 <ion-content>
-    <div class="fore1">
-        <div>收货人<span class="phone">{{'13100668641'|phonenumberfilter}}</span></div>
-        <div>北京市北京市北京市北京市北京市北京市北京市北京市11111</div>
+    <div class="fore1" (click)="openOrderModalShippingPage()" *ngIf="defaultShipping">
+        <div class="wrap">
+            <div>{{defaultShipping.consignee}}<span class="phone">{{defaultShipping.mobile|phonenumberfilter}}</span></div>
+            <div>{{defaultShipping.address}}</div>
+        </div>
     </div>
     <div class="background"></div>
-    <ion-list class="fore2">
-        <ion-item-divider>
-            货品清单
-        </ion-item-divider>
-        <ion-item-divider>
-            <span ion-text color="danger">订单1: </span>镜库旗舰店
-        </ion-item-divider>
-        <ion-item no-lines>
-            <ion-thumbnail item-left>
-                <img src="./assets/icon/images/brand_1_10.jpg">
-            </ion-thumbnail>
-            <h2>凯米旗舰店凯米旗舰店凯米旗舰店凯米旗舰店凯米旗舰店凯米旗舰店</h2>
-            <span class="type">促销</span>
-        </ion-item>
-        <div class="attr-wrap">
-            <div class="one">
-                <div class="left">
-                    <div class="top">
-                        <div>球镜：<span class="color">1.00</span></div>
-                        <div>球镜：<span class="color">1.00</span></div>
-                        <div>球镜：<span class="color">1.00</span></div>
-                        <div>球镜：<span class="color">1.00</span></div>
-                        <div>球镜：<span class="color">1.00</span></div>
-                        <div>球镜：<span class="color">1.00</span></div>
-                        <div>球镜：<span class="color">1.00</span></div>
-                        <div>球镜：<span class="color">1.00</span></div>
-                    </div>
-                    <div class="bottom">
-                        <div>单价：<span class="color">￥1.00/副</span></div>
-                    </div>
-                </div>
-                <div class="right">
-                    <div class="price color">￥500.00</div>
-                    <div class="count">1副</div>
-                </div>
-            </div>
-            <div class="one">
-                <div class="left">
-                    <div class="top">
-                        <div>球镜：<span class="color">1.00</span></div>
-                        <div>球镜：<span class="color">1.00</span></div>
-                        <div>球镜：<span class="color">1.00</span></div>
-                        <div>球镜：<span class="color">1.00</span></div>
-                        <div>球镜：<span class="color">1.00</span></div>
-                        <div>球镜：<span class="color">1.00</span></div>
-                        <div>球镜：<span class="color">1.00</span></div>
-                        <div>球镜：<span class="color">1.00</span></div>
-                    </div>
-                    <div class="bottom">
-                        <div>单价：<span class="color">￥1.00/副</span></div>
-                    </div>
-                </div>
-                <div class="right">
-                    <div class="price color">￥500.00</div>
-                    <div class="count">1副</div>
-                </div>
-            </div>
-        </div>
-        <div class="option" margin-right>
-            <ion-item mode="ios" detail-push>
-                配送方式
-                <ion-note item-right>
-                    商家配送
-                </ion-note>
-            </ion-item>
-            <ion-item mode="ios" detail-push>
-                优惠券选择
-                <ion-note item-right>
-                    使用两个优惠券
-                </ion-note>
-            </ion-item>
-            <div class="input">
-                <input type="text" placeholder="商家备注">
-            </div>
-        </div>
-        <div class="result">小计：<span class="price">￥500.00</span> 共5件</div>
-    </ion-list>
-    <div class="background"></div>
+    <ion-item-divider>
+        货品清单
+    </ion-item-divider>
+    <ion-list class="fore2" *ngFor="let item of data?.cart_goods_list;let i=index">
 
-    <ion-item mode="ios" margin-right detail-push>
+        <div class="fore_child">
+            <ion-item-divider>
+                <span ion-text color="danger">订单{{i+1}}: </span>{{item.title}}
+            </ion-item-divider>
+            <div class="goods-list" *ngFor="let goods of item?.goods_list;">
+                <ion-item no-lines>
+                    <ion-thumbnail item-left>
+                        <img src="{{goods.goods_img}}">
+                    </ion-thumbnail>
+                    <h2>{{goods.goods_name}}</h2>
+                    <span class="type">促销???</span>
+                </ion-item>
+                <div class="attr-wrap">
+                    <div class="one" *ngFor="let attr of goods?.attrs;">
+                        <div class="left">
+                            <div class="top">
+                                <div *ngIf="attr.qiujing">{{attr.qiujing}}</div>
+                                <div *ngIf="attr.zhujing">{{attr.zhujing}}</div>
+                                <div *ngIf="attr.zhouwei">{{attr.zhouwei}}</div>
+                                <div *ngFor="let attr2 of attr?.attrs;">{{attr2}}</div>
+                            </div>
+                            <div class="bottom">
+                                <div>单价：{{attr.goods_price}}/副</div>
+                            </div>
+                        </div>
+                        <div class="right">
+                            <div class="price color">¥{{attr.formated_subtotal}}</div>
+                            <div class="count">{{attr.goods_number}}副</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="option" margin-right>
+                <ion-item mode="ios" detail-push (click)="openOrderModalDistributionPage(item)">
+                    配送方式
+                    <ion-note item-right>
+                        {{item.distributionMethod}}
+                    </ion-note>
+                </ion-item>
+                <ion-item mode="ios" detail-push *ngIf="item.no_use_bonus?.length!=0" (click)="openOrderModalCouponPage(item)">
+                    优惠券选择
+                    <ion-note item-right>
+                        可使用{{item.no_use_bonus?.length}}个优惠券
+                    </ion-note>
+                </ion-item>
+                <div class="input">
+                    <input type="text" placeholder="商家备注">
+                </div>
+            </div>
+            <div class="result">小计：<span class="price">{{item.goods_subtotal}}</span> 共5？？？件</div>
+        </div>
+    </ion-list>
+    <ion-item mode="ios" no-lines margin-right detail-push>
         来镜加工
     </ion-item>
     <div class="background"></div>
     <div class="fore3">
         <div>
-            <span>购物金额小计：</span><span class="price">￥200.00</span>
+            <span>购物金额小计：</span><span class="price">{{'¥'+data?.total?.formated_goods_price}}</span>
         </div>
         <div>
-            <span>+配送费用</span><span>￥0.00</span>
+            <span>+配送费用</span><span>{{data?.total?.suppliers_shipping_fee_formated}}</span>
         </div>
         <div>
-            <span>+获赠积分</span><span>0</span>
+            <span>+获赠积分</span><span>{{data?.total?.will_get_give_rank_integral}}</span>
         </div>
     </div>
 </ion-content>
@@ -118,10 +98,10 @@
 <ion-footer>
     <div class="pagefoot">
         <div class="left">
-            合计：<span class="price">￥200.00</span>
+            合计：<span class="price">¥{{data?.total?.amount_formated}}</span>
         </div>
         <div class="right">
-            <div ion-button no-margin full large color="dark">提交订单</div>
+            <div ion-button no-margin full large color="dark" (click)="onsubmit()">提交订单</div>
         </div>
     </div>
 </ion-footer>

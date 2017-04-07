@@ -46,11 +46,9 @@
     <preference name="FadeSplashScreenDuration" value="1000" />
     <preference name="AutoHideSplashScreen" value="false" />
     <preference name="SplashShowOnlyFirstTime" value="false" />
-    <!--<preference name="StatusBarStyle" value="blacktranslucent" />-->
-      <!--<preference name="StatusBarBackgroundColor" value="#ffffff" />-->
     <preference name="SplashScreen" value="screen" />
     <preference name="SplashScreenDelay" value="30000" />
-    <preference name="loadUrlTimeoutValue" value="400000"/>
+    <preference name="loadUrlTimeoutValue" value="400000" />
     <feature name="SplashScreen">
         <param name="android-package" value="org.apache.cordova.splashscreen.SplashScreen" />
     </feature>
@@ -67,4 +65,6 @@
     <icon src="resources\android\icon\drawable-xhdpi-icon.png" />
     <plugin name="cordova-plugin-file" spec="~4.3.1" />
     <plugin name="cordova-plugin-file-transfer" spec="~1.6.1" />
+    <plugin name="mx.ferreyra.callnumber" spec="~0.0.2" />
+    <plugin name="cordova-plugin-x-toast" spec="~2.6.0" />
 </widget>

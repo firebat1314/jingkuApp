@@ -20,16 +20,7 @@
     <ion-refresher (ionRefresh)="doRefresh($event)" pullMax="60">
         <ion-refresher-content refreshingSpinner="1" pullingIcon="0"></ion-refresher-content>
     </ion-refresher>
-    <div class="nothings-show" *ngIf="carDetails?.suppliers_goods_list.length==0">
-        <div class="img"></div>
-        <h1>暂无商品</h1>
-        <ion-note>
-            去挑选你喜欢的商品吧~
-        </ion-note>
-        <p>
-            <button ion-button outline color="drak" [navPush]="HomePage">去首页逛逛</button>
-        </p>
-    </div>
+    <nothing *ngIf="carDetails?.suppliers_goods_list.length==0"></nothing>
     <ion-list>
         <div class="single-shop" *ngFor="let item of carDetails?.suppliers_goods_list">
             <div class="single-shop-head">
@@ -38,20 +29,20 @@
                     <ion-icon color="colorsix" item-left name="shop"></ion-icon>
                     {{item.title}}&nbsp;
                     <ion-icon color="colorsix" name="ios-arrow-forward"></ion-icon>
-                    <button item-right ion-button clear color="danger">优惠券</button>
+                    <button item-right ion-button clear color="danger">优惠券???</button>
                 </ion-item>
             </div>
             <div class="single-shop-goods" *ngFor="let item2 of item.goods_list ">
                 <div class="single-shop-goods-head">
                     <div margin-left>
-                        <ion-checkbox [(ngModel)]="item2.selected" (ionChange)="checkGoods(item2)" [checked]="item.selected" color="dark" mode="ios"></ion-checkbox>
+                        <ion-checkbox [(ngModel)]="item2.selected" (ionChange)="checkGoods(item2)" [checked]="item.selected==true" color="dark" mode="ios"></ion-checkbox>
                     </div>
                     <ion-item margin-left no-lines>
                         <ion-thumbnail item-left>
                             <img src="{{item2.goods_thumb}}">
                         </ion-thumbnail>
                         <h2>{{item2.goods_name}}</h2>
-                        <span class="type">促销</span>
+                        <span class="type">促销???</span>
                     </ion-item>
                 </div>
                 <div class="single-shop-goods-body">
@@ -99,7 +90,7 @@
             </div>
             <div *ngIf="!isEdit" class="price">合计：¥{{carDetails?.total?.goods_amount}}</div>
         </div>
-        <div *ngIf="!isEdit" class="right">去结算({{carDetails?.total?.real_goods_count}})</div>
+        <div *ngIf="!isEdit" class="right" (click)="goAccounts()">去结算({{carDetails?.total?.real_goods_count}})</div>
         <div *ngIf="isEdit" class="attention-and-delete">
             <button ion-button outline color="dark">移入关注</button>
             <button ion-button color="dark">　删除　</button>

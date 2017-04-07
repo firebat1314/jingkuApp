@@ -2,21 +2,6 @@ page-car {
     .list {
         margin: 0;
     }
-    .nothings-show {
-        height: 100%;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        background: #fff;
-        .img {
-            width: 13rem;
-            height: 13rem;
-            border-radius: 50%;
-            border: 2px solid #cbced0;
-            background: url(../assets/images/images/no-car_1_03.png) center center/50% 50% no-repeat;
-        }
-    }
     @mixin item-style {
         display: flex;
         align-items: center;
