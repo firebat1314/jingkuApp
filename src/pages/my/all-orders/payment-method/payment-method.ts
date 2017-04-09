@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams } from 'ionic-angular';
+import { NavController, NavParams, ViewController } from 'ionic-angular';
 
 /*
   Generated class for the PaymentMethod page.
@@ -12,11 +12,14 @@ import { NavController, NavParams } from 'ionic-angular';
   templateUrl: 'payment-method.html'
 })
 export class PaymentMethodPage {
+  data = this.navParams.get('data');
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {}
+  constructor(public navCtrl: NavController, public navParams: NavParams, public viewCtrl: ViewController) { }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad PaymentMethodPage');
   }
-
+  dismiss(data?: any) {
+    this.viewCtrl.dismiss(data);
+  }
 }

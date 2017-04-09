@@ -17,12 +17,12 @@
 
 <ion-content>
     <div class="all" *ngIf="pageIndex==0">
-        <div class="single-shop">
+        <div class="single-shop" *ngFor="let item of allOrderData?.list;">
             <ion-item-divider>
                 <ion-icon item-left name="shop"></ion-icon>
-                镜库旗舰店&nbsp;
+                {{item.suppliers_name}}&nbsp;
                 <ion-icon name="ios-arrow-forward"></ion-icon>
-                <button item-right ion-button clear color="danger">代付款</button>
+                <button item-right ion-button clear color="danger">{{item.status}}</button>
             </ion-item-divider>
             <ion-item no-lines (click)="goOrdersDetailPage()">
                 <ion-thumbnail item-left>
@@ -31,18 +31,18 @@
                 <div item-content>
                     <div class="my-content">
                         <div class="left">
-                            <h2>凯米旗舰店凯米旗舰店凯米旗舰店凯米旗舰店凯米旗舰店凯米旗舰店凯米旗舰店凯米旗舰店</h2>
-                            <div>棕色（XXXXX）</div>
+                            <h2>{{item.goods[0].goods_name}}</h2>
+                            <div [innerHtml]="item.goods[0].goods_attr"></div>
                         </div>
                         <div class="right">
-                            <div>￥520.00</div>
-                            <div class="count">X1</div>
+                            <div>{{item.goods[0].format_amount}}</div>
+                            <div class="count">X{{item.goods[0].goods_number}}</div>
                         </div>
                     </div>
                 </div>
             </ion-item>
             <div class="result">
-                <span class="count">共100件商品</span>&nbsp;&nbsp;<span class="price">合计: <span>￥520.00</span></span>
+                <span class="count">共{{item.goods_number}}件商品</span>&nbsp;&nbsp;<span class="price">合计: <span>￥{{item.total_fee}}</span></span>
             </div>
             <div class="btn">
                 <button ion-button outline>取消订单</button>

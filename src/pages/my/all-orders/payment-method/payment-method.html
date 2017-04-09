@@ -6,13 +6,18 @@
 -->
 <ion-header>
 
-  <ion-navbar>
-    <ion-title>paymentMethod</ion-title>
-  </ion-navbar>
+    <ion-navbar>
+        <ion-title>支付方式</ion-title>
+    </ion-navbar>
 
 </ion-header>
 
 
-<ion-content padding>
-
+<ion-content>
+    <ion-list radio-group>
+        <ion-item mode="ios" *ngFor="let item of data">
+            <ion-label>{{item.pay_name}}</ion-label>
+            <ion-radio mode="ios" color="drak" (click)="dismiss(item)" [checked]="item.selected==1"></ion-radio>
+        </ion-item>
+    </ion-list>
 </ion-content>

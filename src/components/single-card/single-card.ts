@@ -1,6 +1,7 @@
 import { Component, Input } from '@angular/core';
 import { ParticularsPage } from '../../pages/home/particulars/particulars'
 import { HttpService } from "../../providers/http-service";
+import { Native } from "../../providers/native";
 
 /*
   Generated class for the SingleCard component.
@@ -15,7 +16,9 @@ import { HttpService } from "../../providers/http-service";
 export class SingleCardComponent {
 
   constructor(
-    public httpService: HttpService
+    public httpService: HttpService,
+    public native: Native
+
   ) {
     console.log('Hello SingleCard Component');
     this.animateClass = { 'fade-in-item': true };
@@ -49,10 +52,12 @@ export class SingleCardComponent {
     this.clearBtn();
     item.showBtn = true;
   }
-  onCollect(item) {
-    this.httpService.getGoodsCollect({ goods_id: item.goods_id }).then((res) => {
+  onCollect(item,e) {
+    if (e) { e.stopPropagation(); }
+    this.httpService.getGoodsCollect({ goods_id: item.id }).then((res) => {
       console.log(res)
       if (res.status == 1) {
+        this.native.showToast('关注成功~')
         item.is_collect = 1;
       }
     })

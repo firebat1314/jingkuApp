@@ -6,6 +6,7 @@ import { OrderModalShippingPage } from "./order-modal-shipping/order-modal-shipp
 import { OrderModalDistributionPage } from "./order-modal-distribution/order-modal-distribution";
 import { OrderModalCouponPage } from "./order-modal-coupon/order-modal-coupon";
 import { OrderModalPaymentPage } from "./order-modal-payment/order-modal-payment";
+import { PaymentMethodPage } from "../payment-method/payment-method";
 
 /*
   Generated class for the WriteOrders page.
@@ -90,12 +91,13 @@ export class WriteOrdersPage {
     });
     modal.present();
   }
-  openOrderModalPaymentPage() {//支付方式
-    let modal = this.modalCtrl.create(OrderModalPaymentPage, { data: this.data.payment_list },{enableBackdropDismiss:false});
-    modal.onDidDismiss(data => {
-      console.log('支付方式', data);
-    });
-    modal.present();
+  openOrderModalPaymentPage() {//支付方式页面
+    this.navCtrl.push(PaymentMethodPage,{ data: this.data.payment_list })
+    // let modal = this.modalCtrl.create(OrderModalPaymentPage, { data: this.data.payment_list },{enableBackdropDismiss:false});
+    // modal.onDidDismiss(data => {
+    //   console.log('支付方式', data);
+    // });
+    // modal.present();
   }
   onsubmit() {
     this.httpService.submitOrder().then((res) => {

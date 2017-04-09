@@ -189,6 +189,12 @@ export class HttpService {
   usercount(data?: Object) {//（1）个人中心获取用户统计
     return this.http.get(this.ip + '/User/usercount', data)
   }
+  order(data?: Object) {//用户订单
+    return this.http.get(this.ip + '/User/order', data)
+  }
+  orderInfo(data?: Object) {//订单详情
+    return this.http.get(this.ip + '/User/order_info', data)
+  }
   userInfo(data?: Object) {//（2）获取用户资料
     return this.http.get(this.ip + '/User/user_info', data)
   }

@@ -40,16 +40,16 @@ export class CarPage {
       console.log(res)
       if (res.status == 1) {
         this.carDetails = res;
-        this.events.publish('car:goodsCount',res.total.real_goods_count);
+        this.events.publish('car:goodsCount', res.total.real_goods_count);
       }
-      if(finished){finished();}
+      if (finished) { finished(); }
       // this.carDetails.selected = true;
       // this.calculateTotal();
     })
   }
   /*下拉刷新*/
   doRefresh(refresher) {
-    this.getFlowGoods(function(){
+    this.getFlowGoods(function () {
       setTimeout(() => {
         refresher.complete();
       }, 500);
@@ -82,21 +82,6 @@ export class CarPage {
     });
     confirm.present();
   }
-  checkGoods(item) {
-    let index = this.checkedArray.indexOf(item.goods_id);
-    if (index == -1) {
-      this.checkedArray.push(item.goods_id);
-    } else {
-      this.checkedArray.splice(index, 1);
-    }
-    console.log(this.checkedArray);
-    this.httpService.selectChangePrice({rec_ids:this.checkedArray}).then((res)=>{
-      console.log(res);
-      if(res.status==1){
-        this.getFlowGoods();
-      }
-    })
-  }
   numberChangeI(event, item) {
     item.goods_number = event;
     this.httpService.changeNumCart({ rec_id: item.rec_id, number: event }).then((res) => {
@@ -111,7 +96,51 @@ export class CarPage {
     });
     // this.calculateTotal();
   }
-  goAccounts(){
+  checkGoods(item) {
+    let index = this.checkedArray.indexOf(item.goods_id);
+    if (index == -1) {
+      this.checkedArray.push(item.goods_id);
+    } else {
+      this.checkedArray.splice(index, 1);
+    }
+    console.log(this.checkedArray);
+    this.httpService.selectChangePrice({ rec_ids: this.checkedArray }).then((res) => {
+      console.log(res);
+      if (res.status == 1) {
+        this.getFlowGoods();
+      }
+    })
+  }
+  beCareFor(){
+    if(this.checkedArray!=null){
+      this.native.showToast('请选择需要关注商品');
+      return;
+    }
+    this.httpService.batchGoodsCollect({
+      goods_ids: this.checkedArray
+    }).then((res)=>{
+      console.log(res);
+        if (res.status == 1) {
+          this.native.showToast('关注成功~')
+        }
+    })
+  }
+  dropCartGoodsSelect() {
+    if(this.checkedArray!=null){
+      this.native.showToast('请选择需要删除商品');
+      return;
+    }
+    this.native.openAlertBox('是否删除购物车选中商品？', () => {
+      this.httpService.dropCartGoodsSelect({ goods_ids: this.checkedArray }).then((res) => {
+        console.log(res);
+        if (res.status == 1) {
+          this.native.showToast('删除成功~')
+          this.getFlowGoods();
+        }
+      })
+    })
+  }
+  goAccounts() {
     this.navCtrl.push(WriteOrdersPage);
   }
   /*——————————————————————————————————————————————————————————————————*/
