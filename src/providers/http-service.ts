@@ -15,7 +15,7 @@ export class HttpService {
   public HAS_LOGGED_IN = "hasLoggedIn";
   public hasLogin = false;
   private ip = 'http://v401app.jingkoo.net';  // URL to web API
-  
+
   constructor(public http: UserData, private storage: Storage) {
     console.log('Hello HttpService Provider');
   }
@@ -231,6 +231,9 @@ export class HttpService {
   addAddress(data?: Object) {//（12.1）添加收货地址
     return this.http.post(this.ip + '/User/add_address', data)
   }
+  defaultAddress(data?: Object) {//（12.2）设置默认收货地址address_id
+    return this.http.get(this.ip + '/User/default_address', data)
+  }
   changeRegion(data?: Object) {//（13）改变城市联动
     return this.http.get(this.ip + '/User/change_region', data)
   }
@@ -255,7 +258,31 @@ export class HttpService {
   delCollectionShop(data?: Object) {//（20）取消收藏店铺
     return this.http.post(this.ip + '/User/del_collection_shop', data)
   }
-  batchGoodsCollect(data?: Object) {//批量关注商品
+  batchGoodsCollect(data?: Object) {//发票索取列表
     return this.http.post(this.ip + '/Flow/batch_goods_collect', data)
+  }
+  invoice(data?: Object) {//发票索取列表
+    return this.http.get(this.ip + '/Flow/invoice', data)
+  }
+  addinv(data?: Object) {//选择供货商后选择订单开票
+    return this.http.get(this.ip + '/Flow/addinv', data)
+  }
+  selectzz(data?: Object) {//	发票索取信息
+    return this.http.get(this.ip + '/Flow/selectzz', data)
+  }
+  insertInv(data?: Object) {//插入发票信息
+    return this.http.get(this.ip + '/Flow/insert_inv', data)
+  }
+  invList(data?: Object) {//发票列表
+    return this.http.get(this.ip + '/Flow/inv_list', data)
+  }
+  invRole(data?: Object) {//发票信息管理
+    return this.http.get(this.ip + '/Flow/inv_role', data)
+  }
+  updateInv(data?: Object) {//编辑发票资质
+    return this.http.get(this.ip + '/Flow/update_inv', data)
+  }
+  updateInvPost(data?: Object) {//添加或编辑发票资质提交
+    return this.http.post(this.ip + '/Flow/update_inv', data)
   }
 }

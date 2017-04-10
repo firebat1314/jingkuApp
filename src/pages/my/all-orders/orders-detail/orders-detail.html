@@ -15,72 +15,40 @@
 
 <ion-content>
     <div class="fore1" padding>
-        <div>订单号：5454545454</div>
-        <div>待发货</div>
+        <div>订单号：{{data?.order?.order_sn}}</div>
+        <div>{{data?.order?.status}}</div>
     </div>
     <div class="fore2" padding>
         <div class="user">
-            <div class="name">收货人：孙山杉</div>
-            <div class="phone">{{'13100668641'|phonenumberfilter}}</div>
+            <div class="name">收货人：{{data?.order?.consignee}}</div>
+            <div class="phone">{{data?.order?.mobile | phonenumberfilter}}</div>
         </div>
-        <div class="address">北京市北京市北京市北京市北京市北京市北京市北京市北京市北京市北京市北京市北京市北京市北京市北京市</div>
+        <div class="address">{{data?.order?.address}}</div>
     </div>
     <div class="fore3">
         <ion-item-divider>
             <ion-icon item-left name="shop"></ion-icon>
-            镜库旗舰店&nbsp;
+            {{data?.order?.suppliers_name}}&nbsp;
             <ion-icon name="ios-arrow-forward"></ion-icon>
         </ion-item-divider>
-        <ion-item no-lines (click)="goOrdersDetailPage()">
+        <ion-item no-lines (click)="goParticularsPage(item.goods_id)" *ngFor="let item of data?.goods_list;">
             <ion-thumbnail item-left>
-                <img src="./assets/icon/images/brand_1_10.jpg">
+                <img src="{{item.thumb}}">
             </ion-thumbnail>
             <div item-content>
                 <div class="my-content">
                     <div class="left">
-                        <h2>凯米旗舰店凯米旗舰店凯米旗舰店凯米旗舰店凯米旗舰店凯米旗舰店凯米旗舰店凯米旗舰店</h2>
-                        <div>棕色（XXXXX）</div>
+                        <h2>{{item.goods_name}}</h2>
+                        <div>
+                            <span *ngIf="item.qiujing">{{item.qiujing}}&nbsp;</span>
+                            <span *ngIf="item.zhujing">{{item.zhujing}}&nbsp;</span>
+                            <span *ngIf="item.zhouwei">{{item.zhouwei}}&nbsp;</span> {{item.goods_attr}}
+                        </div>
                     </div>
                     <div class="right">
-                        <div>￥520.00</div>
-                        <div class="count">X1</div>
+                        <div>￥{{item.goods_price}}</div>
+                        <div class="count">X{{item.goods_number}}</div>
                         <div ion-button small (click)="clickAftermarket($event)">申请售后</div>
-                    </div>
-                </div>
-            </div>
-        </ion-item>
-        <ion-item no-lines (click)="goOrdersDetailPage()">
-            <ion-thumbnail item-left>
-                <img src="./assets/icon/images/brand_1_10.jpg">
-            </ion-thumbnail>
-            <div item-content>
-                <div class="my-content">
-                    <div class="left">
-                        <h2>凯米旗舰店凯米旗舰店凯米旗舰店凯米旗舰店凯米旗舰店凯米旗舰店凯米旗舰店凯米旗舰店</h2>
-                        <div>棕色（XXXXX）</div>
-                    </div>
-                    <div class="right">
-                        <div>￥520.00</div>
-                        <div class="count">X1</div>
-                        <div ion-button small>申请售后</div>
-                    </div>
-                </div>
-            </div>
-        </ion-item>
-        <ion-item no-lines (click)="goOrdersDetailPage()">
-            <ion-thumbnail item-left>
-                <img src="./assets/icon/images/brand_1_10.jpg">
-            </ion-thumbnail>
-            <div item-content>
-                <div class="my-content">
-                    <div class="left">
-                        <h2>凯米旗舰店凯米旗舰店凯米旗舰店凯米旗舰店凯米旗舰店凯米旗舰店凯米旗舰店凯米旗舰店</h2>
-                        <div>棕色（XXXXX）</div>
-                    </div>
-                    <div class="right">
-                        <div>￥520.00</div>
-                        <div class="count">X1</div>
-                        <div ion-button small>申请售后</div>
                     </div>
                 </div>
             </div>
@@ -90,12 +58,12 @@
     <div class="fore4" padding>
         <div class="top">
             <div>支付方式</div>
-            <div>在线支付</div>
+            <div>{{data?.order?.pay_name}}</div>
         </div>
         <div class="bottom">
             <div>
                 <div>配送方式</div>
-                <div>普通快递</div>
+                <div>{{data?.order?.shipping_name}}</div>
             </div>
             <div>由商家选择合作快递为您配送</div>
         </div>
@@ -105,20 +73,20 @@
         <div class="top">
             <div class="">
                 <span>购物金额小计：</span>
-                <span class="price">￥5000</span>
+                <span class="price">￥{{data?.order?.formated_goods_amount}}</span>
             </div>
             <div>
                 <span>+配送费用：</span>
-                <span class="price">￥5000</span>
+                <span class="price">￥{{data?.order?.formated_shipping_fee}}</span>
             </div>
             <div>
                 <span>+获赠积分：</span>
-                <span class="price">￥5000</span>
+                <span class="price">￥???</span>
             </div>
         </div>
         <div class="bottom">
-            <div>实付款:<span class="price">￥500.00</span></div>
-            <div class="date">下单时间:2016.4.21 10:4:40</div>
+            <div>实付款:<span class="price">￥{{data?.order?.formated_pay_fee}}</span></div>
+            <div class="date">下单时间:{{data?.order?.formated_add_time}}</div>
         </div>
     </div>
     <div class="background"></div>
@@ -126,8 +94,8 @@
 
 <ion-footer no-border>
     <div class="result">
-        <span class="count">共10件</span>
-        <span class="price">合计:￥500.00</span>
+        <span class="count">共{{data?.order?.count}}件</span>
+        <span class="price">合计:￥{{data?.order?.formated_order_amount}}</span>
     </div>
     <div class="foot-button">
         <button ion-button large full no-margin color="cancelBtn">订单跟踪</button>

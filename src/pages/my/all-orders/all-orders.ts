@@ -4,6 +4,7 @@ import { PaymentMethodPage } from "./payment-method/payment-method";
 import { OrdersDetailPage } from "./orders-detail/orders-detail";
 import { WriteOrdersPage } from "./write-orders/write-orders";
 import { HttpService } from "../../../providers/http-service";
+import { ParticularsPage } from "../../home/particulars/particulars";
 /*
   Generated class for the AllOrders page.
 
@@ -15,7 +16,10 @@ import { HttpService } from "../../../providers/http-service";
   templateUrl: 'all-orders.html'
 })
 export class AllOrdersPage {
-    allOrderData: any;
+  noSendData: any;
+  noGetData: any;
+  noPayData: any;
+  allOrderData: any;
   pageIndex: number = 0;
 
   @ViewChild('mytabs') mytabs;
@@ -31,10 +35,28 @@ export class AllOrdersPage {
     console.log('ionViewDidLoad AllOrdersPage');
   }
   getHttpData() {
-    this.httpService.order().then((res)=>{
+    this.httpService.order().then((res) => {
       console.log(res);
-      if(res.status==1){
+      if (res.status == 1) {
         this.allOrderData = res;
+      }
+    })
+    this.httpService.order({ type: 'pay' }).then((res) => {
+      console.log(res);
+      if (res.status == 1) {
+        this.noPayData = res;
+      }
+    })
+    this.httpService.order({ type: 'shi' }).then((res) => {
+      console.log(res);
+      if (res.status == 1) {
+        this.noSendData = res;
+      }
+    })
+    this.httpService.order({ type: 'dsh' }).then((res) => {
+      console.log(res);
+      if (res.status == 1) {
+        this.noGetData = res;
       }
     })
   }
@@ -45,10 +67,67 @@ export class AllOrdersPage {
       this.mytabs.selectedIndex = this.navParams.get('index');
     }
   }
-  goOrdersDetailPage() {
-    this.navCtrl.push(OrdersDetailPage);
+  goOrdersDetailPage(orderId) {
+    this.navCtrl.push(OrdersDetailPage, { order_id: orderId });
   }
-  goWriteOrdersPage() {
-    this.navCtrl.push(WriteOrdersPage);
+  goParticularsPage(id) {
+    this.navCtrl.push(ParticularsPage, { goodsId: id });
+  }
+  page1: any = 1;
+  page2: any = 1;
+  page3: any = 1;
+  page4: any = 1;
+
+  doInfinite(infiniteScroll) {
+    if (this.pageIndex == 0) {
+      this.page1++;
+      this.httpService.order({ page: this.page1 }).then((res) => {
+        console.log(res);
+        if (res.status == 1) {
+          Array.prototype.push.apply(this.allOrderData.list, res.list);
+        }
+        setTimeout(() => {
+          infiniteScroll.complete();
+        }, 500);
+      })
+    } else if (this.pageIndex == 1) {
+      this.page2++;
+      this.httpService.order({ type: 'pay',page: this.page2}).then((res) => {
+        console.log(res);
+        if (res.status == 1) {
+          Array.prototype.push.apply(this.noPayData.list, res.list);
+        }
+        setTimeout(() => {
+          infiniteScroll.complete();
+        }, 500);
+      })
+    } else if (this.pageIndex == 2) {
+      this.page3++;
+      this.httpService.order({ type: 'shi',page: this.page3 }).then((res) => {
+        console.log(res);
+        if (res.status == 1) {
+          Array.prototype.push.apply(this.noPayData.list, res.list);
+        }
+        setTimeout(() => {
+          infiniteScroll.complete();
+        }, 500);
+      })
+    } else if (this.pageIndex == 3) {
+      this.page4++;
+      this.httpService.order({ type: 'dsh' ,page: this.page4}).then((res) => {
+        console.log(res);
+        if (res.status == 1) {
+          Array.prototype.push.apply(this.noGetData.list, res.list);
+        }
+        setTimeout(() => {
+          infiniteScroll.complete();
+        }, 500);
+      })
+    } else if (this.pageIndex == 4) {
+      setTimeout(() => {
+        infiniteScroll.complete();
+      }, 500);
+    }
+
   }
 }

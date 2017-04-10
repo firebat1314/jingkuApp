@@ -20,6 +20,6 @@ export class NothingComponent {
     console.log('Hello Nothing Component');
   }
   goHome() {
-    this.navCtrl.parent.select(1);
+    this.navCtrl.parent.select(0);
   }
 }

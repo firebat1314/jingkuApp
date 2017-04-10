@@ -79,11 +79,11 @@ export class WriteOrdersPage {
     modal.present();
   }
   openOrderModalCouponPage(item) {//优惠券
-    let modal = this.modalCtrl.create(OrderModalCouponPage, { data: item.no_use_bonus });
+    let modal = this.modalCtrl.create(OrderModalCouponPage, { data: item.use_bonus });
     modal.onDidDismiss(data => {
       console.log('优惠券', data);
       if (data) {
-        this.httpService.suppliersBouns({ suppliers_id: item.suppliers_id, bonus_id: data }).then((res) => {
+        this.httpService.suppliersBouns({ suppliers_id: item.suppliers_id, bonus_id: data.bonus_id }).then((res) => {
           console.log(res);
           if (res.status == 1) { this.getHttpData() }
         })
@@ -93,11 +93,6 @@ export class WriteOrdersPage {
   }
   openOrderModalPaymentPage() {//支付方式页面
     this.navCtrl.push(PaymentMethodPage,{ data: this.data.payment_list })
-    // let modal = this.modalCtrl.create(OrderModalPaymentPage, { data: this.data.payment_list },{enableBackdropDismiss:false});
-    // modal.onDidDismiss(data => {
-    //   console.log('支付方式', data);
-    // });
-    // modal.present();
   }
   onsubmit() {
     this.httpService.submitOrder().then((res) => {

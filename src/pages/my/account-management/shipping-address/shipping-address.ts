@@ -21,12 +21,12 @@ export class ShippingAddressPage {
     public navCtrl: NavController,
     public navParams: NavParams,
     public httpService: HttpService,
-    public native:Native,
-        public events:Events
+    public native: Native,
+    public events: Events
 
   ) {
     this.getHttpData();
-    this.events.subscribe('updateAddress',(res)=>{
+    this.events.subscribe('updateAddress', (res) => {
       this.getHttpData()
     })
   }
@@ -37,18 +37,27 @@ export class ShippingAddressPage {
   getHttpData() {
     this.httpService.addressList().then((res) => {
       console.log('收货地址列表：', res)
-      if(res.status==1){this.addressList = res}
+      if (res.status == 1) { this.addressList = res }
     })
   }
-  deleteOne(id){
-    this.native.openAlertBox('删除该收获地址？',()=>{
-      this.httpService.delAddress({address_ids:[id]}).then((res)=>{
+  deleteOne(id) {
+    this.native.openAlertBox('删除该收获地址？', () => {
+      this.httpService.delAddress({ address_ids: [id] }).then((res) => {
         console.log(res);
-        if(res.status==1){this.getHttpData()}
+        if (res.status == 1) { this.getHttpData() }
       })
     })
   }
-  ngOnDestroy(){
+  setDefaultAddress(id) {
+    this.httpService.defaultAddress({ address_id: id }).then((res) => {
+      console.log(res);
+      this.getHttpData();
+      if (res.status == 1) {
+        this.native.showToast('设置成功~')
+      }
+    })
+  }
+  ngOnDestroy() {
     this.events.unsubscribe('updateAddress');
   }
 }

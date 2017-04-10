@@ -1,5 +1,5 @@
-import { Component } from '@angular/core';
-import { NavController, NavParams, AlertController, Events } from 'ionic-angular';
+import { Component, ViewChild } from '@angular/core';
+import { NavController, NavParams, AlertController, Events, Content } from 'ionic-angular';
 import { Native } from "../../providers/native";
 import { HttpService } from "../../providers/http-service";
 import { HomePage } from "../home/home";
@@ -19,7 +19,7 @@ export class CarPage {
   HomePage: any = HomePage
   isEdit: boolean = false;
   carDetails: any;
-  inputLock: boolean = false;
+  @ViewChild(Content) content: Content;
 
   checkedArray: Array<number> = [];
   constructor(
@@ -28,7 +28,7 @@ export class CarPage {
     public native: Native,
     public alertCtrl: AlertController,
     public httpService: HttpService,
-    public events: Events
+    public events: Events,
   ) {
     this.getFlowGoods();
   }
@@ -40,6 +40,9 @@ export class CarPage {
       console.log(res)
       if (res.status == 1) {
         this.carDetails = res;
+        this.content.resize();
+        this.checkAll();
+        //购物车商品数量
         this.events.publish('car:goodsCount', res.total.real_goods_count);
       }
       if (finished) { finished(); }
@@ -87,46 +90,61 @@ export class CarPage {
     this.httpService.changeNumCart({ rec_id: item.rec_id, number: event }).then((res) => {
       console.log(res)
       if (res.status == 1) {
-        this.inputLock = false;
+        item.inputLock = false;
         this.getFlowGoods();
       } else {
         item.goods_number = item.goods_number - 1;
-        this.inputLock = true;
+        item.inputLock = true;
       }
     });
     // this.calculateTotal();
   }
   checkGoods(item) {
-    let index = this.checkedArray.indexOf(item.goods_id);
+    let index = this.checkedArray.indexOf(item.rec_id);
     if (index == -1) {
-      this.checkedArray.push(item.goods_id);
+      for(var i =0 ;i <item.attrs.length;i++){
+        this.checkedArray.push(item.attrs[i].rec_id);
+      }
     } else {
-      this.checkedArray.splice(index, 1);
+      for(var i =0 ;i <item.attrs.length;i++){
+        this.checkedArray.splice(this.checkedArray.indexOf(item.attrs[i].rec_id), 1);
+      }
     }
-    console.log(this.checkedArray);
     this.httpService.selectChangePrice({ rec_ids: this.checkedArray }).then((res) => {
       console.log(res);
-      if (res.status == 1) {
-        this.getFlowGoods();
+      if(res.status==1){
+        this.carDetails.total.goods_amount = res.total;
       }
     })
+    console.log(this.checkedArray);
   }
-  beCareFor(){
-    if(this.checkedArray!=null){
+  checkAll() {
+    this.checkedArray = [];//刷新完成之后清空选中商品
+    this.carDetails.selected = true;
+    for (let i = 0, item = this.carDetails.suppliers_goods_list; i < item.length; i++) {
+      item[i].selected = true;
+      for (let k = 0; k < item[i].goods_list.length; k++) {
+        item[i].goods_list[k].selected = true;
+      }
+    }
+    console.log(this.checkedArray)
+  }
+  beCareFor() {
+    if (this.checkedArray != null) {
       this.native.showToast('请选择需要关注商品');
       return;
     }
     this.httpService.batchGoodsCollect({
       goods_ids: this.checkedArray
-    }).then((res)=>{
+    }).then((res) => {
       console.log(res);
-        if (res.status == 1) {
-          this.native.showToast('关注成功~')
-        }
+      if (res.status == 1) {
+        this.native.showToast('关注成功~')
+      }
     })
   }
   dropCartGoodsSelect() {
-    if(this.checkedArray!=null){
+    if (this.checkedArray != null) {
       this.native.showToast('请选择需要删除商品');
       return;
     }

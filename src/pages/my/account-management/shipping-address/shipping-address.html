@@ -24,7 +24,7 @@
             </div>
             <div class="bottom">
                 <div class="checkbox">
-                    <ion-checkbox [checked]="item.selected==1" mode="ios"></ion-checkbox>默认地址
+                    <ion-checkbox [checked]="item.selected==1" (click)="setDefaultAddress(item.address_id)" mode="ios"></ion-checkbox>默认地址
                 </div>
                 <div class="btns">
                     <button ion-button outline (click)="deleteOne(item.address_id)">删除</button>

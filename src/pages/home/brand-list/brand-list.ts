@@ -23,7 +23,7 @@ export class BrandListPage {
     currentPage: number = 1;//当前页
     mytool = 'all';//当前筛选
     paramsData = {
-        cat_id: this.listId,
+        cat_id: '',
         size: 20,
         order: '',
         stort: 'DESC',
@@ -41,6 +41,7 @@ export class BrandListPage {
         public events: Events
     ) {
         this.listId = this.navParams.get('listId');
+        this.paramsData.cat_id = this.listId;
         console.log('列表ID:', this.listId)
         this.events.subscribe('user:filterParams', (res) => {
             this.paramsData = Object.assign(this.paramsData, res);

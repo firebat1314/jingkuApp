@@ -63,7 +63,7 @@
                                         <div class="bottom">
                                             <div class="price">¥{{item3?.goods_price}}</div>
                                             <div class="number">
-                                                <count-input (updateNumberI)="numberChangeI($event,item3)" [lock]="inputLock" [value]="item3?.goods_number"></count-input>
+                                                <count-input (updateNumberI)="numberChangeI($event,item3)" [lock]="item3.inputLock" [value]="item3?.goods_number"></count-input>
                                             </div>
                                         </div>
                                     </div>

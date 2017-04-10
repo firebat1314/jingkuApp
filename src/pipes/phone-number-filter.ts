@@ -15,7 +15,10 @@ export class PhoneNumberFilter {
     Takes a value and makes it lowercase.
    */
   transform(value, args) {
-    value = value.substring(0,3)+"****"+value.substring(9,11);  
-    return value.toLowerCase();
+    if(value){
+      value = value.substring(0,3)+"****"+value.substring(9,11);  
+      value.toLowerCase();
+    }
+    return value
   }
 }

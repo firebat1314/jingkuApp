@@ -64,7 +64,7 @@ export class UserData {
      */
     private handleSuccess(result) {
         // this.native.hideLoading();
-        if (result && !result.status) {
+        if (result && !result.status||result.status==-1) {
             this.native.showToast(result.info);
         }
         return result;
