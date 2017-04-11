@@ -21,7 +21,11 @@ export class CarPage {
   carDetails: any;
   @ViewChild(Content) content: Content;
 
-  checkedArray: Array<number> = [];
+  checkedArray: Array<number> = [];//rec_id
+  goodsIdArray: Array<number> = [];//goods_id
+  allRecId: Array<number> = [];//rec_id
+  allGoodsId: Array<number> = [];//goods_id
+
   constructor(
     public navCtrl: NavController,
     public navParams: NavParams,
@@ -102,40 +106,51 @@ export class CarPage {
   checkGoods(item) {
     let index = this.checkedArray.indexOf(item.rec_id);
     if (index == -1) {
-      for(var i =0 ;i <item.attrs.length;i++){
+      for (var i = 0; i < item.attrs.length; i++) {
         this.checkedArray.push(item.attrs[i].rec_id);
       }
     } else {
-      for(var i =0 ;i <item.attrs.length;i++){
+      for (var i = 0; i < item.attrs.length; i++) {
         this.checkedArray.splice(this.checkedArray.indexOf(item.attrs[i].rec_id), 1);
       }
     }
     this.httpService.selectChangePrice({ rec_ids: this.checkedArray }).then((res) => {
       console.log(res);
-      if(res.status==1){
+      if (res.status == 1) {
         this.carDetails.total.goods_amount = res.total;
       }
     })
     console.log(this.checkedArray);
+
+    let goodsIdIndex = this.goodsIdArray.indexOf(item.goods_id);
+    if (index == -1) {
+      this.goodsIdArray.push(item.goods_id);
+    } else {
+      this.goodsIdArray.splice(goodsIdIndex, 1);
+    }
+    console.log(this.goodsIdArray)
   }
   checkAll() {
     this.checkedArray = [];//刷新完成之后清空选中商品
+    this.allGoodsId = [];
+    this.goodsIdArray = [];
+
     this.carDetails.selected = true;
     for (let i = 0, item = this.carDetails.suppliers_goods_list; i < item.length; i++) {
       item[i].selected = true;
       for (let k = 0; k < item[i].goods_list.length; k++) {
         item[i].goods_list[k].selected = true;
+        this.allGoodsId.push(item[i].goods_list[k].goods_id)
       }
     }
-    console.log(this.checkedArray)
   }
   beCareFor() {
-    if (this.checkedArray != null) {
+    if (this.goodsIdArray.length == 0) {
       this.native.showToast('请选择需要关注商品');
       return;
     }
     this.httpService.batchGoodsCollect({
-      goods_ids: this.checkedArray
+      goods_ids: this.goodsIdArray
     }).then((res) => {
       console.log(res);
       if (res.status == 1) {
@@ -144,12 +159,12 @@ export class CarPage {
     })
   }
   dropCartGoodsSelect() {
-    if (this.checkedArray != null) {
+    if (this.goodsIdArray.length == 0) {
       this.native.showToast('请选择需要删除商品');
       return;
     }
     this.native.openAlertBox('是否删除购物车选中商品？', () => {
-      this.httpService.dropCartGoodsSelect({ goods_ids: this.checkedArray }).then((res) => {
+      this.httpService.dropCartGoodsSelect({ goods_ids: this.goodsIdArray }).then((res) => {
         console.log(res);
         if (res.status == 1) {
           this.native.showToast('删除成功~')
@@ -159,7 +174,24 @@ export class CarPage {
     })
   }
   goAccounts() {
-    this.navCtrl.push(WriteOrdersPage);
+    if (this.checkedArray.length == 0) {
+      this.native.showToast("请选择购物车中的商品");
+      return false;
+    }
+    var arr = []
+    for (let i = 0, item = this.carDetails.suppliers_goods_list; i < item.length; i++) {
+      for (let k = 0; k < item[i].goods_list.length; k++) {
+        if (!item[i].goods_list[k].selected) {
+          arr.push(item[i].goods_list[k].goods_id)
+        }
+      }
+    }
+    this.httpService.delNoShop({ goods_ids: arr }).then((res) => {
+      console.log(res);
+      if (res.status == 1) {
+        this.navCtrl.push(WriteOrdersPage);
+      }
+    })
   }
   /*——————————————————————————————————————————————————————————————————*/
   /*  calculateTotal() {//购物车总价格

@@ -17,15 +17,7 @@
     <div class="body">
         <div class="top"><img src="./assets/icon/images/brand_1_20.jpg" alt=""></div>
         <div class="main">
-            <div><img src="./assets/icon/images/brand_1_10.jpg" alt=""></div>
-            <div><img src="./assets/icon/images/brand_1_10.jpg" alt=""></div>
-            <div><img src="./assets/icon/images/brand_1_10.jpg" alt=""></div>
-            <div><img src="./assets/icon/images/brand_1_10.jpg" alt=""></div>
-            <div><img src="./assets/icon/images/brand_1_10.jpg" alt=""></div>
-            <div><img src="./assets/icon/images/brand_1_10.jpg" alt=""></div>
-            <div><img src="./assets/icon/images/brand_1_10.jpg" alt=""></div>
-            <div><img src="./assets/icon/images/brand_1_10.jpg" alt=""></div>
-            <div><img src="./assets/icon/images/brand_1_10.jpg" alt=""></div>
+            <div *ngFor="let item of data" (click)="clickBanner(item)"><img src="{{item.ad_img}}" alt=""></div>
         </div>
     </div>
 </ion-content>

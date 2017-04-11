@@ -46,7 +46,7 @@
             </div>
             <div class="btn" *ngIf="item.pay_status==0">
                 <button ion-button outline>取消订单</button>
-                <button ion-button color="dark">去支付</button>
+                <button ion-button color="dark" (click)="toPay(item.order_id)">去支付</button>
             </div>
             <div class="btn" *ngIf="item.pay_status==2">
                 <button ion-button color="dark" (click)="goParticularsPage(item.goods_id)">再次购买</button>
@@ -83,7 +83,7 @@
             </div>
             <div class="btn">
                 <button ion-button outline>取消订单</button>
-                <button ion-button color="dark">去支付</button>
+                <button ion-button color="dark" (click)="toPay(item.order_id)">去支付</button>
             </div>
         </div>
     </div>

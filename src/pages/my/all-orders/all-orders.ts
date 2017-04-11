@@ -77,7 +77,6 @@ export class AllOrdersPage {
   page2: any = 1;
   page3: any = 1;
   page4: any = 1;
-
   doInfinite(infiniteScroll) {
     if (this.pageIndex == 0) {
       this.page1++;
@@ -129,5 +128,13 @@ export class AllOrdersPage {
       }, 500);
     }
 
+  }
+  toPay(id){
+    this.httpService.pay({log_id:id}).then((res)=>{
+      console.log(res);
+      if(res.status==1){
+        this.navCtrl.push(PaymentMethodPage,{data:res})
+      }
+    })
   }
 }

@@ -15,9 +15,17 @@
 
 <ion-content>
     <ion-list radio-group>
-        <ion-item mode="ios" *ngFor="let item of data">
-            <ion-label>{{item.pay_name}}</ion-label>
-            <ion-radio mode="ios" color="drak" (click)="dismiss(item)" [checked]="item.selected==1"></ion-radio>
+        <ion-item mode="ios">
+            <ion-label>支付宝</ion-label>
+            <ion-radio mode="ios" (click)="toPay(1)" color="drak"></ion-radio>
+        </ion-item>
+        <ion-item mode="ios">
+            <ion-label>银联</ion-label>
+            <ion-radio mode="ios" (click)="toPay(2)" color="drak"></ion-radio>
+        </ion-item>
+        <ion-item mode="ios">
+            <ion-label>微信</ion-label>
+            <ion-radio mode="ios" (click)="toPay(3)" color="drak"></ion-radio>
         </ion-item>
     </ion-list>
 </ion-content>

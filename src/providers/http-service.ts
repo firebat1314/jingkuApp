@@ -90,6 +90,9 @@ export class HttpService {
   getGoodsSaleCity(data?: Object) {//获取商品的销售区域
     return this.http.get(this.ip + '/Goods/get_goods_sale_city', data)
   }
+  setArea(data?: Object) {//商品切换销售区域
+    return this.http.get(this.ip + '/Goods/set_area', data)
+  }
   getSupplierInfo(data?: Object) {//获取供应商信息
     return this.http.get(this.ip + '/Goods/get_supplier_info', data)
   }
@@ -144,6 +147,9 @@ export class HttpService {
   changeGoodsNumber(data?: Object) {//改变商品数量 获取价格
     return this.http.post(this.ip + '/Goods/change_goods_number', data)
   }
+  brandList(data?: Object) {//品牌列表
+    return this.http.get(this.ip + '/Brand/brand_list', data)
+  }
   /**
    * 购物车
    */
@@ -157,7 +163,7 @@ export class HttpService {
     return this.http.get(this.ip + '/Flow/drop_cart_goods', data)
   }
   dropCartGoodsSelect(data?: Object) {//删除购物车中全选的商品
-    return this.http.get(this.ip + '/Flow/drop_cart_goods_select', data)
+    return this.http.post(this.ip + '/Flow/drop_cart_goods_select', data)
   }
   selectChangePrice(data?: Object) {//选中改变价格
     return this.http.post(this.ip + '/Flow/select_change_price', data)
@@ -174,11 +180,20 @@ export class HttpService {
   suppliersBouns(data?: Object) {//使用优惠券
     return this.http.get(this.ip + '/Flow/suppliers_bouns', data)
   }
-  checkout(data?: Object) {//(4)(5)购物车去结算
+  checkout(data?: Object) {//购物车去结算
     return this.http.get(this.ip + '/Flow/checkout', data)
   }
+  delNoShop(data?: Object) {//删除未选中的商品
+    return this.http.post(this.ip + '/Flow/del_no_shop', data)
+  }
   submitOrder(data?: Object) {//提交订单
-    return this.http.get(this.ip + '/Flow/done', data)
+    return this.http.post(this.ip + '/Flow/done', data)
+  }
+  pay(data: Object) {//支付方式
+    return this.http.get(this.ip + '/Flow/pay', data)
+  }
+  payCode(data: Object) {//去支付
+    return this.http.get(this.ip + '/Flow/pay_code', data)
   }
   /**
    * 个人中心页
@@ -259,30 +274,30 @@ export class HttpService {
     return this.http.post(this.ip + '/User/del_collection_shop', data)
   }
   batchGoodsCollect(data?: Object) {//发票索取列表
-    return this.http.post(this.ip + '/Flow/batch_goods_collect', data)
+    return this.http.post(this.ip + '/User/batch_goods_collect', data)
   }
   invoice(data?: Object) {//发票索取列表
-    return this.http.get(this.ip + '/Flow/invoice', data)
+    return this.http.get(this.ip + '/User/invoice', data)
   }
   addinv(data?: Object) {//选择供货商后选择订单开票
-    return this.http.get(this.ip + '/Flow/addinv', data)
+    return this.http.get(this.ip + '/User/addinv', data)
   }
   selectzz(data?: Object) {//	发票索取信息
-    return this.http.get(this.ip + '/Flow/selectzz', data)
+    return this.http.post(this.ip + '/User/selectzz', data)
   }
   insertInv(data?: Object) {//插入发票信息
-    return this.http.get(this.ip + '/Flow/insert_inv', data)
+    return this.http.post(this.ip + '/User/insert_inv', data)
   }
   invList(data?: Object) {//发票列表
-    return this.http.get(this.ip + '/Flow/inv_list', data)
+    return this.http.get(this.ip + '/User/inv_list', data)
   }
   invRole(data?: Object) {//发票信息管理
-    return this.http.get(this.ip + '/Flow/inv_role', data)
+    return this.http.get(this.ip + '/User/inv_role', data)
   }
   updateInv(data?: Object) {//编辑发票资质
-    return this.http.get(this.ip + '/Flow/update_inv', data)
+    return this.http.get(this.ip + '/User/update_inv', data)
   }
   updateInvPost(data?: Object) {//添加或编辑发票资质提交
-    return this.http.post(this.ip + '/Flow/update_inv', data)
+    return this.http.post(this.ip + '/User/update_inv', data)
   }
 }

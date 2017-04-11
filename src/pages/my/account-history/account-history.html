@@ -20,6 +20,7 @@
     <ion-refresher (ionRefresh)="doRefresh($event)" pullMax="60">
         <ion-refresher-content refreshingSpinner="1" pullingIcon="0"></ion-refresher-content>
     </ion-refresher>
+    <nothing *ngIf="data?.data.length=='0'" title="暂无浏览记录" text="" backgroundImg="url(../assets/icon/images/homepage_42_03.png)"></nothing>
     <ion-list>
         <div class="item-wrap" *ngFor="let item of data?.data">
             <div margin-left [ngClass]="{'activein':showCheckBox}" *ngIf="showCheckBox">

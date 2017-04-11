@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
+import { ParticularsPage } from "../../home/particulars/particulars";
 
 /*
   Generated class for the MoreBrand page.
@@ -12,11 +13,27 @@ import { NavController, NavParams } from 'ionic-angular';
   templateUrl: 'more-brand.html'
 })
 export class MoreBrandPage {
-  
-  constructor(public navCtrl: NavController, public navParams: NavParams) {}
+  data = this.navParams.get('data');
+  constructor(public navCtrl: NavController, public navParams: NavParams) { }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad MoreBrandPage');
   }
-  
+  clickBanner(item) {
+    if (item.link_type.type_name == 'category') {
+      this.navCtrl.parent.select(1);
+      /*this.navCtrl.push(ClassifyPage, {
+        categoryId: item.link_type.type_value
+      })*/
+    } else if (item.link_type.type_name == 'goods') {
+      this.navCtrl.push(ParticularsPage, {
+        goodsId: item.link_type.type_value
+      })
+    } else if (item.link_type.type_name == "brand") {
+      this.navCtrl.parent.select(1);
+      /*this.navCtrl.push(ClassifyPage, {
+        brandId: item.link_type.type_value
+      })*/
+    }
+  }
 }

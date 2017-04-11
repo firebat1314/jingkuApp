@@ -25,6 +25,7 @@ import { UserData } from "../../services/user-data";
 import { HttpService } from "../../providers/http-service";
 
 import { ImgTabs } from "../../conponents/img-tabs/img-tabs";
+import { Native } from "../../providers/native";
 
 
 @Component({
@@ -64,12 +65,14 @@ export class HomePage {
     private userData: UserData,
     private events: Events,
     private httpService: HttpService,
-    private formBuilder: FormBuilder
+    private formBuilder: FormBuilder,
+    private native: Native
   ) {
     this.getHomeData();
   }
 
   getHomeData(finish?) {
+    this.native.showLoading('加载中~')
     this.httpService.getHomebanner({ int_pos_id: 3 }).then((res) => {
       console.log("轮播图", res);
       if (res.status == 1) { this.bannerImgs = res.data; }
@@ -88,6 +91,7 @@ export class HomePage {
               this.httpService.getCategoryRecommendGoodsBest().then(((res) => {
                 console.log("精选专题下最好", res)
                 if (res.status == 1) { this.getCategoryRecommendGoodsBest = res.data; }
+                this.native.hideLoading();
                 if (finish) { finish(); }
               }))
             })

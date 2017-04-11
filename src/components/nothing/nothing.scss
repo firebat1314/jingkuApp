@@ -1,6 +1,6 @@
 nothing {
     .nothings-show {
-        height: 100%;
+        padding-top: 60px;
         display: flex;
         flex-direction: column;
         justify-content: center;
@@ -12,7 +12,7 @@ nothing {
             border-radius: 50%;
             border: 2px solid #cbced0;
             background-position: center center;
-            background-size: 50% 50%;
+            background-size: 50%;
             background-repeat: no-repeat;
         }
     }

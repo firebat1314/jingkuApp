@@ -17,16 +17,7 @@
     <ion-refresher (ionRefresh)="doRefresh($event)" pullMax="60">
         <ion-refresher-content refreshingSpinner="1" pullingIcon="0"></ion-refresher-content>
     </ion-refresher>
-    <div class="nodata-show" *ngIf="collectionList?.count=='0'">
-        <img src="./assets/icon/images/brand_2_03.jpg" alt="">
-        <h1>暂无收藏</h1>
-        <ion-note>
-            去收藏你喜欢的商品吧~
-        </ion-note>
-        <p>
-            <button ion-button outline color="drak">去首页逛逛</button>
-        </p>
-    </div>
+    <nothing *ngIf="collectionList?.count=='0'" title="暂无收藏" text="去收藏你喜欢的商品吧~" backgroundImg="url(../assets/icon/images/homepage_42_03.png)"></nothing>
     <ion-list *ngIf="collectionList?.count!='0'">
         <div class="item-wrap" *ngFor="let item of collectionList?.data;let i = index">
             <div margin-left [ngClass]="{'activein':showCheckBox}" *ngIf="showCheckBox">

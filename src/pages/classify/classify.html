@@ -59,14 +59,14 @@
         </div>
         <div *ngSwitchCase="'brand'" class="brand-wrap">
             <div class="top-scrollbar">
-                <div *ngFor="let item of getCategorys">
+                <div *ngFor="let item of getCategorys" (click)="toBrandList(item.cat_id)">
                     <div><img src="{{item.thumb}}" alt="{{item.cat_name}}"></div>
                     <span>{{item.cat_name}}</span>
                 </div>
             </div>
             <div class="background"></div>
             <div class="brand-content">
-                <div class="fore1-jinxuan" padding>
+                <div class="fore1-jinxuan fore" padding>
                     <div class="title">
                         <span class="txt">精选品牌</span>
                     </div>
@@ -78,8 +78,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="background"></div>
-                <div class="fore-huanxin" padding>
+                <div class="fore-huanxin fore" padding>
                     <div class="title">
                         <span class="txt">店铺换新</span>
                         <span class="more" (click)="goToMoreBrand()">更多&gt;</span>
@@ -90,9 +89,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="background"></div>
-
-                <div class="fore-remen" padding>
+                <div class="fore-remen fore" padding>
                     <div class="title">
                         <span class="txt">热门品牌</span>
                         <span class="more" (click)="goToMoreBrand()">更多&gt;</span>
@@ -101,32 +98,17 @@
                         <div *ngFor="let item of [{},{},{},{},{},{},{}]"><img src="./assets/icon/images/brand_1_10.jpg" alt=""></div>
                     </div>
                 </div>
-                <div class="background"></div>
-                <div class="fore-yinxing" padding>
+                <div class="fore-yinxing fore " padding *ngFor="let item of brandList?.data">
                     <div class="title">
-                        <span class="txt">隐形眼镜</span>
-                        <span class="more" (click)="goToMoreBrand()">更多&gt;</span>
+                        <span class="txt">{{item.cat_name}}</span>
+                        <span class="more" *ngIf="item.ads.length>3" (click)="goToMoreBrand(item.ads)">更多&gt;</span>
                     </div>
                     <div class="body">
-                        <div class="top"><img src="./assets/icon/images/brand_1_13.jpg" alt=""></div>
+                        <!--<div class="top"><img src="./assets/icon/images/brand_1_13.jpg" alt=""></div>-->
+                        <!--<div class="top"><img src="./assets/icon/images/brand_1_20.jpg" alt=""></div>-->
                         <div class="main">
-                            <div *ngFor="let item of [{},{},{},{},{},{},{}]">
-                                <img src="./assets/icon/images/brand_1_10.jpg" alt="">
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="background"></div>
-                <div class="fore-meitong" padding>
-                    <div class="title">
-                        <span class="txt">美瞳</span>
-                        <span class="more" (click)="goToMoreBrand()">更多&gt;</span>
-                    </div>
-                    <div class="body">
-                        <div class="top"><img src="./assets/icon/images/brand_1_20.jpg" alt=""></div>
-                        <div class="main">
-                            <div *ngFor="let item of [{},{},{},{},{},{},{}]">
-                                <img src="./assets/icon/images/brand_1_10.jpg" alt="">
+                            <div *ngFor="let img of item.ads;let i = index;" (click)="clickBanner(img)">
+                                <img *ngIf="i<3" src="{{img.ad_img}}" alt="">
                             </div>
                         </div>
                     </div>
@@ -135,16 +117,7 @@
         </div>
         <div *ngSwitchCase="'care'" [ngSwitch]="careSelect" class="care-wrap">
             <div class="shop" *ngSwitchCase="'shop'">
-                <div class="nodata-show" *ngIf="collectionShop?.count=='0'">
-                    <img src="./assets/icon/images/brand_2_03.jpg" alt="">
-                    <h1>暂无收藏</h1>
-                    <ion-note>
-                        去收藏你喜欢的店铺吧~
-                    </ion-note>
-                    <p>
-                        <button ion-button outline color="drak">去首页逛逛</button>
-                    </p>
-                </div>
+                <nothing *ngIf="collectionShop?.count=='0'" title="暂无收藏" text="去收藏你喜欢的店铺吧~" backgroundImg="url(../assets/icon/images/homepage_42_03.png)"></nothing>
                 <ion-list>
                     <div class="item-wrap" *ngFor="let item of collectionShop?.data;let i = index">
                         <div margin-left [ngClass]="{'activein':showCheckBox}" *ngIf="showCheckBox">
@@ -167,16 +140,8 @@
                 </ion-list>
             </div>
             <div class="goods" *ngSwitchCase="'goods'">
-                <div class="nodata-show" *ngIf="collectionList?.count=='0'">
-                    <img src="./assets/icon/images/brand_2_03.jpg" alt="">
-                    <h1>暂无收藏</h1>
-                    <ion-note>
-                        去收藏你喜欢的商品吧~
-                    </ion-note>
-                    <p>
-                        <button ion-button outline color="drak">去首页逛逛</button>
-                    </p>
-                </div>
+                <nothing *ngIf="collectionList?.count=='0'" title="暂无收藏" text="去收藏你喜欢的商品吧~" backgroundImg="url(../assets/icon/images/homepage_42_03.png)"></nothing>
+
                 <ion-list>
                     <div class="item-wrap" *ngFor="let item of collectionList?.data;let i = index">
                         <div margin-left [ngClass]="{'activein':showCheckBox}" *ngIf="showCheckBox">

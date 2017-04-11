@@ -14,12 +14,15 @@ import { NavController } from "ionic-angular";
 export class NothingComponent {
   @Input() title: string = '暂无商品';
   @Input() text: string = '去挑选你喜欢的商品吧~';
-  @Input() backgroundColor: string = 'url(../assets/images/images/no-car_1_03.png)'
+  @Input() backgroundImg: string = ''
 
   constructor(public navCtrl: NavController) {
     console.log('Hello Nothing Component');
   }
   goHome() {
+    if(this.navCtrl.canGoBack()){
+      this.navCtrl.popToRoot();
+    }
     this.navCtrl.parent.select(0);
   }
 }

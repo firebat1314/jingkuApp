@@ -71,7 +71,7 @@ export class Native {
 	showLoading = (content: string = '') => {
 		this.loading = this.loadingCtrl.create({
 			content: content,
-			showBackdrop: false,
+			showBackdrop: true,
 			cssClass: 'loading-style'
 		});
 		this.loading.present();

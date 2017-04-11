@@ -22,6 +22,9 @@ export class WriteOrdersPage {
   data: any;
 
   defaultShipping: any;
+
+  commentArr: any = [];
+  suppliers: any = [];
   constructor(
     public navCtrl: NavController,
     public navParams: NavParams,
@@ -91,14 +94,41 @@ export class WriteOrdersPage {
     });
     modal.present();
   }
-  openOrderModalPaymentPage() {//支付方式页面
-    this.navCtrl.push(PaymentMethodPage,{ data: this.data.payment_list })
+  openOrderPaymentModal(item) {//支付方式
+    let modal = this.modalCtrl.create(OrderModalPaymentPage, { data: item.payment_list });
+    modal.onDidDismiss(data => {
+      console.log('支付方式', data);
+      if (data) {
+        this.httpService.selectPayment({ pay_id: data.pay_id }).then((res) => {
+          console.log(res);
+          if (res.status == 1) { this.getHttpData() }
+        })
+      }
+    });
+    modal.present();
+  }
+  goPaymentPage(res) {//支付方式页面
+    this.navCtrl.push(PaymentMethodPage, { data: res })
   }
   onsubmit() {
-    this.httpService.submitOrder().then((res) => {
+    for (var i = 0; i < this.data.cart_goods_list.length; i++) {
+      this.commentArr.push(this.data.cart_goods_list[i].beizhu)
+      this.suppliers.push(this.data.cart_goods_list[i].suppliers_id)
+    }
+    this.httpService.submitOrder({
+      notes: {
+        note: this.commentArr,
+        suppliers: this.suppliers
+      }
+    }).then((res) => {
       console.log(res);
       if (res.status == 1) {
-        this.openOrderModalPaymentPage()
+        this.httpService.pay({log_id:res.log_id}).then((res)=>{
+          console.log(res)
+          if(res.status==1){
+            this.goPaymentPage(res)
+          }
+        })
       }
     })
   }

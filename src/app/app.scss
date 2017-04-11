@@ -92,6 +92,7 @@ ion-toolbar {
 
 .nodata-show {
     height: 100%;
+    margin-top: 60px;
     display: flex;
     background: #fff;
     flex-direction: column;
@@ -276,7 +277,7 @@ ion-modal {
 /*————————————————————————————————————segment-style————————————————————————————————————*/
 
 .segment-style {
-    min-height: 50px;
+    min-height: 56px;
     border-bottom: 1px solid #e0e0e0;
     border-top: 1px solid #e0e0e0;
     display: flex;

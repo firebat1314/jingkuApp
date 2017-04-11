@@ -1,18 +1,21 @@
 page-peceipt {
-    .classSelectStyle {
-        border-top: 1px solid #bab8b9;
+    .content {
+        background: #f7f7f7;
     }
     .receiptSskFor {
+        min-height: 100%;
+        background: #f7f7f7;
         .an-invoice {
             padding: 5px;
+            background: #fff;
             .main {
                 padding: 15px;
                 display: flex;
                 border-bottom: 1px solid #e0e0e0;
                 .type {
                     margin-right: 10px;
-                    padding-top: 5px;
                     img {
+                        margin-bottom: 5px;
                         width: 24px;
                     }
                 }
@@ -42,6 +45,10 @@ page-peceipt {
         }
     }
     .receiptList {
+        .head {
+            background: #fff;
+            margin-bottom: 10px;
+        }
         .reminder {
             padding: 15px;
             display: flex;
@@ -84,10 +91,10 @@ page-peceipt {
                         position: absolute;
                         top: -1px;
                         right: 0;
-                        z-index: -1;
                     }
                     ion-datetime {
                         padding: 0;
+                        z-index: 2;
                     }
                 }
                 .btn {
@@ -98,6 +105,10 @@ page-peceipt {
                     height: 34px;
                 }
             }
+        }
+        ion-list {
+            background: #fff;
+            margin-bottom: 10px;
         }
         .fore {
             padding: 18px 0 18px 30px;
@@ -119,7 +130,9 @@ page-peceipt {
     .receiptInfo {
         .head {
             padding: 10px;
+            margin-bottom: 10px;
             display: flex;
+            background: #fff;
             justify-content: center;
             align-items: center;
             color: #999;
@@ -127,25 +140,29 @@ page-peceipt {
                 margin-right: 10px;
             }
         }
-        .fore {
-            padding: 18px 0 18px 30px;
-            font-size: 1.6rem;
-            border-bottom: map-get($colors, border) 1px solid;
-            .name {
-                display: inline-block;
-                width: 12rem;
+        .an-invoice {
+            background: #fff;
+            margin-bottom: 10px;
+            .fore {
+                padding: 18px 0 18px 30px;
+                font-size: 1.6rem;
+                border-bottom: map-get($colors, border) 1px solid;
+                .name {
+                    display: inline-block;
+                    width: 12rem;
+                }
+                .value {
+                    color: #999;
+                    font-size: 1.4rem;
+                }
             }
-            .value {
-                color: #999;
-                font-size: 1.4rem;
-            }
-        }
-        .bottom {
-            display: flex;
-            justify-content: flex-end;
-            padding: 5px;
-            .button {
-                padding: 0 2em;
+            .bottom {
+                display: flex;
+                justify-content: flex-end;
+                padding: 5px;
+                .button {
+                    padding: 0 2em;
+                }
             }
         }
     }

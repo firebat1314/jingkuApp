@@ -6,6 +6,7 @@ import { HttpService } from "../../providers/http-service";
 import { MoreBrandPage } from "./more-brand/more-brand";
 import { ParticularsPage } from "../home/particulars/particulars";
 import { Native } from "../../providers/native";
+import { BrandListPage } from "../home/brand-list/brand-list";
 /*
   Generated class for the Classify page.
 
@@ -17,6 +18,7 @@ import { Native } from "../../providers/native";
   templateUrl: 'classify.html'
 })
 export class ClassifyPage {
+  brandList: any;
   collectionList: any;//收藏商品列表
   collectionShop: any;//收藏店铺列表
   getCategorys: any;//获取分类信息
@@ -63,13 +65,17 @@ export class ClassifyPage {
     this.httpService.getCategorys().then((res) => {
       console.log('获取九大分类', res)
       if (res.status == 1) { this.getCategorys = res.data; }
-      this.httpService.collectionShop({ size: 10 }).then((res) => {
-        console.log('收藏店铺列表', res)
-        if (res.status == 1) { this.collectionShop = res; }
-        this.httpService.collectionList({ size: 10 }).then((res) => {
-          console.log('收藏店商品列表', res)
-          if (res.status == 1) { this.collectionList = res; }
-          if (finished) { finished(); }
+      this.httpService.brandList().then((res) => {
+        console.log(res)
+        if (res.status == 1) { this.brandList = res }
+        this.httpService.collectionShop({ size: 10 }).then((res) => {
+          console.log('收藏店铺列表', res)
+          if (res.status == 1) { this.collectionShop = res; }
+          this.httpService.collectionList({ size: 10 }).then((res) => {
+            console.log('收藏店商品列表', res)
+            if (res.status == 1) { this.collectionList = res; }
+            if (finished) { finished(); }
+          })
         })
       })
     })
@@ -88,11 +94,39 @@ export class ClassifyPage {
           }, 500);
         })
       })
+    } else if (this.classSelect == 'classify') {
+      setTimeout(() => {
+        refresher.complete();
+      }, 500);
+    } else if (this.classSelect == 'brand') {
+      setTimeout(() => {
+        refresher.complete();
+      }, 500);
     }
   }
   //转跳品牌列表页
-  goToMoreBrand() {
-    this.navCtrl.push(MoreBrandPage)
+  goToMoreBrand(data) {
+    this.navCtrl.push(MoreBrandPage, { data: data })
+  }
+  toBrandList(id) {
+    this.navCtrl.push(BrandListPage, { listId: id })
+  }
+  clickBanner(item) {
+    if (item.link_type.type_name == 'category') {
+      this.navCtrl.parent.select(1);
+      /*this.navCtrl.push(ClassifyPage, {
+        categoryId: item.link_type.type_value
+      })*/
+    } else if (item.link_type.type_name == 'goods') {
+      this.navCtrl.push(ParticularsPage, {
+        goodsId: item.link_type.type_value
+      })
+    } else if (item.link_type.type_name == "brand") {
+      this.navCtrl.parent.select(1);
+      /*this.navCtrl.push(ClassifyPage, {
+        brandId: item.link_type.type_value
+      })*/
+    }
   }
   //分类页后退按钮
   pop() {

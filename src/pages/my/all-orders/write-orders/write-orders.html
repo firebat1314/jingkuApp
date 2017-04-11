@@ -20,12 +20,23 @@
             <div>{{defaultShipping.address}}</div>
         </div>
     </div>
+    <div class="fore1" (click)="openOrderModalShippingPage()" *ngIf="!defaultShipping">
+        <div class="wrap">
+            请选择收货地址
+        </div>
+    </div>
+    <div class="background"></div>
+    <ion-item mode="ios" no-lines margin-right detail-push (click)="openOrderPaymentModal(data)">
+        支付方式
+        <ion-note item-right style="margin:0;" *ngFor="let mtd of data?.payment_list">
+            <span *ngIf="mtd.selected==1">{{mtd.pay_name}}</span>
+        </ion-note>
+    </ion-item>
     <div class="background"></div>
     <ion-item-divider>
         货品清单
     </ion-item-divider>
     <ion-list class="fore2" *ngFor="let item of data?.cart_goods_list;let i=index">
-
         <div class="fore_child">
             <ion-item-divider>
                 <span ion-text color="danger">订单{{i+1}}: </span>{{item.title}}
@@ -59,29 +70,35 @@
                 </div>
             </div>
             <div class="option" margin-right>
-                <ion-item mode="ios" detail-push (click)="openOrderModalDistributionPage(item)">
+                <ion-item mode="ios" detail-push *ngIf="item?.shipping?.length!=0" (click)="openOrderModalDistributionPage(item)">
                     配送方式
                     <ion-note item-right *ngFor="let mtd of item.shipping">
                         <span *ngIf="mtd.selected==1">{{mtd.shipping_name}}</span>
                     </ion-note>
                 </ion-item>
-                <ion-item mode="ios" detail-push *ngIf="item.no_use_bonus?.length!=0" (click)="openOrderModalCouponPage(item)">
-                    优惠券选择
+                <ion-item mode="ios" detail-push *ngIf="item?.shipping?.length==0">
+                    配送方式
                     <ion-note item-right>
-                        可使用{{item.no_use_bonus?.length}}个优惠券
+                        <span>无配送方式</span>
                     </ion-note>
                 </ion-item>
-                <ion-item mode="ios" detail-push *ngIf="item.no_use_bonus?.length==0">
+                <ion-item mode="ios" detail-push *ngIf="item.use_bonus?.length!=0" (click)="openOrderModalCouponPage(item)">
+                    优惠券选择
+                    <ion-note item-right>
+                        可使用{{item.use_bonus?.length}}个优惠券
+                    </ion-note>
+                </ion-item>
+                <ion-item mode="ios" detail-push *ngIf="item.use_bonus?.length==0">
                     优惠券选择
                     <ion-note item-right>
                         无可用优惠券
                     </ion-note>
                 </ion-item>
                 <div class="input">
-                    <input type="text" placeholder="商家备注">
+                    <input type="text" [(ngModel)]="item.beizhu" placeholder="商家备注">
                 </div>
             </div>
-            <div class="result">小计：<span class="price">{{item.goods_subtotal}}</span> 共5？？？件</div>
+            <div class="result">小计：<span class="price">{{item.goods_subtotal}}</span> 共{{item.count_goods}}件</div>
         </div>
     </ion-list>
     <ion-item mode="ios" no-lines margin-right detail-push>
@@ -90,22 +107,22 @@
     <div class="background"></div>
     <div class="fore3">
         <div>
-            <span>购物金额小计：</span><span class="price">{{'¥'+data?.total?.formated_goods_price}}</span>
+            <span>购物金额小计：</span><span class="price">¥{{data?.total?.formated_goods_price}}</span>
         </div>
         <div>
             <span>+配送费用：</span><span>{{data?.total?.suppliers_shipping_fee_formated}}</span>
         </div>
         <div>
-            <span>+获赠积分：</span><span>{{data?.total?.will_get_give_rank_integral}}</span>
+            <span>+商品补贴：</span><span>¥{{data?.total?.formated_subsidy_price}}</span>
         </div>
         <div>
             <span>+运费补贴：</span><span>{{data?.total?.formated_shipping_subsidy}}</span>
         </div>
         <div>
-            <span>+商品补贴：</span><span>{{data?.total?.formated_subsidy_price}}</span>
+            <span>+优惠券：</span><span>¥{{data?.total?.bonus_formated}}</span>
         </div>
         <div>
-            <!--<span>+优惠券：</span><span>{{data?.total?.formated_subsidy_price}}</span>-->
+            <span>+获赠积分：</span><span>{{data?.total?.will_get_integral}}</span>
         </div>
     </div>
 </ion-content>

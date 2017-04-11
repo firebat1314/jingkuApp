@@ -27,58 +27,28 @@
 
 <ion-content [ngSwitch]="receiptTool">
     <div class="receiptSskFor" *ngSwitchCase="'receiptSskFor'">
-        <div class="background"></div>
-        <div class="an-invoice">
-            <div class="main">
-                <div class="type">
-                    <img src="./assets/icon/images/user_cener_2_03.png" alt="">
+        <ion-card *ngFor="let item of suoquList?.data">
+            <div class="an-invoice">
+                <div class="main">
+                    <div class="type" *ngIf="item.inv_type==1||item.inv_type==3">
+                        <img src="./assets/icon/images/user_cener_2_03.png" alt="">
+                    </div>
+                    <div class="type" *ngIf="item.inv_type==2||item.inv_type==3">
+                        <img src="./assets/icon/images/user_cener_2_06.png" alt="">
+                    </div>
+                    <div class="right">
+                        <div>{{item.name}}&nbsp;<span>(最少可开票金额{{item.min_money}})</span></div>
+                        <div>可开票总金额:{{item.order_amount}}</div>
+                    </div>
+                    <!--<img src="./assets/icon/images/user_cener_2_06.png" alt="">-->
                 </div>
-                <div class="right">
-                    <div>镜库网提供商&nbsp;<span>(最少可开票金额￥200.00)</span></div>
-                    <div>可开票总金额:￥500.00</div>
+                <div class="bottom">
+                    <button ion-button color="dark" (click)="goInvoiceAskFor1Page(item.suppliers_id)">索取</button>
                 </div>
-                <!--<img src="./assets/icon/images/user_cener_2_06.png" alt="">-->
             </div>
-            <div class="bottom">
-                <button ion-button color="dark" (click)="goInvoiceAskFor1Page()">索取</button>
-            </div>
-            <div class="background"></div>
-        </div>
-        <div class="an-invoice">
-            <div class="main">
-                <div class="type">
-                    <img src="./assets/icon/images/user_cener_2_03.png" alt="">
-                </div>
-                <div class="right">
-                    <div>镜库网提供商&nbsp;<span>(最少可开票金额￥200.00)</span></div>
-                    <div>可开票总金额:￥500.00</div>
-                </div>
-                <!--<img src="./assets/icon/images/user_cener_2_06.png" alt="">-->
-            </div>
-            <div class="bottom">
-                <button ion-button color="dark" (click)="goInvoiceAskFor1Page()">索取</button>
-            </div>
-            <div class="background"></div>
-        </div>
-        <div class="an-invoice">
-            <div class="main">
-                <div class="type">
-                    <img src="./assets/icon/images/user_cener_2_06.png" alt="">
-                </div>
-                <div class="right">
-                    <div>镜库网提供商&nbsp;<span>(最少可开票金额￥200.00)</span></div>
-                    <div>可开票总金额:￥500.00</div>
-                </div>
-                <!--<img src="./assets/icon/images/user_cener_2_06.png" alt="">-->
-            </div>
-            <div class="bottom">
-                <button ion-button color="dark" (click)="goInvoiceAskFor1Page()">索取</button>
-            </div>
-            <div class="background"></div>
-        </div>
+        </ion-card>
     </div>
     <div class="receiptList" *ngSwitchCase="'receiptList'">
-
         <div class="head">
             <div class="reminder">
                 <div>
@@ -100,25 +70,22 @@
                 </div>
             </div>
         </div>
-        <!--<button ion-button><ion-icon name="md-calendar"></ion-icon></button>
-            <button ion-button>搜索</button>-->
-        <div class="background"></div>
-        <ion-list padding-left no-margin>
+        <ion-list padding-left no-margin *ngFor="let item of invoiceList?.data">
             <div class="fore">
                 <span class="name">商家名称：</span>
-                <span class="value">镜库网</span>
+                <span class="value">{{item.suppliers_name}}</span>
             </div>
             <div class="fore">
                 <span class="name">发票金额：</span>
-                <span class="value">镜库网</span>
+                <span class="value">{{item.money}}</span>
             </div>
             <div class="fore">
                 <span class="name">申请时间：</span>
-                <span class="value">2.15-5-16</span>
+                <span class="value">{{item.addtime}}</span>
             </div>
             <div class="fore">
                 <span class="name">发票抬头：</span>
-                <span class="value">镜库网</span>
+                <span class="value">{{item.payee}}</span>
             </div>
             <div class="fore">
                 <span class="name">收取方式：</span>
@@ -126,67 +93,39 @@
             </div>
             <div class="fore">
                 <span class="name">状态</span>
-                <span class="value" style="color: #526bb5;">未审核</span>
+                <span class="value" style="color: #526bb5;">{{item.status}}</span>
             </div>
         </ion-list>
-
-        <div class="background"></div>
-        <ion-list padding-left no-margin>
-            <div class="fore">
-                <span class="name">商家名称：</span>
-                <span class="value">镜库网</span>
-            </div>
-            <div class="fore">
-                <span class="name">发票金额：</span>
-                <span class="value">镜库网</span>
-            </div>
-            <div class="fore">
-                <span class="name">申请时间：</span>
-                <span class="value">2.15-5-16</span>
-            </div>
-            <div class="fore">
-                <span class="name">发票抬头：</span>
-                <span class="value">镜库网</span>
-            </div>
-            <div class="fore">
-                <span class="name">收取方式：</span>
-                <span class="value">快递</span>
-            </div>
-            <div class="fore">
-                <span class="name">状态</span>
-                <span class="value">镜库网</span>
-            </div>
-        </ion-list>
-        <div class="background"></div>
     </div>
     <div class="receiptInfo" *ngSwitchCase="'receiptInfo'">
         <div class="head">
             <button ion-button color="blueBtn" (click)="goInvoiceQualificationPage()">新增发票资质</button>发票资质审核通过后不可删除修改
         </div>
-        <div class="background"></div>
-        <div class="an-invoice">
+        <div class="an-invoice" *ngFor="let item of invRoleList.data">
             <ion-list padding-left no-margin>
                 <div class="fore">
-                    <span class="name">发票类型：</span>
-                    <span class="value">镜库网</span>
+                    <span class="name">开具类型：</span>
+                    <span class="value" *ngIf="item.type==1">个人</span>
+                    <span class="value" *ngIf="item.type==2">企业</span>
                 </div>
                 <div class="fore">
                     <span class="name">发票抬头：</span>
-                    <span class="value">镜库网</span>
+                    <span class="value">{{item.payee}}</span>
                 </div>
                 <div class="fore">
-                    <span class="name">申请时间：</span>
-                    <span class="value">2.15-5-16</span>
+                    <span class="name">发票类型：</span>
+                    <span class="value" *ngIf="item.inv_type==1">普通发票</span>
+                    <span class="value" *ngIf="item.inv_type==2">增值税专用发票</span>
                 </div>
                 <div class="fore">
                     <span class="name">资质审核：</span>
-                    <span class="value">镜库网</span>
+                    <span class="value" *ngIf="item.if_check==1">已审核</span>
+                    <span class="value" *ngIf="item.if_check==2">未审核</span>
                 </div>
             </ion-list>
             <div class="bottom">
                 <button ion-button color="dark">修改</button>
             </div>
         </div>
-        <div class="background"></div>
     </div>
 </ion-content>

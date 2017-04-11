@@ -1,5 +1,10 @@
 page-invoice-ask-for1 {
+    .content {
+        background: #f7f7f7;
+    }
     .search {
+        background: #fff;
+        margin-bottom: 10px;
         color: #808080;
         overflow: hidden;
         &.active {
@@ -49,13 +54,13 @@ page-invoice-ask-for1 {
                         background: #526bb5 url(../assets/icon/images/user_cener_1_39_03.png) center center/18px 18px no-repeat;
                         top: -1px;
                         right: -1px;
-                        z-index: -1;
                         width: 36px;
                         color: #fff;
                         height: calc(100% + 2px);
                     }
                     ion-datetime {
                         padding: 10px 8px 10px 16px;
+                        z-index: 2;
                     }
                 }
             }
@@ -84,6 +89,7 @@ page-invoice-ask-for1 {
     }
     .dingdan-wrap {
         background: #f7f7f7;
+        margin-bottom: 10px;
         overflow: hidden;
         border-bottom: 1px solid map-get($colors, border);
         .dingdan {

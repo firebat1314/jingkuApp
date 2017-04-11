@@ -22,9 +22,7 @@ export class UserData {
 
     public get(url: string, paramObj?: any) {
         // this.native.showLoading();
-        // this.LoadingDelay();
         let userToken = localStorage.getItem('token');
-        // console.log(userToken)
         var headers = new Headers();
         headers.append('Authorization', 'Basic ' + btoa(userToken + ':'));
         let options = new RequestOptions({ headers: headers });
@@ -35,7 +33,6 @@ export class UserData {
     }
     public post(url: string, paramObj: any) {
         // this.native.showLoading();
-        // this.LoadingDelay();
         let userToken: string = localStorage.getItem('token');
         let headers = new Headers();
         headers.append('Authorization', 'Basic ' + btoa(userToken + ':'));
@@ -47,7 +44,6 @@ export class UserData {
     }
     public postBody(url: string, paramObj: any) {
         // this.native.showLoading();
-        // this.LoadingDelay();
         let userToken = localStorage.getItem('token');
         let headers = new Headers();
         headers.append('Authorization', 'Basic ' + btoa(userToken + ':'));
@@ -93,13 +89,6 @@ export class UserData {
         console.log(error);
 
         return { success: false, msg: msg };
-    }
-    LoadingDelay() {
-        if (this.showToastTime) {
-            this.native.showLoading();
-            this.showToastTime = false;
-        }
-        setTimeout(() => this.showToastTime = true, 2000);
     }
     myAlert(msg) {
         // this.native.showToast(msg);
