@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
 import { LoginPage } from '../../login/login';
 import { SignupThirdPage } from '../signup-third/signup-third';
+import { HttpService } from "../../../providers/http-service";
 
 /*
   Generated class for the SignupSecond page.
@@ -14,8 +15,24 @@ import { SignupThirdPage } from '../signup-third/signup-third';
   templateUrl: 'signup-second.html'
 })
 export class SignupSecondPage {
-
-  constructor(public navCtrl: NavController, public navParams: NavParams) { }
+  formData = {
+    true_name: '',
+    qq: '',
+    company: '',
+    province: '',
+    city: '',
+    district: '',
+    zhizhao: ''
+  }
+  constructor(
+    public navCtrl: NavController,
+    public navParams: NavParams,
+    public httpService: HttpService
+  ) {
+    this.httpService.changeRegion().then((res) => {
+      console.log(res);
+    })
+  }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad SignupSecondPage');
@@ -26,6 +43,11 @@ export class SignupSecondPage {
   }
 
   toThirdPage() {
-    this.navCtrl.push(SignupThirdPage);
+    this.httpService.signupTwo(this.formData).then((res) => {
+      console.log(res)
+      if (res.status == 1) {
+        this.navCtrl.push(SignupThirdPage);
+      }
+    })
   }
 }

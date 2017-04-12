@@ -18,7 +18,7 @@
         <ion-refresher-content refreshingSpinner="1" pullingIcon="0"></ion-refresher-content>
     </ion-refresher>
 
-    <nothing *ngIf="collectionShop?.count=='0'" title="暂无收藏" text="去收藏你喜欢的店铺吧~" backgroundImg="url(../assets/icon/images/homepage_42_03.png)"></nothing>
+    <nothing *ngIf="collectionShop?.count=='0'" title="暂无收藏" text="去收藏你喜欢的店铺吧~" backgroundImg="url(./assets/icon/images/homepage_42_03.png)"></nothing>
     <ion-list *ngIf="collectionShop?.count!='0'">
         <div class="item-wrap" *ngFor="let item of collectionShop?.data;let i = index">
             <div margin-left [ngClass]="{'activein':showCheckBox}" *ngIf="showCheckBox">

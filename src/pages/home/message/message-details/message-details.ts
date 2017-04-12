@@ -1,25 +1,22 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
-import { MessageDetailsPage } from "./message-details/message-details";
 
 /*
-  Generated class for the Message page.
+  Generated class for the MessageDetails page.
 
   See http://ionicframework.com/docs/v2/components/#navigation for more info on
   Ionic pages and navigation.
 */
 @Component({
-  selector: 'page-message',
-  templateUrl: 'message.html'
+  selector: 'page-message-details',
+  templateUrl: 'message-details.html'
 })
-export class MessagePage {
+export class MessageDetailsPage {
 
   constructor(public navCtrl: NavController, public navParams: NavParams) {}
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad MessagePage');
+    console.log('ionViewDidLoad MessageDetailsPage');
   }
-  goMessageDetailsPage(){
-    this.navCtrl.push(MessageDetailsPage)
-  }
+
 }

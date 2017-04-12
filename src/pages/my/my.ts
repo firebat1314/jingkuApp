@@ -18,6 +18,7 @@ import { CouponPage } from "./coupon/coupon";
 import { AccountJifenPage } from "./account-jifen/account-jifen";
 import { AccountBalancePage } from "./account-balance/account-balance";
 import { DredgeMoreCityPage } from "../home/particulars/dredge-more-city/dredge-more-city";
+import { MessagePage } from "../home/message/message";
 
 
 @Component({
@@ -80,5 +81,8 @@ export class MyPage {
   }
   goSettingPage() {
     this.navCtrl.push(SettingPage)
+  }
+  goMessagePage(){
+    this.navCtrl.push(MessagePage)
   }
 }

@@ -1,3 +1,11 @@
 page-message {
-
+    .item.item-block {
+        border-bottom: 1px solid #dedede;
+        .item-inner {
+            border-bottom: none;
+        }
+        ion-note {
+            align-self: flex-start;
+        }
+    }
 }

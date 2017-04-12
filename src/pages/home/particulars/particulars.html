@@ -274,7 +274,7 @@
     <div class="main">
         <div class="left" [ngSwitch]="getGoodsInfo?.is_collect">
             <div>
-                <ion-icon style="font-weight: 700;" name="mess"></ion-icon>
+                <ion-icon style="font-weight: 700;" name="mess" (click)="goAccountServicePage()"></ion-icon>
                 <span>客服</span>
             </div>
             <div *ngSwitchCase="1" (click)="beCareFor()">

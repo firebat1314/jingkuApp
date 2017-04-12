@@ -49,6 +49,9 @@ export class HttpService {
   signupFirst(data?: Object) {//注册
     return this.http.post(this.ip + '/Login/register/step/one', data)
   }
+  signupTwo(data?: Object) {//注册2
+    return this.http.post(this.ip + '/Login/register/step/two', data)
+  }
   getVerificationImg(data?: Object) {//图片验证码
     return this.http.post(this.ip + '/Login/verify', data)
   }

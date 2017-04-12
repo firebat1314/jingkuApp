@@ -1,3 +1,15 @@
 page-account-helper {
-
+    .content {
+        background: #f7f7f7;
+    }
+    .item-divider-md {
+        color: #000;
+        font-size: 2rem;
+        img {
+            width: 20px;
+        }
+    }
+    .item-ios {
+        padding-left: 40px;
+    }
 }

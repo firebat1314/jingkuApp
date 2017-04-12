@@ -7,6 +7,8 @@ import { Native } from "../../../providers/native";
 
 import { ParticularsModalPage } from "./particulars-modal/particulars-modal"
 import { ParticularsModalAttrPage } from "./particulars-modal-attr/particulars-modal-attr";
+import { AccountServicePage } from "../../my/account-service/account-service";
+
 /*
   Generated class for the Particulars page.
 
@@ -53,6 +55,7 @@ export class ParticularsPage {
   }
   ngAfterViewInit() { }
   getHttpDetails(finished?) {
+    this.native.showLoading();
     this.http.getGoodsGallery({ goods_id: this.goodsId }).then((res) => {
       console.log("商品详情的相册图片轮播", res);
       if (res.status == 1) { this.getGoodsGallery = res.data; }
@@ -83,6 +86,7 @@ export class ParticularsPage {
                       this.http.getCategoryRecommendGoodsHot({}).then((res) => {
                         console.log('为你推荐：', res)
                         if (res.status == 1) { this.getCategoryRecommendGoodsHot = res.data; }
+                        this.native.hideLoading();
                         if (finished) { finished() }
                       })
                     });
@@ -188,5 +192,7 @@ export class ParticularsPage {
   openCallNumber() {
     this.native.openCallNumber(this.getSupplierInfo.mobile, true);
   }
-
+  goAccountServicePage(){
+    this.navCtrl.push(AccountServicePage)
+  }
 }

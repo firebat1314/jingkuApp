@@ -18,6 +18,7 @@ import { CouponPage } from "../pages/my/coupon/coupon";
 import { AccountJifenPage } from "../pages/my/account-jifen/account-jifen";
 import { AllOrdersPage } from "../pages/my/all-orders/all-orders";
 import { WriteOrdersPage } from "../pages/my/all-orders/write-orders/write-orders";
+import { SignupSecondPage } from "../pages/signup/signup-second/signup-second";
 
 
 @Component({

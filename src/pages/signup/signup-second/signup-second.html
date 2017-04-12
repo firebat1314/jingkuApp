@@ -19,27 +19,27 @@
         <ion-list class="list-wrap">
             <ion-item>
                 <ion-label color="primary" fixed><span ion-text color="google">*</span>　姓名</ion-label>
-                <ion-input required clearInput [(ngModel)]="signupTwoForm.true_name" name="true_name" type="text" placeholder="请输入真实姓名"></ion-input>
+                <ion-input required clearInput [(ngModel)]="formData.true_name" name="true_name" type="text" placeholder="请输入真实姓名"></ion-input>
             </ion-item>
             <ion-item>
                 <ion-label color="primary" fixed>　 QQ</ion-label>
-                <ion-input required clearInput [(ngModel)]="signupTwoForm.qq" name="qq" type="number" placeholder="请输入你的QQ号"></ion-input>
+                <ion-input required clearInput [(ngModel)]="formData.qq" name="qq" type="number" placeholder="请输入你的QQ号"></ion-input>
             </ion-item>
             <ion-item>
                 <ion-label color="primary" fixed><span ion-text color="google">*</span>　公司名称</ion-label>
-                <ion-input required clearInput [(ngModel)]="signupTwoForm.company" name="company" type="text" placeholder="请输入你的公司名称"></ion-input>
+                <ion-input required clearInput [(ngModel)]="formData.company" name="company" type="text" placeholder="请输入你的公司名称"></ion-input>
             </ion-item>
             <ion-item class="select-wrapper">
-                <ion-select mode="ios" required [(ngModel)]="province" name="province" placeholder="选择省" cancelText="取消" okText="确定" [selectOptions]="{subTitle:'省'}">
+                <ion-select mode="ios" required [(ngModel)]="formData.province" name="province" placeholder="选择省" cancelText="取消" okText="确定" [selectOptions]="{subTitle:'省'}">
                     <ion-option value="f" selected="true" checked="true">北京市</ion-option>
                     <ion-option value="m">宜昌市</ion-option>
                 </ion-select>
-                <ion-select mode="ios" required [(ngModel)]="city" name="city" placeholder="选择市" cancelText="取消" okText="确定" [selectOptions]="{subTitle:'市'}">
+                <ion-select mode="ios" required [(ngModel)]="formData.city" name="city" placeholder="选择市" cancelText="取消" okText="确定" [selectOptions]="{subTitle:'市'}">
                     <ion-option value="bacon">北京市</ion-option>
                     <ion-option value="olives">北京</ion-option>
                     <ion-option value="xcheese">北京</ion-option>
                 </ion-select>
-                <ion-select mode="ios" required [(ngModel)]="district" name="district" placeholder="选择区" cancelText="取消" okText="确定" [selectOptions]="{subTitle:'区'}">
+                <ion-select mode="ios" required [(ngModel)]="formData.district" name="district" placeholder="选择区" cancelText="取消" okText="确定" [selectOptions]="{subTitle:'区'}">
                     <ion-option value="bacon">Bacon</ion-option>
                     <ion-option value="olives">北京</ion-option>
                     <ion-option value="xcheese">北京</ion-option>
@@ -58,12 +58,12 @@
             </ion-item>
             <ion-item>
                 <ion-label color="primary" fixed><span ion-text color="google">*</span>　推荐人编码</ion-label>
-                <ion-input clearInput required [(ngModel)]="signupTwoForm.cpassword" name="cpassword" type="text" placeholder="请填写推荐人编码"></ion-input>
+                <ion-input clearInput required type="text" placeholder="请填写推荐人编码"></ion-input>
             </ion-item>
         </ion-list>
         <div class="tool" padding-horizontal>
             <div class="agree">
-                <ion-checkbox mode="ios" color="danger"></ion-checkbox>&nbsp;&nbsp;我已同意并阅读<span ion-text color="google">《用户协议》</span>
+                <ion-checkbox [(ngModel)]="agree" name="agree" mode="ios" color="danger"></ion-checkbox>&nbsp;&nbsp;我已同意并阅读<span ion-text color="google">《用户协议》</span>
             </div>
             <div class="login">
                 <span class="text">已有账号？</span>
