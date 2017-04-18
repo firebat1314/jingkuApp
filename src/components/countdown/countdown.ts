@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, OnDestroy, AfterViewInit } from '@angular/core';
+import { Component, Input, OnDestroy, AfterViewInit } from '@angular/core';
 
 /*
   Generated class for the Countdown component.
@@ -22,13 +22,13 @@ export class CountdownComponent implements AfterViewInit, OnDestroy {
   private minute: number;
   // 秒数差
   private second: number;
-  
+
   private set diff(val) {
     let date = new Date(val)
-    this.day = date.getDate()||0;
-    this.hour = date.getHours()||0;
-    this.minute = date.getMinutes()||0;
-    this.second = date.getSeconds()||0;
+    this.day = date.getDate() || 0;
+    this.hour = date.getHours() || 0;
+    this.minute = date.getMinutes() || 0;
+    this.second = date.getSeconds() || 0;
   }
 
   // 定时器

@@ -1,12 +1,13 @@
 import { NgModule, ErrorHandler } from '@angular/core';
 import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
 import { Storage } from '@ionic/storage';
-import { HttpModule } from '@angular/http';
+import { HttpModule }    from '@angular/http';
 import { BrowserModule } from "@angular/platform-browser";
 /*————————————————————————————————插件————————————————————————————————*/
 import { IonicImageViewerModule } from 'ionic-img-viewer';
-import { IonicImageLoader } from 'ionic-image-loader';
-import { CityPickerModule  } from "ionic2-city-picker/dist/city-picker.module";
+import { CityPickerModule } from "ionic2-city-picker/dist/city-picker.module";
+import { Alipay } from '@ionic-native/alipay';
+
 /*————————————————————————————————base页————————————————————————————————*/
 import { MyApp } from './app.component';
 import { TabsPage } from '../pages/tabs/tabs';
@@ -40,6 +41,7 @@ import { MessagePage } from '../pages/home/message/message';
 import { ParticularsPage } from '../pages/home/particulars/particulars';
 import { ParticularsModalPage } from '../pages/home/particulars/particulars-modal/particulars-modal';
 import { ParticularsModalAttrPage } from "../pages/home/particulars/particulars-modal-attr/particulars-modal-attr";
+import { PresellPage } from "../pages/my/presell/presell";
 
 import { DredgeMoreCityPage } from '../pages/home/particulars/dredge-more-city/dredge-more-city';
 import { PopoverContentPage } from "../pages/home/particulars/dredge-more-city/popover-content/popover-content";
@@ -54,6 +56,7 @@ import { MoreBrandPage } from "../pages/classify/more-brand/more-brand";
 import { AccountManagementPage } from "../pages/my/account-management/account-management";
 import { ShippingAddressPage } from "../pages/my/account-management/shipping-address/shipping-address";
 import { AccountInfoPage } from "../pages/my/account-management/account-info/account-info";
+import { AddressPage } from "../pages/my/account-management/account-info/address/address";
 import { MemberCenterPage } from "../pages/my/account-management/member-center/member-center";
 import { AccountSecurityPage } from "../pages/my/account-management/account-security/account-security";
 import { ChangePhoneNumberPage } from "../pages/my/account-management/account-security/change-phone-number/change-phone-number";
@@ -123,13 +126,13 @@ import { MessageDetailsPage } from "../pages/home/message/message-details/messag
     /*——————————————————购物车——————————————————*/
     CarPage,
     /*——————————————————home栏——————————————————*/
-    HomePage, CityPage, SearchPage, DetailsPage, BrandListPage, AttentionPage, FastbuyPage, GlassesDesignPage, IntegralstorePage, RechargePage, WhitebarPage, DiscountCouponPage, MessagePage, ParticularsPage, ParticularsModalPage, DredgeMoreCityPage, PopoverContentPage, ParticularsModalAttrPage,MessageDetailsPage,
+    HomePage, CityPage, SearchPage, DetailsPage, BrandListPage, AttentionPage, FastbuyPage, GlassesDesignPage, IntegralstorePage, RechargePage, WhitebarPage, DiscountCouponPage, MessagePage, ParticularsPage, ParticularsModalPage, DredgeMoreCityPage, PopoverContentPage, ParticularsModalAttrPage, MessageDetailsPage, PresellPage,
     /*——————————————————分类栏——————————————————*/
     ClassifyPage, SubnavPage1Page, SubnavPage2Page, MoreBrandPage,
     /*——————————————————我的栏——————————————————*/
-    MyPage, SettingPage, AccountManagementPage, AccountSecurityPage, AllOrdersPage, CouponPage, MemberCenterPage, PeceiptPage, AccountAssetPage, AccountProcessPage, AccountAreaApplicationPage, AccountCollectGoodsPage, AccountCollectStorePage, AccountHistoryPage, AccountServicePage, AccountHelperPage, AccountInfoPage, InvoiceQualificationPage, InvoiceAskFor2Page, InvoiceAskFor1Page, AboutUsPage, ShippingAddressPage, ChangePhoneNumberPage, ChangePasswordPage, RealnamePage, QqPage, AddShippingAddressPage, CompanynamePage,AccountJifenPage,AccountBalancePage,AccountWithdrawPage,AccountMoneyDetailPage,AccountWithdrawSucceedPage,PaymentMethodPage,OrdersDetailPage,WriteOrdersPage,OrderModalShippingPage,OrderModalDistributionPage,OrderModalCouponPage,OrderModalPaymentPage,
+    MyPage, SettingPage, AccountManagementPage, AccountSecurityPage, AllOrdersPage, CouponPage, MemberCenterPage, PeceiptPage, AccountAssetPage, AccountProcessPage, AccountAreaApplicationPage, AccountCollectGoodsPage, AccountCollectStorePage, AccountHistoryPage, AccountServicePage, AccountHelperPage, AccountInfoPage, InvoiceQualificationPage, InvoiceAskFor2Page, InvoiceAskFor1Page, AboutUsPage, ShippingAddressPage, ChangePhoneNumberPage, ChangePasswordPage, RealnamePage, QqPage, AddShippingAddressPage, CompanynamePage, AccountJifenPage, AccountBalancePage, AccountWithdrawPage, AccountMoneyDetailPage, AccountWithdrawSucceedPage, PaymentMethodPage, OrdersDetailPage, WriteOrdersPage, OrderModalShippingPage, OrderModalDistributionPage, OrderModalCouponPage, OrderModalPaymentPage,AddressPage,
     /*——————————————————组件——————————————————*/
-    SingleCardComponent, MyToolbarComponent, SingleFoodsItemComponent, MeunItemComponent, CountdownComponent, CountInputComponent, ImgTabs2Component,NothingComponent,
+    SingleCardComponent, MyToolbarComponent, SingleFoodsItemComponent, MeunItemComponent, CountdownComponent, CountInputComponent, ImgTabs2Component, NothingComponent,
     DirectiveTestPage,
     /*——————————————————指令——————————————————*/
     MyDirective, ImgTabs,
@@ -142,16 +145,16 @@ import { MessageDetailsPage } from "../pages/home/message/message-details/messag
       tabsHideOnSubPages: true,
       tabsPlacement: 'bottom',
       mode: 'md',
-      activator:"highlight"
+      activator: "highlight"
     }, {
         links: [
           { component: HomePage, segment: 'home' },
           { component: CityPage, segment: 'city' }
         ]
       }),
+    HttpModule,
     BrowserModule,
     IonicImageViewerModule,
-    IonicImageLoader,
     CityPickerModule
   ],
   bootstrap: [IonicApp],
@@ -165,15 +168,15 @@ import { MessageDetailsPage } from "../pages/home/message/message-details/messag
     /*——————————————————购物车——————————————————*/
     CarPage,
     /*——————————————————home栏——————————————————*/
-    HomePage, CityPage, SearchPage, DetailsPage, BrandListPage, AttentionPage, FastbuyPage, GlassesDesignPage, IntegralstorePage, RechargePage, WhitebarPage, DiscountCouponPage, MessagePage, ParticularsPage, ParticularsModalPage, DredgeMoreCityPage, PopoverContentPage,ParticularsModalAttrPage,MessageDetailsPage,
+    HomePage, CityPage, SearchPage, DetailsPage, BrandListPage, AttentionPage, FastbuyPage, GlassesDesignPage, IntegralstorePage, RechargePage, WhitebarPage, DiscountCouponPage, MessagePage, ParticularsPage, ParticularsModalPage, DredgeMoreCityPage, PopoverContentPage, ParticularsModalAttrPage, MessageDetailsPage, PresellPage,
     /*——————————————————分类栏——————————————————*/
     ClassifyPage, SubnavPage1Page, SubnavPage2Page, MoreBrandPage,
     /*——————————————————我的栏——————————————————*/
-    MyPage, SettingPage, AccountManagementPage, AccountSecurityPage, AllOrdersPage, CouponPage, MemberCenterPage, PeceiptPage, AccountAssetPage, AccountProcessPage, AccountAreaApplicationPage, AccountCollectGoodsPage, AccountCollectStorePage, AccountHistoryPage, AccountServicePage, AccountHelperPage, AccountInfoPage, InvoiceQualificationPage, InvoiceAskFor2Page, InvoiceAskFor1Page, AboutUsPage, ShippingAddressPage, ChangePhoneNumberPage, ChangePasswordPage, RealnamePage, QqPage, AddShippingAddressPage, CompanynamePage,AccountJifenPage,AccountWithdrawPage,AccountBalancePage,AccountMoneyDetailPage,AccountWithdrawSucceedPage,PaymentMethodPage,OrdersDetailPage,WriteOrdersPage,OrderModalShippingPage,OrderModalDistributionPage,OrderModalCouponPage,OrderModalPaymentPage,
+    MyPage, SettingPage, AccountManagementPage, AccountSecurityPage, AllOrdersPage, CouponPage, MemberCenterPage, PeceiptPage, AccountAssetPage, AccountProcessPage, AccountAreaApplicationPage, AccountCollectGoodsPage, AccountCollectStorePage, AccountHistoryPage, AccountServicePage, AccountHelperPage, AccountInfoPage, InvoiceQualificationPage, InvoiceAskFor2Page, InvoiceAskFor1Page, AboutUsPage, ShippingAddressPage, ChangePhoneNumberPage, ChangePasswordPage, RealnamePage, QqPage, AddShippingAddressPage, CompanynamePage, AccountJifenPage, AccountWithdrawPage, AccountBalancePage, AccountMoneyDetailPage, AccountWithdrawSucceedPage, PaymentMethodPage, OrdersDetailPage, WriteOrdersPage, OrderModalShippingPage, OrderModalDistributionPage, OrderModalCouponPage, OrderModalPaymentPage,AddressPage,
     /*——————————————————组件——————————————————*/
-    SingleCardComponent, MyToolbarComponent, SingleFoodsItemComponent, MeunItemComponent, CountdownComponent, CountInputComponent, ImgTabs2Component,NothingComponent,
+    SingleCardComponent, MyToolbarComponent, SingleFoodsItemComponent, MeunItemComponent, CountdownComponent, CountInputComponent, ImgTabs2Component, NothingComponent,
     DirectiveTestPage
   ],
-  providers: [{ provide: ErrorHandler, useClass: IonicErrorHandler }, Storage, UserData, Native, HttpService]
+  providers: [{ provide: ErrorHandler, useClass: IonicErrorHandler }, UserData, Native, HttpService,Storage,Alipay]
 })
 export class AppModule { }

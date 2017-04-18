@@ -14,41 +14,46 @@
 
 
 <ion-content>
-    <button mode="ios" ion-item>
-        <h2>头像</h2>
-        <ion-thumbnail item-right>
-             <img style="border-radius: 50%;" src="./assets/icon/images/brand_1_10.jpg">
-        </ion-thumbnail>
-    </button>
-    <ion-item mode="ios">
-        用户名
-        <ion-note item-right>浪迹天涯</ion-note>
-    </ion-item>
-    <ion-item [navPush]="RealnamePage" mode="ios" detail-push>
-        姓名
-        <ion-note item-right>浪迹天涯</ion-note>
-    </ion-item>
-    <ion-item mode="ios">
-        手机号
-        <ion-note item-right>浪迹天涯</ion-note>
-    </ion-item>
-    <ion-item [navPush]="QqPage" mode="ios" detail-push>
-        QQ
-        <ion-note item-right>浪迹天涯</ion-note>
-    </ion-item>
+    <ion-list no-margin>
+
+        <ion-item mode="ios">
+            <h2>头像</h2>
+            <ion-thumbnail item-right>
+                <img style="border-radius: 50%;" src="{{userInfo?.data?.user_info?.avatar}}">
+            </ion-thumbnail>
+        </ion-item>
+        <ion-item mode="ios">
+            用户名
+            <ion-note item-right>{{userInfo?.data?.user_info?.user_name}}</ion-note>
+        </ion-item>
+        <ion-item [navPush]="RealnamePage" [navParams]="userInfo?.data?.user_info?.true_name" mode="ios" detail-push>
+            姓名
+            <ion-note item-right>{{userInfo?.data?.user_info?.true_name}}</ion-note>
+        </ion-item>
+        <ion-item mode="ios">
+            手机号
+            <ion-note item-right>{{userInfo?.data?.user_info?.mobile_phone | phonenumberfilter}}</ion-note>
+        </ion-item>
+        <ion-item [navPush]="QqPage" [navParams]="userInfo?.data?.user_info?.qq" mode="ios" detail-push>
+            QQ
+            <ion-note item-right>{{userInfo?.data?.user_info?.qq}}</ion-note>
+        </ion-item>
+    </ion-list>
     <div class="background"></div>
-    <ion-item [navPush]="CompanynamePage" mode="ios" detail-push>
-        公司名称
-        <ion-note item-right>浪迹天涯</ion-note>
-    </ion-item>
-    <ion-item mode="ios" detail-push>
-        所在地
-        <ion-note item-right>浪迹天涯</ion-note>
-    </ion-item>
-    <ion-item mode="ios">
-        营业执照
-        <div item-content style="width: 12rem;padding: 10px;">
-            <img src="./assets/icon/images/brand_1_10.jpg">
-        </div>
-    </ion-item>
+    <ion-list no-margin>
+        <ion-item [navPush]="CompanynamePage" [navParams]="userInfo?.data?.user_info?.company" mode="ios" detail-push>
+            公司名称
+            <ion-note item-right>{{userInfo?.data?.user_info?.company}}</ion-note>
+        </ion-item>
+        <ion-item [navPush]="AddressPage" [navParams]="userInfo?.data?.user_info?.address" mode="ios" detail-push>
+            所在地
+            <ion-note item-right>{{userInfo?.data?.user_info?.address}}</ion-note>
+        </ion-item>
+        <ion-item mode="ios">
+            营业执照
+            <div item-content style="width: 12rem;padding: 10px;">
+                <img src="{{userInfo?.data?.user_info?.zhizhao}}">
+            </div>
+        </ion-item>
+    </ion-list>
 </ion-content>

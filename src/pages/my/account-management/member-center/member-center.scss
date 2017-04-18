@@ -11,6 +11,7 @@ page-member-center {
             color: #fff;
             >img {
                 width: 65px;
+                height: 65px;
             }
             h2 {
                 margin-top: 0.8rem;
@@ -41,7 +42,7 @@ page-member-center {
                     top: 0;
                     left: 0;
                     height: 100%;
-                    width: 50%;
+                    width: 0%;
                     transition: width 500ms ease-in-out 1000ms;
                 }
             }

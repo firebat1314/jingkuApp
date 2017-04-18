@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams, ViewController } from 'ionic-angular';
+import { NavController, NavParams, ViewController, Events } from 'ionic-angular';
+import { HttpService } from "../../../../../providers/http-service";
 
 /*
   Generated class for the OrderModalShipping page.
@@ -13,7 +14,14 @@ import { NavController, NavParams, ViewController } from 'ionic-angular';
 })
 export class OrderModalShippingPage {
   data = this.navParams.get('data');
-  constructor(public navCtrl: NavController, public navParams: NavParams,public viewCtrl:ViewController) {
+  callBack = this.navParams.get('callBack')
+  constructor(
+    public navCtrl: NavController,
+    public navParams: NavParams,
+    public viewCtrl: ViewController,
+    public httpService: HttpService,
+    private events:Events
+  ) {
     console.log(this.data)
   }
 
@@ -21,6 +29,19 @@ export class OrderModalShippingPage {
     console.log('ionViewDidLoad OrderModalShippingPage');
   }
   dismiss(data?: any) {
-    this.viewCtrl.dismiss(data);
+    // this.viewCtrl.dismiss(data);
+    this.httpService.changeConsignee({ address_id: data.address_id }).then((res) => {
+      console.log(res);
+      if (res.status == 1) {
+        this.callBack(data).then((res) => {
+          this.navCtrl.pop();
+          this.events.publish('writeOrder:refresh');
+          console.log(res)
+        }, (err) => {
+          console.log(err)
+        })
+      }
+    })
+
   }
 }

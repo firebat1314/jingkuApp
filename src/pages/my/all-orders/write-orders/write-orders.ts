@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams, ModalController } from 'ionic-angular';
+import { NavController, NavParams, ModalController, Events } from 'ionic-angular';
 import { HttpService } from "../../../../providers/http-service";
 import { ShippingAddressPage } from "../../account-management/shipping-address/shipping-address";
 import { OrderModalShippingPage } from "./order-modal-shipping/order-modal-shipping";
@@ -25,14 +25,21 @@ export class WriteOrdersPage {
 
   commentArr: any = [];
   suppliers: any = [];
+
   constructor(
     public navCtrl: NavController,
     public navParams: NavParams,
     public httpService: HttpService,
     public modalCtrl: ModalController,
-
+    private events:Events
   ) {
     this.getHttpData();
+    this.events.subscribe('writeOrder:refresh',()=>{
+      this.getHttpData();
+    })
+  }
+  ngOnDestory(){
+    this.events.unsubscribe('writeOrder:refresh')
   }
   getHttpData() {
     this.httpService.checkout().then((res) => {
@@ -51,6 +58,8 @@ export class WriteOrdersPage {
     this.navCtrl.push(ShippingAddressPage)
   }
   openOrderModalShippingPage() {//收货地址
+    this.navCtrl.push(OrderModalShippingPage, { data: this.data.consignee_list, callBack: this.callBack }, { animation: 'ios-transition' });
+    /*console.log()
     let modal = this.modalCtrl.create(OrderModalShippingPage, { data: this.data.consignee_list });
     modal.onDidDismiss(data => {
       console.log('收货地址', data);
@@ -63,7 +72,26 @@ export class WriteOrdersPage {
         })
       }
     });
-    modal.present();
+    modal.present();*/
+  }
+  checkShipping(params) {
+    this.httpService.changeConsignee({ address_id: params.address_id }).then((res) => {
+      console.log(res);
+      if (res.status == 1) {
+        this.getHttpData();
+      }
+    })
+  }
+  callBack(params) {
+    return new Promise((resolve, reject) => {
+      if (typeof (params) != 'undefined') {
+        console.log('收货地址', params);
+        this.defaultShipping = params
+        resolve('ok')
+      } else {
+        reject('error')
+      }
+    })
   }
   openOrderModalDistributionPage(item) {//配送方式
     let modal = this.modalCtrl.create(OrderModalDistributionPage, { data: item.shipping });
@@ -123,9 +151,9 @@ export class WriteOrdersPage {
     }).then((res) => {
       console.log(res);
       if (res.status == 1) {
-        this.httpService.pay({log_id:res.log_id}).then((res)=>{
+        this.httpService.pay({ log_id: res.log_id }).then((res) => {
           console.log(res)
-          if(res.status==1){
+          if (res.status == 1) {
             this.goPaymentPage(res)
           }
         })

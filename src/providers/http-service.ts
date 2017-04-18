@@ -303,4 +303,11 @@ export class HttpService {
   updateInvPost(data?: Object) {//添加或编辑发票资质提交
     return this.http.post(this.ip + '/User/update_inv', data)
   }
+  editProfile(data?: Object) {//修改用户资料
+    return this.http.post(this.ip + '/User/profile', data)
+  }
+  editAvatar(data?: Object) {//修改头像
+    return this.http.post(this.ip + '/User/avatar', data)
+  }
+  
 }

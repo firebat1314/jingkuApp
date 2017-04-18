@@ -1,5 +1,5 @@
 import { Component, ViewChild } from '@angular/core';
-import { NavController, NavParams, Content, Slides, Searchbar, Nav } from 'ionic-angular';
+import { NavController, NavParams, Content, Searchbar, Nav } from 'ionic-angular';
 
 import { SubnavPage1Page } from './subnav-page1/subnav-page1'
 import { HttpService } from "../../providers/http-service";

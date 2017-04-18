@@ -5,10 +5,8 @@ import { Storage } from '@ionic/storage';
 
 // Add the RxJS Observable operators.
 import '../app/rxjs-operators';
-import { Observable } from 'rxjs/Observable';
 
 import { Native } from '../providers/native';
-import { LoginPage } from "../pages/login/login";
 
 @Injectable()
 export class UserData {

@@ -4,6 +4,7 @@ import { NavController, NavParams, ViewController } from 'ionic-angular';
 // import { CityPage } from "../../city/city"
 import { DredgeMoreCityPage } from '../dredge-more-city/dredge-more-city'
 import { HttpService } from "../../../../providers/http-service";
+import { Native } from "../../../../providers/native";
 /*
   Generated class for the ParticularsModal page.
 
@@ -15,37 +16,39 @@ import { HttpService } from "../../../../providers/http-service";
   templateUrl: 'particulars-modal.html'
 })
 export class ParticularsModalPage {
-  title:String;
-  value:number;
+  title: String;
+  value: number;
   getBonus;
   sendto;
   constructor(
     public navCtrl: NavController,
     public navParams: NavParams,
     public viewCtrl: ViewController,
-    public httpService:HttpService
-  ) { 
+    public httpService: HttpService,
+    public native: Native
+  ) {
     this.title = this.navParams.get('name');
     this.getBonus = this.navParams.get('getBonus');
     this.sendto = this.navParams.get('sendto');
   }
-  ngOnInit(){}
+  ngOnInit() { }
   ionViewDidLoad() {
     console.log('ionViewDidLoad ParticularsModalPage');
   }
-  numberIChange(value:number){
+  numberIChange(value: number) {
     this.value = value;
   }
-  dredgeMoreCity(){
+  dredgeMoreCity() {
     this.navCtrl.push(DredgeMoreCityPage)
   }
-  getPrivilege(is_get,type_id){
-    if(is_get==1){
-      console.log('已经领取过了')
-    }else if(is_get==0){
+  getPrivilege(is_get, type_id) {
+    if (is_get == 1) {
+      console.log('已经领取过了');
+    } else if (is_get == 0) {
       this.httpService.sendByUser({ type_id: type_id }).then((res) => {
         console.log("领取优惠券", res);
-        this.sendto.is_get=0;
+        this.native.showToast('领取优惠券成功')
+        this.sendto.is_get = 0;
       });
     }
   }

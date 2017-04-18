@@ -2,7 +2,6 @@ import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
 import { ChangePhoneNumberPage } from "./change-phone-number/change-phone-number";
 import { ChangePasswordPage } from "./change-password/change-password";
-import { PhoneNumberFilter } from "../../../../pipes/phone-number-filter";
 
 /*
   Generated class for the AccountSecurity page.

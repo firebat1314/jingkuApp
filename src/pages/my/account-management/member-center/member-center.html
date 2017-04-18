@@ -16,17 +16,19 @@
 <ion-content>
     <div class="head">
         <div class="head-content">
-            <img style="border-radius: 50%;" src="./assets/icon/images/brand_1_10.jpg">
-            <p>用户名：人走茶凉</p>
-            <h2>积分：100000</h2>
+            <img style="border-radius: 50%;" src="{{userInfo?.data?.user_info?.avatar||'--'}}">
+            <p>用户名：{{userInfo?.data?.user_info?.user_name||'--'}}</p>
+            <h2>积分：{{userInfo?.data?.user_info?.pay_points||'0'}}</h2>
         </div>
     </div>
     <h4 padding-left>我的会员</h4>
     <div class="level" margin-horizontal>
-        <div class="number"><span style="color: #5169b5;">40001</span>/1000000</div>
+        <div class="number"><span style="color: #5169b5;">
+            {{userInfo?.data?.user_info?.pay_points||'0'}}
+            </span>/10000000</div>
         <div class="progress">
             <div class="bg">
-                <div class="show"></div>
+                <div class="show" [ngStyle]="{'width':width}"></div>
             </div>
         </div>
         <div class="txt">

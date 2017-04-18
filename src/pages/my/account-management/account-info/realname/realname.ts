@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams } from 'ionic-angular';
+import { NavController, NavParams, Events } from 'ionic-angular';
+import { HttpService } from "../../../../../providers/http-service";
+import { Native } from "../../../../../providers/native";
 
 /*
   Generated class for the Realname page.
@@ -12,11 +14,27 @@ import { NavController, NavParams } from 'ionic-angular';
   templateUrl: 'realname.html'
 })
 export class RealnamePage {
-
-  constructor(public navCtrl: NavController, public navParams: NavParams) {}
+  placeholder = this.navParams.data
+  username: any = this.placeholder;
+  constructor(
+    public navCtrl: NavController,
+    public navParams: NavParams,
+    public httpServive: HttpService,
+    public native: Native,
+    public events: Events
+  ) {  }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad RealnamePage');
   }
-
+  onsubmit() {
+    this.httpServive.editProfile({ true_name: this.username }).then((res) => {
+      console.log(res);
+      if (res.status == 1) {
+        this.native.showToast('修改成功');
+        this.navCtrl.pop();
+        this.events.publish('userInfo:editOk');
+      }
+    })
+  }
 }

@@ -4,12 +4,10 @@ import { NavController, Events, Slides, Content } from 'ionic-angular';
 import { FormBuilder } from '@angular/forms';
 
 
-import { DirectiveTestPage } from '../directive-test/directive-test'
 import { CityPage } from './city/city'
 import { SearchPage } from './search/search'
 import { DetailsPage } from './details/details'
 import { BrandListPage } from './brand-list/brand-list'
-import { AttentionPage } from './attention/attention'
 import { FastbuyPage } from './fastbuy/fastbuy'
 import { GlassesDesignPage } from './glasses-design/glasses-design'
 import { IntegralstorePage } from './integralstore/integralstore'
@@ -18,14 +16,14 @@ import { WhitebarPage } from './whitebar/whitebar'
 import { DiscountCouponPage } from './discount-coupon/discount-coupon'
 import { MessagePage } from './message/message'
 import { ParticularsPage } from './particulars/particulars'
-import { ClassifyPage } from '../classify/classify'
+import { PresellPage } from "../my/presell/presell";
 
 
 import { UserData } from "../../services/user-data";
 import { HttpService } from "../../providers/http-service";
 
-import { ImgTabs } from "../../conponents/img-tabs/img-tabs";
 import { Native } from "../../providers/native";
+
 
 
 @Component({
@@ -33,17 +31,18 @@ import { Native } from "../../providers/native";
   templateUrl: 'home.html'
 })
 export class HomePage {
+  jingxuan_img3: any;
+  jingxuan_img2: any;
+  jingxuan_img1: any;
 
   @ViewChild('bannerSlide') slides: Slides;
   @ViewChild(Content) content: Content;
   showBackTopBtn: Boolean = true;
 
-  DirectiveTestPage = DirectiveTestPage;
   cityPage = CityPage;
   DetailsPage = DetailsPage;
   SearchPage = SearchPage;
   BrandListPage = BrandListPage;
-  AttentionPage = AttentionPage;
   FastbuyPage = FastbuyPage;
   GlassesDesignPage = GlassesDesignPage;
   IntegralstorePage = IntegralstorePage;
@@ -51,6 +50,7 @@ export class HomePage {
   WhitebarPage = WhitebarPage;
   DiscountCouponPage = DiscountCouponPage;
   MessagePage = MessagePage;
+  PresellPage = PresellPage;
 
   bannerImgs;
   categoryAddetatils;
@@ -79,24 +79,37 @@ export class HomePage {
       this.httpService.getCategoryAd().then((res) => {
         console.log("热门品类", res)
         if (res.status == 1) { this.categoryAddetatils = res.data; }
-        this.httpService.getBrands().then(((res) => {
-          console.log("热门品牌下的品牌列表", res)
-          if (res.status == 1) { this.getBrands = res.data; }
-          this.httpService.getCategoryRecommendGoodsHot().then(((res) => {
-            console.log("精选专题下的热门", res)
-            if (res.status == 1) { this.getCategoryRecommendGoodsHot = res.data; }
-            this.httpService.getCategoryRecommendGoods().then((res) => {
-              console.log("精选专题下新品", res)
-              if (res.status == 1) { this.getCategoryRecommendGoods = res.data; }
-              this.httpService.getCategoryRecommendGoodsBest().then(((res) => {
-                console.log("精选专题下最好", res)
-                if (res.status == 1) { this.getCategoryRecommendGoodsBest = res.data; }
-                this.native.hideLoading();
-                if (finish) { finish(); }
+        this.httpService.getHomebanner({ int_pos_id: 3, size: 1 }).then((res) => {
+          console.log("精选专题下的广告1", res)
+          if (res.status == 1) { this.jingxuan_img1 = res; }
+          this.httpService.getBrands().then(((res) => {
+            console.log("热门品牌下的品牌列表", res)
+            if (res.status == 1) { this.getBrands = res.data; }
+            this.httpService.getHomebanner({ int_pos_id: 3, size: 1 }).then((res) => {
+              console.log("精选专题下的广告2", res)
+              if (res.status == 1) { this.jingxuan_img2 = res; }
+              this.httpService.getCategoryRecommendGoodsHot().then(((res) => {
+                console.log("精选专题下的热门", res)
+                if (res.status == 1) { this.getCategoryRecommendGoodsHot = res.data; }
+                this.httpService.getHomebanner({ int_pos_id: 3, size: 1 }).then((res) => {
+                  console.log("精选专题下的广告3", res)
+                  if (res.status == 1) { this.jingxuan_img3 = res; }
+                  this.httpService.getCategoryRecommendGoods().then((res) => {
+                    console.log("精选专题下新品", res)
+                    if (res.status == 1) { this.getCategoryRecommendGoods = res.data; }
+                    this.httpService.getCategoryRecommendGoodsBest().then(((res) => {
+                      console.log("精选专题下最好", res)
+                      if (res.status == 1) { this.getCategoryRecommendGoodsBest = res.data; }
+                      this.native.hideLoading();
+                      if (finish) { finish(); }
+                    }))
+                  })
+                })
               }))
             })
           }))
-        }))
+        })
+
       })
     })
   }
@@ -132,6 +145,9 @@ export class HomePage {
         brandId: item.link_type.type_value
       })*/
     }
+  }
+  goParticularsPage(id){
+    this.navCtrl.push(ParticularsPage,{goodsId:id})
   }
   ionViewDidLoad() {
     console.log('ionViewDidLoad HomePage');

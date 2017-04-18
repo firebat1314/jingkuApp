@@ -29,15 +29,15 @@
         <p class="idcard" ion-text color="colorsix" padding-horizontal>
             身份证正面：
             <button ion-button color="dark" (click)="opanNative(0)" margin-horizontal>选择文件</button>
-            <span ion-text *ngIf="!image1" color="danger">未选择任何文件</span>
+            <span ion-text *ngIf="!formData.frdb_code_zm" color="danger">未选择任何文件</span>
         </p>
-        <div *ngIf="image1" text-center><img src="{{image1}}" alt=""></div>
+        <div *ngIf="image1" text-center><img src="{{formData.frdb_code_zm}}" alt=""></div>
         <p class="idcard" ion-text color="colorsix" padding-horizontal>
             身份证反面：
             <button ion-button color="dark" (click)="opanNative(1)" margin-horizontal>选择文件</button>
-            <span ion-text *ngIf="!image2" color="danger">未选择任何文件</span>
+            <span ion-text *ngIf="!formData.frdb_code_sm" color="danger">未选择任何文件</span>
         </p>
-        <div *ngIf="image2" text-center><img src="{{image2}}" alt=""></div>
+        <div *ngIf="image2" text-center><img src="{{formData.frdb_code_sm}}" alt=""></div>
     </form>
 </ion-content>
 <ion-footer>

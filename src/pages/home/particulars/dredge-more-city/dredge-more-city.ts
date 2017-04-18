@@ -63,11 +63,9 @@ export class DredgeMoreCityPage {
       if (imageData) {
         console.log(imageData)
         if (type == 0) {//正面身份照
-          this.image1 = 'data:image/jpeg;base64,' + imageData.image;
-          this.formData.frdb_code_zm = this.image1;
+          this.formData.frdb_code_zm = imageData.image;
         } else {//反面身份照
-          this.image2 = 'data:image/jpeg;base64,' + imageData.image;
-          this.formData.frdb_code_sm = this.image2;
+          this.formData.frdb_code_sm = imageData.image;
         }
       }
     })

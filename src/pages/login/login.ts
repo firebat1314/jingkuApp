@@ -24,7 +24,6 @@ import { HttpService } from "../../providers/http-service";
 export class LoginPage {
   private loginInfo: { username?: string, password?: string } = {};
   private submitted = false;
-  private isLoginError = false;
   private signedName: String;
   public forgotpage;
 

@@ -21,7 +21,6 @@ export class ForgotTwoPage {
   private wait: number = 60;
   private disabled: Boolean = false;
   private value: String = '发送验证码';
-  private timer: any;
   private time() {
     if (this.wait == 0) {
       this.disabled = false;

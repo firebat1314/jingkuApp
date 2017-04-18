@@ -29,38 +29,54 @@
     </div>
     <div class="btn-tool" padding>
         <div class="top">
-            <div [navPush]="AttentionPage">
-                <img src="./assets/icon/homepage_15.png" alt="">
-                <span>关注</span>
+            <div [navPush]="PresellPage">
+                <div class="img">
+                    <img src="./assets/icon/yushou.png" alt="">
+                </div>
+                <span>预售</span>
             </div>
             <div [navPush]="RechargePage">
-                <img src="./assets/icon/homepage_18.png" alt="">
+                <div class="img">
+                    <img src="./assets/icon/home_5_05.png" alt="">
+                </div>
                 <span>充值</span>
             </div>
             <div [navPush]="FastbuyPage">
-                <img src="./assets/icon/homepage_21.png" alt="">
+                <div class="img">
+                    <img src="./assets/icon/home_5_07.png" alt="">
+                </div>
                 <span>闪购</span>
             </div>
             <div>
-                <img src="./assets/icon/homepage_23.png" alt="">
+                <div class="img">
+                    <img src="./assets/icon/home_5_09.png" alt="">
+                </div>
                 <span>品牌</span>
             </div>
         </div>
         <div class="bottom">
             <div [navPush]="WhitebarPage">
-                <img src="./assets/icon/homepage_29.png" alt="">
+                <div class="img">
+                    <img src="./assets/icon/home_5_15.png" alt="">
+                </div>
                 <span>白条</span>
             </div>
             <div [navPush]="DiscountCouponPage">
-                <img src="./assets/icon/homepage_32.png" alt="">
+                <div class="img">
+                    <img src="./assets/icon/home_5_16.png" alt="">
+                </div>
                 <span>优惠券</span>
             </div>
             <div [navPush]="IntegralstorePage">
-                <img src="./assets/icon/homepage_30.png" alt="">
+                <div class="img">
+                    <img src="./assets/icon/home_5_18.png" alt="">
+                </div>
                 <span>积分商城</span>
             </div>
             <div [navPush]="GlassesDesignPage">
-                <img src="./assets/icon/homepage_31.png" alt="">
+                <div class="img">
+                    <img src="./assets/icon/home_5_20.png" alt="">
+                </div>
                 <span>镜库设计</span>
             </div>
 
@@ -105,11 +121,95 @@
     </div>
     <div class="background"></div>
     <!--——————————————————————————————————————————精选专题——————————————————————————————————————————-->
-    <div class="handpick home-content" *ngIf="getCategoryRecommendGoodsHot" padding>
+    <div class="handpick home-content" *ngIf="getCategoryRecommendGoodsHot&&getCategoryRecommendGoodsBest&&getCategoryRecommendGoods" padding>
         <div class="title">
             <span class="txt">精选专题</span>
         </div>
-        <div class="main" *ngIf="getCategoryRecommendGoodsHot">
+        <div class="show" *ngFor="let item of jingxuan_img1?.data">
+            <img src="{{item.ad_img}}" alt="">
+        </div>
+        <div class="pick">
+            <ion-slides class="slide-title" slidesPerView="3">
+                <ion-slide *ngFor="let slide of getCategoryRecommendGoodsHot; let i = index;">
+                    <div (click)="goParticularsPage(slide.id)">
+                        <div class="slide-title-unit">
+                            <div class="img"><img src="{{slide?.thumb}}" alt=""></div>
+                            <div class="info">
+                                <div class="name">{{slide?.name}}</div>
+                                <div class="price">{{slide?.market_price}}</div>
+                            </div>
+                        </div>
+                    </div>
+                </ion-slide>
+                <ion-slide>
+                    <div>
+                        <div class="slide-title-unit">
+                            <div class="watch-more">
+                                <p>查&nbsp;看</p>
+                                <p>更&nbsp;多</p>
+                            </div>
+                        </div>
+                    </div>
+                </ion-slide>
+            </ion-slides>
+        </div>
+        <div class="show" *ngFor="let item of jingxuan_img2?.data">
+            <img src="{{item.ad_img}}" alt="">
+        </div>
+        <div class="pick">
+            <ion-slides class="slide-title" slidesPerView="3">
+                <ion-slide *ngFor="let slide of getCategoryRecommendGoods; let i = index;">
+                    <div (click)="goParticularsPage(slide.id)">
+                        <div class="slide-title-unit">
+                            <div class="img"><img src="{{slide?.thumb}}" alt=""></div>
+                            <div class="info">
+                                <div class="name">{{slide?.name}}</div>
+                                <div class="price">{{slide?.market_price}}</div>
+                            </div>
+                        </div>
+                    </div>
+                </ion-slide>
+                <ion-slide>
+                    <div>
+                        <div class="slide-title-unit">
+                            <div class="watch-more">
+                                <p>查&nbsp;看</p>
+                                <p>更&nbsp;多</p>
+                            </div>
+                        </div>
+                    </div>
+                </ion-slide>
+            </ion-slides>
+        </div>
+        <div class="show" *ngFor="let item of jingxuan_img3?.data">
+            <img src="{{item.ad_img}}" alt="">
+        </div>
+        <div class="pick">
+            <ion-slides class="slide-title" slidesPerView="3">
+                <ion-slide *ngFor="let slide of getCategoryRecommendGoodsBest; let i = index;">
+                    <div (click)="goParticularsPage(slide.id)">
+                        <div class="slide-title-unit">
+                            <div class="img"><img src="{{slide?.thumb}}" alt=""></div>
+                            <div class="info">
+                                <div class="name">{{slide?.name}}</div>
+                                <div class="price">{{slide?.market_price}}</div>
+                            </div>
+                        </div>
+                    </div>
+                </ion-slide>
+                <ion-slide>
+                    <div>
+                        <div class="slide-title-unit">
+                            <div class="watch-more">
+                                <p>查&nbsp;看</p>
+                                <p>更&nbsp;多</p>
+                            </div>
+                        </div>
+                    </div>
+                </ion-slide>
+            </ion-slides>
+        </div>
+        <!--<div class="main" *ngIf="getCategoryRecommendGoodsHot">
             <img-tabs2 (slideClick)="onSlideClick($event)" [slides]="getCategoryRecommendGoodsHot" [pageNumber]="3"></img-tabs2>
         </div>
         <div class="main" *ngIf="getCategoryRecommendGoods">
@@ -117,7 +217,7 @@
         </div>
         <div class="main" *ngIf="getCategoryRecommendGoodsBest">
             <img-tabs2 (slideClick)="onSlideClick($event)" [slides]="getCategoryRecommendGoodsBest" [pageNumber]="3"></img-tabs2>
-        </div>
+        </div>-->
     </div>
     <div class="background"></div>
     <!--——————————————————————————————————————————好店推荐——————————————————————————————————————————-->
