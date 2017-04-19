@@ -20,7 +20,7 @@
                 </ion-input>
             </ion-item>
             <div class="forgot-password">
-                <button ion-button clear small color="light" [navPush]="forgotpage">忘记密码？</button>
+                <div ion-button clear small color="light" [navPush]="forgotpage">忘记密码？</div>
             </div>
             <div class="btn-wrap">
                 <button ion-button color="light" [disabled]="!loginForm.form.valid" (click)="goToHome(loginForm)" type="submit" large round block>登录</button>

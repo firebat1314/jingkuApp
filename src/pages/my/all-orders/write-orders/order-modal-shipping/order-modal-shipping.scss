@@ -1,3 +1,30 @@
 page-order-modal-shipping {
-
+    .item-wrapper {
+        .item {
+            .ion-ios-create-outline {
+                padding-left: 10px;
+                border-left: 1px solid #e0e0e0;
+                z-index: 100;
+            }
+            .label {
+                color: inherit;
+                margin: 19px 8px 19px 0;
+                .name {
+                    width: 9rem;
+                    display: inline-block;
+                    margin-right: 10px;
+                    overflow: hidden;
+                    text-overflow: ellipsis;
+                }
+                .moren {
+                    color: #fff;
+                    background: #e60000;
+                    padding: 1px 5px;
+                    border-radius: 3px;
+                    margin-right: 10px;
+                    display: inline-block;
+                }
+            }
+        }
+    }
 }

@@ -22,7 +22,7 @@ export class PresellPage {
     console.log('ionViewDidLoad PresellPage');
   }
   goToPay() {
- // Should get from server side with sign.
+    // Should get from server side with sign.
     const alipayOrder: AlipayOrder = {
       /**
      * appId assigned by Alipay
@@ -61,7 +61,7 @@ export class PresellPage {
       /**
        * Api version. Fixed value '1.0'
        */
-      version: '',
+      version: '1.0',
       /**
        * Notify url.
        */

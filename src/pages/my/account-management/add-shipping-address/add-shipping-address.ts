@@ -10,14 +10,15 @@ import { ShippingAddressPage } from "../shipping-address/shipping-address";
   templateUrl: 'add-shipping-address.html'
 })
 export class AddShippingAddressPage {
+  default: any;
   cityData: any[]; //城市数据
-  cityName: string = '北京市 北京市 东城区'; //初始化城市名
+  cityName: string = '北京市-北京市-东城区'; //初始化城市名
   code: string; //城市编码
-  addressId;
-  addressDetails;
+
+  addressId = this.navParams.get('addId');
 
   formData = {
-    address_ids: '1',
+    address_id: '',
     consignee: '1',
     province: '1',
     city: '1',
@@ -32,28 +33,40 @@ export class AddShippingAddressPage {
     public native: Native,
     public events: Events
   ) {
-    this.addressId = this.navParams.get('addId');
     console.log('收货地址id==>', this.addressId);
     this.setCityPickerData();
-    if (this.addressId != undefined) {
-      this.getAddressDetails();
-    }
+    this.getAddressDetails();
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad AddShippingAddressPage');
   }
   getAddressDetails() {
-    this.httpService.AddressDetail({ address_id: this.addressId }).then((res) => {
-      console.log(res);
-      if (res.status == 1) { this.addressDetails = res }
-    })
+    if (this.addressId != undefined) {
+      this.httpService.AddressDetail({ address_id: this.addressId }).then((res) => {
+        console.log(res);
+        if (res.status == 1) {
+          this.formData = {
+            address_id: this.addressId,
+            consignee: res.address_info.consignee,
+            province: res.address_info.province,
+            city: res.address_info.city,
+            district: res.address_info.district,
+            address: res.address_info.address,
+            mobile: res.address_info.mobile,
+          }
+        }
+      })
+    }
   }
   setCityPickerData() {
     this.httpService.getCityJsonData().then(data => {
       this.cityData = data;
     });
   }
+  /**
+   * 删除地址
+   */
   deleteThis() {
     this.native.openAlertBox('确认删除？', () => {
       this.httpService.delAddress({ address_ids: [this.addressId] }).then((res) => {
@@ -67,7 +80,7 @@ export class AddShippingAddressPage {
   }
   onsubmit() {
     if (this.addressId != undefined) {
-      this.httpService.editAddress().then((res) => {
+      this.httpService.editAddress(this.formData).then((res) => {
         console.log(res);
         if (res.status == 1) {
           this.events.publish('updateAddress');
@@ -75,13 +88,13 @@ export class AddShippingAddressPage {
         }
       })
     } else {
-      this.httpService.addAddress(this.formData).then((res) => {
+      this.default ? this.default = '1' : this.default = '0';
+      this.httpService.addAddress(Object.assign(this.formData, { default: this.default })).then((res) => {
         console.log(res);
         if (res.status == 1) {
           this.events.publish('updateAddress');
           this.navCtrl.pop();
         }
-
       })
     }
   }

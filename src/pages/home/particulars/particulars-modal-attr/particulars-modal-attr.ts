@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams, ViewController } from 'ionic-angular';
+import { NavController, NavParams, ViewController, Events } from 'ionic-angular';
 import { HttpService } from "../../../../providers/http-service";
 import { Native } from "../../../../providers/native";
 
@@ -40,7 +40,9 @@ export class ParticularsModalAttrPage {
 		public navParams: NavParams,
 		public viewCtrl: ViewController,
 		public httpService: HttpService,
-		public native: Native
+		public native: Native,
+		private events: Events
+
 	) {
 		this.data = this.navParams.get('data');
 		this.type = this.navParams.get('type');
@@ -140,6 +142,7 @@ export class ParticularsModalAttrPage {
 				console.log(res)
 				if (res && res.status == 1) {
 					this.native.showToast('添加成功~')
+					this.events.publish('car:updata');
 					this.viewCtrl.dismiss();
 				}
 			})
@@ -165,6 +168,7 @@ export class ParticularsModalAttrPage {
 				console.log(res)
 				if (res && res.status == 1) {
 					this.native.showToast('添加成功~')
+					this.events.publish('car:updata');
 					this.viewCtrl.dismiss();
 				}
 			})

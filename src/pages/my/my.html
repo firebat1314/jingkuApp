@@ -34,7 +34,7 @@
                     <ion-img src="./assets/icon/images/user_cener_1_04_03.png"></ion-img>
                     <ion-note>铜牌会员</ion-note>
                 </p>
-                <button [navPush]="AccountManagementPage" color="gray" ion-button round outline icon-left item-right>
+                <button [navPush]="AccountManagementPage" [navParams]="{avatar:userInfo?.data?.avatar}" color="gray" ion-button round outline icon-left item-right>
                     <ion-icon><img style="width:1.3rem;" src="./assets/icon/images/user_cener_1_11.png" alt=""></ion-icon>
                     账号管理
                 </button>

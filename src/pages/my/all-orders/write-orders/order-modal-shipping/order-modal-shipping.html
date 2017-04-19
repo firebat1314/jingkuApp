@@ -14,21 +14,22 @@
 
 
 <ion-content>
-    <ion-list>
+    <ion-list radio-group>
         <ion-item-sliding *ngFor="let item of data">
-            <ion-item (click)="dismiss(item)">
-                <div item-left>
-                    <ion-checkbox [disabled]="item.is_show==0" color="dark" mode="ios"></ion-checkbox>
-                </div>
-                <h2>{{item.consignee}}{{item.mobile|phonenumberfilter}}</h2>
-                <p>{{item.address}}</p>
+            <ion-item>
+                <ion-radio item-left [hidden]="item.radio_show" color="secondary" [disabled]="item.is_show==0" [checked]="item.selected==1" (ionSelect)="dismiss(item)"> </ion-radio>
+                <ion-label>
+                    <h2><span class="name">{{item.consignee}}</span>{{item.mobile|phonenumberfilter}}</h2>
+                    <p><span class="moren" *ngIf="item.selected==1">默认</span>{{item.address}}</p>
+                </ion-label>
+                <ion-icon item-right name="ios-create-outline" (click)="goEditAddress(item.address_id)"></ion-icon>
             </ion-item>
             <ion-item-options side="right">
-                <button ion-button color="danger" (click)="unfollowGoods(item.rec_id,i)">删除</button>
+                <button ion-button color="danger" (click)="delete(item.address_id)">删除</button>
             </ion-item-options>
         </ion-item-sliding>
     </ion-list>
 </ion-content>
 <ion-footer>
-    <div ion-button full large color="dark">+添加收货地址</div>
+    <div ion-button full large no-margin color="dark" (click)="goAddShippingAddressPage()">+添加收货地址</div>
 </ion-footer>

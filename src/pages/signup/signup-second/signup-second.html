@@ -23,26 +23,27 @@
             </ion-item>
             <ion-item>
                 <ion-label color="primary" fixed>　 QQ</ion-label>
-                <ion-input required clearInput [(ngModel)]="formData.qq" name="qq" type="number" placeholder="请输入你的QQ号"></ion-input>
+                <ion-input clearInput [(ngModel)]="formData.qq" name="qq" type="number" placeholder="请输入你的QQ号"></ion-input>
             </ion-item>
             <ion-item>
                 <ion-label color="primary" fixed><span ion-text color="google">*</span>　公司名称</ion-label>
                 <ion-input required clearInput [(ngModel)]="formData.company" name="company" type="text" placeholder="请输入你的公司名称"></ion-input>
             </ion-item>
             <ion-item class="select-wrapper">
-                <ion-select mode="ios" required [(ngModel)]="formData.province" name="province" placeholder="选择省" cancelText="取消" okText="确定" [selectOptions]="{subTitle:'省'}">
-                    <ion-option value="f" selected="true" checked="true">北京市</ion-option>
-                    <ion-option value="m">宜昌市</ion-option>
+                <ion-select mode="ios" required [(ngModel)]="formData.province" name="province" placeholder="选择省" cancelText="取消" okText="确定" [selectOptions]="{subTitle:'省'}" (ionChange)="provinceChange(formData.province)">
+                    <ion-option *ngFor="let item of provinceList" value="{{item.region_id}}">
+                        {{item.region_name}}
+                    </ion-option>
                 </ion-select>
-                <ion-select mode="ios" required [(ngModel)]="formData.city" name="city" placeholder="选择市" cancelText="取消" okText="确定" [selectOptions]="{subTitle:'市'}">
-                    <ion-option value="bacon">北京市</ion-option>
-                    <ion-option value="olives">北京</ion-option>
-                    <ion-option value="xcheese">北京</ion-option>
+                <ion-select mode="ios" required [(ngModel)]="formData.city" [disabled]="!cityList" name="city" placeholder="选择市" cancelText="取消" okText="确定" [selectOptions]="{subTitle:'市'}" (ionChange)="cityChange(formData.city)">
+                    <ion-option value="{{item.region_id}}" *ngFor="let item of cityList">
+                        {{item.region_name}}
+                    </ion-option>
                 </ion-select>
-                <ion-select mode="ios" required [(ngModel)]="formData.district" name="district" placeholder="选择区" cancelText="取消" okText="确定" [selectOptions]="{subTitle:'区'}">
-                    <ion-option value="bacon">Bacon</ion-option>
-                    <ion-option value="olives">北京</ion-option>
-                    <ion-option value="xcheese">北京</ion-option>
+                <ion-select mode="ios" required [(ngModel)]="formData.district" [disabled]="!districtList" name="district" placeholder="选择区" cancelText="取消" okText="确定" [selectOptions]="{subTitle:'区'}">
+                    <ion-option value="{{item.region_id}}" *ngFor="let item of districtList">
+                        {{item.region_name}}
+                    </ion-option>
                 </ion-select>
             </ion-item>
             <ion-item class="zhizhao">
@@ -52,6 +53,7 @@
                         <ion-icon name="md-add"></ion-icon>
                         选择文件
                     </div>
+                    <input type="file" (change)="onFileChange($event)">
                     <span color="danger" ion-text>请上传图片</span>
                 </div>
 
@@ -63,7 +65,7 @@
         </ion-list>
         <div class="tool" padding-horizontal>
             <div class="agree">
-                <ion-checkbox [(ngModel)]="agree" name="agree" mode="ios" color="danger"></ion-checkbox>&nbsp;&nbsp;我已同意并阅读<span ion-text color="google">《用户协议》</span>
+                <ion-checkbox required [(ngModel)]="agree" name="agree" mode="ios" color="danger"></ion-checkbox>&nbsp;&nbsp;我已同意并阅读<span ion-text color="google">《用户协议》</span>
             </div>
             <div class="login">
                 <span class="text">已有账号？</span>
@@ -71,8 +73,7 @@
             </div>
         </div>
         <div padding>
-            <button ion-button block color="dark" large class="btn-register" type="submit" [disabled]="!signupTwoForm.form.valid" (click)="toThirdPage()">注册</button>
-
+            <button ion-button block color="dark" large class="btn-register" type="submit" [disabled]="!(signupTwoForm.form.valid&&agree)" (click)="toThirdPage()">注册</button>
         </div>
     </form>
 </ion-content>

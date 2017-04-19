@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams, ModalController } from 'ionic-angular';
+import { NavController, NavParams, ModalController, Events } from 'ionic-angular';
 /*http服务*/
 import { HttpService } from "../../../providers/http-service";
 import { Native } from "../../../providers/native";
@@ -45,7 +45,8 @@ export class ParticularsPage {
     public navParams: NavParams,
     private http: HttpService,
     public modalCtrl: ModalController,
-    public native: Native
+    public native: Native,
+    private events: Events
   ) {
     this.goodsId = this.navParams.get('goodsId') || '3994';/*3994 5676*/
     console.log("商品ID:", this.goodsId)
@@ -114,6 +115,9 @@ export class ParticularsPage {
     });
     modal.present();
   }
+  /**
+   * 除商品属性 弹窗
+   */
   presentModalAttr() {
     this.http.getGoodsAttribute({ goods_id: this.goodsId }).then((res) => {
       console.log("商品初始属性", res);
@@ -132,10 +136,15 @@ export class ParticularsPage {
       }
     })
   }
+  /**
+   * 
+   * @param res 商品属性列表
+   * @param type 商品类型（镜片、镜架）
+   */
   openAttrModal(res, type) {
     let modal = this.modalCtrl.create(ParticularsModalAttrPage, { data: res, type: type, headData: this.getGoodsInfo, id: this.goodsId });
     modal.onDidDismiss(data => {
-      if(data){
+      if (data) {
         console.log(data);
       }
     });
@@ -145,7 +154,7 @@ export class ParticularsPage {
   ionViewDidLoad() {
     console.log('ionViewDidLoad ParticularsPage');
   }
-  /*---关注----*/
+  /*---商品关注----*/
   beCareFor() {
     if (this.getGoodsInfo.is_collect) {
       this.http.collectDel({ goods_id: this.goodsId }).then((res) => {
@@ -173,7 +182,8 @@ export class ParticularsPage {
           this.http.addToCartSpec().then((res) => {
             console.log('普通商品加入购物车：', res)
             if (res.status == 1) {
-              this.native.showToast('已经加入购物车~')
+              this.native.showToast('已经加入购物车~');
+              this.events.publish('car:updata');
             }
           })
         })
@@ -184,6 +194,7 @@ export class ParticularsPage {
           console.log('镜片商品加入购物车：', res)
           if (res.status == 1) {
             this.native.showToast('已经加入购物车~')
+            this.events.publish('car:updata');
           }
         })
       }
@@ -192,7 +203,7 @@ export class ParticularsPage {
   openCallNumber() {
     this.native.openCallNumber(this.getSupplierInfo.mobile, true);
   }
-  goAccountServicePage(){
+  goAccountServicePage() {
     this.navCtrl.push(AccountServicePage)
   }
 }

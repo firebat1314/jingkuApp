@@ -253,7 +253,7 @@ export class HttpService {
     return this.http.get(this.ip + '/User/default_address', data)
   }
   changeRegion(data?: Object) {//（13）改变城市联动
-    return this.http.get(this.ip + '/User/change_region', data)
+    return this.http.get(this.ip + '/Login/change_region', data)
   }
   help(data?: Object) {//（14）帮助中心
     return this.http.get(this.ip + '/User/help', data)

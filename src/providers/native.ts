@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
 import { ToastController, LoadingController, Platform, AlertController } from 'ionic-angular';
 import { Camera, AppVersion, Toast, ImagePicker, CallNumber } from 'ionic-native';
+// import { Transfer, FileUploadOptions, TransferObject } from '@ionic-native/transfer';
+// import { File } from '@ionic-native/file';
 declare var LocationPlugin;
 declare var AMapNavigation;
 
@@ -226,7 +228,31 @@ export class Native {
 		};
 		img.src = url;
 	}
-
+	/**
+	 * 上传文件
+	 */
+	/*fileTransfer: TransferObject = this.transfer.create();
+	// full example
+	upload(fileurl,apiurl,params) {
+		let options: FileUploadOptions = {
+			fileKey: 'file',
+			fileName: '',
+			headers: {
+				Authorization: 'Basic ' + btoa(localStorage.getItem('token') + ':')
+			},
+			params:params
+		}
+		return this.fileTransfer.upload(fileurl, apiurl, options)
+			
+	}
+	download() {
+		const url = 'http://www.example.com/file.pdf';
+		this.fileTransfer.download(url, this.file.dataDirectory + 'file.pdf').then((entry) => {
+			console.log('download complete: ' + entry.toURL());
+		}, (error) => {
+			// handle error
+		});
+	}*/
 	/**
 	 * 获得用户当前坐标
 	 * @return {Promise<T>}

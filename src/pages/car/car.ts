@@ -34,10 +34,16 @@ export class CarPage {
     public httpService: HttpService,
     public events: Events,
   ) {
+    this.events.subscribe('car:updata', () => {
+      this.getFlowGoods();
+    })
     this.getFlowGoods();
   }
   ionViewDidLoad() {
     console.log('ionViewDidLoad CarPage');
+  }
+  ngOnDestory() {
+    this.events.unsubscribe('car:updata');
   }
   getFlowGoods(finished?) {
     this.httpService.getFlowGoods().then((res) => {
