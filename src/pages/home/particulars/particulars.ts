@@ -206,4 +206,5 @@ export class ParticularsPage {
   goAccountServicePage() {
     this.navCtrl.push(AccountServicePage)
   }
+
 }

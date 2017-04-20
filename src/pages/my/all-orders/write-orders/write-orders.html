@@ -53,9 +53,9 @@
                     <div class="one" *ngFor="let attr of goods?.attrs;">
                         <div class="left">
                             <div class="top">
-                                <div *ngIf="attr.qiujing">{{attr.qiujing}}</div>
-                                <div *ngIf="attr.zhujing">{{attr.zhujing}}</div>
-                                <div *ngIf="attr.zhouwei">{{attr.zhouwei}}</div>
+                                <div *ngIf="attr.qiujing">球镜：{{attr.qiujing}}</div>
+                                <div *ngIf="attr.zhujing">柱镜：{{attr.zhujing}}</div>
+                                <div *ngIf="attr.zhouwei">轴位：{{attr.zhouwei}}</div>
                                 <div *ngFor="let attr2 of attr?.attrs;">{{attr2}}</div>
                             </div>
                             <div class="bottom">
@@ -72,25 +72,25 @@
             <div class="option" margin-right>
                 <ion-item mode="ios" detail-push *ngIf="item?.shipping?.length!=0" (click)="openOrderModalDistributionPage(item)">
                     配送方式
-                    <ion-note item-right *ngFor="let mtd of item.shipping">
+                    <ion-note item-right style="margin:0;" *ngFor="let mtd of item.shipping">
                         <span *ngIf="mtd.selected==1">{{mtd.shipping_name}}</span>
                     </ion-note>
                 </ion-item>
                 <ion-item mode="ios" detail-push *ngIf="item?.shipping?.length==0">
                     配送方式
-                    <ion-note item-right>
+                    <ion-note style="margin:0;" item-right>
                         <span>无配送方式</span>
                     </ion-note>
                 </ion-item>
                 <ion-item mode="ios" detail-push *ngIf="item.use_bonus?.length!=0" (click)="openOrderModalCouponPage(item)">
                     优惠券选择
-                    <ion-note item-right>
+                    <ion-note style="margin:0;" item-right>
                         可使用{{item.use_bonus?.length}}个优惠券
                     </ion-note>
                 </ion-item>
                 <ion-item mode="ios" detail-push *ngIf="item.use_bonus?.length==0">
                     优惠券选择
-                    <ion-note item-right>
+                    <ion-note style="margin:0;" item-right>
                         无可用优惠券
                     </ion-note>
                 </ion-item>

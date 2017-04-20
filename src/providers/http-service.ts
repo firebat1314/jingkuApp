@@ -276,8 +276,8 @@ export class HttpService {
   delCollectionShop(data?: Object) {//（20）取消收藏店铺
     return this.http.post(this.ip + '/User/del_collection_shop', data)
   }
-  batchGoodsCollect(data?: Object) {//发票索取列表
-    return this.http.post(this.ip + '/User/batch_goods_collect', data)
+  batchGoodsCollect(data?: Object) {//批量关注
+    return this.http.post(this.ip + '/Flow/batch_goods_collect', data)
   }
   invoice(data?: Object) {//发票索取列表
     return this.http.get(this.ip + '/User/invoice', data)

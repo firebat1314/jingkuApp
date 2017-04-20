@@ -31,14 +31,14 @@ export class WriteOrdersPage {
     public navParams: NavParams,
     public httpService: HttpService,
     public modalCtrl: ModalController,
-    private events:Events
+    private events: Events
   ) {
     this.getHttpData();
-    this.events.subscribe('writeOrder:refresh',()=>{
+    this.events.subscribe('writeOrder:refresh', () => {
       this.getHttpData();
     })
   }
-  ngOnDestory(){
+  ngOnDestory() {
     this.events.unsubscribe('writeOrder:refresh')
   }
   getHttpData() {
@@ -59,20 +59,6 @@ export class WriteOrdersPage {
   }
   openOrderModalShippingPage() {//收货地址
     this.navCtrl.push(OrderModalShippingPage, { data: this.data.consignee_list, callBack: this.callBack }, { animation: 'ios-transition' });
-    /*console.log()
-    let modal = this.modalCtrl.create(OrderModalShippingPage, { data: this.data.consignee_list });
-    modal.onDidDismiss(data => {
-      console.log('收货地址', data);
-      if (data) {
-        this.httpService.changeConsignee({ address_id: data.address_id }).then((res) => {
-          console.log(res);
-          if (res.status == 1) {
-            this.getHttpData();
-          }
-        })
-      }
-    });
-    modal.present();*/
   }
   checkShipping(params) {
     this.httpService.changeConsignee({ address_id: params.address_id }).then((res) => {

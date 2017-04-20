@@ -4,6 +4,7 @@ import { Native } from "../../providers/native";
 import { HttpService } from "../../providers/http-service";
 import { HomePage } from "../home/home";
 import { WriteOrdersPage } from "../my/all-orders/write-orders/write-orders";
+import { ParticularsPage } from "../home/particulars/particulars";
 
 /*
   Generated class for the Car page.
@@ -60,7 +61,24 @@ export class CarPage {
       // this.calculateTotal();
     })
   }
-  /*下拉刷新*/
+  checkAll() {
+    this.checkedArray = [];//刷新完成之后清空选中商品
+    this.allGoodsId = [];
+    this.goodsIdArray = [];
+
+    this.carDetails.selected = true;
+    for (let i = 0, item = this.carDetails.suppliers_goods_list; i < item.length; i++) {
+      item[i].selected = true;
+      for (let k = 0; k < item[i].goods_list.length; k++) {
+        item[i].goods_list[k].selected = true;
+        this.allGoodsId.push(item[i].goods_list[k].goods_id)
+      }
+    }
+  }
+  /**
+   * 下拉刷新
+   * @param refresher 
+   */
   doRefresh(refresher) {
     this.getFlowGoods(function () {
       setTimeout(() => {
@@ -68,6 +86,10 @@ export class CarPage {
       }, 500);
     })
   }
+  /**
+   * 滑动删除商品
+   * @param item3 
+   */
   deleteItem(item3) {
     let confirm = this.alertCtrl.create({
       cssClass: 'alert-style',
@@ -136,25 +158,12 @@ export class CarPage {
     }
     console.log(this.goodsIdArray)
   }
-  checkAll() {
-    this.checkedArray = [];//刷新完成之后清空选中商品
-    this.allGoodsId = [];
-    this.goodsIdArray = [];
 
-    this.carDetails.selected = true;
-    for (let i = 0, item = this.carDetails.suppliers_goods_list; i < item.length; i++) {
-      item[i].selected = true;
-      for (let k = 0; k < item[i].goods_list.length; k++) {
-        item[i].goods_list[k].selected = true;
-        this.allGoodsId.push(item[i].goods_list[k].goods_id)
-      }
-    }
-  }
   beCareFor() {
     if (this.goodsIdArray.length == 0) {
       this.native.showToast('请选择需要关注商品');
       return;
-    }
+    } 
     this.httpService.batchGoodsCollect({
       goods_ids: this.goodsIdArray
     }).then((res) => {
@@ -198,6 +207,9 @@ export class CarPage {
         this.navCtrl.push(WriteOrdersPage);
       }
     })
+  }
+  goParticularPage(id) {
+    this.navCtrl.push(ParticularsPage, { goodsId: id })
   }
   /*——————————————————————————————————————————————————————————————————*/
   /*  calculateTotal() {//购物车总价格

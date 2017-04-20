@@ -34,9 +34,9 @@ page-login {
             background: url(../assets/icon/icon_03.png) 3px center no-repeat;
             background-size: 20px;
         }
-    }
-    .item-block:last-child .item-inner {
-        background-image: url(../assets/icon/icon_07.png);
+        &:nth-child(2) .item-inner {
+            background-image: url(../assets/icon/icon_07.png);
+        }
     }
     .forgot-password {
         overflow: hidden;

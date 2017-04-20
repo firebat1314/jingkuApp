@@ -60,10 +60,10 @@ page-classify {
                 align-items: center;
                 margin-bottom: 16px;
                 .txt {
-                    border-left: 10px solid #000;
-                    // font-weight: 700;
-                    font-size: 2rem;
+                    border-left: 5px solid #000;
+                    font-size: 1.8rem;
                     padding-left: 5px;
+                    display: block;
                 }
                 .more {
                     color: #666;
@@ -151,7 +151,7 @@ page-classify {
                         }
                     }
                     .main {
-                        @include body2
+                        @include body2;
                     }
                 }
             }

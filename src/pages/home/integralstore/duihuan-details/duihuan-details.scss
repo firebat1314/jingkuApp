@@ -1,0 +1,59 @@
+page-duihuan-details {
+    .content {
+        background: #f7f7f7;
+    }
+    .imgs {
+        width: 100%;
+        background: #fff;
+        ion-card {
+            height: 250px;
+            width: 70%;
+            margin: 10px auto;
+            padding: 10px;
+            display: flex;
+            justify-content: center;
+            img {
+                margin: auto auto;
+            }
+        }
+    }
+    .info {
+        background: #fff;
+        padding: 15px;
+        box-shadow: 0px 0px 7px #ccc;
+        margin-top: 5px;
+        margin-bottom: 10px;
+        .title {
+            margin-bottom: 12px;
+            font-size: 16px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            display: -webkit-box;
+            -webkit-box-orient: vertical;
+            -webkit-line-clamp: 2;
+        }
+        .body {
+            color: rgb(100, 100, 100);
+            .now-price {
+                color: #e50000;
+                margin-right: 8px;
+                .number {
+                    font-size: 22px;
+                    font-weight: 700;
+                }
+            }
+        }
+        .bottom {
+            display: flex;
+            justify-content: space-between;
+            margin: 10px 0 0;
+            color: rgb(100, 100, 100);
+            .offer-price {
+                color: rgb(201, 201, 201);
+            }
+        }
+    }
+    .pic-and-arguments {
+        background: #fff;
+    }
+}

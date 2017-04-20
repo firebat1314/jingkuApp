@@ -13,6 +13,30 @@
 </ion-header>
 
 
-<ion-content padding>
-
+<ion-content>
+    <div class="fore1 fore">
+        <ion-slides #bannerSlide autoplay="4000" loop="false" pager>
+            <ion-slide *ngFor="let item of [{},{},{},{}]">
+                <img src="./assets/images/images/sheji_1_02.jpg" />
+            </ion-slide>
+        </ion-slides>
+    </div>
+    <div class="fore2 fore">
+        <div class="head"><img src="./assets/images/images/sheji_3_06.jpg" alt=""></div>
+        <div class="body" padding>
+            <img src="./assets/images/images/sheji_1_06.jpg" alt="">
+            <img src="./assets/images/images/sheji_1_06.jpg" alt="">
+            <img src="./assets/images/images/sheji_1_06.jpg" alt="">
+            <img src="./assets/images/images/sheji_1_06.jpg" alt="">
+        </div>
+    </div>
+    <div class="fore3 fore">
+        <img src="./assets/images/images/sheji_1_09.jpg" alt="">
+    </div>
+    <div class="fore4 fore" padding>
+        <img src="./assets/images/images/sheji_1_12.jpg" alt="">
+    </div>
+    <div class="fore4 fore" padding>
+        <img src="./assets/images/images/sheji_1_12.jpg" alt="">
+    </div>
 </ion-content>

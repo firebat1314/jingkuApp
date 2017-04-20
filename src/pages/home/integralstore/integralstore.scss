@@ -1,3 +1,63 @@
 page-integralstore {
-
+    .content {
+        background: #f7f7f7;
+    }
+    .fore {
+        background: #fff;
+    }
+    .fore1 {
+        img {
+            width: 100%;
+        }
+        .btns {
+            padding: 10px 0;
+            border-bottom: 1px solid #ccc;
+            display: flex;
+            >div {
+                width: 50%;
+                font-size: 1.5rem;
+                text-align: center;
+                .red {
+                    color: #e60000;
+                    font-size: 1.6rem;
+                }
+                &:first-child {
+                    border-right: 1px solid #ccc;
+                }
+            }
+        }
+    }
+    .fore2 {
+        background: #f7f7f7;
+        overflow: hidden;
+        .card {
+            max-width: 45%;
+            display: inline-block;
+            .img {
+                display: flex;
+                align-items: center;
+                min-height: 170px;
+                img {
+                    display: block;
+                    margin: 0 auto;
+                }
+            }
+            .info {
+                color: #4d4d4d;
+                padding: 10px;
+                border-top: 1px solid #ccc;
+                white-space: nowrap;
+                h3 {
+                    width: 100%;
+                    text-overflow: ellipsis;
+                    white-space: nowrap;
+                    overflow: hidden;
+                }
+                .red {
+                    color: #e60000;
+                    font-size: 1.6rem;
+                }
+            }
+        }
+    }
 }

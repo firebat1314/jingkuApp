@@ -145,6 +145,7 @@ export class ParticularsModalAttrPage {
 					this.events.publish('car:updata');
 					this.viewCtrl.dismiss();
 				}
+				if(res.success){this.native.showToast('请填写商品数量')}
 			})
 		}
 		/*镜片商品添加到购物车*/

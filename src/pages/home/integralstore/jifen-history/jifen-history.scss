@@ -1,0 +1,18 @@
+page-jifen-history {
+    .item {
+        color: #4d4d4d;
+        ion-thumbnail {
+            img {
+                width: 87px;
+                height: 87px;
+            }
+        }
+        .status {
+            border-radius: 3px;
+            color: #fff;
+            background: #e60000;
+            display: inline-block;
+            padding: 3px 10px;
+        }
+    }
+}

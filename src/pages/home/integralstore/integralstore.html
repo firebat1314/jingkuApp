@@ -13,6 +13,39 @@
 </ion-header>
 
 
-<ion-content padding>
-
+<ion-content>
+    <div class="fore fore1">
+        <img src="./assets/images/images/jifenStore_1_02_02.jpg" alt="">
+        <div class="btns">
+            <div [navPush]="MemberCenterPage">积分 <span class="red">13131313</span></div>
+            <div [navPush]="JifenHistoryPage">兑换记录</div>
+        </div>
+    </div>
+    <div class="fore fore2">
+        <product-card *ngFor="let item of [{},{},{},{},{}]" (click)="goDuihuanDetailsPage(1)"></product-card>
+        <ion-card *ngFor="let item of [{},{},{},{},{}]" (click)="goDuihuanDetailsPage(1)">
+            <div class="img"><img src="./assets/images/images/jifenStore_1_02_02.jpg" alt=""></div>
+            <div class="info">
+                <h3>博士伦博士伦博士伦博士伦博士伦博士伦博士伦博士伦博士伦</h3>
+                <p><span class="red">450000</span> 积分</p>
+                <p>市场参考价：¥30.00</p>
+            </div>
+        </ion-card>
+    </div>
 </ion-content>
+
+<ion-footer>
+    <ion-toolbar color="light">
+        <ion-buttons left>
+            <button (click)="previousPage()" ion-button>
+                上一页
+            </button>
+        </ion-buttons>
+        <ion-title>2/12</ion-title>
+        <ion-buttons right>
+            <button (click)="nextPage()" ion-button>
+                下一页
+            </button>
+        </ion-buttons>
+    </ion-toolbar>
+</ion-footer>

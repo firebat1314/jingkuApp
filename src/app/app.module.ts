@@ -34,6 +34,9 @@ import { AttentionPage } from '../pages/home/attention/attention';
 import { FastbuyPage } from '../pages/home/fastbuy/fastbuy';
 import { GlassesDesignPage } from '../pages/home/glasses-design/glasses-design';
 import { IntegralstorePage } from '../pages/home/integralstore/integralstore';
+import { JifenHistoryPage } from "../pages/home/integralstore/jifen-history/jifen-history";
+import { DuihuanDetailsPage } from "../pages/home/integralstore/duihuan-details/duihuan-details";
+import { DuihuanDetailsFinishPage } from "../pages/home/integralstore/duihuan-details-finish/duihuan-details-finish";
 import { RechargePage } from '../pages/home/recharge/recharge';
 import { WhitebarPage } from '../pages/home/whitebar/whitebar';
 import { DiscountCouponPage } from '../pages/home/discount-coupon/discount-coupon';
@@ -105,6 +108,7 @@ import { ImgTabs } from "../components/img-tabs/img-tabs";
 import { SingleCardComponent } from '../components/single-card/single-card';
 import { MyToolbarComponent } from '../components/my-toolbar/my-toolbar';
 import { SingleFoodsItemComponent } from '../components/single-foods-item/single-foods-item';
+import { ProductCardComponent } from "../components/product-card/product-card";
 import { MeunItemComponent } from '../components/meun-item/meun-item';
 import { CountdownComponent } from '../components/countdown/countdown';
 import { CountInputComponent } from '../components/count-input/count-input';
@@ -113,6 +117,7 @@ import { CompanynamePage } from "../pages/my/account-management/account-info/com
 import { PhoneNumberFilter } from "../pipes/phone-number-filter";
 import { NothingComponent } from "../components/nothing/nothing";
 import { MessageDetailsPage } from "../pages/home/message/message-details/message-details";
+
 
 
 @NgModule({
@@ -126,14 +131,14 @@ import { MessageDetailsPage } from "../pages/home/message/message-details/messag
     /*——————————————————购物车——————————————————*/
     CarPage,
     /*——————————————————home栏——————————————————*/
-    HomePage, CityPage, SearchPage, DetailsPage, BrandListPage, AttentionPage, FastbuyPage, GlassesDesignPage, IntegralstorePage, RechargePage, WhitebarPage, DiscountCouponPage, MessagePage, ParticularsPage, ParticularsModalPage, DredgeMoreCityPage, PopoverContentPage, ParticularsModalAttrPage, MessageDetailsPage, PresellPage,
+    HomePage, CityPage, SearchPage, DetailsPage, BrandListPage, AttentionPage, FastbuyPage, GlassesDesignPage, IntegralstorePage, RechargePage, WhitebarPage, DiscountCouponPage, MessagePage, ParticularsPage, ParticularsModalPage, DredgeMoreCityPage, PopoverContentPage, ParticularsModalAttrPage, MessageDetailsPage, PresellPage,JifenHistoryPage,DuihuanDetailsPage,DuihuanDetailsFinishPage,
     /*——————————————————分类栏——————————————————*/
     ClassifyPage, SubnavPage1Page, SubnavPage2Page, MoreBrandPage,
     /*——————————————————我的栏——————————————————*/
     MyPage, SettingPage, AccountManagementPage, AccountSecurityPage, AllOrdersPage, CouponPage, MemberCenterPage, PeceiptPage, AccountAssetPage, AccountProcessPage, AccountAreaApplicationPage, AccountCollectGoodsPage, AccountCollectStorePage, AccountHistoryPage, AccountServicePage, AccountHelperPage, AccountInfoPage, InvoiceQualificationPage, InvoiceAskFor2Page, InvoiceAskFor1Page, AboutUsPage, ShippingAddressPage, ChangePhoneNumberPage, ChangePasswordPage, RealnamePage, QqPage, AddShippingAddressPage, CompanynamePage, AccountJifenPage, AccountBalancePage, AccountWithdrawPage, AccountMoneyDetailPage, AccountWithdrawSucceedPage, PaymentMethodPage, OrdersDetailPage, WriteOrdersPage, OrderModalShippingPage, OrderModalDistributionPage, OrderModalCouponPage, OrderModalPaymentPage,AddressPage,
     /*——————————————————组件——————————————————*/
     SingleCardComponent, MyToolbarComponent, SingleFoodsItemComponent, MeunItemComponent, CountdownComponent, CountInputComponent, ImgTabs2Component, NothingComponent,
-    DirectiveTestPage,
+    DirectiveTestPage,ProductCardComponent,
     /*——————————————————指令——————————————————*/
     MyDirective, ImgTabs,
     /*——————————————————过滤器——————————————————*/
@@ -168,14 +173,14 @@ import { MessageDetailsPage } from "../pages/home/message/message-details/messag
     /*——————————————————购物车——————————————————*/
     CarPage,
     /*——————————————————home栏——————————————————*/
-    HomePage, CityPage, SearchPage, DetailsPage, BrandListPage, AttentionPage, FastbuyPage, GlassesDesignPage, IntegralstorePage, RechargePage, WhitebarPage, DiscountCouponPage, MessagePage, ParticularsPage, ParticularsModalPage, DredgeMoreCityPage, PopoverContentPage, ParticularsModalAttrPage, MessageDetailsPage, PresellPage,
+    HomePage, CityPage, SearchPage, DetailsPage, BrandListPage, AttentionPage, FastbuyPage, GlassesDesignPage, IntegralstorePage, RechargePage, WhitebarPage, DiscountCouponPage, MessagePage, ParticularsPage, ParticularsModalPage, DredgeMoreCityPage, PopoverContentPage, ParticularsModalAttrPage, MessageDetailsPage, PresellPage,JifenHistoryPage,DuihuanDetailsPage,DuihuanDetailsFinishPage,
     /*——————————————————分类栏——————————————————*/
     ClassifyPage, SubnavPage1Page, SubnavPage2Page, MoreBrandPage,
     /*——————————————————我的栏——————————————————*/
     MyPage, SettingPage, AccountManagementPage, AccountSecurityPage, AllOrdersPage, CouponPage, MemberCenterPage, PeceiptPage, AccountAssetPage, AccountProcessPage, AccountAreaApplicationPage, AccountCollectGoodsPage, AccountCollectStorePage, AccountHistoryPage, AccountServicePage, AccountHelperPage, AccountInfoPage, InvoiceQualificationPage, InvoiceAskFor2Page, InvoiceAskFor1Page, AboutUsPage, ShippingAddressPage, ChangePhoneNumberPage, ChangePasswordPage, RealnamePage, QqPage, AddShippingAddressPage, CompanynamePage, AccountJifenPage, AccountWithdrawPage, AccountBalancePage, AccountMoneyDetailPage, AccountWithdrawSucceedPage, PaymentMethodPage, OrdersDetailPage, WriteOrdersPage, OrderModalShippingPage, OrderModalDistributionPage, OrderModalCouponPage, OrderModalPaymentPage,AddressPage,
     /*——————————————————组件——————————————————*/
     SingleCardComponent, MyToolbarComponent, SingleFoodsItemComponent, MeunItemComponent, CountdownComponent, CountInputComponent, ImgTabs2Component, NothingComponent,
-    DirectiveTestPage
+    DirectiveTestPage,ProductCardComponent
   ],
   providers: [{ provide: ErrorHandler, useClass: IonicErrorHandler }, UserData, Native, HttpService,Storage,Alipay]
 })

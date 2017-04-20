@@ -2,6 +2,9 @@ page-all-orders {
     .content {
         background: #f7f7f7;
     }
+    ion-toolbar {
+        min-height: 41px !important;
+    }
     .single-shop {
         padding: 0 10px;
         margin-bottom: 10px;

@@ -41,7 +41,7 @@
                         <ion-thumbnail item-left>
                             <img src="{{item2.goods_thumb}}">
                         </ion-thumbnail>
-                        <h2>{{item2.goods_name}}</h2>
+                        <h2 (click)="goParticularPage(item2.goods_id)">{{item2.goods_name}}</h2>
                         <span class="type">促销???</span>
                     </ion-item>
                 </div>

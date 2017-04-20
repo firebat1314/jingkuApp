@@ -1,0 +1,70 @@
+<!--
+  Generated template for the DuihuanDetails page.
+
+  See http://ionicframework.com/docs/v2/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+    <ion-navbar>
+        <ion-title>兑换详情</ion-title>
+    </ion-navbar>
+
+</ion-header>
+
+
+<ion-content>
+    <div class="imgs">
+        <ion-slides parallax="true">
+            <ion-slide *ngFor="let item of [{},{},{},{}]">
+                <ion-card>
+                    <img src="./assets/images/images/jifenStore_1_02_02.jpg" imageViewer />
+                </ion-card>
+            </ion-slide>
+        </ion-slides>
+    </div>
+    <div class="info">
+        <div class="title">
+            【德国蔡司眼镜】对功能功能功能功能功能功能功能功能功能功能功能功能功能功能功能功能功能功能功能功能功能功能功能功能功能
+        </div>
+        <div class="body">
+            单价：<span class="now-price"><span class="number">666 </span>积分</span>
+        </div>
+        <div class="bottom">
+            <div>市场参考价&nbsp;：<span class="offer-price">¥1313131313</span></div>
+            <div>商品编号&nbsp;：131313131313</div>
+        </div>
+    </div>
+    <div class="pic-and-arguments">
+        <ion-segment [(ngModel)]="selectPicArguments" mode="md">
+            <ion-segment-button value="pic">
+                图文详情
+            </ion-segment-button>
+            <ion-segment-button value="arguments">
+                商品参数
+            </ion-segment-button>
+        </ion-segment>
+        <div [ngSwitch]="selectPicArguments">
+            <div class="pic" *ngSwitchCase="'pic'">
+                <ion-list>
+                    <ion-item class="check" detail-push>
+                        <ion-icon name="ios-arrow-down"></ion-icon>
+                        上拉查看详情
+                    </ion-item>
+                </ion-list>
+                <img src="./assets/icon/images/particulars_2_34.jpg" alt="">
+            </div>
+            <div class="arguments" *ngSwitchCase="'arguments'">
+                <div class="wrapper">
+                    <div *ngFor="let item of [{},{},{},{},{}]">
+                        <div class="name">属性值：<span>属性</span></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</ion-content>
+
+<ion-footer>
+    <div ion-button large color="dark" full no-margin (click)="doConvertibility()">立即兑换</div>
+</ion-footer>

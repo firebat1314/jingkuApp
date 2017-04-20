@@ -1,3 +1,24 @@
 page-glasses-design {
-
+    .content {
+        background: #f7f7f7;
+    }
+    .fore {
+        margin-bottom: 10px;
+        background: #fff;
+    }
+    .fore2 {
+        .head {
+            text-align: center;
+            padding: 15px 0 5px;
+            img {
+                height: 37px;
+            }
+        }
+        .body {
+            text-align: center;
+            img {
+                max-width: 47%;
+            }
+        }
+    }
 }
