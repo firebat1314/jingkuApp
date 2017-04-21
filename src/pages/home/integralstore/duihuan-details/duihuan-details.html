@@ -46,12 +46,9 @@
         </ion-segment>
         <div [ngSwitch]="selectPicArguments">
             <div class="pic" *ngSwitchCase="'pic'">
-                <ion-list>
-                    <ion-item class="check" detail-push>
-                        <ion-icon name="ios-arrow-down"></ion-icon>
-                        上拉查看详情
-                    </ion-item>
-                </ion-list>
+                <ion-item class="check" detail-push>
+                    <ion-icon name="ios-arrow-down"></ion-icon>上拉查看详情
+                </ion-item>
                 <img src="./assets/icon/images/particulars_2_34.jpg" alt="">
             </div>
             <div class="arguments" *ngSwitchCase="'arguments'">

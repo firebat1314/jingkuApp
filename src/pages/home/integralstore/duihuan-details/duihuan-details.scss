@@ -55,5 +55,24 @@ page-duihuan-details {
     }
     .pic-and-arguments {
         background: #fff;
+        .pic {
+            .check {
+                margin-top: 10px;
+                text-align: center;
+            }
+        }
+        .arguments {
+            .wrapper {
+                padding: 10px 15px 15px;
+                overflow: hidden;
+                >div {
+                    float: left;
+                    border-bottom: #000 1px dashed;
+                    width: 40%;
+                    padding: 10px;
+                    margin: 0 5%;
+                }
+            }
+        }
     }
 }
