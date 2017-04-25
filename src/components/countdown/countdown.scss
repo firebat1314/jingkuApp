@@ -1,13 +1,14 @@
 countdown {
+    display: inline-block;
     display: flex;
-    .time {
-        /* padding: 3px; */
+    align-items: center;
+    span {
         border-radius: 3px;
         margin: 0 3px;
         background-color: #fff;
         color: #000;
         min-width: 20px;
-        /* height: 16px; */
+        text-align: center;
         display: inline-block;
     }
 }

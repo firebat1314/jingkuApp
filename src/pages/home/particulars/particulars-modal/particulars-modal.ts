@@ -16,21 +16,18 @@ import { Native } from "../../../../providers/native";
   templateUrl: 'particulars-modal.html'
 })
 export class ParticularsModalPage {
-  title: String;
   value: number;
-  getBonus;
-  sendto;
+  title = this.navParams.get('name');
+  getBonus = this.navParams.get('getBonus');
+  sendto = this.navParams.get('sendto');
+  GoodsInfo = this.navParams.get('GoodsInfo');
   constructor(
     public navCtrl: NavController,
     public navParams: NavParams,
     public viewCtrl: ViewController,
     public httpService: HttpService,
     public native: Native
-  ) {
-    this.title = this.navParams.get('name');
-    this.getBonus = this.navParams.get('getBonus');
-    this.sendto = this.navParams.get('sendto');
-  }
+  ) { }
   ngOnInit() { }
   ionViewDidLoad() {
     console.log('ionViewDidLoad ParticularsModalPage');

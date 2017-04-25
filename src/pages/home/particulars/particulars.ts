@@ -109,7 +109,7 @@ export class ParticularsPage {
     });
   }
   presentModal(str) {
-    let modal = this.modalCtrl.create(ParticularsModalPage, { name: str, getBonus: this.getBonus, sendto: this.getGoodsSaleCity });
+    let modal = this.modalCtrl.create(ParticularsModalPage, { name: str, getBonus: this.getBonus, sendto: this.getGoodsSaleCity,GoodsInfo:this.getGoodsInfo });
     modal.onDidDismiss(data => {
       console.log(data);
     });

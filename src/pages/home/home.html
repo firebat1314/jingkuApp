@@ -2,9 +2,9 @@
     <ion-navbar>
         <ion-buttons left>
             <button ion-button clear icon-only icon-left [navPush]="cityPage">
-                    <img src="./assets/icon/homepage_03.png" width="20px" class="add_icon">
-                    北京
-                </button>
+                <img src="./assets/icon/homepage_03.png" width="20px" class="add_icon">
+                北京
+            </button>
         </ion-buttons>
         <div style="position: relative">
             <ion-searchbar placeholder="搜索镜库上平/店铺" animated mode="ios"></ion-searchbar>
@@ -91,7 +91,7 @@
         </div>
         <div class="main">
             <div class="banner">
-                <img src="./assets/icon/images/brand_1_20.jpg" alt="">
+                <img src="{{hotBrand_img?.data[0]?.ad_img}}" (click)="clickBanner(hotBrand_img.data[0])" alt="">
             </div>
             <ion-grid>
                 <ion-row wrap>
@@ -108,14 +108,14 @@
     <div class="hot-brand home-content" *ngIf="getBrands" padding>
         <div class="title">
             <span class="txt">热门品牌</span>
-            <span class="more">更多&gt;</span>
+            <span class="more" (click)="goMoreBrandPage()">更多&gt;</span>
         </div>
         <div class="main">
             <div *ngFor="let item of getBrands">
-                <img src="{{item.brand_logo}}" alt="{{item.brand_name}}">
+                <img src="{{item.brand_logo}}" alt="{{item.brand_name}}" (click)="goBrandListPage(item.brand_id)">
             </div>
             <div>
-                <img src="./assets/icon/homepage_53.png" alt="">
+                <img src="./assets/icon/homepage_53.png" alt="" (click)="goMoreBrandPage()">
             </div>
         </div>
     </div>
@@ -125,8 +125,8 @@
         <div class="title">
             <span class="txt">精选专题</span>
         </div>
-        <div class="show" *ngFor="let item of jingxuan_img1?.data">
-            <img src="{{item.ad_img}}" alt="">
+        <div class="show">
+            <img (click)="clickBanner(jingxuan_img1.data[0])" src="{{jingxuan_img1?.data[0]?.ad_img}}" alt="">
         </div>
         <div class="pick">
             <ion-slides class="slide-title" slidesPerView="3">
@@ -153,8 +153,8 @@
                 </ion-slide>
             </ion-slides>
         </div>
-        <div class="show" *ngFor="let item of jingxuan_img2?.data">
-            <img src="{{item.ad_img}}" alt="">
+        <div class="show">
+            <img src="{{jingxuan_img2?.data[0]?.ad_img}}" (click)="clickBanner(jingxuan_img2.data[0])" alt="">
         </div>
         <div class="pick">
             <ion-slides class="slide-title" slidesPerView="3">
@@ -181,8 +181,8 @@
                 </ion-slide>
             </ion-slides>
         </div>
-        <div class="show" *ngFor="let item of jingxuan_img3?.data">
-            <img src="{{item.ad_img}}" alt="">
+        <div class="show">
+            <img src="{{jingxuan_img3?.data[0]?.ad_img}}" (click)="clickBanner(jingxuan_img3.data[0])" alt="">
         </div>
         <div class="pick">
             <ion-slides class="slide-title" slidesPerView="3">

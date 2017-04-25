@@ -126,7 +126,7 @@ export class Native {
 		return new Promise((resolve, reject) => {
 			Camera.getPicture(Object.assign({
 				sourceType: Camera.PictureSourceType.CAMERA,//图片来源,CAMERA:拍照,PHOTOLIBRARY:相册
-				destinationType: Camera.DestinationType.FILE_URI,//默认返回base64字符串,DATA_URL:base64   FILE_URI:图片路径
+				destinationType: Camera.DestinationType.DATA_URL,//默认返回base64字符串,DATA_URL:base64   FILE_URI:图片路径
 				quality: 90,//图像质量，范围为0 - 100
 				allowEdit: false,//选择图片前是否允许编辑
 				encodingType: Camera.EncodingType.JPEG,

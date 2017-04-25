@@ -40,33 +40,26 @@
         </ion-list>
     </div>
     <div *ngIf="title=='商品服务保障'">
-        <ion-list>
-            <ion-item>
+        <ion-list *ngIf="GoodsInfo?.additional?.is_true||GoodsInfo?.additional?.is_hdfk||GoodsInfo?.additional?.is_inv">
+            <ion-item *ngIf="GoodsInfo?.additional?.is_true">
                 <ion-avatar item-left>
-                    <img src="./assets/icon/images/particulars_2_20.jpg">
+                    <img src="./assets/icon/images/particulars_05_03.png">
                 </ion-avatar>
                 <h2>交易担保</h2>
                 <p>该商品XXXXXXXXXXXXXXXXXXXXXXX</p>
             </ion-item>
-            <ion-item>
+            <ion-item *ngIf="GoodsInfo?.additional?.is_hdfk">
                 <ion-avatar item-left>
-                    <img src="./assets/icon/images/particulars_2_20.jpg">
+                    <img src="./assets/icon/images/particulars_05_04.png">
                 </ion-avatar>
-                <h2>交易担保</h2>
+                <h2>货到付款</h2>
                 <p>该商品XXXXXXXXXXXXXXXXXXXXXXX</p>
             </ion-item>
-            <ion-item>
+            <ion-item *ngIf="GoodsInfo?.additional?.is_inv">
                 <ion-avatar item-left>
-                    <img src="./assets/icon/images/particulars_2_20.jpg">
+                    <img src="./assets/icon/images/particulars_2_16.png">
                 </ion-avatar>
-                <h2>交易担保</h2>
-                <p>该商品XXXXXXXXXXXXXXXXXXXXXXX</p>
-            </ion-item>
-            <ion-item>
-                <ion-avatar item-left>
-                    <img src="./assets/icon/images/particulars_2_20.jpg">
-                </ion-avatar>
-                <h2>交易担保</h2>
+                <h2>可退换货</h2>
                 <p>该商品XXXXXXXXXXXXXXXXXXXXXXX</p>
             </ion-item>
         </ion-list>

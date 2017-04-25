@@ -1,5 +1,5 @@
-import { Component,ViewChild } from '@angular/core';
-import { NavController, NavParams,Searchbar } from 'ionic-angular';
+import { Component, ViewChild } from '@angular/core';
+import { NavController, NavParams, Searchbar } from 'ionic-angular';
 
 /*
   Generated class for the Search page.
@@ -16,16 +16,17 @@ export class SearchPage {
   @ViewChild(Searchbar) mySearchBar: Searchbar;
 
   constructor(public navCtrl: NavController, public navParams: NavParams) {
-    
+
   }
-  ngAfterViewInit(){
-    setTimeout(()=>{
+  ngAfterViewInit() {
+    setTimeout(() => {
       this.mySearchBar.setFocus();
-    },1000)
+    }, 1000)
   }
   ionViewDidLoad() {
     console.log('ionViewDidLoad SearchPage');
-    
   }
-
+  searchbar() {
+    console.log(111)
+  }
 }

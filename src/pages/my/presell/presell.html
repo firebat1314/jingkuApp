@@ -14,5 +14,18 @@
 
 
 <ion-content>
-    <button ion-button (click)="goToPay()">去支付宝支付</button>
+    <div class="fore fore1">
+        <div class="banner">
+            <img src="./assets/images/images/yushou_01_02.jpg" alt="">
+            <div class="top-scrollbar">
+                <div *ngFor="let item of getCategorys" (click)="toBrandList(item.cat_id)">
+                    <div><img src="{{item.thumb}}" alt="{{item.cat_name}}"></div>
+                    <span>{{item.cat_name}}</span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="fore fore1"></div>
+    <div class="fore fore1"></div>
+    <div class="fore fore1"></div>
 </ion-content>

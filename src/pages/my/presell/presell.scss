@@ -1,3 +1,23 @@
 page-presell {
-
+    .fore {
+        background: #fff;
+    }
+    .top-scrollbar {
+        background: #fff;
+        overflow-x: scroll;
+        display: flex;
+        padding: 10px 0;
+        border-bottom: 1px solid #e6e6e6;
+        >div {
+            min-width: 84px;
+            font-size: 1.3rem;
+            text-align: center;
+            margin-right: 1.6rem;
+            height: 100%;
+            img {
+                height: 28px;
+                margin: 5px auto;
+            }
+        }
+    }
 }

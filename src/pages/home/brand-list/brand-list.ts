@@ -23,11 +23,11 @@ export class BrandListPage {
     currentPage: number = 1;//当前页
     mytool = 'all';//当前筛选
     paramsData = {
+        brand_id: '',
         cat_id: '',
-        size: 20,
+        size: 10,
         order: '',
-        stort: 'DESC',
-        filter: ''
+        stort: 'DESC'
     }
     allStatus = true;
     salesNumStatus = true;
@@ -40,12 +40,15 @@ export class BrandListPage {
         public httpService: HttpService,
         public events: Events
     ) {
-        this.listId = this.navParams.get('listId');
-        this.paramsData.cat_id = this.listId;
-        console.log('列表ID:', this.listId)
+        this.paramsData.cat_id = this.navParams.get('listId');
+        this.paramsData.brand_id = this.navParams.get('brandId');
+        console.log('列表ID:', this.paramsData.cat_id)
+        console.log('品牌ID:', this.paramsData.brand_id)
+        this.getListData();
         this.events.subscribe('user:filterParams', (res) => {
             this.paramsData = Object.assign(this.paramsData, res);
             console.log(this.paramsData)
+            this.currentPage = 1;
             this.mytool = 'all';
             this.paramsData.stort = 'DESC';
             this.getListData();
@@ -54,14 +57,11 @@ export class BrandListPage {
     ionViewDidLoad() {
         console.log('ionViewDidLoad BrandListPage');
     }
-    ngAfterViewInit() {
-        this.getListData();
-    }
     ngAfterViewChecked() {
         this.mycontent.resize();
     }
     ngOnDestroy() {
-        //退出页面取消时间订阅
+        //退出页面取消事件订阅
         this.events.unsubscribe('user:filterParams')
     }
     doRefresh(refresher) {
@@ -78,16 +78,20 @@ export class BrandListPage {
         })
     }
     getListData(params?) {
+
         this.httpService.categoryGoods(Object.assign(this.paramsData, params)).then((res) => {
-            this.data = res;
-            this.events.publish('user:listFilter', res);
-            console.log('商品列表', res)
+            if (res.status == 1) {
+                this.data = res;
+                this.events.publish('user:listFilter', res);
+                console.log('商品列表', res)
+            }
         })
     }
     searchGoods() {
         this.currentPage = 1;
-        this.getListData({
-            keywords: this.myHomeSearch
+        this.httpService.categoryGoods({ keywords: this.myHomeSearch }).then((res) => {
+            this.data = res;
+            this.events.publish('user:listFilter', res);
         })
     }
     onInput(event) {

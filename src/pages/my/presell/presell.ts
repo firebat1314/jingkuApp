@@ -1,26 +1,33 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
 import { Alipay, AlipayOrder } from '@ionic-native/alipay';
+import { HttpService } from "../../../providers/http-service";
 
 @Component({
   selector: 'page-presell',
   templateUrl: 'presell.html'
 })
 export class PresellPage {
+  getCategorys: any;
   payInfo: any;
   payResult: any;
 
   constructor(
     public navCtrl: NavController,
     public navParams: NavParams,
-    private alipay: Alipay
+    private alipay: Alipay,
+    private httpService: HttpService
   ) {
-   
+    this.httpService.getCategorys().then((res) => {
+      if (res.status == 1) { this.getCategorys = res.data; }
+    })
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad PresellPage');
   }
+
+
   goToPay() {
     // Should get from server side with sign.
     const alipayOrder: AlipayOrder = {
@@ -73,14 +80,14 @@ export class PresellPage {
     };
     this.alipay.pay(alipayOrder)
       .then(res => {
-        console.log('seccuss',res);
+        console.log('seccuss', res);
         this.payResult = res;
       }, err => {
-        console.log('err',err);
+        console.log('err', err);
         this.payResult = err;
       })
       .catch(e => {
-        console.log('错误',e);
+        console.log('错误', e);
         this.payResult = e;
       });
   }

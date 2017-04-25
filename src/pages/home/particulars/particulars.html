@@ -75,9 +75,9 @@
                     点击领取
                 </ion-note>-->
             </button>
-            <button mode="ios" ion-item (click)="presentModal('赠送')">
+            <!--<button mode="ios" ion-item (click)="presentModal('赠送')">
                 <img src="./assets/icon/images/particulars_09.jpg" style="height: 20px;" alt=""> <span>买一盒送一盒？？？</span>
-            </button>
+            </button>-->
         </ion-list>
     </div>
     <div class="background"></div>
@@ -217,7 +217,7 @@
             </div>
 
             <div class="recommend" *ngSwitchCase="'recommend'">
-                <ion-slides slidesPerView="3" pager>
+                <ion-slides slidesPerView="3" pager *ngIf="getCategoryRecommendGoodsHot">
                     <ion-slide *ngFor="let item of getCategoryRecommendGoodsHot">
                         <div class="goods">
                             <div class="top">
@@ -252,8 +252,7 @@
                         上拉查看详情
                     </ion-item>
                 </ion-list>
-
-                <img src="./assets/icon/images/particulars_2_34.jpg" alt="">
+                <div style="text-align:center;" [innerHTML]="getGoodsInfo?.goods_desc"></div>
             </div>
             <div class="arguments" *ngSwitchCase="'arguments'">
                 <div class="wrapper">
@@ -264,8 +263,6 @@
             </div>
         </div>
     </div>
-    <div class="background"></div>
-    <div class="background"></div>
     <!--<div class="warning-show">
         <span>请用电脑下单！</span>
     </div>-->
@@ -299,7 +296,7 @@
             <!--<button color="cancelBtn" no-margin ion-button large full class="modal-button">暂不支持手机下单</button>-->
             <div class="btns">
                 <button color="cancelBtn" no-margin ion-button large full class="modal-button" (click)="presentModalAttr()">加入购物车</button>
-                <button color="modalBtn" no-margin ion-button large full class="modal-button" (click)="presentModalAttr()">立即购买</button>
+                <!--<button color="modalBtn" no-margin ion-button large full class="modal-button" (click)="presentModalAttr()">立即购买</button>-->
             </div>
         </div>
     </div>

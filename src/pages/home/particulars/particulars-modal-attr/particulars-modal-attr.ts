@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { NavController, NavParams, ViewController, Events } from 'ionic-angular';
 import { HttpService } from "../../../../providers/http-service";
 import { Native } from "../../../../providers/native";
+import { CarPage } from "../../../car/car";
 
 export class goodsSpectaclesParams {
 	number = 1;//所填写的商品的数量
@@ -65,12 +66,12 @@ export class ParticularsModalAttrPage {
 			this.attrId.push(item.goods_attr_id);
 			this.attrNumber.push(item.goods_attr_number);
 		} else {
-			if (this.attrNumber[index] == 0) {
-				this.attrId.splice(index, 1);
-				this.attrNumber.splice(index, 1);
-			} else {
-				this.attrNumber[index] = item.goods_attr_number;
-			}
+			// if (this.attrNumber[index] == 0) {
+			// 	this.attrId.splice(index, 1);
+			// 	this.attrNumber.splice(index, 1);
+			// } else {
+			this.attrNumber[index] = item.goods_attr_number;
+			// }
 		}
 		console.log(this.attrId, this.attrNumber)
 		this.httpService.changeGoodsNumber({
@@ -132,7 +133,7 @@ export class ParticularsModalAttrPage {
 		})
 	}
 	/*添加到购物车*/
-	addToCart() {
+	addToCart(goCart) {
 		/*普通商品添加到购物车*/
 		if (this.type == 'goods') {
 			this.httpService.addToCartSpec({
@@ -143,9 +144,12 @@ export class ParticularsModalAttrPage {
 				if (res && res.status == 1) {
 					this.native.showToast('添加成功~')
 					this.events.publish('car:updata');
-					this.viewCtrl.dismiss();
+					if (goCart) { goCart() } else {
+						this.viewCtrl.dismiss();
+					}
+				} else if (res.success == false) {
+					this.native.showToast('添加失败~')
 				}
-				if(res.success){this.native.showToast('请填写商品数量')}
 			})
 		}
 		/*镜片商品添加到购物车*/
@@ -170,12 +174,19 @@ export class ParticularsModalAttrPage {
 				if (res && res.status == 1) {
 					this.native.showToast('添加成功~')
 					this.events.publish('car:updata');
-					this.viewCtrl.dismiss();
+					if (goCart) { goCart() } else {
+						this.viewCtrl.dismiss();
+					}
 				}
 			})
 			console.log(this.spcArr)
 			console.log(this.goods)
 		}
+	}
+	goCarPage() {
+		this.addToCart(() => {
+			this.navCtrl.push(CarPage);
+		})
 	}
 
 }

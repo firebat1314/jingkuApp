@@ -1,5 +1,5 @@
 import { Component, ViewChild } from '@angular/core';
-import { NavController, NavParams, Content, Searchbar, Nav } from 'ionic-angular';
+import { NavController, NavParams, Content, Searchbar, Nav, Events } from 'ionic-angular';
 
 import { SubnavPage1Page } from './subnav-page1/subnav-page1'
 import { HttpService } from "../../providers/http-service";
@@ -40,9 +40,13 @@ export class ClassifyPage {
     public navCtrl: NavController,
     public navParams: NavParams,
     public httpService: HttpService,
-    public native: Native
+    public native: Native,
+    private events:Events
   ) {
     this.getHttpData();
+    this.events.subscribe('class:selectBrand',()=>{
+      this.classSelect = 'brand';
+    })
   }
   ionViewDidLoad() {
     console.log('ionViewDidLoad ClassifyPage');

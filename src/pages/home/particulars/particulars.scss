@@ -19,6 +19,7 @@ page-particulars {
     }
     .imgs {
         width: 100%;
+        background: #fff;
         ion-card {
             height: 250px;
             width: 70%;
@@ -211,13 +212,16 @@ page-particulars {
                 bottom: 0;
             }
             .goods {
-                padding: 10px;
+                padding: 2px 30px 23px;
                 display: flex;
                 flex-direction: column;
                 .top {
                     display: flex;
                     align-items: center;
                     justify-content: space-around;
+                    img {
+                        margin-left: 5px;
+                    }
                 }
                 .bottom {
                     h6 {

@@ -140,7 +140,8 @@ export class WriteOrdersPage {
         this.httpService.pay({ log_id: res.log_id }).then((res) => {
           console.log(res)
           if (res.status == 1) {
-            this.goPaymentPage(res)
+            this.events.publish('car:updata');
+            this.goPaymentPage(res);
           }
         })
       }

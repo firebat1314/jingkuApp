@@ -31,7 +31,7 @@ page-integralstore {
         background: #f7f7f7;
         overflow: hidden;
         .card {
-            max-width: 45%;
+            width: calc(50% - 20px);
             display: inline-block;
             .img {
                 display: flex;
