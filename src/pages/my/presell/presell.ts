@@ -12,6 +12,7 @@ export class PresellPage {
   payInfo: any;
   payResult: any;
 
+  checkedIndex:number=0;
   constructor(
     public navCtrl: NavController,
     public navParams: NavParams,
@@ -26,7 +27,10 @@ export class PresellPage {
   ionViewDidLoad() {
     console.log('ionViewDidLoad PresellPage');
   }
-
+  getList(index) {
+    let id = this.getCategorys[index].cat_id;
+    this.checkedIndex=index;
+  }
 
   goToPay() {
     // Should get from server side with sign.

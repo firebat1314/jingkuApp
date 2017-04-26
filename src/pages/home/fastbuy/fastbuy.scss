@@ -10,12 +10,13 @@ page-fastbuy {
     .fore2 {
         overflow: hidden;
         display: flex;
-        justify-content: space-around;
+        justify-content: center;
         flex-wrap: wrap;
-        padding: 10px 0;
+        padding: 10px 8px;
         >div {
-            width: 30%;
+            width: calc(33% - 10px);
             position: relative;
+            margin: 2px 5px;
             .text {
                 position: absolute;
                 width: 100%;
@@ -33,53 +34,63 @@ page-fastbuy {
         >div:first-child {
             img {
                 width: 100%;
+                display: block;
             }
         }
-        .card {
-            width: calc(50% - 20px);
-            display: inline-block;
-            .img {
-                display: flex;
-                align-items: center;
-                min-height: 170px;
-                position: relative;
-                .time {
-                    position: absolute;
-                    bottom: 0;
-                    height: 30px;
-                    width: 100%;
-                    background: #000;
-                    opacity: .5;
+        .singleton-warp {
+            padding: 5px 5px;
+            .card {
+                width: calc(50% - 10px);
+                display: inline-block;
+                margin: 5px;
+                .img {
                     display: flex;
                     align-items: center;
-                    justify-content: center;
-                    color: #fff;
-                    countdown {
+                    min-height: 170px;
+                    position: relative;
+                    .time {
+                        position: absolute;
+                        bottom: 0;
+                        height: 30px;
+                        width: 100%;
+                        overflow: hidden;
+                        background: #000;
+                        opacity: .5;
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+                        color: #fff;
+                        .icon {
+                            margin: 0 5px;
+                            font-size: 2rem;
+                        }
                         span {
-                            background: inherit;
+                            margin: 0;
+                            background: initial;
                             color: #fff;
+                            min-width: initial;
                         }
                     }
+                    img {
+                        display: block;
+                        margin: 0 auto;
+                    }
                 }
-                img {
-                    display: block;
-                    margin: 0 auto;
-                }
-            }
-            .info {
-                color: #4d4d4d;
-                padding: 10px;
-                border-top: 1px solid #ccc;
-                white-space: nowrap;
-                h3 {
-                    width: 100%;
-                    text-overflow: ellipsis;
+                .info {
+                    color: #4d4d4d;
+                    padding: 10px;
+                    border-top: 1px solid #ccc;
                     white-space: nowrap;
-                    overflow: hidden;
-                }
-                .red {
-                    color: #e60000;
-                    font-size: 1.6rem;
+                    h3 {
+                        width: 100%;
+                        text-overflow: ellipsis;
+                        white-space: nowrap;
+                        overflow: hidden;
+                    }
+                    .red {
+                        color: #e60000;
+                        font-size: 1.6rem;
+                    }
                 }
             }
         }

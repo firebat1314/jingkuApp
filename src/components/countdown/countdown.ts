@@ -8,7 +8,11 @@ import { Component, Input, OnDestroy, AfterViewInit } from '@angular/core';
 */
 @Component({
   selector: 'countdown',
-  template: '<span>{{day}}</span>天<span>{{hour}}</span>时<span>{{minute}}</span>分<span>{{second}}</span>'
+  template: `
+  <span>{{day}}</span>天
+  <span>{{hour}}</span>时
+  <span>{{minute}}</span>分
+  <span>{{second}}</span>`
 })
 
 export class CountdownComponent implements AfterViewInit, OnDestroy {
@@ -33,9 +37,6 @@ export class CountdownComponent implements AfterViewInit, OnDestroy {
 
   // 定时器
   private timer;
-  constructor() {
-    console.log('Hello Countdown Component');
-  }
   // 每一秒更新时间差
   ngAfterViewInit() {
     this.timer = setInterval(() => {

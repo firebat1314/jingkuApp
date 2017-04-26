@@ -1,9 +1,3 @@
-<!--
-  Generated template for the Presell page.
-
-  See http://ionicframework.com/docs/v2/components/#navigation for more info on
-  Ionic pages and navigation.
--->
 <ion-header>
 
     <ion-navbar>
@@ -18,14 +12,41 @@
         <div class="banner">
             <img src="./assets/images/images/yushou_01_02.jpg" alt="">
             <div class="top-scrollbar">
-                <div *ngFor="let item of getCategorys" (click)="toBrandList(item.cat_id)">
+                <div *ngFor="let item of getCategorys;let i = index" (click)="getList(i)">
+                    <div class="select" *ngIf="checkedIndex==i"></div>
                     <div><img src="{{item.thumb}}" alt="{{item.cat_name}}"></div>
                     <span>{{item.cat_name}}</span>
                 </div>
             </div>
         </div>
     </div>
-    <div class="fore fore1"></div>
-    <div class="fore fore1"></div>
-    <div class="fore fore1"></div>
+    <ion-list>
+        <div class="fore singleton" *ngFor="let item of [{},{},{},{}]">
+            <div class="left">
+                <img src="./assets/images/images/shangou_01_05.jpg" alt="">
+                <div class="time">
+                    <ion-icon name="ios-time-outline"></ion-icon>
+                    <countdown endDate="454545454"></countdown>
+                </div>
+            </div>
+            <div class="right">
+                <div class="title">as打算大所大所大撒所所所所所所所所所所所所所所所所所所所所所所所所所</div>
+                <div class="strip">
+                    <div class="wrap">
+                        <div></div>
+                    </div>
+                    <div class="number">
+                        <span>已抢购52件</span>
+                        <span>仅剩12件</span>
+                    </div>
+                </div>
+                <div class="price">
+                    <div class="red">¥454.00</div>
+                    <div class="old-price">¥454.00</div>
+                    <div ion-button color="dark" no-margin>立即购买</div>
+                </div>
+            </div>
+        </div>
+    </ion-list>
+
 </ion-content>

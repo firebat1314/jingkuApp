@@ -40,7 +40,7 @@
             </p>
         </div>
     </div>
-    <div class="info" *ngIf="getGoodsInfo">
+    <div class="fore info" *ngIf="getGoodsInfo">
         <div class="title">
             {{getGoodsInfo.goods_name}}
         </div>
@@ -52,8 +52,7 @@
             <div>商品编号&nbsp;：{{getGoodsInfo.goods_sn}}</div>
         </div>
     </div>
-    <div class="background"></div>
-    <div class="price-info" *ngIf="getPriceSection?.status==1">
+    <div class="fore price-info" *ngIf="getPriceSection?.status==1">
         <div class="main">
             <div class="info-item" *ngFor="let item of getPriceSection.data">
                 <span *ngIf="item.max_num">{{item.number+'-'}}{{item.max_num}}盒</span>
@@ -65,8 +64,7 @@
             <ion-icon name="ios-arrow-forward"></ion-icon>
         </div>
     </div>
-    <div class="background"></div>
-    <div class="coupon">
+    <div class="fore coupon">
         <ion-list mode="md" no-margin>
             <button mode="ios" (click)="presentModal('优惠券')" ion-item>
                 领券
@@ -80,16 +78,15 @@
             </button>-->
         </ion-list>
     </div>
-    <div class="background"></div>
-    <button mode="ios" ion-item no-lines (click)="presentModal('发货地址')">
-        发货地：北京
-        <ion-note>
-            配送时间：预计7-14个工作日送达
-        </ion-note>
-    </button>
-
-    <div class="background"></div>
-    <div class="will-address">
+    <div class="fore">
+        <button mode="ios" ion-item no-lines (click)="presentModal('发货地址')">
+            发货地：北京
+            <ion-note>
+                配送时间：预计7-14个工作日送达
+            </ion-note>
+        </button>
+    </div>
+    <div class="fore will-address">
         <button mode="ios" ion-item no-lines (click)="presentModal('配送地址')">
             送至：北京<span class="nogoods"></span>
         </button>
@@ -99,14 +96,12 @@
             </ion-note>
         </ion-item>-->
     </div>
-    <div class="background"></div>
-    <div class="attribute">
+    <div class="fore attribute">
         <button mode="ios" ion-item (click)="presentModalAttr()" no-lines>
             选择：规格、光度等
         </button>
     </div>
-    <div class="background"></div>
-    <div class="goods-service">
+    <div class="fore goods-service">
         <button ion-item mode="ios" no-lines (click)="presentModal('商品服务保障')">
             <ion-icon name="bao1" item-left></ion-icon>
             商品服务保障
@@ -126,8 +121,7 @@
             </ion-note>-->
         </div>
     </div>
-    <div class="background"></div>
-    <div class="store" *ngIf="getSupplierInfo">
+    <div class="fore store" *ngIf="getSupplierInfo">
         <div class="head">
             <ion-item no-lines>
                 <ion-thumbnail padding-left item-left>
@@ -186,8 +180,7 @@
             </div>
         </ion-list>
     </div>
-    <div class="background"></div>
-    <div class="group-and-recommend">
+    <div class="fore group-and-recommend">
         <div class="segment-style">
             <ion-segment [(ngModel)]="selectGroupRecommend" mode="md">
                 <ion-segment-button value="group">
@@ -215,13 +208,12 @@
                     </ion-slide>
                 </ion-slides>
             </div>
-
             <div class="recommend" *ngSwitchCase="'recommend'">
                 <ion-slides slidesPerView="3" pager *ngIf="getCategoryRecommendGoodsHot">
                     <ion-slide *ngFor="let item of getCategoryRecommendGoodsHot">
                         <div class="goods">
                             <div class="top">
-                                <ion-checkbox mode="ios"></ion-checkbox>
+                                <!--<ion-checkbox mode="ios"></ion-checkbox>-->
                                 <img src="{{item.thumb}}" alt="">
                             </div>
                             <div class="bottom">
@@ -234,8 +226,7 @@
             </div>
         </div>
     </div>
-    <div class="background"></div>
-    <div class="pic-and-arguments">
+    <div class="fore pic-and-arguments">
         <ion-segment [(ngModel)]="selectPicArguments" mode="md">
             <ion-segment-button value="pic">
                 图文详情

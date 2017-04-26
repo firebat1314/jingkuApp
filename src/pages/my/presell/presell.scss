@@ -1,22 +1,134 @@
 page-presell {
+    .content {
+        background: #f7f7f7;
+    }
     .fore {
         background: #fff;
+        margin-bottom: 10px;
+        img {
+            display: block;
+            margin: 0 auto;
+        }
     }
-    .top-scrollbar {
-        background: #fff;
-        overflow-x: scroll;
+    .fore1 {
+        .top-scrollbar {
+            overflow-x: scroll;
+            display: flex;
+            padding: 10px 0;
+            border-bottom: 1px solid #e6e6e6;
+            >div {
+                min-width: 84px;
+                font-size: 1.3rem;
+                text-align: center;
+                margin-right: 1.6rem;
+                height: 100%;
+                position: relative;
+                .select {
+                    position: absolute;
+                    top: -5px;
+                    width: 100%;
+                    height: 36%;
+                    /* background: #000; */
+                    opacity: .2;
+                    box-shadow: 0px 43px 12px #000;
+                    border-radius: 50%;
+                }
+                img {
+                    height: 28px;
+                    margin: 5px auto;
+                }
+            }
+        }
+    }
+    .singleton {
         display: flex;
-        padding: 10px 0;
-        border-bottom: 1px solid #e6e6e6;
-        >div {
-            min-width: 84px;
-            font-size: 1.3rem;
-            text-align: center;
-            margin-right: 1.6rem;
-            height: 100%;
+        padding: 16px;
+        align-items: center;
+        .left {
+            min-width: 145px;
+            height: 145px;
+            position: relative;
+            margin-right: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
             img {
-                height: 28px;
-                margin: 5px auto;
+                display: block;
+            }
+            .time {
+                position: absolute;
+                bottom: 0;
+                height: 30px;
+                width: 100%;
+                overflow: hidden;
+                background: #000;
+                opacity: .5;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                color: #fff;
+                .icon {
+                    margin: 0 5px;
+                    font-size: 2rem;
+                }
+                span {
+                    margin: 0;
+                    background: initial;
+                    color: #fff;
+                    min-width: initial;
+                }
+            }
+        }
+        .right {
+            .title {
+                @include ellipsis_2;
+            }
+            .strip {
+                margin-bottom: 15px;
+                .wrap {
+                    height: 11px;
+                    width: 100%;
+                    border-radius: 10px;
+                    background: #f7f7f7;
+                    position: relative;
+                    margin-bottom: 5px;
+                    box-shadow: 0px 0px 11px #ccc inset;
+                    overflow: hidden;
+                    >div {
+                        background: #fdc57e;
+                        border-radius: 10px;
+                        position: absolute;
+                        top: 0;
+                        left: 0;
+                        height: 100%;
+                        width: 50%;
+                        transition: width 500ms ease-in-out 1000ms;
+                        box-shadow: 0px 0px 10px #ccc;
+                    }
+                }
+                .number {
+                    display: flex;
+                    justify-content: space-between;
+                    >span:first-child {
+                        color: #808080;
+                    }
+                    >span:last-child {
+                        color: #e60000;
+                    }
+                }
+            }
+            .price {
+                display: flex;
+                justify-content: space-between;
+                align-items: flex-end;
+                .red {
+                    color: #e60000;
+                    font-size: 1.8rem;
+                }
+                .old-price {
+                    text-decoration: line-through;
+                    color: #808080;
+                }
             }
         }
     }

@@ -1,5 +1,6 @@
 import { Component, ViewChild } from '@angular/core';
 import { NavController, NavParams, Searchbar } from 'ionic-angular';
+import { BrandListPage } from "../brand-list/brand-list";
 
 /*
   Generated class for the Search page.
@@ -26,7 +27,9 @@ export class SearchPage {
   ionViewDidLoad() {
     console.log('ionViewDidLoad SearchPage');
   }
-  searchbar() {
-    console.log(111)
+  searchbar(e) {
+    if(e.keyCode==13){
+      this.navCtrl.push(BrandListPage,{keyword:this.myHomeSearch})
+    }
   }
 }

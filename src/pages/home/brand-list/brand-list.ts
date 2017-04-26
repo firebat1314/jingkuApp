@@ -27,7 +27,8 @@ export class BrandListPage {
         cat_id: '',
         size: 10,
         order: '',
-        stort: 'DESC'
+        stort: 'DESC',
+        keywords:''
     }
     allStatus = true;
     salesNumStatus = true;
@@ -42,8 +43,10 @@ export class BrandListPage {
     ) {
         this.paramsData.cat_id = this.navParams.get('listId');
         this.paramsData.brand_id = this.navParams.get('brandId');
-        console.log('列表ID:', this.paramsData.cat_id)
-        console.log('品牌ID:', this.paramsData.brand_id)
+        this.paramsData.keywords = this.navParams.get('keyword');
+        console.log('列表ID:', this.paramsData.cat_id);
+        console.log('品牌ID:', this.paramsData.brand_id);
+        console.log('keywords:', this.paramsData.keywords);
         this.getListData();
         this.events.subscribe('user:filterParams', (res) => {
             this.paramsData = Object.assign(this.paramsData, res);

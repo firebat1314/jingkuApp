@@ -1,5 +1,11 @@
 page-particulars {
-    $toolbar-md-title-text-color: #999999;
+    .content {
+        background: #f7f7f7;
+    }
+    .fore {
+        margin-bottom: 10px;
+        background: #fff;
+    }
     .ion-ios-arrow-forward {
         color: #999999;
     }
@@ -248,10 +254,11 @@ page-particulars {
             .wrapper {
                 display: flex;
                 flex-wrap: wrap;
-                justify-content: space-around;
+                justify-content: space-between;
+                padding: 0 3%;
                 >div {
                     border-bottom: #000 1px dashed;
-                    width: 40%;
+                    width: 45%;
                     padding: 10px;
                 }
             }

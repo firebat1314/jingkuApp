@@ -2,7 +2,7 @@ page-welcome {
     ion-slide {
         background-color: #eeeeee;
     }
-    .startapp{
+    .startapp {
         width: 170px;
         height: 50px;
         position: relative;
@@ -12,13 +12,23 @@ page-welcome {
         background: none;
         border: 1px solid #fff;
     }
-    .slide-zoom{
+    .slide-zoom {
         height: 100%;
     }
     ion-slide img {
         // height: 70vh !important;
         // width: auto !important;
-        height:100% !important;
+        height: 100% !important;
         width: 100% !important;
+    }
+    .swiper-pagination-bullets {
+        .swiper-pagination-bullet {
+            border-radius: 8px;
+            border-width: 2px;
+            transition: width 500ms ease-in-out;
+        }
+        .swiper-pagination-bullet-active {
+            width: 23px;
+        }
     }
 }
