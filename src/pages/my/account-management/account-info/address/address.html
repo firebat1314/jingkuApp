@@ -15,7 +15,7 @@
 
 <ion-content>
     <form #name="ngForm" novalidate>
-        <ion-item>
+        <ion-item no-lines>
             <ion-label mode="ios" fixed>所在地</ion-label>
             <ion-input [(ngModel)]="userAddress" name="userAddress" required clearInput type="text" [placeholder]="placeholder"></ion-input>
         </ion-item>

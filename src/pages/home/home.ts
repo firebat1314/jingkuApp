@@ -115,7 +115,6 @@ export class HomePage {
           })
         })
       })
-
     })
   }
   /*下拉刷新*/

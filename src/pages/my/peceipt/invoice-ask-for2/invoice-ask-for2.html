@@ -14,82 +14,49 @@
 
 
 <ion-content>
-    <div class="top">
-        <div>您选择了<span class="count">3</span>条单据开票发票</div>
-        <div>代开票金额:<span class="price">￥3000.00</span></div>
+    <div class="fore top">
+        <div>您选择了<span class="count">{{data?.count_i}}</span>条单据开票发票</div>
+        <div>代开票金额:<span class="price">{{data?.float}}</span></div>
     </div>
     <div class="background"></div>
-    <div class="receipt-info">
+    <div class="fore receipt-info" radio-group [(ngModel)]="formData.ivid">
         <div class="title">发票信息</div>
-        <div>
-            <ion-checkbox mode="ios"></ion-checkbox>
-            <span>企业</span>
-            <span>孙山杉</span>
-            <span>普通发票</span>
-        </div>
-        <div>
-            <ion-checkbox mode="ios"></ion-checkbox>
-            <span>企业</span>
-            <span>孙山杉</span>
-            <span>普通发票</span>
-        </div>
-        <div>
-            <ion-checkbox mode="ios"></ion-checkbox>
-            <span>企业</span>
-            <span>孙山杉</span>
-            <span>普通发票</span>
+        <div *ngFor="let item of data?.inv_list;">
+            <div ion-item no-lines>
+                <ion-label style="font-size:14px;color:#808080;">
+                    <span>{{item.type==1?'个人':'企业'}}</span>
+                    <span>{{item.payee}}</span>
+                    <span>{{item.inv_type==1?'普通发票':'增值专用发票'}}</span>
+                </ion-label>
+                <ion-radio item-left [value]="item.ivid"></ion-radio>
+            </div>
         </div>
     </div>
     <div class="background"></div>
-    <div class="receipt-address">
+    <div class="fore receipt-address" radio-group [(ngModel)]="formData.address_id">
         <div class="title">
             <div>
                 寄送地址
                 <ion-note>将以快递（免费）方式寄送给您</ion-note>
             </div>
-            <div style="color:#526bb5;">管理寄送地址</div>
+            <div class="right-t">管理寄送地址</div>
         </div>
-        <div ion-item no-lines>
-            <ion-checkbox item-left mode="ios"></ion-checkbox>
-            <div item-content>
-                <div>
-                    <span class="name">孙山杉</span><span class="phone">{{'13100668641'|phonenumberfilter}}</span>
+        <div ion-item no-lines *ngFor="let item of data?.consignee_list;">
+            <ion-label>
+                <div style="font-size:14px;color:#333;">
+                    <span class="name">{{item.consignee}}</span><span class="phone">{{item.mobile|phonenumberfilter}}</span>
                 </div>
                 <div class="address">
-                    北京-北京-北京-北京-北京-北京-北京-北京-北京-北京-北京-北京-北京
+                    {{item.address}}
                 </div>
-            </div>
-        </div>
-        <div ion-item no-lines>
-            <ion-checkbox item-left mode="ios"></ion-checkbox>
-            <div item-content>
-                <div>
-                    <span class="name">孙山杉</span><span class="phone">{{'13100668641'|phonenumberfilter}}</span>
-                </div>
-                <div class="address">
-                    北京-北京-北京-北京-北京-北京-北京-北京-北京-北京-北京-北京-北京
-                </div>
-            </div>
-        </div>
-        <div ion-item no-lines>
-            <ion-checkbox item-left mode="ios"></ion-checkbox>
-            <div item-content>
-                <div>
-                    <span class="name">孙山杉</span><span class="phone">{{'13100668641'|phonenumberfilter}}</span>
-                </div>
-                <div class="address">
-                    北京-北京-北京-北京-北京-北京-北京-北京-北京-北京-北京-北京-北京
-                </div>
-            </div>
+            </ion-label>
+            <ion-radio [value]="item.address_id" item-left></ion-radio>
         </div>
     </div>
 </ion-content>
-
 <ion-footer>
-    <ion-toolbar no-padding>
-        <div class="btns">
-            <button ion-button no-margin full large color="cancelBtn">取消</button>
-            <button ion-button no-margin full large color="dark">确定</button>
-        </div>
-    </ion-toolbar>
+    <div class="btns">
+        <button ion-button no-margin full large color="cancelBtn">取消</button>
+        <button ion-button no-margin full large color="dark" (click)="onsubmit()">提交</button>
+    </div>
 </ion-footer>

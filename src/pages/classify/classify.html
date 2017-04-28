@@ -53,118 +53,116 @@
     <ion-refresher (ionRefresh)="doRefresh($event)" pullMax="60">
         <ion-refresher-content refreshingSpinner="1" pullingIcon="0"></ion-refresher-content>
     </ion-refresher>
-    <div class="wrapper">
-        <div *ngSwitchCase="'classify'" class="classify-wrap">
-            <ion-nav [root]="root" swipeBackEnabled="true" #myNav></ion-nav>
+    <div *ngSwitchCase="'classify'" class="classify-wrap">
+        <ion-nav [root]="root" swipeBackEnabled="true" #myNav></ion-nav>
+    </div>
+    <div *ngSwitchCase="'brand'" class="brand-wrap">
+        <div class="top-scrollbar">
+            <div *ngFor="let item of getCategorys" (click)="toBrandList(item.cat_id)">
+                <div><img src="{{item.thumb}}" alt="{{item.cat_name}}"></div>
+                <span>{{item.cat_name}}</span>
+            </div>
         </div>
-        <div *ngSwitchCase="'brand'" class="brand-wrap">
-            <div class="top-scrollbar">
-                <div *ngFor="let item of getCategorys" (click)="toBrandList(item.cat_id)">
-                    <div><img src="{{item.thumb}}" alt="{{item.cat_name}}"></div>
-                    <span>{{item.cat_name}}</span>
+        <div class="background"></div>
+        <div class="brand-content">
+            <div class="fore1-jinxuan fore" padding>
+                <div class="title">
+                    <span class="txt">精选品牌</span>
+                </div>
+                <div class="body">
+                    <div *ngFor="let item of [{},{},{},{},{},{},{}]">
+                        <img src="./assets/icon/images/brand_1_03.jpg" alt="">
+                        <h3>斯伯丁光学架</h3>
+                        <span>让你在运动中，感受无线乐趣</span>
+                    </div>
                 </div>
             </div>
-            <div class="background"></div>
-            <div class="brand-content">
-                <div class="fore1-jinxuan fore" padding>
-                    <div class="title">
-                        <span class="txt">精选品牌</span>
-                    </div>
-                    <div class="body">
-                        <div *ngFor="let item of [{},{},{},{},{},{},{}]">
-                            <img src="./assets/icon/images/brand_1_03.jpg" alt="">
-                            <h3>斯伯丁光学架</h3>
-                            <span>让你在运动中，感受无线乐趣</span>
-                        </div>
+            <div class="fore-huanxin fore" padding>
+                <div class="title">
+                    <span class="txt">店铺换新</span>
+                    <span class="more" (click)="goToMoreBrand()">更多&gt;</span>
+                </div>
+                <div class="body">
+                    <div *ngFor="let item of [{},{},{},{},{},{},{}]">
+                        <img src="./assets/icon/images/brand_1_06.jpg" alt="">
                     </div>
                 </div>
-                <div class="fore-huanxin fore" padding>
-                    <div class="title">
-                        <span class="txt">店铺换新</span>
-                        <span class="more" (click)="goToMoreBrand()">更多&gt;</span>
-                    </div>
-                    <div class="body">
-                        <div *ngFor="let item of [{},{},{},{},{},{},{}]">
-                            <img src="./assets/icon/images/brand_1_06.jpg" alt="">
-                        </div>
-                    </div>
+            </div>
+            <div class="fore-remen fore" padding>
+                <div class="title">
+                    <span class="txt">热门品牌</span>
+                    <span class="more" (click)="goToMoreBrand()">更多&gt;</span>
                 </div>
-                <div class="fore-remen fore" padding>
-                    <div class="title">
-                        <span class="txt">热门品牌</span>
-                        <span class="more" (click)="goToMoreBrand()">更多&gt;</span>
-                    </div>
-                    <div class="body">
-                        <div *ngFor="let item of [{},{},{},{},{},{},{}]"><img src="./assets/icon/images/brand_1_10.jpg" alt=""></div>
-                    </div>
+                <div class="body">
+                    <div *ngFor="let item of [{},{},{},{},{},{},{}]"><img src="./assets/icon/images/brand_1_10.jpg" alt=""></div>
                 </div>
-                <div class="fore-yinxing fore " padding *ngFor="let item of brandList?.data">
-                    <div class="title">
-                        <span class="txt">{{item.cat_name}}</span>
-                        <span class="more" *ngIf="item.ads.length>3" (click)="goToMoreBrand(item.ads)">更多&gt;</span>
-                    </div>
-                    <div class="body">
-                        <!--<div class="top"><img src="./assets/icon/images/brand_1_13.jpg" alt=""></div>-->
-                        <!--<div class="top"><img src="./assets/icon/images/brand_1_20.jpg" alt=""></div>-->
-                        <div class="main">
-                            <div *ngFor="let img of item.ads;let i = index;" (click)="clickBanner(img)">
-                                <img *ngIf="i<3" src="{{img.ad_img}}" alt="">
-                            </div>
+            </div>
+            <div class="fore-yinxing fore " padding *ngFor="let item of brandList?.data">
+                <div class="title">
+                    <span class="txt">{{item.cat_name}}</span>
+                    <span class="more" *ngIf="item.ads.length>3" (click)="goToMoreBrand(item.ads)">更多&gt;</span>
+                </div>
+                <div class="body">
+                    <!--<div class="top"><img src="./assets/icon/images/brand_1_13.jpg" alt=""></div>-->
+                    <!--<div class="top"><img src="./assets/icon/images/brand_1_20.jpg" alt=""></div>-->
+                    <div class="main">
+                        <div *ngFor="let img of item.ads;let i = index;" (click)="clickBanner(img)">
+                            <img *ngIf="i<3" src="{{img.ad_img}}" alt="">
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-        <div *ngSwitchCase="'care'" [ngSwitch]="careSelect" class="care-wrap">
-            <div class="shop" *ngSwitchCase="'shop'">
-                <nothing *ngIf="collectionShop?.count=='0'" title="暂无收藏" text="去收藏你喜欢的店铺吧~" backgroundImg="url(../assets/icon/images/homepage_42_03.png)"></nothing>
-                <ion-list>
-                    <div class="item-wrap" *ngFor="let item of collectionShop?.data;let i = index">
-                        <div margin-left [ngClass]="{'activein':showCheckBox}" *ngIf="showCheckBox">
-                            <ion-checkbox color="dark" mode="ios" [(ngModel)]="item.selected"></ion-checkbox>
-                        </div>
-                        <ion-item-sliding>
-                            <ion-item>
-                                <ion-avatar item-left>
-                                    <img src="{{item.logo||'./assets/icon/images/brand_1_10.jpg'}}">
-                                </ion-avatar>
-                                <h2>{{item.suppliers_name}}</h2>
-                                <span class="type">促销???</span>
-                                <ion-note item-right>1.0个人关注???</ion-note>
-                            </ion-item>
-                            <ion-item-options side="right">
-                                <button ion-button color="danger" (click)="unfollowShop(item.csid,i)">取消关注</button>
-                            </ion-item-options>
-                        </ion-item-sliding>
+    </div>
+    <div *ngSwitchCase="'care'" [ngSwitch]="careSelect" class="care-wrap">
+        <div class="shop" *ngSwitchCase="'shop'">
+            <nothing *ngIf="collectionShop?.count=='0'" title="暂无收藏" text="去收藏你喜欢的店铺吧~" backgroundImg="url(./assets/icon/images/homepage_42_03.png)"></nothing>
+            <ion-list>
+                <div class="item-wrap" *ngFor="let item of collectionShop?.data;let i = index">
+                    <div margin-left [ngClass]="{'activein':showCheckBox}" *ngIf="showCheckBox">
+                        <ion-checkbox color="dark" mode="ios" [(ngModel)]="item.selected"></ion-checkbox>
                     </div>
-                </ion-list>
-            </div>
-            <div class="goods" *ngSwitchCase="'goods'">
-                <nothing *ngIf="collectionList?.count=='0'" title="暂无收藏" text="去收藏你喜欢的商品吧~" backgroundImg="url(../assets/icon/images/homepage_42_03.png)"></nothing>
+                    <ion-item-sliding>
+                        <ion-item>
+                            <ion-avatar item-left>
+                                <img src="{{item.logo||'./assets/icon/images/brand_1_10.jpg'}}">
+                            </ion-avatar>
+                            <h2>{{item.suppliers_name}}</h2>
+                            <span class="type">促销???</span>
+                            <ion-note item-right>1.0个人关注???</ion-note>
+                        </ion-item>
+                        <ion-item-options side="right">
+                            <button ion-button color="danger" (click)="unfollowShop(item.csid,i)">取消关注</button>
+                        </ion-item-options>
+                    </ion-item-sliding>
+                </div>
+            </ion-list>
+        </div>
+        <div class="goods" *ngSwitchCase="'goods'">
+            <nothing *ngIf="collectionList?.count=='0'" title="暂无收藏" text="去收藏你喜欢的商品吧~" backgroundImg="url(./assets/icon/images/homepage_42_03.png)"></nothing>
 
-                <ion-list>
-                    <div class="item-wrap" *ngFor="let item of collectionList?.data;let i = index">
-                        <div margin-left [ngClass]="{'activein':showCheckBox}" *ngIf="showCheckBox">
-                            <ion-checkbox color="dark" mode="ios" [(ngModel)]="item.selected"></ion-checkbox>
-                        </div>
-                        <ion-item-sliding>
-                            <ion-item>
-                                <ion-thumbnail item-left>
-                                    <img src="{{item.img||'./assets/icon/images/brand_1_10.jpg'}}">
-                                </ion-thumbnail>
-                                <h2>{{item.goods_name}}</h2>
-                                <p class="right-bottom">
-                                    <span class="price">{{item.shop_price}}</span>
-                                    <button ion-button outline (click)="joinCar(item.goods_id)">加入购物车</button>
-                                </p>
-                            </ion-item>
-                            <ion-item-options side="right">
-                                <button ion-button color="danger" (click)="unfollowGoods(item.rec_id,i)">取消关注</button>
-                            </ion-item-options>
-                        </ion-item-sliding>
+            <ion-list>
+                <div class="item-wrap" *ngFor="let item of collectionList?.data;let i = index">
+                    <div margin-left [ngClass]="{'activein':showCheckBox}" *ngIf="showCheckBox">
+                        <ion-checkbox color="dark" mode="ios" [(ngModel)]="item.selected"></ion-checkbox>
                     </div>
-                </ion-list>
-            </div>
+                    <ion-item-sliding>
+                        <ion-item>
+                            <ion-thumbnail item-left>
+                                <img src="{{item.img||'./assets/icon/images/brand_1_10.jpg'}}">
+                            </ion-thumbnail>
+                            <h2>{{item.goods_name}}</h2>
+                            <p class="right-bottom">
+                                <span class="price">{{item.shop_price}}</span>
+                                <button ion-button outline (click)="joinCar(item.goods_id)">加入购物车</button>
+                            </p>
+                        </ion-item>
+                        <ion-item-options side="right">
+                            <button ion-button color="danger" (click)="unfollowGoods(item.rec_id,i)">取消关注</button>
+                        </ion-item-options>
+                    </ion-item-sliding>
+                </div>
+            </ion-list>
         </div>
     </div>
 </ion-content>

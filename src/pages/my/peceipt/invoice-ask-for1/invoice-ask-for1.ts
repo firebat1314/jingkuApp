@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
 import { InvoiceAskFor2Page } from "../invoice-ask-for2/invoice-ask-for2";
 import { HttpService } from "../../../../providers/http-service";
+import { Native } from "../../../../providers/native";
 
 /*
   Generated class for the InvoiceAskFor1 page.
@@ -20,7 +21,12 @@ export class InvoiceAskFor1Page {
 
   InvoiceAskFor2Page = InvoiceAskFor2Page;
   suppliersId = this.navParams.get('suppliers_id');
-  constructor(public navCtrl: NavController, public navParams: NavParams, public httpService: HttpService) {
+  constructor(
+    public navCtrl: NavController,
+    public navParams: NavParams,
+    public httpService: HttpService,
+    public native: Native
+  ) {
     this.getHttpData()
   }
 
@@ -44,11 +50,15 @@ export class InvoiceAskFor1Page {
     }
     console.log(this.orderIds)
   }
-  onsubmit(){
-    this.httpService.selectzz({ order_ids: this.orderIds, suppliers_id: this.suppliersId }).then((res)=>{
+  onsubmit() {
+    if (this.orderIds.length == 0) {
+      this.native.showToast('请选择订单');
+      return
+    }
+    this.httpService.selectzz({ order_ids: this.orderIds, suppliers_id: this.suppliersId }).then((res) => {
       console.log(res);
-      if(res.status==1){
-        this.navCtrl.push(InvoiceAskFor2Page)
+      if (res.status == 1) {
+        this.navCtrl.push(InvoiceAskFor2Page,{data:res});
       }
     })
   }

@@ -10,7 +10,7 @@
         <ion-title>所有订单</ion-title>
     </ion-navbar>
     <ion-toolbar no-padding>
-        <img-tabs #mytabs [slides]="['全部','待付款','待发货','待收货','返修退换']" (slideClick)="pageIndex=$event" [pageNumber]="4"></img-tabs>
+        <img-tabs #mytabs [slides]="['全部','待付款','待发货','待收货','返修退换']" (slideClick)="checkTab($event)" [pageNumber]="4"></img-tabs>
     </ion-toolbar>
 </ion-header>
 
@@ -42,11 +42,11 @@
             <div class="result">
                 <span class="count">共{{item.goods_number}}件商品</span>&nbsp;&nbsp;<span class="price">合计: <span>￥{{item.total_fee}}</span></span>
             </div>
-            <div class="btn" *ngIf="item.pay_status==0">
+            <div class="btn" *ngIf="item.status=='等待买家付款'">
                 <button ion-button outline>取消订单</button>
                 <button ion-button color="dark" (click)="toPay(item.log_id)">去支付</button>
             </div>
-            <div class="btn" *ngIf="item.pay_status==2">
+            <div class="btn" *ngIf="item.status=='等待卖家配货'||item.status=='无效的订单'||item.status=='取消的订单'">
                 <button ion-button color="dark" (click)="goParticularsPage(item.goods_id)">再次购买</button>
             </div>
         </div>
@@ -63,16 +63,14 @@
                 <ion-thumbnail item-left>
                     <img src="{{item.goods[0].original_img}}">
                 </ion-thumbnail>
-                <div item-content>
-                    <div class="my-content">
-                        <div class="left">
-                            <h2>{{item.goods[0].goods_name}}</h2>
-                            <div [innerHtml]="item.goods[0].goods_attr"></div>
-                        </div>
-                        <div class="right">
-                            <div>{{item.goods[0].format_amount}}</div>
-                            <div class="count">X{{item.goods[0].goods_number}}</div>
-                        </div>
+                <div class="my-content">
+                    <div class="left">
+                        <h2>{{item.goods[0].goods_name}}</h2>
+                        <div [innerHtml]="item.goods[0].goods_attr"></div>
+                    </div>
+                    <div class="right">
+                        <div>{{item.goods[0].format_amount}}</div>
+                        <div class="count">X{{item.goods[0].goods_number}}</div>
                     </div>
                 </div>
             </ion-item>
@@ -97,16 +95,14 @@
                 <ion-thumbnail item-left>
                     <img src="{{item.goods[0].original_img}}">
                 </ion-thumbnail>
-                <div item-content>
-                    <div class="my-content">
-                        <div class="left">
-                            <h2>{{item.goods[0].goods_name}}</h2>
-                            <div [innerHtml]="item.goods[0].goods_attr"></div>
-                        </div>
-                        <div class="right">
-                            <div>{{item.goods[0].format_amount}}</div>
-                            <div class="count">X{{item.goods[0].goods_number}}</div>
-                        </div>
+                <div class="my-content">
+                    <div class="left">
+                        <h2>{{item.goods[0].goods_name}}</h2>
+                        <div [innerHtml]="item.goods[0].goods_attr"></div>
+                    </div>
+                    <div class="right">
+                        <div>{{item.goods[0].format_amount}}</div>
+                        <div class="count">X{{item.goods[0].goods_number}}</div>
                     </div>
                 </div>
             </ion-item>
@@ -130,16 +126,14 @@
                 <ion-thumbnail item-left>
                     <img src="{{item.goods[0].original_img}}">
                 </ion-thumbnail>
-                <div item-content>
-                    <div class="my-content">
-                        <div class="left">
-                            <h2>{{item.goods[0].goods_name}}</h2>
-                            <div [innerHtml]="item.goods[0].goods_attr"></div>
-                        </div>
-                        <div class="right">
-                            <div>{{item.goods[0].format_amount}}</div>
-                            <div class="count">X{{item.goods[0].goods_number}}</div>
-                        </div>
+                <div class="my-content">
+                    <div class="left">
+                        <h2>{{item.goods[0].goods_name}}</h2>
+                        <div [innerHtml]="item.goods[0].goods_attr"></div>
+                    </div>
+                    <div class="right">
+                        <div>{{item.goods[0].format_amount}}</div>
+                        <div class="count">X{{item.goods[0].goods_number}}</div>
                     </div>
                 </div>
             </ion-item>

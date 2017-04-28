@@ -16,9 +16,16 @@
     background: #fff;
 }
 
-// .content {
-//     background: #f7f7f7;
-// }
+.content {
+    background: #f7f7f7;
+}
+
+.list>div:last-child .item {
+    .item-inner {
+        border: 0;
+    }
+}
+
 
 /*————————————————————————————————————工具栏————————————————————————————————————*/
 
@@ -57,11 +64,16 @@ ion-toolbar {
 
 /*————————————————————————————————————下拉刷新CSS————————————————————————————————————*/
 
+ion-refresher-content[state=ready] .refresher-pulling-icon {
+    transform: none;
+}
+
 .refresher-refreshing .spinner {
+    margin-top: 10px;
     background: url(../assets/icon/refreshing.gif) center center no-repeat;
     background-size: auto 100%;
-    height: 60px;
-    width: 60px;
+    height: 40px;
+    width: 160px;
 }
 
 .refresher-refreshing {
@@ -70,9 +82,10 @@ ion-toolbar {
 
 .refresher-pulling {
     .refresher-pulling-icon {
-        background: url(../assets/icon/refreshing.gif) center center no-repeat;
+        margin-top: 10px;
+        background: url(../assets/icon/refreshing1.jpg) center center no-repeat;
         background-size: auto 100%;
-        height: 60px;
+        height: 40px;
     }
     height: 100%;
 }

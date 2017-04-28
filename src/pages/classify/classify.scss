@@ -45,154 +45,153 @@ page-classify {
             }
         }
     }
-    .wrapper {
-        display: flex;
-        flex-direction: column;
-        .brand-wrap {
-            background: #f7f7f7;
-            .fore {
-                background: #fff;
-                margin-bottom: 10px;
+    .brand-wrap {
+        background: #f7f7f7;
+        .fore {
+            background: #fff;
+            margin-bottom: 10px;
+        }
+        .title {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 16px;
+            .txt {
+                border-left: 5px solid #000;
+                font-size: 1.8rem;
+                padding-left: 5px;
+                display: block;
             }
-            .title {
-                display: flex;
-                justify-content: space-between;
-                align-items: center;
-                margin-bottom: 16px;
-                .txt {
-                    border-left: 5px solid #000;
-                    font-size: 1.8rem;
-                    padding-left: 5px;
-                    display: block;
-                }
-                .more {
-                    color: #666;
-                    font-size: 1.5rem;
-                }
+            .more {
+                color: #666;
+                font-size: 1.5rem;
             }
-            @mixin body1 {
-                min-width: 241px;
-                margin-right: 1.6rem;
-                &:last-child {
+        }
+        @mixin body1 {
+            min-width: 241px;
+            margin-right: 1.6rem;
+            &:last-child {
+                margin-right: 0;
+            }
+            img {
+                border-radius: 3px;
+            }
+            border-radius: 3px;
+            h3 {
+                color: #666;
+            }
+            span {
+                color: #808080;
+            }
+        }
+        @mixin body2 {
+            overflow: hidden;
+            >div {
+                width: 32.6%;
+                float: left;
+                margin-right: 1%;
+                &:nth-child(3n) {
                     margin-right: 0;
                 }
+                margin-bottom: 0.2rem;
                 img {
-                    border-radius: 3px;
-                }
-                border-radius: 3px;
-                h3 {
-                    color: #666;
-                }
-                span {
-                    color: #808080;
+                    width: 100%;
                 }
             }
-            @mixin body2 {
-                overflow: hidden;
-                >div {
-                    width: 32.6%;
-                    float: left;
-                    margin-right: 1%;
-                    &:nth-child(3n) {
-                        margin-right: 0;
-                    }
-                    margin-bottom: 0.2rem;
-                    img {
-                        width: 100%;
-                    }
+        }
+        .top-scrollbar {
+            background: #fff;
+            overflow-x: scroll;
+            display: flex;
+            padding: 10px 0;
+            border-bottom: 1px solid #e6e6e6;
+            >div {
+                min-width: 84px;
+                font-size: 1.3rem;
+                text-align: center;
+                margin-right: 1.6rem;
+                height: 100%;
+                img {
+                    height: 28px;
+                    margin: 5px auto;
                 }
             }
-            .top-scrollbar {
-                background: #fff;
-                overflow-x: scroll;
+        }
+        .fore1-jinxuan {
+            .body {
                 display: flex;
-                padding: 10px 0;
-                border-bottom: 1px solid #e6e6e6;
+                overflow-x: scroll;
                 >div {
-                    min-width: 84px;
-                    font-size: 1.3rem;
-                    text-align: center;
-                    margin-right: 1.6rem;
-                    height: 100%;
-                    img {
-                        height: 28px;
-                        margin: 5px auto;
-                    }
+                    @include body1
                 }
             }
-            .fore1-jinxuan {
-                .body {
-                    display: flex;
-                    overflow-x: scroll;
-                    >div {
-                        @include body1
-                    }
+        }
+        .fore-huanxin {
+            .body {
+                display: flex;
+                overflow-x: scroll;
+                >div {
+                    @include body1
                 }
             }
-            .fore-huanxin {
-                .body {
-                    display: flex;
-                    overflow-x: scroll;
-                    >div {
-                        @include body1
-                    }
-                }
+        }
+        .fore-remen {
+            .body {
+                @include body2
             }
-            .fore-remen {
-                .body {
-                    @include body2
-                }
-            }
-            .fore-yinxing {
-                .body {
-                    .top {
-                        img {
-                            width: 100%;
-                        }
-                    }
-                    .main {
-                        @include body2;
-                    }
-                }
-            }
-            .fore-meitong {
+        }
+        .fore-yinxing {
+            .body {
                 .top {
                     img {
                         width: 100%;
                     }
                 }
                 .main {
-                    @include body2
+                    @include body2;
                 }
             }
         }
-        .care-wrap {
-            .shop {
-                .item-wrap {
-                    display: flex;
-                    align-items: center;
-                    h2 {
-                        @include ellipsis_2;
-                    }
-                    .type {
-                        color: #fff;
-                        padding: 1px 8px;
-                        background: #e60000;
-                        border-radius: 3px;
-                        display: inline-block;
-                        margin-top: 5px;
-                        font-size: small;
-                        padding: 2px 5px;
-                    }
-                    ion-note {
-                        color: #808080;
-                        font-size: 1.4rem;
-                    }
+        .fore-meitong {
+            .top {
+                img {
+                    width: 100%;
                 }
             }
-            .goods {
-                @include slidingList1;
+            .main {
+                @include body2
             }
+        }
+    }
+    .care-wrap {
+        height: 100%;
+        .shop {
+            height: 100%;
+            .item-wrap {
+                display: flex;
+                align-items: center;
+                h2 {
+                    @include ellipsis_2;
+                }
+                .type {
+                    color: #fff;
+                    padding: 1px 8px;
+                    background: #e60000;
+                    border-radius: 3px;
+                    display: inline-block;
+                    margin-top: 5px;
+                    font-size: small;
+                    padding: 2px 5px;
+                }
+                ion-note {
+                    color: #808080;
+                    font-size: 1.4rem;
+                }
+            }
+        }
+        .goods {
+            height: 100%;
+            @include slidingList1;
         }
     }
 }

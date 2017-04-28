@@ -14,18 +14,36 @@
 
 
 <ion-content>
+    <ion-item mode="ios" no-lines>
+        订单金额
+        <span item-right ion-text color="danger">¥9999.00</span>
+    </ion-item>
+    <div class="background"></div>
     <ion-list radio-group>
-        <ion-item mode="ios">
-            <ion-label>支付宝</ion-label>
-            <ion-radio mode="ios" (click)="toPay(1)" color="drak"></ion-radio>
+        <ion-item-divider>支付方式</ion-item-divider>
+        <ion-item mode="ios" (click)="toPay(1)">
+            <img class="pay-icon" src="./assets/icon/images/patfor_06.jpg" alt="">
         </ion-item>
-        <ion-item mode="ios">
-            <ion-label>银联</ion-label>
-            <ion-radio mode="ios" (click)="toPay(2)" color="drak"></ion-radio>
+        <ion-item mode="ios" (click)="toPay(2)">
+            <img class="pay-icon" src="./assets/icon/images/patfor_03.jpg" alt="">
         </ion-item>
-        <ion-item mode="ios">
-            <ion-label>微信</ion-label>
-            <ion-radio mode="ios" (click)="toPay(3)" color="drak"></ion-radio>
+        <ion-item mode="ios" (click)="toPay(3)">
+            <img class="pay-icon" src="./assets/icon/images/patfor_08.jpg" alt="">
         </ion-item>
     </ion-list>
+    <!--<ion-list radio-group>
+        <ion-item-divider>支付方式</ion-item-divider>
+        <ion-item mode="ios">
+            <ion-label><img class="pay-icon" src="./assets/icon/images/patfor_06.jpg" alt=""></ion-label>
+            <ion-checkbox mode="ios" (click)="toPay(1)" color="drak"></ion-checkbox>
+        </ion-item>
+        <ion-item mode="ios">
+            <ion-label><img class="pay-icon" src="./assets/icon/images/patfor_03.jpg" alt=""></ion-label>
+            <ion-checkbox mode="ios" (click)="toPay(2)" color="drak"></ion-checkbox>
+        </ion-item>
+        <ion-item mode="ios">
+            <ion-label><img class="pay-icon" src="./assets/icon/images/patfor_08.jpg" alt=""></ion-label>
+            <ion-checkbox mode="ios" (click)="toPay(3)" color="drak"></ion-checkbox>
+        </ion-item>
+    </ion-list>-->
 </ion-content>

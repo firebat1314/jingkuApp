@@ -1,7 +1,4 @@
 page-invoice-ask-for1 {
-    .content {
-        background: #f7f7f7;
-    }
     .search {
         background: #fff;
         margin-bottom: 10px;
@@ -142,6 +139,7 @@ page-invoice-ask-for1 {
             display: flex;
             justify-content: space-between;
             align-items: center;
+            padding: 10px 0;
             .left {
                 display: flex;
                 justify-content: space-between;

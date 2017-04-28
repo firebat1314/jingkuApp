@@ -60,6 +60,9 @@ export class AllOrdersPage {
       }
     })
   }
+  checkTab($event){
+    this.pageIndex = $event;
+  }
   ngAfterViewInit() {
     //进入页面默认选中栏目
     if (this.navParams.get('index')) {

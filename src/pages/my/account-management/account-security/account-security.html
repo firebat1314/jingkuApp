@@ -14,13 +14,17 @@
 
 
 <ion-content>
-    <button [navPush]="ChangePasswordPage" ion-item mode="ios">
-        <h2>登陆密码</h2>
-        <p>互联网账号存在被盗风险，建议您定期更改密码以保护账号安全</p>
-    </button>
-    <button [navPush]="ChangePhoneNumberPage" ion-item mode="ios">
-        <h2>更换手机号</h2>
-        <p>若已丢失或者停用，请立即更换，避免账号被盗</p>
-        <ion-note class="phone" item-right color="danger">{{'13100668641' | phonenumberfilter}}</ion-note>
-    </button>
+
+    <ion-list>
+        <button [navPush]="ChangePasswordPage" ion-item mode="ios">
+            <h2>登陆密码</h2>
+            <p>互联网账号存在被盗风险，建议您定期更改密码以保护账号安全</p>
+        </button>
+        <button [navPush]="ChangePhoneNumberPage" ion-item mode="ios">
+            <h2>更换手机号</h2>
+            <p>若已丢失或者停用，请立即更换，避免账号被盗</p>
+            <ion-note class="phone" item-right color="danger">{{'13100668641' | phonenumberfilter}}</ion-note>
+        </button>
+    </ion-list>
+
 </ion-content>

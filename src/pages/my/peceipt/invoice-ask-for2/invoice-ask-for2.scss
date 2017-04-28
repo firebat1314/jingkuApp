@@ -1,9 +1,15 @@
 page-invoice-ask-for2 {
+    .fore {
+        background: #fff;
+    }
+    .item-md .radio-md[item-left] {
+        margin-right: 20px;
+    }
     .top {
         color: #808080;
         display: flex;
         justify-content: space-between;
-        padding: 13px 10px;
+        padding: 16px 10px;
         .count {
             color: #333;
             font-size: 1.8rem;
@@ -14,46 +20,46 @@ page-invoice-ask-for2 {
         }
     }
     .receipt-info {
-        color: #808080;
+        padding: 0 5px;
         .title {
             padding: 15px 10px;
             font-size: 1.6rem;
-            color: #333;
         }
         >div {
-            padding: 10px 5px;
-            margin: 0 5px;
             border-bottom: 1px solid map-get($colors, border);
-            display: flex;
             &:last-child {
                 border: none;
             }
             span {
-                margin-left: 10px;
+                margin-right: 10px;
             }
         }
     }
     .receipt-address {
+        padding: 0 5px;
         .title {
-            padding: 15px 10px;
+            padding: 16px 10px;
             font-size: 1.6rem;
-            color: #333;
             display: flex;
             justify-content: space-between;
             align-items: center;
             ion-note {
                 margin-left: 10px;
-                font-size: 1.3rem;
+                font-size: 12px;
+            }
+            .right-t {
+                color: #526bb5;
+                font-size: 12px;
             }
         }
         .item {
             border-top: 1px solid map-get($colors, border);
             color: #808080;
-            padding: 10px 10px;
             .name {
                 margin-right: 20px;
             }
             .address {
+                color: #808080;
                 font-size: 1.3rem;
                 margin: 5px 0;
             }

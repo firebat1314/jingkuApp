@@ -1,5 +1,8 @@
 meun-item {
     /*————————————————————————————————————menu CSS————————————————————————————————————*/
+    .content {
+        background: #fff;
+    }
     .box {
         border-bottom: 1px solid map-get($colors, border);
         padding: 8px;
@@ -14,6 +17,7 @@ meun-item {
             align-items: center;
             .all {
                 color: #acacac;
+                font-size: 1.3rem;
                 ion-icon {
                     margin-left: 3px;
                 }

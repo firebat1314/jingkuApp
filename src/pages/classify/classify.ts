@@ -145,7 +145,7 @@ export class ClassifyPage {
     console.log('content更新~')
   }
   unfollowShop(suppliers_id, index) {
-    this.native.openAlertBox('确认取消关注改商铺', () => {
+    this.native.openAlertBox('确认取消关注该商铺', () => {
       this.httpService.delCollectionShop({ shop_ids: [suppliers_id] }).then((res) => {
         console.log(res);
         if (res.status == 1) {
@@ -156,7 +156,7 @@ export class ClassifyPage {
     })
   }
   unfollowGoods(goods_id, index) {
-    this.native.openAlertBox('确认取消关注改商铺', () => {
+    this.native.openAlertBox('确认取消关注该商品', () => {
       this.httpService.delCollectionGoods({ rec_ids: [goods_id] }).then((res) => {
         console.log(res);
         if (res.status == 1) {
