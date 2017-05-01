@@ -41,10 +41,10 @@ export class ClassifyPage {
     public navParams: NavParams,
     public httpService: HttpService,
     public native: Native,
-    private events:Events
+    private events: Events
   ) {
     this.getHttpData();
-    this.events.subscribe('class:selectBrand',()=>{
+    this.events.subscribe('class:selectBrand', () => {
       this.classSelect = 'brand';
     })
   }
@@ -78,6 +78,7 @@ export class ClassifyPage {
           this.httpService.collectionList({ size: 10 }).then((res) => {
             console.log('收藏店商品列表', res)
             if (res.status == 1) { this.collectionList = res; }
+            this.content.resize();//更新content容器
             if (finished) { finished(); }
           })
         })

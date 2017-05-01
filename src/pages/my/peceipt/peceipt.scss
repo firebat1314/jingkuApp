@@ -77,8 +77,6 @@ page-peceipt {
                 .text {
                     border: #999 1px solid;
                     border-right: none;
-                    border-bottom-left-radius: 4px;
-                    border-top-left-radius: 4px;
                     position: relative;
                     display: flex;
                     justify-content: flex-start;
@@ -88,6 +86,7 @@ page-peceipt {
                     margin-right: 10px;
                     padding-left: 5px;
                     .btn {
+                        height: calc(100% + 2px);
                         position: absolute;
                         top: -1px;
                         right: 0;
@@ -102,7 +101,6 @@ page-peceipt {
                     color: #fff;
                     border-radius: 2px;
                     background: #526bb5;
-                    height: 34px;
                 }
             }
         }
