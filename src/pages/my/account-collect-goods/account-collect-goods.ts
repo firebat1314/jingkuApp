@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
 import { HttpService } from "../../../providers/http-service";
 import { Native } from "../../../providers/native";
+import { ParticularsPage } from "../../home/particulars/particulars";
 
 @Component({
   selector: 'page-account-collect-Goods',
@@ -44,5 +45,8 @@ export class AccountCollectGoodsPage {
         }
       })
     })
+  }
+  joinCar(goods_id){
+    this.navCtrl.push(ParticularsPage,{goodsId:goods_id});
   }
 }

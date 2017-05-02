@@ -9,7 +9,7 @@
     <ion-navbar>
         <ion-title>购物车</ion-title>
         <ion-buttons right>
-            <button ion-button clear *ngIf="carDetails||carDetails?.suppliers_goods_list?.length!=0" (click)="isEdit=!isEdit">{{isEdit?'取消':'编辑'}}</button>
+            <button ion-button clear *ngIf="carDetails&&carDetails?.suppliers_goods_list?.length!=0" (click)="isEdit=!isEdit">{{isEdit?'取消':'编辑'}}</button>
         </ion-buttons>
     </ion-navbar>
 

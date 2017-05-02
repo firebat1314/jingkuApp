@@ -14,9 +14,9 @@
         <h2>{{item.short_name}}</h2>
         <h3>{{item.shop_price}}</h3>
         <div class="chips">
-            <div>SALE</div>
-            <div>HOT</div>
-            <div>NEW</div>
+            <div class="sale">SALE</div>
+            <div class="hot">HOT</div>
+            <div class="new">NEW</div>
         </div>
         <div class="background" (click)="close(item,$event)" *ngIf="item.showBtn"></div>
         <ion-fab middle center #fab *ngIf="item.showBtn">

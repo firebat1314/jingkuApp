@@ -19,7 +19,7 @@ export class BrandListPage {
     myHomeSearch: String = '';
     listStyleflag: Boolean;
     listId: any;
-    data;
+    data: any;
     currentPage: number = 1;//当前页
     mytool = 'all';//当前筛选
     paramsData = {

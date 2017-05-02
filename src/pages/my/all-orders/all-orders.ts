@@ -35,6 +35,7 @@ export class AllOrdersPage {
     console.log('ionViewDidLoad AllOrdersPage');
   }
   getHttpData() {
+      
     this.httpService.order().then((res) => {
       console.log(res);
       if (res.status == 1) {
@@ -62,6 +63,7 @@ export class AllOrdersPage {
   }
   checkTab($event){
     this.pageIndex = $event;
+
   }
   ngAfterViewInit() {
     //进入页面默认选中栏目

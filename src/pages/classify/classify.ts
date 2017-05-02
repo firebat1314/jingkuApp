@@ -18,6 +18,7 @@ import { BrandListPage } from "../home/brand-list/brand-list";
   templateUrl: 'classify.html'
 })
 export class ClassifyPage {
+  timer: number;
   brandList: any;
   collectionList: any;//收藏商品列表
   collectionShop: any;//收藏店铺列表
@@ -44,15 +45,15 @@ export class ClassifyPage {
     private events: Events
   ) {
     this.getHttpData();
-    this.events.subscribe('class:selectBrand', () => {
-      this.classSelect = 'brand';
+    this.events.subscribe('classify:selectSegment', (res) => {
+      this.classSelect = res;
     })
   }
   ionViewDidLoad() {
     console.log('ionViewDidLoad ClassifyPage');
   }
   ngAfterViewInit() {
-    setInterval(() => {
+    this.timer = setInterval(() => {
       if (this.classSelect == "classify") {
         if (!this.myNav.canGoBack()) {
           this.showBackBtn = false;
@@ -61,9 +62,6 @@ export class ClassifyPage {
         }
       }
     }, 1000)
-  }
-  ngOnDestroy() {
-    this.showCheckBox = false;
   }
   getHttpData(finished?) {
     this.httpService.getCategorys().then((res) => {
@@ -78,7 +76,6 @@ export class ClassifyPage {
           this.httpService.collectionList({ size: 10 }).then((res) => {
             console.log('收藏店商品列表', res)
             if (res.status == 1) { this.collectionList = res; }
-            this.content.resize();//更新content容器
             if (finished) { finished(); }
           })
         })
@@ -144,6 +141,9 @@ export class ClassifyPage {
     this.showCheckBox = !this.showCheckBox;
     this.content.resize();//更新content容器
     console.log('content更新~')
+  }
+  clickSegment() {
+    this.content.resize();//更新content容器
   }
   unfollowShop(suppliers_id, index) {
     this.native.openAlertBox('确认取消关注该商铺', () => {

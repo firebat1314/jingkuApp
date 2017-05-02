@@ -17,7 +17,7 @@ meun-item {
             align-items: center;
             .all {
                 color: #acacac;
-                font-size: 1.3rem;
+                font-size: 12px;
                 ion-icon {
                     margin-left: 3px;
                 }
@@ -42,7 +42,7 @@ meun-item {
                     margin-right: 0;
                 }
                 &.selected {
-                    background: #ccc url(../assets/images/images/toggle-mune_2_03.png) right bottom no-repeat;
+                    background: #ccc url(../assets/images/images/toggle-mune_03_03.png) right bottom no-repeat;
                     color: #fff;
                 }
             }

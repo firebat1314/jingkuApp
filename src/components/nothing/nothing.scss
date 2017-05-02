@@ -7,13 +7,16 @@ nothing {
         align-items: center;
         background: #fff;
         .img {
-            width: 13rem;
-            height: 13rem;
+            width: 12rem;
+            height: 12rem;
             border-radius: 50%;
             border: 2px solid #cbced0;
             background-position: center center;
             background-size: 50%;
             background-repeat: no-repeat;
+        }
+        .button {
+            padding: 0 2.1em;
         }
     }
 }

@@ -29,7 +29,7 @@
         </ion-slides>
     </div>
     <!--————————————————————————————————————————————————————————————————————————————————————-->
-    <div class="btn-tool" padding>
+    <div class="btn-tool" home-padding>
         <div class="top">
             <div [navPush]="PresellPage">
                 <div class="img">
@@ -49,7 +49,7 @@
                 </div>
                 <span>闪购</span>
             </div>
-            <div (click)="goMoreBrandPage()">
+            <div (click)="goClassPage('brand')">
                 <div class="img">
                     <img src="./assets/icon/home_5_09.png" alt="">
                 </div>
@@ -85,10 +85,10 @@
         </div>
     </div>
     <!--——————————————————————————————————————————热门类型——————————————————————————————————————————-->
-    <div class="hot-group home-content" *ngIf="categoryAddetatils" padding>
+    <div class="hot-group home-content" *ngIf="categoryAddetatils" home-padding>
         <div class="title">
             <span class="txt">热门品类</span>
-            <span class="more">更多&gt;</span>
+            <span class="more" (click)="goClassPage('classify')">更多&gt;</span>
         </div>
         <div class="main">
             <div class="banner">
@@ -105,22 +105,22 @@
         </div>
     </div>
     <!--——————————————————————————————————————————热门品牌——————————————————————————————————————————-->
-    <div class="hot-brand home-content" *ngIf="getBrands" padding>
+    <div class="hot-brand home-content" *ngIf="getBrands" home-padding>
         <div class="title">
             <span class="txt">热门品牌</span>
-            <span class="more" (click)="goMoreBrandPage()">更多&gt;</span>
+            <span class="more" (click)="goClassPage('brand')">更多&gt;</span>
         </div>
         <div class="main">
             <div *ngFor="let item of getBrands">
                 <img src="{{item.brand_logo}}" alt="{{item.brand_name}}" (click)="goBrandListPage(item.brand_id)">
             </div>
             <div>
-                <img src="./assets/icon/homepage_53.png" alt="" (click)="goMoreBrandPage()">
+                <img src="./assets/icon/homepage_53.png" alt="" (click)="goClassPage('brand')">
             </div>
         </div>
     </div>
     <!--——————————————————————————————————————————精选专题——————————————————————————————————————————-->
-    <div class="handpick home-content" *ngIf="getCategoryRecommendGoodsHot&&getCategoryRecommendGoodsBest&&getCategoryRecommendGoods" padding>
+    <div class="handpick home-content" *ngIf="getCategoryRecommendGoodsHot&&getCategoryRecommendGoodsBest&&getCategoryRecommendGoods" home-padding>
         <div class="title">
             <span class="txt">精选专题</span>
         </div>
@@ -130,23 +130,19 @@
         <div class="pick">
             <ion-slides class="slide-title" slidesPerView="3">
                 <ion-slide *ngFor="let slide of getCategoryRecommendGoodsHot; let i = index;">
-                    <div (click)="goParticularsPage(slide.id)">
-                        <div class="slide-title-unit">
-                            <div class="img"><img src="{{slide?.thumb}}" alt=""></div>
-                            <div class="info">
-                                <div class="name">{{slide?.name}}</div>
-                                <div class="price">{{slide?.market_price}}</div>
-                            </div>
+                    <div class="slide-title-unit" (click)="goParticularsPage(slide.id)">
+                        <div class="img"><img src="{{slide?.thumb}}" alt=""></div>
+                        <div class="info">
+                            <div class="name">{{slide?.name}}</div>
+                            <div class="price">{{slide?.market_price}}</div>
                         </div>
                     </div>
                 </ion-slide>
                 <ion-slide>
-                    <div>
-                        <div class="slide-title-unit">
-                            <div class="watch-more">
-                                <p>查&nbsp;看</p>
-                                <p>更&nbsp;多</p>
-                            </div>
+                    <div class="slide-title-unit">
+                        <div class="watch-more">
+                            <p>查&nbsp;看</p>
+                            <p>更&nbsp;多</p>
                         </div>
                     </div>
                 </ion-slide>
@@ -219,7 +215,7 @@
         </div>-->
     </div>
     <!--——————————————————————————————————————————好店推荐——————————————————————————————————————————-->
-    <div class="good-shop home-content" *ngIf="bannerImgs" padding>
+    <div class="good-shop home-content" *ngIf="bannerImgs" home-padding>
         <div class="title">
             <span class="txt">好店推荐</span>
             <span class="more">更多&gt;</span>
@@ -242,7 +238,7 @@
         </div>
     </div>
     <!--——————————————————————————————————————————热门单品——————————————————————————————————————————-->
-    <div class="hot-other home-content" *ngIf="getCategoryRecommendGoodsHot" padding>
+    <div class="hot-other home-content" *ngIf="getCategoryRecommendGoodsHot" home-padding>
         <div class="title">
             <span class="txt">热门单品</span>
             <span class="more" [navPush]="BrandListPage" [navParams]="{list:'singleHot'}">更多&gt;</span>

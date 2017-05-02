@@ -32,6 +32,6 @@ export class SubnavPage1Page {
     })
   }
   gotwo(id) {
-    this.navCtrl.push(SubnavPage2Page,{catId:id});
+    this.navCtrl.push(SubnavPage2Page,{catId:id},{animation:'ios-transition'});
   }
 }

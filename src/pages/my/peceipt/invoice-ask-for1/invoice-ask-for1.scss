@@ -128,11 +128,11 @@ page-invoice-ask-for1 {
     }
     ion-footer {
         .selectall {
-            margin-right: 10px;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 10px 0;
+            padding: 10px 10px;
+            background: #fff;
             .left {
                 display: flex;
                 justify-content: space-between;

@@ -13,7 +13,7 @@
             </button>
         </ion-buttons>
         <div class="head-segment-style">
-            <ion-segment mode="ios" [(ngModel)]="classSelect" color="primary">
+            <ion-segment mode="ios" [(ngModel)]="classSelect" (ionChange)="clickSegment()" color="primary">
                 <ion-segment-button value="classify">
                     分类
                 </ion-segment-button>
@@ -167,5 +167,6 @@
     </div>
 </ion-content>
 <ion-footer *ngIf="classSelect=='care'&&showCheckBox&&(collectionList?.count!='0'||collectionShop?.count!='0')">
+    <!--showCheckBox&&((classSelect=='care'&&collectionShop?.count!='0')||(classSelect=='goods'&&collectionList?.count!='0'))-->
     <button ion-button full large no-margin color="dark" (click)="confirmForCollection()">取消关注</button>
 </ion-footer>

@@ -135,26 +135,20 @@ export class HomePage {
 
   clickBanner(item) {
     if (item.link_type.type_name == 'category') {
-      this.navCtrl.parent.select(1);
-      /*this.navCtrl.push(ClassifyPage, {
-        categoryId: item.link_type.type_value
-      })*/
+      this.goClassPage('classify');
     } else if (item.link_type.type_name == 'goods') {
       this.navCtrl.push(ParticularsPage, {
         goodsId: item.link_type.type_value
       })
     } else if (item.link_type.type_name == "brand") {
-      this.navCtrl.parent.select(1);
-      /*this.navCtrl.push(ClassifyPage, {
-        brandId: item.link_type.type_value
-      })*/
+      this.goClassPage('brand');
     }
   }
   goParticularsPage(id) {
     this.navCtrl.push(ParticularsPage, { goodsId: id })
   }
-  goBrandListPage(id){
-    this.navCtrl.push(BrandListPage,{brandId:id})
+  goBrandListPage(id) {
+    this.navCtrl.push(BrandListPage, { brandId: id })
   }
   ionViewDidLoad() {
     console.log('ionViewDidLoad HomePage');
@@ -172,8 +166,8 @@ export class HomePage {
     // }
     // console.log(this.showBackTopBtn, this.content.scrollTop)
   }
-  goMoreBrandPage(){
+  goClassPage(value) {
     this.navCtrl.parent.select(1);
-    this.events.publish('class:selectBrand');
+    this.events.publish('classify:selectSegment',value);
   }
 }

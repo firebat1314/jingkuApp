@@ -1,15 +1,23 @@
 page-account-helper {
-    .content {
-        background: #f7f7f7;
-    }
-    .item-divider-md {
-        color: #000;
-        font-size: 2rem;
-        img {
-            width: 20px;
+    .list {
+        padding: 0 10px;
+        background: #fff;
+        .item-divider-md {
+            color: #000;
+            font-size: 2rem;
+            img {
+                width: 20px;
+            }
         }
-    }
-    .item-ios {
-        padding-left: 40px;
+        ion-item-divider.item {
+            font-size: 16px;
+        }
+        ion-item.item {
+            padding-left: 0px;
+            font-size: 14px;
+            .item-inner {
+                padding-left: 40px;
+            }
+        }
     }
 }

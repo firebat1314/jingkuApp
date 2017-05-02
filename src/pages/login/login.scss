@@ -38,12 +38,16 @@ page-login {
     }
     .forgot-password {
         overflow: hidden;
-        margin-bottom: 30px;
+        margin-bottom: 40px;
         .button {
             float: right;
         }
     }
     .btn-wrap {
-        padding: 0 40px;
+        padding: 0 25px;
+        .button {
+            height: 2.4em;
+            margin: 1.4rem 0.2rem;
+        }
     }
 }

@@ -67,10 +67,10 @@
         <ion-refresher-content refreshingSpinner="1" pullingIcon="0"></ion-refresher-content>
     </ion-refresher>
 
-    <div *ngIf="data">
-        <single-foods-card [data]="data.goods" *ngIf="!listStyleflag" padding></single-foods-card>
+    <div *ngIf="data?.goods?.length!=0">
+        <single-foods-card [data]="data?.goods" *ngIf="!listStyleflag"></single-foods-card>
 
-        <single-foods-item [data]="data.goods" *ngIf="listStyleflag"></single-foods-item>
+        <single-foods-item [data]="data?.goods" *ngIf="listStyleflag"></single-foods-item>
     </div>
 </ion-content>
 <ion-footer>
