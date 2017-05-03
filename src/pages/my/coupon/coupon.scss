@@ -50,6 +50,7 @@ page-coupon {
                     flex-direction: column;
                     justify-content: space-around;
                     background: #fff;
+                    background-size: 82px;
                     .name {
                         span {
                             color: #5068b4;
@@ -63,11 +64,11 @@ page-coupon {
         }
         .stale {
             .item {
-                background: #fff url(../assets/images/images/coupon_3_03.png) right top no-repeat;
                 .fore {
                     background: url(../assets/images/images/coupon_2_03.png) left center/100% 100% no-repeat;
                 }
                 .main {
+                    background: #fff url(../assets/images/images/coupon_3_03.png) right top/82px no-repeat;
                     .name {
                         span {
                             color: #999;
@@ -79,11 +80,11 @@ page-coupon {
         }
         .used {
             .item {
-                background: #fff url(../assets/images/images/coupon_2_06.png) right top no-repeat;
                 .fore {
                     background: url(../assets/images/images/coupon_2_03.png) left center/100% 100% no-repeat;
                 }
                 .main {
+                    background: #fff url(../assets/images/images/coupon_2_06.png) right top/82px no-repeat;
                     .name {
                         span {
                             color: #999;

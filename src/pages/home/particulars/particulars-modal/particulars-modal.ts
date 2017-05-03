@@ -37,10 +37,11 @@ export class ParticularsModalPage {
   }
   dredgeMoreCity() {
     this.navCtrl.push(DredgeMoreCityPage)
+    this.dismiss();
   }
   getPrivilege(is_get, type_id) {
     if (is_get == 1) {
-      console.log('已经领取过了');
+      this.native.showToast('已经领取过了');
     } else if (is_get == 0) {
       this.httpService.sendByUser({ type_id: type_id }).then((res) => {
         console.log("领取优惠券", res);
@@ -54,4 +55,5 @@ export class ParticularsModalPage {
     // can "dismiss" itself and pass back data
     this.viewCtrl.dismiss(data);
   }
+  
 }

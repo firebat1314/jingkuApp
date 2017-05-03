@@ -10,6 +10,7 @@ img-tabs {
     .slide-title-unit {
         display: inline-block;
         font-size: 14px;
+        white-space: nowrap;
         width: 60%;
         height: $slide-height-small;
         line-height: $slide-height-small;

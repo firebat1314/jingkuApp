@@ -11,8 +11,8 @@
             </ion-searchbar>
             <ion-buttons end>
                 <button ion-button clear icon-only icon-left (click)="listStyleflag=!listStyleflag">
-                <ion-icon name="md-list" *ngIf="!listStyleflag" ></ion-icon>
-                <ion-icon name="md-apps" *ngIf="listStyleflag" ></ion-icon>
+                <img src="./assets/icon/images/list_01.png" width="22" *ngIf="!listStyleflag" alt="">
+                <img src="./assets/icon/images/list_02.png" width="22" *ngIf="listStyleflag" alt="">
                 </button>
             </ion-buttons>
         </ion-navbar>
@@ -55,7 +55,7 @@
             </ion-segment-button>
             <ion-segment-button menuToggle>
                 筛选
-                <ion-icon name="ios-funnel-outline" [ngStyle]="{'font-size':'2rem'}"></ion-icon>
+                <img src="./assets/icon/images/filter.png" width="18" alt="">
             </ion-segment-button>
         </ion-segment>
     </ion-toolbar>

@@ -88,13 +88,9 @@ meun-item {
     }
     ion-footer {
         display: flex;
-    }
-    ion-footer .button {
-        margin: 0;
-        width: 50%;
-        background: #333333;
-    }
-    ion-footer .button:first-child {
-        background: #cccccc;
+        .button {
+            margin: 0;
+            width: 50%;
+        }
     }
 }

@@ -87,7 +87,7 @@ export class PaymentMethodPage {
       this.httpService.payCode({ code: this.data.alipay }).then((res) => {
         console.log(res);
         if ((res.status == 1)) {
-          res.pingxx.extra = {
+          /*res.pingxx.extra = {
             extern_token: '',
             hb_fq_num: '',//使用花呗分期要进行的分期数
             hb_fq_seller_percent: '',//使用花呗分期需要卖家承担的手续费比例的百分值，传入100代表100%
@@ -99,7 +99,7 @@ export class PaymentMethodPage {
             // fund_bill_list: '',//交易支付使用的资金渠道
             // buyer_user_id: '',//买家在支付宝的用户 id
             // voucher_detail_list: ''//本交易支付时使用的所有优惠券信息
-          }
+          }*/
           this.pay(res.pingxx);
         }
       })
@@ -107,12 +107,12 @@ export class PaymentMethodPage {
       this.httpService.payCode({ code: this.data.upacp }).then((res) => {
         console.log(res);
         if ((res.status == 1)) {
-          res.pingxx.extra = {
+         /* res.pingxx.extra = {
             limit_pay: '',//指定支付方式，指定不能使用信用卡支付可设置为  no_credit 。
             goods_tag: ''//商品标记，代金券或立减优惠功能的参数。
             // open_id 支付完成后额外返回付款用户的微信  open_id 。
             // bank_type 支付完成后额外返回付款用户的付款银行类型  bank_type 。
-          }
+          }*/
           this.pay(res.pingxx);
         }
       })

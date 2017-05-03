@@ -3,6 +3,7 @@ import { Component, Input } from '@angular/core';
 import { ParticularsPage } from '../../pages/home/particulars/particulars'
 import { HttpService } from "../../providers/http-service";
 import { Native } from "../../providers/native";
+import { NavController } from 'ionic-angular';
 
 /*
   Generated class for the SingleFoodsItem component.
@@ -18,7 +19,9 @@ export class SingleFoodsItemComponent {
 
   constructor(
     public httpService: HttpService,
-    public native: Native
+    public native: Native,
+    public navCtrl: NavController
+
   ) {
     console.log('Hello SingleFoodsItem Component');
     this.animateClass = { 'fade-in-item': true };
@@ -63,8 +66,7 @@ export class SingleFoodsItemComponent {
     this.clearBtn();
     item.showBtn = true;
   }
-  onCollect(item, e) {
-    if (e) { e.stopPropagation() ; }
+  onCollect(item) {
     this.httpService.getGoodsCollect({ goods_id: item.id }).then((res) => {
       console.log(res)
       if (res.status == 1) {
@@ -72,6 +74,9 @@ export class SingleFoodsItemComponent {
         item.is_collect = 1;
       }
     })
+  }
+  goParticularsPage(id) {
+    this.navCtrl.push(ParticularsPage, { goodsId: id });
   }
   ngOnDestroy() {
     this.clearBtn()
