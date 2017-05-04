@@ -28,7 +28,6 @@ export class ParticularsModalPage {
     public httpService: HttpService,
     public native: Native
   ) { }
-  ngOnInit() { }
   ionViewDidLoad() {
     console.log('ionViewDidLoad ParticularsModalPage');
   }
@@ -50,10 +49,27 @@ export class ParticularsModalPage {
       });
     }
   }
+  setArea(ids) {
+    console.log(ids)
+    if (ids) {
+      this.httpService.setArea({
+        goods_id: this.GoodsInfo.goods_id,
+        gaid: ids.split('-')[1]?ids.split('-')[1]:null,
+        region_id: ids.split('-')[0]
+      }).then((res) => {
+        console.log(res);
+        if (res.status == 1) {
+          this.viewCtrl.dismiss();
+          this.native.showToast('切换成功');
+        }
+      })
+    }
+
+  }
   dismiss(data?: any) {
     // using the injected ViewController this page
     // can "dismiss" itself and pass back data
     this.viewCtrl.dismiss(data);
   }
-  
+
 }

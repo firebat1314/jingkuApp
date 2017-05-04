@@ -1,24 +1,23 @@
 page-message-details {
-    .content {
-        background: #f7f7f7;
-    }
-    .time {
-        margin: 25px 0;
-        text-align: center;
-        span {
-            background: #d1d1d1;
-            padding: 6px 11px;
-            border-radius: 15px;
-            color: #fff;
-            margin: 0 auto;
+    .period {
+        .time {
+            margin: 25px 0;
+            text-align: center;
+            span {
+                background: #d1d1d1;
+                padding: 6px 11px;
+                border-radius: 15px;
+                color: #fff;
+                margin: 0 auto;
+            }
         }
-    }
-    .title {
-        padding-left: 16px;
-        font-size: 1.6rem;
-        padding-top: 10px;
-        .red {
-            color: #f60000;
+        .title {
+            padding-left: 16px;
+            font-size: 1.6rem;
+            padding-top: 10px;
+            .red {
+                color: #f60000;
+            }
         }
     }
 }
