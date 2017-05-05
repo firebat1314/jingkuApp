@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams } from 'ionic-angular';
+import { NavController, NavParams, Events } from 'ionic-angular';
+import { HttpService } from "../../../providers/http-service";
+import { Native } from "../../../providers/native";
 
 /*
   Generated class for the City page.
@@ -12,11 +14,32 @@ import { NavController, NavParams } from 'ionic-angular';
   templateUrl: 'city.html'
 })
 export class CityPage {
-
-  constructor(public navCtrl: NavController, public navParams: NavParams) {}
+  data: any = this.navParams.get('areaList');
+  constructor(
+    public navCtrl: NavController,
+    public navParams: NavParams,
+    private httpService: HttpService,
+    private native: Native,
+    public events: Events
+  ) {
+  }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad CityPage');
   }
 
+
+  switcher(region) {
+    if (!region) {
+      return false;
+    }
+    this.httpService.editArea({ id: region.region_id }).then((res) => {
+      console.log(res);
+      if (res.status == 1) {
+        this.navCtrl.pop();
+        this.events.publish('home:updataArea');
+        this.native.showToast('切换至' + region.region_name);
+      }
+    })
+  }
 }

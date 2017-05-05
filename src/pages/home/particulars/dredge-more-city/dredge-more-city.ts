@@ -24,7 +24,7 @@ export class DredgeMoreCityPage {
     reason: '',
     phone: '',
     frdb_code_zm: '',
-    frdb_code_sm: ''
+    frdb_code_fm: ''
   }
   constructor(
     public navCtrl: NavController,
@@ -65,7 +65,7 @@ export class DredgeMoreCityPage {
         if (type == 0) {//正面身份照
           this.formData.frdb_code_zm = 'data:image/jpeg;base64,' + imageData.image;
         } else {//反面身份照
-          this.formData.frdb_code_sm = 'data:image/jpeg;base64,' + imageData.image;
+          this.formData.frdb_code_fm = 'data:image/jpeg;base64,' + imageData.image;
         }
       }
     })

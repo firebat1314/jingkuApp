@@ -38,33 +38,33 @@ export class PresellPage {
       /**
      * appId assigned by Alipay
      */
-      app_id: '',
+      app_id: '2088221475924880',
       /**
        * Api name.
        * Should be: alipay.trade.app.pay
        */
-      method: '',
+      method: 'alipay.trade.app.pay',
       /**
        * Data format
        * Default: "JSON"
        */
-      format: '',
+      format: 'JSON',
       /**
        * Charset
        * Possible values: "UTF-8", "GBK"
        * Default: "UTF-8"
        */
-      charset: '',
+      charset: 'UTF-8',
       /**
        * Sign method
        * Default: 'RSA'
        */
-      sign_type: '',
+      sign_type: 'RSA',
       /**
        * Sign value. Should be got from server side.
        * Default: 'RSA'
        */
-      sign: '',
+      sign: 'RSA',
       /**
        * Timestamp, formated like "yyyy-MM-dd HH:mm:ss", e.g. 2014-07-24 03:07:50
        */

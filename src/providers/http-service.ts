@@ -201,8 +201,8 @@ export class HttpService {
   /**
    * 个人中心页
    */
-  getCityJsonData(data?: Object) {
-    return this.http.get('./assets/data/city-data.json', data)
+  FileJsonRegion(data?: Object) {
+    return this.http.get(this.ip + '/Public/FileJsonRegion', data)
   }
   usercount(data?: Object) {//（1）个人中心获取用户统计
     return this.http.get(this.ip + '/User/usercount', data)
@@ -309,5 +309,31 @@ export class HttpService {
   editAvatar(data?: Object) {//修改头像
     return this.http.post(this.ip + '/User/avatar', data)
   }
-  
+  /**
+   * 后加接口
+  */
+  getHotSearch(data?: Object) {//热门搜索接口
+    return this.http.post(this.ip + '/Public/getHotSearch', data)
+  }
+  getAreaList(data?: Object) {//城市列表
+    return this.http.post(this.ip + '/Public/getAreaList', data)
+  }
+  editArea(data?: Object) {//切换城市
+    return this.http.post(this.ip + '/Index/EditArea', data)
+  }
+  getTidings(data?: Object) {//用户消息
+    return this.http.post(this.ip + '/User/getTidings', data)
+  }
+  getWuLiuTidings(data?: Object) {//用户物流消息
+    return this.http.get(this.ip + '/User/getWuLiuTidings', data)
+  }
+  accountLog(data?: Object) {//用户历史记录 默认user_money user_money 余额记录pay_points 积分记录
+    return this.http.get(this.ip + '/User/accountLog', data)
+  }
+  presell(data?: Object) {//预售促销商品列表
+    return this.http.get(this.ip + '/Index/presell', data)
+  }
+  helpInfo(data?: Object) {//帮助中心
+    return this.http.get(this.ip + 'User/helpInfo', data)
+  }
 }

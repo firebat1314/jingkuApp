@@ -60,8 +60,9 @@ export class AddShippingAddressPage {
     }
   }
   setCityPickerData() {
-    this.httpService.getCityJsonData().then(data => {
-      this.cityData = data;
+    this.httpService.FileJsonRegion().then(data => {
+      console.log(data)
+      this.cityData = JSON.parse(data.data);
     });
   }
   /**

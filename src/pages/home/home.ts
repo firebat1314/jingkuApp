@@ -31,16 +31,18 @@ import { Native } from "../../providers/native";
   templateUrl: 'home.html'
 })
 export class HomePage {
-  hotBrand_img: any;
-  jingxuan_img3: any;
-  jingxuan_img2: any;
-  jingxuan_img1: any;
+  hotBrand_img: string;
+  jingxuan_img3: string;
+  jingxuan_img2: string;
+  jingxuan_img1: string;
+
+  area: string = '--';
+  areaList: any;
 
   @ViewChild('bannerSlide') slides: Slides;
   @ViewChild(Content) content: Content;
   showBackTopBtn: Boolean = true;
 
-  cityPage = CityPage;
   DetailsPage = DetailsPage;
   SearchPage = SearchPage;
   BrandListPage = BrandListPage;
@@ -69,11 +71,17 @@ export class HomePage {
     private formBuilder: FormBuilder,
     private native: Native
   ) {
-    this.getHomeData();
+    this.getHomeData(); 
+    this.updataArea();
+    this.events.subscribe('home:updataArea',()=>{
+      this.updataArea();
+    })
   }
-
+  ngOnDestroy(){
+    this.events.unsubscribe('home:updataArea');
+  }
   getHomeData(finish?) {
-    this.native.showLoading('加载中~')
+    this.native.showLoading('加载中~');
     this.httpService.getHomebanner({ int_pos_id: 3 }).then((res) => {
       console.log("轮播图", res);
       if (res.status == 1) { this.bannerImgs = res.data; }
@@ -169,5 +177,20 @@ export class HomePage {
   goClassPage(value) {
     this.navCtrl.parent.select(1);
     this.events.publish('classify:selectSegment',value);
+  }
+  goCityPage(){
+    this.navCtrl.push(CityPage,{areaList:this.areaList})
+  }
+  updataArea(){
+    this.httpService.getAreaList().then((res)=>{
+      if(res&&res.status==1){
+        this.areaList = res.data;
+        for(let i=0;i<res.data.length;i++){
+          if(res.data[i].selected==1){
+            this.area = res.data[i].region_name;
+          }
+        }
+      }
+    })
   }
 }

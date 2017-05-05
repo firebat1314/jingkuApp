@@ -1,6 +1,7 @@
 import { Component, ViewChild } from '@angular/core';
 import { NavController, NavParams, Searchbar } from 'ionic-angular';
 import { BrandListPage } from "../brand-list/brand-list";
+import { HttpService } from "../../../providers/http-service";
 
 /*
   Generated class for the Search page.
@@ -13,23 +14,49 @@ import { BrandListPage } from "../brand-list/brand-list";
   templateUrl: 'search.html'
 })
 export class SearchPage {
+  page: any = 1;
+  data: any;
   myHomeSearch: String = '';
   @ViewChild(Searchbar) mySearchBar: Searchbar;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
-
+  constructor(
+    public navCtrl: NavController,
+    public navParams: NavParams,
+    private httpService: HttpService
+  ) {
+    this.getHotSearch();
   }
   ngAfterViewInit() {
     setTimeout(() => {
       this.mySearchBar.setFocus();
-    }, 1000)
+    }, 500)
   }
   ionViewDidLoad() {
     console.log('ionViewDidLoad SearchPage');
   }
   searchbar(e) {
-    if(e.keyCode==13){
-      this.navCtrl.push(BrandListPage,{keyword:this.myHomeSearch})
+    if (e) {
+      if (e.keyCode == 13) {
+        this.navCtrl.push(BrandListPage, { keyword: this.myHomeSearch })
+      }
+    } else {
+      this.navCtrl.push(BrandListPage, { keyword: this.myHomeSearch })
     }
+
+  }
+  getHotSearch() {
+    this.httpService.getHotSearch({
+      size: 10,
+      page: this.page
+    }).then((res) => {
+      console.log(res)
+      if (res.status == 1) {
+        this.data = res;
+      }
+    })
+  }
+  getNewBatch() {
+    this.page > this.data.data.pagers ? this.page++ : this.page = 1;
+    this.getHotSearch();
   }
 }

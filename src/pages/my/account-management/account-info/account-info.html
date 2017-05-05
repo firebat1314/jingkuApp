@@ -16,10 +16,10 @@
 <ion-content>
     <ion-list no-margin>
 
-        <ion-item mode="ios">
+        <ion-item mode="ios" (click)="editAvatar()">
             <h2>头像</h2>
             <ion-thumbnail item-right>
-                <img style="border-radius: 50%;" src="{{userInfo?.data?.user_info?.avatar}}">
+                <img style="border-radius: 50%;" src="{{userInfo?.data?.avatar}}">
             </ion-thumbnail>
         </ion-item>
         <ion-item mode="ios">

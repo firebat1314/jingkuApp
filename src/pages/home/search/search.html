@@ -19,20 +19,9 @@
 <ion-content padding>
     <div class="head">
         <div>热门搜索</div>
-        <div>换一换</div>
+        <div (click)="getNewBatch()">换一换</div>
     </div>
     <div class="btns">
-        <button ion-button outline color="dark">隐形眼镜</button>
-        <button ion-button outline color="dark">隐形眼镜</button>
-        <button ion-button outline color="dark">隐形眼镜</button>
-        <button ion-button outline color="dark">隐形眼镜眼镜眼镜</button>
-        <button ion-button outline color="dark">隐形眼镜</button>
-        <button ion-button outline color="dark">隐形眼镜眼镜</button>
-        <button ion-button outline color="dark">隐形眼镜</button>
-        <button ion-button outline color="dark">隐形眼镜</button>
-        <button ion-button outline color="dark">隐形眼镜眼镜眼镜</button>
-        <button ion-button outline color="dark">隐形眼镜眼镜眼镜</button>
-        <button ion-button outline color="dark">隐形眼镜眼镜眼镜</button>
-        <button ion-button outline color="dark">隐形眼镜</button>
+        <button ion-button outline [color]="nowIndex==i?'dark':'cancelBtn'" *ngFor="let item of data?.data;let i=index" (click)="nowIndex=i;myHomeSearch=item.title;searchbar()">{{item.title}}</button>
     </div>
 </ion-content>

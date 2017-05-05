@@ -1,9 +1,9 @@
 <ion-header>
     <ion-navbar>
         <ion-buttons left>
-            <button ion-button clear icon-only icon-left [navPush]="cityPage">
+            <button ion-button clear icon-only icon-left (click)="goCityPage()">
                 <img src="./assets/icon/homepage_03.png" width="20" class="add_icon">
-                北京
+                {{area}}
             </button>
         </ion-buttons>
         <div style="position: relative">

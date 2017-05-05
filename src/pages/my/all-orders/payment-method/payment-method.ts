@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams, ViewController } from 'ionic-angular';
 import { HttpService } from "../../../../providers/http-service";
+import { Alipay, AlipayOrder } from '@ionic-native/alipay';
 
 /*
   Generated class for the PaymentMethod page.
