@@ -327,6 +327,9 @@ export class HttpService {
   getWuLiuTidings(data?: Object) {//用户物流消息
     return this.http.get(this.ip + '/User/getWuLiuTidings', data)
   }
+  exchange(data?: Object) {//积分商城
+    return this.http.get(this.ip + '/Index/exchange', data)
+  }
   accountLog(data?: Object) {//用户历史记录 默认user_money user_money 余额记录pay_points 积分记录
     return this.http.get(this.ip + '/User/accountLog', data)
   }

@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
-import { MessageDetailsPage } from "./message-details/message-details";
 import { HttpService } from "../../../providers/http-service";
+import { MessageDetailsPage } from "./message-details/message-details";
 
 /*
   Generated class for the Message page.
@@ -14,7 +14,8 @@ import { HttpService } from "../../../providers/http-service";
   templateUrl: 'message.html'
 })
 export class MessagePage {
-  data: any;
+  userTidings: any;
+  wuLiuTidings: any;
 
   constructor(
     public navCtrl: NavController,
@@ -27,14 +28,20 @@ export class MessagePage {
   ionViewDidLoad() {
     console.log('ionViewDidLoad MessagePage');
   }
-  goMessageDetailsPage() {
-    this.navCtrl.push(MessageDetailsPage)
+  goMessageDetailsPage(type) {
+    this.navCtrl.push(MessageDetailsPage,{msgType:type})
   }
   getData(){
-    this.httpService.getTidings().then((res)=>{
+    this.httpService.getTidings({istop:1}).then((res)=>{
       console.log(res);
       if(res.status==1){
-        this.data = res;
+        this.userTidings = res;
+      }
+    })
+    this.httpService.getWuLiuTidings({istop:1}).then((res)=>{
+      console.log(res);
+      if(res.status==1){
+        this.wuLiuTidings = res;
       }
     })
   }

@@ -41,6 +41,7 @@ import { RechargePage } from '../pages/home/recharge/recharge';
 import { WhitebarPage } from '../pages/home/whitebar/whitebar';
 import { DiscountCouponPage } from '../pages/home/discount-coupon/discount-coupon';
 import { MessagePage } from '../pages/home/message/message';
+import { MessageDetailsPage } from "../pages/home/message/message-details/message-details";
 import { ParticularsPage } from '../pages/home/particulars/particulars';
 import { ParticularsModalPage } from '../pages/home/particulars/particulars-modal/particulars-modal';
 import { ParticularsModalAttrPage } from "../pages/home/particulars/particulars-modal-attr/particulars-modal-attr";
@@ -108,7 +109,6 @@ import { ImgTabs } from "../components/img-tabs/img-tabs";
 import { SingleCardComponent } from '../components/single-card/single-card';
 import { MyToolbarComponent } from '../components/my-toolbar/my-toolbar';
 import { SingleFoodsItemComponent } from '../components/single-foods-item/single-foods-item';
-import { ProductCardComponent } from "../components/product-card/product-card";
 import { MeunItemComponent } from '../components/meun-item/meun-item';
 import { CountdownComponent } from '../components/countdown/countdown';
 import { CountInputComponent } from '../components/count-input/count-input';
@@ -116,7 +116,6 @@ import { ImgTabs2Component } from "../components/img-tabs2/img-tabs2";
 import { CompanynamePage } from "../pages/my/account-management/account-info/companyname/companyname";
 import { PhoneNumberFilter } from "../pipes/phone-number-filter";
 import { NothingComponent } from "../components/nothing/nothing";
-import { MessageDetailsPage } from "../pages/home/message/message-details/message-details";
 
 
 
@@ -138,7 +137,7 @@ import { MessageDetailsPage } from "../pages/home/message/message-details/messag
     MyPage, SettingPage, AccountManagementPage, AccountSecurityPage, AllOrdersPage, CouponPage, MemberCenterPage, PeceiptPage, AccountAssetPage, AccountProcessPage, AccountAreaApplicationPage, AccountCollectGoodsPage, AccountCollectStorePage, AccountHistoryPage, AccountServicePage, AccountHelperPage, AccountInfoPage, InvoiceQualificationPage, InvoiceAskFor2Page, InvoiceAskFor1Page, AboutUsPage, ShippingAddressPage, ChangePhoneNumberPage, ChangePasswordPage, RealnamePage, QqPage, AddShippingAddressPage, CompanynamePage, AccountJifenPage, AccountBalancePage, AccountWithdrawPage, AccountMoneyDetailPage, AccountWithdrawSucceedPage, PaymentMethodPage, OrdersDetailPage, WriteOrdersPage, OrderModalShippingPage, OrderModalDistributionPage, OrderModalCouponPage, OrderModalPaymentPage,AddressPage,
     /*——————————————————组件——————————————————*/
     SingleCardComponent, MyToolbarComponent, SingleFoodsItemComponent, MeunItemComponent, CountdownComponent, CountInputComponent, ImgTabs2Component, NothingComponent,
-    DirectiveTestPage,ProductCardComponent,
+    DirectiveTestPage,
     /*——————————————————指令——————————————————*/
     MyDirective, ImgTabs,
     /*——————————————————过滤器——————————————————*/
@@ -180,7 +179,7 @@ import { MessageDetailsPage } from "../pages/home/message/message-details/messag
     MyPage, SettingPage, AccountManagementPage, AccountSecurityPage, AllOrdersPage, CouponPage, MemberCenterPage, PeceiptPage, AccountAssetPage, AccountProcessPage, AccountAreaApplicationPage, AccountCollectGoodsPage, AccountCollectStorePage, AccountHistoryPage, AccountServicePage, AccountHelperPage, AccountInfoPage, InvoiceQualificationPage, InvoiceAskFor2Page, InvoiceAskFor1Page, AboutUsPage, ShippingAddressPage, ChangePhoneNumberPage, ChangePasswordPage, RealnamePage, QqPage, AddShippingAddressPage, CompanynamePage, AccountJifenPage, AccountWithdrawPage, AccountBalancePage, AccountMoneyDetailPage, AccountWithdrawSucceedPage, PaymentMethodPage, OrdersDetailPage, WriteOrdersPage, OrderModalShippingPage, OrderModalDistributionPage, OrderModalCouponPage, OrderModalPaymentPage,AddressPage,
     /*——————————————————组件——————————————————*/
     SingleCardComponent, MyToolbarComponent, SingleFoodsItemComponent, MeunItemComponent, CountdownComponent, CountInputComponent, ImgTabs2Component, NothingComponent,
-    DirectiveTestPage,ProductCardComponent
+    DirectiveTestPage,
   ],
   providers: [{ provide: ErrorHandler, useClass: IonicErrorHandler }, UserData, Native, HttpService,Storage,Alipay]
 })

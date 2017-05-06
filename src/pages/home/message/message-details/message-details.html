@@ -13,103 +13,49 @@
 </ion-header>
 
 
-<ion-content>
-    <div class="period">
-        <div class="time"><span>星期八</span></div>
+<ion-content *ngIf="type==1">
+    <!--————————————————————————物流消息————————————————————————————-->
+    <div class="period" *ngFor="let item of wuLiuTidings?.list">
+        <div class="time"><span>{{item.add_time}}</span></div>
         <ion-list>
             <ion-card>
                 <div class="title">
-                    订单状态：<span class="red">订单派送中</span>
+                    订单状态：<span class="red">{{item.status}}</span>
                 </div>
                 <ion-item>
                     <ion-thumbnail item-left>
-                        <img src="./assets/icon/images/brand_1_03.jpg">
+                        <img src="{{item.original_img}}">
                     </ion-thumbnail>
-                    <h2>世界太大 人会迷路 要么庸俗 要么孤独</h2>
-                    <h2>¥55555555555</h2>
-                    <p>订单编号：121212121212121</p>
+                    <h2>{{item.msg}}</h2>
+                    <h2>¥{{item.total_fee}}</h2>
+                    <p>订单编号：{{item.order_sn}}</p>
                 </ion-item>
             </ion-card>
         </ion-list>
     </div>
-    <div class="period">
-        <div class="time"><span>星期八</span></div>
+
+    <ion-infinite-scroll (ionInfinite)="doInfinite1($event)" *ngIf="page1<wuLiuTidings?.pages">
+        <ion-infinite-scroll-content></ion-infinite-scroll-content>
+    </ion-infinite-scroll>
+
+</ion-content>
+<ion-content *ngIf="type==2">
+    <!--————————————————————————用户消息————————————————————————————-->
+    <div class="period" *ngFor="let item of userTidings?.list">
+        <div class="time"><span>{{item.dateline}}</span></div>
         <ion-list>
             <ion-card>
                 <div class="title">
-                    订单状态：<span class="red">订单派送中</span>
+                    {{item.msg_title}}
                 </div>
                 <ion-item>
-                    <ion-thumbnail item-left>
-                        <img src="./assets/icon/images/brand_1_03.jpg">
-                    </ion-thumbnail>
-                    <h2>世界太大 人会迷路 要么庸俗 要么孤独</h2>
-                    <h2>¥55555555555</h2>
-                    <p>订单编号：121212121212121</p>
+                    <h2 style="white-space: pre-wrap;">{{item.msg_content}}</h2>
                 </ion-item>
             </ion-card>
         </ion-list>
     </div>
-    <div class="period">
-        <div class="time"><span>星期八</span></div>
-        <ion-list>
-            <ion-card>
-                <div class="title">
-                    订单状态：<span class="red">订单派送中</span>
-                </div>
-                <ion-item>
-                    <ion-thumbnail item-left>
-                        <img src="./assets/icon/images/brand_1_03.jpg">
-                    </ion-thumbnail>
-                    <h2>世界太大 人会迷路 要么庸俗 要么孤独</h2>
-                    <h2>¥55555555555</h2>
-                    <p>订单编号：121212121212121</p>
-                </ion-item>
-            </ion-card>
-            <ion-card>
-                <div class="title">
-                    订单状态：<span class="red">订单派送中</span>
-                </div>
-                <ion-item>
-                    <ion-thumbnail item-left>
-                        <img src="./assets/icon/images/brand_1_03.jpg">
-                    </ion-thumbnail>
-                    <h2>世界太大 人会迷路 要么庸俗 要么孤独</h2>
-                    <h2>¥55555555555</h2>
-                    <p>订单编号：121212121212121</p>
-                </ion-item>
-            </ion-card>
-            <ion-card>
-                <div class="title">
-                    订单状态：<span class="red">订单派送中</span>
-                </div>
-                <ion-item>
-                    <ion-thumbnail item-left>
-                        <img src="./assets/icon/images/brand_1_03.jpg">
-                    </ion-thumbnail>
-                    <h2>世界太大 人会迷路 要么庸俗 要么孤独</h2>
-                    <h2>¥55555555555</h2>
-                    <p>订单编号：121212121212121</p>
-                </ion-item>
-            </ion-card>
-        </ion-list>
-    </div>
-    <div class="period">
-        <div class="time"><span>星期八</span></div>
-        <ion-list>
-            <ion-card>
-                <div class="title">
-                    订单状态：<span class="red">订单派送中</span>
-                </div>
-                <ion-item>
-                    <ion-thumbnail item-left>
-                        <img src="./assets/icon/images/brand_1_03.jpg">
-                    </ion-thumbnail>
-                    <h2>世界太大 人会迷路 要么庸俗 要么孤独</h2>
-                    <h2>¥55555555555</h2>
-                    <p>订单编号：121212121212121</p>
-                </ion-item>
-            </ion-card>
-        </ion-list>
-    </div>
+
+    <ion-infinite-scroll (ionInfinite)="doInfinite2($event)" *ngIf="page2<userTidings?.pages">
+        <ion-infinite-scroll-content></ion-infinite-scroll-content>
+    </ion-infinite-scroll>
 </ion-content>

@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { NavController, NavParams, ViewController } from 'ionic-angular';
 import { HttpService } from "../../../../providers/http-service";
 import { Alipay, AlipayOrder } from '@ionic-native/alipay';
+import { Native } from "../../../../providers/native";
 
 /*
   Generated class for the PaymentMethod page.
@@ -11,14 +12,24 @@ import { Alipay, AlipayOrder } from '@ionic-native/alipay';
 */
 declare var pingpp: any;
 declare var Pingpp: any;
+declare var Wechat: any;
+
 @Component({
   selector: 'page-payment-method',
   templateUrl: 'payment-method.html'
 })
 export class PaymentMethodPage {
+  payResult: any;
   data = this.navParams.get('data');
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public viewCtrl: ViewController, public httpService: HttpService) { }
+  constructor(
+    public navCtrl: NavController,
+    public navParams: NavParams,
+    private alipay: Alipay,
+    public viewCtrl: ViewController,
+    public httpService: HttpService,
+    public native: Native
+  ) { }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad PaymentMethodPage');
@@ -83,53 +94,75 @@ export class PaymentMethodPage {
       })
     }
   }*/
+
   toPay(type) {
     if (type == 1) {
       this.httpService.payCode({ code: this.data.alipay }).then((res) => {
         console.log(res);
         if ((res.status == 1)) {
-          /*res.pingxx.extra = {
-            extern_token: '',
-            hb_fq_num: '',//使用花呗分期要进行的分期数
-            hb_fq_seller_percent: '',//使用花呗分期需要卖家承担的手续费比例的百分值，传入100代表100%
-            disable_pay_channels: '',//禁用支付渠道，用户不可用指定渠道支付，当有多个付款渠道时用,分隔（如moneyFund,credit_group）
-            sys_service_provider_id: '',//请填写系统商签约协议的 PID。
-            rn_check: 'T',//适用于支付宝 1.0，是否发起实名校验，T 代表发起实名校验；F 代表不发起实名校验。
-            need_buyer_real_named: 'T',//是否发起实名校验 ，T 代表发起实名校验；F 代表不发起实名校验。
-            // buyer_account: '',//款用户的支付宝账号。
-            // fund_bill_list: '',//交易支付使用的资金渠道
-            // buyer_user_id: '',//买家在支付宝的用户 id
-            // voucher_detail_list: ''//本交易支付时使用的所有优惠券信息
-          }*/
-          this.pay(res.pingxx);
+          this.alipayPay(res.pingxx)
+          // this.pay(res.pingxx);
         }
       })
     } else if (type == 2) {
       this.httpService.payCode({ code: this.data.upacp }).then((res) => {
         console.log(res);
         if ((res.status == 1)) {
-         /* res.pingxx.extra = {
-            limit_pay: '',//指定支付方式，指定不能使用信用卡支付可设置为  no_credit 。
-            goods_tag: ''//商品标记，代金券或立减优惠功能的参数。
-            // open_id 支付完成后额外返回付款用户的微信  open_id 。
-            // bank_type 支付完成后额外返回付款用户的付款银行类型  bank_type 。
-          }*/
-          this.pay(res.pingxx);
+          // this.pay(res.pingxx);
         }
       })
     } else if (type == 3) {
       this.httpService.payCode({ code: this.data.weixin }).then((res) => {
         console.log(res);
         if ((res.status == 1)) {
-          this.pay(res.pingxx);
+          this.wechatPay(res.pingxx)
+          // this.pay(res.pingxx);
         }
       })
     }
   }
-  pay(data) {
+/*  pay(data) {
     Pingpp.createPayment({ "object": data, "urlScheme": "http://www.baidu.com" }, function (result, error) {//scheme 为iOS返回应用
       console.log(result);
       console.log(error);
+    });
+  }*/
+
+  alipayPay(alipayOrder) {
+    // Should get from server side with sign.
+    this.alipay.pay(alipayOrder)
+      .then(res => {
+        this.native.showToast(res)
+        this.payResult = res;
+      }, err => {
+        this.native.showToast(err)
+        this.payResult = err;
+      })
+      .catch(e => {
+        this.native.showToast(e)
+        this.payResult = e;
+      });
+  }
+  wechatPay(params) {
+    Wechat.isInstalled(function (installed) {
+      console.log("Wechat installed: " + (installed ? "Yes" : "No"));
+    }, function (reason) {
+      console.log("Failed: " + reason);
+    });
+
+    // See https://github.com/xu-li/cordova-plugin-wechat-example/blob/master/server/payment_demo.php for php demo
+    /*    var params = {
+          partnerid: '10000100', // merchant id
+          prepayid: 'wx201411101639507cbf6ffd8b0779950874', // prepay id
+          noncestr: '1add1a30ac87aa2db72f57a2375d8fec', // nonce
+          timestamp: '1439531364', // timestamp
+          sign: '0CB01533B8C1EF103065174F50BCA001', // signed string
+        };*/
+
+    Wechat.sendPaymentRequest(params, function () {
+        this.native.showToast('Success');
+    }, function (reason) {
+        this.native.showToast(reason);
     });
   }
 }

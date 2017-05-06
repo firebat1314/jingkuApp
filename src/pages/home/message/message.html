@@ -14,22 +14,24 @@
 
 
 <ion-content>
-    <div class="no-message" *ngIf="data?.list?.length==0">
-        <div class="img">
-            <img src="./assets/images/images/message_center_1_03.png" alt="">
-        </div>
-        <h3>暂无消息</h3>
-    </div>
-    <ion-list *ngIf="data?.list?.length!=0">
-        <ion-item (click)="goMessageDetailsPage()" *ngFor="let item of data?.list">
+
+    <ion-list>
+        <ion-item (click)="goMessageDetailsPage(1)">
             <ion-avatar item-left>
-                <img src="./assets/icon/images/brand_1_03.jpg">
+                <img src="./assets/icon/images/messageCenter_01_03.png">
             </ion-avatar>
-            <h2>{{item.msg_title}}</h2>
-            <p>{{item.msg_content}}</p>
-            <ion-note item-right>{{item.dateline}}</ion-note>
+            <h2>物流通知</h2>
+            <p>{{wuLiuTidings?.list?.msg}}</p>
+            <ion-note item-right>{{wuLiuTidings?.list?.add_time}}</ion-note>
         </ion-item>
-
-
+        <ion-item (click)="goMessageDetailsPage(2)">
+            <ion-avatar item-left>
+                <img src="./assets/icon/images/messageCenter_01_06.png">
+            </ion-avatar>
+            <h2>消息通知</h2>
+            <p>{{userTidings?.list?.msg_content}}</p>
+            <ion-note item-right>{{userTidings?.list?.dateline}}</ion-note>
+        </ion-item>
     </ion-list>
+
 </ion-content>

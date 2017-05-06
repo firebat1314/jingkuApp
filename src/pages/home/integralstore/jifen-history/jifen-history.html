@@ -15,7 +15,7 @@
 
 <ion-content>
     <ion-list>
-        <ion-item mode="ios" detail-push (click)="goDuihuanDetailsFinishPage(1)" *ngFor="let item of [{},{},{},{},{},{},{}]">
+        <ion-item mode="ios" detail-push (click)="goDuihuanDetailsFinishPage(1)" *ngFor="let item of data?.list">
             <ion-thumbnail item-left>
                 <img src="./assets/icon/images/brand_1_03.jpg">
             </ion-thumbnail>
@@ -24,4 +24,14 @@
             <p class="status">兑换成功</p>
         </ion-item>
     </ion-list>
+
+    <ion-fab right bottom (click)="scrollToTop()">
+        <button ion-fab color="dark" mini>
+            {{data?.page}}/{{data?.pages}}
+        </button>
+    </ion-fab>
+
+    <ion-infinite-scroll (ionInfinite)="doInfinite($event)" *ngIf="flag">
+        <ion-infinite-scroll-content></ion-infinite-scroll-content>
+    </ion-infinite-scroll>
 </ion-content>

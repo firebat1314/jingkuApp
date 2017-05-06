@@ -10,7 +10,7 @@
         <ion-title>城市选择</ion-title>
     </ion-navbar>
     <ion-toolbar>
-        <ion-searchbar mode="ios"></ion-searchbar>
+        <ion-searchbar mode="ios" [(ngModel)]="keyword" (ionInput)="search()" placeholder="城市搜索"></ion-searchbar>
     </ion-toolbar>
 </ion-header>
 
