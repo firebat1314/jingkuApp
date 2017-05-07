@@ -11,31 +11,36 @@ page-presell {
         }
     }
     .fore1 {
-        .top-scrollbar {
-            overflow-x: scroll;
-            display: flex;
-            padding: 10px 0;
-            border-bottom: 1px solid #e6e6e6;
-            >div {
-                min-width: 84px;
-                font-size: 1.3rem;
-                text-align: center;
-                margin-right: 1.6rem;
-                height: 100%;
-                position: relative;
-                .select {
-                    position: absolute;
-                    top: -5px;
-                    width: 100%;
-                    height: 36%;
-                    /* background: #000; */
-                    opacity: .2;
-                    box-shadow: 0px 43px 12px #000;
-                    border-radius: 50%;
-                }
-                img {
-                    height: 28px;
-                    margin: 5px auto;
+        .banner {
+            >img {
+                width: 100%;
+            }
+            .top-scrollbar {
+                overflow-x: scroll;
+                display: flex;
+                padding: 10px 0;
+                border-bottom: 1px solid #e6e6e6;
+                >div {
+                    min-width: 84px;
+                    font-size: 1.3rem;
+                    text-align: center;
+                    margin-right: 1.6rem;
+                    height: 100%;
+                    position: relative;
+                    .select {
+                        position: absolute;
+                        top: -5px;
+                        width: 100%;
+                        height: 36%;
+                        /* background: #000; */
+                        opacity: .2;
+                        box-shadow: 0px 43px 12px #000;
+                        border-radius: 50%;
+                    }
+                    img {
+                        height: 28px;
+                        margin: 5px auto;
+                    }
                 }
             }
         }
@@ -45,8 +50,8 @@ page-presell {
         padding: 16px;
         align-items: center;
         .left {
-            min-width: 145px;
-            height: 145px;
+            min-width: 140px;
+            width: 30%;
             position: relative;
             margin-right: 20px;
             display: flex;
@@ -80,6 +85,7 @@ page-presell {
             }
         }
         .right {
+            flex: 1;
             .title {
                 @include ellipsis_2;
             }
@@ -101,8 +107,8 @@ page-presell {
                         top: 0;
                         left: 0;
                         height: 100%;
-                        width: 50%;
-                        transition: width 500ms ease-in-out 1000ms;
+                        width: 0%;
+                        transition: width 500ms ease-in-out 500ms;
                         box-shadow: 0px 0px 10px #ccc;
                     }
                 }
@@ -124,10 +130,11 @@ page-presell {
                 .red {
                     color: #e60000;
                     font-size: 1.8rem;
-                }
-                .old-price {
-                    text-decoration: line-through;
-                    color: #808080;
+                    white-space: nowrap;
+                    .old-price {
+                        text-decoration: line-through;
+                        color: #808080;
+                    }
                 }
             }
         }

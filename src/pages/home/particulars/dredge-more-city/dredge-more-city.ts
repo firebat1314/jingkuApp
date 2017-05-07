@@ -16,9 +16,6 @@ import { HttpService } from "../../../../providers/http-service";
 })
 export class DredgeMoreCityPage {
   reginArr: any;
-  private image1;
-  private image2;
-
   formData = {
     region_ids: [],
     reason: '',

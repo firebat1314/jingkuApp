@@ -2,8 +2,6 @@ import { Component } from '@angular/core';
 import { NavController, NavParams, Events } from 'ionic-angular';
 import { HttpService } from "../../../../providers/http-service";
 import { Native } from "../../../../providers/native";
-import { ShippingAddressPage } from "../shipping-address/shipping-address";
-
 
 @Component({
   selector: 'page-add-shipping-address',

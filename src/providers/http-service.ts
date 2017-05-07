@@ -337,6 +337,15 @@ export class HttpService {
     return this.http.get(this.ip + '/Index/presell', data)
   }
   helpInfo(data?: Object) {//帮助中心
-    return this.http.get(this.ip + 'User/helpInfo', data)
+    return this.http.get(this.ip + '/User/helpInfo', data)
+  }
+  userRank(data?: Object) {//用户等级
+    return this.http.get(this.ip + '/User/UserRank', data)
+  }
+  affirmReceived(data?: Object) {//确认收货
+    return this.http.post(this.ip + '/User/affirm_received', data)
+  }
+  getWuLiu(data?: Object) {//订单物流
+    return this.http.get(this.ip + '/User/GetWuLiu', data)
   }
 }

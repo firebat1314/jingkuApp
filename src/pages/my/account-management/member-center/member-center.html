@@ -16,28 +16,23 @@
 <ion-content>
     <div class="head">
         <div class="head-content">
-            <img style="border-radius: 50%;" src="{{userInfo?.data?.user_info?.avatar||'--'}}">
+            <img style="border-radius: 50%;" src="{{userInfo?.data?.avatar||''}}">
             <p>用户名：{{userInfo?.data?.user_info?.user_name||'--'}}</p>
-            <h2>积分：{{userInfo?.data?.user_info?.pay_points||'0'}}</h2>
+            <h2>积分：{{data?.rank_points||'0'}}</h2>
         </div>
     </div>
     <h4 padding-left>我的会员</h4>
     <div class="level" margin-horizontal>
         <div class="number"><span style="color: #5169b5;">
-            {{userInfo?.data?.user_info?.pay_points||'0'}}
-            </span>/10000000</div>
+            {{data?.rank_points||'0'}}
+            </span>/{{data?.max_points}}</div>
         <div class="progress">
             <div class="bg">
-                <div class="show" [ngStyle]="{'width':width}"></div>
+                <div class="show" [ngStyle]="{'width.%':data?.rank_bai}"></div>
             </div>
         </div>
         <div class="txt">
-            <span>VIP</span>
-            <span>铜牌</span>
-            <span>银牌</span>
-            <span>金牌</span>
-            <span>白金</span>
-            <span>黑金</span>
+            <span *ngFor="let item of data?.data">{{item.rank_name}}</span>
         </div>
     </div>
 </ion-content>

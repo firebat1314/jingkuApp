@@ -20,7 +20,7 @@
             <div item-left><img src="./assets/icon/images/help_01_03.jpg" alt=""></div>
             {{list.cat_name}}
         </ion-item-divider>
-        <ion-item mode="ios" detail-push *ngFor="let item of list.article">
+        <ion-item mode="ios" detail-push *ngFor="let item of list.article" (click)="goHelperDetailsPage(item)">
             {{item.title}}
         </ion-item>
     </ion-list>

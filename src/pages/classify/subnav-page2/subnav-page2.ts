@@ -1,5 +1,5 @@
-import { Component, ViewChild } from '@angular/core';
-import { NavController, NavParams, Content } from 'ionic-angular';
+import { Component } from '@angular/core';
+import { NavController, NavParams } from 'ionic-angular';
 import { HttpService } from "../../../providers/http-service";
 import { BrandListPage } from "../../home/brand-list/brand-list";
 

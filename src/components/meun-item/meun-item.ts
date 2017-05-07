@@ -1,6 +1,6 @@
-import { Component, Input } from '@angular/core';
+import { Component } from '@angular/core';
 import { Events } from "ionic-angular";
-import { ChecklistModel, RadiolistModel } from "../../providers/ChecklistModel";
+import { RadiolistModel } from "../../providers/ChecklistModel";
 
 @Component({
 	selector: 'meun-item',
@@ -12,10 +12,10 @@ export class MeunItemComponent {
 	filterParams: any = {
 		min_price: this.price.lower,
 		max_price: this.price.upper,
-		brand_id:0,
-		cat_id:null,
-		attr_id:null,
-		filter:''
+		brand_id: 0,
+		cat_id: null,
+		attr_id: null,
+		filter: ''
 	}
 	radiolist = new RadiolistModel(this.price)
 	radiolist2 = new RadiolistModel(this.filterParams)
@@ -32,10 +32,10 @@ export class MeunItemComponent {
 
 	confirm() {
 		var filter = [];
-		this.filterParams.filter='';
+		this.filterParams.filter = '';
 		var data = this.data.goods_attr_arr[3].data
-		for(let i = 0;i < data.length;i++){
-			if(data[i].selected||data[i].selected==0){
+		for (let i = 0; i < data.length; i++) {
+			if (data[i].selected || data[i].selected == 0) {
 				filter.push(data[i].selected);
 			}
 		}

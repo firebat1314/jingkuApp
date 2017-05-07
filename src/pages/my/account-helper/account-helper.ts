@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
 import { HttpService } from "../../../providers/http-service";
+import { HelperDetailsPage } from "./helper-details/helper-details";
 
 /*
   Generated class for the AccountHelper page.
@@ -26,7 +27,9 @@ export class AccountHelperPage {
       }
     })
   }
-
+  goHelperDetailsPage(item) {
+    this.navCtrl.push(HelperDetailsPage, { item: item });
+  }
   ionViewDidLoad() {
     console.log('ionViewDidLoad AccountHelperPage');
   }

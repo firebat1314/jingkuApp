@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams } from 'ionic-angular';
+import { NavController, NavParams, Events } from 'ionic-angular';
 import { AccountSecurityPage } from "./account-security/account-security";
 import { AccountInfoPage } from "./account-info/account-info";
 import { ShippingAddressPage } from "./shipping-address/shipping-address";
@@ -22,9 +22,14 @@ export class AccountManagementPage {
   MemberCenterPage:any = MemberCenterPage;
 
   avatar:any = this.navParams.get('avatar');
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  constructor(public navCtrl: NavController, public navParams: NavParams,public events:Events) {
+    this.events.subscribe('avatar:update',res=>{
+      this.avatar = res;
+    })
   }
-
+  ngAfterViewInit(){
+    this.events.unsubscribe('avatar:update');
+  }
   ionViewDidLoad() {
     console.log('ionViewDidLoad AccountManagementPage');
   }

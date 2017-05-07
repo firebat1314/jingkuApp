@@ -75,6 +75,7 @@ import { CouponPage } from "../pages/my/coupon/coupon";
 import { PeceiptPage } from "../pages/my/peceipt/peceipt";
 import { AccountAssetPage } from "../pages/my/account-asset/account-asset";
 import { AccountHelperPage } from "../pages/my/account-helper/account-helper";
+import { HelperDetailsPage } from "../pages/my/account-helper/helper-details/helper-details";
 import { AccountServicePage } from "../pages/my/account-service/account-service";
 import { AccountHistoryPage } from "../pages/my/account-history/account-history";
 import { AccountCollectStorePage } from "../pages/my/account-collect-store/account-collect-store";
@@ -118,7 +119,6 @@ import { PhoneNumberFilter } from "../pipes/phone-number-filter";
 import { NothingComponent } from "../components/nothing/nothing";
 
 
-
 @NgModule({
   declarations: [
     MyApp,
@@ -134,7 +134,7 @@ import { NothingComponent } from "../components/nothing/nothing";
     /*——————————————————分类栏——————————————————*/
     ClassifyPage, SubnavPage1Page, SubnavPage2Page, MoreBrandPage,
     /*——————————————————我的栏——————————————————*/
-    MyPage, SettingPage, AccountManagementPage, AccountSecurityPage, AllOrdersPage, CouponPage, MemberCenterPage, PeceiptPage, AccountAssetPage, AccountProcessPage, AccountAreaApplicationPage, AccountCollectGoodsPage, AccountCollectStorePage, AccountHistoryPage, AccountServicePage, AccountHelperPage, AccountInfoPage, InvoiceQualificationPage, InvoiceAskFor2Page, InvoiceAskFor1Page, AboutUsPage, ShippingAddressPage, ChangePhoneNumberPage, ChangePasswordPage, RealnamePage, QqPage, AddShippingAddressPage, CompanynamePage, AccountJifenPage, AccountBalancePage, AccountWithdrawPage, AccountMoneyDetailPage, AccountWithdrawSucceedPage, PaymentMethodPage, OrdersDetailPage, WriteOrdersPage, OrderModalShippingPage, OrderModalDistributionPage, OrderModalCouponPage, OrderModalPaymentPage,AddressPage,
+    MyPage, SettingPage, AccountManagementPage, AccountSecurityPage, AllOrdersPage, CouponPage, MemberCenterPage, PeceiptPage, AccountAssetPage, AccountProcessPage, AccountAreaApplicationPage, AccountCollectGoodsPage, AccountCollectStorePage, AccountHistoryPage, AccountServicePage, AccountHelperPage, AccountInfoPage, InvoiceQualificationPage, InvoiceAskFor2Page, InvoiceAskFor1Page, AboutUsPage, ShippingAddressPage, ChangePhoneNumberPage, ChangePasswordPage, RealnamePage, QqPage, AddShippingAddressPage, CompanynamePage, AccountJifenPage, AccountBalancePage, AccountWithdrawPage, AccountMoneyDetailPage, AccountWithdrawSucceedPage, PaymentMethodPage, OrdersDetailPage, WriteOrdersPage, OrderModalShippingPage, OrderModalDistributionPage, OrderModalCouponPage, OrderModalPaymentPage,AddressPage,HelperDetailsPage,
     /*——————————————————组件——————————————————*/
     SingleCardComponent, MyToolbarComponent, SingleFoodsItemComponent, MeunItemComponent, CountdownComponent, CountInputComponent, ImgTabs2Component, NothingComponent,
     DirectiveTestPage,
@@ -176,7 +176,7 @@ import { NothingComponent } from "../components/nothing/nothing";
     /*——————————————————分类栏——————————————————*/
     ClassifyPage, SubnavPage1Page, SubnavPage2Page, MoreBrandPage,
     /*——————————————————我的栏——————————————————*/
-    MyPage, SettingPage, AccountManagementPage, AccountSecurityPage, AllOrdersPage, CouponPage, MemberCenterPage, PeceiptPage, AccountAssetPage, AccountProcessPage, AccountAreaApplicationPage, AccountCollectGoodsPage, AccountCollectStorePage, AccountHistoryPage, AccountServicePage, AccountHelperPage, AccountInfoPage, InvoiceQualificationPage, InvoiceAskFor2Page, InvoiceAskFor1Page, AboutUsPage, ShippingAddressPage, ChangePhoneNumberPage, ChangePasswordPage, RealnamePage, QqPage, AddShippingAddressPage, CompanynamePage, AccountJifenPage, AccountWithdrawPage, AccountBalancePage, AccountMoneyDetailPage, AccountWithdrawSucceedPage, PaymentMethodPage, OrdersDetailPage, WriteOrdersPage, OrderModalShippingPage, OrderModalDistributionPage, OrderModalCouponPage, OrderModalPaymentPage,AddressPage,
+    MyPage, SettingPage, AccountManagementPage, AccountSecurityPage, AllOrdersPage, CouponPage, MemberCenterPage, PeceiptPage, AccountAssetPage, AccountProcessPage, AccountAreaApplicationPage, AccountCollectGoodsPage, AccountCollectStorePage, AccountHistoryPage, AccountServicePage, AccountHelperPage, AccountInfoPage, InvoiceQualificationPage, InvoiceAskFor2Page, InvoiceAskFor1Page, AboutUsPage, ShippingAddressPage, ChangePhoneNumberPage, ChangePasswordPage, RealnamePage, QqPage, AddShippingAddressPage, CompanynamePage, AccountJifenPage, AccountWithdrawPage, AccountBalancePage, AccountMoneyDetailPage, AccountWithdrawSucceedPage, PaymentMethodPage, OrdersDetailPage, WriteOrdersPage, OrderModalShippingPage, OrderModalDistributionPage, OrderModalCouponPage, OrderModalPaymentPage,AddressPage,HelperDetailsPage,
     /*——————————————————组件——————————————————*/
     SingleCardComponent, MyToolbarComponent, SingleFoodsItemComponent, MeunItemComponent, CountdownComponent, CountInputComponent, ImgTabs2Component, NothingComponent,
     DirectiveTestPage,

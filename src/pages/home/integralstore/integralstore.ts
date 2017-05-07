@@ -38,8 +38,8 @@ export class IntegralstorePage {
   ionViewDidLoad() {
     console.log('ionViewDidLoad IntegralstorePage');
   }
-  goDuihuanDetailsPage(id) {
-    this.navCtrl.push(DuihuanDetailsPage, { id: id })
+  goDuihuanDetailsPage(goodsId) {
+    this.navCtrl.push(DuihuanDetailsPage, { goodsId: goodsId })
   }
   getData() {
     this.httpService.exchange({ page: 1 }).then((res) => {

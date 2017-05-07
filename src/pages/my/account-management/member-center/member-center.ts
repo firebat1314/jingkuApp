@@ -13,6 +13,7 @@ import { HttpService } from "../../../../providers/http-service";
   templateUrl: 'member-center.html'
 })
 export class MemberCenterPage {
+  data: any;
   userInfo: any;
   width: any;
   constructor(
@@ -25,6 +26,12 @@ export class MemberCenterPage {
       if (res.status == 1) {
         this.userInfo = res;
         this.width = res.data.user_info.pay_points / 10000000 * 100 + '%';
+      }
+    })
+    this.httpService.userRank().then((res)=>{
+      console.log(res);
+      if(res.status==1){
+        this.data = res;
       }
     })
   }

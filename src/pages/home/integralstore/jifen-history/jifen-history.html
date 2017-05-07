@@ -15,12 +15,12 @@
 
 <ion-content>
     <ion-list>
-        <ion-item mode="ios" detail-push (click)="goDuihuanDetailsFinishPage(1)" *ngFor="let item of data?.list">
+        <ion-item mode="ios" detail-push (click)="goDuihuanDetailsFinishPage(item)" *ngFor="let item of data?.list">
             <ion-thumbnail item-left>
                 <img src="./assets/icon/images/brand_1_03.jpg">
             </ion-thumbnail>
-            <h2>博士伦博士伦博士伦博士伦博士伦博士伦博士伦博士伦博士伦博士伦博士伦博士伦</h2>
-            <h2 style="margin: 10px 0 11px;">10000 积分</h2>
+            <h2>{{item.title}}</h2>
+            <h2 style="margin: 10px 0 11px;">{{item.number}} 积分</h2>
             <p class="status">兑换成功</p>
         </ion-item>
     </ion-list>

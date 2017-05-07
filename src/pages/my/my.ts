@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController, ModalController, ViewController } from 'ionic-angular';
+import { NavController, ModalController, ViewController, Events } from 'ionic-angular';
 import { HttpService } from "../../providers/http-service";
 
 import { SettingPage } from "./setting/setting";
@@ -49,9 +49,12 @@ export class MyPage {
     public viewCtrl: ViewController,
     public navCtrl: NavController,
     public modalCtrl: ModalController,
-    public httpService: HttpService
+    public httpService: HttpService,
+    public events: Events
   ) {
-    
+    this.events.subscribe('avatar:update',()=>{
+      this.httpResult()
+    })
   }
 
   ionViewDidLoad() {

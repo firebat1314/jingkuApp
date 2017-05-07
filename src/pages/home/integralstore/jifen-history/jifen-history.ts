@@ -30,8 +30,8 @@ export class JifenHistoryPage {
     console.log('ionViewDidLoad JifenHistoryPage');
   }
 
-  goDuihuanDetailsFinishPage(id) {
-    this.navCtrl.push(DuihuanDetailsFinishPage, { id: id })
+  goDuihuanDetailsFinishPage(item) {
+    this.navCtrl.push(DuihuanDetailsFinishPage, { item: item })
   }
 
   getData() {

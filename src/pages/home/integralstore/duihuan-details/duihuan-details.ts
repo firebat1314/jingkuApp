@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
+import { HttpService } from "../../../../providers/http-service";
 
 /*
   Generated class for the DuihuanDetails page.
@@ -12,12 +13,44 @@ import { NavController, NavParams } from 'ionic-angular';
   templateUrl: 'duihuan-details.html'
 })
 export class DuihuanDetailsPage {
+  getGoodsParameter: any;
+  getGoodsInfo: any;
+  getGoodsGallery: any;
   selectPicArguments = 'pic';
-  constructor(public navCtrl: NavController, public navParams: NavParams) { }
+
+  goodsId: number = this.navParams.get('goodsId');
+  constructor(
+    public navCtrl: NavController,
+    public navParams: NavParams,
+    public httpService: HttpService
+  ) {
+    this.getData();
+   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad DuihuanDetailsPage');
   }
+
+  getData() {
+    this.httpService.getGoodsGallery({ goods_id: this.goodsId }).then((res) => {
+      if (res.status == 1) {
+        this.getGoodsGallery = res.data;
+      }
+      this.httpService.getGoodsInfo({ goods_id: this.goodsId }).then((res) => {
+        if (res.status == 1) {
+          this.getGoodsInfo = res.data;
+        }
+        this.httpService.getGoodsParameter({ goods_id: this.goodsId }).then((res) => {
+          if (res.status == 1) {
+            this.getGoodsParameter = res.data;
+          }
+        })
+      })
+    })
+
+
+  }
+
   doConvertibility() {
 
   }

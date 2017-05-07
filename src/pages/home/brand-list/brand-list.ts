@@ -1,8 +1,5 @@
 import { Component, ViewChild } from '@angular/core';
 import { NavController, NavParams, Events, Content } from 'ionic-angular';
-
-import { SingleCardComponent } from '../../../components/single-card/single-card'
-
 import { HttpService } from "../../../providers/http-service";
 
 /*

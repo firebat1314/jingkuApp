@@ -16,23 +16,23 @@
 <ion-content>
     <div class="imgs">
         <ion-slides parallax="true">
-            <ion-slide *ngFor="let item of [{},{},{},{}]">
+            <ion-slide *ngFor="let item of getGoodsGallery">
                 <ion-card>
-                    <img src="./assets/images/images/jifenStore_1_02_02.jpg" imageViewer />
+                    <img src="{{item.img_url}}" imageViewer />
                 </ion-card>
             </ion-slide>
         </ion-slides>
     </div>
     <div class="info">
         <div class="title">
-            【德国蔡司眼镜】对功能功能功能功能功能功能功能功能功能功能功能功能功能功能功能功能功能功能功能功能功能功能功能功能功能
+            {{getGoodsInfo?.goods_name}}
         </div>
         <div class="body">
             单价：<span class="now-price"><span class="number">666 </span>积分</span>
         </div>
         <div class="bottom">
-            <div>市场参考价&nbsp;：<span class="offer-price">¥1313131313</span></div>
-            <div>商品编号&nbsp;：131313131313</div>
+            <div>市场参考价&nbsp;：<span class="offer-price">¥{{getGoodsInfo?.market_price}}</span></div>
+            <div>商品编号&nbsp;：{{getGoodsInfo?.goods_sn}}</div>
         </div>
     </div>
     <div class="pic-and-arguments">
@@ -46,15 +46,12 @@
         </ion-segment>
         <div [ngSwitch]="selectPicArguments">
             <div class="pic" *ngSwitchCase="'pic'">
-                <ion-item class="check" detail-push>
-                    <ion-icon name="ios-arrow-down"></ion-icon>上拉查看详情
-                </ion-item>
-                <img src="./assets/icon/images/particulars_2_34.jpg" alt="">
+                <div style="text-align:center;" [innerHTML]="getGoodsInfo?.goods_desc"></div>
             </div>
             <div class="arguments" *ngSwitchCase="'arguments'">
-                <div class="wrapper">
-                    <div *ngFor="let item of [{},{},{},{},{}]">
-                        <div class="name">属性值：<span>属性</span></div>
+                <div class="wrapper" *ngIf="getGoodsParameter">
+                    <div *ngFor="let item of getGoodsParameter">
+                        <div class="name">{{item.name}}：<span>{{item.value}}</span></div>
                     </div>
                 </div>
             </div>

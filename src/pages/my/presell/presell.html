@@ -21,28 +21,30 @@
         </div>
     </div>
     <ion-list>
-        <div class="fore singleton" *ngFor="let item of [{},{},{},{}]">
+        <div class="fore singleton" *ngFor="let item of data?.data">
             <div class="left">
-                <img src="./assets/images/images/shangou_01_05.jpg" alt="">
+                <img src="http://img.jing-ku.com/{{item.goods_img}}" alt="">
                 <div class="time">
                     <ion-icon name="ios-time-outline"></ion-icon>
-                    <countdown endDate="454545454"></countdown>
+                    <countdown endDate="{{item.pre_end_date}}"></countdown>
                 </div>
             </div>
             <div class="right">
-                <div class="title">as打算大所大所大撒所所所所所所所所所所所所所所所所所所所所所所所所所</div>
+                <div class="title">{{item.name}}</div>
                 <div class="strip">
                     <div class="wrap">
-                        <div></div>
+                        <div [ngStyle]="{'width.%':20}"></div>
                     </div>
                     <div class="number">
-                        <span>已抢购52件</span>
-                        <span>仅剩12件</span>
+                        <span>已抢购???件</span>
+                        <span>仅???件</span>
                     </div>
                 </div>
                 <div class="price">
-                    <div class="red">¥454.00</div>
-                    <div class="old-price">¥454.00</div>
+                    <div class="red">
+                        {{item.promote_price}}&nbsp;&nbsp;
+                        <span class="old-price">{{item.market_price}}</span>
+                    </div>
                     <div ion-button color="dark" no-margin>立即购买</div>
                 </div>
             </div>

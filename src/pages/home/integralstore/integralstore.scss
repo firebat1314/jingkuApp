@@ -1,7 +1,4 @@
 page-integralstore {
-    .content {
-        background: #f7f7f7;
-    }
     .fore {
         background: #fff;
     }
@@ -28,8 +25,9 @@ page-integralstore {
         }
     }
     .fore2 {
-        background: #f7f7f7;
         overflow: hidden;
+        background: #f7f7f7;
+        padding: 0 10px;
         .card {
             width: calc(50% - 20px);
             display: inline-block;

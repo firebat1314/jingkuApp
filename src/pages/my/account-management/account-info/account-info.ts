@@ -81,8 +81,9 @@ export class AccountInfoPage {
     this.httpService.editAvatar({ avatar: 'data:image/jpeg;base64,' + data }).then((res) => {
       console.log(res);
       if (res.status == 1) {
-        this.native.showToast('头像上传成功')
+        this.native.showToast('头像上传成功');
         this.getUserData();
+        this.events.publish('avatar:update','data:image/jpeg;base64,' + data);
       }
     })
   }

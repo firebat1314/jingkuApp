@@ -7,10 +7,10 @@ import { HttpService } from "../../../providers/http-service";
   templateUrl: 'presell.html'
 })
 export class PresellPage {
+  data: any;
   getCategorys: any;
-  payInfo: any;
 
-  checkedIndex:number=0;
+  checkedIndex: number = 0;
   constructor(
     public navCtrl: NavController,
     public navParams: NavParams,
@@ -19,6 +19,7 @@ export class PresellPage {
     this.httpService.getCategorys().then((res) => {
       if (res.status == 1) { this.getCategorys = res.data; }
     })
+    this.getPresell();
   }
 
   ionViewDidLoad() {
@@ -26,7 +27,14 @@ export class PresellPage {
   }
   getList(index) {
     let id = this.getCategorys[index].cat_id;
-    this.checkedIndex=index;
+    this.checkedIndex = index;
   }
-  
+  getPresell() {
+    this.httpService.presell().then((res) => {
+      console.log(res);
+      if (res.status == 1) {
+        this.data = res;
+      }
+    })
+  }
 }

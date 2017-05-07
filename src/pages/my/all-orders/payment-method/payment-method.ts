@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams, ViewController } from 'ionic-angular';
 import { HttpService } from "../../../../providers/http-service";
-import { Alipay, AlipayOrder } from '@ionic-native/alipay';
+import { Alipay } from '@ionic-native/alipay';
 import { Native } from "../../../../providers/native";
 
 /*
