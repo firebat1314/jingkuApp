@@ -27,7 +27,6 @@ export class SubnavPage1Page {
   }
   ngOnInit() {
     this.httpService.getCategorys().then((res) => {
-      console.log('获取九大分类', res)
       this.getCategorys = res.data;
     })
   }

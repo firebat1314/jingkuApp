@@ -26,14 +26,12 @@ export class SubnavPage2Page {
   }
   ngOnInit(){
     this.httpService.getChildrenCaCtegory({cat_id:this.catId}).then((res)=>{
-      console.log('子分类',res);
       this.getChildrenCaCtegory = res.data;
     })
   }
   ionViewDidLoad() {
     console.log('ionViewDidLoad SubnavPage2Page');
   }
-  ngAfterViewInit() { }
   onEvent(id,e) {
     if (e) {
       e.stopPropagation();

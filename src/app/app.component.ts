@@ -4,10 +4,10 @@ import { Platform, ToastController, Nav, IonicApp, Events } from 'ionic-angular'
 import { StatusBar, Splashscreen } from 'ionic-native';
 
 import { TabsPage } from '../pages/tabs/tabs';
-import { ClassifyPage } from '../pages/classify/classify';
 import { WelcomePage } from '../pages/welcome/welcome';
 import { LoginPage } from '../pages/login/login';
-import { ParticularsPage } from '../pages/home/particulars/particulars'
+
+/*import { ParticularsPage } from '../pages/home/particulars/particulars'
 import { DredgeMoreCityPage } from '../pages/home/particulars/dredge-more-city/dredge-more-city'
 import { PeceiptPage } from "../pages/my/peceipt/peceipt";
 import { SettingPage } from "../pages/my/setting/setting";
@@ -18,7 +18,7 @@ import { CouponPage } from "../pages/my/coupon/coupon";
 import { AccountJifenPage } from "../pages/my/account-jifen/account-jifen";
 import { AllOrdersPage } from "../pages/my/all-orders/all-orders";
 import { WriteOrdersPage } from "../pages/my/all-orders/write-orders/write-orders";
-import { SignupSecondPage } from "../pages/signup/signup-second/signup-second";
+import { SignupSecondPage } from "../pages/signup/signup-second/signup-second";*/
 
 
 @Component({

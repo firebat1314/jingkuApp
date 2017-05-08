@@ -57,7 +57,7 @@
             </div>
         </div>
         <div class="bottom">
-            <div [navPush]="WhitebarPage">
+            <div (click)="goWhitebarPage()">
                 <div class="img">
                     <img src="./assets/icon/home_5_15.png" alt="">
                 </div>
@@ -114,9 +114,9 @@
             <div *ngFor="let item of getBrands">
                 <img src="{{item.brand_logo}}" alt="{{item.brand_name}}" (click)="goBrandListPage(item.brand_id)">
             </div>
-            <div>
+            <!--<div>
                 <img src="./assets/icon/homepage_53.png" alt="" (click)="goClassPage('brand')">
-            </div>
+            </div>-->
         </div>
     </div>
     <!--——————————————————————————————————————————精选专题——————————————————————————————————————————-->
@@ -218,20 +218,20 @@
     <div class="good-shop home-content" *ngIf="bannerImgs" home-padding>
         <div class="title">
             <span class="txt">好店推荐</span>
-            <span class="more">更多&gt;</span>
+            <!--<span class="more">更多&gt;</span>-->
         </div>
         <div class="main">
             <ion-slides loop="false" parallax="true" pager>
                 <ion-slide *ngFor="let item of bannerImgs">
                     <ion-card>
                         <img src="{{item?.ad_img}}" />
-                        <div class="collect">
+                        <!--<div class="collect">
                             <div class="left">
                                 <ion-icon name="md-heart-outline"></ion-icon>
                                 <ion-icon name="md-heart"></ion-icon>收藏
                             </div>
                             <div class="right">21212121人已收藏</div>
-                        </div>
+                        </div>-->
                     </ion-card>
                 </ion-slide>
             </ion-slides>

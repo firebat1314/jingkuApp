@@ -160,9 +160,9 @@ export class PaymentMethodPage {
         };*/
 
     Wechat.sendPaymentRequest(params, function () {
-        this.native.showToast('Success');
+       this.native.showToast('Success');
     }, function (reason) {
-        this.native.showToast(reason);
+       console.log(reason);
     });
   }
 }

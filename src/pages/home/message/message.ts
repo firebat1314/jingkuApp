@@ -33,13 +33,11 @@ export class MessagePage {
   }
   getData(){
     this.httpService.getTidings({istop:1}).then((res)=>{
-      console.log(res);
       if(res.status==1){
         this.userTidings = res;
       }
     })
     this.httpService.getWuLiuTidings({istop:1}).then((res)=>{
-      console.log(res);
       if(res.status==1){
         this.wuLiuTidings = res;
       }

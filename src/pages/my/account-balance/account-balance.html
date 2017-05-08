@@ -17,7 +17,7 @@
     <div class="head">
         <div><button ion-button small color="light" style="color: #5670b9;float: right;" (click)="goAccountMoneyDetailPage()">收支明细</button></div>
         <p>可用余额（元）</p>
-        <h2>50000000</h2>
+        <h2>{{userInfo?.data?.user_money||'--'}}</h2>
     </div>
     <div class="btn" padding>
         <button ion-button outline (click)="goAccountWithdrawPage()">提现</button>

@@ -14,29 +14,40 @@
 
 
 <ion-content>
-    <div class="fore1 fore">
-        <ion-slides #bannerSlide autoplay="4000" loop="false" pager>
-            <ion-slide *ngFor="let item of [{},{},{},{}]">
-                <img src="./assets/images/images/sheji_1_02.jpg" />
+    <div class="fore1 fore" *ngIf="banner">
+        <ion-slides #bannerSlide autoplay="4000" loop="true" pager>
+            <ion-slide *ngFor="let item of banner?.data">
+                <img src="{{item.ad_img}}" />
             </ion-slide>
         </ion-slides>
     </div>
     <div class="fore2 fore">
         <div class="head"><img src="./assets/images/images/sheji_3_06.jpg" alt=""></div>
         <div class="body" padding>
-            <img src="./assets/images/images/sheji_1_06.jpg" alt="">
-            <img src="./assets/images/images/sheji_1_06.jpg" alt="">
-            <img src="./assets/images/images/sheji_1_06.jpg" alt="">
-            <img src="./assets/images/images/sheji_1_06.jpg" alt="">
+            <img src="{{item.ad_img}}" alt="" *ngFor="let item of class?.data">
         </div>
     </div>
     <div class="fore3 fore">
-        <img src="./assets/images/images/sheji_1_09.jpg" alt="">
+        <img src="{{img?.data[0]?.ad_img}}" alt="">
     </div>
-    <div class="fore4 fore" padding>
-        <img src="./assets/images/images/sheji_1_12.jpg" alt="">
+    <div class="fore4 fore" padding *ngFor="let item of list?.goods">
+        <div class="left">
+            <img src="{{item.thumb}}" alt="">
+        </div>
+        <div class="right">
+            <div class="title">{{item.name}}</div>
+            <div class="price">{{item.shop_price}}</div>
+            <div class="purchase" (click)="goParticularsPage(item.id)">立即购买&nbsp;<img src="../assets/icon/images/APP_sheji_07.png" alt=""></div>
+        </div>
     </div>
-    <div class="fore4 fore" padding>
-        <img src="./assets/images/images/sheji_1_12.jpg" alt="">
-    </div>
+
+    <ion-fab right bottom (click)="scrollToTop()">
+        <button ion-fab color="dark" mini>
+            {{list?.page}}/{{list?.pages}}
+        </button>
+    </ion-fab>
+
+    <ion-infinite-scroll (ionInfinite)="doInfinite($event)" *ngIf="flag">
+        <ion-infinite-scroll-content></ion-infinite-scroll-content>
+    </ion-infinite-scroll>
 </ion-content>

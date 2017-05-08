@@ -3,6 +3,7 @@ import { NavController, NavParams } from 'ionic-angular';
 import { RechargePage } from "../../home/recharge/recharge";
 import { AccountWithdrawPage } from "../account-withdraw/account-withdraw";
 import { AccountMoneyDetailPage } from "../account-money-detail/account-money-detail";
+import { HttpService } from "../../../providers/http-service";
 
 /*
   Generated class for the AccountBalance page.
@@ -15,19 +16,29 @@ import { AccountMoneyDetailPage } from "../account-money-detail/account-money-de
   templateUrl: 'account-balance.html'
 })
 export class AccountBalancePage {
+  userInfo: any;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {}
+  constructor(public navCtrl: NavController, public navParams: NavParams, public httpService: HttpService) {
+    this.getData();
+  }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad AccountBalancePage');
   }
-  goRechargePage(){
+
+  getData() {
+    this.httpService.userInfo().then((res) => {
+      if (res.status == 1) { this.userInfo = res; }
+    })
+  }
+
+  goRechargePage() {
     this.navCtrl.push(RechargePage);
   }
-  goAccountWithdrawPage(){
+  goAccountWithdrawPage() {
     this.navCtrl.push(AccountWithdrawPage);
   }
-  goAccountMoneyDetailPage(){
+  goAccountMoneyDetailPage() {
     this.navCtrl.push(AccountMoneyDetailPage);
   }
 }

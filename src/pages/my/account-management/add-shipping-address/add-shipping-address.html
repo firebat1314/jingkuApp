@@ -30,7 +30,7 @@
             </ion-item>
             <ion-item mode="ios" detail-push>
                 <ion-label mode="ios" fixed>所在地区</ion-label>
-                <city-picker item-content margin-left cancelText="取消" doneText="完成" separator="-" [citiesData]="cityData" [(ngModel)]="cityName" name="cityName" (ionChange)="cityChange($event)">
+                <city-picker required item-content margin-left cancelText="取消" doneText="完成" separator="-" [citiesData]="cityData" [(ngModel)]="cityName" name="cityName" (ionChange)="cityChange($event)" placeholder="请选择">
                 </city-picker>
             </ion-item>
             <ion-item>

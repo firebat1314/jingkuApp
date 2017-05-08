@@ -79,12 +79,12 @@
                         <div class="number">{{usercount?.data?.bonus_count||0}}张可用</div>
                         <div class="text">优惠券</div>
                     </div>
-                    <div [navPush]="AccountJifenPage">
+                    <div [navPush]="AccountJifenPage" [navParams]="{number:userInfo?.data?.integral}">
                         <div class="number">{{userInfo?.data?.integral||0}}</div>
                         <div class="text">积分</div>
                     </div>
                     <div [navPush]="AccountBalancePage">
-                        <div class="number">{{usercount?.data?.user_money||0}}</div>
+                        <div class="number">{{userInfo?.data?.user_money||0}}</div>
                         <div class="text">余额</div>
                     </div>
                     <div>

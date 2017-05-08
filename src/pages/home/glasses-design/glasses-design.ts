@@ -1,5 +1,7 @@
-import { Component } from '@angular/core';
-import { NavController, NavParams } from 'ionic-angular';
+import { Component, ViewChild } from '@angular/core';
+import { NavController, NavParams, Content } from 'ionic-angular';
+import { HttpService } from "../../../providers/http-service";
+import { ParticularsPage } from "../particulars/particulars";
 
 /*
   Generated class for the GlassesDesign page.
@@ -12,11 +14,66 @@ import { NavController, NavParams } from 'ionic-angular';
   templateUrl: 'glasses-design.html'
 })
 export class GlassesDesignPage {
-
-  constructor(public navCtrl: NavController, public navParams: NavParams) {}
+  list: any;
+  img: any;
+  class: any;
+  banner: any;
+  @ViewChild(Content) content: Content;
+  constructor(
+    public navCtrl: NavController,
+    public navParams: NavParams,
+    public httpService: HttpService
+  ) {
+    this.getData();
+  }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad GlassesDesignPage');
   }
-
+  getData() {
+    this.httpService.getHomebanner({ int_pos_id: 37 }).then((res) => {
+      if (res.status == 1) {
+        this.banner = res;
+      }
+      this.httpService.getHomebanner({ int_pos_id: 38 }).then((res) => {
+        if (res.status == 1) {
+          this.class = res;
+        }
+        this.httpService.getHomebanner({ int_pos_id: 39 }).then((res) => {
+          if (res.status == 1) {
+            this.img = res;
+          }
+          this.httpService.categoryGoods({ cat_id: 421 }).then((res) => {
+            if (res.status == 1) {
+              this.list = res;
+            }
+          })
+        })
+      })
+    })
+  }
+  goParticularsPage(id){
+    this.navCtrl.push(ParticularsPage,{goodsId:id})
+  }
+  flag: boolean = true;
+  doInfinite(infiniteScroll) {
+    if (this.list.page < this.list.pages) {
+      this.list.page++;
+    } else {
+      this.flag = false;
+      return;
+    }
+    this.httpService.categoryGoods({ cat_id: 421 }).then((res) => {
+      if (res.status == 1) {
+        Array.prototype.push.apply(this.list.goods, res.goods);
+      }
+      setTimeout(() => {
+        infiniteScroll.complete();
+      }, 500);
+    })
+  }
+  scrollToTop() {
+    this.content.scrollToTop();
+  }
+  
 }

@@ -19,8 +19,8 @@
 <ion-content>
     <div class="head">
         <div>我的积分</div>
-        <h2>5000000</h2>
-        <button ion-button color="light" outline>兑换商品</button>
+        <h2>{{number}}</h2>
+        <button ion-button color="light" outline (click)="goIntegralstorePage()">兑换商品</button>
     </div>
     <div class="background"></div>
 
@@ -28,26 +28,22 @@
         <ion-item-divider>
             收支明细
         </ion-item-divider>
-        <ion-item>
-            <h2>购物赠送
-                <ion-note>(订单号 1212121212121)</ion-note>
+        <ion-item *ngFor="let item of data?.list">
+            <h2>{{item.title}}
+                <ion-note>(订单号 {{item.title}})</ion-note>
             </h2>
-            <p>2017.12.15 01:44:44</p>
-            <h2 item-right>+55555</h2>
-        </ion-item>
-        <ion-item>
-            <h2>购物赠送
-                <ion-note>(订单号 1212121212121)</ion-note>
-            </h2>
-            <p>2017.12.15 01:44:44</p>
-            <h2 item-right>+55555</h2>
-        </ion-item>
-        <ion-item>
-            <h2>购物赠送
-                <ion-note>(订单号 1212121212121)</ion-note>
-            </h2>
-            <p>2017.12.15 01:44:44</p>
-            <h2 item-right>+55555</h2>
+            <p>{{item.change_time}}</p>
+            <h2 item-right ion-text [color]="item.number>0?'danger':''">{{item.number}}</h2>
         </ion-item>
     </ion-list>
+
+    <ion-fab right bottom (click)="scrollToTop()">
+        <button ion-fab color="dark" mini>
+            {{data?.page}}/{{data?.pages}}
+        </button>
+    </ion-fab>
+
+    <ion-infinite-scroll (ionInfinite)="doInfinite($event)" *ngIf="flag">
+        <ion-infinite-scroll-content></ion-infinite-scroll-content>
+    </ion-infinite-scroll>
 </ion-content>

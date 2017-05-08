@@ -4,6 +4,7 @@ import { NavController, NavParams, PopoverController } from 'ionic-angular';
 
 import { PopoverContentPage } from "./popover-content/popover-content"
 import { HttpService } from "../../../../providers/http-service";
+import { Native } from "../../../../providers/native";
 /*
   Generated class for the DredgeMoreCity page.
 
@@ -27,7 +28,8 @@ export class DredgeMoreCityPage {
     public navCtrl: NavController,
     public navParams: NavParams,
     public popover: PopoverController,
-    public httpService: HttpService
+    public httpService: HttpService,
+    public native:Native
   ) {
     this.getHttpData();
   }
@@ -37,7 +39,6 @@ export class DredgeMoreCityPage {
   }
   getHttpData() {
     this.httpService.regionApply().then((res) => {
-      console.log(res);
       if (res.status == 1) {
         this.reginArr = res;
       }
@@ -58,7 +59,6 @@ export class DredgeMoreCityPage {
     let popover = this.popover.create(PopoverContentPage);
     popover.onDidDismiss((imageData) => {
       if (imageData) {
-        console.log(imageData)
         if (type == 0) {//正面身份照
           this.formData.frdb_code_zm = 'data:image/jpeg;base64,' + imageData.image;
         } else {//反面身份照
@@ -69,10 +69,9 @@ export class DredgeMoreCityPage {
     popover.present();
   }
   onsubmit() {
-    console.log(this.formData)
     this.httpService.postRegionApply(this.formData).then((res) => {
-      console.log(res);
       if (res.status == 1) {
+        this.native.showToast(res.info);
       }
     })
   }

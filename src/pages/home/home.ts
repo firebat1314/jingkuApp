@@ -81,7 +81,7 @@ export class HomePage {
     this.events.unsubscribe('home:updataArea');
   }
   getHomeData(finish?) {
-    this.native.showLoading('加载中~');
+    this.native.showLoading('加载中');
     this.httpService.getHomebanner({ int_pos_id: 3 }).then((res) => {
       console.log("轮播图", res);
       if (res.status == 1) { this.bannerImgs = res.data; }
@@ -192,5 +192,8 @@ export class HomePage {
         }
       }
     })
+  }
+  goWhitebarPage(){
+    this.native.showToast('敬请期待')
   }
 }

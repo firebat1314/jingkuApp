@@ -52,16 +52,13 @@ export class MyPage {
     public httpService: HttpService,
     public events: Events
   ) {
+    this.httpResult()
     this.events.subscribe('avatar:update',()=>{
       this.httpResult()
     })
   }
-
   ionViewDidLoad() {
     console.log('ionViewDidLoad MyPages');
-  }
-  ngOnInit() {
-    this.httpResult()
   }
   httpResult(finish?) {
     this.httpService.usercount().then((res) => {

@@ -35,9 +35,9 @@
         <p class="idcard" ion-text color="colorsix" padding-horizontal>
             身份证反面：
             <button ion-button color="dark" (click)="opanNative(1)" margin-horizontal>选择文件</button>
-            <span ion-text *ngIf="!formData.frdb_code_sm" color="danger">未选择任何文件</span>
+            <span ion-text *ngIf="!formData.frdb_code_fm" color="danger">未选择任何文件</span>
         </p>
-        <div text-center><img src="{{formData.frdb_code_sm}}" alt=""></div>
+        <div text-center><img src="{{formData.frdb_code_fm}}" alt=""></div>
     </form>
 </ion-content>
 <ion-footer>

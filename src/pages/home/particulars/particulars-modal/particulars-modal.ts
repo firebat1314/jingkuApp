@@ -43,7 +43,6 @@ export class ParticularsModalPage {
       this.native.showToast('已经领取过了');
     } else if (is_get == 0) {
       this.httpService.sendByUser({ type_id: type_id }).then((res) => {
-        console.log("领取优惠券", res);
         this.native.showToast('领取优惠券成功')
         this.sendto.is_get = 0;
       });
@@ -57,7 +56,6 @@ export class ParticularsModalPage {
         gaid: ids.split('-')[1]?ids.split('-')[1]:null,
         region_id: ids.split('-')[0]
       }).then((res) => {
-        console.log(res);
         if (res.status == 1) {
           this.viewCtrl.dismiss();
           this.native.showToast('切换成功');

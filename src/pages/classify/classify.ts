@@ -65,16 +65,12 @@ export class ClassifyPage {
   }
   getHttpData(finished?) {
     this.httpService.getCategorys().then((res) => {
-      console.log('获取九大分类', res)
       if (res.status == 1) { this.getCategorys = res.data; }
       this.httpService.brandList().then((res) => {
-        console.log(res)
         if (res.status == 1) { this.brandList = res }
         this.httpService.collectionShop({ size: 10 }).then((res) => {
-          console.log('收藏店铺列表', res)
           if (res.status == 1) { this.collectionShop = res; }
           this.httpService.collectionList({ size: 10 }).then((res) => {
-            console.log('收藏店商品列表', res)
             if (res.status == 1) { this.collectionList = res; }
             if (finished) { finished(); }
           })
@@ -86,10 +82,8 @@ export class ClassifyPage {
   doRefresh(refresher?) {
     if (this.classSelect == 'care') {
       this.httpService.collectionShop({ size: 10 }).then((res) => {
-        console.log('收藏店铺列表', res)
         if (res.status == 1) { this.collectionShop = res; }
         this.httpService.collectionList({ size: 10 }).then((res) => {
-          console.log('收藏店商品列表', res)
           if (res.status == 1) { this.collectionList = res; }
           setTimeout(() => {
             if (refresher) { refresher.complete(); }
@@ -148,7 +142,6 @@ export class ClassifyPage {
   unfollowShop(suppliers_id, index) {
     this.native.openAlertBox('确认取消关注该商铺', () => {
       this.httpService.delCollectionShop({ shop_ids: [suppliers_id] }).then((res) => {
-        console.log(res);
         if (res.status == 1) {
           this.native.showToast('已取消关注~')
           this.doRefresh();
@@ -159,7 +152,6 @@ export class ClassifyPage {
   unfollowGoods(goods_id, index) {
     this.native.openAlertBox('确认取消关注该商品', () => {
       this.httpService.delCollectionGoods({ rec_ids: [goods_id] }).then((res) => {
-        console.log(res);
         if (res.status == 1) {
           this.native.showToast('已取消关注~')
           this.doRefresh();
@@ -176,9 +168,7 @@ export class ClassifyPage {
     this.selectedGoodsArr = [];
     if (this.careSelect == 'shop') {
       this.native.openAlertBox('是否取消关注选中店铺？', () => {
-        console.log(this.selectedShopArr)
         this.httpService.delCollectionShop({ shop_ids: this.selectedShopArr }).then((res) => {
-          console.log(res);
           if (res.status == 1) {
             this.native.showToast('已取消关注~');
             this.doRefresh();
@@ -193,9 +183,7 @@ export class ClassifyPage {
     }
     if (this.careSelect == 'goods') {
       this.native.openAlertBox('是否取消关注选中商品？', () => {
-        console.log(this.selectedGoodsArr)
         this.httpService.delCollectionGoods({ rec_ids: this.selectedGoodsArr }).then((res) => {
-          console.log(res);
           if (res.status == 1) {
             this.native.showToast('已取消关注~');
             this.doRefresh();

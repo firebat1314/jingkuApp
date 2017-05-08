@@ -16,18 +16,22 @@ import { MemberCenterPage } from "./member-center/member-center";
   templateUrl: 'account-management.html'
 })
 export class AccountManagementPage {
-  AccountSecurityPage:any = AccountSecurityPage;
-  AccountInfoPage:any = AccountInfoPage;
-  ShippingAddressPage:any = ShippingAddressPage;
-  MemberCenterPage:any = MemberCenterPage;
+  AccountSecurityPage: any = AccountSecurityPage;
+  AccountInfoPage: any = AccountInfoPage;
+  ShippingAddressPage: any = ShippingAddressPage;
+  MemberCenterPage: any = MemberCenterPage;
 
-  avatar:any = this.navParams.get('avatar');
-  constructor(public navCtrl: NavController, public navParams: NavParams,public events:Events) {
-    this.events.subscribe('avatar:update',res=>{
+  avatar: any = this.navParams.get('avatar');
+  constructor(
+    public navCtrl: NavController,
+    public navParams: NavParams,
+    public events: Events
+  ) {
+    this.events.subscribe('avatar:update', res => {
       this.avatar = res;
     })
   }
-  ngAfterViewInit(){
+  ngOnDestroy() {
     this.events.unsubscribe('avatar:update');
   }
   ionViewDidLoad() {

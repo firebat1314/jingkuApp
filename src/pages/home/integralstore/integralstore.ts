@@ -43,11 +43,9 @@ export class IntegralstorePage {
   }
   getData() {
     this.httpService.exchange({ page: 1 }).then((res) => {
-      console.log(res);
       if (res.status == 1) { this.data = res; }
     })
     this.httpService.userInfo().then((res) => {
-      console.log('（2）获取用户资料☞', res)
       if (res.status == 1) { this.totalScore = res.data.integral; }
     })
   }
@@ -61,7 +59,6 @@ export class IntegralstorePage {
       return;
     }
     this.httpService.exchange({ page: this.data.page }).then((res) => {
-      console.log(res);
       if (res.status == 1) {
         Array.prototype.push.apply(this.data.list, res.list);
       }

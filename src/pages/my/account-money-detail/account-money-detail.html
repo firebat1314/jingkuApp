@@ -15,33 +15,20 @@
 
 <ion-content>
     <ion-list>
-        <ion-item>
-            <h2>购物赠送
-                <ion-note></ion-note>
-            </h2>
-            <p>2017.12.15 01:44:44</p>
-            <h1 item-right>+55555</h1>
-        </ion-item>
-        <ion-item>
-            <h2>购物赠送
-                <ion-note></ion-note>
-            </h2>
-            <p>2017.12.15 01:44:44</p>
-            <h1 item-right>+55555</h1>
-        </ion-item>
-        <ion-item>
-            <h2>购物赠送
-                <ion-note></ion-note>
-            </h2>
-            <p>2017.12.15 01:44:44</p>
-            <h1 item-right>+55555</h1>
-        </ion-item>
-        <ion-item>
-            <h2>购物赠送
-                <ion-note></ion-note>
-            </h2>
-            <p>2017.12.15 01:44:44</p>
-            <h1 item-right>+55555</h1>
+        <ion-item *ngFor="let item of data?.list;">
+            <h2>{{item.title}}</h2>
+            <p>{{item.change_time}}</p>
+            <h1 item-right ion-text [color]="item.number>0?'danger':''">{{item.number}}</h1>
         </ion-item>
     </ion-list>
+
+    <ion-fab right bottom (click)="scrollToTop()">
+        <button ion-fab color="dark" mini>
+            {{data?.page}}/{{data?.pages}}
+        </button>
+    </ion-fab>
+
+    <ion-infinite-scroll (ionInfinite)="doInfinite($event)" *ngIf="flag">
+        <ion-infinite-scroll-content></ion-infinite-scroll-content>
+    </ion-infinite-scroll>
 </ion-content>

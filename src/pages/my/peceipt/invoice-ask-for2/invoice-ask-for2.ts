@@ -37,7 +37,8 @@ export class InvoiceAskFor2Page {
     this.httpService.insertInv(this.formData).then((res) => {
       console.log(res)
       if(res.status==1){
-        this.native.showToast('操作成功')
+        this.native.showToast('操作成功');
+        this.navCtrl.popTo(this.navCtrl.getByIndex(1));
       }
     })
   }

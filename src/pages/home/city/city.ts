@@ -36,7 +36,6 @@ export class CityPage {
       return false;
     }
     this.httpService.editArea({ id: region.region_id }).then((res) => {
-      console.log(res);
       if (res.status == 1) {
         this.navCtrl.pop();
         this.events.publish('home:updataArea');

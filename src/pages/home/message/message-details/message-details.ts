@@ -31,7 +31,6 @@ export class MessageDetailsPage {
   getData() {
     if (this.type == 1) {
       this.httpService.getWuLiuTidings().then((res) => {
-        console.log(res);
         if (res.status == 1) {
           this.wuLiuTidings = res;
         }
@@ -39,7 +38,6 @@ export class MessageDetailsPage {
     }
     if (this.type == 2) {
       this.httpService.getTidings().then((res) => {
-        console.log(res);
         if (res.status == 1) {
           this.userTidings = res;
         }
@@ -52,7 +50,6 @@ export class MessageDetailsPage {
   doInfinite1(infiniteScroll) {
     this.page1++;
     this.httpService.getWuLiuTidings({ page: this.page1 }).then((res) => {
-      console.log(res);
       if (res.status == 1) {
         Array.prototype.push.apply(this.wuLiuTidings.list, res.list);
       }
@@ -65,7 +62,6 @@ export class MessageDetailsPage {
   doInfinite2(infiniteScroll) {
     this.page2++;
     this.httpService.getTidings({ page: this.page2 }).then((res) => {
-      console.log(res);
       if (res.status == 1) {
         Array.prototype.push.apply(this.userTidings.list, res.list);
       }

@@ -65,7 +65,6 @@ export class BrandListPage {
         this.events.unsubscribe('user:filterParams')
     }
     doRefresh(refresher) {
-        console.log('Begin async operation', refresher);
         this.httpService.categoryGoods(this.paramsData).then((res) => {
             setTimeout(() => {
                 refresher.complete();
@@ -73,7 +72,6 @@ export class BrandListPage {
             if (res.status == 1) {
                 this.currentPage = 1;
                 this.data = res;
-                console.log('商品列表', res)
             }
         })
     }
@@ -83,7 +81,6 @@ export class BrandListPage {
             if (res.status == 1) {
                 this.data = res;
                 this.events.publish('user:listFilter', res);
-                console.log('商品列表', res)
             }
         })
     }
@@ -147,7 +144,6 @@ export class BrandListPage {
         let pagingParam = Object.assign({ page: this.currentPage }, this.paramsData);
         this.httpService.categoryGoods(pagingParam).then((res) => {
             this.data = res;
-            console.log('商品列表', res)
         })
     }
     nextPage() {
@@ -156,7 +152,6 @@ export class BrandListPage {
         let pagingParam = Object.assign({ page: this.currentPage }, this.paramsData);
         this.httpService.categoryGoods(pagingParam).then((res) => {
             this.data = res;
-            console.log('商品列表', res)
         })
     }
 }

@@ -10,19 +10,19 @@ import { Native } from "../../../../providers/native";
 export class AddShippingAddressPage {
   default: any;
   cityData: any[]; //城市数据
-  cityName: string = '北京市-北京市-东城区'; //初始化城市名
+  cityName: string = '北京-北京-东城区'; //初始化城市名
   code: string; //城市编码
 
   addressId = this.navParams.get('addId');
 
   formData = {
     address_id: '',
-    consignee: '1',
-    province: '1',
-    city: '1',
-    district: '1',
-    address: '1',
-    mobile: '13100668641'
+    consignee: '',
+    province: '',
+    city: '',
+    district: '',
+    address: '',
+    mobile: ''
   }
   constructor(
     public navCtrl: NavController,
@@ -33,7 +33,6 @@ export class AddShippingAddressPage {
   ) {
     console.log('收货地址id==>', this.addressId);
     this.setCityPickerData();
-    this.getAddressDetails();
   }
 
   ionViewDidLoad() {
@@ -42,7 +41,6 @@ export class AddShippingAddressPage {
   getAddressDetails() {
     if (this.addressId != undefined) {
       this.httpService.AddressDetail({ address_id: this.addressId }).then((res) => {
-        console.log(res);
         if (res.status == 1) {
           this.formData = {
             address_id: this.addressId,
@@ -51,17 +49,40 @@ export class AddShippingAddressPage {
             city: res.address_info.city,
             district: res.address_info.district,
             address: res.address_info.address,
-            mobile: res.address_info.mobile,
+            mobile: res.address_info.mobile
           }
         }
+        this.cityName = this.getCityName(res.address_info.province, res.address_info.city, res.address_info.district)
       })
     }
   }
   setCityPickerData() {
     this.httpService.FileJsonRegion().then(data => {
-      console.log(data)
       this.cityData = JSON.parse(data.data);
+      this.getAddressDetails();
     });
+  }
+  getCityName(province, city, district) {
+    let arr = [];
+    for (let p = 0; p < this.cityData.length; p++) {
+      if (this.cityData[p].code == province) {
+        arr.push(this.cityData[p].name);
+      }
+      for (let c = 0; c < this.cityData[p].children.length; c++) {
+        if (this.cityData[p].children[c].code == city) {
+          arr.push(this.cityData[p].children[c].name);
+        }
+        var items = this.cityData[p].children[c].children;
+        if (items) {
+          for (let d = 0; d < items.length; d++) {
+            if (items[d].code == district) {
+              arr.push(items[d].name);
+            }
+          }
+        }
+      }
+    }
+    return arr.join('-');
   }
   /**
    * 删除地址
@@ -69,7 +90,6 @@ export class AddShippingAddressPage {
   deleteThis() {
     this.native.openAlertBox('确认删除？', () => {
       this.httpService.delAddress({ address_ids: [this.addressId] }).then((res) => {
-        console.log("删除收货地址==>", res)
         if (res.status == 1) {
           this.events.publish('updateAddress');
           this.navCtrl.pop();
@@ -80,7 +100,6 @@ export class AddShippingAddressPage {
   onsubmit() {
     if (this.addressId != undefined) {
       this.httpService.editAddress(this.formData).then((res) => {
-        console.log(res);
         if (res.status == 1) {
           this.events.publish('updateAddress');
           this.navCtrl.pop();
@@ -89,7 +108,6 @@ export class AddShippingAddressPage {
     } else {
       this.default ? this.default = '1' : this.default = '0';
       this.httpService.addAddress(Object.assign(this.formData, { default: this.default })).then((res) => {
-        console.log(res);
         if (res.status == 1) {
           this.events.publish('updateAddress');
           this.navCtrl.pop();
@@ -102,7 +120,8 @@ export class AddShippingAddressPage {
    * @param event
    */
   cityChange(event) {
-    console.log(event);
-    this.code = event['region'].value
+    this.formData.city = event.city.value;
+    this.formData.province = event.province.value;
+    this.formData.district = event.region.value;
   }
 }
