@@ -73,6 +73,7 @@ export class HomePage {
   ) {
     this.getHomeData(); 
     this.updataArea();
+    this.updateCarCount();
     this.events.subscribe('home:updataArea',()=>{
       this.updataArea();
     })
@@ -190,6 +191,13 @@ export class HomePage {
             this.area = res.data[i].region_name;
           }
         }
+      }
+    })
+  }
+  updateCarCount(){
+    this.httpService.getFlowGoods().then((res) => {
+      if (res.status == 1) {
+        this.events.publish('car:goodsCount', res.total.real_goods_count);
       }
     })
   }

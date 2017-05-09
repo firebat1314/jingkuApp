@@ -48,8 +48,7 @@ export class MyApp {
             this.rootPage = WelcomePage;
             this.storage.set('firstIn', 'NO');
           }
-        }
-        )
+        })
       }
     });
     this.initializeApp();//注册返回按键事件
@@ -67,7 +66,6 @@ export class MyApp {
       StatusBar.backgroundColorByHexString('#ffffff'); // set status bar to white
       //注册返回按键事件
       this.platform.registerBackButtonAction((): any => {
-        console.log('nav:', this.nav)
         let activeVC = this.nav.getActive();
         let page = activeVC.instance;
         let activePortal = this.ionicApp._modalPortal.getActive() || /*this.ionicApp._toastPortal.getActive() || */this.ionicApp._loadingPortal.getActive() || this.ionicApp._overlayPortal.getActive();

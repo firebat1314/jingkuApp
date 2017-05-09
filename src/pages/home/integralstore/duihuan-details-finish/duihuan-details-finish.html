@@ -15,22 +15,24 @@
 
 <ion-content>
     <div class="head">
-        <ion-item mode="ios" no-lines>
+        <ion-item mode="ios" no-lines *ngFor="let it of data?.list?.goods;">
             <ion-thumbnail item-left>
-                <img src="./assets/icon/images/brand_1_03.jpg">
+                <img src="{{it.original_img}}">
             </ion-thumbnail>
-            <h2>博士伦博士伦博士伦博士伦博士伦博士伦博士伦博士伦博士伦博士伦博士伦博士伦</h2>
-            <h2 style="margin: 10px 0 11px;">{{data.pay_points}} 积分</h2>
+            <h2>{{it.goods_name}}</h2>
         </ion-item>
     </div>
     <div class="background"></div>
     <div class="body">
         <ion-list>
+            <div ion-item>兑换积分
+                <ion-note item-right>{{ data?.list?.integral}}</ion-note>
+            </div>
             <div ion-item>兑换时间
-                <ion-note item-right>{{data.change_time}}</ion-note>
+                <ion-note item-right>{{ data?.list?.add_time}}</ion-note>
             </div>
             <div ion-item>状态
-                <ion-note item-right ion-text color="danger">兑换成功</ion-note>
+                <ion-note item-right ion-text color="danger">{{ data?.list?.status}}</ion-note>
             </div>
         </ion-list>
 

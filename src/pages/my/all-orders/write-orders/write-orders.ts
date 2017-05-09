@@ -34,6 +34,7 @@ export class WriteOrdersPage {
     private events: Events
   ) {
     this.getHttpData();
+    this.IntegralGoods();
     this.events.subscribe('writeOrder:refresh', () => {
       this.getHttpData();
     })
@@ -141,11 +142,18 @@ export class WriteOrdersPage {
           console.log(res)
           if (res.status == 1) {
             this.events.publish('car:updata');
+            this.navCtrl.pop();
             this.goPaymentPage(res);
           }
         })
       }
     })
+  }
+  IntegralGoods() {
+    this.httpService.checkout({flow_type:4}).then((res) => {
+
+    })
+
   }
   ionViewDidLoad() {
     console.log('ionViewDidLoad WriteOrdersPage');

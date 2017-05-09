@@ -32,7 +32,7 @@
                 <h2>{{userInfo?.data?.username}}</h2>
                 <p class="vip">
                     <ion-img src="./assets/icon/images/user_cener_1_04_03.png"></ion-img>
-                    <ion-note>铜牌会员</ion-note>
+                    <ion-note>{{userInfo?.data?.user_info?.rank_name}}</ion-note>
                 </p>
                 <button [navPush]="AccountManagementPage" [navParams]="{avatar:userInfo?.data?.avatar}" color="gray" ion-button round outline icon-left item-right>
                     <ion-icon><img style="width:1.3rem;" src="./assets/icon/images/user_cener_1_11.png" alt=""></ion-icon>

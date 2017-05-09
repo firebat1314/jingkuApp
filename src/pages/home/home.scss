@@ -65,7 +65,8 @@ page-home {
                 border-left: 5px solid #000;
                 font-weight: 500;
                 font-size: 1.6rem;
-                padding-left: 15px;
+                padding-left: 10px;
+                padding-top: 3px;
             }
             .more {
                 color: #666;
@@ -115,6 +116,7 @@ page-home {
                 border-bottom: 1px solid #e0e0e0;
                 overflow: hidden;
                 display: flex;
+                min-height: 80px;
                 align-items: center;
                 img {
                     display: block;

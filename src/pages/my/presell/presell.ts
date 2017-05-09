@@ -26,12 +26,12 @@ export class PresellPage {
     console.log('ionViewDidLoad PresellPage');
   }
   getList(index) {
-    let id = this.getCategorys[index].cat_id;
     this.checkedIndex = index;
+    let id = this.getCategorys[index].cat_id;
+    this.getPresell(id);
   }
-  getPresell() {
-    this.httpService.presell().then((res) => {
-      console.log(res);
+  getPresell(id = 1) {
+    this.httpService.presell({ cat_id: id }).then((res) => {
       if (res.status == 1) {
         this.data = res;
       }

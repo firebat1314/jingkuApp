@@ -16,9 +16,9 @@ import { Native } from "../../../../providers/native";
 export class InvoiceQualificationPage {
   formData = {
     ivid: this.navParams.get('ivid') || '',
-    type: '',
+    type: '1',
     payee: '',
-    inv_type: '',
+    inv_type: '1',
     company: '',
     sw_sn: '',
     bank_name: '',
@@ -63,7 +63,7 @@ export class InvoiceQualificationPage {
 
   add() {
     this.httpService.updateInvPost(this.formData).then((res) => {
-      if(res.status==1){
+      if (res.status == 1) {
         this.native.showToast(res.info);
         this.navCtrl.pop();
         this.events.publish('peceipt:update');
@@ -75,11 +75,11 @@ export class InvoiceQualificationPage {
     this.native.getPictureByPhotoLibrary().then((res) => {
       console.log(res)
       if (type === 1) {
-        this.formData.yyzz = res;
+        this.formData.yyzz = 'data:image/jpeg;base64,' + res;
       } else if (type === 2) {
-        this.formData.swdj = res;
+        this.formData.swdj = 'data:image/jpeg;base64,' + res;
       } else if (type === 3) {
-        this.formData.zgez = res;
+        this.formData.zgez = 'data:image/jpeg;base64,' + res;
       }
     })
   }

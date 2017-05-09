@@ -348,4 +348,23 @@ export class HttpService {
   getWuLiu(data?: Object) {//订单物流
     return this.http.get(this.ip + '/User/GetWuLiu', data)
   }
+  machining(data?: Object) {//来镜加工
+    return this.http.get(this.ip + '/User/machining', data)
+  }
+  exchangeGoods(data?: Object) {//积分兑换列表
+    return this.http.get(this.ip + '/User/exchangeGoods', data)
+  }
+  exchangeGoodsInfo(data?: Object) {//积分兑换详情
+    return this.http.get(this.ip + '/User/exchangeGoodsInfo', data)
+  }
+  exchangebuy(data?: Object) {//兑换积分商品
+    return this.http.get(this.ip + '/Flow/exchangebuy', data)
+  }
+  cancelOrder(data?: Object) {//取消订单
+    return this.http.get(this.ip + '/User/cancel_order', data)
+  }
+  withdrawals(data?: Object) {//用户提现
+    return this.http.get(this.ip + '/User/withdrawals', data)
+  }
+
 }

@@ -22,13 +22,15 @@
                 </ion-card>
             </ion-slide>
         </ion-slides>
+
+
     </div>
     <div class="info">
         <div class="title">
             {{getGoodsInfo?.goods_name}}
         </div>
         <div class="body">
-            单价：<span class="now-price"><span class="number">666 </span>积分</span>
+            单价：<span class="now-price"><span class="number">{{getGoodsInfo?.exchange_info?.exchange_integral}} </span>积分</span>
         </div>
         <div class="bottom">
             <div>市场参考价&nbsp;：<span class="offer-price">¥{{getGoodsInfo?.market_price}}</span></div>

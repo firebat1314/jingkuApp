@@ -16,8 +16,8 @@
 <ion-content>
     <div radio-group class="fore item" padding-left [(ngModel)]="formData.type">
         <ion-label fixed>开具类型：</ion-label>
-        <ion-radio color="danger" [value]="2"></ion-radio><span>企业</span>
         <ion-radio color="danger" [value]="1"></ion-radio><span>个人</span>
+        <ion-radio color="danger" [value]="2"></ion-radio><span>企业</span>
     </div>
     <div class="background"></div>
     <div class="fore item" padding-left>
@@ -27,10 +27,10 @@
     <div class="background"></div>
     <div radio-group class="fore item" padding-left [(ngModel)]="formData.inv_type">
         <ion-label fixed>发票类型：</ion-label>
-        <ion-radio color="danger" [value]="1"></ion-radio><span>普通发票</span>
-        <ion-radio color="danger" [value]="2"></ion-radio><span>增值税专用发票</span>
+        <ion-radio color="danger" [value]="1" [checked]="formData.type==1"></ion-radio><span>普通发票</span>
+        <ion-radio color="danger" [value]="2" [checked]="formData.type==2" *ngIf="formData.type==2"></ion-radio><span *ngIf="formData.type==2">增值税专用发票</span>
     </div>
-    <div class="fore main">
+    <div class="fore main" *ngIf="formData.inv_type==2&&formData.type==2">
         <div>
             <div class="name">税务等级单位名称：</div>
             <div class="input"><input type="text" [(ngModel)]="formData.company"></div>
@@ -58,6 +58,7 @@
         <div>
             <div class="name">营业执照复印件：</div>
             <div class="input">
+                <img src="{{formData.yyzz}}" alt="">
                 <div class="fuyin" (click)="openFile(1)">
                     <ion-icon name="md-add"></ion-icon>
                     选择文件
@@ -67,6 +68,7 @@
         <div>
             <div class="name">税务登记复印件：</div>
             <div class="input">
+                <img src="{{formData.swdj}}" alt="">
                 <div class="fuyin" (click)="openFile(2)">
                     <ion-icon name="md-add"></ion-icon>
                     选择文件
@@ -76,6 +78,7 @@
         <div>
             <div class="name">一般纳税人资格认证复印件：</div>
             <div class="input">
+                <img src="{{formData.zgez}}" alt="">
                 <div class="fuyin" (click)="openFile(3)">
                     <ion-icon name="md-add"></ion-icon>
                     选择文件

@@ -15,7 +15,9 @@
 
 <ion-content>
     <div class="head">
-        <div><button ion-button small color="light" style="color: #5670b9;float: right;" (click)="goAccountMoneyDetailPage()">收支明细</button></div>
+        <div>
+            <button ion-button small margin-right color="light" style="color: #5670b9;float: right;" (click)="goAccountMoneyDetailPage()">收支明细</button>
+        </div>
         <p>可用余额（元）</p>
         <h2>{{userInfo?.data?.user_money||'--'}}</h2>
     </div>

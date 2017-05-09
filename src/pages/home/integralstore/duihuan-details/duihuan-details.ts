@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
 import { HttpService } from "../../../../providers/http-service";
+import { Native } from "../../../../providers/native";
+import { WriteOrdersPage } from "../../../my/all-orders/write-orders/write-orders";
 
 /*
   Generated class for the DuihuanDetails page.
@@ -22,10 +24,11 @@ export class DuihuanDetailsPage {
   constructor(
     public navCtrl: NavController,
     public navParams: NavParams,
-    public httpService: HttpService
+    public httpService: HttpService,
+    public native: Native
   ) {
     this.getData();
-   }
+  }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad DuihuanDetailsPage');
@@ -47,11 +50,16 @@ export class DuihuanDetailsPage {
         })
       })
     })
-
-
   }
 
   doConvertibility() {
-
+    this.native.openAlertBox('是否兑换该商品？', () => {
+      this.httpService.exchangebuy({ goods_id: this.goodsId }).then((res) => {
+        if (res.status == 1) {
+          this.native.showToast(res.data);
+          this.navCtrl.push(WriteOrdersPage,{type:''})
+        }
+      })
+    })
   }
 }

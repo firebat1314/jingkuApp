@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
 import { AccountWithdrawSucceedPage } from "../account-withdraw-succeed/account-withdraw-succeed";
+import { HttpService } from "../../../providers/http-service";
+import { Native } from "../../../providers/native";
 
 /*
   Generated class for the AccountWithdraw page.
@@ -14,15 +16,33 @@ import { AccountWithdrawSucceedPage } from "../account-withdraw-succeed/account-
 })
 export class AccountWithdrawPage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {}
+  formData = {
+    note: '',
+    bank: '',
+    bank_number: '',
+    account_holder: '',
+    amount: ''
+  }
+
+  constructor(
+    public navCtrl: NavController,
+    public navParams: NavParams,
+    public httpService: HttpService,
+    public native: Native
+  ) { }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad AccountWithdrawPage');
   }
-  submit(){
-    this.goAccountWithdrawSucceedPage();
-  }
-  goAccountWithdrawSucceedPage(){
-    this.navCtrl.push(AccountWithdrawSucceedPage);
+
+  submit() {
+    this.native.showLoading();
+    this.httpService.withdrawals(this.formData).then((res) => {
+      this.native.hideLoading();
+      this.native.showToast(res.data);
+      if (res.status == 1) {
+        this.navCtrl.push(AccountWithdrawSucceedPage);
+      }
+    })
   }
 }

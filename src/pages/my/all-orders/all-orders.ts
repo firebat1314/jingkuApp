@@ -5,6 +5,7 @@ import { OrdersDetailPage } from "./orders-detail/orders-detail";
 import { WriteOrdersPage } from "./write-orders/write-orders";
 import { HttpService } from "../../../providers/http-service";
 import { ParticularsPage } from "../../home/particulars/particulars";
+import { Native } from "../../../providers/native";
 /*
   Generated class for the AllOrders page.
 
@@ -27,7 +28,8 @@ export class AllOrdersPage {
   constructor(
     public navCtrl: NavController,
     public navParams: NavParams,
-    public httpService: HttpService
+    public httpService: HttpService,
+    public native: Native
   ) {
     this.getHttpData();
   }
@@ -35,7 +37,7 @@ export class AllOrdersPage {
     console.log('ionViewDidLoad AllOrdersPage');
   }
   getHttpData() {
-      
+
     this.httpService.order().then((res) => {
       console.log(res);
       if (res.status == 1) {
@@ -61,12 +63,11 @@ export class AllOrdersPage {
       }
     })
   }
-  checkTab($event){
+  checkTab($event) {
     this.pageIndex = $event;
-
   }
   ngAfterViewInit() {
-    //进入页面默认选中栏目
+    //进入页面默认选中标签
     if (this.navParams.get('index')) {
       this.pageIndex = this.navParams.get('index');
       this.mytabs.selectedIndex = this.navParams.get('index');
@@ -96,7 +97,7 @@ export class AllOrdersPage {
       })
     } else if (this.pageIndex == 1) {
       this.page2++;
-      this.httpService.order({ type: 'pay',page: this.page2}).then((res) => {
+      this.httpService.order({ type: 'pay', page: this.page2 }).then((res) => {
         console.log(res);
         if (res.status == 1) {
           Array.prototype.push.apply(this.noPayData.list, res.list);
@@ -107,7 +108,7 @@ export class AllOrdersPage {
       })
     } else if (this.pageIndex == 2) {
       this.page3++;
-      this.httpService.order({ type: 'shi',page: this.page3 }).then((res) => {
+      this.httpService.order({ type: 'shi', page: this.page3 }).then((res) => {
         console.log(res);
         if (res.status == 1) {
           Array.prototype.push.apply(this.noPayData.list, res.list);
@@ -118,7 +119,7 @@ export class AllOrdersPage {
       })
     } else if (this.pageIndex == 3) {
       this.page4++;
-      this.httpService.order({ type: 'dsh' ,page: this.page4}).then((res) => {
+      this.httpService.order({ type: 'dsh', page: this.page4 }).then((res) => {
         console.log(res);
         if (res.status == 1) {
           Array.prototype.push.apply(this.noGetData.list, res.list);
@@ -132,14 +133,23 @@ export class AllOrdersPage {
         infiniteScroll.complete();
       }, 500);
     }
-
   }
-  toPay(id){
-    this.httpService.pay({log_id:id}).then((res)=>{
+  toPay(id) {
+    this.httpService.pay({ log_id: id }).then((res) => {
       console.log(res);
-      if(res.status==1){
-        this.navCtrl.push(PaymentMethodPage,{data:res})
+      if (res.status == 1) {
+        this.navCtrl.push(PaymentMethodPage, { data: res })
       }
+    })
+  }
+  cancelOrder(order_id) {
+    this.native.openAlertBox('取消订单操作', () => {
+      this.httpService.cancelOrder({ order_id: order_id }).then((res) => {
+        if(res.status==1){
+          this.native.showToast('操作成功');
+          this.getHttpData();
+        }
+      })
     })
   }
 }

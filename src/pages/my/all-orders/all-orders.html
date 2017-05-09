@@ -43,7 +43,7 @@
                 <span class="count">共{{item.goods_number}}件商品</span>&nbsp;&nbsp;<span class="price">合计: <span>￥{{item.total_fee}}</span></span>
             </div>
             <div class="btn" *ngIf="item.status=='等待买家付款'">
-                <button ion-button outline>取消订单</button>
+                <button ion-button outline (click)="cancelOrder(item.order_id)">取消订单</button>
                 <button ion-button color="dark" (click)="toPay(item.log_id)">去支付</button>
             </div>
             <div class="btn" *ngIf="item.status=='等待卖家配货'||item.status=='无效的订单'||item.status=='取消的订单'">
@@ -78,7 +78,7 @@
                 <span class="count">共{{item.goods_number}}件商品</span>&nbsp;&nbsp;<span class="price">合计: <span>￥{{item.total_fee}}</span></span>
             </div>
             <div class="btn">
-                <button ion-button outline>取消订单</button>
+                <button ion-button outline (click)="cancelOrder(item.order_id)">取消订单</button>
                 <button ion-button color="dark" (click)="toPay(item.log_id)">去支付</button>
             </div>
         </div>

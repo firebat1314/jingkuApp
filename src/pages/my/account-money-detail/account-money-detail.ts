@@ -24,7 +24,7 @@ export class AccountMoneyDetailPage {
   }
 
   getData() {
-    this.httpService.accountLog().then((res) => {
+    this.httpService.accountLog({ page: 1 }).then((res) => {
       this.data = res;
     })
   }

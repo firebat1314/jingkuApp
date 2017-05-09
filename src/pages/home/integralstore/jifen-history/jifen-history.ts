@@ -35,7 +35,7 @@ export class JifenHistoryPage {
   }
 
   getData() {
-    this.httpService.accountLog({ account_type: 'pay_points', page: 1 }).then(res => {
+    this.httpService.exchangeGoods({  page: 1 }).then(res => {
       console.log(res);
       if (res.status == 1) {
         this.data = res;
@@ -51,7 +51,7 @@ export class JifenHistoryPage {
       this.flag = false;
       return;
     }
-    this.httpService.accountLog({ account_type: 'pay_points', page: this.data.page }).then((res) => {
+    this.httpService.exchangeGoods({ page: this.data.page }).then((res) => {
       console.log(res);
       if (res.status == 1) {
         Array.prototype.push.apply(this.data.list, res.list);

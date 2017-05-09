@@ -99,7 +99,7 @@ export class PaymentMethodPage {
     if (type == 1) {
       this.httpService.payCode({ code: this.data.alipay }).then((res) => {
         console.log(res);
-        if ((res.status == 1)) {
+        if ((res.status == 1)) {  
           this.alipayPay(res.pingxx)
           // this.pay(res.pingxx);
         }
@@ -107,8 +107,19 @@ export class PaymentMethodPage {
     } else if (type == 2) {
       this.httpService.payCode({ code: this.data.upacp }).then((res) => {
         console.log(res);
-        if ((res.status == 1)) {
-          // this.pay(res.pingxx);
+        if (res.status == 1 && pingpp) {
+          console.log(pingpp)
+          pingpp.createPayment(res.pingxx, function(result, err) {
+            console.log(result, err)
+            if (result == "success") {
+              // 只有微信公众账号 wx_pub 支付成功的结果会在这里返回，其他的支付结果都会跳转到 extra 中对应的 URL。
+ 
+            } else if (result == "fail") {
+              // charge 不正确或者微信公众账号支付失败时会在此处返回
+            } else if (result == "cancel") {
+              // 微信公众账号支付取消支付
+            }
+          });
         }
       })
     } else if (type == 3) {
@@ -132,14 +143,14 @@ export class PaymentMethodPage {
     // Should get from server side with sign.
     this.alipay.pay(alipayOrder)
       .then(res => {
-        this.native.showToast(res)
+        console.log(res)
         this.payResult = res;
       }, err => {
-        this.native.showToast(err)
+        console.log(err)
         this.payResult = err;
       })
       .catch(e => {
-        this.native.showToast(e)
+        console.log(e)
         this.payResult = e;
       });
   }
@@ -151,7 +162,7 @@ export class PaymentMethodPage {
     });
 
     // See https://github.com/xu-li/cordova-plugin-wechat-example/blob/master/server/payment_demo.php for php demo
-    /*    var params = {
+    /*var params = {
           partnerid: '10000100', // merchant id
           prepayid: 'wx201411101639507cbf6ffd8b0779950874', // prepay id
           noncestr: '1add1a30ac87aa2db72f57a2375d8fec', // nonce
