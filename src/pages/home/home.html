@@ -16,7 +16,7 @@
         </ion-buttons>
     </ion-navbar>
 </ion-header>
-<ion-content (ionScrollEnd)="scrollHeight()">
+<ion-content (ionScroll)="onscroll()">
     <ion-refresher (ionRefresh)="doRefresh($event)" pullMax="60">
         <ion-refresher-content refreshingSpinner="1" pullingIcon="0"></ion-refresher-content>
     </ion-refresher>
@@ -248,7 +248,6 @@
         </div>
     </div>
     <ion-fab right bottom *ngIf="showBackTopBtn" (click)="scrollToTop()">
-        <button ion-fab color="dark" mini><img width="75%" src="./assets/icon/gotop.png" alt=""></button>
+        <button ion-fab color="dark" mini><img width="100%" src="./assets/icon/gotop.png" alt=""></button>
     </ion-fab>
-    <!--<button ion-button [navPush]="DirectiveTestPage">direvtive test</button>-->
 </ion-content>

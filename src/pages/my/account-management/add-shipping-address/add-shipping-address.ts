@@ -101,6 +101,7 @@ export class AddShippingAddressPage {
     if (this.addressId != undefined) {
       this.httpService.editAddress(this.formData).then((res) => {
         if (res.status == 1) {
+          this.native.showToast(res.info)
           this.events.publish('updateAddress');
           this.navCtrl.pop();
         }

@@ -57,7 +57,7 @@ export class DuihuanDetailsPage {
       this.httpService.exchangebuy({ goods_id: this.goodsId }).then((res) => {
         if (res.status == 1) {
           this.native.showToast(res.data);
-          this.navCtrl.push(WriteOrdersPage,{type:''})
+          this.navCtrl.push(WriteOrdersPage,{type:'integral'})
         }
       })
     })

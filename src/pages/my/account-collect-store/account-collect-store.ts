@@ -1,5 +1,5 @@
-import { Component } from '@angular/core';
-import { NavController, NavParams } from 'ionic-angular';
+import { Component, ViewChild } from '@angular/core';
+import { NavController, NavParams, Content } from 'ionic-angular';
 import { HttpService } from "../../../providers/http-service";
 import { Native } from "../../../providers/native";
 
@@ -10,6 +10,7 @@ import { Native } from "../../../providers/native";
 export class AccountCollectStorePage {
   collectionShop: any;
 
+  @ViewChild(Content) content: Content
   constructor(
     public navCtrl: NavController,
     public navParams: NavParams,
@@ -45,5 +46,27 @@ export class AccountCollectStorePage {
         }
       })
     })
+  }
+
+  flag: boolean = true;
+  doInfinite(infiniteScroll) {
+    if (this.collectionShop.page < this.collectionShop.pages) {
+      this.collectionShop.page++;
+    } else {
+      this.flag = false;
+      return;
+    }
+    this.httpService.collectionShop({ page: this.collectionShop.page }).then((res) => {
+      console.log(res);
+      if (res.status == 1) {
+        Array.prototype.push.apply(this.collectionShop.list, res.list);
+      }
+      setTimeout(() => {
+        infiniteScroll.complete();
+      }, 500);
+    })
+  }
+  scrollToTop() {
+    this.content.scrollToTop();
   }
 }

@@ -42,13 +42,14 @@
             <div class="result">
                 <span class="count">共{{item.goods_number}}件商品</span>&nbsp;&nbsp;<span class="price">合计: <span>￥{{item.total_fee}}</span></span>
             </div>
-            <div class="btn" *ngIf="item.status=='等待买家付款'">
-                <button ion-button outline (click)="cancelOrder(item.order_id)">取消订单</button>
-                <button ion-button color="dark" (click)="toPay(item.log_id)">去支付</button>
-            </div>
-            <div class="btn" *ngIf="item.status=='等待卖家配货'||item.status=='无效的订单'||item.status=='取消的订单'">
+            <div class="btn">
+                <button ion-button outline (click)="orderTracking(item.order_id)" *ngIf="item.order_status == 5 && item.order_status == 1">订单跟踪</button>
+                <button ion-button outline (click)="confirmReceipt(item.order_id)" color="dark" *ngIf="item.order_status == 5 && item.order_status == 1">确认收货</button>
+                <button ion-button outline (click)="cancelOrder(item.order_id)" *ngIf="item.order_status == 0">取消订单</button>
+                <button ion-button color="dark" (click)="toPay(item.order_id)" *ngIf="item.pay_status == 0 && item.order_status!=4 && item.order_status!=2 && item.order_status!=3 && item.order_status!=7 && item.order_status!=8 ">去支付</button>
                 <button ion-button color="dark" (click)="goParticularsPage(item.goods_id)">再次购买</button>
             </div>
+
         </div>
     </div>
     <div class="repayment" *ngIf="pageIndex==1">
@@ -78,8 +79,11 @@
                 <span class="count">共{{item.goods_number}}件商品</span>&nbsp;&nbsp;<span class="price">合计: <span>￥{{item.total_fee}}</span></span>
             </div>
             <div class="btn">
-                <button ion-button outline (click)="cancelOrder(item.order_id)">取消订单</button>
-                <button ion-button color="dark" (click)="toPay(item.log_id)">去支付</button>
+                <button ion-button outline (click)="orderTracking(item.order_id)" *ngIf="item.order_status == 5 && item.order_status == 1">订单跟踪</button>
+                <button ion-button outline (click)="confirmReceipt(item.order_id)" color="dark" *ngIf="item.order_status == 5 && item.order_status == 1">确认收货</button>
+                <button ion-button outline (click)="cancelOrder(item.order_id)" *ngIf="item.order_status == 0">取消订单</button>
+                <button ion-button color="dark" (click)="toPay(item.order_id)" *ngIf="item.pay_status == 0 && item.order_status!=4 && item.order_status!=2 && item.order_status!=3 && item.order_status!=7 && item.order_status!=8 ">去支付</button>
+                <button ion-button color="dark" (click)="goParticularsPage(item.goods_id)">再次购买</button>
             </div>
         </div>
     </div>
@@ -110,6 +114,10 @@
                 <span class="count">共{{item.goods_number}}件商品</span>&nbsp;&nbsp;<span class="price">合计: <span>￥{{item.total_fee}}</span></span>
             </div>
             <div class="btn">
+                <button ion-button outline (click)="orderTracking(item.order_id)" *ngIf="item.order_status == 5 && item.order_status == 1">订单跟踪</button>
+                <button ion-button outline (click)="confirmReceipt(item.order_id)" color="dark" *ngIf="item.order_status == 5 && item.order_status == 1">确认收货</button>
+                <button ion-button outline (click)="cancelOrder(item.order_id)" *ngIf="item.order_status == 0">取消订单</button>
+                <button ion-button color="dark" (click)="toPay(item.order_id)" *ngIf="item.pay_status == 0 && item.order_status!=4 && item.order_status!=2 && item.order_status!=3 && item.order_status!=7 && item.order_status!=8 ">去支付</button>
                 <button ion-button color="dark" (click)="goParticularsPage(item.goods_id)">再次购买</button>
             </div>
         </div>
@@ -141,8 +149,11 @@
                 <span class="count">共{{item.goods_number}}件商品</span>&nbsp;&nbsp;<span class="price">合计: <span>￥{{item.total_fee}}</span></span>
             </div>
             <div class="btn">
-                <button ion-button outline>订单跟踪</button>
-                <button ion-button color="dark">确认收货</button>
+                <button ion-button outline (click)="orderTracking(item.order_id)" *ngIf="item.order_status == 5 && item.order_status == 1">订单跟踪</button>
+                <button ion-button outline (click)="confirmReceipt(item.order_id)" color="dark" *ngIf="item.order_status == 5 && item.order_status == 1">确认收货</button>
+                <button ion-button outline (click)="cancelOrder(item.order_id)" *ngIf="item.order_status == 0">取消订单</button>
+                <button ion-button color="dark" (click)="toPay(item.order_id)" *ngIf="item.pay_status == 0 && item.order_status!=4 && item.order_status!=2 && item.order_status!=3 && item.order_status!=7 && item.order_status!=8 ">去支付</button>
+                <button ion-button color="dark" (click)="goParticularsPage(item.goods_id)">再次购买</button>
             </div>
         </div>
     </div>

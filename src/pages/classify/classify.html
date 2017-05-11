@@ -49,7 +49,7 @@
 </ion-header>
 
 
-<ion-content [ngSwitch]="classSelect">
+<ion-content [ngSwitch]="classSelect" (ionSrcoll)="onSrcoll()">
     <ion-refresher (ionRefresh)="doRefresh($event)" pullMax="60">
         <ion-refresher-content refreshingSpinner="1" pullingIcon="0"></ion-refresher-content>
     </ion-refresher>

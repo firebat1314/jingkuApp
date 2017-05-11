@@ -1,6 +1,7 @@
-import { Component } from '@angular/core';
-import { NavController, NavParams } from 'ionic-angular';
+import { Component, ViewChild } from '@angular/core';
+import { NavController, NavParams, Content } from 'ionic-angular';
 import { HttpService } from "../../../providers/http-service";
+import { ParticularsPage } from "../../home/particulars/particulars";
 
 @Component({
   selector: 'page-presell',
@@ -11,6 +12,7 @@ export class PresellPage {
   getCategorys: any;
 
   checkedIndex: number = 0;
+  @ViewChild(Content) content:Content;
   constructor(
     public navCtrl: NavController,
     public navParams: NavParams,
@@ -36,5 +38,11 @@ export class PresellPage {
         this.data = res;
       }
     })
+  }
+  goParticularsPage(id){
+    this.navCtrl.push(ParticularsPage,{goodsId:id});
+  }
+  scrollToTop(){
+    this.content.scrollToTop();
   }
 }

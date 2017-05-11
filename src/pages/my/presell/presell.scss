@@ -49,10 +49,12 @@ page-presell {
         display: flex;
         padding: 16px;
         align-items: center;
+        justify-content: space-between;
         height: 136px;
+        width: 100%;
         .left {
-            min-width: 140px;
-            width: 30%;
+            min-width: 110px;
+            width: 128px;
             height: 100%;
             overflow: hidden;
             position: relative;
@@ -62,7 +64,7 @@ page-presell {
             align-items: center;
             img {
                 display: block;
-                max-height: 100%;
+                max-width: 100%;
             }
             .time {
                 position: absolute;
@@ -92,7 +94,8 @@ page-presell {
             flex: 1;
             display: flex;
             flex-direction: column;
-            height: 100%;
+            height: 90%;
+            overflow: hidden;
             .title {
                 @include ellipsis_2;
                 flex: 1;
@@ -139,6 +142,8 @@ page-presell {
                     color: #e60000;
                     font-size: 1.8rem;
                     white-space: nowrap;
+                    text-overflow: ellipsis;
+                    overflow: hidden;
                     .old-price {
                         text-decoration: line-through;
                         color: #808080;

@@ -38,39 +38,120 @@
     <div class="fore fore3">
         <div><img src="./assets/images/images/shangou_01_22.jpg" alt=""></div>
         <div class="singleton-warp">
-            <ion-card *ngFor="let item of [{},{},{},{},{}]" (click)="goDuihuanDetailsPage(1)">
+            <ion-card *ngFor="let item of data?.data" (click)="goParticularsPage(item.id)">
                 <div class="img">
-                    <img src="./assets/images/images/jifenStore_1_02_02.jpg" alt="">
+                    <img src="{{item.thumb}}" alt="">
                     <div class="time">
                         <ion-icon name="ios-time-outline"></ion-icon>
-                        <countdown [endDate]="454545454"></countdown>
+                        <countdown endDate="{{item.promote_end_date}}"></countdown>
                     </div>
                 </div>
                 <div class="info">
-                    <h3>博士伦博士伦博士伦博士伦博士伦博士伦博士伦博士伦博士伦</h3>
-                    <p><span class="red">¥450000</span></p>
+                    <h3>{{item.name}}</h3>
+                    <p><span class="red">{{item.promote_price}}</span></p>
                 </div>
             </ion-card>
         </div>
     </div>
     <div class="fore fore3">
         <div><img src="./assets/images/images/shangou_01_24.jpg" alt=""></div>
-
+        <div class="singleton-warp">
+            <ion-card *ngFor="let item of data2?.data" (click)="goParticularsPage(item.id)">
+                <div class="img">
+                    <img src="{{item.thumb}}" alt="">
+                    <div class="time">
+                        <ion-icon name="ios-time-outline"></ion-icon>
+                        <countdown endDate="{{item.promote_end_date}}"></countdown>
+                    </div>
+                </div>
+                <div class="info">
+                    <h3>{{item.name}}</h3>
+                    <p><span class="red">{{item.promote_price}}</span></p>
+                </div>
+            </ion-card>
+        </div>
     </div>
     <div class="fore fore3">
         <div><img src="./assets/images/images/shangou_01_27.jpg" alt=""></div>
-
+        <div class="singleton-warp">
+            <ion-card *ngFor="let item of data3?.data" (click)="goParticularsPage(item.id)">
+                <div class="img">
+                    <img src="{{item.thumb}}" alt="">
+                    <div class="time">
+                        <ion-icon name="ios-time-outline"></ion-icon>
+                        <countdown endDate="{{item.promote_end_date}}"></countdown>
+                    </div>
+                </div>
+                <div class="info">
+                    <h3>{{item.name}}</h3>
+                    <p><span class="red">{{item.promote_price}}</span></p>
+                </div>
+            </ion-card>
+        </div>
     </div>
     <div class="fore fore3">
         <div><img src="./assets/images/images/shangou_01_29.jpg" alt=""></div>
-
+        <div class="singleton-warp">
+            <ion-card *ngFor="let item of data4?.data" (click)="goParticularsPage(item.id)">
+                <div class="img">
+                    <img src="{{item.thumb}}" alt="">
+                    <div class="time">
+                        <ion-icon name="ios-time-outline"></ion-icon>
+                        <countdown endDate="{{item.promote_end_date}}"></countdown>
+                    </div>
+                </div>
+                <div class="info">
+                    <h3>{{item.name}}</h3>
+                    <p><span class="red">{{item.promote_price}}</span></p>
+                </div>
+            </ion-card>
+        </div>
     </div>
     <div class="fore fore3">
         <div><img src="./assets/images/images/shangou_01_32.jpg" alt=""></div>
-
+        <div class="singleton-warp">
+            <ion-card *ngFor="let item of data5?.data" (click)="goParticularsPage(item.id)">
+                <div class="img">
+                    <img src="{{item.thumb}}" alt="">
+                    <div class="time">
+                        <ion-icon name="ios-time-outline"></ion-icon>
+                        <countdown endDate="{{item.promote_end_date}}"></countdown>
+                    </div>
+                </div>
+                <div class="info">
+                    <h3>{{item.name}}</h3>
+                    <p><span class="red">{{item.promote_price}}</span></p>
+                </div>
+            </ion-card>
+        </div>
     </div>
     <div class="fore fore3">
         <div><img src="./assets/images/images/shangou_01_34.jpg" alt=""></div>
-
+        <div class="singleton-warp">
+            <ion-card *ngFor="let item of data6?.data" (click)="goParticularsPage(item.id)">
+                <div class="img">
+                    <img src="{{item.thumb}}" alt="">
+                    <div class="time">
+                        <ion-icon name="ios-time-outline"></ion-icon>
+                        <countdown endDate="{{item.promote_end_date}}"></countdown>
+                    </div>
+                </div>
+                <div class="info">
+                    <h3>{{item.name}}</h3>
+                    <p><span class="red">{{item.promote_price}}</span></p>
+                </div>
+            </ion-card>
+        </div>
     </div>
+
+    <!--<ion-fab left bottom>
+        <button ion-fab color="dark" mini>
+            {{data?.page}}/{{data?.pages}}
+        </button>
+    </ion-fab>-->
+    <ion-fab right bottom (click)="scrollToTop()">
+        <button ion-fab color="dark" mini>
+            <img width="100%" src="./assets/icon/gotop.png" alt="">
+        </button>
+    </ion-fab>
 </ion-content>

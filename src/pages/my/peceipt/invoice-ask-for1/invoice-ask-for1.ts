@@ -1,5 +1,5 @@
-import { Component } from '@angular/core';
-import { NavController, NavParams } from 'ionic-angular';
+import { Component, ViewChild } from '@angular/core';
+import { NavController, NavParams, Content } from 'ionic-angular';
 import { InvoiceAskFor2Page } from "../invoice-ask-for2/invoice-ask-for2";
 import { HttpService } from "../../../../providers/http-service";
 import { Native } from "../../../../providers/native";
@@ -21,26 +21,76 @@ export class InvoiceAskFor1Page {
 
   InvoiceAskFor2Page = InvoiceAskFor2Page;
   suppliersId = this.navParams.get('suppliers_id');
+
+  max_time;
+  min_money: string;
+  max_money: string;
+  time: string;
+
+  @ViewChild(Content) content: Content;
   constructor(
     public navCtrl: NavController,
     public navParams: NavParams,
     public httpService: HttpService,
     public native: Native
   ) {
-    this.getHttpData()
+    this.max_time = new Date().getFullYear();
+    this.getHttpData();
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad InvoiceAskFor1Page');
   }
   getHttpData() {
-    this.httpService.addinv({ suppliers_id: this.suppliersId }).then((res) => {
-      console.log(res);
+    this.httpService.addinv({ page: 1, suppliers_id: this.suppliersId }).then((res) => {
       if (res.status == 1) {
         this.data = res;
       }
     })
   }
+  search() {
+    this.httpService.addinv({
+      suppliers_id: this.suppliersId,
+      time: this.time,
+      min_money: this.min_money,
+      max_money: this.max_money
+    }).then((res) => {
+      if (res.status == 1) {
+        this.data = res;
+      }
+    })
+  }
+  cancelDate() {
+    this.time = '';
+    this.search();
+  }
+
+  flag: boolean = true;
+  doInfinite(infiniteScroll) {
+    if (this.data.page < this.data.pages) {
+      this.httpService.addinv({
+        page: ++this.data.page,
+        suppliers_id: this.suppliersId,
+        time: this.time,
+        min_money: this.min_money,
+        max_money: this.max_money
+      }).then((res) => {
+        if (res.status == 1) {
+          Array.prototype.push.apply(this.data.data, res.data);
+        }
+        setTimeout(() => {
+          infiniteScroll.complete();
+        }, 500);
+      })
+    } else {
+      this.flag = false;
+      return;
+    }
+  }
+  scrollToTop() {
+    this.content.scrollToTop();
+  }
+
   checkOrder(item) {
     let index = this.orderIds.indexOf(item.order_id);
     if (index == -1) {
@@ -58,7 +108,7 @@ export class InvoiceAskFor1Page {
     this.httpService.selectzz({ order_ids: this.orderIds, suppliers_id: this.suppliersId }).then((res) => {
       console.log(res);
       if (res.status == 1) {
-        this.navCtrl.push(InvoiceAskFor2Page,{data:res});
+        this.navCtrl.push(InvoiceAskFor2Page, { data: res });
       }
     })
   }

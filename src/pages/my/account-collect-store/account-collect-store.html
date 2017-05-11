@@ -39,4 +39,14 @@
             </ion-item-sliding>
         </div>
     </ion-list>
+
+    <ion-fab right bottom (click)="scrollToTop()" *ngIf="collectionShop?.count!=0">
+        <button ion-fab color="dark" mini>
+            {{collectionShop?.page}}/{{collectionShop?.pages}}
+        </button>
+    </ion-fab>
+
+    <ion-infinite-scroll (ionInfinite)="doInfinite($event)" *ngIf="flag">
+        <ion-infinite-scroll-content></ion-infinite-scroll-content>
+    </ion-infinite-scroll>
 </ion-content>

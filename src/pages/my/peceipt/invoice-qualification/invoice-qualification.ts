@@ -57,6 +57,9 @@ export class InvoiceQualificationPage {
         this.formData.bank_sn = res.data.bank_sn;
         this.formData.address = res.data.address;
         this.formData.tel = res.data.tel;
+        this.formData.yyzz = res.data.yyzz;
+        this.formData.swdj = res.data.swdj;
+        this.formData.zgez = res.data.zgez;
       }
     })
   }

@@ -54,7 +54,6 @@ export class ParticularsPage {
   ngOnInit() {
     this.getHttpDetails();
   }
-  ngAfterViewInit() { }
   getHttpDetails(finished?) {
     this.native.showLoading();
     this.http.getGoodsGallery({ goods_id: this.goodsId }).then((res) => {
@@ -109,7 +108,7 @@ export class ParticularsPage {
     });
   }
   presentModal(str) {
-    let modal = this.modalCtrl.create(ParticularsModalPage, { name: str, getBonus: this.getBonus, sendto: this.getGoodsSaleCity,GoodsInfo:this.getGoodsInfo });
+    let modal = this.modalCtrl.create(ParticularsModalPage, { name: str, getBonus: this.getBonus, sendto: this.getGoodsSaleCity, GoodsInfo: this.getGoodsInfo });
     modal.onDidDismiss(data => {
       console.log(data);
     });
@@ -119,19 +118,23 @@ export class ParticularsPage {
    * 除商品属性 弹窗
    */
   presentModalAttr() {
+    this.native.showLoading();
     this.http.getGoodsAttribute({ goods_id: this.goodsId }).then((res) => {
-      console.log("商品初始属性", res);
-      this.getGoodsAttribute = res;
+      this.native.hideLoading();
       if (res.status == 1) {
-        if (res.goods_type == 'goods_spectacles') {
-          console.log("goods_type ☞'goods_spectacles'", res);
-          this.openAttrModal(res, 'goods_spectacles');
-        }
-        if (res.goods_type == 'goods') {
-          this.http.getAttrList({ goods_id: this.goodsId }).then((res) => {
-            console.log("goods_type ☞'goods'", res);
-            this.openAttrModal(res, 'goods');
-          })
+        console.log("商品初始属性", res);
+        this.getGoodsAttribute = res;
+        if (res.status == 1) {
+          if (res.goods_type == 'goods_spectacles') {
+            console.log("goods_type ☞'goods_spectacles'", res);
+            this.openAttrModal(res, 'goods_spectacles');
+          }
+          if (res.goods_type == 'goods') {
+            this.http.getAttrList({ goods_id: this.goodsId }).then((res) => {
+              console.log("goods_type ☞'goods'", res);
+              this.openAttrModal(res, 'goods');
+            })
+          }
         }
       }
     })

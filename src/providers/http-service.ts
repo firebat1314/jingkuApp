@@ -187,16 +187,16 @@ export class HttpService {
     return this.http.get(this.ip + '/Flow/checkout', data)
   }
   delNoShop(data?: Object) {//删除未选中的商品
-    return this.http.post(this.ip + '/Flow/del_no_shop', data)
+    return this.http.post(this.ip + '/Flow/del_no_shop', data, true)
   }
   submitOrder(data?: Object) {//提交订单
     return this.http.post(this.ip + '/Flow/done', data)
   }
   pay(data: Object) {//支付方式
-    return this.http.get(this.ip + '/Flow/pay', data)
+    return this.http.get(this.ip + '/Flow/pay', data, true)
   }
   payCode(data: Object) {//去支付
-    return this.http.get(this.ip + '/Flow/pay_code', data)
+    return this.http.get(this.ip + '/Flow/pay_code', data, true)
   }
   /**
    * 个人中心页
@@ -223,7 +223,7 @@ export class HttpService {
     return this.http.post(this.ip + '/User/edit_pwd', data)
   }
   editMobile(data?: Object) {//（5）修改手机号
-    return this.http.post(this.ip + '/User/edit_mobile', data)
+    return this.http.post(this.ip + '/User/edit_mobile', data, true)
   }
   logout(data?: Object) {//（6）退出登录
     return this.http.post(this.ip + '/User/logout', data)
@@ -244,7 +244,7 @@ export class HttpService {
     return this.http.get(this.ip + '/User/edit_address', data)
   }
   editAddress(data?: Object) {//（12）编辑收货地址
-    return this.http.post(this.ip + '/User/edit_address', data)
+    return this.http.post(this.ip + '/User/edit_address', data, true)
   }
   addAddress(data?: Object) {//（12.1）添加收货地址
     return this.http.post(this.ip + '/User/add_address', data)
@@ -283,7 +283,7 @@ export class HttpService {
     return this.http.get(this.ip + '/User/invoice', data)
   }
   addinv(data?: Object) {//选择供货商后选择订单开票
-    return this.http.get(this.ip + '/User/addinv', data)
+    return this.http.get(this.ip + '/User/addinv', data, true)
   }
   selectzz(data?: Object) {//	发票索取信息
     return this.http.post(this.ip + '/User/selectzz', data)
@@ -301,10 +301,10 @@ export class HttpService {
     return this.http.get(this.ip + '/User/update_inv', data)
   }
   updateInvPost(data?: Object) {//添加或编辑发票资质提交
-    return this.http.post(this.ip + '/User/update_inv', data)
+    return this.http.post(this.ip + '/User/update_inv', data, true)
   }
   editProfile(data?: Object) {//修改用户资料
-    return this.http.post(this.ip + '/User/profile', data)
+    return this.http.post(this.ip + '/User/profile', data, true)
   }
   editAvatar(data?: Object) {//修改头像
     return this.http.post(this.ip + '/User/avatar', data)

@@ -18,37 +18,44 @@ export class UserData {
         private alertCtrl: AlertController,
     ) { }
 
-    public get(url: string, paramObj?: any) {
-        // this.native.showLoading();
+    public get(url: string, paramObj?: any, showLoading?: boolean) {
+        if (showLoading) {
+            this.native.showLoading();
+        }
         let userToken = localStorage.getItem('token');
         var headers = new Headers();
         headers.append('Authorization', 'Basic ' + btoa(userToken + ':'));
         let options = new RequestOptions({ headers: headers });
         return this.http.get(url + this.toQueryString(paramObj), options)
             .toPromise()
-            .then(res => this.handleSuccess(res.json()))
+            .then(res => this.handleSuccess(res.json(), showLoading))
             .catch(error => this.handleError(error));
     }
-    public post(url: string, paramObj: any) {
+    public post(url: string, paramObj: any, showLoading?: boolean) {
         // this.native.showLoading();
+        if (showLoading) {
+            this.native.showLoading();
+        }
         let userToken: string = localStorage.getItem('token');
         let headers = new Headers();
         headers.append('Authorization', 'Basic ' + btoa(userToken + ':'));
         let options = new RequestOptions({ headers: headers });
         return this.http.post(url, paramObj, options)
             .toPromise()
-            .then(res => this.handleSuccess(res.json()))
+            .then(res => this.handleSuccess(res.json(), showLoading))
             .catch(error => this.handleError(error));
     }
-    public postBody(url: string, paramObj: any) {
-        // this.native.showLoading();
+    public postBody(url: string, paramObj: any, showLoading?: boolean) {
+        if (showLoading) {
+            this.native.showLoading();
+        }
         let userToken = localStorage.getItem('token');
         let headers = new Headers();
         headers.append('Authorization', 'Basic ' + btoa(userToken + ':'));
         let options = new RequestOptions({ headers: headers });
         return this.http.post(url, this.toBodyString(paramObj), options)
             .toPromise()
-            .then(res => this.handleSuccess(res.json()))
+            .then(res => this.handleSuccess(res.json(), showLoading))
             .catch(error => this.handleError(error));
     }
     /**
@@ -56,9 +63,11 @@ export class UserData {
      * @param result
      * @return {any}
      */
-    private handleSuccess(result) {
-        // this.native.hideLoading();
-        if (result && !result.status||result.status==-1) {
+    private handleSuccess(result, showLoading) {
+        if (showLoading) {
+            this.native.hideLoading();
+        }
+        if (result && !result.status || result.status == -1) {
             this.native.showToast(result.info);
         }
         return result;

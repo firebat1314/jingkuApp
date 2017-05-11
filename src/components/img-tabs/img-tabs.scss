@@ -13,7 +13,7 @@ img-tabs {
         white-space: nowrap;
         width: 60%;
         height: $slide-height-small;
-        line-height: $slide-height-small;
+        line-height: 44px;
     }
     .slide-title-active {
         color: map_get($colors, primary);

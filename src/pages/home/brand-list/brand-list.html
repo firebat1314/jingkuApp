@@ -72,6 +72,19 @@
 
         <single-foods-item [data]="data?.goods" *ngIf="listStyleflag"></single-foods-item>
     </div>
+
+    <ion-fab class="brand-list-car-btn" left bottom (click)="goCarPage()">
+        <button ion-fab mini>
+            <ion-icon name="ios-cart-outline" color="light"></ion-icon>
+        </button>
+        <ion-badge color="danger">{{goodsCount||'0'}}</ion-badge>
+    </ion-fab>
+    <ion-fab right bottom (click)="scrollToTop()">
+        <button ion-fab color="dark" mini>
+            <img width="100%" src="./assets/icon/gotop.png" alt="">
+        </button>
+    </ion-fab>
+
 </ion-content>
 <ion-footer>
     <ion-toolbar color="light">
@@ -80,7 +93,7 @@
                 上一页
             </button>
         </ion-buttons>
-        <ion-title>{{currentPage}}/{{data?.pages}}</ion-title>
+        <ion-title>{{data?.pages!=0?data?.page:'0'}}/{{data?.pages}}</ion-title>
         <ion-buttons right>
             <button (click)="nextPage()" ion-button>
                 下一页

@@ -26,13 +26,13 @@
             <div class="time" padding-left>
                 发生时间：
                 <div class="text">
-                    <ion-datetime cancelText="取消" doneText="确定" displayFormat="YYYY-MM-DD" min="2015" max="2017-10-31" [(ngModel)]="myDate"></ion-datetime>
+                    <ion-datetime (ionCancel)="cancelDate()" (ionChange)="search()" cancelText="取消" doneText="确定" displayFormat="YYYY-MM-DD" min="2015" [max]="max_time" [(ngModel)]="time"></ion-datetime>
                     <div class="btn"></div>
                 </div>
             </div>
             <div class="price" padding-left>
-                订单金额：<input type="number">&nbsp;&nbsp;—&nbsp;&nbsp;<input type="number">
-                <div class="btn">搜索</div>
+                订单金额：<input type="number" [(ngModel)]="min_money">&nbsp;&nbsp;—&nbsp;&nbsp;<input type="number" [(ngModel)]="max_money">
+                <div class="btn" (click)="search()">搜索</div>
             </div>
             <ion-note>温馨提示：</ion-note><br>
             <ion-note>1.后付费月结算单的可开票金额为当月实际长得结算金额。</ion-note><br>
@@ -59,6 +59,21 @@
             <div class="bottom">可开具发票：{{item.money_format}}</div>
         </div>
     </div>
+
+    <ion-fab left bottom>
+        <button ion-fab color="dark" mini>
+            {{data?.page}}/{{data?.pages}}
+        </button>
+    </ion-fab>
+    <ion-fab right bottom (click)="scrollToTop()">
+        <button ion-fab color="dark" mini>
+            <img width="100%" src="./assets/icon/gotop.png" alt="">
+        </button>
+    </ion-fab>
+
+    <ion-infinite-scroll (ionInfinite)="doInfinite($event)" *ngIf="flag">
+        <ion-infinite-scroll-content></ion-infinite-scroll-content>
+    </ion-infinite-scroll>
 </ion-content>
 
 <ion-footer>

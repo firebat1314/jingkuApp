@@ -1,7 +1,4 @@
 page-fastbuy {
-    .content {
-        background: #f7f7f7;
-    }
     .fore {
         img {
             width: 100%;
@@ -12,7 +9,7 @@ page-fastbuy {
         display: flex;
         justify-content: center;
         flex-wrap: wrap;
-        padding: 10px 8px;
+        padding: 2px 2px;
         >div {
             width: calc(33% - 10px);
             position: relative;
@@ -46,8 +43,14 @@ page-fastbuy {
                 .img {
                     display: flex;
                     align-items: center;
+                    justify-content: center;
                     min-height: 170px;
                     position: relative;
+                    img {
+                        display: block;
+                        margin: 0 auto;
+                        width: auto;
+                    }
                     .time {
                         position: absolute;
                         bottom: 0;
@@ -70,10 +73,6 @@ page-fastbuy {
                             color: #fff;
                             min-width: initial;
                         }
-                    }
-                    img {
-                        display: block;
-                        margin: 0 auto;
                     }
                 }
                 .info {

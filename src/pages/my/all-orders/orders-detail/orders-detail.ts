@@ -1,7 +1,9 @@
-import { Component } from '@angular/core';
-import { NavController, NavParams } from 'ionic-angular';
+import { Component, ViewChild } from '@angular/core';
+import { NavController, NavParams, Content } from 'ionic-angular';
 import { HttpService } from "../../../../providers/http-service";
 import { ParticularsPage } from "../../../home/particulars/particulars";
+import { Native } from "../../../../providers/native";
+import { PaymentMethodPage } from "../payment-method/payment-method";
 
 /*
   Generated class for the OrdersDetail page.
@@ -16,8 +18,19 @@ import { ParticularsPage } from "../../../home/particulars/particulars";
 export class OrdersDetailPage {
   data: any;
   orderId: any = this.navParams.get('order_id');
-
-  constructor(public navCtrl: NavController, public navParams: NavParams, public httpService: HttpService) {
+  
+  payBtn: boolean = false;
+  shippingBtn: boolean = false;
+  confirmBtn: boolean = false;
+  cancelBtn: boolean = false;
+  
+  @ViewChild(Content) content:Content
+  constructor(
+    public navCtrl: NavController,
+    public navParams: NavParams,
+    public httpService: HttpService,
+    public native: Native
+  ) {
     this.getOrderInfo();
   }
 
@@ -32,10 +45,52 @@ export class OrdersDetailPage {
       console.log(res);
       if (res.status == 1) {
         this.data = res;
+        this.showBtn();
+        this.content.resize();
       }
     })
   }
-  goParticularsPage(id){
-    this.navCtrl.push(ParticularsPage,{goodsId:id});
+  showBtn() {
+    if (this.data.order.pay_status == 0 && this.data.order.order_status != 4 && this.data.order.order_status != 2 && this.data.order.order_status != 3 && this.data.order.order_status != 7 && this.data.order.order_status != 8) {
+      this.payBtn = true;
+    }else if (this.data.order.order_status == 0) {
+      this.cancelBtn = true;
+    }else if (this.data.order.order_status == 5 && this.data.order.order_status == 1) {
+      this.confirmBtn = true;
+      this.shippingBtn = true;
+    }
   }
+  goParticularsPage(id) {
+    this.navCtrl.push(ParticularsPage, { goodsId: id });
+  }
+  toPay(id) {
+    this.httpService.pay({ order_id: id }).then((res) => {
+      console.log(res);
+      if (res.status == 1) {
+        this.navCtrl.push(PaymentMethodPage, { data: res })
+      }
+    })
+  }
+  confirmReceipt(order_id) {
+    this.native.openAlertBox('确认收货', () => {
+      this.httpService.affirmReceived({ order_id: order_id }).then((res) => {
+        if (res.status == 1) {
+          this.native.showToast('订单操作成功');
+        }
+      })
+    })
+  }
+  orderTracking(order_id){
+     this.native.showToast('敬请期待');
+  }
+  cancelOrder(order_id) {
+    this.native.openAlertBox('取消订单操作', () => {
+      this.httpService.cancelOrder({ order_id: order_id }).then((res) => {
+        if (res.status == 1) {
+          this.native.showToast('订单操作成功');
+        }
+      })
+    })
+  }
+  
 }

@@ -71,15 +71,18 @@ export class HomePage {
     private formBuilder: FormBuilder,
     private native: Native
   ) {
-    this.getHomeData(); 
+    this.getHomeData();
     this.updataArea();
     this.updateCarCount();
-    this.events.subscribe('home:updataArea',()=>{
+    this.events.subscribe('home:updataArea', () => {
       this.updataArea();
     })
   }
-  ngOnDestroy(){
-    this.events.unsubscribe('home:updataArea');
+  ngAfterViewInit() {
+
+  }
+  ionViewDidLoad() {
+    console.log('ionViewDidLoad HomePage');
   }
   getHomeData(finish?) {
     this.native.showLoading('加载中');
@@ -126,22 +129,26 @@ export class HomePage {
       })
     })
   }
+
+  onscroll() {
+    if (this.content.scrollTop > 400) {
+      this.showBackTopBtn = true; 
+    } else if (this.content.scrollTop <= 400) {
+      this.showBackTopBtn = false;
+    }
+    console.log(this.showBackTopBtn, this.content.scrollTop)
+  }
   /*下拉刷新*/
   doRefresh(refresher) {
     this.getHomeData(() => {
       setTimeout(() => {
         refresher.complete();
-        // this.slides.update();//刷新轮播图
       }, 500);
     })
-  }
-  ngAfterViewInit() {
-
   }
   onSlideClick(event) {
     // console.log(event)
   }
-
   clickBanner(item) {
     if (item.link_type.type_name == 'category') {
       this.goClassPage('classify');
@@ -153,55 +160,45 @@ export class HomePage {
       this.goClassPage('brand');
     }
   }
+
+  scrollToTop() {
+    this.content.scrollToTop();
+  }
+
+  goClassPage(value) {
+    this.navCtrl.parent.select(1);
+    this.events.publish('classify:selectSegment', value);
+  }
+  goCityPage() {
+    this.navCtrl.push(CityPage, { areaList: this.areaList })
+  }
   goParticularsPage(id) {
     this.navCtrl.push(ParticularsPage, { goodsId: id })
   }
   goBrandListPage(id) {
     this.navCtrl.push(BrandListPage, { brandId: id })
   }
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad HomePage');
+  goWhitebarPage() {
+    this.native.showToast('敬请期待')
   }
-
-  scrollToTop() {
-    this.content.scrollToTop();
-  }
-
-  scrollHeight() {
-    // if (this.content.scrollTop > 400) {
-    //   this.showBackTopBtn = true;
-    // } else if (this.content.scrollTop <= 400) {
-    //   this.showBackTopBtn = false;
-    // }
-    // console.log(this.showBackTopBtn, this.content.scrollTop)
-  }
-  goClassPage(value) {
-    this.navCtrl.parent.select(1);
-    this.events.publish('classify:selectSegment',value);
-  }
-  goCityPage(){
-    this.navCtrl.push(CityPage,{areaList:this.areaList})
-  }
-  updataArea(){
-    this.httpService.getAreaList().then((res)=>{
-      if(res&&res.status==1){
+  updataArea() {
+    this.httpService.getAreaList().then((res) => {
+      if (res && res.status == 1) {
         this.areaList = res.data;
-        for(let i=0;i<res.data.length;i++){
-          if(res.data[i].selected==1){
+        for (let i = 0; i < res.data.length; i++) {
+          if (res.data[i].selected == 1) {
             this.area = res.data[i].region_name;
-          }
+           }
         }
       }
     })
   }
-  updateCarCount(){
+  updateCarCount() {
     this.httpService.getFlowGoods().then((res) => {
       if (res.status == 1) {
         this.events.publish('car:goodsCount', res.total.real_goods_count);
       }
     })
   }
-  goWhitebarPage(){
-    this.native.showToast('敬请期待')
-  }
+
 }

@@ -13,6 +13,7 @@ import { HttpService } from "../../../../providers/http-service";
   templateUrl: 'helper-details.html'
 })
 export class HelperDetailsPage {
+  data: any;
   item = this.navParams.get('item');
   constructor(
     public navCtrl: NavController,
@@ -22,7 +23,7 @@ export class HelperDetailsPage {
     this.httpService.helpInfo({id:this.item.article_id}).then((res)=>{
       console.log(res);
       if(res.status==1){
-        
+        this.data = res;
       }
     })
   }

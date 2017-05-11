@@ -12,9 +12,6 @@ page-home {
     .add_icon {
         margin-right: 5px;
     }
-    .content {
-        background: #f7f7f7;
-    }
     .banner-wrapper ion-slide img {
         width: 100%;
         display: block;
@@ -148,6 +145,8 @@ page-home {
                     .img {
                         font-size: 1.3rem;
                         min-height: 100px;
+                        display: flex;
+                        align-items: center;
                         img {
                             display: block;
                             margin: 0 auto;

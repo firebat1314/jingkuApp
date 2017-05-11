@@ -43,7 +43,7 @@ export class CarPage {
   ionViewDidLoad() {
     console.log('ionViewDidLoad CarPage');
   }
-  ngOnDestory() {
+  ngOnDestroy() {
     this.events.unsubscribe('car:updata');
   }
   getFlowGoods(finished?) {
@@ -190,7 +190,7 @@ export class CarPage {
   }
   goAccounts() {
     if (this.checkedArray.length == 0) {
-      this.native.showToast("请选择购物车中的商品");
+      this.native.showToast("请选择结算的商品");
       return false;
     }
     var arr = []

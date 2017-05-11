@@ -14,6 +14,7 @@ import { IntegralstorePage } from "../../home/integralstore/integralstore";
   templateUrl: 'account-jifen.html'
 })
 export class AccountJifenPage {
+  showBackTopBtn: boolean;
   data: any;
   number = this.navParams.get('number');
 
@@ -48,6 +49,15 @@ export class AccountJifenPage {
         infiniteScroll.complete();
       }, 500);
     })
+  }
+  onscroll(){
+    if (this.content.scrollTop > 400) {
+      this.showBackTopBtn = true; 
+    } else if (this.content.scrollTop <= 400) {
+      this.showBackTopBtn = false;
+    }
+    this.content.resize();
+    console.log(this.showBackTopBtn, this.content.scrollTop)
   }
   scrollToTop() {
     this.content.scrollToTop();

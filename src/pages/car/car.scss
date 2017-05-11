@@ -73,6 +73,7 @@ page-car {
                             .attr {
                                 display: flex;
                                 flex-wrap: wrap;
+                                white-space: pre-wrap;
                                 span {
                                     width: 33.33%;
                                     color: #808080;

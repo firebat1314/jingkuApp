@@ -45,10 +45,20 @@
                         {{item.promote_price}}&nbsp;&nbsp;
                         <span class="old-price">{{item.market_price}}</span>
                     </div>
-                    <div ion-button color="dark" no-margin>立即购买</div>
+                    <div ion-button color="dark" no-margin (click)="goParticularsPage(item.id)">立即购买</div>
                 </div>
             </div>
         </div>
     </ion-list>
 
+    <!--    <ion-fab left bottom>
+        <button ion-fab color="dark" mini>
+            {{data?.page}}/{{data?.pages}}
+        </button>
+    </ion-fab>-->
+    <ion-fab right bottom (click)="scrollToTop()">
+        <button ion-fab color="dark" mini>
+            <img width="100%" src="./assets/icon/gotop.png" alt="">
+        </button>
+    </ion-fab>
 </ion-content>

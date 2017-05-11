@@ -35,21 +35,19 @@
             <ion-thumbnail item-left>
                 <img src="{{item.thumb}}">
             </ion-thumbnail>
-            <div item-content>
-                <div class="my-content">
-                    <div class="left">
-                        <h2>{{item.goods_name}}</h2>
-                        <div>
-                            <span *ngIf="item.qiujing">{{item.qiujing}}&nbsp;</span>
-                            <span *ngIf="item.zhujing">{{item.zhujing}}&nbsp;</span>
-                            <span *ngIf="item.zhouwei">{{item.zhouwei}}&nbsp;</span> {{item.goods_attr}}
-                        </div>
+            <div class="my-content">
+                <div class="left">
+                    <h2>{{item.goods_name}}</h2>
+                    <div>
+                        <span *ngIf="item.qiujing">{{item.qiujing}}&nbsp;</span>
+                        <span *ngIf="item.zhujing">{{item.zhujing}}&nbsp;</span>
+                        <span *ngIf="item.zhouwei">{{item.zhouwei}}&nbsp;</span> {{item.goods_attr}}
                     </div>
-                    <div class="right">
-                        <div>￥{{item.goods_price}}</div>
-                        <div class="count">X{{item.goods_number}}</div>
-                        <!--<div ion-button small (click)="clickAftermarket($event)">申请售后</div>-->
-                    </div>
+                </div>
+                <div class="right">
+                    <div>￥{{item.goods_price}}</div>
+                    <div class="count">X{{item.goods_number}}</div>
+                    <!--<div ion-button small (click)="clickAftermarket($event)">申请售后</div>-->
                 </div>
             </div>
         </ion-item>
@@ -79,10 +77,10 @@
                 <span>+配送费用：</span>
                 <span class="price">￥{{data?.order?.formated_shipping_fee}}</span>
             </div>
-            <div>
+            <!--            <div>
                 <span>+获赠积分：</span>
                 <span class="price">￥???</span>
-            </div>
+            </div>-->
         </div>
         <div class="bottom">
             <div>实付款:<span class="price">￥{{data?.order?.formated_pay_fee}}</span></div>
@@ -98,7 +96,9 @@
         <span class="price">合计:￥{{data?.order?.formated_order_amount}}</span>
     </div>
     <div class="foot-button">
-        <button ion-button large full no-margin color="cancelBtn">订单跟踪</button>
-        <button ion-button large full no-margin color="dark">确认收货</button>
+        <button ion-button large full no-margin color="cancelBtn" (click)="orderTracking(data?.order?.order_id)" *ngIf="shippingBtn">订单跟踪</button>
+        <button ion-button large full no-margin color="dark" (click)="confirmReceipt(data?.order?.order_id)" *ngIf="confirmBtn">确认收货</button>
+        <button ion-button large full no-margin color="cancelBtn" (click)="cancelOrder(data?.order?.order_id)" *ngIf="cancelBtn">取消订单</button>
+        <button ion-button large full no-margin color="dark" (click)="toPay(data?.order?.order_id)" *ngIf="payBtn">去支付</button>
     </div>
 </ion-footer>

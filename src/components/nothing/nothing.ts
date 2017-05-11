@@ -23,6 +23,5 @@ export class NothingComponent {
     if(this.navCtrl.canGoBack()){
       this.navCtrl.popToRoot();
     }
-    this.navCtrl.parent.select(0);
   }
 }

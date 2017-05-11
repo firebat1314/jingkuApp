@@ -32,19 +32,19 @@ export class AccountMoneyDetailPage {
   flag: boolean = true;
   doInfinite(infiniteScroll) {
     if (this.data.page < this.data.pages) {
-      this.data.page++;
+      this.httpService.accountLog({ page: ++this.data.page }).then((res) => {
+        if (res.status == 1) {
+          Array.prototype.push.apply(this.data.list, res.list);
+        }
+        setTimeout(() => {
+          infiniteScroll.complete();
+        }, 500);
+      })
     } else {
       this.flag = false;
       return;
     }
-    this.httpService.accountLog({ page: this.data.page }).then((res) => {
-      if (res.status == 1) {
-        Array.prototype.push.apply(this.data.list, res.list);
-      }
-      setTimeout(() => {
-        infiniteScroll.complete();
-      }, 500);
-    })
+
   }
   scrollToTop() {
     this.content.scrollToTop();

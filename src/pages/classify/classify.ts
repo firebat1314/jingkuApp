@@ -100,6 +100,9 @@ export class ClassifyPage {
       }, 500);
     }
   }
+  onSrcoll(){
+    console.log(111)
+  }
   //转跳品牌列表页
   goToMoreBrand(data) {
     this.navCtrl.push(MoreBrandPage, { data: data })

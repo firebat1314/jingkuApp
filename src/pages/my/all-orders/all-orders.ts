@@ -135,18 +135,31 @@ export class AllOrdersPage {
     }
   }
   toPay(id) {
-    this.httpService.pay({ log_id: id }).then((res) => {
+    this.httpService.pay({ order_id: id }).then((res) => {
       console.log(res);
       if (res.status == 1) {
         this.navCtrl.push(PaymentMethodPage, { data: res })
       }
     })
   }
+  confirmReceipt(order_id) {
+    this.native.openAlertBox('确认收货', () => {
+      this.httpService.affirmReceived({ order_id: order_id }).then((res) => {
+        if (res.status == 1) {
+          this.native.showToast('订单操作成功');
+          this.getHttpData();
+        }
+      })
+    })
+  }
+  orderTracking(order_id){
+     this.native.showToast('敬请期待');
+  }
   cancelOrder(order_id) {
     this.native.openAlertBox('取消订单操作', () => {
       this.httpService.cancelOrder({ order_id: order_id }).then((res) => {
-        if(res.status==1){
-          this.native.showToast('操作成功');
+        if (res.status == 1) {
+          this.native.showToast('订单操作成功');
           this.getHttpData();
         }
       })
