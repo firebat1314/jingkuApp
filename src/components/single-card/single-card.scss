@@ -19,7 +19,6 @@ single-foods-card {
     justify-content: space-between;
     flex-wrap: wrap;
     width: 100%;
-    padding: 10px;
     .card {
         border: 1px solid #e6e6e6;
         width: 49%;
@@ -30,12 +29,14 @@ single-foods-card {
         .card-wrap {
             display: flex;
             flex-direction: column;
+            height: 100%;
             .img {
                 display: flex;
                 justify-content: center;
                 align-items: center;
                 min-height: 180px;
                 border-bottom: solid 1px #e0e0e0;
+                flex: 1;
                 img {
                     width: auto;
                 }

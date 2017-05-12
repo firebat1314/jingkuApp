@@ -7,28 +7,26 @@
 <ion-header>
 
     <ion-toolbar>
-        <ion-buttons left>
-            <button (click)="pop()" *ngIf="showBackBtn" ion-button clear icon-only icon-left [navPush]="cityPage">
+        <ion-buttons left style="position:absolute;">
+            <button (click)="pop()" *ngIf="showBackBtn" ion-button clear icon-only [navPush]="cityPage">
                 <ion-icon name="ios-arrow-back"></ion-icon>
             </button>
         </ion-buttons>
-        <div class="head-segment-style">
-            <ion-segment mode="ios" [(ngModel)]="classSelect" (ionChange)="clickSegment()" color="primary">
-                <ion-segment-button value="classify">
-                    分类
-                </ion-segment-button>
-                <ion-segment-button value="brand">
-                    品牌
-                </ion-segment-button>
-                <ion-segment-button value="care">
-                    关注
-                </ion-segment-button>
-            </ion-segment>
-        </div>
+        <ion-segment mode="ios" [(ngModel)]="classSelect" class="top-segment" (ionChange)="clickSegment()" color="primary">
+            <ion-segment-button value="classify">
+                分类
+            </ion-segment-button>
+            <ion-segment-button value="brand">
+                品牌
+            </ion-segment-button>
+            <ion-segment-button value="care">
+                关注
+            </ion-segment-button>
+        </ion-segment>
         <ion-buttons class="editBtn" *ngIf="classSelect=='care'" right>
             <button ion-button clear (click)="checkBoxToggle()">
                 <span *ngIf="!showCheckBox">编辑</span>
-                <span *ngIf="showCheckBox">取消</span>
+                <span *ngIf="showCheckBox">完成</span>
             </button>
         </ion-buttons>
     </ion-toolbar>
@@ -117,7 +115,7 @@
     <div *ngSwitchCase="'care'" [ngSwitch]="careSelect" class="care-wrap">
         <div class="shop" *ngSwitchCase="'shop'">
             <nothing *ngIf="collectionShop?.count=='0'" title="暂无收藏" text="去收藏你喜欢的店铺吧~" backgroundImg="url(./assets/icon/images/homepage_42_03.png)"></nothing>
-            <ion-list>
+            <ion-list *ngIf="collectionShop?.count!='0'">
                 <div class="item-wrap" *ngFor="let item of collectionShop?.data;let i = index">
                     <div margin-left [ngClass]="{'activein':showCheckBox}" *ngIf="showCheckBox">
                         <ion-checkbox color="dark" mode="ios" [(ngModel)]="item.selected"></ion-checkbox>
@@ -154,7 +152,7 @@
                             <h2>{{item.goods_name}}</h2>
                             <p class="right-bottom">
                                 <span class="price">{{item.shop_price}}</span>
-                                <button ion-button outline (click)="joinCar(item.goods_id)">加入购物车</button>
+                                <button ion-button outline *ngIf="!showCheckBox" (click)="joinCar(item.goods_id)">加入购物车</button>
                             </p>
                         </ion-item>
                         <ion-item-options side="right">

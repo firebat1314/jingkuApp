@@ -39,7 +39,7 @@ export class SingleCardComponent {
         setTimeout(function () {
           that.data[i].showBtn = false;
           that.animateItems.push(that.data[i]);
-        }, 80 * i);
+        }, 50 * i);
       }
     }
   }

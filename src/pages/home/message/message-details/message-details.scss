@@ -23,7 +23,9 @@ page-message-details {
             }
         }
         .item {
-            white-space: normal;
+            h2 {
+                white-space: normal;
+            }
         }
     }
 }

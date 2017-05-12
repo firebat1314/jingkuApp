@@ -26,6 +26,7 @@ export class ClassifyPage {
   classSelect: any = 'classify';//brand or classify or care
   careSelect: any = 'shop';//shop or goods
   root = SubnavPage1Page;
+
   showBackBtn: boolean = false;//显示分类栏返回按钮
   showCheckBox: boolean = false;//显示取消关注复选框
 
@@ -54,14 +55,17 @@ export class ClassifyPage {
   }
   ngAfterViewInit() {
     this.timer = setInterval(() => {
-      if (this.classSelect == "classify") {
-        if (!this.myNav.canGoBack()) {
-          this.showBackBtn = false;
-        } else {
-          this.showBackBtn = true;
-        }
+      if(!this.myNav){
+        this.showBackBtn = false;
+      }else if (!this.myNav.canGoBack()) {
+        this.showBackBtn = false;
+      } else {
+        this.showBackBtn = true;
       }
     }, 1000)
+  }
+  ngOnDestroy() {
+    clearInterval(this.timer);
   }
   getHttpData(finished?) {
     this.httpService.getCategorys().then((res) => {
@@ -100,7 +104,7 @@ export class ClassifyPage {
       }, 500);
     }
   }
-  onSrcoll(){
+  onSrcoll() {
     console.log(111)
   }
   //转跳品牌列表页

@@ -30,6 +30,17 @@
     box-shadow: initial;
 }
 
+.gobacktop {
+    .button-inner {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        line-height: initial;
+        font-size: 12px;
+    }
+}
+
 
 /*————————————————————————————————————城市选择————————————————————————————————————*/
 
@@ -147,8 +158,15 @@ ion-refresher-content[state=ready] .refresher-pulling-icon {
     .item-wrap {
         display: flex;
         align-items: center;
+        border-bottom: 1px solid #dedede;
+        ion-checkbox {
+            margin-right: 2px;
+        }
         .item {
             margin-bottom: 0;
+            .item-inner {
+                border-bottom: none;
+            }
             h2 {
                 color: #666;
                 white-space: pre-wrap;
@@ -217,6 +235,18 @@ ion-refresher-content[state=ready] .refresher-pulling-icon {
             font-size: 1.5em;
             margin: 0 10px;
         }
+    }
+}
+
+
+/*————————————————————————————————————去头部阴影————————————————————————————————————*/
+
+@mixin deteleShadow {
+    .header::after {
+        background-image: none;
+    }
+    .scroll-content {
+        top: -1px;
     }
 }
 

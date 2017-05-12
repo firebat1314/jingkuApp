@@ -2,6 +2,7 @@ import { Component, ViewChild } from '@angular/core';
 import { NavController, NavParams, Events, Content } from 'ionic-angular';
 import { HttpService } from "../../../providers/http-service";
 import { CarPage } from "../../car/car";
+import { Native } from "../../../providers/native";
 
 /*
   Generated class for the BrandList page.
@@ -35,7 +36,8 @@ export class BrandListPage {
 		public navCtrl: NavController,
 		public navParams: NavParams,
 		public httpService: HttpService,
-		public events: Events
+		public events: Events,
+		public native: Native
 	) {
 		this.paramsData.cat_id = this.navParams.get('listId');
 		this.paramsData.brand_id = this.navParams.get('brandId');
@@ -68,6 +70,9 @@ export class BrandListPage {
 		this.httpService.categoryGoods(Object.assign(this.paramsData, params)).then((res) => {
 			if (res.status == 1) {
 				this.data = res;
+				if (res.goods.length == 0) {
+					this.native.showToast('暂无商品')
+				}
 				this.events.publish('user:listFilter', res);
 			}
 		})

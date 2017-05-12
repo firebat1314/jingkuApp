@@ -3,6 +3,7 @@ import { NavController, NavParams, ViewController } from 'ionic-angular';
 import { HttpService } from "../../../../providers/http-service";
 import { Alipay } from '@ionic-native/alipay';
 import { Native } from "../../../../providers/native";
+import { AllOrdersPage } from "../all-orders";
 
 /*
   Generated class for the PaymentMethod page.
@@ -99,7 +100,7 @@ export class PaymentMethodPage {
     if (type == 1) {
       this.httpService.payCode({ code: this.data.alipay }).then((res) => {
         console.log(res);
-        if ((res.status == 1)) {  
+        if ((res.status == 1)) {
           this.alipayPay(res.pingxx)
           // this.pay(res.pingxx);
         }
@@ -109,11 +110,11 @@ export class PaymentMethodPage {
         console.log(res);
         if (res.status == 1 && pingpp) {
           console.log(pingpp)
-          pingpp.createPayment(res.pingxx, function(result, err) {
+          pingpp.createPayment(res.pingxx, function (result, err) {
             console.log(result, err)
             if (result == "success") {
               // 只有微信公众账号 wx_pub 支付成功的结果会在这里返回，其他的支付结果都会跳转到 extra 中对应的 URL。
- 
+
             } else if (result == "fail") {
               // charge 不正确或者微信公众账号支付失败时会在此处返回
             } else if (result == "cancel") {
@@ -132,12 +133,12 @@ export class PaymentMethodPage {
       })
     }
   }
-/*  pay(data) {
-    Pingpp.createPayment({ "object": data, "urlScheme": "http://www.baidu.com" }, function (result, error) {//scheme 为iOS返回应用
-      console.log(result);
-      console.log(error);
-    });
-  }*/
+  /*  pay(data) {
+      Pingpp.createPayment({ "object": data, "urlScheme": "http://www.baidu.com" }, function (result, error) {//scheme 为iOS返回应用
+        console.log(result);
+        console.log(error);
+      });
+    }*/
 
   alipayPay(alipayOrder) {
     // Should get from server side with sign.
@@ -145,12 +146,25 @@ export class PaymentMethodPage {
       .then(res => {
         console.log(res)
         this.payResult = res;
+        switch (res.resultStatus) {
+          case 9000: this.native.showToast('订单支付成功'); break;
+          case 8000: this.native.showToast('正在处理中'); break;
+          case 4000: this.native.showToast('订单支付失败'); break;
+          case 5000: this.native.showToast('重复请求'); break;
+          case 6001: this.native.showToast('中途取消'); break;
+          case 6002: this.native.showToast('网络连接出错'); break;
+          case 6004: this.native.showToast('支付结果未知'); break;
+          default: this.native.showToast('其它支付错误'); break;
+        }
+        this.navCtrl.push(AllOrdersPage);
       }, err => {
         console.log(err)
+        this.native.showToast('未知错误');
         this.payResult = err;
       })
       .catch(e => {
         console.log(e)
+        this.native.showToast('未知错误');
         this.payResult = e;
       });
   }
@@ -171,9 +185,9 @@ export class PaymentMethodPage {
         };*/
 
     Wechat.sendPaymentRequest(params, function () {
-       this.native.showToast('Success');
+      this.native.showToast('Success');
     }, function (reason) {
-       console.log(reason);
+      console.log(reason);
     });
   }
 }

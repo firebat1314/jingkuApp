@@ -12,26 +12,33 @@ page-classify {
         height: 100%;
         overflow: scroll;
     }
+    @include deteleShadow;
     ion-header {
         ion-toolbar {
             &:last-child {
                 border-top: #e0e0e0 1px solid;
             }
-            .head-segment-style {
-                width: 20rem;
+            .top-segment {
+                width: 60%;
                 margin: 0 auto;
+                .segment-button {
+                    border-color: #e6e6e6;
+                }
+                .segment-button.segment-activated {
+                    border-color: #000;
+                }
             }
             .editBtn {
                 position: absolute;
                 right: 5px;
             }
-            .mysearchbar {
-                .toolbar-background-md {
-                    background-color: #f5f5f5;
-                }
-                .searchbar-ios .searchbar-input {
-                    background: #fff;
-                }
+        }
+        .mysearchbar {
+            .toolbar-background-md {
+                background-color: #f5f5f5;
+            }
+            .searchbar-ios .searchbar-input {
+                background: #fff;
             }
         }
     }

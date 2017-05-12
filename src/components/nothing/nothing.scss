@@ -8,7 +8,9 @@ nothing {
         background: #fff;
         .img {
             width: 12rem;
+            min-width: 12rem;
             height: 12rem;
+            min-height: 12rem;
             border-radius: 50%;
             border: 2px solid #cbced0;
             background-position: center center;

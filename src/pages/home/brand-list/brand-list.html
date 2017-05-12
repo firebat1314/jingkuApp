@@ -53,7 +53,7 @@
                     </div>
                 </div>
             </ion-segment-button>
-            <ion-segment-button menuToggle>
+            <ion-segment-button menuToggle value="">
                 筛选
                 <img src="./assets/icon/images/filter.png" width="18" alt="">
             </ion-segment-button>
@@ -67,9 +67,11 @@
         <ion-refresher-content refreshingSpinner="1" pullingIcon="0"></ion-refresher-content>
     </ion-refresher>
 
-    <div *ngIf="data?.goods?.length!=0" style=" background:#f7f7f7;">
-        <single-foods-card [data]="data?.goods" *ngIf="!listStyleflag"></single-foods-card>
 
+    <div *ngIf="data?.goods?.length!=0" style=" background:#f7f7f7;">
+        <div style="padding:10px;" *ngIf="!listStyleflag">
+            <single-foods-card [data]="data?.goods"></single-foods-card>
+        </div>
         <single-foods-item [data]="data?.goods" *ngIf="listStyleflag"></single-foods-item>
     </div>
 

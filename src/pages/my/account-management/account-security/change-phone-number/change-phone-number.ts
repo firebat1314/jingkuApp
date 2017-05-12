@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams } from 'ionic-angular';
+import { NavController, NavParams, ToastController } from 'ionic-angular';
 import { HttpService } from "../../../../../providers/http-service";
 
 /*
@@ -25,7 +25,8 @@ export class ChangePhoneNumberPage {
   constructor(
     public navCtrl: NavController,
     public navParams: NavParams,
-    public httpService: HttpService
+    public httpService: HttpService,
+    public toastCtrl: ToastController
   ) { }
 
   ionViewDidLoad() {
@@ -104,8 +105,16 @@ export class ChangePhoneNumberPage {
   }
   onsubmit() {
     this.httpService.editMobile(this.formData).then((res) => {
-      console.log(res);
-
+      if (res.status == 1) {
+        this.toastCtrl.create({
+          message: '修改成功',
+          duration: 2000,
+          position: 'top',
+          showCloseButton: false
+        }).present().then(() => {
+          this.navCtrl.pop();
+        });
+      }
     })
   }
   ngOnDestroy() {
