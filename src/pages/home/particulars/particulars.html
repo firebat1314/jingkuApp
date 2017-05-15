@@ -18,7 +18,7 @@
         <ion-refresher-content refreshingSpinner="1" pullingIcon="0"></ion-refresher-content>
     </ion-refresher>
     <div class="imgs" *ngIf="getGoodsInfo">
-        <ion-slides parallax="true">
+        <ion-slides parallax="true" parallax="true">
             <ion-slide *ngFor="let item of getGoodsGallery">
                 <ion-card>
                     <img src="{{item.img_url}}" imageViewer />
@@ -26,7 +26,7 @@
             </ion-slide>
         </ion-slides>
     </div>
-    <div class="price_time" *ngIf="getGoodsInfo">
+    <div class="price_time" *ngIf="getGoodsInfo&&getGoodsInfo.is_pre==1">
         <div class="left">
             <p><span class="number">¥{{getGoodsInfo?.shop_price}}</span>每人限购：99副</p>
             <p>商品总量：{{getGoodsInfo?.goods_number}}件</p>

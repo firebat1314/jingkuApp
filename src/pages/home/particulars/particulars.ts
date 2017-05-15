@@ -51,8 +51,9 @@ export class ParticularsPage {
     this.goodsId = this.navParams.get('goodsId') || '3994';/*3994 5676*/
     console.log("商品ID:", this.goodsId)
   }
-  ngOnInit() {
+  ionViewDidLoad() {
     this.getHttpDetails();
+    console.log('ionViewDidLoad ParticularsPage');
   }
   getHttpDetails(finished?) {
     this.native.showLoading();
@@ -153,10 +154,6 @@ export class ParticularsPage {
     });
     modal.present();
   }
-
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad ParticularsPage');
-  }
   /*---商品关注----*/
   beCareFor() {
     if (this.getGoodsInfo.is_collect) {
@@ -164,7 +161,7 @@ export class ParticularsPage {
         console.log("取消商品关注", res);
         if (res.status) {
           this.getGoodsInfo.is_collect = 0;
-          this.native.showToast('已取消关注~')
+          this.native.showToast('已取消关注')
         }
       });
     } else {
@@ -172,7 +169,7 @@ export class ParticularsPage {
         console.log("商品关注", res);
         if (res.status) {
           this.getGoodsInfo.is_collect = 1;
-          this.native.showToast('关注成功~')
+          this.native.showToast('关注成功')
         }
       });
     }
@@ -185,7 +182,7 @@ export class ParticularsPage {
           this.http.addToCartSpec().then((res) => {
             console.log('普通商品加入购物车：', res)
             if (res.status == 1) {
-              this.native.showToast('已经加入购物车~');
+              this.native.showToast('已经加入购物车');
               this.events.publish('car:updata');
             }
           })
@@ -196,7 +193,7 @@ export class ParticularsPage {
         this.http.addToCartSpecJp().then((res) => {
           console.log('镜片商品加入购物车：', res)
           if (res.status == 1) {
-            this.native.showToast('已经加入购物车~')
+            this.native.showToast('已经加入购物车')
             this.events.publish('car:updata');
           }
         })

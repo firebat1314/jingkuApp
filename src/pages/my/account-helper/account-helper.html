@@ -17,7 +17,7 @@
 
     <ion-list *ngFor="let list of data?.data">
         <ion-item-divider>
-            <div item-left><img src="./assets/icon/images/help_01_03.jpg" alt=""></div>
+            <div item-left><img src="{{list.img}}" alt=""></div>
             {{list.cat_name}}
         </ion-item-divider>
         <ion-item mode="ios" detail-push *ngFor="let item of list.article" (click)="goHelperDetailsPage(item)">

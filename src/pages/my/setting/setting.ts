@@ -2,8 +2,9 @@ import { Component } from '@angular/core';
 import { NavController, NavParams, App, AlertController } from 'ionic-angular';
 import { LoginPage } from "../../login/login";
 import { Storage } from '@ionic/storage';
-import { AboutUsPage } from "./about-us/about-us";
+// import { AboutUsPage } from "./about-us/about-us";
 import { HttpService } from "../../../providers/http-service";
+import { AccountHelperPage } from "../account-helper/account-helper";
 
 /*
   Generated class for the Setting page.
@@ -26,7 +27,7 @@ export class SettingPage {
     public httpService: HttpService
   ) { }
   goAboutUs() {
-    this.navCtrl.push(AboutUsPage);
+    this.navCtrl.push(AccountHelperPage);// AboutUsPage
   }
   clearCathe() {
     let myalert = this.alert.create({

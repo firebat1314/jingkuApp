@@ -1,6 +1,9 @@
 page-particulars-modal-attr {
-    .content {
-        background: #f7f7f7;
+    .head {
+        h2 {
+            color: #666;
+            @include ellipsis_2;
+        }
     }
     .item p:last-child {
         font-size: 2rem;
@@ -23,6 +26,7 @@ page-particulars-modal-attr {
             }
             th {
                 min-width: 100px;
+                font-weight: 500;
             }
             td {
                 text-align: center;

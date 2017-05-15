@@ -3,6 +3,7 @@ import { NavController, NavParams } from 'ionic-angular';
 import { LoginPage } from '../../login/login';
 import { SignupThirdPage } from '../signup-third/signup-third';
 import { HttpService } from "../../../providers/http-service";
+import { Native } from "../../../providers/native";
 
 /*
   Generated class for the SignupSecond page.
@@ -19,6 +20,7 @@ export class SignupSecondPage {
   provinceList: any;
   cityList: any;
   districtList: any;
+
   formData = {
     true_name: '',
     qq: '',
@@ -31,12 +33,16 @@ export class SignupSecondPage {
   constructor(
     public navCtrl: NavController,
     public navParams: NavParams,
-    public httpService: HttpService
+    public httpService: HttpService,
+    public native: Native
   ) {
     this.httpService.changeRegion({ type: 1, parent_id: 1 }).then((res) => {
       console.log(res);
       this.provinceList = res.data;
     })
+  }
+  ionViewDidLoad() {
+    console.log('ionViewDidLoad SignupSecondPage');
   }
   provinceChange(id) {
     this.httpService.changeRegion({ type: 2, parent_id: id }).then((res) => {
@@ -63,17 +69,17 @@ export class SignupSecondPage {
     this.file = files[0];
     console.log(this.file);
   }
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad SignupSecondPage');
-  }
-
   toLoginPage() {
     this.navCtrl.push(LoginPage)
   }
-
-  toThirdPage() {
+  openFile(){
+    this.native.getPictureByPhotoLibrary().then((res)=>{
+      this.formData.zhizhao = 'data:image/jpeg;base64,' + res;
+    })
+  }
+  onSubmit() {
     this.httpService.signupTwo(this.formData).then((res) => {
-      console.log(res)
+        this.navCtrl.push(SignupThirdPage);
       if (res.status == 1) {
         this.navCtrl.push(SignupThirdPage);
       }

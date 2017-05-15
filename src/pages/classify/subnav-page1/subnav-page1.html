@@ -7,7 +7,9 @@
 
 <ion-content>
     <div class="classify-wrap">
-        <div (click)="gotwo(item.cat_id)" *ngFor="let item of getCategorys"><img src="{{item.thumb}}" alt=""><span>{{item.cat_name}}</span></div>
-
+        <div (click)="gotwo(item.cat_id)" *ngFor="let item of getCategorys">
+            <img src="{{item.thumb}}" alt="">
+            <span>{{item.cat_name}}</span>
+        </div>
     </div>
 </ion-content>

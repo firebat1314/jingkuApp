@@ -1,6 +1,8 @@
 page-particulars {
-    .content {
-        background: #f7f7f7;
+    .scroll-content {
+        >div:nth-child(2) {
+            border-top: 1px solid #e6e6e6;
+        }
     }
     .fore {
         margin-bottom: 10px;
@@ -28,11 +30,12 @@ page-particulars {
         background: #fff;
         ion-card {
             height: 250px;
-            width: 70%;
+            width: 80%;
             margin: 10px auto;
             padding: 10px;
             display: flex;
             justify-content: center;
+            box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.2), 0 1px 5px 0 rgba(0, 0, 0, 0.12);
             img {
                 margin: auto auto;
             }
@@ -272,7 +275,6 @@ page-particulars {
                 flex: 3;
                 background-color: #fff;
                 display: flex;
-                border-top: 1px solid #f5f5f5;
                 border-left: 1px solid #f5f5f5;
                 color: #808080;
                 white-space: nowrap;
@@ -293,7 +295,7 @@ page-particulars {
                 }
             }
             .right {
-                flex: 4;
+                flex: 6;
                 .btns {
                     display: flex;
                 }

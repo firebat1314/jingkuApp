@@ -42,10 +42,8 @@ export class SignupPage {
   }
 
   registerBtn() {
-    console.log('注册填写信息：', this.signupInfo)
     this.httpService.signupFirst(this.signupInfo).then(
       data => {
-        console.log(data)
         this.navCtrl.push(SignupSecondPage);
         this.events.publish("user:signupFirst", this.signupInfo.user_name);
         if (data.status == 1) {
@@ -75,8 +73,7 @@ export class SignupPage {
           this.skey = data.data.skey;
           this.getImg()
         }
-      }
-      )
+      })
   }
   private getImg() {
     this.httpService.getVerificationImg({

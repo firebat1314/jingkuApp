@@ -50,6 +50,7 @@ export class InvoiceAskFor1Page {
   }
   search() {
     this.httpService.addinv({
+      page:1,
       suppliers_id: this.suppliersId,
       time: this.time,
       min_money: this.min_money,

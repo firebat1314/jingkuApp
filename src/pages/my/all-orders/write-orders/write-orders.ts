@@ -40,6 +40,9 @@ export class WriteOrdersPage {
   ngOnDestroy() {
     this.events.unsubscribe('writeOrder:refresh')
   }
+  ionViewDidLoad() {
+    console.log('ionViewDidLoad WriteOrdersPage');
+  }
   getHttpData() {
     this.httpService.checkout().then((res) => {
       console.log(res);
@@ -64,7 +67,7 @@ export class WriteOrdersPage {
     this.navCtrl.push(ShippingAddressPage)
   }
   openOrderModalShippingPage() {//收货地址
-    this.navCtrl.push(OrderModalShippingPage, { data: this.data.consignee_list, callBack: this.callBack }, { animation: 'ios-transition' });
+    this.navCtrl.push(OrderModalShippingPage, { data: this.data.consignee_list, callBack: this.callBack });
   }
   checkShipping(params) {
     this.httpService.changeConsignee({ address_id: params.address_id }).then((res) => {
@@ -157,9 +160,6 @@ export class WriteOrdersPage {
         }
       }
     })
-  }
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad WriteOrdersPage');
   }
 
 }

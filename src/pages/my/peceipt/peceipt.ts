@@ -1,5 +1,5 @@
-import { Component } from '@angular/core';
-import { NavController, NavParams, Events } from 'ionic-angular';
+import { Component, ViewChild } from '@angular/core';
+import { NavController, NavParams, Events, Content } from 'ionic-angular';
 
 import { InvoiceQualificationPage } from "./invoice-qualification/invoice-qualification";
 import { InvoiceAskFor2Page } from "./invoice-ask-for2/invoice-ask-for2";
@@ -22,7 +22,9 @@ export class PeceiptPage {
   invoiceList: any;
   receiptTool: any = 'receiptSskFor';//or receiptSskFor or receiptList or receiptInfo
   myDate: any;
+  nowTime = new Date().getFullYear();
   // maxTime:any = '2017-3-17';
+  @ViewChild(Content) content: Content
   constructor(
     public navCtrl: NavController,
     public navParams: NavParams,
@@ -39,18 +41,77 @@ export class PeceiptPage {
     console.log('ionViewDidLoad PeceiptPage');
   }
   getHttpData() {
-    this.httpService.invoice().then((res) => {
+    this.httpService.invoice({ page: 1 }).then((res) => {
       console.log(res);
       this.suoquList = res;
     })
+    this.httpService.invList({ page: 1 }).then((res) => {
+      console.log(res);
+      this.invoiceList = res;
+    })
+    this.httpService.invRole({ page: 1 }).then((res) => {
+      console.log(res);
+      this.invRoleList = res;
+    })
+  }
+  search() {
     this.httpService.invList().then((res) => {
       console.log(res);
       this.invoiceList = res;
     })
-    this.httpService.invRole().then((res) => {
-      console.log(res);
-      this.invRoleList = res;
-    })
+  }
+  flag: boolean = true;
+  doInfinite(infiniteScroll) {
+    if (this.receiptTool == 'receiptSskFor') {
+      if (this.suoquList.page < this.suoquList.pages) {
+        this.httpService.invoice({ page: ++this.suoquList.page }).then((res) => {
+          if (res.status == 1) {
+            Array.prototype.push.apply(this.suoquList.data, res.data);
+          }
+          setTimeout(() => {
+            infiniteScroll.complete();
+          }, 500);
+        })
+      } else {
+        setTimeout(() => {
+          infiniteScroll.complete();
+        }, 500);
+      }
+    } else if (this.receiptTool == 'receiptList') {
+      if (this.invoiceList.page < this.invoiceList.pages) {
+        this.httpService.invoice({ page: ++this.invoiceList.page }).then((res) => {
+          if (res.status == 1) {
+            Array.prototype.push.apply(this.invoiceList.data, res.data);
+          }
+          setTimeout(() => {
+            infiniteScroll.complete();
+          }, 500);
+        })
+      } else {
+        setTimeout(() => {
+          infiniteScroll.complete();
+        }, 500);
+      }
+    } else if (this.receiptTool == 'receiptInfo') {
+      if (this.invRoleList.page < this.invRoleList.pages) {
+        this.httpService.invoice({ page: ++this.invRoleList.page }).then((res) => {
+          if (res.status == 1) {
+            Array.prototype.push.apply(this.invRoleList.data, res.data);
+          }
+          setTimeout(() => {
+            infiniteScroll.complete();
+          }, 500);
+        })
+      } else {
+        setTimeout(() => {
+          infiniteScroll.complete();
+        }, 500);
+      }
+    }
+
+  }
+  scrollToTop() {
+    this.content.scrollToTop();
   }
   goInvoiceQualificationPage(ivid) {
     this.navCtrl.push(InvoiceQualificationPage, { ivid: ivid })

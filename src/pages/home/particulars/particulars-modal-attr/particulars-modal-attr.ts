@@ -144,7 +144,7 @@ export class ParticularsModalAttrPage {
 				if (res && res.status == 1) {
 					this.native.showToast('添加成功~')
 					this.events.publish('car:updata');
-					if (goCart) { goCart() } else {
+					if (goCart) {  goCart(); } else {
 						this.viewCtrl.dismiss();
 					}
 				} else if (res.success == false) {

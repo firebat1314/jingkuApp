@@ -23,11 +23,11 @@
             </ion-item>
             <ion-item>
                 <ion-label color="primary" fixed>　 QQ</ion-label>
-                <ion-input clearInput [(ngModel)]="formData.qq" name="qq" type="number" placeholder="请输入你的QQ号"></ion-input>
+                <ion-input clearInput [(ngModel)]="formData.qq" name="qq" type="number" placeholder="请输入QQ号"></ion-input>
             </ion-item>
             <ion-item>
                 <ion-label color="primary" fixed><span ion-text color="google">*</span>　公司名称</ion-label>
-                <ion-input required clearInput [(ngModel)]="formData.company" name="company" type="text" placeholder="请输入你的公司名称"></ion-input>
+                <ion-input required clearInput [(ngModel)]="formData.company" name="company" type="text" placeholder="请输入公司名称"></ion-input>
             </ion-item>
             <ion-item class="select-wrapper">
                 <ion-select mode="ios" required [(ngModel)]="formData.province" name="province" placeholder="选择省" cancelText="取消" okText="确定" [selectOptions]="{subTitle:'省'}" (ionChange)="provinceChange(formData.province)">
@@ -49,12 +49,13 @@
             <ion-item class="zhizhao">
                 <ion-label color="primary" fixed><span ion-text color="google">*</span>　营业执照</ion-label>
                 <div item-content>
-                    <div class="add-zhizhao" item-center icon-top>
+                    <div class="add-zhizhao" (click)="openFile()" item-center icon-top>
                         <ion-icon name="md-add"></ion-icon>
                         选择文件
                     </div>
-                    <input type="file" (change)="onFileChange($event)">
-                    <span color="danger" ion-text>请上传图片</span>
+                    <!--<input type="file" (change)="onFileChange($event)">-->
+                    <span color="danger" *ngIf="!formData.zhizhao" ion-text>请上传图片</span>
+                    <img style="margin:10px;max-height:150px;" src="{{formData.zhizhao}}" alt="">
                 </div>
 
             </ion-item>
@@ -73,7 +74,7 @@
             </div>
         </div>
         <div padding>
-            <button ion-button block color="dark" large class="btn-register" type="submit" [disabled]="!(signupTwoForm.form.valid&&agree)" (click)="toThirdPage()">注册</button>
+            <button ion-button block color="dark" large class="btn-register" type="submit" (click)="onSubmit()" [disabled]="!(signupTwoForm.form.valid&&formData.zhizhao&&agree)">注册</button>
         </div>
     </form>
 </ion-content>

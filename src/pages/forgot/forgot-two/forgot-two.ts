@@ -13,14 +13,18 @@ import { NavController, NavParams } from 'ionic-angular';
 })
 export class ForgotTwoPage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {}
+  constructor(public navCtrl: NavController, public navParams: NavParams) { }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad ForgotTwoPage');
   }
+  ngOnDestroy(){
+    clearInterval(this.timer)
+  }
   private wait: number = 60;
   private disabled: Boolean = false;
   private value: String = '发送验证码';
+  private timer = null;
   private time() {
     if (this.wait == 0) {
       this.disabled = false;
@@ -31,7 +35,7 @@ export class ForgotTwoPage {
       this.disabled = true;
       this.value = "(" + this.wait + ")秒后重新发送";
       let self = this;
-      setTimeout(function () {
+      this.timer = setTimeout(function () {
         self.wait--;
         self.time();
       }, 1000)

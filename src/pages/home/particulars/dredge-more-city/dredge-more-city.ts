@@ -72,6 +72,7 @@ export class DredgeMoreCityPage {
     this.httpService.postRegionApply(this.formData).then((res) => {
       if (res.status == 1) {
         this.native.showToast(res.info);
+        this.navCtrl.pop();
       }
     })
   }

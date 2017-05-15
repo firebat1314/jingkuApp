@@ -5,20 +5,15 @@ single-foods-item {
     ion-item.item {
         border-bottom: 1px solid #dedede;
         position: relative;
-        ion-thumbnail img {
-            width: 100px;
-            height: 100px;
+        ion-thumbnail[item-left] {
+            margin: 14px 16px 14px 0px;
+            img {
+                width: 100px;
+                height: 100px;
+            }
         }
         h2 {
-            color: #666;
-            white-space: pre-wrap;
-            font-size: 1.4rem;
-            text-overflow: -o-ellipsis-lastline;
-            overflow: hidden;
-            text-overflow: ellipsis;
-            display: -webkit-box;
-            -webkit-line-clamp: 2;
-            -webkit-box-orient: vertical;
+            @include ellipsis_2;
         }
         h3 {
             color: color($colors, danger);
