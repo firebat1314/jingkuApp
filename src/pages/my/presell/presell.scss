@@ -142,11 +142,12 @@ page-presell {
                     color: #e60000;
                     font-size: 1.8rem;
                     white-space: nowrap;
-                    text-overflow: ellipsis;
-                    overflow: hidden;
                     .old-price {
                         text-decoration: line-through;
+                        white-space: nowrap;
                         color: #808080;
+                        text-overflow: ellipsis;
+                        overflow: hidden;
                     }
                 }
             }

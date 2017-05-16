@@ -19,42 +19,42 @@
     </ion-refresher>
     <div class="imgs" *ngIf="getGoodsInfo">
         <ion-slides parallax="true" parallax="true">
-            <ion-slide *ngFor="let item of getGoodsGallery">
+            <ion-slide *ngFor="let item of getGoodsInfo?.gallery">
                 <ion-card>
                     <img src="{{item.img_url}}" imageViewer />
                 </ion-card>
             </ion-slide>
         </ion-slides>
     </div>
-    <div class="price_time" *ngIf="getGoodsInfo&&getGoodsInfo.is_pre==1">
+    <div class="price_time" *ngIf="getGoodsInfo?.data?.is_pre==1">
         <div class="left">
-            <p><span class="number">¥{{getGoodsInfo?.shop_price}}</span>每人限购：99副</p>
-            <p>商品总量：{{getGoodsInfo?.goods_number}}件</p>
+            <p><span class="number">¥{{getGoodsInfo?.data?.shop_price}}</span>每人限购：99副</p>
+            <p>商品总量：{{getGoodsInfo?.data?.goods_number}}件</p>
         </div>
-        <div class="right" [ngSwitch]="getGoodsInfo?.type">
+        <div class="right" [ngSwitch]="getGoodsInfo?.data?.type">
             <p *ngSwitchCase="2">距离活动结束还剩：</p>
             <p *ngSwitchCase="1">距离活动开始还剩：</p>
             <p *ngSwitchDefault>暂无活动</p>
-            <p *ngIf="getGoodsInfo?.down_time">
-                <countdown [endDate]="getGoodsInfo?.down_time"></countdown>
+            <p *ngIf="getGoodsInfo?.data?.down_time">
+                <countdown [endDate]="getGoodsInfo?.data?.down_time"></countdown>
             </p>
         </div>
     </div>
     <div class="fore info" *ngIf="getGoodsInfo">
         <div class="title">
-            {{getGoodsInfo.goods_name}}
+            {{getGoodsInfo?.data?.goods_name}}
         </div>
         <div class="body">
-            批发价&nbsp;：<span class="now-price">¥<span class="number">{{getGoodsInfo.shop_price}}</span></span><span class="old-price">{{getGoodsInfo.old_shop_price}}</span>&nbsp;<span class="rush-icon">抢购</span>
+            批发价&nbsp;：<span class="now-price">¥<span class="number">{{getGoodsInfo?.data?.shop_price}}</span></span><span class="old-price">{{getGoodsInfo?.data?.old_shop_price}}</span>&nbsp;<span class="rush-icon">抢购</span>
         </div>
         <div class="bottom">
-            <div>建议零售价&nbsp;：<span class="offer-price">¥{{getGoodsInfo.market_price}}</span></div>
-            <div>商品编号&nbsp;：{{getGoodsInfo.goods_sn}}</div>
+            <div>建议零售价&nbsp;：<span class="offer-price">¥{{getGoodsInfo?.data?.market_price}}</span></div>
+            <div>商品编号&nbsp;：{{getGoodsInfo?.data?.goods_sn}}</div>
         </div>
     </div>
-    <div class="fore price-info" *ngIf="getPriceSection?.status==1">
+    <div class="fore price-info" *ngIf="getGoodsInfo?.price_section?.length!=0">
         <div class="main">
-            <div class="info-item" *ngFor="let item of getPriceSection.data">
+            <div class="info-item" *ngFor="let item of getGoodsInfo?.price_section">
                 <span *ngIf="item.max_num">{{item.number+'-'}}{{item.max_num}}盒</span>
                 <span *ngIf="!item.max_num">大于{{item.number}}盒</span>
                 <span>{{item.format_price}}</span>
@@ -106,14 +106,14 @@
             <ion-icon name="bao1" item-left></ion-icon>
             商品服务保障
         </button>
-        <div class="bottom" *ngIf="getGoodsInfo?.additional?.is_true||getGoodsInfo?.additional?.is_hdfk||getGoodsInfo?.additional?.is_inv">
-            <ion-note *ngIf="getGoodsInfo?.additional?.is_true">
+        <div class="bottom" *ngIf="getGoodsInfo?.data?.additional?.is_true||getGoodsInfo?.data?.additional?.is_hdfk||getGoodsInfo?.data?.additional?.is_inv">
+            <ion-note *ngIf="getGoodsInfo?.data?.additional?.is_true">
                 <img src="./assets/icon/images/particulars_05_03.png" alt=""> 正品保障
             </ion-note>
-            <ion-note *ngIf="getGoodsInfo?.additional?.is_hdfk">
+            <ion-note *ngIf="getGoodsInfo?.data?.additional?.is_hdfk">
                 <img src="./assets/icon/images/particulars_05_04.png" alt=""> 货到付款
             </ion-note>
-            <ion-note *ngIf="getGoodsInfo?.additional?.is_inv">
+            <ion-note *ngIf="getGoodsInfo?.data?.additional?.is_inv">
                 <img src="./assets/icon/images/particulars_2_16.png" alt=""> 可退换货
             </ion-note>
             <!--<ion-note>
@@ -121,13 +121,13 @@
             </ion-note>-->
         </div>
     </div>
-    <div class="fore store" *ngIf="getSupplierInfo">
+    <div class="fore store">
         <div class="head">
             <ion-item no-lines>
                 <ion-thumbnail padding-left item-left>
-                    <img src="{{getSupplierInfo.logo}}">
+                    <img src="{{getGoodsInfo?.supplier_info?.logo}}">
                 </ion-thumbnail>
-                <h2>{{getSupplierInfo.name}}</h2>
+                <h2>{{getGoodsInfo?.supplier_info?.name}}</h2>
             </ion-item>
         </div>
         <div class="data">
@@ -152,18 +152,18 @@
             </button>
         </div>-->
         <ion-list class="safeguard" no-margin>
-            <div mode="ios" ion-item detail-push *ngIf="getSupplierInfo.inv_type!=0">
+            <div mode="ios" ion-item detail-push *ngIf="getGoodsInfo?.supplier_info?.inv_type!=0">
                 <div class="note-wrap">
                     <!--<ion-note><ion-icon><img src="./assets/icon/images/particulars_2_20.jpg"></ion-icon>担保交易</ion-note>
                     <ion-note><ion-icon><img src="./assets/icon/images/particulars_2_14.jpg"></ion-icon>客户自提</ion-note>
                     <ion-note><ion-icon><img src="./assets/icon/images/particulars_2_16.jpg"></ion-icon>返修退换货</ion-note>-->
-                    <ion-note *ngIf="getSupplierInfo.inv_type==1||getSupplierInfo.inv_type==3">
+                    <ion-note *ngIf="getGoodsInfo?.supplier_info?.inv_type==1||getGoodsInfo?.supplier_info?.inv_type==3">
                         <ion-icon>
                             <img src="./assets/icon/images/particulars_2_18.png">
                         </ion-icon>
                         普通发票
                     </ion-note>
-                    <ion-note *ngIf="getSupplierInfo.inv_type==2||getSupplierInfo.inv_type==3">
+                    <ion-note *ngIf="getGoodsInfo?.supplier_info?.inv_type==2||getGoodsInfo?.supplier_info?.inv_type==3">
                         <ion-icon>
                             <img src="./assets/icon/images/particulars_2_19.png">
                         </ion-icon>
@@ -173,7 +173,7 @@
             </div>
             <div ion-item mode="ios" no-lines>
                 <ion-icon item-left name="ios-pin-outline"></ion-icon>
-                <ion-note>{{getSupplierInfo.region}}</ion-note>
+                <ion-note>{{getGoodsInfo?.supplier_info?.region}}</ion-note>
                 <div ion-button icon-only item-right clear (click)="openCallNumber()">
                     <ion-icon name="ios-call"></ion-icon>
                 </div>
@@ -193,8 +193,8 @@
         </div>
         <div [ngSwitch]="selectGroupRecommend">
             <div class="group" *ngSwitchCase="'group'">
-                <ion-slides slidesPerView="3" pager *ngIf="getGoodsFittings?.status==1">
-                    <ion-slide *ngFor="let item of getGoodsFittings.data">
+                <ion-slides slidesPerView="3" pager>
+                    <ion-slide *ngFor="let item of getGoodsInfo?.fittings">
                         <div class="goods">
                             <div class="top">
                                 <ion-checkbox mode="ios"></ion-checkbox>
@@ -243,11 +243,11 @@
                         上拉查看详情
                     </ion-item>
                 </ion-list>
-                <div style="text-align:center;" [innerHTML]="getGoodsInfo?.goods_desc"></div>
+                <div style="text-align:center;" [innerHTML]="getGoodsInfo?.data?.goods_desc"></div>
             </div>
             <div class="arguments" *ngSwitchCase="'arguments'">
                 <div class="wrapper">
-                    <div *ngFor="let item of getGoodsParameter">
+                    <div *ngFor="let item of getGoodsInfo?.parameter">
                         <div class="name">{{item.name}}：<span>{{item.value}}</span></div>
                     </div>
                 </div>
@@ -260,7 +260,7 @@
 </ion-content>
 <ion-footer>
     <div class="main">
-        <div class="left" [ngSwitch]="getGoodsInfo?.is_collect">
+        <div class="left" [ngSwitch]="getGoodsInfo?.data?.is_collect">
             <div>
                 <ion-icon style="font-weight: 700;" name="mess" (click)="goAccountServicePage()"></ion-icon>
                 <span>客服</span>

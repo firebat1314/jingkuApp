@@ -1,4 +1,9 @@
 page-account-info {
+    .item:first-child {
+        .item-inner {
+            padding-right: 10px;
+        }
+    }
     .item.item-block .item-inner {
         padding-right: 32px;
     }

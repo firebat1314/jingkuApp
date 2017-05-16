@@ -70,9 +70,9 @@ export class SettingPage {
             this.httpService.logout().then((res) => {
               console.log(res)
               this.app.getRootNav().setRoot(LoginPage);
-              this.storage.set('hasLoggedIn', false);
-              this.storage.remove("token");
-              this.storage.remove("username");
+              this.httpService.setStorage('hasLoggedIn', false);
+              this.httpService.removeStorage("token");
+              this.httpService.removeStorage("username");
             })
           }
         }

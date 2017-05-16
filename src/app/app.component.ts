@@ -6,6 +6,7 @@ import { StatusBar, Splashscreen } from 'ionic-native';
 import { TabsPage } from '../pages/tabs/tabs';
 import { WelcomePage } from '../pages/welcome/welcome';
 import { LoginPage } from '../pages/login/login';
+import { JpushService } from "../providers/jpush-service";
 
 /*import { ParticularsPage } from '../pages/home/particulars/particulars'
 import { DredgeMoreCityPage } from '../pages/home/particulars/dredge-more-city/dredge-more-city'
@@ -30,11 +31,12 @@ export class MyApp {
   @ViewChild(Nav) nav: Nav;
 
   constructor(
-    public platform: Platform,
-    public toastCtrl: ToastController,
-    public storage: Storage,
-    public ionicApp: IonicApp,
-    private events: Events
+    private platform: Platform,
+    private toastCtrl: ToastController,
+    private storage: Storage,
+    private ionicApp: IonicApp,
+    private events: Events,
+    private jpushService: JpushService
   ) {
     // 初次进入app引导页面
     this.storage.get('hasLoggedIn').then((result) => {
@@ -57,13 +59,20 @@ export class MyApp {
       this.nav.setRoot(LoginPage)
     })
   }
-  ngOnDestroy(){
+  ngOnDestroy() {
     this.events.unsubscribe("signOut");
   }
   initializeApp() {
     this.platform.ready().then(() => {
+      this.jpushService.initJpush();//初始化极光推送
+      this.storage.get('token').then((token) => {
+        if (token) {
+          this.jpushService.setTags();
+          this.jpushService.setAlias(token);
+        }
+      })
       Splashscreen.hide();
-      StatusBar.backgroundColorByHexString('#ffffff'); // set status bar to white
+      StatusBar.styleDefault; // set status bar to white
       //注册返回按键事件
       this.platform.registerBackButtonAction((): any => {
         let activeVC = this.nav.getActive();

@@ -43,8 +43,11 @@ export class HttpService {
     this.storage.get(key);
   }
 
+  removeStorage(key) {
+    this.storage.remove(key)
+  }
   login(data?: Object) {//登录
-    return this.http.post(this.ip + '/Login/index', data)
+    return this.http.post(this.ip + '/Login/index', data, true)
   }
   signupFirst(data?: Object) {//注册
     return this.http.post(this.ip + '/Login/register/step/one', data)
@@ -366,5 +369,10 @@ export class HttpService {
   withdrawals(data?: Object) {//用户提现
     return this.http.get(this.ip + '/User/withdrawals', data)
   }
-
+  goodsInfos(data?: Object) {//商品详情
+    return this.http.get(this.ip + '/Goods/goods_infos', data)
+  }
+  forgotPwd(data?: Object) {//忘记密码
+    return this.http.post(this.ip + '/Login/forgotPwd', data,true)
+  }
 }

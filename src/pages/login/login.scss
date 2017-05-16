@@ -6,12 +6,11 @@ page-login {
     .form-wrap {
         padding: 0 40px;
         padding-top: 27%;
-        height: 100%;
     }
     .logo {
         text-align: center;
         width: 100%;
-        margin-bottom: 50px;
+        margin-bottom: 4rem;
         img {
             width: 206px;
             max-width: 206px;
@@ -38,7 +37,7 @@ page-login {
     }
     .forgot-password {
         overflow: hidden;
-        margin-bottom: 40px;
+        margin-bottom: 3rem;
         .button {
             float: right;
         }

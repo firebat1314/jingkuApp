@@ -16,47 +16,51 @@ export class UserData {
         private http: Http,
         private native: Native,
         private alertCtrl: AlertController,
+        private storage: Storage
     ) { }
 
     public get(url: string, paramObj?: any, showLoading?: boolean) {
         if (showLoading) {
             this.native.showLoading();
         }
-        let userToken = localStorage.getItem('token');
-        var headers = new Headers();
-        headers.append('Authorization', 'Basic ' + btoa(userToken + ':'));
-        let options = new RequestOptions({ headers: headers });
-        return this.http.get(url + this.toQueryString(paramObj), options)
-            .toPromise()
-            .then(res => this.handleSuccess(res.json(), showLoading))
-            .catch(error => this.handleError(error));
+        return this.storage.get('token').then((res)=>{
+            var headers = new Headers();
+            headers.append('Authorization', 'Basic ' + btoa(res + ':'));
+            let options = new RequestOptions({ headers: headers });
+            return this.http.get(url + this.toQueryString(paramObj), options)
+                .toPromise()
+                .then(res => this.handleSuccess(res.json(), showLoading))
+                .catch(error => this.handleError(error,showLoading));
+        })
     }
     public post(url: string, paramObj: any, showLoading?: boolean) {
         // this.native.showLoading();
         if (showLoading) {
             this.native.showLoading();
         }
-        let userToken: string = localStorage.getItem('token');
-        let headers = new Headers();
-        headers.append('Authorization', 'Basic ' + btoa(userToken + ':'));
-        let options = new RequestOptions({ headers: headers });
-        return this.http.post(url, paramObj, options)
-            .toPromise()
-            .then(res => this.handleSuccess(res.json(), showLoading))
-            .catch(error => this.handleError(error));
+        return this.storage.get('token').then((res)=>{
+            let headers = new Headers();
+            headers.append('Authorization', 'Basic ' + btoa(res + ':'));
+            let options = new RequestOptions({ headers: headers });
+            return this.http.post(url, paramObj, options)
+                .toPromise()
+                .then(res => this.handleSuccess(res.json(), showLoading))
+                .catch(error => this.handleError(error,showLoading));
+        })
     }
     public postBody(url: string, paramObj: any, showLoading?: boolean) {
         if (showLoading) {
             this.native.showLoading();
         }
-        let userToken = localStorage.getItem('token');
-        let headers = new Headers();
-        headers.append('Authorization', 'Basic ' + btoa(userToken + ':'));
-        let options = new RequestOptions({ headers: headers });
-        return this.http.post(url, this.toBodyString(paramObj), options)
-            .toPromise()
-            .then(res => this.handleSuccess(res.json(), showLoading))
-            .catch(error => this.handleError(error));
+        return this.storage.get('token').then((res)=>{
+            let headers = new Headers();
+            headers.append('Authorization', 'Basic ' + btoa(res + ':'));
+            let options = new RequestOptions({ headers: headers });
+            return this.http.post(url, this.toBodyString(paramObj), options)
+                .toPromise()
+                .then(res => this.handleSuccess(res.json(), showLoading))
+                .catch(error => this.handleError(error,showLoading));
+        })
     }
     /**
      * 请求成功处理函数
@@ -78,18 +82,22 @@ export class UserData {
      * @return {{success: boolean, msg: string}}
      */
     private showToastTime = true;
-    private handleError(error: Response | any) {
+    private handleError(error: Response | any,showLoading) {
+        if (showLoading) {
+            this.native.hideLoading();
+        }
         // this.native.hideLoading();
         let msg: string = '请求失败';
         if (error.status == 401) {
-            msg = '数据加载出错~';
+            msg = '数据加载出错';
             if (error.statusText == 'Unauthorized') {
                 msg = '用户失效，请重新登陆';
+                this.storage.set('hasLoggedIn',false)
                 if (this.showToastTime) {
                     this.showToastTime = false;
                     this.myAlert(msg);
                 }
-                setTimeout(() => this.showToastTime = true, 2000);
+                setTimeout(() => this.showToastTime = true, 4000);
             }
             console.log(msg);
         }

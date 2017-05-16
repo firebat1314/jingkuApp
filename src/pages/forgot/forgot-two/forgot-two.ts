@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
+import { HttpService } from "../../../providers/http-service";
+import { ForgotThreePage } from "../forgot-three/forgot-three";
 
 /*
   Generated class for the ForgotTwo page.
@@ -12,14 +14,76 @@ import { NavController, NavParams } from 'ionic-angular';
   templateUrl: 'forgot-two.html'
 })
 export class ForgotTwoPage {
-
-  constructor(public navCtrl: NavController, public navParams: NavParams) { }
+  phoneNumber = this.navParams.get('phoneNumber');
+  password;
+  cpassword;
+  Phone_code;
+  str_verify;
+  constructor(
+    public navCtrl: NavController,
+    public navParams: NavParams,
+    public httpService: HttpService
+  ) {
+    this.getSkey();
+  }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad ForgotTwoPage');
   }
-  ngOnDestroy(){
+  ngOnDestroy() {
     clearInterval(this.timer)
+  }
+
+  private verifyImg;
+  private skey;
+  private getSkey() {
+    this.httpService.getVerificationImg({
+      fontSize: '12',
+      length: '4',
+      useNoise: 'false',
+      codeSet: '0',
+    }).then(
+      data => {
+        console.log(data);
+        if (data.status == 1) {
+          this.skey = data.data.skey;
+          this.getImg()
+        }
+      })
+  }
+  private getImg() {
+    this.httpService.getVerificationImg({
+      fontSize: '12',
+      length: '4',
+      useNoise: 'false',
+      codeSet: '0',
+      skey: this.skey
+    }).then(
+      data => {
+        console.log(data);
+        if (data.status == 1) {
+          this.verifyImg = data.data.captcha + '?' + Math.random();
+          this.skey = data.data.skey
+        }
+      },
+      error => {
+        console.log(error);
+      });
+  }
+  getMobileCode() {
+    this.httpService.getMobileCode({
+      type: 'mind',
+      mobile: this.phoneNumber,
+      verify: this.str_verify,
+      skey: this.skey
+    }).then(data => {
+      console.log(data)
+      if (data.status) {
+        this.time();
+      } else {
+        this.getImg();
+      }
+    })
   }
   private wait: number = 60;
   private disabled: Boolean = false;
@@ -40,5 +104,20 @@ export class ForgotTwoPage {
         self.time();
       }, 1000)
     }
+  }
+  onSubmit() {
+    this.httpService.forgotPwd({
+      step: 'two',
+      password: this.password,
+      cpassword: this.cpassword,
+      str_verify: this.str_verify,
+      verify: this.Phone_code,
+      mobile_phone:this.phoneNumber
+    }).then((res)=>{
+        this.navCtrl.push(ForgotThreePage)
+      if(res.status==1){
+        this.navCtrl.push(ForgotThreePage)
+      }
+    })
   }
 }

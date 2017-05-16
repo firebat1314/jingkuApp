@@ -1,8 +1,6 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams, Events } from 'ionic-angular';
-import { Http } from "@angular/http";
 import { Storage } from '@ionic/storage';
-import { UserData } from "../../services/user-data";
 
 import { LoginPage } from '../login/login';
 import { SignupSecondPage } from './signup-second/signup-second';
@@ -27,20 +25,18 @@ export class SignupPage {
     Phone_code: '',
     str_verify: ''
   };
-  private skey;
   constructor(
     public navCtrl: NavController,
     public navParams: NavParams,
-    private userData: UserData,
     private events: Events,
-    public http: Http,
     public storage: Storage,
     public httpService: HttpService
-
   ) {
     this.getSkey();
   }
-
+  ionViewDidLoad() {
+    console.log('ionViewDidLoad SignupPage');
+  }
   registerBtn() {
     this.httpService.signupFirst(this.signupInfo).then(
       data => {
@@ -60,6 +56,7 @@ export class SignupPage {
     console.log(signupForm)
   }
   private verifyImg;
+  private skey;
   private getSkey() {
     this.httpService.getVerificationImg({
       fontSize: '12',
@@ -132,13 +129,8 @@ export class SignupPage {
       }
     })
   }
-
   toLoginPage() {
     this.navCtrl.push(LoginPage);
-  }
-
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad SignupPage');
   }
 
 }

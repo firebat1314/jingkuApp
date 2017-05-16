@@ -1,13 +1,25 @@
 page-signup-third {
-    .main-content{
+    .main-content {
         padding-top: 4rem;
         width: 80%;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
         margin: 0 auto;
-        img{
-            width: 14rem;
+        text-align: center;
+        .img {
+            border: 2px solid #cbced0;
+            width: 12rem;
+            height: 12rem;
+            margin: 0 auto;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            img {
+                width: 60%;
+            }
+        }
+        .button {
+            padding: 0 3.1em;
+            margin-top: 20px;
         }
     }
 }

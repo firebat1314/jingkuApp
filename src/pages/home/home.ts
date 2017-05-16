@@ -31,6 +31,7 @@ import { Native } from "../../providers/native";
   templateUrl: 'home.html'
 })
 export class HomePage {
+  jingxuan_img4: any;
   hotBrand_img: string;
   jingxuan_img3: string;
   jingxuan_img2: string;
@@ -70,18 +71,17 @@ export class HomePage {
     private httpService: HttpService,
     private formBuilder: FormBuilder,
     private native: Native
-  ) {
+  ) { }
+  ngAfterViewInit() {
+
+  }
+  ionViewDidLoad() {
     this.getHomeData();
     this.updataArea();
     this.updateCarCount();
     this.events.subscribe('home:updataArea', () => {
       this.updataArea();
     })
-  }
-  ngAfterViewInit() {
-
-  }
-  ionViewDidLoad() {
     console.log('ionViewDidLoad HomePage');
   }
   getHomeData(finish?) {
@@ -89,36 +89,40 @@ export class HomePage {
     this.httpService.getHomebanner({ int_pos_id: 3 }).then((res) => {
       console.log("轮播图", res);
       if (res.status == 1) { this.bannerImgs = res.data; }
-      this.httpService.getHomebanner({ int_pos_id: 3, size: 1 }).then((res) => {
+      this.httpService.getHomebanner({ int_pos_id: 44, size: 1 }).then((res) => {
         console.log("热门品类下的广告", res)
         if (res.status == 1) { this.hotBrand_img = res; }
         this.httpService.getCategoryAd().then((res) => {
           console.log("热门品类", res)
           if (res.status == 1) { this.categoryAddetatils = res.data; }
-          this.httpService.getHomebanner({ int_pos_id: 3, size: 1 }).then((res) => {
+          this.httpService.getHomebanner({ int_pos_id: 46, size: 1 }).then((res) => {
             console.log("精选专题下的广告1", res)
             if (res.status == 1) { this.jingxuan_img1 = res; }
             this.httpService.getBrands().then(((res) => {
               console.log("热门品牌下的品牌列表", res)
               if (res.status == 1) { this.getBrands = res.data; }
-              this.httpService.getHomebanner({ int_pos_id: 3, size: 1 }).then((res) => {
+              this.httpService.getHomebanner({ int_pos_id: 47, size: 1 }).then((res) => {
                 console.log("精选专题下的广告2", res)
                 if (res.status == 1) { this.jingxuan_img2 = res; }
                 this.httpService.getCategoryRecommendGoodsHot().then(((res) => {
                   console.log("精选专题下的热门", res)
                   if (res.status == 1) { this.getCategoryRecommendGoodsHot = res.data; }
-                  this.httpService.getHomebanner({ int_pos_id: 3, size: 1 }).then((res) => {
+                  this.httpService.getHomebanner({ int_pos_id: 48, size: 1 }).then((res) => {
                     console.log("精选专题下的广告3", res)
                     if (res.status == 1) { this.jingxuan_img3 = res; }
                     this.httpService.getCategoryRecommendGoods().then((res) => {
                       console.log("精选专题下新品", res)
                       if (res.status == 1) { this.getCategoryRecommendGoods = res.data; }
-                      this.httpService.getCategoryRecommendGoodsBest().then(((res) => {
-                        console.log("精选专题下最好", res)
-                        if (res.status == 1) { this.getCategoryRecommendGoodsBest = res.data; }
-                        this.native.hideLoading();
-                        if (finish) { finish(); }
-                      }))
+                      this.httpService.getHomebanner({ int_pos_id: 49 }).then((res) => {
+                        if (res.status == 1) { this.jingxuan_img4 = res; }
+                        this.httpService.getCategoryRecommendGoodsBest().then(((res) => {
+                          console.log("精选专题下最好", res)
+                          if (res.status == 1) { this.getCategoryRecommendGoodsBest = res.data; }
+                          this.native.hideLoading();
+                          if (finish) { finish(); }
+                        }))
+                      })
+
                     })
                   })
                 }))
@@ -132,7 +136,7 @@ export class HomePage {
 
   onscroll() {
     if (this.content.scrollTop > 400) {
-      this.showBackTopBtn = true; 
+      this.showBackTopBtn = true;
     } else if (this.content.scrollTop <= 400) {
       this.showBackTopBtn = false;
     }
@@ -188,7 +192,7 @@ export class HomePage {
         for (let i = 0; i < res.data.length; i++) {
           if (res.data[i].selected == 1) {
             this.area = res.data[i].region_name;
-           }
+          }
         }
       }
     })

@@ -57,48 +57,16 @@ export class ParticularsPage {
   }
   getHttpDetails(finished?) {
     this.native.showLoading();
-    this.http.getGoodsGallery({ goods_id: this.goodsId }).then((res) => {
-      console.log("商品详情的相册图片轮播", res);
-      if (res.status == 1) { this.getGoodsGallery = res.data; }
-      this.http.getPriceSection({ goods_id: this.goodsId }).then((res) => {
-        console.log("获取商品价格优惠区间", res);
-        if (res.status == 1) { this.getPriceSection = res; }
-        this.http.getGoodsInfo({ goods_id: this.goodsId }).then((res) => {
-          console.log("商品详情信息", res);
-          if (res.status == 1) { this.getGoodsInfo = res.data; }
-          this.http.getGoodsParameter({ goods_id: this.goodsId }).then((res) => {
-            console.log("获取商品参数", res);
-            if (res.status == 1) { this.getGoodsParameter = res.data; }
-            this.http.getSupplierInfo({ goods_id: this.goodsId }).then((res) => {
-              console.log("获取供应商信息", res);
-              if (res.status == 1) { this.getSupplierInfo = res.data; }
-              this.http.getGoodsFittings({ goods_id: this.goodsId }).then((res) => {
-                console.log("组合商品", res);
-                if (res.status == 1) { this.getGoodsFittings = res; }
-                this.http.getLinkedGoods({ goods_id: this.goodsId }).then((res) => {
-                  console.log("关联商品", res);
-                  if (res.status == 1) { this.getLinkedGoods = res.data; }
-                  this.http.getBonus({ goods_id: this.goodsId }).then((res) => {
-                    console.log("优惠券列表", res);
-                    if (res.status == 1) { this.getBonus = res.data; }
-                    this.http.getGoodsSaleCity({ goods_id: this.goodsId }).then((res) => {
-                      console.log("获取商品的销售区域", res);
-                      if (res.status == 1) { this.getGoodsSaleCity = res.data; }
-                      this.http.getCategoryRecommendGoodsHot({}).then((res) => {
-                        console.log('为你推荐：', res)
-                        if (res.status == 1) { this.getCategoryRecommendGoodsHot = res.data; }
-                        this.native.hideLoading();
-                        if (finished) { finished() }
-                      })
-                    });
-                  });
-                });
-              });
-            });
-          });
-        });
-      });
-    });
+    this.http.goodsInfos({ goods_id: this.goodsId }).then((res) => {
+      console.log("商品详情信息", res);
+      if (res.status == 1) { this.getGoodsInfo = res; }
+      this.http.getCategoryRecommendGoodsHot({}).then((res) => {
+        console.log('为你推荐：', res)
+        if (res.status == 1) { this.getCategoryRecommendGoodsHot = res.data; }
+        this.native.hideLoading();
+        if (finished) { finished() }
+      })
+    })
   }
   /*下拉刷新*/
   doRefresh(refresher) {
@@ -109,7 +77,7 @@ export class ParticularsPage {
     });
   }
   presentModal(str) {
-    let modal = this.modalCtrl.create(ParticularsModalPage, { name: str, getBonus: this.getBonus, sendto: this.getGoodsSaleCity, GoodsInfo: this.getGoodsInfo });
+    let modal = this.modalCtrl.create(ParticularsModalPage, { name: str, getBonus: this.getGoodsInfo.bonus, sendto: this.getGoodsInfo.sale_city, GoodsInfo: this.getGoodsInfo.data });
     modal.onDidDismiss(data => {
       console.log(data);
     });
@@ -146,7 +114,7 @@ export class ParticularsPage {
    * @param type 商品类型（镜片、镜架）
    */
   openAttrModal(res, type) {
-    let modal = this.modalCtrl.create(ParticularsModalAttrPage, { data: res, type: type, headData: this.getGoodsInfo, id: this.goodsId });
+    let modal = this.modalCtrl.create(ParticularsModalAttrPage, { data: res, type: type, headData: this.getGoodsInfo.data, id: this.goodsId });
     modal.onDidDismiss(data => {
       if (data) {
         console.log(data);
@@ -156,11 +124,11 @@ export class ParticularsPage {
   }
   /*---商品关注----*/
   beCareFor() {
-    if (this.getGoodsInfo.is_collect) {
+    if (this.getGoodsInfo.data.is_collect) {
       this.http.collectDel({ goods_id: this.goodsId }).then((res) => {
         console.log("取消商品关注", res);
         if (res.status) {
-          this.getGoodsInfo.is_collect = 0;
+          this.getGoodsInfo.data.is_collect = 0;
           this.native.showToast('已取消关注')
         }
       });
@@ -168,7 +136,7 @@ export class ParticularsPage {
       this.http.getGoodsCollect({ goods_id: this.goodsId }).then((res) => {
         console.log("商品关注", res);
         if (res.status) {
-          this.getGoodsInfo.is_collect = 1;
+          this.getGoodsInfo.data.is_collect = 1;
           this.native.showToast('关注成功')
         }
       });

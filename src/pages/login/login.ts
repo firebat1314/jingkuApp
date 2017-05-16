@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import { Storage } from '@ionic/storage';
 
 import { NavController, NavParams, Events, ToastController } from 'ionic-angular';
 import { TabsPage } from '../tabs/tabs';
@@ -25,16 +24,15 @@ export class LoginPage {
   private loginInfo: { username?: string, password?: string } = {};
   private submitted = false;
   private signedName: String;
-  public forgotpage;
+  private forgotpage;
 
   constructor(
-    public navCtrl: NavController,
-    public navParams: NavParams,
+    private navCtrl: NavController,
+    private navParams: NavParams,
     private events: Events,
     private toastCtrl: ToastController,
-    public analytics: AnalyticsServices,
-    private storage: Storage,
-    public httpService:HttpService
+    private analytics: AnalyticsServices,
+    private httpService: HttpService
   ) {
     this.forgotpage = ForgotPage;
     this.signedName = navParams.get('username');
@@ -46,9 +44,9 @@ export class LoginPage {
         console.log(data)
         if (data.status == 1) {
           this.httpService.setUsername(this.loginInfo.username);
+          console.log(data.data.token)
           this.httpService.setToken(data.data.token);
           this.httpService.setStorage(this.httpService.HAS_LOGGED_IN, true);
-          localStorage.setItem('token', data.data.token);
           this.httpService.hasLogin = true;
           // this.events.publish("user:login", user.username);
           let toast = this.toastCtrl.create({
@@ -59,7 +57,9 @@ export class LoginPage {
           toast.present();
           this.submitted = true;
           this.analytics.trackEvent("Login", "Successful");//google分析
-          this.navCtrl.push(TabsPage);
+          setTimeout(() => {
+            this.navCtrl.push(TabsPage);
+          }, 1000)
         }
       })
     }

@@ -19,34 +19,31 @@ export class SignupThirdPage {
     public navParams: NavParams,
     private events: Events
   ) {
-    this.events.subscribe("user:signupFirst", (userEventData) => {
-      this.username = userEventData;
-      console.log(userEventData)
-    })
+   
+  }
+  ionViewDidLoad() {
+    console.log('ionViewDidLoad SignupThirdPage');
     this.time()
   }
   private wait: number = 3;
+  private timer = null;
   private time() {
     if (this.wait == 0) {
-      this.toLogin()
+      this.toLogin();
       this.wait = 3;
       return
     } else {
       let self = this;
-      setTimeout(function () {
+      this.timer = setTimeout(function () {
         self.wait--;
         self.time();
       }, 1000)
     }
   }
-
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad SignupThirdPage');
-  }
   toLogin() {
-    this.navCtrl.push(LoginPage, {
-      username: this.username
-    })
+    this.navCtrl.popToRoot();
   }
-
+  ngOnDestroy() {
+    clearTimeout(this.timer);
+  }
 }

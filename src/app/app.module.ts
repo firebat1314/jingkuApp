@@ -103,6 +103,7 @@ import { AboutUsPage } from "../pages/my/setting/about-us/about-us";
 import { UserData } from "../services/user-data";
 import { Native } from "../providers/native";
 import { HttpService } from "../providers/http-service";
+import { JpushService } from "../providers/jpush-service";
 /*————————————————————————————————指令————————————————————————————————*/
 import { MyDirective } from "../components/my-directive/my-directive";
 /*————————————————————————————————组件————————————————————————————————*/
@@ -181,6 +182,6 @@ import { NothingComponent } from "../components/nothing/nothing";
     SingleCardComponent, MyToolbarComponent, SingleFoodsItemComponent, MeunItemComponent, CountdownComponent, CountInputComponent, ImgTabs2Component, NothingComponent,
     DirectiveTestPage,
   ],
-  providers: [{ provide: ErrorHandler, useClass: IonicErrorHandler }, UserData, Native, HttpService,Storage,Alipay]
+  providers: [{ provide: ErrorHandler, useClass: IonicErrorHandler }, UserData, Native, HttpService,JpushService,Storage,Alipay]
 })
 export class AppModule { }

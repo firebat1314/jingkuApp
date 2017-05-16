@@ -134,7 +134,10 @@ export class PaymentMethodPage {
     }
   }
   pay(data) {
-    Pingpp.createPayment({ "object": data, "urlScheme": "http://www.baidu.com" }, function (result, error) {//scheme 为iOS返回应用
+    let orderInfo = { "object": data, "urlScheme": "http://www.baidu.com" }
+    console.log(JSON.stringify(orderInfo));
+    
+    Pingpp.createPayment(data, function (result, error) {//scheme 为iOS返回应用
       console.log(result);
       console.log(error);
       alert(result)
