@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild, ElementRef } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
+import { HttpService } from "../../../providers/http-service";
 
 /*
   Generated class for the DiscountCoupon page.
@@ -12,11 +13,27 @@ import { NavController, NavParams } from 'ionic-angular';
   templateUrl: 'discount-coupon.html'
 })
 export class DiscountCouponPage {
-
-  constructor(public navCtrl: NavController, public navParams: NavParams) {}
+  data: any;
+  @ViewChild('myCanvas') myCanvas:ElementRef
+  constructor(
+    public navCtrl: NavController,
+    public navParams: NavParams,
+    public httpService: HttpService
+  ) { }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad DiscountCouponPage');
+    this.getCouponData();
+  }
+  ngAfterViewInit(){
+    console.log(this.myCanvas.nativeElement)
   }
 
+  getCouponData() {
+    this.httpService.coupon().then((res) => {
+      if (res.status == 1) {
+        this.data = res;
+      }
+    })
+  }
 }

@@ -68,10 +68,10 @@
                     <span class="txt">精选品牌</span>
                 </div>
                 <div class="body">
-                    <div *ngFor="let item of [{},{},{},{},{},{},{}]">
-                        <img src="./assets/icon/images/brand_1_03.jpg" alt="">
-                        <h3>斯伯丁光学架</h3>
-                        <span>让你在运动中，感受无线乐趣</span>
+                    <div (click)="clickBanner(item)" *ngFor="let item of fore2">
+                        <img src="{{item.ad_img}}" alt="">
+                        <h3>{{item.ad_name}}</h3>
+                        <span>{{item.link_man}}</span>
                     </div>
                 </div>
             </div>
@@ -81,8 +81,8 @@
                     <!--<span class="more" (click)="goToMoreBrand()">更多&gt;</span>-->
                 </div>
                 <div class="body">
-                    <div *ngFor="let item of [{},{},{},{},{},{},{}]">
-                        <img src="./assets/icon/images/brand_1_06.jpg" alt="">
+                    <div *ngFor="let item of fore3">
+                        <img (click)="clickBanner(item)" src="{{item.ad_img}}" alt="">
                     </div>
                 </div>
             </div>
@@ -92,7 +92,7 @@
                     <!--<span class="more" (click)="goToMoreBrand()">更多&gt;</span>-->
                 </div>
                 <div class="body">
-                    <div *ngFor="let item of [{},{},{},{},{},{},{}]"><img src="./assets/icon/images/brand_1_10.jpg" alt=""></div>
+                    <div (click)="clickBanner(item)" *ngFor="let item of fore4"><img src="{{item.ad_img}}" alt=""></div>
                 </div>
             </div>
             <div class="fore-yinxing fore " padding *ngFor="let item of brandList?.data">

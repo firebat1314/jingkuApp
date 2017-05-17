@@ -4,7 +4,6 @@ import { Storage } from '@ionic/storage';
 import { HttpModule }    from '@angular/http';
 import { BrowserModule } from "@angular/platform-browser";
 /*————————————————————————————————插件————————————————————————————————*/
-import { IonicImageViewerModule } from 'ionic-img-viewer';
 import { CityPickerModule } from "ionic2-city-picker/dist/city-picker.module";
 import { Alipay } from '@ionic-native/alipay';
 
@@ -159,7 +158,6 @@ import { NothingComponent } from "../components/nothing/nothing";
       }),
     HttpModule,
     BrowserModule,
-    IonicImageViewerModule,
     CityPickerModule
   ],
   bootstrap: [IonicApp],

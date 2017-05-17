@@ -18,13 +18,18 @@ import { BrandListPage } from "../home/brand-list/brand-list";
   templateUrl: 'classify.html'
 })
 export class ClassifyPage {
+  fore4: any;
+  fore3: any;
+  fore2: any;
   timer: number;
   brandList: any;
   collectionList: any;//收藏商品列表
   collectionShop: any;//收藏店铺列表
+
   getCategorys: any;//获取分类信息
   classSelect: any = 'classify';//brand or classify or care
   careSelect: any = 'shop';//shop or goods
+
   root = SubnavPage1Page;
 
   showBackBtn: boolean = false;//显示分类栏返回按钮
@@ -55,9 +60,9 @@ export class ClassifyPage {
   }
   ngAfterViewInit() {
     this.timer = setInterval(() => {
-      if(!this.myNav){
+      if (!this.myNav) {
         this.showBackBtn = false;
-      }else if (!this.myNav.canGoBack()) {
+      } else if (!this.myNav.canGoBack()) {
         this.showBackBtn = false;
       } else {
         this.showBackBtn = true;
@@ -70,13 +75,22 @@ export class ClassifyPage {
   getHttpData(finished?) {
     this.httpService.getCategorys().then((res) => {
       if (res.status == 1) { this.getCategorys = res.data; }
-      this.httpService.brandList().then((res) => {
-        if (res.status == 1) { this.brandList = res }
-        this.httpService.collectionShop({ size: 10 }).then((res) => {
-          if (res.status == 1) { this.collectionShop = res; }
-          this.httpService.collectionList({ size: 10 }).then((res) => {
-            if (res.status == 1) { this.collectionList = res; }
-            if (finished) { finished(); }
+      this.httpService.getHomebanner({ int_pos_id: 49 }).then((res) => {
+        if (res.status == 1) { this.fore2 = res.data; }
+        this.httpService.getHomebanner({ int_pos_id: 50 }).then((res) => {
+          if (res.status == 1) { this.fore3 = res.data; }
+          this.httpService.getHomebanner({ int_pos_id: 51 }).then((res) => {
+            if (res.status == 1) { this.fore4 = res.data; }
+            this.httpService.brandList().then((res) => {
+              if (res.status == 1) { this.brandList = res }
+              this.httpService.collectionShop({ size: 10 }).then((res) => {
+                if (res.status == 1) { this.collectionShop = res; }
+                this.httpService.collectionList({ size: 10 }).then((res) => {
+                  if (res.status == 1) { this.collectionList = res; }
+                  if (finished) { finished(); }
+                })
+              })
+            })
           })
         })
       })
@@ -89,9 +103,7 @@ export class ClassifyPage {
         if (res.status == 1) { this.collectionShop = res; }
         this.httpService.collectionList({ size: 10 }).then((res) => {
           if (res.status == 1) { this.collectionList = res; }
-          setTimeout(() => {
-            if (refresher) { refresher.complete(); }
-          }, 500);
+          setTimeout(() => { if (refresher) { refresher.complete(); } }, 500);
         })
       })
     } else if (this.classSelect == 'classify') {
@@ -99,9 +111,22 @@ export class ClassifyPage {
         refresher.complete();
       }, 500);
     } else if (this.classSelect == 'brand') {
-      setTimeout(() => {
-        refresher.complete();
-      }, 500);
+      this.httpService.getCategorys().then((res) => {
+        if (res.status == 1) { this.getCategorys = res.data; }
+        this.httpService.getHomebanner({ int_pos_id: 49 }).then((res) => {
+          if (res.status == 1) { this.fore2 = res.data; }
+          this.httpService.getHomebanner({ int_pos_id: 50 }).then((res) => {
+            if (res.status == 1) { this.fore3 = res.data; }
+            this.httpService.getHomebanner({ int_pos_id: 51 }).then((res) => {
+              if (res.status == 1) { this.fore4 = res.data; }
+              this.httpService.brandList().then((res) => {
+                if (res.status == 1) { this.brandList = res }
+                setTimeout(() => { refresher.complete(); }, 500);
+              })
+            })
+          })
+        })
+      })
     }
   }
   onSrcoll() {

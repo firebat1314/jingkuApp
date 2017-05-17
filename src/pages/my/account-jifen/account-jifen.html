@@ -37,7 +37,7 @@
         </ion-item>
     </ion-list>
 
-    <ion-fab right bottom (click)="scrollToTop()">
+    <ion-fab right bottom *ngIf="showBackTopBtn" (click)="scrollToTop()">
         <button ion-fab color="dark" mini>
             {{data?.page}}/{{data?.pages}}
         </button>

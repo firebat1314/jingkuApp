@@ -2,7 +2,6 @@ import { Component } from '@angular/core';
 import { NavController, NavParams, Events } from 'ionic-angular';
 import { Storage } from '@ionic/storage';
 
-import { LoginPage } from '../login/login';
 import { SignupSecondPage } from './signup-second/signup-second';
 import { HttpService } from "../../providers/http-service";
 
@@ -130,7 +129,7 @@ export class SignupPage {
     })
   }
   toLoginPage() {
-    this.navCtrl.push(LoginPage);
+    this.navCtrl.pop();
   }
 
 }

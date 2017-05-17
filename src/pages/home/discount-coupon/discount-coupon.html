@@ -22,5 +22,20 @@
     <div class="banner">
         <img src="./assets/images/images/couponCenter_1_02.jpg" alt="">
     </div>
-    <div></div>
+    <div class="coupon" *ngFor="let item of data?.list">
+        <div class="left">
+            <div class="img">
+                <img src="{{item.logo}}" alt="">
+            </div>
+            <div class="center">
+                <div class="title">{{item.suppliers_name}}</div>
+                <div class="info"><span class="bigfont">{{item.type_money}}</span>满{{item.min_goods_amount}}可用</div>
+            </div>
+        </div>
+        <div class="right">
+            <canvas #myCanvas></canvas>
+            <div ion-button small round block class="click" *ngIf="item.is_get==0">点击领劵</div>
+            <div ion-button small round block class="touse" *ngIf="item.is_get==1">去使用</div>
+        </div>
+    </div>
 </ion-content>

@@ -53,12 +53,12 @@ page-presell {
         height: 136px;
         width: 100%;
         .left {
-            min-width: 110px;
-            width: 128px;
             height: 100%;
+            flex: 0.6;
+            max-width: 124px;
             overflow: hidden;
             position: relative;
-            margin-right: 20px;
+            margin-right: 14px;
             display: flex;
             justify-content: center;
             align-items: center;
@@ -78,9 +78,12 @@ page-presell {
                 justify-content: center;
                 align-items: center;
                 color: #fff;
+                white-space: nowrap;
+                text-overflow: ellipsis;
                 .icon {
-                    margin: 0 5px;
+                    margin: 0 3px;
                     font-size: 2rem;
+                    margin-top: 2px;
                 }
                 span {
                     margin: 0;
@@ -142,13 +145,15 @@ page-presell {
                     color: #e60000;
                     font-size: 1.8rem;
                     white-space: nowrap;
-                    .old-price {
-                        text-decoration: line-through;
-                        white-space: nowrap;
-                        color: #808080;
-                        text-overflow: ellipsis;
-                        overflow: hidden;
-                    }
+                }
+                .old-price {
+                    color: #808080;
+                    text-decoration: line-through;
+                    white-space: nowrap;
+                    text-overflow: ellipsis;
+                    overflow: hidden;
+                    flex: 1;
+                    margin-left: 4px;
                 }
             }
         }

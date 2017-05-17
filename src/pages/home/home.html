@@ -224,7 +224,7 @@
             <ion-slides loop="false" parallax="true" pager>
                 <ion-slide *ngFor="let item of jingxuan_img4?.data">
                     <ion-card>
-                        <img src="{{item?.ad_img}}" />
+                        <img (click)="clickBanner(item)" src="{{item?.ad_img}}" />
                         <!--<div class="collect">
                             <div class="left">
                                 <ion-icon name="md-heart-outline"></ion-icon>

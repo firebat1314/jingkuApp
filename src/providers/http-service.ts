@@ -375,4 +375,7 @@ export class HttpService {
   forgotPwd(data?: Object) {//忘记密码
     return this.http.post(this.ip + '/Login/forgotPwd', data,true)
   }
+  coupon(data?: Object) {//首页优惠券
+    return this.http.get(this.ip + '/Index/coupon', data)
+  }
 }

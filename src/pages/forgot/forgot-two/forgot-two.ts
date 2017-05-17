@@ -114,7 +114,6 @@ export class ForgotTwoPage {
       verify: this.Phone_code,
       mobile_phone:this.phoneNumber
     }).then((res)=>{
-        this.navCtrl.push(ForgotThreePage)
       if(res.status==1){
         this.navCtrl.push(ForgotThreePage)
       }

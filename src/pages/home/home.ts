@@ -95,34 +95,33 @@ export class HomePage {
         this.httpService.getCategoryAd().then((res) => {
           console.log("热门品类", res)
           if (res.status == 1) { this.categoryAddetatils = res.data; }
-          this.httpService.getHomebanner({ int_pos_id: 46, size: 1 }).then((res) => {
+          this.httpService.getHomebanner({ int_pos_id: 45, size: 1 }).then((res) => {
             console.log("精选专题下的广告1", res)
             if (res.status == 1) { this.jingxuan_img1 = res; }
+            this.native.hideLoading();
+            if (finish) { finish(); }
             this.httpService.getBrands().then(((res) => {
               console.log("热门品牌下的品牌列表", res)
               if (res.status == 1) { this.getBrands = res.data; }
-              this.httpService.getHomebanner({ int_pos_id: 47, size: 1 }).then((res) => {
+              this.httpService.getHomebanner({ int_pos_id: 46, size: 1 }).then((res) => {
                 console.log("精选专题下的广告2", res)
                 if (res.status == 1) { this.jingxuan_img2 = res; }
                 this.httpService.getCategoryRecommendGoodsHot().then(((res) => {
                   console.log("精选专题下的热门", res)
                   if (res.status == 1) { this.getCategoryRecommendGoodsHot = res.data; }
-                  this.httpService.getHomebanner({ int_pos_id: 48, size: 1 }).then((res) => {
+                  this.httpService.getHomebanner({ int_pos_id: 47, size: 1 }).then((res) => {
                     console.log("精选专题下的广告3", res)
                     if (res.status == 1) { this.jingxuan_img3 = res; }
                     this.httpService.getCategoryRecommendGoods().then((res) => {
                       console.log("精选专题下新品", res)
                       if (res.status == 1) { this.getCategoryRecommendGoods = res.data; }
-                      this.httpService.getHomebanner({ int_pos_id: 49 }).then((res) => {
+                      this.httpService.getHomebanner({ int_pos_id: 48 }).then((res) => {
                         if (res.status == 1) { this.jingxuan_img4 = res; }
                         this.httpService.getCategoryRecommendGoodsBest().then(((res) => {
                           console.log("精选专题下最好", res)
                           if (res.status == 1) { this.getCategoryRecommendGoodsBest = res.data; }
-                          this.native.hideLoading();
-                          if (finish) { finish(); }
                         }))
                       })
-
                     })
                   })
                 }))

@@ -44,7 +44,6 @@ export class LoginPage {
         console.log(data)
         if (data.status == 1) {
           this.httpService.setUsername(this.loginInfo.username);
-          console.log(data.data.token)
           this.httpService.setToken(data.data.token);
           this.httpService.setStorage(this.httpService.HAS_LOGGED_IN, true);
           this.httpService.hasLogin = true;

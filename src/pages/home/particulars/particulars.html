@@ -132,15 +132,15 @@
         </div>
         <div class="data">
             <div>
-                <span>0???</span>
+                <span>{{getGoodsInfo?.supplier_info?.new_goods}}</span>
                 <span>新品</span>
             </div>
             <div>
-                <span>0???</span>
+                <span>{{getGoodsInfo?.supplier_info?.promote_goods}}</span>
                 <span>促销</span>
             </div>
             <div>
-                <span>0???</span>
+                <span>{{getGoodsInfo?.supplier_info?.hot_goods}}</span>
                 <span>热销</span>
             </div>
         </div>
@@ -261,8 +261,8 @@
 <ion-footer>
     <div class="main">
         <div class="left" [ngSwitch]="getGoodsInfo?.data?.is_collect">
-            <div>
-                <ion-icon style="font-weight: 700;" name="mess" (click)="goAccountServicePage()"></ion-icon>
+            <div (click)="goAccountServicePage()">
+                <ion-icon style="font-weight: 700;" name="mess"></ion-icon>
                 <span>客服</span>
             </div>
             <div *ngSwitchCase="1" (click)="beCareFor()">
