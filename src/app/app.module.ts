@@ -5,8 +5,7 @@ import { HttpModule }    from '@angular/http';
 import { BrowserModule } from "@angular/platform-browser";
 /*————————————————————————————————插件————————————————————————————————*/
 import { CityPickerModule } from "ionic2-city-picker/dist/city-picker.module";
-import { Alipay } from '@ionic-native/alipay';
-
+import { IonicImageViewerModule } from 'ionic-img-viewer';
 /*————————————————————————————————base页————————————————————————————————*/
 import { MyApp } from './app.component';
 import { TabsPage } from '../pages/tabs/tabs';
@@ -105,8 +104,9 @@ import { HttpService } from "../providers/http-service";
 import { JpushService } from "../providers/jpush-service";
 /*————————————————————————————————指令————————————————————————————————*/
 import { MyDirective } from "../components/my-directive/my-directive";
-/*————————————————————————————————组件————————————————————————————————*/
+import { ParallaxHeader } from "../components/parallax-header/parallax-header";
 import { ImgTabs } from "../components/img-tabs/img-tabs";
+/*————————————————————————————————组件————————————————————————————————*/
 import { SingleCardComponent } from '../components/single-card/single-card';
 import { MyToolbarComponent } from '../components/my-toolbar/my-toolbar';
 import { SingleFoodsItemComponent } from '../components/single-foods-item/single-foods-item';
@@ -117,7 +117,6 @@ import { ImgTabs2Component } from "../components/img-tabs2/img-tabs2";
 import { CompanynamePage } from "../pages/my/account-management/account-info/companyname/companyname";
 import { PhoneNumberFilter } from "../pipes/phone-number-filter";
 import { NothingComponent } from "../components/nothing/nothing";
-
 
 @NgModule({
   declarations: [
@@ -139,7 +138,7 @@ import { NothingComponent } from "../components/nothing/nothing";
     SingleCardComponent, MyToolbarComponent, SingleFoodsItemComponent, MeunItemComponent, CountdownComponent, CountInputComponent, ImgTabs2Component, NothingComponent,
     DirectiveTestPage,
     /*——————————————————指令——————————————————*/
-    MyDirective, ImgTabs,
+    MyDirective, ImgTabs,ParallaxHeader,
     /*——————————————————过滤器——————————————————*/
     PhoneNumberFilter
   ],
@@ -158,7 +157,8 @@ import { NothingComponent } from "../components/nothing/nothing";
       }),
     HttpModule,
     BrowserModule,
-    CityPickerModule
+    CityPickerModule,
+    IonicImageViewerModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -180,6 +180,6 @@ import { NothingComponent } from "../components/nothing/nothing";
     SingleCardComponent, MyToolbarComponent, SingleFoodsItemComponent, MeunItemComponent, CountdownComponent, CountInputComponent, ImgTabs2Component, NothingComponent,
     DirectiveTestPage,
   ],
-  providers: [{ provide: ErrorHandler, useClass: IonicErrorHandler }, UserData, Native, HttpService,JpushService,Storage,Alipay]
+  providers: [{ provide: ErrorHandler, useClass: IonicErrorHandler }, UserData, Native, HttpService,JpushService,Storage]
 })
 export class AppModule { }

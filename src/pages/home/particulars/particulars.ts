@@ -169,7 +169,7 @@ export class ParticularsPage {
     }
   }
   openCallNumber() {
-    this.native.openCallNumber(this.getSupplierInfo.mobile, true);
+    this.native.openCallNumber(this.getGoodsInfo.supplier_info.mobile, true);
   }
   goAccountServicePage() {
     this.navCtrl.push(AccountServicePage)

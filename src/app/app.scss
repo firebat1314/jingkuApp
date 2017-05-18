@@ -20,6 +20,19 @@ html {
     font-size: 58.5%;
 }
 
+//ParallaxHeader 指令样式
+.header-image {
+    img {
+        display: block;
+        width: 100%;
+    }
+}
+
+.main-content {
+    width: 100%;
+    background: #f7f7f7;
+}
+
 .content {
     background: #f7f7f7;
 }

@@ -8,6 +8,16 @@ page-discount-coupon {
         overflow: hidden;
         border-radius: 0 8px 8px 0;
         background: #fff url(../assets/images/images/couponCenter_1_05.jpg) left top no-repeat;
+        position: relative;
+        .get {
+            position: absolute;
+            top: 0;
+            right: 15%;
+            z-index: 2;
+            img {
+                width: 71px;
+            }
+        }
         .left {
             display: flex;
             align-items: center;
@@ -25,7 +35,7 @@ page-discount-coupon {
                 justify-content: center;
                 overflow: hidden;
                 img {
-                    height: 90%;
+                    max-height: 90%;
                 }
             }
         }
@@ -36,7 +46,6 @@ page-discount-coupon {
             justify-content: space-between;
             text-overflow: ellipsis;
             overflow: hidden;
-            white-space: nowrap;
             font-weight: 500;
             font-size: 1.6rem;
             .info {
@@ -48,6 +57,7 @@ page-discount-coupon {
         }
         .right {
             max-width: 100px;
+            min-width: 100px;
             width: 100px;
             height: 100%;
             background: #7986cb;
@@ -80,6 +90,7 @@ page-discount-coupon {
             .button {
                 color: #66a6ff;
                 box-shadow: 0 0 5px #5971cb;
+                padding: 0;
             }
             .click {
                 background: #fff;

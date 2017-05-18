@@ -50,15 +50,6 @@ export class AccountJifenPage {
       }, 500);
     })
   }
-  onscroll(){
-    if (this.content.scrollTop > 400) {
-      this.showBackTopBtn = true; 
-    } else if (this.content.scrollTop <= 400) {
-      this.showBackTopBtn = false;
-    }
-    this.content.resize();
-    console.log(this.showBackTopBtn, this.content.scrollTop)
-  }
   scrollToTop() {
     this.content.scrollToTop();
   }

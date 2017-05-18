@@ -142,13 +142,13 @@ export class HttpService {
     return this.http.get(this.ip + '/Goods/get_zhujing', data)
   }
   getAttrList(data?: Object) {//如果返回的(good_type) 商品类型是goods再调用接口如下
-    return this.http.get(this.ip + '/Goods/get_attr_list', data)
+    return this.http.get(this.ip + '/Goods/get_attr_list', data, true)
   }
   addToCartSpecJp(data?: Object) {//镜片商品加入购物车
     return this.http.post(this.ip + '/Goods/add_to_cart_spec_jp', data)
   }
   addToCartSpec(data?: Object) {//普通商品加入购物车
-    return this.http.post(this.ip + '/Goods/add_to_cart_spec', data)
+    return this.http.post(this.ip + '/Goods/add_to_cart_spec', data, true)
   }
   changeGoodsNumber(data?: Object) {//改变商品数量 获取价格
     return this.http.post(this.ip + '/Goods/change_goods_number', data)
@@ -373,7 +373,7 @@ export class HttpService {
     return this.http.get(this.ip + '/Goods/goods_infos', data)
   }
   forgotPwd(data?: Object) {//忘记密码
-    return this.http.post(this.ip + '/Login/forgotPwd', data,true)
+    return this.http.post(this.ip + '/Login/forgotPwd', data, true)
   }
   coupon(data?: Object) {//首页优惠券
     return this.http.get(this.ip + '/Index/coupon', data)

@@ -7,31 +7,35 @@
 </ion-header>
 
 
-<ion-content>
-    <div class="fore fore1">
-        <div class="banner">
-            <img src="./assets/images/images/yushou_01_02.jpg" alt="">
-            <div class="top-scrollbar">
-                <div *ngFor="let item of getCategorys;let i = index" (click)="getList(i)">
-                    <div class="select" *ngIf="checkedIndex==i"></div>
-                    <div><img src="{{item.thumb}}" alt="{{item.cat_name}}"></div>
-                    <span>{{item.cat_name}}</span>
+<ion-content parallax-header>
+    <div class="header-image">
+        <img src="./assets/images/images/yushou_01_02.jpg" alt="">
+    </div>
+
+    <div class="main-content">
+        <div class="fore fore1">
+            <div class="banner">
+                <div class="top-scrollbar">
+                    <div *ngFor="let item of getCategorys;let i = index" (click)="getList(i)">
+                        <div class="select" *ngIf="checkedIndex==i"></div>
+                        <div><img src="{{item.thumb}}" alt="{{item.cat_name}}"></div>
+                        <span>{{item.cat_name}}</span>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
-    <ion-list>
-        <div class="fore singleton" *ngFor="let item of data?.data">
-            <div class="left">
-                <img src="http://img.jing-ku.com/{{item.goods_img}}" alt="">
-                <div class="time">
-                    <ion-icon name="ios-time-outline"></ion-icon>
-                    <countdown endDate="{{item.pre_end_date}}"></countdown>
+        <ion-list>
+            <div class="fore singleton" *ngFor="let item of data?.data">
+                <div class="left">
+                    <img src="http://img.jing-ku.com/{{item.goods_img}}" alt="">
+                    <div class="time">
+                        <ion-icon name="ios-time-outline"></ion-icon>
+                        <countdown endDate="{{item.pre_end_date}}"></countdown>
+                    </div>
                 </div>
-            </div>
-            <div class="right">
-                <div class="title">{{item.name}}</div>
-                <!--<div class="strip">
+                <div class="right">
+                    <div class="title">{{item.name}}</div>
+                    <!--<div class="strip">
                     <div class="wrap">
                         <div [ngStyle]="{'width.%':20}"></div>
                     </div>
@@ -39,16 +43,16 @@
                         <span>已抢购???件</span>
                         <span>仅???件</span>
                     </div></div>-->
-                <div class="price">
-                    <div class="red">{{item.promote_price}}</div>
-                    <div class="old-price">{{item.market_price}}</div>
-                    <div ion-button color="dark" no-margin (click)="goParticularsPage(item.id)">立即购买</div>
+                    <div class="price">
+                        <div class="red">{{item.promote_price}}</div>
+                        <div class="old-price">{{item.market_price}}</div>
+                        <div ion-button color="dark" no-margin (click)="goParticularsPage(item.id)">立即购买</div>
+                    </div>
                 </div>
             </div>
-        </div>
-    </ion-list>
-
-    <!--    <ion-fab left bottom>
+        </ion-list>
+    </div>
+    <!--<ion-fab left bottom>
         <button ion-fab color="dark" mini>
             {{data?.page}}/{{data?.pages}}
         </button>
@@ -58,4 +62,6 @@
             <img width="100%" src="./assets/icon/gotop.png" alt="">
         </button>
     </ion-fab>
+
+    <ion-infinite-scroll></ion-infinite-scroll>
 </ion-content>

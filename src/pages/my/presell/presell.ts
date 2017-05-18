@@ -12,20 +12,18 @@ export class PresellPage {
   getCategorys: any;
 
   checkedIndex: number = 0;
-  @ViewChild(Content) content:Content;
+  @ViewChild(Content) content: Content;
   constructor(
     public navCtrl: NavController,
     public navParams: NavParams,
     private httpService: HttpService
-  ) {
+  ) {}
+  ionViewDidLoad() {
+    console.log('ionViewDidLoad PresellPage');
     this.httpService.getCategorys().then((res) => {
       if (res.status == 1) { this.getCategorys = res.data; }
     })
     this.getPresell();
-  }
-
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad PresellPage');
   }
   getList(index) {
     this.checkedIndex = index;
@@ -39,10 +37,10 @@ export class PresellPage {
       }
     })
   }
-  goParticularsPage(id){
-    this.navCtrl.push(ParticularsPage,{goodsId:id});
+  goParticularsPage(id) {
+    this.navCtrl.push(ParticularsPage, { goodsId: id });
   }
-  scrollToTop(){
+  scrollToTop() {
     this.content.scrollToTop();
   }
 }

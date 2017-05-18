@@ -13,24 +13,30 @@
 </ion-header>
 
 
-<ion-content>
-    <div class="fore fore1">
+<ion-content parallax-header>
+    <div class="header-image">
         <img src="./assets/images/images/jifenStore_1_02_02.jpg" alt="">
-        <div class="btns">
-            <div [navPush]="MemberCenterPage">积分 <span class="red">{{totalScore}}</span></div>
-            <div [navPush]="JifenHistoryPage">兑换记录</div>
+    </div>
+
+    <div class="main-content">
+        <div class="fore fore1">
+            <div class="btns">
+                <div [navPush]="MemberCenterPage">积分 <span class="red">{{totalScore}}</span></div>
+                <div [navPush]="JifenHistoryPage">兑换记录</div>
+            </div>
+        </div>
+        <div class="fore fore2">
+            <ion-card *ngFor="let item of data?.list" (click)="goDuihuanDetailsPage(item.goods_id)">
+                <div class="img"><img src="{{item.goods_img}}" alt=""></div>
+                <div class="info">
+                    <h3>{{item.goods_name}}</h3>
+                    <p><span class="red">{{item.exchange_integral}}</span> 积分</p>
+                    <p>市场参考价：¥{{item.shop_price}}</p>
+                </div>
+            </ion-card>
         </div>
     </div>
-    <div class="fore fore2">
-        <ion-card *ngFor="let item of data?.list" (click)="goDuihuanDetailsPage(item.goods_id)">
-            <div class="img"><img src="{{item.goods_img}}" alt=""></div>
-            <div class="info">
-                <h3>{{item.goods_name}}</h3>
-                <p><span class="red">{{item.exchange_integral}}</span> 积分</p>
-                <p>市场参考价：¥{{item.shop_price}}</p>
-            </div>
-        </ion-card>
-    </div>
+
 
     <ion-fab left bottom>
         <button ion-fab color="dark" mini>

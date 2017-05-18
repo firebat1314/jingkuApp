@@ -20,9 +20,12 @@
 
 <ion-content>
     <div class="banner">
-        <img src="./assets/images/images/couponCenter_1_02.jpg" alt="">
+        <img src="./assets/images/images/couponCenter_1_02.jpg" width="100%" alt="">
     </div>
-    <div class="coupon" *ngFor="let item of data?.list">
+    <div #myDiv class="coupon" [class.get]="item.is_get==1" *ngFor="let item of data?.list">
+        <div class="get" *ngIf="item.is_get==1">
+            <img src="./assets/images/images/coupon_center_1_03.png" alt="">
+        </div>
         <div class="left">
             <div class="img">
                 <img src="{{item.logo}}" alt="">
@@ -33,9 +36,21 @@
             </div>
         </div>
         <div class="right">
-            <canvas #myCanvas></canvas>
-            <div ion-button small round block class="click" *ngIf="item.is_get==0">点击领劵</div>
-            <div ion-button small round block class="touse" *ngIf="item.is_get==1">去使用</div>
+            <div style="width: 60px;height: 60px;">
+                <canvas #myCanvas class="myCanvas" width="60" height="60" *ngIf="item.is_get==0"></canvas>
+            </div>
+            <div ion-button small round block class="click" *ngIf="item.is_get==0" (click)="getPrivilege(0,item.type_id)">点击领劵</div>
+            <div ion-button small round block class="touse" *ngIf="item.is_get==1" (click)="getPrivilege(1,item.type_id)">去使用</div>
         </div>
     </div>
+
+    <ion-fab right bottom (click)="scrollToTop()">
+        <button ion-fab color="dark" mini>
+            <img width="100%" src="./assets/icon/gotop.png" alt="">
+        </button>
+    </ion-fab>
+
+    <ion-infinite-scroll (ionInfinite)="doInfinite($event)" *ngIf="flag">
+        <ion-infinite-scroll-content></ion-infinite-scroll-content>
+    </ion-infinite-scroll>
 </ion-content>
