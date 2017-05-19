@@ -77,6 +77,10 @@ export class ParticularsPage {
     });
   }
   presentModal(str) {
+    if (str == '优惠券'&&this.getGoodsInfo.bonus.length == 0) {
+        this.native.showToast('暂无优惠券');
+        return;
+    }
     let modal = this.modalCtrl.create(ParticularsModalPage, { name: str, getBonus: this.getGoodsInfo.bonus, sendto: this.getGoodsInfo.sale_city, GoodsInfo: this.getGoodsInfo.data });
     modal.onDidDismiss(data => {
       console.log(data);
@@ -172,7 +176,8 @@ export class ParticularsPage {
     this.native.openCallNumber(this.getGoodsInfo.supplier_info.mobile, true);
   }
   goAccountServicePage() {
-    this.navCtrl.push(AccountServicePage)
+    this.native.showToast('建设中...')
+    // this.navCtrl.push(AccountServicePage)
   }
 
 }

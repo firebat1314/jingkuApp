@@ -46,7 +46,6 @@ export class InvoiceQualificationPage {
   }
   getFormData() {
     this.httpService.updateInv({ ivid: this.navParams.get('ivid') }).then((res) => {
-      console.log(res)
       if (res.status == 1) {
         this.formData.type = res.data.type;
         this.formData.payee = res.data.payee;
@@ -76,7 +75,6 @@ export class InvoiceQualificationPage {
 
   openFile(type) {
     this.native.getPictureByPhotoLibrary().then((res) => {
-      console.log(res)
       if (type === 1) {
         this.formData.yyzz = 'data:image/jpeg;base64,' + res;
       } else if (type === 2) {

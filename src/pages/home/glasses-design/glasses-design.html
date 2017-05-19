@@ -16,19 +16,19 @@
 <ion-content>
     <div class="fore1 fore" *ngIf="banner">
         <ion-slides #bannerSlide autoplay="4000" loop="true" pager>
-            <ion-slide *ngFor="let item of banner?.data">
+            <ion-slide *ngFor="let item of banner?.data" (click)="clickBanner(item)">
                 <img src="{{item.ad_img}}" />
             </ion-slide>
         </ion-slides>
     </div>
     <div class="fore2 fore">
         <div class="head"><img src="./assets/images/images/sheji_3_06.jpg" alt=""></div>
-        <div class="body" padding>
-            <img src="{{item.ad_img}}" alt="" *ngFor="let item of class?.data">
+        <div class="body">
+            <img src="{{item.ad_img}}" (click)="clickBanner(item)" alt="" *ngFor="let item of class?.data">
         </div>
     </div>
     <div class="fore3 fore">
-        <img src="{{img?.data[0]?.ad_img}}" alt="">
+        <img src="{{img?.data[0]?.ad_img}}" (click)="clickBanner(img.data[0])" alt="">
     </div>
     <div class="fore4 fore" padding *ngFor="let item of list?.goods">
         <div class="left">

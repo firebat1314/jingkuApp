@@ -28,7 +28,7 @@
     </div>
     <div class="price_time" *ngIf="getGoodsInfo?.data?.is_pre==1">
         <div class="left">
-            <p><span class="number">¥{{getGoodsInfo?.data?.shop_price}}</span>每人限购：99副</p>
+            <p><span class="number">¥{{getGoodsInfo?.data?.shop_price_formated}}</span>每人限购：{{getGoodsInfo?.data?.pre_number}}副</p>
             <p>商品总量：{{getGoodsInfo?.data?.goods_number}}件</p>
         </div>
         <div class="right" [ngSwitch]="getGoodsInfo?.data?.type">
@@ -45,7 +45,8 @@
             {{getGoodsInfo?.data?.goods_name}}
         </div>
         <div class="body">
-            批发价&nbsp;：<span class="now-price">¥<span class="number">{{getGoodsInfo?.data?.shop_price}}</span></span><span class="old-price">{{getGoodsInfo?.data?.old_shop_price}}</span>&nbsp;<span class="rush-icon">抢购</span>
+            批发价&nbsp;：<span class="now-price"><span class="number">{{getGoodsInfo?.data?.shop_price_formated}}</span></span><span class="old-price">{{getGoodsInfo?.data?.old_shop_price}}</span>&nbsp;
+            <span class="rush-icon" *ngIf="getGoodsInfo?.data?.is_pre==1">预售</span>
         </div>
         <div class="bottom">
             <div>建议零售价&nbsp;：<span class="offer-price">¥{{getGoodsInfo?.data?.market_price}}</span></div>
@@ -79,12 +80,12 @@
         </ion-list>
     </div>
     <div class="fore">
-        <button mode="ios" ion-item no-lines (click)="presentModal('发货地址')">
-            发货地：北京
+        <div ion-item no-lines>
+            发货地：{{getGoodsInfo?.supplier_info?.city_name}}
             <ion-note>
                 配送时间：预计7-14个工作日送达
             </ion-note>
-        </button>
+        </div>
     </div>
     <div class="fore will-address">
         <button mode="ios" ion-item no-lines (click)="presentModal('配送地址')">
@@ -193,7 +194,8 @@
         </div>
         <div [ngSwitch]="selectGroupRecommend">
             <div class="group" *ngSwitchCase="'group'">
-                <ion-slides slidesPerView="3" pager>
+                <div *ngIf="getGoodsInfo?.fittings?.length==0" marin-left>无组合套餐</div>
+                <ion-slides *ngIf="getGoodsInfo?.fittings?.length!=0" slidesPerView="3" pager>
                     <ion-slide *ngFor="let item of getGoodsInfo?.fittings">
                         <div class="goods">
                             <div class="top">
@@ -247,6 +249,7 @@
             </div>
             <div class="arguments" *ngSwitchCase="'arguments'">
                 <div class="wrapper">
+                    <div *ngIf="getGoodsInfo?.parameter?.length==0">暂无参数</div>
                     <div *ngFor="let item of getGoodsInfo?.parameter">
                         <div class="name">{{item.name}}：<span>{{item.value}}</span></div>
                     </div>

@@ -22,7 +22,7 @@
     </ion-refresher>
     <!--——————————————————————————————————————————轮播图——————————————————————————————————————————-->
     <div class="banner-wrapper" *ngIf="bannerImgs">
-        <ion-slides #bannerSlide autoplay="4000" loop="false" pager>
+        <ion-slides #bannerSlide autoplay="4000" loop="true" pager (ionSlideAutoplayStop)="bannerSlide.startAutoplay()">
             <ion-slide *ngFor="let item of bannerImgs">
                 <img (click)="clickBanner(item)" [src]="item.ad_img" />
             </ion-slide>
@@ -33,25 +33,25 @@
         <div class="top">
             <div [navPush]="PresellPage">
                 <div class="img">
-                    <img src="./assets/icon/yushou.png" alt="">
+                    <img src="./assets/icon/home_icon_08.png" alt="">
                 </div>
                 <span>预售</span>
             </div>
             <div [navPush]="RechargePage">
                 <div class="img">
-                    <img src="./assets/icon/home_5_05.png" alt="">
+                    <img src="./assets/icon/home_icon_02.png" alt="">
                 </div>
                 <span>充值</span>
             </div>
             <div [navPush]="FastbuyPage">
                 <div class="img">
-                    <img src="./assets/icon/home_5_07.png" alt="">
+                    <img src="./assets/icon/home_icon_05.png" alt="">
                 </div>
                 <span>闪购</span>
             </div>
             <div (click)="goClassPage('brand')">
                 <div class="img">
-                    <img src="./assets/icon/home_5_09.png" alt="">
+                    <img src="./assets/icon/home_icon_04.png" alt="">
                 </div>
                 <span>品牌</span>
             </div>
@@ -59,25 +59,25 @@
         <div class="bottom">
             <div (click)="goWhitebarPage()">
                 <div class="img">
-                    <img src="./assets/icon/home_5_15.png" alt="">
+                    <img src="./assets/icon/home_icon_01.png" alt="">
                 </div>
                 <span>白条</span>
             </div>
             <div [navPush]="DiscountCouponPage">
                 <div class="img">
-                    <img src="./assets/icon/home_5_16.png" alt="">
+                    <img src="./assets/icon/home_icon_07.png" alt="">
                 </div>
                 <span>优惠券</span>
             </div>
             <div [navPush]="IntegralstorePage">
                 <div class="img">
-                    <img src="./assets/icon/home_5_18.png" alt="">
+                    <img src="./assets/icon/home_icon_03.png" alt="">
                 </div>
                 <span>积分商城</span>
             </div>
             <div [navPush]="GlassesDesignPage">
                 <div class="img">
-                    <img src="./assets/icon/home_5_20.png" alt="">
+                    <img src="./assets/icon/home_icon_06.png" alt="">
                 </div>
                 <span>镜库设计</span>
             </div>
@@ -134,7 +134,7 @@
                         <div class="img"><img src="{{slide?.thumb}}" alt=""></div>
                         <div class="info">
                             <div class="name">{{slide?.name}}</div>
-                            <div class="price">{{slide?.market_price}}</div>
+                            <div class="price">{{slide?.shop_price}}</div>
                         </div>
                     </div>
                 </ion-slide>
@@ -159,7 +159,7 @@
                             <div class="img"><img src="{{slide?.thumb}}" alt=""></div>
                             <div class="info">
                                 <div class="name">{{slide?.name}}</div>
-                                <div class="price">{{slide?.market_price}}</div>
+                                <div class="price">{{slide?.shop_price}}</div>
                             </div>
                         </div>
                     </div>
@@ -187,7 +187,7 @@
                             <div class="img"><img src="{{slide?.thumb}}" alt=""></div>
                             <div class="info">
                                 <div class="name">{{slide?.name}}</div>
-                                <div class="price">{{slide?.market_price}}</div>
+                                <div class="price">{{slide?.shop_price}}</div>
                             </div>
                         </div>
                     </div>
@@ -240,7 +240,7 @@
     <!--——————————————————————————————————————————热门单品——————————————————————————————————————————-->
     <div class="hot-other home-content" *ngIf="getCategoryRecommendGoodsHot" home-padding>
         <div class="title">
-            <span class="txt">热门单品</span>
+            <span class="txt">热门商品</span>
             <span class="more" [navPush]="BrandListPage" [navParams]="{list:'singleHot'}">更多&gt;</span>
         </div>
         <div class="main">

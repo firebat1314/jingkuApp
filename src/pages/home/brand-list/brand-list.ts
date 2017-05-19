@@ -20,6 +20,7 @@ export class BrandListPage {
 	myHomeSearch = '';
 	listStyleflag: Boolean;//列表样式切换
 	mytool = 'all';//当前筛选
+
 	paramsData = {
 		size: 30,
 		page: 1,
@@ -80,7 +81,6 @@ export class BrandListPage {
 	doRefresh(refresher) {
 		this.httpService.categoryGoods(this.paramsData).then((res) => {
 			if (res.status == 1) {
-				this.data.page = 1;
 				this.data = res;
 			}
 			setTimeout(() => {
@@ -89,6 +89,22 @@ export class BrandListPage {
 		})
 		this.getCarNumver();
 	}
+	// flag: boolean = true;
+	// doInfinite(infiniteScroll) {
+	// 	if (this.data.page < this.data.pages) {
+	// 		let pagingParam = Object.assign(this.paramsData, { page: ++this.data.page });
+	// 		this.httpService.categoryGoods(pagingParam).then((res) => {
+	// 			if (res.status == 1) {
+	// 				Array.prototype.push.apply(this.data.goods, res.goods);
+	// 			}
+	// 			setTimeout(() => {
+	// 				infiniteScroll.complete();
+	// 			}, 500);
+	// 		})
+	// 	} else {
+	// 		this.flag = false;
+	// 	}
+	// }
 	getCarNumver() {
 		this.httpService.getFlowGoods().then((res) => {
 			if (res.status == 1) {
@@ -178,6 +194,7 @@ export class BrandListPage {
 			})
 		}
 	}
+
 	scrollToTop() {
 		this.content.scrollToTop();
 	}

@@ -42,27 +42,33 @@ export class PeceiptPage {
   }
   getHttpData() {
     this.httpService.invoice({ page: 1 }).then((res) => {
-      console.log(res);
-      this.suoquList = res;
+      if (res.status == 1) {
+        this.suoquList = res;
+      }
     })
     this.httpService.invList({ page: 1 }).then((res) => {
-      console.log(res);
-      this.invoiceList = res;
+      if (res.status == 1) {
+        this.invoiceList = res;
+      }
     })
     this.httpService.invRole({ page: 1 }).then((res) => {
-      console.log(res);
-      this.invRoleList = res;
+      if (res.status == 1) {
+        this.invRoleList = res;
+      }
     })
   }
+
   search() {
-    this.httpService.invList().then((res) => {
-      console.log(res);
-      this.invoiceList = res;
+    this.httpService.invList({ page: 1, time: this.myDate }).then((res) => {
+      if (res.status == 1) {
+        this.invoiceList = res;
+      }
     })
   }
+
   flag: boolean = true;
   doInfinite(infiniteScroll) {
-    if (this.receiptTool == 'receiptSskFor') {
+     if (this.receiptTool == 'receiptSskFor') {
       if (this.suoquList.page < this.suoquList.pages) {
         this.httpService.invoice({ page: ++this.suoquList.page }).then((res) => {
           if (res.status == 1) {
@@ -73,13 +79,11 @@ export class PeceiptPage {
           }, 500);
         })
       } else {
-        setTimeout(() => {
-          infiniteScroll.complete();
-        }, 500);
+        this.flag = false;
       }
     } else if (this.receiptTool == 'receiptList') {
       if (this.invoiceList.page < this.invoiceList.pages) {
-        this.httpService.invoice({ page: ++this.invoiceList.page }).then((res) => {
+        this.httpService.invList({ page: ++this.invoiceList.page }).then((res) => {
           if (res.status == 1) {
             Array.prototype.push.apply(this.invoiceList.data, res.data);
           }
@@ -88,13 +92,11 @@ export class PeceiptPage {
           }, 500);
         })
       } else {
-        setTimeout(() => {
-          infiniteScroll.complete();
-        }, 500);
+        this.flag = false;
       }
-    } else if (this.receiptTool == 'receiptInfo') {
+    }else if (this.receiptTool == 'receiptInfo') {
       if (this.invRoleList.page < this.invRoleList.pages) {
-        this.httpService.invoice({ page: ++this.invRoleList.page }).then((res) => {
+        this.httpService.invRole({ page: ++this.invRoleList.page }).then((res) => {
           if (res.status == 1) {
             Array.prototype.push.apply(this.invRoleList.data, res.data);
           }
@@ -103,15 +105,9 @@ export class PeceiptPage {
           }, 500);
         })
       } else {
-        setTimeout(() => {
-          infiniteScroll.complete();
-        }, 500);
+        this.flag = false;
       }
     }
-
-  }
-  scrollToTop() {
-    this.content.scrollToTop();
   }
   goInvoiceQualificationPage(ivid) {
     this.navCtrl.push(InvoiceQualificationPage, { ivid: ivid })

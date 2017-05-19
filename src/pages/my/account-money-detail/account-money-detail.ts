@@ -28,7 +28,7 @@ export class AccountMoneyDetailPage {
       this.data = res;
     })
   }
-
+  
   flag: boolean = true;
   doInfinite(infiniteScroll) {
     if (this.data.page < this.data.pages) {
@@ -42,9 +42,7 @@ export class AccountMoneyDetailPage {
       })
     } else {
       this.flag = false;
-      return;
     }
-
   }
   scrollToTop() {
     this.content.scrollToTop();

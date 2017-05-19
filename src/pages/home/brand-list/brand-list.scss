@@ -1,4 +1,5 @@
 page-brand-list {
+    @include deteleShadow;
     .segment .segment-button {
         display: flex;
         justify-content: center;

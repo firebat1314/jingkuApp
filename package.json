@@ -29,7 +29,7 @@
     "@ionic/storage": "1.1.7",
     "ionic-angular": "^2.3.0",
     "ionic-image-loader": "^1.6.0",
-    "ionic-img-viewer": "^2.1.0",
+    "ionic-img-viewer": "^1.3.4",
     "ionic-native": "2.2.11",
     "ionic2-city-picker": "^0.0.4",
     "ionicons": "3.0.0",

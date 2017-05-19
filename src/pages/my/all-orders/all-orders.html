@@ -14,9 +14,9 @@
     </ion-toolbar>
 </ion-header>
 
-<ion-content>
+<ion-content #myContent [ngSwitch]="pageIndex">
     <div class="background"></div>
-    <div class="all" *ngIf="pageIndex==0">
+    <div class="all" *ngSwitchCase="0">
         <div class="single-shop" *ngFor="let item of allOrderData?.list;">
             <ion-item-divider>
                 <ion-icon item-left name="shop"></ion-icon>
@@ -52,7 +52,7 @@
 
         </div>
     </div>
-    <div class="repayment" *ngIf="pageIndex==1">
+    <div class="repayment" *ngSwitchCase="1">
         <div class="single-shop" *ngFor="let item of noPayData?.list;">
             <ion-item-divider>
                 <ion-icon item-left name="shop"></ion-icon>
@@ -87,7 +87,7 @@
             </div>
         </div>
     </div>
-    <div class="shipments" *ngIf="pageIndex==2">
+    <div class="shipments" *ngSwitchCase="2">
         <div class="single-shop" *ngFor="let item of noSendData?.list;">
             <ion-item-divider>
                 <ion-icon item-left name="shop"></ion-icon>
@@ -122,7 +122,7 @@
             </div>
         </div>
     </div>
-    <div class="receiving" *ngIf="pageIndex==3">
+    <div class="receiving" *ngSwitchCase="3">
         <div class="single-shop" *ngFor="let item of noGetData?.list;">
             <ion-item-divider>
                 <ion-icon item-left name="shop"></ion-icon>
@@ -157,9 +157,13 @@
             </div>
         </div>
     </div>
-    <div class="repairs" *ngIf="pageIndex==4">
+    <div class="repairs" *ngSwitchCase="4">
 
     </div>
+
+    <ion-fab right bottom (click)="myContent.scrollToTop()">
+        <button ion-fab color="dark" mini><img width="100%" src="./assets/icon/gotop.png" alt=""></button>
+    </ion-fab>
     <ion-infinite-scroll (ionInfinite)="doInfinite($event)">
         <ion-infinite-scroll-content></ion-infinite-scroll-content>
     </ion-infinite-scroll>

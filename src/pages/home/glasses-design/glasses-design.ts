@@ -1,5 +1,5 @@
 import { Component, ViewChild } from '@angular/core';
-import { NavController, NavParams, Content } from 'ionic-angular';
+import { NavController, NavParams, Content, Events } from 'ionic-angular';
 import { HttpService } from "../../../providers/http-service";
 import { ParticularsPage } from "../particulars/particulars";
 
@@ -22,6 +22,7 @@ export class GlassesDesignPage {
   constructor(
     public navCtrl: NavController,
     public navParams: NavParams,
+    public events: Events,
     public httpService: HttpService
   ) {
     this.getData();
@@ -52,6 +53,22 @@ export class GlassesDesignPage {
       })
     })
   }
+  clickBanner(item) {
+    if (item.link_type.type_name == 'category') {
+      this.goClassPage('classify');
+    } else if (item.link_type.type_name == 'goods') {
+      this.navCtrl.push(ParticularsPage, {
+        goodsId: item.link_type.type_value
+      })
+    } else if (item.link_type.type_name == "brand") {
+      this.goClassPage('brand');
+    }
+  }
+  goClassPage(value) {
+    this.navCtrl.parent.select(1);
+    this.events.publish('classify:selectSegment', value);
+  }
+
   goParticularsPage(id) {
     this.navCtrl.push(ParticularsPage, { goodsId: id })
   }

@@ -19,6 +19,7 @@ import { AccountJifenPage } from "./account-jifen/account-jifen";
 import { AccountBalancePage } from "./account-balance/account-balance";
 import { DredgeMoreCityPage } from "../home/particulars/dredge-more-city/dredge-more-city";
 import { MessagePage } from "../home/message/message";
+import { Native } from "../../providers/native";
 
 
 @Component({
@@ -30,7 +31,6 @@ export class MyPage {
   PeceiptPage: any = PeceiptPage;
   AllOrdersPage: any = AllOrdersPage;
   AccountAssetPage: any = AccountAssetPage;
-  AccountProcessPage: any = AccountProcessPage;
   AccountAreaApplicationPage: any = AccountAreaApplicationPage;
   AccountCollectGoodsPage: any = AccountCollectGoodsPage;
   AccountCollectStorePage: any = AccountCollectStorePage;
@@ -50,7 +50,8 @@ export class MyPage {
     public navCtrl: NavController,
     public modalCtrl: ModalController,
     public httpService: HttpService,
-    public events: Events
+    public events: Events,
+    public native: Native
   ) {
     this.httpResult()
     this.events.subscribe('avatar:update',()=>{
@@ -62,10 +63,8 @@ export class MyPage {
   }
   httpResult(finish?) {
     this.httpService.usercount().then((res) => {
-      console.log('（1）个人中心获取用户统计☞', res)
       if (res.status == 1) { this.usercount = res; }
       this.httpService.userInfo().then((res) => {
-        console.log('（2）获取用户资料☞', res)
         if (res.status == 1) { this.userInfo = res; }
         if (finish) { finish(); }
       })
@@ -84,5 +83,9 @@ export class MyPage {
   }
   goMessagePage(){
     this.navCtrl.push(MessagePage)
+  }
+  goAccountProcessPage(){
+    this.native.showToast('正在建设中')
+    // this.navCtrl.push(AccountProcessPage)
   }
 }

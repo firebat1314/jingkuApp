@@ -255,10 +255,10 @@ page-particulars {
         }
         .arguments {
             .wrapper {
+                padding: 10px 20px;
                 display: flex;
                 flex-wrap: wrap;
                 justify-content: space-between;
-                padding: 0 3%;
                 >div {
                     border-bottom: #000 1px dashed;
                     width: 45%;

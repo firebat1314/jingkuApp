@@ -2,6 +2,9 @@ page-glasses-design {
     .fore {
         margin-bottom: 10px;
         background: #fff;
+        img {
+            display: block;
+        }
     }
     .fore2 {
         .head {
@@ -12,9 +15,12 @@ page-glasses-design {
             }
         }
         .body {
-            text-align: center;
+            padding: 5px 0 5px 2%;
+            overflow: hidden;
             img {
                 max-width: 47%;
+                float: left;
+                margin: 1%;
             }
         }
     }

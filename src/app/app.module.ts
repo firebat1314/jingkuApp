@@ -143,6 +143,7 @@ import { NothingComponent } from "../components/nothing/nothing";
     PhoneNumberFilter
   ],
   imports: [
+    IonicImageViewerModule,
     IonicModule.forRoot(MyApp, {
       backButtonText: '',
       tabsHideOnSubPages: true,
@@ -157,8 +158,7 @@ import { NothingComponent } from "../components/nothing/nothing";
       }),
     HttpModule,
     BrowserModule,
-    CityPickerModule,
-    IonicImageViewerModule
+    CityPickerModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [
