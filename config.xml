@@ -60,8 +60,10 @@
     <preference name="FadeSplashScreenDuration" value="1000" />
     <preference name="AutoHideSplashScreen" value="false" />
     <preference name="SplashShowOnlyFirstTime" value="false" />
+    <preference name="ShowSplashScreenSpinner" value="false"/>
+    <preference name="auto-hide-splash-screen" value="false"/>
     <preference name="SplashScreen" value="screen" />
-    <preference name="SplashScreenDelay" value="30000" />
+    <preference name="SplashScreenDelay" value="40000" />
     <preference name="loadUrlTimeoutValue" value="400000" />
     <feature name="SplashScreen">
         <param name="android-package" value="org.apache.cordova.splashscreen.SplashScreen" />
@@ -74,12 +76,11 @@
     <plugin name="cordova-plugin-console" spec="1.0.5" />
     <plugin name="cordova-plugin-statusbar" spec="2.2.1" />
     <plugin name="cordova-plugin-device" spec="1.1.4" />
-    <plugin name="cordova-plugin-splashscreen" spec="~4.0.1" />
     <plugin name="cordova-plugin-file" spec="~4.3.1" />
-    <plugin name="cordova-plugin-file-transfer" spec="~1.6.1" />
     <plugin name="mx.ferreyra.callnumber" spec="~0.0.2" />
     <plugin name="cordova-plugin-x-toast" spec="~2.6.0" />
     <engine name="android" spec="~6.1.0" />
     <icon src="resources\android\icon\drawable-xhdpi-icon.png" />
     <plugin name="cordova-plugin-pingpp" spec="https://git.coding.net/pingplusplus/pingpp-cordova.git" />
+    <plugin name="cordova-plugin-splashscreen" spec="~2.0.0" />
 </widget>
