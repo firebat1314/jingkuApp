@@ -83,9 +83,15 @@ export class MyPage {
   }
   goMessagePage(){
     this.navCtrl.push(MessagePage)
-  }
+  } 
+  
   goAccountProcessPage(){
-    this.native.showToast('正在建设中')
+    this.native.showToast('敬请期待')
     // this.navCtrl.push(AccountProcessPage)
+  }
+  goAccountServicePage(){
+    this.native.openAlertBox('是否拨打客服电话：400-080-5118',()=>{
+      this.native.openCallNumber('400-080-5118',false);
+    })
   }
 }

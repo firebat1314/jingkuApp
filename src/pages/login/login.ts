@@ -58,7 +58,7 @@ export class LoginPage {
           this.analytics.trackEvent("Login", "Successful");//google分析
           setTimeout(() => {
             this.navCtrl.push(TabsPage);
-          }, 1000)
+          }, 100)
         }
       })
     }

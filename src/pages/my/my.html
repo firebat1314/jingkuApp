@@ -136,7 +136,7 @@
     </ion-list>
     <div class="background"></div>
     <ion-list no-margin>
-        <ion-item [navPush]="AccountServicePage" padding-left mode="ios">
+        <ion-item (click)="goAccountServicePage()" padding-left mode="ios">
             <ion-icon item-left><img src="./assets/icon/images/user_cener_1_36.png" alt=""></ion-icon>
             镜库客服
             <ion-icon color="gray" name="ios-arrow-forward" item-right></ion-icon>

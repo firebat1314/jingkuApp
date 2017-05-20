@@ -5,7 +5,7 @@ import { HttpModule }    from '@angular/http';
 import { BrowserModule } from "@angular/platform-browser";
 /*————————————————————————————————插件————————————————————————————————*/
 import { CityPickerModule } from "ionic2-city-picker/dist/city-picker.module";
-import { IonicImageViewerModule } from 'ionic-img-viewer';
+// import { IonicImageViewerModule } from 'ionic-img-viewer';
 /*————————————————————————————————base页————————————————————————————————*/
 import { MyApp } from './app.component';
 import { TabsPage } from '../pages/tabs/tabs';
@@ -143,7 +143,7 @@ import { NothingComponent } from "../components/nothing/nothing";
     PhoneNumberFilter
   ],
   imports: [
-    IonicImageViewerModule,
+    // IonicImageViewerModule,
     IonicModule.forRoot(MyApp, {
       backButtonText: '',
       tabsHideOnSubPages: true,
