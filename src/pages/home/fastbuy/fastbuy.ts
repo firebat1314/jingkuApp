@@ -1,4 +1,4 @@
-import { Component, ViewChild } from '@angular/core';
+import { Component, ViewChild, ElementRef } from '@angular/core';
 import { NavController, NavParams, Content } from 'ionic-angular';
 import { HttpService } from "../../../providers/http-service";
 import { ParticularsPage } from "../particulars/particulars";
@@ -21,50 +21,40 @@ export class FastbuyPage {
   data6: any;
   data: any;
 
-  @ViewChild(Content) content:Content
+  @ViewChild(Content) content: Content;
   constructor(
     public navCtrl: NavController,
     public navParams: NavParams,
-    public httpService: HttpService
-  ) {
-    this.getData()
-  }
+    public httpService: HttpService,
+    public elementRef: ElementRef
+  ) { }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad FastbuyPage');
+    this.getData();
   }
-
+  ngAfterViewInit() {
+    /*let els1 = this.elementRef.nativeElement.getElementsByClassName('fore2')[0].children;
+    let els2 = this.elementRef.nativeElement.getElementsByClassName('fore3');
+    for (let i = 0; i < els1.length; i++) {
+      els1[i].click(()=>{
+        this.content.scrollTo(0,els2[i].offsetTop);
+      })
+    }*/
+  }
   getData() {
     this.httpService.presell({ type: 'is_promote', cat_id: 1 }).then((res) => {
-      console.log(res);
-      if (res.status == 1) {
-        this.data = res;
-      }
+      if (res.status == 1) { this.data = res; }
       this.httpService.presell({ type: 'is_promote', cat_id: 2 }).then((res) => {
-        console.log(res);
-        if (res.status == 1) {
-          this.data2 = res;
-        }
+        if (res.status == 1) { this.data2 = res; }
         this.httpService.presell({ type: 'is_promote', cat_id: 3 }).then((res) => {
-          console.log(res);
-          if (res.status == 1) {
-            this.data3 = res;
-          }
+          if (res.status == 1) { this.data3 = res; }
           this.httpService.presell({ type: 'is_promote', cat_id: 5 }).then((res) => {
-            console.log(res);
-            if (res.status == 1) {
-              this.data4 = res;
-            }
+            if (res.status == 1) { this.data4 = res; }
             this.httpService.presell({ type: 'is_promote', cat_id: 4 }).then((res) => {
-              console.log(res);
-              if (res.status == 1) {
-                this.data5 = res;
-              }
+              if (res.status == 1) { this.data5 = res; }
               this.httpService.presell({ type: 'is_promote', cat_id: 6 }).then((res) => {
-                console.log(res);
-                if (res.status == 1) {
-                  this.data6 = res;
-                }
+                if (res.status == 1) { this.data6 = res; }
               })
             })
           })
@@ -72,11 +62,11 @@ export class FastbuyPage {
       })
     })
   }
-  goParticularsPage(id){
-    this.navCtrl.push(ParticularsPage,{goodsId:id})
+  goParticularsPage(id) {
+    this.navCtrl.push(ParticularsPage, { goodsId: id })
   }
 
-  scrollToTop(){
+  scrollToTop() {
     this.content.scrollToTop();
   }
 }

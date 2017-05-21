@@ -1,5 +1,5 @@
 import { Component, ViewChild } from '@angular/core';
-import { NavController, NavParams } from 'ionic-angular';
+import { NavController, NavParams, Content } from 'ionic-angular';
 import { PaymentMethodPage } from "./payment-method/payment-method";
 import { OrdersDetailPage } from "./orders-detail/orders-detail";
 import { WriteOrdersPage } from "./write-orders/write-orders";
@@ -17,61 +17,71 @@ import { Native } from "../../../providers/native";
   templateUrl: 'all-orders.html'
 })
 export class AllOrdersPage {
-  noSendData: any;
-  noGetData: any;
-  noPayData: any;
-  allOrderData: any;
   pageIndex: number = 0;
-
+  orderData: any;
   @ViewChild('mytabs') mytabs;
+  @ViewChild(Content) content: Content;
 
   constructor(
     public navCtrl: NavController,
     public navParams: NavParams,
     public httpService: HttpService,
     public native: Native
-  ) {
-    this.getHttpData();
-  }
+  ) { }
   ionViewDidLoad() {
     console.log('ionViewDidLoad AllOrdersPage');
-  }
-  getHttpData() {
-
-    this.httpService.order().then((res) => {
-      console.log(res);
-      if (res.status == 1) {
-        this.allOrderData = res;
-      }
-    })
-    this.httpService.order({ type: 'pay' }).then((res) => {
-      console.log(res);
-      if (res.status == 1) {
-        this.noPayData = res;
-      }
-    })
-    this.httpService.order({ type: 'shi' }).then((res) => {
-      console.log(res);
-      if (res.status == 1) {
-        this.noSendData = res;
-      }
-    })
-    this.httpService.order({ type: 'dsh' }).then((res) => {
-      console.log(res);
-      if (res.status == 1) {
-        this.noGetData = res;
-      }
-    })
-  }
-  checkTab($event) {
-    this.pageIndex = $event;
+    this.getHttpData();
   }
   ngAfterViewInit() {
     //进入页面默认选中标签
     if (this.navParams.get('index')) {
       this.pageIndex = this.navParams.get('index');
-      this.mytabs.selectedIndex = this.navParams.get('index');
+      this.mytabs.selectedIndex = this.pageIndex;
+      this.getByPageIndex();
     }
+  }
+  getHttpData() {
+    this.httpService.order({ page: 1 }).then((res) => {
+      if (res.status == 1) {
+        this.orderData = res;
+      }
+    })
+  }
+  getByPageIndex() {
+    if (this.pageIndex == 0) {
+      this.httpService.order({ page: 1 }).then((res) => {
+        if (res.status == 1) {
+          this.orderData = res;
+        }
+      })
+    } else if (this.pageIndex == 1) {
+      this.httpService.order({ page: 1, type: 'pay' }).then((res) => {
+        if (res.status == 1) {
+          this.orderData = res;
+        }
+      })
+    } else if (this.pageIndex == 2) {
+      this.httpService.order({ page: 1, type: 'shi' }).then((res) => {
+        if (res.status == 1) {
+          this.orderData = res;
+        }
+      })
+    } else if (this.pageIndex == 3) {
+      this.httpService.order({ page: 1, type: 'dsh' }).then((res) => {
+        if (res.status == 1) {
+          this.orderData = res;
+        }
+      })
+    } else if (this.pageIndex == 4) {
+
+    }
+  }
+
+  checkTab($event) {
+    this.flag = true;
+    this.pageIndex = $event;
+    this.content.scrollToTop();
+    this.getByPageIndex();
   }
   goOrdersDetailPage(orderId) {
     this.navCtrl.push(OrdersDetailPage, { order_id: orderId });
@@ -79,59 +89,20 @@ export class AllOrdersPage {
   goParticularsPage(id) {
     this.navCtrl.push(ParticularsPage, { goodsId: id });
   }
-  page1: any = 1;
-  page2: any = 1;
-  page3: any = 1;
-  page4: any = 1;
+
+  flag: boolean = true;
   doInfinite(infiniteScroll) {
-    if (this.pageIndex == 0) {
-      this.page1++;
-      this.httpService.order({ page: this.page1 }).then((res) => {
-        console.log(res);
+    if (this.orderData.page < this.orderData.pages) {
+      this.httpService.order({ page: ++this.orderData.page }).then((res) => {
         if (res.status == 1) {
-          Array.prototype.push.apply(this.allOrderData.list, res.list);
+          Array.prototype.push.apply(this.orderData.list, res.list);
         }
         setTimeout(() => {
           infiniteScroll.complete();
         }, 500);
       })
-    } else if (this.pageIndex == 1) {
-      this.page2++;
-      this.httpService.order({ type: 'pay', page: this.page2 }).then((res) => {
-        console.log(res);
-        if (res.status == 1) {
-          Array.prototype.push.apply(this.noPayData.list, res.list);
-        }
-        setTimeout(() => {
-          infiniteScroll.complete();
-        }, 500);
-      })
-    } else if (this.pageIndex == 2) {
-      this.page3++;
-      this.httpService.order({ type: 'shi', page: this.page3 }).then((res) => {
-        console.log(res);
-        if (res.status == 1) {
-          Array.prototype.push.apply(this.noPayData.list, res.list);
-        }
-        setTimeout(() => {
-          infiniteScroll.complete();
-        }, 500);
-      })
-    } else if (this.pageIndex == 3) {
-      this.page4++;
-      this.httpService.order({ type: 'dsh', page: this.page4 }).then((res) => {
-        console.log(res);
-        if (res.status == 1) {
-          Array.prototype.push.apply(this.noGetData.list, res.list);
-        }
-        setTimeout(() => {
-          infiniteScroll.complete();
-        }, 500);
-      })
-    } else if (this.pageIndex == 4) {
-      setTimeout(() => {
-        infiniteScroll.complete();
-      }, 500);
+    } else {
+      this.flag = false;
     }
   }
   toPay(id) {
@@ -147,22 +118,33 @@ export class AllOrdersPage {
       this.httpService.affirmReceived({ order_id: order_id }).then((res) => {
         if (res.status == 1) {
           this.native.showToast('订单操作成功');
-          this.getHttpData();
+          this.getByPageIndex();
         }
       })
     })
   }
-  orderTracking(order_id){
-     this.native.showToast('敬请期待');
+  orderTracking(order_id) {
+    this.native.showToast('敬请期待');
   }
   cancelOrder(order_id) {
     this.native.openAlertBox('取消订单操作', () => {
       this.httpService.cancelOrder({ order_id: order_id }).then((res) => {
         if (res.status == 1) {
           this.native.showToast('订单操作成功');
-          this.getHttpData();
+          this.getByPageIndex();
         }
       })
     })
+  }
+  deleteOrder(id) {
+    this.native.openAlertBox('删除订单', () => {
+      this.httpService.delOrder({ order_id: id }).then((res) => {
+        if (res.status == 1) {
+          this.native.showToast(res.data);
+          this.getByPageIndex();
+        }
+      })
+    })
+
   }
 }

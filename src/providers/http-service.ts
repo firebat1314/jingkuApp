@@ -50,16 +50,16 @@ export class HttpService {
     return this.http.post(this.ip + '/Login/index', data, true)
   }
   signupFirst(data?: Object) {//注册
-    return this.http.post(this.ip + '/Login/register/step/one', data)
+    return this.http.post(this.ip + '/Login/register', data)
   }
   signupTwo(data?: Object) {//注册2
-    return this.http.post(this.ip + '/Login/register/step/two', data)
+    return this.http.post(this.ip + '/Login/register', data)
   }
   getVerificationImg(data?: Object) {//图片验证码
     return this.http.post(this.ip + '/Login/verify', data)
   }
   getMobileCode(data?: Object) {//短信验证码
-    return this.http.post(this.ip + '/Login/getMobileCode', data)
+    return this.http.post(this.ip + '/Login/getMobileCode', data, true)
   }
   /*首页*/
   getHomebanner(data?: Object) {//轮播图
@@ -377,5 +377,11 @@ export class HttpService {
   }
   coupon(data?: Object) {//首页优惠券
     return this.http.get(this.ip + '/Index/coupon', data)
+  }
+  delOrder(data?: Object) {//删除订单
+    return this.http.get(this.ip + '/User/del_order', data)
+  }
+  addAccount(data?: Object) {//充值
+    return this.http.post(this.ip + '/User/addAccount', data, true)
   }
 }

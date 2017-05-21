@@ -22,6 +22,8 @@ export class SignupSecondPage {
   districtList: any;
 
   formData = {
+    step: 'two',
+    user_name: '',
     true_name: '',
     qq: '',
     company: '',
@@ -35,14 +37,14 @@ export class SignupSecondPage {
     public navParams: NavParams,
     public httpService: HttpService,
     public native: Native
-  ) {
+  ) {}
+  ionViewDidLoad() {
+    console.log('ionViewDidLoad SignupSecondPage');
+    this.formData.user_name = this.navParams.get("user_name");
     this.httpService.changeRegion({ type: 1, parent_id: 1 }).then((res) => {
       console.log(res);
       this.provinceList = res.data;
     })
-  }
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad SignupSecondPage');
   }
   provinceChange(id) {
     this.httpService.changeRegion({ type: 2, parent_id: id }).then((res) => {
@@ -72,15 +74,15 @@ export class SignupSecondPage {
   toLoginPage() {
     this.navCtrl.push(LoginPage)
   }
-  openFile(){
-    this.native.getPictureByPhotoLibrary().then((res)=>{
+  openFile() {
+    this.native.getPictureByPhotoLibrary().then((res) => {
       this.formData.zhizhao = 'data:image/jpeg;base64,' + res;
     })
   }
   onSubmit() {
     this.httpService.signupTwo(this.formData).then((res) => {
-        this.navCtrl.push(SignupThirdPage);
       if (res.status == 1) {
+        this.native.showToast(res.info);
         this.navCtrl.push(SignupThirdPage);
       }
     })

@@ -9,6 +9,9 @@ page-all-orders {
         padding: 0 10px;
         margin-bottom: 10px;
         background: #fff;
+        >div:last-child {
+            border: 0;
+        }
         .item-divider {
             .item-inner {
                 margin-left: 0;

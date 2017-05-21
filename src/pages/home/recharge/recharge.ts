@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
+import { HttpService } from "../../../providers/http-service";
+import { PaymentMethodPage } from "../../my/all-orders/payment-method/payment-method";
 
 /*
   Generated class for the Recharge page.
@@ -13,10 +15,25 @@ import { NavController, NavParams } from 'ionic-angular';
 })
 export class RechargePage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {}
+  constructor(
+    public navCtrl: NavController,
+    public navParams: NavParams,
+    public httpService: HttpService
+  ) { }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad RechargePage');
   }
 
+  onClick(money) {
+    this.httpService.addAccount({ amount: money }).then((res) => {
+      if (res.status == 1) {
+        this.httpService.pay({ log_id: res.log_id ,type:'log'}).then((res) => {
+          if (res.status == 1) {
+            this.navCtrl.push(PaymentMethodPage, { data: res })
+          }
+        })
+      }
+    })
+  }
 }

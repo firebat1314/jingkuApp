@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams, ViewController } from 'ionic-angular';
 import { HttpService } from "../../../../providers/http-service";
-import { Alipay } from '@ionic-native/alipay';
 import { Native } from "../../../../providers/native";
 import { AllOrdersPage } from "../all-orders";
 
@@ -14,19 +13,19 @@ import { AllOrdersPage } from "../all-orders";
 declare var pingpp: any;
 declare var Pingpp: any;
 declare var Wechat: any;
-
+declare var navigator: any;
 @Component({
   selector: 'page-payment-method',
   templateUrl: 'payment-method.html'
 })
 export class PaymentMethodPage {
+
   payResult: any;
   data = this.navParams.get('data');
 
   constructor(
     public navCtrl: NavController,
     public navParams: NavParams,
-    private alipay: Alipay,
     public viewCtrl: ViewController,
     public httpService: HttpService,
     public native: Native
@@ -100,6 +99,7 @@ export class PaymentMethodPage {
       this.getOrderInfo(this.data.alipay);
     } else if (type == 2) {
       this.getOrderInfo(this.data.upacp);
+
     } else if (type == 3) {
       this.getOrderInfo(this.data.weixin);
     }
@@ -114,17 +114,43 @@ export class PaymentMethodPage {
     })
   }
   openPingPayment(data) {
-    // let orderInfo = { "object": data, "urlScheme": "http://www.baidu.com" }
-    Pingpp.createPayment(data, function (result, error) {//scheme 为iOS返回应用
-      console.log(result);
-      console.log(error);
-      alert(result)
-      alert(error)
-      if (result == 'cancel') {
-        this.native.showToast('取消支付');
-        this.navCtrl.push(AllOrdersPage);
+    let that = this;
+    (<any>window).navigator.pingpp.requestPayment(data, (result, err) => {
+      that.navCtrl.pop();
+      if (result == 'success') {
+        that.native.showToast("支付成功");
+      } else if (result == 'cancel') {
+        that.native.showToast("取消支付");
       }
+      console.log(result, err)
+    }, (result, err) => {
+      that.navCtrl.pop();
+      that.native.showToast("支付异常");
+      console.log(result, err)
     });
+
+    /*——————————————————————————————————————————————————————————————————————————*/
+    // pingpp.createPayment(data, (result) => {
+    //   console.log('success',result);
+    // }, function (err) {
+    //   console.log(err);
+    // });
+    /*——————————————————————————————————————————————————————————————————————————*/
+    // let that = this;
+    // Pingpp.createPayment(data, (result, error) => {//scheme 为iOS返回应用
+    //   console.log(result);
+    //   console.log(error);
+    //   alert('result' + result);
+    //   alert('error' + error);
+    //   that.navCtrl.push(AllOrdersPage);
+    //   if (result == 'success') {
+    //     that.native.showToast('支付成功');
+    //   }
+    // })
+    // Pingpp.setDebugMode(true)
+    // Pingpp.getVersion(function (version) {
+    //   alert("当前SDK版本号是:" + version);
+    // });
   }
 
   // alipayPay(alipayOrder) {

@@ -49,6 +49,7 @@ export class InvoiceAskFor1Page {
     })
   }
   search() {
+    this.flag = true;
     this.httpService.addinv({
       page:1,
       suppliers_id: this.suppliersId,

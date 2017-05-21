@@ -76,63 +76,65 @@ export class HomePage {
 
   }
   ionViewDidLoad() {
+    console.log('ionViewDidLoad HomePage');
+    this.getBanner()
     this.getHomeData();
     this.updataArea();
     this.updateCarCount();
     this.events.subscribe('home:updataArea', () => {
       this.updataArea();
     })
-    console.log('ionViewDidLoad HomePage');
   }
-  getHomeData(finish?) {
-    this.native.showLoading('加载中');
+  getBanner() {
     this.httpService.getHomebanner({ int_pos_id: 3 }).then((res) => {
       console.log("轮播图", res);
       if (res.status == 1) { this.bannerImgs = res.data; }
-      this.httpService.getHomebanner({ int_pos_id: 44, size: 1 }).then((res) => {
-        console.log("热门品类下的广告", res)
-        if (res.status == 1) { this.hotBrand_img = res; }
-        this.httpService.getCategoryAd().then((res) => {
-          console.log("热门品类", res)
-          if (res.status == 1) { this.categoryAddetatils = res.data; }
-          this.httpService.getHomebanner({ int_pos_id: 45, size: 1 }).then((res) => {
-            console.log("精选专题下的广告1", res)
-            if (res.status == 1) { this.jingxuan_img1 = res; }
-            this.native.hideLoading();
-            if (finish) { finish(); }
-            this.httpService.getBrands().then(((res) => {
-              console.log("热门品牌下的品牌列表", res)
-              if (res.status == 1) { this.getBrands = res.data; }
-              this.httpService.getHomebanner({ int_pos_id: 46, size: 1 }).then((res) => {
-                console.log("精选专题下的广告2", res)
-                if (res.status == 1) { this.jingxuan_img2 = res; }
-                this.httpService.getCategoryRecommendGoodsHot().then(((res) => {
-                  console.log("精选专题下的热门", res)
-                  if (res.status == 1) { this.getCategoryRecommendGoodsHot = res.data; }
-                  this.httpService.getHomebanner({ int_pos_id: 47, size: 1 }).then((res) => {
-                    console.log("精选专题下的广告3", res)
-                    if (res.status == 1) { this.jingxuan_img3 = res; }
-                    this.httpService.getCategoryRecommendGoods().then((res) => {
-                      console.log("精选专题下新品", res)
-                      if (res.status == 1) { this.getCategoryRecommendGoods = res.data; }
-                      this.httpService.getHomebanner({ int_pos_id: 48 }).then((res) => {
-                        if (res.status == 1) { this.jingxuan_img4 = res; }
-                        this.httpService.getCategoryRecommendGoodsBest().then(((res) => {
-                          console.log("精选专题下最好", res)
-                          if (res.status == 1) { this.getCategoryRecommendGoodsBest = res.data; }
-                        }))
-                      })
+    })
+  }
+  getHomeData(finish?) {
+    this.native.showLoading('加载中');
+    this.httpService.getHomebanner({ int_pos_id: 44, size: 1 }).then((res) => {
+      console.log("热门品类下的广告", res)
+      if (res.status == 1) { this.hotBrand_img = res; }
+      this.httpService.getCategoryAd().then((res) => {
+        console.log("热门品类", res)
+        if (res.status == 1) { this.categoryAddetatils = res.data; }
+        this.httpService.getHomebanner({ int_pos_id: 45, size: 1 }).then((res) => {
+          console.log("精选专题下的广告1", res)
+          if (res.status == 1) { this.jingxuan_img1 = res; }
+          this.native.hideLoading();
+          if (finish) { finish(); }
+          this.httpService.getBrands().then(((res) => {
+            console.log("热门品牌下的品牌列表", res)
+            if (res.status == 1) { this.getBrands = res.data; }
+            this.httpService.getHomebanner({ int_pos_id: 46, size: 1 }).then((res) => {
+              console.log("精选专题下的广告2", res)
+              if (res.status == 1) { this.jingxuan_img2 = res; }
+              this.httpService.getCategoryRecommendGoodsHot().then(((res) => {
+                console.log("精选专题下的热门", res)
+                if (res.status == 1) { this.getCategoryRecommendGoodsHot = res.data; }
+                this.httpService.getHomebanner({ int_pos_id: 47, size: 1 }).then((res) => {
+                  console.log("精选专题下的广告3", res)
+                  if (res.status == 1) { this.jingxuan_img3 = res; }
+                  this.httpService.getCategoryRecommendGoods().then((res) => {
+                    console.log("精选专题下新品", res)
+                    if (res.status == 1) { this.getCategoryRecommendGoods = res.data; }
+                    this.httpService.getHomebanner({ int_pos_id: 48 }).then((res) => {
+                      if (res.status == 1) { this.jingxuan_img4 = res; }
+                      this.httpService.getCategoryRecommendGoodsBest().then(((res) => {
+                        console.log("精选专题下最好", res)
+                        if (res.status == 1) { this.getCategoryRecommendGoodsBest = res.data; }
+                      }))
                     })
                   })
-                }))
-              })
-            }))
-          })
+                })
+              }))
+            })
+          }))
         })
       })
     })
   }
-
   onscroll() {
     if (this.content.scrollTop > 400) {
       this.showBackTopBtn = true;
@@ -163,11 +165,9 @@ export class HomePage {
       this.goClassPage('brand');
     }
   }
-
   scrollToTop() {
     this.content.scrollToTop();
   }
-
   goClassPage(value) {
     this.navCtrl.parent.select(1);
     this.events.publish('classify:selectSegment', value);
@@ -203,5 +203,4 @@ export class HomePage {
       }
     })
   }
-
 }

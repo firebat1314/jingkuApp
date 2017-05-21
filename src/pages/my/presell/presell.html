@@ -25,6 +25,7 @@
             </div>
         </div>
         <ion-list>
+            <div class="nomore" *ngIf="data?.data?.length<=0">该分类下暂无预售</div>
             <div class="fore singleton" *ngFor="let item of data?.data">
                 <div class="left">
                     <img src="http://img.jing-ku.com/{{item.goods_img}}" alt="">
@@ -45,7 +46,7 @@
                     </div></div>-->
                     <div class="price">
                         <div class="red">{{item.promote_price}}</div>
-                        <div class="old-price">{{item.market_price}}</div>
+                        <div class="old-price">{{item.shop_price}}</div>
                         <div ion-button color="dark" no-margin (click)="goParticularsPage(item.id)">立即购买</div>
                     </div>
                 </div>

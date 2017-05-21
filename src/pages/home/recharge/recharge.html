@@ -8,11 +8,11 @@
 
 
 <ion-content padding>
-    <form novalidata>
-        <div required clearInput class="text">请输入金额</div>
-        <input type="number">
+    <form novalidata #recharge="ngForm">
+        <div class="text">请输入金额</div>
+        <input required clearInput type="number" [(ngModel)]="money" name="money">
         <div padding>
-            <button color="dark" large ion-button block>确认</button>
+            <button color="dark" large ion-button [disabled]="!recharge.form.valid" (click)="onClick(money)" block>确认</button>
         </div>
     </form>
 </ion-content>

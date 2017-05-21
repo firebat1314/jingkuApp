@@ -259,7 +259,7 @@ page-particulars {
                 display: flex;
                 flex-wrap: wrap;
                 justify-content: space-between;
-                >div {
+                .attr {
                     border-bottom: #000 1px dashed;
                     width: 45%;
                     padding: 10px;

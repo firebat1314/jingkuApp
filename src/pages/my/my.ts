@@ -90,7 +90,7 @@ export class MyPage {
     // this.navCtrl.push(AccountProcessPage)
   }
   goAccountServicePage(){
-    this.native.openAlertBox('是否拨打客服电话：400-080-5118',()=>{
+    this.native.openAlertBox('拨打客服电话：400-080-5118',()=>{
       this.native.openCallNumber('400-080-5118',false);
     })
   }

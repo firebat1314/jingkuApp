@@ -24,6 +24,7 @@ export class CarPage {
 
   checkedArray: Array<number> = [];//rec_id
   goodsIdArray: Array<number> = [];//goods_id
+
   allRecId: Array<number> = [];//rec_id
   allGoodsId: Array<number> = [];//goods_id
 
@@ -42,9 +43,6 @@ export class CarPage {
   }
   ionViewDidLoad() {
     console.log('ionViewDidLoad CarPage');
-  }
-  ngOnDestroy() {
-    this.events.unsubscribe('car:updata');
   }
   getFlowGoods(finished?) {
     this.httpService.getFlowGoods().then((res) => {

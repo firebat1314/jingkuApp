@@ -128,7 +128,7 @@ export class Native {
 				sourceType: Camera.PictureSourceType.CAMERA,//图片来源,CAMERA:拍照,PHOTOLIBRARY:相册
 				destinationType: Camera.DestinationType.DATA_URL,//默认返回base64字符串,DATA_URL:base64   FILE_URI:图片路径
 				quality: 90,//图像质量，范围为0 - 100
-				allowEdit: false,//选择图片前是否允许编辑
+				allowEdit: true,//选择图片前是否允许编辑
 				encodingType: Camera.EncodingType.JPEG,
 				targetWidth: 800,//缩放图像的宽度（像素）
 				targetHeight: 800,//缩放图像的高度（像素）
@@ -152,6 +152,7 @@ export class Native {
 		return new Promise((resolve) => {
 			this.getPicture(Object.assign({
 				sourceType: Camera.PictureSourceType.CAMERA,
+				allowEdit:true
 			}, options)).then(imgData => {
 				resolve(imgData);
 			}).catch(err => {

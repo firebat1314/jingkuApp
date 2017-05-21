@@ -8,6 +8,8 @@ import { OrderModalCouponPage } from "./order-modal-coupon/order-modal-coupon";
 import { OrderModalPaymentPage } from "./order-modal-payment/order-modal-payment";
 import { PaymentMethodPage } from "../payment-method/payment-method";
 import { AllOrdersPage } from "../all-orders";
+import { OrdersDetailPage } from "../orders-detail/orders-detail";
+import { Native } from "../../../../providers/native";
 
 /*
   Generated class for the WriteOrders page.
@@ -30,7 +32,8 @@ export class WriteOrdersPage {
     public navParams: NavParams,
     public httpService: HttpService,
     public modalCtrl: ModalController,
-    private events: Events
+    private events: Events,
+    private native: Native
   ) {
     this.getHttpData();
     this.events.subscribe('writeOrder:refresh', () => {
@@ -138,6 +141,7 @@ export class WriteOrdersPage {
       commentArr.push(this.data.cart_goods_list[i].beizhu)
       suppliers.push(this.data.cart_goods_list[i].suppliers_id)
     }
+
     this.httpService.submitOrder({
       notes: {
         note: commentArr,
@@ -145,18 +149,21 @@ export class WriteOrdersPage {
       }
     }).then((res) => {
       if (res.status == 1) {
-        console.log(this.paymentMothd)
+        this.events.publish('car:updata');
         if (this.paymentMothd == 3) {
-          this.navCtrl.pop();
-          this.navCtrl.push(AllOrdersPage);
+          this.native.openAlertBox('确认余额支付', () => {
+            this.navCtrl.pop();
+            this.navCtrl.push(AllOrdersPage);
+          })
         } else if (this.paymentMothd == 6) {
           this.httpService.pay({ order_id: res.order_id }).then((res) => {
-            this.events.publish('car:updata');
             if (res.status == 1) {
               this.navCtrl.pop();
               this.navCtrl.push(PaymentMethodPage, { data: res });
             }
           })
+        } else if (this.paymentMothd == 4) {
+          this.navCtrl.push(OrdersDetailPage, { order_id: res.order_id })
         }
       }
     })

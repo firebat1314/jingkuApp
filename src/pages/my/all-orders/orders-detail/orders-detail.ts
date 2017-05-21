@@ -31,11 +31,11 @@ export class OrdersDetailPage {
     public httpService: HttpService,
     public native: Native
   ) {
-    this.getOrderInfo();
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad OrdersDetailPage');
+    this.getOrderInfo();
   }
   clickAftermarket(evt) {
     evt.stopPropagation();

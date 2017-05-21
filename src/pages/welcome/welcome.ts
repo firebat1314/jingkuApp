@@ -21,6 +21,6 @@ export class WelcomePage {
     console.log('ionViewDidLoad WelcomePage');
   }
   goToHome(){
-      this.navCtrl.push(LoginPage);
+      this.navCtrl.setRoot(LoginPage);
   }
 }

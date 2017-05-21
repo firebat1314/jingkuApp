@@ -2,7 +2,7 @@
     "name": "jingkuapp",
     "author": "iwchina_sunshanshan",
     "homepage": "",
-    "private": true,
+    "private": false,
     "scripts": {
         "clean": "ionic-app-scripts clean",
         "build": "ionic-app-scripts build",

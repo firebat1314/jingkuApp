@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams, Events } from 'ionic-angular';
-import { Storage } from '@ionic/storage';
 
 import { SignupSecondPage } from './signup-second/signup-second';
 import { HttpService } from "../../providers/http-service";
@@ -18,6 +17,7 @@ import { HttpService } from "../../providers/http-service";
 export class SignupPage {
   private signupInfo = {
     user_name: '',
+    step: 'one',
     mobile_phone: '',
     password: '',
     cpassword: '',
@@ -28,7 +28,6 @@ export class SignupPage {
     public navCtrl: NavController,
     public navParams: NavParams,
     private events: Events,
-    public storage: Storage,
     public httpService: HttpService
   ) {
     this.getSkey();
@@ -39,10 +38,11 @@ export class SignupPage {
   registerBtn() {
     this.httpService.signupFirst(this.signupInfo).then(
       data => {
-        this.navCtrl.push(SignupSecondPage);
-        this.events.publish("user:signupFirst", this.signupInfo.user_name);
         if (data.status == 1) {
+          this.navCtrl.push(SignupSecondPage,{user_name:data.data.user_name});
+          this.events.publish("user:signupFirst", this.signupInfo.user_name);
           this.httpService.setUsername(this.signupInfo.user_name)
+          this.httpService.setToken(data.data.token);
         }
       },
       error => {
@@ -123,7 +123,7 @@ export class SignupPage {
       console.log(data)
       if (data.status) {
         this.time();
-      } else  {
+      } else {
         this.getImg();
       }
     })
