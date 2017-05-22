@@ -4,6 +4,7 @@ import { LoginPage } from '../../login/login';
 import { SignupThirdPage } from '../signup-third/signup-third';
 import { HttpService } from "../../../providers/http-service";
 import { Native } from "../../../providers/native";
+import { HelperDetailsPage } from "../../my/account-helper/helper-details/helper-details";
 
 /*
   Generated class for the SignupSecond page.
@@ -37,7 +38,7 @@ export class SignupSecondPage {
     public navParams: NavParams,
     public httpService: HttpService,
     public native: Native
-  ) {}
+  ) { }
   ionViewDidLoad() {
     console.log('ionViewDidLoad SignupSecondPage');
     this.formData.user_name = this.navParams.get("user_name");
@@ -87,4 +88,8 @@ export class SignupSecondPage {
       }
     })
   }
+  goHelperDetailsPage() {
+    this.navCtrl.push(HelperDetailsPage,{item:{article_id:36}})
+  }
+
 }

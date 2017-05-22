@@ -38,7 +38,6 @@ export class ParallaxHeader {
     }
  
     onContentScroll(ev){
-        console.log(ev)
         ev.domWrite(() => {
             this.updateParallaxHeader(ev);
         });

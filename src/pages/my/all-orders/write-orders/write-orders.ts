@@ -141,32 +141,42 @@ export class WriteOrdersPage {
       commentArr.push(this.data.cart_goods_list[i].beizhu)
       suppliers.push(this.data.cart_goods_list[i].suppliers_id)
     }
-
-    this.httpService.submitOrder({
-      notes: {
-        note: commentArr,
-        suppliers: suppliers
-      }
-    }).then((res) => {
-      if (res.status == 1) {
-        this.events.publish('car:updata');
-        if (this.paymentMothd == 3) {
-          this.native.openAlertBox('确认余额支付', () => {
+    if (this.paymentMothd == 3) {
+      this.native.openAlertBox('确认余额支付', () => {
+        this.httpService.submitOrder({
+          notes: {
+            note: commentArr,
+            suppliers: suppliers
+          }
+        }).then((res) => {
+          if (res.status == 1) {
+            this.native.showToast(res.info)
             this.navCtrl.pop();
             this.navCtrl.push(AllOrdersPage);
-          })
-        } else if (this.paymentMothd == 6) {
-          this.httpService.pay({ order_id: res.order_id }).then((res) => {
-            if (res.status == 1) {
-              this.navCtrl.pop();
-              this.navCtrl.push(PaymentMethodPage, { data: res });
-            }
-          })
-        } else if (this.paymentMothd == 4) {
-          this.navCtrl.push(OrdersDetailPage, { order_id: res.order_id })
+          }
+        })
+      })
+    } else {
+      this.httpService.submitOrder({
+        notes: {
+          note: commentArr,
+          suppliers: suppliers
         }
-      }
-    })
+      }).then((res) => {
+        if (res.status == 1) {
+          this.events.publish('car:updata');
+          if (this.paymentMothd == 6) {
+            this.httpService.pay({ order_id: res.order_id }).then((res) => {
+              if (res.status == 1) {
+                this.navCtrl.pop();
+                this.navCtrl.push(PaymentMethodPage, { data: res });
+              }
+            })
+          } else if (this.paymentMothd == 4) {
+            this.navCtrl.push(OrdersDetailPage, { order_id: res.order_id })
+          }
+        }
+      })
+    }
   }
-
 }

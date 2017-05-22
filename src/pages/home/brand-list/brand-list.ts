@@ -28,7 +28,8 @@ export class BrandListPage {
 		cat_id: '',
 		order: '',
 		stort: 'DESC',
-		keywords: ''
+		keywords: '',
+		supplier_id:''
 	}
 
 
@@ -43,9 +44,11 @@ export class BrandListPage {
 		this.paramsData.cat_id = this.navParams.get('listId');
 		this.paramsData.brand_id = this.navParams.get('brandId');
 		this.paramsData.keywords = this.navParams.get('keyword');
+		this.paramsData.supplier_id = this.navParams.get('supplierId');
 		console.log('列表ID:', this.paramsData.cat_id);
 		console.log('品牌ID:', this.paramsData.brand_id);
 		console.log('keywords:', this.paramsData.keywords);
+		console.log('supplier_id:', this.paramsData.supplier_id);
 		this.getListData();
 		this.events.subscribe('user:filterParams', (res) => {
 			this.paramsData = Object.assign(this.paramsData, res);
@@ -124,7 +127,8 @@ export class BrandListPage {
 			cat_id: '',
 			order: '',
 			stort: 'DESC',
-			keywords: this.myHomeSearch
+			keywords: this.myHomeSearch,
+			supplier_id:''
 		}
 		this.httpService.categoryGoods(this.paramsData).then((res) => {
 			this.data = res;

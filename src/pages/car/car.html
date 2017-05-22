@@ -29,7 +29,7 @@
                     <ion-icon color="colorsix" item-left name="shop"></ion-icon>
                     {{item.title}}&nbsp;
                     <ion-icon color="colorsix" name="ios-arrow-forward"></ion-icon>
-                    <button item-right ion-button clear color="danger">优惠券???</button>
+                    <!--<button item-right ion-button clear color="danger">优惠券???</button>-->
                 </ion-item>
             </div>
             <div class="single-shop-goods" *ngFor="let item2 of item.goods_list ">
@@ -42,7 +42,7 @@
                             <img src="{{item2.goods_thumb}}">
                         </ion-thumbnail>
                         <h2 (click)="goParticularPage(item2.goods_id)">{{item2.goods_name}}</h2>
-                        <span class="type">促销???</span>
+                        <!--<span class="type">促销???</span>-->
                     </ion-item>
                 </div>
                 <div class="single-shop-goods-body">

@@ -11,6 +11,7 @@ export class goodsSpectaclesParams {
 	zhujing = '';//所选的柱镜
 	zhouwei = '';//所填写的轴位
 }
+
 @Component({
 	selector: 'page-particulars-modal-attr',
 	templateUrl: 'particulars-modal-attr.html',
@@ -35,7 +36,7 @@ export class ParticularsModalAttrPage {
 
 	qiujing: string;
 	/*自定义镜片信息项目*/
-	goods: Array<any> = [new goodsSpectaclesParams];
+	goods: Array<any> = [(new goodsSpectaclesParams)];
 	constructor(
 		public navCtrl: NavController,
 		public navParams: NavParams,
@@ -86,6 +87,18 @@ export class ParticularsModalAttrPage {
 				this.numberChangeData = res;
 			}
 		})
+	}
+	totalPrices = 0;
+	totalNumber = 0;
+	jingpianNumberChange($event, it) {
+		it.number = $event;
+		it.subtotal = $event * Number(this.headData.shop_price_formated.substr(1));
+		this.totalPrices = 0;
+		this.totalNumber = 0;
+		for (var i = 0; i < this.goods.length; i++) {
+			this.totalNumber += Number(this.goods[i].number);
+			this.totalPrices += Number(this.goods[i].subtotal);
+		}
 	}
 	/*镜片商品参数*/
 	getGoodsParamsArrs() {
@@ -144,7 +157,7 @@ export class ParticularsModalAttrPage {
 				if (res && res.status == 1) {
 					this.native.showToast('添加成功~')
 					this.events.publish('car:updata');
-					if (goCart) {  goCart(); } else {
+					if (goCart) { goCart(); } else {
 						this.viewCtrl.dismiss();
 					}
 				} else if (res.success == false) {

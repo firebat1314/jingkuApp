@@ -48,9 +48,11 @@
         </ion-segment>
         <div [ngSwitch]="selectPicArguments">
             <div class="pic" *ngSwitchCase="'pic'">
+                <div padding *ngIf="!getGoodsInfo?.goods_desc">该商品暂无详情</div>
                 <div style="text-align:center;" [innerHTML]="getGoodsInfo?.goods_desc"></div>
             </div>
             <div class="arguments" *ngSwitchCase="'arguments'">
+                <div padding *ngIf="!getGoodsParameter">该商品暂无属性</div>
                 <div class="wrapper" *ngIf="getGoodsParameter">
                     <div *ngFor="let item of getGoodsParameter">
                         <div class="name">{{item.name}}：<span>{{item.value}}</span></div>

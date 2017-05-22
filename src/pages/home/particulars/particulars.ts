@@ -8,6 +8,7 @@ import { Native } from "../../../providers/native";
 import { ParticularsModalPage } from "./particulars-modal/particulars-modal"
 import { ParticularsModalAttrPage } from "./particulars-modal-attr/particulars-modal-attr";
 import { AccountServicePage } from "../../my/account-service/account-service";
+import { BrandListPage } from "../brand-list/brand-list";
 
 /*
   Generated class for the Particulars page.
@@ -20,6 +21,7 @@ import { AccountServicePage } from "../../my/account-service/account-service";
   templateUrl: 'particulars.html'
 })
 export class ParticularsPage {
+  region_name: any;
   getCategoryRecommendGoodsHot: any;
   getLinkedGoods: any;
   getGoodsAttribute: any;
@@ -59,7 +61,10 @@ export class ParticularsPage {
     this.native.showLoading();
     this.http.goodsInfos({ goods_id: this.goodsId }).then((res) => {
       console.log("商品详情信息", res);
-      if (res.status == 1) { this.getGoodsInfo = res; }
+      if (res.status == 1) { 
+        this.getGoodsInfo = res; 
+        this.getRegionName(res);
+      }
       this.http.getCategoryRecommendGoodsHot({}).then((res) => {
         console.log('为你推荐：', res)
         if (res.status == 1) { this.getCategoryRecommendGoodsHot = res.data; }
@@ -67,6 +72,13 @@ export class ParticularsPage {
         if (finished) { finished() }
       })
     })
+  }
+  getRegionName(res){
+    for(var i = 0;i < res.sale_city.length;i++){
+      if(res.sale_city[i].selected==1){
+        this.region_name = res.sale_city[i].region_name;
+      }
+    }
   }
   /*下拉刷新*/
   doRefresh(refresher) {
@@ -77,13 +89,17 @@ export class ParticularsPage {
     });
   }
   presentModal(str) {
-    if (str == '优惠券'&&this.getGoodsInfo.bonus.length == 0) {
-        this.native.showToast('暂无优惠券');
-        return;
+    if (str == '优惠券' && this.getGoodsInfo.bonus.length == 0) {
+      this.native.showToast('暂无优惠券');
+      return;
     }
     let modal = this.modalCtrl.create(ParticularsModalPage, { name: str, getBonus: this.getGoodsInfo.bonus, sendto: this.getGoodsInfo.sale_city, GoodsInfo: this.getGoodsInfo.data });
     modal.onDidDismiss(data => {
       console.log(data);
+      if(data&&data.region_name){
+        this.region_name = data.region_name;
+        this.getHttpDetails();
+      }
     });
     modal.present();
   }
@@ -100,6 +116,14 @@ export class ParticularsPage {
         if (res.status == 1) {
           if (res.goods_type == 'goods_spectacles') {
             console.log("goods_type ☞'goods_spectacles'", res);
+            if(typeof res.spectacles_properties.list == 'object'){
+              console.log(res.spectacles_properties.list)
+              let arr = new Array();
+              for(let item in res.spectacles_properties.list){
+                arr.push(res.spectacles_properties.list[item]);
+              }
+              res.spectacles_properties.list = arr;
+            }
             this.openAttrModal(res, 'goods_spectacles');
           }
           if (res.goods_type == 'goods') {
@@ -179,5 +203,7 @@ export class ParticularsPage {
     this.native.showToast('建设中...')
     // this.navCtrl.push(AccountServicePage)
   }
-
+  goStore() {
+    this.navCtrl.push(BrandListPage,{supplierId:this.getGoodsInfo.supplier_info.id})
+  }
 }

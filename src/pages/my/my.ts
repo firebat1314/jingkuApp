@@ -54,7 +54,7 @@ export class MyPage {
     public native: Native
   ) {
     this.httpResult()
-    this.events.subscribe('avatar:update',()=>{
+    this.events.subscribe('avatar:update', () => {
       this.httpResult()
     })
   }
@@ -63,9 +63,14 @@ export class MyPage {
   }
   httpResult(finish?) {
     this.httpService.usercount().then((res) => {
-      if (res.status == 1) { this.usercount = res; }
+      if (res.status == 1) {
+        this.usercount = res;
+      }
       this.httpService.userInfo().then((res) => {
-        if (res.status == 1) { this.userInfo = res; }
+        if (res.status == 1) {
+          this.userInfo = res;
+          this.httpService.setStorage('phonenumber', res.data.user_info.mobile_phone);
+        }
         if (finish) { finish(); }
       })
     })
@@ -81,17 +86,17 @@ export class MyPage {
   goSettingPage() {
     this.navCtrl.push(SettingPage)
   }
-  goMessagePage(){
+  goMessagePage() {
     this.navCtrl.push(MessagePage)
-  } 
-  
-  goAccountProcessPage(){
+  }
+
+  goAccountProcessPage() {
     this.native.showToast('敬请期待')
     // this.navCtrl.push(AccountProcessPage)
   }
-  goAccountServicePage(){
-    this.native.openAlertBox('拨打客服电话：400-080-5118',()=>{
-      this.native.openCallNumber('400-080-5118',false);
+  goAccountServicePage() {
+    this.native.openAlertBox('拨打客服电话：400-080-5118', () => {
+      this.native.openCallNumber('400-080-5118', false);
     })
   }
 }

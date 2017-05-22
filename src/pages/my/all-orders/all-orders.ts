@@ -30,13 +30,15 @@ export class AllOrdersPage {
   ) { }
   ionViewDidLoad() {
     console.log('ionViewDidLoad AllOrdersPage');
-    this.getHttpData();
   }
   ngAfterViewInit() {
     //进入页面默认选中标签
     if (this.navParams.get('index')) {
       this.pageIndex = this.navParams.get('index');
+      console.log(this.pageIndex)
       this.mytabs.selectedIndex = this.pageIndex;
+      this.getByPageIndex();
+    } else {
       this.getByPageIndex();
     }
   }
@@ -73,7 +75,6 @@ export class AllOrdersPage {
         }
       })
     } else if (this.pageIndex == 4) {
-
     }
   }
 
@@ -92,8 +93,20 @@ export class AllOrdersPage {
 
   flag: boolean = true;
   doInfinite(infiniteScroll) {
+    if (this.pageIndex == 0) {
+      this.infiniteScrollq(infiniteScroll, '')
+    } else if (this.pageIndex == 1) {
+      this.infiniteScrollq(infiniteScroll, 'pay')
+    } else if (this.pageIndex == 2) {
+      this.infiniteScrollq(infiniteScroll, 'shi')
+    } else if (this.pageIndex == 3) {
+      this.infiniteScrollq(infiniteScroll, 'dsh')
+    } else if (this.pageIndex == 4) {
+    }
+  }
+  infiniteScrollq(infiniteScroll, type) {
     if (this.orderData.page < this.orderData.pages) {
-      this.httpService.order({ page: ++this.orderData.page }).then((res) => {
+      this.httpService.order({ page: ++this.orderData.page, type: type }).then((res) => {
         if (res.status == 1) {
           Array.prototype.push.apply(this.orderData.list, res.list);
         }

@@ -21,7 +21,6 @@ export class HelperDetailsPage {
     public httpService: HttpService
   ) {
     this.httpService.helpInfo({id:this.item.article_id}).then((res)=>{
-      console.log(res);
       if(res.status==1){
         this.data = res;
       }

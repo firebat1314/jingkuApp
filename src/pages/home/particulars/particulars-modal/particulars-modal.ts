@@ -19,7 +19,7 @@ export class ParticularsModalPage {
   value: number;
   title = this.navParams.get('name');
   getBonus = this.navParams.get('getBonus');
-  sendto = this.navParams.get('sendto');
+  sendto;
   GoodsInfo = this.navParams.get('GoodsInfo');
   constructor(
     public navCtrl: NavController,
@@ -30,6 +30,9 @@ export class ParticularsModalPage {
   ) { }
   ionViewDidLoad() {
     console.log('ionViewDidLoad ParticularsModalPage');
+  }
+  ngAfterViewInit(){
+     this.sendto = this.navParams.get('sendto');
   }
   numberIChange(value: number) {
     this.value = value;
@@ -53,11 +56,11 @@ export class ParticularsModalPage {
     if (ids) {
       this.httpService.setArea({
         goods_id: this.GoodsInfo.goods_id,
-        gaid: ids.split('-')[1]?ids.split('-')[1]:null,
-        region_id: ids.split('-')[0]
+        gaid: ids.gaid?ids.gaid:'',
+        region_id: ids.region_id
       }).then((res) => {
         if (res.status == 1) {
-          this.viewCtrl.dismiss();
+          this.viewCtrl.dismiss({region_name:ids.region_name});
           this.native.showToast('切换成功');
         }
       })

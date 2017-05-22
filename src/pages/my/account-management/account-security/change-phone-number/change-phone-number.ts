@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams, ToastController } from 'ionic-angular';
+import { NavController, NavParams, ToastController, Events } from 'ionic-angular';
 import { HttpService } from "../../../../../providers/http-service";
 
 /*
@@ -26,7 +26,8 @@ export class ChangePhoneNumberPage {
     public navCtrl: NavController,
     public navParams: NavParams,
     public httpService: HttpService,
-    public toastCtrl: ToastController
+    public toastCtrl: ToastController,
+    public events: Events
   ) { }
 
   ionViewDidLoad() {
@@ -113,6 +114,7 @@ export class ChangePhoneNumberPage {
           showCloseButton: false
         }).present().then(() => {
           this.navCtrl.pop();
+          this.events.publish('phonenumber:updata',this.formData.mobile)
         });
       }
     })

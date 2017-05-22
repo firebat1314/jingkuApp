@@ -14,7 +14,7 @@ import { Storage } from '@ionic/storage';
 export class HttpService {
   public HAS_LOGGED_IN = "hasLoggedIn";
   public hasLogin = false;
-  private ip = 'http://v401app.jingkoo.net';  // URL to web API
+  private ip = 'http://app.jingku.cn';  // URL to web API
 
   constructor(public http: UserData, private storage: Storage) {
     console.log('Hello HttpService Provider');
@@ -130,7 +130,7 @@ export class HttpService {
     return this.http.get(this.ip + '/Category/get_categorys', data)
   }
   getChildrenCaCtegory(data?: Object) {//获取九大分类下的子分类
-    return this.http.get(this.ip + '/Category/get_children_category', data)
+    return this.http.get(this.ip + '/Category/get_children_category', data, true)
   }
   categoryGoods(data?: Object) {//商品分类列表页(筛选)
     return this.http.get(this.ip + '/Category/category_goods', data)
@@ -289,10 +289,10 @@ export class HttpService {
     return this.http.get(this.ip + '/User/addinv', data, true)
   }
   selectzz(data?: Object) {//	发票索取信息
-    return this.http.post(this.ip + '/User/selectzz', data)
+    return this.http.post(this.ip + '/User/selectzz', data, true)
   }
   insertInv(data?: Object) {//插入发票信息
-    return this.http.post(this.ip + '/User/insert_inv', data)
+    return this.http.post(this.ip + '/User/insert_inv', data, true)
   }
   invList(data?: Object) {//发票列表
     return this.http.get(this.ip + '/User/inv_list', data)
@@ -340,7 +340,7 @@ export class HttpService {
     return this.http.get(this.ip + '/Index/presell', data)
   }
   helpInfo(data?: Object) {//帮助中心
-    return this.http.get(this.ip + '/User/helpInfo', data)
+    return this.http.get(this.ip + '/User/helpInfo', data, true)
   }
   userRank(data?: Object) {//用户等级
     return this.http.get(this.ip + '/User/UserRank', data)
@@ -376,7 +376,7 @@ export class HttpService {
     return this.http.post(this.ip + '/Login/forgotPwd', data, true)
   }
   coupon(data?: Object) {//首页优惠券
-    return this.http.get(this.ip + '/Index/coupon', data)
+    return this.http.get(this.ip + '/Index/coupon', data, true)
   }
   delOrder(data?: Object) {//删除订单
     return this.http.get(this.ip + '/User/del_order', data)

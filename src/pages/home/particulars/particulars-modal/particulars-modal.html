@@ -66,7 +66,7 @@
             <ion-item mode="ios" *ngFor="let item of sendto">
                 <ion-label>{{item.region_name}}</ion-label>
                 <ion-icon color="danger" name="ios-pin-outline" item-left></ion-icon>
-                <ion-radio mode="ios" color="danger" value="{{item.region_id+'-'+(item.gaid?item.gaid:'')}}"></ion-radio>
+                <ion-radio mode="ios" [checked]="item.selected==1" color="danger" [value]="item"></ion-radio>
             </ion-item>
         </ion-list>
     </div>

@@ -35,22 +35,6 @@ export class SignupPage {
   ionViewDidLoad() {
     console.log('ionViewDidLoad SignupPage');
   }
-  registerBtn() {
-    this.httpService.signupFirst(this.signupInfo).then(
-      data => {
-        if (data.status == 1) {
-          this.navCtrl.push(SignupSecondPage,{user_name:data.data.user_name});
-          this.events.publish("user:signupFirst", this.signupInfo.user_name);
-          this.httpService.setUsername(this.signupInfo.user_name)
-          this.httpService.setToken(data.data.token);
-        }
-      },
-      error => {
-        console.log('注册出错')
-        this.events.publish("user:signupFirst:error");
-      }
-    );
-  }
   logForm(signupForm) {
     console.log(signupForm)
   }
@@ -131,5 +115,20 @@ export class SignupPage {
   toLoginPage() {
     this.navCtrl.pop();
   }
-
+  registerBtn() {
+    this.httpService.signupFirst(this.signupInfo).then(
+      data => {
+        if (data.status == 1) {
+          this.navCtrl.push(SignupSecondPage,{user_name:data.data.user_name});
+          this.events.publish("user:signupFirst", this.signupInfo.user_name);
+          this.httpService.setUsername(this.signupInfo.user_name)
+          this.httpService.setToken(data.data.token);
+        }
+      },
+      error => {
+        console.log('注册出错')
+        this.events.publish("user:signupFirst:error");
+      }
+    );
+  }
 }

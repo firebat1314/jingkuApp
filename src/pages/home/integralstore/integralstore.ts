@@ -65,6 +65,7 @@ export class IntegralstorePage {
       this.flag = false;
     }
   }
+  
   scrollToTop() {
     this.content.scrollToTop();
   }

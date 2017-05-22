@@ -44,9 +44,9 @@
                 </ion-select>
             </div>
             <div class="bottom">
-                <div>¥250.00</div>
+                <div>{{headData.shop_price_formated}}</div>
                 <div>
-                    <count-input (updateNumberI)="it.number=$event"></count-input>
+                    <count-input (updateNumberI)="jingpianNumberChange($event,it)"></count-input>
                 </div>
             </div>
         </div>
@@ -60,8 +60,8 @@
 <ion-footer>
     <ion-toolbar>
         <div class="result">
-            <span>合计:{{numberChangeData?.goods_total||0}}</span>
-            <span>共{{numberChangeData?.number||0}}件</span>
+            <span>合计:{{numberChangeData?.goods_total||totalPrices||0}}</span>
+            <span>共{{numberChangeData?.number||totalNumber||0}}件</span>
         </div>
     </ion-toolbar>
     <div class="btns">
