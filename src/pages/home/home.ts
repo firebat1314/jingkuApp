@@ -92,6 +92,7 @@ export class HomePage {
   }
   getHomeData(finish?) {
     this.native.showLoading('加载中');
+    this.updataArea();
     this.httpService.getHomebanner({ int_pos_id: 44, size: 1 }).then((res) => {
       if (res.status == 1) { this.hotBrand_img = res; }
       this.httpService.getCategoryAd().then((res) => {
