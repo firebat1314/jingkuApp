@@ -72,7 +72,7 @@ export class MyApp {
         }
       })
       Splashscreen.hide();
-      StatusBar.styleDefault; // set status bar to white
+      StatusBar.styleDefault(); // set status bar to white
       //注册返回按键事件
       this.platform.registerBackButtonAction((): any => {
         let activeVC = this.nav.getActive();

@@ -27,10 +27,8 @@ $colors: ( primary: #000, secondary: #32db64, danger: #f53d3d, light: #ffffff, d
 // Material Design only Sass variables can go here
 // Use the primary color as the background for the toolbar-md-background
 $toolbar-md-background: color($colors, light);
-$cordova-ios-statusbar-padding: 20px;
 $tabs-ios-background: #fff;
 $tabs-md-background: #fff;
-$cordova-md-statusbar-padding: 29px;
 // Change the color of the segment button text
 $text-input-md-show-focus-highlight:false;
 $range-ios-knob-width:35px;
