@@ -6,6 +6,7 @@ page-login {
     .form-wrap {
         padding: 0 40px;
         padding-top: 27%;
+        max-width: 390px;
     }
     .logo {
         text-align: center;
@@ -13,7 +14,7 @@ page-login {
         margin-bottom: 4rem;
         img {
             width: 206px;
-            max-width: 206px;
+            max-width: 100%;
         }
     }
     ion-list.list {

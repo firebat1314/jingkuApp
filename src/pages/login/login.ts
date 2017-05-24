@@ -5,7 +5,6 @@ import { TabsPage } from '../tabs/tabs';
 import { SignupPage } from '../signup/signup';
 import { ForgotPage } from '../forgot/forgot';
 
-import { AnalyticsServices } from "../../services/analytics";
 import { HttpService } from "../../providers/http-service";
 
 
@@ -17,8 +16,7 @@ import { HttpService } from "../../providers/http-service";
 */
 @Component({
   selector: 'page-login',
-  templateUrl: 'login.html',
-  providers: [AnalyticsServices]
+  templateUrl: 'login.html'
 })
 export class LoginPage {
   private loginInfo: { username?: string, password?: string } = {};
@@ -31,7 +29,6 @@ export class LoginPage {
     private navParams: NavParams,
     private events: Events,
     private toastCtrl: ToastController,
-    private analytics: AnalyticsServices,
     private httpService: HttpService
   ) {
     this.forgotpage = ForgotPage;
@@ -55,7 +52,6 @@ export class LoginPage {
           });
           toast.present();
           this.submitted = true;
-          this.analytics.trackEvent("Login", "Successful");//google分析
           setTimeout(() => {
             this.navCtrl.push(TabsPage);
           }, 100)

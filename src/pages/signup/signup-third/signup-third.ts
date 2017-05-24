@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams, Events } from 'ionic-angular';
-import { LoginPage } from '../../login/login';
+// import { LoginPage } from '../../login/login';
 
 /*
   Generated class for the SignupThird page.
@@ -13,7 +13,6 @@ import { LoginPage } from '../../login/login';
   templateUrl: 'signup-third.html'
 })
 export class SignupThirdPage {
-  private username: String;
   constructor(
     public navCtrl: NavController,
     public navParams: NavParams,

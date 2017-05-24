@@ -2,7 +2,7 @@ import { Component, ViewChild } from '@angular/core';
 import { NavController, NavParams, Content } from 'ionic-angular';
 import { PaymentMethodPage } from "./payment-method/payment-method";
 import { OrdersDetailPage } from "./orders-detail/orders-detail";
-import { WriteOrdersPage } from "./write-orders/write-orders";
+// import { WriteOrdersPage } from "./write-orders/write-orders";
 import { HttpService } from "../../../providers/http-service";
 import { ParticularsPage } from "../../home/particulars/particulars";
 import { Native } from "../../../providers/native";

@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { NavController, NavParams, ViewController } from 'ionic-angular';
 import { HttpService } from "../../../../providers/http-service";
 import { Native } from "../../../../providers/native";
-import { AllOrdersPage } from "../all-orders";
+// import { AllOrdersPage } from "../all-orders";
 
 /*
   Generated class for the PaymentMethod page.

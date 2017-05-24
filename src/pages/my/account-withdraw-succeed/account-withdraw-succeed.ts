@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
-import { AccountBalancePage } from "../account-balance/account-balance";
+// import { AccountBalancePage } from "../account-balance/account-balance";
 
 /*
   Generated class for the AccountWithdrawSucceed page.

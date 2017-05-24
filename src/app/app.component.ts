@@ -1,7 +1,8 @@
 import { Component, ViewChild } from '@angular/core';
 import { Storage } from '@ionic/storage';
 import { Platform, ToastController, Nav, IonicApp, Events } from 'ionic-angular';
-import { StatusBar, Splashscreen } from 'ionic-native';
+import { StatusBar } from '@ionic-native/status-bar';
+import { SplashScreen } from '@ionic-native/splash-screen';
 
 import { TabsPage } from '../pages/tabs/tabs';
 import { WelcomePage } from '../pages/welcome/welcome';
@@ -36,7 +37,9 @@ export class MyApp {
     private storage: Storage,
     private ionicApp: IonicApp,
     private events: Events,
-    private jpushService: JpushService
+    private jpushService: JpushService,
+    private statusBar: StatusBar,
+    private splashScreen: SplashScreen
   ) {
     // 初次进入app引导页面
     this.storage.get('hasLoggedIn').then((result) => {
@@ -71,8 +74,10 @@ export class MyApp {
           this.jpushService.setAlias(token);
         }
       })
-      Splashscreen.hide();
-      StatusBar.styleDefault(); // set status bar to white
+      // Okay, so the platform is ready and our plugins are available.
+      // Here you can do any higher level native things you might need.
+      this.statusBar.styleDefault();
+      this.splashScreen.hide();
       //注册返回按键事件
       this.platform.registerBackButtonAction((): any => {
         let activeVC = this.nav.getActive();

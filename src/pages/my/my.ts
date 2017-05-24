@@ -5,7 +5,7 @@ import { HttpService } from "../../providers/http-service";
 import { SettingPage } from "./setting/setting";
 import { AllOrdersPage } from "./all-orders/all-orders";
 import { AccountAssetPage } from "./account-asset/account-asset";
-import { AccountProcessPage } from "./account-process/account-process";
+// import { AccountProcessPage } from "./account-process/account-process";
 import { PeceiptPage } from "./peceipt/peceipt";
 import { AccountAreaApplicationPage } from "./account-area-application/account-area-application";
 import { AccountCollectGoodsPage } from "./account-collect-goods/account-collect-goods";

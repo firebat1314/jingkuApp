@@ -7,7 +7,7 @@ import { Native } from "../../../providers/native";
 
 import { ParticularsModalPage } from "./particulars-modal/particulars-modal"
 import { ParticularsModalAttrPage } from "./particulars-modal-attr/particulars-modal-attr";
-import { AccountServicePage } from "../../my/account-service/account-service";
+// import { AccountServicePage } from "../../my/account-service/account-service";
 import { BrandListPage } from "../brand-list/brand-list";
 
 /*

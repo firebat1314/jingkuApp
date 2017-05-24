@@ -1,6 +1,10 @@
 import { Injectable } from '@angular/core';
 import { ToastController, LoadingController, Platform, AlertController } from 'ionic-angular';
-import { Camera, AppVersion, Toast, ImagePicker, CallNumber } from 'ionic-native';
+import { Camera } from '@ionic-native/camera';
+import { ImagePicker } from '@ionic-native/image-picker';
+import { CallNumber } from '@ionic-native/call-number';
+import { Toast } from '@ionic-native/toast';
+import { AppVersion } from '@ionic-native/app-version';
 // import { Transfer, FileUploadOptions, TransferObject } from '@ionic-native/transfer';
 // import { File } from '@ionic-native/file';
 declare var LocationPlugin;
@@ -14,7 +18,12 @@ export class Native {
 		private platform: Platform,
 		private toastCtrl: ToastController,
 		private loadingCtrl: LoadingController,
-		private alertCtrl: AlertController
+		private alertCtrl: AlertController,
+		private camera: Camera,
+		private imagePicker: ImagePicker,
+		private callNumber: CallNumber,
+		private toast: Toast,
+		private appVersion: AppVersion
 	) { }
 
 	/**
@@ -54,7 +63,7 @@ export class Native {
 
 		if (this.isMobile()) {
 			console.log('isMobile:', this.isMobile())
-			Toast.show(message, '500', 'center').subscribe((toast) => {
+			this.toast.show(message, '500', 'center').subscribe((toast) => {
 				console.log(toast);
 			});
 		} else {
@@ -89,7 +98,7 @@ export class Native {
 	 * 手机拨号
 	 */
 	openCallNumber(numberToCall, bypassAppChooser) {
-		CallNumber.callNumber(numberToCall, bypassAppChooser)
+		this.callNumber.callNumber(numberToCall, bypassAppChooser)
 			.then(() => console.log('Launched dialer!'))
 			.catch(() => console.log('Error launching dialer'));
 	}
@@ -124,12 +133,13 @@ export class Native {
 	 */
 	getPicture = (options) => {
 		return new Promise((resolve, reject) => {
-			Camera.getPicture(Object.assign({
-				sourceType: Camera.PictureSourceType.CAMERA,//图片来源,CAMERA:拍照,PHOTOLIBRARY:相册
-				destinationType: Camera.DestinationType.DATA_URL,//默认返回base64字符串,DATA_URL:base64   FILE_URI:图片路径
+			this.camera.getPicture(Object.assign({
+				sourceType: this.camera.PictureSourceType.CAMERA,//图片来源,CAMERA:拍照,PHOTOLIBRARY:相册
+				destinationType: this.camera.DestinationType.DATA_URL,
+				//默认返回base64字符串,DATA_URL:base64   FILE_URI:图片路径
 				quality: 90,//图像质量，范围为0 - 100
 				allowEdit: true,//选择图片前是否允许编辑
-				encodingType: Camera.EncodingType.JPEG,
+				encodingType: this.camera.EncodingType.JPEG,
 				targetWidth: 800,//缩放图像的宽度（像素）
 				targetHeight: 800,//缩放图像的高度（像素）
 				saveToPhotoAlbum: false,//是否保存到相册
@@ -151,7 +161,7 @@ export class Native {
 	getPictureByCamera = (options = {}) => {
 		return new Promise((resolve) => {
 			this.getPicture(Object.assign({
-				sourceType: Camera.PictureSourceType.CAMERA,
+				sourceType: this.camera.PictureSourceType.CAMERA,
 				allowEdit:true
 			}, options)).then(imgData => {
 				resolve(imgData);
@@ -169,7 +179,7 @@ export class Native {
 	getPictureByPhotoLibrary = (options = {}) => {
 		return new Promise((resolve) => {
 			this.getPicture(Object.assign({
-				sourceType: Camera.PictureSourceType.PHOTOLIBRARY,
+				sourceType: this.camera.PictureSourceType.PHOTOLIBRARY,
 			}, options)).then(imgData => {
 				resolve(imgData);
 			}).catch(err => {
@@ -188,7 +198,7 @@ export class Native {
 		let that = this;
 		let destinationType = options['destinationType'] || 0;//0:base64字符串,1:图片url
 		return new Promise((resolve) => {
-			ImagePicker.getPictures(Object.assign({
+			this.imagePicker.getPictures(Object.assign({
 				maximumImagesCount: 6,
 				width: 800,//缩放图像的宽度（像素）
 				height: 800,//缩放图像的高度（像素）
@@ -307,16 +317,16 @@ export class Native {
 	 *  @name 获取app版本信息demo
 	 */
 	showAppVersion() {
-		AppVersion.getAppName().then(value => {
+		this.appVersion.getAppName().then(value => {
 			console.log(value);//ionic2_tabs
 		});
-		AppVersion.getPackageName().then(value => {
+		this.appVersion.getPackageName().then(value => {
 			console.log(value);//com.kit.platform
 		});
-		AppVersion.getVersionCode().then(value => {
+		this.appVersion.getVersionCode().then(value => {
 			console.log(value);//1
 		});
-		AppVersion.getVersionNumber().then(value => {
+		this.appVersion.getVersionNumber().then(value => {
 			console.log(value);//0.0.1
 		});
 	}
