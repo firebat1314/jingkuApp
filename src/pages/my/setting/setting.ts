@@ -1,10 +1,11 @@
-import { Component } from '@angular/core';
-import { NavController, NavParams, App, AlertController } from 'ionic-angular';
+import { Component, ViewChild } from '@angular/core';
+import { NavController, NavParams, App, Toggle } from 'ionic-angular';
 import { LoginPage } from "../../login/login";
-import { Storage } from '@ionic/storage';
 // import { AboutUsPage } from "./about-us/about-us";
 import { HttpService } from "../../../providers/http-service";
 import { AccountHelperPage } from "../account-helper/account-helper";
+import { JpushService } from "../../../providers/jpush-service";
+import { Native } from "../../../providers/native";
 
 /*
   Generated class for the Setting page.
@@ -17,70 +18,57 @@ import { AccountHelperPage } from "../account-helper/account-helper";
   templateUrl: 'setting.html'
 })
 export class SettingPage {
+  @ViewChild(Toggle) myToggle: Toggle
 
   constructor(
     public navCtrl: NavController,
     public navParams: NavParams,
     public app: App,
-    public storage: Storage,
-    public alert: AlertController,
+    public jpushService: JpushService,
+    public native: Native,
     public httpService: HttpService
   ) { }
+  ngAfterViewInit() {
+    this.httpService.getStorage('JPUSH_FLAG').then((res)=>{
+      if(res){
+        this.myToggle.value = true;
+      }else{
+        this.myToggle.value = true;
+      }
+    })
+  }
+  ionViewDidLoad() {
+    console.log('ionViewDidLoad SettingPage');
+  }
   goAboutUs() {
     this.navCtrl.push(AccountHelperPage);// AboutUsPage
   }
   clearCathe() {
-    let myalert = this.alert.create({
-      subTitle: '确定清除本地缓存？',
-      cssClass: 'alert-style',
-      buttons: [
-        {
-          text: '取消',
-          role: 'cancel',
-          handler: () => {
-            console.log('Cancel clicked');
-          }
-        },
-        {
-          text: '确认',
-          handler: () => {
-            console.log('ok clicked');
-          }
-        }
-      ]
-    });
-    myalert.present();
+    this.native.openAlertBox('清除本地缓存？', () => {
+      this.native.showToast('已清空缓存')
+    })
+  }
+  toggle(push) {
+    this.jpushService.isPushStopped((res) => {
+      console.log(res)
+    })
+    if (push.value) {
+      this.jpushService.resumePush();
+      this.httpService.setStorage('JPUSH_FLAG', true);
+    } else {
+      this.jpushService.stopPush();
+      this.httpService.setStorage('JPUSH_FLAG', false);
+    }
   }
   signOut() {
-    let myalert = this.alert.create({
-      subTitle: '确定退出登陆？',
-      cssClass: 'alert-style',
-      buttons: [
-        {
-          text: '取消',
-          role: 'cancel',
-          handler: () => {
-            console.log('Cancel clicked');
-          }
-        },
-        {
-          text: '确认',
-          handler: () => {
-            console.log('ok clicked');
-            this.httpService.logout().then((res) => {
-              console.log(res)
-              this.app.getRootNav().setRoot(LoginPage);
-              this.httpService.setStorage('hasLoggedIn', false);
-              this.httpService.removeStorage("token");
-              this.httpService.removeStorage("username");
-            })
-          }
-        }
-      ]
-    });
-    myalert.present();
-  }
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad SettingPage');
+    this.native.openAlertBox('确定退出登陆？', () => {
+      this.httpService.logout().then((res) => {
+        console.log(res)
+        this.app.getRootNav().setRoot(LoginPage);
+        this.httpService.setStorage('hasLoggedIn', false);
+        this.httpService.removeStorage("token");
+        this.httpService.removeStorage("username");
+      })
+    })
   }
 }

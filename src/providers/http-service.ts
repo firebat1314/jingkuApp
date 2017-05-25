@@ -40,7 +40,7 @@ export class HttpService {
   }
 
   getStorage(key) {
-    this.storage.get(key);
+    return this.storage.get(key);
   }
 
   removeStorage(key) {

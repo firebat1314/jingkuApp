@@ -96,7 +96,7 @@
             </div>
             <ion-grid>
                 <ion-row wrap>
-                    <ion-col *ngFor="let item of categoryAddetatils" [navPush]="BrandListPage" [navParams]="{listId:item.ad_id}" width-33>
+                    <ion-col *ngFor="let item of categoryAddetatils" [navPush]="BrandListPage" [navParams]="{listId:item.ad_id}" width-33 col-4>
                         <img src="{{item.ad_img}}" alt="">
                         <!--<span>隐形眼镜</span>-->
                     </ion-col>

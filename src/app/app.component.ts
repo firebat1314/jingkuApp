@@ -51,7 +51,6 @@ export class MyApp {
             this.rootPage = LoginPage;
           } else {
             this.rootPage = WelcomePage;
-            this.storage.set('firstIn', 'NO');
           }
         })
       }
@@ -68,6 +67,13 @@ export class MyApp {
   initializeApp() {
     this.platform.ready().then(() => {
       this.jpushService.initJpush();//初始化极光推送
+      this.storage.get('JPUSH_FLAG').then((res)=>{
+        if (res) {
+          this.jpushService.resumePush();
+        } else {
+          this.jpushService.stopPush();
+        }
+      })
       this.storage.get('token').then((token) => {
         if (token) {
           this.jpushService.setTags();
@@ -77,7 +83,9 @@ export class MyApp {
       // Okay, so the platform is ready and our plugins are available.
       // Here you can do any higher level native things you might need.
       this.statusBar.styleDefault();
-      this.splashScreen.hide();
+      setTimeout(() => {
+        this.splashScreen.hide();
+      }, 1500);
       //注册返回按键事件
       this.platform.registerBackButtonAction((): any => {
         let activeVC = this.nav.getActive();

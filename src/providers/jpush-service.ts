@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Native } from "./native";
+import { Storage } from '@ionic/storage';
 
 /*
   Generated class for the JpushService provider.
@@ -11,7 +12,8 @@ import { Native } from "./native";
 export class JpushService {
 
   constructor(
-    public nativeService:Native
+    public nativeService: Native,
+    public storage: Storage
   ) {
     console.log('Hello JpushService Provider');
   }
@@ -30,7 +32,23 @@ export class JpushService {
     }
     this.jPushAddEventListener();
   }
-
+  getRegistrationID() {
+    window['plugins'].jPushPlugin.getRegistrationID((res) => {
+      console.log('getRegistrationID', res);
+    });
+  }
+  isPushStopped(successCallback){
+    if (!this.nativeService.isMobile()) {
+      return;
+    }
+    window['plugins'].jPushPlugin.isPushStopped(successCallback);
+  }
+  stopPush() {
+    window['plugins'].jPushPlugin.stopPush();
+  }
+  resumePush(){
+    window['plugins'].jPushPlugin.resumePush();
+  }
   private jPushAddEventListener() {
     //判断系统设置中是否允许当前应用推送
     window['plugins'].jPushPlugin.getUserNotificationSettings(result => {

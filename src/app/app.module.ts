@@ -118,7 +118,7 @@ import { ImgTabs2Component } from "../components/img-tabs2/img-tabs2";
 import { CompanynamePage } from "../pages/my/account-management/account-info/companyname/companyname";
 import { PhoneNumberFilter } from "../pipes/phone-number-filter";
 import { NothingComponent } from "../components/nothing/nothing";
-
+/*————————————————————————————————corodva————————————————————————————————*/
 import { ImagePicker } from "@ionic-native/image-picker";
 import { CallNumber } from '@ionic-native/call-number';
 import { Camera } from '@ionic-native/camera';

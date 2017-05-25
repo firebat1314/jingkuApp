@@ -4,23 +4,20 @@ page-login {
         background-size: 100%;
     }
     .form-wrap {
-        padding: 0 40px;
         padding-top: 27%;
-        max-width: 390px;
+        max-width: 299px;
         margin: 0 auto;
+        width: 80%;
+        min-width: 250px;
     }
     .logo {
         text-align: center;
         width: 100%;
         margin-bottom: 4rem;
+        padding: 0 40px;
         img {
-            width: 206px;
             max-width: 100%;
         }
-    }
-    ion-list.list {
-        padding-top: 0;
-        margin-bottom: 3px;
     }
     .item {
         color: #fff;
