@@ -2,7 +2,7 @@
     <ion-navbar>
         <ion-buttons left>
             <button ion-button clear icon-only icon-left (click)="goCityPage()">
-                <img src="./assets/icon/homepage_03.png" width="20" class="add_icon">
+                <img src="./assets/icon/homepage_03.png" class="add_icon">
                 {{area}}
             </button>
         </ion-buttons>
@@ -22,9 +22,9 @@
     </ion-refresher>
     <!--——————————————————————————————————————————轮播图——————————————————————————————————————————-->
     <div class="banner-wrapper" *ngIf="bannerImgs">
-        <ion-slides #bannerSlide autoplay="4000" loop="true" pager (ionSlideAutoplayStop)="bannerSlide.startAutoplay()">
-            <ion-slide *ngFor="let item of bannerImgs">
-                <img (click)="clickBanner(item)" [src]="item.ad_img" />
+        <ion-slides #bannerSlide autoplay="4000" [loop]="bannerImgs.length>1?true:false" pager (ionSlideAutoplayStop)="bannerSlide.startAutoplay()">
+            <ion-slide *ngFor="let item of bannerImgs" (click)="clickBanner(item)">
+                <img [src]="item.ad_img" />
             </ion-slide>
         </ion-slides>
     </div>

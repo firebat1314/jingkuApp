@@ -23,11 +23,11 @@
     <ion-refresher (ionRefresh)="doRefresh($event)" pullMax="60">
         <ion-refresher-content refreshingSpinner="1" pullingIcon="0"></ion-refresher-content>
     </ion-refresher>
-    <div class="avatar" *ngIf="userInfo||usercount">
+    <div class="avatar">
         <ion-list no-margin>
             <ion-item padding-left no-lines mode="ios" style="border-bottom: 0.5px solid #e0e0e0;">
                 <ion-avatar item-left>
-                    <img src="{{userInfo?.data?.avatar||'./assets/icon/images/brand_1_10.jpg'}}">
+                    <img src="{{userInfo?.data?.avatar}}">
                 </ion-avatar>
                 <h2>{{userInfo?.data?.username}}</h2>
                 <p class="vip">

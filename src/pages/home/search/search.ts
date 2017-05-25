@@ -23,16 +23,13 @@ export class SearchPage {
     public navCtrl: NavController,
     public navParams: NavParams,
     private httpService: HttpService
-  ) {
-    this.getHotSearch();
-  }
+  ) {}
   ngAfterViewInit() {
-    setTimeout(() => {
-      this.mySearchBar.setFocus();
-    }, 500)
+    this.mySearchBar.inputFocused();
   }
   ionViewDidLoad() {
     console.log('ionViewDidLoad SearchPage');
+    this.getHotSearch();
   }
   searchbar(e) {
     if (e) {
@@ -42,7 +39,6 @@ export class SearchPage {
     } else {
       this.navCtrl.push(BrandListPage, { keyword: this.myHomeSearch })
     }
-
   }
   getHotSearch() {
     this.httpService.getHotSearch({

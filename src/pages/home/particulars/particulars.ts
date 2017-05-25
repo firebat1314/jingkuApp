@@ -197,7 +197,7 @@ export class ParticularsPage {
     }
   }
   openCallNumber() {
-    this.native.openCallNumber(this.getGoodsInfo.supplier_info.mobile, true);
+    this.native.openCallNumber(this.getGoodsInfo.supplier_info.mobile, false);
   }
   goAccountServicePage() {
     this.native.showToast('建设中...')

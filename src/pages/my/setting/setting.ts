@@ -43,15 +43,7 @@ export class SettingPage {
   goAboutUs() {
     this.navCtrl.push(AccountHelperPage);// AboutUsPage
   }
-  clearCathe() {
-    this.native.openAlertBox('清除本地缓存？', () => {
-      this.native.showToast('已清空缓存')
-    })
-  }
   toggle(push) {
-    this.jpushService.isPushStopped((res) => {
-      console.log(res)
-    })
     if (push.value) {
       this.jpushService.resumePush();
       this.httpService.setStorage('JPUSH_FLAG', true);
@@ -59,11 +51,19 @@ export class SettingPage {
       this.jpushService.stopPush();
       this.httpService.setStorage('JPUSH_FLAG', false);
     }
+    this.jpushService.isPushStopped((res) => {
+      console.log(res)
+    })
+  }
+  clearCathe() {
+    this.native.openAlertBox('清除本地缓存？', () => {
+      this.native.showToast('已清空缓存')
+    })
   }
   signOut() {
     this.native.openAlertBox('确定退出登陆？', () => {
       this.httpService.logout().then((res) => {
-        console.log(res)
+        console.log(res);
         this.app.getRootNav().setRoot(LoginPage);
         this.httpService.setStorage('hasLoggedIn', false);
         this.httpService.removeStorage("token");

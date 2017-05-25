@@ -38,9 +38,6 @@ export class JpushService {
     });
   }
   isPushStopped(successCallback){
-    if (!this.nativeService.isMobile()) {
-      return;
-    }
     window['plugins'].jPushPlugin.isPushStopped(successCallback);
   }
   stopPush() {

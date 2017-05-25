@@ -66,18 +66,16 @@ export class MyApp {
   }
   initializeApp() {
     this.platform.ready().then(() => {
-      this.jpushService.initJpush();//初始化极光推送
-      this.storage.get('JPUSH_FLAG').then((res)=>{
-        if (res) {
+      if (this.platform.is('mobile') && !this.platform.is('mobileweb')) {
+        this.jpushService.initJpush();//初始化极光推送
+        this.jpushService.getRegistrationID();
+        this.jpushService.setTags();
+      }
+      this.storage.get('JPUSH_FLAG').then((res) => {
+        if (res === 1) {
           this.jpushService.resumePush();
-        } else {
+        } else if (res === 0) {
           this.jpushService.stopPush();
-        }
-      })
-      this.storage.get('token').then((token) => {
-        if (token) {
-          this.jpushService.setTags();
-          this.jpushService.setAlias(token);
         }
       })
       // Okay, so the platform is ready and our plugins are available.

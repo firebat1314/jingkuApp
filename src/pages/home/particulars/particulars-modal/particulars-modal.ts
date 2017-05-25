@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams, ViewController } from 'ionic-angular';
+import { NavController, NavParams, ViewController, Events } from 'ionic-angular';
 
 // import { CityPage } from "../../city/city"
 import { DredgeMoreCityPage } from '../dredge-more-city/dredge-more-city'
@@ -26,6 +26,7 @@ export class ParticularsModalPage {
     public navParams: NavParams,
     public viewCtrl: ViewController,
     public httpService: HttpService,
+    public events: Events,
     public native: Native
   ) { }
   ionViewDidLoad() {
@@ -61,6 +62,7 @@ export class ParticularsModalPage {
       }).then((res) => {
         if (res.status == 1) {
           this.viewCtrl.dismiss({region_name:ids.region_name});
+          this.events.publish('home:updataArea');
           this.native.showToast('切换成功');
         }
       })

@@ -81,12 +81,18 @@ export class HomePage {
     this.getHomeData();
     this.updataArea();
     this.updateCarCount();
+    /**
+     * 地址更新事件
+     */
     this.events.subscribe('home:updataArea', () => {
       this.updataArea();
     })
   }
+  ngOnDestroy(){
+    this.events.unsubscribe('home:updataArea');
+  }
   getBanner() {
-    this.httpService.getHomebanner({ int_pos_id: 3 }).then((res) => {
+    this.httpService.getHomebanner({ int_pos_id: 53 }).then((res) => {
       if (res.status == 1) { this.bannerImgs = res.data; }
     })
   }
@@ -144,6 +150,7 @@ export class HomePage {
   onSlideClick(event) {
   }
   clickBanner(item) {
+    console.log(item)
     if (item.link_type.type_name == 'category') {
       this.goClassPage('classify');
     } else if (item.link_type.type_name == 'goods') {
