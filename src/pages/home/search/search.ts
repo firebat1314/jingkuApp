@@ -26,6 +26,7 @@ export class SearchPage {
   ) {}
   ngAfterViewInit() {
     this.mySearchBar.inputFocused();
+    this.mySearchBar.setFocus();
   }
   ionViewDidLoad() {
     console.log('ionViewDidLoad SearchPage');
