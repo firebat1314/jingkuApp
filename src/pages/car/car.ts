@@ -17,7 +17,6 @@ import { ParticularsPage } from "../home/particulars/particulars";
   templateUrl: 'car.html'
 })
 export class CarPage {
-  HomePage: any = HomePage
   isEdit: boolean = false;
   carDetails: any;
   @ViewChild(Content) content: Content;
@@ -35,14 +34,13 @@ export class CarPage {
     public alertCtrl: AlertController,
     public httpService: HttpService,
     public events: Events,
-  ) {
+  ) {}
+  ionViewDidLoad() {
+    console.log('ionViewDidLoad CarPage');
     this.events.subscribe('car:updata', () => {
       this.getFlowGoods();
     })
     this.getFlowGoods();
-  }
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad CarPage');
   }
   getFlowGoods(finished?) {
     this.httpService.getFlowGoods().then((res) => {
@@ -69,6 +67,7 @@ export class CarPage {
       item[i].selected = true;
       for (let k = 0; k < item[i].goods_list.length; k++) {
         item[i].goods_list[k].selected = true;
+        this.checkGoods(item[i].goods_list[k])
         this.allGoodsId.push(item[i].goods_list[k].goods_id)
       }
     }
@@ -89,32 +88,20 @@ export class CarPage {
    * @param item3 
    */
   deleteItem(item3) {
-    let confirm = this.alertCtrl.create({
-      cssClass: 'alert-style',
-      subTitle: '确认删除该商品吗？',
-      buttons: [
-        {
-          text: '取消',
-          handler: () => {
-            console.log('Disagree clicked');
-          }
-        },
-        {
-          text: '确认',
-          handler: () => {
-            console.log('Agree clicked');
-            this.httpService.dropCartGoods({ rec_id: item3.rec_id }).then((res) => {
-              if (res.status == 1) {
-                this.getFlowGoods();
-                this.native.showToast('删除成功~')
-              }
-            })
-          }
+    this.native.openAlertBox("确认删除该商品吗？", () => {
+      this.httpService.dropCartGoods({ rec_id: item3.rec_id }).then((res) => {
+        if (res.status == 1) {
+          this.getFlowGoods();
+          this.native.showToast('删除成功')
         }
-      ],
-    });
-    confirm.present();
+      })
+    })
   }
+  /**
+   * 加减数量
+   * @param event 点击事件=>商品数量
+   * @param item 单个商品
+   */
   numberChangeI(event, item) {
     item.goods_number = event;
     this.httpService.changeNumCart({ rec_id: item.rec_id, number: event }).then((res) => {
@@ -146,7 +133,7 @@ export class CarPage {
         this.carDetails.total.goods_amount = res.total;
       }
     })
-    console.log(this.checkedArray);
+    console.log("checkedArray",this.checkedArray);
 
     let goodsIdIndex = this.goodsIdArray.indexOf(item.goods_id);
     if (index == -1) {
@@ -154,20 +141,20 @@ export class CarPage {
     } else {
       this.goodsIdArray.splice(goodsIdIndex, 1);
     }
-    console.log(this.goodsIdArray)
+    console.log("goodsIdArray",this.goodsIdArray)
   }
 
   beCareFor() {
     if (this.goodsIdArray.length == 0) {
       this.native.showToast('请选择需要关注商品');
       return;
-    } 
+    }
     this.httpService.batchGoodsCollect({
       goods_ids: this.goodsIdArray
     }).then((res) => {
       console.log(res);
       if (res.status == 1) {
-        this.native.showToast('关注成功~')
+        this.native.showToast('关注成功')
       }
     })
   }
@@ -176,11 +163,11 @@ export class CarPage {
       this.native.showToast('请选择需要删除商品');
       return;
     }
-    this.native.openAlertBox('是否删除购物车选中商品？', () => {
+    this.native.openAlertBox('删除购物车选中商品？', () => {
       this.httpService.dropCartGoodsSelect({ goods_ids: this.goodsIdArray }).then((res) => {
         console.log(res);
         if (res.status == 1) {
-          this.native.showToast('删除成功~')
+          this.native.showToast('删除成功')
           this.getFlowGoods();
         }
       })

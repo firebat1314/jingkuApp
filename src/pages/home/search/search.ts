@@ -23,10 +23,11 @@ export class SearchPage {
     public navCtrl: NavController,
     public navParams: NavParams,
     private httpService: HttpService
-  ) {}
+  ) { }
   ngAfterViewInit() {
-    this.mySearchBar.inputFocused();
-    this.mySearchBar.setFocus();
+    setTimeout(function () {
+      this.mySearchBar.setFocus();
+    }, 500);
   }
   ionViewDidLoad() {
     console.log('ionViewDidLoad SearchPage');

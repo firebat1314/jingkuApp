@@ -83,9 +83,9 @@ html {
     padding: 0 4px;
 }
 
-ion-toolbar {
+/*ion-toolbar {
     border-top: 1px solid #e0e0e0;
-}
+}*/
 
 
 /*————————————————————————————————————item border颜色————————————————————————————————————*/
@@ -278,7 +278,7 @@ ion-refresher-content[state=ready] .refresher-pulling-icon {
 
 /*————————————————————————————————————android导航栏字体居中————————————————————————————————————*/
 
-ion-title.title-md {
+.title-md {
     position: absolute;
     top: 0;
     left: 0;

@@ -21,7 +21,7 @@
         <ion-refresher-content refreshingSpinner="1" pullingIcon="0"></ion-refresher-content>
     </ion-refresher>
     <!--——————————————————————————————————————————轮播图——————————————————————————————————————————-->
-    <div class="banner-wrapper" *ngIf="bannerImgs">
+    <div class="banner-wrapper" *ngIf="!bannerImgs?.length>1">
         <ion-slides #bannerSlide autoplay="4000" [loop]="bannerImgs.length>1?true:false" pager (ionSlideAutoplayStop)="bannerSlide.startAutoplay()">
             <ion-slide *ngFor="let item of bannerImgs" (click)="clickBanner(item)">
                 <img [src]="item.ad_img" />

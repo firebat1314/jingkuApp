@@ -71,14 +71,12 @@ page-car {
                             background: #f7f7f7;
                             padding: 10px;
                             .attr {
-                                display: flex;
-                                flex-wrap: wrap;
-                                white-space: pre-wrap;
                                 span {
                                     width: 33.33%;
                                     color: #808080;
                                     font-size: 1.1rem;
                                     margin-bottom: 10px;
+                                    display: inline-block;
                                 }
                             }
                             .bottom {

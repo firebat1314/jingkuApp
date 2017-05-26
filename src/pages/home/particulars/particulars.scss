@@ -278,6 +278,7 @@ page-particulars {
                 border-left: 1px solid #f5f5f5;
                 color: #808080;
                 white-space: nowrap;
+                min-width: 30%;
                 >div {
                     border-right: 1px solid #f5f5f5;
                     width: 50%;
@@ -298,6 +299,9 @@ page-particulars {
                 flex: 6;
                 .btns {
                     display: flex;
+                    .button{
+                        padding: 0;
+                    }
                 }
             }
         }

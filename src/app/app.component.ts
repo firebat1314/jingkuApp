@@ -58,7 +58,7 @@ export class MyApp {
     this.initializeApp();//注册返回按键事件
     //用户失效事件
     this.events.subscribe('signOut', () => {
-      this.nav.setRoot(LoginPage)
+      this.nav.setRoot(LoginPage);
     })
   }
   ngOnDestroy() {
@@ -66,6 +66,10 @@ export class MyApp {
   }
   initializeApp() {
     this.platform.ready().then(() => {
+      // Okay, so the platform is ready and our plugins are available.
+      // Here you can do any higher level native things you might need.
+      this.statusBar.styleDefault();
+      this.splashScreen.hide();
       if (this.platform.is('mobile') && !this.platform.is('mobileweb')) {
         this.jpushService.initJpush();//初始化极光推送
         this.jpushService.getRegistrationID();
@@ -78,12 +82,6 @@ export class MyApp {
           this.jpushService.stopPush();
         }
       })
-      // Okay, so the platform is ready and our plugins are available.
-      // Here you can do any higher level native things you might need.
-      this.statusBar.styleDefault();
-      setTimeout(() => {
-        this.splashScreen.hide();
-      }, 1500);
       //注册返回按键事件
       this.platform.registerBackButtonAction((): any => {
         let activeVC = this.nav.getActive();

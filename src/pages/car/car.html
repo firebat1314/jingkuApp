@@ -25,7 +25,7 @@
         <div class="single-shop" *ngFor="let item of carDetails?.suppliers_goods_list">
             <div class="single-shop-head">
                 <ion-checkbox [(ngModel)]="item.selected" [checked]="carDetails?.selected" mode="ios" margin-left></ion-checkbox>
-                <ion-item mode="ios" no-lines margin-left>
+                <ion-item mode="ios" no-lines>
                     <ion-icon color="colorsix" item-left name="shop"></ion-icon>
                     {{item.title}}&nbsp;
                     <ion-icon color="colorsix" name="ios-arrow-forward"></ion-icon>

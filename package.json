@@ -3,7 +3,7 @@
   "version": "0.0.1",
   "author": "sunshanshan",
   "homepage": "",
-  "private": true,
+  "private": false,
   "scripts": {
     "clean": "ionic-app-scripts clean",
     "build": "ionic-app-scripts build",

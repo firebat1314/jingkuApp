@@ -133,7 +133,6 @@ export class HomePage {
     })
   }
   onscroll() {
-    console.log(1)
     if (this.content.scrollTop > 400) {
       this.showBackTopBtn = true;
     } else if (this.content.scrollTop <= 400) {
