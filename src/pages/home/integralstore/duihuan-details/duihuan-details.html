@@ -13,8 +13,8 @@
 </ion-header>
 
 
-<ion-content>
-    <div class="imgs">
+<ion-content parallax-header>
+    <div class="imgs header-image">
         <ion-slides parallax="true">
             <ion-slide *ngFor="let item of getGoodsGallery">
                 <ion-card>
@@ -22,40 +22,40 @@
                 </ion-card>
             </ion-slide>
         </ion-slides>
-
-
     </div>
-    <div class="info">
-        <div class="title">
-            {{getGoodsInfo?.goods_name}}
-        </div>
-        <div class="body">
-            单价：<span class="now-price"><span class="number">{{getGoodsInfo?.exchange_info?.exchange_integral}} </span>积分</span>
-        </div>
-        <div class="bottom">
-            <div>市场参考价&nbsp;：<span class="offer-price">¥{{getGoodsInfo?.market_price}}</span></div>
-            <div>商品编号&nbsp;：{{getGoodsInfo?.goods_sn}}</div>
-        </div>
-    </div>
-    <div class="pic-and-arguments">
-        <ion-segment [(ngModel)]="selectPicArguments" mode="md">
-            <ion-segment-button value="pic">
-                图文详情
-            </ion-segment-button>
-            <ion-segment-button value="arguments">
-                商品参数
-            </ion-segment-button>
-        </ion-segment>
-        <div [ngSwitch]="selectPicArguments">
-            <div class="pic" *ngSwitchCase="'pic'">
-                <div padding *ngIf="!getGoodsInfo?.goods_desc">该商品暂无详情</div>
-                <div style="text-align:center;" [innerHTML]="getGoodsInfo?.goods_desc"></div>
+    <div class="main-content">
+        <div class="info">
+            <div class="title">
+                {{getGoodsInfo?.goods_name}}
             </div>
-            <div class="arguments" *ngSwitchCase="'arguments'">
-                <div padding *ngIf="!getGoodsParameter">该商品暂无属性</div>
-                <div class="wrapper" *ngIf="getGoodsParameter">
-                    <div *ngFor="let item of getGoodsParameter">
-                        <div class="name">{{item.name}}：<span>{{item.value}}</span></div>
+            <div class="body">
+                单价：<span class="now-price"><span class="number">{{getGoodsInfo?.exchange_info?.exchange_integral}} </span>积分</span>
+            </div>
+            <div class="bottom">
+                <div>市场参考价&nbsp;：<span class="offer-price">¥{{getGoodsInfo?.market_price}}</span></div>
+                <div>商品编号&nbsp;：{{getGoodsInfo?.goods_sn}}</div>
+            </div>
+        </div>
+        <div class="pic-and-arguments">
+            <ion-segment [(ngModel)]="selectPicArguments" mode="md">
+                <ion-segment-button value="pic">
+                    图文详情
+                </ion-segment-button>
+                <ion-segment-button value="arguments">
+                    商品参数
+                </ion-segment-button>
+            </ion-segment>
+            <div [ngSwitch]="selectPicArguments">
+                <div class="pic" *ngSwitchCase="'pic'">
+                    <div padding *ngIf="!getGoodsInfo?.goods_desc">该商品暂无详情</div>
+                    <div style="text-align:center;" [innerHTML]="getGoodsInfo?.goods_desc"></div>
+                </div>
+                <div class="arguments" *ngSwitchCase="'arguments'">
+                    <div padding *ngIf="!getGoodsParameter">该商品暂无属性</div>
+                    <div class="wrapper" *ngIf="getGoodsParameter">
+                        <div *ngFor="let item of getGoodsParameter">
+                            <div class="name">{{item.name}}：<span>{{item.value}}</span></div>
+                        </div>
                     </div>
                 </div>
             </div>

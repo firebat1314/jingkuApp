@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import 'rxjs/add/operator/map';
 
-import { UserData } from "../services/user-data";
+import { UserData } from "../providers/user-data";
 import { Storage } from '@ionic/storage';
 
 /*

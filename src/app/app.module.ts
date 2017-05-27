@@ -99,7 +99,7 @@ import { InvoiceAskFor2Page } from "../pages/my/peceipt/invoice-ask-for2/invoice
 import { InvoiceAskFor1Page } from "../pages/my/peceipt/invoice-ask-for1/invoice-ask-for1";
 import { AboutUsPage } from "../pages/my/setting/about-us/about-us";
 /*————————————————————————————————服务————————————————————————————————*/
-import { UserData } from "../services/user-data";
+import { UserData } from "../providers/user-data";
 import { Native } from "../providers/native";
 import { HttpService } from "../providers/http-service";
 import { JpushService } from "../providers/jpush-service";

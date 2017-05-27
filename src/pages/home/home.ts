@@ -19,7 +19,7 @@ import { ParticularsPage } from './particulars/particulars'
 import { PresellPage } from "../my/presell/presell";
 
 
-import { UserData } from "../../services/user-data";
+import { UserData } from "../../providers/user-data";
 import { HttpService } from "../../providers/http-service";
 
 import { Native } from "../../providers/native";

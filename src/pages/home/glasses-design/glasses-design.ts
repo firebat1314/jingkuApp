@@ -72,11 +72,12 @@ export class GlassesDesignPage {
   goParticularsPage(id) {
     this.navCtrl.push(ParticularsPage, { goodsId: id })
   }
-  flag: boolean = true;
   doInfinite(infiniteScroll) {
-    if (this.list.page < this.list.pages) {
-      this.httpService.categoryGoods({ cat_id: 421, page: ++this.list.page }).then((res) => {
+    var page = this.list.page;
+    if (page < this.list.pages) {
+      this.httpService.categoryGoods({ cat_id: 421, page: ++page }).then((res) => {
         if (res.status == 1) {
+          this.list.page = res.page;
           Array.prototype.push.apply(this.list.goods, res.goods);
         }
         setTimeout(() => {
@@ -84,7 +85,7 @@ export class GlassesDesignPage {
         }, 500);
       })
     } else {
-      this.flag = false;
+      infiniteScroll.enable(false);
     }
   }
   scrollToTop() {

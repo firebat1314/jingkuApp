@@ -29,7 +29,7 @@ export class BrandListPage {
 		order: '',
 		stort: 'DESC',
 		keywords: '',
-		supplier_id:''
+		supplier_id: ''
 	}
 
 
@@ -49,7 +49,11 @@ export class BrandListPage {
 		console.log('品牌ID:', this.paramsData.brand_id);
 		console.log('keywords:', this.paramsData.keywords);
 		console.log('supplier_id:', this.paramsData.supplier_id);
+	}
+	ionViewDidLoad() {
+		console.log('ionViewDidLoad BrandListPage');
 		this.getListData();
+		this.getCarNumver();
 		this.events.subscribe('user:filterParams', (res) => {
 			this.paramsData = Object.assign(this.paramsData, res);
 			console.log(this.paramsData)
@@ -58,17 +62,17 @@ export class BrandListPage {
 			this.paramsData.stort = 'DESC';
 			this.getListData();
 		});
-		this.getCarNumver();
-	}
-	ionViewDidLoad() {
-		console.log('ionViewDidLoad BrandListPage');
+		this.events.subscribe('car:updata', () => {
+			this.getCarNumver();
+		});
 	}
 	ngAfterViewChecked() {
 		this.content.resize();
 	}
 	ngOnDestroy() {
 		//退出页面取消事件订阅
-		this.events.unsubscribe('user:filterParams')
+		this.events.unsubscribe('user:filterParams');
+		this.events.unsubscribe('car:updata');
 	}
 	getListData(params?) {
 		this.httpService.categoryGoods(Object.assign(this.paramsData, params)).then((res) => {
@@ -128,7 +132,7 @@ export class BrandListPage {
 			order: '',
 			stort: 'DESC',
 			keywords: this.myHomeSearch,
-			supplier_id:''
+			supplier_id: ''
 		}
 		this.httpService.categoryGoods(this.paramsData).then((res) => {
 			this.data = res;
@@ -139,7 +143,6 @@ export class BrandListPage {
 	salesNumStatus = true;
 	shopPriceStatus = true;
 	mytoolChange() {//——_——|||.....
-		console.log(111)
 		if (this.mytool == 'all') {
 			this.paramsData.order = '';
 			this.salesNumStatus = true;
@@ -199,7 +202,6 @@ export class BrandListPage {
 			})
 		}
 	}
-
 	scrollToTop() {
 		this.content.scrollToTop();
 	}

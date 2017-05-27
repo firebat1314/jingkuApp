@@ -43,12 +43,12 @@ export class JifenHistoryPage {
     })
   }
 
-  flag: boolean = true;
   doInfinite(infiniteScroll) {
-    if (this.data.page < this.data.pages) {
-      this.httpService.exchangeGoods({ page: ++this.data.page }).then((res) => {
-        console.log(res);
+    var page = this.data.page;
+    if (page < this.data.pages) {
+      this.httpService.exchangeGoods({ page: ++page }).then((res) => {
         if (res.status == 1) {
+          this.data.page = res.page;
           Array.prototype.push.apply(this.data.list, res.list);
         }
         setTimeout(() => {
@@ -56,7 +56,7 @@ export class JifenHistoryPage {
         }, 500);
       })
     } else {
-      this.flag = false;
+      infiniteScroll.enable(false);
     }
   }
   scrollToTop() {
