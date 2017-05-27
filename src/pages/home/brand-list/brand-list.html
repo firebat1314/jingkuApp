@@ -19,7 +19,7 @@
     </ion-toolbar>
     <ion-toolbar class="segment-style">
         <!--<my-toolbar></my-toolbar>-->
-        <ion-segment [(ngModel)]="mytool" (ionChange)="mytoolChange()" color="primary">
+        <ion-segment [(ngModel)]="mytool" (click)="mytoolChange()" color="primary">
             <ion-segment-button value="all">
                 综合
                 <div [ngClass]="allStatus==false?'sortup':'sortdown'" class="myicon">

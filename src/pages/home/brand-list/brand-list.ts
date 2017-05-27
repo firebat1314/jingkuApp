@@ -139,6 +139,7 @@ export class BrandListPage {
 	salesNumStatus = true;
 	shopPriceStatus = true;
 	mytoolChange() {//——_——|||.....
+		console.log(111)
 		if (this.mytool == 'all') {
 			this.paramsData.order = '';
 			this.salesNumStatus = true;

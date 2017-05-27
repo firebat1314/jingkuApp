@@ -246,7 +246,7 @@
                         上拉查看详情
                     </ion-item>-->
                     <div padding *ngIf="!getGoodsInfo?.data?.goods_desc">无商品详情</div>
-                    <div style="text-align:center;" [innerHTML]="getGoodsInfo?.data?.goods_desc"></div>
+                    <div class="desc" [innerHTML]="getGoodsInfo?.data?.goods_desc"></div>
                 </div>
                 <div class="arguments" *ngSwitchCase="'arguments'">
                     <div padding *ngIf="!getGoodsInfo?.parameter">该商品暂无参数</div>

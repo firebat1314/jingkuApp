@@ -214,14 +214,14 @@ page-particulars {
         .group,
         .recommend {
             display: flex;
-            padding: 18px 0;
+            padding: 8px 0;
             flex-wrap: nowrap;
-            min-height: 26px;
+            min-height: 200px;
             .swiper-pagination {
                 bottom: 0;
             }
             .goods {
-                padding: 2px 30px 23px;
+                padding: 2px 5px 23px;
                 display: flex;
                 flex-direction: column;
                 .top {
@@ -251,6 +251,16 @@ page-particulars {
             .check {
                 margin-top: 10px;
                 text-align: center;
+            }
+            .desc {
+                padding-top: 10px;
+                img {
+                    display: block;
+                    margin: 0 auto;
+                }
+                p {
+                    margin: 0;
+                }
             }
         }
         .arguments {
@@ -299,7 +309,7 @@ page-particulars {
                 flex: 6;
                 .btns {
                     display: flex;
-                    .button{
+                    .button {
                         padding: 0;
                     }
                 }

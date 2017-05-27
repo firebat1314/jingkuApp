@@ -2,7 +2,6 @@ page-subnav-page2 {
     .collapsible-header {
         ion-icon {
             transform: rotate(0deg);
-            transition: all 100ms ease-in-out;
             &.rotate {
                 transform: rotate(180deg)
             }
