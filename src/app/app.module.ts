@@ -156,7 +156,6 @@ import { StatusBar } from "@ionic-native/status-bar";
       backButtonText: '',
       tabsHideOnSubPages: true,
       tabsPlacement: 'bottom',
-      mode: 'md',
       activator: "highlight"
     }, {
         links: [
