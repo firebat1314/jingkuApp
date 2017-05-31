@@ -21,12 +21,11 @@ export class MessagePage {
     public navCtrl: NavController,
     public navParams: NavParams,
     private httpService: HttpService
-  ) { 
-    this.getData();
-  }
+  ) { }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad MessagePage');
+    this.getData();
   }
   goMessageDetailsPage(type) {
     this.navCtrl.push(MessageDetailsPage,{msgType:type})

@@ -16,41 +16,38 @@
 
 <ion-content #myContent>
     <div class="background"></div>
-    <div>
-        <div class="single-shop" *ngFor="let item of orderData?.list;">
-            <ion-item-divider>
-                <ion-icon item-left name="shop"></ion-icon>
-                {{item.suppliers_name}}&nbsp;
-                <ion-icon name="ios-arrow-forward"></ion-icon>
-                <button item-right ion-button clear color="danger">{{item.status}}</button>
-            </ion-item-divider>
-            <ion-item no-lines (click)="goOrdersDetailPage(item.order_id)">
-                <ion-thumbnail item-left>
-                    <img src="{{item.goods[0].original_img}}">
-                </ion-thumbnail>
-                <div class="my-content">
-                    <div class="left">
-                        <h2>{{item.goods[0].goods_name}}</h2>
-                        <div [innerHtml]="item.goods[0].goods_attr"></div>
-                    </div>
-                    <div class="right">
-                        <div>{{item.goods[0].format_amount}}</div>
-                        <div class="count">X{{item.goods[0].goods_number}}</div>
-                    </div>
+    <div class="single-shop" *ngFor="let item of orderData?.list;">
+        <ion-item-divider>
+            <ion-icon item-left name="shop"></ion-icon>
+            {{item.suppliers_name}}&nbsp;
+            <ion-icon *ngIf="item.suppliers_name" name="ios-arrow-forward"></ion-icon>
+            <button item-right ion-button clear color="danger">{{item.status}}</button>
+        </ion-item-divider>
+        <ion-item no-lines (click)="goOrdersDetailPage(item.order_id)">
+            <ion-thumbnail item-left>
+                <img src="{{item.goods[0].original_img}}">
+            </ion-thumbnail>
+            <div class="my-content">
+                <div class="left">
+                    <h2>{{item.goods[0].goods_name}}</h2>
+                    <div [innerHtml]="item.goods[0].goods_attr"></div>
                 </div>
-            </ion-item>
-            <div class="result">
-                <span class="count">共{{item.goods_number}}件商品</span>&nbsp;&nbsp;<span class="price">合计: <span>￥{{item.total_fee}}</span></span>
+                <div class="right">
+                    <div>{{item.goods[0].format_amount}}</div>
+                    <div class="count">X{{item.goods[0].goods_number}}</div>
+                </div>
             </div>
-            <div class="btn" *ngIf="(item.order_status == 5 && item.order_status == 1)||(item.order_status == 0)||(item.pay_status == 0 && item.order_status!=4 && item.order_status!=2 && item.order_status!=3 && item.order_status!=7 && item.order_status!=8)||(item.order_status==5)||(item.order_status==5||item.order_status==2||item.order_status==3)">
-                <button ion-button outline (click)="orderTracking(item.order_id)" *ngIf="item.order_status == 5 && item.order_status == 1">订单跟踪</button>
-                <button ion-button outline (click)="confirmReceipt(item.order_id)" color="dark" *ngIf="item.order_status == 5 && item.order_status == 1">确认收货</button>
-                <button ion-button outline (click)="cancelOrder(item.order_id)" *ngIf="item.order_status == 0">取消订单</button>
-                <button ion-button color="dark" (click)="toPay(item.order_id)" *ngIf="item.pay_status == 0 && item.order_status!=4 && item.order_status!=2 && item.order_status!=3 && item.order_status!=7 && item.order_status!=8 ">去支付</button>
-                <button ion-button color="dark" *ngIf="item.order_status==5" (click)="goParticularsPage(item.goods_id)">再次购买</button>
-                <button ion-button color="dark" (click)="deleteOrder(item.order_id)" *ngIf="item.order_status==5||item.order_status==2||item.order_status==3">删除订单</button>
-            </div>
-
+        </ion-item>
+        <div class="result">
+            <span class="count">共{{item.goods_number}}件商品</span>&nbsp;&nbsp;<span class="price">合计: <span>￥{{item.total_fee}}</span></span>
+        </div>
+        <div class="btn" *ngIf="(item.order_status == 5 && item.order_status == 1)||(item.order_status == 0)||(item.pay_status == 0 && item.order_status!=4 && item.order_status!=2 && item.order_status!=3 && item.order_status!=7 && item.order_status!=8)||(item.order_status==5)||(item.order_status==5||item.order_status==2||item.order_status==3)">
+            <button ion-button outline (click)="orderTracking(item.order_id)" *ngIf="item.order_status == 5 && item.order_status == 1">订单跟踪</button>
+            <button ion-button outline (click)="confirmReceipt(item.order_id)" color="dark" *ngIf="item.order_status == 5 && item.order_status == 1">确认收货</button>
+            <button ion-button outline (click)="cancelOrder(item.order_id)" *ngIf="item.order_status == 0">取消订单</button>
+            <button ion-button color="dark" (click)="toPay(item.order_id)" *ngIf="item.pay_status == 0 && item.order_status!=4 && item.order_status!=2 && item.order_status!=3 && item.order_status!=7 && item.order_status!=8 ">去支付</button>
+            <button ion-button color="dark" *ngIf="item.order_status==5" (click)="goParticularsPage(item.goods_id)">再次购买</button>
+            <button ion-button color="dark" (click)="deleteOrder(item.order_id)" *ngIf="item.order_status==5||item.order_status==2||item.order_status==3">删除订单</button>
         </div>
     </div>
 

@@ -23,6 +23,7 @@ import { UserData } from "../../providers/user-data";
 import { HttpService } from "../../providers/http-service";
 
 import { Native } from "../../providers/native";
+import { ClickBanner } from "../../providers/ClickBanner";
 
 
 
@@ -43,6 +44,7 @@ export class HomePage {
   @ViewChild('bannerSlide') slides: Slides;
   @ViewChild(Content) content: Content;
   showBackTopBtn: Boolean = true;
+  adClick:ClickBanner = new ClickBanner(this.navCtrl,this.events);
 
   DetailsPage = DetailsPage;
   SearchPage = SearchPage;
@@ -100,6 +102,7 @@ export class HomePage {
     this.native.showLoading('加载中');
     this.updataArea();
     this.httpService.getHomebanner({ int_pos_id: 44, size: 1 }).then((res) => {
+      console.log(res)
       if (res.status == 1) { this.hotBrand_img = res; }
       this.httpService.getCategoryAd().then((res) => {
         if (res.status == 1) { this.categoryAddetatils = res.data; }
@@ -149,24 +152,8 @@ export class HomePage {
   }
   onSlideClick(event) {
   }
-  clickBanner(item) {
-    console.log(item)
-    if (item.link_type.type_name == 'category') {
-      this.goClassPage('classify');
-    } else if (item.link_type.type_name == 'goods') {
-      this.navCtrl.push(ParticularsPage, {
-        goodsId: item.link_type.type_value
-      })
-    } else if (item.link_type.type_name == "brand") {
-      this.goClassPage('brand');
-    }
-  }
   scrollToTop() {
     this.content.scrollToTop();
-  }
-  goClassPage(value) {
-    this.navCtrl.parent.select(1);
-    this.events.publish('classify:selectSegment', value);
   }
   goCityPage() {
     this.navCtrl.push(CityPage, { areaList: this.areaList })

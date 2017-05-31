@@ -23,7 +23,7 @@
     <!--——————————————————————————————————————————轮播图——————————————————————————————————————————-->
     <div class="banner-wrapper" *ngIf="!bannerImgs?.length>1">
         <ion-slides #bannerSlide autoplay="4000" [loop]="bannerImgs.length>1?true:false" pager (ionSlideAutoplayStop)="bannerSlide.startAutoplay()">
-            <ion-slide *ngFor="let item of bannerImgs" (click)="clickBanner(item)">
+            <ion-slide *ngFor="let item of bannerImgs" (click)="adClick.clickBanner(item)">
                 <img [src]="item.ad_img" />
             </ion-slide>
         </ion-slides>
@@ -92,7 +92,7 @@
         </div>
         <div class="main">
             <div class="banner">
-                <img src="{{hotBrand_img?.data[0]?.ad_img}}" (click)="clickBanner(hotBrand_img.data[0])" alt="">
+                <img src="{{hotBrand_img?.data[0]?.ad_img}}" (click)="adClick.clickBanner(hotBrand_img.data[0])" alt="">
             </div>
             <ion-grid>
                 <ion-row wrap>
@@ -125,7 +125,7 @@
             <span class="txt">精选专题</span>
         </div>
         <div class="show">
-            <img (click)="clickBanner(jingxuan_img1.data[0])" src="{{jingxuan_img1?.data[0]?.ad_img}}" alt="">
+            <img (click)="adClick.clickBanner(jingxuan_img1.data[0])" src="{{jingxuan_img1?.data[0]?.ad_img}}" alt="">
         </div>
         <div class="pick">
             <ion-slides class="slide-title" slidesPerView="3">
@@ -149,7 +149,7 @@
             </ion-slides>
         </div>
         <div class="show">
-            <img src="{{jingxuan_img2?.data[0]?.ad_img}}" (click)="clickBanner(jingxuan_img2.data[0])" alt="">
+            <img src="{{jingxuan_img2?.data[0]?.ad_img}}" (click)="adClick.clickBanner(jingxuan_img2.data[0])" alt="">
         </div>
         <div class="pick">
             <ion-slides class="slide-title" slidesPerView="3">
@@ -177,7 +177,7 @@
             </ion-slides>
         </div>
         <div class="show">
-            <img src="{{jingxuan_img3?.data[0]?.ad_img}}" (click)="clickBanner(jingxuan_img3.data[0])" alt="">
+            <img src="{{jingxuan_img3?.data[0]?.ad_img}}" (click)="adClick.clickBanner(jingxuan_img3.data[0])" alt="">
         </div>
         <div class="pick">
             <ion-slides class="slide-title" slidesPerView="3">
@@ -224,7 +224,7 @@
             <ion-slides loop="false" parallax="true" pager>
                 <ion-slide *ngFor="let item of jingxuan_img4?.data">
                     <ion-card>
-                        <img (click)="clickBanner(item)" src="{{item?.ad_img}}" />
+                        <img (click)="adClick.clickBanner(item)" src="{{item?.ad_img}}" />
                         <!--<div class="collect">
                             <div class="left">
                                 <ion-icon name="md-heart-outline"></ion-icon>

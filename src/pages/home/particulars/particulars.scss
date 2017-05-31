@@ -217,17 +217,23 @@ page-particulars {
             padding: 8px 0;
             flex-wrap: nowrap;
             min-height: 200px;
+            height: 200px;
             .swiper-pagination {
                 bottom: 0;
+            }
+            .slide-zoom {
+                height: 100%;
             }
             .goods {
                 padding: 2px 5px 23px;
                 display: flex;
                 flex-direction: column;
+                height: 100%;
                 .top {
                     display: flex;
                     align-items: center;
                     justify-content: space-around;
+                    flex: 1;
                     img {
                         margin-left: 5px;
                     }

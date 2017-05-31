@@ -103,14 +103,13 @@ export class CarPage {
    * @param item 单个商品
    */
   numberChangeI(event, item) {
-    item.goods_number = event;
     this.httpService.changeNumCart({ rec_id: item.rec_id, number: event }).then((res) => {
       console.log(res)
       if (res.status == 1) {
+        item.goods_number = event
         item.inputLock = false;
         this.getFlowGoods();
       } else {
-        item.goods_number = item.goods_number - 1;
         item.inputLock = true;
       }
     });

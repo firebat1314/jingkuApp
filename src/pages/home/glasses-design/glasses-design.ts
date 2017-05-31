@@ -2,6 +2,7 @@ import { Component, ViewChild } from '@angular/core';
 import { NavController, NavParams, Content, Events } from 'ionic-angular';
 import { HttpService } from "../../../providers/http-service";
 import { ParticularsPage } from "../particulars/particulars";
+import { ClickBanner } from "../../../providers/ClickBanner";
 
 /*
   Generated class for the GlassesDesign page.
@@ -18,18 +19,18 @@ export class GlassesDesignPage {
   img: any;
   class: any;
   banner: any;
+  adClick:ClickBanner = new ClickBanner(this.navCtrl,this.events);
   @ViewChild(Content) content: Content;
   constructor(
     public navCtrl: NavController,
     public navParams: NavParams,
     public events: Events,
     public httpService: HttpService
-  ) {
-    this.getData();
-  }
+  ) {}
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad GlassesDesignPage');
+    this.getData();
   }
   getData() {
     this.httpService.getHomebanner({ int_pos_id: 37 }).then((res) => {
@@ -53,22 +54,6 @@ export class GlassesDesignPage {
       })
     })
   }
-  clickBanner(item) {
-    if (item.link_type.type_name == 'category') {
-      this.goClassPage('classify');
-    } else if (item.link_type.type_name == 'goods') {
-      this.navCtrl.push(ParticularsPage, {
-        goodsId: item.link_type.type_value
-      })
-    } else if (item.link_type.type_name == "brand") {
-      this.goClassPage('brand');
-    }
-  }
-  goClassPage(value) {
-    this.navCtrl.parent.select(1);
-    this.events.publish('classify:selectSegment', value);
-  }
-
   goParticularsPage(id) {
     this.navCtrl.push(ParticularsPage, { goodsId: id })
   }

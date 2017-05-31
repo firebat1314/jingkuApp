@@ -7,6 +7,7 @@ import { MoreBrandPage } from "./more-brand/more-brand";
 import { ParticularsPage } from "../home/particulars/particulars";
 import { Native } from "../../providers/native";
 import { BrandListPage } from "../home/brand-list/brand-list";
+import { ClickBanner } from "../../providers/ClickBanner";
 /*
   Generated class for the Classify page.
 
@@ -42,6 +43,7 @@ export class ClassifyPage {
   @ViewChild('mySearchBar') mySearchBar: Searchbar;
   @ViewChild('myNav') myNav: Nav;
   @ViewChild(Content) content: Content;
+  adClick:ClickBanner = new ClickBanner(this.navCtrl,this.events);
 
   constructor(
     public navCtrl: NavController,
@@ -138,23 +140,6 @@ export class ClassifyPage {
   }
   toBrandList(id) {
     this.navCtrl.push(BrandListPage, { listId: id })
-  }
-  clickBanner(item) {
-    if (item.link_type.type_name == 'category') {
-      this.navCtrl.parent.select(1);
-      /*this.navCtrl.push(ClassifyPage, {
-        categoryId: item.link_type.type_value
-      })*/
-    } else if (item.link_type.type_name == 'goods') {
-      this.navCtrl.push(ParticularsPage, {
-        goodsId: item.link_type.type_value
-      })
-    } else if (item.link_type.type_name == "brand") {
-      this.navCtrl.parent.select(1);
-      /*this.navCtrl.push(ClassifyPage, {
-        brandId: item.link_type.type_value
-      })*/
-    }
   }
   //分类页后退按钮
   pop() {

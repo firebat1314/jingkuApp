@@ -28,7 +28,7 @@ html {
 .header-image {
     img {
         display: block;
-        width: 100%;
+        // width: 100%;
     }
 }
 
@@ -82,6 +82,7 @@ html {
 .toolbar-md {
     padding: 0 4px;
 }
+
 
 /*ion-toolbar {
     border-top: 1px solid #e0e0e0;
@@ -290,15 +291,15 @@ ion-refresher-content[state=ready] .refresher-pulling-icon {
 }
 
 
-/*————————————————————————————————————轮播图按钮CSS————————————————————————————————————*/
+/*————————————————————————————————————轮播图按钮style————————————————————————————————————*/
 
 button.swiper-pagination-bullet {
     border: 1px solid #000;
 }
 
 .swiper-pagination-bullet {
-    width: 13px;
-    height: 13px;
+    width: 10px;
+    height: 10px;
     display: inline-block;
     border-radius: 2px;
     background: #fff;

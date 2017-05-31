@@ -20,7 +20,7 @@ export class NothingComponent {
     console.log('Hello Nothing Component');
   }
   goHome() {
-    this.navCtrl.popTo(this.navCtrl.getByIndex(1));
+    this.navCtrl.popToRoot();
     this.navCtrl.parent.select(0)
   }
 }
