@@ -107,11 +107,10 @@ html {
 
 /*————————————————————————————————————搜索框图标————————————————————————————————————*/
 
-
-/*.searchbar-ios .searchbar-search-icon {
+.searchbar-ios .searchbar-search-icon {
     background-image: url(../assets/icon/homepage_06.png);
-    top: 5px;
-}*/
+    top: 7px;
+}
 
 
 /*————————————————————————————————————下拉刷新CSS————————————————————————————————————*/
@@ -398,12 +397,12 @@ ion-modal {
 
 @font-face {
     font-family: "Ionicons";
-    src: url('../assets/iconfont.eot?t=1489129564619');
+    src: url('../assets/myFont/iconfont.eot?t=1496227677882');
     /* IE9*/
-    src: url('../assets/myFont/iconfont.eot?t=1489129564619#iefix') format('embedded-opentype'), /* IE6-IE8 */
-    url('../assets/myFont/iconfont.woff?t=1489129564619') format('woff'), /* chrome, firefox */
-    url('../assets/myFont/iconfont.ttf?t=1489129564619') format('truetype'), /* chrome, firefox, opera, Safari, Android, iOS 4.2+*/
-    url('../assets/myFont/iconfont.svg?t=1489129564619#iconfont') format('svg');
+    src: url('../assets/myFont/iconfont.eot?t=1496227677882#iefix') format('embedded-opentype'), /* IE6-IE8 */
+    url('../assets/myFont/iconfont.woff?t=1496227677882') format('woff'), /* chrome, firefox */
+    url('../assets/myFont/iconfont.ttf?t=1496227677882') format('truetype'), /* chrome, firefox, opera, Safari, Android, iOS 4.2+*/
+    url('../assets/myFont/iconfont.svg?t=1496227677882#iconfont') format('svg');
     /* iOS 4.1- */
 }
 
@@ -415,46 +414,10 @@ ion-modal {
     -moz-osx-font-smoothing: grayscale;
 }
 
-.ion-md-top:before,
-.ion-ios-top:before,
-.ion-ios-top-outline:before {
-    content: "\e6ed";
-}
-
-.ion-md-listsmall:before,
-.ion-ios-listsmall:before,
-.ion-ios-listsmall-outline:before {
-    content: "\e60f";
-}
-
-.ion-md-mess:before,
-.ion-ios-mess:before,
-.ion-ios-mess-outline:before {
-    content: "\e663";
-}
-
-.ion-md-sort:before,
-.ion-ios-sort:before,
-.ion-ios-sort-outline:before {
-    content: "\e6d4";
-}
-
-.ion-md-filt:before,
-.ion-ios-filt:before,
-.ion-ios-filt-outline:before {
-    content: "\e63f";
-}
-
-.ion-md-search:before,
-.ion-ios-search:before,
-.ion-ios-search-outline:before {
-    content: "\e67a";
-}
-
-.ion-md-cart:before,
-.ion-ios-cart:before,
-.ion-ios-cart-outline:before {
-    content: "\e622";
+.ion-md-sousuo1:before,
+.ion-ios-sousuo1:before,
+.ion-ios-sousuo1-outline:before {
+    content: "\e61d";
 }
 
 .ion-md-xiaoxi:before,
@@ -463,16 +426,16 @@ ion-modal {
     content: "\e6b6";
 }
 
-.ion-md-fapiao:before,
-.ion-ios-fapiao:before,
-.ion-ios-fapiao-outline:before {
-    content: "\e602";
+.ion-md-iconserverarea:before,
+.ion-ios-iconserverarea:before,
+.ion-ios-iconserverarea-outline:before {
+    content: "\e607";
 }
 
-.ion-md-bao:before,
-.ion-ios-bao:before,
-.ion-ios-bao-outline:before {
-    content: "\3622";
+.ion-md-mess:before,
+.ion-ios-mess:before,
+.ion-ios-mess-outline:before {
+    content: "\e663";
 }
 
 .ion-md-shop:before,
@@ -487,16 +450,16 @@ ion-modal {
     content: "\e62c";
 }
 
-.ion-md-baitiao1:before,
-.ion-ios-baitiao1:before,
-.ion-ios-baitiao1-outline:before {
-    content: "\e62e";
+.ion-md-search:before,
+.ion-ios-search:before,
+.ion-ios-search-outline:before {
+    content: "\e67a";
 }
 
-.ion-md-fanhui:before,
-.ion-ios-fanhui:before,
-.ion-ios-fanhui-outline:before {
-    content: "\e63a";
+.ion-md-cart:before,
+.ion-ios-cart:before,
+.ion-ios-cart-outline:before {
+    content: "\e622";
 }
 
 .ion-md-bao1:before,
@@ -505,10 +468,10 @@ ion-modal {
     content: "\e63e";
 }
 
-.ion-md-xiu:before,
-.ion-ios-xiu:before,
-.ion-ios-xiu-outline:before {
-    content: "\e61c";
+.ion-md-list-:before,
+.ion-ios-list-:before,
+.ion-ios-list--outline:before {
+    content: "\e60b";
 }
 
 .ion-md-sort-up-copy:before,
@@ -521,16 +484,4 @@ ion-modal {
 .ion-ios-sort1:before,
 .ion-ios-sort1-outline:before {
     content: "\e604";
-}
-
-.ion-md-anquanbaozhang-xianxing:before,
-.ion-ios-anquanbaozhang:before,
-.ion-ios-anquanbaozhang-outline:before {
-    content: "\e88c";
-}
-
-.ion-md-ti:before,
-.ion-ios-ti:before,
-.ion-ios-ti-outline:before {
-    content: "\e605";
 }

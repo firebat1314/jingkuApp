@@ -94,6 +94,9 @@ export class UserData {
                 this.storage.set('hasLoggedIn', false)
                 if (this.showToastTime) {
                     this.myAlert(msg);
+                    setTimeout(function() {
+                        this.showToastTime = true;
+                    }, 10000);
                 }
             }
             console.log(msg);
@@ -108,14 +111,13 @@ export class UserData {
         let alert = this.alertCtrl.create({
             title: '提示',
             subTitle: msg,
+            enableBackdropDismiss: false,
             buttons: [{
                 text: '确定',
                 handler: () => {
                     this.events.publish('signOut');
-                    this.showToastTime = true;
                 }
-            }],
-            enableBackdropDismiss: false
+            }]
         });
         alert.present();
     }

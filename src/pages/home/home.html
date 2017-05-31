@@ -2,7 +2,7 @@
     <ion-navbar>
         <ion-buttons left>
             <button ion-button clear icon-only icon-left (click)="goCityPage()">
-                <img src="./assets/icon/homepage_03.png" class="add_icon">
+               <ion-icon name="iconserverarea" style="font-size:1.4em;"></ion-icon>
                 {{area}}
             </button>
         </ion-buttons>
@@ -12,7 +12,9 @@
         </div>
 
         <ion-buttons right>
-            <button ion-button clear icon-only icon-left [navPush]="MessagePage"><img src="./assets/icon/homepage_09.png" width="20px"></button>
+            <button ion-button clear icon-only icon-left [navPush]="MessagePage">
+               <ion-icon name="mess"></ion-icon>
+            </button>
         </ion-buttons>
     </ion-navbar>
 </ion-header>

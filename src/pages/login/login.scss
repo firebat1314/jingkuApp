@@ -1,7 +1,7 @@
 page-login {
     .content {
         background: url(../assets/images/bg_login.jpg) center top no-repeat;
-        background-size: 100%;
+        background-size: cover;
     }
     .form-wrap {
         padding-top: 27%;
@@ -13,7 +13,7 @@ page-login {
     .logo {
         text-align: center;
         width: 100%;
-        margin-bottom: 4rem;
+        margin-bottom: 3rem;
         padding: 0 40px;
         img {
             max-width: 100%;
@@ -27,16 +27,16 @@ page-login {
         }
         .item-inner {
             padding-left: 45px;
-            background: url(../assets/icon/icon_03.png) 3px center no-repeat;
-            background-size: 20px;
+            background: url(../assets/icon/images/icon_03.png) 3px center no-repeat;
+            background-size: 25px;
         }
         &:nth-child(2) .item-inner {
-            background-image: url(../assets/icon/icon_07.png);
+            background-image: url(../assets/icon/images/icon_07.png);
         }
     }
     .forgot-password {
         overflow: hidden;
-        margin-bottom: 3rem;
+        margin-bottom: 2rem;
         .button {
             float: right;
         }

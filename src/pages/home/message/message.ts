@@ -28,16 +28,16 @@ export class MessagePage {
     this.getData();
   }
   goMessageDetailsPage(type) {
-    this.navCtrl.push(MessageDetailsPage,{msgType:type})
+    this.navCtrl.push(MessageDetailsPage, { msgType: type })
   }
-  getData(){
-    this.httpService.getTidings({istop:1}).then((res)=>{
-      if(res.status==1){
+  getData() {
+    this.httpService.getTidings({ istop: 1 }).then((res) => {
+      if (res.status == 1) {
         this.userTidings = res;
       }
     })
-    this.httpService.getWuLiuTidings({istop:1}).then((res)=>{
-      if(res.status==1){
+    this.httpService.getWuLiuTidings({ istop: 1 }).then((res) => {
+      if (res.status == 1) {
         this.wuLiuTidings = res;
       }
     })

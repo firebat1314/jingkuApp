@@ -8,11 +8,15 @@
 
     <ion-navbar>
         <ion-buttons left>
-            <button ion-button clear icon-only (click)="goSettingPage()"><ion-icon name="ios-settings-outline"></ion-icon></button>
+            <button ion-button clear icon-only (click)="goSettingPage()">
+                <ion-icon name="ios-settings-outline"></ion-icon>
+            </button>
         </ion-buttons>
         <ion-title>个人中心</ion-title>
         <ion-buttons right>
-            <button ion-button clear icon-only icon-left right (click)="goMessagePage()"><img src="./assets/icon/images/user_cener_1_03.png" width="20"></button>
+            <button ion-button clear icon-only icon-left right (click)="goMessagePage()">
+                <ion-icon name="mess"></ion-icon>
+            </button>
         </ion-buttons>
     </ion-navbar>
 
@@ -40,7 +44,7 @@
                 </button>
             </ion-item>
             <ion-item padding-left [navPush]="AllOrdersPage" [navParams]="{index:0}" no-lines mode="ios" style="border-bottom: 0.5px solid #e0e0e0;">
-                <ion-icon item-left><img src="./assets/icon/images/user_cener_1_15.png" alt=""></ion-icon>
+                <ion-icon item-left><img src="./assets/icon/images/user_center_5.png" alt=""></ion-icon>
                 全部订单
                 <ion-icon color="gray" name="ios-arrow-forward" item-right></ion-icon>
             </ion-item>
@@ -71,7 +75,7 @@
     <div class="myAssets">
         <ion-list no-margin>
             <ion-item padding-left no-lines mode="ios" style="border-bottom: 0.5px solid #e0e0e0;">
-                <ion-icon item-left><img src="./assets/icon/images/user_cener_1_19.png" alt=""></ion-icon>
+                <ion-icon item-left><img src="./assets/icon/images/user_center_9.png" alt=""></ion-icon>
                 我的资产
             </ion-item>
             <ion-item padding-left>
@@ -99,12 +103,12 @@
     <div class="background"></div>
     <ion-list no-margin>
         <ion-item (click)="goAccountProcessPage()" padding-left mode="ios">
-            <ion-icon item-left><img src="./assets/icon/images/user_cener_1_23.png" alt=""></ion-icon>
+            <ion-icon item-left><img src="./assets/icon/images/user_center_1.png" alt=""></ion-icon>
             来镜加工
             <ion-icon color="gray" name="ios-arrow-forward" item-right></ion-icon>
         </ion-item>
         <ion-item [navPush]="PeceiptPage" padding-left mode="ios" [navPush]="PeceiptPage">
-            <ion-icon item-left><img src="./assets/icon/images/user_cener_1_26.png" alt=""></ion-icon>
+            <ion-icon item-left><img src="./assets/icon/images/user_center_4.png" alt=""></ion-icon>
             发票管理
             <ion-icon color="gray" name="ios-arrow-forward" item-right></ion-icon>
         </ion-item>
@@ -112,7 +116,7 @@
     <div class="background"></div>
     <ion-list no-margin>
         <ion-item [navPush]="DredgeMoreCityPage" padding-left mode="ios">
-            <ion-icon item-left><img src="./assets/icon/images/user_cener_1_28.png" alt=""></ion-icon>
+            <ion-icon item-left><img src="./assets/icon/images/user_center_2.png" alt=""></ion-icon>
             地区申请
             <ion-icon color="gray" name="ios-arrow-forward" item-right></ion-icon>
         </ion-item>
@@ -120,17 +124,17 @@
     <div class="background"></div>
     <ion-list no-margin>
         <ion-item [navPush]="AccountCollectGoodsPage" padding-left mode="ios">
-            <ion-icon item-left><img src="./assets/icon/images/user_cener_1_30.png" alt=""></ion-icon>
+            <ion-icon item-left><img src="./assets/icon/images/user_center_8.png" alt=""></ion-icon>
             收藏的商品
             <ion-icon color="gray" name="ios-arrow-forward" item-right></ion-icon>
         </ion-item>
         <ion-item [navPush]="AccountCollectStorePage" padding-left mode="ios">
-            <ion-icon item-left><img src="./assets/icon/images/user_cener_1_32.png" alt=""></ion-icon>
+            <ion-icon item-left><img src="./assets/icon/images/user_center_3.png" alt=""></ion-icon>
             收藏的店铺
             <ion-icon color="gray" name="ios-arrow-forward" item-right></ion-icon>
         </ion-item>
         <ion-item [navPush]="AccountHistoryPage" padding-left mode="ios">
-            <ion-icon item-left><img src="./assets/icon/images/user_cener_1_34.png" alt=""></ion-icon>
+            <ion-icon item-left><img src="./assets/icon/images/user_center_7.png" alt=""></ion-icon>
             浏览记录
             <ion-icon color="gray" name="ios-arrow-forward" item-right></ion-icon>
         </ion-item>
@@ -138,7 +142,7 @@
     <div class="background"></div>
     <ion-list no-margin>
         <ion-item (click)="goAccountServicePage()" padding-left mode="ios">
-            <ion-icon item-left><img src="./assets/icon/images/user_cener_1_36.png" alt=""></ion-icon>
+            <ion-icon item-left><img src="./assets/icon/images/user_center_6.png" alt=""></ion-icon>
             镜库客服
             <ion-icon color="gray" name="ios-arrow-forward" item-right></ion-icon>
         </ion-item>
