@@ -17,7 +17,7 @@
 <ion-content #myContent>
     <div class="background"></div>
     <div class="single-shop" *ngFor="let item of orderData?.list;">
-        <ion-item-divider>
+        <ion-item-divider mode="md">
             <ion-icon item-left name="shop"></ion-icon>
             {{item.suppliers_name}}&nbsp;
             <ion-icon *ngIf="item.suppliers_name" name="ios-arrow-forward"></ion-icon>

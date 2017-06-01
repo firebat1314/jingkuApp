@@ -1,7 +1,9 @@
 page-account-helper {
     .list {
-        padding: 0 10px;
         background: #fff;
+        .item-divider-ios{
+            background: #fff;
+        }
         .item-divider-md {
             color: #000;
             font-size: 2rem;

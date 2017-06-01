@@ -34,8 +34,8 @@
         <ion-searchbar mode="ios" #mySearchBar debounce="500" placeholder="搜索品牌、分类或者关注" animated="true">
         </ion-searchbar>
     </ion-toolbar>
-    <ion-toolbar class="segment-style" *ngIf="classSelect=='care'">
-        <ion-segment [(ngModel)]="careSelect">
+    <ion-toolbar  class="segment-style" *ngIf="classSelect=='care'">
+        <ion-segment mode="md" [(ngModel)]="careSelect">
             <ion-segment-button value="shop">
                 关注的店铺
             </ion-segment-button>
