@@ -215,7 +215,7 @@
                     <div *ngIf="!getCategoryRecommendGoodsHot" margin-left>无组合套餐</div>
                     <ion-slides slidesPerView="3" pager>
                         <ion-slide *ngFor="let item of getCategoryRecommendGoodsHot">
-                            <div class="goods">
+                            <div class="goods" (click)="goParticularsPage(item.id)">
                                 <div class="top">
                                     <!--<ion-checkbox mode="ios"></ion-checkbox>-->
                                     <img src="{{item.thumb}}" alt="">

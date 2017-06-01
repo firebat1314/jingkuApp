@@ -22,7 +22,7 @@ export class LoginPage {
   private loginInfo: { username?: string, password?: string } = {};
   private submitted = false;
   private signedName: String;
-  private forgotpage;
+  private forgotpage = ForgotPage;
 
   constructor(
     private navCtrl: NavController,
@@ -31,9 +31,11 @@ export class LoginPage {
     private toastCtrl: ToastController,
     private httpService: HttpService
   ) {
-    this.forgotpage = ForgotPage;
     this.signedName = navParams.get('username');
     this.httpService.getUsername().then((data) => { this.loginInfo.username = this.signedName || data || '' })
+  }
+  ionViewDidLoad() {
+    console.log('ionViewDidLoad LoginPage')
   }
   goToHome(form) {
     if (form.valid) {
@@ -53,7 +55,7 @@ export class LoginPage {
           toast.present();
           this.submitted = true;
           setTimeout(() => {
-            this.navCtrl.push(TabsPage);
+            this.navCtrl.setRoot(TabsPage);
           }, 100)
         }
       })
@@ -62,9 +64,4 @@ export class LoginPage {
   goSignup() {
     this.navCtrl.push(SignupPage);
   }
-
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad LoginPage')
-  }
-
 }

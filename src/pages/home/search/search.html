@@ -7,10 +7,7 @@
 <ion-header>
 
     <ion-navbar>
-        <ion-toolbar>
-            <ion-searchbar [(ngModel)]="myHomeSearch" placeholder="搜索镜库上平/店铺" mode="ios" showCancelButton="true" cancelButtonText="取消" animated debounce="500" (keypress)="searchbar($event)">
-            </ion-searchbar>
-        </ion-toolbar>
+        <ion-searchbar [(ngModel)]="myHomeSearch" placeholder="搜索镜库上平/店铺" mode="ios" showCancelButton="true" cancelButtonText="取消" animated debounce="500" (keypress)="searchbar($event)"></ion-searchbar>
     </ion-navbar>
 
 </ion-header>

@@ -196,6 +196,9 @@ export class ParticularsPage {
       }
     }
   }
+  goParticularsPage(id){
+    this.navCtrl.push(ParticularsPage,{goodsId:id})
+  }
   openCallNumber() {
     this.native.openCallNumber(this.getGoodsInfo.supplier_info.mobile, false);
   }

@@ -32,13 +32,11 @@ export class SingleCardComponent {
 
   ngOnChanges() {
     this.animateItems = [];
-    let that = this;
-    // console.log(that.data)
     if (this.data) {
-      for (let i = 0; i < that.data.length; i++) {
-        setTimeout(function () {
-          that.data[i].showBtn = false;
-          that.animateItems.push(that.data[i]);
+      for (let i = 0; i < this.data.length; i++) {
+        setTimeout( () => {
+          this.data[i].showBtn = false;
+          this.animateItems.push(this.data[i]);
         }, 50 * i);
       }
     }

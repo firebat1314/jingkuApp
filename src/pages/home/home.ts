@@ -186,4 +186,9 @@ export class HomePage {
       }
     })
   }
+  goClassPage(value) {
+      this.navCtrl.popToRoot();
+      this.navCtrl.parent.select(1);
+      this.events.publish('classify:selectSegment', value);
+   }
 }

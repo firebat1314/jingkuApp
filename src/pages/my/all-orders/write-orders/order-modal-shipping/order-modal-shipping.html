@@ -12,12 +12,11 @@
 
 </ion-header>
 
-
 <ion-content>
     <ion-list radio-group>
         <ion-item-sliding *ngFor="let item of data">
             <ion-item>
-                <ion-radio item-left color="secondary" [disabled]="item.is_show==0" [checked]="item.selected==1" (ionSelect)="dismiss(item)"> </ion-radio>
+                <ion-radio mode="md" item-left color="secondary" [disabled]="item.is_show==0" [checked]="item.selected==1" (ionSelect)="dismiss(item)"> </ion-radio>
                 <ion-label>
                     <h2><span class="name">{{item.consignee}}</span>{{item.mobile|phonenumberfilter}}</h2>
                     <p><span class="moren" *ngIf="item.is_default==1">默认</span>{{item.address}}</p>
@@ -30,6 +29,7 @@
         </ion-item-sliding>
     </ion-list>
 </ion-content>
+
 <ion-footer>
     <div ion-button full large no-margin color="dark" (click)="goAddShippingAddressPage()">+添加收货地址</div>
 </ion-footer>

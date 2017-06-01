@@ -1,24 +1,17 @@
 page-account-helper {
     .list {
         background: #fff;
-        .item-divider-ios{
-            background: #fff;
-        }
-        .item-divider-md {
-            color: #000;
-            font-size: 2rem;
+        .list-header.item {
+            font-size: 16px;
             img {
                 width: 20px;
             }
-        }
-        ion-item-divider.item {
-            font-size: 16px;
         }
         ion-item.item {
             padding-left: 0px;
             font-size: 14px;
             .item-inner {
-                padding-left: 40px;
+                padding-left: 50px;
             }
         }
     }

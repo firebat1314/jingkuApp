@@ -197,8 +197,9 @@ export class ParticularsModalAttrPage {
 		}
 	}
 	goCarPage() {
+		this.navCtrl.push(CarPage);
 		this.addToCart(() => {
-			this.navCtrl.push(CarPage);
+			this.viewCtrl.dismiss();
 		})
 	}
 

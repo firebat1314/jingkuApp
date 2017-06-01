@@ -20,30 +20,28 @@ export class PopoverContentPage {
     public navParams: NavParams,
     public view: ViewController,
     public native: Native,
-  ) {
-  }
+  ) {}
   ngOnInit() {
 
   }
   ionViewDidLoad() {
     console.log('ionViewDidLoad PopoverContentPage');
   }
-  close() {
-
-    this.view.dismiss({
-      image: this.image
-    });
-  }
   openCamera() {
-    this.native.getPictureByCamera().then((data) => {
+    this.native.getPictureByCamera({allowEdit:false}).then((data) => {
       this.image = data;
       this.close()
     })
   }
   openPhotoAlbum() {
-    this.native.getPictureByPhotoLibrary().then((data) => {
+    this.native.getPictureByPhotoLibrary({allowEdit:false}).then((data) => {
       this.image = data;
       this.close()
     })
+  }
+  close() {
+    this.view.dismiss({
+      image: this.image
+    });
   }
 }

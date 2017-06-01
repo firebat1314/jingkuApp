@@ -16,10 +16,10 @@
 <ion-content>
 
     <ion-list *ngFor="let list of data?.data">
-        <ion-item-divider>
+        <ion-list-header>
             <div item-left><img src="{{list.img}}" alt=""></div>
             {{list.cat_name}}
-        </ion-item-divider>
+        </ion-list-header>
         <ion-item detail-push *ngFor="let item of list.article" (click)="goHelperDetailsPage(item)">
             {{item.title}}
         </ion-item>
