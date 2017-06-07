@@ -128,7 +128,13 @@ export class PaymentMethodPage {
       that.native.showToast("支付异常");
       console.log(result, err)
     });
+    //开启debug模式
+    (<any>window).navigator.pingpp.setDebugMode(true) // [true] or [false];
 
+    //获取当前SDK版本号
+    (<any>window).navigator.pingpp.getVersion( (version) => {
+      alert("当前SDK版本号是:" + version);
+    });
     /*——————————————————————————————————————————————————————————————————————————*/
     // pingpp.createPayment(data, (result) => {
     //   console.log('success',result);
