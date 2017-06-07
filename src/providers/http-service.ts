@@ -14,7 +14,8 @@ import { Storage } from '@ionic/storage';
 export class HttpService {
   public HAS_LOGGED_IN = "hasLoggedIn";
   public hasLogin = false;
-  private ip = 'http://v402app.jingkoo.net';//http://v402app.jingkoo.net //http://app.jingku.cn  // URL to web API
+  private ip = 'http://v402app.jingkoo.net';
+  // private ip = 'http://app.jingku.cn';
 
   constructor(public http: UserData, private storage: Storage) {
     console.log('Hello HttpService Provider');

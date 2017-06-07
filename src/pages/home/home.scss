@@ -15,11 +15,12 @@ page-home {
         margin-top: -4px;
     }
     .banner-wrapper {
+        background: #fff;
         ion-slide {
             img {
                 width: 100%;
                 display: block;
-                min-height: 50px;
+                min-height: 100px;
             }
         }
     }

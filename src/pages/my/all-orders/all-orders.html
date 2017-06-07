@@ -18,12 +18,12 @@
     <div class="background"></div>
     <div class="single-shop" *ngFor="let item of orderData?.list;">
         <ion-item-divider>
-            <ion-icon item-left name="shop"></ion-icon>
+            <ion-icon *ngIf="item.suppliers_name" item-left name="shop"></ion-icon>
             {{item.suppliers_name}}&nbsp;
             <ion-icon *ngIf="item.suppliers_name" name="ios-arrow-forward"></ion-icon>
             <button item-right ion-button clear color="danger">{{item.status}}</button>
         </ion-item-divider>
-        <ion-item no-lines (click)="goOrdersDetailPage(item.order_id)">
+        <ion-item no-lines (click)="goOrdersDetailPage(item.order_id)" *ngIf="item.goods[0]">
             <ion-thumbnail item-left>
                 <img src="{{item.goods[0]?.original_img}}">
             </ion-thumbnail>
