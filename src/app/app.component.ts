@@ -1,6 +1,6 @@
 import { Component, ViewChild } from '@angular/core';
 import { Storage } from '@ionic/storage';
-import { Platform, ToastController, Nav, IonicApp, Events } from 'ionic-angular';
+import { Platform, ToastController, Nav, IonicApp, Events, Keyboard } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 
@@ -39,7 +39,8 @@ export class MyApp {
     private events: Events,
     private jpushService: JpushService,
     private statusBar: StatusBar,
-    private splashScreen: SplashScreen
+    private splashScreen: SplashScreen,
+    private keyboard: Keyboard
   ) {
     // 初次进入app引导页面
     this.storage.get('hasLoggedIn').then((result) => {
@@ -84,9 +85,13 @@ export class MyApp {
       })
       //注册返回按键事件
       this.platform.registerBackButtonAction((): any => {
+        if (this.keyboard.isOpen) {
+          this.keyboard.close();
+          return;
+        }
         let activeVC = this.nav.getActive();
         let page = activeVC.instance;
-        let activePortal = this.ionicApp._modalPortal.getActive() || /*this.ionicApp._toastPortal.getActive() || */this.ionicApp._loadingPortal.getActive() || this.ionicApp._overlayPortal.getActive();
+        let activePortal = this.ionicApp._modalPortal.getActive() || this.ionicApp._loadingPortal.getActive() || this.ionicApp._overlayPortal.getActive();/*this.ionicApp._toastPortal.getActive() || */
         if (activePortal) {
           activePortal.dismiss().catch(() => { });
           activePortal.onDidDismiss(() => { });
@@ -101,13 +106,8 @@ export class MyApp {
         }
         let tabs = page.tabs;
         let activeNav = tabs.getSelected();
-        if (!activeNav.canGoBack()) {
-          //当前页面为tab栏，退出APP
-          return this.showExit();
-        }
-        //当前页面为tab栏的子页面，正常返回
-        return activeNav.pop();
-
+        //当前页面为tab栏，退出APP,当前页面为tab栏的子页面，正常返回
+        return activeNav.canGoBack() ? activeNav.pop() : this.showExit()
       }, 1);
 
     });

@@ -2,6 +2,9 @@ page-car {
     .list {
         margin: 0;
     }
+    .scroll-content {
+        background: #f7f7f7;
+    }
     @mixin item-style {
         display: flex;
         align-items: center;

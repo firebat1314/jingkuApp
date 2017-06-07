@@ -25,7 +25,7 @@
         </ion-item-divider>
         <ion-item no-lines (click)="goOrdersDetailPage(item.order_id)">
             <ion-thumbnail item-left>
-                <img src="{{item.goods[0].original_img}}">
+                <img src="{{item.goods[0]?.original_img}}">
             </ion-thumbnail>
             <div class="my-content">
                 <div class="left">

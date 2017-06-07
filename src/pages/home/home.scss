@@ -14,9 +14,14 @@ page-home {
         height: 18px;
         margin-top: -4px;
     }
-    .banner-wrapper ion-slide img {
-        width: 100%;
-        display: block;
+    .banner-wrapper {
+        ion-slide {
+            img {
+                width: 100%;
+                display: block;
+                min-height: 50px;
+            }
+        }
     }
     .btn-tool {
         background-color: #fff;
@@ -35,8 +40,8 @@ page-home {
             width: 25%;
             color: #666;
             .img {
-                width: 50px;
-                height: 50px;
+                width: 43px;
+                height: 43px;
                 margin-bottom: 7px;
                 border: 1px solid #666;
                 border-radius: 50%;
