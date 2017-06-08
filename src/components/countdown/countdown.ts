@@ -28,13 +28,13 @@ export class CountdownComponent implements AfterViewInit, OnDestroy {
   private second: number;
 
   private set diff(val) {
-    this.day = Math.floor(val/(24*3600*1000)) || 0;
-    var leave1 = val%(24*3600*1000);
-    this.hour = Math.floor(leave1/(3600*1000)) || 0;
-    var leave2 = leave1%(3600*1000);
-    this.minute = Math.floor(leave2/(60*1000)) || 0;
-    var leave3 = leave2%(60*1000);
-    this.second = Math.round(leave3/1000) || 0;
+    this.day = Math.floor(val/(24*3600)) || 0;
+    var leave1 = val%(24*3600);
+    this.hour = Math.floor(leave1/(3600)) || 0;
+    var leave2 = leave1%(3600);
+    this.minute = Math.floor(leave2/(60)) || 0;
+    var leave3 = leave2%(60);
+    this.second = Math.round(leave3) || 0;
   }
 
   // 定时器
@@ -42,7 +42,7 @@ export class CountdownComponent implements AfterViewInit, OnDestroy {
   // 每一秒更新时间差
   ngAfterViewInit() {
     this.timer = setInterval(() => {
-      this.endDate -= 1000;
+      this.endDate -= 1;
       this.diff = this.endDate;
     }, 1000);
   }

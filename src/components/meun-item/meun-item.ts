@@ -12,7 +12,7 @@ export class MeunItemComponent {
 	filterParams: any = {
 		min_price: this.price.lower,
 		max_price: this.price.upper,
-		brand_id: 0,
+		brand_id: null,
 		cat_id: null,
 		attr_id: null,
 		filter: ''
@@ -27,9 +27,29 @@ export class MeunItemComponent {
 	) {
 		this.events.subscribe('user:listFilter', (res) => {
 			this.data = res;
+			this.selectedItem(res.goods_attr_arr[0].data, 'brand_id');
+			this.selectedItem(res.goods_attr_arr[1].data, 'cat_id');
+			this.selectPrice(res);
+			this.price.upper = this.data.goods_attr_arr[2].data[0].max_price;
 		});
 	}
-
+	selectPrice(res) {
+		for (var i = 0; i < res.goods_attr_arr[2].data.length; i++) {
+			var item = res.goods_attr_arr[2].data[i];
+			if (item.selected == 1) {
+				this.filterParams.min_price = item.min_price;
+				this.filterParams.max_price = item.max_price;
+			}
+		}
+	}
+	selectedItem(list, name) {
+		for (var i = 0; i < list.length; i++) {
+			var item = list[i];
+			if (item.selected == 1) {
+				this.filterParams[name] = item[name];
+			}
+		}
+	}
 	confirm() {
 		var filter = [];
 		this.filterParams.filter = '';
