@@ -187,6 +187,18 @@ page-particulars {
                 }
             }
         }
+        .item {
+            border-bottom: #e0e0e0 1px solid;
+            >ion-icon:first-child {
+                margin-right: 4px;
+            }
+            &:last-child {
+                border: 0;
+            }
+            .item-inner {
+                border: 0;
+            }
+        }
         .btn {
             display: flex;
             justify-content: center;
@@ -195,17 +207,15 @@ page-particulars {
                 border-radius: 25px;
             }
         }
-        .safeguard {
-            .note-wrap {
+        .note-wrap {
+            display: flex;
+            align-items: center;
+            ion-note {
                 display: flex;
+                margin-right: 10px;
                 align-items: center;
-                ion-note {
-                    display: flex;
-                    margin-right: 10px;
-                    align-items: center;
-                    img {
-                        margin-right: 5px;
-                    }
+                img {
+                    margin-right: 5px;
                 }
             }
         }

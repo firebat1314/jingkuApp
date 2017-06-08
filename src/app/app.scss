@@ -18,6 +18,8 @@
 
 html {
     font-size: 57%;
+    -webkit-overflow-scrolling: auto;
+    /*touch*/
 }
 
 .content {
@@ -78,7 +80,7 @@ html {
 }
 
 .picker-opts {
-    max-width: none;
+    max-width: none !important;
 }
 
 

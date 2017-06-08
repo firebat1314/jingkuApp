@@ -105,9 +105,9 @@
         </div>
         <div class="fore goods-service">
             <button ion-item mode="ios" no-lines (click)="presentModal('商品服务保障')">
-            <ion-icon name="bao1" item-left></ion-icon>
-            商品服务保障
-        </button>
+                <ion-icon name="bao1" item-left></ion-icon>
+                商品服务保障
+            </button>
             <div class="bottom" *ngIf="getGoodsInfo?.data?.additional?.is_true||getGoodsInfo?.data?.additional?.is_hdfk||getGoodsInfo?.data?.additional?.is_inv">
                 <ion-note *ngIf="getGoodsInfo?.data?.additional?.is_true">
                     <img src="./assets/icon/images/particulars_05_03.png" alt=""> 正品保障
@@ -119,10 +119,11 @@
                     <img src="./assets/icon/images/particulars_2_16.png" alt=""> 可退换货
                 </ion-note>
                 <!--<ion-note>
-                <ion-icon color="danger" name="baitiao1"></ion-icon> 白条支付
-            </ion-note>-->
+                    <ion-icon color="danger" name="baitiao1"></ion-icon> 白条支付
+                </ion-note>-->
             </div>
         </div>
+        <!--————————————————————————供应商店铺————————————————————————-->
         <div class="fore store">
             <div class="head">
                 <ion-item no-lines>
@@ -153,35 +154,34 @@
                     <ion-icon name="ios-arrow-forward"></ion-icon>
                 </button>
             </div>-->
-            <ion-list class="safeguard" no-margin>
-                <div mode="ios" ion-item detail-push *ngIf="getGoodsInfo?.supplier_info?.inv_type!=0">
-                    <div class="note-wrap">
-                        <!--<ion-note><ion-icon><img src="./assets/icon/images/particulars_2_20.jpg"></ion-icon>担保交易</ion-note>
+            <div mode="ios" ion-item detail-push *ngIf="getGoodsInfo?.supplier_info?.inv_type!=0">
+                <div class="note-wrap">
+                    <!--<ion-note><ion-icon><img src="./assets/icon/images/particulars_2_20.jpg"></ion-icon>担保交易</ion-note>
                     <ion-note><ion-icon><img src="./assets/icon/images/particulars_2_14.jpg"></ion-icon>客户自提</ion-note>
                     <ion-note><ion-icon><img src="./assets/icon/images/particulars_2_16.jpg"></ion-icon>返修退换货</ion-note>-->
-                        <ion-note *ngIf="getGoodsInfo?.supplier_info?.inv_type==1||getGoodsInfo?.supplier_info?.inv_type==3">
-                            <ion-icon>
-                                <img src="./assets/icon/images/particulars_2_18.png">
-                            </ion-icon>
-                            普通发票
-                        </ion-note>
-                        <ion-note *ngIf="getGoodsInfo?.supplier_info?.inv_type==2||getGoodsInfo?.supplier_info?.inv_type==3">
-                            <ion-icon>
-                                <img src="./assets/icon/images/particulars_2_19.png">
-                            </ion-icon>
-                            增值发票
-                        </ion-note>
-                    </div>
+                    <ion-note *ngIf="getGoodsInfo?.supplier_info?.inv_type==1||getGoodsInfo?.supplier_info?.inv_type==3">
+                        <ion-icon>
+                            <img src="./assets/icon/images/particulars_2_18.png">
+                        </ion-icon>
+                        普通发票
+                    </ion-note>
+                    <ion-note *ngIf="getGoodsInfo?.supplier_info?.inv_type==2||getGoodsInfo?.supplier_info?.inv_type==3">
+                        <ion-icon>
+                            <img src="./assets/icon/images/particulars_2_19.png">
+                        </ion-icon>
+                        增值发票
+                    </ion-note>
                 </div>
-                <div ion-item mode="ios" no-lines>
-                    <ion-icon item-left name="ios-pin-outline"></ion-icon>
-                    <ion-note>{{getGoodsInfo?.supplier_info?.region}}</ion-note>
-                    <div ion-button icon-only item-right clear (click)="openCallNumber()">
-                        <ion-icon name="ios-call"></ion-icon>
-                    </div>
+            </div>
+            <div ion-item mode="ios" no-lines>
+                <ion-icon item-left name="ios-pin-outline"></ion-icon>
+                <ion-note>{{getGoodsInfo?.supplier_info?.region}}</ion-note>
+                <div ion-button icon-only item-right clear (click)="openCallNumber()">
+                    <ion-icon name="ios-call"></ion-icon>
                 </div>
-            </ion-list>
+            </div>
         </div>
+        <!--————————————————————————套餐组合————————————————————————-->
         <div class="fore group-and-recommend">
             <div class="segment-style">
                 <ion-segment [(ngModel)]="selectGroupRecommend" mode="md">
@@ -230,6 +230,7 @@
                 </div>
             </div>
         </div>
+        <!--————————————————————————图文详情————————————————————————-->
         <div class="fore pic-and-arguments">
             <ion-segment [(ngModel)]="selectPicArguments" mode="md">
                 <ion-segment-button value="pic">

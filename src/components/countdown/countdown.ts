@@ -28,11 +28,13 @@ export class CountdownComponent implements AfterViewInit, OnDestroy {
   private second: number;
 
   private set diff(val) {
-    let date = new Date(val)
-    this.day = date.getDate() || 0;
-    this.hour = date.getHours() || 0;
-    this.minute = date.getMinutes() || 0;
-    this.second = date.getSeconds() || 0;
+    this.day = Math.floor(val/(24*3600*1000)) || 0;
+    var leave1 = val%(24*3600*1000);
+    this.hour = Math.floor(leave1/(3600*1000)) || 0;
+    var leave2 = leave1%(3600*1000);
+    this.minute = Math.floor(leave2/(60*1000)) || 0;
+    var leave3 = leave2%(60*1000);
+    this.second = Math.round(leave3/1000) || 0;
   }
 
   // 定时器
