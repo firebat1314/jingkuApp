@@ -39,8 +39,12 @@ export class CarPage {
     console.log('ionViewDidLoad CarPage');
     this.events.subscribe('car:updata', () => {
       this.getFlowGoods();
+        this.content.resize();
     })
     this.getFlowGoods();
+  }
+  ngOnDestroy(){
+    this.events.unsubscribe('car:updata');
   }
   getFlowGoods(finished?) {
     this.httpService.getFlowGoods().then((res) => {
@@ -175,7 +179,7 @@ export class CarPage {
   goAccounts() {
     if (this.checkedArray.length == 0) {
       this.native.showToast("请选择结算的商品");
-      return false;
+      return;
     }
     var arr = []
     for (let i = 0, item = this.carDetails.suppliers_goods_list; i < item.length; i++) {

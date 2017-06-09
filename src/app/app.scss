@@ -17,8 +17,8 @@
 }
 
 html {
-    font-size: 57%;
-    -webkit-overflow-scrolling: auto;
+    // font-size: 57%;
+    overflow-scrolling: auto;
     /*touch*/
 }
 
@@ -93,6 +93,10 @@ html {
 
 /*————————————————————————————————————工具栏————————————————————————————————————*/
 
+.toolbar:nth-child(2) {
+    border-top: 1px solid #e0e0e0;
+}
+
 .toolbar-md {
     padding: 0 4px;
 }
@@ -122,8 +126,8 @@ html {
 /*————————————————————————————————————搜索框图标————————————————————————————————————*/
 
 .searchbar-ios .searchbar-search-icon {
-    background-image: url(../assets/icon/homepage_06.png);
-    top: 7px;
+    background-image: url(../assets/icon/search.png);
+    // top: 7px;
 }
 
 

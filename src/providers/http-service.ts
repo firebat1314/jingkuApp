@@ -251,7 +251,7 @@ export class HttpService {
     return this.http.post(this.ip + '/User/edit_address', data, true)
   }
   addAddress(data?: Object) {//（12.1）添加收货地址
-    return this.http.post(this.ip + '/User/add_address', data)
+    return this.http.post(this.ip + '/User/add_address', data, true)
   }
   defaultAddress(data?: Object) {//（12.2）设置默认收货地址address_id
     return this.http.get(this.ip + '/User/default_address', data)

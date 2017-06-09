@@ -44,13 +44,11 @@ page-write-orders {
                 margin-bottom: 7px;
             }
             .type {
-                color: #fff;
-                padding: 3px 8px;
-                background: #e60000;
-                border-radius: 3px;
                 display: inline-block;
-                margin-top: 5px;
-                font-size: 1rem;
+                color: #e60000;
+                font-size: 1.3rem;
+                margin-top: 4px;
+                white-space: pre-wrap;
             }
         }
         .attr-wrap {

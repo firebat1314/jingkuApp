@@ -203,7 +203,7 @@ export class ParticularsPage {
     this.native.openCallNumber(this.getGoodsInfo.supplier_info.mobile, false);
   }
   goAccountServicePage() {
-    this.native.showToast('建设中...')
+    this.native.showToast('敬请期待')
     // this.navCtrl.push(AccountServicePage)
   }
   goStore() {

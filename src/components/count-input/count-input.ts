@@ -11,8 +11,9 @@ import { Component, Input, Output, EventEmitter } from '@angular/core';
   templateUrl: 'count-input.html'
 })
 export class CountInputComponent {
-
+  
   @Input() value = 0;
+  @Input() defaultValue:Number = 0;
   @Input() lock = false;
   @Output() updateNumberI: EventEmitter<number> = new EventEmitter();
   constructor() {
@@ -26,7 +27,7 @@ export class CountInputComponent {
     this.updateNumberI.emit(this.value);
   }
   reduce() {
-    if (this.value <= 0) {
+    if (this.value <= this.defaultValue) {
       return;
     }
     this.value--;

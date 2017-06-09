@@ -42,7 +42,7 @@
                             <img src="{{item2.goods_thumb}}">
                         </ion-thumbnail>
                         <h2 (click)="goParticularPage(item2.goods_id)">{{item2.goods_name}}</h2>
-                        <!--<span class="type">促销???</span>-->
+                        <span (click)="goParticularPage(item2.goods_id)" class="type" *ngIf="item2?.gift_list">{{item2?.gift_list?.title}}</span>
                     </ion-item>
                 </div>
                 <div class="single-shop-goods-body">
@@ -63,7 +63,7 @@
                                         <div class="bottom">
                                             <div class="price">¥{{item3?.goods_price}}</div>
                                             <div class="number">
-                                                <count-input (updateNumberI)="numberChangeI($event,item3)" [lock]="item3.inputLock" [value]="item3?.goods_number"></count-input>
+                                                <count-input [defaultValue]="1" (updateNumberI)="numberChangeI($event,item3)" [lock]="item3.inputLock" [value]="item3?.goods_number"></count-input>
                                             </div>
                                         </div>
                                     </div>

@@ -3,19 +3,26 @@ count-input {
     font-size: 1.6rem;
     align-items: center;
     justify-content: center;
+    border: 1px solid #808080;
+    border-radius: 3px;
+    height: 30px;
     span {
         padding: 0 10px;
-        font-size: 3rem;
+        font-size: 2rem;
+        color: #808080;
+        display: block;
         &:first-child {
-            font-size: 2rem;
+            font-size: 1rem;
         }
     }
     input {
-        width: 65px;
-        border: 1px solid #808080;
-        border-radius: 2px;
+        width: 45px;
         color: red;
         text-align: center;
-        height: 30px;
+        height: 100%;
+        border: none;
+        border-left: 1px solid #808080;
+        border-right: 1px solid #808080;
+        background: none;
     }
 }

@@ -98,7 +98,7 @@ export class Native {
 	 * 手机拨号
 	 */
 	openCallNumber(numberToCall, bypassAppChooser) {
-		this.callNumber.callNumber(numberToCall, false)
+		this.callNumber.callNumber(numberToCall, bypassAppChooser)
 			.then(() => console.log('Launched dialer!'))
 			.catch(() => console.log('Error launching dialer'));
 	}

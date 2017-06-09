@@ -85,7 +85,7 @@ export class MyApp {
       })
       //注册返回按键事件
       this.platform.registerBackButtonAction((): any => {
-        if (this.keyboard.isOpen) {
+        if (this.keyboard.isOpen()) {
           this.keyboard.close();
           return;
         }

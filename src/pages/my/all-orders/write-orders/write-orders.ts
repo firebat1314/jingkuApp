@@ -41,7 +41,7 @@ export class WriteOrdersPage {
     })
   }
   ngOnDestroy() {
-    this.events.unsubscribe('writeOrder:refresh')
+    this.events.unsubscribe('writeOrder:refresh');
   }
   ionViewDidLoad() {
     console.log('ionViewDidLoad WriteOrdersPage');
@@ -175,6 +175,8 @@ export class WriteOrdersPage {
           } else if (this.paymentMothd == 4) {
             this.navCtrl.push(OrdersDetailPage, { order_id: res.order_id })
           }
+        } else if (res.status == -1) {
+          this.navCtrl.pop();
         }
       })
     }
