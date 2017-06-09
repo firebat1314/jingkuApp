@@ -41,6 +41,19 @@
                 </p>
             </div>
         </div>
+        <div class="price_time" *ngIf="getGoodsInfo?.promotion">
+            <div class="left">
+                <p>{{getGoodsInfo?.promotion.title}}</p>
+            </div>
+            <div class="right" [ngSwitch]="getGoodsInfo.promotion.type">
+                <p *ngSwitchCase="2">距离活动结束还剩：</p>
+                <p *ngSwitchCase="1">距离活动开始还剩：</p>
+                <p *ngSwitchDefault>暂无活动</p>
+                <p>
+                    <countdown [endDate]="getGoodsInfo.promotion.end_time_num"></countdown>
+                </p>
+            </div>
+        </div>
         <div class="fore info" *ngIf="getGoodsInfo">
             <div class="title">
                 {{getGoodsInfo?.data?.goods_name}}
@@ -48,6 +61,7 @@
             <div class="body">
                 批发价&nbsp;：<span class="now-price"><span class="number">{{getGoodsInfo?.data?.shop_price_formated}}</span></span><span class="old-price">{{getGoodsInfo?.data?.old_shop_price}}</span>&nbsp;
                 <span class="rush-icon" *ngIf="getGoodsInfo?.data?.is_pre==1">预售</span>
+                <span class="rush-icon" *ngIf="getGoodsInfo?.promotion">{{getGoodsInfo?.promotion?.type_name}}</span>
             </div>
             <div class="bottom">
                 <div>建议零售价&nbsp;：<span class="offer-price">¥{{getGoodsInfo?.data?.market_price}}</span></div>

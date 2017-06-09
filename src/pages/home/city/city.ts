@@ -39,6 +39,7 @@ export class CityPage {
       if (res.status == 1) {
         this.navCtrl.pop();
         this.events.publish('home:updataArea');
+        this.events.publish('car:updata');
         this.native.showToast('切换至' + region.region_name);
       }
     })

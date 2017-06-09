@@ -1,6 +1,19 @@
 page-payment-method {
-    .pay-icon {
-        height: 35px;
-        display: block;
+    .item {
+        .pay-icon {
+            height: 30px;
+            display: block;
+        }
+        &:nth-child(2) {
+            .pay-icon {
+                margin-left: 6px;
+            }
+        }
+        &:nth-child(4) {
+            .pay-icon {
+                margin-left: 4px;
+                height: 33px;
+            }
+        }
     }
 }

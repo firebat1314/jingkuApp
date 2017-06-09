@@ -21,11 +21,11 @@ export class CarPage {
   carDetails: any;
   @ViewChild(Content) content: Content;
 
-  checkedArray: Array<number> = [];//rec_id
+  // checkedArray: Array<number> = [];//rec_id
   goodsIdArray: Array<number> = [];//goods_id
 
-  allRecId: Array<number> = [];//rec_id
-  allGoodsId: Array<number> = [];//goods_id
+  // allRecId: Array<number> = [];//rec_id
+  // allGoodsId: Array<number> = [];//goods_id
 
   constructor(
     public navCtrl: NavController,
@@ -34,34 +34,33 @@ export class CarPage {
     public alertCtrl: AlertController,
     public httpService: HttpService,
     public events: Events,
-  ) {}
+  ) { }
   ionViewDidLoad() {
     console.log('ionViewDidLoad CarPage');
     this.events.subscribe('car:updata', () => {
       this.getFlowGoods();
-        this.content.resize();
+      this.content.resize();
     })
+  }
+  ngAfterViewInit(){
     this.getFlowGoods();
   }
-  ngOnDestroy(){
+  ngOnDestroy() {
     this.events.unsubscribe('car:updata');
   }
   getFlowGoods(finished?) {
+    this.goodsIdArray = [];
     this.httpService.getFlowGoods().then((res) => {
       console.log(res)
       if (res.status == 1) {
         this.carDetails = res;
         this.content.resize();
-        this.checkAll();
-        //购物车商品数量
-        this.events.publish('car:goodsCount', res.total.real_goods_count);
+        this.events.publish('car:goodsCount', res.total.real_goods_count);//购物车商品数量
       }
       if (finished) { finished(); }
-      // this.carDetails.selected = true;
-      // this.calculateTotal();
     })
   }
-  checkAll() {
+  /*checkAll() {
     this.checkedArray = [];//刷新完成之后清空选中商品
     this.allGoodsId = [];
     this.goodsIdArray = [];
@@ -75,7 +74,7 @@ export class CarPage {
         this.allGoodsId.push(item[i].goods_list[k].goods_id)
       }
     }
-  }
+  }*/
   /**
    * 下拉刷新
    * @param refresher 
@@ -119,27 +118,16 @@ export class CarPage {
     });
     // this.calculateTotal();
   }
-  checkGoods(item) {
-    let index = this.checkedArray.indexOf(item.rec_id);
-    if (index == -1) {
-      for (var i = 0; i < item.attrs.length; i++) {
-        this.checkedArray.push(item.attrs[i].rec_id);
-      }
-    } else {
-      for (var i = 0; i < item.attrs.length; i++) {
-        this.checkedArray.splice(this.checkedArray.indexOf(item.attrs[i].rec_id), 1);
-      }
-    }
-    this.httpService.selectChangePrice({ rec_ids: this.checkedArray }).then((res) => {
-      console.log(res);
-      if (res.status == 1) {
-        this.carDetails.total.goods_amount = res.total;
-      }
+  checkGoods(id, type, is_select) {
+    console.log(id, type, is_select)
+    this.httpService.selectChangePrice({ id: id, type: type, is_select: is_select }).then((res) => {
+      console.log(res)
+      this.getFlowGoods();
     })
-    console.log("checkedArray",this.checkedArray);
-
+  }
+  check(item) {
     let goodsIdIndex = this.goodsIdArray.indexOf(item.goods_id);
-    if (index == -1) {
+    if (goodsIdIndex == -1) {
       this.goodsIdArray.push(item.goods_id);
     } else {
       this.goodsIdArray.splice(goodsIdIndex, 1);
@@ -177,14 +165,10 @@ export class CarPage {
     })
   }
   goAccounts() {
-    if (this.checkedArray.length == 0) {
-      this.native.showToast("请选择结算的商品");
-      return;
-    }
     var arr = []
     for (let i = 0, item = this.carDetails.suppliers_goods_list; i < item.length; i++) {
       for (let k = 0; k < item[i].goods_list.length; k++) {
-        if (!item[i].goods_list[k].selected) {
+        if (!item[i].goods_list[k].is_select) {
           arr.push(item[i].goods_list[k].goods_id)
         }
       }

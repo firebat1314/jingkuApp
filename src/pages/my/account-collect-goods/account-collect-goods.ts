@@ -11,7 +11,7 @@ import { ParticularsPage } from "../../home/particulars/particulars";
 export class AccountCollectGoodsPage {
   collectionList: any;
 
-  @ViewChild(Content) content:Content
+  @ViewChild(Content) content: Content
   constructor(
     public navCtrl: NavController,
     public navParams: NavParams,
@@ -52,23 +52,21 @@ export class AccountCollectGoodsPage {
     this.navCtrl.push(ParticularsPage, { goodsId: goods_id });
   }
 
-  flag: boolean = true;
   doInfinite(infiniteScroll) {
-    if (this.collectionList.page < this.collectionList.pages) {
-      this.collectionList.page++;
+    var page = this.collectionList.page;
+    if (page < this.collectionList.pages) {
+      this.httpService.collectionList({ size: 10,page: ++page }).then((res) => {
+        if (res.status == 1) {
+          this.collectionList.page = res.page;
+          Array.prototype.push.apply(this.collectionList.data, res.data);
+        }
+        setTimeout(() => {
+          infiniteScroll.complete();
+        }, 500);
+      })
     } else {
-      this.flag = false;
-      return;
+      infiniteScroll.enable(false);
     }
-    this.httpService.collectionList({ page: this.collectionList.page }).then((res) => {
-      console.log(res);
-      if (res.status == 1) {
-        Array.prototype.push.apply(this.collectionList.list, res.list);
-      }
-      setTimeout(() => {
-        infiniteScroll.complete();
-      }, 500);
-    })
   }
   scrollToTop() {
     this.content.scrollToTop();

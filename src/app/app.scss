@@ -140,7 +140,7 @@ ion-refresher-content[state=ready] .refresher-pulling-icon {
 .refresher-refreshing .spinner {
     margin-top: 10px;
     background: url(../assets/icon/refreshing.gif) center center no-repeat;
-    background-size: auto 100%;
+    background-size: auto 80%;
     height: 40px;
     width: 160px;
 }
@@ -153,7 +153,7 @@ ion-refresher-content[state=ready] .refresher-pulling-icon {
     .refresher-pulling-icon {
         margin-top: 10px;
         background: url(../assets/icon/refreshing1.jpg) center center no-repeat;
-        background-size: auto 100%;
+        background-size: auto 80%;
         height: 40px;
     }
     height: 100%;

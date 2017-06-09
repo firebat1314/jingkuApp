@@ -1,6 +1,9 @@
 page-order-modal-shipping {
     .item-wrapper {
         .item {
+            [item-left] {
+                margin-right: 22px;
+            }
             .ion-ios-create-outline {
                 padding-left: 10px;
                 border-left: 1px solid #e0e0e0;

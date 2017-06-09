@@ -9,7 +9,7 @@
     <ion-navbar>
         <ion-title>购物车</ion-title>
         <ion-buttons right>
-            <button ion-button clear *ngIf="carDetails&&carDetails?.suppliers_goods_list?.length!=0" (click)="isEdit=!isEdit">{{isEdit?'取消':'编辑'}}</button>
+            <button ion-button clear *ngIf="carDetails&&carDetails?.suppliers_goods_list?.length!=0" (click)="isEdit=!isEdit;">{{isEdit?'取消':'编辑'}}</button>
         </ion-buttons>
     </ion-navbar>
 
@@ -24,7 +24,8 @@
     <ion-list>
         <div class="single-shop" *ngFor="let item of carDetails?.suppliers_goods_list">
             <div class="single-shop-head">
-                <ion-checkbox [(ngModel)]="item.selected" [checked]="carDetails?.selected" mode="ios" margin-left></ion-checkbox>
+                <ion-checkbox *ngIf="!isEdit" (click)="checkGoods(item.suppliers_id,1,item.is_select==1?0:1);" [checked]="item?.is_select==1" mode="ios" margin-left></ion-checkbox>
+                <ion-checkbox *ngIf="isEdit" [checked]="carDetails.total.selected" [(ngModel)]="item.selected" mode="ios" margin-left></ion-checkbox>
                 <ion-item mode="ios" no-lines>
                     <ion-icon color="colorsix" item-left name="shop"></ion-icon>
                     {{item.title}}&nbsp;
@@ -33,9 +34,11 @@
                 </ion-item>
             </div>
             <div class="single-shop-goods" *ngFor="let item2 of item.goods_list ">
+                <div class="not-in-region" *ngIf="!item2.in_area_id">不在本地区销售</div>
                 <div class="single-shop-goods-head">
-                    <div margin-left>
-                        <ion-checkbox [(ngModel)]="item2.selected" (ionChange)="checkGoods(item2)" [checked]="item.selected==true" color="dark" mode="ios"></ion-checkbox>
+                    <div margin-left *ngIf="item2.in_area_id||isEdit">
+                        <ion-checkbox *ngIf="!isEdit" (click)="checkGoods(item2.goods_id,0,item2.is_select==1?0:1)" [checked]="item2?.is_select==1" color="dark" mode="ios"></ion-checkbox>
+                        <ion-checkbox *ngIf="isEdit" [checked]="item.selected" (ionChange)="check(item2)" mode="ios"></ion-checkbox>
                     </div>
                     <ion-item margin-left no-lines>
                         <ion-thumbnail item-left>
@@ -85,7 +88,8 @@
     <div class="car-accounts" *ngIf="carDetails&&carDetails?.suppliers_goods_list?.length!=0">
         <div class="left">
             <div class="select-all" margin-horizontal>
-                <ion-checkbox [(ngModel)]="carDetails.selected" margin-right color="dark" mode="ios"></ion-checkbox>
+                <ion-checkbox *ngIf="!isEdit" (click)="checkGoods(null,2,carDetails.total.is_select?0:1)" [checked]="carDetails.total.is_select" margin-right color="dark" mode="ios"></ion-checkbox>
+                <ion-checkbox [(ngModel)]="carDetails.total.selected" *ngIf="isEdit" mode="ios" margin-right></ion-checkbox>
                 全选
             </div>
             <div *ngIf="!isEdit" class="price">合计：¥{{carDetails?.total?.goods_amount}}</div>

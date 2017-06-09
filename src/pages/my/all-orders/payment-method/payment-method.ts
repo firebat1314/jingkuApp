@@ -122,11 +122,16 @@ export class PaymentMethodPage {
       } else if (result == 'cancel') {
         that.native.showToast("取消支付");
       }
-      console.log(result, err)
+      console.log('success', result, err)
+      return;
     }, (result, err) => {
       that.navCtrl.pop();
-      that.native.showToast("支付异常");
-      console.log(result, err)
+      if (result == 'cancel') {
+        that.native.showToast("取消支付");
+      } else {
+        that.native.showToast("支付异常,请尝试其他支付方式");
+      }
+      console.log('fail', result, err)
     });
     /*——————————————————————————————————————————————————————————————————————————*/
     // pingpp.createPayment(data, (result) => {
