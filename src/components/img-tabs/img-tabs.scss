@@ -21,6 +21,6 @@ img-tabs {
     }
     .slide-title-active {
         color: map_get($colors, primary);
-        border-bottom: 1px solid map_get($colors, danger);
+        border-bottom: 2px solid map_get($colors, danger);
     }
 }

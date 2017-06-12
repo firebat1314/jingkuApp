@@ -26,7 +26,8 @@ export class SearchPage {
   ) { }
   ngAfterViewInit() {
     // setTimeout(() => {
-    //   this.mySearchBar.setFocus();
+      this.mySearchBar.setFocus();
+      // this.mySearchBar.inputFocused();
     // }, 500);
   }
   ionViewDidLoad() {
@@ -54,7 +55,7 @@ export class SearchPage {
     })
   }
   getNewBatch() {
-    this.page > this.data.data.pagers ? this.page++ : this.page = 1;
+    this.page < this.data.pagers ? ++this.page : this.page = 1;
     this.getHotSearch();
   }
 }

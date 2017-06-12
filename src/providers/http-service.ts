@@ -385,4 +385,7 @@ export class HttpService {
   addAccount(data?: Object) {//充值
     return this.http.post(this.ip + '/User/addAccount', data, true)
   }
+  getAccountPayList(data?: Object){
+    return this.http.get(this.ip + '/User/getAccountPayList', data)
+  }
 }

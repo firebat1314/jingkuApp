@@ -242,7 +242,7 @@ page-particulars {
                 height: 100%;
             }
             .goods {
-                padding: 2px 5px 23px;
+                padding: 2px 5px 18px;
                 display: flex;
                 flex-direction: column;
                 height: 100%;
@@ -260,6 +260,7 @@ page-particulars {
                         white-space: nowrap;
                         text-overflow: ellipsis;
                         overflow: hidden;
+                        margin: 1rem 0;
                         &:last-child {
                             color: #e50000;
                             font-weight: 700;

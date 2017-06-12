@@ -23,8 +23,14 @@ export class RechargePage {
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad RechargePage');
+    this.getAccountPayList();
   }
-
+  getAccountPayList(){
+    this.httpService.getAccountPayList().then((res)=>{
+      if (res.status == 1) {
+      }      
+    })
+  }
   onClick(money) {
     this.httpService.addAccount({ amount: money }).then((res) => {
       if (res.status == 1) {

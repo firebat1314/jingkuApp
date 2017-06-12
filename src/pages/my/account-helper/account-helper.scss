@@ -2,16 +2,22 @@ page-account-helper {
     .list {
         background: #fff;
         .item-divider.item {
+            border-bottom: 0.55px solid #c8c7cc;
             font-size: 16px;
             img {
                 width: 20px;
             }
         }
+        .list-header {
+            img {
+                width: 20px;
+            }
+        }
         ion-item.item {
-            padding-left: 0px;
+            // padding-left: 0px;
             font-size: 14px;
             .item-inner {
-                padding-left: 50px;
+                // padding-left: 50px;
             }
         }
     }
