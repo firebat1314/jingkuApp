@@ -30,7 +30,7 @@ export class MeunItemComponent {
 			this.selectedItem(res.goods_attr_arr[0].data, 'brand_id');
 			this.selectedItem(res.goods_attr_arr[1].data, 'cat_id');
 			this.selectPrice(res);
-			this.price.upper = this.data.goods_attr_arr[2].data[0].max_price;
+			this.price.upper = this.data.goods_attr_arr[2].data[0]?this.data.goods_attr_arr[2].data[0].max_price:0;
 		});
 	}
 	selectPrice(res) {

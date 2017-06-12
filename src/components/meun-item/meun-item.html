@@ -22,7 +22,7 @@
         </div>
         <div class="range" *ngIf="item.name=='商品价格区间'">
             <ion-item no-lines>
-                <ion-range (ionChange)="filterParams.min_price=price.lower;filterParams.max_price=price.upper;" dualKnobs="true" [(ngModel)]="price" mode="ios" min="0" [max]="item?.data[0].max_price"></ion-range>
+                <ion-range (ionChange)="filterParams.min_price=price.lower;filterParams.max_price=price.upper;" dualKnobs="true" [(ngModel)]="price" mode="ios" min="0" [max]="item?.data[0]?.max_price"></ion-range>
             </ion-item>
             <div class="number">
                 <div>{{price.lower}}</div>

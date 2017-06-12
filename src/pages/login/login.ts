@@ -3,7 +3,6 @@ import { Component } from '@angular/core';
 import { NavController, NavParams, Events, ToastController } from 'ionic-angular';
 import { TabsPage } from '../tabs/tabs';
 import { SignupPage } from '../signup/signup';
-import { ForgotPage } from '../forgot/forgot';
 
 import { HttpService } from "../../providers/http-service";
 
@@ -22,7 +21,6 @@ export class LoginPage {
   private loginInfo: { username?: string, password?: string } = {};
   private submitted = false;
   private signedName: String;
-  private forgotpage = ForgotPage;
 
   constructor(
     private navCtrl: NavController,

@@ -2,7 +2,6 @@ import { Component, ViewChild } from '@angular/core';
 import { NavController, NavParams, AlertController, Events, Content } from 'ionic-angular';
 import { Native } from "../../providers/native";
 import { HttpService } from "../../providers/http-service";
-import { HomePage } from "../home/home";
 import { WriteOrdersPage } from "../my/all-orders/write-orders/write-orders";
 import { ParticularsPage } from "../home/particulars/particulars";
 

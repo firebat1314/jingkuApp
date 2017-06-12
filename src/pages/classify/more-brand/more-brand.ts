@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams, Events } from 'ionic-angular';
-import { ParticularsPage } from "../../home/particulars/particulars";
 import { ClickBanner } from "../../../providers/ClickBanner";
 
 /*
