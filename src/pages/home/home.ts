@@ -44,7 +44,7 @@ export class HomePage {
   @ViewChild('bannerSlide') slides: Slides;
   @ViewChild(Content) content: Content;
   showBackTopBtn: Boolean = true;
-  adClick:ClickBanner = new ClickBanner(this.navCtrl,this.events);
+  adClick: ClickBanner = new ClickBanner(this.navCtrl, this.events);
 
   DetailsPage = DetailsPage;
   SearchPage = SearchPage;
@@ -90,7 +90,7 @@ export class HomePage {
       this.updataArea();
     })
   }
-  ngOnDestroy(){
+  ngOnDestroy() {
     this.events.unsubscribe('home:updataArea');
   }
   getBanner() {
@@ -101,27 +101,42 @@ export class HomePage {
   getHomeData(finish?) {
     this.native.showLoading('加载中');
     this.updataArea();
-    this.httpService.getHomebanner({ int_pos_id: 44, size: 1 }).then((res) => {
-      console.log(res)
+    this.httpService.indexs().then((res) => {
+      if (res.status == 1) {
+        this.hotBrand_img = res.data.ads_rmpp['0'];
+        this.categoryAddetatils = res.data.ads_emdp;
+        this.jingxuan_img1 = res.data.ads_jxzt['0'];
+        this.getBrands = res.data.get_brands;
+        this.jingxuan_img2 = res.data.ads_jxzttwo['0'];
+        this.getCategoryRecommendGoodsHot = res.data.hot_recommend_goods;
+        this.jingxuan_img3 = res.data.ads_jxztThree['0'];
+        this.getCategoryRecommendGoods = res.data.new_recommend_goods;
+        this.jingxuan_img4 = res.data.ads_hdtj;
+        this.getCategoryRecommendGoodsBest = res.data.best_recommend_goods;
+        this.native.hideLoading();
+        if (finish) { finish(); }
+      }
+    })
+    /*this.httpService.getHomebanner({ int_pos_id: 44, size: 1 }).then((res) => {
       if (res.status == 1) { this.hotBrand_img = res; }
-      this.httpService.getCategoryAd().then((res) => {
+      this.httpService.getCategoryAd({ int_pos_id: 27, int_size: 10 }).then((res) => {
         if (res.status == 1) { this.categoryAddetatils = res.data; }
         this.httpService.getHomebanner({ int_pos_id: 45, size: 1 }).then((res) => {
-          if (res.status == 1) { this.jingxuan_img1 = res; }
+          if (res.status == 1) { this.jingxuan_img1 = res.data[0]; }
           this.native.hideLoading();
           if (finish) { finish(); }
           this.httpService.getBrands().then(((res) => {
             if (res.status == 1) { this.getBrands = res.data; }
             this.httpService.getHomebanner({ int_pos_id: 46, size: 1 }).then((res) => {
-              if (res.status == 1) { this.jingxuan_img2 = res; }
+              if (res.status == 1) { this.jingxuan_img2 = res.data[0]; }
               this.httpService.getCategoryRecommendGoodsHot().then(((res) => {
                 if (res.status == 1) { this.getCategoryRecommendGoodsHot = res.data; }
                 this.httpService.getHomebanner({ int_pos_id: 47, size: 1 }).then((res) => {
-                  if (res.status == 1) { this.jingxuan_img3 = res; }
+                  if (res.status == 1) { this.jingxuan_img3 = res.data[0]; }
                   this.httpService.getCategoryRecommendGoods().then((res) => {
                     if (res.status == 1) { this.getCategoryRecommendGoods = res.data; }
                     this.httpService.getHomebanner({ int_pos_id: 48 }).then((res) => {
-                      if (res.status == 1) { this.jingxuan_img4 = res; }
+                      if (res.status == 1) { this.jingxuan_img4 = res.data; }
                       this.httpService.getCategoryRecommendGoodsBest().then(((res) => {
                         if (res.status == 1) { this.getCategoryRecommendGoodsBest = res.data; }
                       }))
@@ -133,7 +148,7 @@ export class HomePage {
           }))
         })
       })
-    })
+    })*/
   }
   onscroll() {
     if (this.content.scrollTop > 400) {
@@ -187,8 +202,8 @@ export class HomePage {
     })
   }
   goClassPage(value) {
-      this.navCtrl.popToRoot();
-      this.navCtrl.parent.select(1);
-      this.events.publish('classify:selectSegment', value);
-   }
+    this.navCtrl.popToRoot();
+    this.navCtrl.parent.select(1);
+    this.events.publish('classify:selectSegment', value);
+  }
 }

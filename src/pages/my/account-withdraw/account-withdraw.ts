@@ -41,7 +41,6 @@ export class AccountWithdrawPage {
       this.native.hideLoading();
       this.native.showToast(res.data);
       if (res.status == 1) {
-        this.navCtrl.pop();
         this.navCtrl.push(AccountWithdrawSucceedPage);
       }
     })

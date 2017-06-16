@@ -67,7 +67,7 @@ export class HttpService {
     return this.http.get(this.ip + '/Index/ads', data)
   }
   getCategoryAd(data?: Object) {//热门品类下的广告
-    return this.http.get(this.ip + '/Index/ads/int_pos_id/27/int_size/10', data)
+    return this.http.get(this.ip + '/Index/ads', data)
   }
   getCategoryRecommendGoods(data?: Object) {//新品
     return this.http.get(this.ip + '/Index/get_category_recommend_goods/type/new', data)
@@ -385,7 +385,10 @@ export class HttpService {
   addAccount(data?: Object) {//充值
     return this.http.post(this.ip + '/User/addAccount', data, true)
   }
-  getAccountPayList(data?: Object){
+  getAccountPayList(data?: Object){//充值新增转账付款方式
     return this.http.get(this.ip + '/User/getAccountPayList', data)
+  }
+  indexs(data?: Object){//首页统一
+    return this.http.get(this.ip + '/Index/indexs', data)
   }
 }

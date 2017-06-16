@@ -11,18 +11,20 @@
     <form novalidata #recharge="ngForm">
         <div class="text">请输入金额</div>
         <input required clearInput type="number" [(ngModel)]="money" name="money">
-        <ion-list radio-group [(ngModel)]="payMethod" name="pay">
-            <ion-item>
-                <ion-label><img src="./assets/images/images/tchu1.jpg" alt=""></ion-label>
-                <ion-radio value="friends"></ion-radio>
+        <ion-list style="display: flex;margin: 0;" radio-group [(ngModel)]="payMethod" name="pay">
+            <ion-item mode="md" no-lines>
+                <ion-label><img [src]="payListImg[0]"></ion-label>
+                <ion-radio mode="md" item-left checked [value]="payList?.data['3'].pay_id"></ion-radio>
             </ion-item>
-            <ion-item>
-                <ion-label><img src="./assets/images/images/tchu2.jpg" alt=""></ion-label>
-                <ion-radio value="family"></ion-radio>
+            <ion-item mode="md" no-lines>
+                <ion-label><img [src]="payListImg[1]"></ion-label>
+                <ion-radio mode="md" item-left [value]="payList?.data['2'].pay_id"></ion-radio>
             </ion-item>
         </ion-list>
         <div padding>
-            <button color="dark" large ion-button [disabled]="!recharge.form.valid" (click)="onClick(money)" block>确认</button>
+            <button color="dark" large ion-button [disabled]="!recharge.form.valid" (click)="onClick(money,payMethod)" block>确认</button>
         </div>
     </form>
+    <ion-note *ngIf="payMethod==4" [innerHTML]="payList?.data['2']?.pay_desc"></ion-note>
+    <ion-note *ngIf="payMethod==6" [innerHTML]="payList?.data['3']?.pay_desc"></ion-note>
 </ion-content>

@@ -5,7 +5,7 @@ import { TabsPage } from '../tabs/tabs';
 import { SignupPage } from '../signup/signup';
 
 import { HttpService } from "../../providers/http-service";
-
+import { ForgotPage } from "../forgot/forgot";
 
 /*
   Generated class for the Login page.
@@ -21,7 +21,7 @@ export class LoginPage {
   private loginInfo: { username?: string, password?: string } = {};
   private submitted = false;
   private signedName: String;
-
+  ForgotPage = ForgotPage;
   constructor(
     private navCtrl: NavController,
     private navParams: NavParams,

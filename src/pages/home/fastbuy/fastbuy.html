@@ -31,7 +31,7 @@
         <div (click)="content.scrollTo(0,fore7.offsetTop)"><img src="./assets/images/images/shangou_01_14.jpg" alt="">
             <div class="text">眼镜架</div>
         </div>
-        <div (click)="content.scrollTo(0,fore3.offsetTop)"><img src="./assets/images/images/shangou_01_16.jpg" alt="">
+        <div (click)="content.scrollTo(0,fore8.offsetTop)"><img src="./assets/images/images/shangou_01_16.jpg" alt="">
             <div class="text">眼镜片</div>
         </div>
     </div>
@@ -40,7 +40,7 @@
         <div class="singleton-warp">
             <ion-card *ngFor="let item of data?.data" (click)="goParticularsPage(item.id)">
                 <div class="img">
-                    <img src="{{item.thumb}}" alt="">
+                    <img src="{{item.goods_img}}" alt="">
                     <div class="time">
                         <ion-icon name="ios-time-outline"></ion-icon>
                         <countdown endDate="{{item.promote_end_date}}"></countdown>
@@ -58,7 +58,7 @@
         <div class="singleton-warp">
             <ion-card *ngFor="let item of data2?.data" (click)="goParticularsPage(item.id)">
                 <div class="img">
-                    <img src="{{item.thumb}}" alt="">
+                    <img src="{{item.goods_img}}" alt="">
                     <div class="time">
                         <ion-icon name="ios-time-outline"></ion-icon>
                         <countdown endDate="{{item.promote_end_date}}"></countdown>
@@ -76,7 +76,7 @@
         <div class="singleton-warp">
             <ion-card *ngFor="let item of data3?.data" (click)="goParticularsPage(item.id)">
                 <div class="img">
-                    <img src="{{item.thumb}}" alt="">
+                    <img src="{{item.goods_img}}" alt="">
                     <div class="time">
                         <ion-icon name="ios-time-outline"></ion-icon>
                         <countdown endDate="{{item.promote_end_date}}"></countdown>
@@ -94,7 +94,7 @@
         <div class="singleton-warp">
             <ion-card *ngFor="let item of data4?.data" (click)="goParticularsPage(item.id)">
                 <div class="img">
-                    <img src="{{item.thumb}}" alt="">
+                    <img src="{{item.goods_img}}" alt="">
                     <div class="time">
                         <ion-icon name="ios-time-outline"></ion-icon>
                         <countdown endDate="{{item.promote_end_date}}"></countdown>
@@ -112,7 +112,7 @@
         <div class="singleton-warp">
             <ion-card *ngFor="let item of data5?.data" (click)="goParticularsPage(item.id)">
                 <div class="img">
-                    <img src="{{item.thumb}}" alt="">
+                    <img src="{{item.goods_img}}" alt="">
                     <div class="time">
                         <ion-icon name="ios-time-outline"></ion-icon>
                         <countdown endDate="{{item.promote_end_date}}"></countdown>
@@ -130,7 +130,7 @@
         <div class="singleton-warp">
             <ion-card *ngFor="let item of data6?.data" (click)="goParticularsPage(item.id)">
                 <div class="img">
-                    <img src="{{item.thumb}}" alt="">
+                    <img src="{{item.goods_img}}" alt="">
                     <div class="time">
                         <ion-icon name="ios-time-outline"></ion-icon>
                         <countdown endDate="{{item.promote_end_date}}"></countdown>
