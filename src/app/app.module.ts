@@ -4,9 +4,6 @@ import { HttpModule } from '@angular/http';
 import { BrowserModule } from "@angular/platform-browser";
 
 import { IonicStorageModule } from '@ionic/storage';
-/*————————————————————————————————插件————————————————————————————————*/
-import { CityPickerModule } from "ionic2-city-picker/dist/city-picker.module";
-// import { IonicImageViewerModule } from 'ionic-img-viewer';
 /*————————————————————————————————base页————————————————————————————————*/
 import { MyApp } from './app.component';
 import { TabsPage } from '../pages/tabs/tabs';
@@ -126,6 +123,9 @@ import { Toast } from '@ionic-native/toast';
 import { AppVersion } from '@ionic-native/app-version';
 import { SplashScreen } from "@ionic-native/splash-screen";
 import { StatusBar } from "@ionic-native/status-bar";
+/*————————————————————————————————插件————————————————————————————————*/
+import { CityPickerModule } from "ionic2-city-picker/dist/city-picker.module";
+import { IonicImageViewerModule } from 'ionic-img-viewer';
 @NgModule({
   declarations: [
     MyApp,
@@ -151,7 +151,7 @@ import { StatusBar } from "@ionic-native/status-bar";
     PhoneNumberFilter
   ],
   imports: [
-    // IonicImageViewerModule,
+    IonicImageViewerModule,
     IonicModule.forRoot(MyApp, {
       backButtonText: '',
       // mode:'md',
@@ -167,7 +167,7 @@ import { StatusBar } from "@ionic-native/status-bar";
     IonicStorageModule.forRoot(),
     HttpModule,
     BrowserModule,
-    CityPickerModule
+    CityPickerModule,
   ],
   bootstrap: [IonicApp],
   entryComponents: [
