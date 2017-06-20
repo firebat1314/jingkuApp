@@ -6,11 +6,8 @@
                 {{area}}
             </button>
         </ion-buttons>
-        <div style="position: relative">
-            <ion-searchbar placeholder="搜索镜库上平/店铺" animated mode="ios"></ion-searchbar>
-            <div class="mark-searchbar" [navPush]="SearchPage"></div>
-        </div>
-
+        <ion-searchbar placeholder="搜索镜库商品/店铺" mode="ios"></ion-searchbar>
+        <div class="mark-searchbar" [navPush]="SearchPage"></div>
         <ion-buttons right>
             <button ion-button clear icon-only icon-left [navPush]="MessagePage">
                <ion-icon name="mess"></ion-icon>
@@ -33,19 +30,19 @@
     <!--————————————————————————————————————————————————————————————————————————————————————-->
     <div class="btn-tool" home-padding>
         <div class="top">
-            <div [navPush]="PresellPage">
+            <div (click)="goPresellPage()">
                 <div class="img">
                     <img src="./assets/icon/home_icon_08.png" alt="">
                 </div>
                 <span>预售</span>
             </div>
-            <div [navPush]="RechargePage">
+            <div (click)="goRechargePage()">
                 <div class="img">
                     <img src="./assets/icon/home_icon_02.png" alt="">
                 </div>
                 <span>充值</span>
             </div>
-            <div [navPush]="FastbuyPage">
+            <div (click)="goFastbuyPage()">
                 <div class="img">
                     <img src="./assets/icon/home_icon_05.png" alt="">
                 </div>
@@ -65,19 +62,19 @@
                 </div>
                 <span>白条</span>
             </div>
-            <div [navPush]="DiscountCouponPage">
+            <div (click)="goDiscountCouponPage();">
                 <div class="img">
                     <img src="./assets/icon/home_icon_07.png" alt="">
                 </div>
                 <span>优惠券</span>
             </div>
-            <div [navPush]="IntegralstorePage">
+            <div (click)="goIntegralstorePage();">
                 <div class="img">
                     <img src="./assets/icon/home_icon_03.png" alt="">
                 </div>
                 <span>积分商城</span>
             </div>
-            <div [navPush]="GlassesDesignPage">
+            <div (click)="goGlassesDesignPage()">
                 <div class="img">
                     <img src="./assets/icon/home_icon_06.png" alt="">
                 </div>

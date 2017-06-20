@@ -9,6 +9,7 @@ import { ParticularsModalPage } from "./particulars-modal/particulars-modal"
 import { ParticularsModalAttrPage } from "./particulars-modal-attr/particulars-modal-attr";
 // import { AccountServicePage } from "../../my/account-service/account-service";
 import { BrandListPage } from "../brand-list/brand-list";
+import { CarPage } from "../../car/car";
 
 /*
   Generated class for the Particulars page.
@@ -51,11 +52,19 @@ export class ParticularsPage {
     private events: Events
   ) {
     this.goodsId = this.navParams.get('goodsId') || '3994';/*3994 5676*/
-    console.log("商品ID:", this.goodsId)
+    console.log("商品ID:", this.goodsId);
   }
   ionViewDidLoad() {
     this.getHttpDetails();
     console.log('ionViewDidLoad ParticularsPage');
+    this.events.subscribe('particulars:goCarPage',()=>{
+      this.navCtrl.push(CarPage);
+      console.log(1)
+    });
+  }
+  ngOnDestroy(){
+      console.log(2)
+    this.events.unsubscribe('particulars:goCarPage');
   }
   getHttpDetails(finished?) {
     this.native.showLoading();

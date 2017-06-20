@@ -1,13 +1,13 @@
 {
-  "name": "Ionic",
-  "short_name": "Ionic",
-  "start_url": "index.html",
-  "display": "standalone",
-  "icons": [{
-    "src": "assets/imgs/logo.png",
-    "sizes": "512x512",
-    "type": "image/png"
-  }],
-  "background_color": "#4e8ef7",
-  "theme_color": "#4e8ef7"
+    "name": "镜库",
+    "short_name": "镜库",
+    "start_url": "index.html",
+    "display": "standalone",
+    "icons": [{
+        "src": "assets/icon/jingku.ico",
+        "sizes": "64x64",
+        "type": "image/x-icon"
+    }],
+    "background_color": "#f7f7f7",
+    "theme_color": "#333333"
 }

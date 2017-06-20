@@ -1,6 +1,6 @@
 import { Component, ViewChild } from '@angular/core';
 
-import { NavController, Events, Slides, Content } from 'ionic-angular';
+import { NavController, Events, Slides, Content, IonicPage } from 'ionic-angular';
 import { FormBuilder } from '@angular/forms';
 
 
@@ -26,7 +26,9 @@ import { Native } from "../../providers/native";
 import { ClickBanner } from "../../providers/ClickBanner";
 
 
-
+@IonicPage({
+  name: 'home'
+})
 @Component({
   selector: 'page-home',
   templateUrl: 'home.html'
@@ -38,7 +40,7 @@ export class HomePage {
   jingxuan_img2: string;
   jingxuan_img1: string;
 
-  area: string = '--';
+  area: string = '北京';
   areaList: any;
 
   @ViewChild('bannerSlide') slides: Slides;
@@ -165,23 +167,6 @@ export class HomePage {
       }, 500);
     })
   }
-  onSlideClick(event) {
-  }
-  scrollToTop() {
-    this.content.scrollToTop();
-  }
-  goCityPage() {
-    this.navCtrl.push(CityPage, { areaList: this.areaList })
-  }
-  goParticularsPage(id) {
-    this.navCtrl.push(ParticularsPage, { goodsId: id })
-  }
-  goBrandListPage(id) {
-    this.navCtrl.push(BrandListPage, { brandId: id })
-  }
-  goWhitebarPage() {
-    this.native.showToast('敬请期待')
-  }
   updataArea() {
     this.httpService.getAreaList().then((res) => {
       if (res && res.status == 1) {
@@ -205,5 +190,38 @@ export class HomePage {
     this.navCtrl.popToRoot();
     this.navCtrl.parent.select(1);
     this.events.publish('classify:selectSegment', value);
+  }
+  scrollToTop() {
+    this.content.scrollToTop();
+  }
+  goCityPage() {
+    this.navCtrl.push(CityPage, { areaList: this.areaList })
+  }
+  goParticularsPage(id) {
+    this.navCtrl.push(ParticularsPage, { goodsId: id })
+  }
+  goBrandListPage(id) {
+    this.navCtrl.push(BrandListPage, { brandId: id })
+  }
+  goWhitebarPage() {
+    this.native.showToast('敬请期待')
+  }
+  goPresellPage() {
+    this.navCtrl.push(PresellPage);
+  }
+  goRechargePage() {
+    this.navCtrl.push(RechargePage);
+  }
+  goFastbuyPage(){
+    this.navCtrl.push(FastbuyPage);
+  }
+  goDiscountCouponPage(){
+    this.navCtrl.push(DiscountCouponPage);
+  }
+  goIntegralstorePage(){
+    this.navCtrl.push(IntegralstorePage);
+  }
+  goGlassesDesignPage(){
+    this.navCtrl.push(GlassesDesignPage);
   }
 }

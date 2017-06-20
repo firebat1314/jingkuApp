@@ -22,13 +22,13 @@
     <div class="fore receipt-info" radio-group [(ngModel)]="formData.ivid">
         <div class="title">发票信息</div>
         <div *ngFor="let item of data?.inv_list;">
-            <div ion-item no-lines>
+            <div ion-item mode="md" no-lines>
                 <ion-label style="font-size:14px;color:#808080;">
                     <span>{{item.type==1?'个人':'企业'}}</span>
                     <span>{{item.payee}}</span>
                     <span>{{item.inv_type==1?'普通发票':'增值专用发票'}}</span>
                 </ion-label>
-                <ion-radio item-left [value]="item.ivid"></ion-radio>
+                <ion-radio mode="md" item-left [value]="item.ivid"></ion-radio>
             </div>
         </div>
     </div>
@@ -41,7 +41,7 @@
             </div>
             <div class="right-t">管理寄送地址</div>
         </div>
-        <div ion-item no-lines *ngFor="let item of data?.consignee_list;">
+        <div ion-item mode="md" no-lines *ngFor="let item of data?.consignee_list;">
             <ion-label>
                 <div style="font-size:14px;color:#333;">
                     <span class="name">{{item.consignee}}</span><span class="phone">{{item.mobile|phonenumberfilter}}</span>
@@ -50,7 +50,7 @@
                     {{item.address}}
                 </div>
             </ion-label>
-            <ion-radio [value]="item.address_id" item-left></ion-radio>
+            <ion-radio mode="md" [value]="item.address_id" item-left></ion-radio>
         </div>
     </div>
 </ion-content>

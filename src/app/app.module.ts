@@ -1,5 +1,5 @@
 import { NgModule, ErrorHandler } from '@angular/core';
-import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
+import { IonicApp, IonicModule, IonicErrorHandler, IonicPageModule } from 'ionic-angular';
 import { HttpModule } from '@angular/http';
 import { BrowserModule } from "@angular/platform-browser";
 
@@ -7,7 +7,6 @@ import { IonicStorageModule } from '@ionic/storage';
 /*————————————————————————————————base页————————————————————————————————*/
 import { MyApp } from './app.component';
 import { TabsPage } from '../pages/tabs/tabs';
-import { HomePage } from '../pages/home/home';
 import { ClassifyPage } from '../pages/classify/classify';
 import { CarPage } from '../pages/car/car';
 import { MyPage } from '../pages/my/my';
@@ -137,7 +136,7 @@ import { IonicImageViewerModule } from 'ionic-img-viewer';
     /*——————————————————购物车——————————————————*/
     CarPage,
     /*——————————————————home栏——————————————————*/
-    HomePage, CityPage, SearchPage, DetailsPage, BrandListPage, AttentionPage, FastbuyPage, GlassesDesignPage, IntegralstorePage, RechargePage, WhitebarPage, DiscountCouponPage, MessagePage, ParticularsPage, ParticularsModalPage, DredgeMoreCityPage, PopoverContentPage, ParticularsModalAttrPage, MessageDetailsPage, PresellPage, JifenHistoryPage, DuihuanDetailsPage, DuihuanDetailsFinishPage,
+    CityPage, SearchPage, DetailsPage, BrandListPage, AttentionPage, FastbuyPage, GlassesDesignPage, IntegralstorePage, RechargePage, WhitebarPage, DiscountCouponPage, MessagePage, ParticularsPage, ParticularsModalPage, DredgeMoreCityPage, PopoverContentPage, ParticularsModalAttrPage, MessageDetailsPage, PresellPage, JifenHistoryPage, DuihuanDetailsPage, DuihuanDetailsFinishPage,
     /*——————————————————分类栏——————————————————*/
     ClassifyPage, SubnavPage1Page, SubnavPage2Page, MoreBrandPage,
     /*——————————————————我的栏——————————————————*/
@@ -158,12 +157,8 @@ import { IonicImageViewerModule } from 'ionic-img-viewer';
       tabsHideOnSubPages: true,
       tabsPlacement: 'bottom',
       activator: "highlight"
-    }, {
-        links: [
-          { component: HomePage, segment: 'home' },
-          { component: CityPage, segment: 'city' }
-        ]
-      }),
+    }),
+    IonicPageModule.forChild(MyApp),
     IonicStorageModule.forRoot(),
     HttpModule,
     BrowserModule,
@@ -180,7 +175,7 @@ import { IonicImageViewerModule } from 'ionic-img-viewer';
     /*——————————————————购物车——————————————————*/
     CarPage,
     /*——————————————————home栏——————————————————*/
-    HomePage, CityPage, SearchPage, DetailsPage, BrandListPage, AttentionPage, FastbuyPage, GlassesDesignPage, IntegralstorePage, RechargePage, WhitebarPage, DiscountCouponPage, MessagePage, ParticularsPage, ParticularsModalPage, DredgeMoreCityPage, PopoverContentPage, ParticularsModalAttrPage, MessageDetailsPage, PresellPage, JifenHistoryPage, DuihuanDetailsPage, DuihuanDetailsFinishPage,
+    CityPage, SearchPage, DetailsPage, BrandListPage, AttentionPage, FastbuyPage, GlassesDesignPage, IntegralstorePage, RechargePage, WhitebarPage, DiscountCouponPage, MessagePage, ParticularsPage, ParticularsModalPage, DredgeMoreCityPage, PopoverContentPage, ParticularsModalAttrPage, MessageDetailsPage, PresellPage, JifenHistoryPage, DuihuanDetailsPage, DuihuanDetailsFinishPage,
     /*——————————————————分类栏——————————————————*/
     ClassifyPage, SubnavPage1Page, SubnavPage2Page, MoreBrandPage,
     /*——————————————————我的栏——————————————————*/
@@ -189,6 +184,6 @@ import { IonicImageViewerModule } from 'ionic-img-viewer';
     SingleCardComponent, MyToolbarComponent, SingleFoodsItemComponent, MeunItemComponent, CountdownComponent, CountInputComponent, ImgTabs2Component, NothingComponent,
     DirectiveTestPage,
   ],
-  providers: [{ provide: ErrorHandler, useClass: IonicErrorHandler }, UserData, Native, HttpService, JpushService, Camera, ImagePicker, AppVersion, Toast, CallNumber,StatusBar,SplashScreen]
+  providers: [{ provide: ErrorHandler, useClass: IonicErrorHandler }, UserData, Native, HttpService, JpushService, Camera, ImagePicker, AppVersion, Toast, CallNumber, StatusBar, SplashScreen]
 })
 export class AppModule { }

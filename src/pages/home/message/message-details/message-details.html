@@ -26,9 +26,10 @@
                     <ion-thumbnail item-left>
                         <img src="{{item.original_img}}">
                     </ion-thumbnail>
-                    <h2>{{item.msg}}</h2>
-                    <h2>¥{{item.total_fee}}</h2>
+                    <h5>{{item.msg}}</h5>
+                    <h5>¥{{item.total_fee}}</h5>
                     <p>订单编号：{{item.order_sn}}</p>
+                    <p>物流单号：{{item.invoice_no}}</p>
                 </ion-item>
             </ion-card>
         </ion-list>
@@ -40,6 +41,7 @@
 
 </ion-content>
 <ion-content *ngIf="type==2">
+    <nothing *ngIf="userTidings?.list?.length==0" [backgroundImg]="'./assets/images/message_center_1_03'"></nothing>
     <!--————————————————————————用户消息————————————————————————————-->
     <div class="period" *ngFor="let item of userTidings?.list">
         <div class="time"><span>{{item.dateline}}</span></div>
