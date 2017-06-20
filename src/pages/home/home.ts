@@ -101,7 +101,7 @@ export class HomePage {
     })
   }
   getHomeData(finish?) {
-    this.native.showLoading('加载中');
+    // this.native.showLoading('加载中');
     this.updataArea();
     this.httpService.indexs().then((res) => {
       if (res.status == 1) {
@@ -115,7 +115,7 @@ export class HomePage {
         this.getCategoryRecommendGoods = res.data.new_recommend_goods;
         this.jingxuan_img4 = res.data.ads_hdtj;
         this.getCategoryRecommendGoodsBest = res.data.best_recommend_goods;
-        this.native.hideLoading();
+        // this.native.hideLoading();
         if (finish) { finish(); }
       }
     })

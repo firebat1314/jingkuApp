@@ -158,7 +158,6 @@ import { IonicImageViewerModule } from 'ionic-img-viewer';
       tabsPlacement: 'bottom',
       activator: "highlight"
     }),
-    IonicPageModule.forChild(MyApp),
     IonicStorageModule.forRoot(),
     HttpModule,
     BrowserModule,
