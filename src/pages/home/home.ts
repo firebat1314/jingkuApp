@@ -1,6 +1,6 @@
 import { Component, ViewChild } from '@angular/core';
 
-import { NavController, Events, Slides, Content, IonicPage } from 'ionic-angular';
+import { NavController, Events, Slides, Content } from 'ionic-angular';
 import { FormBuilder } from '@angular/forms';
 
 
@@ -25,10 +25,11 @@ import { HttpService } from "../../providers/http-service";
 import { Native } from "../../providers/native";
 import { ClickBanner } from "../../providers/ClickBanner";
 
+import { Storage } from '@ionic/storage';
 
-@IonicPage({
+/*@IonicPage({
   name: 'home'
-})
+})*/
 @Component({
   selector: 'page-home',
   templateUrl: 'home.html'
@@ -74,14 +75,15 @@ export class HomePage {
     private events: Events,
     private httpService: HttpService,
     private formBuilder: FormBuilder,
-    private native: Native
+    private native: Native,
+    private storage: Storage,
   ) { }
   ngAfterViewInit() {
 
   }
   ionViewDidLoad() {
     console.log('ionViewDidLoad HomePage');
-    this.getBanner()
+    this.getBanner();
     this.getHomeData();
     this.updataArea();
     this.updateCarCount();
@@ -183,6 +185,7 @@ export class HomePage {
     this.httpService.getFlowGoods().then((res) => {
       if (res.status == 1) {
         this.events.publish('car:goodsCount', res.total.real_goods_count);
+        this.storage.set('real_goods_count',res.total.real_goods_count)
       }
     })
   }

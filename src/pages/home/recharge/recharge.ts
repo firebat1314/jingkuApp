@@ -3,7 +3,6 @@ import { NavController, NavParams, AlertController } from 'ionic-angular';
 import { HttpService } from "../../../providers/http-service";
 import { PaymentMethodPage } from "../../my/all-orders/payment-method/payment-method";
 import { Native } from "../../../providers/native";
-import { AccountMoneyDetailPage } from "../../my/account-money-detail/account-money-detail";
 
 /*
   Generated class for the Recharge page.

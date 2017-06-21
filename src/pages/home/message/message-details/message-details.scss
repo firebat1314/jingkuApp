@@ -4,8 +4,9 @@ page-message-details {
             box-shadow: initial;
         }
         .time {
-            margin: 25px 0;
+            margin: 16px 0;
             text-align: center;
+            font-size: 1rem;
             span {
                 background: #d1d1d1;
                 padding: 6px 11px;
@@ -22,10 +23,10 @@ page-message-details {
                 color: #f60000;
             }
         }
-        .item {
-            h2 {
-                white-space: normal;
-            }
+        .userTidings-msg-content {
+            white-space: normal;
+            font-size: 1.4rem;
+            padding: 10px 16px;
         }
     }
 }

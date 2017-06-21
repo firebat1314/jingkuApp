@@ -14,17 +14,24 @@
         <ion-list style="display: flex;margin: 0;" radio-group [(ngModel)]="payMethod" name="pay">
             <ion-item mode="md" no-lines>
                 <ion-label><img [src]="payListImg[0]"></ion-label>
-                <ion-radio mode="md" item-left checked [value]="payList?.data['3'].pay_id"></ion-radio>
+                <ion-radio mode="md" item-left checked value="6"></ion-radio>
             </ion-item>
             <ion-item mode="md" no-lines>
                 <ion-label><img [src]="payListImg[1]"></ion-label>
-                <ion-radio mode="md" item-left [value]="payList?.data['2'].pay_id"></ion-radio>
+                <ion-radio mode="md" item-left value="4"></ion-radio>
             </ion-item>
         </ion-list>
         <div padding>
             <button color="dark" large ion-button [disabled]="!recharge.form.valid" (click)="onClick(money,payMethod)" block>确认</button>
         </div>
     </form>
-    <ion-note *ngIf="payMethod==4" [innerHTML]="payList?.data['2']?.pay_desc"></ion-note>
-    <ion-note *ngIf="payMethod==6" [innerHTML]="payList?.data['3']?.pay_desc"></ion-note>
+    <div>
+        <ion-note *ngIf="payMethod==4">
+            [收款人名称]：北京镜库科技有限公司<br/>[帐号]：6971 11054<br/>[开户行]：中国民生银行北京劲松支行
+            <br/>[注意事项]：办理电汇时，请在电汇单“汇款用途”一栏处注明您的订单号。
+        </ion-note>
+        <ion-note *ngIf="payMethod==6">
+            在线支付，支持支付宝、微信支付、银联及各大银行在线支付
+        </ion-note>
+    </div>
 </ion-content>
