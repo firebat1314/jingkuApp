@@ -50,13 +50,29 @@ page-member-center {
                 }
             }
         }
+        .vip-list {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 1rem;
+            >div {
+                width: 17%;
+                >div {
+                    overflow: hidden;
+                    text-align: center;
+                    white-space: nowrap;
+                    text-overflow: ellipsis;
+                }
+            }
+        }
         .txt {
             color: #999;
             width: 100%;
             display: flex;
-            text-align: center;
+            margin-top: 10px;
+            // text-align: center;
             justify-content: space-between;
-            >span{
+            >span {
                 display: block;
                 width: 100%;
             }

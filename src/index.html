@@ -3,12 +3,12 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>Ionic App</title>
+    <title>镜库</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <meta name="format-detection" content="telephone=no">
     <meta name="msapplication-tap-highlight" content="no">
 
-    <link rel="icon" type="image/x-icon" href="assets/icon/favicon.ico">
+    <link rel="icon" type="image/x-icon" href="assets/icon/jingku.ico">
     <link rel="manifest" href="manifest.json">
     <meta name="theme-color" content="#4e8ef7">
 
@@ -39,7 +39,20 @@
     <!-- The bundle js is generated during the build process -->
     <script src="build/main.js"></script>
     <!--<script src="assets/data/pingpp.js"></script>-->
-
+    <!--网站图标 -->
+    <script>
+        setTimeout(function() {
+            var links = document.getElementsByTagName('link');
+            var linksLength = links.length;
+            for (var i = 0; i < linksLength; i++) {
+                if ('icon' === links[i].rel) {
+                    links[i].type = 'image/x-icon';
+                    links[i].href = 'assets/icon/jingku.ico';
+                }
+            }
+            links = null;
+        }, 0);
+    </script>
 </body>
 
 </html>

@@ -9,6 +9,8 @@ import { ParticularsModalPage } from "./particulars-modal/particulars-modal"
 import { ParticularsModalAttrPage } from "./particulars-modal-attr/particulars-modal-attr";
 // import { AccountServicePage } from "../../my/account-service/account-service";
 import { BrandListPage } from "../brand-list/brand-list";
+import { CarPage } from "../../car/car";
+import { Storage } from '@ionic/storage';
 
 /*
   Generated class for the Particulars page.
@@ -41,28 +43,41 @@ export class ParticularsPage {
   selectPicArguments = "pic";
 
   goodsId: number;
-
+  badgeCount: number;
   constructor(
     public navCtrl: NavController,
     public navParams: NavParams,
     private http: HttpService,
     public modalCtrl: ModalController,
+    public storage: Storage,
     public native: Native,
     private events: Events
   ) {
     this.goodsId = this.navParams.get('goodsId') || '3994';/*3994 5676*/
-    console.log("商品ID:", this.goodsId)
+    console.log("商品ID:", this.goodsId);
   }
   ionViewDidLoad() {
     this.getHttpDetails();
     console.log('ionViewDidLoad ParticularsPage');
+    this.events.subscribe('particulars:goCarPage', () => {
+      this.navCtrl.push(CarPage);
+    });
+    this.storage.get('real_goods_count').then(res => {
+      this.badgeCount = res;
+    })
+    this.events.subscribe('car:goodsCount', (res) => {
+      this.badgeCount = res;
+    })
+  }
+  ngOnDestroy() {
+    this.events.unsubscribe('particulars:goCarPage');
   }
   getHttpDetails(finished?) {
     this.native.showLoading();
     this.http.goodsInfos({ goods_id: this.goodsId }).then((res) => {
       console.log("商品详情信息", res);
-      if (res.status == 1) { 
-        this.getGoodsInfo = res; 
+      if (res.status == 1) {
+        this.getGoodsInfo = res;
         this.getRegionName(res);
       }
       this.http.getCategoryRecommendGoodsHot({}).then((res) => {
@@ -73,9 +88,9 @@ export class ParticularsPage {
       })
     })
   }
-  getRegionName(res){
-    for(var i = 0;i < res.sale_city.length;i++){
-      if(res.sale_city[i].selected==1){
+  getRegionName(res) {
+    for (var i = 0; i < res.sale_city.length; i++) {
+      if (res.sale_city[i].selected == 1) {
         this.region_name = res.sale_city[i].region_name;
       }
     }
@@ -96,7 +111,7 @@ export class ParticularsPage {
     let modal = this.modalCtrl.create(ParticularsModalPage, { name: str, getBonus: this.getGoodsInfo.bonus, sendto: this.getGoodsInfo.sale_city, GoodsInfo: this.getGoodsInfo.data });
     modal.onDidDismiss(data => {
       console.log(data);
-      if(data&&data.region_name){
+      if (data && data.region_name) {
         this.region_name = data.region_name;
         this.getHttpDetails();
       }
@@ -116,10 +131,10 @@ export class ParticularsPage {
         if (res.status == 1) {
           if (res.goods_type == 'goods_spectacles') {
             console.log("goods_type ☞'goods_spectacles'", res);
-            if(typeof res.spectacles_properties.list == 'object'){
+            if (typeof res.spectacles_properties.list == 'object') {
               console.log(res.spectacles_properties.list)
               let arr = new Array();
-              for(let item in res.spectacles_properties.list){
+              for (let item in res.spectacles_properties.list) {
                 arr.push(res.spectacles_properties.list[item]);
               }
               res.spectacles_properties.list = arr;
@@ -196,8 +211,8 @@ export class ParticularsPage {
       }
     }
   }
-  goParticularsPage(id){
-    this.navCtrl.push(ParticularsPage,{goodsId:id})
+  goParticularsPage(id) {
+    this.navCtrl.push(ParticularsPage, { goodsId: id })
   }
   openCallNumber() {
     this.native.openCallNumber(this.getGoodsInfo.supplier_info.mobile, false);
@@ -207,6 +222,9 @@ export class ParticularsPage {
     // this.navCtrl.push(AccountServicePage)
   }
   goStore() {
-    this.navCtrl.push(BrandListPage,{supplierId:this.getGoodsInfo.supplier_info.id})
+    this.navCtrl.push(BrandListPage, { supplierId: this.getGoodsInfo.supplier_info.id })
+  }
+  goCart() {
+    this.navCtrl.push(CarPage)
   }
 }

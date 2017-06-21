@@ -16,9 +16,9 @@
 <ion-content>
     <button [navPush]="AccountInfoPage" ion-item mode="ios" no-lines>
         <ion-thumbnail item-left>
-             <img style="border-radius: 50%;" src="{{avatar||'./assets/icon/images/brand_1_10.jpg'}}">
+             <img style="border-radius: 50%;" src="{{avatar}}">
         </ion-thumbnail>
-        <h2>人走茶凉</h2>
+        <h2>{{username}}</h2>
     </button>
     <div class="background"></div>
     <ion-list>

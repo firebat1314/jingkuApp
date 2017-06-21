@@ -59,7 +59,11 @@
                 {{getGoodsInfo?.data?.goods_name}}
             </div>
             <div class="body">
-                批发价&nbsp;：<span class="now-price"><span class="number">{{getGoodsInfo?.data?.shop_price_formated}}</span></span><span class="old-price">{{getGoodsInfo?.data?.old_shop_price}}</span>&nbsp;
+                批发价&nbsp;：
+                <span class="now-price">
+                    <span class="number">{{getGoodsInfo?.data?.shop_price_formated}}</span>
+                </span>
+                <span class="old-price">{{getGoodsInfo?.data?.old_shop_price}}</span>&nbsp;
                 <span class="rush-icon" *ngIf="getGoodsInfo?.data?.is_pre==1">预售</span>
                 <span class="rush-icon" *ngIf="getGoodsInfo?.promotion">{{getGoodsInfo?.promotion?.type_name}}</span>
             </div>
@@ -97,9 +101,7 @@
         <div class="fore">
             <div ion-item no-lines>
                 发货地：{{getGoodsInfo?.supplier_info?.city_name}}
-                <ion-note>
-                    配送时间：预计7-14个工作日送达
-                </ion-note>
+                <!--<ion-note>配送时间：预计7-14个工作日送达</ion-note>-->
             </div>
         </div>
         <div class="fore will-address">
@@ -297,10 +299,12 @@
                 <ion-icon style="font-weight: 700;" name="ios-heart-outline"></ion-icon>
                 <span>关注</span>
             </div>
-            <!--<div (click)="goStore()">
-                <ion-icon name="shop"></ion-icon>
-                <span>店铺</span>
-            </div>-->
+            <div (click)="goCart()" class="gocart">
+                <ion-icon name="cart">
+                    <ion-badge color="danger">{{badgeCount}}</ion-badge>
+                </ion-icon>
+                <span>购物车</span>
+            </div>
         </div>
 
         <div class="right">

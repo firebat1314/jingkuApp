@@ -30,6 +30,12 @@
                 <div class="show" [ngStyle]="{'width.%':data?.bai}"></div>
             </div>
         </div>
+        <div class="vip-list">
+            <div *ngFor="let item of data?.data">
+                <div>{{item.rank_name}}</div>
+                <div>({{item.max_points}})</div>
+            </div>
+        </div>
         <div class="txt">
             <span>目前等级：{{rankName}} <br/>下一等级：{{nextRankName}} <br/> 所需积分：{{nextRank}}积分</span>
         </div>

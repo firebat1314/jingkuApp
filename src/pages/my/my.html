@@ -31,14 +31,14 @@
         <ion-list no-margin>
             <ion-item padding-left no-lines mode="ios" style="border-bottom: 0.5px solid #e0e0e0;">
                 <ion-avatar item-left>
-                    <img src="{{userInfo?.data?.avatar}}">
+                    <ion-img src="{{userInfo?.data?.avatar}}"></ion-img>
                 </ion-avatar>
                 <h2>{{userInfo?.data?.username}}</h2>
                 <p class="vip">
                     <ion-img src="{{userInfo?.data?.user_info?.rank_icon}}"></ion-img>
                     <ion-note>{{userInfo?.data?.user_info?.rank_name}}</ion-note>
                 </p>
-                <button [navPush]="AccountManagementPage" [navParams]="{avatar:userInfo?.data?.avatar}" color="gray" ion-button round outline icon-left item-right>
+                <button [navPush]="AccountManagementPage" [navParams]="{avatar:userInfo?.data?.avatar,username:userInfo?.data?.username}" color="gray" ion-button round outline icon-left item-right>
                     <ion-icon><img style="width:1.3rem;" src="./assets/icon/images/user_cener_1_11.png" alt=""></ion-icon>
                     账号管理
                 </button>

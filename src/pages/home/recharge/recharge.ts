@@ -1,9 +1,8 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams } from 'ionic-angular';
+import { NavController, NavParams, AlertController } from 'ionic-angular';
 import { HttpService } from "../../../providers/http-service";
 import { PaymentMethodPage } from "../../my/all-orders/payment-method/payment-method";
 import { Native } from "../../../providers/native";
-import { AccountMoneyDetailPage } from "../../my/account-money-detail/account-money-detail";
 
 /*
   Generated class for the Recharge page.
@@ -22,7 +21,8 @@ export class RechargePage {
     public navCtrl: NavController,
     public navParams: NavParams,
     public httpService: HttpService,
-    public native: Native
+    public native: Native,
+    private alertCtrl: AlertController
   ) { }
 
   ionViewDidLoad() {
@@ -54,9 +54,18 @@ export class RechargePage {
     } else if (payMethod == 4) {
       this.httpService.addAccount({ amount: money, payment_id: payMethod }).then((res) => {
         if (res.status == 1) {
-          this.native.showToast('请尽快转账汇款');
-          this.navCtrl.parent.select(3);
-          this.navCtrl.pop();
+          this.alertCtrl.create({
+            title: '汇款须知',
+            subTitle: this.payList.data[2].pay_desc,
+            buttons: [{
+              text: '确认',
+              handler: () => {
+                this.navCtrl.parent.select(3);
+                this.navCtrl.pop();
+              }
+            }],
+            cssClass: 'recharge-alert'
+          }).present();
         }
       })
     }

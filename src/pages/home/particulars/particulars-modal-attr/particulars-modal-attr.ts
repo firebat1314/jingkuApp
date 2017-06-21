@@ -2,7 +2,6 @@ import { Component } from '@angular/core';
 import { NavController, NavParams, ViewController, Events } from 'ionic-angular';
 import { HttpService } from "../../../../providers/http-service";
 import { Native } from "../../../../providers/native";
-import { CarPage } from "../../../car/car";
 
 export class goodsSpectaclesParams {
 	number = 1;//所填写的商品的数量
@@ -156,13 +155,12 @@ export class ParticularsModalAttrPage {
 				console.log(res)
 				if (res && res.status == 1) {
 					this.native.showToast('添加成功~')
-					this.events.publish('car:updata');
-					if (goCart) { goCart(); } else {
-						this.viewCtrl.dismiss();
-					}
-				} else if (res.success == false) {
-					this.native.showToast('添加失败~')
+					this.events.publish('car:updata');//更新购物车
+					this.viewCtrl.dismiss();
+					if (goCart) { goCart(); }
 				}
+			}).catch((res)=>{
+				console.log(res)
 			})
 		}
 		/*镜片商品添加到购物车*/
@@ -187,19 +185,19 @@ export class ParticularsModalAttrPage {
 				if (res && res.status == 1) {
 					this.native.showToast('添加成功~')
 					this.events.publish('car:updata');
-					if (goCart) { goCart() } else {
-						this.viewCtrl.dismiss();
-					}
+					this.viewCtrl.dismiss();
+					if (goCart) { goCart() }
 				}
+			}).catch((res)=>{
+				console.log(res)
 			})
 			console.log(this.spcArr)
 			console.log(this.goods)
 		}
 	}
 	goCarPage() {
-		this.navCtrl.push(CarPage);
 		this.addToCart(() => {
-			this.viewCtrl.dismiss();
+			this.events.publish('particulars:goCarPage');//跳转到购物车
 		})
 	}
 

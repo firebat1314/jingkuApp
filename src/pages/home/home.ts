@@ -25,8 +25,11 @@ import { HttpService } from "../../providers/http-service";
 import { Native } from "../../providers/native";
 import { ClickBanner } from "../../providers/ClickBanner";
 
+import { Storage } from '@ionic/storage';
 
-
+/*@IonicPage({
+  name: 'home'
+})*/
 @Component({
   selector: 'page-home',
   templateUrl: 'home.html'
@@ -38,7 +41,7 @@ export class HomePage {
   jingxuan_img2: string;
   jingxuan_img1: string;
 
-  area: string = '--';
+  area: string = '北京';
   areaList: any;
 
   @ViewChild('bannerSlide') slides: Slides;
@@ -72,14 +75,15 @@ export class HomePage {
     private events: Events,
     private httpService: HttpService,
     private formBuilder: FormBuilder,
-    private native: Native
+    private native: Native,
+    private storage: Storage,
   ) { }
   ngAfterViewInit() {
 
   }
   ionViewDidLoad() {
     console.log('ionViewDidLoad HomePage');
-    this.getBanner()
+    this.getBanner();
     this.getHomeData();
     this.updataArea();
     this.updateCarCount();
@@ -99,7 +103,7 @@ export class HomePage {
     })
   }
   getHomeData(finish?) {
-    this.native.showLoading('加载中');
+    // this.native.showLoading('加载中');
     this.updataArea();
     this.httpService.indexs().then((res) => {
       if (res.status == 1) {
@@ -113,7 +117,7 @@ export class HomePage {
         this.getCategoryRecommendGoods = res.data.new_recommend_goods;
         this.jingxuan_img4 = res.data.ads_hdtj;
         this.getCategoryRecommendGoodsBest = res.data.best_recommend_goods;
-        this.native.hideLoading();
+        // this.native.hideLoading();
         if (finish) { finish(); }
       }
     })
@@ -165,23 +169,6 @@ export class HomePage {
       }, 500);
     })
   }
-  onSlideClick(event) {
-  }
-  scrollToTop() {
-    this.content.scrollToTop();
-  }
-  goCityPage() {
-    this.navCtrl.push(CityPage, { areaList: this.areaList })
-  }
-  goParticularsPage(id) {
-    this.navCtrl.push(ParticularsPage, { goodsId: id })
-  }
-  goBrandListPage(id) {
-    this.navCtrl.push(BrandListPage, { brandId: id })
-  }
-  goWhitebarPage() {
-    this.native.showToast('敬请期待')
-  }
   updataArea() {
     this.httpService.getAreaList().then((res) => {
       if (res && res.status == 1) {
@@ -198,6 +185,7 @@ export class HomePage {
     this.httpService.getFlowGoods().then((res) => {
       if (res.status == 1) {
         this.events.publish('car:goodsCount', res.total.real_goods_count);
+        this.storage.set('real_goods_count',res.total.real_goods_count)
       }
     })
   }
@@ -205,5 +193,38 @@ export class HomePage {
     this.navCtrl.popToRoot();
     this.navCtrl.parent.select(1);
     this.events.publish('classify:selectSegment', value);
+  }
+  scrollToTop() {
+    this.content.scrollToTop();
+  }
+  goCityPage() {
+    this.navCtrl.push(CityPage, { areaList: this.areaList })
+  }
+  goParticularsPage(id) {
+    this.navCtrl.push(ParticularsPage, { goodsId: id })
+  }
+  goBrandListPage(id) {
+    this.navCtrl.push(BrandListPage, { brandId: id })
+  }
+  goWhitebarPage() {
+    this.native.showToast('敬请期待')
+  }
+  goPresellPage() {
+    this.navCtrl.push(PresellPage);
+  }
+  goRechargePage() {
+    this.navCtrl.push(RechargePage);
+  }
+  goFastbuyPage(){
+    this.navCtrl.push(FastbuyPage);
+  }
+  goDiscountCouponPage(){
+    this.navCtrl.push(DiscountCouponPage);
+  }
+  goIntegralstorePage(){
+    this.navCtrl.push(IntegralstorePage);
+  }
+  goGlassesDesignPage(){
+    this.navCtrl.push(GlassesDesignPage);
   }
 }
