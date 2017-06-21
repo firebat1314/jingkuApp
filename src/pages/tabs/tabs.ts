@@ -1,10 +1,10 @@
 import { Component, ViewChild } from '@angular/core';
 import { Tabs, Events } from "ionic-angular";
-
-import { HomePage } from "../home/home";
 import { ClassifyPage } from '../classify/classify';
 import { CarPage } from '../car/car';
 import { MyPage } from '../my/my';
+import { HomePage } from '../home/home';
+
 @Component({
   templateUrl: 'tabs.html'
 })

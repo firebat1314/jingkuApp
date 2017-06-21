@@ -16,7 +16,7 @@
 <ion-content>
     <ion-list no-margin>
 
-        <ion-item mode="ios" (click)="editAvatar()">
+        <ion-item mode="ios" (click)="editAvatar()" detail-push>
             <h2>头像</h2>
             <ion-thumbnail item-right>
                 <img style="border-radius: 50%;" src="{{userInfo?.data?.avatar}}">
@@ -32,22 +32,22 @@
         </ion-item>
         <ion-item mode="ios">
             手机号
-            <ion-note item-right>{{userInfo?.data?.user_info?.mobile_phone | phonenumberfilter}}</ion-note>
+            <ion-note item-right>{{(userInfo?.data?.user_info?.mobile_phone | phonenumberfilter) || '未绑定手机号'}}</ion-note>
         </ion-item>
         <ion-item [navPush]="QqPage" [navParams]="userInfo?.data?.user_info?.qq" mode="ios" detail-push>
             QQ
-            <ion-note item-right>{{userInfo?.data?.user_info?.qq}}</ion-note>
+            <ion-note item-right>{{userInfo?.data?.user_info?.qq || '点击设置'}}</ion-note>
         </ion-item>
     </ion-list>
     <div class="background"></div>
     <ion-list no-margin>
         <ion-item [navPush]="CompanynamePage" [navParams]="userInfo?.data?.user_info?.company" mode="ios" detail-push>
             公司名称
-            <ion-note item-right>{{userInfo?.data?.user_info?.company}}</ion-note>
+            <ion-note item-right>{{userInfo?.data?.user_info?.company || '点击设置'}}</ion-note>
         </ion-item>
         <ion-item [navPush]="AddressPage" [navParams]="userInfo?.data?.user_info?.address" mode="ios" detail-push>
             所在地
-            <ion-note item-right>{{userInfo?.data?.user_info?.address}}</ion-note>
+            <ion-note item-right>{{userInfo?.data?.user_info?.address || '点击设置'}}</ion-note>
         </ion-item>
         <ion-item mode="ios">
             营业执照

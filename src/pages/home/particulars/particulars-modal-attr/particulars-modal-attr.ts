@@ -2,7 +2,6 @@ import { Component } from '@angular/core';
 import { NavController, NavParams, ViewController, Events } from 'ionic-angular';
 import { HttpService } from "../../../../providers/http-service";
 import { Native } from "../../../../providers/native";
-import { CarPage } from "../../../car/car";
 
 export class goodsSpectaclesParams {
 	number = 1;//所填写的商品的数量

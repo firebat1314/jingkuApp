@@ -20,8 +20,9 @@ export class AccountManagementPage {
   AccountInfoPage: any = AccountInfoPage;
   ShippingAddressPage: any = ShippingAddressPage;
   MemberCenterPage: any = MemberCenterPage;
-
+  
   avatar: any = this.navParams.get('avatar');
+  username: any = this.navParams.get('username');
   constructor(
     public navCtrl: NavController,
     public navParams: NavParams,
