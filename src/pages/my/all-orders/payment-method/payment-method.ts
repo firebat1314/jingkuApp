@@ -37,7 +37,7 @@ export class PaymentMethodPage {
   dismiss(data?: any) {
     this.viewCtrl.dismiss(data);
   }
-  /*toPay(type) {
+  toPay(type) {
     if (type == 1) {
       this.httpService.payCode({ code: this.data.alipay }).then((res) => {
         console.log(res);
@@ -47,7 +47,6 @@ export class PaymentMethodPage {
             console.log(result, err)
             if (result == "success") {
               // 只有微信公众账号 wx_pub 支付成功的结果会在这里返回，其他的支付结果都会跳转到 extra 中对应的 URL。
- 
             } else if (result == "fail") {
               // charge 不正确或者微信公众账号支付失败时会在此处返回
             } else if (result == "cancel") {
@@ -75,7 +74,7 @@ export class PaymentMethodPage {
         }
       })
     } else if (type == 3) {
-      this.httpService.payCode({ code: this.data.WeChat }).then((res) => {
+      this.httpService.payCode({ code: this.data.weixin}).then((res) => {
         console.log(res);
         if (res.status == 1 && pingpp) {
           console.log(pingpp)
@@ -93,8 +92,9 @@ export class PaymentMethodPage {
         }
       })
     }
-  }*/
-  toPay(type) {
+  }
+    /*—————————————————————————————————cordova 插件—————————————————————————————————————————*/
+/*  toPay(type) {
     if (type == 1) {
       this.getOrderInfo(this.data.alipay);
     } else if (type == 2) {
@@ -132,7 +132,7 @@ export class PaymentMethodPage {
         that.native.showToast("支付异常,请尝试其他支付方式");
       }
       console.log('fail', result, err)
-    });
+    });*/
     /*——————————————————————————————————————————————————————————————————————————*/
     // pingpp.createPayment(data, (result) => {
     //   console.log('success',result);
@@ -155,7 +155,7 @@ export class PaymentMethodPage {
     // Pingpp.getVersion(function (version) {
     //   alert("当前SDK版本号是:" + version);
     // });
-  }
+  //}
 
   // alipayPay(alipayOrder) {
   //   // Should get from server side with sign.

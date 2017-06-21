@@ -26,9 +26,9 @@ import { Native } from "../../providers/native";
 import { ClickBanner } from "../../providers/ClickBanner";
 
 
-@IonicPage({
-  name: 'home'
-})
+// @IonicPage({
+//   name: 'home'
+// })
 @Component({
   selector: 'page-home',
   templateUrl: 'home.html'
