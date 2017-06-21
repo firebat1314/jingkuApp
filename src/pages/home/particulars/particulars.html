@@ -301,7 +301,7 @@
             </div>
             <div (click)="goCart()" class="gocart">
                 <ion-icon name="cart">
-                    <ion-badge color="danger">{{badgeCount}}</ion-badge>
+                    <ion-badge *ngIf="badgeCount!=0" color="danger">{{badgeCount}}</ion-badge>
                 </ion-icon>
                 <span>购物车</span>
             </div>

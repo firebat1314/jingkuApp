@@ -61,12 +61,14 @@
             </ion-item>
             <ion-item>
                 <ion-label color="primary" fixed><span ion-text color="google">*</span>　推荐人编码</ion-label>
-                <ion-input clearInput required type="text" placeholder="请填写推荐人编码"></ion-input>
+                <ion-input clearInput type="text" placeholder="请填写推荐人编码"></ion-input>
             </ion-item>
         </ion-list>
         <div class="tool" padding-horizontal>
             <div class="agree">
-                <ion-checkbox required [(ngModel)]="agree" name="agree" mode="ios" color="danger"></ion-checkbox>&nbsp;&nbsp;我已同意并阅读<span ion-text color="google" (click)="goHelperDetailsPage();">《用户协议》</span>
+                <ion-checkbox required [(ngModel)]="agree" name="agree" mode="ios" color="danger"></ion-checkbox>
+                &nbsp;&nbsp;我已同意并阅读
+                <span ion-text color="google" (click)="goHelperDetailsPage();">《用户协议》</span>
             </div>
             <div class="login">
                 <span class="text">已有账号？</span>

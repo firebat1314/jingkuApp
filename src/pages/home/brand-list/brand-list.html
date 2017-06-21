@@ -5,17 +5,15 @@
   Ionic pages and navigation.
 -->
 <ion-header>
-    <ion-toolbar>
-        <ion-navbar>
-            <ion-searchbar [(ngModel)]="myHomeSearch" (ionInput)="onInput($event)" placeholder="搜索商品" animated="false" spellcheck="true" type="search" debounce="1000" mode="ios"></ion-searchbar>
-            <ion-buttons end>
-                <button ion-button clear icon-only icon-left (click)="listStyleflag=!listStyleflag">
+    <ion-navbar>
+        <ion-searchbar [(ngModel)]="myHomeSearch" (ionInput)="onInput($event)" placeholder="搜索商品" animated="false" spellcheck="true" type="search" debounce="1000" mode="ios"></ion-searchbar>
+        <ion-buttons end>
+            <button ion-button clear icon-only icon-left (click)="listStyleflag=!listStyleflag">
                     <img src="./assets/icon/images/list_01.png" width="22" *ngIf="!listStyleflag" alt="">
                     <img src="./assets/icon/images/list_02.png" width="22" *ngIf="listStyleflag" alt="">
                 </button>
-            </ion-buttons>
-        </ion-navbar>
-    </ion-toolbar>
+        </ion-buttons>
+    </ion-navbar>
     <ion-toolbar class="segment-style">
         <!--<my-toolbar></my-toolbar>-->
         <ion-segment mode="md" [(ngModel)]="mytool" (click)="mytoolChange()" color="primary">

@@ -42,6 +42,7 @@ page-signup-second {
     .tool {
         display: flex;
         justify-content: space-between;
+        white-space: nowrap;
         .agree {
             display: flex;
             align-items: center;

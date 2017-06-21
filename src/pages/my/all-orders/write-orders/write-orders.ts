@@ -134,6 +134,9 @@ export class WriteOrdersPage {
     });
     modal.present();
   }
+  popPage() {
+    this.events.publish('car:updata');
+  }
   onsubmit() {
     let commentArr = [];
     let suppliers = [];
@@ -150,9 +153,9 @@ export class WriteOrdersPage {
           }
         }).then((res) => {
           if (res.status == 1) {
-            this.native.showToast(res.info)
-            this.navCtrl.pop();
+            this.native.showToast(res.info);
             this.navCtrl.push(AllOrdersPage);
+            this.events.publish('car:updata');
           }
         })
       })
@@ -164,16 +167,16 @@ export class WriteOrdersPage {
         }
       }).then((res) => {
         if (res.status == 1) {
-          this.events.publish('car:updata');
           if (this.paymentMothd == 6) {
             this.httpService.pay({ order_id: res.order_id }).then((res) => {
               if (res.status == 1) {
-                this.navCtrl.pop();
                 this.navCtrl.push(PaymentMethodPage, { data: res });
+                this.events.publish('car:updata');
               }
             })
           } else if (this.paymentMothd == 4) {
             this.navCtrl.push(OrdersDetailPage, { order_id: res.order_id })
+            this.events.publish('car:updata');
           }
         } else if (res.status == -1) {
           this.navCtrl.pop();
