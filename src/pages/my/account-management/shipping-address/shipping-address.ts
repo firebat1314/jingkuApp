@@ -53,7 +53,7 @@ export class ShippingAddressPage {
       console.log(res);
       this.getHttpData();
       if (res.status == 1) {
-        this.native.showToast('设置成功~')
+        this.native.showToast('更换成功')
       }
     })
   }

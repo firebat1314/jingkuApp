@@ -45,12 +45,12 @@ export class OrdersDetailPage {
       console.log(res);
       if (res.status == 1) {
         this.data = res;
-        this.showBtn();
+        // this.showBtn();
         this.content.resize();
       }
     })
   }
-  showBtn() {
+  /*showBtn() {
     if (this.data.order.pay_status == 0 && this.data.order.order_status != 4 && this.data.order.order_status != 2 && this.data.order.order_status != 3 && this.data.order.order_status != 7 && this.data.order.order_status != 8) {
       this.payBtn = true;
     }else if (this.data.order.order_status == 0) {
@@ -59,7 +59,7 @@ export class OrdersDetailPage {
       this.confirmBtn = true;
       this.shippingBtn = true;
     }
-  }
+  }*/
   goParticularsPage(id) {
     this.navCtrl.push(ParticularsPage, { goodsId: id });
   }
@@ -92,5 +92,13 @@ export class OrdersDetailPage {
       })
     })
   }
-  
+  deleteOrder(order_id){
+    this.native.openAlertBox('删除订单', () => {
+      this.httpService.delOrder({ order_id: order_id }).then((res) => {
+        if (res.status == 1) {
+          this.native.showToast(res.data);
+        }
+      })
+    })
+  }
 }
