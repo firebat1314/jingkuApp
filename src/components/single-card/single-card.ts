@@ -30,6 +30,9 @@ export class SingleCardComponent {
   animateItems = [];
   ParticularsPage: any = ParticularsPage;
 
+  ngOnDestroy() {
+    this.clearBtn()
+  }
   ngOnChanges() {
     this.animateItems = [];
     if (this.data) {
@@ -59,8 +62,5 @@ export class SingleCardComponent {
         item.is_collect = 1;
       }
     })
-  }
-  ngOnDestroy() {
-    this.clearBtn()
   }
 }

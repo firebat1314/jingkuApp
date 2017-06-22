@@ -16,7 +16,7 @@ import { HttpService } from "../../../providers/http-service";
 export class SearchPage {
   page: any = 1;
   data: any;
-  myHomeSearch: String = '';
+  myHomeSearch: String = null;
   @ViewChild(Searchbar) mySearchBar: Searchbar;
 
   constructor(
@@ -36,6 +36,7 @@ export class SearchPage {
     this.getHotSearch();
   }
   searchbar(e) {
+    console.log(this.myHomeSearch)
     if (e) {
       if (e.keyCode == 13) {
         this.navCtrl.push(BrandListPage, { keyword: this.myHomeSearch })

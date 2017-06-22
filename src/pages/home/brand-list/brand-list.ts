@@ -17,19 +17,19 @@ import { Native } from "../../../providers/native";
 export class BrandListPage {
 	data: any;
 	goodsCount: any;//购物车商品数量
-	myHomeSearch = '';
+	myHomeSearch = null;
 	listStyleflag: Boolean;//列表样式切换
 	mytool = 'all';//当前筛选
 
 	paramsData = {
 		size: 30,
 		page: 1,
-		brand_id: '',
-		cat_id: '',
-		order: '',
+		brand_id: null,
+		cat_id: null,
+		order: null,
 		stort: 'DESC',
-		keywords: '',
-		supplier_id: ''
+		keywords: this.myHomeSearch,
+		supplier_id: null
 	}
 
 
@@ -40,18 +40,19 @@ export class BrandListPage {
 		public httpService: HttpService,
 		public events: Events,
 		public native: Native
-	) {
-		this.paramsData.cat_id = this.navParams.get('listId');
-		this.paramsData.brand_id = this.navParams.get('brandId');
-		this.paramsData.keywords = this.navParams.get('keyword');
-		this.paramsData.supplier_id = this.navParams.get('supplierId');
-		console.log('列表ID:', this.paramsData.cat_id);
-		console.log('品牌ID:', this.paramsData.brand_id);
-		console.log('keywords:', this.paramsData.keywords);
-		console.log('supplier_id:', this.paramsData.supplier_id);
-	}
+	) {}
 	ionViewDidLoad() {
 		console.log('ionViewDidLoad BrandListPage');
+		this.paramsData.cat_id = this.navParams.get('listId');
+		this.paramsData.brand_id = this.navParams.get('brandId');
+		this.paramsData.supplier_id = this.navParams.get('supplierId');
+		this.paramsData.keywords = this.navParams.get('keyword');
+		this.myHomeSearch = this.paramsData.keywords;
+		console.log('列表ID:', this.paramsData.cat_id);
+		console.log('品牌ID:', this.paramsData.brand_id);
+		console.log('supplier_id:', this.paramsData.supplier_id);
+		console.log('keywords:', this.paramsData.keywords);
+
 		this.getListData();
 		this.getCarNumver();
 		this.events.subscribe('user:filterParams', (res) => {
@@ -127,12 +128,12 @@ export class BrandListPage {
 		this.paramsData = {
 			size: 30,
 			page: 1,
-			brand_id: '',
-			cat_id: '',
-			order: '',
+			brand_id: null,
+			cat_id: null,
+			order: null,
 			stort: 'DESC',
 			keywords: this.myHomeSearch,
-			supplier_id: ''
+			supplier_id: null
 		}
 		this.httpService.categoryGoods(this.paramsData).then((res) => {
 			this.data = res;
