@@ -33,6 +33,7 @@ export class PaymentMethodPage {
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad PaymentMethodPage');
+    // this.navCtrl.remove(this.navCtrl.indexOf(this.navCtrl.getPrevious(this.navCtrl.last())),1);
   }
   dismiss(data?: any) {
     this.viewCtrl.dismiss(data);

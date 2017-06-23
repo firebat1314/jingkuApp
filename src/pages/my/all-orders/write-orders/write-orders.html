@@ -66,7 +66,7 @@
                 </div>
             </div>
         </div>
-        <div class="option" margin-right>
+        <div class="option">
             <ion-item mode="ios" detail-push *ngIf="item?.shipping?.length!=0" (click)="openOrderModalDistributionPage(item)">
                 配送方式
                 <ion-note item-right style="margin:0;" *ngFor="let mtd of item.shipping">

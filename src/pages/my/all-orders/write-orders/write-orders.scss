@@ -10,8 +10,9 @@ page-write-orders {
         background-size: 14px 14px;
         .wrap {
             background: url(../assets/images/images/allorders_1_03.png) 10px bottom repeat-x;
-            padding: 20px 25px 20px 20px;
+            padding: 16px 33px 16px 16px;
             color: #808080;
+            background-size: 60px;
             >div:first-child {
                 display: flex;
                 justify-content: space-between;
@@ -52,7 +53,7 @@ page-write-orders {
             }
         }
         .attr-wrap {
-            border-bottom: 1px solid #dedede;
+            // border-bottom: 1px solid #dedede;
             margin: 10px 16px;
             margin-bottom: 0;
             .one {
@@ -86,6 +87,7 @@ page-write-orders {
             }
         }
         .option {
+            border-top: 1px solid #dedede;
             .input {
                 text-align: center;
                 padding: 10px 0;

@@ -14,7 +14,7 @@ page-login {
         text-align: center;
         width: 100%;
         margin-bottom: 3rem;
-        padding: 0 40px;
+        padding: 0 25px;
         img {
             max-width: 100%;
         }
@@ -26,8 +26,8 @@ page-login {
             padding: 0;
         }
         .item-inner {
-            padding-left: 45px;
-            background: url(../assets/icon/images/icon_03.png) 3px center no-repeat;
+            padding-left: 33px;
+            background: url(../assets/icon/images/icon_03.png) 0px center no-repeat;
             background-size: 25px;
         }
         &:nth-child(2) .item-inner {

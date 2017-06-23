@@ -35,7 +35,6 @@ export class AllOrdersPage {
     //进入页面默认选中标签
     if (this.navParams.get('index')) {
       this.pageIndex = this.navParams.get('index');
-      console.log(this.pageIndex)
       this.mytabs.selectedIndex = this.pageIndex;
       this.getByPageIndex();
     } else {

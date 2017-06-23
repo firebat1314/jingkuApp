@@ -19,10 +19,10 @@ export class DredgeMoreCityPage {
   reginArr: any;
   formData = {
     region_ids: [],
-    reason: '',
-    phone: '',
-    frdb_code_zm: '',
-    frdb_code_fm: ''
+    reason: null,
+    phone: null,
+    frdb_code_zm: null,
+    frdb_code_fm: null
   }
   constructor(
     public navCtrl: NavController,
