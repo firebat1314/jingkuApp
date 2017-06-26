@@ -1,6 +1,6 @@
 import { Component, ViewChild } from '@angular/core';
 
-import { NavController, Events, Slides, Content } from 'ionic-angular';
+import { NavController, Events, Slides, Content, FabButton } from 'ionic-angular';
 import { FormBuilder } from '@angular/forms';
 
 
@@ -46,6 +46,7 @@ export class HomePage {
 
   @ViewChild('bannerSlide') slides: Slides;
   @ViewChild(Content) content: Content;
+  @ViewChild(FabButton) fabButton: FabButton;
   showBackTopBtn: Boolean = true;
   adClick: ClickBanner = new ClickBanner(this.navCtrl, this.events);
 
@@ -79,7 +80,9 @@ export class HomePage {
     private storage: Storage,
   ) { }
   ngAfterViewInit() {
-
+    this.content.ionScroll.subscribe((d) => {
+      this.fabButton.setElementClass("fab-button-out", d.directionY == "up");
+    });
   }
   ionViewDidLoad() {
     console.log('ionViewDidLoad HomePage');
@@ -155,11 +158,11 @@ export class HomePage {
     })*/
   }
   onscroll() {
-    if (this.content.scrollTop > 400) {
-      this.showBackTopBtn = true;
-    } else if (this.content.scrollTop <= 400) {
-      this.showBackTopBtn = false;
-    }
+    // if (this.content.scrollTop > 400) {
+    //   this.showBackTopBtn = true;
+    // } else if (this.content.scrollTop <= 400) {
+    //   this.showBackTopBtn = false;
+    // }
   }
   /*下拉刷新*/
   doRefresh(refresher) {
@@ -185,7 +188,7 @@ export class HomePage {
     this.httpService.getFlowGoods().then((res) => {
       if (res.status == 1) {
         this.events.publish('car:goodsCount', res.total.real_goods_count);
-        this.storage.set('real_goods_count',res.total.real_goods_count)
+        this.storage.set('real_goods_count', res.total.real_goods_count)
       }
     })
   }
@@ -215,16 +218,16 @@ export class HomePage {
   goRechargePage() {
     this.navCtrl.push(RechargePage);
   }
-  goFastbuyPage(){
+  goFastbuyPage() {
     this.navCtrl.push(FastbuyPage);
   }
-  goDiscountCouponPage(){
+  goDiscountCouponPage() {
     this.navCtrl.push(DiscountCouponPage);
   }
-  goIntegralstorePage(){
+  goIntegralstorePage() {
     this.navCtrl.push(IntegralstorePage);
   }
-  goGlassesDesignPage(){
+  goGlassesDesignPage() {
     this.navCtrl.push(GlassesDesignPage);
   }
 }

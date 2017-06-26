@@ -39,6 +39,7 @@ export class CarPage {
     this.events.subscribe('car:updata', () => {
       this.getFlowGoods();
       this.content.resize();
+      this.isEdit = false;
     })
   }
   ngAfterViewInit(){

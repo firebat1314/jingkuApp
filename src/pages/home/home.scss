@@ -18,7 +18,8 @@ page-home {
         background: #fff;
         ion-slide {
             img {
-                width: 100%;
+                max-width: 100%;
+                margin: 0 auto;
                 display: block;
                 min-height: 100px;
             }

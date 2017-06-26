@@ -14,17 +14,26 @@
         <ion-list style="display: flex;margin: 0;" radio-group [(ngModel)]="payMethod" name="pay">
             <ion-item mode="md" no-lines>
                 <ion-label><img [src]="payListImg[0]"></ion-label>
+<<<<<<< Updated upstream
                 <ion-radio mode="md" item-left checked value="6"></ion-radio>
             </ion-item>
             <ion-item mode="md" no-lines>
                 <ion-label><img [src]="payListImg[1]"></ion-label>
                 <ion-radio mode="md" item-left value="4"></ion-radio>
+=======
+                <ion-radio mode="md" item-left checked [value]="payList?.data[3]?.pay_id"></ion-radio>
+            </ion-item>
+            <ion-item mode="md" no-lines>
+                <ion-label><img [src]="payListImg[1]"></ion-label>
+                <ion-radio mode="md" item-left [value]="payList?.data[2]?.pay_id"></ion-radio>
+>>>>>>> Stashed changes
             </ion-item>
         </ion-list>
         <div padding>
             <button color="dark" large ion-button [disabled]="!recharge.form.valid" (click)="onClick(money,payMethod)" block>确认</button>
         </div>
     </form>
+<<<<<<< Updated upstream
     <div>
         <ion-note *ngIf="payMethod==4">
             [收款人名称]：北京镜库科技有限公司<br/>[帐号]：6971 11054<br/>[开户行]：中国民生银行北京劲松支行
@@ -34,4 +43,8 @@
             在线支付，支持支付宝、微信支付、银联及各大银行在线支付
         </ion-note>
     </div>
+=======
+    <ion-note *ngIf="payMethod==4" [innerHTML]="payList?.data[2]?.pay_desc"></ion-note>
+    <ion-note *ngIf="payMethod==6" [innerHTML]="payList?.data[3]?.pay_desc"></ion-note>
+>>>>>>> Stashed changes
 </ion-content>

@@ -16,11 +16,11 @@
 <ion-content>
     <form action="" novalidate #dredgeCity="ngForm">
         <div class="head">
-            <p ion-text color="colorsix" padding-horizontal>已开通城市：<span *ngFor="let item of reginArr?.user_citys">{{item.region_name}}、 </span></p>
+            <p ion-text color="colorsix" padding-horizontal>已开通城市：<span *ngFor="let item of reginArr?.user_citys">{{item.region_name}} </span></p>
             <p ion-text color="colorsix" padding-horizontal>未开通城市：(点击即可，可多选)</p>
         </div>
         <div class="checkbox-wrapper">
-            <div *ngFor="let item of reginArr?.no_user_citys" [ngClass]="{'selected':item.selected}" (click)="selectCity(item)">{{item.region_name}}</div>
+            <div *ngFor="let item of reginArr?.no_user_citys" [ngClass]="{'selected':item.selected}" (click)="selectCity(item)" tappable>{{item.region_name}}</div>
         </div>
         <p ion-text color="colorsix" padding-horizontal>申请原因：</p>
         <ion-textarea class="textarea" required [(ngModel)]="formData.reason" name="reason"></ion-textarea>

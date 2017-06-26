@@ -15,6 +15,7 @@
 
 <ion-content *ngIf="type==1">
     <!--————————————————————————物流消息————————————————————————————-->
+    <nothing *ngIf="wuLiuTidings?.list?.length==0" [backgroundImg]="'../assets/images/message_center_1_03'"></nothing>
     <div class="period" *ngFor="let item of wuLiuTidings?.list">
         <div class="time"><span>{{item.add_time}}</span></div>
         <ion-card>
@@ -39,7 +40,11 @@
 
 </ion-content>
 <ion-content *ngIf="type==2">
+<<<<<<< Updated upstream
     <!--<nothing *ngIf="userTidings?.list?.length==0" [backgroundImg]="'./assets/images/message_center_1_03'"></nothing>-->
+=======
+    <nothing *ngIf="userTidings?.list?.length==0" [backgroundImg]="'../assets/images/message_center_1_03'"></nothing>
+>>>>>>> Stashed changes
     <!--————————————————————————用户消息————————————————————————————-->
     <div class="period" *ngFor="let item of userTidings?.list">
         <div class="time"><span>{{item.dateline}}</span></div>

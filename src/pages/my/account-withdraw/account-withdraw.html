@@ -17,8 +17,8 @@
     <form #withdrawForm="ngForm" novalidate>
         <ion-list>
             <ion-item>
-                <ion-label color="primary" fixed><span ion-text color="google">*</span>　输入金额</ion-label>
-                <ion-input required clearInput type="number" placeholder="请填写输入金额" [(ngModel)]="formData.amount" name="amount"></ion-input>
+                <ion-label color="primary" fixed><span ion-text color="google">*</span>　提现金额</ion-label>
+                <ion-input required clearInput type="number" placeholder="请填写提现金额" [(ngModel)]="formData.amount" name="amount"></ion-input>
             </ion-item>
             <ion-item>
                 <ion-label color="primary" fixed><span ion-text color="google">*</span>　提现银行</ion-label>
@@ -37,8 +37,8 @@
                 <ion-input required clearInput type="text" placeholder="请填写银行卡号" [(ngModel)]="formData.bank_number" name="bank_number"></ion-input>
             </ion-item>
             <ion-item>
-                <ion-label color="primary" fixed><span ion-text color="google">*</span>　备注</ion-label>
-                <ion-input required clearInput type="text" placeholder="请填写备注信息" [(ngModel)]="formData.note" name="note"></ion-input>
+                <ion-label color="primary" fixed>　 备注</ion-label>
+                <ion-input clearInput type="text" placeholder="请填写备注信息" [(ngModel)]="formData.note" name="note"></ion-input>
             </ion-item>
         </ion-list>
         <div padding>

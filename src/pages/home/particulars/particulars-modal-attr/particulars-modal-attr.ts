@@ -154,7 +154,7 @@ export class ParticularsModalAttrPage {
 			}).then((res) => {
 				console.log(res)
 				if (res && res.status == 1) {
-					this.native.showToast('添加成功~')
+					this.native.showToast('添加成功')
 					this.events.publish('car:updata');//更新购物车
 					this.viewCtrl.dismiss();
 					if (goCart) { goCart(); }
@@ -183,8 +183,8 @@ export class ParticularsModalAttrPage {
 			}).then((res) => {
 				console.log(res)
 				if (res && res.status == 1) {
-					this.native.showToast('添加成功~')
-					this.events.publish('car:updata');
+					this.native.showToast('添加成功')
+					this.events.publish('car:updata');//更新购物车
 					this.viewCtrl.dismiss();
 					if (goCart) { goCart() }
 				}

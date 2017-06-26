@@ -156,6 +156,7 @@ import { HomePage } from '../pages/home/home';
     IonicModule.forRoot(MyApp, {
       backButtonText: '',
       // mode:'md',
+      mode:'ios',
       tabsHideOnSubPages: true,
       tabsPlacement: 'bottom',
       activator: "highlight"
