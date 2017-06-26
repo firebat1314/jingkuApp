@@ -1,5 +1,5 @@
 import { Component, ViewChild } from '@angular/core';
-import { IonicPage } from 'ionic-angular';
+// import { IonicPage } from 'ionic-angular';
 
 import { NavController, Events, Slides, Content } from 'ionic-angular';
 import { FormBuilder } from '@angular/forms';
@@ -29,7 +29,7 @@ import { ClickBanner } from "../../providers/ClickBanner";
 import { Storage } from '@ionic/storage';
 
 
-@IonicPage()
+// @IonicPage()
 @Component({
   selector: 'page-home',
   templateUrl: 'home.html'

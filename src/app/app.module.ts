@@ -21,7 +21,7 @@ import { ForgotPage } from "../pages/forgot/forgot";
 import { ForgotTwoPage } from "../pages/forgot/forgot-two/forgot-two";
 import { ForgotThreePage } from "../pages/forgot/forgot-three/forgot-three";
 /*————————————————————————————————home页————————————————————————————————*/
-// import { HomePage } from '../pages/home/home';
+import { HomePage } from '../pages/home/home';
 import { CityPage } from '../pages/home/city/city';
 import { SearchPage } from '../pages/home/search/search';
 import { DetailsPage } from '../pages/home/details/details';
@@ -138,7 +138,7 @@ import { IonicImageViewerModule } from 'ionic-img-viewer';
     /*——————————————————购物车——————————————————*/
     CarPage,
     /*——————————————————home栏——————————————————*/
-    // HomePage,
+    HomePage,
     CityPage, SearchPage, DetailsPage, BrandListPage, AttentionPage, FastbuyPage, GlassesDesignPage, IntegralstorePage, RechargePage, WhitebarPage, DiscountCouponPage, MessagePage, ParticularsPage, ParticularsModalPage, DredgeMoreCityPage, PopoverContentPage, ParticularsModalAttrPage, MessageDetailsPage, PresellPage, JifenHistoryPage, DuihuanDetailsPage, DuihuanDetailsFinishPage,
     /*——————————————————分类栏——————————————————*/
     ClassifyPage, SubnavPage1Page, SubnavPage2Page, MoreBrandPage,
@@ -177,7 +177,7 @@ import { IonicImageViewerModule } from 'ionic-img-viewer';
     /*——————————————————购物车——————————————————*/
     CarPage,
     /*——————————————————home栏——————————————————*/
-    //  HomePage,
+     HomePage,
     CityPage, SearchPage, DetailsPage, BrandListPage, AttentionPage, FastbuyPage, GlassesDesignPage, IntegralstorePage, RechargePage, WhitebarPage, DiscountCouponPage, MessagePage, ParticularsPage, ParticularsModalPage, DredgeMoreCityPage, PopoverContentPage, ParticularsModalAttrPage, MessageDetailsPage, PresellPage, JifenHistoryPage, DuihuanDetailsPage, DuihuanDetailsFinishPage,
     /*——————————————————分类栏——————————————————*/
     ClassifyPage, SubnavPage1Page, SubnavPage2Page, MoreBrandPage,
