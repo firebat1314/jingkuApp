@@ -27,7 +27,7 @@
         </div>
         <div class="fore fore2">
             <ion-card *ngFor="let item of data?.list" (click)="goDuihuanDetailsPage(item.goods_id)">
-                <div class="img"><img src="{{item.goods_img}}" alt=""></div>
+                <div class="img"><img img-lazy-load="{{item.goods_img}}" alt=""></div>
                 <div class="info">
                     <h3>{{item.goods_name}}</h3>
                     <p><span class="red">{{item.exchange_integral}}</span> 积分</p>

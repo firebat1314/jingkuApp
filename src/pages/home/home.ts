@@ -1,6 +1,6 @@
 import { Component, ViewChild } from '@angular/core';
 
-import { NavController, Events, Slides, Content, FabButton } from 'ionic-angular';
+import { NavController, Events, Slides, Content, FabButton, PopoverController, IonicPage } from 'ionic-angular';
 import { FormBuilder } from '@angular/forms';
 
 
@@ -26,10 +26,8 @@ import { Native } from "../../providers/native";
 import { ClickBanner } from "../../providers/ClickBanner";
 
 import { Storage } from '@ionic/storage';
-
-/*@IonicPage({
-  name: 'home'
-})*/
+import { PopoverHomePage } from "./popover-home/popover-home";
+// @IonicPage()
 @Component({
   selector: 'page-home',
   templateUrl: 'home.html'
@@ -47,7 +45,6 @@ export class HomePage {
   @ViewChild('bannerSlide') slides: Slides;
   @ViewChild(Content) content: Content;
   @ViewChild(FabButton) fabButton: FabButton;
-  showBackTopBtn: Boolean = true;
   adClick: ClickBanner = new ClickBanner(this.navCtrl, this.events);
 
   DetailsPage = DetailsPage;
@@ -75,9 +72,10 @@ export class HomePage {
     private userData: UserData,
     private events: Events,
     private httpService: HttpService,
-    private formBuilder: FormBuilder,
+    // private formBuilder: FormBuilder,
     private native: Native,
     private storage: Storage,
+    public popoverCtrl: PopoverController
   ) { }
   ngAfterViewInit() {
     this.content.ionScroll.subscribe((d) => {
@@ -192,13 +190,16 @@ export class HomePage {
       }
     })
   }
+  presentPopover(myEvent) {
+    let popover = this.popoverCtrl.create(PopoverHomePage,{},{});
+    popover.present({
+      ev: myEvent
+    });
+  }
   goClassPage(value) {
     this.navCtrl.popToRoot();
     this.navCtrl.parent.select(1);
-    this.events.publish('classify:selectSegment', value);
-  }
-  scrollToTop() {
-    this.content.scrollToTop();
+    this.events.publish('classify:selectSegment', value)
   }
   goCityPage() {
     this.navCtrl.push(CityPage, { areaList: this.areaList })

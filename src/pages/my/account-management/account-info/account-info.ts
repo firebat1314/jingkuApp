@@ -55,7 +55,9 @@ export class AccountInfoPage {
           text: '拍照上传',
           role: 'destructive',
           handler: () => {
-            this.native.getPictureByCamera().then((data) => {
+            this.native.getPictureByCamera({
+              allowEdit:true
+            }).then((data) => {
               this.uploadAvatar(data);
             })
           }
@@ -63,7 +65,9 @@ export class AccountInfoPage {
         {
           text: '本地上传',
           handler: () => {
-            this.native.getPictureByPhotoLibrary().then((data) => {
+            this.native.getPictureByPhotoLibrary({
+              allowEdit:true
+            }).then((data) => {
               this.uploadAvatar(data);
             })
           }

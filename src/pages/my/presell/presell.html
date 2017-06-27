@@ -28,7 +28,7 @@
             <div class="nomore" *ngIf="data?.data?.length<=0">该分类下暂无预售</div>
             <div class="fore singleton" *ngFor="let item of data?.data">
                 <div class="left">
-                    <img src="http://img.jing-ku.com/{{item.goods_img}}" alt="">
+                    <img img-lazy-load="http://img.jing-ku.com/{{item.goods_img}}" alt="">
                     <div class="time">
                         <ion-icon name="ios-time-outline"></ion-icon>
                         <countdown endDate="{{item.pre_end_date}}"></countdown>

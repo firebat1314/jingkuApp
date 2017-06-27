@@ -7,6 +7,7 @@ import { IonicStorageModule } from '@ionic/storage';
 /*————————————————————————————————base页————————————————————————————————*/
 import { MyApp } from './app.component';
 import { TabsPage } from '../pages/tabs/tabs';
+import { HomePage } from '../pages/home/home';
 import { ClassifyPage } from '../pages/classify/classify';
 import { CarPage } from '../pages/car/car';
 import { MyPage } from '../pages/my/my';
@@ -114,6 +115,7 @@ import { ImgTabs2Component } from "../components/img-tabs2/img-tabs2";
 import { CompanynamePage } from "../pages/my/account-management/account-info/companyname/companyname";
 import { PhoneNumberFilter } from "../pipes/phone-number-filter";
 import { NothingComponent } from "../components/nothing/nothing";
+import { PopoverHomePage } from "../pages/home/popover-home/popover-home";
 /*————————————————————————————————corodva————————————————————————————————*/
 import { ImagePicker } from "@ionic-native/image-picker";
 import { CallNumber } from '@ionic-native/call-number';
@@ -122,10 +124,13 @@ import { Toast } from '@ionic-native/toast';
 import { AppVersion } from '@ionic-native/app-version';
 import { SplashScreen } from "@ionic-native/splash-screen";
 import { StatusBar } from "@ionic-native/status-bar";
+import { BarcodeScanner } from "@ionic-native/barcode-scanner";
 /*————————————————————————————————插件————————————————————————————————*/
 import { CityPickerModule } from "ionic2-city-picker/dist/city-picker.module";
 import { IonicImageViewerModule } from 'ionic-img-viewer';
-import { HomePage } from '../pages/home/home';
+
+import { ImgLazyLoadDirective } from '../directives/img-lazy-load/img-lazy-load';
+import { ImgLazyLoadComponent } from "../components/img-lazy-load/img-lazy-load";
 
 @NgModule({
   declarations: [
@@ -145,18 +150,19 @@ import { HomePage } from '../pages/home/home';
     MyPage, SettingPage, AccountManagementPage, AccountSecurityPage, AllOrdersPage, CouponPage, MemberCenterPage, PeceiptPage, AccountAssetPage, AccountProcessPage, AccountAreaApplicationPage, AccountCollectGoodsPage, AccountCollectStorePage, AccountHistoryPage, AccountServicePage, AccountHelperPage, AccountInfoPage, InvoiceQualificationPage, InvoiceAskFor2Page, InvoiceAskFor1Page, AboutUsPage, ShippingAddressPage, ChangePhoneNumberPage, ChangePasswordPage, RealnamePage, QqPage, AddShippingAddressPage, CompanynamePage, AccountJifenPage, AccountBalancePage, AccountWithdrawPage, AccountMoneyDetailPage, AccountWithdrawSucceedPage, PaymentMethodPage, OrdersDetailPage, WriteOrdersPage, OrderModalShippingPage, OrderModalDistributionPage, OrderModalCouponPage, OrderModalPaymentPage, AddressPage, HelperDetailsPage,
     /*——————————————————组件——————————————————*/
     SingleCardComponent, MyToolbarComponent, SingleFoodsItemComponent, MeunItemComponent, CountdownComponent, CountInputComponent, ImgTabs2Component, NothingComponent,
-    DirectiveTestPage,
+    DirectiveTestPage,PopoverHomePage,
     /*——————————————————指令——————————————————*/
     MyDirective, ImgTabs, ParallaxHeader,
     /*——————————————————过滤器——————————————————*/
-    PhoneNumberFilter
+    PhoneNumberFilter,
+    ImgLazyLoadComponent,
+    ImgLazyLoadDirective,
   ],
   imports: [
     IonicImageViewerModule,
     IonicModule.forRoot(MyApp, {
       backButtonText: '',
       // mode:'md',
-      mode:'ios',
       tabsHideOnSubPages: true,
       tabsPlacement: 'bottom',
       activator: "highlight"
@@ -184,8 +190,8 @@ import { HomePage } from '../pages/home/home';
     MyPage, SettingPage, AccountManagementPage, AccountSecurityPage, AllOrdersPage, CouponPage, MemberCenterPage, PeceiptPage, AccountAssetPage, AccountProcessPage, AccountAreaApplicationPage, AccountCollectGoodsPage, AccountCollectStorePage, AccountHistoryPage, AccountServicePage, AccountHelperPage, AccountInfoPage, InvoiceQualificationPage, InvoiceAskFor2Page, InvoiceAskFor1Page, AboutUsPage, ShippingAddressPage, ChangePhoneNumberPage, ChangePasswordPage, RealnamePage, QqPage, AddShippingAddressPage, CompanynamePage, AccountJifenPage, AccountWithdrawPage, AccountBalancePage, AccountMoneyDetailPage, AccountWithdrawSucceedPage, PaymentMethodPage, OrdersDetailPage, WriteOrdersPage, OrderModalShippingPage, OrderModalDistributionPage, OrderModalCouponPage, OrderModalPaymentPage, AddressPage, HelperDetailsPage,
     /*——————————————————组件——————————————————*/
     SingleCardComponent, MyToolbarComponent, SingleFoodsItemComponent, MeunItemComponent, CountdownComponent, CountInputComponent, ImgTabs2Component, NothingComponent,
-    DirectiveTestPage,
+    DirectiveTestPage,PopoverHomePage,
   ],
-  providers: [{ provide: ErrorHandler, useClass: IonicErrorHandler }, UserData, Native, HttpService, JpushService, Camera, ImagePicker, AppVersion, Toast, CallNumber, StatusBar, SplashScreen]
+  providers: [{ provide: ErrorHandler, useClass: IonicErrorHandler }, UserData, Native, HttpService, JpushService, Camera, ImagePicker, AppVersion, Toast, CallNumber, StatusBar, SplashScreen,BarcodeScanner]
 })
 export class AppModule { }

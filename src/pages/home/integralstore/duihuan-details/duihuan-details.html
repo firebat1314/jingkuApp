@@ -18,7 +18,7 @@
         <ion-slides parallax="true">
             <ion-slide *ngFor="let item of getGoodsGallery">
                 <ion-card>
-                    <img src="{{item.img_url}}" imageViewer />
+                    <img img-lazy-load="{{item.img_url}}" imageViewer />
                 </ion-card>
             </ion-slide>
         </ion-slides>

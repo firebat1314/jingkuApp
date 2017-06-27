@@ -72,7 +72,9 @@ export class UserData {
             this.native.hideLoading();
         }
         if (result && !result.status || result.status == -1) {
-            this.native.showToast(result.info);
+            if (result.info != "获取商品参数") {
+                this.native.showToast(result.info);
+            }
         }
         return result;
     }
@@ -94,7 +96,7 @@ export class UserData {
                 this.storage.set('hasLoggedIn', false)
                 if (this.showToastTime) {
                     this.myAlert(msg);
-                    setTimeout(function() {
+                    setTimeout(function () {
                         this.showToastTime = true;
                     }, 10000);
                 }

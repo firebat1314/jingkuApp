@@ -9,13 +9,13 @@
         <ion-searchbar placeholder="搜索镜库商品/店铺" mode="ios"></ion-searchbar>
         <div class="mark-searchbar" [navPush]="SearchPage"></div>
         <ion-buttons right>
-            <button ion-button clear icon-only icon-left [navPush]="MessagePage">
-               <ion-icon name="mess"></ion-icon>
+            <button ion-button clear icon-only icon-left (click)="presentPopover($event)">
+               <ion-icon name="md-add"></ion-icon>
             </button>
         </ion-buttons>
     </ion-navbar>
 </ion-header>
-<ion-content (ionScroll)="onscroll()">
+<ion-content (ionScroll)="onscroll()" #myContent>
     <ion-refresher (ionRefresh)="doRefresh($event)" pullMax="60">
         <ion-refresher-content refreshingSpinner="1" pullingIcon="0"></ion-refresher-content>
     </ion-refresher>
@@ -23,7 +23,8 @@
     <div class="banner-wrapper" *ngIf="bannerImgs?.length>=1">
         <ion-slides #bannerSlide autoplay="4000" [loop]="bannerImgs?.length>1?true:false" pager (ionSlideAutoplayStop)="bannerSlide.startAutoplay()">
             <ion-slide *ngFor="let item of bannerImgs" (click)="adClick.clickBanner(item)">
-                <img [src]="item.ad_img" />
+                <!--<img-lazy-load [src]="item.ad_img"></img-lazy-load>-->
+                <img [img-lazy-load]="item.ad_img" alt="">
             </ion-slide>
         </ion-slides>
     </div>
@@ -91,12 +92,12 @@
         </div>
         <div class="main">
             <div class="banner">
-                <img src="{{hotBrand_img?.ad_img}}" (click)="adClick.clickBanner(hotBrand_img)" alt="">
+                <img-lazy-load src="{{hotBrand_img?.ad_img}}" (click)="adClick.clickBanner(hotBrand_img)"></img-lazy-load>
             </div>
             <ion-grid>
                 <ion-row wrap>
                     <ion-col *ngFor="let item of categoryAddetatils" [navPush]="BrandListPage" [navParams]="{listId:item.ad_id}" width-33 col-4>
-                        <img src="{{item.ad_img}}" alt="">
+                        <img-lazy-load src="{{item.ad_img}}"></img-lazy-load>
                         <!--<span>隐形眼镜</span>-->
                     </ion-col>
                 </ion-row>
@@ -111,7 +112,7 @@
         </div>
         <div class="main">
             <div *ngFor="let item of getBrands">
-                <img src="{{item.brand_logo}}" alt="{{item.brand_name}}" (click)="goBrandListPage(item.brand_id)">
+                <img-lazy-load src="{{item.brand_logo}}" (click)="goBrandListPage(item.brand_id)"></img-lazy-load>
             </div>
             <!--<div>
                 <img src="./assets/icon/homepage_53.png" alt="" (click)="goClassPage('brand')">
@@ -124,13 +125,13 @@
             <span class="txt">精选专题</span>
         </div>
         <div class="show">
-            <img (click)="adClick.clickBanner(jingxuan_img1)" src="{{jingxuan_img1?.ad_img}}" alt="">
+            <img-lazy-load src="{{jingxuan_img1?.ad_img}}" (click)="adClick.clickBanner(jingxuan_img1)"></img-lazy-load>
         </div>
         <div class="pick">
             <ion-slides class="slide-title" slidesPerView="3">
                 <ion-slide *ngFor="let slide of getCategoryRecommendGoodsHot; let i = index;">
                     <div class="slide-title-unit" (click)="goParticularsPage(slide.id)">
-                        <div class="img"><img src="{{slide?.goods_img}}" alt=""></div>
+                        <img-lazy-load src="{{slide?.goods_img}}"></img-lazy-load>
                         <div class="info">
                             <!--<div class="name">{{slide?.name}}</div>-->
                             <div class="price">{{slide?.shop_price}}</div>
@@ -148,14 +149,14 @@
             </ion-slides>
         </div>
         <div class="show">
-            <img src="{{jingxuan_img2?.ad_img}}" (click)="adClick.clickBanner(jingxuan_img2)" alt="">
+            <img-lazy-load src="{{jingxuan_img2?.ad_img}}" (click)="adClick.clickBanner(jingxuan_img2)"></img-lazy-load>
         </div>
         <div class="pick">
             <ion-slides class="slide-title" slidesPerView="3">
                 <ion-slide *ngFor="let slide of getCategoryRecommendGoods; let i = index;">
                     <div (click)="goParticularsPage(slide.id)">
                         <div class="slide-title-unit">
-                            <div class="img"><img src="{{slide?.goods_img}}" alt=""></div>
+                            <img-lazy-load src="{{slide?.goods_img}}"></img-lazy-load>
                             <div class="info">
                                 <!--<div class="name">{{slide?.name}}</div>-->
                                 <div class="price">{{slide?.shop_price}}</div>
@@ -176,14 +177,16 @@
             </ion-slides>
         </div>
         <div class="show">
-            <img src="{{jingxuan_img3?.ad_img}}" (click)="adClick.clickBanner(jingxuan_img3)" alt="">
+            <img-lazy-load src="{{jingxuan_img3?.ad_img}}" (click)="adClick.clickBanner(jingxuan_img3)"></img-lazy-load>
         </div>
         <div class="pick">
             <ion-slides class="slide-title" slidesPerView="3">
                 <ion-slide *ngFor="let slide of getCategoryRecommendGoodsBest; let i = index;">
                     <div (click)="goParticularsPage(slide.id)">
                         <div class="slide-title-unit">
-                            <div class="img"><img src="{{slide?.goods_img}}" alt=""></div>
+                            <div class="img">
+                                <img-lazy-load src="{{slide?.goods_img}}"></img-lazy-load>
+                            </div>
                             <div class="info">
                                 <!--<div class="name">{{slide?.name}}</div>-->
                                 <div class="price">{{slide?.shop_price}}</div>
@@ -223,7 +226,8 @@
             <ion-slides loop="false" parallax="true" pager>
                 <ion-slide *ngFor="let item of jingxuan_img4">
                     <ion-card>
-                        <img (click)="adClick.clickBanner(item)" src="{{item?.ad_img}}" />
+                        <img-lazy-load src="{{item?.ad_img}}" (click)="adClick.clickBanner(item)"></img-lazy-load>
+                        <!--<img (click)="adClick.clickBanner(item)" src="{{item?.ad_img}}" />-->
                         <!--<div class="collect">
                             <div class="left">
                                 <ion-icon name="md-heart-outline"></ion-icon>
@@ -246,7 +250,7 @@
             <single-foods-card [data]="getCategoryRecommendGoodsHot"></single-foods-card>
         </div>
     </div>
-    <ion-fab right bottom *ngIf="showBackTopBtn" (click)="scrollToTop()">
+    <ion-fab right bottom (click)="myContent.scrollToTop()">
         <button ion-fab color="dark" mini goBackTop></button>
     </ion-fab>
 </ion-content>

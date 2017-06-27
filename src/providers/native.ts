@@ -5,6 +5,7 @@ import { ImagePicker } from '@ionic-native/image-picker';
 import { CallNumber } from '@ionic-native/call-number';
 import { Toast } from '@ionic-native/toast';
 import { AppVersion } from '@ionic-native/app-version';
+import { BarcodeScanner } from '@ionic-native/barcode-scanner';
 // import { Transfer, FileUploadOptions, TransferObject } from '@ionic-native/transfer';
 // import { File } from '@ionic-native/file';
 declare var LocationPlugin;
@@ -23,7 +24,8 @@ export class Native {
 		private imagePicker: ImagePicker,
 		private callNumber: CallNumber,
 		private toast: Toast,
-		private appVersion: AppVersion
+		private appVersion: AppVersion,
+		private barcodeScanner: BarcodeScanner
 	) { }
 
 	/**
@@ -138,7 +140,7 @@ export class Native {
 				destinationType: this.camera.DestinationType.DATA_URL,
 				//默认返回base64字符串,DATA_URL:base64   FILE_URI:图片路径
 				quality: 90,//图像质量，范围为0 - 100
-				allowEdit: true,//选择图片前是否允许编辑
+				allowEdit: false,//选择图片前是否允许编辑
 				encodingType: this.camera.EncodingType.JPEG,
 				targetWidth: 800,//缩放图像的宽度（像素）
 				targetHeight: 800,//缩放图像的高度（像素）
@@ -162,7 +164,7 @@ export class Native {
 		return new Promise((resolve) => {
 			this.getPicture(Object.assign({
 				sourceType: this.camera.PictureSourceType.CAMERA,
-				allowEdit:true
+				allowEdit: true
 			}, options)).then(imgData => {
 				resolve(imgData);
 			}).catch(err => {
@@ -351,6 +353,15 @@ export class Native {
 	/**
 	 * @name 微信支付
 	 */
-
-
+	openBarcodeScanner() {
+		return new Promise((resolve, reject) => {
+			this.barcodeScanner.scan().then((barcodeData) => {
+				// Success! Barcode data is here
+				resolve(barcodeData);
+			}, (err) => {
+				// An error occurred
+				reject()
+			});
+		})
+	}
 }

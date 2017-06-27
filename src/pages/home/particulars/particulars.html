@@ -21,7 +21,9 @@
         <ion-slides parallax="true" parallax="true">
             <ion-slide *ngFor="let item of getGoodsInfo?.gallery">
                 <ion-card>
-                    <img src="{{item.img_url}}" imageViewer />
+                    <img [img-lazy-load]="item.img_url" imageViewer alt="">
+                    <!--<img-lazy-load src="{{item.img_url}}"></img-lazy-load>-->
+                    <!--<img src="{{item.img_url}}" imageViewer alt="">-->
                 </ion-card>
             </ion-slide>
         </ion-slides>
@@ -106,7 +108,7 @@
         </div>
         <div class="fore will-address">
             <button mode="ios" ion-item no-lines (click)="presentModal('配送地址')">
-            送至：{{region_name}}<span class="nogoods"></span>
+            送至：{{region_name||'选择地址'}}<span class="nogoods"></span>
         </button>
             <!--<ion-item no-lines>
             <ion-note>
@@ -163,13 +165,13 @@
                     <span>热销</span>
                 </div>
             </div>
-            <!--<div class="btn">
+            <div class="btn">
                 <button (click)="goStore()" ion-button icon-right icon-left color="dark" outline>
                     <ion-icon name="shop"></ion-icon>
                     进入店铺
                     <ion-icon name="ios-arrow-forward"></ion-icon>
                 </button>
-            </div>-->
+            </div>
             <div mode="ios" ion-item detail-push *ngIf="getGoodsInfo?.supplier_info?.inv_type!=0">
                 <div class="note-wrap">
                     <!--<ion-note><ion-icon><img src="./assets/icon/images/particulars_2_20.jpg"></ion-icon>担保交易</ion-note>
