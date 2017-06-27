@@ -23,7 +23,6 @@ import { UserData } from "../../providers/user-data";
 import { HttpService } from "../../providers/http-service";
 
 import { Native } from "../../providers/native";
-import { ClickBanner } from "../../providers/ClickBanner";
 
 import { Storage } from '@ionic/storage';
 import { PopoverHomePage } from "./popover-home/popover-home";
