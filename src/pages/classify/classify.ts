@@ -43,7 +43,6 @@ export class ClassifyPage {
   @ViewChild('mySearchBar') mySearchBar: Searchbar;
   @ViewChild('myNav') myNav: Nav;
   @ViewChild(Content) content: Content;
-  adClick:ClickBanner = new ClickBanner(this.navCtrl,this.events);
 
   constructor(
     public navCtrl: NavController,

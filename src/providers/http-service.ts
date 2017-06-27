@@ -383,7 +383,7 @@ export class HttpService {
     return this.http.get(this.ip + '/User/del_order', data)
   }
   addAccount(data?: Object) {//充值
-    return this.http.post(this.ip + '/User/addAccount', data, true)
+    return this.http.post(this.ip + '/User/addAccount', data)
   }
   getAccountPayList(data?: Object){//充值新增转账付款方式
     return this.http.get(this.ip + '/User/getAccountPayList', data)

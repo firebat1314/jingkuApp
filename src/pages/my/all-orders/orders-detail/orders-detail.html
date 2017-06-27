@@ -33,7 +33,7 @@
         </ion-item-divider>
         <ion-item no-lines (click)="goParticularsPage(item.goods_id)" *ngFor="let item of data?.goods_list;">
             <ion-thumbnail item-left>
-                <img src="{{item.thumb}}">
+                <img img-lazy-load="{{item.thumb}}">
             </ion-thumbnail>
             <div class="my-content">
                 <div class="left">

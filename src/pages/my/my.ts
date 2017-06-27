@@ -53,13 +53,13 @@ export class MyPage {
     public events: Events,
     public native: Native
   ) {
+  }
+  ionViewDidLoad() {
+    console.log('ionViewDidLoad MyPages');
     this.httpResult()
     this.events.subscribe('avatar:update', () => {
       this.httpResult()
     })
-  }
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad MyPages');
   }
   httpResult(finish?) {
     this.httpService.usercount().then((res) => {

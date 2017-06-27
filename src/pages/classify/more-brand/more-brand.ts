@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams, Events } from 'ionic-angular';
+import {  NavParams } from 'ionic-angular';
 import { ClickBanner } from "../../../providers/ClickBanner";
 
 /*
@@ -13,11 +13,10 @@ import { ClickBanner } from "../../../providers/ClickBanner";
   templateUrl: 'more-brand.html'
 })
 export class MoreBrandPage {
+  
   data = this.navParams.get('data');
 
-  adClick: ClickBanner = new ClickBanner(this.navCtrl, this.events);
-
-  constructor(public navCtrl: NavController, public navParams: NavParams, public events: Events) { }
+  constructor( public navParams: NavParams) { }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad MoreBrandPage');

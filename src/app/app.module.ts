@@ -131,6 +131,7 @@ import { IonicImageViewerModule } from 'ionic-img-viewer';
 
 import { ImgLazyLoadDirective } from '../directives/img-lazy-load/img-lazy-load';
 import { ImgLazyLoadComponent } from "../components/img-lazy-load/img-lazy-load";
+import { AdsClickDirective } from '../directives/ads-click/ads-click';
 
 @NgModule({
   declarations: [
@@ -157,6 +158,7 @@ import { ImgLazyLoadComponent } from "../components/img-lazy-load/img-lazy-load"
     PhoneNumberFilter,
     ImgLazyLoadComponent,
     ImgLazyLoadDirective,
+    AdsClickDirective,
   ],
   imports: [
     IonicImageViewerModule,

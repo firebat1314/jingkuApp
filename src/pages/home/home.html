@@ -22,7 +22,7 @@
     <!--——————————————————————————————————————————轮播图——————————————————————————————————————————-->
     <div class="banner-wrapper" *ngIf="bannerImgs?.length>=1">
         <ion-slides #bannerSlide autoplay="4000" [loop]="bannerImgs?.length>1?true:false" pager (ionSlideAutoplayStop)="bannerSlide.startAutoplay()">
-            <ion-slide *ngFor="let item of bannerImgs" (click)="adClick.clickBanner(item)">
+            <ion-slide *ngFor="let item of bannerImgs" [ads-click]="item.link_type">
                 <!--<img-lazy-load [src]="item.ad_img"></img-lazy-load>-->
                 <img [img-lazy-load]="item.ad_img" alt="">
             </ion-slide>
@@ -92,7 +92,7 @@
         </div>
         <div class="main">
             <div class="banner">
-                <img-lazy-load src="{{hotBrand_img?.ad_img}}" (click)="adClick.clickBanner(hotBrand_img)"></img-lazy-load>
+                <img-lazy-load src="{{hotBrand_img?.ad_img}}" [ads-click]="hotBrand_img.link_type"></img-lazy-load>
             </div>
             <ion-grid>
                 <ion-row wrap>
@@ -125,7 +125,7 @@
             <span class="txt">精选专题</span>
         </div>
         <div class="show">
-            <img-lazy-load src="{{jingxuan_img1?.ad_img}}" (click)="adClick.clickBanner(jingxuan_img1)"></img-lazy-load>
+            <img-lazy-load src="{{jingxuan_img1?.ad_img}}" [ads-click]="jingxuan_img1.link_type"></img-lazy-load>
         </div>
         <div class="pick">
             <ion-slides class="slide-title" slidesPerView="3">
@@ -149,7 +149,7 @@
             </ion-slides>
         </div>
         <div class="show">
-            <img-lazy-load src="{{jingxuan_img2?.ad_img}}" (click)="adClick.clickBanner(jingxuan_img2)"></img-lazy-load>
+            <img-lazy-load src="{{jingxuan_img2?.ad_img}}" [ads-click]="jingxuan_img2.link_type"></img-lazy-load>
         </div>
         <div class="pick">
             <ion-slides class="slide-title" slidesPerView="3">
@@ -177,7 +177,7 @@
             </ion-slides>
         </div>
         <div class="show">
-            <img-lazy-load src="{{jingxuan_img3?.ad_img}}" (click)="adClick.clickBanner(jingxuan_img3)"></img-lazy-load>
+            <img-lazy-load src="{{jingxuan_img3?.ad_img}}" [ads-click]="jingxuan_img3.link_type"></img-lazy-load>
         </div>
         <div class="pick">
             <ion-slides class="slide-title" slidesPerView="3">
@@ -226,8 +226,8 @@
             <ion-slides loop="false" parallax="true" pager>
                 <ion-slide *ngFor="let item of jingxuan_img4">
                     <ion-card>
-                        <img-lazy-load src="{{item?.ad_img}}" (click)="adClick.clickBanner(item)"></img-lazy-load>
-                        <!--<img (click)="adClick.clickBanner(item)" src="{{item?.ad_img}}" />-->
+                        <img-lazy-load src="{{item?.ad_img}}" [ads-click]="item.link_type"></img-lazy-load>
+                        <!--<img [ads-click]="item.link_type" src="{{item?.ad_img}}" />-->
                         <!--<div class="collect">
                             <div class="left">
                                 <ion-icon name="md-heart-outline"></ion-icon>

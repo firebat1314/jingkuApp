@@ -14,7 +14,7 @@ export class ImgLazyLoadDirective {
   private _defaultSrc = './assets/images/images/logo.jpg';
 
   constructor(public element: ElementRef, public renderer: Renderer) {
-    console.log('Hello ImgLazyLoadDirective Directive');
+    // console.log('Hello ImgLazyLoadDirective Directive');
     this.setSrc(this._defaultSrc);
   }
 
@@ -28,9 +28,9 @@ export class ImgLazyLoadDirective {
     img.src = this.src;
     img.onload = () => {
       this._defaultSrc = this.src;
-      setTimeout(() => {
+      // setTimeout(() => {
         this.setSrc(this._defaultSrc);
-      }, 1000)
+      // }, 1000)
     }
   }
 

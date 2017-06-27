@@ -45,7 +45,6 @@ export class HomePage {
   @ViewChild('bannerSlide') slides: Slides;
   @ViewChild(Content) content: Content;
   @ViewChild(FabButton) fabButton: FabButton;
-  adClick: ClickBanner = new ClickBanner(this.navCtrl, this.events);
 
   DetailsPage = DetailsPage;
   SearchPage = SearchPage;

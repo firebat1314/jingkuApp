@@ -57,7 +57,7 @@
     <div *ngSwitchCase="'brand'" class="brand-wrap">
         <div class="top-scrollbar">
             <div *ngFor="let item of getCategorys" (click)="toBrandList(item.cat_id)">
-                <div><img src="{{item.thumb}}" alt="{{item.cat_name}}"></div>
+                <div><img img-lazy-load="{{item.thumb}}" alt="{{item.cat_name}}"></div>
                 <span>{{item.cat_name}}</span>
             </div>
         </div>
@@ -68,8 +68,8 @@
                     <span class="txt">精选品牌</span>
                 </div>
                 <div class="body">
-                    <div (click)="adClick.clickBanner(item)" *ngFor="let item of fore2">
-                        <img src="{{item.ad_img}}" alt="">
+                    <div [ads-click]="item.link_type" *ngFor="let item of fore2">
+                        <img img-lazy-load="{{item.ad_img}}" alt="">
                         <h3>{{item.ad_name}}</h3>
                         <span>{{item.link_man}}</span>
                     </div>
@@ -82,7 +82,7 @@
                 </div>
                 <div class="body">
                     <div *ngFor="let item of fore3">
-                        <img (click)="adClick.clickBanner(item)" src="{{item.ad_img}}" alt="">
+                        <img [ads-click]="item.link_type" img-lazy-load="{{item.ad_img}}" alt="">
                     </div>
                 </div>
             </div>
@@ -92,7 +92,7 @@
                     <!--<span class="more" (click)="goToMoreBrand()">更多&gt;</span>-->
                 </div>
                 <div class="body">
-                    <div (click)="adClick.clickBanner(item)" *ngFor="let item of fore4"><img src="{{item.ad_img}}" alt=""></div>
+                    <div [ads-click]="item.link_type" *ngFor="let item of fore4"><img img-lazy-load="{{item.ad_img}}" alt=""></div>
                 </div>
             </div>
             <div class="fore-yinxing fore " padding *ngFor="let item of brandList?.data">
@@ -104,8 +104,8 @@
                     <!--<div class="top"><img src="./assets/icon/images/brand_1_13.jpg" alt=""></div>-->
                     <!--<div class="top"><img src="./assets/icon/images/brand_1_20.jpg" alt=""></div>-->
                     <div class="main">
-                        <div *ngFor="let img of item.ads;let i = index;" (click)="adClick.clickBanner(img)">
-                            <img *ngIf="i<3" src="{{img.ad_img}}" alt="">
+                        <div *ngFor="let img of item.ads;let i = index;" [ads-click]="img.link_type">
+                            <img *ngIf="i<3" img-lazy-load="{{img.ad_img}}" alt="">
                         </div>
                     </div>
                 </div>
@@ -123,7 +123,7 @@
                     <ion-item-sliding>
                         <ion-item>
                             <ion-avatar item-left>
-                                <img src="{{item.logo||'./assets/icon/images/brand_1_10.jpg'}}">
+                                <img img-lazy-load="{{item.logo}}">
                             </ion-avatar>
                             <h2>{{item.suppliers_name}}</h2>
                             <!--<span class="type">促销???</span>-->
@@ -147,7 +147,7 @@
                     <ion-item-sliding>
                         <ion-item>
                             <ion-thumbnail item-left>
-                                <ion-img src="{{item.img||'./assets/icon/images/brand_1_10.jpg'}}"></ion-img>
+                                <img img-lazy-load="{{item.img}}">
                             </ion-thumbnail>
                             <h2>{{item.goods_name}}</h2>
                             <p class="right-bottom">

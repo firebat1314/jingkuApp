@@ -8,7 +8,7 @@
 <ion-content>
     <div class="classify-wrap">
         <div (click)="gotwo(item.cat_id)" *ngFor="let item of getCategorys">
-            <img src="{{item.thumb}}" alt="">
+            <img img-lazy-load="{{item.thumb}}" alt="">
             <span>{{item.cat_name}}</span>
         </div>
     </div>

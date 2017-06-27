@@ -9,29 +9,52 @@
 
 <ion-content padding>
     <form novalidata #recharge="ngForm">
-        <div class="text">请输入金额</div>
-        <input required clearInput type="number" [(ngModel)]="money" name="money">
-        <ion-list style="display: flex;margin: 0;" radio-group [(ngModel)]="payMethod" name="pay">
+        <div class="header-bg"></div>
+        <div class="input-number">
+            <ion-item no-lines>
+                <ion-label color="primary" fixed>请输入金额</ion-label>
+                <ion-input required [(ngModel)]="money" name="money" type="number" placeholder="请输入金额"></ion-input>
+                <span item-right>元</span>
+            </ion-item>
+            <ion-note>
+                在线支付、支持支付宝、微信支付、银联及各大银行在线支付
+            </ion-note>
+        </div>
+        <div class="text-select">选择支付方式</div>
+        <ion-list radio-group required [(ngModel)]="payMethod" name="pay" class="pay-list">
             <ion-item mode="md" no-lines>
-                <ion-label><img [src]="payListImg[0]"></ion-label>
-                <ion-radio mode="md" item-left checked value="6"></ion-radio>
+                <ion-thumbnail item-start>
+                    <img src="./assets/icon/images/2.png" alt="">
+                </ion-thumbnail>
+                <ion-label>微信支付</ion-label>
+                <ion-radio value="微信支付" mode="md" checked></ion-radio>
             </ion-item>
             <ion-item mode="md" no-lines>
-                <ion-label><img [src]="payListImg[1]"></ion-label>
-                <ion-radio mode="md" item-left value="4"></ion-radio>
+                <ion-thumbnail item-start>
+                    <img src="./assets/icon/images/1.png" alt="">
+                </ion-thumbnail>
+                <ion-label>支付宝</ion-label>
+                <ion-radio value="支付宝" mode="md"></ion-radio>
+            </ion-item>
+            <ion-item mode="md" no-lines>
+                <ion-thumbnail item-start>
+                    <img src="./assets/icon/images/3.png" alt="">
+                </ion-thumbnail>
+                <ion-label>银联支付</ion-label>
+                <ion-radio value="银联支付" mode="md"></ion-radio>
+            </ion-item>
+            <ion-item mode="md" no-lines>
+                <ion-thumbnail item-start>
+                    <img src="./assets/icon/images/4.png" alt="">
+                </ion-thumbnail>
+                <ion-label>银行汇款/转账</ion-label>
+                <ion-radio value="银行汇款/转账" mode="md"></ion-radio>
             </ion-item>
         </ion-list>
         <div padding>
-            <button color="dark" large ion-button [disabled]="!recharge.form.valid" (click)="onClick(money,payMethod)" block>确认</button>
+            <button color="dark" large ion-button [disabled]="!recharge.form.valid" (click)="onSubmit(money,payMethod)" block>确认</button>
+
         </div>
     </form>
-    <div>
-        <ion-note *ngIf="payMethod==4">
-            [收款人名称]：北京镜库科技有限公司<br/>[帐号]：6971 11054<br/>[开户行]：中国民生银行北京劲松支行
-            <br/>[注意事项]：办理电汇时，请在电汇单“汇款用途”一栏处注明您的订单号。
-        </ion-note>
-        <ion-note *ngIf="payMethod==6">
-            在线支付，支持支付宝、微信支付、银联及各大银行在线支付
-        </ion-note>
-    </div>
+
 </ion-content>

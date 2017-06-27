@@ -15,24 +15,24 @@
 
 <ion-content>
     <div class="fore1 fore" *ngIf="banner">
-        <ion-slides #bannerSlide autoplay="4000" loop="true" pager>
-            <ion-slide *ngFor="let item of banner?.data" (click)="adClick.clickBanner(item)">
-                <img src="{{item.ad_img}}" />
+        <ion-slides #bannerSlide autoplay="4000" loop="false" pager>
+            <ion-slide *ngFor="let item of banner?.data">
+                <img img-lazy-load="{{item.ad_img}}" (click)="adClick.clickBanner(item)" />
             </ion-slide>
         </ion-slides>
     </div>
     <div class="fore2 fore">
         <div class="head"><img src="./assets/images/images/sheji_3_06.jpg" alt=""></div>
         <div class="body">
-            <img src="{{item.ad_img}}" (click)="adClick.clickBanner(item)" alt="" *ngFor="let item of class?.data">
+            <img img-lazy-load="{{item.ad_img}}" (click)="adClick.clickBanner(item)" alt="" *ngFor="let item of class?.data">
         </div>
     </div>
     <div class="fore3 fore">
-        <img src="{{img?.data[0]?.ad_img}}" (click)="adClick.clickBanner(img.data[0])" alt="">
+        <img *ngFor="let item of img?.data" img-lazy-load="{{item.ad_img}}" (click)="adClick.clickBanner(img.data[0])" alt="">
     </div>
     <div class="fore4 fore" padding *ngFor="let item of list?.goods">
         <div class="left">
-            <img src="{{item.goods_img}}" alt="">
+            <img img-lazy-load="{{item.goods_img}}" alt="">
         </div>
         <div class="right">
             <div class="title">{{item.name}}</div>
