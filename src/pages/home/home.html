@@ -31,25 +31,25 @@
     <!--————————————————————————————————————————————————————————————————————————————————————-->
     <div class="btn-tool" home-padding>
         <div class="top">
-            <div (click)="goPresellPage()">
+            <div (click)="goPresellPage()" tappable>
                 <div class="img">
                     <img src="./assets/icon/home_icon_08.png" alt="">
                 </div>
                 <span>预售</span>
             </div>
-            <div (click)="goRechargePage()">
+            <div (click)="goRechargePage()" tappable>
                 <div class="img">
                     <img src="./assets/icon/home_icon_02.png" alt="">
                 </div>
                 <span>充值</span>
             </div>
-            <div (click)="goFastbuyPage()">
+            <div (click)="goFastbuyPage()" tappable>
                 <div class="img">
                     <img src="./assets/icon/home_icon_05.png" alt="">
                 </div>
                 <span>闪购</span>
             </div>
-            <div (click)="goClassPage('brand')">
+            <div (click)="goClassPage('brand')" tappable>
                 <div class="img">
                     <img src="./assets/icon/home_icon_04.png" alt="">
                 </div>
@@ -57,25 +57,25 @@
             </div>
         </div>
         <div class="bottom">
-            <div (click)="goWhitebarPage()">
+            <div (click)="goWhitebarPage()" tappable>
                 <div class="img">
                     <img src="./assets/icon/home_icon_01.png" alt="">
                 </div>
                 <span>白条</span>
             </div>
-            <div (click)="goDiscountCouponPage();">
+            <div (click)="goDiscountCouponPage();" tappable>
                 <div class="img">
                     <img src="./assets/icon/home_icon_07.png" alt="">
                 </div>
                 <span>优惠券</span>
             </div>
-            <div (click)="goIntegralstorePage();">
+            <div (click)="goIntegralstorePage();" tappable>
                 <div class="img">
                     <img src="./assets/icon/home_icon_03.png" alt="">
                 </div>
                 <span>积分商城</span>
             </div>
-            <div (click)="goGlassesDesignPage()">
+            <div (click)="goGlassesDesignPage()" tappable>
                 <div class="img">
                     <img src="./assets/icon/home_icon_06.png" alt="">
                 </div>
@@ -251,6 +251,8 @@
         </div>
     </div>
     <ion-fab right bottom (click)="myContent.scrollToTop()">
-        <button ion-fab color="dark" mini goBackTop></button>
+        <button ion-fab color="dark" mini goBackTop>
+            <!--<ion-icon name="md-arrow-up"></ion-icon>-->
+        </button>
     </ion-fab>
 </ion-content>

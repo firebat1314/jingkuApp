@@ -131,6 +131,7 @@ import { IonicImageViewerModule } from 'ionic-img-viewer';
 import { ImgLazyLoadDirective } from '../directives/img-lazy-load/img-lazy-load';
 import { ImgLazyLoadComponent } from "../components/img-lazy-load/img-lazy-load";
 import { AdsClickDirective } from '../directives/ads-click/ads-click';
+import { ViewfabDirective } from '../directives/viewfab/viewfab';
 // import { PopoverHomePage } from "../pages/home/popover-home/popover-home";
 
 @NgModule({
@@ -159,6 +160,7 @@ import { AdsClickDirective } from '../directives/ads-click/ads-click';
     ImgLazyLoadComponent,
     ImgLazyLoadDirective,
     AdsClickDirective,
+    ViewfabDirective,
   ],
   imports: [
     IonicImageViewerModule,

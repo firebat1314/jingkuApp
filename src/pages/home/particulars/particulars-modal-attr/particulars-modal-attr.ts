@@ -96,7 +96,7 @@ export class ParticularsModalAttrPage {
 		this.totalNumber = 0;
 		for (var i = 0; i < this.goods.length; i++) {
 			this.totalNumber += Number(this.goods[i].number);
-			this.totalPrices += this.returnFloat(this.goods[i].subtotal);
+			this.totalPrices += Number(this.goods[i].subtotal);
 		}
 	}
 	//制保留2位小数，

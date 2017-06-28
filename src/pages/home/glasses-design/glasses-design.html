@@ -41,13 +41,13 @@
         </div>
     </div>
 
-    <ion-fab right bottom (click)="scrollToTop()">
+    <ion-fab right bottom *ngIf="list" (click)="scrollToTop()">
         <button ion-fab color="dark" mini>
             {{list?.page}}/{{list?.pages}}
         </button>
     </ion-fab>
 
-    <ion-infinite-scroll (ionInfinite)="doInfinite($event)">
+    <ion-infinite-scroll *ngIf="list" (ionInfinite)="doInfinite($event)">
         <ion-infinite-scroll-content loadingSpinner="bubbles" loadingText="加载更多..."></ion-infinite-scroll-content>
     </ion-infinite-scroll>
 </ion-content>

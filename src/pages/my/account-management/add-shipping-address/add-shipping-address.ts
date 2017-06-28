@@ -10,7 +10,7 @@ import { Native } from "../../../../providers/native";
 export class AddShippingAddressPage {
   default: any;
   cityData: any[]; //城市数据
-  cityName: string = '北京-北京-东城区'; //初始化城市名
+  cityName: string; //初始化城市名
   code: string; //城市编码
 
   addressId = this.navParams.get('addId');
