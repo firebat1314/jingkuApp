@@ -1,7 +1,7 @@
 <ion-header>
     <ion-navbar>
         <ion-buttons left>
-            <button ion-button clear icon-only icon-left (click)="goCityPage()">
+            <button ion-button clear icon-only icon-left tappable (click)="goCityPage()">
                <ion-icon name="iconserverarea" style="font-size:1.2em;"></ion-icon>
                 {{area}}
             </button>
@@ -9,7 +9,7 @@
         <ion-searchbar placeholder="搜索镜库商品/店铺" mode="ios"></ion-searchbar>
         <div class="mark-searchbar" [navPush]="SearchPage"></div>
         <ion-buttons right>
-            <button ion-button clear icon-only icon-left (click)="presentPopover($event)">
+            <button ion-button clear icon-only icon-left tappable (click)="presentPopover($event)">
                <ion-icon name="md-add"></ion-icon>
             </button>
         </ion-buttons>
@@ -31,25 +31,25 @@
     <!--————————————————————————————————————————————————————————————————————————————————————-->
     <div class="btn-tool" home-padding>
         <div class="top">
-            <div (click)="goPresellPage()" tappable>
+            <div tappable (click)="goPresellPage()">
                 <div class="img">
                     <img src="./assets/icon/home_icon_08.png" alt="">
                 </div>
                 <span>预售</span>
             </div>
-            <div (click)="goRechargePage()" tappable>
+            <div tappable (click)="goRechargePage()">
                 <div class="img">
                     <img src="./assets/icon/home_icon_02.png" alt="">
                 </div>
                 <span>充值</span>
             </div>
-            <div (click)="goFastbuyPage()" tappable>
+            <div tappable (click)="goFastbuyPage()">
                 <div class="img">
                     <img src="./assets/icon/home_icon_05.png" alt="">
                 </div>
                 <span>闪购</span>
             </div>
-            <div (click)="goClassPage('brand')" tappable>
+            <div tappable (click)="goClassPage('brand')">
                 <div class="img">
                     <img src="./assets/icon/home_icon_04.png" alt="">
                 </div>
@@ -57,25 +57,25 @@
             </div>
         </div>
         <div class="bottom">
-            <div (click)="goWhitebarPage()" tappable>
+            <div tappable (click)="goWhitebarPage()">
                 <div class="img">
                     <img src="./assets/icon/home_icon_01.png" alt="">
                 </div>
                 <span>白条</span>
             </div>
-            <div (click)="goDiscountCouponPage();" tappable>
+            <div tappable (click)="goDiscountCouponPage();">
                 <div class="img">
                     <img src="./assets/icon/home_icon_07.png" alt="">
                 </div>
                 <span>优惠券</span>
             </div>
-            <div (click)="goIntegralstorePage();" tappable>
+            <div tappable (click)="goIntegralstorePage();">
                 <div class="img">
                     <img src="./assets/icon/home_icon_03.png" alt="">
                 </div>
                 <span>积分商城</span>
             </div>
-            <div (click)="goGlassesDesignPage()" tappable>
+            <div tappable (click)="goGlassesDesignPage()">
                 <div class="img">
                     <img src="./assets/icon/home_icon_06.png" alt="">
                 </div>
@@ -88,7 +88,7 @@
     <div class="hot-group home-content" *ngIf="categoryAddetatils" home-padding>
         <div class="title">
             <span class="txt">热门品类</span>
-            <span class="more" (click)="goClassPage('classify')">更多&gt;</span>
+            <span class="more" tappable (click)="goClassPage('classify')">更多&gt;</span>
         </div>
         <div class="main">
             <div class="banner">
@@ -108,14 +108,14 @@
     <div class="hot-brand home-content" *ngIf="getBrands" home-padding>
         <div class="title">
             <span class="txt">热门品牌</span>
-            <span class="more" (click)="goClassPage('brand')">更多&gt;</span>
+            <span class="more" tappable (click)="goClassPage('brand')">更多&gt;</span>
         </div>
         <div class="main">
             <div *ngFor="let item of getBrands">
-                <img-lazy-load src="{{item.brand_logo}}" (click)="goBrandListPage(item.brand_id)"></img-lazy-load>
+                <img-lazy-load src="{{item.brand_logo}}" tappable (click)="goBrandListPage(item.brand_id)"></img-lazy-load>
             </div>
             <!--<div>
-                <img src="./assets/icon/homepage_53.png" alt="" (click)="goClassPage('brand')">
+                <img src="./assets/icon/homepage_53.png" alt=""  tappable (click)="goClassPage('brand')">
             </div>-->
         </div>
     </div>
@@ -130,7 +130,7 @@
         <div class="pick">
             <ion-slides class="slide-title" slidesPerView="3">
                 <ion-slide *ngFor="let slide of getCategoryRecommendGoodsHot; let i = index;">
-                    <div class="slide-title-unit" (click)="goParticularsPage(slide.id)">
+                    <div class="slide-title-unit" tappable (click)="goParticularsPage(slide.id)">
                         <img-lazy-load src="{{slide?.goods_img}}"></img-lazy-load>
                         <div class="info">
                             <!--<div class="name">{{slide?.name}}</div>-->
@@ -154,7 +154,7 @@
         <div class="pick">
             <ion-slides class="slide-title" slidesPerView="3">
                 <ion-slide *ngFor="let slide of getCategoryRecommendGoods; let i = index;">
-                    <div (click)="goParticularsPage(slide.id)">
+                    <div tappable (click)="goParticularsPage(slide.id)">
                         <div class="slide-title-unit">
                             <img-lazy-load src="{{slide?.goods_img}}"></img-lazy-load>
                             <div class="info">
@@ -182,7 +182,7 @@
         <div class="pick">
             <ion-slides class="slide-title" slidesPerView="3">
                 <ion-slide *ngFor="let slide of getCategoryRecommendGoodsBest; let i = index;">
-                    <div (click)="goParticularsPage(slide.id)">
+                    <div tappable (click)="goParticularsPage(slide.id)">
                         <div class="slide-title-unit">
                             <div class="img">
                                 <img-lazy-load src="{{slide?.goods_img}}"></img-lazy-load>
@@ -250,7 +250,7 @@
             <single-foods-card [data]="getCategoryRecommendGoodsHot"></single-foods-card>
         </div>
     </div>
-    <ion-fab right bottom (click)="myContent.scrollToTop()">
+    <ion-fab right bottom tappable (click)="myContent.scrollToTop()">
         <button ion-fab color="dark" mini goBackTop>
             <!--<ion-icon name="md-arrow-up"></ion-icon>-->
         </button>
