@@ -3,12 +3,12 @@ import { ImgLazyLoadComponent } from './img-lazy-load';
 
 @NgModule({
   declarations: [
-    ImgLazyLoadComponent,
+    // ImgLazyLoadComponent,
   ],
   imports: [
   ],
   exports: [
-    ImgLazyLoadComponent
+    // ImgLazyLoadComponent
   ]
 })
 export class ImgLazyLoadComponentModule { }

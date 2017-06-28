@@ -15,6 +15,7 @@ import { Native } from "../../../providers/native";
   templateUrl: 'recharge.html'
 })
 export class RechargePage {
+  msg: any;
   payCode: any;
   payList: any;
   payListImg: Array<any> = ['./assets/images/images/tchu1.jpg', './assets/images/images/tchu2.jpg']
@@ -35,6 +36,10 @@ export class RechargePage {
   getAccountPayList() {
     this.httpService.getAccountPayList().then((res) => {
       this.payList = res;
+      console.log(this.payList)
+      console.log(this.payList.data)
+      console.log(this.payList.data[0])
+      this.msg = this.payList.data[0].pay_desc;
     })
   }
   onSubmit(money, type) {
@@ -54,14 +59,14 @@ export class RechargePage {
                 if (res.status == 1) {
                   this.alertCtrl.create({
                     title: '汇款须知',
-                    subTitle: this.payList.data['2'].pay_desc,
+                    subTitle: this.msg,
                     buttons: [{
                       text: '个人中心',
                       handler: () => {
                         this.navCtrl.parent.select(3);
                         this.navCtrl.pop();
                       }
-                    },{
+                    }, {
                       text: '确认'
                     }],
                     cssClass: 'recharge-alert'
@@ -95,7 +100,6 @@ export class RechargePage {
       console.log('success', result, err)
       return;
     }, (result, err) => {
-      that.navCtrl.pop();
       if (result == 'cancel') {
         that.native.showToast("取消支付");
       } else {

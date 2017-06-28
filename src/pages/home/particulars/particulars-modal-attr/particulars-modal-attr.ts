@@ -91,13 +91,27 @@ export class ParticularsModalAttrPage {
 	totalNumber = 0;
 	jingpianNumberChange($event, it) {
 		it.number = $event;
-		it.subtotal = $event * Number(this.headData.shop_price_formated.substr(1));
+		it.subtotal = (Number($event) * (Number(this.headData.shop_price_formated.substr(1)) * 1000)) / 1000;
 		this.totalPrices = 0;
 		this.totalNumber = 0;
 		for (var i = 0; i < this.goods.length; i++) {
 			this.totalNumber += Number(this.goods[i].number);
-			this.totalPrices += Number(this.goods[i].subtotal);
+			this.totalPrices += this.returnFloat(this.goods[i].subtotal);
 		}
+	}
+	//制保留2位小数，
+	returnFloat(value) {
+		var val = Math.round(parseFloat(value) * 100) / 100;
+		var xsd = val.toString().split(".");
+		if (xsd.length == 1) {
+			value = Number(val.toString() + ".00").toFixed(2);
+		}
+		if (xsd.length > 1) {
+			if (xsd[1].length < 2) {
+				value = Number(val.toString() + "0").toFixed(2);
+			}
+		}
+		return value;
 	}
 	/*镜片商品参数*/
 	getGoodsParamsArrs() {
@@ -159,7 +173,7 @@ export class ParticularsModalAttrPage {
 					this.viewCtrl.dismiss();
 					if (goCart) { goCart(); }
 				}
-			}).catch((res)=>{
+			}).catch((res) => {
 				console.log(res)
 			})
 		}
@@ -188,7 +202,7 @@ export class ParticularsModalAttrPage {
 					this.viewCtrl.dismiss();
 					if (goCart) { goCart() }
 				}
-			}).catch((res)=>{
+			}).catch((res) => {
 				console.log(res)
 			})
 			console.log(this.spcArr)

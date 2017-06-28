@@ -115,7 +115,6 @@ import { ImgTabs2Component } from "../components/img-tabs2/img-tabs2";
 import { CompanynamePage } from "../pages/my/account-management/account-info/companyname/companyname";
 import { PhoneNumberFilter } from "../pipes/phone-number-filter";
 import { NothingComponent } from "../components/nothing/nothing";
-import { PopoverHomePage } from "../pages/home/popover-home/popover-home";
 /*————————————————————————————————corodva————————————————————————————————*/
 import { ImagePicker } from "@ionic-native/image-picker";
 import { CallNumber } from '@ionic-native/call-number';
@@ -132,6 +131,7 @@ import { IonicImageViewerModule } from 'ionic-img-viewer';
 import { ImgLazyLoadDirective } from '../directives/img-lazy-load/img-lazy-load';
 import { ImgLazyLoadComponent } from "../components/img-lazy-load/img-lazy-load";
 import { AdsClickDirective } from '../directives/ads-click/ads-click';
+// import { PopoverHomePage } from "../pages/home/popover-home/popover-home";
 
 @NgModule({
   declarations: [
@@ -151,7 +151,7 @@ import { AdsClickDirective } from '../directives/ads-click/ads-click';
     MyPage, SettingPage, AccountManagementPage, AccountSecurityPage, AllOrdersPage, CouponPage, MemberCenterPage, PeceiptPage, AccountAssetPage, AccountProcessPage, AccountAreaApplicationPage, AccountCollectGoodsPage, AccountCollectStorePage, AccountHistoryPage, AccountServicePage, AccountHelperPage, AccountInfoPage, InvoiceQualificationPage, InvoiceAskFor2Page, InvoiceAskFor1Page, AboutUsPage, ShippingAddressPage, ChangePhoneNumberPage, ChangePasswordPage, RealnamePage, QqPage, AddShippingAddressPage, CompanynamePage, AccountJifenPage, AccountBalancePage, AccountWithdrawPage, AccountMoneyDetailPage, AccountWithdrawSucceedPage, PaymentMethodPage, OrdersDetailPage, WriteOrdersPage, OrderModalShippingPage, OrderModalDistributionPage, OrderModalCouponPage, OrderModalPaymentPage, AddressPage, HelperDetailsPage,
     /*——————————————————组件——————————————————*/
     SingleCardComponent, MyToolbarComponent, SingleFoodsItemComponent, MeunItemComponent, CountdownComponent, CountInputComponent, ImgTabs2Component, NothingComponent,
-    DirectiveTestPage,PopoverHomePage,
+    DirectiveTestPage,
     /*——————————————————指令——————————————————*/
     MyDirective, ImgTabs, ParallaxHeader,
     /*——————————————————过滤器——————————————————*/
@@ -192,7 +192,7 @@ import { AdsClickDirective } from '../directives/ads-click/ads-click';
     MyPage, SettingPage, AccountManagementPage, AccountSecurityPage, AllOrdersPage, CouponPage, MemberCenterPage, PeceiptPage, AccountAssetPage, AccountProcessPage, AccountAreaApplicationPage, AccountCollectGoodsPage, AccountCollectStorePage, AccountHistoryPage, AccountServicePage, AccountHelperPage, AccountInfoPage, InvoiceQualificationPage, InvoiceAskFor2Page, InvoiceAskFor1Page, AboutUsPage, ShippingAddressPage, ChangePhoneNumberPage, ChangePasswordPage, RealnamePage, QqPage, AddShippingAddressPage, CompanynamePage, AccountJifenPage, AccountWithdrawPage, AccountBalancePage, AccountMoneyDetailPage, AccountWithdrawSucceedPage, PaymentMethodPage, OrdersDetailPage, WriteOrdersPage, OrderModalShippingPage, OrderModalDistributionPage, OrderModalCouponPage, OrderModalPaymentPage, AddressPage, HelperDetailsPage,
     /*——————————————————组件——————————————————*/
     SingleCardComponent, MyToolbarComponent, SingleFoodsItemComponent, MeunItemComponent, CountdownComponent, CountInputComponent, ImgTabs2Component, NothingComponent,
-    DirectiveTestPage,PopoverHomePage,
+    DirectiveTestPage,
   ],
   providers: [{ provide: ErrorHandler, useClass: IonicErrorHandler }, UserData, Native, HttpService, JpushService, Camera, ImagePicker, AppVersion, Toast, CallNumber, StatusBar, SplashScreen,BarcodeScanner]
 })

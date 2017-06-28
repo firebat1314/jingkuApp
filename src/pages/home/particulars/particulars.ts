@@ -132,7 +132,6 @@ export class ParticularsPage {
           if (res.goods_type == 'goods_spectacles') {
             console.log("goods_type ☞'goods_spectacles'", res);
             if (typeof res.spectacles_properties.list == 'object') {
-              console.log(res.spectacles_properties.list)
               let arr = new Array();
               for (let item in res.spectacles_properties.list) {
                 arr.push(res.spectacles_properties.list[item]);

@@ -25,7 +25,7 @@ import { HttpService } from "../../providers/http-service";
 import { Native } from "../../providers/native";
 
 import { Storage } from '@ionic/storage';
-import { PopoverHomePage } from "./popover-home/popover-home";
+// import { PopoverHomePage } from "./popover-home/popover-home";
 // @IonicPage()
 @Component({
   selector: 'page-home',
@@ -189,7 +189,7 @@ export class HomePage {
     })
   }
   presentPopover(myEvent) {
-    let popover = this.popoverCtrl.create(PopoverHomePage,{},{});
+    let popover = this.popoverCtrl.create('PopoverHomePage',{},{});
     popover.present({
       ev: myEvent
     });

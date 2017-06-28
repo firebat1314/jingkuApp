@@ -30,7 +30,8 @@
     <div class="avatar">
         <ion-list no-margin>
             <ion-item padding-left no-lines mode="ios" style="border-bottom: 0.5px solid #e0e0e0;">
-                <ion-avatar item-left>
+                <ion-avatar [navPush]="AccountManagementPage" [navParams]="{avatar:userInfo?.data?.avatar,username:userInfo?.data?.username}" item-left>
+                    <!--<img img-lazy-load="{{userInfo?.data?.avatar}}" imageViewer alt="">-->
                     <ion-img src="{{userInfo?.data?.avatar}}"></ion-img>
                 </ion-avatar>
                 <h2>{{userInfo?.data?.username}}</h2>

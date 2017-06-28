@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams, ModalController, Events } from 'ionic-angular';
+import { NavController, NavParams, ModalController, Events, ViewController, AlertController } from 'ionic-angular';
 import { HttpService } from "../../../../providers/http-service";
 import { ShippingAddressPage } from "../../account-management/shipping-address/shipping-address";
 import { OrderModalShippingPage } from "./order-modal-shipping/order-modal-shipping";
@@ -22,7 +22,8 @@ import { Native } from "../../../../providers/native";
   templateUrl: 'write-orders.html'
 })
 export class WriteOrdersPage {
-  paymentMothd: any;
+  paymentMothdID: any;
+  paymentMothdDesc: any;
   data: any;
   defaultShipping: any;
   goodsType: string = this.navParams.get('type');
@@ -33,7 +34,9 @@ export class WriteOrdersPage {
     public httpService: HttpService,
     public modalCtrl: ModalController,
     private events: Events,
-    private native: Native
+    private native: Native,
+    public viewCtrl: ViewController,
+    private alertCtrl: AlertController
   ) {
     this.getHttpData();
     this.events.subscribe('writeOrder:refresh', () => {
@@ -60,7 +63,8 @@ export class WriteOrdersPage {
         //选中支付方式
         for (let i = 0; i < this.data.payment_list.length; i++) {
           if (this.data.payment_list[i].selected == 1) {
-            this.paymentMothd = this.data.payment_list[i].pay_id
+            this.paymentMothdID = this.data.payment_list[i].pay_id
+            this.paymentMothdDesc = this.data.payment_list[i].pay_desc
           }
         }
       }
@@ -125,7 +129,7 @@ export class WriteOrdersPage {
     modal.onDidDismiss(data => {
       console.log('支付方式', data);
       if (data) {
-        this.paymentMothd = data.pay_id;
+        this.paymentMothdID = data.pay_id;
         this.httpService.selectPayment({ pay_id: data.pay_id }).then((res) => {
           console.log(res);
           if (res.status == 1) { this.getHttpData() }
@@ -144,7 +148,7 @@ export class WriteOrdersPage {
       commentArr.push(this.data.cart_goods_list[i].beizhu)
       suppliers.push(this.data.cart_goods_list[i].suppliers_id)
     }
-    if (this.paymentMothd == 3) {
+    if (this.paymentMothdID == 3) {
       this.native.openAlertBox('确认余额支付', () => {
         this.httpService.submitOrder({
           notes: {
@@ -156,6 +160,7 @@ export class WriteOrdersPage {
             this.native.showToast(res.info);
             this.navCtrl.push(AllOrdersPage);
             this.events.publish('car:updata');
+            // this.viewCtrl.dismiss();
           }
         })
       })
@@ -167,17 +172,25 @@ export class WriteOrdersPage {
         }
       }).then((res) => {
         if (res.status == 1) {
-          if (this.paymentMothd == 6) {
+          this.events.publish('car:updata');
+          if (this.paymentMothdID == 6) {
             this.httpService.pay({ order_id: res.order_id }).then((res) => {
               if (res.status == 1) {
                 this.navCtrl.push(PaymentMethodPage, { data: res });
-                this.events.publish('car:updata');
               }
             })
-          } else if (this.paymentMothd == 4) {
-            this.navCtrl.push(OrdersDetailPage, { order_id: res.order_id })
-            this.events.publish('car:updata');
+          } else if (this.paymentMothdID == 4) {
+            this.navCtrl.push(OrdersDetailPage, { order_id: res.order_id });
+            this.alertCtrl.create({
+              title: '汇款须知',
+              subTitle: this.paymentMothdDesc,
+              buttons: [{
+                text: '确认'
+              }],
+              cssClass: 'recharge-alert'
+            }).present();
           }
+            // this.viewCtrl.dismiss();
         } else if (res.status == -1) {
           this.navCtrl.pop();
         }
