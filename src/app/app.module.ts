@@ -45,6 +45,9 @@ import { PresellPage } from "../pages/my/presell/presell";
 
 import { DredgeMoreCityPage } from '../pages/home/particulars/dredge-more-city/dredge-more-city';
 import { PopoverContentPage } from "../pages/home/particulars/dredge-more-city/popover-content/popover-content";
+
+import { ParticularsHomePage } from '../pages/particulars-home/particulars-home';
+import { ParticularsHomeDetailsPage } from '../pages/particulars-home-details/particulars-home-details';
 /*————————————————————————————————分类页————————————————————————————————*/
 import { SubnavPage1Page } from '../pages/classify/subnav-page1/subnav-page1';
 import { SubnavPage2Page } from '../pages/classify/subnav-page2/subnav-page2';
@@ -138,7 +141,7 @@ import { IonicImageViewerModule } from 'ionic-img-viewer';
     /*——————————————————购物车——————————————————*/
     CarPage,
     /*——————————————————home栏——————————————————*/
-    HomePage,
+    HomePage,ParticularsHomePage,ParticularsHomeDetailsPage,
     CityPage, SearchPage, DetailsPage, BrandListPage, AttentionPage, FastbuyPage, GlassesDesignPage, IntegralstorePage, RechargePage, WhitebarPage, DiscountCouponPage, MessagePage, ParticularsPage, ParticularsModalPage, DredgeMoreCityPage, PopoverContentPage, ParticularsModalAttrPage, MessageDetailsPage, PresellPage, JifenHistoryPage, DuihuanDetailsPage, DuihuanDetailsFinishPage,
     /*——————————————————分类栏——————————————————*/
     ClassifyPage, SubnavPage1Page, SubnavPage2Page, MoreBrandPage,
@@ -177,7 +180,7 @@ import { IonicImageViewerModule } from 'ionic-img-viewer';
     /*——————————————————购物车——————————————————*/
     CarPage,
     /*——————————————————home栏——————————————————*/
-     HomePage,
+     HomePage,ParticularsHomePage,ParticularsHomeDetailsPage,
     CityPage, SearchPage, DetailsPage, BrandListPage, AttentionPage, FastbuyPage, GlassesDesignPage, IntegralstorePage, RechargePage, WhitebarPage, DiscountCouponPage, MessagePage, ParticularsPage, ParticularsModalPage, DredgeMoreCityPage, PopoverContentPage, ParticularsModalAttrPage, MessageDetailsPage, PresellPage, JifenHistoryPage, DuihuanDetailsPage, DuihuanDetailsFinishPage,
     /*——————————————————分类栏——————————————————*/
     ClassifyPage, SubnavPage1Page, SubnavPage2Page, MoreBrandPage,
