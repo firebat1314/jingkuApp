@@ -131,15 +131,12 @@ import { BarcodeScanner } from "@ionic-native/barcode-scanner";
 /*————————————————————————————————插件————————————————————————————————*/
 import { CityPickerModule } from "ionic2-city-picker/dist/city-picker.module";
 import { IonicImageViewerModule } from 'ionic-img-viewer';
-<<<<<<< HEAD
 
 import { ImgLazyLoadDirective } from '../directives/img-lazy-load/img-lazy-load';
 import { ImgLazyLoadComponent } from "../components/img-lazy-load/img-lazy-load";
 import { AdsClickDirective } from '../directives/ads-click/ads-click';
 import { ViewfabDirective } from '../directives/viewfab/viewfab';
 // import { PopoverHomePage } from "../pages/home/popover-home/popover-home";
-=======
->>>>>>> 8f604f7da2ab803383686a544154d0f6e4a63fce
 
 @NgModule({
   declarations: [

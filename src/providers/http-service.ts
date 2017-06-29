@@ -14,14 +14,10 @@ import { Storage } from '@ionic/storage';
 export class HttpService {
   public HAS_LOGGED_IN = "hasLoggedIn";
   public hasLogin = false;
-  // private ip = 'http://v402app.jingkoo.net';
-<<<<<<< HEAD
-  private ip = 'http://app.jingku.cn';
-  // private ip = 'http://hl.jingkoo.net/';
-=======
-  // private ip = 'http://app.jingku.cn';
-  private ip = 'http://newm.jingkoo.net';
->>>>>>> 8f604f7da2ab803383686a544154d0f6e4a63fce
+  // private ip = 'http://v402app.jingkoo.net';//app测试
+  private ip = 'http://app.jingku.cn';//app正式
+  // private ip = 'http://hl.jingkoo.net/';//响应速度测试
+  // private ip = 'http://newm.jingkoo.net';//m站
 
   constructor(public http: UserData, private storage: Storage) {
     console.log('Hello HttpService Provider');
