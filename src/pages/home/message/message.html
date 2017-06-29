@@ -16,7 +16,7 @@
 <ion-content>
 
     <ion-list>
-        <ion-item (click)="goMessageDetailsPage(1)">
+        <ion-item tappable (click)="goMessageDetailsPage(1)">
             <ion-avatar item-left>
                 <img src="./assets/icon/images/messageCenter_01_03.png">
             </ion-avatar>
@@ -24,7 +24,7 @@
             <p>{{wuLiuTidings?.list?.msg}}</p>
             <ion-note item-right>{{wuLiuTidings?.list?.add_time}}</ion-note>
         </ion-item>
-        <ion-item (click)="goMessageDetailsPage(2)">
+        <ion-item tappable (click)="goMessageDetailsPage(2)">
             <ion-avatar item-left>
                 <img src="./assets/icon/images/messageCenter_01_06.png">
             </ion-avatar>

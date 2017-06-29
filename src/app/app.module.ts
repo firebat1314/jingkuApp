@@ -46,8 +46,6 @@ import { PresellPage } from "../pages/my/presell/presell";
 import { DredgeMoreCityPage } from '../pages/home/particulars/dredge-more-city/dredge-more-city';
 import { PopoverContentPage } from "../pages/home/particulars/dredge-more-city/popover-content/popover-content";
 
-import { ParticularsHomePage } from '../pages/particulars-home/particulars-home';
-import { ParticularsHomeDetailsPage } from '../pages/particulars-home-details/particulars-home-details';
 /*————————————————————————————————分类页————————————————————————————————*/
 import { SubnavPage1Page } from '../pages/classify/subnav-page1/subnav-page1';
 import { SubnavPage2Page } from '../pages/classify/subnav-page2/subnav-page2';
@@ -137,6 +135,10 @@ import { AdsClickDirective } from '../directives/ads-click/ads-click';
 import { ViewfabDirective } from '../directives/viewfab/viewfab';
 // import { PopoverHomePage } from "../pages/home/popover-home/popover-home";
 
+import { ParticularsHomePage } from '../pages/particulars-home/particulars-home';
+import { ParticularsHomeDetailsPage } from '../pages/particulars-home-details/particulars-home-details';
+import { ShopAllFashionPage } from "../pages/shop-all-fashion/shop-all-fashion";
+
 @NgModule({
   declarations: [
     MyApp,
@@ -148,7 +150,7 @@ import { ViewfabDirective } from '../directives/viewfab/viewfab';
     /*——————————————————购物车——————————————————*/
     CarPage,
     /*——————————————————home栏——————————————————*/
-    HomePage,ParticularsHomePage,ParticularsHomeDetailsPage,
+    HomePage,ParticularsHomePage,ParticularsHomeDetailsPage,ShopAllFashionPage,
     CityPage, SearchPage, DetailsPage, BrandListPage, AttentionPage, FastbuyPage, GlassesDesignPage, IntegralstorePage, RechargePage, WhitebarPage, DiscountCouponPage, MessagePage, ParticularsPage, ParticularsModalPage, DredgeMoreCityPage, PopoverContentPage, ParticularsModalAttrPage, MessageDetailsPage, PresellPage, JifenHistoryPage, DuihuanDetailsPage, DuihuanDetailsFinishPage,
     /*——————————————————分类栏——————————————————*/
     ClassifyPage, SubnavPage1Page, SubnavPage2Page, MoreBrandPage,

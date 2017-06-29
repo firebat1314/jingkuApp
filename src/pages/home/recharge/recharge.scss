@@ -1,7 +1,9 @@
 page-recharge {
     $thumbnail-width: 32px;
     .content {
-        padding: 10px;
+        &[padding] .scroll-content {
+            padding: 7px;
+        }
         background: #f5f5f5;
     }
     .header-bg {
@@ -10,7 +12,7 @@ page-recharge {
         height: 20px;
         border-radius: 10px;
         margin-bottom: -10px;
-        margin-top: 20px;
+        margin-top: 14px;
     }
     .input-number {
         padding: 0 10px 25px;

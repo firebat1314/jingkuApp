@@ -45,7 +45,7 @@
         </div>
         <div class="price_time" *ngIf="getGoodsInfo?.promotion">
             <div class="left">
-                <p>{{getGoodsInfo?.promotion.title}}</p>
+                <p [innerHtml]="getGoodsInfo?.promotion.title"></p>
             </div>
             <div class="right" [ngSwitch]="getGoodsInfo.promotion.type">
                 <p *ngSwitchCase="2">距离活动结束还剩：</p>

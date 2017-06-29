@@ -6,12 +6,12 @@
 -->
 <ion-header>
 
- <ion-navbar>
+    <ion-navbar>
         <ion-searchbar [(ngModel)]="myHomeSearch" (ionInput)="onInput($event)" placeholder="博士伦" animated="false" spellcheck="true" type="search" debounce="1000" mode="ios"></ion-searchbar>
         <ion-buttons end>
             <button ion-button clear icon-only icon-left (click)="listStyleflag=!listStyleflag">
-                    <img src="./assets/icon/images/list_01.png" width="22" *ngIf="!listStyleflag" alt="">
-                    <img src="./assets/icon/images/list_02.png" width="22" *ngIf="listStyleflag" alt="">
+                    <img img-lazy-load="./assets/icon/images/list_01.png" width="22" *ngIf="!listStyleflag" alt="">
+                    <img img-lazy-load="./assets/icon/images/list_02.png" width="22" *ngIf="listStyleflag" alt="">
                 </button>
         </ion-buttons>
     </ion-navbar>
@@ -23,292 +23,292 @@
     <div class="banner-shop">
         <div class="banner-shadow">
             <div class="banner-shop-logo">
-              <div class="banner-shop-anoLogo">
-                <img src="../assets/images/images/bannerShopLogo.png" alt="">
-              </div>
+                <div class="banner-shop-anoLogo">
+                    <img img-lazy-load="./assets/images/images/bannerShopLogo.png" alt="">
+                </div>
             </div>
             <p>北京沙福隆官方旗舰店</p>
-            <p><img src="../assets/images/images/heart.png" alt=""><i>收藏</i></p>
+            <p><img img-lazy-load="./assets/images/images/heart.png" alt=""><i>收藏</i></p>
         </div>
     </div>
     <div class="shop-tabs">
-      <button class="shop-tabs-item" value="shopHome">
+        <button class="shop-tabs-item" value="shopHome">
           <div class="shop-tabs-item-img"></div>
           <span>店铺首页</span>
       </button>
-      <button class="shop-tabs-item" value="allGoods">
+        <button class="shop-tabs-item" value="allGoods">
           <div><span>1152</span></div>
           <span>全部商品</span>
       </button>
-      <button class="shop-tabs-item" value="cuXiao">
+        <button class="shop-tabs-item" value="cuXiao">
           <div><span>19</span></div>
           <span>促销</span>
       </button>
-      <button class="shop-tabs-item" value="goNew">
+        <button class="shop-tabs-item" value="goNew">
           <div><span>20</span></div>
           <span>上新</span>
       </button>
     </div>
     <ion-list [ngSwitch]="classShop">
         <div class="shopHome-main" *ngSwitchCase="'shopHome'">
-           <div class="new-arrival"> 
-                <p>2017  NEW  ARRIVAL</p>
+            <div class="new-arrival">
+                <p>2017 NEW ARRIVAL</p>
                 <p>新品推荐</p>
-           </div>
-           <div class="new-arrival-goods-box">
-              <div class="new-arrival-goods" *ngFor="let item of data?.goods">
-                <img src="{{item.goods_img}}" alt="">
-                <div class="price">
-                  <!--<i>￥</i> -->
-                  <span>{{item.market_price}}</span>
-                  <button>立即抢购</button>
+            </div>
+            <div class="new-arrival-goods-box">
+                <div class="new-arrival-goods" *ngFor="let item of data?.goods">
+                    <img img-lazy-load="{{item.goods_img}}" alt="">
+                    <div class="price">
+                        <!--<i>￥</i> -->
+                        <span>{{item.market_price}}</span>
+                        <button>立即抢购</button>
+                    </div>
                 </div>
-              </div>
-              <!--<div class="new-arrival-goods">
-                <img src="../assets/icon/newGoods.png" alt="">
-                <div class="price">
-                  <i>￥</i><span>520.00</span>
-                  <button>立即抢购</button>
-                </div>
-              </div>
-              <div class="new-arrival-goods">
-                <img src="../assets/icon/newGoods.png" alt="">
+                <!--<div class="new-arrival-goods">
+                <img img-lazy-load="./assets/icon/newGoods.png" alt="">
                 <div class="price">
                   <i>￥</i><span>520.00</span>
                   <button>立即抢购</button>
                 </div>
               </div>
               <div class="new-arrival-goods">
-                <img src="../assets/icon/newGoods.png" alt="">
+                <img img-lazy-load="./assets/icon/newGoods.png" alt="">
+                <div class="price">
+                  <i>￥</i><span>520.00</span>
+                  <button>立即抢购</button>
+                </div>
+              </div>
+              <div class="new-arrival-goods">
+                <img img-lazy-load="./assets/icon/newGoods.png" alt="">
                 <div class="price">
                   <i>￥</i><span>520.00</span>
                   <button>立即抢购</button>
                 </div>
               </div>-->
-           </div>
-           <div class="new-arrival"> 
-                <p>Popularity   list</p>
+            </div>
+            <div class="new-arrival">
+                <p>Popularity list</p>
                 <p>人气单品</p>
-           </div>
-           <div class="new-arrival-goods-box">
-              <div class="new-arrival-goods">
-                <img src="../assets/icon/newGoods.png" alt="">
-                <div class="price">
-                  <i>￥</i><span>520.00</span>
-                  <button>立即抢购</button>
+            </div>
+            <div class="new-arrival-goods-box">
+                <div class="new-arrival-goods">
+                    <img img-lazy-load="./assets/icon/newGoods.png" alt="">
+                    <div class="price">
+                        <i>￥</i><span>520.00</span>
+                        <button>立即抢购</button>
+                    </div>
                 </div>
-              </div>
-              <div class="new-arrival-goods">
-                <img src="../assets/icon/newGoods.png" alt="">
-                <div class="price">
-                  <i>￥</i><span>520.00</span>
-                  <button>立即抢购</button>
+                <div class="new-arrival-goods">
+                    <img img-lazy-load="./assets/icon/newGoods.png" alt="">
+                    <div class="price">
+                        <i>￥</i><span>520.00</span>
+                        <button>立即抢购</button>
+                    </div>
                 </div>
-              </div>
-           </div>
+            </div>
         </div>
         <div class="allGoods-main" *ngSwitchCase="'allGoods'">
-          <ion-toolbar class="segment-style">
-              <!--<my-toolbar></my-toolbar>-->
-              <ion-segment mode="md" [(ngModel)]="mytool" (click)="mytoolChange()" color="primary">
-                  <ion-segment-button value="all">
-                      综合
-                      <div [ngClass]="allStatus==false?'sortup':'sortdown'" class="myicon">
-                          <div [ngStyle]="{'height':'7px'}">
-                              <ion-icon name="md-arrow-dropup"></ion-icon>
-                          </div>
-                          <div>
-                              <ion-icon name="md-arrow-dropdown"></ion-icon>
-                          </div>
-                      </div>
-                  </ion-segment-button>
-                  <ion-segment-button value="sales_num">
-                      销量
-                      <div [ngClass]="salesNumStatus==false?'sortup':'sortdown'" class="myicon">
-                          <div [ngStyle]="{'height':'7px'}">
-                              <ion-icon name="md-arrow-dropup"></ion-icon>
-                          </div>
-                          <div>
-                              <ion-icon name="md-arrow-dropdown"></ion-icon>
-                          </div>
-                      </div>
-                  </ion-segment-button>
-                  <ion-segment-button value="shop_price">
-                      价格
-                      <div [ngClass]="shopPriceStatus==false?'sortup':'sortdown'" class="myicon">
-                          <div [ngStyle]="{'height':'7px'}">
-                              <ion-icon name="md-arrow-dropup"></ion-icon>
-                          </div>
-                          <div>
-                              <ion-icon name="md-arrow-dropdown"></ion-icon>
-                          </div>
-                      </div>
-                  </ion-segment-button>
-                  <ion-segment-button menuToggle value="">
-                      筛选
-                      <img src="./assets/icon/images/filter.png" width="18" alt="">
-                  </ion-segment-button>
-              </ion-segment>
-          </ion-toolbar>
-          <ion-list>
-            <div class="allGoods-box">
-              <div class="allGoods-items">
-                <div class="allGoods-items-img">
-                  <img src="../assets/icon/newGoods.png" alt="">
+            <ion-toolbar class="segment-style">
+                <!--<my-toolbar></my-toolbar>-->
+                <ion-segment mode="md" [(ngModel)]="mytool" (click)="mytoolChange()" color="primary">
+                    <ion-segment-button value="all">
+                        综合
+                        <div [ngClass]="allStatus==false?'sortup':'sortdown'" class="myicon">
+                            <div [ngStyle]="{'height':'7px'}">
+                                <ion-icon name="md-arrow-dropup"></ion-icon>
+                            </div>
+                            <div>
+                                <ion-icon name="md-arrow-dropdown"></ion-icon>
+                            </div>
+                        </div>
+                    </ion-segment-button>
+                    <ion-segment-button value="sales_num">
+                        销量
+                        <div [ngClass]="salesNumStatus==false?'sortup':'sortdown'" class="myicon">
+                            <div [ngStyle]="{'height':'7px'}">
+                                <ion-icon name="md-arrow-dropup"></ion-icon>
+                            </div>
+                            <div>
+                                <ion-icon name="md-arrow-dropdown"></ion-icon>
+                            </div>
+                        </div>
+                    </ion-segment-button>
+                    <ion-segment-button value="shop_price">
+                        价格
+                        <div [ngClass]="shopPriceStatus==false?'sortup':'sortdown'" class="myicon">
+                            <div [ngStyle]="{'height':'7px'}">
+                                <ion-icon name="md-arrow-dropup"></ion-icon>
+                            </div>
+                            <div>
+                                <ion-icon name="md-arrow-dropdown"></ion-icon>
+                            </div>
+                        </div>
+                    </ion-segment-button>
+                    <ion-segment-button menuToggle value="">
+                        筛选
+                        <img img-lazy-load="./assets/icon/images/filter.png" width="18" alt="">
+                    </ion-segment-button>
+                </ion-segment>
+            </ion-toolbar>
+            <ion-list>
+                <div class="allGoods-box">
+                    <div class="allGoods-items">
+                        <div class="allGoods-items-img">
+                            <img img-lazy-load="./assets/icon/newGoods.png" alt="">
+                        </div>
+                        <div class="allGoods-items-info">
+                            <p>博士伦美瞳明透亮眸半年XXX</p>
+                            <p>￥450</p>
+                        </div>
+                    </div>
                 </div>
-                <div class="allGoods-items-info">
-                    <p>博士伦美瞳明透亮眸半年XXX</p>
-                    <p>￥450</p>
+                <div class="allGoods-box">
+                    <div class="allGoods-items">
+                        <div class="allGoods-items-img">
+                            <img img-lazy-load="./assets/icon/newGoods.png" alt="">
+                        </div>
+                        <div class="allGoods-items-info">
+                            <p>博士伦美瞳明透亮眸半年XXX</p>
+                            <p>￥450</p>
+                        </div>
+                    </div>
                 </div>
-              </div>
-            </div>
-            <div class="allGoods-box">
-              <div class="allGoods-items">
-                <div class="allGoods-items-img">
-                  <img src="../assets/icon/newGoods.png" alt="">
-                </div>
-                <div class="allGoods-items-info">
-                    <p>博士伦美瞳明透亮眸半年XXX</p>
-                    <p>￥450</p>
-                </div>
-              </div>
-            </div>
-          </ion-list>
+            </ion-list>
         </div>
         <div class="cuXiao-mian" *ngSwitchCase="'cuXiao'">
             <div class="cuXiao-time-goods">
-              <div class="cuXiao-time-goods-tit">
-                <p>即将结束</p>
-                <span>以下商品今日23.59结束促销</span>
-              </div>
-              <div class="cuXiao-time-goods-content">
-                <div class="time-goods-img">
-                  <img src="../assets/icon/newGoods.png" alt="">
+                <div class="cuXiao-time-goods-tit">
+                    <p>即将结束</p>
+                    <span>以下商品今日23.59结束促销</span>
                 </div>
-                <p>博士伦美瞳明透亮眸半年亮眸半年博士博士 伦美瞳明透亮眸半年亮眸半年博士XXXXX</p>
-                <span>￥450.00</span>
-                <button>限购</button>
-              </div>
+                <div class="cuXiao-time-goods-content">
+                    <div class="time-goods-img">
+                        <img img-lazy-load="./assets/icon/newGoods.png" alt="">
+                    </div>
+                    <p>博士伦美瞳明透亮眸半年亮眸半年博士博士 伦美瞳明透亮眸半年亮眸半年博士XXXXX</p>
+                    <span>￥450.00</span>
+                    <button>限购</button>
+                </div>
             </div>
             <div class="cuXiao-tabs">
-              <button class="cuXiao-tabs-item">满6件减1件</button>
-              <button class="cuXiao-tabs-item">满3件减1件</button>
-              <button class="cuXiao-tabs-item">满3件减1件</button>
-              <button class="cuXiao-tabs-item">满99减10元</button>
+                <button class="cuXiao-tabs-item">满6件减1件</button>
+                <button class="cuXiao-tabs-item">满3件减1件</button>
+                <button class="cuXiao-tabs-item">满3件减1件</button>
+                <button class="cuXiao-tabs-item">满99减10元</button>
             </div>
             <div class="sixJianOne-main">
-              <div class="preferential-tip">
-                <p>促销时间：08月21日  15:11结束促销</p>
-                <p>促销规则“以下商品满6件减1件</p>
-              </div>
-              <ion-list>
-                <div class="allGoods-box">
-                  <div class="allGoods-items">
-                    <div class="allGoods-items-img">
-                      <img src="../assets/icon/newGoods.png" alt="">
-                    </div>
-                    <div class="allGoods-items-info">
-                        <p>博士伦美瞳明透亮眸半年XXX</p>
-                        <p>￥450</p>
-                    </div>
-                  </div>
-                  <div class="allGoods-items">
-                    <div class="allGoods-items-img">
-                      <img src="../assets/icon/newGoods.png" alt="">
-                    </div>
-                    <div class="allGoods-items-info">
-                        <p>博士伦美瞳明透亮眸半年XXX</p>
-                        <p>￥450</p>
-                    </div>
-                  </div>
-                  <div class="allGoods-items">
-                    <div class="allGoods-items-img">
-                      <img src="../assets/icon/newGoods.png" alt="">
-                    </div>
-                    <div class="allGoods-items-info">
-                        <p>博士伦美瞳明透亮眸半年XXX</p>
-                        <p>￥450</p>
-                    </div>
-                  </div>
+                <div class="preferential-tip">
+                    <p>促销时间：08月21日 15:11结束促销</p>
+                    <p>促销规则“以下商品满6件减1件</p>
                 </div>
-              </ion-list>
+                <ion-list>
+                    <div class="allGoods-box">
+                        <div class="allGoods-items">
+                            <div class="allGoods-items-img">
+                                <img img-lazy-load="./assets/icon/newGoods.png" alt="">
+                            </div>
+                            <div class="allGoods-items-info">
+                                <p>博士伦美瞳明透亮眸半年XXX</p>
+                                <p>￥450</p>
+                            </div>
+                        </div>
+                        <div class="allGoods-items">
+                            <div class="allGoods-items-img">
+                                <img img-lazy-load="./assets/icon/newGoods.png" alt="">
+                            </div>
+                            <div class="allGoods-items-info">
+                                <p>博士伦美瞳明透亮眸半年XXX</p>
+                                <p>￥450</p>
+                            </div>
+                        </div>
+                        <div class="allGoods-items">
+                            <div class="allGoods-items-img">
+                                <img img-lazy-load="./assets/icon/newGoods.png" alt="">
+                            </div>
+                            <div class="allGoods-items-info">
+                                <p>博士伦美瞳明透亮眸半年XXX</p>
+                                <p>￥450</p>
+                            </div>
+                        </div>
+                    </div>
+                </ion-list>
             </div>
         </div>
         <div class="goNew-main" *ngSwitchCase="'goNew'">
-          <ion-list>
-            <div class="newTime-date-big-box">
-                <div class="newTime-date-box">
-                  <div></div>
-                  <p><img src="../assets/images/images/time.png" alt=""><span>6月16日</span></p>
+            <ion-list>
+                <div class="newTime-date-big-box">
+                    <div class="newTime-date-box">
+                        <div></div>
+                        <p><img img-lazy-load="./assets/images/images/time.png" alt=""><span>6月16日</span></p>
+                    </div>
+                    <div class="allGoods-box">
+                        <div class="allGoods-items">
+                            <div class="allGoods-items-img">
+                                <img img-lazy-load="./assets/icon/newGoods.png" alt="">
+                            </div>
+                            <div class="allGoods-items-info">
+                                <p>博士伦美瞳明透亮眸半年XXX</p>
+                                <p>￥450</p>
+                            </div>
+                        </div>
+                        <div class="allGoods-items">
+                            <div class="allGoods-items-img">
+                                <img img-lazy-load="./assets/icon/newGoods.png" alt="">
+                            </div>
+                            <div class="allGoods-items-info">
+                                <p>博士伦美瞳明透亮眸半年XXX</p>
+                                <p>￥450</p>
+                            </div>
+                        </div>
+                        <div class="allGoods-items">
+                            <div class="allGoods-items-img">
+                                <img img-lazy-load="./assets/icon/newGoods.png" alt="">
+                            </div>
+                            <div class="allGoods-items-info">
+                                <p>博士伦美瞳明透亮眸半年XXX</p>
+                                <p>￥450</p>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                <div class="allGoods-box">
-                  <div class="allGoods-items">
-                    <div class="allGoods-items-img">
-                      <img src="../assets/icon/newGoods.png" alt="">
+                <div class="newTime-date-big-box">
+                    <div class="newTime-date-box">
+                        <div></div>
+                        <p><img img-lazy-load="./assets/images/images/time.png" alt=""><span>6月17日</span></p>
                     </div>
-                    <div class="allGoods-items-info">
-                        <p>博士伦美瞳明透亮眸半年XXX</p>
-                        <p>￥450</p>
+                    <div class="allGoods-box">
+                        <div class="allGoods-items">
+                            <div class="allGoods-items-img">
+                                <img img-lazy-load="./assets/icon/newGoods.png" alt="">
+                            </div>
+                            <div class="allGoods-items-info">
+                                <p>博士伦美瞳明透亮眸半年XXX</p>
+                                <p>￥450</p>
+                            </div>
+                        </div>
+                        <div class="allGoods-items">
+                            <div class="allGoods-items-img">
+                                <img img-lazy-load="./assets/icon/newGoods.png" alt="">
+                            </div>
+                            <div class="allGoods-items-info">
+                                <p>博士伦美瞳明透亮眸半年XXX</p>
+                                <p>￥450</p>
+                            </div>
+                        </div>
+                        <div class="allGoods-items">
+                            <div class="allGoods-items-img">
+                                <img img-lazy-load="./assets/icon/newGoods.png" alt="">
+                            </div>
+                            <div class="allGoods-items-info">
+                                <p>博士伦美瞳明透亮眸半年XXX</p>
+                                <p>￥450</p>
+                            </div>
+                        </div>
                     </div>
-                  </div>
-                  <div class="allGoods-items">
-                    <div class="allGoods-items-img">
-                      <img src="../assets/icon/newGoods.png" alt="">
-                    </div>
-                    <div class="allGoods-items-info">
-                        <p>博士伦美瞳明透亮眸半年XXX</p>
-                        <p>￥450</p>
-                    </div>
-                  </div>
-                  <div class="allGoods-items">
-                    <div class="allGoods-items-img">
-                      <img src="../assets/icon/newGoods.png" alt="">
-                    </div>
-                    <div class="allGoods-items-info">
-                        <p>博士伦美瞳明透亮眸半年XXX</p>
-                        <p>￥450</p>
-                    </div>
-                  </div>
                 </div>
-            </div>
-            <div class="newTime-date-big-box">
-                <div class="newTime-date-box">
-                  <div></div>
-                  <p><img src="../assets/images/images/time.png" alt=""><span>6月17日</span></p>
-                </div>
-                <div class="allGoods-box">
-                  <div class="allGoods-items">
-                    <div class="allGoods-items-img">
-                      <img src="../assets/icon/newGoods.png" alt="">
-                    </div>
-                    <div class="allGoods-items-info">
-                        <p>博士伦美瞳明透亮眸半年XXX</p>
-                        <p>￥450</p>
-                    </div>
-                  </div>
-                  <div class="allGoods-items">
-                    <div class="allGoods-items-img">
-                      <img src="../assets/icon/newGoods.png" alt="">
-                    </div>
-                    <div class="allGoods-items-info">
-                        <p>博士伦美瞳明透亮眸半年XXX</p>
-                        <p>￥450</p>
-                    </div>
-                  </div>
-                  <div class="allGoods-items">
-                    <div class="allGoods-items-img">
-                      <img src="../assets/icon/newGoods.png" alt="">
-                    </div>
-                    <div class="allGoods-items-info">
-                        <p>博士伦美瞳明透亮眸半年XXX</p>
-                        <p>￥450</p>
-                    </div>
-                  </div>
-                </div>
-            </div>
-          </ion-list>
-          <!--无商品的区域，暂时隐藏-->
-          <!--<div class="newTime-date-noMore">
+            </ion-list>
+            <!--无商品的区域，暂时隐藏-->
+            <!--<div class="newTime-date-noMore">
             <div class="lock">
               <div class="lockBox">
             </div>
@@ -321,25 +321,25 @@
 </ion-content>
 <ion-footer>
     <div class="shop-footer">
-      <div tappable class="shop-footer-items" (click)="goParticularsHomeDetails()">
-        <span>店铺详情</span>
-      </div>
-      <div class="shop-footer-items">
-        <img src="../assets/images/images/fenlei.png" alt="">
-        <span>热门分类</span>
-      </div>
-      <div class="shop-footer-items">
-        <img src="../assets/images/images/smile.png" alt="">
-        <span>联系卖家</span>
-      </div>
+        <div tappable class="shop-footer-items" (click)="goParticularsHomeDetails()">
+            <span>店铺详情</span>
+        </div>
+        <div class="shop-footer-items">
+            <img img-lazy-load="./assets/images/images/fenlei.png" alt="">
+            <span>热门分类</span>
+        </div>
+        <div class="shop-footer-items">
+            <img img-lazy-load="./assets/images/images/smile.png" alt="">
+            <span>联系卖家</span>
+        </div>
     </div>
     <div class="hot-box">
-      <div class="hot-box-div">
-          <div>隐形眼镜</div>
-          <div>隐形眼镜</div>
-          <div>隐形眼镜</div>
-          <div>隐形眼镜</div>
-      </div>
-      <em></em>
+        <div class="hot-box-div">
+            <div>隐形眼镜</div>
+            <div>隐形眼镜</div>
+            <div>隐形眼镜</div>
+            <div>隐形眼镜</div>
+        </div>
+        <em></em>
     </div>
 </ion-footer>

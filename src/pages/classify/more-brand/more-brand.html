@@ -17,7 +17,7 @@
     <div class="body">
         <div class="top"></div>
         <div class="main">
-            <div *ngFor="let item of data" [ads-click]="item.link_type">
+            <div *ngFor="let item of data" tappable [ads-click]="item.link_type">
                 <img img-lazy-load="{{item.ad_img}}" alt="">
             </div>
         </div>

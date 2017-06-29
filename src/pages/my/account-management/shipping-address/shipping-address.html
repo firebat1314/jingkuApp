@@ -37,6 +37,6 @@
     <div class="no-add" *ngIf="addressList?.data?.length==0">
         <div class="img"></div>
         <div class="text">暂无收货地址</div>
-        <p><button ion-button outline [navPush]="AddShippingAddressPage">+添加收货地址</button></p>
+        <p><button ion-button outline tappable [navPush]="AddShippingAddressPage">+添加收货地址</button></p>
     </div>
 </ion-content>

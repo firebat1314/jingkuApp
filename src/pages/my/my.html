@@ -37,29 +37,29 @@
                 <h2>{{userInfo?.data?.username}}</h2>
                 <p class="vip">
                     <ion-img src="{{userInfo?.data?.user_info?.rank_icon}}"></ion-img>
-                    <ion-note>{{userInfo?.data?.user_info?.rank_name}}</ion-note>
+                    <ion-note>{{userInfo?.data?.user_info?.rank_name||'暂无等级'}}</ion-note>
                 </p>
                 <button [navPush]="AccountManagementPage" [navParams]="{avatar:userInfo?.data?.avatar,username:userInfo?.data?.username}" color="gray" ion-button round outline icon-left item-right>
                     <ion-icon><img style="width:1.3rem;" src="./assets/icon/images/user_cener_1_11.png" alt=""></ion-icon>
                     账号管理
                 </button>
             </ion-item>
-            <ion-item padding-left [navPush]="AllOrdersPage" [navParams]="{index:0}" no-lines mode="ios" style="border-bottom: 0.5px solid #e0e0e0;">
+            <ion-item tappable padding-left [navPush]="AllOrdersPage" [navParams]="{index:0}" no-lines mode="ios" style="border-bottom: 0.5px solid #e0e0e0;">
                 <ion-icon item-left><img src="./assets/icon/images/user_center_5.png" alt=""></ion-icon>
                 全部订单
                 <ion-icon color="gray" name="ios-arrow-forward" item-right></ion-icon>
             </ion-item>
             <ion-item>
                 <div class="indent-info">
-                    <div [navPush]="AllOrdersPage" [navParams]="{index:1}">
+                    <div tappable [navPush]="AllOrdersPage" [navParams]="{index:1}">
                         <div class="number">{{usercount?.data?.unpay||0}}</div>
                         <div class="text">待付款</div>
                     </div>
-                    <div [navPush]="AllOrdersPage" [navParams]="{index:2}">
+                    <div tappable [navPush]="AllOrdersPage" [navParams]="{index:2}">
                         <div class="number">{{usercount?.data?.shipping||0}}</div>
                         <div class="text">待发货</div>
                     </div>
-                    <div [navPush]="AllOrdersPage" [navParams]="{index:3}">
+                    <div tappable [navPush]="AllOrdersPage" [navParams]="{index:3}">
                         <div class="number">{{usercount?.data?.unshipping||0}}</div>
                         <div class="text">待收货</div>
                     </div>
@@ -75,21 +75,21 @@
     <div class="background"></div>
     <div class="myAssets">
         <ion-list no-margin>
-            <ion-item padding-left no-lines mode="ios" style="border-bottom: 0.5px solid #e0e0e0;">
+            <ion-item tappable padding-left no-lines mode="ios" style="border-bottom: 0.5px solid #e0e0e0;">
                 <ion-icon item-left><img src="./assets/icon/images/user_center_9.png" alt=""></ion-icon>
                 我的资产
             </ion-item>
             <ion-item padding-left>
                 <div class="myAssets-info">
-                    <div [navPush]="CouponPage">
+                    <div tappable [navPush]="CouponPage">
                         <div class="number">{{usercount?.data?.bonus_count||0}}张可用</div>
                         <div class="text">优惠券</div>
                     </div>
-                    <div [navPush]="AccountJifenPage" [navParams]="{number:userInfo?.data?.integral}">
+                    <div tappable [navPush]="AccountJifenPage" [navParams]="{number:userInfo?.data?.integral}">
                         <div class="number">{{userInfo?.data?.integral||0}}</div>
                         <div class="text">积分</div>
                     </div>
-                    <div [navPush]="AccountBalancePage">
+                    <div tappable [navPush]="AccountBalancePage">
                         <div class="number">{{userInfo?.data?.user_money||0}}</div>
                         <div class="text">余额</div>
                     </div>
@@ -103,12 +103,12 @@
     </div>
     <div class="background"></div>
     <ion-list no-margin>
-        <ion-item (click)="goAccountProcessPage()" padding-left mode="ios">
+        <ion-item tappable (click)="goAccountProcessPage()" padding-left mode="ios">
             <ion-icon item-left><img src="./assets/icon/images/user_center_1.png" alt=""></ion-icon>
             来镜加工
             <ion-icon color="gray" name="ios-arrow-forward" item-right></ion-icon>
         </ion-item>
-        <ion-item [navPush]="PeceiptPage" padding-left mode="ios" [navPush]="PeceiptPage">
+        <ion-item tappable [navPush]="PeceiptPage" padding-left mode="ios" [navPush]="PeceiptPage">
             <ion-icon item-left><img src="./assets/icon/images/user_center_4.png" alt=""></ion-icon>
             发票管理
             <ion-icon color="gray" name="ios-arrow-forward" item-right></ion-icon>
@@ -116,7 +116,7 @@
     </ion-list>
     <div class="background"></div>
     <ion-list no-margin>
-        <ion-item [navPush]="DredgeMoreCityPage" padding-left mode="ios">
+        <ion-item tappable [navPush]="DredgeMoreCityPage" padding-left mode="ios">
             <ion-icon item-left><img src="./assets/icon/images/user_center_2.png" alt=""></ion-icon>
             地区申请
             <ion-icon color="gray" name="ios-arrow-forward" item-right></ion-icon>
@@ -124,17 +124,17 @@
     </ion-list>
     <div class="background"></div>
     <ion-list no-margin>
-        <ion-item [navPush]="AccountCollectGoodsPage" padding-left mode="ios">
+        <ion-item tappable [navPush]="AccountCollectGoodsPage" padding-left mode="ios">
             <ion-icon item-left><img src="./assets/icon/images/user_center_8.png" alt=""></ion-icon>
             收藏的商品
             <ion-icon color="gray" name="ios-arrow-forward" item-right></ion-icon>
         </ion-item>
-        <ion-item [navPush]="AccountCollectStorePage" padding-left mode="ios">
+        <ion-item tappable [navPush]="AccountCollectStorePage" padding-left mode="ios">
             <ion-icon item-left><img src="./assets/icon/images/user_center_3.png" alt=""></ion-icon>
             收藏的店铺
             <ion-icon color="gray" name="ios-arrow-forward" item-right></ion-icon>
         </ion-item>
-        <ion-item [navPush]="AccountHistoryPage" padding-left mode="ios">
+        <ion-item tappable [navPush]="AccountHistoryPage" padding-left mode="ios">
             <ion-icon item-left><img src="./assets/icon/images/user_center_7.png" alt=""></ion-icon>
             浏览记录
             <ion-icon color="gray" name="ios-arrow-forward" item-right></ion-icon>
@@ -142,12 +142,12 @@
     </ion-list>
     <div class="background"></div>
     <ion-list no-margin>
-        <ion-item (click)="goAccountServicePage()" padding-left mode="ios">
+        <ion-item tappable (click)="goAccountServicePage()" padding-left mode="ios">
             <ion-icon item-left><img src="./assets/icon/images/user_center_6.png" alt=""></ion-icon>
             镜库客服
             <ion-icon color="gray" name="ios-arrow-forward" item-right></ion-icon>
         </ion-item>
-        <ion-item [navPush]="AccountHelperPage" padding-left mode="ios">
+        <ion-item tappable [navPush]="AccountHelperPage" padding-left mode="ios">
             <ion-icon item-left><img src="./assets/icon/images/user_cener_1_38.png" alt=""></ion-icon>
             帮助中心
             <ion-icon color="gray" name="ios-arrow-forward" item-right></ion-icon>

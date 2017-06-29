@@ -4,13 +4,13 @@ import { ShopAllFashionPage } from './shop-all-fashion';
 
 @NgModule({
   declarations: [
-    ShopAllFashionPage,
+    // ShopAllFashionPage,
   ],
   imports: [
     IonicPageModule.forChild(ShopAllFashionPage),
   ],
   exports: [
-    ShopAllFashionPage
+    // ShopAllFashionPage
   ]
 })
 export class ShopAllFashionPageModule {}

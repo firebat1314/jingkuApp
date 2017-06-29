@@ -27,7 +27,7 @@
                 <ion-checkbox [(ngModel)]="item.selected" [checked]="data.selectedAll" color="dark" mode="ios"></ion-checkbox>
             </div>
             <ion-item-sliding>
-                <ion-item (click)="goParticularsPage(item.id)">
+                <a ion-item (click)="goParticularsPage(item.id)">
                     <ion-thumbnail item-left>
                         <img img-lazy-load="{{item.goods_thumb}}">
                     </ion-thumbnail>
@@ -35,7 +35,7 @@
                     <p class="right-bottom">
                         <span class="price">{{item.shop_price}}</span>
                     </p>
-                </ion-item>
+                </a>
                 <ion-item-options side="right">
                     <button ion-button color="danger" (click)="deleteOne(item.goods_id)">
                         删除

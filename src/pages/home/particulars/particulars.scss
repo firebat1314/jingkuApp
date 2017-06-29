@@ -80,6 +80,9 @@ page-particulars {
         }
         .body {
             color: rgb(100, 100, 100);
+            display: flex;
+            white-space: nowrap;
+            align-items: center;
             .now-price {
                 color: #e50000;
                 margin-right: 8px;
@@ -103,6 +106,8 @@ page-particulars {
         .bottom {
             display: flex;
             justify-content: space-between;
+            white-space: nowrap;
+            align-items: center;
             margin: 10px 0 0;
             color: rgb(100, 100, 100);
             .offer-price {

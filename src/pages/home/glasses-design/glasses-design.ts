@@ -30,6 +30,8 @@ export class GlassesDesignPage {
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad GlassesDesignPage');
+  }
+  ngOnInit(){
     this.getData();
   }
   getData() {
