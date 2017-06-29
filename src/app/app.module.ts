@@ -22,7 +22,6 @@ import { ForgotPage } from "../pages/forgot/forgot";
 import { ForgotTwoPage } from "../pages/forgot/forgot-two/forgot-two";
 import { ForgotThreePage } from "../pages/forgot/forgot-three/forgot-three";
 /*————————————————————————————————home页————————————————————————————————*/
-import { HomePage } from '../pages/home/home';
 import { CityPage } from '../pages/home/city/city';
 import { SearchPage } from '../pages/home/search/search';
 import { DetailsPage } from '../pages/home/details/details';
