@@ -22,6 +22,7 @@ import { ForgotPage } from "../pages/forgot/forgot";
 import { ForgotTwoPage } from "../pages/forgot/forgot-two/forgot-two";
 import { ForgotThreePage } from "../pages/forgot/forgot-three/forgot-three";
 /*————————————————————————————————home页————————————————————————————————*/
+import { HomePage } from '../pages/home/home';
 import { CityPage } from '../pages/home/city/city';
 import { SearchPage } from '../pages/home/search/search';
 import { DetailsPage } from '../pages/home/details/details';
@@ -45,6 +46,9 @@ import { PresellPage } from "../pages/my/presell/presell";
 
 import { DredgeMoreCityPage } from '../pages/home/particulars/dredge-more-city/dredge-more-city';
 import { PopoverContentPage } from "../pages/home/particulars/dredge-more-city/popover-content/popover-content";
+
+import { ParticularsHomePage } from '../pages/particulars-home/particulars-home';
+import { ParticularsHomeDetailsPage } from '../pages/particulars-home-details/particulars-home-details';
 /*————————————————————————————————分类页————————————————————————————————*/
 import { SubnavPage1Page } from '../pages/classify/subnav-page1/subnav-page1';
 import { SubnavPage2Page } from '../pages/classify/subnav-page2/subnav-page2';
@@ -127,12 +131,15 @@ import { BarcodeScanner } from "@ionic-native/barcode-scanner";
 /*————————————————————————————————插件————————————————————————————————*/
 import { CityPickerModule } from "ionic2-city-picker/dist/city-picker.module";
 import { IonicImageViewerModule } from 'ionic-img-viewer';
+<<<<<<< HEAD
 
 import { ImgLazyLoadDirective } from '../directives/img-lazy-load/img-lazy-load';
 import { ImgLazyLoadComponent } from "../components/img-lazy-load/img-lazy-load";
 import { AdsClickDirective } from '../directives/ads-click/ads-click';
 import { ViewfabDirective } from '../directives/viewfab/viewfab';
 // import { PopoverHomePage } from "../pages/home/popover-home/popover-home";
+=======
+>>>>>>> 8f604f7da2ab803383686a544154d0f6e4a63fce
 
 @NgModule({
   declarations: [
@@ -145,7 +152,8 @@ import { ViewfabDirective } from '../directives/viewfab/viewfab';
     /*——————————————————购物车——————————————————*/
     CarPage,
     /*——————————————————home栏——————————————————*/
-    HomePage,CityPage, SearchPage, DetailsPage, BrandListPage, AttentionPage, FastbuyPage, GlassesDesignPage, IntegralstorePage, RechargePage, WhitebarPage, DiscountCouponPage, MessagePage, ParticularsPage, ParticularsModalPage, DredgeMoreCityPage, PopoverContentPage, ParticularsModalAttrPage, MessageDetailsPage, PresellPage, JifenHistoryPage, DuihuanDetailsPage, DuihuanDetailsFinishPage,
+    HomePage,ParticularsHomePage,ParticularsHomeDetailsPage,
+    CityPage, SearchPage, DetailsPage, BrandListPage, AttentionPage, FastbuyPage, GlassesDesignPage, IntegralstorePage, RechargePage, WhitebarPage, DiscountCouponPage, MessagePage, ParticularsPage, ParticularsModalPage, DredgeMoreCityPage, PopoverContentPage, ParticularsModalAttrPage, MessageDetailsPage, PresellPage, JifenHistoryPage, DuihuanDetailsPage, DuihuanDetailsFinishPage,
     /*——————————————————分类栏——————————————————*/
     ClassifyPage, SubnavPage1Page, SubnavPage2Page, MoreBrandPage,
     /*——————————————————我的栏——————————————————*/
@@ -187,7 +195,8 @@ import { ViewfabDirective } from '../directives/viewfab/viewfab';
     /*——————————————————购物车——————————————————*/
     CarPage,
     /*——————————————————home栏——————————————————*/
-    HomePage,CityPage, SearchPage, DetailsPage, BrandListPage, AttentionPage, FastbuyPage, GlassesDesignPage, IntegralstorePage, RechargePage, WhitebarPage, DiscountCouponPage, MessagePage, ParticularsPage, ParticularsModalPage, DredgeMoreCityPage, PopoverContentPage, ParticularsModalAttrPage, MessageDetailsPage, PresellPage, JifenHistoryPage, DuihuanDetailsPage, DuihuanDetailsFinishPage,
+     HomePage,ParticularsHomePage,ParticularsHomeDetailsPage,
+    CityPage, SearchPage, DetailsPage, BrandListPage, AttentionPage, FastbuyPage, GlassesDesignPage, IntegralstorePage, RechargePage, WhitebarPage, DiscountCouponPage, MessagePage, ParticularsPage, ParticularsModalPage, DredgeMoreCityPage, PopoverContentPage, ParticularsModalAttrPage, MessageDetailsPage, PresellPage, JifenHistoryPage, DuihuanDetailsPage, DuihuanDetailsFinishPage,
     /*——————————————————分类栏——————————————————*/
     ClassifyPage, SubnavPage1Page, SubnavPage2Page, MoreBrandPage,
     /*——————————————————我的栏——————————————————*/

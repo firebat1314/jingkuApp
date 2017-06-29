@@ -11,6 +11,7 @@ import { ParticularsModalAttrPage } from "./particulars-modal-attr/particulars-m
 import { BrandListPage } from "../brand-list/brand-list";
 import { CarPage } from "../../car/car";
 import { Storage } from '@ionic/storage';
+import { ParticularsHomePage } from '../../particulars-home/particulars-home';
 
 /*
   Generated class for the Particulars page.
@@ -56,6 +57,9 @@ export class ParticularsPage {
     this.goodsId = this.navParams.get('goodsId') || '3994';/*3994 5676*/
     console.log("商品ID:", this.goodsId);
   }
+  goParticularsHome() {
+		this.navCtrl.push(ParticularsHomePage);
+	}
   ionViewDidLoad() {
     this.getHttpDetails();
     console.log('ionViewDidLoad ParticularsPage');

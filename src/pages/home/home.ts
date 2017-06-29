@@ -1,4 +1,5 @@
 import { Component, ViewChild } from '@angular/core';
+// import { IonicPage } from 'ionic-angular';
 
 import { NavController, Events, Slides, Content, FabButton, PopoverController, IonicPage } from 'ionic-angular';
 import { FormBuilder } from '@angular/forms';
@@ -25,7 +26,12 @@ import { HttpService } from "../../providers/http-service";
 import { Native } from "../../providers/native";
 
 import { Storage } from '@ionic/storage';
+<<<<<<< HEAD
 // import { PopoverHomePage } from "./popover-home/popover-home";
+=======
+
+
+>>>>>>> 8f604f7da2ab803383686a544154d0f6e4a63fce
 // @IonicPage()
 @Component({
   selector: 'page-home',

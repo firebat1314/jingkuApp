@@ -64,7 +64,7 @@ export class BrandListPage {
 			this.getListData();
 		});
 		this.events.subscribe('car:updata', () => {
-			this.getCarNumver();
+			this.getCarNumver(); 
 		});
 	}
 	ngAfterViewChecked() {

@@ -1,0 +1,165 @@
+page-particulars-home-details {
+    .details-shopName{
+        height:9rem;
+        background:#fff;
+        border-bottom: 1px solid #e6e6e6;
+        padding: 3% 0 0 3%;
+        .shop-logo{
+            width:7rem;
+            height:7rem;
+            border-radius: 50%;
+            background:url(../assets/images/images/bannerShopLogo.png) no-repeat center #f5f5f5;
+            background-size: 9rem 7rem;
+            float:left;
+            margin-right: 3%;
+        }
+        h2{
+            width:60%;
+            float:left;
+            color:#666;
+            font-size: 2rem;
+            font-weight: normal;
+            text-overflow: ellipsis;
+            overflow: hidden;
+            white-space: nowrap;
+        }
+        p{
+            width:60%;
+            margin: 0;
+            float:left;
+            color:#999;
+            img{
+                width:1.6rem;
+                height:1.6rem;
+                float:left;
+                margin-right: 5%;
+            }
+            span{
+                float:left;
+            }
+        }
+    }
+    .details-fenlei-nav{
+        height:7rem;
+        background: #fff;
+        border-bottom: 1px solid #e6e6e6;
+        padding-top: 3%;
+        .fenlei-nav{
+            width:33.3%;
+            height:5rem;
+            border-right:1px solid #e6e6e6;
+            float:left;
+            &:last-child{
+                border-right:none;
+            }
+            .fenlei-nav-img{
+                height:3rem;
+                background: url(../assets/images/images/all.png) no-repeat center top;
+                background-size: 2rem 2rem;
+            }
+            .new{
+                background: url(../assets/images/images/new.png) no-repeat center top;
+                background-size: 2.5rem 2.5rem;
+            }
+            .cuxiao{
+                background: url(../assets/images/images/sale.png) no-repeat center top;
+                background-size: 2.5rem 2rem;
+            }
+            p{
+                margin: 0;
+                color:#666;
+                font-size: 1.6rem;
+                text-align: center;
+            }
+        }
+    }
+    .sale-info-content{
+        height:20rem;
+        background: #fff;
+        margin-top:3%;
+        .sale-info-item{
+            height:5rem;
+            border-bottom: 1px solid #e6e6e6;
+            background: url(../assets/images/images/smile.png) no-repeat 96% center;
+            padding-left: 5%;
+            span{
+                line-height:5rem;
+                color:#666;
+                font-size: 1.6rem;
+                margin-right: 5%;
+            }
+        }
+        .phone{
+              background: url(../assets/images/images/phone.png) no-repeat 96% center;  
+        }
+        .erweima{
+             background: url(../assets/images/images/erweima.png) no-repeat 96% center;  
+        }
+        .shenfenzheng{
+             background: url(../assets/images/images/shenfenzheng.png) no-repeat 96% center;  
+        }
+    }
+    .shop-info-content{
+        height:15rem;
+        background: #fff;
+        margin-top: 3%;
+        .shop-info-item{
+            height:5rem;
+            border-bottom: 1px solid #e6e6e6;
+            padding-left: 5%;
+            span{
+                line-height:5rem;
+                color:#666;
+                font-size: 1.6rem;
+                margin-right: 5%;
+            }
+        }
+    }
+    .shop-fashion-tit{
+        height:5rem;
+        background: #fff;
+        padding-left: 5%;
+         margin-top: 3%;
+        span{
+                line-height:5rem;
+                color:#666;
+                font-size: 1.6rem;
+        }
+    }
+    .shop-fashion-content{
+        height:10rem;
+        border-bottom: 1px solid #e6e6e6;
+        padding: 3% 5% 0 5%;
+        .shop-fashion-item{
+            width:45%;
+            height:3rem;
+            background: #fff;
+            text-align: center;
+            float:left;
+            margin-right: 5%;
+            margin-bottom: 5%;
+            span{
+                display: inline-block;
+                line-height:3rem;
+                color:#666;
+                font-size: 1.6rem;
+            }
+        }
+    }
+    .shop-details-more-fashion{
+        height:6rem;
+        background: #fff;
+        .into-more-fashion{
+            height:4rem;
+            border-bottom: 1px solid #e6e6e6;
+            span{
+                line-height: 4rem;
+                color:#666;
+                font-size: 1.6rem;
+                display: inline-block;
+                float:right;
+                margin-right: 5%;
+            }
+        }
+    }
+}

@@ -15,8 +15,13 @@ export class HttpService {
   public HAS_LOGGED_IN = "hasLoggedIn";
   public hasLogin = false;
   // private ip = 'http://v402app.jingkoo.net';
+<<<<<<< HEAD
   private ip = 'http://app.jingku.cn';
   // private ip = 'http://hl.jingkoo.net/';
+=======
+  // private ip = 'http://app.jingku.cn';
+  private ip = 'http://newm.jingkoo.net';
+>>>>>>> 8f604f7da2ab803383686a544154d0f6e4a63fce
 
   constructor(public http: UserData, private storage: Storage) {
     console.log('Hello HttpService Provider');
