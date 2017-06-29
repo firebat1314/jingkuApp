@@ -82,8 +82,10 @@ export class ChangePhoneNumberPage {
       skey: this.skey
     }).then((data) => {
       if (data.status == 1) {
-        this.verifyImg = data.data.captcha + '?' + Math.random();
+        var verifyImgSrc = data.data.captcha
+        this.verifyImg = verifyImgSrc + '?' + Math.random();
         this.skey = data.data.skey;
+        verifyImgSrc = null;
       }
     });
   }

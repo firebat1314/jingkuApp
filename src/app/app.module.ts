@@ -172,10 +172,10 @@ import { ShopAllFashionPage } from "../pages/shop-all-fashion/shop-all-fashion";
     IonicImageViewerModule,
     IonicModule.forRoot(MyApp, {
       backButtonText: '',
-      // mode:'md',
+      mode:'md',
       tabsHideOnSubPages: true,
       tabsPlacement: 'bottom',
-      activator: "highlight"
+      // activator: "highlight"
     }),
     IonicStorageModule.forRoot(),
     HttpModule,

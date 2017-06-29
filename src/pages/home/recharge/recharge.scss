@@ -21,6 +21,15 @@ page-recharge {
         .item {
             color: #666;
             border-bottom: 1px solid #e0e0e0;
+            .input {
+                .text-input {
+                    margin-left: 0;
+                    margin-right: 0;
+                }
+            }
+            .label {
+                margin-right: 0;
+            }
         }
         .note {
             display: block;
@@ -38,6 +47,7 @@ page-recharge {
         padding: 10px;
         background: #fff;
         margin: 0 12px 10px;
+        border-radius: 3px;
         .item {
             border-bottom: 1px solid #e0e0e0 !important;
             height: 5rem;

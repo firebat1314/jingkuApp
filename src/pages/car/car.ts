@@ -107,7 +107,6 @@ export class CarPage {
    */
   numberChangeI(event, item) {
     this.httpService.changeNumCart({ rec_id: item.rec_id, number: event }).then((res) => {
-      console.log(res)
       if (res.status == 1) {
         item.goods_number = event
         item.inputLock = false;
