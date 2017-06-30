@@ -28,7 +28,8 @@
                 </div>
             </div>
             <p>北京沙福隆官方旗舰店</p>
-            <p><img img-lazy-load="./assets/images/images/heart.png" alt=""><i>收藏</i></p>
+            <p>
+                <ion-icon name="md-heart-outline"></ion-icon><span>收藏</span></p>
         </div>
     </div>
     <div class="shop-tabs">
@@ -55,54 +56,33 @@
                 <p>2017 NEW ARRIVAL</p>
                 <p>新品推荐</p>
             </div>
+
             <div class="new-arrival-goods-box">
-                <div class="new-arrival-goods" *ngFor="let item of data?.goods">
+                <div class="new-arrival-goods" *ngFor="let item of data?.new_list">
                     <img img-lazy-load="{{item.goods_img}}" alt="">
                     <div class="price">
                         <!--<i>￥</i> -->
-                        <span>{{item.market_price}}</span>
-                        <button>立即抢购</button>
+                        <span>{{item.shop_price}}</span>
+                        <button (click)="goParticularsPage(item.goods_id)">立即抢购</button>
                     </div>
                 </div>
-                <!--<div class="new-arrival-goods">
-                <img img-lazy-load="./assets/icon/newGoods.png" alt="">
-                <div class="price">
-                  <i>￥</i><span>520.00</span>
-                  <button>立即抢购</button>
-                </div>
-              </div>
-              <div class="new-arrival-goods">
-                <img img-lazy-load="./assets/icon/newGoods.png" alt="">
-                <div class="price">
-                  <i>￥</i><span>520.00</span>
-                  <button>立即抢购</button>
-                </div>
-              </div>
-              <div class="new-arrival-goods">
-                <img img-lazy-load="./assets/icon/newGoods.png" alt="">
-                <div class="price">
-                  <i>￥</i><span>520.00</span>
-                  <button>立即抢购</button>
-                </div>
-              </div>-->
             </div>
+
             <div class="new-arrival">
                 <p>Popularity list</p>
                 <p>人气单品</p>
             </div>
+
             <div class="new-arrival-goods-box">
-                <div class="new-arrival-goods">
-                    <img img-lazy-load="./assets/icon/newGoods.png" alt="">
-                    <div class="price">
-                        <i>￥</i><span>520.00</span>
-                        <button>立即抢购</button>
-                    </div>
-                </div>
-                <div class="new-arrival-goods">
-                    <img img-lazy-load="./assets/icon/newGoods.png" alt="">
-                    <div class="price">
-                        <i>￥</i><span>520.00</span>
-                        <button>立即抢购</button>
+                <div class="allGoods-box">
+                    <div class="allGoods-items" *ngFor="let item of data?.hot_list" tappable (click)="goParticularsPage(item.goods_id)">
+                        <div class="allGoods-items-img">
+                            <img img-lazy-load="{{item.goods_img}}" alt="{{item.name}}">
+                        </div>
+                        <div class="allGoods-items-info">
+                            <p>{{item.name}}</p>
+                            <p>{{item.shop_price}}</p>
+                        </div>
                     </div>
                 </div>
             </div>

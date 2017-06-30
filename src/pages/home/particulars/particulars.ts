@@ -57,7 +57,12 @@ export class ParticularsPage {
     this.goodsId = this.navParams.get('goodsId') || '3994';/*3994 5676*/
     console.log("商品ID:", this.goodsId);
   }
-  ngOnInit() {
+
+/*  ionViewDidEnter(){
+
+  }*/
+  ionViewDidLoad() {
+    console.log('ionViewDidLoad ParticularsPage');
     this.getHttpDetails();
     this.events.subscribe('particulars:goCarPage', () => {
       this.navCtrl.push(CarPage);
@@ -68,12 +73,6 @@ export class ParticularsPage {
     this.events.subscribe('car:goodsCount', (res) => {
       this.badgeCount = res;
     })
-  }
-/*  ionViewDidEnter(){
-
-  }*/
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad ParticularsPage');
   }
   ngOnDestroy() {
     this.events.unsubscribe('particulars:goCarPage');
@@ -227,7 +226,7 @@ export class ParticularsPage {
     // this.navCtrl.push(AccountServicePage)
   }
   goParticularsHome() {
-    this.navCtrl.push(ParticularsHomePage);
+    this.navCtrl.push(ParticularsHomePage, { supplierId: this.getGoodsInfo.supplier_info.id });
   }
   goStore() {
     this.navCtrl.push(BrandListPage, { supplierId: this.getGoodsInfo.supplier_info.id })

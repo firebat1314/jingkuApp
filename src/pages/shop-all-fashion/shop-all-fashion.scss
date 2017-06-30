@@ -1,3 +1,36 @@
 page-shop-all-fashion {
-
+    .all-fashion-tit{
+        height:5rem;
+        padding-left: 5%;
+        span{
+            line-height: 5rem;
+            display: inline-block;
+            color:#4d4d4d;
+            font-size: 1.5rem;
+            font-weight: normal;
+        }
+    }
+    .all-fashion-content{
+        height:auto;
+        padding: 0 5% 0 5%;
+        .all-fashion-item{
+            width:45%;
+            height:4rem;
+            background: #fff;
+            text-align: center;
+            float:left;
+            margin-right: 5%;
+            margin-bottom: 5%;
+            span{
+                width:100%;
+                display: inline-block;
+                line-height:4rem;
+                color:#666;
+                font-size: 1.6rem;
+                text-overflow: ellipsis;
+                overflow: hidden;
+                white-space: nowrap;
+            }
+        }
+    }
 }

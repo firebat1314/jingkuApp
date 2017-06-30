@@ -2,6 +2,7 @@ import { Component, Renderer, ElementRef } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { HttpService } from "../../providers/http-service";
 import { ParticularsHomeDetailsPage } from "../particulars-home-details/particulars-home-details";
+import { ParticularsPage } from "../home/particulars/particulars";
 
 
 /**
@@ -19,11 +20,16 @@ export class ParticularsHomePage {
   data: any;
   classShop: any = "shopHome";
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, private el: ElementRef, private renderer: Renderer, private httpService: HttpService) {
-    this.httpService.categoryGoods({ supplier_id: navParams.get('supplierId') }).then((res) => {
+  constructor(
+    public navCtrl: NavController,
+    public navParams: NavParams,
+    private el: ElementRef,
+    private renderer: Renderer,
+    private httpService: HttpService
+  ) {
+    this.httpService.suppliersIndex({ supplier_id: navParams.get('supplierId') }).then((res) => {
       if (res.status == 1) {
         this.data = res;
-        console.log(res);
       }
     })
   }
@@ -76,8 +82,8 @@ export class ParticularsHomePage {
         }, 100);
       }
     }
-
-
-
+  }
+  goParticularsPage(goods_id){
+    this.navCtrl.push(ParticularsPage,{goodsId:goods_id})
   }
 }
