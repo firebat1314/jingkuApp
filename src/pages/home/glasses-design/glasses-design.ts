@@ -2,7 +2,6 @@ import { Component, ViewChild } from '@angular/core';
 import { NavController, NavParams, Content, Events } from 'ionic-angular';
 import { HttpService } from "../../../providers/http-service";
 import { ParticularsPage } from "../particulars/particulars";
-import { ClickBanner } from "../../../providers/ClickBanner";
 
 /*
   Generated class for the GlassesDesign page.
@@ -19,7 +18,6 @@ export class GlassesDesignPage {
   img: any;
   class: any;
   banner: any;
-  adClick:ClickBanner = new ClickBanner(this.navCtrl,this.events);
   @ViewChild(Content) content: Content;
   constructor(
     public navCtrl: NavController,

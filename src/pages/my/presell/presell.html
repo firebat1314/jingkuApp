@@ -18,7 +18,7 @@
                 <div class="top-scrollbar">
                     <div *ngFor="let item of getCategorys;let i = index" tappable (click)="getList(i)">
                         <div class="select" *ngIf="checkedIndex==i"></div>
-                        <div><img src="{{item.thumb}}" alt="{{item.cat_name}}"></div>
+                        <div><img img-lazy-load="{{item.thumb}}" alt="{{item.cat_name}}"></div>
                         <span>{{item.cat_name}}</span>
                     </div>
                 </div>

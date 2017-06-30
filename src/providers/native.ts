@@ -65,7 +65,7 @@ export class Native {
 
 		if (this.isMobile()) {
 			console.log('isMobile:', this.isMobile())
-			this.toast.show(message, '500', 'center').subscribe((toast) => {
+			this.toast.show(message, '500', 'bottom').subscribe((toast) => {
 				console.log(toast);
 			});
 		} else {

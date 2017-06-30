@@ -18,7 +18,7 @@
         <ion-item *ngFor="let item of data?.list;">
             <h2>{{item.title}}</h2>
             <p>{{item.change_time}}</p>
-            <h1 item-right ion-text [color]="item.number>0?'danger':''">{{item.number}}</h1>
+            <span item-right ion-text [color]="item.number>0?'danger':'dark'">{{item.number}}</span>
         </ion-item>
     </ion-list>
 

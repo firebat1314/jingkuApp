@@ -137,7 +137,6 @@ import { ViewfabDirective } from '../directives/viewfab/viewfab';
 
 import { ParticularsHomePage } from '../pages/particulars-home/particulars-home';
 import { ParticularsHomeDetailsPage } from '../pages/particulars-home-details/particulars-home-details';
-import { ShopAllFashionPage } from "../pages/shop-all-fashion/shop-all-fashion";
 
 @NgModule({
   declarations: [
@@ -150,7 +149,7 @@ import { ShopAllFashionPage } from "../pages/shop-all-fashion/shop-all-fashion";
     /*——————————————————购物车——————————————————*/
     CarPage,
     /*——————————————————home栏——————————————————*/
-    HomePage,ParticularsHomePage,ParticularsHomeDetailsPage,ShopAllFashionPage,
+    HomePage,ParticularsHomePage,ParticularsHomeDetailsPage,
     CityPage, SearchPage, DetailsPage, BrandListPage, AttentionPage, FastbuyPage, GlassesDesignPage, IntegralstorePage, RechargePage, WhitebarPage, DiscountCouponPage, MessagePage, ParticularsPage, ParticularsModalPage, DredgeMoreCityPage, PopoverContentPage, ParticularsModalAttrPage, MessageDetailsPage, PresellPage, JifenHistoryPage, DuihuanDetailsPage, DuihuanDetailsFinishPage,
     /*——————————————————分类栏——————————————————*/
     ClassifyPage, SubnavPage1Page, SubnavPage2Page, MoreBrandPage,

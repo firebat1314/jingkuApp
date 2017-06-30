@@ -43,7 +43,7 @@
                 </p>
             </div>
         </div>
-        <div class="price_time" *ngIf="getGoodsInfo?.promotion">
+        <!--<div class="price_time" *ngIf="getGoodsInfo?.promotion">
             <div class="left">
                 <p [innerHtml]="getGoodsInfo?.promotion.title"></p>
             </div>
@@ -55,7 +55,7 @@
                     <countdown [endDate]="getGoodsInfo.promotion.end_time_num"></countdown>
                 </p>
             </div>
-        </div>
+        </div>-->
         <div class="fore info" *ngIf="getGoodsInfo">
             <div class="title">
                 {{getGoodsInfo?.data?.goods_name}}
@@ -165,13 +165,13 @@
                     <span>热销</span>
                 </div>
             </div>
-            <div class="btn">
+            <!--<div class="btn">
                 <button (click)="goParticularsHome()" ion-button icon-right icon-left color="dark" outline>
                     <ion-icon name="shop"></ion-icon>
                     进入店铺
                     <ion-icon name="ios-arrow-forward"></ion-icon>
                 </button>
-            </div>
+            </div>-->
             <div mode="ios" ion-item detail-push *ngIf="getGoodsInfo?.supplier_info?.inv_type!=0">
                 <div class="note-wrap">
                     <!--<ion-note><ion-icon><img src="./assets/icon/images/particulars_2_20.jpg"></ion-icon>担保交易</ion-note>
