@@ -24,7 +24,7 @@
     <h4 padding-left>我的会员</h4>
     <div class="level" margin-horizontal>
         <div class="number">
-            <span style="color: #5169b5;">{{data?.rank_points||'0'}}</span>/{{data?.max_points}}</div>
+            <span style="color: #5169b5;">{{data?.rank_points||'0'}}</span>/{{data?.max_points||'0'}}</div>
         <div class="progress">
             <div class="bg">
                 <div class="show" [ngStyle]="{'width.%':data?.bai}"></div>
@@ -37,7 +37,7 @@
             </div>
         </div>
         <div class="txt">
-            <span>目前等级：{{rankName}} <br/>下一等级：{{nextRankName}} <br/> 所需积分：{{nextRank}}积分</span>
+            <span>目前等级：{{rankName||'--'}} <br/>下一等级：{{nextRankName||'--'}} <br/> 所需积分：{{nextRank||'--'}}积分</span>
         </div>
     </div>
 </ion-content>

@@ -43,9 +43,9 @@
                 </p>
             </div>
         </div>
-        <div class="price_time" *ngIf="getGoodsInfo?.promotion">
+        <!--<div class="price_time" *ngIf="getGoodsInfo?.promotion">
             <div class="left">
-                <p>{{getGoodsInfo?.promotion.title}}</p>
+                <p [innerHtml]="getGoodsInfo?.promotion.title"></p>
             </div>
             <div class="right" [ngSwitch]="getGoodsInfo.promotion.type">
                 <p *ngSwitchCase="2">距离活动结束还剩：</p>
@@ -55,7 +55,7 @@
                     <countdown [endDate]="getGoodsInfo.promotion.end_time_num"></countdown>
                 </p>
             </div>
-        </div>
+        </div>-->
         <div class="fore info" *ngIf="getGoodsInfo">
             <div class="title">
                 {{getGoodsInfo?.data?.goods_name}}
@@ -165,13 +165,13 @@
                     <span>热销</span>
                 </div>
             </div>
-            <div class="btn">
+            <!--<div class="btn">
                 <button (click)="goParticularsHome()" ion-button icon-right icon-left color="dark" outline>
                     <ion-icon name="shop"></ion-icon>
                     进入店铺
                     <ion-icon name="ios-arrow-forward"></ion-icon>
                 </button>
-            </div>
+            </div>-->
             <div mode="ios" ion-item detail-push *ngIf="getGoodsInfo?.supplier_info?.inv_type!=0">
                 <div class="note-wrap">
                     <!--<ion-note><ion-icon><img src="./assets/icon/images/particulars_2_20.jpg"></ion-icon>担保交易</ion-note>
@@ -194,7 +194,7 @@
             <div ion-item mode="ios" no-lines>
                 <ion-icon item-left name="ios-pin-outline"></ion-icon>
                 <ion-note>{{getGoodsInfo?.supplier_info?.region}}</ion-note>
-                <div ion-button icon-only item-right clear (click)="openCallNumber()">
+                <div ion-button icon-only item-right clear tappable (click)="openCallNumber()">
                     <ion-icon name="ios-call"></ion-icon>
                 </div>
             </div>
@@ -219,7 +219,7 @@
                             <div class="goods">
                                 <div class="top">
                                     <ion-checkbox mode="ios"></ion-checkbox>
-                                    <img src="{{item.goods_thumb}}" alt="">
+                                    <img img-lazy-load="{{item.goods_thumb}}" alt="">
                                 </div>
                                 <div class="bottom">
                                     <h6>{{item.short_name}}</h6>
@@ -233,10 +233,10 @@
                     <div *ngIf="!getCategoryRecommendGoodsHot" margin-left>无组合套餐</div>
                     <ion-slides slidesPerView="3" pager>
                         <ion-slide *ngFor="let item of getCategoryRecommendGoodsHot">
-                            <div class="goods" (click)="goParticularsPage(item.id)">
+                            <div class="goods" tappable (click)="goParticularsPage(item.id)">
                                 <div class="top">
                                     <!--<ion-checkbox mode="ios"></ion-checkbox>-->
-                                    <img src="{{item.goods_img}}" alt="">
+                                    <img img-lazy-load="{{item.goods_img}}" alt="">
                                 </div>
                                 <div class="bottom">
                                     <h6>{{item.short_name}}</h6>
@@ -285,23 +285,23 @@
 <ion-footer>
     <div class="main">
         <div class="left" [ngSwitch]="getGoodsInfo?.data?.is_collect">
-            <div (click)="goAccountServicePage()">
+            <div tappable (click)="goAccountServicePage()">
                 <ion-icon style="font-weight: 700;" name="mess"></ion-icon>
                 <span>客服</span>
             </div>
-            <div *ngSwitchCase="1" (click)="beCareFor()">
+            <div *ngSwitchCase="1" tappable (click)="beCareFor()">
                 <ion-icon style="font-weight: 700;" color="danger" name="ios-heart"></ion-icon>
                 <span>已关注</span>
             </div>
-            <div *ngSwitchCase="0" (click)="beCareFor()">
+            <div *ngSwitchCase="0" tappable (click)="beCareFor()">
                 <ion-icon style="font-weight: 700;" name="ios-heart-outline"></ion-icon>
                 <span>关注</span>
             </div>
-            <div *ngSwitchDefault (click)="beCareFor()">
+            <div *ngSwitchDefault tappable (click)="beCareFor()">
                 <ion-icon style="font-weight: 700;" name="ios-heart-outline"></ion-icon>
                 <span>关注</span>
             </div>
-            <div (click)="goCart()" class="gocart">
+            <div tappable (click)="goCart()" class="gocart">
                 <ion-icon name="cart">
                     <ion-badge *ngIf="badgeCount!=0" color="danger">{{badgeCount}}</ion-badge>
                 </ion-icon>
@@ -312,8 +312,8 @@
         <div class="right">
             <!--<button color="cancelBtn" no-margin ion-button large full class="modal-button">暂不支持手机下单</button>-->
             <div class="btns">
-                <button color="cancelBtn" no-margin ion-button large full class="modal-button" (click)="presentModalAttr()">加入购物车</button>
-                <button color="modalBtn" no-margin ion-button large full class="modal-button" (click)="presentModalAttr()">立即购买</button>
+                <button color="cancelBtn" no-margin ion-button large full class="modal-button" tappable (click)="presentModalAttr()">加入购物车</button>
+                <button color="modalBtn" no-margin ion-button large full class="modal-button" tappable (click)="presentModalAttr()">立即购买</button>
             </div>
         </div>
     </div>

@@ -393,4 +393,7 @@ export class HttpService {
   indexs(data?: Object){//首页统一
     return this.http.get(this.ip + '/Index/indexs', data)
   }
+  suppliersIndex(data?: Object){//店铺首页
+    return this.http.get(this.ip + '/Category/suppliers_index', data)
+  }
 }

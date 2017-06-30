@@ -36,8 +36,8 @@ export class PopoverHomePage {
   }
   openScanner(){
     this.native.openBarcodeScanner().then((res)=>{
-      this.native.openAlertBox(res['format'],()=>{
-        console.log(res['text'])
+      this.native.openAlertBox(res['test'],()=>{
+        console.log(res['format'])
       })
     }).catch(()=>{
       console.log('openBarcodeScanner error')

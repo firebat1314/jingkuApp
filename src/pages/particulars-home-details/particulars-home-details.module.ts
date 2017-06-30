@@ -4,13 +4,13 @@ import { ParticularsHomeDetailsPage } from './particulars-home-details';
 
 @NgModule({
   declarations: [
-    ParticularsHomeDetailsPage,
+    // ParticularsHomeDetailsPage,
   ],
   imports: [
     IonicPageModule.forChild(ParticularsHomeDetailsPage),
   ],
   exports: [
-    ParticularsHomeDetailsPage
+    // ParticularsHomeDetailsPage
   ]
 })
 export class ParticularsHomeDetailsPageModule {}

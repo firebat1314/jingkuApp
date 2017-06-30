@@ -17,10 +17,8 @@ declare var pingpp: any;
   templateUrl: 'recharge.html'
 })
 export class RechargePage {
-  msg: any;
   payCode: any;
   payList: any;
-  payListImg: Array<any> = ['./assets/images/images/tchu1.jpg', './assets/images/images/tchu2.jpg']
   constructor(
     public navCtrl: NavController,
     public navParams: NavParams,
@@ -38,10 +36,6 @@ export class RechargePage {
   getAccountPayList() {
     this.httpService.getAccountPayList().then((res) => {
       this.payList = res;
-      console.log(this.payList)
-      console.log(this.payList.data)
-      console.log(this.payList.data[0])
-      this.msg = this.payList.data[0].pay_desc;
     })
   }
   onSubmit(money, type) {
@@ -61,7 +55,7 @@ export class RechargePage {
                 if (res.status == 1) {
                   this.alertCtrl.create({
                     title: '汇款须知',
-                    subTitle: this.msg,
+                    subTitle: this.payList.data[0].pay_desc,
                     buttons: [{
                       text: '个人中心',
                       handler: () => {

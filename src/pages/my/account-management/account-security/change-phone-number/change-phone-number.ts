@@ -34,6 +34,9 @@ export class ChangePhoneNumberPage {
     console.log('ionViewDidLoad ChangePhoneNumberPage');
     this.getSkey()
   }
+  ngOnDestroy() {
+    clearInterval(this.timer);
+  }
 
   private wait: number = 60;
   private disabled: Boolean = false;
@@ -82,7 +85,8 @@ export class ChangePhoneNumberPage {
       skey: this.skey
     }).then((data) => {
       if (data.status == 1) {
-        this.verifyImg = data.data.captcha + '?' + Math.random();
+        var verifyImgSrc = data.data.captcha
+        this.verifyImg = verifyImgSrc + '?' + Math.random();
         this.skey = data.data.skey;
       }
     });
@@ -118,8 +122,5 @@ export class ChangePhoneNumberPage {
         });
       }
     })
-  }
-  ngOnDestroy() {
-    clearInterval(this.timer);
   }
 }

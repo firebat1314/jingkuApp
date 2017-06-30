@@ -46,9 +46,12 @@ import { PresellPage } from "../pages/my/presell/presell";
 import { DredgeMoreCityPage } from '../pages/home/particulars/dredge-more-city/dredge-more-city';
 import { PopoverContentPage } from "../pages/home/particulars/dredge-more-city/popover-content/popover-content";
 
+<<<<<<< HEAD
 import { ParticularsHomePage } from '../pages/particulars-home/particulars-home';
 import { ParticularsHomeDetailsPage } from '../pages/particulars-home-details/particulars-home-details';
 import { ShopAllFashionPage } from '../pages/shop-all-fashion/shop-all-fashion';
+=======
+>>>>>>> 6b90f3b2adefe2887ba419ccaf869f3b456ad2c8
 /*————————————————————————————————分类页————————————————————————————————*/
 import { SubnavPage1Page } from '../pages/classify/subnav-page1/subnav-page1';
 import { SubnavPage2Page } from '../pages/classify/subnav-page2/subnav-page2';
@@ -138,6 +141,9 @@ import { AdsClickDirective } from '../directives/ads-click/ads-click';
 import { ViewfabDirective } from '../directives/viewfab/viewfab';
 // import { PopoverHomePage } from "../pages/home/popover-home/popover-home";
 
+import { ParticularsHomePage } from '../pages/particulars-home/particulars-home';
+import { ParticularsHomeDetailsPage } from '../pages/particulars-home-details/particulars-home-details';
+
 @NgModule({
   declarations: [
     MyApp,
@@ -174,7 +180,7 @@ import { ViewfabDirective } from '../directives/viewfab/viewfab';
       mode:'ios',
       tabsHideOnSubPages: true,
       tabsPlacement: 'bottom',
-      activator: "highlight"
+      // activator: "highlight"
     }),
     IonicStorageModule.forRoot(),
     HttpModule,

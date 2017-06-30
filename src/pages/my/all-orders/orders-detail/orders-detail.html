@@ -31,7 +31,7 @@
             {{data?.order?.suppliers_name}}&nbsp;
             <ion-icon name="ios-arrow-forward"></ion-icon>
         </ion-item-divider>
-        <ion-item no-lines (click)="goParticularsPage(item.goods_id)" *ngFor="let item of data?.goods_list;">
+        <ion-item no-lines tappable (click)="goParticularsPage(item.goods_id)" *ngFor="let item of data?.goods_list;">
             <ion-thumbnail item-left>
                 <img img-lazy-load="{{item.thumb}}">
             </ion-thumbnail>

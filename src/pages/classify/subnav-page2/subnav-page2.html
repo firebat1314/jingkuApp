@@ -10,7 +10,7 @@
     <ion-list>
         <div *ngFor="let group of getChildrenCaCtegory">
             <div class="collapsible-header">
-                <ion-item (click)="onEvent(group.cat_id,$event)" padding-left>
+                <ion-item tappable (click)="onEvent(group.cat_id,$event)" padding-left>
                     <h2>{{group.cat_name}}</h2>
                     <p> </p>
                     <ion-icon (click)="$event.stopPropagation();group.show=!group.show" *ngIf="group?.cat_list" color="colorsix" [ngClass]="{'rotate': group.show }" name="ios-arrow-down" item-right></ion-icon>

@@ -1,7 +1,9 @@
 page-recharge {
     $thumbnail-width: 32px;
     .content {
-        padding: 10px;
+        &[padding] .scroll-content {
+            padding: 7px;
+        }
         background: #f5f5f5;
     }
     .header-bg {
@@ -10,7 +12,7 @@ page-recharge {
         height: 20px;
         border-radius: 10px;
         margin-bottom: -10px;
-        margin-top: 20px;
+        margin-top: 14px;
     }
     .input-number {
         padding: 0 10px 25px;
@@ -19,6 +21,15 @@ page-recharge {
         .item {
             color: #666;
             border-bottom: 1px solid #e0e0e0;
+            .input {
+                .text-input {
+                    margin-left: 0;
+                    margin-right: 0;
+                }
+            }
+            .label {
+                margin-right: 0;
+            }
         }
         .note {
             display: block;
@@ -36,6 +47,7 @@ page-recharge {
         padding: 10px;
         background: #fff;
         margin: 0 12px 10px;
+        border-radius: 3px;
         .item {
             border-bottom: 1px solid #e0e0e0 !important;
             height: 5rem;

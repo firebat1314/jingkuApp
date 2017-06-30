@@ -14,33 +14,33 @@
 
 
 <ion-content>
-    <div class="fore fore1"><img src="./assets/images/images/shangou_01_01.jpg" alt=""></div>
+    <div class="fore fore1"><img img-lazy-load="./assets/images/images/shangou_01_01.jpg" alt=""></div>
     <div class="fore fore2">
-        <div (click)="content.scrollTo(0,fore3.offsetTop)"><img src="./assets/images/images/shangou_01_03.jpg" alt="">
+        <div tappable (click)="content.scrollTo(0,fore3.offsetTop)"><img img-lazy-load="./assets/images/images/shangou_01_03.jpg" alt="">
             <div class="text">隐形眼镜</div>
         </div>
-        <div (click)="content.scrollTo(0,fore4.offsetTop)"><img src="./assets/images/images/shangou_01_05.jpg" alt="">
+        <div tappable (click)="content.scrollTo(0,fore4.offsetTop)"><img img-lazy-load="./assets/images/images/shangou_01_05.jpg" alt="">
             <div class="text">美瞳</div>
         </div>
-        <div (click)="content.scrollTo(0,fore5.offsetTop)"><img src="./assets/images/images/shangou_01_07.jpg" alt="">
+        <div tappable (click)="content.scrollTo(0,fore5.offsetTop)"><img img-lazy-load="./assets/images/images/shangou_01_07.jpg" alt="">
             <div class="text">护理液</div>
         </div>
-        <div (click)="content.scrollTo(0,fore6.offsetTop)"><img src="./assets/images/images/shangou_01_13.jpg" alt="">
+        <div tappable (click)="content.scrollTo(0,fore6.offsetTop)"><img img-lazy-load="./assets/images/images/shangou_01_13.jpg" alt="">
             <div class="text">太阳镜</div>
         </div>
-        <div (click)="content.scrollTo(0,fore7.offsetTop)"><img src="./assets/images/images/shangou_01_14.jpg" alt="">
+        <div tappable (click)="content.scrollTo(0,fore7.offsetTop)"><img img-lazy-load="./assets/images/images/shangou_01_14.jpg" alt="">
             <div class="text">眼镜架</div>
         </div>
-        <div (click)="content.scrollTo(0,fore8.offsetTop)"><img src="./assets/images/images/shangou_01_16.jpg" alt="">
+        <div tappable (click)="content.scrollTo(0,fore8.offsetTop)"><img img-lazy-load="./assets/images/images/shangou_01_16.jpg" alt="">
             <div class="text">眼镜片</div>
         </div>
     </div>
     <div #fore3 class="fore fore3">
-        <div><img src="./assets/images/images/shangou_01_22.jpg" alt=""></div>
+        <div><img img-lazy-load="./assets/images/images/shangou_01_22.jpg" alt=""></div>
         <div class="singleton-warp">
-            <ion-card *ngFor="let item of data?.data" (click)="goParticularsPage(item.id)">
+            <ion-card *ngFor="let item of data?.data" tappable (click)="goParticularsPage(item.id)">
                 <div class="img">
-                    <img src="{{item.goods_img}}" alt="">
+                    <img img-lazy-load="{{item.goods_img}}" alt="">
                     <div class="time">
                         <ion-icon name="ios-time-outline"></ion-icon>
                         <countdown endDate="{{item.promote_end_date}}"></countdown>
@@ -54,11 +54,11 @@
         </div>
     </div>
     <div #fore4 class="fore fore3">
-        <div><img src="./assets/images/images/shangou_01_24.jpg" alt=""></div>
+        <div><img img-lazy-load="./assets/images/images/shangou_01_24.jpg" alt=""></div>
         <div class="singleton-warp">
-            <ion-card *ngFor="let item of data2?.data" (click)="goParticularsPage(item.id)">
+            <ion-card *ngFor="let item of data2?.data" tappable (click)="goParticularsPage(item.id)">
                 <div class="img">
-                    <img src="{{item.goods_img}}" alt="">
+                    <img img-lazy-load="{{item.goods_img}}" alt="">
                     <div class="time">
                         <ion-icon name="ios-time-outline"></ion-icon>
                         <countdown endDate="{{item.promote_end_date}}"></countdown>
@@ -72,11 +72,11 @@
         </div>
     </div>
     <div #fore5 class="fore fore3">
-        <div><img src="./assets/images/images/shangou_01_27.jpg" alt=""></div>
+        <div><img img-lazy-load="./assets/images/images/shangou_01_27.jpg" alt=""></div>
         <div class="singleton-warp">
-            <ion-card *ngFor="let item of data3?.data" (click)="goParticularsPage(item.id)">
+            <ion-card *ngFor="let item of data3?.data" tappable (click)="goParticularsPage(item.id)">
                 <div class="img">
-                    <img src="{{item.goods_img}}" alt="">
+                    <img img-lazy-load="{{item.goods_img}}" alt="">
                     <div class="time">
                         <ion-icon name="ios-time-outline"></ion-icon>
                         <countdown endDate="{{item.promote_end_date}}"></countdown>
@@ -90,11 +90,11 @@
         </div>
     </div>
     <div #fore6 class="fore fore3">
-        <div><img src="./assets/images/images/shangou_01_29.jpg" alt=""></div>
+        <div><img img-lazy-load="./assets/images/images/shangou_01_29.jpg" alt=""></div>
         <div class="singleton-warp">
-            <ion-card *ngFor="let item of data4?.data" (click)="goParticularsPage(item.id)">
+            <ion-card *ngFor="let item of data4?.data" tappable (click)="goParticularsPage(item.id)">
                 <div class="img">
-                    <img src="{{item.goods_img}}" alt="">
+                    <img img-lazy-load="{{item.goods_img}}" alt="">
                     <div class="time">
                         <ion-icon name="ios-time-outline"></ion-icon>
                         <countdown endDate="{{item.promote_end_date}}"></countdown>
@@ -108,11 +108,11 @@
         </div>
     </div>
     <div #fore7 class="fore fore3">
-        <div><img src="./assets/images/images/shangou_01_32.jpg" alt=""></div>
+        <div><img img-lazy-load="./assets/images/images/shangou_01_32.jpg" alt=""></div>
         <div class="singleton-warp">
-            <ion-card *ngFor="let item of data5?.data" (click)="goParticularsPage(item.id)">
+            <ion-card *ngFor="let item of data5?.data" tappable (click)="goParticularsPage(item.id)">
                 <div class="img">
-                    <img src="{{item.goods_img}}" alt="">
+                    <img img-lazy-load="{{item.goods_img}}" alt="">
                     <div class="time">
                         <ion-icon name="ios-time-outline"></ion-icon>
                         <countdown endDate="{{item.promote_end_date}}"></countdown>
@@ -126,11 +126,11 @@
         </div>
     </div>
     <div #fore8 class="fore fore3">
-        <div><img src="./assets/images/images/shangou_01_34.jpg" alt=""></div>
+        <div><img img-lazy-load="./assets/images/images/shangou_01_34.jpg" alt=""></div>
         <div class="singleton-warp">
-            <ion-card *ngFor="let item of data6?.data" (click)="goParticularsPage(item.id)">
+            <ion-card *ngFor="let item of data6?.data" tappable (click)="goParticularsPage(item.id)">
                 <div class="img">
-                    <img src="{{item.goods_img}}" alt="">
+                    <img img-lazy-load="{{item.goods_img}}" alt="">
                     <div class="time">
                         <ion-icon name="ios-time-outline"></ion-icon>
                         <countdown endDate="{{item.promote_end_date}}"></countdown>
@@ -149,7 +149,7 @@
             {{data?.page}}/{{data?.pages}}
         </button>
     </ion-fab>-->
-    <ion-fab right bottom (click)="scrollToTop()">
-        <button ion-fab color="dark" mini goBackTop></button>
+    <ion-fab right bottom>
+        <button ion-fab color="dark" (click)="scrollToTop()" mini goBackTop></button>
     </ion-fab>
 </ion-content>

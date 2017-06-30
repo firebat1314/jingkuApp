@@ -21,12 +21,12 @@
     <div class="main-content">
         <div class="fore fore1">
             <div class="btns">
-                <div [navPush]="MemberCenterPage">积分 <span class="red">{{totalScore}}</span></div>
-                <div [navPush]="JifenHistoryPage">兑换记录</div>
+                <div tappable [navPush]="MemberCenterPage">积分 <span class="red">{{totalScore}}</span></div>
+                <div tappable [navPush]="JifenHistoryPage">兑换记录</div>
             </div>
         </div>
         <div class="fore fore2">
-            <ion-card *ngFor="let item of data?.list" (click)="goDuihuanDetailsPage(item.goods_id)">
+            <ion-card *ngFor="let item of data?.list" tappable (click)="goDuihuanDetailsPage(item.goods_id)">
                 <div class="img"><img img-lazy-load="{{item.goods_img}}" alt=""></div>
                 <div class="info">
                     <h3>{{item.goods_name}}</h3>
@@ -43,8 +43,8 @@
             {{data?.page}}/{{data?.pages}}
         </button>
     </ion-fab>
-    <ion-fab right bottom (click)="scrollToTop()">
-        <button ion-fab color="dark" mini goBackTop></button>
+    <ion-fab right bottom>
+        <button ion-fab color="dark" mini goBackTop (click)="scrollToTop()"></button>
     </ion-fab>
 
     <ion-infinite-scroll (ionInfinite)="doInfinite($event)">

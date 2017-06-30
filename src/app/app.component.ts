@@ -71,6 +71,7 @@ export class MyApp {
       // Here you can do any higher level native things you might need.
       this.statusBar.styleDefault();
       this.splashScreen.hide();
+      
       if (this.platform.is('mobile') && !this.platform.is('mobileweb')) {
         this.jpushService.initJpush();//初始化极光推送
         this.jpushService.getRegistrationID();

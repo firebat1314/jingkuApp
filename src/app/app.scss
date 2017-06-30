@@ -18,7 +18,7 @@
 
 html {
     // font-size: 57%;
-    overflow-scrolling: auto;
+    -webkit-overflow-scrolling: touch;
     /*touch*/
 }
 
@@ -271,6 +271,8 @@ ion-refresher-content[state=ready] .refresher-pulling-icon {
         margin-left: 10px;
         img {
             margin-left: 5px;
+            min-width: 7rem;
+            max-height: 4rem;
         }
         ion-icon {
             color: #999;

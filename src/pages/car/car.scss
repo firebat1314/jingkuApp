@@ -86,12 +86,18 @@ page-car {
                             background: #f7f7f7;
                             padding: 10px;
                             .attr {
+                                display: flex;
+                                flex-wrap: wrap;
                                 span {
                                     width: 33.33%;
                                     color: #808080;
                                     font-size: 1.1rem;
                                     margin-bottom: 10px;
-                                    display: inline-block;
+                                    /* display: inline-block; */
+                                    /* text-align: center; */
+                                    overflow: hidden;
+                                    text-overflow: ellipsis;
+                                    padding-right: 5px;
                                 }
                             }
                             .bottom {

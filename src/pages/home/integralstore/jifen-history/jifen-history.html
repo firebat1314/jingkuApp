@@ -15,7 +15,7 @@
 
 <ion-content>
     <ion-list>
-        <ion-item mode="ios" detail-push (click)="goDuihuanDetailsFinishPage(item)" *ngFor="let item of data?.list">
+        <ion-item mode="ios" detail-push tappable (click)="goDuihuanDetailsFinishPage(item)" *ngFor="let item of data?.list">
             <ion-thumbnail item-left>
                 <img src="{{item.goods_img}}">
             </ion-thumbnail>

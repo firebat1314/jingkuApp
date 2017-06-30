@@ -14,7 +14,7 @@ export class CountInputComponent {
   
   @Input() value = 0;
   @Input() defaultValue:Number = 0;
-  @Input() lock = false;
+  @Input() lock:boolean = false;
   @Output() updateNumberI: EventEmitter<number> = new EventEmitter();
   constructor() {
     console.log('Hello CountInput Component');

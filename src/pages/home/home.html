@@ -7,7 +7,7 @@
             </button>
         </ion-buttons>
         <ion-searchbar placeholder="搜索镜库商品/店铺" mode="ios"></ion-searchbar>
-        <div class="mark-searchbar" [navPush]="SearchPage"></div>
+        <div class="mark-searchbar" tappable [navPush]="SearchPage"></div>
         <ion-buttons right>
             <button ion-button clear icon-only icon-left tappable (click)="presentPopover($event)">
                <ion-icon name="md-add"></ion-icon>
@@ -22,13 +22,13 @@
     <!--——————————————————————————————————————————轮播图——————————————————————————————————————————-->
     <div class="banner-wrapper" *ngIf="bannerImgs?.length>=1">
         <ion-slides #bannerSlide autoplay="4000" [loop]="bannerImgs?.length>1?true:false" pager (ionSlideAutoplayStop)="bannerSlide.startAutoplay()">
-            <ion-slide *ngFor="let item of bannerImgs" [ads-click]="item.link_type">
+            <ion-slide *ngFor="let item of bannerImgs" tappable [ads-click]="item.link_type">
                 <!--<img-lazy-load [src]="item.ad_img"></img-lazy-load>-->
                 <img [img-lazy-load]="item.ad_img" alt="">
             </ion-slide>
         </ion-slides>
     </div>
-    <!--————————————————————————————————————————————————————————————————————————————————————-->
+    <!--——————————————————————————————————————————功能按钮——————————————————————————————————————————-->
     <div class="btn-tool" home-padding>
         <div class="top">
             <div tappable (click)="goPresellPage()">
