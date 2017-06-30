@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { ShopAllFashionPage } from "../shop-all-fashion/shop-all-fashion";
 
 /**
  * Generated class for the ParticularsHomeDetailsPage page.
@@ -13,6 +14,10 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
   templateUrl: 'particulars-home-details.html',
 })
 export class ParticularsHomeDetailsPage {
+
+  goShopFashion() {
+    this.navCtrl.push(ShopAllFashionPage);
+  }
 
   constructor(public navCtrl: NavController, public navParams: NavParams) {
   }

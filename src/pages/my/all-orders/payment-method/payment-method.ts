@@ -38,7 +38,7 @@ export class PaymentMethodPage {
   dismiss(data?: any) {
     this.viewCtrl.dismiss(data);
   }
-  /*toPay(type) {
+  toPay(type) {
     if (type == 1) {
       this.httpService.payCode({ code: this.data.alipay }).then((res) => {
         console.log(res);
@@ -94,8 +94,8 @@ export class PaymentMethodPage {
         }
       })
     }
-  }*/
-  toPay(type) {
+  }
+  /*toPay(type) {
     if (type == 1) {
       this.getOrderInfo(this.data.alipay);
     } else if (type == 2) {
@@ -133,7 +133,7 @@ export class PaymentMethodPage {
         that.native.showToast("支付异常,请尝试其他支付方式");
       }
       console.log('fail', result, err)
-    });
+    });*/
     /*——————————————————————————————————————————————————————————————————————————*/
     // pingpp.createPayment(data, (result) => {
     //   console.log('success',result);
@@ -156,7 +156,7 @@ export class PaymentMethodPage {
     // Pingpp.getVersion(function (version) {
     //   alert("当前SDK版本号是:" + version);
     // });
-  }
+  // }
 
   // alipayPay(alipayOrder) {
   //   // Should get from server side with sign.

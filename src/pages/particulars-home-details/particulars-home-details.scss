@@ -81,22 +81,26 @@ page-particulars-home-details {
             height:5rem;
             border-bottom: 1px solid #e6e6e6;
             background: url(../assets/images/images/smile.png) no-repeat 96% center;
+            background-size: 2.4rem 2.4rem; 
             padding-left: 5%;
             span{
                 line-height:5rem;
                 color:#666;
                 font-size: 1.6rem;
-                margin-right: 5%;
+                margin-right: 2%;
             }
         }
         .phone{
-              background: url(../assets/images/images/phone.png) no-repeat 96% center;  
+              background: url(../assets/images/images/phone.png) no-repeat 96% center; 
+              background-size: 2.4rem 2.4rem;  
         }
         .erweima{
-             background: url(../assets/images/images/erweima.png) no-repeat 96% center;  
+             background: url(../assets/images/images/erweima.png) no-repeat 96% center;
+             background-size: 2.4rem 2.4rem;   
         }
         .shenfenzheng{
-             background: url(../assets/images/images/shenfenzheng.png) no-repeat 96% center;  
+             background: url(../assets/images/images/shenfenzheng.png) no-repeat 96% center;
+             background-size: 2.4rem 2.4rem;   
         }
     }
     .shop-info-content{
@@ -143,6 +147,9 @@ page-particulars-home-details {
                 line-height:3rem;
                 color:#666;
                 font-size: 1.6rem;
+                text-overflow: ellipsis;
+                overflow: hidden;
+                white-space: nowrap;
             }
         }
     }

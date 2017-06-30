@@ -22,7 +22,6 @@ import { ForgotPage } from "../pages/forgot/forgot";
 import { ForgotTwoPage } from "../pages/forgot/forgot-two/forgot-two";
 import { ForgotThreePage } from "../pages/forgot/forgot-three/forgot-three";
 /*————————————————————————————————home页————————————————————————————————*/
-import { HomePage } from '../pages/home/home';
 import { CityPage } from '../pages/home/city/city';
 import { SearchPage } from '../pages/home/search/search';
 import { DetailsPage } from '../pages/home/details/details';
@@ -49,6 +48,7 @@ import { PopoverContentPage } from "../pages/home/particulars/dredge-more-city/p
 
 import { ParticularsHomePage } from '../pages/particulars-home/particulars-home';
 import { ParticularsHomeDetailsPage } from '../pages/particulars-home-details/particulars-home-details';
+import { ShopAllFashionPage } from '../pages/shop-all-fashion/shop-all-fashion';
 /*————————————————————————————————分类页————————————————————————————————*/
 import { SubnavPage1Page } from '../pages/classify/subnav-page1/subnav-page1';
 import { SubnavPage2Page } from '../pages/classify/subnav-page2/subnav-page2';
@@ -149,7 +149,7 @@ import { ViewfabDirective } from '../directives/viewfab/viewfab';
     /*——————————————————购物车——————————————————*/
     CarPage,
     /*——————————————————home栏——————————————————*/
-    HomePage,ParticularsHomePage,ParticularsHomeDetailsPage,
+    HomePage,ParticularsHomePage,ParticularsHomeDetailsPage,ShopAllFashionPage,
     CityPage, SearchPage, DetailsPage, BrandListPage, AttentionPage, FastbuyPage, GlassesDesignPage, IntegralstorePage, RechargePage, WhitebarPage, DiscountCouponPage, MessagePage, ParticularsPage, ParticularsModalPage, DredgeMoreCityPage, PopoverContentPage, ParticularsModalAttrPage, MessageDetailsPage, PresellPage, JifenHistoryPage, DuihuanDetailsPage, DuihuanDetailsFinishPage,
     /*——————————————————分类栏——————————————————*/
     ClassifyPage, SubnavPage1Page, SubnavPage2Page, MoreBrandPage,
@@ -171,7 +171,7 @@ import { ViewfabDirective } from '../directives/viewfab/viewfab';
     IonicImageViewerModule,
     IonicModule.forRoot(MyApp, {
       backButtonText: '',
-      // mode:'md',
+      mode:'ios',
       tabsHideOnSubPages: true,
       tabsPlacement: 'bottom',
       activator: "highlight"
@@ -192,7 +192,7 @@ import { ViewfabDirective } from '../directives/viewfab/viewfab';
     /*——————————————————购物车——————————————————*/
     CarPage,
     /*——————————————————home栏——————————————————*/
-     HomePage,ParticularsHomePage,ParticularsHomeDetailsPage,
+     HomePage,ParticularsHomePage,ParticularsHomeDetailsPage,ShopAllFashionPage,
     CityPage, SearchPage, DetailsPage, BrandListPage, AttentionPage, FastbuyPage, GlassesDesignPage, IntegralstorePage, RechargePage, WhitebarPage, DiscountCouponPage, MessagePage, ParticularsPage, ParticularsModalPage, DredgeMoreCityPage, PopoverContentPage, ParticularsModalAttrPage, MessageDetailsPage, PresellPage, JifenHistoryPage, DuihuanDetailsPage, DuihuanDetailsFinishPage,
     /*——————————————————分类栏——————————————————*/
     ClassifyPage, SubnavPage1Page, SubnavPage2Page, MoreBrandPage,

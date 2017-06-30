@@ -63,19 +63,23 @@ page-particulars-home {
                     height:8.4rem;
                     border-radius: 50%;
                     background: #f1f2f6;
+                    display: flex;
+                    align-items: center;
                     img{
                         width:9.2rem;
-                        height:8.2rem;
-                        object-fit: contain;
+                        height:7.2rem;
                     }
                 }
             }
             p{
                    float: left;
                     color: #fff;
-                    font-size: 1.5rem;
+                    font-size: 1.8rem;
                     margin-bottom: 0;
                     width: 50%;
+                    overflow: hidden;
+                    text-overflow: ellipsis;
+                    white-space: nowrap;
                     img{
                         width:1.8rem;
                         height:1.8rem;
@@ -158,16 +162,10 @@ page-particulars-home {
                     display: flex;
                     align-items: center;
                     position: relative;
-                    i{
-                        font-style: normal;
-                        line-height:3rem;
-                        font-size: 1.2rem;
-                        margin-left: 5%;
-                       
-                    }
+                    padding-left: 10px;
                     span{
-                        font-size: 16px;
-                        line-height:3rem;
+                        width:50%;
+                        font-size:1.4rem;
                         
                     }
                     button{
@@ -175,6 +173,7 @@ page-particulars-home {
                         background: #ff3333;
                         color:#fff;
                         position: absolute;
+                        font-size:1.2rem;
                         right:5%;
                     }
                 }
@@ -257,7 +256,7 @@ page-particulars-home {
                 p{  
                     color:#4d4d4d;
                     overflow : hidden; 
-                    height:3.2rem;
+                    height:3.3rem;
                     position: relative;
                     margin: 1% 0 2% 0;
                 }
@@ -344,7 +343,10 @@ page-particulars-home {
                 position: absolute;
                 left:35%;
                 margin: 0;
+                display: flex;
+                align-items: center;
                 img{
+                    width:16px;
                     float:left;
                     margin-left: 15%;
                     margin-right: 5%;
@@ -389,7 +391,7 @@ page-particulars-home {
         height:5rem;
         background: #fbfbfb;
         border-top:1px solid #e6e6e6;
-        padding-top: 1.2rem;
+        padding-top: 1rem;
         position: relative;
         .shop-footer-items{
             width:33.3%;
