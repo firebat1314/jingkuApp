@@ -66,7 +66,6 @@ export class ParticularsHomePage {
             for (var x = 0; x < cuXiaoTabs.length; x++) {
               cuXiaoTabs[x].index = x;
               cuXiaoTabs[0].className = 'cuXiao-tabs-item actived';
-              let that = this;
               cuXiaoTabs[x].onclick = function () {
                 for (var y = 0; y < cuXiaoTabs.length; y++) {
                   cuXiaoTabs[y].className = 'cuXiao-tabs-item';
