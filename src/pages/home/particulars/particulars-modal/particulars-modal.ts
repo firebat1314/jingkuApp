@@ -16,11 +16,11 @@ import { Native } from "../../../../providers/native";
   templateUrl: 'particulars-modal.html'
 })
 export class ParticularsModalPage {
-  value: number;
   title = this.navParams.get('name');
   getBonus = this.navParams.get('getBonus');
-  sendto;
+  sendto = this.navParams.get('sendto');;
   GoodsInfo = this.navParams.get('GoodsInfo');
+  promotion = this.navParams.get('promotion');
   constructor(
     public navCtrl: NavController,
     public navParams: NavParams,
@@ -33,14 +33,9 @@ export class ParticularsModalPage {
     console.log('ionViewDidLoad ParticularsModalPage');
   }
   ngAfterViewInit(){
-     this.sendto = this.navParams.get('sendto');
-  }
-  numberIChange(value: number) {
-    this.value = value;
   }
   dredgeMoreCity() {
-    this.navCtrl.push(DredgeMoreCityPage)
-    this.dismiss();
+    this.dismiss('goDredgeMoreCityPage');
   }
   getPrivilege(is_get, type_id) {
     if (is_get == 1) {

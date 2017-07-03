@@ -12,6 +12,7 @@ import { BrandListPage } from "../brand-list/brand-list";
 import { CarPage } from "../../car/car";
 import { Storage } from '@ionic/storage';
 import { ParticularsHomePage } from '../../particulars-home/particulars-home';
+import { DredgeMoreCityPage } from "./dredge-more-city/dredge-more-city";
 
 /*
   Generated class for the Particulars page.
@@ -58,18 +59,15 @@ export class ParticularsPage {
     console.log("商品ID:", this.goodsId);
   }
 
-/*  ionViewDidEnter(){
-
-  }*/
+  /*  ionViewDidEnter(){
+  
+    }*/
   ionViewDidLoad() {
     console.log('ionViewDidLoad ParticularsPage');
     this.getHttpDetails();
     this.events.subscribe('particulars:goCarPage', () => {
       this.navCtrl.push(CarPage);
     });
-    this.storage.get('real_goods_count').then(res => {
-      this.badgeCount = res;
-    })
     this.events.subscribe('car:goodsCount', (res) => {
       this.badgeCount = res;
     })
@@ -109,16 +107,21 @@ export class ParticularsPage {
     });
   }
   presentModal(str) {
-    if (str == '优惠券' && this.getGoodsInfo.bonus.length == 0) {
-      this.native.showToast('暂无优惠券');
-      return;
-    }
-    let modal = this.modalCtrl.create(ParticularsModalPage, { name: str, getBonus: this.getGoodsInfo.bonus, sendto: this.getGoodsInfo.sale_city, GoodsInfo: this.getGoodsInfo.data });
+    let modal = this.modalCtrl.create(ParticularsModalPage, {
+      name: str,
+      getBonus: this.getGoodsInfo.bonus,
+      sendto: this.getGoodsInfo.sale_city,
+      GoodsInfo: this.getGoodsInfo.data,
+      promotion:this.getGoodsInfo.promotion
+    });
     modal.onDidDismiss(data => {
       console.log(data);
       if (data && data.region_name) {
         this.region_name = data.region_name;
         this.getHttpDetails();
+      }
+      if(data=='goDredgeMoreCityPage'){
+        this.navCtrl.push(DredgeMoreCityPage);
       }
     });
     modal.present();

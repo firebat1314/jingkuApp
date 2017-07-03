@@ -137,6 +137,7 @@ import { ViewfabDirective } from '../directives/viewfab/viewfab';
 
 import { ParticularsHomePage } from '../pages/particulars-home/particulars-home';
 import { ParticularsHomeDetailsPage } from '../pages/particulars-home-details/particulars-home-details';
+import { MyCanvasComponent } from '../components/my-canvas/my-canvas';
 
 @NgModule({
   declarations: [
@@ -166,6 +167,7 @@ import { ParticularsHomeDetailsPage } from '../pages/particulars-home-details/pa
     ImgLazyLoadDirective,
     AdsClickDirective,
     ViewfabDirective,
+    MyCanvasComponent,
   ],
   imports: [
     IonicImageViewerModule,

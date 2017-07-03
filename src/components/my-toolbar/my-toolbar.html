@@ -1,36 +1,42 @@
-<!--
-  Generated template for the MyToolbar component.
-
-  See https://angular.io/docs/ts/latest/api/core/index/ComponentMetadata-class.html
-  for more info on Angular 2 Components.
--->
-<div (click)="click($event)">
-    <button ion-button clear icon-right>
-      综合
-      <ion-icon name="md-arrow-dropdown"></ion-icon>
-    </button>
-</div>
-<div>
-    <button ion-button clear icon-right>
-      销量
-    </button>
-</div>
-<div>
-    <button ion-button clear icon-right>
-      价格
-      <div>
-        <div [ngStyle]="{'height':'7px'}">
-            <ion-icon [ngStyle]="{'font-size':'1.5rem'}" name="md-arrow-dropup"></ion-icon>
-        </div>
-        <div [ngStyle]="{'height':'13px'}">
-            <ion-icon [ngStyle]="{'font-size':'1.5rem'}" name="md-arrow-dropdown"></ion-icon>
-        </div>
-      </div>
-  </button>
-</div>
-<div>
-    <button ion-button clear icon-right menuToggle>
-      筛选
-      <ion-icon name="ios-funnel-outline" [ngStyle]="{'font-size':'2rem'}"></ion-icon>
-    </button>
-</div>
+<ion-toolbar class="segment-style">
+    <!--<my-toolbar></my-toolbar>-->
+    <ion-segment mode="md" [(ngModel)]="mytool" (click)="mytoolChange()" color="primary">
+        <ion-segment-button value="all">
+            综合
+            <div [ngClass]="allStatus==false?'sortup':'sortdown'" class="myicon">
+                <div [ngStyle]="{'height':'7px'}">
+                    <ion-icon name="md-arrow-dropup"></ion-icon>
+                </div>
+                <div>
+                    <ion-icon name="md-arrow-dropdown"></ion-icon>
+                </div>
+            </div>
+        </ion-segment-button>
+        <ion-segment-button value="sales_num">
+            销量
+            <div [ngClass]="salesNumStatus==false?'sortup':'sortdown'" class="myicon">
+                <div [ngStyle]="{'height':'7px'}">
+                    <ion-icon name="md-arrow-dropup"></ion-icon>
+                </div>
+                <div>
+                    <ion-icon name="md-arrow-dropdown"></ion-icon>
+                </div>
+            </div>
+        </ion-segment-button>
+        <ion-segment-button value="shop_price">
+            价格
+            <div [ngClass]="shopPriceStatus==false?'sortup':'sortdown'" class="myicon">
+                <div [ngStyle]="{'height':'7px'}">
+                    <ion-icon name="md-arrow-dropup"></ion-icon>
+                </div>
+                <div>
+                    <ion-icon name="md-arrow-dropdown"></ion-icon>
+                </div>
+            </div>
+        </ion-segment-button>
+        <ion-segment-button menuToggle value="">
+            筛选
+            <img src="./assets/icon/images/filter.png" width="18" alt="">
+        </ion-segment-button>
+    </ion-segment>
+</ion-toolbar>

@@ -4,63 +4,71 @@ page-particulars-modal {
             display: flex;
             border: 1px solid #7986cb;
             justify-content: space-between;
-            height: 100px;
+            align-items: center;
+            width: calc(100% - 17px);
+            margin: 10px auto;
+            color: #8a8a8a;
             &.alreadyget {
-                background: url(../assets/icon/images/particulars_3_03.jpg) right top/auto 100% no-repeat;
+                background: #fff url(../assets/icon/images/particulars_3_03.jpg) right top/auto 100% no-repeat;
             }
             &.canget {
-                background: url(../assets/icon/images/particulars_3_06.jpg) right top/auto 100% no-repeat;
+                background: #fff url(../assets/icon/images/particulars_3_06.jpg) right top/auto 100% no-repeat;
             }
             &.cantget {
                 opacity: .4;
             }
             &.finish {}
-            margin: 10px;
-            color: #8a8a8a;
             .left {
-                div:first-child {
-                    color: #000;
-                }
-                .upcoming {
-                    position: absolute;
-                    top: 10px;
-                    right: -10px;
-                    ;
-                    color: #fff;
-                    padding: 2px 5px;
-                    background: #7986cb;
-                }
                 display: flex;
                 justify-content: space-around;
+                text-align: left;
                 flex-direction: column;
-                height: 100%;
-                padding-left: 20px;
-                padding-bottom: 10px;
                 position: relative;
-                .price {
-                    color: #7986cb;
-                    span {
-                        font-size: 34px;
-                        margin-left: 3px;
+                margin-left: 10px;
+                >div {
+                    margin-bottom: 7px;
+                    &:first-child {
+                        color: #000;
+                        .price {
+                            color: #7986cb;
+                            span {
+                                font-size: 3rem;
+                                margin-left: 3px;
+                            }
+                        }
+                    }
+                    &:last-child {
+                        margin-bottom: 0;
                     }
                 }
             }
             .right {
-                img {
-                    height: 100%;
+                // padding: 20px;
+                padding: 5px 10px 0;
+                .click {
+                    color: #66a6ff;
+                    box-shadow: 0 0 5px #5971cb;
+                    background: #fff;
                 }
             }
         }
     }
     .onemore {
-        .redfont {
-            color: #e72626;
-            border: 1px solid #e72626;
-            border-radius: 3px;
-            padding: 0 10px;
-            margin: 0 10px;
-            display: inline-block;
-            vertical-align: middle;
+        .item {
+            color: #858585;
+            padding: 0;
+            .label {
+                white-space: initial;
+            }
+            .title {
+                padding: 3px 6px;
+                display: inline-block;
+                border: 1px solid #f53d3d;
+                color: #f53d3d;
+                border-radius: 3px;
+                margin: 0 10px;
+                font-size: 1.6rem;
+            }
         }
     }
     .attr {}

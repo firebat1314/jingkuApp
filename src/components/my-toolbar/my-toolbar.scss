@@ -1,19 +1,29 @@
 my-toolbar {
-    display: flex;
-    justify-content: space-around;
-    >div {
-        width: 25%;
-        border-right: 1px solid #e0e0e0;
+    .segment .segment-button {
         display: flex;
         justify-content: center;
-        &:last-child {
-            border: none;
+        align-items: center;
+        .myicon {
+            margin-left: 5px;
+            margin-left: 4px;
+            &.sortdown {
+                >div:first-child ion-icon {
+                    color: #ccc;
+                }
+            }
+            &.sortup {
+                >div:last-child ion-icon {
+                    color: #ccc;
+                }
+            }
+            &.sort {
+                color: #ccc;
+            }
         }
-        .button {
-            margin: 0 auto;
-            height: 3rem;
-            width: 100%;
-            color: #b3b3b3;
+        ion-icon {
+            line-height: normal;
+            font-size: 2rem;
+            color: #666;
         }
     }
 }

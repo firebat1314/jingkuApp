@@ -168,6 +168,9 @@ page-particulars-home {
         }
     }
     .allGoods-main {
+        .list {
+            @include allGoods()
+        }
         .toolbar-background-ios {
             background: #fff;
             font-size: 1.3rem;
@@ -199,7 +202,6 @@ page-particulars-home {
                 color: #666;
             }
         }
-        @include allGoods()
     }
     .cuXiao-mian {
         .cuXiao-time-goods {
