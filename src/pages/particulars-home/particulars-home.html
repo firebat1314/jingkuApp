@@ -23,22 +23,13 @@
     <div class="banner-shop">
         <div class="banner-shadow">
             <div class="banner-shop-logo">
-<<<<<<< HEAD
-              <div class="banner-shop-anoLogo">
-                <img src="./assets/images/images/bannerShopLogo.png" alt="">
-              </div>
-            </div>
-            <p>北京沙福隆官方旗舰店</p>
-            <p><img src="./assets/images/images/heart.png" alt=""><i>收藏</i></p>
-=======
                 <div class="banner-shop-anoLogo">
-                    <img img-lazy-load="./assets/images/images/bannerShopLogo.png" alt="">
+                    <img img-lazy-load="{{shopdata?.data?.logo}}" alt="">
                 </div>
             </div>
-            <p>北京沙福隆官方旗舰店</p>
+            <p>{{shopdata?.data?.name}}</p>
             <p>
                 <ion-icon name="md-heart-outline"></ion-icon><span>收藏</span></p>
->>>>>>> 6b90f3b2adefe2887ba419ccaf869f3b456ad2c8
         </div>
     </div>
     <div class="shop-tabs">
@@ -55,7 +46,7 @@
           <span>促销</span>
       </button>
         <button class="shop-tabs-item" value="goNew">
-          <div><span>20</span></div>
+          <div><span>{{newdata?.count}}</span></div>
           <span>上新</span>
       </button>
     </div>
@@ -72,7 +63,7 @@
                     <div class="price">
                         <!--<i>￥</i> -->
                         <span>{{item.shop_price}}</span>
-                        <button (click)="goParticularsPage(item.goods_id)">立即抢购</button>
+                        <button (click)="goParticularsPage(item.id)">立即抢购</button>
                     </div>
                 </div>
             </div>
@@ -84,7 +75,7 @@
 
             <div class="new-arrival-goods-box">
                 <div class="allGoods-box">
-                    <div class="allGoods-items" *ngFor="let item of data?.hot_list" tappable (click)="goParticularsPage(item.goods_id)">
+                    <div class="allGoods-items" *ngFor="let item of data?.hot_list" tappable (click)="goParticularsPage(item.id)">
                         <div class="allGoods-items-img">
                             <img img-lazy-load="{{item.goods_img}}" alt="{{item.name}}">
                         </div>
@@ -174,7 +165,7 @@
                     <div class="time-goods-img">
                         <img img-lazy-load="./assets/icon/newGoods.png" alt="">
                     </div>
-                    <p>博士伦美瞳明透亮眸半年亮眸半年博士博士 伦美瞳明透亮眸半年亮眸半年博士XXXXX</p>
+                    <p title="博士伦美瞳明透亮眸半年亮眸半年博士博士 伦美瞳明透亮眸半年亮眸半年博士XXXXX">博士伦美瞳明透亮眸半年亮眸半年博士博士 伦美瞳明透亮眸半年亮眸半年博士XXXXX</p>
                     <span>￥450.00</span>
                     <button>限购</button>
                 </div>
@@ -226,12 +217,20 @@
         <div class="goNew-main" *ngSwitchCase="'goNew'">
             <ion-list>
                 <div class="newTime-date-big-box">
-                    <div class="newTime-date-box">
+                    <!--<div class="newTime-date-box">
                         <div></div>
                         <p><img img-lazy-load="./assets/images/images/time.png" alt=""><span>6月16日</span></p>
-                    </div>
-                    <div class="allGoods-box">
-                        <div class="allGoods-items">
+                    </div>-->
+                        <div class="allGoods-items" *ngFor="let item of newdata?.goods" tappable>
+                            <div class="allGoods-items-img">
+                                <img img-lazy-load="{{item.goods_img}}" alt="">
+                            </div>
+                            <div class="allGoods-items-info">
+                                <p>{{item.name}}</p>
+                                <p>{{item.shop_price}}</p>
+                            </div>
+                        </div>
+                        <!--<div class="allGoods-items">
                             <div class="allGoods-items-img">
                                 <img img-lazy-load="./assets/icon/newGoods.png" alt="">
                             </div>
@@ -248,19 +247,12 @@
                                 <p>博士伦美瞳明透亮眸半年XXX</p>
                                 <p>￥450</p>
                             </div>
-                        </div>
-                        <div class="allGoods-items">
-                            <div class="allGoods-items-img">
-                                <img img-lazy-load="./assets/icon/newGoods.png" alt="">
-                            </div>
-                            <div class="allGoods-items-info">
-                                <p>博士伦美瞳明透亮眸半年XXX</p>
-                                <p>￥450</p>
-                            </div>
-                        </div>
-                    </div>
+                        </div>-->
+                    <ion-infinite-scroll *ngIf="newdata" (ionInfinite)="doInfinite($event)">
+                        <ion-infinite-scroll-content loadingSpinner="bubbles" loadingText="加载更多..."></ion-infinite-scroll-content>
+                    </ion-infinite-scroll>
                 </div>
-                <div class="newTime-date-big-box">
+                <!--<div class="newTime-date-big-box">
                     <div class="newTime-date-box">
                         <div></div>
                         <p><img img-lazy-load="./assets/images/images/time.png" alt=""><span>6月17日</span></p>
@@ -294,7 +286,7 @@
                             </div>
                         </div>
                     </div>
-                </div>
+                </div>-->
             </ion-list>
             <!--无商品的区域，暂时隐藏-->
             <!--<div class="newTime-date-noMore">

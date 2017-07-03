@@ -43,7 +43,7 @@
                 </p>
             </div>
         </div>
-        <!--<div class="price_time" *ngIf="getGoodsInfo?.promotion">
+        <div class="price_time" *ngIf="getGoodsInfo?.promotion">
             <div class="left">
                 <p [innerHtml]="getGoodsInfo?.promotion.title"></p>
             </div>
@@ -55,7 +55,7 @@
                     <countdown [endDate]="getGoodsInfo.promotion.end_time_num"></countdown>
                 </p>
             </div>
-        </div>-->
+        </div>
         <div class="fore info" *ngIf="getGoodsInfo">
             <div class="title">
                 {{getGoodsInfo?.data?.goods_name}}
@@ -90,31 +90,31 @@
             <ion-list mode="md" no-margin>
                 <button mode="ios" (click)="presentModal('优惠券')" ion-item>
                 领券
-                <!--<img src="./assets/icon/images/particulars_03.jpg" alt="">-->
-                <!--<ion-note item-right>
+                <img src="./assets/icon/images/particulars_03.jpg" alt="">
+                <ion-note item-right>
                     点击领取
-                </ion-note>-->
+                </ion-note>
             </button>
-                <!--<button mode="ios" ion-item (click)="presentModal('赠送')">
+                <button mode="ios" ion-item (click)="presentModal('赠送')">
                 <img src="./assets/icon/images/particulars_09.jpg" style="height: 20px;" alt=""> <span>买一盒送一盒？？？</span>
-            </button>-->
+            </button>
             </ion-list>
         </div>
         <div class="fore">
             <div ion-item no-lines>
                 发货地：{{getGoodsInfo?.supplier_info?.city_name}}
-                <!--<ion-note>配送时间：预计7-14个工作日送达</ion-note>-->
+                <ion-note>配送时间：预计7-14个工作日送达</ion-note>
             </div>
         </div>
         <div class="fore will-address">
             <button mode="ios" ion-item no-lines (click)="presentModal('配送地址')">
             送至：{{region_name||'选择地址'}}<span class="nogoods"></span>
         </button>
-            <!--<ion-item no-lines>
+            <ion-item no-lines>
             <ion-note>
                 快递：该商品满99包邮，运费10元
             </ion-note>
-        </ion-item>-->
+        </ion-item>
         </div>
         <div class="fore attribute">
             <button mode="ios" ion-item (click)="presentModalAttr()" no-lines>
@@ -136,9 +136,9 @@
                 <ion-note *ngIf="getGoodsInfo?.data?.additional?.is_inv">
                     <img src="./assets/icon/images/particulars_2_16.png" alt=""> 可退换货
                 </ion-note>
-                <!--<ion-note>
+                <ion-note>
                     <ion-icon color="danger" name="baitiao1"></ion-icon> 白条支付
-                </ion-note>-->
+                </ion-note>
             </div>
         </div>
         <!--————————————————————————供应商店铺————————————————————————-->
@@ -165,13 +165,13 @@
                     <span>热销</span>
                 </div>
             </div>
-            <!--<div class="btn">
+            <div class="btn">
                 <button (click)="goParticularsHome()" ion-button icon-right icon-left color="dark" outline>
                     <ion-icon name="shop"></ion-icon>
                     进入店铺
                     <ion-icon name="ios-arrow-forward"></ion-icon>
                 </button>
-            </div>-->
+            </div>
             <div mode="ios" ion-item detail-push *ngIf="getGoodsInfo?.supplier_info?.inv_type!=0">
                 <div class="note-wrap">
                     <!--<ion-note><ion-icon><img src="./assets/icon/images/particulars_2_20.jpg"></ion-icon>担保交易</ion-note>

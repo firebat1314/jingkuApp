@@ -17,8 +17,13 @@ import { ParticularsPage } from "../home/particulars/particulars";
   templateUrl: 'particulars-home.html',
 })
 export class ParticularsHomePage {
+  newdata: any;
+  cxdata: any;
+  shopdata: any;
   data: any;
   classShop: any = "shopHome";
+  typeNumber:any = '0';
+  newType:any = '1';
 
   constructor(
     public navCtrl: NavController,
@@ -30,6 +35,31 @@ export class ParticularsHomePage {
     this.httpService.suppliersIndex({ supplier_id: navParams.get('supplierId') }).then((res) => {
       if (res.status == 1) {
         this.data = res;
+        console.log(res);
+      }
+    })
+    this.httpService.getSupplierInfo({ supplier_id: navParams.get('supplierId') }).then((res) => {
+      if (res.status == 1) {
+        this.shopdata = res;
+        console.log(res);
+      }
+    })
+    this.changeType(this.typeNumber);
+    this.NewType(this.newType);
+  }
+  changeType(typeNumber){
+       this.httpService.suppliersPromote({ supplier_id: this.navParams.get('supplierId') , type: typeNumber }).then((res) => {
+        if (res.status == 1) {
+          this.cxdata = res;
+          console.log(res);
+        }
+      })
+  }
+  NewType(newType){
+    this.httpService.categoryGoods({ supplier_id: this.navParams.get('supplierId') , new: newType}).then((res) => {
+      if (res.status == 1) {
+        this.newdata = res;
+        console.log(res);
       }
     })
   }
@@ -60,19 +90,20 @@ export class ParticularsHomePage {
         this.className = 'shop-tabs-item actived';
         that.classShop = String(this.value);
         //console.log(that.classShop)
-        setTimeout(function () {
+        setTimeout( () => {
           if (that.classShop == 'cuXiao') {
             cuXiaoTabs = that.el.nativeElement.getElementsByClassName('cuXiao-tabs-item');
             for (var x = 0; x < cuXiaoTabs.length; x++) {
               cuXiaoTabs[x].index = x;
               cuXiaoTabs[0].className = 'cuXiao-tabs-item actived';
-              let that = this;
-              cuXiaoTabs[x].onclick = function () {
+              cuXiaoTabs[x].onclick = function(){
                 for (var y = 0; y < cuXiaoTabs.length; y++) {
                   cuXiaoTabs[y].className = 'cuXiao-tabs-item';
                 }
                 this.className = 'cuXiao-tabs-item actived';
-                console.log(1);
+                that.typeNumber = this.index;
+                that.changeType(that.typeNumber);
+                //console.log(1);
                 //console.log(this.value);
                 //that.classShop =String(this.value)  
               }
@@ -81,6 +112,22 @@ export class ParticularsHomePage {
           }
         }, 100);
       }
+    }
+  }
+  doInfinite(infiniteScroll) {
+    var page = this.newdata.page;
+    if (page < this.newdata.pages) {
+      this.httpService.categoryGoods({ supplier_id: this.navParams.get('supplierId') , page: ++page }).then((res) => {
+        if (res.status == 1) {
+          this.newdata.page = res.page;
+          Array.prototype.push.apply(this.newdata.goods, res.goods);
+        }
+        setTimeout(() => {
+          infiniteScroll.complete();
+        }, 1500);
+      })
+    } else {
+      infiniteScroll.enable(false);
     }
   }
   goParticularsPage(goods_id){

@@ -15,9 +15,9 @@
 
 <ion-content>
     <div class="details-shopName">
-        <div class="shop-logo">
+        <div class="shop-logo" [ngStyle]="{'background-image':shopInfo_data?.data?.logo}">
         </div>
-        <h2>北京沙福隆官方旗舰店</h2>
+        <h2>{{shopInfo_data?.data?.name}}</h2>
         <p><img img-lazy-load="./assets/images/images/blackHeart.png" alt=""><span>收藏</span></p>
     </div>
     <div class="details-fenlei-nav">
@@ -40,7 +40,7 @@
         </div>
         <div tappable class="sale-info-item phone">
             <span>商家电话</span>
-            <span>400-610-1360 转 777520</span>
+            <span>{{shopInfo_data?.data?.mobile_url}}</span>
         </div>
         <div tappable class="sale-info-item erweima">
             <span>店铺二维码</span>
@@ -52,11 +52,11 @@
     <div class="shop-info-content">
         <div tappable class="shop-info-item">
             <span>店铺简介</span>
-            <span>隐形眼镜  美瞳 护理液</span>
+            <span>{{shopInfo_data?.data?.address}}</span>
         </div>
         <div tappable class="shop-info-item">
             <span>所在地区</span>
-            <span>北京朝阳区</span>
+            <span>{{shopInfo_data?.data?.region}}</span>
         </div>
         <div tappable class="shop-info-item">
             <span>开店时间</span>

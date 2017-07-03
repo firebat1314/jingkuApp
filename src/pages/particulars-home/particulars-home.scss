@@ -53,6 +53,7 @@ page-particulars-home {
                 align-items: center;
                 float: left;
                 margin-right: 2rem;
+                overflow: hidden;
                 .banner-shop-anoLogo {
                     width: 8.4rem;
                     height: 8.4rem;
@@ -311,6 +312,7 @@ page-particulars-home {
     .goNew-main {
         .newTime-date-big-box {
             display: inline-block;
+            width:100%;
             .newTime-date-box {
                 display: flex;
                 justify-content: center;

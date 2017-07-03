@@ -50,9 +50,9 @@ export class MyApp {
         this.storage.get('firstIn').then((result) => {
           if (result) {
             this.rootPage = LoginPage;
-          } else {
+          } /*else {
             this.rootPage = WelcomePage;
-          }
+          }*/
         })
       }
     });
