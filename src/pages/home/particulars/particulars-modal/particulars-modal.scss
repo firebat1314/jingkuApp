@@ -8,16 +8,11 @@ page-particulars-modal {
             width: calc(100% - 17px);
             margin: 10px auto;
             color: #8a8a8a;
-            &.alreadyget {
-                background: #fff url(../assets/icon/images/particulars_3_03.jpg) right top/auto 100% no-repeat;
-            }
-            &.canget {
-                background: #fff url(../assets/icon/images/particulars_3_06.jpg) right top/auto 100% no-repeat;
-            }
+            background: #fff;
+            padding: 0;
             &.cantget {
                 opacity: .4;
             }
-            &.finish {}
             .left {
                 display: flex;
                 justify-content: space-around;
@@ -43,13 +38,13 @@ page-particulars-modal {
                 }
             }
             .right {
-                // padding: 20px;
-                padding: 5px 10px 0;
+                padding: 5px 20px 0;
                 .click {
                     color: #66a6ff;
                     box-shadow: 0 0 5px #5971cb;
                     background: #fff;
                 }
+                background:#7986cb url(../assets/icon/images/particulars-coupon_01_03.jpg) repeat-y left/4px;
             }
         }
     }

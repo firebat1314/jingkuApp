@@ -99,4 +99,7 @@ export class MyPage {
       this.native.openCallNumber('400-080-5118', false);
     })
   }
+  goMySalesmanPage(){
+    this.navCtrl.push('MySalesmanPage',{salesman:this.userInfo.data.ywy})
+  }
 }

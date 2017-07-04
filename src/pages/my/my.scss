@@ -12,36 +12,35 @@ page-my {
             }
         }
     }
-    .item>ion-icon:first-child img {
+    .list-ios {
+        margin-bottom: 14px;
+    }
+    .myitem-icon {
         width: 2.5rem;
     }
-    .avatar {
-        .indent-info {
-            @include info
+    .indent-info {
+        @include info
+    }
+    .myAssets-info {
+        @include info
+    }
+    .item {
+        h2 {
+            font-size: 2rem;
         }
-        .item {
-            h2 {
-                font-size: 2rem;
+        .vip {
+            display: flex;
+            align-items: center;
+            margin-top: 10px;
+            ion-img {
+                margin-right: 10px;
             }
-            .vip {
-                display: flex;
-                align-items: center;
-                margin-top: 10px;
-                ion-img {
-                    margin-right: 10px;
-                }
-            }
-        }
-        .item ion-avatar,
-        .item ion-avatar ion-img,
-        .item ion-avatar img {
-            width: 90px;
-            height: 90px;
         }
     }
-    .myAssets {
-        .myAssets-info {
-            @include info
-        }
+    .item ion-avatar,
+    .item ion-avatar ion-img,
+    .item ion-avatar img {
+        width: 90px;
+        height: 90px;
     }
 }

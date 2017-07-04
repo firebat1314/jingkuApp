@@ -25,7 +25,7 @@ export class MyToolbarComponent {
   }
 
   mytoolChange() {//——_——|||.....
-		if (this.mytool == 'all') {
+		/*if (this.mytool == 'all') {
 			this.paramsData.order = '';
 			this.salesNumStatus = true;
 			this.shopPriceStatus = true;
@@ -66,6 +66,6 @@ export class MyToolbarComponent {
 				this.paramsData.stort = 'DESC';
 				this.getListData();
 			}
-		}
+		}*/
 	}
 }

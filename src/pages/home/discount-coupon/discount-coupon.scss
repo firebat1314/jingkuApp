@@ -1,7 +1,7 @@
 page-discount-coupon {
     .coupon {
         margin: 10px;
-        height: 105px;
+        height: 8rem;
         display: flex;
         align-items: center;
         justify-content: space-between;
@@ -9,13 +9,14 @@ page-discount-coupon {
         border-radius: 0 8px 8px 0;
         background: #fff url(../assets/images/images/couponCenter_1_05.jpg) left top no-repeat;
         position: relative;
+        background-size: 3px;
         .get {
             position: absolute;
             top: 0;
             right: 15%;
             z-index: 2;
             img {
-                width: 71px;
+                width: 5rem;
             }
         }
         .left {
@@ -24,9 +25,9 @@ page-discount-coupon {
             justify-content: space-between;
             overflow: hidden;
             .img {
-                height: 85px;
-                width: 85px;
-                min-width: 85px;
+                height: 6rem;
+                width: 6rem;
+                min-width: 6rem;
                 margin: 10px;
                 margin-left: 17px;
                 box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.2), 0 1px 5px 0 rgba(0, 0, 0, 0.12);
@@ -40,28 +41,24 @@ page-discount-coupon {
             }
         }
         .center {
-            height: 75px;
+            height: 5.5rem;
             display: flex;
             flex-direction: column;
             justify-content: space-between;
             text-overflow: ellipsis;
             overflow: hidden;
             font-weight: 500;
-            font-size: 1.6rem;
+            font-size: 1.4rem;
             .info {
                 color: #7986cb;
                 .bigfont {
-                    font-size: 3rem;
+                    font-size: 2rem;
                 }
             }
         }
         .right {
-            max-width: 100px;
-            min-width: 100px;
-            width: 100px;
-            height: 100%;
             background: #7986cb;
-            padding: 0 10px;
+            padding: 0 16px;
             position: relative;
             display: flex;
             flex-direction: column;

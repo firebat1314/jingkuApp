@@ -41,7 +41,7 @@
         <div class="goods-list" *ngFor="let goods of item?.goods_list;">
             <ion-item no-lines>
                 <ion-thumbnail item-left>
-                    <img src="{{goods.goods_img}}">
+                    <img img-lazy-load="{{goods.goods_img}}">
                 </ion-thumbnail>
                 <h2>{{goods.goods_name}}</h2>
                 <span class="type" *ngIf="goods?.gift_list">{{goods?.gift_list?.title}}</span>

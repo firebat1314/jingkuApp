@@ -22,22 +22,27 @@
 <ion-content class="outer-content">
     <div class="privilege" *ngIf="title=='优惠券'">
         <!--<p style="padding-left: 10px;" *ngIf="getBonus&&getBonus.length!=0">可领优惠券</p>-->
-        <button class="main" *ngFor="let item of getBonus" [ngClass]="{'alreadyget': item.is_get == 1,'canget':item.is_get == 0,'cantget':item.is_get == 1||item.is_get == 2}">
+        <button class="main" *ngFor="let item of getBonus" [ngClass]="{'cantget':item.is_get == 1||item.is_get == 2}">
             <div class="left">
                 <div><span class="price">¥<span>{{item.int_type_money}}</span></span>【满{{item.min_goods_amount}}可用】</div>
                 <div>{{item.suppliers_name}}</div>
                 <div>{{item.use_end_date}}--{{item.use_start_date}}</div>
             </div>
             <div class="right">
-                <my-canvas [baifen]="item.baifen.slice(0,-1)"></my-canvas>
-                <div ion-button small round block class="click" (click)="getPrivilege(item.is_get,item.type_id)">点击领劵</div>
+                <my-canvas *ngIf="item.is_get==0" [baifen]="item.baifen.slice(0,-1)"></my-canvas>
+                <div *ngIf="item.is_get==0" ion-button small round block class="click" (click)="getPrivilege(item.is_get,item.type_id)">点击领劵</div>
+                
+                <img *ngIf="item.is_get==1" src="./assets/icon/images/particulars_coupon_02_03.png" width="60" height="60" alt="">
+                <div *ngIf="item.is_get==1" ion-button small round block class="click" (click)="getPrivilege(item.is_get,item.type_id)">已领取</div>
+
+                <div *ngIf="item.is_get==2" ion-button small round block class="click" (click)="getPrivilege(item.is_get,item.type_id)">已抢光</div>
             </div>
         </button>
     </div>
     <div class="onemore" *ngIf="title=='赠送'">
         <ion-list>
             <button ion-item *ngFor="let item of promotion">
-                <span class="title" item-left>{{item.promotion_name}}</span><span>{{item.title}}</span>
+                <span class="title" item-left>{{item.promotion_name}}</span><span [innerHtml]="item.title"></span>
             </button>
         </ion-list>
     </div>
