@@ -98,7 +98,7 @@
                     <div>
                         <p class="list-show" *ngFor="let item of getGoodsInfo?.promotion"><span class="title">{{item.promotion_name}}</span><span [innerHtml]="item.title"></span></p>
                     </div>
-                    <ion-note item-right>{{(!getGoodsInfo?.promotion?.length)?'无促销':''}}</ion-note>
+                    <ion-note item-right *ngIf="!getGoodsInfo?.promotion?.length">无促销</ion-note>
                 </button>
             </ion-list>
         </div>
