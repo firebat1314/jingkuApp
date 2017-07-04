@@ -42,7 +42,7 @@
             <span>商家电话</span>
             <span>{{shopInfo_data?.data?.mobile_url}}</span>
         </div>
-        <div tappable class="sale-info-item erweima">
+        <div tappable (click)="presentPopover($event)" class="sale-info-item erweima">
             <span>店铺二维码</span>
         </div>
         <div tappable class="sale-info-item shenfenzheng">

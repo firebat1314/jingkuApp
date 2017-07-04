@@ -38,7 +38,7 @@
           <span>店铺首页</span>
       </button>
         <button class="shop-tabs-item" value="allGoods">
-          <div><span>1152</span></div>
+          <div><span>{{alldata?.count}}</span></div>
           <span>全部商品</span>
       </button>
         <button class="shop-tabs-item" value="cuXiao">
@@ -57,7 +57,7 @@
                 <p>新品推荐</p>
             </div>
 
-            <div class="new-arrival-goods-box">
+            <div class="new-arrival-goods-box" *ngIf="!listStyleflag">
                 <div class="new-arrival-goods" *ngFor="let item of data?.new_list">
                     <img img-lazy-load="{{item.goods_img}}" alt="">
                     <div class="price">
@@ -67,13 +67,14 @@
                     </div>
                 </div>
             </div>
+            <single-foods-item [data]="data?.new_list" *ngIf="listStyleflag"></single-foods-item>
 
             <div class="new-arrival">
                 <p>Popularity list</p>
                 <p>人气单品</p>
             </div>
 
-            <div class="new-arrival-goods-box">
+            <div class="new-arrival-goods-box" *ngIf="!listStyleflag">
                 <div class="allGoods-box">
                     <div class="allGoods-items" *ngFor="let item of data?.hot_list" tappable (click)="goParticularsPage(item.id)">
                         <div class="allGoods-items-img">
@@ -86,14 +87,15 @@
                     </div>
                 </div>
             </div>
+            <single-foods-item [data]="data?.hot_list" *ngIf="listStyleflag"></single-foods-item>
         </div>
         <div class="allGoods-main" *ngSwitchCase="'allGoods'">
-            <ion-toolbar class="segment-style">
+                <ion-toolbar class="segment-style">
                 <!--<my-toolbar></my-toolbar>-->
-                <ion-segment mode="md" [(ngModel)]="mytool" (click)="mytoolChange()" color="primary">
+                <ion-segment mode="md" [(ngModel)]="alltool" (click)="alltoolChange()" color="primary">
                     <ion-segment-button value="all">
                         综合
-                        <div [ngClass]="allStatus==false?'sortup':'sortdown'" class="myicon">
+                        <div [ngClass]="all_Status==false?'sortup':'sortdown'" class="myicon">
                             <div [ngStyle]="{'height':'7px'}">
                                 <ion-icon name="md-arrow-dropup"></ion-icon>
                             </div>
@@ -104,7 +106,7 @@
                     </ion-segment-button>
                     <ion-segment-button value="sales_num">
                         销量
-                        <div [ngClass]="salesNumStatus==false?'sortup':'sortdown'" class="myicon">
+                        <div [ngClass]="sales_NumStatus==false?'sortup':'sortdown'" class="myicon">
                             <div [ngStyle]="{'height':'7px'}">
                                 <ion-icon name="md-arrow-dropup"></ion-icon>
                             </div>
@@ -115,7 +117,7 @@
                     </ion-segment-button>
                     <ion-segment-button value="shop_price">
                         价格
-                        <div [ngClass]="shopPriceStatus==false?'sortup':'sortdown'" class="myicon">
+                        <div [ngClass]="shop_PriceStatus==false?'sortup':'sortdown'" class="myicon">
                             <div [ngStyle]="{'height':'7px'}">
                                 <ion-icon name="md-arrow-dropup"></ion-icon>
                             </div>
@@ -130,8 +132,23 @@
                     </ion-segment-button>
                 </ion-segment>
             </ion-toolbar>
-            <ion-list>
-                <div class="allGoods-box">
+        <ion-list>
+            <div class="alldata-box" *ngIf="!listStyleflag" style="padding-left:2%;">
+                <div class="allGoods-box" *ngFor="let item of alldata?.goods" tappable (click)="goParticularsPage(item.id)">
+                    <div class="allGoods-items">
+                        <div class="allGoods-items-img">
+                            <img img-lazy-load="{{item.goods_img}}" alt="">
+                        </div>
+                        <div class="allGoods-items-info">
+                            <p>{{item.name}}</p>
+                            <p>{{item.shop_price}}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+                
+                <single-foods-item [data]="alldata?.goods" *ngIf="listStyleflag"></single-foods-item>
+                <!--<div class="allGoods-box">
                     <div class="allGoods-items">
                         <div class="allGoods-items-img">
                             <img img-lazy-load="./assets/icon/newGoods.png" alt="">
@@ -141,18 +158,10 @@
                             <p>￥450</p>
                         </div>
                     </div>
-                </div>
-                <div class="allGoods-box">
-                    <div class="allGoods-items">
-                        <div class="allGoods-items-img">
-                            <img img-lazy-load="./assets/icon/newGoods.png" alt="">
-                        </div>
-                        <div class="allGoods-items-info">
-                            <p>博士伦美瞳明透亮眸半年XXX</p>
-                            <p>￥450</p>
-                        </div>
-                    </div>
-                </div>
+                </div>-->
+                <ion-infinite-scroll *ngIf="alldata" (ionInfinite)="doInfinite($event)">
+                        <ion-infinite-scroll-content loadingSpinner="bubbles" loadingText="加载更多..."></ion-infinite-scroll-content>
+                </ion-infinite-scroll>
             </ion-list>
         </div>
         <div class="cuXiao-mian" *ngSwitchCase="'cuXiao'">
@@ -171,19 +180,31 @@
                 </div>
             </div>
             <div class="cuXiao-tabs">
-                <button class="cuXiao-tabs-item">满6件减1件</button>
-                <button class="cuXiao-tabs-item">满3件减1件</button>
-                <button class="cuXiao-tabs-item">满3件减1件</button>
-                <button class="cuXiao-tabs-item">满99减10元</button>
+                <button class="cuXiao-tabs-item">商品满减</button>
+                <button class="cuXiao-tabs-item">商品打折</button>
+                <button class="cuXiao-tabs-item">商品满赠</button>
+                <button class="cuXiao-tabs-item">商品补贴</button>
             </div>
             <div class="sixJianOne-main">
-                <div class="preferential-tip">
+                <!--<div class="preferential-tip">
                     <p>促销时间：08月21日 15:11结束促销</p>
                     <p>促销规则“以下商品满6件减1件</p>
-                </div>
-                <ion-list>
+                </div>-->
                     <div class="allGoods-box">
-                        <div class="allGoods-items">
+                        <div class="cxdata-box" *ngIf="!listStyleflag">
+                            <div class="allGoods-items" *ngFor="let item of cxdata?.goods_list" tappable (click)="goParticularsPage(item.id)">
+                                <div class="allGoods-items-img">
+                                    <img img-lazy-load="{{item.goods_img}}" alt="">
+                                </div>
+                                <div class="allGoods-items-info">
+                                    <p>{{item.goods_name}}</p>
+                                    <p>{{item.promote_price}}</p>
+                                </div>
+                            </div>
+                        </div>
+                    
+                        <single-foods-item [data]="cxdata?.goods_list" *ngIf="listStyleflag"></single-foods-item>
+                        <!--<div class="allGoods-items">
                             <div class="allGoods-items-img">
                                 <img img-lazy-load="./assets/icon/newGoods.png" alt="">
                             </div>
@@ -200,28 +221,22 @@
                                 <p>博士伦美瞳明透亮眸半年XXX</p>
                                 <p>￥450</p>
                             </div>
-                        </div>
-                        <div class="allGoods-items">
-                            <div class="allGoods-items-img">
-                                <img img-lazy-load="./assets/icon/newGoods.png" alt="">
-                            </div>
-                            <div class="allGoods-items-info">
-                                <p>博士伦美瞳明透亮眸半年XXX</p>
-                                <p>￥450</p>
-                            </div>
-                        </div>
+                        </div>-->
+                        <ion-infinite-scroll *ngIf="cxdata" (ionInfinite)="doInfinite($event)">
+                                <ion-infinite-scroll-content loadingSpinner="bubbles" loadingText="加载更多..."></ion-infinite-scroll-content>
+                        </ion-infinite-scroll>
                     </div>
-                </ion-list>
             </div>
         </div>
         <div class="goNew-main" *ngSwitchCase="'goNew'">
-            <ion-list>
+            <!--<ion-list>-->
                 <div class="newTime-date-big-box">
                     <!--<div class="newTime-date-box">
                         <div></div>
                         <p><img img-lazy-load="./assets/images/images/time.png" alt=""><span>6月16日</span></p>
                     </div>-->
-                        <div class="allGoods-items" *ngFor="let item of newdata?.goods" tappable>
+                    <div class="newdata-box" *ngIf="!listStyleflag">
+                        <div class="allGoods-items" *ngFor="let item of newdata?.goods" tappable (click)="goParticularsPage(item.id)">
                             <div class="allGoods-items-img">
                                 <img img-lazy-load="{{item.goods_img}}" alt="">
                             </div>
@@ -230,6 +245,8 @@
                                 <p>{{item.shop_price}}</p>
                             </div>
                         </div>
+                    </div>
+                    <single-foods-item [data]="newdata?.goods" *ngIf="listStyleflag"></single-foods-item>
                         <!--<div class="allGoods-items">
                             <div class="allGoods-items-img">
                                 <img img-lazy-load="./assets/icon/newGoods.png" alt="">
@@ -287,7 +304,7 @@
                         </div>
                     </div>
                 </div>-->
-            </ion-list>
+            <!--</ion-list>-->
             <!--无商品的区域，暂时隐藏-->
             <!--<div class="newTime-date-noMore">
             <div class="lock">
