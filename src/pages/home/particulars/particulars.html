@@ -105,18 +105,18 @@
         <div class="fore">
             <div ion-item no-lines>
                 发货地：{{getGoodsInfo?.supplier_info?.city_name}}
-                <ion-note>配送时间：预计7-14个工作日送达</ion-note>
+                <!--<ion-note>配送时间：预计7-14个工作日送达</ion-note>-->
             </div>
         </div>
         <div class="fore will-address">
             <button mode="ios" ion-item no-lines (click)="presentModal('配送地址')">
             送至：{{region_name||'选择地址'}}<span class="nogoods"></span>
         </button>
-            <ion-item no-lines>
+            <!--<ion-item no-lines>
             <ion-note>
                 快递：该商品满99包邮，运费10元
             </ion-note>
-        </ion-item>
+        </ion-item>-->
         </div>
         <div class="fore attribute">
             <button mode="ios" ion-item (click)="presentModalAttr()" no-lines>
@@ -138,9 +138,9 @@
                 <ion-note *ngIf="getGoodsInfo?.data?.additional?.is_inv">
                     <img src="./assets/icon/images/particulars_2_16.png" alt=""> 可退换货
                 </ion-note>
-                <ion-note>
+                <!--<ion-note>
                     <ion-icon color="danger" name="baitiao1"></ion-icon> 白条支付
-                </ion-note>
+                </ion-note>-->
             </div>
         </div>
         <!--————————————————————————供应商店铺————————————————————————-->

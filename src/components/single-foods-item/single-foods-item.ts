@@ -28,6 +28,7 @@ export class SingleFoodsItemComponent {
   }
   @Input() data: any;
   @Input() events: any;
+  @Input() toTop: any = true;
 
   animateItems = [];
   animateClass: any;
@@ -42,7 +43,9 @@ export class SingleFoodsItemComponent {
     }
   }
   ngOnChanges() {
-    this.animateItems = [];
+    if (this.toTop) {
+      this.animateItems = [];
+    }
     let that = this;
     for (let i = 0; i < that.data.length; i++) {
       setTimeout(function () {

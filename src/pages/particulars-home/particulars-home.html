@@ -147,7 +147,7 @@
                 </div>
             </div>
                 
-                <single-foods-item [data]="alldata?.goods" *ngIf="listStyleflag"></single-foods-item>
+                <single-foods-item [data]="alldata?.goods" *ngIf="listStyleflag" [toTop]="false"></single-foods-item>
                 <!--<div class="allGoods-box">
                     <div class="allGoods-items">
                         <div class="allGoods-items-img">
@@ -246,7 +246,7 @@
                             </div>
                         </div>
                     </div>
-                    <single-foods-item [data]="newdata?.goods" *ngIf="listStyleflag"></single-foods-item>
+                    <single-foods-item [data]="newdata?.goods" *ngIf="listStyleflag" [toTop]="false"></single-foods-item>
                         <!--<div class="allGoods-items">
                             <div class="allGoods-items-img">
                                 <img img-lazy-load="./assets/icon/newGoods.png" alt="">
