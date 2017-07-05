@@ -1,6 +1,6 @@
 import { Component, Renderer, ElementRef } from '@angular/core';
 import { IonicPage, NavController, NavParams, PopoverController } from 'ionic-angular';
-import { HttpService } from "../../providers/http-service";
+import { HttpService } from "../../../providers/http-service";
 
 /**
  * Generated class for the ParticularsHomeDetailsPage page.
