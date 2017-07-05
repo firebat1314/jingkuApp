@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams } from 'ionic-angular';
+import { NavController, NavParams, IonicPage } from 'ionic-angular';
 import { HttpService } from "../../../providers/http-service";
-import { BrandListPage } from "../../home/brand-list/brand-list";
 
 /*
   Generated class for the SubnavPage2 page.
@@ -9,6 +8,7 @@ import { BrandListPage } from "../../home/brand-list/brand-list";
   See http://ionicframework.com/docs/v2/components/#navigation for more info on
   Ionic pages and navigation.
 */
+@IonicPage()
 @Component({
   selector: 'page-subnav-page2',
   templateUrl: 'subnav-page2.html'
@@ -36,6 +36,6 @@ export class SubnavPage2Page {
     if (e) {
       e.stopPropagation();
     }
-    this.navCtrl.parent.push(BrandListPage,{listId:id})
+    this.navCtrl.parent.push('BrandListPage',{listId:id})
   }
 }

@@ -1,8 +1,7 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams, ViewController, Events } from 'ionic-angular';
+import { NavController, NavParams, ViewController, Events, IonicPage } from 'ionic-angular';
 
 // import { CityPage } from "../../city/city"
-import { DredgeMoreCityPage } from '../dredge-more-city/dredge-more-city'
 import { HttpService } from "../../../../providers/http-service";
 import { Native } from "../../../../providers/native";
 /*
@@ -11,6 +10,7 @@ import { Native } from "../../../../providers/native";
   See http://ionicframework.com/docs/v2/components/#navigation for more info on
   Ionic pages and navigation.
 */
+@IonicPage()
 @Component({
   selector: 'page-particulars-modal',
   templateUrl: 'particulars-modal.html'

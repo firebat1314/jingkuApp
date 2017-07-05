@@ -1,7 +1,6 @@
 import { Component, ViewChild, ElementRef } from '@angular/core';
-import { NavController, NavParams, Content } from 'ionic-angular';
+import { NavController, NavParams, Content, IonicPage } from 'ionic-angular';
 import { HttpService } from "../../../providers/http-service";
-import { ParticularsPage } from "../particulars/particulars";
 
 /*
   Generated class for the Fastbuy page.
@@ -9,6 +8,7 @@ import { ParticularsPage } from "../particulars/particulars";
   See http://ionicframework.com/docs/v2/components/#navigation for more info on
   Ionic pages and navigation.
 */
+@IonicPage()
 @Component({
   selector: 'page-fastbuy',
   templateUrl: 'fastbuy.html'
@@ -63,7 +63,7 @@ export class FastbuyPage {
     })
   }
   goParticularsPage(id) {
-    this.navCtrl.push(ParticularsPage, { goodsId: id })
+    this.navCtrl.push('ParticularsPage', { goodsId: id })
   }
 
   scrollToTop() {

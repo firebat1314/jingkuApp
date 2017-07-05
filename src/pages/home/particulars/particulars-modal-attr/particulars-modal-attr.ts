@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams, ViewController, Events } from 'ionic-angular';
+import { NavController, NavParams, ViewController, Events, IonicPage } from 'ionic-angular';
 import { HttpService } from "../../../../providers/http-service";
 import { Native } from "../../../../providers/native";
 
@@ -11,6 +11,7 @@ export class goodsSpectaclesParams {
 	zhouwei = '';//所填写的轴位
 }
 
+@IonicPage()
 @Component({
 	selector: 'page-particulars-modal-attr',
 	templateUrl: 'particulars-modal-attr.html',

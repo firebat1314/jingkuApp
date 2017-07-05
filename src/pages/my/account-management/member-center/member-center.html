@@ -16,7 +16,7 @@
 <ion-content>
     <div class="head">
         <div class="head-content">
-            <img style="border-radius: 50%;" src="{{userInfo?.data?.avatar||''}}">
+            <img style="border-radius: 50%;" img-lazy-load="{{userInfo?.data?.avatar}}">
             <p>用户名：{{userInfo?.data?.user_info?.user_name||'--'}}</p>
             <h2>积分：{{data?.rank_points||'0'}}</h2>
         </div>

@@ -1,8 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams, PopoverController } from 'ionic-angular';
-
-
-import { PopoverContentPage } from "./popover-content/popover-content"
+import { NavController, NavParams, PopoverController, IonicPage } from 'ionic-angular';
 import { HttpService } from "../../../../providers/http-service";
 import { Native } from "../../../../providers/native";
 /*
@@ -11,6 +8,7 @@ import { Native } from "../../../../providers/native";
   See http://ionicframework.com/docs/v2/components/#navigation for more info on
   Ionic pages and navigation.
 */
+@IonicPage()
 @Component({
   selector: 'page-dredge-more-city',
   templateUrl: 'dredge-more-city.html'
@@ -56,7 +54,7 @@ export class DredgeMoreCityPage {
     }
   }
   opanNative(type) {
-    let popover = this.popover.create(PopoverContentPage);
+    let popover = this.popover.create('PopoverContentPage');
     popover.onDidDismiss((imageData) => {
       if (imageData) {
         if (type == 0) {//正面身份照

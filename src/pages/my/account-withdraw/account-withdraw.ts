@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams } from 'ionic-angular';
-import { AccountWithdrawSucceedPage } from "../account-withdraw-succeed/account-withdraw-succeed";
+import { NavController, NavParams, IonicPage } from 'ionic-angular';
 import { HttpService } from "../../../providers/http-service";
 import { Native } from "../../../providers/native";
 
@@ -10,6 +9,7 @@ import { Native } from "../../../providers/native";
   See http://ionicframework.com/docs/v2/components/#navigation for more info on
   Ionic pages and navigation.
 */
+@IonicPage()
 @Component({
   selector: 'page-account-withdraw',
   templateUrl: 'account-withdraw.html'
@@ -41,7 +41,7 @@ export class AccountWithdrawPage {
       this.native.hideLoading();
       this.native.showToast(res.data);
       if (res.status == 1) {
-        this.navCtrl.push(AccountWithdrawSucceedPage);
+        this.navCtrl.push('AccountWithdrawSucceedPage');
       }
     })
   }

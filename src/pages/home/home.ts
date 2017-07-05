@@ -1,33 +1,12 @@
 import { Component, ViewChild } from '@angular/core';
-// import { IonicPage } from 'ionic-angular';
-
 import { NavController, Events, Slides, Content, FabButton, PopoverController, IonicPage } from 'ionic-angular';
 // import { FormBuilder } from '@angular/forms';
 
-
-import { CityPage } from './city/city'
-import { SearchPage } from './search/search'
-import { DetailsPage } from './details/details'
-import { BrandListPage } from './brand-list/brand-list'
-import { FastbuyPage } from './fastbuy/fastbuy'
-import { GlassesDesignPage } from './glasses-design/glasses-design'
-import { IntegralstorePage } from './integralstore/integralstore'
-import { RechargePage } from './recharge/recharge'
-import { WhitebarPage } from './whitebar/whitebar'
-import { DiscountCouponPage } from './discount-coupon/discount-coupon'
-import { MessagePage } from './message/message'
-import { ParticularsPage } from './particulars/particulars'
-import { PresellPage } from "../my/presell/presell";
-
-
 import { UserData } from "../../providers/user-data";
 import { HttpService } from "../../providers/http-service";
-
 import { Native } from "../../providers/native";
 
-// import { Storage } from '@ionic/storage';
-// import { PopoverHomePage } from "./popover-home/popover-home";
-// @IonicPage()
+@IonicPage()
 @Component({
   selector: 'page-home',
   templateUrl: 'home.html'
@@ -45,18 +24,6 @@ export class HomePage {
   @ViewChild('bannerSlide') slides: Slides;
   @ViewChild(Content) content: Content;
   @ViewChild(FabButton) fabButton: FabButton;
-
-  DetailsPage = DetailsPage;
-  SearchPage = SearchPage;
-  BrandListPage = BrandListPage;
-  FastbuyPage = FastbuyPage;
-  GlassesDesignPage = GlassesDesignPage;
-  IntegralstorePage = IntegralstorePage;
-  RechargePage = RechargePage;
-  WhitebarPage = WhitebarPage;
-  DiscountCouponPage = DiscountCouponPage;
-  MessagePage = MessagePage;
-  PresellPage = PresellPage;
 
   bannerImgs;
   categoryAddetatils;
@@ -200,33 +167,33 @@ export class HomePage {
     this.events.publish('classify:selectSegment', value)
   }
   goCityPage() {
-    this.navCtrl.push(CityPage, { areaList: this.areaList })
+    this.navCtrl.push('CityPage', { areaList: this.areaList })
   }
   goParticularsPage(id) {
-    this.navCtrl.push(ParticularsPage, { goodsId: id })
+    this.navCtrl.push('ParticularsPage', { goodsId: id })
   }
   goBrandListPage(id) {
-    this.navCtrl.push(BrandListPage, { brandId: id })
+    this.navCtrl.push('BrandListPage', { brandId: id })
   }
   goWhitebarPage() {
     this.native.showToast('敬请期待')
   }
   goPresellPage() {
-    this.navCtrl.push(PresellPage);
+    this.navCtrl.push('PresellPage');
   }
   goRechargePage() {
-    this.navCtrl.push(RechargePage);
+    this.navCtrl.push('RechargePage');
   }
   goFastbuyPage() {
-    this.navCtrl.push(FastbuyPage);
+    this.navCtrl.push('FastbuyPage');
   }
   goDiscountCouponPage() {
-    this.navCtrl.push(DiscountCouponPage);
+    this.navCtrl.push('DiscountCouponPage');
   }
   goIntegralstorePage() {
-    this.navCtrl.push(IntegralstorePage);
+    this.navCtrl.push('IntegralstorePage');
   }
   goGlassesDesignPage() {
-    this.navCtrl.push(GlassesDesignPage);
+    this.navCtrl.push('GlassesDesignPage');
   }
 }

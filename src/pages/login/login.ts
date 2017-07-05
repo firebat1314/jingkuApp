@@ -1,11 +1,8 @@
 import { Component } from '@angular/core';
 
-import { NavController, NavParams, Events, ToastController } from 'ionic-angular';
-import { TabsPage } from '../tabs/tabs';
-import { SignupPage } from '../signup/signup';
+import { NavController, NavParams, Events, ToastController, IonicPage } from 'ionic-angular';
 
 import { HttpService } from "../../providers/http-service";
-import { ForgotPage } from "../forgot/forgot";
 
 /*
   Generated class for the Login page.
@@ -13,6 +10,7 @@ import { ForgotPage } from "../forgot/forgot";
   See http://ionicframework.com/docs/v2/components/#navigation for more info on
   Ionic pages and navigation.
 */
+@IonicPage()
 @Component({
   selector: 'page-login',
   templateUrl: 'login.html'
@@ -21,7 +19,7 @@ export class LoginPage {
   private loginInfo: { username?: string, password?: string } = {};
   private submitted = false;
   private signedName: String;
-  ForgotPage = ForgotPage;
+  ForgotPage = 'ForgotPage';
   constructor(
     private navCtrl: NavController,
     private navParams: NavParams,
@@ -53,13 +51,13 @@ export class LoginPage {
           toast.present();
           this.submitted = true;
           setTimeout(() => {
-            this.navCtrl.setRoot(TabsPage);
+            this.navCtrl.setRoot('TabsPage');
           }, 100)
         }
       })
     }
   }
   goSignup() {
-    this.navCtrl.push(SignupPage);
+    this.navCtrl.push('SignupPage');
   }
 }

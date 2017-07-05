@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import { ViewController, NavParams, NavController, IonicPage } from 'ionic-angular';
-import { MessagePage } from "../message/message";
 import { Native } from "../../../providers/native";
 
 /**
@@ -16,7 +15,7 @@ import { Native } from "../../../providers/native";
 })
 export class PopoverHomePage {
 
-  MessagePage: Component = MessagePage;
+  MessagePage: Component = 'MessagePage';
 
   constructor(
     public viewCtrl: ViewController,
@@ -30,7 +29,7 @@ export class PopoverHomePage {
     console.log('ionViewDidLoad PopoverHomePage');
   }
   goMessagePage() {
-    this.navCtrl.push(MessagePage).then(()=>{
+    this.navCtrl.push('MessagePage').then(()=>{
       this.viewCtrl.dismiss();
     })
   }
