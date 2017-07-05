@@ -102,9 +102,8 @@ import { Native } from "../providers/native";
 import { HttpService } from "../providers/http-service";
 import { JpushService } from "../providers/jpush-service";
 /*————————————————————————————————指令————————————————————————————————*/
-import { MyDirective } from "../components/my-directive/my-directive";
-import { ParallaxHeader } from "../components/parallax-header/parallax-header";
-import { ImgTabs } from "../components/img-tabs/img-tabs";
+import { MyDirective } from "../directives/my-directive/my-directive";
+import { ParallaxHeader } from "../directives/parallax-header/parallax-header";
 /*————————————————————————————————组件————————————————————————————————*/
 import { SingleCardComponent } from '../components/single-card/single-card';
 import { MyToolbarComponent } from '../components/my-toolbar/my-toolbar';
@@ -116,6 +115,7 @@ import { ImgTabs2Component } from "../components/img-tabs2/img-tabs2";
 import { CompanynamePage } from "../pages/my/account-management/account-info/companyname/companyname";
 import { PhoneNumberFilter } from "../pipes/phone-number-filter";
 import { NothingComponent } from "../components/nothing/nothing";
+import { ImgTabs } from "../components/img-tabs/img-tabs";
 /*————————————————————————————————corodva————————————————————————————————*/
 import { ImagePicker } from "@ionic-native/image-picker";
 import { CallNumber } from '@ionic-native/call-number';
