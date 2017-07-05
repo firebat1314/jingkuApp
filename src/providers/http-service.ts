@@ -394,6 +394,9 @@ export class HttpService {
     return this.http.get(this.ip + '/Index/indexs', data)
   }
   suppliersIndex(data?: Object){//店铺首页
-    return this.http.get(this.ip + '/Category/suppliers_index', data)
+    return this.http.post(this.ip + '/Category/suppliers_index', data)
+  }
+  suppliersPromote(data?: Object){//店铺促销
+    return this.http.post(this.ip + '/Category/suppliers_promote_goods', data)
   }
 }

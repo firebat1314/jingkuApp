@@ -53,6 +53,7 @@ page-particulars-home {
                 align-items: center;
                 float: left;
                 margin-right: 2rem;
+                overflow: hidden;
                 .banner-shop-anoLogo {
                     width: 8.4rem;
                     height: 8.4rem;
@@ -202,6 +203,37 @@ page-particulars-home {
                 color: #666;
             }
         }
+       .allGoods-items {
+            width: 48%;
+            margin-top: 2%;
+            background: #fff;
+            float: left;
+            margin-right: 2%;
+            .allGoods-items-img {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                img {}
+            }
+            .allGoods-items-info {
+                padding-left: 5%;
+                background: #fff;
+                border-top: 1px solid #e6e6e6;
+                p {
+                    margin: 0;
+                    line-height: 2.4rem;
+                    &:first-child {
+                        text-overflow: ellipsis;
+                        overflow: hidden;
+                        white-space: nowrap;
+                        color: #808080;
+                    }
+                    &:last-child {
+                        color: #e60000;
+                    }
+                }
+            }
+        }
     }
     .cuXiao-mian {
         .cuXiao-time-goods {
@@ -313,6 +345,7 @@ page-particulars-home {
     .goNew-main {
         .newTime-date-big-box {
             display: inline-block;
+            width:100%;
             .newTime-date-box {
                 display: flex;
                 justify-content: center;

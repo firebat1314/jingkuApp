@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { Component, Renderer, ElementRef } from '@angular/core';
+import { IonicPage, NavController, NavParams, PopoverController } from 'ionic-angular';
+import { HttpService } from "../../providers/http-service";
 
 /**
  * Generated class for the ParticularsHomeDetailsPage page.
@@ -13,8 +14,30 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
   templateUrl: 'particulars-home-details.html',
 })
 export class ParticularsHomeDetailsPage {
+  shopInfo_data: any;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  goShopFashion() {
+    this.navCtrl.push('ShopAllFashionPage');
+  }
+  presentPopover() {
+    let popover = this.popoverCtrl.create('DetailErweimaPage', {}, {});
+    popover.present();
+  }
+  constructor(
+    public navCtrl: NavController,
+    public navParams: NavParams,
+    private el: ElementRef,
+    private renderer: Renderer,
+    private httpService: HttpService,
+    public popoverCtrl: PopoverController
+  ) {
+
+    this.httpService.getSupplierInfo({ supplier_id: navParams.get('supplierId') }).then((res) => {
+      if (res.status == 1) {
+        this.shopInfo_data = res;
+        console.log(res);
+      }
+    })
   }
 
   ionViewDidLoad() {
