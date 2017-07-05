@@ -7,7 +7,6 @@ import { MoreBrandPage } from "./more-brand/more-brand";
 import { ParticularsPage } from "../home/particulars/particulars";
 import { Native } from "../../providers/native";
 import { BrandListPage } from "../home/brand-list/brand-list";
-import { ClickBanner } from "../../providers/ClickBanner";
 /*
   Generated class for the Classify page.
 

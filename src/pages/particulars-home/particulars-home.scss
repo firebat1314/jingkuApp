@@ -169,6 +169,9 @@ page-particulars-home {
         }
     }
     .allGoods-main {
+        .list {
+            @include allGoods()
+        }
         .toolbar-background-ios {
             background: #fff;
             font-size: 1.3rem;

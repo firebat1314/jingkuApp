@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams, AlertController } from 'ionic-angular';
 import { HttpService } from "../../../providers/http-service";
-import { PaymentMethodPage } from "../../my/all-orders/payment-method/payment-method";
 import { Native } from "../../../providers/native";
 
 /*

@@ -1,0 +1,35 @@
+<!--
+  Generated template for the RepairReturnPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+    <ion-navbar>
+        <ion-title>
+            <ion-segment mode="ios" [(ngModel)]="applyTabs" color="primary">
+                <ion-segment-button value="apply">
+                    售后申请
+                </ion-segment-button>
+                <ion-segment-button value="applyLog">
+                    申请记录
+                </ion-segment-button>
+            </ion-segment>
+        </ion-title>
+
+        <ion-buttons right>
+            <button ion-button clear icon-only>
+                <ion-icon name="ios-funnel-outline"></ion-icon>
+            </button>
+        </ion-buttons>
+    </ion-navbar>
+    <ion-toolbar class="mysearchbar">
+        <ion-searchbar mode="ios" #mySearchBar debounce="500" placeholder="搜索品牌、分类或者关注" animated="true">
+        </ion-searchbar>
+    </ion-toolbar>
+</ion-header>
+
+
+<ion-content>
+    <img img-lazy-load="./assets/images/images/bg_login.jpg" alt="">
+</ion-content>

@@ -2,7 +2,7 @@ import { Component, ViewChild } from '@angular/core';
 // import { IonicPage } from 'ionic-angular';
 
 import { NavController, Events, Slides, Content, FabButton, PopoverController, IonicPage } from 'ionic-angular';
-import { FormBuilder } from '@angular/forms';
+// import { FormBuilder } from '@angular/forms';
 
 
 import { CityPage } from './city/city'
@@ -25,7 +25,7 @@ import { HttpService } from "../../providers/http-service";
 
 import { Native } from "../../providers/native";
 
-import { Storage } from '@ionic/storage';
+// import { Storage } from '@ionic/storage';
 // import { PopoverHomePage } from "./popover-home/popover-home";
 // @IonicPage()
 @Component({
@@ -73,7 +73,7 @@ export class HomePage {
     private httpService: HttpService,
     // private formBuilder: FormBuilder,
     private native: Native,
-    private storage: Storage,
+    // private storage: Storage,
     public popoverCtrl: PopoverController
   ) { }
   ngAfterViewInit() {
@@ -185,7 +185,6 @@ export class HomePage {
     this.httpService.getFlowGoods().then((res) => {
       if (res.status == 1) {
         this.events.publish('car:goodsCount', res.total.real_goods_count);
-        this.storage.set('real_goods_count', res.total.real_goods_count)
       }
     })
   }

@@ -139,6 +139,7 @@ import { AdsClickDirective } from '../directives/ads-click/ads-click';
 import { ViewfabDirective } from '../directives/viewfab/viewfab';
 // import { PopoverHomePage } from "../pages/home/popover-home/popover-home";
 
+import { MyCanvasComponent } from '../components/my-canvas/my-canvas';
 
 @NgModule({
   declarations: [
@@ -168,6 +169,7 @@ import { ViewfabDirective } from '../directives/viewfab/viewfab';
     ImgLazyLoadDirective,
     AdsClickDirective,
     ViewfabDirective,
+    MyCanvasComponent,
   ],
   imports: [
     IonicImageViewerModule,

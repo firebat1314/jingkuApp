@@ -67,7 +67,7 @@
                 </span>
                 <span class="old-price">{{getGoodsInfo?.data?.old_shop_price}}</span>&nbsp;
                 <span class="rush-icon" *ngIf="getGoodsInfo?.data?.is_pre==1">预售</span>
-                <span class="rush-icon" *ngIf="getGoodsInfo?.promotion">{{getGoodsInfo?.promotion?.type_name}}</span>
+                <span class="rush-icon" *ngIf="getGoodsInfo?.promotion?.type_name">{{getGoodsInfo?.promotion?.type_name}}</span>
             </div>
             <div class="bottom">
                 <div>建议零售价&nbsp;：<span class="offer-price">¥{{getGoodsInfo?.data?.market_price}}</span></div>
@@ -88,16 +88,18 @@
         </div>
         <div class="fore coupon">
             <ion-list mode="md" no-margin>
-                <button mode="ios" (click)="presentModal('优惠券')" ion-item>
-                领券
-                <img src="./assets/icon/images/particulars_03.jpg" alt="">
-                <ion-note item-right>
-                    点击领取
-                </ion-note>
-            </button>
-                <button mode="ios" ion-item (click)="presentModal('赠送')">
-                <img src="./assets/icon/images/particulars_09.jpg" style="height: 20px;" alt=""> <span>买一盒送一盒？？？</span>
-            </button>
+                <button ion-item mode="ios" *ngIf="getGoodsInfo?.bonus?.length" [disabled]="!getGoodsInfo?.bonus?.length" class="button-coupon" (click)="presentModal('优惠券')">
+                    领券
+                    <span *ngFor="let item of getGoodsInfo?.bonus" class="coupon-show">{{"满"+item.min_goods_amount.slice(1)+'减'+item.int_type_money}}</span>
+                    <ion-note item-right>{{(!getGoodsInfo?.bonus?.length)?'无优惠券':'点击领取'}}</ion-note>
+                </button>
+                <button mode="ios" ion-item class="button-chuxiao" *ngIf="getGoodsInfo?.promotion?.length" [disabled]="!getGoodsInfo?.promotion?.length" (click)="presentModal('赠送')">
+                    促销
+                    <div>
+                        <p class="list-show" *ngFor="let item of getGoodsInfo?.promotion"><span class="title">{{item.promotion_name}}</span><span [innerHtml]="item.title"></span></p>
+                    </div>
+                    <ion-note item-right>{{(!getGoodsInfo?.promotion?.length)?'无促销':''}}</ion-note>
+                </button>
             </ion-list>
         </div>
         <div class="fore">

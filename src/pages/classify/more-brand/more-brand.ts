@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import {  NavParams } from 'ionic-angular';
-import { ClickBanner } from "../../../providers/ClickBanner";
 
 /*
   Generated class for the MoreBrand page.

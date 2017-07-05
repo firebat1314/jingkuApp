@@ -154,10 +154,37 @@ page-particulars {
     .coupon {
         .label {
             display: flex;
-            align-content: center;
-            img {
-                height: 25px;
-                margin: 0 10px;
+        }
+        .button-coupon {
+            .coupon-show {
+                padding: 0 5px;
+                display: inline-block;
+                border-top: 1px solid #f53d3d;
+                border-bottom: 1px solid #f53d3d;
+                background: url(../assets/icon/images/particulars_coupon_01_03.jpg) left, url(../assets/icon/images/particulars_coupon_01_03.jpg) right;
+                background-repeat: repeat-y;
+                background-size: 2px;
+                color: #f53d3d;
+                font-size: 1.4rem;
+                border-radius: 3px;
+                margin: 0 0 0 10px;
+            }
+        }
+        .button-chuxiao {
+            .item-inner {
+                background-position: right 14px top 19px;
+                .list-show {
+                    display: flex;
+                    align-items: center;
+                    .title {
+                        padding: 0 3px;
+                        display: inline-block;
+                        border: 1px solid #f53d3d;
+                        color: #f53d3d;
+                        border-radius: 3px;
+                        margin: 0 5px 0 10px;
+                    }
+                }
             }
         }
     }
@@ -214,7 +241,7 @@ page-particulars {
         .btn {
             display: flex;
             justify-content: center;
-            margin: 20px 0;
+            margin: 10px 0;
             .button {
                 border-radius: 25px;
             }
