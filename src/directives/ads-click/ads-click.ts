@@ -1,6 +1,5 @@
 import { Directive, HostListener, Input } from '@angular/core';
 import { NavController, Events } from "ionic-angular";
-import { ParticularsPage } from "../../pages/home/particulars/particulars";
 
 /**
  * Generated class for the AdsClickDirective directive.
@@ -26,7 +25,7 @@ export class AdsClickDirective {
     if (this.link_type.type_name == 'category') {
       this.goClassPage('classify');
     } else if (this.link_type.type_name == 'goods') {
-      this.navCtrl.push(ParticularsPage, {
+      this.navCtrl.push('ParticularsPage', {
         goodsId: this.link_type.type_value
       })
     } else if (this.link_type.type_name == "brand") {

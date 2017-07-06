@@ -145,7 +145,7 @@
                         <ion-checkbox color="dark" mode="ios" [(ngModel)]="item.selected"></ion-checkbox>
                     </div>
                     <ion-item-sliding>
-                        <ion-item>
+                        <ion-item tappable (click)="joinCar(item.goods_id)">
                             <ion-thumbnail item-left>
                                 <img img-lazy-load="{{item.img}}">
                             </ion-thumbnail>

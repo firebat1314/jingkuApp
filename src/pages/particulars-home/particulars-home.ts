@@ -1,8 +1,6 @@
 import { Component, Renderer, ElementRef } from '@angular/core';
 import { IonicPage, NavController, NavParams ,Events} from 'ionic-angular';
 import { HttpService } from "../../providers/http-service";
-import { ParticularsHomeDetailsPage } from "../particulars-home-details/particulars-home-details";
-import { ParticularsPage } from "../home/particulars/particulars";
 import { Native } from "../../providers/native";
 
 /**
@@ -115,7 +113,7 @@ export class ParticularsHomePage {
 }
 
   goParticularsHomeDetails() {
-    this.navCtrl.push(ParticularsHomeDetailsPage);
+    this.navCtrl.push('ParticularsHomeDetailsPage');
   }
   ionViewDidLoad() {
     console.log('ionViewDidLoad ParticularsHomePage');
@@ -355,6 +353,6 @@ alltoolChange() {
 	}
   
   goParticularsPage(goods_id){
-    this.navCtrl.push(ParticularsPage,{goodsId:goods_id})
+    this.navCtrl.push('ParticularsPage',{goodsId:goods_id})
   }
 }

@@ -1,7 +1,6 @@
 import { Component, ViewChild } from '@angular/core';
-import { NavController, NavParams, Content, AlertController } from 'ionic-angular';
+import { NavController, NavParams, Content, AlertController, IonicPage } from 'ionic-angular';
 import { HttpService } from "../../../providers/http-service";
-import { ParticularsPage } from "../../home/particulars/particulars";
 
 /*
   Generated class for the AccountHistory page.
@@ -9,6 +8,7 @@ import { ParticularsPage } from "../../home/particulars/particulars";
   See http://ionicframework.com/docs/v2/components/#navigation for more info on
   Ionic pages and navigation.
 */
+@IonicPage()
 @Component({
   selector: 'page-account-history',
   templateUrl: 'account-history.html'
@@ -108,7 +108,7 @@ export class AccountHistoryPage {
   }
   goParticularsPage(id) {
     if (!this.showCheckBox) {
-      this.navCtrl.push(ParticularsPage, { goodsId: id })
+      this.navCtrl.push('ParticularsPage', { goodsId: id })
     }
   }
 }

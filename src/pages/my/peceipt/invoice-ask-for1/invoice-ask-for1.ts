@@ -1,6 +1,5 @@
 import { Component, ViewChild } from '@angular/core';
-import { NavController, NavParams, Content } from 'ionic-angular';
-import { InvoiceAskFor2Page } from "../invoice-ask-for2/invoice-ask-for2";
+import { NavController, NavParams, Content, IonicPage } from 'ionic-angular';
 import { HttpService } from "../../../../providers/http-service";
 import { Native } from "../../../../providers/native";
 
@@ -10,6 +9,7 @@ import { Native } from "../../../../providers/native";
   See http://ionicframework.com/docs/v2/components/#navigation for more info on
   Ionic pages and navigation.
 */
+@IonicPage()
 @Component({
   selector: 'page-invoice-ask-for1',
   templateUrl: 'invoice-ask-for1.html'
@@ -19,7 +19,7 @@ export class InvoiceAskFor1Page {
   data: any;
   showSearch: boolean = true;
 
-  InvoiceAskFor2Page = InvoiceAskFor2Page;
+  InvoiceAskFor2Page = 'InvoiceAskFor2Page';
   suppliersId = this.navParams.get('suppliers_id');
 
   max_time;
@@ -110,7 +110,7 @@ export class InvoiceAskFor1Page {
     this.httpService.selectzz({ order_ids: this.orderIds, suppliers_id: this.suppliersId }).then((res) => {
       console.log(res);
       if (res.status == 1) {
-        this.navCtrl.push(InvoiceAskFor2Page, { data: res });
+        this.navCtrl.push('InvoiceAskFor2Page', { data: res });
       }
     })
   }

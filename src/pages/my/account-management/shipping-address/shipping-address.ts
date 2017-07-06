@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams, Events } from 'ionic-angular';
-import { AddShippingAddressPage } from "../add-shipping-address/add-shipping-address";
+import { NavController, NavParams, Events, IonicPage } from 'ionic-angular';
 import { HttpService } from "../../../../providers/http-service";
 import { Native } from "../../../../providers/native";
 
@@ -10,13 +9,14 @@ import { Native } from "../../../../providers/native";
   See http://ionicframework.com/docs/v2/components/#navigation for more info on
   Ionic pages and navigation.
 */
+@IonicPage()
 @Component({
   selector: 'page-shipping-address',
   templateUrl: 'shipping-address.html'
 })
 export class ShippingAddressPage {
   addressList: any;
-  AddShippingAddressPage: any = AddShippingAddressPage
+  AddShippingAddressPage: any = 'AddShippingAddressPage'
   constructor(
     public navCtrl: NavController,
     public navParams: NavParams,

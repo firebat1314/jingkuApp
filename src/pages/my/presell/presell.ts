@@ -1,8 +1,8 @@
 import { Component, ViewChild } from '@angular/core';
-import { NavController, NavParams, Content } from 'ionic-angular';
+import { NavController, NavParams, Content, IonicPage } from 'ionic-angular';
 import { HttpService } from "../../../providers/http-service";
-import { ParticularsPage } from "../../home/particulars/particulars";
 
+@IonicPage()
 @Component({
   selector: 'page-presell',
   templateUrl: 'presell.html'
@@ -38,7 +38,7 @@ export class PresellPage {
     })
   }
   goParticularsPage(id) {
-    this.navCtrl.push(ParticularsPage, { goodsId: id });
+    this.navCtrl.push('ParticularsPage', { goodsId: id });
   }
   scrollToTop() {
     this.content.scrollToTop();

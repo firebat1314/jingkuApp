@@ -1,18 +1,15 @@
 import { Component, ViewChild } from '@angular/core';
-import { NavController, NavParams, Content, Searchbar, Nav, Events } from 'ionic-angular';
+import { NavController, NavParams, Content, Searchbar, Nav, Events, IonicPage } from 'ionic-angular';
 
-import { SubnavPage1Page } from './subnav-page1/subnav-page1'
 import { HttpService } from "../../providers/http-service";
-import { MoreBrandPage } from "./more-brand/more-brand";
-import { ParticularsPage } from "../home/particulars/particulars";
 import { Native } from "../../providers/native";
-import { BrandListPage } from "../home/brand-list/brand-list";
 /*
   Generated class for the Classify page.
 
   See http://ionicframework.com/docs/v2/components/#navigation for more info on
   Ionic pages and navigation.
 */
+@IonicPage()
 @Component({
   selector: 'page-classify',
   templateUrl: 'classify.html'
@@ -30,7 +27,7 @@ export class ClassifyPage {
   classSelect: any = 'classify';//brand or classify or care
   careSelect: any = 'shop';//shop or goods
 
-  root = SubnavPage1Page;
+  root = 'SubnavPage1Page';
 
   showBackBtn: boolean = false;//显示分类栏返回按钮
   showCheckBox: boolean = false;//显示取消关注复选框
@@ -134,10 +131,10 @@ export class ClassifyPage {
   }
   //转跳品牌列表页
   goToMoreBrand(data) {
-    this.navCtrl.push(MoreBrandPage, { data: data })
+    this.navCtrl.push('MoreBrandPage', { data: data })
   }
   toBrandList(id) {
-    this.navCtrl.push(BrandListPage, { listId: id })
+    this.navCtrl.push('BrandListPage', { listId: id })
   }
   //分类页后退按钮
   pop() {
@@ -175,7 +172,7 @@ export class ClassifyPage {
     })
   }
   joinCar(goods_id) {
-    this.navCtrl.push(ParticularsPage, { goodsId: goods_id });
+    this.navCtrl.push('ParticularsPage', { goodsId: goods_id });
   }
   //批量取消关注按钮
   confirmForCollection() {

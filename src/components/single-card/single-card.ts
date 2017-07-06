@@ -1,5 +1,4 @@
 import { Component, Input } from '@angular/core';
-import { ParticularsPage } from '../../pages/home/particulars/particulars'
 import { HttpService } from "../../providers/http-service";
 import { Native } from "../../providers/native";
 
@@ -28,7 +27,7 @@ export class SingleCardComponent {
 
   animateClass: any;
   animateItems = [];
-  ParticularsPage: any = ParticularsPage;
+  ParticularsPage: any = 'ParticularsPage';
 
   ngOnDestroy() {
     this.clearBtn()

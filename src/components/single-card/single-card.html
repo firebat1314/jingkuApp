@@ -7,8 +7,7 @@
 <ion-card *ngFor="let item of animateItems; let i = index;" mode="md">
     <div class="card-wrap" tappable (press)="tapEvent(item,$event)" [ngClass]="animateClass" [navPush]="ParticularsPage" [navParams]="{goodsId:item.id}">
         <div class="img">
-            <img-lazy-load src="{{item?.goods_img}}"></img-lazy-load>
-            <!--<img src="{{item?.goods_img}}" alt="">-->
+            <img img-lazy-load="{{item?.goods_img}}" alt="">
         </div>
         <div class="info" padding>
             <div class="text">{{item.short_name}}</div>

@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams, AlertController } from 'ionic-angular';
+import { NavController, NavParams, AlertController, IonicPage } from 'ionic-angular';
 import { HttpService } from "../../../providers/http-service";
 import { Native } from "../../../providers/native";
 
@@ -11,6 +11,7 @@ import { Native } from "../../../providers/native";
 */
 declare var pingpp: any;
 
+@IonicPage()
 @Component({
   selector: 'page-recharge',
   templateUrl: 'recharge.html'

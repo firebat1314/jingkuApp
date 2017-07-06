@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams, Events } from 'ionic-angular';
+import { NavController, NavParams, Events, IonicPage } from 'ionic-angular';
 // import { LoginPage } from '../../login/login';
 
 /*
@@ -8,6 +8,7 @@ import { NavController, NavParams, Events } from 'ionic-angular';
   See http://ionicframework.com/docs/v2/components/#navigation for more info on
   Ionic pages and navigation.
 */
+@IonicPage()
 @Component({
   selector: 'page-signup-third',
   templateUrl: 'signup-third.html'

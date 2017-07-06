@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams } from 'ionic-angular';
+import { NavController, NavParams, IonicPage } from 'ionic-angular';
 
-import { SubnavPage2Page } from '../subnav-page2/subnav-page2'
 import { HttpService } from "../../../providers/http-service";
 /*
   Generated class for the SubnavPage1 page.
@@ -9,6 +8,7 @@ import { HttpService } from "../../../providers/http-service";
   See http://ionicframework.com/docs/v2/components/#navigation for more info on
   Ionic pages and navigation.
 */
+@IonicPage()
 @Component({
   selector: 'page-subnav-page1',
   templateUrl: 'subnav-page1.html'
@@ -31,6 +31,6 @@ export class SubnavPage1Page {
     })
   }
   gotwo(id) {
-    this.navCtrl.push(SubnavPage2Page,{catId:id});
+    this.navCtrl.push('SubnavPage2Page',{catId:id});
   }
 }

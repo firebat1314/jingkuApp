@@ -1,9 +1,6 @@
 import { Component, ViewChild } from '@angular/core';
-import { NavController, NavParams, Events, Content } from 'ionic-angular';
+import { NavController, NavParams, Events, Content, IonicPage } from 'ionic-angular';
 
-import { InvoiceQualificationPage } from "./invoice-qualification/invoice-qualification";
-import { InvoiceAskFor2Page } from "./invoice-ask-for2/invoice-ask-for2";
-import { InvoiceAskFor1Page } from "./invoice-ask-for1/invoice-ask-for1";
 import { HttpService } from "../../../providers/http-service";
 
 /*
@@ -12,6 +9,7 @@ import { HttpService } from "../../../providers/http-service";
   See http://ionicframework.com/docs/v2/components/#navigation for more info on
   Ionic pages and navigation.
 */
+@IonicPage()
 @Component({
   selector: 'page-peceipt',
   templateUrl: 'peceipt.html'
@@ -110,12 +108,12 @@ export class PeceiptPage {
     }
   }
   goInvoiceQualificationPage(ivid) {
-    this.navCtrl.push(InvoiceQualificationPage, { ivid: ivid })
+    this.navCtrl.push('InvoiceQualificationPage', { ivid: ivid })
   }
   goInvoiceAskFor2Page() {
-    this.navCtrl.push(InvoiceAskFor2Page)
+    this.navCtrl.push('InvoiceAskFor2Page')
   }
   goInvoiceAskFor1Page(id) {
-    this.navCtrl.push(InvoiceAskFor1Page, { suppliers_id: id })
+    this.navCtrl.push('InvoiceAskFor1Page', { suppliers_id: id })
   }
 }

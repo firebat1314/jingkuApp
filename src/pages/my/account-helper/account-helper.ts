@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams } from 'ionic-angular';
+import { NavController, NavParams, IonicPage } from 'ionic-angular';
 import { HttpService } from "../../../providers/http-service";
-import { HelperDetailsPage } from "./helper-details/helper-details";
 
 /*
   Generated class for the AccountHelper page.
@@ -9,6 +8,7 @@ import { HelperDetailsPage } from "./helper-details/helper-details";
   See http://ionicframework.com/docs/v2/components/#navigation for more info on
   Ionic pages and navigation.
 */
+@IonicPage()
 @Component({
   selector: 'page-account-helper',
   templateUrl: 'account-helper.html'
@@ -28,7 +28,7 @@ export class AccountHelperPage {
     })
   }
   goHelperDetailsPage(item) {
-    this.navCtrl.push(HelperDetailsPage, { item: item });
+    this.navCtrl.push('HelperDetailsPage', { item: item });
   }
   ionViewDidLoad() {
     console.log('ionViewDidLoad AccountHelperPage');

@@ -1,7 +1,6 @@
 import { Component, ViewChild } from '@angular/core';
-import { NavController, NavParams, Events, Content } from 'ionic-angular';
+import { NavController, NavParams, Events, Content, IonicPage } from 'ionic-angular';
 import { HttpService } from "../../../providers/http-service";
-import { CarPage } from "../../car/car";
 import { Native } from "../../../providers/native";
 
 /*
@@ -10,6 +9,7 @@ import { Native } from "../../../providers/native";
   See http://ionicframework.com/docs/v2/components/#navigation for more info on
   Ionic pages and navigation.
 */
+@IonicPage()
 @Component({
 	selector: 'page-brand-list',
 	templateUrl: 'brand-list.html',
@@ -207,6 +207,6 @@ export class BrandListPage {
 		this.content.scrollToTop();
 	}
 	goCarPage() {
-		this.navCtrl.push(CarPage);
+		this.navCtrl.push('CarPage');
 	}
 }

@@ -1,7 +1,6 @@
 import { Component, ViewChild } from '@angular/core';
-import { NavController, NavParams, Content } from 'ionic-angular';
+import { NavController, NavParams, Content, IonicPage } from 'ionic-angular';
 import { HttpService } from "../../../providers/http-service";
-import { IntegralstorePage } from "../../home/integralstore/integralstore";
 
 /*
   Generated class for the AccountJifen page.
@@ -9,6 +8,7 @@ import { IntegralstorePage } from "../../home/integralstore/integralstore";
   See http://ionicframework.com/docs/v2/components/#navigation for more info on
   Ionic pages and navigation.
 */
+@IonicPage()
 @Component({
   selector: 'page-account-jifen',
   templateUrl: 'account-jifen.html'
@@ -54,6 +54,6 @@ export class AccountJifenPage {
     this.content.scrollToTop();
   }
   goIntegralstorePage() {
-    this.navCtrl.push(IntegralstorePage);
+    this.navCtrl.push('IntegralstorePage');
   }
 }

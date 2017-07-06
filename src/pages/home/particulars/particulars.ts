@@ -1,25 +1,10 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams, ModalController, Events } from 'ionic-angular';
+import { NavController, NavParams, ModalController, Events, IonicPage } from 'ionic-angular';
 /*http服务*/
 import { HttpService } from "../../../providers/http-service";
 import { Native } from "../../../providers/native";
 
-
-import { ParticularsModalPage } from "./particulars-modal/particulars-modal"
-import { ParticularsModalAttrPage } from "./particulars-modal-attr/particulars-modal-attr";
-// import { AccountServicePage } from "../../my/account-service/account-service";
-import { BrandListPage } from "../brand-list/brand-list";
-import { CarPage } from "../../car/car";
-import { Storage } from '@ionic/storage';
-import { ParticularsHomePage } from '../../particulars-home/particulars-home';
-import { DredgeMoreCityPage } from "./dredge-more-city/dredge-more-city";
-
-/*
-  Generated class for the Particulars page.
-
-  See http://ionicframework.com/docs/v2/components/#navigation for more info on
-  Ionic pages and navigation.
-*/
+@IonicPage()
 @Component({
   selector: 'page-particulars',
   templateUrl: 'particulars.html'
@@ -51,7 +36,6 @@ export class ParticularsPage {
     public navParams: NavParams,
     private http: HttpService,
     public modalCtrl: ModalController,
-    public storage: Storage,
     public native: Native,
     private events: Events
   ) {
@@ -66,7 +50,7 @@ export class ParticularsPage {
     console.log('ionViewDidLoad ParticularsPage');
     this.getHttpDetails();
     this.events.subscribe('particulars:goCarPage', () => {
-      this.navCtrl.push(CarPage);
+      this.navCtrl.push('CarPage');
     });
     this.events.subscribe('car:goodsCount', (res) => {
       this.badgeCount = res;
@@ -107,7 +91,7 @@ export class ParticularsPage {
     });
   }
   presentModal(str) {
-    let modal = this.modalCtrl.create(ParticularsModalPage, {
+    let modal = this.modalCtrl.create('ParticularsModalPage', {
       name: str,
       getBonus: this.getGoodsInfo.bonus,
       sendto: this.getGoodsInfo.sale_city,
@@ -121,7 +105,7 @@ export class ParticularsPage {
         this.getHttpDetails();
       }
       if(data=='goDredgeMoreCityPage'){
-        this.navCtrl.push(DredgeMoreCityPage);
+        this.navCtrl.push('DredgeMoreCityPage');
       }
     });
     modal.present();
@@ -164,7 +148,7 @@ export class ParticularsPage {
    * @param type 商品类型（镜片、镜架）
    */
   openAttrModal(res, type) {
-    let modal = this.modalCtrl.create(ParticularsModalAttrPage, { data: res, type: type, headData: this.getGoodsInfo.data, id: this.goodsId });
+    let modal = this.modalCtrl.create('ParticularsModalAttrPage', { data: res, type: type, headData: this.getGoodsInfo.data, id: this.goodsId });
     modal.onDidDismiss(data => {
       if (data) {
         console.log(data);
@@ -229,12 +213,12 @@ export class ParticularsPage {
     // this.navCtrl.push(AccountServicePage)
   }
   goParticularsHome() {
-    this.navCtrl.push(ParticularsHomePage, { supplierId: this.getGoodsInfo.supplier_info.id });
+    this.navCtrl.push('ParticularsHomePage', { supplierId: this.getGoodsInfo.supplier_info.id });
   }
   goStore() {
-    this.navCtrl.push(BrandListPage, { supplierId: this.getGoodsInfo.supplier_info.id })
+    this.navCtrl.push('BrandListPage', { supplierId: this.getGoodsInfo.supplier_info.id })
   }
   goCart() {
-    this.navCtrl.push(CarPage)
+    this.navCtrl.push('CarPage')
   }
 }

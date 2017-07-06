@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams } from 'ionic-angular';
+import { NavController, NavParams, IonicPage } from 'ionic-angular';
 import { HttpService } from "../../../../providers/http-service";
 
 /*
@@ -8,6 +8,7 @@ import { HttpService } from "../../../../providers/http-service";
   See http://ionicframework.com/docs/v2/components/#navigation for more info on
   Ionic pages and navigation.
 */
+@IonicPage()
 @Component({
   selector: 'page-member-center',
   templateUrl: 'member-center.html'
