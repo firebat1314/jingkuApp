@@ -1,35 +1,34 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
-import { HttpService } from "../../providers/http-service";
+import { HttpService } from "../../../providers/http-service";
 
 /**
- * Generated class for the RepairReturnPage page.
+ * Generated class for the RepairApplyPage page.
  *
  * See http://ionicframework.com/docs/components/#navigation for more info
  * on Ionic pages and navigation.
  */
 @IonicPage()
 @Component({
-  selector: 'page-repair-return',
-  templateUrl: 'repair-return.html',
+  selector: 'page-repair-apply',
+  templateUrl: 'repair-apply.html',
 })
-export class RepairReturnPage {
+export class RepairApplyPage {
   data: any;
 
-  applyTabs: string = 'applyLog';
   constructor(
     public navCtrl: NavController,
     public navParams: NavParams,
     public httpService: HttpService,
-  ) { }
-
+  ) {
+    this.getData();
+  }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad RepairReturnPage');
-    this.getOrderRepair();
+    console.log('ionViewDidLoad RepairApplyPage');
   }
-  getOrderRepair() {
-    this.httpService.orderRepair().then((res) => {
+  getData() {
+    this.httpService.repairApply().then((res) => {
       if (res.status == 1) {
         this.data = res;
       }

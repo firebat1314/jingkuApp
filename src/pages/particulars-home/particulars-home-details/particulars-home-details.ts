@@ -20,7 +20,7 @@ export class ParticularsHomeDetailsPage {
     this.navCtrl.push('ShopAllFashionPage');
   }
   presentPopover() {
-    let popover = this.popoverCtrl.create('DetailErweimaPage', {}, {});
+    let popover = this.popoverCtrl.create('DetailErweimaPage', {}, {cssClass:'page-particulars-home-details-popover'});
     popover.present();
   }
   constructor(

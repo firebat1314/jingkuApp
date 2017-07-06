@@ -179,6 +179,9 @@ page-classify {
         height: 100%;
         .shop {
             height: 100%;
+            .item {
+                background: #fff;
+            }
             .item-wrap {
                 display: flex;
                 align-items: center;

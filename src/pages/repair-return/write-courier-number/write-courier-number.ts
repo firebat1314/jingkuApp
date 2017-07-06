@@ -2,23 +2,23 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 
 /**
- * Generated class for the StoreTabsActivityPage page.
+ * Generated class for the WriteCourierNumberPage page.
  *
  * See http://ionicframework.com/docs/components/#navigation for more info
  * on Ionic pages and navigation.
  */
 @IonicPage()
 @Component({
-  selector: 'page-store-tabs-activity',
-  templateUrl: 'store-tabs-activity.html',
+  selector: 'page-write-courier-number',
+  templateUrl: 'write-courier-number.html',
 })
-export class StoreTabsActivityPage {
+export class WriteCourierNumberPage {
 
   constructor(public navCtrl: NavController, public navParams: NavParams) {
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad StoreTabsActivityPage');
+    console.log('ionViewDidLoad WriteCourierNumberPage');
   }
 
 }

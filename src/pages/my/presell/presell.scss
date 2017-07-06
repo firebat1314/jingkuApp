@@ -49,7 +49,6 @@ page-presell {
         padding: 16px;
         align-items: center;
         justify-content: space-between;
-        height: 136px;
         width: 100%;
         .left {
             height: 100%;
@@ -96,14 +95,13 @@ page-presell {
             flex: 1;
             display: flex;
             flex-direction: column;
-            height: 90%;
             overflow: hidden;
             .title {
                 @include ellipsis_2;
-                flex: 1;
+                margin-bottom: 5px;
             }
             .strip {
-                margin-bottom: 15px;
+                margin-bottom: 10px;
                 .wrap {
                     height: 11px;
                     width: 100%;

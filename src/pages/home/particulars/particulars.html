@@ -13,12 +13,17 @@
 </ion-header>
 
 
-<ion-content parallax-header>
+<ion-content parallax-header #myContent>
     <!--<ion-refresher (ionRefresh)="doRefresh($event)" pullMax="60">
         <ion-refresher-content refreshingSpinner="1" pullingIcon="0"></ion-refresher-content>
     </ion-refresher>-->
     <div class="imgs header-image">
-        <ion-slides parallax="true" parallax="true">
+        <ion-slides parallax="true">
+            <ion-slide *ngIf="!getGoodsInfo">
+                <ion-card>
+                    <img img-lazy-load="" imageViewer alt="">
+                </ion-card>
+            </ion-slide>
             <ion-slide *ngFor="let item of getGoodsInfo?.gallery">
                 <ion-card>
                     <img [img-lazy-load]="item.img_url" imageViewer alt="">
@@ -56,7 +61,7 @@
                 </p>
             </div>
         </div>-->
-        <div class="fore info" *ngIf="getGoodsInfo">
+        <div class="fore info">
             <div class="title">
                 {{getGoodsInfo?.data?.goods_name}}
             </div>
@@ -283,6 +288,9 @@
     <!--<div class="warning-show">
         <span>请用电脑下单！</span>
     </div>-->
+    <ion-fab right bottom tappable (click)="myContent.scrollToTop()">
+        <button ion-fab color="dark" mini goBackTop></button>
+    </ion-fab>
 </ion-content>
 <ion-footer>
     <div class="main">
@@ -319,4 +327,5 @@
             </div>
         </div>
     </div>
+
 </ion-footer>

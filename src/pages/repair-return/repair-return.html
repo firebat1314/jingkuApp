@@ -16,7 +16,6 @@
                 </ion-segment-button>
             </ion-segment>
         </ion-title>
-
         <ion-buttons right>
             <button ion-button clear icon-only>
                 <ion-icon name="ios-funnel-outline"></ion-icon>
@@ -24,12 +23,34 @@
         </ion-buttons>
     </ion-navbar>
     <ion-toolbar class="mysearchbar">
-        <ion-searchbar mode="ios" #mySearchBar debounce="500" placeholder="搜索品牌、分类或者关注" animated="true">
-        </ion-searchbar>
+        <ion-searchbar mode="ios" #mySearchBar debounce="500" placeholder="请输入订单号或者商品编号" animated="true"></ion-searchbar>
     </ion-toolbar>
 </ion-header>
 
-
 <ion-content>
-    <img img-lazy-load="./assets/images/images/bg_login.jpg" alt="">
+    <!--<img img-lazy-load="./assets/images/images/bg_login.jpg" alt="">-->
+    <div class="order" *ngFor="let item of data?.list">
+        <div class="order-head">
+            <span>订单编号：{{item.order_sn}}</span>
+            <span>下单时间：{{item.add_time}}</span>
+        </div>
+        <div class="order-body">
+            <div class="order-body-item" *ngFor="let subitem of item.goods">
+                <ion-checkbox mode="ios"></ion-checkbox>
+                <!--<ion-icon class="checkbox" name="ios-help-circle-outline"></ion-icon>-->
+                <div class="img">
+                    <img img-lazy-load="{{subitem.original_img}}">
+                    <!--<div class="guoqi">超过售后期</div>-->
+                </div>
+                <div class="order-body-item-content">
+                    <h2>{{subitem.goods_name}}</h2>
+                    <p>数量：{{subitem.goods_number}}</p>
+                </div>
+            </div>
+        </div>
+        <div class="order-foot">
+            <label><ion-checkbox></ion-checkbox>全选</label>
+            <button ion-button navPush="RepairApplyPage">申请售后</button>
+        </div>
+    </div>
 </ion-content>
