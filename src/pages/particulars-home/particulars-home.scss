@@ -14,7 +14,7 @@ page-particulars-home {
                 img {}
             }
             .allGoods-items-info {
-                padding-left: 5%;
+                padding: 8px 5px;
                 background: #fff;
                 border-top: 1px solid #e6e6e6;
                 p {
@@ -145,7 +145,7 @@ page-particulars-home {
                     background: #fff;
                     border-top: 1px solid #e6e6e6;
                     border-bottom: 1px solid #e6e6e6;
-                    height: 3rem;
+                    padding: 4px 0;
                     color: #333;
                     display: flex;
                     align-items: center;
@@ -156,7 +156,7 @@ page-particulars-home {
                         margin-left: 5px;
                     }
                     button {
-                        height: 2rem;
+                        padding: 8px;
                         background: #ff3333;
                         color: #fff;
                         font-size: 1.4rem;
@@ -170,7 +170,37 @@ page-particulars-home {
     }
     .allGoods-main {
         .list {
-            @include allGoods()
+            .allGoods-items {
+            width: 48%;
+            margin-top: 2%;
+            background: #fff;
+            float: left;
+            margin-right: 2%;
+            .allGoods-items-img {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                img {}
+            }
+            .allGoods-items-info {
+                padding: 8px 5px;
+                background: #fff;
+                border-top: 1px solid #e6e6e6;
+                p {
+                    margin: 0;
+                    line-height: 2.4rem;
+                    &:first-child {
+                        text-overflow: ellipsis;
+                        overflow: hidden;
+                        white-space: nowrap;
+                        color: #808080;
+                    }
+                    &:last-child {
+                        color: #e60000;
+                    }
+                }
+            }
+        }
         }
         .toolbar-background-ios {
             background: #fff;
@@ -346,6 +376,7 @@ page-particulars-home {
         .newTime-date-big-box {
             display: inline-block;
             width:100%;
+            padding-top: 1px;
             .newTime-date-box {
                 display: flex;
                 justify-content: center;
@@ -376,7 +407,40 @@ page-particulars-home {
                     }
                 }
             }
-            @include allGoods
+            .newdata-box{
+                padding-left: 2%;
+                    .allGoods-items {
+                    width: 48%;
+                    margin-top: 2%;
+                    background: #fff;
+                    float: left;
+                    margin-right: 2%;
+                    .allGoods-items-img {
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                        img {}
+                    }
+                    .allGoods-items-info {
+                        padding: 8px 5px;
+                        background: #fff;
+                        border-top: 1px solid #e6e6e6;
+                        p {
+                            margin: 0;
+                            line-height: 2.4rem;
+                            &:first-child {
+                                text-overflow: ellipsis;
+                                overflow: hidden;
+                                white-space: nowrap;
+                                color: #808080;
+                            }
+                            &:last-child {
+                                color: #e60000;
+                            }
+                        }
+                    }
+                }
+            }
         }
         .newTime-date-noMore {
             .lock {
