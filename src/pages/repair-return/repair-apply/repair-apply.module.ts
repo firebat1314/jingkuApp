@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { IonicPageModule } from 'ionic-angular';
 import { RepairApplyPage } from './repair-apply';
+import { SuperTabsModule } from 'ionic2-super-tabs';
 
 @NgModule({
   declarations: [
@@ -8,9 +9,10 @@ import { RepairApplyPage } from './repair-apply';
   ],
   imports: [
     IonicPageModule.forChild(RepairApplyPage),
+    SuperTabsModule.forRoot()
   ],
   exports: [
     RepairApplyPage
   ]
 })
-export class RepairApplyPageModule {}
+export class RepairApplyPageModule { }

@@ -26,7 +26,7 @@ export class ParticularsPage {
   searchGoods: any;
   care: any;
 
-  selectGroupRecommend = "group";
+  selectGroupRecommend = "group"||'recommend';
   selectPicArguments = "pic";
 
   goodsId: number;
@@ -49,6 +49,9 @@ export class ParticularsPage {
   ionViewDidLoad() {
     console.log('ionViewDidLoad ParticularsPage');
     this.getHttpDetails();
+    this.http.getFlowGoods().then((res) => {//获取购物车数量
+      this.badgeCount = res.total.real_goods_count;
+    })
     this.events.subscribe('particulars:goCarPage', () => {
       this.navCtrl.push('CarPage');
     });

@@ -7,7 +7,7 @@ page-subnav-page1 {
         background: #fff;
     }
     .classify-wrap {
-        padding: 15px 7%;
+        margin: 15px 7%;
         display: flex;
         flex-wrap: wrap;
         >div {
@@ -26,9 +26,9 @@ page-subnav-page1 {
             &:last-child {
                 border-bottom: 0;
             }
-            &:nth-last-of-type(2) {
+            /*&:nth-last-of-type(2) {
                 border-bottom: 0;
-            }
+            }*/
             img {
                 width: 26%;
                 padding: 10px 0;

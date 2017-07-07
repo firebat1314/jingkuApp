@@ -11,18 +11,18 @@
     <div *ngIf="type=='goods'" class="goods_main">
         <table>
             <tr>
+                <th>数量</th>
                 <th>价格</th>
                 <th *ngFor="let item of data.data[0].goods_attr">{{item.attr_name}}</th>
                 <th>库存</th>
-                <th>数量</th>
             </tr>
             <tr *ngFor="let item of data.data">
+                <td class="count-input-box">
+                    <count-input (updateNumberI)="numberIChange($event,item)"></count-input>
+                </td>
                 <td>{{item.price}}</td>
                 <td *ngFor="let group of item.goods_attr">{{group.attr_val}}</td>
                 <td>{{item.product_number}}</td>
-                <td>
-                    <count-input (updateNumberI)="numberIChange($event,item)"></count-input>
-                </td>
             </tr>
         </table>
     </div>

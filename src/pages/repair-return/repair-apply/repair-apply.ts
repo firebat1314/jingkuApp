@@ -15,7 +15,7 @@ import { HttpService } from "../../../providers/http-service";
 })
 export class RepairApplyPage {
   data: any;
-
+  
   constructor(
     public navCtrl: NavController,
     public navParams: NavParams,

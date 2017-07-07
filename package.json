@@ -1,7 +1,7 @@
 {
     "name": "jingkoo",
-    "version": "1.0.3",
-    "author": "iwchina team",
+    "version": "1.0.5",
+    "author": "jingku team",
     "homepage": "",
     "private": false,
     "scripts": {
@@ -53,6 +53,7 @@
         "ionic-img-viewer": "^2.3.0",
         "ionic-plugin-keyboard": "^2.2.1",
         "ionic2-city-picker": "0.0.11",
+        "ionic2-super-tabs": "^2.6.3",
         "ionicons": "3.0.0",
         "mx.ferreyra.callnumber": "~0.0.2",
         "phonegap-plugin-barcodescanner": "^6.0.6",

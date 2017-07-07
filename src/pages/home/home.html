@@ -20,12 +20,15 @@
         <ion-refresher-content refreshingSpinner="1" pullingIcon="0"></ion-refresher-content>
     </ion-refresher>
     <!--——————————————————————————————————————————轮播图——————————————————————————————————————————-->
-    <div class="banner-wrapper" *ngIf="bannerImgs?.length>=1">
+    <div class="banner-wrapper">
         <ion-slides #bannerSlide autoplay="4000" pager (ionSlideAutoplayStop)="bannerSlide.startAutoplay()">
             <!--[loop]="bannerImgs?.length>1?true:false"-->
+            <ion-slide *ngIf="!bannerImgs">
+                <img img-lazy-load="" defaultSrc="./assets/images/images/640-320.jpg" alt="">
+            </ion-slide>
             <ion-slide *ngFor="let item of bannerImgs" tappable [ads-click]="item.link_type">
                 <!--<img [img-lazy-load]="item.ad_img">-->
-                <img [img-lazy-load]="item.ad_img" alt="">
+                <img [img-lazy-load]="item.ad_img" defaultSrc="./assets/images/images/640-320.jpg" alt="">
             </ion-slide>
         </ion-slides>
     </div>
@@ -34,25 +37,25 @@
         <div class="top">
             <div tappable (click)="goPresellPage()">
                 <div class="img">
-                    <img src="./assets/icon/home_icon_08.png" alt="">
+                    <img img-lazy-load="./assets/icon/home_icon_08.png" alt="">
                 </div>
                 <span>预售</span>
             </div>
             <div tappable (click)="goRechargePage()">
                 <div class="img">
-                    <img src="./assets/icon/home_icon_02.png" alt="">
+                    <img img-lazy-load="./assets/icon/home_icon_02.png" alt="">
                 </div>
                 <span>充值</span>
             </div>
             <div tappable (click)="goFastbuyPage()">
                 <div class="img">
-                    <img src="./assets/icon/home_icon_05.png" alt="">
+                    <img img-lazy-load="./assets/icon/home_icon_05.png" alt="">
                 </div>
                 <span>闪购</span>
             </div>
             <div tappable (click)="goClassPage('brand')">
                 <div class="img">
-                    <img src="./assets/icon/home_icon_04.png" alt="">
+                    <img img-lazy-load="./assets/icon/home_icon_04.png" alt="">
                 </div>
                 <span>品牌</span>
             </div>
@@ -60,25 +63,25 @@
         <div class="bottom">
             <div tappable (click)="goWhitebarPage()">
                 <div class="img">
-                    <img src="./assets/icon/home_icon_01.png" alt="">
+                    <img img-lazy-load="./assets/icon/home_icon_01.png" alt="">
                 </div>
                 <span>白条</span>
             </div>
             <div tappable (click)="goDiscountCouponPage();">
                 <div class="img">
-                    <img src="./assets/icon/home_icon_07.png" alt="">
+                    <img img-lazy-load="./assets/icon/home_icon_07.png" alt="">
                 </div>
                 <span>优惠券</span>
             </div>
             <div tappable (click)="goIntegralstorePage();">
                 <div class="img">
-                    <img src="./assets/icon/home_icon_03.png" alt="">
+                    <img img-lazy-load="./assets/icon/home_icon_03.png" alt="">
                 </div>
                 <span>积分商城</span>
             </div>
             <div tappable (click)="goGlassesDesignPage()">
                 <div class="img">
-                    <img src="./assets/icon/home_icon_06.png" alt="">
+                    <img img-lazy-load="./assets/icon/home_icon_06.png" alt="">
                 </div>
                 <span>镜库设计</span>
             </div>
@@ -93,7 +96,7 @@
         </div>
         <div class="main">
             <div class="banner">
-                <img img-lazy-load="{{hotBrand_img?.ad_img}}" [ads-click]="hotBrand_img?.link_type">
+                <img img-lazy-load="{{hotBrand_img?.ad_img}}" defaultSrc="./assets/images/images/640-320.jpg" [ads-click]="hotBrand_img?.link_type">
             </div>
             <ion-grid>
                 <ion-row wrap>
@@ -116,7 +119,7 @@
                 <img img-lazy-load="{{item.brand_logo}}" tappable (click)="goBrandListPage(item.brand_id)">
             </div>
             <!--<div>
-                <img src="./assets/icon/homepage_53.png" alt=""  tappable (click)="goClassPage('brand')">
+                <img img-lazy-load="./assets/icon/homepage_53.png" alt=""  tappable (click)="goClassPage('brand')">
             </div>-->
         </div>
     </div>
@@ -126,7 +129,7 @@
             <span class="txt">精选专题</span>
         </div>
         <div class="show">
-            <img img-lazy-load="{{jingxuan_img1?.ad_img}}" [ads-click]="jingxuan_img1?.link_type">
+            <img img-lazy-load="{{jingxuan_img1?.ad_img}}" defaultSrc="./assets/images/images/640-320.jpg" [ads-click]="jingxuan_img1?.link_type">
         </div>
         <div class="pick">
             <ion-slides class="slide-title" slidesPerView="3">
@@ -150,7 +153,7 @@
             </ion-slides>
         </div>
         <div class="show">
-            <img img-lazy-load="{{jingxuan_img2?.ad_img}}" [ads-click]="jingxuan_img2?.link_type">
+            <img img-lazy-load="{{jingxuan_img2?.ad_img}}" defaultSrc="./assets/images/images/640-320.jpg" [ads-click]="jingxuan_img2?.link_type">
         </div>
         <div class="pick">
             <ion-slides class="slide-title" slidesPerView="3">
@@ -178,7 +181,7 @@
             </ion-slides>
         </div>
         <div class="show">
-            <img img-lazy-load="{{jingxuan_img3?.ad_img}}" [ads-click]="jingxuan_img3?.link_type">
+            <img img-lazy-load="{{jingxuan_img3?.ad_img}}" defaultSrc="./assets/images/images/640-320.jpg" [ads-click]="jingxuan_img3?.link_type">
         </div>
         <div class="pick">
             <ion-slides class="slide-title" slidesPerView="3">
@@ -227,7 +230,7 @@
             <ion-slides loop="false" parallax="true" pager>
                 <ion-slide *ngFor="let item of jingxuan_img4">
                     <ion-card>
-                        <img img-lazy-load="{{item?.ad_img}}" [ads-click]="item.link_type">
+                        <img img-lazy-load="{{item?.ad_img}}" defaultSrc="./assets/images/images/640-320.jpg" [ads-click]="item.link_type">
                         <!--<img [ads-click]="item.link_type" src="{{item?.ad_img}}" />-->
                         <!--<div class="collect">
                             <div class="left">

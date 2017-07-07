@@ -14,9 +14,9 @@ import { HttpService } from "../../providers/http-service";
   templateUrl: 'repair-return.html',
 })
 export class RepairReturnPage {
-  data: any;
+  list: Array<any> = [];
 
-  applyTabs: string = 'applyLog';
+  applyTabs: string = 'apply' || 'applyLog';
   constructor(
     public navCtrl: NavController,
     public navParams: NavParams,
@@ -28,11 +28,32 @@ export class RepairReturnPage {
     console.log('ionViewDidLoad RepairReturnPage');
     this.getOrderRepair();
   }
-  getOrderRepair() {
-    this.httpService.orderRepair().then((res) => {
+  getOrderRepair(infiniteScroll?) {
+    this.httpService.orderRepair({
+      size: 1,
+      page: 1
+    }).then((res) => {
       if (res.status == 1) {
-        this.data = res;
+        this.list = this.list.concat(res.list);
+
+        if (infiniteScroll) {
+          setTimeout(() => {
+            infiniteScroll.complete();
+          }, 500);
+        }
+
       }
     })
+  }
+  doRefresh(refresher) {
+    this.list = [];
+    this.getOrderRepair();
+
+    setTimeout(() => {
+      refresher.complete();
+    }, 500);
+  }
+  doInfinite(infiniteScroll) {
+    this.getOrderRepair(infiniteScroll);
   }
 }

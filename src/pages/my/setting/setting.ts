@@ -55,17 +55,19 @@ export class SettingPage {
   }
   clearCathe() {
     this.native.openAlertBox('清除本地缓存？', () => {
-      this.native.showToast('已清空缓存')
+      this.httpService.clear(()=>{
+        this.httpService.setStorage('firstIn','NO');
+        this.native.showToast('已清空缓存');
+      })
     })
   }
   signOut() {
     this.native.openAlertBox('确定退出登陆？', () => {
       this.httpService.logout().then((res) => {
         console.log(res);
-        this.app.getRootNav().setRoot('LoginPage');
+        this.app.getRootNav().setRoot('LoginPage',{},{animate:true});
         this.httpService.setStorage('hasLoggedIn', false);
         this.httpService.removeStorage("token");
-        this.httpService.removeStorage("username");
       })
     })
   }

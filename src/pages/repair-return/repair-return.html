@@ -27,30 +27,74 @@
     </ion-toolbar>
 </ion-header>
 
-<ion-content>
+<ion-content [ngSwitch]="applyTabs" #myContent>
+    <ion-refresher (ionRefresh)="doRefresh($event)" pullMax="60">
+        <ion-refresher-content refreshingSpinner="1" pullingIcon="0"></ion-refresher-content>
+    </ion-refresher>
+    <!--<ion-slides #bannerSlide>
+        <ion-slide>
+        </ion-slide>
+        <ion-slide>
+        </ion-slide>
+    </ion-slides>-->
     <!--<img img-lazy-load="./assets/images/images/bg_login.jpg" alt="">-->
-    <div class="order" *ngFor="let item of data?.list">
-        <div class="order-head">
-            <span>订单编号：{{item.order_sn}}</span>
-            <span>下单时间：{{item.add_time}}</span>
-        </div>
-        <div class="order-body">
-            <div class="order-body-item" *ngFor="let subitem of item.goods">
-                <ion-checkbox mode="ios"></ion-checkbox>
-                <!--<ion-icon class="checkbox" name="ios-help-circle-outline"></ion-icon>-->
-                <div class="img">
-                    <img img-lazy-load="{{subitem.original_img}}">
-                    <!--<div class="guoqi">超过售后期</div>-->
-                </div>
-                <div class="order-body-item-content">
-                    <h2>{{subitem.goods_name}}</h2>
-                    <p>数量：{{subitem.goods_number}}</p>
+    <div class="apply" *ngSwitchCase="'apply'">
+        <div class="order" *ngFor="let item of list">
+            <div class="order-head">
+                <span>订单编号：{{item.order_sn}}</span>
+                <span>下单时间：{{item.add_time}}</span>
+            </div>
+            <div class="order-body">
+                <div class="order-body-item" *ngFor="let subitem of item.goods">
+                    <ion-checkbox mode="ios"></ion-checkbox>
+                    <!--<ion-icon class="checkbox" name="ios-help-circle-outline"></ion-icon>-->
+                    <div class="img">
+                        <img img-lazy-load="{{subitem.original_img}}">
+                        <!--<div class="guoqi">超过售后期</div>-->
+                    </div>
+                    <div class="order-body-item-content">
+                        <h2 style="-webkit-box-orient: vertical;">{{subitem.goods_name}}</h2>
+                        <p>数量：{{subitem.goods_number}}</p>
+                    </div>
                 </div>
             </div>
-        </div>
-        <div class="order-foot">
-            <label><ion-checkbox></ion-checkbox>全选</label>
-            <button ion-button navPush="RepairApplyPage">申请售后</button>
+            <div class="order-foot">
+                <label><ion-checkbox></ion-checkbox>全选</label>
+                <button ion-button navPush="RepairApplyPage">申请售后</button>
+            </div>
         </div>
     </div>
+    <div class="applyLog" *ngSwitchCase="'applyLog'">
+        <div class="order" *ngFor="let item of list">
+            <div class="order-head">
+                <span>订单编号：{{item.order_sn}}</span>
+                <span>换货</span>
+            </div>
+            <div class="order-body">
+                <div class="order-body-item" *ngFor="let subitem of item.goods">
+                    <ion-checkbox mode="ios"></ion-checkbox>
+                    <!--<ion-icon class="checkbox" name="ios-help-circle-outline"></ion-icon>-->
+                    <div class="img">
+                        <img img-lazy-load="{{subitem.original_img}}">
+                        <!--<div class="guoqi">超过售后期</div>-->
+                    </div>
+                    <div class="order-body-item-content">
+                        <h2 style="-webkit-box-orient: vertical;">{{subitem.goods_name}}</h2>
+                    </div>
+                </div>
+            </div>
+            <div class="order-foot">
+                <ion-item mode="ios" detail-push no-lines>
+                    <img src="./assets/icon/images/ok.png" item-start alt=""> 已取消 | 您的服务单已经由某某某取消
+                </ion-item>
+            </div>
+        </div>
+    </div>
+    <ion-fab right bottom tappable (click)="myContent.scrollToTop(0)">
+        <button ion-fab color="dark" mini goBackTop></button>
+    </ion-fab>
+
+    <ion-infinite-scroll (ionInfinite)="doInfinite($event)">
+        <ion-infinite-scroll-content loadingSpinner="bubbles" loadingText="加载更多...">></ion-infinite-scroll-content>
+    </ion-infinite-scroll>
 </ion-content>

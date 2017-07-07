@@ -21,12 +21,12 @@
         <ion-slides parallax="true">
             <ion-slide *ngIf="!getGoodsInfo">
                 <ion-card>
-                    <img img-lazy-load="" imageViewer alt="">
+                    <img img-lazy-load="" defaultSrc="./assets/images/images/640-320.jpg" imageViewer alt="">
                 </ion-card>
             </ion-slide>
             <ion-slide *ngFor="let item of getGoodsInfo?.gallery">
                 <ion-card>
-                    <img [img-lazy-load]="item.img_url" imageViewer alt="">
+                    <img [img-lazy-load]="item.img_url" defaultSrc="./assets/images/images/640-320.jpg" imageViewer alt="">
                     <!--<img-lazy-load src="{{item.img_url}}"></img-lazy-load>-->
                     <!--<img src="{{item.img_url}}" imageViewer alt="">-->
                 </ion-card>

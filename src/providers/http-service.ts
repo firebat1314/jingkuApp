@@ -49,6 +49,11 @@ export class HttpService {
   removeStorage(key) {
     this.storage.remove(key)
   }
+
+  clear(callBack){
+    this.storage.clear().then(callBack);
+  }
+
   login(data?: Object) {//登录
     return this.http.post(this.ip + '/Login/index', data, true)
   }
@@ -210,7 +215,7 @@ export class HttpService {
   FileJsonRegion(data?: Object) {
     return this.http.get(this.ip + '/Public/FileJsonRegion', data)
   }
-  usercount(data?: Object) {//（1）个人中心获取用户统计
+  userCount(data?: Object) {//（1）个人中心获取用户统计
     return this.http.get(this.ip + '/User/usercount', data)
   }
   order(data?: Object) {//用户订单

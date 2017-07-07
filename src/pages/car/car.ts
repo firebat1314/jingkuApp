@@ -94,7 +94,7 @@ export class CarPage {
       this.httpService.dropCartGoods({ rec_id: item3.rec_id }).then((res) => {
         if (res.status == 1) {
           this.getFlowGoods();
-          this.native.showToast('删除成功')
+          this.native.showToast('删除成功');
         }
       })
     })
@@ -158,6 +158,7 @@ export class CarPage {
         if (res.status == 1) {
           this.native.showToast('删除成功')
           this.getFlowGoods();
+          this.isEdit = false;
         }
       })
     })
