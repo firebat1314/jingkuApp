@@ -52,7 +52,7 @@ export class MyApp {
             this.rootPage = 'WelcomePage';
           }
         })
-      }
+      } 
     });
     this.initializeApp();//注册返回按键事件
     //用户失效事件

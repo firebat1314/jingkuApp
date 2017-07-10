@@ -4,6 +4,7 @@ import { NavController, NavParams, ModalController, Events, IonicPage } from 'io
 import { HttpService } from "../../../providers/http-service";
 import { Native } from "../../../providers/native";
 
+declare var Swiper: any;
 @IonicPage()
 @Component({
   selector: 'page-particulars',
@@ -26,11 +27,14 @@ export class ParticularsPage {
   searchGoods: any;
   care: any;
 
-  selectGroupRecommend = "group"||'recommend';
+  selectGroupRecommend = "group" || 'recommend';
   selectPicArguments = "pic";
 
   goodsId: number;
   badgeCount: number;
+
+  //存储swiper对象
+  mySwiper: any = null;
   constructor(
     public navCtrl: NavController,
     public navParams: NavParams,
@@ -43,9 +47,6 @@ export class ParticularsPage {
     console.log("商品ID:", this.goodsId);
   }
 
-  /*  ionViewDidEnter(){
-  
-    }*/
   ionViewDidLoad() {
     console.log('ionViewDidLoad ParticularsPage');
     this.getHttpDetails();
@@ -99,7 +100,7 @@ export class ParticularsPage {
       getBonus: this.getGoodsInfo.bonus,
       sendto: this.getGoodsInfo.sale_city,
       GoodsInfo: this.getGoodsInfo.data,
-      promotion:this.getGoodsInfo.promotion
+      promotion: this.getGoodsInfo.promotion
     });
     modal.onDidDismiss(data => {
       console.log(data);
@@ -107,7 +108,7 @@ export class ParticularsPage {
         this.region_name = data.region_name;
         this.getHttpDetails();
       }
-      if(data=='goDredgeMoreCityPage'){
+      if (data == 'goDredgeMoreCityPage') {
         this.navCtrl.push('DredgeMoreCityPage');
       }
     });

@@ -413,4 +413,16 @@ export class HttpService {
   submitRepair(data?: Object) {//3）提交返修退换货
     return this.http.post(this.ip + '/User/submit_repair', data)
   }
+  fuwudan(data?: Object) {//4）填写快递单
+    return this.http.post(this.ip + '/User/fuwudan', data)
+  }
+  repairList(data?: Object) {//5）返修单记录
+    return this.http.post(this.ip + '/User/repair_list', data)
+  }
+  cancelReturn(data?: Object) {//6）取消售后
+    return this.http.post(this.ip + '/User/cancel_return', data)
+  }
+  repairInfo(data?: Object) {//7）服务单详情
+    return this.http.post(this.ip + '/User/repair_info', data)
+  }
 }

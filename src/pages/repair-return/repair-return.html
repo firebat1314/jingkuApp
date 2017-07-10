@@ -39,14 +39,14 @@
     </ion-slides>-->
     <!--<img img-lazy-load="./assets/images/images/bg_login.jpg" alt="">-->
     <div class="apply" *ngSwitchCase="'apply'">
-        <div class="order" *ngFor="let item of list">
+        <div class="order" *ngFor="let item of orderRepair">
             <div class="order-head">
                 <span>订单编号：{{item.order_sn}}</span>
                 <span>下单时间：{{item.add_time}}</span>
             </div>
             <div class="order-body">
                 <div class="order-body-item" *ngFor="let subitem of item.goods">
-                    <ion-checkbox mode="ios"></ion-checkbox>
+                    <ion-checkbox mode="ios" (ionChange)="checkbox(item)" [(ngModel)]="subitem.selected" [checked]="item.selected"></ion-checkbox>
                     <!--<ion-icon class="checkbox" name="ios-help-circle-outline"></ion-icon>-->
                     <div class="img">
                         <img img-lazy-load="{{subitem.original_img}}">
@@ -59,34 +59,34 @@
                 </div>
             </div>
             <div class="order-foot">
-                <label><ion-checkbox></ion-checkbox>全选</label>
-                <button ion-button navPush="RepairApplyPage">申请售后</button>
+                <label><ion-checkbox mode="ios" [(ngModel)]="item.selected"></ion-checkbox>全选</label>
+                <button ion-button (click)="goApplyServicePage(item.order_id,item.goods)">申请售后</button>
             </div>
         </div>
     </div>
     <div class="applyLog" *ngSwitchCase="'applyLog'">
-        <div class="order" *ngFor="let item of list">
+        <div class="order" *ngFor="let item of repairList">
             <div class="order-head">
                 <span>订单编号：{{item.order_sn}}</span>
-                <span>换货</span>
+                <span>{{item.type}}</span>
             </div>
             <div class="order-body">
                 <div class="order-body-item" *ngFor="let subitem of item.goods">
-                    <ion-checkbox mode="ios"></ion-checkbox>
-                    <!--<ion-icon class="checkbox" name="ios-help-circle-outline"></ion-icon>-->
                     <div class="img">
                         <img img-lazy-load="{{subitem.original_img}}">
-                        <!--<div class="guoqi">超过售后期</div>-->
                     </div>
                     <div class="order-body-item-content">
                         <h2 style="-webkit-box-orient: vertical;">{{subitem.goods_name}}</h2>
                     </div>
                 </div>
             </div>
-            <div class="order-foot">
-                <ion-item mode="ios" detail-push no-lines>
-                    <img src="./assets/icon/images/ok.png" item-start alt=""> 已取消 | 您的服务单已经由某某某取消
-                </ion-item>
+            <ion-item mode="ios" detail-push no-lines>
+                <img src="./assets/icon/images/clock_2.png" item-start alt="" *ngIf="item.return_status==0">
+                <img src="./assets/icon/images/ok.png" item-start alt="" *ngIf="item.return_status!=0">
+                <span>{{item.status}}</span>
+            </ion-item>
+            <div class="order-foot" *ngIf="item.return_status==0">
+                <button ion-button outline (click)="cancelApply(item.return_id)">取消申请</button>
             </div>
         </div>
     </div>
