@@ -6,19 +6,20 @@ page-apply-service {
     @mixin title {
         font-weight: 400;
         padding: 10px 13px;
+        font-size: 1.6rem;
     }
     @mixin text-wrap {
-        font-weight: 400;
         color: #808080;
         font-size: 1.2rem;
+        padding: 10px 0 10px 16px;
     }
+    $pic-width: 60px;
+    $delete-icon-size:18px;
     @mixin camra {
-        $pic-width: 60px;
         border: 1px solid #e0e0e0;
         height: $pic-width;
         width: $pic-width;
         min-width: $pic-width;
-        margin-right: 10px;
         border-radius: 5px;
         position: relative;
         img {
@@ -35,13 +36,15 @@ page-apply-service {
                 position: absolute;
                 top: -10px;
                 right: -10px;
-                width: 20px;
-                height: 20px;
+                width: $delete-icon-size;
+                height: $delete-icon-size;
+                line-height: $delete-icon-size;
                 background: #e60000;
+                text-align: center;
                 border-radius: 50%;
                 color: #fff;
                 font-size: 2rem;
-                transform: rotate(90deg);
+                transform: rotate(45deg);
             }
         }
     }
@@ -146,14 +149,28 @@ page-apply-service {
     .item4 {
         padding: 10px;
         padding-top: 15px;
+        display: flex;
+        overflow-y: scroll;
         .camra {
             @include camra;
+            margin-right: 10px;
         }
     }
     .item5 {
         .title {
             @include title;
         }
+        .main {
+            padding: 0 13px;
+            .text-wrap {
+                @include text-wrap;
+                padding: 10px 0px;
+            }
+        }
     }
-    .item6 {}
+    .item6 {
+        .text-wrap {
+            @include text-wrap;
+        }
+    }
 }
