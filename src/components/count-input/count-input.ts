@@ -1,4 +1,5 @@
-import { Component, Input, Output, EventEmitter } from '@angular/core';
+import { Component, Input, Output, EventEmitter, ElementRef } from '@angular/core';
+import { Native } from "../../providers/native";
 
 /*
   Generated class for the CountInput component.
@@ -11,29 +12,41 @@ import { Component, Input, Output, EventEmitter } from '@angular/core';
   templateUrl: 'count-input.html'
 })
 export class CountInputComponent {
-  
-  @Input() value = 0;
-  @Input() defaultValue:Number = 0;
-  @Input() lock:boolean = false;
+
+  @Input() value: number = 0;
+  @Input() defaultValue: number = 0;
+  @Input() maxValue: number;
+  @Input() lock: boolean = false;
   @Output() updateNumberI: EventEmitter<number> = new EventEmitter();
-  constructor() {
+
+  constructor(
+    private native: Native,
+    private element: ElementRef,
+  ) {
     console.log('Hello CountInput Component');
   }
   increase() {
     if (this.lock) {
       return;
+    } else if (this.maxValue && this.value >= this.maxValue) {
+      this.native.showToast('最多选择' + this.maxValue + '件')
+      return;
     }
-    this.value++;
-    this.updateNumberI.emit(this.value);
+    this.updateNumberI.emit(++this.value);
   }
   reduce() {
     if (this.value <= this.defaultValue) {
       return;
     }
-    this.value--;
-    this.updateNumberI.emit(this.value);
+    this.updateNumberI.emit(--this.value);
   }
-  inputEvent(){
+  inputEvent(value) {
+    if (this.maxValue && (this.value >= this.maxValue)) {
+      this.native.showToast('最多选择' + this.maxValue + '件')
+      this.element.nativeElement.getElementsByTagName('input')[0].value = this.maxValue;
+      this.value = this.maxValue;
+    }
+    console.log(this.value, this.maxValue, this.value >= this.maxValue)
     this.updateNumberI.emit(this.value);
   }
 }
