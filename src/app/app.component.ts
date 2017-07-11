@@ -43,7 +43,7 @@ export class MyApp {
     // 初次进入app引导页面
     this.storage.get('hasLoggedIn').then((result) => {
       if (result) {
-        this.rootPage = 'TabsPage';//RepairReturnPage
+        this.rootPage = 'TabsPage';
       } else {
         this.storage.get('firstIn').then((result) => {
           if (result) {

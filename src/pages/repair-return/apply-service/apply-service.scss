@@ -2,6 +2,9 @@ page-apply-service {
     .fore {
         background: #fff;
         margin-bottom: 10px;
+        &:last-child {
+            margin-bottom: 0;
+        }
     }
     @mixin title {
         font-weight: 400;
@@ -11,7 +14,7 @@ page-apply-service {
     @mixin text-wrap {
         color: #808080;
         font-size: 1.2rem;
-        padding: 10px 0 10px 16px;
+        padding: 10px 0 14px;
     }
     $pic-width: 60px;
     $delete-icon-size:18px;
@@ -68,7 +71,7 @@ page-apply-service {
                 justify-content: center;
                 flex: 1;
                 margin: 11px 7px 11px 0;
-                h2 {
+                >h2 {
                     white-space: pre-wrap;
                     overflow: hidden;
                     text-overflow: ellipsis;
@@ -80,10 +83,17 @@ page-apply-service {
                     margin: 0 0 7px 0;
                     font-weight: 400;
                 }
-                p {
+                >p {
                     color: #808080;
                     margin: 2px 0;
-                    span:first-child {
+                    display: flex;
+                    align-items: center;
+                    justify-content: space-between;
+                    >span {
+                        display: flex;
+                        align-items: center;
+                    }
+                    >span:first-child {
                         margin-right: 20px;
                     }
                 }
@@ -140,6 +150,7 @@ page-apply-service {
             }
             .text-wrap {
                 @include text-wrap;
+                margin-left: 16px;
             }
         }
     }
@@ -166,8 +177,43 @@ page-apply-service {
         }
     }
     .item6 {
+        padding: 0 10px;
+        .input {
+            display: flex;
+            align-items: center;
+            color: #808080;
+            border-bottom: 0.55px solid #e0e0e0;
+            font-size: 1.4rem;
+            min-height: 4rem;
+            padding: 0 5px;
+            .left {
+                width: 80px;
+                min-width: 80px;
+                color: #000;
+                font-weight: 500;
+            }
+            .right {
+                input {
+                    border: none;
+                    background: none;
+                }
+            }
+            &:nth-child(3) {
+                border: none;
+            }
+            &.address {
+                margin-top: -15px;
+                .icon {
+                    margin-right: 15px;
+                }
+            }
+        }
         .text-wrap {
             @include text-wrap;
+        }
+        .item {
+            height: 2rem;
+            color: #808080;
         }
     }
 }

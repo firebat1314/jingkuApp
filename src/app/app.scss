@@ -17,13 +17,16 @@
 }
 
 html {
-    font-size: 57%;
+    // font-size: 57%;
     -webkit-overflow-scrolling: touch;
     /*touch*/
 }
 
 .content {
     background: #f7f7f7;
+    .scroll-content {
+        background: #f7f7f7;
+    }
 }
 
 .scroll-content {

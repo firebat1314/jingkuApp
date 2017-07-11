@@ -21,36 +21,35 @@
             </div>
             <div class="order-body-item-content">
                 <h2 style="-webkit-box-orient: vertical;">{{item.goods_name}}</h2>
-                <p><span>价格：{{'¥'+item.goods_price}}</span><span>数量：{{item.goods_number}}</span></p>
+                <p>
+                    <span>价格：{{'¥'+item.goods_price}}</span>
+                    <span>数量：<count-input [value]="item.goods_number"></count-input></span>
+                </p>
             </div>
         </div>
     </section>
     <section class="fore item2">
         <div class="title">服务类型</div>
-        <button ion-button [color]="'dark'" [outline]="true">退货</button>
-        <button ion-button [color]="'dark'" [outline]="true">换货</button>
-        <button ion-button [color]="'dark'" [outline]="true">维修</button>
+        <button small ion-button [color]="'dark'" [outline]="true">退货</button>
+        <button small ion-button [color]="'dark'" [outline]="true">换货</button>
+        <button small ion-button [color]="'dark'" [outline]="true">维修</button>
     </section>
     <section class="fore item3">
         <div class="title">问题描述</div>
         <div class="user-input">
-            <textarea placeholder="请输入问题描述"></textarea>
-            <span>0/500</span>
+            <textarea [(ngModel)]="text" maxlength="500" placeholder="请输入问题描述"></textarea>
+            <span>{{text?.length||0}}/500</span>
         </div>
         <div class="upload-pic">
-            <div class="camra"><img src="./assets/icon/images/camra.png" alt=""></div>
+            <div class="camra" tappable (click)="openCamra()"><img src="./assets/icon/images/camra.png" alt=""></div>
             <div class="text-wrap">为了帮助我们更好的解决问题，请上传照片。最多5张，每张不超过5M，支持JPG、BPM、PNG</div>
         </div>
     </section>
-    <section class="fore item4">
-        <div class="camra userpic"><img src="./assets/icon/images/camra.png" alt=""><span class="delete-icon">+</span></div>
-        <div class="camra userpic"><img src="./assets/icon/images/camra.png" alt=""><span class="delete-icon">+</span></div>
-        <div class="camra userpic"><img src="./assets/icon/images/camra.png" alt=""><span class="delete-icon">+</span></div>
-        <div class="camra userpic"><img src="./assets/icon/images/camra.png" alt=""><span class="delete-icon">+</span></div>
-        <div class="camra userpic"><img src="./assets/icon/images/camra.png" alt=""><span class="delete-icon">+</span></div>
-        <div class="camra userpic"><img src="./assets/icon/images/camra.png" alt=""><span class="delete-icon">+</span></div>
-        <div class="camra userpic"><img src="./assets/icon/images/camra.png" alt=""><span class="delete-icon">+</span></div>
-        <div class="camra"><img src="./assets/icon/images/camra.png" alt=""></div>
+    <section class="fore item4" *ngIf="picArr?.length">
+        <div class="camra userpic" *ngFor="let item of picArr;let i = index;">
+            <img src="./assets/icon/images/camra.png" alt="">
+            <span class="delete-icon" tappable (click)="deletePic(i)">+</span>
+        </div>
     </section>
     <section class="fore item5">
         <div class="title">商品退回方式</div>
@@ -61,21 +60,28 @@
         </div>
     </section>
     <section class="fore item6">
-        <ion-item no-lines>
-            <ion-label fixed>收货人：</ion-label>
-            <ion-input type="text" placeholder="孙山杉"></ion-input>
-        </ion-item>
-        <ion-item no-lines>
-            <ion-label fixed>手机号码：</ion-label>
-            <ion-input type="number" placeholder="121212122"></ion-input>
-        </ion-item>
-        <ion-item no-lines text-wrap>
-            <ion-label fixed>收货地址：</ion-label>（该地址是镜库回寄给您的地址）
-        </ion-item>
-        <ion-item mode="ios" detail-push no-lines>
+        <div class="input">
+            <div class="left">收货人：</div>
+            <div class="right">
+                <input type="text" disabled placeholder="{{data?.order_info?.consignee}}">
+            </div>
+        </div>
+        <div class="input">
+            <div class="left">手机号码：</div>
+            <div class="right">
+                <input type="number" disabled placeholder="{{data?.order_info?.mobile}}">
+            </div>
+        </div>
+        <div class="input ">
+            <div class="left">收货地址：</div>
+            <div class="right">
+                （该地址是镜库回寄给您的地址）
+            </div>
+        </div>
+        <div class="input address">
             <ion-icon name="md-pin" item-start></ion-icon>
-            北京市
-        </ion-item>
+            {{data?.order_info?.region+data?.order_info?.address}}
+        </div>
         <div class="text-wrap">提交服务单后，收货专员可能与您电话沟通，请保持手机畅通</div>
         <div padding>
             <button ion-button color="dark" block large>提交</button>
