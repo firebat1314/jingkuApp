@@ -2,6 +2,9 @@ page-login {
     .content {
         background: url(../assets/images/bg_login.jpg) center top no-repeat;
         background-size: cover;
+        .scroll-content {
+            background: none;
+        }
     }
     .form-wrap {
         max-width: 370px;
