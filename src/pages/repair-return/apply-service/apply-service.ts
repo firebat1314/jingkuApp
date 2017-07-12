@@ -51,4 +51,13 @@ export class ApplyServicePage {
   deletePic(i) {
     this.picArr.splice(i, 1);
   }
+  goServiceOrderDetailsPage() {
+    this.navCtrl.push('ApplyService2Page');
+    this.httpService.submitRepair().then((res) => {
+      if (res.status == 1) {
+        this.native.showToast(res.info);
+        this.navCtrl.push('ApplyService2Page', res);
+      }
+    })
+  }
 }

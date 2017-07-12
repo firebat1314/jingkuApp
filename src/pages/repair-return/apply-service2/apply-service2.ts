@@ -14,11 +14,19 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 })
 export class ApplyService2Page {
 
+  data = this.navParams.data;
   constructor(public navCtrl: NavController, public navParams: NavParams) {
+    console.log(this.navCtrl.indexOf(this.navCtrl.getActive()))
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad ApplyService2Page');
   }
-
+  goAuditProgressPage(){
+    this.navCtrl.push('AuditProgressPage');
+    this.navCtrl.remove(1,2);
+  }
+  goRepairReturnPage(){
+    this.navCtrl.popTo('AuditProgressPage')
+  }
 }

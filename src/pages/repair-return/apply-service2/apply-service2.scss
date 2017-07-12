@@ -1,3 +1,30 @@
 page-apply-service2 {
-
+    .wrapper {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin-top: 55px;
+        .icon-ok {
+            width: 10rem;
+            height: 10rem;
+            border-radius: 50%;
+            border: solid 1px #cbced0;
+            background: url(../assets/images/images/withdraw_1_03.png) no-repeat center center/40px;
+        }
+        .h1 {
+            color: #4d4d4d;
+            font-size: 1.6rem;
+            margin-top: 10px;
+            .h2 {
+                align-self: flex-start;
+                color: #808080;
+                margin: 10px 0 20px;
+                font-size: 1.4rem;
+                .red {
+                    color: #ff3838;
+                }
+            }
+        }
+        .btns {}
+    }
 }
