@@ -14,18 +14,18 @@
 
 
 <ion-content>
-    <div class="fore fore1" (click)="openOrderModalShippingPage()" *ngIf="defaultShipping">
+    <div class="fore fore1" tappable (click)="openOrderModalShippingPage()" *ngIf="defaultShipping">
         <div class="wrap">
             <div>{{defaultShipping.consignee}}<span class="phone">{{defaultShipping.mobile|phonenumberfilter}}</span></div>
             <div>{{defaultShipping.address}}</div>
         </div>
     </div>
-    <div class="fore fore1" (click)="openOrderModalShippingPage()" *ngIf="!defaultShipping">
+    <div class="fore fore1" tappable (click)="openOrderModalShippingPage()" *ngIf="!defaultShipping">
         <div class="wrap">
             请选择收货地址
         </div>
     </div>
-    <ion-item class="fore" mode="ios" no-lines margin-right detail-push (click)="openOrderPaymentModal(data)">
+    <ion-item class="fore" mode="ios" no-lines margin-right detail-push tappable (click)="openOrderPaymentModal(data)">
         支付方式
         <ion-note item-right style="margin:0;" *ngFor="let mtd of data?.payment_list">
             <span *ngIf="mtd.selected==1">{{mtd.pay_name}}</span>
@@ -67,7 +67,7 @@
             </div>
         </div>
         <div class="option">
-            <ion-item mode="ios" detail-push *ngIf="item?.shipping?.length!=0" (click)="openOrderModalDistributionPage(item)">
+            <ion-item mode="ios" detail-push *ngIf="item?.shipping?.length!=0" tappable (click)="openOrderModalDistributionPage(item)">
                 配送方式
                 <ion-note item-right style="margin:0;" *ngFor="let mtd of item.shipping">
                     <span *ngIf="mtd.selected==1">{{mtd.shipping_name}}</span>
@@ -79,7 +79,7 @@
                     <span>无配送方式</span>
                 </ion-note>
             </ion-item>
-            <ion-item mode="ios" detail-push *ngIf="item.use_bonus?.length!=0&&goodsType!='integral'" (click)="openOrderModalCouponPage(item)">
+            <ion-item mode="ios" detail-push *ngIf="item.use_bonus?.length!=0&&goodsType!='integral'" tappable (click)="openOrderModalCouponPage(item)">
                 优惠券选择
                 <ion-note style="margin:0;" item-right>
                     可使用{{item.use_bonus?.length}}个优惠券
@@ -136,7 +136,7 @@
             合计: <span class="price">¥{{data?.total?.amount_formated}}</span><span *ngIf="goodsType=='integral'">&nbsp;积分: <span class="price">{{data?.total?.integral}}</span></span>
         </div>
         <div class="right">
-            <div ion-button no-margin full large color="dark" (click)="onsubmit()">提交订单</div>
+            <div ion-button no-margin full large color="dark" tappable (click)="onsubmit()">提交订单</div>
         </div>
     </div>
 </ion-footer>

@@ -1,0 +1,158 @@
+page-presell {
+    .fore {
+        background: #fff;
+        margin-bottom: 10px;
+    }
+    .fore1 {
+        .banner {
+            >img {
+                width: 100%;
+            }
+            .top-scrollbar {
+                overflow-x: scroll;
+                display: flex;
+                padding: 10px 0;
+                border-bottom: 1px solid #e6e6e6;
+                >div {
+                    min-width: 84px;
+                    font-size: 1.3rem;
+                    text-align: center;
+                    margin-right: 1.6rem;
+                    height: 100%;
+                    position: relative;
+                    .select {
+                        position: absolute;
+                        top: -5px;
+                        width: 100%;
+                        height: 36%;
+                        /* background: #000; */
+                        opacity: .2;
+                        box-shadow: 0px 43px 12px #000;
+                        border-radius: 50%;
+                    }
+                    img {
+                        height: 28px;
+                        margin: 5px auto;
+                    }
+                }
+            }
+        }
+    }
+    .nomore {
+        text-align: center;
+        font-size: 2rem;
+        color: #d4d4d4;
+        margin-top: 30px;
+    }
+    .singleton {
+        display: flex;
+        padding: 16px;
+        align-items: center;
+        justify-content: space-between;
+        width: 100%;
+        .left {
+            height: 100%;
+            flex: 0.6;
+            max-width: 124px;
+            overflow: hidden;
+            position: relative;
+            margin-right: 14px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            img {
+                display: block;
+                max-width: 100%;
+            }
+            .time {
+                position: absolute;
+                bottom: 0;
+                height: 30px;
+                width: 100%;
+                overflow: hidden;
+                background: #000;
+                opacity: .5;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                color: #fff;
+                white-space: nowrap;
+                text-overflow: ellipsis;
+                .icon {
+                    margin: 0 3px;
+                    font-size: 2rem;
+                    margin-top: 2px;
+                }
+                span {
+                    margin: 0;
+                    background: initial;
+                    color: #fff;
+                    min-width: initial;
+                }
+            }
+        }
+        .right {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+            .title {
+                @include ellipsis_2;
+                margin-bottom: 5px;
+            }
+            .strip {
+                margin-bottom: 10px;
+                .wrap {
+                    height: 11px;
+                    width: 100%;
+                    border-radius: 10px;
+                    background: #f7f7f7;
+                    position: relative;
+                    margin-bottom: 5px;
+                    box-shadow: 0px 0px 11px #ccc inset;
+                    overflow: hidden;
+                    >div {
+                        background: #fdc57e;
+                        border-radius: 10px;
+                        position: absolute;
+                        top: 0;
+                        left: 0;
+                        height: 100%;
+                        width: 0%;
+                        transition: width 500ms ease-in-out 500ms;
+                        box-shadow: 0px 0px 10px #ccc;
+                    }
+                }
+                .number {
+                    display: flex;
+                    justify-content: space-between;
+                    >span:first-child {
+                        color: #808080;
+                    }
+                    >span:last-child {
+                        color: #e60000;
+                    }
+                }
+            }
+            .price {
+                display: flex;
+                justify-content: space-between;
+                align-items: flex-end;
+                .red {
+                    color: #e60000;
+                    font-size: 1.8rem;
+                    white-space: nowrap;
+                }
+                .old-price {
+                    color: #808080;
+                    text-decoration: line-through;
+                    white-space: nowrap;
+                    text-overflow: ellipsis;
+                    overflow: hidden;
+                    flex: 1;
+                    margin-left: 4px;
+                }
+            }
+        }
+    }
+}

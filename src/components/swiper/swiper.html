@@ -1,0 +1,47 @@
+<!-- Generated template for the SwiperComponent component -->
+
+<div class="myswiper-container">
+    <div class="swiper-wrapper">
+        <div class="swiper-slide" *ngIf="!data">
+            <ion-card>
+                <img img-lazy-load="" imageViewer alt="">
+            </ion-card>
+        </div>
+        <div class="swiper-slide" *ngFor="let item of data">
+            <ion-card>
+                <img [img-lazy-load]="item.img_url" imageViewer class="main-img">
+            </ion-card>
+        </div>
+    </div>
+</div>
+<!--<ion-slides parallax="true">
+    <ion-slide *ngIf="!getGoodsInfo">
+        <ion-card>
+            <img img-lazy-load="" defaultSrc="./assets/images/images/640-320.jpg" imageViewer alt="">
+        </ion-card>
+    </ion-slide>
+    <ion-slide *ngFor="let item of getGoodsInfo?.gallery">
+        <ion-card>
+            <img [img-lazy-load]="item.img_url" defaultSrc="./assets/images/images/640-320.jpg" imageViewer alt="">
+        </ion-card>
+    </ion-slide>
+</ion-slides>-->
+<!--<div class="myswiper-container">
+    <div class="swiper-wrapper">
+        <div class="swiper-slide">
+            <ion-card><img src="./assets/images/images/640-320.jpg" class="main-img"></ion-card>
+        </div>
+        <div class="swiper-slide">
+            <ion-card><img src="./assets/images/images/640-320.jpg" class="main-img"></ion-card>
+        </div>
+        <div class="swiper-slide">
+            <ion-card><img src="./assets/images/images/640-320.jpg" class="main-img"></ion-card>
+        </div>
+        <div class="swiper-slide">
+            <ion-card><img src="./assets/images/images/640-320.jpg" class="main-img"></ion-card>
+        </div>
+        <div class="swiper-slide">
+            <ion-card><img src="./assets/images/images/640-320.jpg" class="main-img"></ion-card>
+        </div>
+    </div>
+</div>-->

@@ -47,7 +47,7 @@
 </ion-header>
 
 
-<ion-content [ngSwitch]="classSelect" (ionSrcoll)="onSrcoll()">
+<ion-content #myContent [ngSwitch]="classSelect" (ionSrcoll)="onSrcoll()">
     <ion-refresher (ionRefresh)="doRefresh($event)" pullMax="60" *ngIf="classSelect!='classify'">
         <ion-refresher-content refreshingSpinner="1" pullingIcon="0"></ion-refresher-content>
     </ion-refresher>
@@ -163,6 +163,9 @@
             </ion-list>
         </div>
     </div>
+    <ion-fab right bottom tappable (click)="myContent.scrollToTop()">
+        <button ion-fab color="dark" mini goBackTop></button>
+    </ion-fab>
 </ion-content>
 <ion-footer *ngIf="classSelect=='care'&&showCheckBox&&(collectionList?.count!='0'||collectionShop?.count!='0')">
     <!--showCheckBox&&((classSelect=='care'&&collectionShop?.count!='0')||(classSelect=='goods'&&collectionList?.count!='0'))-->

@@ -1,0 +1,219 @@
+page-apply-service {
+    .fore {
+        background: #fff;
+        margin-bottom: 10px;
+        &:last-child {
+            margin-bottom: 0;
+        }
+    }
+    @mixin title {
+        font-weight: 400;
+        padding: 10px 13px;
+        font-size: 1.6rem;
+    }
+    @mixin text-wrap {
+        color: #808080;
+        font-size: 1.2rem;
+        padding: 10px 0 14px;
+    }
+    $pic-width: 60px;
+    $delete-icon-size:18px;
+    @mixin camra {
+        border: 1px solid #e0e0e0;
+        height: $pic-width;
+        width: $pic-width;
+        min-width: $pic-width;
+        border-radius: 5px;
+        position: relative;
+        img {
+            position: absolute;
+            top: 0;
+            right: 0;
+            left: 0;
+            bottom: 0;
+            margin: auto;
+            height: 23px;
+        }
+        &.userpic {
+            .delete-icon {
+                background: url(../assets/icon/images/close-circled.png) no-repeat center center/100%;
+                position: absolute;
+                top: -9px;
+                right: -9px;
+                width: $delete-icon-size;
+                height: $delete-icon-size;
+                border-radius: 50%;
+            }
+        }
+    }
+    .item1 {
+        .order-body-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 0.5px solid #e0e0e0;
+            overflow: hidden;
+            padding: 0 10px;
+            &:last-child {
+                border-bottom: 0;
+            }
+            .img {
+                width: 65px;
+                height: 65px;
+                margin: 10px 10px 10px 0px;
+                border: #e1e1e1 1px solid;
+                position: relative;
+            }
+            .order-body-item-content {
+                display: flex;
+                overflow: hidden;
+                flex-direction: column;
+                justify-content: center;
+                flex: 1;
+                margin: 11px 7px 11px 0;
+                >h2 {
+                    white-space: pre-wrap;
+                    overflow: hidden;
+                    text-overflow: ellipsis;
+                    display: -webkit-box;
+                    -webkit-line-clamp: 2;
+                    -webkit-box-orient: vertical;
+                    color: #4d4d4d;
+                    font-size: 1.4rem;
+                    margin: 0 0 7px 0;
+                    font-weight: 400;
+                }
+                >p {
+                    color: #808080;
+                    margin: 2px 0;
+                    display: flex;
+                    align-items: center;
+                    justify-content: space-between;
+                    >span {
+                        display: flex;
+                        align-items: center;
+                    }
+                    >span:first-child {
+                        margin-right: 20px;
+                    }
+                }
+            }
+        }
+    }
+    .item2 {
+        padding-bottom: 10px;
+        .title {
+            @include title;
+        }
+        .button {
+            // height: 2.4em;
+            &:nth-child(2) {
+                margin-left: 13px;
+            }
+        }
+    }
+    .item3 {
+        .title {
+            @include title;
+        }
+        .user-input {
+            background: #f8f8f8;
+            border-radius: 4px;
+            position: relative;
+            margin: 10px;
+            margin-top: 0;
+            textarea {
+                height: 8rem;
+                color: #4d4d4d;
+                background: #f8f8f8;
+                width: 100%;
+                border: none;
+                resize: none;
+                padding: 10px;
+                font-size: 1.2rem;
+            }
+            span {
+                position: absolute;
+                right: 8px;
+                font-size: 1rem;
+                bottom: 8px;
+                color: #666;
+            }
+        }
+        .upload-pic {
+            display: flex;
+            align-items: center;
+            padding: 10px;
+            padding-top: 0;
+            .camra {
+                @include camra;
+            }
+            .text-wrap {
+                @include text-wrap;
+                margin-left: 16px;
+            }
+        }
+    }
+    .item4 {
+        padding: 10px;
+        padding-top: 15px;
+        display: flex;
+        overflow-y: scroll;
+        .camra {
+            @include camra;
+            margin-right: 10px;
+        }
+    }
+    .item5 {
+        .title {
+            @include title;
+        }
+        .main {
+            padding: 0 13px;
+            .text-wrap {
+                @include text-wrap;
+                padding: 10px 0px;
+            }
+        }
+    }
+    .item6 {
+        padding: 0 10px;
+        .input {
+            display: flex;
+            align-items: center;
+            color: #808080;
+            border-bottom: 0.55px solid #e0e0e0;
+            font-size: 1.4rem;
+            min-height: 4rem;
+            padding: 0 5px;
+            .left {
+                width: 80px;
+                min-width: 80px;
+                color: #000;
+                font-weight: 500;
+            }
+            .right {
+                input {
+                    border: none;
+                    background: none;
+                }
+            }
+            &:nth-child(3) {
+                border: none;
+            }
+            &.address {
+                margin-top: -15px;
+                .icon {
+                    margin-right: 15px;
+                }
+            }
+        }
+        .text-wrap {
+            @include text-wrap;
+        }
+        .item {
+            height: 2rem;
+            color: #808080;
+        }
+    }
+}

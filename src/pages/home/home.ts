@@ -45,7 +45,7 @@ export class HomePage {
   ) { }
   ngAfterViewInit() {
     this.content.ionScroll.subscribe((d) => {
-      this.fabButton.setElementClass("fab-button-out", d.directionY == "up");
+      this.fabButton.setElementClass("fab-button-out", d.directionY == "down");
     });
   }
   ionViewDidLoad() {

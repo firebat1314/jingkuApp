@@ -29,6 +29,11 @@ export class MySalesmanPage {
     console.log('ionViewDidLoad MySalesmanPage');
   }
   callNumber(){
-    this.native.openCallNumber(this.salesman.phone,false)
+    if(this.salesman.phone){
+    this.native.openCallNumber(this.salesman.phone,false);
+
+    }else{
+      this.native.showToast('无手机号');
+    }
   }
 }

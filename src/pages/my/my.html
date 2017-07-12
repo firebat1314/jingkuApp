@@ -28,7 +28,7 @@
         <ion-refresher-content refreshingSpinner="1" pullingIcon="0"></ion-refresher-content>
     </ion-refresher>
     <ion-list>
-        <ion-item padding-left no-lines mode="ios" detail-push style="border-bottom: 0.5px solid #e0e0e0;">
+        <ion-item padding-left no-lines mode="ios" detail-none style="border-bottom: 0.5px solid #e0e0e0;">
             <ion-avatar [navPush]="AccountManagementPage" [navParams]="{avatar:userInfo?.data?.avatar,username:userInfo?.data?.username}" item-left>
                 <!--<img img-lazy-load="{{userInfo?.data?.avatar}}" imageViewer alt="">-->
                 <ion-img src="{{userInfo?.data?.avatar}}"></ion-img>
@@ -39,9 +39,9 @@
                 <ion-note>{{userInfo?.data?.user_info?.rank_name||'暂无等级'}}</ion-note>
             </p>
             <button [navPush]="AccountManagementPage" [navParams]="{avatar:userInfo?.data?.avatar,username:userInfo?.data?.username}" color="gray" ion-button round outline icon-left item-right>
-                    <ion-icon><img style="width:1.3rem;" src="./assets/icon/images/user_cener_1_11.png" alt=""></ion-icon>
-                    账号管理
-                </button>
+                <ion-icon><img style="width:1.3rem;" src="./assets/icon/images/user_cener_1_11.png" alt=""></ion-icon>
+                账号管理
+            </button>
         </ion-item>
         <ion-item tappable padding-left [navPush]="AllOrdersPage" [navParams]="{index:0}" no-lines mode="ios" detail-push style="border-bottom: 0.5px solid #e0e0e0;">
             <img src="./assets/icon/images/user_center_5.png" alt="" item-left class="myitem-icon"> 全部订单
@@ -61,14 +61,14 @@
                     <div class="text">待收货</div>
                 </div>
                 <div tappable [navPush]="'RepairReturnPage'">
-                    <div class="number">敬请期待</div>
+                    <div class="number">0???</div>
                     <div class="text">返修退换</div>
                 </div>
             </div>
         </ion-item>
     </ion-list>
     <ion-list>
-        <ion-item padding-left no-lines mode="ios" detail-push style="border-bottom: 0.5px solid #e0e0e0;">
+        <ion-item padding-left no-lines mode="ios" style="border-bottom: 0.5px solid #e0e0e0;">
             <img src="./assets/icon/images/user_center_9.png" alt="" item-left class="myitem-icon"> 我的资产
         </ion-item>
         <ion-item padding-left>
@@ -98,7 +98,7 @@
         </ion-item>
     </ion-list>
     <ion-list>
-        <ion-item tappable (click)="goAccountProcessPage()" padding-left mode="ios" detail-push>
+        <ion-item tappable navPush="AccountProcessPage" padding-left mode="ios" detail-push>
             <img src="./assets/icon/images/user_center_1.png" alt="" item-left class="myitem-icon"> 来镜加工
         </ion-item>
         <ion-item tappable [navPush]="PeceiptPage" padding-left mode="ios" detail-push>

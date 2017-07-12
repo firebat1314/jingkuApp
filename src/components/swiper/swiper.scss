@@ -1,0 +1,31 @@
+swiper {
+    .card {
+        max-height: 230px;
+        height: 230px;
+        // width: 80%;
+        margin: 10px auto;
+        padding: 10px;
+        box-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+        display: flex;
+        align-items: center;
+        img {
+            margin: auto auto;
+        }
+    }
+    .myswiper-container {
+        width: 100%;
+        -webkit-perspective: 1200px;
+        -moz-perspective: 1200px;
+        -ms-perspective: 1200px;
+        perspective: 1200px;
+        .swiper-slide {
+            width: 90%;
+            transform-style: preserve-3d;
+            .main-img {
+                width: 80%;
+                margin: 0 auto;
+                display: block;
+            }
+        }
+    }
+}

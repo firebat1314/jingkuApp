@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { IonicPageModule } from 'ionic-angular';
 import { RepairReturnPage } from './repair-return';
+import { ImgLazyLoadDirectiveModule } from "../../directives/img-lazy-load/img-lazy-load.module";
 
 @NgModule({
   declarations: [
@@ -8,6 +9,7 @@ import { RepairReturnPage } from './repair-return';
   ],
   imports: [
     IonicPageModule.forChild(RepairReturnPage),
+    ImgLazyLoadDirectiveModule
   ],
   exports: [
     RepairReturnPage

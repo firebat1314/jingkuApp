@@ -1,0 +1,91 @@
+<!--
+  Generated template for the ApplyServicePage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+    <ion-navbar>
+        <ion-title>申请售后服务</ion-title>
+    </ion-navbar>
+
+</ion-header>
+
+
+<ion-content>
+    <section class="fore item1">
+        <div class="order-body-item" *ngFor="let item of data.goodslist">
+            <div class="img">
+                <img img-lazy-load="{{item.original_img}}">
+            </div>
+            <div class="order-body-item-content">
+                <h2 style="-webkit-box-orient: vertical;">{{item.goods_name}}</h2>
+                <p>
+                    <span>价格：{{'¥'+item.goods_price}}</span>
+                    <span>数量：<count-input [value]="item.goods_number" [maxValue]="item.goods_number"></count-input></span>
+                </p>
+            </div>
+        </div>
+    </section>
+    <section class="fore item2">
+        <div class="title">服务类型</div>
+        <button small ion-button [color]="'dark'" [outline]="true">退货</button>
+        <button small ion-button [color]="'dark'" [outline]="true">换货</button>
+        <button small ion-button [color]="'dark'" [outline]="true">维修</button>
+    </section>
+    <section class="fore item3">
+        <div class="title">问题描述</div>
+        <div class="user-input">
+            <textarea [(ngModel)]="text" maxlength="500" placeholder="请输入问题描述"></textarea>
+            <span>{{text?.length||0}}/500</span>
+        </div>
+        <div class="upload-pic">
+            <div class="camra" tappable (click)="openCamra()"><img src="./assets/icon/images/camra.png" alt=""></div>
+            <div class="text-wrap">为了帮助我们更好的解决问题，请上传照片。最多5张，每张不超过5M，支持JPG、BPM、PNG</div>
+        </div>
+    </section>
+    <section class="fore item4" *ngIf="picArr?.length">
+        <div class="camra userpic" *ngFor="let item of picArr;let i = index;">
+            <img src="./assets/icon/images/camra.png" alt="">
+            <span class="delete-icon" tappable (click)="deletePic(i)">+</span>
+        </div>
+    </section>
+    <section class="fore item5">
+        <div class="title">商品退回方式</div>
+        <div class="main">
+            <button ion-button outline>送货至自提点</button>
+            <button ion-button outline>快递至镜库</button>
+            <div class="text-wrap">商品寄回地址在审核通过后以短信形式告知，或在申请记录中查询。镜库不收取快递附加费。</div>
+        </div>
+    </section>
+    <section class="fore item6">
+        <div class="input">
+            <div class="left">收货人：</div>
+            <div class="right">
+                <input type="text" disabled placeholder="{{data?.order_info?.consignee}}">
+            </div>
+        </div>
+        <div class="input">
+            <div class="left">手机号码：</div>
+            <div class="right">
+                <input type="number" disabled placeholder="{{data?.order_info?.mobile}}">
+            </div>
+        </div>
+        <div class="input ">
+            <div class="left">收货地址：</div>
+            <div class="right">
+                （该地址是镜库回寄给您的地址）
+            </div>
+        </div>
+        <div class="input address">
+            <ion-icon name="md-pin" item-start></ion-icon>
+            {{data?.order_info?.region+data?.order_info?.address}}
+        </div>
+        <div class="text-wrap">提交服务单后，收货专员可能与您电话沟通，请保持手机畅通</div>
+        <div padding>
+            <button ion-button color="dark" block large>提交</button>
+        </div>
+
+    </section>
+</ion-content>

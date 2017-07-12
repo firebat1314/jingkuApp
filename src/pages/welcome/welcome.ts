@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams, IonicPage } from 'ionic-angular';
 // import { TabsPage } from '../tabs/tabs';
-import { StatusBar } from "@ionic-native/status-bar";
 import { Storage } from '@ionic/storage';
 
 /*
@@ -20,14 +19,8 @@ export class WelcomePage {
   constructor(
     public navCtrl: NavController,
     public navParams: NavParams,
-    public statusBar: StatusBar,
     public storage: Storage
-  ) { 
-    statusBar.hide();
-  }
-  ngOnDestroy(){
-    this.statusBar.show();
-  }
+  ) { }
   ionViewDidLoad() {
     console.log('ionViewDidLoad WelcomePage');
   }

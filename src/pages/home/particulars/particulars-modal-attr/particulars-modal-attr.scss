@@ -21,11 +21,15 @@ page-particulars-modal-attr {
         tr {
             height: 47px;
             border-bottom: 1px solid #e0e0e0;
+            td.count-input-box {
+                padding-left: 10px;
+                padding-right: 10px;
+            }
             &:last-child {
                 border: 0;
             }
             th {
-                min-width: 100px;
+                min-width: 74px;
                 font-weight: 500;
             }
             td {

@@ -65,7 +65,7 @@ export class Native {
 
 		if (this.isMobile()) {
 			console.log('isMobile:', this.isMobile())
-			this.toast.show(message, '500', 'bottom').subscribe((toast) => {
+			this.toast.show(message, '500', 'center').subscribe((toast) => {
 				console.log(toast);
 			});
 		} else {
@@ -129,7 +129,7 @@ export class Native {
 		confirm.present();
 	}
 	/**
-	 * 使用cordova-plugin-camera获取照片的base64
+	 * 使用 cordova-plugin-camera 获取照片的base64
 	 * @param options
 	 * @return {Promise<T>}
 	 */
@@ -164,7 +164,6 @@ export class Native {
 		return new Promise((resolve) => {
 			this.getPicture(Object.assign({
 				sourceType: this.camera.PictureSourceType.CAMERA,
-				allowEdit: true
 			}, options)).then(imgData => {
 				resolve(imgData);
 			}).catch(err => {
@@ -201,10 +200,11 @@ export class Native {
 		let destinationType = options['destinationType'] || 0;//0:base64字符串,1:图片url
 		return new Promise((resolve) => {
 			this.imagePicker.getPictures(Object.assign({
-				maximumImagesCount: 6,
-				width: 800,//缩放图像的宽度（像素）
-				height: 800,//缩放图像的高度（像素）
-				quality: 90//图像质量，范围为0 - 100
+				// maximumImagesCount: 6,
+				// width: 800,//缩放图像的宽度（像素）
+				// height: 800,//缩放图像的高度（像素）
+				// quality: 90,//图像质量，范围为0 - 100
+				//outputType: 0,// defaults to 0 (FILE_URI)
 			}, options)).then(files => {
 				if (destinationType === 1) {
 					resolve(files);
