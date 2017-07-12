@@ -39,16 +39,16 @@ export class ApplyServicePage {
       maximumImagesCount: 5
     }).then((data) => {
       if (data instanceof Array) {
-        if(this.picArr.concat(data).length>5){
+        if (this.picArr.concat(data).length > 5) {
           this.native.showToast('最多选择5张');
-          this.picArr = this.picArr.concat(data).slice(0,5);
-        }else{
+          this.picArr = this.picArr.concat(data).slice(0, 5);
+        } else {
           this.picArr.concat(data);
         }
       }
     })
   }
-  deletePic(i){
-    this.picArr.splice(i,1);
+  deletePic(i) {
+    this.picArr.splice(i, 1);
   }
 }

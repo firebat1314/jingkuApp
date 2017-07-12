@@ -30,9 +30,9 @@
     </section>
     <section class="fore item2">
         <div class="title">服务类型</div>
-        <button small ion-button [color]="'dark'" [outline]="true">退货</button>
-        <button small ion-button [color]="'dark'" [outline]="true">换货</button>
-        <button small ion-button [color]="'dark'" [outline]="true">维修</button>
+        <button small ion-button [outline]="true">退货</button>
+        <button small ion-button [outline]="true">换货</button>
+        <button small ion-button [outline]="true">维修</button>
     </section>
     <section class="fore item3">
         <div class="title">问题描述</div>
@@ -47,15 +47,15 @@
     </section>
     <section class="fore item4" *ngIf="picArr?.length">
         <div class="camra userpic" *ngFor="let item of picArr;let i = index;">
-            <img src="./assets/icon/images/camra.png" alt="">
+            <img [src]="item" alt="">
             <span class="delete-icon" tappable (click)="deletePic(i)">+</span>
         </div>
     </section>
     <section class="fore item5">
         <div class="title">商品退回方式</div>
         <div class="main">
-            <button ion-button outline>送货至自提点</button>
-            <button ion-button outline>快递至镜库</button>
+            <button small ion-button outline>送货至自提点</button>
+            <button small ion-button outline>快递至镜库</button>
             <div class="text-wrap">商品寄回地址在审核通过后以短信形式告知，或在申请记录中查询。镜库不收取快递附加费。</div>
         </div>
     </section>
@@ -69,7 +69,7 @@
         <div class="input">
             <div class="left">手机号码：</div>
             <div class="right">
-                <input type="number" disabled placeholder="{{data?.order_info?.mobile}}">
+                <input type="number" disabled placeholder="{{data?.order_info?.mobile | phonenumberfilter}}">
             </div>
         </div>
         <div class="input ">

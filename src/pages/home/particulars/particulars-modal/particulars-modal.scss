@@ -20,6 +20,7 @@ page-particulars-modal {
                 flex-direction: column;
                 position: relative;
                 margin-left: 10px;
+                flex: 1;
                 >div {
                     margin-bottom: 7px;
                     &:first-child {
@@ -51,20 +52,13 @@ page-particulars-modal {
     .onemore {
         .item {
             color: #858585;
-            padding: 0;
-            .label {
-                white-space: initial;
-            }
             .title {
                 padding: 3px 6px;
-                display: inline-block;
                 border: 1px solid #f53d3d;
                 color: #f53d3d;
                 border-radius: 3px;
-                margin: 0 10px;
-                font-size: 1.6rem;
+                font-size: 1.4rem;
             }
         }
     }
-    .attr {}
 }

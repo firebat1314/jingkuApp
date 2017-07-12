@@ -23,7 +23,7 @@ export class CountInputComponent {
     private native: Native,
     private element: ElementRef,
   ) {
-    console.log('Hello CountInput Component');
+    // console.log('Hello CountInput Component');
   }
   increase() {
     if (this.lock) {
@@ -42,8 +42,8 @@ export class CountInputComponent {
   }
   inputEvent(value) {
     if (this.maxValue && (this.value >= this.maxValue)) {
-      this.native.showToast('最多选择' + this.maxValue + '件')
-      this.element.nativeElement.getElementsByTagName('input')[0].value = this.maxValue;
+      this.native.showToast('最多选择' + this.maxValue + '件');
+      this.element.nativeElement.getElementsByTagName('input')[0] = this.maxValue;
       this.value = this.maxValue;
     }
     console.log(this.value, this.maxValue, this.value >= this.maxValue)

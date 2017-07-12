@@ -41,8 +41,9 @@
     </div>
     <div class="onemore" *ngIf="title=='赠送'">
         <ion-list>
-            <button ion-item *ngFor="let item of promotion">
-                <span class="title" item-left>{{item.promotion_name}}</span><span [innerHtml]="item.title"></span>
+            <button ion-item text-wrap *ngFor="let item of promotion">
+                <span class="title" item-left>{{item.promotion_name}}</span>
+                <span [innerHtml]="item.title"></span>
             </button>
         </ion-list>
     </div>
