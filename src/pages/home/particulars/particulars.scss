@@ -7,20 +7,9 @@ page-particulars {
     .fore {
         margin-bottom: 10px;
         background: #fff;
-    }
-    .ion-ios-arrow-forward {
-        color: #999999;
-    }
-    .note {
-        font-size: 1.5rem;
-        align-items: center;
-        margin-right: 2px;
-        img {
-            width: 2rem;
+        &:last-child {
+            margin-bottom: 0;
         }
-    }
-    .item {
-        display: flex;
     }
     [item-padding] {
         padding: 0 10px;
@@ -281,9 +270,10 @@ page-particulars {
                         text-overflow: ellipsis;
                         overflow: hidden;
                         margin: 1rem 0;
+                        font-size: 1.4rem;
                         &:last-child {
                             color: #e50000;
-                            font-weight: 700;
+                            font-weight: 500;
                         }
                     }
                 }
@@ -300,6 +290,9 @@ page-particulars {
                 img {
                     display: block;
                     margin: 0 auto;
+                }
+                video {
+                    background: #000;
                 }
                 p {
                     margin: 0;
@@ -332,8 +325,10 @@ page-particulars {
                 border-top: 1px solid #f5f5f5;
                 color: #808080;
                 white-space: nowrap;
+                font-size: 1.2rem;
                 min-width: 40%;
                 >div {
+                    height: 100%;
                     border-right: 1px solid #f5f5f5;
                     width: 50%;
                     display: flex;
@@ -341,29 +336,30 @@ page-particulars {
                     justify-content: center;
                     align-items: center;
                     .icon {
-                        font-size: 1.5em;
-                    }
-                    img {
-                        height: 30%;
-                        margin-bottom: 4px;
+                        font-size: 2em;
+                        margin-bottom: 2px;
                     }
                 }
                 [name=cart] {
                     position: relative;
                     .badge {
                         position: absolute;
-                        right: -10px;
-                        top: -4px;
-                        // padding: 2px;
+                        right: -15px;
+                        top: -10px;
+                        padding: 2px 5px;
                         font-size: 1rem;
+                        z-index: 10;
                     }
                 }
             }
             .right {
                 flex: 6;
                 .btns {
+                    height: 100%;
                     display: flex;
                     .button {
+                        font-size: 1.6rem;
+                        height: 50px;
                         padding: 0;
                     }
                 }

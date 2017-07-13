@@ -16,7 +16,7 @@
 <ion-content>
     <div class="fore fore1" tappable (click)="openOrderModalShippingPage()" *ngIf="defaultShipping">
         <div class="wrap">
-            <div>{{defaultShipping.consignee}}<span class="phone">{{defaultShipping.mobile|phonenumberfilter}}</span></div>
+            <div>{{defaultShipping.consignee}}<span class="phone">{{defaultShipping.mobile | phonenumberfilter}}</span></div>
             <div>{{defaultShipping.address}}</div>
         </div>
     </div>
@@ -56,12 +56,12 @@
                             <div *ngFor="let attr2 of attr?.attrs;">{{attr2}}</div>
                         </div>
                         <div class="bottom">
-                            <div>单价：{{attr.goods_price}}/副</div>
+                            <div>单价：{{attr.goods_price}}</div>
                         </div>
                     </div>
                     <div class="right">
                         <div class="price color">¥{{attr.formated_subtotal}}</div>
-                        <div class="count">{{attr.goods_number}}副</div>
+                        <div class="count">{{attr.goods_number}}</div>
                     </div>
                 </div>
             </div>

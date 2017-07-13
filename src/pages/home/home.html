@@ -10,7 +10,7 @@
         <div class="mark-searchbar" tappable navPush="SearchPage"></div>
         <ion-buttons right tappable (click)="presentPopover($event)">
             <button ion-button clear icon-only icon-left>
-               <ion-icon name="md-add"></ion-icon>
+               <ion-icon name="ios-add-circle-outline"></ion-icon>
             </button>
         </ion-buttons>
     </ion-navbar>
@@ -135,7 +135,7 @@
             <ion-slides class="slide-title" slidesPerView="3">
                 <ion-slide *ngFor="let slide of getCategoryRecommendGoodsHot; let i = index;">
                     <div class="slide-title-unit" tappable (click)="goParticularsPage(slide.id)">
-                        <img img-lazy-load="{{slide?.goods_img}}">
+                        <img border-f0 img-lazy-load="{{slide?.goods_img}}">
                         <div class="info">
                             <!--<div class="name">{{slide?.name}}</div>-->
                             <div class="price">{{slide?.shop_price}}</div>
@@ -160,7 +160,7 @@
                 <ion-slide *ngFor="let slide of getCategoryRecommendGoods; let i = index;">
                     <div tappable (click)="goParticularsPage(slide.id)">
                         <div class="slide-title-unit">
-                            <img img-lazy-load="{{slide?.goods_img}}">
+                            <img border-f0 img-lazy-load="{{slide?.goods_img}}">
                             <div class="info">
                                 <!--<div class="name">{{slide?.name}}</div>-->
                                 <div class="price">{{slide?.shop_price}}</div>
@@ -189,7 +189,7 @@
                     <div tappable (click)="goParticularsPage(slide.id)">
                         <div class="slide-title-unit">
                             <div class="img">
-                                <img img-lazy-load="{{slide?.goods_img}}">
+                                <img border-f0 img-lazy-load="{{slide?.goods_img}}">
                             </div>
                             <div class="info">
                                 <!--<div class="name">{{slide?.name}}</div>-->

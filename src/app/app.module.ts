@@ -31,11 +31,15 @@ import { IonicImageViewerModule } from "ionic-img-viewer/dist/ionic-img-viewer";
   ],
   imports: [
     IonicModule.forRoot(MyApp, {
+      platforms:{
+        ios: {}
+      },
       backButtonText: '',
-      // mode:'md',
+      mode:'md',
       tabsHideOnSubPages: true,
       tabsPlacement: 'bottom',
       // activator: "highlight"
+      backButtonIcon:'ios-arrow-back-outline'
     }),
     IonicStorageModule.forRoot(),
     HttpModule,

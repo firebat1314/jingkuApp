@@ -22,7 +22,7 @@ export class ImgLazyLoadDirective {
   }
   @Input('img-lazy-load') src: string;
 
-  ngOnInit(){
+  ngOnInit() {
     this.setSrc(this._defaultSrc);
   }
   ngOnChanges() {
@@ -31,7 +31,7 @@ export class ImgLazyLoadDirective {
     // console.log(this.src)
     img.onload = () => {
       // setTimeout(() => {
-        this.setSrc(this.src);
+      this.setSrc(this.src);
       // }, 1000)
     }
   }
