@@ -15,7 +15,7 @@ import { Native } from "../../../providers/native";
   templateUrl: 'city.html'
 })
 export class CityPage {
-  data: any;
+  data: any = this.navParams.get('areaList');
   keyword: string = '';
   constructor(
     public navCtrl: NavController,
@@ -23,14 +23,9 @@ export class CityPage {
     private httpService: HttpService,
     private native: Native,
     public events: Events
-  ) {
-  }
-
+  ) { }
   ionViewDidLoad() {
     console.log('ionViewDidLoad CityPage');
-  }
-  ngAfterViewInit() {
-    this.data = this.navParams.get('areaList');
   }
   switcher(region) {
     if (!region) {
@@ -38,10 +33,10 @@ export class CityPage {
     }
     this.httpService.editArea({ id: region.region_id }).then((res) => {
       if (res.status == 1) {
-        this.navCtrl.pop();
         this.events.publish('home:updataArea');
         this.events.publish('car:updata');
         this.native.showToast('切换至' + region.region_name);
+        this.navCtrl.pop();
       }
     })
   }

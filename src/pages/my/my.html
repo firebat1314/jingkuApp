@@ -28,7 +28,7 @@
         <ion-refresher-content refreshingSpinner="1" pullingIcon="0"></ion-refresher-content>
     </ion-refresher>
     <ion-list>
-        <ion-item padding-left no-lines mode="ios" detail-none style="border-bottom: 0.5px solid #e0e0e0;">
+        <ion-item padding-left no-lines mode="ios" detail-none style="border-bottom: 1px solid #e0e0e0;">
             <ion-avatar [navPush]="AccountManagementPage" [navParams]="{avatar:userInfo?.data?.avatar,username:userInfo?.data?.username}" item-left>
                 <!--<img img-lazy-load="{{userInfo?.data?.avatar}}" imageViewer alt="">-->
                 <ion-img src="{{userInfo?.data?.avatar}}"></ion-img>
@@ -43,7 +43,7 @@
                 账号管理
             </button>
         </ion-item>
-        <ion-item tappable padding-left [navPush]="AllOrdersPage" [navParams]="{index:0}" no-lines mode="ios" detail-push style="border-bottom: 0.5px solid #e0e0e0;">
+        <ion-item tappable padding-left [navPush]="AllOrdersPage" [navParams]="{index:0}" no-lines mode="ios" detail-push style="border-bottom: 1px solid #e0e0e0;">
             <img src="./assets/icon/images/user_center_5.png" alt="" item-left class="myitem-icon"> 全部订单
         </ion-item>
         <ion-item>
@@ -87,7 +87,7 @@
                 </div>
                 <div>
                     <div class="number">敬请期待</div>
-                    <div class="text">白条</div>
+                    <div class="text">镜库金融</div>
                 </div>
             </div>
         </ion-item>

@@ -18,7 +18,7 @@
         <ion-list>
             <ion-item class="certified-img-box">
                 <ion-label color="primary" fixed><span ion-text color="google">*</span>　验证码</ion-label>
-                <ion-input required clearInput type="number" [(ngModel)]="str_verify" name="str_verify" placeholder="输入验证码"></ion-input>
+                <ion-input required clearInput type="number" [(ngModel)]="str_verify" name="str_verify" placeholder="验证码"></ion-input>
                 <div class="certified-img" item-right>
                     <img [img-lazy-load]="verifyImg" alt="" tappable (click)="getImg()">
                     <!--<ion-icon tappable (click)="getImg()" ios="ios-refresh" md="md-refresh"></ion-icon>-->
@@ -26,7 +26,7 @@
             </ion-item>
             <ion-item>
                 <ion-label color="primary" fixed><span ion-text color="google">*</span>　短信验证</ion-label>
-                <ion-input required clearInput name="Phone_code" [(ngModel)]="Phone_code" name="Phone_code" type="number" placeholder="请输入短信验证码"></ion-input>
+                <ion-input required clearInput name="Phone_code" [(ngModel)]="Phone_code" name="Phone_code" type="number" placeholder="短信验证码"></ion-input>
                 <button ion-button outline round color="dark" item-right [disabled]="disabled" (click)="getMobileCode() ">{{value}}</button>
             </ion-item>
             <ion-item>
@@ -35,7 +35,7 @@
             </ion-item>
             <ion-item>
                 <ion-label color="primary" fixed><span ion-text color="google">*</span>　确认密码</ion-label>
-                <ion-input required clearInput [(ngModel)]="cpassword" name="cpassword" type="password" placeholder="请确认密码"></ion-input>
+                <ion-input required clearInput [(ngModel)]="cpassword" name="cpassword" type="password" placeholder="确认密码"></ion-input>
             </ion-item>
         </ion-list>
 

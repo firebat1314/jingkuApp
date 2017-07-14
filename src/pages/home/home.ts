@@ -42,7 +42,10 @@ export class HomePage {
     private native: Native,
     // private storage: Storage,
     public popoverCtrl: PopoverController
-  ) { }
+  ) {
+    //地址更新
+    this.events.subscribe('home:updataArea', () => { this.updataArea() })
+  }
   ngAfterViewInit() {
     this.content.ionScroll.subscribe((d) => {
       this.fabButton.setElementClass("fab-button-out", d.directionY == "down");
@@ -54,12 +57,6 @@ export class HomePage {
     this.getHomeData();
     this.updataArea();
     this.updateCarCount();
-    /**
-     * 地址更新事件
-     */
-    this.events.subscribe('home:updataArea', () => {
-      this.updataArea();
-    })
   }
   ngOnDestroy() {
     this.events.unsubscribe('home:updataArea');
@@ -156,10 +153,15 @@ export class HomePage {
     })
   }
   presentPopover(myEvent) {
-    let popover = this.popoverCtrl.create('PopoverHomePage',{},{});
+    let popover = this.popoverCtrl.create('PopoverHomePage', {}, {});
     popover.present({
       ev: myEvent
     });
+    popover.onDidDismiss(data => {
+      if (data) {
+        this.navCtrl.push(data);
+      }
+    })
   }
   goClassPage(value) {
     this.navCtrl.popToRoot();

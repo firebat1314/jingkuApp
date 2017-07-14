@@ -15,32 +15,27 @@ import { Native } from "../../../providers/native";
 })
 export class PopoverHomePage {
 
-  MessagePage: Component = 'MessagePage';
-
   constructor(
     public viewCtrl: ViewController,
     public navCtrl: NavController,
     public navParams: NavParams,
-    public native:Native
-  ) {
-  }
-
+    public native: Native
+  ) { }
   ionViewDidLoad() {
     console.log('ionViewDidLoad PopoverHomePage');
   }
   goMessagePage() {
-    this.navCtrl.push('MessagePage').then(()=>{
-      this.viewCtrl.dismiss();
-    })
+    this.viewCtrl.dismiss('MessagePage');
   }
-  openScanner(){
-    this.native.openBarcodeScanner().then((res)=>{
-      this.native.openAlertBox(res['test'],()=>{
+  openScanner() {
+    this.native.openBarcodeScanner().then((res) => {
+      console.log('二维码',res);
+      this.native.openAlertBox(res['test'], () => {
         console.log(res['format'])
       })
-    }).catch(()=>{
+    }).catch(() => {
       console.log('openBarcodeScanner error')
-    }).then(()=>{
+    }).then(() => {
       this.viewCtrl.dismiss();
     })
   }

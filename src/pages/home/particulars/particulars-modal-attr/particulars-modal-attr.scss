@@ -18,24 +18,30 @@ page-particulars-modal-attr {
         color: #808080;
         font-size: 1.6rem;
         margin-bottom: 10px;
-        tr {
-            height: 47px;
-            border-bottom: 1px solid #e0e0e0;
-            td.count-input-box {
-                padding-left: 10px;
-                padding-right: 10px;
-            }
-            &:last-child {
-                border: 0;
-            }
-            th {
-                min-width: 74px;
-                font-weight: 500;
-            }
-            td {
-                text-align: center;
-                &:first-child {
-                    color: #e60000;
+        table {
+            min-width: 100%;
+            tr {
+                height: 47px;
+                border-bottom: 1px solid #e0e0e0;
+                td.count-input-box {
+                    padding-left: 10px;
+                    padding-right: 10px;
+                    count-input {
+                        margin: 0 auto;
+                    }
+                }
+                &:last-child {
+                    border: 0;
+                }
+                th {
+                    min-width: 74px;
+                    font-weight: 500;
+                }
+                td {
+                    text-align: center;
+                    &:first-child {
+                        color: #e60000;
+                    }
                 }
             }
         }

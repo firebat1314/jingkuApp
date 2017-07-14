@@ -1,5 +1,5 @@
-import { Component } from '@angular/core';
-import { NavController, NavParams, ModalController, Events, IonicPage } from 'ionic-angular';
+import { Component, ViewChild } from '@angular/core';
+import { NavController, NavParams, ModalController, Events, IonicPage, Content, FabButton } from 'ionic-angular';
 /*http服务*/
 import { HttpService } from "../../../providers/http-service";
 import { Native } from "../../../providers/native";
@@ -11,6 +11,9 @@ declare var Swiper: any;
   templateUrl: 'particulars.html'
 })
 export class ParticularsPage {
+  @ViewChild(Content) content: Content;
+  @ViewChild(FabButton) fabButton: FabButton;
+  
   region_name: any;
   getCategoryRecommendGoodsHot: any;
   getLinkedGoods: any;
@@ -46,7 +49,11 @@ export class ParticularsPage {
     this.goodsId = this.navParams.get('goodsId') || '3994';/*3994 5676*/
     console.log("商品ID:", this.goodsId);
   }
-
+  ngAfterViewInit() {
+    this.content.ionScroll.subscribe((d) => {
+      this.fabButton.setElementClass("fab-button-out", d.directionY == "down");
+    });
+  }
   ionViewDidLoad() {
     console.log('ionViewDidLoad ParticularsPage');
     this.getHttpDetails();

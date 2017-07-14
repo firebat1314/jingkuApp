@@ -19,6 +19,7 @@ import { AppVersion } from '@ionic-native/app-version';
 import { SplashScreen } from "@ionic-native/splash-screen";
 import { StatusBar } from "@ionic-native/status-bar";
 import { BarcodeScanner } from "@ionic-native/barcode-scanner";
+import { AndroidFullScreen } from "@ionic-native/android-full-screen";
 /*————————————————————————————————插件————————————————————————————————*/
 import { MeunItemComponentModule } from "../components/meun-item/meun-item.module";
 import { CityPickerModule } from "ionic2-city-picker/dist/city-picker.module";
@@ -30,11 +31,15 @@ import { IonicImageViewerModule } from "ionic-img-viewer/dist/ionic-img-viewer";
   ],
   imports: [
     IonicModule.forRoot(MyApp, {
+      platforms:{
+        ios: {}
+      },
       backButtonText: '',
-      mode:'ios',
+      mode:'md',
       tabsHideOnSubPages: true,
       tabsPlacement: 'bottom',
       // activator: "highlight"
+      backButtonIcon:'ios-arrow-back-outline'
     }),
     IonicStorageModule.forRoot(),
     HttpModule,
@@ -49,6 +54,19 @@ import { IonicImageViewerModule } from "ionic-img-viewer/dist/ionic-img-viewer";
   ],
   providers: [
     { provide: ErrorHandler, useClass: IonicErrorHandler },
-    UserData, Native, HttpService, JpushService, Camera, ImagePicker, AppVersion, Toast, CallNumber, StatusBar, SplashScreen, BarcodeScanner]
+    UserData,
+    Native,
+    HttpService,
+    JpushService,
+    Camera,
+    ImagePicker,
+    AppVersion,
+    Toast,
+    CallNumber,
+    StatusBar,
+    SplashScreen,
+    BarcodeScanner,
+    AndroidFullScreen
+  ]
 })
 export class AppModule { }

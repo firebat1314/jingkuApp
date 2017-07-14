@@ -75,17 +75,16 @@
                     </div>
                 </div>
             </div>
-            <div class="fore-huanxin fore" padding>
+            <!-- <div class="fore-huanxin fore" padding>
                 <div class="title">
                     <span class="txt">店铺换新</span>
-                    <!--<span class="more" (click)="goToMoreBrand()">更多&gt;</span>-->
                 </div>
                 <div class="body">
                     <div *ngFor="let item of fore3">
                         <img tappable [ads-click]="item.link_type" img-lazy-load="{{item.ad_img}}" alt="">
                     </div>
                 </div>
-            </div>
+            </div> -->
             <div class="fore-remen fore" padding>
                 <div class="title">
                     <span class="txt">热门品牌</span>
@@ -138,7 +137,6 @@
         </div>
         <div class="goods" *ngSwitchCase="'goods'">
             <nothing *ngIf="collectionList?.count=='0'" title="暂无收藏" text="去收藏你喜欢的商品吧~" backgroundImg="url(./assets/icon/images/homepage_42_03.png)"></nothing>
-
             <ion-list>
                 <div class="item-wrap" *ngFor="let item of collectionList?.data;let i = index">
                     <div margin-left [ngClass]="{'activein':showCheckBox}" *ngIf="showCheckBox">

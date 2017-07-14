@@ -19,7 +19,7 @@ page-repair-return {
             margin-bottom: 12px;
             overflow: hidden;
             .order-head {
-                border-bottom: 0.5px solid #e0e0e0;
+                border-bottom: 1px solid #e0e0e0;
                 color: #666;
                 white-space: nowrap;
                 display: flex;
@@ -39,7 +39,7 @@ page-repair-return {
                     display: flex;
                     justify-content: space-between;
                     align-items: center;
-                    border-bottom: 0.5px solid #e0e0e0;
+                    border-bottom: 1px solid #e0e0e0;
                     overflow: hidden;
                     width: calc(100% - 20px);
                     padding: 0 6px;

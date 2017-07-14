@@ -2,9 +2,9 @@ page-subnav-page1 {
     overflow: scroll;
     .content {
         background: #fff;
-    }
-    .scroll-content {
-        background: #fff;
+        .scroll-content {
+            background: #fff;
+        }
     }
     .classify-wrap {
         margin: 15px 7%;

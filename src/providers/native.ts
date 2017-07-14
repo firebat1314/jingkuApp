@@ -197,7 +197,7 @@ export class Native {
 	 */
 	getMultiplePicture = (options = {}) => {
 		let that = this;
-		let destinationType = options['destinationType'] || 0;//0:base64字符串,1:图片url
+		let destinationType = options['outputType'] || 0;//0:base64字符串,1:图片url
 		return new Promise((resolve) => {
 			this.imagePicker.getPictures(Object.assign({
 				// maximumImagesCount: 6,

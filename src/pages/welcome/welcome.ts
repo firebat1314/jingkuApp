@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { NavController, NavParams, IonicPage } from 'ionic-angular';
 // import { TabsPage } from '../tabs/tabs';
 import { Storage } from '@ionic/storage';
+import { AndroidFullScreen } from "@ionic-native/android-full-screen";
 
 /*
   Generated class for the Welcome page.
@@ -19,8 +20,17 @@ export class WelcomePage {
   constructor(
     public navCtrl: NavController,
     public navParams: NavParams,
-    public storage: Storage
+    public storage: Storage,
+    public androidFullScreen: AndroidFullScreen,
   ) { }
+  ngOnInit() {
+    this.androidFullScreen.isImmersiveModeSupported()
+      .then(() => this.androidFullScreen.immersiveMode())
+      .catch((error: any) => console.log(error));
+  }
+  ngOnDestroy() {
+    this.androidFullScreen.showSystemUI();
+  }
   ionViewDidLoad() {
     console.log('ionViewDidLoad WelcomePage');
   }

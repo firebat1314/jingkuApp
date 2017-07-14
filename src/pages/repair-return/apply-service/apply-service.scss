@@ -89,9 +89,14 @@ page-apply-service {
                     display: flex;
                     align-items: center;
                     justify-content: space-between;
+                    white-space: nowrap;
+                    overflow: hidden;
+                    font-size: 1.2rem;
                     >span {
                         display: flex;
                         align-items: center;
+                        text-overflow: ellipsis;
+                        overflow: hidden;
                     }
                     >span:first-child {
                         margin-right: 20px;
@@ -123,7 +128,7 @@ page-apply-service {
             margin: 10px;
             margin-top: 0;
             textarea {
-                height: 8rem;
+                height: 10rem;
                 color: #4d4d4d;
                 background: #f8f8f8;
                 width: 100%;
@@ -182,7 +187,7 @@ page-apply-service {
             display: flex;
             align-items: center;
             color: #808080;
-            border-bottom: 0.55px solid #e0e0e0;
+            border-bottom: 1px solid #e0e0e0;
             font-size: 1.4rem;
             min-height: 4rem;
             padding: 0 5px;
@@ -202,7 +207,7 @@ page-apply-service {
                 border: none;
             }
             &.address {
-                margin-top: -15px;
+                margin-top: -10px;
                 .icon {
                     margin-right: 15px;
                 }
