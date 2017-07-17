@@ -35,12 +35,7 @@ page-classify {
             }
         }
         .mysearchbar {
-            .toolbar-background-md {
-                background-color: #f5f5f5;
-            }
-            .searchbar-ios .searchbar-input {
-                background: #fff;
-            }
+            @include mysearchbar;
         }
     }
     .classify-wrap {
@@ -65,7 +60,7 @@ page-classify {
             align-items: center;
             margin-bottom: 16px;
             .txt {
-                border-left: 5px solid #000;
+                border-left: 5px solid #333;
                 font-size: 1.6rem;
                 padding-left: 10px;
                 font-weight: 500;
@@ -131,9 +126,8 @@ page-classify {
                     @include body1;
                     h3 {
                         color: #666;
-                        font-size: 1.8rem;
-                        margin-top: 1.3rem;
-                        margin-bottom: 0.8rem;
+                        margin-top: 1.2rem;
+                        margin-bottom: 0.5rem;
                     }
                 }
             }

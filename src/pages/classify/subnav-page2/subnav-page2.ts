@@ -8,7 +8,9 @@ import { HttpService } from "../../../providers/http-service";
   See http://ionicframework.com/docs/v2/components/#navigation for more info on
   Ionic pages and navigation.
 */
-@IonicPage()
+@IonicPage({
+  defaultHistory:['SubnavPage1Page']
+})
 @Component({
   selector: 'page-subnav-page2',
   templateUrl: 'subnav-page2.html'
@@ -33,9 +35,8 @@ export class SubnavPage2Page {
     console.log('ionViewDidLoad SubnavPage2Page');
   }
   onEvent(id,e) {
-    if (e) {
-      e.stopPropagation();
-    }
+    if (e) {e.stopPropagation();}
+    console.log(this.navCtrl.parent)
     this.navCtrl.parent.push('BrandListPage',{listId:id})
   }
 }

@@ -51,13 +51,9 @@ page-recharge {
         .item {
             border-bottom: 1px solid #e0e0e0 !important;
             height: 5rem;
-            ion-thumbnail {
-                min-width: $thumbnail-width;
-                min-height: $thumbnail-width;
-                img {
-                    width: $thumbnail-width;
-                    height: $thumbnail-width;
-                }
+            img {
+                width: $thumbnail-width;
+                height: $thumbnail-width;
             }
             &:last-child {
                 border: 0 !important;

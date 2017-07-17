@@ -130,7 +130,7 @@
     </div>
 
     <ion-fab right bottom (click)="myContent.scrollToTop()">
-        <button ion-fab color="dark" mini><img width="100%" src="./assets/icon/gotop.png" alt=""></button>
+        <button ion-fab color="dark" mini goBackTop></button>
     </ion-fab>
 
     <ion-infinite-scroll (ionInfinite)="doInfinite($event)" *ngIf="flag">

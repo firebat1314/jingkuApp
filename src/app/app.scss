@@ -17,9 +17,7 @@
 }
 
 html {
-    // font-size: 57%;
     -webkit-overflow-scrolling: touch;
-    /*touch*/
 }
 
 .content {
@@ -27,10 +25,6 @@ html {
     .scroll-content {
         background: #f7f7f7;
     }
-}
-
-.scroll-content {
-    // background: #f7f7f7;
 }
 
 [goBackTop] {
@@ -62,14 +56,8 @@ ion-thumbnail {
     background: #f7f7f7;
 }
 
-.list>div:last-child .item {
-    .item-inner {
-        border: 0;
-    }
-}
-
 .card {
-    box-shadow: initial;
+    box-shadow: 0 1px 5px 0 rgba(0, 0, 0, 0.12);
 }
 
 .gobacktop {
@@ -400,15 +388,20 @@ ion-modal {
     border-top: 1px solid #e0e0e0;
     display: flex;
     .segment-button {
-        height: 2.7rem;
+        height: 2.5rem;
         line-height: 2.5rem;
     }
     .segment-md .segment-button {
         border: none;
-        font-size: 1.6rem;
+        font-size: 1.4rem;
         border-right: 1px solid #e0e0e0;
         &:last-child {
             border: none;
+        }
+    }
+    &.toolbar-ios {
+        .segment-button {
+            max-width: initial;
         }
     }
     .bar-buttons-md[right] {

@@ -35,23 +35,23 @@
     <!--——————————————————————————————————————————功能按钮——————————————————————————————————————————-->
     <div class="btn-tool" home-padding>
         <div class="top">
-            <div tappable (click)="goPresellPage()">
+            <div tappable (click)="goDiscountCouponPage();">
                 <div class="img">
-                    <img img-lazy-load="./assets/icon/home_icon_08.png" alt="">
+                    <img img-lazy-load="./assets/icon/home_icon_07.png" alt="">
                 </div>
-                <span>预售</span>
-            </div>
-            <div tappable (click)="goRechargePage()">
-                <div class="img">
-                    <img img-lazy-load="./assets/icon/home_icon_02.png" alt="">
-                </div>
-                <span>充值</span>
+                <span>优惠券</span>
             </div>
             <div tappable (click)="goFastbuyPage()">
                 <div class="img">
                     <img img-lazy-load="./assets/icon/home_icon_05.png" alt="">
                 </div>
                 <span>闪购</span>
+            </div>
+            <div tappable (click)="goPresellPage()">
+                <div class="img">
+                    <img img-lazy-load="./assets/icon/home_icon_08.png" alt="">
+                </div>
+                <span>预售</span>
             </div>
             <div tappable (click)="goClassPage('brand')">
                 <div class="img">
@@ -61,17 +61,17 @@
             </div>
         </div>
         <div class="bottom">
+            <div tappable (click)="goRechargePage()">
+                <div class="img">
+                    <img img-lazy-load="./assets/icon/home_icon_02.png" alt="">
+                </div>
+                <span>充值</span>
+            </div>
             <div tappable (click)="goWhitebarPage()">
                 <div class="img">
                     <img img-lazy-load="./assets/icon/home_icon_01.png" alt="">
                 </div>
-                <span>白条</span>
-            </div>
-            <div tappable (click)="goDiscountCouponPage();">
-                <div class="img">
-                    <img img-lazy-load="./assets/icon/home_icon_07.png" alt="">
-                </div>
-                <span>优惠券</span>
+                <span>镜库金融</span>
             </div>
             <div tappable (click)="goIntegralstorePage();">
                 <div class="img">
@@ -85,10 +85,9 @@
                 </div>
                 <span>镜库设计</span>
             </div>
-
         </div>
     </div>
-    <!--——————————————————————————————————————————热门类型——————————————————————————————————————————-->
+    <!--—————————————————————————————————————————— 热门品类 ——————————————————————————————————————————-->
     <div class="hot-group home-content" home-padding>
         <div class="title">
             <span class="txt">热门品类</span>

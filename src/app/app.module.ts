@@ -35,7 +35,7 @@ import { IonicImageViewerModule } from "ionic-img-viewer/dist/ionic-img-viewer";
         ios: {}
       },
       backButtonText: '',
-      mode:'md',
+      // mode:'md',
       tabsHideOnSubPages: true,
       tabsPlacement: 'bottom',
       // activator: "highlight"

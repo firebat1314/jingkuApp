@@ -22,7 +22,7 @@
     </div>
     <div class="fore fore1" tappable (click)="openOrderModalShippingPage()" *ngIf="!defaultShipping">
         <div class="wrap">
-            请选择收货地址
+            选择收货地址
         </div>
     </div>
     <ion-item class="fore" mode="ios" no-lines margin-right detail-push tappable (click)="openOrderPaymentModal(data)">
@@ -31,9 +31,6 @@
             <span *ngIf="mtd.selected==1">{{mtd.pay_name}}</span>
         </ion-note>
     </ion-item>
-    <ion-item-divider>
-        货品清单
-    </ion-item-divider>
     <ion-list class="fore fore2" *ngFor="let item of data?.cart_goods_list;let i=index">
         <ion-item-divider>
             <span ion-text color="danger">订单{{i+1}}: </span>{{item.title}}
@@ -131,12 +128,14 @@
 </ion-content>
 
 <ion-footer>
-    <div class="pagefoot">
-        <div class="left">
-            合计: <span class="price">¥{{data?.total?.amount_formated}}</span><span *ngIf="goodsType=='integral'">&nbsp;积分: <span class="price">{{data?.total?.integral}}</span></span>
+    <ion-toolbar no-padding>
+        <div class="pagefoot">
+            <div class="left">
+                合计: <span class="price">¥{{data?.total?.amount_formated}}</span><span *ngIf="goodsType=='integral'">&nbsp;积分: <span class="price">{{data?.total?.integral}}</span></span>
+            </div>
+            <div class="right">
+                <div ion-button no-margin full large color="dark" tappable (click)="onsubmit()">提交订单</div>
+            </div>
         </div>
-        <div class="right">
-            <div ion-button no-margin full large color="dark" tappable (click)="onsubmit()">提交订单</div>
-        </div>
-    </div>
+    </ion-toolbar>
 </ion-footer>

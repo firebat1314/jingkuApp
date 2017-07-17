@@ -30,32 +30,35 @@
     </section>
     <section class="fore item2">
         <div class="title">服务类型</div>
-        <button small ion-button [outline]="true">退货</button>
-        <button small ion-button [outline]="true">换货</button>
-        <button small ion-button [outline]="true">维修</button>
+        <button (click)="params.return_type=1" ion-button [outline]="params.return_type!=1">退货</button>
+        <button (click)="params.return_type=2" ion-button [outline]="params.return_type!=2">换货</button>
+        <button (click)="params.return_type=3" ion-button [outline]="params.return_type!=3">维修</button>
+    </section>
+    <section class="fore fore-problem">
+        <div class="title problem" tappable (click)="openReasonModal()">申请原因<span>请选择<b>···</b></span></div>
     </section>
     <section class="fore item3">
         <div class="title">问题描述</div>
         <div class="user-input">
-            <textarea [(ngModel)]="text" maxlength="500" placeholder="请输入问题描述"></textarea>
-            <span>{{text?.length||0}}/500</span>
+            <textarea [(ngModel)]="params.str_desc" maxlength="500" placeholder="请输入问题描述"></textarea>
+            <span>{{params.str_desc?.length||0}}/500</span>
         </div>
         <div class="upload-pic">
             <div class="camra" tappable (click)="openCamra()"><img src="./assets/icon/images/camra.png" alt=""></div>
             <div class="text-wrap">为了帮助我们更好的解决问题，请上传照片。最多5张，每张不超过5M，支持JPG、BPM、PNG</div>
         </div>
     </section>
-    <section class="fore item4" *ngIf="picArr?.length">
+    <section class="fore item4" #item4 *ngIf="picArr?.length">
         <div class="camra userpic" *ngFor="let item of picArr;let i = index;">
             <img [src]="item" alt="">
-            <span class="delete-icon" tappable (click)="deletePic(i)">+</span>
+            <span class="delete-icon" tappable (click)="deletePic(i)">{{i}}</span>
         </div>
     </section>
     <section class="fore item5">
         <div class="title">商品退回方式</div>
         <div class="main">
-            <button small ion-button outline>送货至自提点</button>
-            <button small ion-button outline>快递至镜库</button>
+            <button (click)="params.return_way='送货至自提点'" ion-button [outline]="params.return_way!='送货至自提点'">送货至自提点</button>
+            <button (click)="params.return_way='快递至镜库'" ion-button [outline]="params.return_way!='快递至镜库'">快递至镜库</button>
             <div class="text-wrap">商品寄回地址在审核通过后以短信形式告知，或在申请记录中查询。镜库不收取快递附加费。</div>
         </div>
     </section>

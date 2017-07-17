@@ -54,8 +54,8 @@ page-write-orders {
         }
         .attr-wrap {
             // border-bottom: 1px solid #dedede;
-            margin: 10px 16px;
-            margin-bottom: 0;
+            margin: 0 16px;
+            font-size: 1.2rem;
             .one {
                 background: #f7f7f7;
                 border-radius: 3px;
@@ -81,7 +81,7 @@ page-write-orders {
                 }
                 .right {
                     text-align: right;
-                    font-size: 1.6rem;
+                    font-size: 1.4rem;
                     font-weight: 500;
                 }
             }

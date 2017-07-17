@@ -9,7 +9,16 @@ page-apply-service {
     @mixin title {
         font-weight: 400;
         padding: 10px 13px;
-        font-size: 1.6rem;
+        font-size: font-size-text('h3');
+        &.problem {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            span {
+                color: get-color(gray);
+                font-size: font-size-text('h4');
+            }
+        }
     }
     @mixin text-wrap {
         color: #808080;
@@ -115,6 +124,11 @@ page-apply-service {
             &:nth-child(2) {
                 margin-left: 13px;
             }
+        }
+    }
+    .fore-problem {
+        .title {
+            @include title;
         }
     }
     .item3 {

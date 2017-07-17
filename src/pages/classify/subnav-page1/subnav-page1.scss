@@ -7,9 +7,16 @@ page-subnav-page1 {
         }
     }
     .classify-wrap {
-        margin: 15px 7%;
         display: flex;
         flex-wrap: wrap;
+        max-width: 650px;
+        margin: 10px auto;
+        width: 76%;
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
         >div {
             width: 50%;
             display: inline-block;

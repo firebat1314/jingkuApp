@@ -18,7 +18,7 @@
     <nothing *ngIf="wuLiuTidings?.list?.length==0" [backgroundImg]="'../assets/images/message_center_1_03'"></nothing>
     <div class="period" *ngFor="let item of wuLiuTidings?.list">
         <div class="time"><span>{{item.add_time}}</span></div>
-        <ion-card>
+        <ion-card tappable (click)="goOrdersDetailPage(item.order_id)">
             <div class="title">
                 订单状态：<span class="red">{{item.status}}</span>
             </div>

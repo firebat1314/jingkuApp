@@ -65,11 +65,11 @@
             </ion-item>
         </ion-list>
         <div class="tool" padding-horizontal>
-            <div class="agree">
-                <ion-checkbox required [(ngModel)]="agree" name="agree" mode="ios" color="danger"></ion-checkbox>
+            <label class="agree">
+                <ion-checkbox required id="agree" [(ngModel)]="agree" name="agree" mode="ios" color="danger"></ion-checkbox>
                 &nbsp;&nbsp;我已同意并阅读
                 <span ion-text color="google" (click)="goHelperDetailsPage();">《用户协议》</span>
-            </div>
+            </label>
             <div class="login">
                 <span class="text">已有账号？</span>
                 <div ion-button outline small color="danger" tappable (click)="toLoginPage()">登录</div>

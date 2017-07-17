@@ -71,4 +71,7 @@ export class MessageDetailsPage {
       }, 500);
     })
   }
+  goOrdersDetailPage(order_id) {
+    this.navCtrl.push('OrdersDetailPage', { order_id: order_id })
+  }
 }

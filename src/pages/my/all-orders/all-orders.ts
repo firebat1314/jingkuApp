@@ -1,5 +1,5 @@
 import { Component, ViewChild } from '@angular/core';
-import { NavController, NavParams, Content, IonicPage } from 'ionic-angular';
+import { NavController, NavParams, Content, IonicPage, FabButton } from 'ionic-angular';
 import { HttpService } from "../../../providers/http-service";
 import { Native } from "../../../providers/native";
 /*
@@ -18,6 +18,7 @@ export class AllOrdersPage {
   orderData: any;
   @ViewChild('mytabs') mytabs;
   @ViewChild(Content) content: Content;
+  @ViewChild(FabButton) fabButton: FabButton;
 
   constructor(
     public navCtrl: NavController,
@@ -29,6 +30,9 @@ export class AllOrdersPage {
     console.log('ionViewDidLoad AllOrdersPage');
   }
   ngAfterViewInit() {
+    this.content.ionScroll.subscribe((d) => {
+      this.fabButton.setElementClass("fab-button-out", d.directionY == "down");
+    });
     //进入页面默认选中标签
     if (this.navParams.get('index')) {
       this.pageIndex = this.navParams.get('index');

@@ -1,0 +1,19 @@
+// Font sizes
+$font-size-text:( 'h1': 2rem, 'h2': 1.8rem, 'h3': 1.6rem, 'h4': 1.4rem, 'h5': 1.2rem, 'h6': 1rem);
+@function font-size-text($key) {
+    @return map-get($font-size-text, $key);
+}
+
+@function get-color($key) {
+    @return map-get($colors, $key);
+}
+
+$border:1px solid #e0e0e0;
+@mixin mysearchbar {
+    .toolbar-background {
+        background-color: #f5f5f5;
+    }
+    .searchbar .searchbar-input {
+        background: #fff;
+    }
+}

@@ -6,6 +6,7 @@ meun-item {
     .box {
         border-bottom: 1px solid map-get($colors, border);
         padding: 8px;
+        background: #fff;
         &:last-child {
             border: none;
             margin-bottom: 50px;
@@ -31,19 +32,22 @@ meun-item {
             padding-bottom: 18px;
             >div {
                 padding: 10px 0;
-                margin: 10px 2% 0 0;
+                margin: 0 2% 2% 0;
                 border-radius: 3px;
                 background-color: #f5f5f5;
-                text-align: center;
                 width: 32%;
                 color: #acacac;
-                font-size: 1.2rem;
-                transition: background-color, color 300ms;
+                font-size: 1rem;
+                transition: background-color 400ms;
+                display: flex;
+                align-items: center;
+                justify-content: center;
                 &:nth-child(3n) {
                     margin-right: 0;
                 }
                 &.selected {
-                    background: #ccc url(../assets/images/images/toggle-mune_03_03.png) right bottom no-repeat;
+                    // background: #ccc url(../assets/images/images/toggle-mune_03_03.png) right bottom no-repeat;
+                    background-color: #808080;
                     color: #fff;
                 }
             }
@@ -92,6 +96,7 @@ meun-item {
         .button {
             margin: 0;
             width: 50%;
+            font-size: 1.6rem;
         }
     }
 }

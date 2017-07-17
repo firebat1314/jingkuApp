@@ -79,20 +79,18 @@
             </div>
         </div>
         <div class="fore coupon">
-            <ion-list no-margin>
-                <button ion-item *ngIf="getGoodsInfo?.bonus?.length" [disabled]="!getGoodsInfo?.bonus?.length" class="button-coupon" (click)="presentModal('优惠券')">
-                    领券
-                    <span *ngFor="let item of getGoodsInfo?.bonus" class="coupon-show">{{"满"+item.min_goods_amount.slice(1)+'减'+item.int_type_money}}</span>
-                    <ion-note item-right>{{(!getGoodsInfo?.bonus?.length)?'无优惠券':'点击领取'}}</ion-note>
-                </button>
-                <button ion-item class="button-chuxiao" *ngIf="getGoodsInfo?.promotion?.length" [disabled]="!getGoodsInfo?.promotion?.length" (click)="presentModal('赠送')">
-                    促销
-                    <div>
-                        <p class="list-show" *ngFor="let item of getGoodsInfo?.promotion"><span class="title">{{item.promotion_name}}</span><span [innerHtml]="item.title"></span></p>
-                    </div>
-                    <ion-note *ngIf="!getGoodsInfo?.promotion?.length" item-right>无促销</ion-note>
-                </button>
-            </ion-list>
+            <button ion-item *ngIf="getGoodsInfo?.bonus?.length" [disabled]="!getGoodsInfo?.bonus?.length" class="button-coupon" (click)="presentModal('优惠券')">
+                领券
+                <span *ngFor="let item of getGoodsInfo?.bonus" class="coupon-show">{{"满"+item.min_goods_amount.slice(1)+'减'+item.int_type_money}}</span>
+                <ion-note item-right>{{(!getGoodsInfo?.bonus?.length)?'无优惠券':'点击领取'}}</ion-note>
+            </button>
+            <button ion-item no-lines class="button-chuxiao" *ngIf="getGoodsInfo?.promotion?.length" [disabled]="!getGoodsInfo?.promotion?.length" (click)="presentModal('赠送')">
+                促销
+                <div>
+                    <p class="list-show" *ngFor="let item of getGoodsInfo?.promotion"><span class="title">{{item.promotion_name}}</span><span [innerHtml]="item.title"></span></p>
+                </div>
+                <ion-note *ngIf="!getGoodsInfo?.promotion?.length" item-right>无促销</ion-note>
+            </button>
         </div>
         <div class="fore">
             <div ion-item no-lines>
