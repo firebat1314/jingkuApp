@@ -20,10 +20,10 @@
                 <img img-lazy-load="{{item.original_img}}">
             </div>
             <div class="order-body-item-content">
-                <h2 style="-webkit-box-orient: vertical;">{{item.goods_name}}</h2>
+                <h2>{{item.goods_name}}</h2>
                 <p>
                     <span>价格：{{'¥'+item.goods_price}}</span>
-                    <span>数量：<count-input [value]="item.goods_number" [maxValue]="item.goods_number"></count-input></span>
+                    <span>数量：<count-input [(value)]="item.goods_number"></count-input></span>
                 </p>
             </div>
         </div>
@@ -35,12 +35,12 @@
         <button (click)="params.return_type=3" ion-button [outline]="params.return_type!=3">维修</button>
     </section>
     <section class="fore fore-problem">
-        <div class="title problem" tappable (click)="openReasonModal()">申请原因<span>请选择<b>···</b></span></div>
+        <div class="title problem" tappable (click)="openReasonModal()">申请原因<span>{{type_note_txt||'请选择'}}<b>···</b></span></div>
     </section>
     <section class="fore item3">
         <div class="title">问题描述</div>
         <div class="user-input">
-            <textarea [(ngModel)]="params.str_desc" maxlength="500" placeholder="请输入问题描述"></textarea>
+            <ion-textarea [(ngModel)]="params.str_desc" maxlength="500" placeholder="请输入问题描述"></ion-textarea>
             <span>{{params.str_desc?.length||0}}/500</span>
         </div>
         <div class="upload-pic">

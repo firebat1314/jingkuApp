@@ -61,11 +61,10 @@ export class Native {
 	 */
 	showToastTime: boolean = false;
 
-	showToast = (message: string, duration: number = 2000) => {
+	showToast = (message: string, duration: number = 800, useNative?: boolean) => {
 
-		if (this.isMobile()) {
-			console.log('isMobile:', this.isMobile())
-			this.toast.show(message, '500', 'center').subscribe((toast) => {
+		if (useNative===true || this.isMobile()) {
+			this.toast.show(message, String(duration), 'center').subscribe((toast) => {
 				console.log(toast);
 			});
 		} else {
@@ -198,9 +197,9 @@ export class Native {
 	getMultiplePicture = (options = {}) => {
 		let that = this;
 		let destinationType = options['outputType'] || 0;//0:base64字符串,1:图片url
-		return new Promise((resolve) => {
+		return new Promise((resolve,reject) => {
 			this.imagePicker.getPictures(Object.assign({
-				// maximumImagesCount: 6,
+				maximumImagesCount: 5,
 				// width: 800,//缩放图像的宽度（像素）
 				// height: 800,//缩放图像的高度（像素）
 				// quality: 90,//图像质量，范围为0 - 100
@@ -220,7 +219,7 @@ export class Native {
 					}
 				}
 			}).catch(err => {
-				console.error(err);
+				reject(err);
 				this.showToast('获取照片失败');
 			});
 		});

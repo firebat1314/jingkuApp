@@ -15,9 +15,25 @@
 
 <ion-content>
     <ion-list>
-        <ion-item>
-            <ion-checkbox mode="ios" item-start></ion-checkbox>
-            误购（不喜欢/大小不合适）
+        <ion-item mode="ios">
+            <ion-label>误购（不喜欢/大小不合适）</ion-label>
+            <ion-checkbox tappable (click)="viewCtrl.dismiss({type_note:0,text:'误购（不喜欢/大小不合适）'})" mode="ios" item-start></ion-checkbox>
+        </ion-item>
+        <ion-item mode="ios">
+            <ion-label>卖家发错货</ion-label>
+            <ion-checkbox tappable (click)="viewCtrl.dismiss({type_note:1,text:'卖家发错货'})" mode="ios" item-start></ion-checkbox>
+        </ion-item>
+        <ion-item mode="ios">
+            <ion-label>质量问题</ion-label>
+            <ion-checkbox tappable (click)="viewCtrl.dismiss({type_note:2,text:'质量问题'})" mode="ios" item-start></ion-checkbox>
+        </ion-item>
+        <ion-item mode="ios">
+            <ion-label>商品与描述不符</ion-label>
+            <ion-checkbox tappable (click)="viewCtrl.dismiss({type_note:3,text:'商品与描述不符'})" mode="ios" item-start></ion-checkbox>
+        </ion-item>
+        <ion-item mode="ios">
+            <ion-label>其他</ion-label>
+            <ion-checkbox tappable (click)="viewCtrl.dismiss({type_note:4,text:'其他'})" mode="ios" item-start></ion-checkbox>
         </ion-item>
     </ion-list>
 </ion-content>

@@ -15,9 +15,9 @@ export class CountInputComponent {
 
   @Input() value: number = 0;
   @Input() defaultValue: number = 0;
-  @Input() maxValue: number;
   @Input() lock: boolean = false;
-  @Output() updateNumberI: EventEmitter<number> = new EventEmitter();
+  @Output() valueChange: EventEmitter<number> = new EventEmitter<number>();
+  maxValue: number;
 
   constructor(
     private native: Native,
@@ -25,28 +25,33 @@ export class CountInputComponent {
   ) {
     // console.log('Hello CountInput Component');
   }
+  ngOnInit(){
+    this.maxValue = this.value;
+  }
   increase() {
     if (this.lock) {
       return;
-    } else if (this.maxValue && this.value >= this.maxValue) {
+    } else if (this.maxValue && (this.value >= this.maxValue)) {
       this.native.showToast('最多选择' + this.maxValue + '件')
+      this.element.nativeElement.getElementsByTagName('input')[0].value = this.maxValue;
       return;
     }
-    this.updateNumberI.emit(++this.value);
+    this.valueChange.emit(++this.value);
   }
   reduce() {
     if (this.value <= this.defaultValue) {
       return;
     }
-    this.updateNumberI.emit(--this.value);
+    this.valueChange.emit(--this.value);
   }
   inputEvent(value) {
+    console.log(this.maxValue && (this.value >= this.maxValue),this.maxValue,this.value >= this.maxValue)
     if (this.maxValue && (this.value >= this.maxValue)) {
       this.native.showToast('最多选择' + this.maxValue + '件');
-      this.element.nativeElement.getElementsByTagName('input')[0] = this.maxValue;
+      this.element.nativeElement.getElementsByTagName('input')[0].value = this.maxValue;
       this.value = this.maxValue;
     }
-    console.log(this.value, this.maxValue, this.value >= this.maxValue)
-    this.updateNumberI.emit(this.value);
+    this.valueChange.emit(this.value);
   }
+
 }

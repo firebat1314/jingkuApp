@@ -59,8 +59,7 @@ page-apply-service {
         .order-body-item {
             display: flex;
             justify-content: space-between;
-            align-items: center;
-            border-bottom: 0.5px solid #e0e0e0;
+            border-bottom: 1px solid #e0e0e0;
             overflow: hidden;
             padding: 0 10px;
             &:last-child {
@@ -77,9 +76,8 @@ page-apply-service {
                 display: flex;
                 overflow: hidden;
                 flex-direction: column;
-                justify-content: center;
+                justify-content: space-around;
                 flex: 1;
-                margin: 11px 7px 11px 0;
                 >h2 {
                     white-space: pre-wrap;
                     overflow: hidden;
@@ -89,12 +87,13 @@ page-apply-service {
                     -webkit-box-orient: vertical;
                     color: #4d4d4d;
                     font-size: 1.4rem;
-                    margin: 0 0 7px 0;
+                    margin: 0 0 0 0;
+                    margin-top: 5px;
                     font-weight: 400;
                 }
                 >p {
                     color: #808080;
-                    margin: 2px 0;
+                    margin: 0;
                     display: flex;
                     align-items: center;
                     justify-content: space-between;

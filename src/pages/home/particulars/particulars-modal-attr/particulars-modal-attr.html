@@ -18,7 +18,7 @@
             </tr>
             <tr *ngFor="let item of data.data">
                 <td class="count-input-box">
-                    <count-input (updateNumberI)="numberIChange($event,item)"></count-input>
+                    <count-input (valueChange)="numberIChange($event,item)"></count-input>
                 </td>
                 <td>{{item.price}}</td>
                 <td *ngFor="let group of item.goods_attr">{{group.attr_val}}</td>
@@ -46,7 +46,7 @@
             <div class="bottom">
                 <div>{{headData.shop_price_formated}}</div>
                 <div>
-                    <count-input (updateNumberI)="jingpianNumberChange($event,it)"></count-input>
+                    <count-input (valueChange)="jingpianNumberChange($event,it)"></count-input>
                 </div>
             </div>
         </div>
@@ -83,7 +83,7 @@
                 <ion-col *ngFor="let group of item.goods_attr">{{group.attr_val}}</ion-col>
                 <ion-col>{{item.product_number}}</ion-col>
                 <ion-col col-2>
-                    <count-input (updateNumberI)="numberIChange($event)"></count-input>
+                    <count-input (valueChange)="numberIChange($event)"></count-input>
                 </ion-col>
             </ion-row>
         </ion-grid>

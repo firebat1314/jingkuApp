@@ -9,7 +9,10 @@ import { Native } from "../../../providers/native";
  * See http://ionicframework.com/docs/components/#navigation for more info
  * on Ionic pages and navigation.
  */
-@IonicPage()
+@IonicPage({
+  defaultHistory: ['RepairReturnPage'],
+  segment: 'repair-return'
+})
 @Component({
   selector: 'page-apply-service',
   templateUrl: 'apply-service.html',
@@ -17,18 +20,17 @@ import { Native } from "../../../providers/native";
 export class ApplyServicePage {
 
   data: any = this.navParams.data;
-  picArr: Array<any>;
-
+  picArr: Array<any> = [];
   params = {
-    rec_ids:null,
-    order_id: this.navParams.data.order_info?this.navParams.data.order_info.order_id:null,
+    rec_ids: {},
+    order_id: this.navParams.data.order_info ? this.navParams.data.order_info.order_id : null,
     return_type: null,
     type_note: null,
     str_desc: null,
     return_img: null,
     return_way: null,
   }
-
+  type_note_txt: string = '';
   constructor(
     public navCtrl: NavController,
     public navParams: NavParams,
@@ -40,15 +42,6 @@ export class ApplyServicePage {
   }
   ionViewDidLoad() {
     console.log('ionViewDidLoad ApplyServicePage');
-  }
-  goServiceOrderDetailsPage() {
-    this.navCtrl.push('ApplyService2Page');
-    this.httpService.submitRepair().then((res) => {
-      if (res.status == 1) {
-        this.native.showToast(res.info);
-        this.navCtrl.push('ApplyService2Page', res);
-      }
-    })
   }
   openCamra() {
     this.native.getMultiplePicture({
@@ -63,16 +56,34 @@ export class ApplyServicePage {
           this.picArr.concat(data);
         }
       }
+    }, (err) => {
+      console.log(err)
     })
   }
   deletePic(i) {
     this.picArr.splice(i, 1);
   }
-  openReasonModal(){
+  openReasonModal() {
     var modal = this.modalCtrl.create('ReasonModalPage');
-    modal.onDidDismiss((data)=>{
-      console.log(data)
+    modal.onDidDismiss((data) => {
+      if (data) {
+        this.params.type_note = data.type_note;
+        this.type_note_txt = data.text;
+      }
     })
     modal.present();
+  }
+  goServiceOrderDetailsPage() {
+    this.data.goodslist.forEach(item => {
+      if (item.goods_number) {
+        this.params.rec_ids[item.rec_id] = item.goods_number;
+      }
+    })
+    // this.native.showToast('提交成功',800,false)
+    this.httpService.submitRepair(this.params).then((res) => {
+      if (res.status == 1) {
+        this.navCtrl.push('ApplyService2Page', res);
+      }
+    })
   }
 }

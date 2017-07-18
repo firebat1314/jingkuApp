@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams } from 'ionic-angular';
+import { NavController, NavParams, IonicPage, ViewController } from 'ionic-angular';
 
 /**
  * Generated class for the ReasonModalPage page.
@@ -7,18 +7,20 @@ import { NavController, NavParams } from 'ionic-angular';
  * See http://ionicframework.com/docs/components/#navigation for more info
  * on Ionic pages and navigation.
  */
-
+@IonicPage()
 @Component({
   selector: 'page-reason-modal',
   templateUrl: 'reason-modal.html',
 })
 export class ReasonModalPage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
-  }
+  constructor(
+    public viewCtrl: ViewController,
+  ) {}
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad ReasonModalPage');
   }
 
+  
 }
