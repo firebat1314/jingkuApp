@@ -128,5 +128,7 @@ export class RepairReturnPage {
       })
     })
   }
-
+  goServiceOrderDetailsPage(return_id){
+    this.navCtrl.push('ServiceOrderDetailsPage',{return_id:return_id});
+  }
 }

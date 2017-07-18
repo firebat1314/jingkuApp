@@ -27,6 +27,6 @@ export class ApplyService2Page {
     this.navCtrl.remove(1,2);
   }
   goRepairReturnPage(){
-    this.navCtrl.popTo('AuditProgressPage')
+    this.navCtrl.remove(1,2);
   }
 }

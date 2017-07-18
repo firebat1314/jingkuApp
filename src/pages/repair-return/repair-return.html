@@ -78,7 +78,7 @@
                     </div>
                 </div>
             </div>
-            <ion-item mode="ios" detail-push no-lines>
+            <ion-item mode="ios" detail-push no-lines tappable (click)="goServiceOrderDetailsPage(item.return_id)">
                 <img src="./assets/icon/images/clock_2.png" item-start alt="" *ngIf="item.return_status==0">
                 <img src="./assets/icon/images/ok.png" item-start alt="" *ngIf="item.return_status!=0">
                 <span>{{item.status}}</span>

@@ -44,7 +44,7 @@ export class ApplyServicePage {
     console.log('ionViewDidLoad ApplyServicePage');
   }
   openCamra() {
-    this.native.getMultiplePicture({
+    /* this.native.getMultiplePicture({
       outputType: 1,
       maximumImagesCount: 5
     }).then((data) => {
@@ -58,7 +58,7 @@ export class ApplyServicePage {
       }
     }, (err) => {
       console.log(err)
-    })
+    }) */
   }
   deletePic(i) {
     this.picArr.splice(i, 1);
@@ -80,6 +80,7 @@ export class ApplyServicePage {
       }
     })
     // this.native.showToast('提交成功',800,false)
+        this.navCtrl.push('ApplyService2Page');
     this.httpService.submitRepair(this.params).then((res) => {
       if (res.status == 1) {
         this.navCtrl.push('ApplyService2Page', res);

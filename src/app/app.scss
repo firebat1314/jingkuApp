@@ -71,6 +71,11 @@ ion-thumbnail {
     }
 }
 
+.fore {
+    margin-bottom: 10px;
+    background: #fff;
+}
+
 
 /*————————————————————————————————————城市选择————————————————————————————————————*/
 
@@ -193,107 +198,6 @@ ion-refresher-content[state=ready] .refresher-pulling-icon {
 
 
 /*----------浏览记录+分类------------*/
-
-@mixin slidingList1 {
-    .list {
-        background: #fff;
-    }
-    .item-wrap {
-        display: flex;
-        align-items: center;
-        border-bottom: 1px solid #dedede;
-        ion-checkbox {
-            margin-right: 2px;
-        }
-        .item {
-            margin-bottom: 0;
-            .item-inner {
-                border-bottom: none;
-            }
-            h2 {
-                color: #666;
-                white-space: pre-wrap;
-                font-size: 1.4rem;
-                text-overflow: -o-ellipsis-lastline;
-                overflow: hidden;
-                text-overflow: ellipsis;
-                display: -webkit-box;
-                -webkit-line-clamp: 2;
-                -webkit-box-orient: vertical;
-            }
-            .right-bottom {
-                display: flex;
-                justify-content: space-between;
-                align-items: center;
-                color: #e60000;
-                margin-top: 16px;
-                font-weight: 700;
-            }
-        }
-    }
-}
-
-
-/*ion-item.item {
-    padding-left: 0;
-}*/
-
-@mixin ellipsis_1 {
-    color: #4d4d4d;
-    white-space: nowrap;
-    font-size: 1.6rem;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    margin-bottom: 10px;
-}
-
-@mixin ellipsis_2 {
-    color: #4d4d4d;
-    font-size: 1.6rem;
-    margin-bottom: 7px;
-    white-space: pre-wrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    display: -webkit-box;
-    -webkit-box-orient: vertical;
-    -webkit-line-clamp: 2;
-}
-
-
-/*————————————————————————————————————验证码图片CSS————————————————————————————————————*/
-
-@mixin certified-img {
-    .certified-img[item-right] {
-        display: flex;
-        align-items: center;
-        margin: 0;
-        border-left: 1px solid #e0e0e0;
-        height: 100%;
-        margin-left: 10px;
-        img {
-            margin-left: 5px;
-            min-width: 7rem;
-            max-height: 4rem;
-        }
-        ion-icon {
-            color: #999;
-            font-size: 1.5em;
-            margin: 0 10px;
-        }
-    }
-}
-
-
-/*————————————————————————————————————去头部阴影————————————————————————————————————*/
-
-@mixin deteleShadow {
-    .header::after {
-        background-image: none;
-    }
-    .scroll-content {
-        top: -1px;
-    }
-}
 
 
 /*————————————————————————————————————android导航栏字体居中————————————————————————————————————*/
