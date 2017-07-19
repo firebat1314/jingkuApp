@@ -2,15 +2,8 @@ page-classify {
     img {
         display: block;
     }
-    .swiper-slide {
-        text-align: initial;
-        .slide-zoom {
-            text-align: initial;
-        }
-    }
-    .slide-zoom {
-        height: 100%;
-        overflow: scroll;
+    [padding] {
+        padding: 10px;
     }
     @include deteleShadow;
     ion-header {
@@ -20,11 +13,6 @@ page-classify {
             }
             .top-segment {
                 width: 60%;
-                position: absolute;
-                top: 0;
-                left: 0;
-                right: 0;
-                bottom: 0;
                 margin: auto;
                 .segment-button {
                     border-color: #e6e6e6;
@@ -88,7 +76,7 @@ page-classify {
         @mixin body2 {
             overflow: hidden;
             >div {
-                width: 32.6%;
+                width: 32.66%;
                 float: left;
                 margin-right: 1%;
                 &:nth-child(3n) {
@@ -151,6 +139,7 @@ page-classify {
                 .top {
                     img {
                         width: 100%;
+                        margin-bottom: 4px;
                     }
                 }
                 .main {

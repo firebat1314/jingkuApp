@@ -1,0 +1,14 @@
+page-store-home-popover {
+    .scroll-content {
+        height: 400px;
+    }
+    div {
+        height: 4.5rem;
+        border-bottom: 1px solid #e6e6e6;
+        line-height: 4.5rem;
+        text-align: center;
+        &:last-child {
+            border-bottom: 0;
+        }
+    }
+}

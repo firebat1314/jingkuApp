@@ -27,8 +27,8 @@ export class MeunItemComponent {
 	) {
 		this.events.subscribe('user:listFilter', (res) => {
 			this.data = res;
-			this.selectedItem(res.goods_attr_arr[0].data, 'brand_id');
-			this.selectedItem(res.goods_attr_arr[1].data, 'cat_id');
+			this.selectItem(res.goods_attr_arr[0].data, 'brand_id');
+			this.selectItem(res.goods_attr_arr[1].data, 'cat_id');
 			this.selectPrice(res);
 			let firstItem = this.data.goods_attr_arr[2].data[0]
 			let lastItem = this.data.goods_attr_arr[2].data[this.data.goods_attr_arr[2].data.length-1]
@@ -45,7 +45,7 @@ export class MeunItemComponent {
 			}
 		}
 	}
-	selectedItem(list, name) {
+	selectItem(list, name) {
 		for (var i = 0; i < list.length; i++) {
 			var item = list[i];
 			if (item.selected == 1) {

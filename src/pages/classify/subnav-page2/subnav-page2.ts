@@ -36,7 +36,6 @@ export class SubnavPage2Page {
   }
   onEvent(id,e) {
     if (e) {e.stopPropagation();}
-    console.log(this.navCtrl.parent)
     this.navCtrl.parent.push('BrandListPage',{listId:id})
   }
 }

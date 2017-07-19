@@ -43,8 +43,8 @@
                             <div [ngStyle]="{'width.%':20}"></div>
                         </div>
                         <div class="number">
-                            <span>已抢购???件</span>
-                            <span>仅剩???件</span>
+                            <span>已抢购{{item.sales_num+item.unit}}</span>
+                            <span>仅剩{{item.goods_number+item.unit}}</span>
                         </div>
                     </div>
                     <div class="price">

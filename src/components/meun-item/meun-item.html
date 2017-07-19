@@ -12,13 +12,13 @@
             <!--<span class="all">全部<ion-icon name="ios-arrow-down" ></ion-icon></span>-->
         </div>
         <div class="body" *ngIf="item.name=='商品品牌'">
-            <div *ngFor="let group of item?.data" (click)="radiolist3.toggleItem3(group,item?.data)" [ngClass]="group.selected==0?'select':'selected'">{{group.brand_name}}</div>
+            <div *ngFor="let group of item?.data" tappable (click)="radiolist3.toggleItem3(group,item?.data)" [ngClass]="group.selected==0?'select':'selected'">{{group.brand_name}}</div>
         </div>
         <div class="body" *ngIf="item.name=='商品分类'">
-            <div *ngFor="let group of item?.data" (click)="radiolist2.toggleItem2(group,item?.data)" [ngClass]="group.selected==0?'select':'selected'">{{group.cat_name}}</div>
+            <div *ngFor="let group of item?.data" tappable (click)="radiolist2.toggleItem2(group,item?.data)" [ngClass]="group.selected==0?'select':'selected'">{{group.cat_name}}</div>
         </div>
         <div class="body" *ngIf="item.name=='商品价格区间'">
-            <div *ngFor="let group of item?.data" (click)="radiolist.toggleItem(group,item?.data);filterParams.min_price=group.min_price;filterParams.max_price=group.max_price;" [ngClass]="group.selected==0?'select':'selected'">{{group.min_price}}~{{group.max_price}}</div>
+            <div *ngFor="let group of item?.data" tappable (click)="radiolist.toggleItem(group,item?.data);filterParams.min_price=group.min_price;filterParams.max_price=group.max_price;" [ngClass]="group.selected==0?'select':'selected'">{{group.min_price}}~{{group.max_price}}</div>
         </div>
         <div class="range" *ngIf="item.name=='商品价格区间'">
             <ion-item no-lines>
@@ -39,5 +39,5 @@
 </ion-content>
 <ion-footer>
     <button full large ion-button color="cancelBtn">重置</button>
-    <button full large ion-button color="dark" menuClose (click)="confirm()">确定</button>
+    <button full large ion-button color="dark" menuClose tappable (click)="confirm()">确定</button>
 </ion-footer>

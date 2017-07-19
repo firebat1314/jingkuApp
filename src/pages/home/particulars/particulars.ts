@@ -5,7 +5,9 @@ import { HttpService } from "../../../providers/http-service";
 import { Native } from "../../../providers/native";
 
 declare var Swiper: any;
-@IonicPage()
+@IonicPage({
+  segment:'page-particulars/:goodsId'
+})
 @Component({
   selector: 'page-particulars',
   templateUrl: 'particulars.html'

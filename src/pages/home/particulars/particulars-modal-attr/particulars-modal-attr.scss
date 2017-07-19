@@ -5,9 +5,12 @@ page-particulars-modal-attr {
             @include ellipsis_2;
         }
     }
-    .item p:last-child {
-        font-size: 2rem;
-        color: red;
+    .item p {
+        font-size: font-size-text('h5');
+        &:last-child {
+            font-size: font-size-text('h3');
+            color: red;
+        }
     }
     .price {
         color: map-get($colors, danger);
@@ -16,13 +19,13 @@ page-particulars-modal-attr {
         background: #fff;
         overflow: scroll;
         color: #808080;
-        font-size: 1.6rem;
+        font-size: font-size-text('h4');
         margin-bottom: 10px;
         table {
             min-width: 100%;
             tr {
-                height: 47px;
-                border-bottom: 1px solid #e0e0e0;
+                height: 40px;
+                border-bottom: $border;
                 td.count-input-box {
                     padding-left: 10px;
                     padding-right: 10px;

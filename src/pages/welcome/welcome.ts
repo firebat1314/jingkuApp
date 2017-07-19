@@ -24,18 +24,18 @@ export class WelcomePage {
     public androidFullScreen: AndroidFullScreen,
   ) { }
   ngOnInit() {
-    this.androidFullScreen.isImmersiveModeSupported()
-      .then(() => this.androidFullScreen.immersiveMode())
-      .catch((error: any) => console.log(error));
+    // this.androidFullScreen.isImmersiveModeSupported()
+    //   .then(() => this.androidFullScreen.immersiveMode())
+    //   .catch((error: any) => console.log(error));
   }
   ngOnDestroy() {
-    this.androidFullScreen.showSystemUI();
+    // this.androidFullScreen.showSystemUI();
   }
   ionViewDidLoad() {
     console.log('ionViewDidLoad WelcomePage');
   }
   goToHome() {
-    this.navCtrl.setRoot('LoginPage');
+    this.navCtrl.setRoot('LoginPage',{},{direction:'back'});
     this.storage.set('firstIn', 'NO');
   }
 }

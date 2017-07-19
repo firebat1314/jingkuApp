@@ -63,14 +63,14 @@ export class Native {
 
 	showToast = (message: string, duration: number = 800, useNative?: boolean) => {
 
-		if (useNative===true || this.isMobile()) {
+		if (useNative === true || this.isMobile()) {
 			this.toast.show(message, String(duration), 'center').subscribe((toast) => {
 				console.log(toast);
 			});
 		} else {
 			this.toastCtrl.create({
 				message: message,
-				duration: duration,
+				duration: duration || 800,
 				position: 'top',
 				showCloseButton: false
 			}).present();
@@ -197,7 +197,7 @@ export class Native {
 	getMultiplePicture = (options = {}) => {
 		let that = this;
 		let destinationType = options['outputType'] || 0;//0:base64字符串,1:图片url
-		return new Promise((resolve,reject) => {
+		return new Promise((resolve, reject) => {
 			this.imagePicker.getPictures(Object.assign({
 				maximumImagesCount: 5,
 				// width: 800,//缩放图像的宽度（像素）

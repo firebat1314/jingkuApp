@@ -129,6 +129,7 @@ page-presell {
                 .number {
                     display: flex;
                     justify-content: space-between;
+                    font-size: font-size-text('h5');
                     >span {
                         overflow: hidden;
                         text-overflow: ellipsis;
@@ -146,9 +147,10 @@ page-presell {
                 display: flex;
                 justify-content: space-between;
                 align-items: flex-end;
+                font-size: font-size-text('h4');
                 .red {
                     color: #e60000;
-                    font-size: 1.8rem;
+                    font-size: font-size-text('h3');
                     white-space: nowrap;
                 }
                 .old-price {

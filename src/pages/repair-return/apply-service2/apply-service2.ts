@@ -23,8 +23,9 @@ export class ApplyService2Page {
     console.log('ionViewDidLoad ApplyService2Page');
   }
   goAuditProgressPage(){
-    this.navCtrl.push('AuditProgressPage');
-    this.navCtrl.remove(1,2);
+    this.navCtrl.push('AuditProgressPage').then(()=>{
+      this.navCtrl.remove(1,2);
+    });
   }
   goRepairReturnPage(){
     this.navCtrl.remove(1,2);

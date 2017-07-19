@@ -4,7 +4,7 @@ $font-size-text:( 'h1': 2rem, 'h2': 1.8rem, 'h3': 1.6rem, 'h4': 1.4rem, 'h5': 1.
     @return map-get($font-size-text, $key);
 }
 
-@function get-color($key) {
+@function get-color($key:'primary') {
     @return map-get($colors, $key);
 }
 
@@ -61,7 +61,7 @@ $border-img:1px solid #f0f0f0;
 @mixin ellipsis_1 {
     color: #4d4d4d;
     white-space: nowrap;
-    font-size: 1.6rem;
+    font-size: font-size-text('h4');
     overflow: hidden;
     text-overflow: ellipsis;
     margin-bottom: 10px;
@@ -69,7 +69,7 @@ $border-img:1px solid #f0f0f0;
 
 @mixin ellipsis_2 {
     color: #4d4d4d;
-    font-size: 1.6rem;
+    font-size: font-size-text('h4');
     margin-bottom: 7px;
     white-space: pre-wrap;
     overflow: hidden;
