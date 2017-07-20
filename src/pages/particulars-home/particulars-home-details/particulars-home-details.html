@@ -14,11 +14,22 @@
 
 
 <ion-content>
-    <div class="details-shopName">
-        <div class="shop-logo" [ngStyle]="{'background-image':shopInfo_data?.data?.logo}">
+    <div class="banner-shop">
+        <div class="banner-shadow">
+            <div class="banner-shop-logo">
+                <div class="banner-shop-anoLogo">
+                    <img img-lazy-load="{{shopdata?.data?.logo}}" alt="">
+                </div>
+            </div>
+            <div class="banner-shop-content">
+                <div class="name">{{shopdata?.data?.name}}</div>
+                <div class="heart" tappable (click)="collectStore(shopdata?.data?.is_select)">
+                    <ion-icon name="md-heart-outline" *ngIf="!shopdata?.data?.is_select"></ion-icon>
+                    <ion-icon name="md-heart" color="danger" *ngIf="shopdata?.data?.is_select"></ion-icon>
+                    <span>收藏</span>
+                </div>
+            </div>
         </div>
-        <h2>{{shopInfo_data?.data?.name}}</h2>
-        <p><img img-lazy-load="./assets/images/images/blackHeart.png" alt=""><span>收藏</span></p>
     </div>
     <div class="details-fenlei-nav">
         <div tappable class="fenlei-nav">
@@ -35,12 +46,12 @@
         </div>
     </div>
     <div class="sale-info-content">
-        <div tappable class="sale-info-item">
+        <!-- <div tappable class="sale-info-item boss">
             <span>联系卖家</span>
-        </div>
+        </div> -->
         <div tappable class="sale-info-item phone">
             <span>商家电话</span>
-            <span>{{shopInfo_data?.data?.mobile_url}}</span>
+            <span>{{shopdata?.data?.mobile_url}}</span>
         </div>
         <div tappable (click)="presentPopover($event)" class="sale-info-item erweima">
             <span>店铺二维码</span>
@@ -49,40 +60,34 @@
             <span>证照信息</span>
         </div>
     </div>
-    <div class="shop-info-content">
-        <div tappable class="shop-info-item">
+    <div class="sale-info-content">
+        <div tappable class="sale-info-item">
             <span>店铺简介</span>
-            <span>{{shopInfo_data?.data?.address}}</span>
+            <span>{{shopdata?.data?.address}}</span>
         </div>
-        <div tappable class="shop-info-item">
+        <div tappable class="sale-info-item">
             <span>所在地区</span>
-            <span>{{shopInfo_data?.data?.region}}</span>
+            <span>{{shopdata?.data?.region}}</span>
         </div>
-        <div tappable class="shop-info-item">
+        <div tappable class="sale-info-item">
             <span>开店时间</span>
             <span>2015-02-02</span>
         </div>
     </div>
-    <div class="shop-fashion-tit">
-        <span>授权品牌</span>
-    </div>
-    <div class="shop-fashion-content">
-        <div tappable class="shop-fashion-item">
-            <span>视康（爱尔康）</span>
+    <div class="shop-fashion">
+        <div class="shop-fashion-tit" *ngIf="shopdata?.data?.brand_list?.length">
+            <span>授权品牌</span>
         </div>
-        <div tappable class="shop-fashion-item">
-            <span>视康（爱尔康）</span>
+        <div class="shop-fashion-content">
+            <div tappable *ngFor="let item of shopdata?.data?.brand_list;let i = index" class="shop-fashion-item">
+                <span *ngIf="i<4">{{item.brand_name}}</span>
+            </div>
         </div>
-        <div tappable class="shop-fashion-item">
-            <span>视康（爱尔康）</span>
-        </div>
-        <div tappable class="shop-fashion-item">
-            <span>视康（爱尔康）</span>
+        <div class="shop-details-more-fashion">
+            <div tappable class="into-more-fashion" navPush="ShopAllFashionPage">
+                <span>查询该店所有授权品牌</span>
+            </div>
         </div>
     </div>
-    <div class="shop-details-more-fashion">
-        <div tappable class="into-more-fashion" navPush="ShopAllFashionPage">
-            <span>查询该店所有授权品牌</span>
-        </div>
-    </div>
+
 </ion-content>

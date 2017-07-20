@@ -99,7 +99,7 @@ export class RepairReturnPage {
       rec_id: rec_ids
     }).then((res) => {
       if (res.status == 1) {
-        this.navCtrl.push('ApplyServicePage',res)
+        this.navCtrl.push('ApplyServicePage',{data:res})
       }
     })
   }

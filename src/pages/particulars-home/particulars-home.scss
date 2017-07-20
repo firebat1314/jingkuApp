@@ -1,12 +1,14 @@
 page-particulars-home {
-    @mixin allGoods {
-        padding-left: 2%;
+    @mixin goodsBox1 {
+        width: 100%;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        padding: 0 3% 3%;
         .allGoods-items {
             width: 48%;
-            margin-top: 2%;
+            margin-top: 3%;
             background: #fff;
-            float: left;
-            margin-right: 2%;
             .allGoods-items-img {
                 display: flex;
                 align-items: center;
@@ -17,18 +19,56 @@ page-particulars-home {
                 padding-left: 5%;
                 background: #fff;
                 border-top: 1px solid #e6e6e6;
+                padding: 5px;
+                font-size: font-size-text('h4');
                 p {
                     margin: 0;
-                    line-height: 2.4rem;
                     &:first-child {
-                        text-overflow: ellipsis;
-                        overflow: hidden;
-                        white-space: nowrap;
-                        color: #808080;
+                        @include ellipsis_1;
+                        color: get-color('gray');
+                        margin-bottom: 5px;
+                        font-size: font-size-text('h5');
                     }
                     &:last-child {
                         color: #e60000;
                     }
+                }
+            }
+        }
+    }
+    @mixin goodsBox2 {
+        width: 100%;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        padding: 0 3% 3%;
+        .new-arrival-goods {
+            width: 48%;
+            margin-top: 3%;
+            background: #fff;
+            img {
+                display: block;
+            }
+            .price {
+                background: #fff;
+                border-top: 1px solid #e6e6e6;
+                border-bottom: 1px solid #e6e6e6;
+                display: flex;
+                align-items: center;
+                position: relative;
+                padding: 7px 0;
+                span {
+                    font-size: font-size-text('h3');
+                    margin-left: 9px;
+                    font-weight: 400;
+                }
+                button {
+                    background: #ff3333;
+                    color: #fff;
+                    font-size: font-size-text('h6');
+                    position: absolute;
+                    right: 5%;
+                    padding: 6px 8px;
                 }
             }
         }
@@ -50,7 +90,7 @@ page-particulars-home {
                 display: flex;
                 justify-content: center;
                 align-items: center;
-                margin-right: 2rem;
+                margin-right: 1rem;
                 overflow: hidden;
                 .banner-shop-anoLogo {
                     width: 75px;
@@ -71,6 +111,7 @@ page-particulars-home {
                 display: flex;
                 flex-direction: column;
                 justify-content: space-around;
+                font-weight: 500;
                 .name {
                     font-size: font-size-text('h3');
                 }
@@ -87,92 +128,67 @@ page-particulars-home {
     }
     .shop-tabs {
         background: #fff;
-        height: 6rem;
         border-bottom: 1px solid #e6e6e6;
+        overflow: hidden;
         .shop-tabs-item {
             width: 25%;
-            margin-top: 0.8rem;
-            height: 5.1rem;
+            height: 4.5rem;
             text-align: center;
             float: left;
             box-sizing: border-box;
             background: transparent;
+            font-size: font-size-text('h5');
+            color: get-color('gray2');
             &.actived {
                 border-bottom: 2px solid #ff3333;
                 color: #ff3333;
                 .shop-tabs-item-img {
-                    background: url(../assets/images/images/shop-icon_.png) center 0px no-repeat;
+                    background: url(../assets/icon/store-home/shop1.png) center 0px no-repeat;
                     background-size: 1.4rem 1.4rem;
                 }
             }
             .shop-tabs-item-img {
-                background: url(../assets/images/images/shop-icon.png) center 0px no-repeat;
+                background: url(../assets/icon/store-home/shop.png) center 0px no-repeat;
                 background-size: 1.4rem 1.4rem;
             }
             div {
-                height: 2.4rem;
+                height: 2rem;
             }
         }
     }
     .shopHome-main {
         .new-arrival {
-            height: 6.5rem;
+            height: 5.5rem;
             background: #fff;
             text-align: center;
-            margin-top: 0.1rem;
-            padding-top: 1.5rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            margin-top: 1px;
             p {
                 margin: 0;
                 &:first-child {
-                    margin-bottom: 0.8rem;
+                    color: get-color('gray2');
+                    font-size: font-size-text('h5');
+                    margin-bottom: 5px;
                 }
                 &:last-child {
-                    color: #8c8c8c;
+                    color: get-color('gray3');
                     font-size: 1.5rem;
                 }
             }
         }
         .new-arrival-goods-box {
-            display: inline-block;
-            width: 100%;
-            .new-arrival-goods {
-                width: 48%;
-                padding-top: 0.5rem;
-                float: left;
-                margin-right: 2%;
-                img {
-                    display: block;
-                }
-                .price {
-                    background: #fff;
-                    border-top: 1px solid #e6e6e6;
-                    border-bottom: 1px solid #e6e6e6;
-                    height: 3rem;
-                    color: #333;
-                    display: flex;
-                    align-items: center;
-                    position: relative;
-                    span {
-                        font-size: 1.6rem;
-                        line-height: 3rem;
-                        margin-left: 5px;
-                    }
-                    button {
-                        height: 2rem;
-                        background: #ff3333;
-                        color: #fff;
-                        font-size: 1.4rem;
-                        position: absolute;
-                        right: 5%;
-                    }
-                }
-            }
-            @include allGoods();
+            @include goodsBox1;
+            @include goodsBox2;
         }
     }
     .allGoods-main {
         .list {
-            @include allGoods()
+            .alldata-box {
+                @include goodsBox1()
+            }
         }
         .toolbar-background-ios {
             background: #fff;
@@ -205,123 +221,93 @@ page-particulars-home {
                 color: #666;
             }
         }
-        .allGoods-items {
-            width: 48%;
-            margin-top: 2%;
-            background: #fff;
-            float: left;
-            margin-right: 2%;
-            .allGoods-items-img {
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                img {}
-            }
-            .allGoods-items-info {
-                padding-left: 5%;
-                background: #fff;
-                border-top: 1px solid #e6e6e6;
-                p {
-                    margin: 0;
-                    line-height: 2.4rem;
-                    &:first-child {
-                        text-overflow: ellipsis;
-                        overflow: hidden;
-                        white-space: nowrap;
-                        color: #808080;
-                    }
-                    &:last-child {
-                        color: #e60000;
-                    }
-                }
-            }
-        }
     }
     .cuXiao-mian {
         .cuXiao-time-goods {
             background: #fff;
-            border-bottom: 1px solid #e6e6e6;
+            border-bottom: $border;
             margin-top: 0.1rem;
             display: inline-block;
             .cuXiao-time-goods-tit {
                 height: 4rem;
                 line-height: 4rem;
-                background: url(../assets/images/images/time.png) no-repeat 5%;
-                background-size: 1.6rem 1.6rem;
+                background: url(../assets/images/images/time.png) no-repeat 5% 45%/18px auto;
                 p {
                     float: left;
-                    font-size: 1.6rem;
+                    font-size: font-size-text('h4');
                     margin: 0 3% 0 14%;
                 }
                 span {
                     display: inline-block;
                     float: left;
                     color: #808080;
+                    font-size: font-size-text('h5');
                 }
             }
             .cuXiao-time-goods-content {
                 margin-bottom: 5%;
-                display: inline-block;
+                display: flex;
                 .time-goods-img {
-                    width: 30%;
+                    width: 88px;
+                    height: 88px;
+                    min-width: 68px;
+                    min-height: 68px;
+                    max-width: 100px;
+                    max-height: 100px;
                     display: flex;
                     justify-content: center;
                     align-items: center;
-                    border: 1px solid #e6e6e6;
+                    border: $border-img;
                     margin-left: 5%;
-                    float: left;
-                    margin-right: 2%;
+                    margin-right: 3%;
                     img {
                         display: block;
                     }
                 }
-                p {
-                    color: #4d4d4d;
-                    overflow: hidden;
-                    height: 3.2rem;
-                    position: relative;
-                    margin: 1% 0 2% 0;
-                }
-                p::after {
-                    content: "...";
-                    font-weight: bold;
-                    position: absolute;
-                    bottom: 0;
-                    right: 0;
-                    padding: 0 7% 0 7%;
-                    background: url(http://css88.b0.upaiyun.com/css88/2014/09/ellipsis_bg.png) repeat-y;
-                }
-                span {
-                    width: 60%;
-                    color: #e60000;
-                    display: inline-block;
-                    margin-bottom: 2%;
-                }
-                button {
-                    height: 2.4rem;
-                    border-radius: 0.8rem;
-                    background: #e60000;
-                    color: #fff;
-                    width: 15%;
+                .right {
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: center;
+                    align-items: flex-start;
+                    flex: 1;
+                    p {
+                        margin: 0;
+                        @include ellipsis_2;
+                        color: get-color('gray2');
+                    }
+                    span {
+                        color: #e60000;
+                        display: inline-block;
+                        margin-bottom: 2%;
+                        font-weight: 500;
+                    }
+                    .button {
+                        border-radius: 1rem;
+                        background: #b11515;
+                        color: #fff;
+                        padding: 2px 11px;
+                        font-size: 1rem;
+                    }
                 }
             }
         }
         .cuXiao-tabs {
-            height: 5rem;
             border-top: 1px solid #e6e6e6;
             border-bottom: 1px solid #e6e6e6;
             background: #fff;
             margin-top: 3%;
             padding-left: 3%;
+            overflow: hidden;
             .cuXiao-tabs-item {
                 width: 24%;
                 color: #4d4d4d;
                 background: transparent;
-                height: 100%;
+                height: 3.5rem;
                 float: left;
                 text-overflow: ellipsis;
                 overflow: hidden;
                 white-space: nowrap;
+                font-size: font-size-text('h5');
                 &.actived {
                     color: #ff3333;
                     border-bottom: 2px solid #ff3333;
@@ -341,7 +327,9 @@ page-particulars-home {
                     color: #9e9d9b;
                 }
             }
-            @include allGoods()
+            .cxdata-box {
+                @include goodsBox1()
+            }
         }
     }
     .goNew-main {
@@ -378,7 +366,7 @@ page-particulars-home {
                     }
                 }
             }
-            @include allGoods
+            @include goodsBox1();
         }
         .newTime-date-noMore {
             .lock {

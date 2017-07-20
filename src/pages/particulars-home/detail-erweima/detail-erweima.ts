@@ -14,6 +14,8 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 })
 export class DetailErweimaPage {
 
+  qrcode = this.navParams.get('qrcode');
+  name = this.navParams.get('name');
   constructor(public navCtrl: NavController, public navParams: NavParams) {
   }
 

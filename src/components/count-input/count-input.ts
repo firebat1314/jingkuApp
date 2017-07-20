@@ -12,12 +12,13 @@ import { Native } from "../../providers/native";
   templateUrl: 'count-input.html'
 })
 export class CountInputComponent {
+  newmaxValue: number;
 
   @Input() value: number = 0;
   @Input() defaultValue: number = 0;
   @Input() lock: boolean = false;
   @Output() valueChange: EventEmitter<number> = new EventEmitter<number>();
-  maxValue: number;
+  @Input() maxValue: number;
 
   constructor(
     private native: Native,
@@ -25,15 +26,16 @@ export class CountInputComponent {
   ) {
     // console.log('Hello CountInput Component');
   }
-  ngOnInit(){
-    this.maxValue = this.value;
+  ngOnInit() {
+    if (this.maxValue) this.newmaxValue = this.maxValue
   }
   increase() {
     if (this.lock) {
       return;
-    } else if (this.maxValue && (this.value >= this.maxValue)) {
-      this.native.showToast('最多选择' + this.maxValue + '件')
-      this.element.nativeElement.getElementsByTagName('input')[0].value = this.maxValue;
+    } else if (this.newmaxValue && (this.value >= this.newmaxValue)) {
+      console.log(this.newmaxValue)
+      this.native.showToast('最多选择' + this.newmaxValue + '件');
+      this.element.nativeElement.getElementsByTagName('input')[0].value = this.newmaxValue;
       return;
     }
     this.valueChange.emit(++this.value);
@@ -45,11 +47,10 @@ export class CountInputComponent {
     this.valueChange.emit(--this.value);
   }
   inputEvent(value) {
-    console.log(this.maxValue && (this.value >= this.maxValue),this.maxValue,this.value >= this.maxValue)
-    if (this.maxValue && (this.value >= this.maxValue)) {
-      this.native.showToast('最多选择' + this.maxValue + '件');
-      this.element.nativeElement.getElementsByTagName('input')[0].value = this.maxValue;
-      this.value = this.maxValue;
+    if (this.newmaxValue && (this.value >= this.newmaxValue)) {
+      this.native.showToast('最多选择' + this.newmaxValue + '件');
+      this.element.nativeElement.getElementsByTagName('input')[0].value = this.newmaxValue;
+      this.value = this.newmaxValue;
     }
     this.valueChange.emit(this.value);
   }

@@ -68,7 +68,7 @@
 
 
     <div *ngIf="data?.goods?.length!=0" style=" background:#f7f7f7;">
-        <div style="padding:10px;" *ngIf="!listStyleflag">
+        <div style="padding:4px;" *ngIf="!listStyleflag">
             <single-foods-card [data]="data?.goods"></single-foods-card>
         </div>
         <single-foods-item [data]="data?.goods" *ngIf="listStyleflag"></single-foods-item>

@@ -429,6 +429,6 @@ export class HttpService {
     return this.http.post(this.ip + '/User/repair_info', data)
   }
   CatrgorySupplierInfo(data?: Object) {//7）服务单详情
-    return this.http.post(this.ip + '/Catrgory/get_supplier_info', data)
+    return this.http.post(this.ip + '/Category/get_supplier_info', data)
   }
 }

@@ -90,4 +90,8 @@ export class MyPage {
   goMySalesmanPage() {
     this.navCtrl.push('MySalesmanPage', { salesman: this.userInfo.data.ywy })
   }
+  goAccountManagementPage(event) {
+    event.stopPropagation();
+    this.navCtrl.push('AccountManagementPage', { avatar: this.userInfo.data.avatar, username: this.userInfo.data.username });
+  }
 }

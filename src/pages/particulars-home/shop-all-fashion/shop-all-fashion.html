@@ -6,29 +6,20 @@
 -->
 <ion-header>
 
-  <ion-navbar>
-    <ion-title>店铺授权品牌</ion-title>
-  </ion-navbar>
+    <ion-navbar>
+        <ion-title>店铺授权品牌</ion-title>
+    </ion-navbar>
 
 </ion-header>
 
 
 <ion-content>
-  <div class="all-fashion-tit">
-    <span>北京镜库科技有限公司共有200个授权品牌：</span>
-  </div>
-  <div class="all-fashion-content">
-    <div tappable class="all-fashion-item">
-        <span>视康（爱尔康）</span>
-      </div>
-      <div tappable class="all-fashion-item">
-        <span>蔡司</span>
-      </div>
-      <div tappable class="all-fashion-item">
-        <span>安普里奥·阿玛尼</span>
-      </div>
-      <div tappable class="all-fashion-item">
-        <span>视康（爱尔康）</span>
-      </div>
-  </div>
+    <div class="all-fashion-tit">
+        <span>北京镜库科技有限公司共有{{shopdata?.data?.brand_list?.length||'0'}}个授权品牌：</span>
+    </div>
+    <div class="shop-fashion-content">
+        <div tappable *ngFor="let item of brandList;let i = index" class="shop-fashion-item">
+            <span>{{item.brand_name}}</span>
+        </div>
+    </div>
 </ion-content>

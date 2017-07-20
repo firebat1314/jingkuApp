@@ -40,7 +40,7 @@ export class ParticularsHomePage {
     supplier_id: null
   }
 
-  suppliers_id = this.suppliers_id;
+  suppliers_id = this.navParams.get('supplierId');
   data: any;
   shopdata: any;
 
@@ -114,9 +114,9 @@ export class ParticularsHomePage {
         }
       })
     } else {
-      this.httpService.delCollectionShop({ id: this.suppliers_id, type: 1 }).then((res) => {
+      this.httpService.CollectShop({ id: this.suppliers_id, type: 1 }).then((res) => {
         if (res.status) {
-          this.native.showToast('关注成功', null, false);
+          this.native.showToast('已收藏', null, false);
           this.getShopData();
         }
       })
@@ -153,7 +153,7 @@ export class ParticularsHomePage {
   }
 
   goParticularsHomeDetails() {
-    this.navCtrl.push('ParticularsHomeDetailsPage');
+    this.navCtrl.push('ParticularsHomeDetailsPage',{suppliersId:this.suppliers_id});
   }
   ionViewDidLoad() {
     console.log('ionViewDidLoad ParticularsHomePage');

@@ -11,7 +11,7 @@ import { Native } from "../../../providers/native";
  */
 @IonicPage({
   defaultHistory: ['RepairReturnPage'],
-  segment: 'repair-return'
+  segment: 'repair-return/:data'
 })
 @Component({
   selector: 'page-apply-service',
@@ -19,7 +19,7 @@ import { Native } from "../../../providers/native";
 })
 export class ApplyServicePage {
 
-  data: any = this.navParams.data;
+  data: any = this.navParams.get("data");
   picArr: Array<any> = [];
   params = {
     rec_ids: {},

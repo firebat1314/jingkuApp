@@ -122,12 +122,13 @@ page-particulars-modal-attr {
             justify-content: flex-end;
             align-items: center;
             span:first-child {
-                font-size: 1.7rem;
-                color: red;
                 margin-right: 10px;
+                color: #808080;
             }
             span:last-child {
-                color: #808080;
+                margin-right: 5px;
+                font-size: 1.5rem;
+                color: red;
             }
         }
     }

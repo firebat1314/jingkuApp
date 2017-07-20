@@ -28,8 +28,8 @@
         <ion-refresher-content refreshingSpinner="1" pullingIcon="0"></ion-refresher-content>
     </ion-refresher>
     <ion-list>
-        <ion-item padding-left no-lines mode="ios" detail-none style="border-bottom: 1px solid #e0e0e0;">
-            <ion-avatar [navPush]="AccountManagementPage" [navParams]="{avatar:userInfo?.data?.avatar,username:userInfo?.data?.username}" item-left>
+        <ion-item tappable (click)="goAccountManagementPage($event)" padding-left no-lines detail-none style="border-bottom: 1px solid #e0e0e0;">
+            <ion-avatar item-left>
                 <!--<img img-lazy-load="{{userInfo?.data?.avatar}}" imageViewer alt="">-->
                 <ion-img src="{{userInfo?.data?.avatar}}"></ion-img>
             </ion-avatar>
@@ -38,10 +38,10 @@
                 <ion-img src="{{userInfo?.data?.user_info?.rank_icon}}"></ion-img>
                 <ion-note>{{userInfo?.data?.user_info?.rank_name||'暂无等级'}}</ion-note>
             </p>
-            <button [navPush]="AccountManagementPage" [navParams]="{avatar:userInfo?.data?.avatar,username:userInfo?.data?.username}" color="gray" ion-button round outline icon-left item-right>
+            <div tappable (click)="goAccountManagementPage($event)" color="gray" ion-button round outline icon-left item-right>
                 <ion-icon><img style="width:1.3rem;" src="./assets/icon/images/user_cener_1_11.png" alt=""></ion-icon>
                 账号管理
-            </button>
+            </div>
         </ion-item>
         <ion-item tappable padding-left [navPush]="AllOrdersPage" [navParams]="{index:0}" no-lines mode="ios" detail-push style="border-bottom: 1px solid #e0e0e0;">
             <img src="./assets/icon/images/user_center_5.png" alt="" item-left class="myitem-icon"> 全部订单

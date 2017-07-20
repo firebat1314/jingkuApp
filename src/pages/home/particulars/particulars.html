@@ -21,7 +21,7 @@
         <swiper [data]="getGoodsInfo?.gallery"></swiper>
     </div>
     <div class="main-content">
-        <div class="price_time" *ngIf="getGoodsInfo?.data?.is_pre==1">
+        <div class="price_time" *ngIf="getGoodsInfo?.data?.is_pre==1 && getGoodsInfo?.data?.down_time>0">
             <div class="left">
                 <p><span class="number">{{getGoodsInfo?.data?.shop_price_formated}}</span>每人限购：{{getGoodsInfo?.data?.pre_number}}副</p>
                 <p>商品总量：{{getGoodsInfo?.data?.goods_number}}件</p>
@@ -58,7 +58,7 @@
                     <span class="number">{{getGoodsInfo?.data?.shop_price_formated}}</span>
                 </span>
                 <span class="old-price">{{getGoodsInfo?.data?.old_shop_price}}</span>&nbsp;
-                <span class="rush-icon" *ngIf="getGoodsInfo?.data?.is_pre==1">预售</span>
+                <span class="rush-icon" *ngIf="getGoodsInfo?.data?.is_pre==1 && getGoodsInfo?.data?.down_time>0">预售</span>
                 <span class="rush-icon" *ngIf="getGoodsInfo?.promotion?.type_name">{{getGoodsInfo?.promotion?.type_name}}</span>
             </div>
             <div class="bottom">
@@ -69,8 +69,8 @@
         <div class="fore price-info" *ngIf="getGoodsInfo?.price_section?.length!=0">
             <div class="main">
                 <div class="info-item" *ngFor="let item of getGoodsInfo?.price_section">
-                    <span *ngIf="item.max_num">{{item.number+'-'}}{{item.max_num}}盒</span>
-                    <span *ngIf="!item.max_num">大于{{item.number}}盒</span>
+                    <span *ngIf="item.max_num">{{item.number+'-'}}{{item.max_num}}</span>
+                    <span *ngIf="!item.max_num">大于{{item.number}}</span>
                     <span>{{item.format_price}}</span>
                 </div>
             </div>

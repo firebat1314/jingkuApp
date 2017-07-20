@@ -9,7 +9,9 @@ import { Native } from "../../../../providers/native";
   See http://ionicframework.com/docs/v2/components/#navigation for more info on
   Ionic pages and navigation.
 */
-@IonicPage()
+@IonicPage({
+  segment:'orders-detail/:order_id'
+})
 @Component({
   selector: 'page-orders-detail',
   templateUrl: 'orders-detail.html'
