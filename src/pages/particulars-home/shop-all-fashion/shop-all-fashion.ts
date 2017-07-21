@@ -17,6 +17,7 @@ export class ShopAllFashionPage {
   brandList = this.navParams.get('brandList');
   
   constructor(public navCtrl: NavController, public navParams: NavParams) {
+    console.log(this.brandList)
   }
 
   ionViewDidLoad() {

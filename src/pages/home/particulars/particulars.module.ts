@@ -15,7 +15,7 @@ import { SwiperComponentModule } from "../../../components/swiper/swiper.module"
       ImgLazyLoadDirectiveModule,
       CountdownComponentModule,
       IonicImageViewerModule,
-      SwiperComponentModule
+      SwiperComponentModule,
    ]
 })
 

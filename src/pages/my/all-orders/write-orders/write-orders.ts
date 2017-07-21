@@ -42,6 +42,14 @@ export class WriteOrdersPage {
   ionViewDidLoad() {
     console.log('ionViewDidLoad WriteOrdersPage');
   }
+  ionViewCanEnter(){
+    if(this.data.goods_list==[]){
+      this.native.showToast('请添加商品',2000,false);
+      return false;
+    }else{
+      return true;
+    }
+  }
   getHttpData() {
     this.httpService.checkout().then((res) => {
       console.log(res);

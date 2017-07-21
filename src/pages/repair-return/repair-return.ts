@@ -15,13 +15,13 @@ import { Native } from "../../providers/native";
   templateUrl: 'repair-return.html',
 })
 export class RepairReturnPage {
+  repair: any;
+  order: any;
   @ViewChild(Content) content: Content;
   @ViewChild(FabButton) fabButton: FabButton;
 
-  orderRepair: Array<any> = [];//售后申请列表
-  repairList: Array<any>;//申请记录列表
-
   applyTabs: string = 'apply' || 'applyLog';
+  options = { size: 5, page: 1 };
   constructor(
     public navCtrl: NavController,
     public navParams: NavParams,
@@ -39,36 +39,24 @@ export class RepairReturnPage {
     this.getRepairList();
   }
   getOrderRepair(infiniteScroll?) {
-    this.httpService.orderRepair({
-      size: 1,
-      page: 1
-    }).then((res) => {
+    this.httpService.orderRepair(this.options).then((res) => {
       if (res.status == 1) {
-        this.orderRepair = this.orderRepair.concat(res.list);
-
-        if (infiniteScroll) {
-          setTimeout(() => {
-            infiniteScroll.complete();
-          }, 500);
-        }
-
+        this.order = res;
       }
     })
   }
   getRepairList() {
-    this.httpService.repairList().then((res) => {
+    this.httpService.repairList(this.options).then((res) => {
       if (res.status == 1) {
-        this.repairList = res.list;
+        this.repair = res;
       }
     })
   }
   doRefresh(refresher) {
     if (this.applyTabs == 'apply') {
-      this.orderRepair = [];
       this.getOrderRepair();
     }
     if (this.applyTabs == 'applyLog') {
-      this.repairList = [];
       this.getRepairList();
     }
     setTimeout(() => {
@@ -76,7 +64,30 @@ export class RepairReturnPage {
     }, 500);
   }
   doInfinite(infiniteScroll) {
-    this.getOrderRepair(infiniteScroll);
+    if (this.applyTabs == 'apply') {
+      if (this.order.page < this.order.pages) {
+        this.httpService.orderRepair({ page: ++this.order.page,size:5 }).then((res) => {
+          if (res.status == 1) {
+            this.order = res;
+            Array.prototype.push.apply(this.order.list, res.list);
+          }
+        })
+      } else {
+        // infiniteScroll.enable(false);
+      }
+    }
+    if (this.applyTabs == 'applyLog') {
+      if (this.repair.page < this.repair.pages) {
+        this.httpService.repairList({ page: ++this.repair.page,size:5 }).then((res) => {
+          if (res.status == 1) {
+            this.repair = res;
+            Array.prototype.push.apply(this.repair.list, res.list);
+          }
+        })
+      } else {
+        // infiniteScroll.enable(false);
+      }
+    }
   }
   /**
    * 点击申请售后
@@ -99,7 +110,7 @@ export class RepairReturnPage {
       rec_id: rec_ids
     }).then((res) => {
       if (res.status == 1) {
-        this.navCtrl.push('ApplyServicePage',{data:res})
+        this.navCtrl.push('ApplyServicePage', { data: res })
       }
     })
   }
@@ -107,7 +118,7 @@ export class RepairReturnPage {
    * 复选框选中判断
    * @param subitem 订单项
    */
-  checkbox(subitem){
+  checkbox(subitem) {
     // for ( var i in subitem.goods){
     //   if(subitem.goods[i].selected==false){
     //     subitem.selected = false;
@@ -128,7 +139,7 @@ export class RepairReturnPage {
       })
     })
   }
-  goServiceOrderDetailsPage(return_id){
-    this.navCtrl.push('ServiceOrderDetailsPage',{return_id:return_id});
+  goServiceOrderDetailsPage(return_id) {
+    this.navCtrl.push('ServiceOrderDetailsPage', { return_id: return_id });
   }
 }

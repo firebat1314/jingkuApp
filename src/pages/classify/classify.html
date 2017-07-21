@@ -103,9 +103,12 @@
                     <!--<div class="top"><img src="./assets/icon/images/brand_1_13.jpg" alt=""></div>-->
                     <div class="top"><img src="./assets/icon/images/brand_1_20.jpg" alt=""></div>
                     <div class="main">
-                        <div *ngFor="let img of item.ads;let i = index;" tappable [ads-click]="img.link_type">
-                            <img *ngIf="i<9" img-lazy-load="{{img.ad_img}}" alt="">
-                        </div>
+                        <ng-container *ngFor="let img of item.ads;let i = index;">
+                            <div tappable [ads-click]="img.link_type" *ngIf="i<9">
+                                <img img-lazy-load="{{img.ad_img}}" alt="">
+                            </div>
+                        </ng-container>
+
                     </div>
                 </div>
             </div>

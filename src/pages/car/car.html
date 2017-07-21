@@ -23,7 +23,7 @@
     <nothing backgroundImg="url(./assets/images/images/no-car_1_03.png)" *ngIf="carDetails?.suppliers_goods_list.length==0"></nothing>
     <ion-list>
         <div class="single-shop" *ngFor="let item of carDetails?.suppliers_goods_list">
-            <div class="single-shop-head">
+            <div class="single-shop-head" tappable navPush="ParticularsHomePage" [navParams]="{suppliersId:item.suppliers_id}">
                 <ion-checkbox *ngIf="!isEdit" tappable (click)="checkGoods(item.suppliers_id,1,item.is_select==1?0:1);" [checked]="item?.is_select==1" mode="ios" margin-left></ion-checkbox>
                 <ion-checkbox *ngIf="isEdit" [checked]="carDetails.total.selected" [(ngModel)]="item.selected" mode="ios" margin-left></ion-checkbox>
                 <ion-item mode="ios" no-lines>

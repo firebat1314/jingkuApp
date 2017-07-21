@@ -13,10 +13,11 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
   templateUrl: 'detail-erweima.html',
 })
 export class DetailErweimaPage {
-
+  data = this.navParams.data;
   qrcode = this.navParams.get('qrcode');
   name = this.navParams.get('name');
   constructor(public navCtrl: NavController, public navParams: NavParams) {
+     console.log(this.data)
   }
 
   ionViewDidLoad() {

@@ -55,9 +55,8 @@ export class SingleCardComponent {
   onCollect(item,e) {
     if (e) { e.stopPropagation(); }
     this.httpService.getGoodsCollect({ goods_id: item.id }).then((res) => {
-      console.log(res)
       if (res.status == 1) {
-        this.native.showToast('关注成功~')
+        this.native.showToast('关注成功')
         item.is_collect = 1;
       }
     })

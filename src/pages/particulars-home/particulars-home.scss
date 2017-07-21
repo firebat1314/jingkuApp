@@ -1,13 +1,19 @@
+.store-home-popover-style {
+    .popover-content {
+        width: 142px;
+    }
+}
+
 page-particulars-home {
     @mixin goodsBox1 {
         width: 100%;
         display: flex;
         flex-wrap: wrap;
         justify-content: space-between;
-        padding: 0 3% 3%;
+        padding: 0 2% 2%;
         .allGoods-items {
-            width: 48%;
-            margin-top: 3%;
+            width: 49%;
+            margin-top: 2%;
             background: #fff;
             .allGoods-items-img {
                 display: flex;
@@ -41,10 +47,10 @@ page-particulars-home {
         display: flex;
         flex-wrap: wrap;
         justify-content: space-between;
-        padding: 0 3% 3%;
+        padding: 0 2% 2%;
         .new-arrival-goods {
-            width: 48%;
-            margin-top: 3%;
+            width: 49%;
+            margin-top: 2%;
             background: #fff;
             img {
                 display: block;
@@ -69,6 +75,38 @@ page-particulars-home {
                     position: absolute;
                     right: 5%;
                     padding: 6px 8px;
+                }
+            }
+        }
+    }
+    single-foods-card {
+        padding: 5px;
+        .card {
+            border: none;
+        }
+    }
+    .title.mysearchbar {
+        padding: 0 30px 1px 38px;
+    }
+    .shop-tabs {
+        background: #fff;
+        &.segment-md .segment-button {
+            opacity: 1;
+            line-height: 2.3rem;
+            height: 4.6rem;
+            &.segment-activated {
+                border-color: get-color('danger');
+                color: get-color('danger');
+            }
+            .shop-tabs-item-img {
+                height: 2.3rem;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                img {
+                    text-align: center;
+                    width: 20px;
+                    max-height: 100%;
                 }
             }
         }
@@ -123,36 +161,6 @@ page-particulars-home {
                         margin-right: 10px;
                     }
                 }
-            }
-        }
-    }
-    .shop-tabs {
-        background: #fff;
-        border-bottom: 1px solid #e6e6e6;
-        overflow: hidden;
-        .shop-tabs-item {
-            width: 25%;
-            height: 4.5rem;
-            text-align: center;
-            float: left;
-            box-sizing: border-box;
-            background: transparent;
-            font-size: font-size-text('h5');
-            color: get-color('gray2');
-            &.actived {
-                border-bottom: 2px solid #ff3333;
-                color: #ff3333;
-                .shop-tabs-item-img {
-                    background: url(../assets/icon/store-home/shop1.png) center 0px no-repeat;
-                    background-size: 1.4rem 1.4rem;
-                }
-            }
-            .shop-tabs-item-img {
-                background: url(../assets/icon/store-home/shop.png) center 0px no-repeat;
-                background-size: 1.4rem 1.4rem;
-            }
-            div {
-                height: 2rem;
             }
         }
     }
@@ -231,7 +239,7 @@ page-particulars-home {
             .cuXiao-time-goods-tit {
                 height: 4rem;
                 line-height: 4rem;
-                background: url(../assets/images/images/time.png) no-repeat 5% 45%/18px auto;
+                background: url(../assets/icon/store-home/表.png) no-repeat 6% 43%/18px auto;
                 p {
                     float: left;
                     font-size: font-size-text('h4');
@@ -295,7 +303,7 @@ page-particulars-home {
             border-top: 1px solid #e6e6e6;
             border-bottom: 1px solid #e6e6e6;
             background: #fff;
-            margin-top: 3%;
+            margin-top: 2%;
             padding-left: 3%;
             overflow: hidden;
             .cuXiao-tabs-item {
@@ -334,8 +342,9 @@ page-particulars-home {
     }
     .goNew-main {
         .newTime-date-big-box {
-            display: inline-block;
-            width: 100%;
+            .newdata-box {
+                @include goodsBox1()
+            }
             .newTime-date-box {
                 display: flex;
                 justify-content: center;
@@ -366,7 +375,6 @@ page-particulars-home {
                     }
                 }
             }
-            @include goodsBox1();
         }
         .newTime-date-noMore {
             .lock {

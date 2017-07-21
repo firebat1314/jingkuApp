@@ -8,6 +8,7 @@ import { RadiolistModel } from "../../providers/ChecklistModel";
 })
 export class MeunItemComponent {
 	data: any;
+	default_data: any;
 	price: any = { lower: 0, upper: 2000 };
 	filterParams: any = {
 		min_price: this.price.lower,
@@ -23,17 +24,32 @@ export class MeunItemComponent {
 	radiolist4 = new RadiolistModel(this.filterParams.attr_id)
 
 	constructor(
-		public events: Events
+		public events: Events,
 	) {
 		this.events.subscribe('user:listFilter', (res) => {
 			this.data = res;
 			this.selectItem(res.goods_attr_arr[0].data, 'brand_id');
 			this.selectItem(res.goods_attr_arr[1].data, 'cat_id');
 			this.selectPrice(res);
-			let firstItem = this.data.goods_attr_arr[2].data[0]
-			let lastItem = this.data.goods_attr_arr[2].data[this.data.goods_attr_arr[2].data.length-1]
-			this.price.lower = firstItem?firstItem.min_price:0;
-			this.price.upper = lastItem?lastItem.max_price:0;
+			let firstItem = this.data.goods_attr_arr[2].data[0];
+			let index = this.data.goods_attr_arr[2].data.length - 1;
+			let lastItem = this.data.goods_attr_arr[2].data[index];
+			this.price.lower = firstItem ? firstItem.min_price : 0;
+			this.price.upper = lastItem ? lastItem.max_price : 0;
+			if(!this.data.goods_attr_arr[0].data.length){
+				this.filterParams.brand_id = null;
+			}
+			if(!this.data.goods_attr_arr[1].data.length){
+				this.filterParams.cat_id = null;
+			}
+			if (!this.data.goods_attr_arr[2].data.length) {
+				this.filterParams.min_price = null;
+				this.filterParams.max_price = null;
+			}
+			if(!this.data.goods_attr_arr[3].data.length){
+				this.filterParams.filter = null;
+			}
+			this.default_data = res;
 		});
 	}
 	selectPrice(res) {
@@ -63,8 +79,12 @@ export class MeunItemComponent {
 			}
 		}
 		this.filterParams.filter = filter.join('.');
-		console.log("我一共选择了：", this.filterParams);
 		this.events.publish('user:filterParams', this.filterParams);
+		console.log("我一共选择了：", this.filterParams);
+	}
+	reset() {
+		console.log(this.data == this.default_data)
+		console.log(this.data,this.default_data)
 	}
 }
 

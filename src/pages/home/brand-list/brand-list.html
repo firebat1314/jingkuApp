@@ -66,13 +66,11 @@
         <ion-refresher-content refreshingSpinner="1" pullingIcon="0"></ion-refresher-content>
     </ion-refresher>
 
-
-    <div *ngIf="data?.goods?.length!=0" style=" background:#f7f7f7;">
-        <div style="padding:4px;" *ngIf="!listStyleflag">
-            <single-foods-card [data]="data?.goods"></single-foods-card>
-        </div>
-        <single-foods-item [data]="data?.goods" *ngIf="listStyleflag"></single-foods-item>
+    <no-goods *ngIf="!data?.goods?.length"></no-goods>
+    <div style="padding:4px;" *ngIf="!listStyleflag">
+        <single-foods-card [data]="data?.goods"></single-foods-card>
     </div>
+    <single-foods-item [data]="data?.goods" *ngIf="listStyleflag"></single-foods-item>
 
     <ion-fab class="brand-list-car-btn" left bottom (click)="goCarPage()">
         <button ion-fab mini icon-only>

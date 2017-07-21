@@ -37,7 +37,7 @@
     </ion-slides>-->
     <!--<img img-lazy-load="./assets/images/images/bg_login.jpg" alt="">-->
     <div class="apply" *ngSwitchCase="'apply'">
-        <div class="order" *ngFor="let item of orderRepair">
+        <div class="order" *ngFor="let item of order?.list">
             <div class="order-head">
                 <span>订单编号：{{item.order_sn}}</span>
                 <span>下单时间：{{item.add_time}}</span>
@@ -63,7 +63,7 @@
         </div>
     </div>
     <div class="applyLog" *ngSwitchCase="'applyLog'">
-        <div class="order" *ngFor="let item of repairList">
+        <div class="order" *ngFor="let item of repair?.list">
             <div class="order-head">
                 <span>订单编号：{{item.order_sn}}</span>
                 <span>{{item.type}}</span>

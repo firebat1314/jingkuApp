@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { IonicPageModule } from 'ionic-angular';
 import { DetailErweimaPage } from './detail-erweima';
 import { ImgLazyLoadDirectiveModule } from "../../../directives/img-lazy-load/img-lazy-load.module";
+import { IonicImageViewerModule } from "ionic-img-viewer/dist/ionic-img-viewer";
 
 @NgModule({
   declarations: [
@@ -9,10 +10,11 @@ import { ImgLazyLoadDirectiveModule } from "../../../directives/img-lazy-load/im
   ],
   imports: [
     IonicPageModule.forChild(DetailErweimaPage),
-    ImgLazyLoadDirectiveModule
+    ImgLazyLoadDirectiveModule,
+    IonicImageViewerModule,
   ],
   exports: [
     DetailErweimaPage
   ]
 })
-export class DetailErweimaPageModule {}
+export class DetailErweimaPageModule { }

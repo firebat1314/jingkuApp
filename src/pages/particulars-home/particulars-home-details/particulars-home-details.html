@@ -32,15 +32,15 @@
         </div>
     </div>
     <div class="details-fenlei-nav">
-        <div tappable class="fenlei-nav">
+        <div tappable class="fenlei-nav" (click)="goBackPage('allGoods');">
             <div class="fenlei-nav-img"></div>
             <p>全部商品</p>
         </div>
-        <div tappable class="fenlei-nav">
+        <div tappable class="fenlei-nav" (click)="goBackPage('goNew');">
             <div class="fenlei-nav-img new"></div>
             <p>上新</p>
         </div>
-        <div tappable class="fenlei-nav">
+        <div tappable class="fenlei-nav" (click)="goBackPage('cuXiao');">
             <div class="fenlei-nav-img cuxiao"></div>
             <p>促销</p>
         </div>
@@ -49,14 +49,14 @@
         <!-- <div tappable class="sale-info-item boss">
             <span>联系卖家</span>
         </div> -->
-        <div tappable class="sale-info-item phone">
+        <div tappable (click)="callnumber(shopdata?.data?.mobile)" class="sale-info-item phone">
             <span>商家电话</span>
             <span>{{shopdata?.data?.mobile_url}}</span>
         </div>
-        <div tappable (click)="presentPopover($event)" class="sale-info-item erweima">
+        <div tappable (click)="presentPopover($event,'qrcode')" *ngIf="shopdata?.data?.qrcode" class="sale-info-item erweima">
             <span>店铺二维码</span>
         </div>
-        <div tappable class="sale-info-item shenfenzheng">
+        <div tappable (click)="presentPopover($event,'company_yyzz')" *ngIf="shopdata?.data?.company_yyzz" class="sale-info-item shenfenzheng">
             <span>证照信息</span>
         </div>
     </div>
@@ -74,17 +74,19 @@
             <span>2015-02-02</span>
         </div>
     </div>
-    <div class="shop-fashion">
-        <div class="shop-fashion-tit" *ngIf="shopdata?.data?.brand_list?.length">
+    <div class="shop-fashion" *ngIf="shopdata?.data?.brand_list?.length">
+        <div class="shop-fashion-tit">
             <span>授权品牌</span>
         </div>
         <div class="shop-fashion-content">
-            <div tappable *ngFor="let item of shopdata?.data?.brand_list;let i = index" class="shop-fashion-item">
-                <span *ngIf="i<4">{{item.brand_name}}</span>
-            </div>
+            <ng-container *ngFor="let item of shopdata?.data?.brand_list;let i = index">
+                <div tappable *ngIf="i<4" class="shop-fashion-item">
+                    <span>{{item.brand_name}}</span>
+                </div>
+            </ng-container>
         </div>
         <div class="shop-details-more-fashion">
-            <div tappable class="into-more-fashion" navPush="ShopAllFashionPage">
+            <div tappable class="into-more-fashion" (click)="goShopAllFashionPage()">
                 <span>查询该店所有授权品牌</span>
             </div>
         </div>

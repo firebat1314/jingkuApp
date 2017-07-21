@@ -10,7 +10,8 @@ import { Native } from "../../../providers/native";
  * on Ionic pages and navigation.
  */
 @IonicPage({
-  segment: 'particulars-home-details/:suppliersId'
+  segment: 'particulars-home-details/:suppliersId',
+  defaultHistory:['ParticularsHomePage'],
 })
 @Component({
   selector: 'page-particulars-home-details',
@@ -35,7 +36,7 @@ export class ParticularsHomeDetailsPage {
   ionViewDidLoad() {
     console.log('ionViewDidLoad ParticularsHomeDetailsPage');
   }
-  getShopData(){
+  getShopData() {
     this.httpService.CatrgorySupplierInfo({ suppliers_id: this.supplier_id }).then((res) => {
       if (res.status == 1) {
         this.shopdata = res;
@@ -45,8 +46,8 @@ export class ParticularsHomeDetailsPage {
   goShopFashion() {
     this.navCtrl.push('ShopAllFashionPage');
   }
-  presentPopover() {
-    let popover = this.popoverCtrl.create('DetailErweimaPage', {name:this.shopdata.data.name,qrcode:this.shopdata.data.qrcode}, { cssClass: 'page-particulars-home-details-popover' });
+  presentPopover(event, type) {
+    let popover = this.popoverCtrl.create('DetailErweimaPage', { type: type, name: this.shopdata.data.name, qrcode: this.shopdata.data.qrcode, company_yyzz: this.shopdata.data.company_yyzz }, { cssClass: 'page-particulars-home-details-popover' });
     popover.present();
   }
   collectStore(is_collect) {
@@ -65,5 +66,19 @@ export class ParticularsHomeDetailsPage {
         }
       })
     }
+  }
+  getExistance(i: number) {
+    return i > 4;
+  }
+  callnumber(number) {
+    this.native.openAlertBox('拨打商家电话:'+number, () => {
+      this.native.openCallNumber('number', false);
+    })
+  }
+  goShopAllFashionPage(){
+    this.navCtrl.push('ShopAllFashionPage',{brandList:this.shopdata.data.brand_list})
+  }
+  goBackPage(type){
+    this.navCtrl.push('ParticularsHomePage',{type:type});
   }
 }

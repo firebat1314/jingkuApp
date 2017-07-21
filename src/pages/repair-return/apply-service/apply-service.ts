@@ -37,9 +37,7 @@ export class ApplyServicePage {
     public httpService: HttpService,
     public native: Native,
     public modalCtrl: ModalController,
-  ) {
-    console.log(this.data)
-  }
+  ) {}
   ionViewDidLoad() {
     console.log('ionViewDidLoad ApplyServicePage');
   }

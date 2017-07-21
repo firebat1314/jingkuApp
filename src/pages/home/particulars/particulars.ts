@@ -229,7 +229,7 @@ export class ParticularsPage {
     this.navCtrl.push('ParticularsHomePage', { supplierId: this.getGoodsInfo.supplier_info.id });
   }
   goStore() {
-    this.navCtrl.push('BrandListPage', { supplierId: this.getGoodsInfo.supplier_info.id })
+    this.navCtrl.push('BrandListPage', { suppliersId: this.getGoodsInfo.supplier_info.id })
   }
   goCart() {
     this.navCtrl.push('CarPage')

@@ -5,39 +5,41 @@
   for more info on Angular 2 Components.
 -->
 <ion-content>
-
-    <div class="box" *ngFor="let item of data?.goods_attr_arr">
-        <div class="head" *ngIf="item.data?.length != 0">
-            <span class="title">{{item.name}}</span>
-            <!--<span class="all">全部<ion-icon name="ios-arrow-down" ></ion-icon></span>-->
-        </div>
-        <div class="body" *ngIf="item.name=='商品品牌'">
-            <div *ngFor="let group of item?.data" tappable (click)="radiolist3.toggleItem3(group,item?.data)" [ngClass]="group.selected==0?'select':'selected'">{{group.brand_name}}</div>
-        </div>
-        <div class="body" *ngIf="item.name=='商品分类'">
-            <div *ngFor="let group of item?.data" tappable (click)="radiolist2.toggleItem2(group,item?.data)" [ngClass]="group.selected==0?'select':'selected'">{{group.cat_name}}</div>
-        </div>
-        <div class="body" *ngIf="item.name=='商品价格区间'">
-            <div *ngFor="let group of item?.data" tappable (click)="radiolist.toggleItem(group,item?.data);filterParams.min_price=group.min_price;filterParams.max_price=group.max_price;" [ngClass]="group.selected==0?'select':'selected'">{{group.min_price}}~{{group.max_price}}</div>
-        </div>
-        <div class="range" *ngIf="item.name=='商品价格区间'">
-            <ion-item no-lines>
-                <ion-range (ionChange)="filterParams.min_price=price.lower;filterParams.max_price=price.upper;" dualKnobs="true" [(ngModel)]="price" mode="ios" min="item?.data[0]?.min_price" [max]="item?.data[item.data.length-1]?.max_price"></ion-range>
-            </ion-item>
-            <div class="number">
-                <div>{{price.lower}}</div>
-                <div>{{price.upper}}</div>
+    <ng-container *ngFor="let item of data?.goods_attr_arr">
+        <div class="box" *ngIf="item.data?.length">
+            <div class="head" *ngIf="item.data?.length != 0">
+                <span class="title">{{item.name}}</span>
+                <!--<span class="all">全部<ion-icon name="ios-arrow-down" ></ion-icon></span>-->
+            </div>
+            <div class="body" *ngIf="item.name=='商品品牌'">
+                <div *ngFor="let group of item?.data" tappable (click)="radiolist3.toggleItem3(group,item?.data)" [ngClass]="group.selected==0?'select':'selected'">{{group.brand_name}}</div>
+            </div>
+            <div class="body" *ngIf="item.name=='商品分类'">
+                <div *ngFor="let group of item?.data" tappable (click)="radiolist2.toggleItem2(group,item?.data)" [ngClass]="group.selected==0?'select':'selected'">{{group.cat_name}}</div>
+            </div>
+            <div class="body" *ngIf="item.name=='商品价格区间'">
+                <div *ngFor="let group of item?.data" tappable (click)="radiolist.toggleItem(group,item?.data);filterParams.min_price=group.min_price;filterParams.max_price=group.max_price;" [ngClass]="group.selected==0?'select':'selected'">{{group.min_price}}~{{group.max_price}}</div>
+            </div>
+            <div class="range" *ngIf="item.name=='商品价格区间'">
+                <ion-item no-lines>
+                    <ion-range (ionChange)="filterParams.min_price=price.lower;filterParams.max_price=price.upper;" dualKnobs="true" [(ngModel)]="price" mode="ios" min="item?.data[0]?.min_price" [max]="item?.data[item.data.length-1]?.max_price"></ion-range>
+                </ion-item>
+                <div class="number">
+                    <div>{{price.lower}}</div>
+                    <div>{{price.upper}}</div>
+                </div>
+            </div>
+            <div class="selectedbox" *ngIf="item.data.length!=0&&item.name=='商品属性'">
+                <ion-select *ngFor="let group of item?.data;let i = index;" placeholder="{{group.attr_name}}" [(ngModel)]="group.selected" okText="确定" cancelText="取消" [selectOptions]="{subTitle: group.attr_name}">
+                    <ion-option *ngFor="let subgroup of group?.values;let i = index;" [value]="subgroup.id">{{subgroup.value}}</ion-option>
+                </ion-select>
             </div>
         </div>
-        <div class="selectedbox" *ngIf="item.data.length!=0&&item.name=='商品属性'">
-            <ion-select *ngFor="let group of item?.data;let i = index;" placeholder="{{group.attr_name}}" [(ngModel)]="group.selected" okText="确定" cancelText="取消" [selectOptions]="{subTitle: group.attr_name}">
-                <ion-option *ngFor="let subgroup of group?.values;let i = index;" [value]="subgroup.id">{{subgroup.value}}</ion-option>
-            </ion-select>
-        </div>
-    </div>
+    </ng-container>
+
 
 </ion-content>
 <ion-footer>
-    <button full large ion-button color="cancelBtn">重置</button>
+    <button full large ion-button color="cancelBtn" (click)="reset()">重置</button>
     <button full large ion-button color="dark" menuClose tappable (click)="confirm()">确定</button>
 </ion-footer>

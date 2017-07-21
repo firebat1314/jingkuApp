@@ -1,0 +1,29 @@
+no-goods {
+    width: 100%;
+    padding-top: 40px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    .img {
+        border: 2px solid #e0e0e0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 118px;
+        height: 118px;
+        border-radius: 50%;
+        img {
+            width: 50%;
+        }
+    }
+    .title {
+        color: get-color('gray3');
+        font-size: font-size-text('h3');
+        font-weight: 500;
+        margin: 10px 0;
+    }
+    .message {
+        font-size: font-size-text('h5');
+        color: #808080;
+    }
+}
