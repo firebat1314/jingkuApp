@@ -1,5 +1,5 @@
 import { Component, ViewChild } from '@angular/core';
-import { NavController, NavParams, Content, IonicPage } from 'ionic-angular';
+import { NavController, NavParams, Content, IonicPage, FabButton } from 'ionic-angular';
 
 import { HttpService } from "../../../providers/http-service";
 
@@ -18,8 +18,7 @@ export class IntegralstorePage {
   totalScore: any;
   data: any;
   @ViewChild(Content) content: Content;
-
-
+  @ViewChild('scrollToTop') fabButton: FabButton;
   JifenHistoryPage: any = 'JifenHistoryPage';
   DuihuanDetailsPage: any = 'DuihuanDetailsPage';
   DuihuanDetailsFinishPage: any = 'DuihuanDetailsFinishPage';
@@ -39,15 +38,25 @@ export class IntegralstorePage {
   goDuihuanDetailsPage(goodsId) {
     this.navCtrl.push('DuihuanDetailsPage', { goodsId: goodsId })
   }
+  ionViewWillEnter() {
+
+  }
   getData() {
-    this.httpService.exchange({ page: 1 }).then((res) => {
-      if (res.status == 1) { this.data = res; }
-    })
-    this.httpService.userInfo().then((res) => {
-      if (res.status == 1) { this.totalScore = res.data.integral; }
+    return new Promise((resolve, reject) => {
+      this.httpService.exchange({ page: 1 }).then((res) => {
+        if (res.status == 1) { this.data = res; }
+      })
+      this.httpService.userInfo().then((res) => {
+        if (res.status == 1) { this.totalScore = res.data.integral; }
+        resolve()
+      })
     })
   }
-
+ngAfterViewInit() {
+		this.content.ionScroll.subscribe((d) => {
+			this.fabButton.setElementClass("fab-button-out", d.directionY == "down");
+		});
+	}
   doInfinite(infiniteScroll) {
     var page = this.data.page;
     if (page < this.data.pages) {

@@ -44,7 +44,7 @@
         </button>
     </ion-fab>
     <ion-fab right bottom>
-        <button ion-fab color="dark" mini goBackTop (click)="scrollToTop()"></button>
+        <button ion-fab color="dark" #scrollToTop mini goBackTop (click)="scrollToTop()"></button>
     </ion-fab>
 
     <ion-infinite-scroll (ionInfinite)="doInfinite($event)">

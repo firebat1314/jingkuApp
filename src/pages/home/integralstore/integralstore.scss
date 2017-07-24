@@ -36,7 +36,6 @@ page-integralstore {
             .img {
                 display: flex;
                 align-items: center;
-                min-height: 170px;
                 img {
                     display: block;
                     margin: 0 auto;
@@ -47,6 +46,7 @@ page-integralstore {
                 padding: 10px;
                 border-top: 1px solid #ccc;
                 white-space: nowrap;
+                font-size: 1.4rem;
                 p {
                     color: #666;
                 }
@@ -59,7 +59,7 @@ page-integralstore {
                 }
                 .red {
                     color: #e60000;
-                    font-size: 1.8rem;
+                    font-size: 1.6rem;
                 }
             }
         }

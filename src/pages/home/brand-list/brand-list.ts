@@ -1,5 +1,5 @@
 import { Component, ViewChild } from '@angular/core';
-import { NavController, NavParams, Events, Content, IonicPage } from 'ionic-angular';
+import { NavController, NavParams, Events, Content, IonicPage, FabButton } from 'ionic-angular';
 import { HttpService } from "../../../providers/http-service";
 import { Native } from "../../../providers/native";
 
@@ -31,16 +31,15 @@ export class BrandListPage {
 		keywords: this.myHomeSearch,
 		supplier_id: null
 	}
-
-
 	@ViewChild(Content) content: Content;
+	@ViewChild('scrollToTop') fabButton: FabButton;
 	constructor(
 		public navCtrl: NavController,
 		public navParams: NavParams,
 		public httpService: HttpService,
 		public events: Events,
 		public native: Native
-	) {}
+	) { }
 	ionViewDidLoad() {
 		console.log('ionViewDidLoad BrandListPage');
 		this.paramsData.cat_id = this.navParams.get('listId');
@@ -64,7 +63,12 @@ export class BrandListPage {
 			this.getListData();
 		});
 		this.events.subscribe('car:updata', () => {
-			this.getCarNumver(); 
+			this.getCarNumver();
+		});
+	}
+	ngAfterViewInit() {
+		this.content.ionScroll.subscribe((d) => {
+			this.fabButton.setElementClass("fab-button-out", d.directionY == "down");
 		});
 	}
 	ngAfterViewChecked() {
@@ -80,7 +84,7 @@ export class BrandListPage {
 			if (res.status == 1) {
 				this.data = res;
 				if (res.goods.length == 0) {
-					this.native.showToast('抱歉！没有查询到商品',null,false);
+					this.native.showToast('抱歉！没有查询到商品', null, false);
 				}
 				this.events.publish('user:listFilter', res);
 			}

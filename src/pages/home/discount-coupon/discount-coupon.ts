@@ -1,5 +1,5 @@
 import { Component, ViewChild } from '@angular/core';
-import { NavController, NavParams, Events, Content, IonicPage } from 'ionic-angular';
+import { NavController, NavParams, Events, Content, IonicPage, FabButton } from 'ionic-angular';
 import { HttpService } from "../../../providers/http-service";
 import { Native } from "../../../providers/native";
 
@@ -17,6 +17,7 @@ import { Native } from "../../../providers/native";
 export class DiscountCouponPage {
   data: any;
   @ViewChild(Content) content: Content;
+  @ViewChild(FabButton) fabButton: FabButton;
   constructor(
     public navCtrl: NavController,
     public navParams: NavParams,
@@ -30,7 +31,9 @@ export class DiscountCouponPage {
     this.getCouponData();
   }
   ngAfterViewInit() {
-   
+    this.content.ionScroll.subscribe((d) => {
+      this.fabButton.setElementClass("fab-button-out", d.directionY == "down");
+    });
   }
   getCouponData() {
     this.httpService.coupon({ page: 1 }).then((res) => {

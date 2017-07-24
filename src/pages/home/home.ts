@@ -68,15 +68,15 @@ export class HomePage {
     })
   }
   ionViewCanEnter() {
-    if(!this.firstInit){
+    if (!this.firstInit) {
       return true;
     }
-    return this.getHomeData().then(()=>{
+    return this.getHomeData().then(() => {
       return true;
-    },(info)=>{
-      this.native.showToast(info,null,false);
+    }, (info) => {
+      this.native.showToast(info, null, false);
       return true;
-    }).catch((res)=>{
+    }).catch((res) => {
       this.native.showToast('数据异常');
       return true;
     })
@@ -87,6 +87,7 @@ export class HomePage {
     return new Promise((resolve, reject) => {
       this.updataArea();
       this.httpService.indexs().then((res) => {
+          this.native.hideLoading();
         if (res.status == 1) {
           resolve();
           this.hotBrand_img = res.data.ads_rmpp['0'];
@@ -99,11 +100,13 @@ export class HomePage {
           this.getCategoryRecommendGoods = res.data.new_recommend_goods;
           this.jingxuan_img4 = res.data.ads_hdtj;
           this.getCategoryRecommendGoodsBest = res.data.best_recommend_goods;
-          this.native.hideLoading();
           if (finish) { finish(); }
-        }else{
+        } else {
           reject(res.info);
         }
+      }).catch((res) => {
+        console.log(res);
+        reject(res.info);
       })
     })
 

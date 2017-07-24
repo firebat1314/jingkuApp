@@ -79,7 +79,7 @@
         <ion-badge color="danger">{{goodsCount||'0'}}</ion-badge>
     </ion-fab>
     <ion-fab right bottom (click)="scrollToTop()">
-        <button ion-fab color="dark" mini goBackTop></button>
+        <button ion-fab color="dark" #scrollToTop mini goBackTop></button>
     </ion-fab>
 
     <!--   <ion-infinite-scroll (ionInfinite)="doInfinite($event)" *ngIf="flag">
