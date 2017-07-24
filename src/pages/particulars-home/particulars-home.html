@@ -195,7 +195,7 @@
             </ion-list>
         </div>
         <div class="cuXiao-mian" *ngSwitchCase="'cuXiao'">
-            <div class="cuXiao-time-goods">
+            <!-- <div class="cuXiao-time-goods">
                 <div class="cuXiao-time-goods-tit">
                     <p>即将结束</p>
                     <span>以下商品今日23.59结束促销</span>
@@ -210,7 +210,7 @@
                         <div class="button">限购</div>
                     </div>
                 </div>
-            </div>
+            </div> -->
             <div class="cuXiao-tabs">
                 <button class="cuXiao-tabs-item">商品满减</button>
                 <button class="cuXiao-tabs-item">商品打折</button>
@@ -262,9 +262,9 @@
                         </div>
                     </div>
                 </div> -->
-                <no-goods *ngIf="0||!alldata?.goods?.length"></no-goods>
+                <no-goods *ngIf="0||!newdata?.goods?.length"></no-goods>
 
-                <single-foods-card [data]="alldata?.goods" *ngIf="!listStyleflag"></single-foods-card>
+                <single-foods-card [data]="newdata?.goods" *ngIf="!listStyleflag"></single-foods-card>
 
                 <single-foods-item [data]="newdata?.goods" *ngIf="listStyleflag" [toTop]="false"></single-foods-item>
 

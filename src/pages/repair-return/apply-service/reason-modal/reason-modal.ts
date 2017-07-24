@@ -13,5 +13,7 @@ import { NavController, NavParams, IonicPage, ViewController } from 'ionic-angul
   templateUrl: 'reason-modal.html',
 })
 export class ReasonModalPage {
-  
+  constructor(private viewCtrl:ViewController){
+    
+  }
 }

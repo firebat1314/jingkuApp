@@ -44,25 +44,32 @@ export class MyPage {
   }
   ionViewDidLoad() {
     console.log('ionViewDidLoad MyPages');
-    this.httpResult()
     this.events.subscribe('avatar:update', () => {
-      this.httpResult()
+      this.httpResult();
     })
   }
+  ionViewCanEnter() {
+  }
   httpResult(finish?) {
-    this.httpService.userCount().then((res) => {
-      if (res.status == 1) {
-        this.usercount = res;
-      }
-      this.httpService.userInfo().then((res) => {
+    this.native.showLoading();
+    return new Promise((resolve, reject) => {
+      this.httpService.userCount().then((res) => {
         if (res.status == 1) {
-          this.userInfo = res;
-          this.httpService.setStorage(res.data.username, res);
-          this.httpService.setStorage('phonenumber', res.data.user_info.mobile_phone);
+          this.usercount = res;
         }
-        if (finish) { finish(); }
+        this.httpService.userInfo().then((res) => {
+          resolve();
+          this.native.hideLoading();
+          if (res.status == 1) {
+            this.userInfo = res;
+            this.httpService.setStorage(res.data.username, res);
+            this.httpService.setStorage('phonenumber', res.data.user_info.mobile_phone);
+          }
+          if (finish) { finish(); }
+        })
       })
     })
+
   }
   /*下拉刷新*/
   doRefresh(refresher) {

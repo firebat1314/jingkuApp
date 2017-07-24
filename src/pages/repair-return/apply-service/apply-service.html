@@ -20,7 +20,7 @@
                 <img img-lazy-load="{{item.original_img}}">
             </div>
             <div class="order-body-item-content">
-                <h2>{{item.goods_name}}</h2>
+                <h2 tappable navPush="ParticularsPage" [navParams]="{goodsId:item.goods_id}">{{item.goods_name}}</h2>
                 <p>
                     <span>价格：{{'¥'+item.goods_price}}</span>
                     <span>数量：<count-input [(value)]="item.goods_number" [maxValue]="item.goods_number"></count-input></span>

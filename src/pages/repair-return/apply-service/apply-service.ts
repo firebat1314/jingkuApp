@@ -11,7 +11,7 @@ import { Native } from "../../../providers/native";
  */
 @IonicPage({
   defaultHistory: ['RepairReturnPage'],
-  segment: 'repair-return/:data'
+  segment: 'repair-return'
 })
 @Component({
   selector: 'page-apply-service',
@@ -20,14 +20,13 @@ import { Native } from "../../../providers/native";
 export class ApplyServicePage {
 
   data: any = this.navParams.get("data");
-  picArr: Array<any> = [];
   params = {
     rec_ids: {},
-    order_id: this.navParams.data.order_info ? this.navParams.data.order_info.order_id : null,
+    order_id: this.data.order_info ? this.data.order_info.order_id : null,
     return_type: null,
     type_note: null,
     str_desc: null,
-    return_img: null,
+    return_img: [],
     return_way: null,
   }
   type_note_txt: string = '';
@@ -37,29 +36,29 @@ export class ApplyServicePage {
     public httpService: HttpService,
     public native: Native,
     public modalCtrl: ModalController,
-  ) {}
+  ) { }
   ionViewDidLoad() {
     console.log('ionViewDidLoad ApplyServicePage');
   }
   openCamra() {
-    /* this.native.getMultiplePicture({
+    this.native.getMultiplePicture({
       outputType: 1,
-      maximumImagesCount: 5
+      maximumImagesCount: 5 - this.params.return_img.length
     }).then((data) => {
       if (data instanceof Array) {
-        if (this.picArr.concat(data).length > 5) {
+        if (this.params.return_img.concat(data).length > 5) {
           this.native.showToast('最多选择5张');
-          this.picArr = this.picArr.concat(data).slice(0, 5);
+          this.params.return_img = this.params.return_img.concat(data).slice(0, 5);
         } else {
-          this.picArr.concat(data);
+          this.params.return_img.concat(data);
         }
       }
     }, (err) => {
       console.log(err)
-    }) */
+    })
   }
   deletePic(i) {
-    this.picArr.splice(i, 1);
+    this.params.return_img.splice(i, 1);
   }
   openReasonModal() {
     var modal = this.modalCtrl.create('ReasonModalPage');
@@ -78,10 +77,10 @@ export class ApplyServicePage {
       }
     })
     // this.native.showToast('提交成功',800,false)
-        this.navCtrl.push('ApplyService2Page');
+    this.navCtrl.push('ApplyService2Page');
     this.httpService.submitRepair(this.params).then((res) => {
       if (res.status == 1) {
-        this.navCtrl.push('ApplyService2Page', res);
+        this.navCtrl.push('ApplyService2Page', { data: res });
       }
     })
   }

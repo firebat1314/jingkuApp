@@ -33,6 +33,7 @@ export class HomePage {
   getCategoryRecommendGoodsHot;
   getBrands;
 
+  firstInit = true;
   constructor(
     public navCtrl: NavController,
     private userData: UserData,
@@ -66,25 +67,46 @@ export class HomePage {
       if (res.status == 1) { this.bannerImgs = res.data; }
     })
   }
-  getHomeData(finish?) {
-    // this.native.showLoading('加载中');
-    this.updataArea();
-    this.httpService.indexs().then((res) => {
-      if (res.status == 1) {
-        this.hotBrand_img = res.data.ads_rmpp['0'];
-        this.categoryAddetatils = res.data.ads_emdp;
-        this.jingxuan_img1 = res.data.ads_jxzt['0'];
-        this.getBrands = res.data.get_brands;
-        this.jingxuan_img2 = res.data.ads_jxzttwo['0'];
-        this.getCategoryRecommendGoodsHot = res.data.hot_recommend_goods;
-        this.jingxuan_img3 = res.data.ads_jxztThree['0'];
-        this.getCategoryRecommendGoods = res.data.new_recommend_goods;
-        this.jingxuan_img4 = res.data.ads_hdtj;
-        this.getCategoryRecommendGoodsBest = res.data.best_recommend_goods;
-        // this.native.hideLoading();
-        if (finish) { finish(); }
-      }
+  ionViewCanEnter() {
+    if(!this.firstInit){
+      return true;
+    }
+    return this.getHomeData().then(()=>{
+      return true;
+    },(info)=>{
+      this.native.showToast(info,null,false);
+      return true;
+    }).catch((res)=>{
+      this.native.showToast('数据异常');
+      return true;
     })
+  }
+  getHomeData(finish?) {
+    this.firstInit = false;
+    this.native.showLoading();
+    return new Promise((resolve, reject) => {
+      this.updataArea();
+      this.httpService.indexs().then((res) => {
+        if (res.status == 1) {
+          resolve();
+          this.hotBrand_img = res.data.ads_rmpp['0'];
+          this.categoryAddetatils = res.data.ads_emdp;
+          this.jingxuan_img1 = res.data.ads_jxzt['0'];
+          this.getBrands = res.data.get_brands;
+          this.jingxuan_img2 = res.data.ads_jxzttwo['0'];
+          this.getCategoryRecommendGoodsHot = res.data.hot_recommend_goods;
+          this.jingxuan_img3 = res.data.ads_jxztThree['0'];
+          this.getCategoryRecommendGoods = res.data.new_recommend_goods;
+          this.jingxuan_img4 = res.data.ads_hdtj;
+          this.getCategoryRecommendGoodsBest = res.data.best_recommend_goods;
+          this.native.hideLoading();
+          if (finish) { finish(); }
+        }else{
+          reject(res.info);
+        }
+      })
+    })
+
     /*this.httpService.getHomebanner({ int_pos_id: 44, size: 1 }).then((res) => {
       if (res.status == 1) { this.hotBrand_img = res; }
       this.httpService.getCategoryAd({ int_pos_id: 27, int_size: 10 }).then((res) => {

@@ -25,6 +25,11 @@ page-recharge {
                 .text-input {
                     margin-left: 0;
                     margin-right: 0;
+                    width: 100%;
+                    padding-right: 20px;
+                }
+                .text-input-clear-icon {
+                    right: 0;
                 }
             }
             .label {

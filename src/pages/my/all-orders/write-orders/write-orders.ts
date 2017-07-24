@@ -31,7 +31,6 @@ export class WriteOrdersPage {
     public viewCtrl: ViewController,
     private alertCtrl: AlertController
   ) {
-    this.getHttpData();
     this.events.subscribe('writeOrder:refresh', () => {
       this.getHttpData();
     })
@@ -42,34 +41,39 @@ export class WriteOrdersPage {
   ionViewDidLoad() {
     console.log('ionViewDidLoad WriteOrdersPage');
   }
-  ionViewCanEnter(){
-    if(this.data.goods_list==[]){
-      this.native.showToast('请添加商品',2000,false);
-      return false;
-    }else{
-      return true;
-    }
+  ionViewCanEnter() {
+    return this.getHttpData().then(() => {
+      if (this.data.goods_list.length) {
+        return true;
+      } else {
+        this.native.showToast('请添加商品', 2000, false);
+        return false;
+      }
+    });
   }
   getHttpData() {
-    this.httpService.checkout().then((res) => {
-      console.log(res);
-      if (res && res.status == 1) {
-        this.data = res;
-        //选中地址
-        for (let i = 0; i < this.data.consignee_list.length; i++) {
-          if (this.data.consignee_list[i].selected == 1) {
-            this.defaultShipping = this.data.consignee_list[i]
+    return new Promise((resolve, reject) => {
+      this.httpService.checkout().then((res) => {
+        resolve();
+        if (res && res.status == 1) {
+          this.data = res;
+          //选中地址
+          for (let i = 0; i < this.data.consignee_list.length; i++) {
+            if (this.data.consignee_list[i].selected == 1) {
+              this.defaultShipping = this.data.consignee_list[i]
+            }
+          }
+          //选中支付方式
+          for (let i = 0; i < this.data.payment_list.length; i++) {
+            if (this.data.payment_list[i].selected == 1) {
+              this.paymentMothdID = this.data.payment_list[i].pay_id
+              this.paymentMothdDesc = this.data.payment_list[i].pay_desc
+            }
           }
         }
-        //选中支付方式
-        for (let i = 0; i < this.data.payment_list.length; i++) {
-          if (this.data.payment_list[i].selected == 1) {
-            this.paymentMothdID = this.data.payment_list[i].pay_id
-            this.paymentMothdDesc = this.data.payment_list[i].pay_desc
-          }
-        }
-      }
-    })
+      })
+    });
+
   }
   checkShippingAddress() {
     this.navCtrl.push('ShippingAddressPage')
@@ -191,7 +195,7 @@ export class WriteOrdersPage {
               cssClass: 'recharge-alert'
             }).present();
           }
-            // this.viewCtrl.dismiss();
+          // this.viewCtrl.dismiss();
         } else if (res.status == -1) {
           this.navCtrl.pop();
         }

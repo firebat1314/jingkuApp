@@ -81,7 +81,7 @@ export class AllOrdersPage {
   checkTab($event) {
     this.flag = true;
     this.pageIndex = $event;
-    this.content.scrollToTop();
+    this.content.scrollToTop(0);
     this.getByPageIndex();
   }
   goOrdersDetailPage(orderId) {

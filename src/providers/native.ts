@@ -84,7 +84,8 @@ export class Native {
 		this.loading = this.loadingCtrl.create({
 			content: content,
 			showBackdrop: true,
-			cssClass: 'loading-style'
+			cssClass: 'loading-style',
+			spinner:'dots'
 		});
 		this.loading.present();
 		setTimeout(() => {//最长显示20秒

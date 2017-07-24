@@ -173,7 +173,6 @@ export class CarPage {
       }
     }
     this.httpService.delNoShop({ goods_ids: arr }).then((res) => {
-      console.log(res);
       if (res.status == 1) {
         this.navCtrl.push('WriteOrdersPage');
       }

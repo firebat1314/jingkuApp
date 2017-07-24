@@ -17,6 +17,7 @@ import { HttpService } from "../../../providers/http-service";
 })
 export class ServiceOrderDetailsPage {
   data: any;
+  return_id = this.navParams.get('return_id');
   constructor(
     public navCtrl: NavController,
     public navParams: NavParams,
@@ -29,7 +30,7 @@ export class ServiceOrderDetailsPage {
     console.log('ionViewDidLoad ServiceOrderDetailsPage');
   }
   getData() {
-    this.httpService.repairInfo({id:this.navParams.get('return_id')}).then((res) => {
+    this.httpService.repairInfo({id:this.return_id}).then((res) => {
       if (res.status == 1) {
         this.data = res;
       }

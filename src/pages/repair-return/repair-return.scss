@@ -8,6 +8,11 @@ page-repair-return {
     .mysearchbar {
         @include mysearchbar;
     }
+    .not-search {
+        color: #e0e0e0;
+        text-align: center;
+        margin-top: 20px;
+    }
     @mixin order {
         .order {
             background: #fff;

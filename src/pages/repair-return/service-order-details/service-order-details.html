@@ -16,10 +16,11 @@
 <ion-content>
     <div class="fore fore1">
         <ion-item text-wrap>
-            服务单号：123123123
-            <span item-end ion-text color="danger">待审核</span>
+            服务单号：{{data?.repair_info?.return_number}}
+            <!-- <span item-end ion-text color="danger">待审核</span> -->
         </ion-item>
-        <ion-item detail-push text-wrap>
+        <!-- navPush="AuditProgressPage" navParams="data?.repair_info" -->
+        <ion-item detail-push text-wrap tappable>
             审核进度：您的服务单已申请成功
         </ion-item>
         <div class="progressBar">

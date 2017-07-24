@@ -7,7 +7,7 @@
 <ion-header>
     <ion-navbar>
         <ion-title>
-            <ion-searchbar [(ngModel)]="myHomeSearch" (ionInput)="onInput($event)" placeholder="搜索商品" animated="false" spellcheck="true" type="search" debounce="1000" mode="ios"></ion-searchbar>
+            <ion-searchbar [(ngModel)]="myHomeSearch" (ionInput)="onInput($event)" placeholder="搜索商品" animated="false" spellcheck="true" type="search" debounce="500" mode="ios" showCancelButton cancelButtonText="取消"></ion-searchbar>
         </ion-title>
         <ion-buttons end>
             <button ion-button clear icon-only icon-left (click)="listStyleflag=!listStyleflag">
@@ -66,12 +66,12 @@
         <ion-refresher-content refreshingSpinner="1" pullingIcon="0"></ion-refresher-content>
     </ion-refresher>
 
-    <no-goods *ngIf="!data?.goods?.length"></no-goods>
     <div style="padding:4px;" *ngIf="!listStyleflag">
         <single-foods-card [data]="data?.goods"></single-foods-card>
     </div>
     <single-foods-item [data]="data?.goods" *ngIf="listStyleflag"></single-foods-item>
 
+    <no-goods *ngIf="!data?.goods?.length"></no-goods>
     <ion-fab class="brand-list-car-btn" left bottom (click)="goCarPage()">
         <button ion-fab mini icon-only>
             <ion-icon name="ios-cart-outline" color="light"></ion-icon>

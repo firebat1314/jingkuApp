@@ -32,7 +32,7 @@ export class ParticularsModalPage {
   ionViewDidLoad() {
     console.log('ionViewDidLoad ParticularsModalPage');
   }
-  ngAfterViewInit(){
+  ngAfterViewInit() {
   }
   dredgeMoreCity() {
     this.dismiss('goDredgeMoreCityPage');
@@ -47,21 +47,17 @@ export class ParticularsModalPage {
     }
   }
   setArea(ids) {
-    console.log(ids)
-    if (ids) {
-      this.httpService.setArea({
-        goods_id: this.GoodsInfo.goods_id,
-        gaid: ids.gaid?ids.gaid:'',
-        region_id: ids.region_id
-      }).then((res) => {
-        if (res.status == 1) {
-          this.viewCtrl.dismiss({region_name:ids.region_name});
-          this.events.publish('home:updataArea');
-          this.native.showToast('切换成功');
-        }
-      })
-    }
-
+    this.httpService.setArea({
+      goods_id: this.GoodsInfo.goods_id,
+      gaid: ids.gaid ? ids.gaid : '',
+      region_id: ids.region_id
+    }).then((res) => {
+      if (res.status == 1) {
+        this.viewCtrl.dismiss({ region_name: ids.region_name });
+        this.events.publish('home:updataArea');
+        this.native.showToast('切换成功');
+      }
+    })
   }
   dismiss(data?: any) {
     // using the injected ViewController this page

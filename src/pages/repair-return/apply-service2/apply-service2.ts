@@ -14,20 +14,20 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 })
 export class ApplyService2Page {
 
-  data = this.navParams.data;
+  data = this.navParams.get('data');
   constructor(public navCtrl: NavController, public navParams: NavParams) {
-    console.log(this.navCtrl.indexOf(this.navCtrl.getActive()))
+    // console.log(this.navCtrl.indexOf(this.navCtrl.getActive()))
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad ApplyService2Page');
   }
-  goAuditProgressPage(){
-    this.navCtrl.push('AuditProgressPage').then(()=>{
-      this.navCtrl.remove(1,2);
+  goAuditProgressPage() {
+    this.navCtrl.push('AuditProgressPage').then(() => {
+      this.navCtrl.remove(this.navCtrl.indexOf(this.navCtrl.getActive())-2, 2);
     });
   }
-  goRepairReturnPage(){
-    this.navCtrl.remove(1,2);
+  goRepairReturnPage() {
+    this.navCtrl.remove(this.navCtrl.indexOf(this.navCtrl.getActive())-1, 2);
   }
 }

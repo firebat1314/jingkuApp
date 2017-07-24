@@ -14,14 +14,14 @@
                 申请记录
             </ion-segment-button>
         </ion-segment>
-        <ion-buttons right>
+        <!-- <ion-buttons right>
             <button ion-button clear icon-only>
                 <ion-icon name="ios-funnel-outline"></ion-icon>
             </button>
-        </ion-buttons>
+        </ion-buttons> -->
     </ion-navbar>
     <ion-toolbar class="mysearchbar">
-        <ion-searchbar mode="ios" #mySearchBar debounce="500" placeholder="请输入订单号或者商品编号" animated="true"></ion-searchbar>
+        <ion-searchbar mode="ios" #mySearchBar debounce="500" [(ngModel)]="options.order_sn" (ionInput)="searchOrder()" placeholder="请输入订单号或者商品编号" animated="true" showCancelButton cancelButtonText="取消"></ion-searchbar>
     </ion-toolbar>
 </ion-header>
 
@@ -37,13 +37,16 @@
     </ion-slides>-->
     <!--<img img-lazy-load="./assets/images/images/bg_login.jpg" alt="">-->
     <div class="apply" *ngSwitchCase="'apply'">
+        <div class="not-search" *ngIf="!order?.list?.length">
+            抱歉，没有查询相关信息！
+        </div>
         <div class="order" *ngFor="let item of order?.list">
             <div class="order-head">
                 <span>订单编号：{{item.order_sn}}</span>
                 <span>下单时间：{{item.add_time}}</span>
             </div>
             <div class="order-body">
-                <div class="order-body-item" *ngFor="let subitem of item.goods">
+                <div class="order-body-item" tappable navPush="ParticularsPage" [navParams]="{goodsId:subitem.goods_id}" *ngFor="let subitem of item.goods">
                     <ion-checkbox mode="ios" (ionChange)="checkbox(item)" [(ngModel)]="subitem.selected" [checked]="item.selected"></ion-checkbox>
                     <!--<ion-icon class="checkbox" name="ios-help-circle-outline"></ion-icon>-->
                     <div class="img">
@@ -63,6 +66,9 @@
         </div>
     </div>
     <div class="applyLog" *ngSwitchCase="'applyLog'">
+        <div class="not-search" *ngIf="!repair?.list?.length">
+            抱歉，没有查询相关信息！
+        </div>
         <div class="order" *ngFor="let item of repair?.list">
             <div class="order-head">
                 <span>订单编号：{{item.order_sn}}</span>

@@ -179,7 +179,11 @@ ion-refresher-content[state=ready] .refresher-pulling-icon {
 
 /*————————————————————————————————————loading CSS————————————————————————————————————*/
 
-.loading-style {}
+.loading-style {
+    .loading-wrapper {
+        background: none;
+    }
+}
 
 
 /*————————————————————————————————————无数据显示页 CSS————————————————————————————————————*/

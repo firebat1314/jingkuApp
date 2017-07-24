@@ -1,5 +1,4 @@
 import { Directive, ViewChild } from '@angular/core';
-import { Content, FabButton } from "ionic-angular";
 
 /**
  * Generated class for the ViewfabDirective directive.
@@ -12,14 +11,9 @@ import { Content, FabButton } from "ionic-angular";
 })
 export class ViewfabDirective {
 
-  @ViewChild(Content) mycontent:Content
-  @ViewChild(FabButton) fabButton: FabButton;
-
+  
   constructor() {
     console.log('Hello ViewfabDirective Directive');
   }
-  ngAfterViewInit() {
-    console.log(this.mycontent)
-    console.log(this.fabButton)
-  }
+  
 }

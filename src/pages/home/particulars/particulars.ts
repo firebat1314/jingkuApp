@@ -6,7 +6,7 @@ import { Native } from "../../../providers/native";
 
 declare var Swiper: any;
 @IonicPage({
-  segment:'page-particulars/:goodsId'
+  segment: 'page-particulars/:goodsId'
 })
 @Component({
   selector: 'page-particulars',
@@ -15,7 +15,7 @@ declare var Swiper: any;
 export class ParticularsPage {
   @ViewChild(Content) content: Content;
   @ViewChild(FabButton) fabButton: FabButton;
-  
+
   region_name: any;
   getCategoryRecommendGoodsHot: any;
   getLinkedGoods: any;
@@ -58,7 +58,6 @@ export class ParticularsPage {
   }
   ionViewDidLoad() {
     console.log('ionViewDidLoad ParticularsPage');
-    this.getHttpDetails();
     this.http.getFlowGoods().then((res) => {//获取购物车数量
       this.badgeCount = res.total.real_goods_count;
     })
@@ -69,24 +68,40 @@ export class ParticularsPage {
       this.badgeCount = res;
     })
   }
+  ionViewCanEnter() {
+    return this.getHttpDetails().then((res) => {
+      return true;
+    }, (res) => {
+      this.native.showToast(res);
+      return false;
+    }).catch((res) => {
+      this.native.showToast('未知参数错误');
+      return false;
+    });
+  }
   ngOnDestroy() {
     this.events.unsubscribe('particulars:goCarPage');
   }
   getHttpDetails(finished?) {
-    this.native.showLoading();
-    this.http.goodsInfos({ goods_id: this.goodsId }).then((res) => {
-      console.log("商品详情信息", res);
-      if (res.status == 1) {
-        this.getGoodsInfo = res;
-        this.getRegionName(res);
-      }
-      this.http.getCategoryRecommendGoodsHot({}).then((res) => {
-        console.log('为你推荐：', res)
-        if (res.status == 1) { this.getCategoryRecommendGoodsHot = res.data; }
+    return new Promise((resolve, reject) => {
+      this.native.showLoading();
+      this.http.goodsInfos({ goods_id: this.goodsId }).then((res) => {
+        // console.log("商品详情信息", res);
         this.native.hideLoading();
-        if (finished) { finished() }
+        if (res.status == 1) {
+          resolve(res.status);
+          this.getGoodsInfo = res;
+          this.getRegionName(res);
+        } else {
+          reject(res.info);
+        }
+        this.http.getCategoryRecommendGoodsHot({}).then((res) => {
+          // console.log('为你推荐：', res)
+          if (res.status == 1) { this.getCategoryRecommendGoodsHot = res.data; }
+          if (finished) { finished() }
+        })
       })
-    })
+    });
   }
   getRegionName(res) {
     for (var i = 0; i < res.sale_city.length; i++) {
@@ -226,12 +241,12 @@ export class ParticularsPage {
     // this.navCtrl.push(AccountServicePage)
   }
   goParticularsHome() {
-    this.navCtrl.push('ParticularsHomePage', { supplierId: this.getGoodsInfo.supplier_info.id });
+    this.navCtrl.push('ParticularsHomePage', { suppliersId: this.getGoodsInfo.supplier_info.id });
   }
   goStore() {
     this.navCtrl.push('BrandListPage', { suppliersId: this.getGoodsInfo.supplier_info.id })
   }
   goCart() {
-    this.navCtrl.push('CarPage')
+    this.navCtrl.push('CarPage');
   }
 }
