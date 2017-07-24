@@ -42,13 +42,9 @@ export class WriteOrdersPage {
     console.log('ionViewDidLoad WriteOrdersPage');
   }
   ionViewCanEnter() {
-    return this.getHttpData().then(() => {
-      if (this.data.goods_list.length) {
+    return this.getHttpData().then((res) => {
         return true;
-      } else {
-        this.native.showToast('请添加商品', 2000, false);
-        return false;
-      }
+     
     });
   }
   getHttpData() {
