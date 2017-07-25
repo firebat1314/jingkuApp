@@ -48,7 +48,9 @@ export class MyPage {
       this.httpResult();
     })
   }
-  ionViewCanEnter() {
+
+  ngOnInit(){
+    this.httpResult()
   }
   httpResult(finish?) {
     this.native.showLoading();

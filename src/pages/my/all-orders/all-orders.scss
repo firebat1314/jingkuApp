@@ -5,6 +5,9 @@ page-all-orders {
     ion-toolbar {
         min-height: 41px !important;
     }
+    .no-log {
+        @include reminderBlankPage();
+    }
     .single-shop {
         padding: 0 10px;
         margin-bottom: 10px;

@@ -83,13 +83,13 @@
     </div> -->
     <ion-list [ngSwitch]="classShop">
         <div class="shopHome-main" *ngSwitchCase="'shopHome'">
-            <no-goods *ngIf="false||(!data?.new_list?.length)&&(!data?.hot_list?.length)"></no-goods>
+            <no-goods *ngIf="data&&(!data?.new_list?.length)&&(!data?.hot_list?.length)"></no-goods>
             <div class="new-arrival" *ngIf="data?.new_list?.length">
                 <p>2017 NEW ARRIVAL</p>
                 <p>新品推荐</p>
             </div>
 
-            <div class="new-arrival-goods-box" *ngIf="!listStyleflag">
+            <div class="new-arrival-goods-box" *ngIf="!listStyleflag||data?.new_list?.length">
                 <div class="new-arrival-goods" *ngFor="let item of data?.new_list">
                     <img img-lazy-load="{{item.goods_img}}" alt="">
                     <div class="price">
@@ -174,7 +174,7 @@
                         </div>
                     </div>
                 </div> -->
-                <no-goods *ngIf="!alldata?.goods?.length||0"></no-goods>
+                <no-goods *ngIf="alldata&&!alldata?.goods?.length"></no-goods>
                 <single-foods-card [data]="alldata?.goods" *ngIf="!listStyleflag"></single-foods-card>
 
                 <single-foods-item [data]="alldata?.goods" *ngIf="listStyleflag"></single-foods-item>
@@ -195,22 +195,22 @@
             </ion-list>
         </div>
         <div class="cuXiao-mian" *ngSwitchCase="'cuXiao'">
-            <!-- <div class="cuXiao-time-goods">
+            <div class="cuXiao-time-goods">
                 <div class="cuXiao-time-goods-tit">
                     <p>即将结束</p>
                     <span>以下商品今日23.59结束促销</span>
                 </div>
-                <div class="cuXiao-time-goods-content">
+                <div class="cuXiao-time-goods-content" *ngFor="let item of cxdata?.end_list">
                     <div class="time-goods-img">
-                        <img img-lazy-load="./assets/icon/newGoods.png" alt="">
+                        <img img-lazy-load="{{item.goods_img}}" alt="">
                     </div>
                     <div class="right">
-                        <p title="博士伦美瞳明透亮眸半年亮眸半年博士博士 伦美瞳明透亮眸半年亮眸半年博士XXXXX">博士伦美瞳明透亮眸半年亮眸半年博士博士 伦美瞳明透亮眸半年亮眸半年博士XXXXX</p>
-                        <span>￥450.00</span>
-                        <div class="button">限购</div>
+                        <p title="{{item.goods_name}}">{{item.goods_name}}</p>
+                        <span>{{item.promote_price}}</span>
+                        <!-- <div class="button">限购</div> -->
                     </div>
                 </div>
-            </div> -->
+            </div>
             <div class="cuXiao-tabs">
                 <button class="cuXiao-tabs-item">商品满减</button>
                 <button class="cuXiao-tabs-item">商品打折</button>
@@ -218,23 +218,12 @@
                 <button class="cuXiao-tabs-item">商品补贴</button>
             </div>
             <div class="sixJianOne-main">
-                <!--<div class="preferential-tip">
+                <!-- <div class="preferential-tip">
                     <p>促销时间：08月21日 15:11结束促销</p>
                     <p>促销规则“以下商品满6件减1件</p>
-                </div>-->
+                </div> -->
                 <div class="allGoods-box">
-                    <!-- <div class="cxdata-box" *ngIf="!listStyleflag">
-                        <div class="allGoods-items" *ngFor="let item of cxdata?.goods_list" tappable (click)="goParticularsPage(item.id)">
-                            <div class="allGoods-items-img">
-                                <img img-lazy-load="{{item.goods_img}}" alt="">
-                            </div>
-                            <div class="allGoods-items-info">
-                                <p>{{item.goods_name}}</p>
-                                <p>{{item.promote_price}}</p>
-                            </div>
-                        </div>
-                    </div> -->
-                    <no-goods *ngIf="!cxdata?.goods_list?.length||0"></no-goods>
+                    <no-goods *ngIf="cxdata&&!cxdata?.goods_list?.length"></no-goods>
                     <single-foods-card [data]="cxdata?.goods_list" *ngIf="!listStyleflag"></single-foods-card>
 
                     <single-foods-item [data]="cxdata?.goods_list" *ngIf="listStyleflag"></single-foods-item>
@@ -262,7 +251,7 @@
                         </div>
                     </div>
                 </div> -->
-                <no-goods *ngIf="0||!newdata?.goods?.length"></no-goods>
+                <no-goods *ngIf="newdata&&!newdata?.goods?.length"></no-goods>
 
                 <single-foods-card [data]="newdata?.goods" *ngIf="!listStyleflag"></single-foods-card>
 
@@ -283,7 +272,7 @@
         <div class="shop-footer-items" tappable (click)="openPopover($event)">
             <div>
                 <ion-icon name="ios-menu" style="pointer-events: none;"></ion-icon>
-                <span>热门分类</span>
+                <span style="pointer-events: none;">热门分类</span>
             </div>
         </div>
         <div class="shop-footer-items">

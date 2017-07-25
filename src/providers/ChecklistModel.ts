@@ -45,11 +45,11 @@ export class RadiolistModel {
    toggleItem(item, items): void {
       if (item.selected == 1) {
          item.selected = 0;
-         this.item.lower = items.min || '';
-         this.item.upper = items.max || '';
+         this.item.min_price =  null;
+         this.item.max_price = null;
       } else {
-         this.item.lower = Number(item.min_price);
-         this.item.upper = Number(item.max_price);
+         this.item.min_price = Number(item.min_price);
+         this.item.max_price = Number(item.max_price);
          for (let i = 0; i < items.length; i++) {
             items[i].selected = 0;
          }

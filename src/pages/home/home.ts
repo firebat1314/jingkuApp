@@ -55,7 +55,6 @@ export class HomePage {
   ionViewDidLoad() {
     console.log('ionViewDidLoad HomePage');
     this.getBanner();
-    this.getHomeData();
     this.updataArea();
     this.updateCarCount();
   }
@@ -67,7 +66,15 @@ export class HomePage {
       if (res.status == 1) { this.bannerImgs = res.data; }
     })
   }
-  ionViewCanEnter() {
+  /* ionViewWillEnter(){
+    console.log(111)
+  } */
+  ngOnInit(){
+    this.getHomeData().then((res)=>{
+      console.log('首页加载完成')
+    })
+  }
+  /* ionViewCanEnter() {
     if (!this.firstInit) {
       return true;
     }
@@ -80,7 +87,7 @@ export class HomePage {
       this.native.showToast('数据异常');
       return true;
     })
-  }
+  } */
   getHomeData(finish?) {
     this.firstInit = false;
     this.native.showLoading();

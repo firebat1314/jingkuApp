@@ -66,6 +66,9 @@ export class BrandListPage {
 			this.getCarNumver();
 		});
 	}
+	ionViewDidLeave() {
+		this.events.unsubscribe('user:filterParams');//防止多次订阅事件
+	}
 	ngAfterViewInit() {
 		this.content.ionScroll.subscribe((d) => {
 			this.fabButton.setElementClass("fab-button-out", d.directionY == "down");

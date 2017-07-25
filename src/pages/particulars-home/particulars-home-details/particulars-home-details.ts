@@ -1,5 +1,5 @@
 import { Component, Renderer, ElementRef } from '@angular/core';
-import { IonicPage, NavController, NavParams, PopoverController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, PopoverController, Events } from 'ionic-angular';
 import { HttpService } from "../../../providers/http-service";
 import { Native } from "../../../providers/native";
 
@@ -11,7 +11,7 @@ import { Native } from "../../../providers/native";
  */
 @IonicPage({
   segment: 'particulars-home-details/:suppliersId',
-  defaultHistory:['ParticularsHomePage'],
+  defaultHistory: ['ParticularsHomePage'],
 })
 @Component({
   selector: 'page-particulars-home-details',
@@ -28,6 +28,7 @@ export class ParticularsHomeDetailsPage {
     private renderer: Renderer,
     private httpService: HttpService,
     private native: Native,
+    private events: Events,
     public popoverCtrl: PopoverController
   ) { }
   ngOnInit() {
@@ -55,6 +56,8 @@ export class ParticularsHomeDetailsPage {
       this.httpService.CollectShop({ id: this.supplier_id, type: 0 }).then((res) => {
         if (res.status) {
           this.native.showToast('已取消关注', null, false);
+          //更新上一页收藏状态
+          this.events.publish('particulars-home-details:update-collect');
           this.getShopData();
         }
       })
@@ -62,6 +65,7 @@ export class ParticularsHomeDetailsPage {
       this.httpService.CollectShop({ id: this.supplier_id, type: 1 }).then((res) => {
         if (res.status) {
           this.native.showToast('收藏成功', null, false);
+          this.events.publish('particulars-home-details:update-collect');
           this.getShopData();
         }
       })
@@ -71,14 +75,14 @@ export class ParticularsHomeDetailsPage {
     return i > 4;
   }
   callnumber(number) {
-    this.native.openAlertBox('拨打商家电话:'+number, () => {
-      this.native.openCallNumber('number', false);
+    this.native.openAlertBox('拨打商家电话:' + number, () => {
+      this.native.openCallNumber(number, false);
     })
   }
-  goShopAllFashionPage(){
-    this.navCtrl.push('ShopAllFashionPage',{brandList:this.shopdata.data.brand_list})
+  goShopAllFashionPage() {
+    this.navCtrl.push('ShopAllFashionPage', { brandList: this.shopdata.data.brand_list })
   }
-  goBackPage(type){
-    this.navCtrl.push('ParticularsHomePage',{type:type});
+  goBackPage(type) {
+    this.navCtrl.push('ParticularsHomePage', { type: type, suppliersId: this.supplier_id });
   }
 }

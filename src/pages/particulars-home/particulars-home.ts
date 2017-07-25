@@ -69,8 +69,10 @@ export class ParticularsHomePage {
       this.paramsData.stort = 'DESC';
       this.getAllData();
     });
-
-    this.httpService.categoryGoods(Object.assign(this.paramsData, { suppliers_id: this.suppliers_id, new: 1 })).then((res) => {
+    this.events.subscribe('particulars-home-details:update-collect',()=>{
+      this.getShopData();
+    })
+    this.httpService.categoryGoods(Object.assign(this.paramsData, { suppliers_id: this.suppliers_id })).then((res) => {
       if (res.status == 1) {
         this.alldata = res;
         console.log(res);
@@ -86,6 +88,10 @@ export class ParticularsHomePage {
     if (this.defaultSelect) {
       this.classShop = this.defaultSelect;
     }
+  }
+  ionViewDidLeave(){
+    this.events.unsubscribe('user:filterParams');//防止多次订阅事件
+    this.events.unsubscribe('particulars-home-details:update-collect');//防止多次订阅事件
   }
   getHomeData() {
     this.httpService.suppliersIndex({ suppliers_id: this.suppliers_id }).then((res) => {
@@ -134,7 +140,7 @@ export class ParticularsHomePage {
   }
   callnumber(number) {
     this.native.openAlertBox('拨打商家电话:' + number, () => {
-      this.native.openCallNumber('number', false);
+      this.native.openCallNumber(number, false);
     })
   }
   changeType(typeNumber) {
@@ -321,7 +327,7 @@ export class ParticularsHomePage {
       keywords: this.myHomeSearch,
       supplier_id: null
     }
-    this.httpService.categoryGoods(Object.assign(this.paramsData, { suppliers_id: this.suppliers_id, new: 1 })).then((res) => {
+    this.httpService.categoryGoods(Object.assign(this.paramsData, { suppliers_id: this.suppliers_id })).then((res) => {
       this.alldata = res;
       this.classShop = 'allGoods';
       this.events.publish('user:listFilter', res);

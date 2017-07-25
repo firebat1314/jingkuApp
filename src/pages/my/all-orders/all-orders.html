@@ -16,6 +16,12 @@
 
 <ion-content #myContent>
     <div class="background"></div>
+    <div class="no-log" *ngIf="orderData&&!orderData?.list?.length">
+        <div class="img">
+            <img src="./assets/icon/no-log.png" alt="">
+        </div>
+        <div class="message">您还没有相关订单</div>
+    </div>
     <div class="single-shop" *ngFor="let item of orderData?.list;">
         <ion-item-divider>
             <ion-icon *ngIf="item.suppliers_name" item-left name="shop"></ion-icon>

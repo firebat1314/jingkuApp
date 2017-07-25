@@ -62,7 +62,7 @@ page-particulars-modal-attr {
                 overflow: hidden;
                 border-bottom: 1px solid #e0e0e0;
                 padding: 10px 0;
-                ion-select,
+                .select,
                 .input {
                     width: 45%;
                     border-radius: 8%;
@@ -75,6 +75,7 @@ page-particulars-modal-attr {
                 .input {
                     padding: 9px;
                     overflow: hidden;
+                    color: #999;
                     input {
                         border: 0;
                     }

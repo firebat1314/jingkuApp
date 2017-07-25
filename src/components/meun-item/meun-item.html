@@ -12,22 +12,31 @@
                 <!--<span class="all">全部<ion-icon name="ios-arrow-down" ></ion-icon></span>-->
             </div>
             <div class="body" *ngIf="item.name=='商品品牌'">
-                <div *ngFor="let group of item?.data" tappable (click)="radiolist3.toggleItem3(group,item?.data)" [ngClass]="group.selected==0?'select':'selected'">{{group.brand_name}}</div>
+                <div class="tap-box">
+                    <div class="tap" *ngFor="let group of item?.data" tappable (click)="radiolist3.toggleItem3(group,item?.data)" [ngClass]="group.selected==0?'select':'selected'">{{group.brand_name}}</div>
+                </div>
             </div>
             <div class="body" *ngIf="item.name=='商品分类'">
-                <div *ngFor="let group of item?.data" tappable (click)="radiolist2.toggleItem2(group,item?.data)" [ngClass]="group.selected==0?'select':'selected'">{{group.cat_name}}</div>
+                <div class="tap-box">
+                    <div class="tap" *ngFor="let group of item?.data" tappable (click)="radiolist2.toggleItem2(group,item?.data)" [ngClass]="group.selected==0?'select':'selected'">{{group.cat_name}}</div>
+                </div>
             </div>
             <div class="body" *ngIf="item.name=='商品价格区间'">
-                <div *ngFor="let group of item?.data" tappable (click)="radiolist.toggleItem(group,item?.data);filterParams.min_price=group.min_price;filterParams.max_price=group.max_price;" [ngClass]="group.selected==0?'select':'selected'">{{group.min_price}}~{{group.max_price}}</div>
+                <div class="price-input">
+                    <input type="number" [(ngModel)]="filterParams.min_price" placeholder="最低价"> — <input type="number" [(ngModel)]="filterParams.max_price" placeholder="最高价">
+                </div>
+                <div class="tap-box">
+                    <div class="tap" *ngFor="let group of item?.data" tappable (click)="radiolist.toggleItem(group,item?.data);" [ngClass]="group.selected==0?'select':'selected'">{{group.min_price}}~{{group.max_price}}</div>
+                </div>
             </div>
             <div class="range" *ngIf="item.name=='商品价格区间'">
-                <ion-item no-lines>
-                    <ion-range (ionChange)="filterParams.min_price=price.lower;filterParams.max_price=price.upper;" dualKnobs="true" [(ngModel)]="price" mode="ios" min="item?.data[0]?.min_price" [max]="item?.data[item.data.length-1]?.max_price"></ion-range>
-                </ion-item>
-                <div class="number">
+                <!-- <ion-item no-lines>
+                    <ion-range dualKnobs="true" pin="true" [(ngModel)]="price" mode="ios" [min]="item?.data[0]?.min_price" [max]="item?.data[item.data.length-1]?.max_price"></ion-range>
+                </ion-item> -->
+                <!-- <div class="number">
                     <div>{{price.lower}}</div>
                     <div>{{price.upper}}</div>
-                </div>
+                </div> -->
             </div>
             <div class="selectedbox" *ngIf="item.data.length!=0&&item.name=='商品属性'">
                 <ion-select *ngFor="let group of item?.data;let i = index;" placeholder="{{group.attr_name}}" [(ngModel)]="group.selected" okText="确定" cancelText="取消" [selectOptions]="{subTitle: group.attr_name}">

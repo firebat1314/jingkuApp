@@ -71,7 +71,7 @@
     </div>
     <single-foods-item [data]="data?.goods" *ngIf="listStyleflag"></single-foods-item>
 
-    <no-goods *ngIf="!data?.goods?.length"></no-goods>
+    <no-goods *ngIf="data&&!data?.goods?.length"></no-goods>
     <ion-fab class="brand-list-car-btn" left bottom (click)="goCarPage()">
         <button ion-fab mini icon-only>
             <ion-icon name="ios-cart-outline" color="light"></ion-icon>

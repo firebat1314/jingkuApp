@@ -10,9 +10,12 @@
     <div class="background"></div>
     <div *ngIf="type=='goods'" class="goods_main">
         <table>
+            <!-- is_subsidy 是否显示促销价 -->
             <tr>
                 <th>数量</th>
-                <th>价格</th>
+                <th *ngIf="data.data[0].is_subsidy">促销价</th>
+                <th *ngIf="data.data[0].is_subsidy">原价</th>
+                <th *ngIf="!data.data[0].is_subsidy">价格</th>
                 <th *ngFor="let item of data.data[0].goods_attr">{{item.attr_name}}</th>
                 <th>库存</th>
             </tr>
@@ -20,7 +23,9 @@
                 <td class="count-input-box">
                     <count-input (valueChange)="numberIChange($event,item)"></count-input>
                 </td>
-                <td>{{item.price}}</td>
+                <td *ngIf="item.is_subsidy">{{item.price}}</td>
+                <td *ngIf="item.is_subsidy">{{item.old_price}}</td>
+                <td *ngIf="!item.is_subsidy">{{item.price}}</td>
                 <td *ngFor="let group of item.goods_attr">{{group.attr_val}}</td>
                 <td>{{item.product_number}}</td>
             </tr>
@@ -37,7 +42,7 @@
                     <ion-option *ngFor="let item of it.getZhujingList?.data">{{item}}</ion-option>
                 </ion-select>
                 <div class="input">
-                    <input type="text" [(ngModel)]="it.zhouwei" placeholder="填写轴位">
+                    <input type="text" [(ngModel)]="it.zhouwei" placeholder="轴位">
                 </div>
                 <ion-select *ngFor="let item of data.specification;let i=index" [(ngModel)]="it[item.name]" placeholder="{{item.name}}" [selectOptions]="{subTitle: item.name}" okText="确定" cancelText="取消">
                     <ion-option *ngFor="let item1 of item?.values" value="{{item1.id}}">{{item1.label}}</ion-option>

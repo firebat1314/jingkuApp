@@ -123,7 +123,7 @@ export class RepairReturnPage {
     }
     this.httpService.repairApply({
       order_id: order_id,
-      rec_id: rec_ids
+      rec_ids: rec_ids
     }).then((res) => {
       if (res.status == 1) {
         this.navCtrl.push('ApplyServicePage', { data: res })

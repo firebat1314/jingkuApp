@@ -80,7 +80,6 @@ export class AccountInfoPage {
   }
   uploadAvatar(data) {
     this.httpService.editAvatar({ avatar: 'data:image/jpeg;base64,' + data }).then((res) => {
-      console.log(res);
       if (res.status == 1) {
         this.native.showToast('头像上传成功');
         this.getUserData();

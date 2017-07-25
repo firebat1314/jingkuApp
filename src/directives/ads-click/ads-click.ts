@@ -30,6 +30,8 @@ export class AdsClickDirective {
       })
     } else if (this.link_type.type_name == "brand") {
       this.goClassPage('brand');
+    } else if (this.link_type.type_name == "search") {
+      this.navCtrl.push('BrandListPage',{myHomeSearch:this.link_type.type_value})
     }
   }
   goClassPage(value) {

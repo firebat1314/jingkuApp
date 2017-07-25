@@ -163,11 +163,14 @@ export class ParticularsModalAttrPage {
 	addToCart(goCart) {
 		/*普通商品添加到购物车*/
 		if (this.type == 'goods') {
+			/* if(this.attrNumber.length==1&&this.attrNumber[0]==0){
+				this.native.showToast('请至少选择一件商品',null,false)
+				return;
+			} */
 			this.httpService.addToCartSpec({
 				goods_id: this.goodsId,
 				goods: { member: this.attrNumber, spec: this.attrId }
 			}).then((res) => {
-				console.log(res)
 				if (res && res.status == 1) {
 					this.native.showToast('添加成功')
 					this.events.publish('car:updata');//更新购物车
@@ -182,7 +185,7 @@ export class ParticularsModalAttrPage {
 		if (this.type == 'goods_spectacles') {
 			// this.viewCtrl.dismiss();
 			if (!this.goods[this.goods.length - 1].zhujing) {
-				this.native.showToast('球镜与柱镜不能为空')
+				this.native.showToast('球镜与柱镜不能为空',null,false)
 				return;
 			}
 			this.getGoodsParamsArrs()
