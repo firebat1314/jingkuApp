@@ -22,7 +22,7 @@ export class CountInputComponent {
   @Input() rank: number = 1;
 
 
-  disabled:boolean = false;
+  disabled: boolean = false;
   constructor(
     private native: Native,
     private element: ElementRef,
@@ -31,7 +31,8 @@ export class CountInputComponent {
   }
   ngOnInit() {
     if (this.maxValue) this.newmaxValue = this.maxValue;
-    if(this.rank!==1) this.disabled = true;
+    console.log(this.rank)
+    if (this.rank !== 1) this.disabled = true;
   }
   increase() {
     if (this.lock) {
@@ -42,14 +43,14 @@ export class CountInputComponent {
       this.element.nativeElement.getElementsByTagName('input')[0].value = this.newmaxValue;
       return;
     }
-    console.log(this.value,Number(this.rank),this.value+=Number(this.rank))
-    this.valueChange.emit(this.value+=Number(this.rank));
+    
+    this.valueChange.emit(this.value += Number(this.rank));
   }
   reduce() {
     if (this.value <= this.defaultValue) {
       return;
     }
-    this.valueChange.emit(this.value-=this.rank);
+    this.valueChange.emit(this.value -= Number(this.rank));
   }
   inputEvent(value) {
     if (this.newmaxValue && (this.value >= this.newmaxValue)) {

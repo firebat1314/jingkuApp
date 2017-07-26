@@ -1,5 +1,5 @@
 import { Component, ViewChild } from '@angular/core';
-import { NavController, NavParams, Content, IonicPage } from 'ionic-angular';
+import { NavController, NavParams, Content, IonicPage, FabButton } from 'ionic-angular';
 import { HttpService } from "../../../providers/http-service";
 
 @IonicPage()
@@ -13,6 +13,7 @@ export class PresellPage {
 
   checkedIndex: number = 0;
   @ViewChild(Content) content: Content;
+  @ViewChild(FabButton) fabButton: FabButton;
   constructor(
     public navCtrl: NavController,
     public navParams: NavParams,
@@ -24,6 +25,13 @@ export class PresellPage {
       if (res.status == 1) { this.getCategorys = res.data; }
     })
     this.getPresell();
+  }
+  ngAfterViewInit() {
+    /* 回到顶部按钮 */
+    this.fabButton.setElementClass('fab-button-out',true);
+    this.content.ionScroll.subscribe((d) => {
+      this.fabButton.setElementClass("fab-button-in", d.scrollTop >= d.contentHeight);
+    });
   }
   getList(index) {
     this.checkedIndex = index;

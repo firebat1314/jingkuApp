@@ -24,7 +24,7 @@ export class MyCanvasComponent {
       (e, i) => {
         let ctx = e.nativeElement.getContext("2d");
         if (this.baifen) {
-          this.timer(ctx, 0, Number(this.baifen), 100);
+          this.timer(ctx, 0, Number(this.baifen), 50);
         }
       }));
     this.myCanvas.notifyOnChanges();

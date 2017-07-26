@@ -1,4 +1,7 @@
 page-discount-coupon {
+    .no-coupon {
+        @include reminderBlankPage();
+    }
     .coupon {
         margin: 10px;
         display: flex;

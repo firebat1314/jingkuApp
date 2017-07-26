@@ -55,13 +55,13 @@
         <ion-nav [root]="root" swipeBackEnabled="true" #myNav></ion-nav>
     </div>
     <div *ngSwitchCase="'brand'" class="brand-wrap">
-        <div class="top-scrollbar">
+        <!-- <div class="top-scrollbar">
             <div *ngFor="let item of getCategorys" tappable (click)="toBrandList(item.cat_id)">
                 <div><img img-lazy-load="{{item.thumb}}" alt="{{item.cat_name}}"></div>
                 <span>{{item.cat_name}}</span>
             </div>
         </div>
-        <div class="background"></div>
+        <div class="background"></div> -->
         <div class="brand-content">
             <div class="fore1-jinxuan fore" padding>
                 <div class="title">
@@ -164,7 +164,7 @@
             </ion-list>
         </div>
     </div>
-    <ion-fab right bottom tappable (click)="myContent.scrollToTop()" *ngIf="classSelect!='classify'">
+    <ion-fab right bottom tappable (click)="myContent.scrollToTop()">
         <button ion-fab color="dark" mini goBackTop></button>
     </ion-fab>
 </ion-content>

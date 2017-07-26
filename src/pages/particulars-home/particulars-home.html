@@ -195,7 +195,7 @@
             </ion-list>
         </div>
         <div class="cuXiao-mian" *ngSwitchCase="'cuXiao'">
-            <div class="cuXiao-time-goods">
+            <div class="cuXiao-time-goods" *ngIf="cxdata?.end_list?.length">
                 <div class="cuXiao-time-goods-tit">
                     <p>即将结束</p>
                     <span>以下商品今日23.59结束促销</span>

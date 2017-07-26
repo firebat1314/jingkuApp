@@ -115,7 +115,6 @@ export class ParticularsModalAttrPage {
 				member: this.attrNumber
 			}
 		}).then((res) => {
-			console.log(res);
 			if (res.status == 1) {
 				this.numberChangeData = res;
 			}
