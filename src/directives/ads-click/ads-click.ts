@@ -23,13 +23,11 @@ export class AdsClickDirective {
   @HostListener('click') onClick() {
     console.log(this.link_type);
     if (this.link_type.type_name == 'category') {
-      this.goClassPage('classify');
+      this.goBrandListPage({listId:this.link_type.type_value});
     } else if (this.link_type.type_name == 'goods') {
-      this.navCtrl.push('ParticularsPage', {
-        goodsId: this.link_type.type_value
-      })
+      this.goParticularsPage({goodsId: this.link_type.type_value})
     } else if (this.link_type.type_name == "brand") {
-      this.goClassPage('brand');
+      this.goBrandListPage({brandId:this.link_type.type_value});
     } else if (this.link_type.type_name == "search") {
       this.navCtrl.push('BrandListPage',{myHomeSearch:this.link_type.type_value})
     }
@@ -38,5 +36,11 @@ export class AdsClickDirective {
     this.navCtrl.popToRoot();
     this.navCtrl.parent.select(1);
     this.events.publish('classify:selectSegment', value);
+  }
+  goBrandListPage(data){
+    this.navCtrl.push('BrandListPage',data)
+  }
+  goParticularsPage(data){
+    this.navCtrl.push('ParticularsPage', data)
   }
 }

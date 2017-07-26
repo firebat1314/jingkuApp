@@ -49,7 +49,7 @@ export class MyPage {
     })
   }
 
-  ngOnInit(){
+  ngOnInit() {
     this.httpResult()
   }
   httpResult(finish?) {
@@ -87,10 +87,10 @@ export class MyPage {
   goMessagePage() {
     this.navCtrl.push('MessagePage')
   }
-  /*goAccountProcessPage() {
-      this.native.showToast('敬请期待')
-      // this.navCtrl.push(AccountProcessPage)
-    }*/
+  goAccountProcessPage() {
+    this.native.showToast('敬请期待')
+    // this.navCtrl.push(AccountProcessPage)
+  }
   goAccountServicePage() {
     this.native.openAlertBox('拨打客服电话：400-080-5118', () => {
       this.native.openCallNumber('400-080-5118', false);

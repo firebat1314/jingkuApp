@@ -1,5 +1,5 @@
 import { Component, ViewChild, ElementRef } from '@angular/core';
-import { NavController, NavParams, Content, IonicPage } from 'ionic-angular';
+import { NavController, NavParams, Content, IonicPage, FabButton } from 'ionic-angular';
 import { HttpService } from "../../../providers/http-service";
 
 /*
@@ -22,6 +22,7 @@ export class FastbuyPage {
   data: any;
 
   @ViewChild(Content) content: Content;
+  @ViewChild(FabButton) fabButton: FabButton;
   constructor(
     public navCtrl: NavController,
     public navParams: NavParams,
@@ -34,13 +35,11 @@ export class FastbuyPage {
     this.getData();
   }
   ngAfterViewInit() {
-    /*let els1 = this.elementRef.nativeElement.getElementsByClassName('fore2')[0].children;
-    let els2 = this.elementRef.nativeElement.getElementsByClassName('fore3');
-    for (let i = 0; i < els1.length; i++) {
-      els1[i].click(()=>{
-        this.content.scrollTo(0,els2[i].offsetTop);
-      })
-    }*/
+    /* 回到顶部按钮 */
+    this.fabButton.setElementClass('fab-button-out',true);
+    this.content.ionScroll.subscribe((d) => {
+      this.fabButton.setElementClass("fab-button-in", d.scrollTop >= d.contentHeight);
+    });
   }
   getData() {
     this.httpService.presell({ type: 'is_promote', cat_id: 1 }).then((res) => {

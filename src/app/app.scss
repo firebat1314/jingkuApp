@@ -368,6 +368,10 @@ ion-fab {
             bottom: -80px !important;
             animation: fade-out 300ms ease-in;
         }
+        &.fab-button-in {
+            animation: fade-out 300ms ease-in;
+            bottom: 0 !important;
+        }
     }
 }
 

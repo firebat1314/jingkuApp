@@ -19,7 +19,10 @@ export class CountInputComponent {
   @Input() lock: boolean = false;
   @Output() valueChange: EventEmitter<number> = new EventEmitter<number>();
   @Input() maxValue: number;
+  @Input() rank: number = 1;
 
+
+  disabled:boolean = false;
   constructor(
     private native: Native,
     private element: ElementRef,
@@ -27,7 +30,8 @@ export class CountInputComponent {
     // console.log('Hello CountInput Component');
   }
   ngOnInit() {
-    if (this.maxValue) this.newmaxValue = this.maxValue
+    if (this.maxValue) this.newmaxValue = this.maxValue;
+    if(this.rank!==1) this.disabled = true;
   }
   increase() {
     if (this.lock) {
@@ -38,13 +42,14 @@ export class CountInputComponent {
       this.element.nativeElement.getElementsByTagName('input')[0].value = this.newmaxValue;
       return;
     }
-    this.valueChange.emit(++this.value);
+    console.log(this.value,Number(this.rank),this.value+=Number(this.rank))
+    this.valueChange.emit(this.value+=Number(this.rank));
   }
   reduce() {
     if (this.value <= this.defaultValue) {
       return;
     }
-    this.valueChange.emit(--this.value);
+    this.valueChange.emit(this.value-=this.rank);
   }
   inputEvent(value) {
     if (this.newmaxValue && (this.value >= this.newmaxValue)) {

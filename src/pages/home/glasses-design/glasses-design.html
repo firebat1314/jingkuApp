@@ -30,7 +30,7 @@
     <div class="fore3 fore">
         <img *ngFor="let item of img?.data" img-lazy-load="{{item.ad_img}}" tappable [ads-click]="item.link_type" alt="">
     </div>
-    <div class="fore4 fore" padding *ngFor="let item of list?.goods">
+    <div class="fore4 fore" padding tappable (click)="goParticularsPage(item.id)" *ngFor="let item of list?.goods">
         <div class="left">
             <img img-lazy-load="{{item.goods_img}}" alt="">
         </div>

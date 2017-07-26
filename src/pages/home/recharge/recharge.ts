@@ -54,13 +54,13 @@ export class RechargePage {
                   this.alertCtrl.create({
                     title: '汇款须知',
                     subTitle: this.payList.data[0].pay_desc,
-                    buttons: [{
+                    buttons: [/* {
                       text: '个人中心',
                       handler: () => {
                         this.navCtrl.parent.select(3);
                         this.navCtrl.pop();
                       }
-                    }, {
+                    }, */ {
                       text: '确认'
                     }],
                     cssClass: 'recharge-alert'

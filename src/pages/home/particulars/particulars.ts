@@ -52,8 +52,10 @@ export class ParticularsPage {
     console.log("商品ID:", this.goodsId);
   }
   ngAfterViewInit() {
+    /* 回到顶部按钮 */
+    this.fabButton.setElementClass('fab-button-out',true);
     this.content.ionScroll.subscribe((d) => {
-      this.fabButton.setElementClass("fab-button-out", d.directionY == "down");
+      this.fabButton.setElementClass("fab-button-in", d.scrollTop >= d.contentHeight);
     });
   }
   ionViewDidLoad() {
@@ -61,9 +63,6 @@ export class ParticularsPage {
     this.http.getFlowGoods().then((res) => {//获取购物车数量
       this.badgeCount = res.total.real_goods_count;
     })
-    this.events.subscribe('particulars:goCarPage', () => {
-      this.navCtrl.push('CarPage');
-    });
     this.events.subscribe('car:goodsCount', (res) => {
       this.badgeCount = res;
     })
@@ -142,30 +141,24 @@ export class ParticularsPage {
    * 除商品属性 弹窗
    */
   presentModalAttr() {
-    this.native.showLoading();
     this.http.getGoodsAttribute({ goods_id: this.goodsId }).then((res) => {
-      this.native.hideLoading();
+      console.log("商品初始属性", res);
+      this.getGoodsAttribute = res;
       if (res.status == 1) {
-        console.log("商品初始属性", res);
-        this.getGoodsAttribute = res;
-        if (res.status == 1) {
-          if (res.goods_type == 'goods_spectacles') {
-            console.log("goods_type ☞'goods_spectacles'", res);
-            if (typeof res.spectacles_properties.list == 'object') {
-              let arr = new Array();
-              for (let item in res.spectacles_properties.list) {
-                arr.push(res.spectacles_properties.list[item]);
-              }
-              res.spectacles_properties.list = arr;
+        if (res.goods_type == 'goods_spectacles') {
+          console.log("goods_type ☞'goods_spectacles'", res);
+          if (typeof res.spectacles_properties.list == 'object') {
+            let arr = new Array();
+            for (let item in res.spectacles_properties.list) {
+              arr.push(res.spectacles_properties.list[item]);
             }
-            this.openAttrModal(res, 'goods_spectacles');
+            res.spectacles_properties.list = arr;
           }
-          if (res.goods_type == 'goods') {
-            this.http.getAttrList({ goods_id: this.goodsId }).then((res) => {
-              console.log("goods_type ☞'goods'", res);
-              this.openAttrModal(res, 'goods');
-            })
-          }
+          this.openAttrModal(res, 'goods_spectacles');
+        }
+        if (res.goods_type == 'goods') {
+          // console.log("goods_type ☞'goods'", res);
+          this.openAttrModal(res, 'goods');
         }
       }
     })
@@ -176,10 +169,17 @@ export class ParticularsPage {
    * @param type 商品类型（镜片、镜架）
    */
   openAttrModal(res, type) {
-    let modal = this.modalCtrl.create('ParticularsModalAttrPage', { data: res, type: type, headData: this.getGoodsInfo.data, id: this.goodsId });
+    let modal = this.modalCtrl.create('ParticularsModalAttrPage', {
+      data: res,
+      type: type,
+      headData: this.getGoodsInfo.data,
+      id: this.goodsId
+    });
     modal.onDidDismiss(data => {
       if (data) {
-        console.log(data);
+        if(data=='goCart'){
+          this.navCtrl.push(data);
+        }
       }
     });
     modal.present();

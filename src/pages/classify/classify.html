@@ -94,7 +94,7 @@
                     <div tappable [ads-click]="item.link_type" *ngFor="let item of fore4"><img img-lazy-load="{{item.ad_img}}" alt=""></div>
                 </div>
             </div>
-            <div class="fore-yinxing fore " padding *ngFor="let item of brandList?.data">
+            <div class="fore-yinxing fore" *ngFor="let item of brandList?.data">
                 <div class="title">
                     <span class="txt">{{item.cat_name}}</span>
                     <span class="more" *ngIf="item.ads.length>9" tappable (click)="goToMoreBrand(item.ads)">更多&gt;</span>

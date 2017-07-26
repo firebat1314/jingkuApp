@@ -47,6 +47,7 @@ export class ParticularsModalPage {
     }
   }
   setArea(ids) {
+    console.log(ids)
     this.httpService.setArea({
       goods_id: this.GoodsInfo.goods_id,
       gaid: ids.gaid ? ids.gaid : '',

@@ -101,20 +101,20 @@
         <div>
             <span>购物金额小计：</span><span class="price">¥{{data?.total?.formated_goods_price}}</span>
         </div>
-        <div>
-            <span>+配送费用：</span><span>{{data?.total?.suppliers_shipping_fee_formated}}</span>
+        <div *ngIf="data?.total?.suppliers_shipping_fee_formated.slice(1)!=0">
+            <span>配送费用：</span><span>{{data?.total?.suppliers_shipping_fee_formated}}</span>
         </div>
-        <div>
-            <span>+商品补贴：</span><span>¥{{data?.total?.formated_subsidy_price}}</span>
+        <div *ngIf="data?.total?.formated_subsidy_price!=0">
+            <span>商品补贴：</span><span>¥{{data?.total?.formated_subsidy_price}}</span>
         </div>
-        <div>
-            <span>+运费补贴：</span><span>{{data?.total?.formated_shipping_subsidy}}</span>
+        <div *ngIf="data?.total?.formated_shipping_subsidy.slice(1)!=0">
+            <span>运费补贴：</span><span>{{data?.total?.formated_shipping_subsidy}}</span>
         </div>
-        <div>
-            <span>+优惠券：</span><span>¥{{data?.total?.bonus_formated}}</span>
+        <div *ngIf="data?.total?.bonus_formated!=0">
+            <span>优惠券：</span><span>¥{{data?.total?.bonus_formated}}</span>
         </div>
-        <div>
-            <span>+获赠积分：</span><span>{{data?.total?.will_get_integral}}</span>
+        <div *ngIf="data?.total?.will_get_integral!=0">
+            <span>消费积分：</span><span>{{data?.total?.will_get_integral}}</span>
         </div>
     </div>
     <div class="fore fore3" *ngIf="goodsType=='integral'">
@@ -122,7 +122,7 @@
             <span>购物积分：</span><span class="price">¥{{data?.total?.integral}}</span>
         </div>
         <div>
-            <span>+配送费用：</span><span>{{data?.total?.suppliers_shipping_fee_formated}}</span>
+            <span>配送费用：</span><span>{{data?.total?.suppliers_shipping_fee_formated}}</span>
         </div>
     </div>
 </ion-content>

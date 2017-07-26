@@ -16,11 +16,27 @@ page-particulars-modal-attr {
         color: map-get($colors, danger);
     }
     .goods_main {
-        background: #fff;
         overflow: scroll;
         color: #808080;
         font-size: font-size-text('h4');
         margin-bottom: 10px;
+        display: flex;
+        flex-direction: column;
+        .main-attr-wrap {
+            margin-bottom: 10px;
+            background: #fff;
+            display: flex;
+            padding: 5px 0;
+            width: 100%;
+            overflow: scroll;
+            .main-attr {
+                border: #333 1px solid;
+                border-radius: 4px;
+                padding: 5px 10px;
+                margin: 6px;
+            }
+        }
+        /* —————————————————————————————————————————————————— */
         table {
             min-width: 100%;
             tr {
@@ -48,6 +64,46 @@ page-particulars-modal-attr {
                 }
             }
         }
+        /* —————————————————————————————————————————————————— */
+        .table {
+            flex: 1;
+            background: #fff;
+            .tr {
+                border-bottom: $border;
+                color: #808080;
+                padding: 10px 0;
+                .td-wrap {
+                    display: flex;
+                    align-items: center;
+                    .td {
+                        min-width: 74px;
+                        text-align: center;
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+                        flex: 1;
+                        &:first-child {
+                            min-width: 100px;
+                        }
+                        .td.count-input-box {
+                            padding-left: 10px;
+                            padding-right: 10px;
+                            count-input {
+                                margin: 0 auto;
+                            }
+                        }
+                    }
+                }
+                .other-attr {
+                    text-align: right;
+                    color: #b3b3b3;
+                    font-size: 1.2rem;
+                    padding-right: 20px;
+                    margin-top: 10px;
+                }
+            }
+        }
+        /* —————————————————————————————————————————————————— */
     }
     .goods_spectacles_main {
         .title {
