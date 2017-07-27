@@ -41,7 +41,11 @@ export class ApplyServicePage {
     console.log('ionViewDidLoad ApplyServicePage');
   }
   openCamra() {
-    console.log(this.params.return_img.length)
+    console.log(this.params.return_img.length);
+    if (this.params.return_img.length >= 5) {
+      this.native.showToast('最多选择5张照片', null,false);
+      return;
+    }
     this.native.getMultiplePicture({
       outputType: 1,
       maximumImagesCount: 5 - this.params.return_img.length
@@ -49,7 +53,7 @@ export class ApplyServicePage {
       console.log(data)
       if (data instanceof Array) {
         if (this.params.return_img.concat(data).length > 5) {
-          this.native.showToast('最多选择5张');
+          this.native.showToast('最多选择5张照片');
           this.params.return_img = this.params.return_img.concat(data).slice(0, 5);
         } else {
           this.params.return_img.concat(data);
