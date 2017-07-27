@@ -41,6 +41,7 @@ export class ApplyServicePage {
     console.log('ionViewDidLoad ApplyServicePage');
   }
   openCamra() {
+    console.log(this.params.return_img.length)
     this.native.getMultiplePicture({
       outputType: 1,
       maximumImagesCount: 5 - this.params.return_img.length
