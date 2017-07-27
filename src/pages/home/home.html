@@ -99,7 +99,7 @@
             </div>
             <ion-grid>
                 <ion-row wrap>
-                    <ion-col *ngFor="let item of categoryAddetatils" navPush="BrandListPage" [navParams]="{listId:item.ad_id}" width-33 col-4>
+                    <ion-col *ngFor="let item of categoryAddetatils" [ads-click]="item?.link_type" width-33 col-4>
                         <img img-lazy-load="{{item.ad_img}}">
                         <!--<span>隐形眼镜</span>-->
                     </ion-col>

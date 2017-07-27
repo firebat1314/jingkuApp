@@ -41,7 +41,6 @@ export class ApplyServicePage {
     console.log('ionViewDidLoad ApplyServicePage');
   }
   openCamra() {
-    console.log(this.params.return_img.length);
     if (this.params.return_img.length >= 5) {
       this.native.showToast('最多选择5张照片', null,false);
       return;

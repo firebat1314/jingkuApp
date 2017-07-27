@@ -48,7 +48,7 @@ export class HomePage {
     this.events.subscribe('home:updataArea', () => { this.updataArea() })
   }
   ngAfterViewInit() {
-    this.fabButton.setElementClass('fab-button-out',true);
+    this.fabButton.setElementClass('fab-button-out', true);
     this.content.ionScroll.subscribe((d) => {
       this.fabButton.setElementClass("fab-button-in", d.scrollTop >= d.contentHeight);
     });
@@ -63,15 +63,15 @@ export class HomePage {
     this.events.unsubscribe('home:updataArea');
   }
   getBanner() {
-    this.httpService.getHomebanner({ int_pos_id: 53 }).then((res) => {
+    this.httpService.getHomebanner({ int_pos_id: 53, size: 10,is_app:1 }).then((res) => {
       if (res.status == 1) { this.bannerImgs = res.data; }
     })
   }
   /* ionViewWillEnter(){
     console.log(111)
   } */
-  ngOnInit(){
-    this.getHomeData().then((res)=>{
+  ngOnInit() {
+    this.getHomeData().then((res) => {
       console.log('首页加载完成')
     })
   }
@@ -95,7 +95,7 @@ export class HomePage {
     return new Promise((resolve, reject) => {
       this.updataArea();
       this.httpService.indexs().then((res) => {
-          this.native.hideLoading();
+        this.native.hideLoading();
         if (res.status == 1) {
           resolve();
           this.hotBrand_img = res.data.ads_rmpp['0'];
@@ -160,6 +160,8 @@ export class HomePage {
   }
   /*下拉刷新*/
   doRefresh(refresher) {
+    this.getBanner();
+    
     this.getHomeData(() => {
       setTimeout(() => {
         refresher.complete();
