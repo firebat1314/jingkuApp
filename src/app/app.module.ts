@@ -3,9 +3,9 @@ import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
 import { HttpModule } from '@angular/http';
 import { BrowserModule } from "@angular/platform-browser";
 import { IonicStorageModule } from '@ionic/storage';
-/*————————————————————————————————base页————————————————————————————————*/
+/*———————————————————————————————— base页 ————————————————————————————————*/
 import { MyApp } from './app.component';
-/*————————————————————————————————服务————————————————————————————————*/
+/*———————————————————————————————— 服务 ————————————————————————————————*/
 import { UserData } from "../providers/user-data";
 import { Native } from "../providers/native";
 import { HttpService } from "../providers/http-service";
@@ -20,7 +20,8 @@ import { SplashScreen } from "@ionic-native/splash-screen";
 import { StatusBar } from "@ionic-native/status-bar";
 import { BarcodeScanner } from "@ionic-native/barcode-scanner";
 import { AndroidFullScreen } from "@ionic-native/android-full-screen";
-/*————————————————————————————————插件————————————————————————————————*/
+import { Badge } from '@ionic-native/badge';
+/*———————————————————————————————— 插件 ————————————————————————————————*/
 import { MeunItemComponentModule } from "../components/meun-item/meun-item.module";
 import { CityPickerModule } from "ionic2-city-picker/dist/city-picker.module";
 import { IonicImageViewerModule } from "ionic-img-viewer/dist/ionic-img-viewer";
@@ -66,7 +67,8 @@ import { IonicImageViewerModule } from "ionic-img-viewer/dist/ionic-img-viewer";
     StatusBar,
     SplashScreen,
     BarcodeScanner,
-    AndroidFullScreen
+    AndroidFullScreen,
+    Badge,
   ]
 })
 export class AppModule { }

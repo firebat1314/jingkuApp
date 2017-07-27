@@ -34,8 +34,10 @@ export class RepairReturnPage {
     public native: Native,
   ) { }
   ngAfterViewInit() {
+    /* 回到顶部按钮 */
+    this.fabButton.setElementClass('fab-button-out',true);
     this.content.ionScroll.subscribe((d) => {
-      this.fabButton.setElementClass("fab-button-out", d.directionY == "down");
+      this.fabButton.setElementClass("fab-button-in", d.scrollTop >= d.contentHeight);
     });
   }
   ionViewDidLoad() {

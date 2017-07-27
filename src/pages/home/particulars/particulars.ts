@@ -117,6 +117,9 @@ export class ParticularsPage {
       }, 500);
     });
   }
+  doInfinite($event){
+    
+  }
   presentModal(str) {
     let modal = this.modalCtrl.create('ParticularsModalPage', {
       name: str,

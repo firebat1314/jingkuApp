@@ -10,6 +10,7 @@ import { BarcodeScanner } from '@ionic-native/barcode-scanner';
 // import { File } from '@ionic-native/file';
 declare var LocationPlugin;
 declare var AMapNavigation;
+declare var cordova;
 
 @Injectable()
 export class Native {
@@ -85,7 +86,7 @@ export class Native {
 			content: content,
 			showBackdrop: true,
 			cssClass: 'loading-style',
-			spinner:'dots'
+			spinner: 'dots'
 		});
 		this.loading.present();
 		setTimeout(() => {//最长显示20秒
@@ -196,17 +197,18 @@ export class Native {
 	 * @return {Promise<T>}
 	 */
 	getMultiplePicture = (options = {}) => {
-		let that = this;
-		let destinationType = options['outputType'] || 0;//0:base64字符串,1:图片url
+		// let that = this;
+		// let destinationType = options['outputType'] || 0;//0:base64字符串,1:图片url
 		return new Promise((resolve, reject) => {
 			this.imagePicker.getPictures(Object.assign({
 				maximumImagesCount: 5,
 				// width: 800,//缩放图像的宽度（像素）
 				// height: 800,//缩放图像的高度（像素）
 				// quality: 90,//图像质量，范围为0 - 100
-				//outputType: 0,// defaults to 0 (FILE_URI)
+				outputType: 1,// defaults to 0 (FILE_URI)
 			}, options)).then(files => {
-				if (destinationType === 1) {
+					resolve(files);
+				/* if (destinationType === 1) {
 					resolve(files);
 				} else {
 					let imgBase64s = [];//base64字符串数组
@@ -218,7 +220,7 @@ export class Native {
 							}
 						}, null);
 					}
-				}
+				} */
 			}).catch(err => {
 				reject(err);
 				this.showToast('获取照片失败');
@@ -354,7 +356,7 @@ export class Native {
 	 * @name 微信支付
 	 */
 	openBarcodeScanner() {
-		return new Promise((resolve, reject) => {
+		/* return new Promise((resolve, reject) => {
 			this.barcodeScanner.scan().then((barcodeData) => {
 				// Success! Barcode data is here
 				resolve(barcodeData);
@@ -362,6 +364,23 @@ export class Native {
 				// An error occurred
 				reject()
 			});
+		}) */
+		return new Promise((resolve, reject) => {
+			cordova.plugins.barcodeScanner.scan(
+				(result) => {
+					console.log("We got a barcode\n" +
+						"Result: " + result.text + "\n" +
+						"Format: " + result.format + "\n" +
+						"Cancelled: " + result.cancelled);
+					resolve(result);
+				},
+				(error) => {
+					console.log("Scanning failed: " + error);
+					reject(error);
+				}
+			);
 		})
 	}
+
+
 }

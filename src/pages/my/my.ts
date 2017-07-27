@@ -36,11 +36,11 @@ export class MyPage {
     public events: Events,
     public native: Native
   ) {
-    this.httpService.getStorage('username').then((username) => {
+    /* this.httpService.getStorage('username').then((username) => {
       this.httpService.getStorage(username).then((userInfo) => {
         this.userInfo = userInfo;
       })
-    })
+    }) */
   }
   ionViewDidLoad() {
     console.log('ionViewDidLoad MyPages');
@@ -48,7 +48,6 @@ export class MyPage {
       this.httpResult();
     })
   }
-
   ngOnInit() {
     this.httpResult()
   }
@@ -64,8 +63,8 @@ export class MyPage {
           this.native.hideLoading();
           if (res.status == 1) {
             this.userInfo = res;
-            this.httpService.setStorage(res.data.username, res);
-            this.httpService.setStorage('phonenumber', res.data.user_info.mobile_phone);
+            // this.httpService.setStorage(res.data.username, res);
+            // this.httpService.setStorage('phonenumber', res.data.user_info.mobile_phone);
           }
           if (finish) { finish(); }
         })

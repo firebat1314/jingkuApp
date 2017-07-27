@@ -45,6 +45,7 @@ export class ApplyServicePage {
       outputType: 1,
       maximumImagesCount: 5 - this.params.return_img.length
     }).then((data) => {
+      console.log(data)
       if (data instanceof Array) {
         if (this.params.return_img.concat(data).length > 5) {
           this.native.showToast('最多选择5张');
