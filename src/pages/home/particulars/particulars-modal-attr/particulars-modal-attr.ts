@@ -65,7 +65,7 @@ export class ParticularsModalAttrPage {
 					this.mainAttrs = this.data.data[i];
 					console.log(this.mainAttrs)
 					this.checkMainAttrId = this.data.data[i].values[0].id;
-					this.checkMainAttrNum = this.data.data[i].values[0].number;
+					this.checkMainAttrNum = this.data.data[i].values[0].number||1;
 				}
 			}
 			this.getAttrList();
