@@ -30,15 +30,15 @@
                 <div class="text">提交审核</div>
             </div>
             <div class="status-line">
-                <div class="complete" *ngIf="data?.repair_info?.return_status==2">审核中<span></span></div>
+                <div class="complete" *ngIf="data?.repair_info?.return_status==123">审核中<span></span></div>
             </div>
             <div class="status-item">
-                <div class="complete" *ngIf="data?.repair_info?.return_status==3">已完成<span></span></div>
+                <div class="complete" *ngIf="data?.repair_info?.return_status==8">已完成<span></span></div>
                 <ion-icon name="ios-checkmark-circle"></ion-icon>
                 <div class="text">第三方卖家审核</div>
             </div>
             <div class="status-line">
-                <div class="complete" *ngIf="data?.repair_info?.return_status==4">待收货<span></span></div>
+                <div class="complete" *ngIf="data?.repair_info?.return_status==123">待收货<span></span></div>
             </div>
             <div class="status-item">
                 <div class="complete" *ngIf="data?.repair_info?.return_status==1">已完成<span></span></div>
@@ -48,10 +48,11 @@
             <div class="status-line">
                 <div class="complete" *ngIf="data?.repair_info?.return_status==6">待退款<span></span></div>
             </div>
+            <!-- ————————————————————————————————————————————————————————— -->
             <div class="status-item">
                 <div class="complete" *ngIf="data?.repair_info?.return_status==7">已完成<span></span></div>
                 <ion-icon name="ios-checkmark-circle"></ion-icon>
-                <div class="text">退款</div>
+                <div class="text"></div>
             </div>
             <div class="status-line">
                 <div class="complete" *ngIf="data?.repair_info?.return_status==8">处理中<span></span></div>

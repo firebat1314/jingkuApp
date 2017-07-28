@@ -27,20 +27,30 @@ export class DredgeMoreCityPage {
     public navParams: NavParams,
     public popover: PopoverController,
     public httpService: HttpService,
-    public native:Native
-  ) {
-    this.getHttpData();
-  }
+    public native: Native
+  ) {}
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad DredgeMoreCityPage');
   }
+  ionViewCanEnter() {
+    return this.getHttpData().then((res) => {
+      return true;
+    },(res)=>{
+      this.native.showToast('没有未开通城市',null,false)
+      return false;
+    });
+  }
   getHttpData() {
-    this.httpService.regionApply().then((res) => {
-      if (res.status == 1) {
-        this.reginArr = res;
-      }
+    return new Promise((resolve, reject) => {
+      this.httpService.regionApply().then((res) => {
+        if(res.no_user_citys.length==0){reject();}else{resolve();}
+        if (res.status == 1) {
+          this.reginArr = res;
+        }
+      })
     })
+
   }
   selectCity(item) {
     let arr = this.formData.region_ids

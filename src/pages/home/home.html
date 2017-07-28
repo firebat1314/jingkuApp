@@ -115,7 +115,7 @@
         </div>
         <div class="main">
             <div *ngFor="let item of getBrands">
-                <img img-lazy-load="{{item.brand_logo}}" tappable (click)="goBrandListPage(item.brand_id)">
+                <img img-lazy-load="{{item.ad_img}}" tappable [ads-click]="item?.link_type">
             </div>
             <div>
                 <img img-lazy-load="./assets/icon/homepage_53.png" alt="" tappable (click)="goClassPage('brand')">
@@ -136,7 +136,7 @@
                     <div class="slide-title-unit" tappable (click)="goParticularsPage(slide.id)">
                         <img border-f0 img-lazy-load="{{slide?.goods_img}}">
                         <div class="info">
-                            <!--<div class="name">{{slide?.name}}</div>-->
+                            <div class="name">{{slide?.name}}</div>
                             <div class="price">{{slide?.shop_price}}</div>
                         </div>
                     </div>
@@ -161,7 +161,7 @@
                         <div class="slide-title-unit">
                             <img border-f0 img-lazy-load="{{slide?.goods_img}}">
                             <div class="info">
-                                <!--<div class="name">{{slide?.name}}</div>-->
+                                <div class="name">{{slide?.name}}</div>
                                 <div class="price">{{slide?.shop_price}}</div>
                             </div>
                         </div>
@@ -191,7 +191,7 @@
                                 <img border-f0 img-lazy-load="{{slide?.goods_img}}">
                             </div>
                             <div class="info">
-                                <!--<div class="name">{{slide?.name}}</div>-->
+                                <div class="name">{{slide?.name}}</div>
                                 <div class="price">{{slide?.shop_price}}</div>
                             </div>
                         </div>

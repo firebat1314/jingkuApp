@@ -37,40 +37,38 @@ page-orders-detail {
             background: #fff;
             .item {
                 border-bottom: 1px solid #e0e0e0;
+                padding-left: 5px;
+                ion-thumbnail {
+                    margin-right: 10px;
+                }
                 &:last-child {
                     border: none;
                 }
-                .my-content {
-                    display: flex;
-                    color: #4d4d4d;
-                    justify-content: space-between;
-                    .left {
-                        color: #999;
-                        font-size: 1.2rem;
-                        h2 {
-                            color: #4d4d4d;
-                            white-space: pre-wrap;
-                            font-size: 1.6rem;
-                            text-overflow: -o-ellipsis-lastline;
-                            overflow: hidden;
-                            text-overflow: ellipsis;
-                            display: -webkit-box;
-                            -webkit-line-clamp: 2;
-                            -webkit-box-orient: vertical;
-                            margin-bottom: 10px;
-                        }
-                    }
-                    .right {
-                        color: #000;
-                        text-align: right;
-                        min-width: 80px;
-                        .count {
-                            margin-top: 10px;
+                ion-label {
+                    white-space: normal;
+                    .my-content {
+                        display: flex;
+                        color: #4d4d4d;
+                        justify-content: space-between;
+                        .left {
                             color: #999;
+                            font-size: 1.2rem;
+                            h2 {
+                                @include ellipsis_2;
+                            }
                         }
-                        .button {
-                            background: #e6e6e6;
-                            color: #333;
+                        .right {
+                            color: #000;
+                            text-align: right;
+                            margin-left: 14px;
+                            .count {
+                                margin-top: 10px;
+                                color: #999;
+                            }
+                            .button {
+                                background: #e6e6e6;
+                                color: #333;
+                            }
                         }
                     }
                 }
@@ -132,7 +130,7 @@ page-orders-detail {
             border-top: 1px solid #e0e0e0;
             .price {
                 color: #e60000;
-                font-size: 1.6rem;
+                font-size: 1.46rem;
                 margin-left: 10px;
                 font-weight: 500;
             }

@@ -1,5 +1,5 @@
 import { Component, ViewChild } from '@angular/core';
-import { NavController, Events, Slides, Content, FabButton, PopoverController, IonicPage } from 'ionic-angular';
+import { NavController, Events, Slides, Content, FabButton, PopoverController, IonicPage, AlertController } from 'ionic-angular';
 // import { FormBuilder } from '@angular/forms';
 
 import { UserData } from "../../providers/user-data";
@@ -42,7 +42,8 @@ export class HomePage {
     // private formBuilder: FormBuilder,
     private native: Native,
     // private storage: Storage,
-    public popoverCtrl: PopoverController
+    public popoverCtrl: PopoverController,
+    public alertCtrl: AlertController
   ) {
     //地址更新
     this.events.subscribe('home:updataArea', () => { this.updataArea() })
@@ -55,24 +56,26 @@ export class HomePage {
   }
   ionViewDidLoad() {
     console.log('ionViewDidLoad HomePage');
-    this.getBanner();
     this.updataArea();
     this.updateCarCount();
   }
   ngOnDestroy() {
     this.events.unsubscribe('home:updataArea');
   }
-  getBanner() {
-    this.httpService.getHomebanner({ int_pos_id: 53, size: 10,is_app:1 }).then((res) => {
-      if (res.status == 1) { this.bannerImgs = res.data; }
-    })
-  }
+  /*   getBanner() {
+      this.httpService.getHomebanner({ int_pos_id: 53, size: 10,is_app:1 }).then((res) => {
+        if (res.status == 1) { this.bannerImgs = res.data; }
+      })
+    } */
   /* ionViewWillEnter(){
     console.log(111)
   } */
   ngOnInit() {
     this.getHomeData().then((res) => {
       console.log('首页加载完成')
+    }).catch((res) => {
+      this.native.showToast('数据异常');
+      return true;
     })
   }
   /* ionViewCanEnter() {
@@ -98,16 +101,25 @@ export class HomePage {
         this.native.hideLoading();
         if (res.status == 1) {
           resolve();
+          //轮播 
+          this.bannerImgs = res.data.ads_banner;
+          //热门品类 大图
           this.hotBrand_img = res.data.ads_rmpp['0'];
+          //热门品类 小图
           this.categoryAddetatils = res.data.ads_emdp;
+          //热门品牌 
+          this.getBrands = res.data.ads_brand;
+          //精选专题 大图1
           this.jingxuan_img1 = res.data.ads_jxzt['0'];
-          this.getBrands = res.data.get_brands;
-          this.jingxuan_img2 = res.data.ads_jxzttwo['0'];
           this.getCategoryRecommendGoodsHot = res.data.hot_recommend_goods;
-          this.jingxuan_img3 = res.data.ads_jxztThree['0'];
+          //精选专题 大图2
+          this.jingxuan_img2 = res.data.ads_jxzttwo['0'];
           this.getCategoryRecommendGoods = res.data.new_recommend_goods;
-          this.jingxuan_img4 = res.data.ads_hdtj;
+          //精选专题 大图3
+          this.jingxuan_img3 = res.data.ads_jxztThree['0'];
           this.getCategoryRecommendGoodsBest = res.data.best_recommend_goods;
+          //好店推荐
+          this.jingxuan_img4 = res.data.ads_hdtj;
           if (finish) { finish(); }
         } else {
           reject(res.info);
@@ -160,8 +172,6 @@ export class HomePage {
   }
   /*下拉刷新*/
   doRefresh(refresher) {
-    this.getBanner();
-    
     this.getHomeData(() => {
       setTimeout(() => {
         refresher.complete();
@@ -204,7 +214,21 @@ export class HomePage {
     this.events.publish('classify:selectSegment', value)
   }
   goCityPage() {
-    this.navCtrl.push('CityPage', { areaList: this.areaList })
+    if (this.areaList.length == 0) {
+      this.alertCtrl.create({
+        cssClass: 'alert-style',
+        title: '提示',
+        message: '您还未开通城市',
+        buttons: [{
+          text: '去开通',
+          handler: () => {this.navCtrl.push('DredgeMoreCityPage');}
+        }, {
+          text: '取消'
+        }],
+      }).present();
+    } else {
+      this.navCtrl.push('CityPage', { areaList: this.areaList })
+    }
   }
   goParticularsPage(id) {
     this.navCtrl.push('ParticularsPage', { goodsId: id })

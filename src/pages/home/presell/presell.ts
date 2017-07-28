@@ -21,10 +21,6 @@ export class PresellPage {
   ) {}
   ionViewDidLoad() {
     console.log('ionViewDidLoad PresellPage');
-    this.httpService.getCategorys().then((res) => {
-      if (res.status == 1) { this.getCategorys = res.data; }
-    })
-    this.getPresell();
   }
   ngAfterViewInit() {
     /* 回到顶部按钮 */
@@ -32,6 +28,12 @@ export class PresellPage {
     this.content.ionScroll.subscribe((d) => {
       this.fabButton.setElementClass("fab-button-in", d.scrollTop >= d.contentHeight);
     });
+  }
+  ngOnInit(){
+    this.httpService.getCategorys().then((res) => {
+      if (res.status == 1) { this.getCategorys = res.data; }
+    })
+    this.getPresell();
   }
   getList(index) {
     this.checkedIndex = index;

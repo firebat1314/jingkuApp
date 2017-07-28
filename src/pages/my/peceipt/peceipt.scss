@@ -37,7 +37,7 @@ page-peceipt {
                 justify-content: flex-end;
                 padding: 4px;
                 .button {
-                    padding: 0 2em;
+                    padding: 0 1.8rem;
                 }
             }
         }
@@ -111,6 +111,7 @@ page-peceipt {
             padding: 18px 0 18px 30px;
             font-size: 1.6rem;
             border-bottom: map-get($colors, border) 1px solid;
+            display: flex;
             &:last-child {
                 border: none;
             }
@@ -119,6 +120,7 @@ page-peceipt {
                 width: 12rem;
             }
             .value {
+                @include ellipsis_1;
                 color: #999;
                 font-size: 1.4rem;
             }

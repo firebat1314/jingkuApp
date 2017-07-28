@@ -13,7 +13,9 @@
                 <ion-item tappable (click)="onEvent(group.cat_id,$event)" padding-left>
                     <h2>{{group.cat_name}}</h2>
                     <p> </p>
-                    <ion-icon tappable (click)="$event.stopPropagation();group.show=!group.show" *ngIf="group?.cat_list" color="colorsix" [ngClass]="{'rotate': group.show }" name="ios-arrow-down" item-right></ion-icon>
+                    <button ion-button clear iocn-only item-right (click)="$event.stopPropagation();group.show=!group.show">
+                        <ion-icon tappable  *ngIf="group?.cat_list" color="colorsix" [ngClass]="{'rotate': group.show }" name="ios-arrow-down" ></ion-icon>
+                    </button>
                 </ion-item>
             </div>
             <div class="item-accordion" [ngStyle]="{'height':group.show?group?.cat_list?.length*50+'px':0}" [hidden]="!group.show ">

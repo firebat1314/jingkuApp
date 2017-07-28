@@ -29,7 +29,6 @@ export class FastbuyPage {
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad FastbuyPage');
-    this.getData(this.selected);
   }
   ngAfterViewInit() {
     /* 回到顶部按钮 */
@@ -37,6 +36,9 @@ export class FastbuyPage {
     this.content.ionScroll.subscribe((d) => {
       this.fabButton.setElementClass("fab-button-in", d.scrollTop >= d.contentHeight);
     });
+  }
+  ngOnInit(){
+    this.getData(this.selected);
   }
   getData(id) {
     /* 	var lileng = $('.top_menu li').length;

@@ -171,13 +171,13 @@ page-home {
                             overflow: hidden;
                             text-overflow: ellipsis;
                             white-space: nowrap;
-                            font-size: 1.4rem;
+                            font-size: 1.2rem;
                             color: #666;
                         }
                         .price {
                             color: map_get($colors, danger);
-                            font-size: 1.5rem;
-                            margin-top: 10px;
+                            font-size: 1.3rem;
+                            // margin-top: 10px;
                         }
                     }
                     .watch-more {

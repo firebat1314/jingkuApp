@@ -116,8 +116,8 @@
                     </div>
                 </div>
             </div> -->
-            <single-foods-card [data]="data?.hot_list" *ngIf="!listStyleflag"></single-foods-card>
-            <single-foods-item [data]="data?.hot_list" *ngIf="listStyleflag"></single-foods-item>
+            <single-foods-card [data]="data?.hot_list" *ngIf="!listStyleflag" [toTop]="false"></single-foods-card>
+            <single-foods-item [data]="data?.hot_list" *ngIf="listStyleflag" [toTop]="false"></single-foods-item>
         </div>
         <div class="allGoods-main" *ngSwitchCase="'allGoods'">
             <ion-toolbar class="segment-style">
@@ -175,9 +175,9 @@
                     </div>
                 </div> -->
                 <no-goods *ngIf="alldata&&!alldata?.goods?.length"></no-goods>
-                <single-foods-card [data]="alldata?.goods" *ngIf="!listStyleflag"></single-foods-card>
+                <single-foods-card [data]="alldata?.goods" *ngIf="!listStyleflag" [toTop]="false"></single-foods-card>
 
-                <single-foods-item [data]="alldata?.goods" *ngIf="listStyleflag"></single-foods-item>
+                <single-foods-item [data]="alldata?.goods" *ngIf="listStyleflag" [toTop]="false"></single-foods-item>
                 <!--<div class="allGoods-box">
                     <div class="allGoods-items">
                         <div class="allGoods-items-img">
@@ -224,9 +224,9 @@
                 </div> -->
                 <div class="allGoods-box">
                     <no-goods *ngIf="cxdata&&!cxdata?.goods_list?.length"></no-goods>
-                    <single-foods-card [data]="cxdata?.goods_list" *ngIf="!listStyleflag"></single-foods-card>
+                    <single-foods-card [data]="cxdata?.goods_list" *ngIf="!listStyleflag" [toTop]="false"></single-foods-card>
 
-                    <single-foods-item [data]="cxdata?.goods_list" *ngIf="listStyleflag"></single-foods-item>
+                    <single-foods-item [data]="cxdata?.goods_list" *ngIf="listStyleflag" [toTop]="false"></single-foods-item>
                     <ion-infinite-scroll *ngIf="cxdata" (ionInfinite)="doInfinite($event)">
                         <ion-infinite-scroll-content loadingSpinner="bubbles" loadingText="加载更多..."></ion-infinite-scroll-content>
                     </ion-infinite-scroll>
@@ -253,7 +253,7 @@
                 </div> -->
                 <no-goods *ngIf="newdata&&!newdata?.goods?.length"></no-goods>
 
-                <single-foods-card [data]="newdata?.goods" *ngIf="!listStyleflag"></single-foods-card>
+                <single-foods-card [data]="newdata?.goods" *ngIf="!listStyleflag" [toTop]="false"></single-foods-card>
 
                 <single-foods-item [data]="newdata?.goods" *ngIf="listStyleflag" [toTop]="false"></single-foods-item>
 

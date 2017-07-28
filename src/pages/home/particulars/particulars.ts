@@ -40,6 +40,9 @@ export class ParticularsPage {
 
   //存储swiper对象
   mySwiper: any = null;
+
+  //第一次进入页面
+  firstViewInit:boolean = false;
   constructor(
     public navCtrl: NavController,
     public navParams: NavParams,
@@ -67,8 +70,12 @@ export class ParticularsPage {
       this.badgeCount = res;
     })
   }
-  ionViewCanEnter() {
+   ionViewCanEnter() {
+    if(this.firstViewInit){
+      return true;
+    }
     return this.getHttpDetails().then((res) => {
+      this.firstViewInit = true;
       return true;
     }, (res) => {
       this.native.showToast(res);
@@ -77,7 +84,10 @@ export class ParticularsPage {
       this.native.showToast('未知参数错误');
       return false;
     });
-  }
+  } 
+/*   ngOnInit(){
+    this.getHttpDetails();
+  } */
   ngOnDestroy() {
     this.events.unsubscribe('particulars:goCarPage');
   }
@@ -180,7 +190,7 @@ export class ParticularsPage {
     });
     modal.onDidDismiss(data => {
       if (data) {
-        if(data=='goCart'){
+        if(data=='CarPage'){
           this.navCtrl.push(data);
         }
       }

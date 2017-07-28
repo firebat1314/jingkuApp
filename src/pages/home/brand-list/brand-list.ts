@@ -89,7 +89,7 @@ export class BrandListPage {
 			if (res.status == 1) {
 				this.data = res;
 				if (res.goods.length == 0) {
-					this.native.showToast('抱歉！没有查询到商品', null, false);
+					this.native.showToast('抱歉！没有查询到相关商品', null, false);
 				}
 				this.events.publish('user:listFilter', res);
 			}

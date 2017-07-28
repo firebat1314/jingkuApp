@@ -92,10 +92,14 @@ ion-thumbnail {
 }
 
 
-/*————————————————————————————————————输入框————————————————————————————————————*/
+/*———————————————————————————————————— input item 输入框 ————————————————————————————————————*/
 
 .item.item-label-fixed.item-input {
     min-height: 62px;
+    ion-label[fixed] {
+        flex-basis: 68px;
+        min-width: 68px;
+    }
 }
 
 
