@@ -24,6 +24,7 @@ export class SingleCardComponent {
   }
   @Input() data: any;
   @Input() events: any;
+  @Input() toTop: any = true;
 
   animateClass: any;
   animateItems = [];
@@ -33,7 +34,9 @@ export class SingleCardComponent {
     this.clearBtn()
   }
   ngOnChanges() {
-    this.animateItems = [];
+    if(this.toTop){
+      this.animateItems = [];
+    }
     if (this.data) {
       for (let i = 0; i < this.data.length; i++) {
         setTimeout( () => {
