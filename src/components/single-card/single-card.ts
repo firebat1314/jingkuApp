@@ -34,17 +34,8 @@ export class SingleCardComponent {
     this.clearBtn()
   }
   ngOnChanges() {
-    if(this.toTop){
-      this.animateItems = [];
-    }
-    if (this.data) {
-      for (let i = 0; i < this.data.length; i++) {
-        setTimeout( () => {
-          this.data[i].showBtn = false;
-          this.animateItems.push(this.data[i]);
-        }, 50 * i);
-      }
-    }
+  this.animateItems = this.data;
+ 
   }
   clearBtn() {
     for (let i = 0; i < this.animateItems.length; i++) {

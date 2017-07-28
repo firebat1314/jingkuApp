@@ -111,7 +111,7 @@ export class HomePage {
           this.getBrands = res.data.ads_brand;
           //精选专题 大图1
           this.jingxuan_img1 = res.data.ads_jxzt['0'];
-          this.getCategoryRecommendGoodsHot = res.data.hot_recommend_goods;
+          this.getCategoryRecommendGoodsHot = res.data.index_hot_goods;
           //精选专题 大图2
           this.jingxuan_img2 = res.data.ads_jxzttwo['0'];
           this.getCategoryRecommendGoods = res.data.new_recommend_goods;

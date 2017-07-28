@@ -40,6 +40,12 @@ export class OrderModalShippingPage {
     })
   }
   dismiss(data?: any) {
+    if(data.is_show == 0){
+      this.native.openAlertBox('不在可配送城市,是否切换城市？',()=>{
+        this.navCtrl.push('CityPage');
+      })
+      return;
+    }
     this.httpService.changeConsignee({ address_id: data.address_id }).then((res) => {
       console.log(res);
       if (res.status == 1) {

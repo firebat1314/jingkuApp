@@ -93,7 +93,9 @@ page-particulars-home {
         &.segment-md .segment-button {
             opacity: 1;
             line-height: 2.3rem;
-            height: 4.6rem;
+            padding-top: 4px;
+            padding-bottom: 4px;
+            height: inherit;
             &.segment-activated {
                 border-color: get-color('danger');
                 color: get-color('danger');
@@ -311,7 +313,7 @@ page-particulars-home {
                 width: 24%;
                 color: #4d4d4d;
                 background: transparent;
-                height: 3.5rem;
+                height: 4.1rem;
                 float: left;
                 text-overflow: ellipsis;
                 overflow: hidden;

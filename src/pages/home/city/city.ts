@@ -27,6 +27,9 @@ export class CityPage {
   ionViewDidLoad() {
     console.log('ionViewDidLoad CityPage');
   }
+  ngOnInit(){
+    this.getData();
+  }
   switcher(region) {
     if (!region) {
       return false;
@@ -36,7 +39,14 @@ export class CityPage {
         this.events.publish('home:updataArea');
         this.events.publish('car:updata');
         this.native.showToast('切换至' + region.region_name);
-        this.navCtrl.pop();
+        this.navCtrl.popToRoot();
+      }
+    })
+  }
+  getData() {
+    this.httpService.indexs().then((res) => {
+      if (res.status == 1) {
+        this.data = res.data.getAreaList
       }
     })
   }

@@ -32,7 +32,7 @@ export class BrandListPage {
 		supplier_id: null
 	}
 	@ViewChild(Content) content: Content;
-	@ViewChild('scrollToTop') fabButton: FabButton;
+	@ViewChild('scrollToTop1') fabButton: FabButton;
 	constructor(
 		public navCtrl: NavController,
 		public navParams: NavParams,

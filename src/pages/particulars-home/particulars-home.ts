@@ -54,7 +54,8 @@ export class ParticularsHomePage {
     private httpService: HttpService,
     public popoverCtrl: PopoverController
 
-  ) {
+  ) { }
+  ngOnInit() {
     this.getHomeData();
     this.getShopData();
 
@@ -69,7 +70,7 @@ export class ParticularsHomePage {
       this.paramsData.stort = 'DESC';
       this.getAllData();
     });
-    this.events.subscribe('particulars-home-details:update-collect',()=>{
+    this.events.subscribe('particulars-home-details:update-collect', () => {
       this.getShopData();
     })
     this.httpService.categoryGoods(Object.assign(this.paramsData, { suppliers_id: this.suppliers_id })).then((res) => {
@@ -80,7 +81,6 @@ export class ParticularsHomePage {
       }
     })
   }
-
   ionViewDidLoad() {
     console.log('ionViewDidLoad ParticularsHomePage');
   }
@@ -89,7 +89,7 @@ export class ParticularsHomePage {
       this.classShop = this.defaultSelect;
     }
   }
-  ionViewDidLeave(){
+  ionViewDidLeave() {
     this.events.unsubscribe('user:filterParams');//防止多次订阅事件
     this.events.unsubscribe('particulars-home-details:update-collect');//防止多次订阅事件
   }
@@ -199,7 +199,7 @@ export class ParticularsHomePage {
     if (this.classShop == "allGoods") {
       var page = this.alldata.page;
       if (page < this.alldata.pages) {
-        this.httpService.categoryGoods(Object.assign(this.paramsData, { page: ++this.alldata.page, new: 1, suppliers_id: this.suppliers_id })).then((res) => {
+        this.httpService.categoryGoods(Object.assign(this.paramsData, { page: ++this.alldata.page,  suppliers_id: this.suppliers_id })).then((res) => {
           if (res.status == 1) {
             console.log(res);
             this.alldata.page = res.page;
@@ -339,6 +339,7 @@ export class ParticularsHomePage {
   sales_NumStatus = true;
   shop_PriceStatus = true;
   alltoolChange() {
+    this.paramsData.page = 1; 
     if (this.alltool == 'all') {
       this.paramsData.order = '';
       this.sales_NumStatus = true;

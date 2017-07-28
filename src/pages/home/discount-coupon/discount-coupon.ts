@@ -28,6 +28,8 @@ export class DiscountCouponPage {
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad DiscountCouponPage');
+  }
+  ngOnInit(){
     this.getCouponData();
   }
   ngAfterViewInit() {

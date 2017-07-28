@@ -42,7 +42,7 @@ export class ParticularsPage {
   mySwiper: any = null;
 
   //第一次进入页面
-  firstViewInit:boolean = false;
+  firstViewInit: boolean = false;
   constructor(
     public navCtrl: NavController,
     public navParams: NavParams,
@@ -56,7 +56,7 @@ export class ParticularsPage {
   }
   ngAfterViewInit() {
     /* 回到顶部按钮 */
-    this.fabButton.setElementClass('fab-button-out',true);
+    this.fabButton.setElementClass('fab-button-out', true);
     this.content.ionScroll.subscribe((d) => {
       this.fabButton.setElementClass("fab-button-in", d.scrollTop >= d.contentHeight);
     });
@@ -70,24 +70,24 @@ export class ParticularsPage {
       this.badgeCount = res;
     })
   }
-   ionViewCanEnter() {
-    if(this.firstViewInit){
-      return true;
-    }
-    return this.getHttpDetails().then((res) => {
-      this.firstViewInit = true;
-      return true;
-    }, (res) => {
-      this.native.showToast(res);
-      return false;
-    }).catch((res) => {
-      this.native.showToast('未知参数错误');
-      return false;
-    });
-  } 
-/*   ngOnInit(){
+  /*   ionViewCanEnter() {
+     if(this.firstViewInit){
+       return true;
+     }
+     return this.getHttpDetails().then((res) => {
+       this.firstViewInit = true;
+       return true;
+     }, (res) => {
+       this.native.showToast(res);
+       return false;
+     }).catch((res) => {
+       this.native.showToast('未知参数错误');
+       return false;
+     });
+   }  */
+  ngOnInit() {
     this.getHttpDetails();
-  } */
+  }
   ngOnDestroy() {
     this.events.unsubscribe('particulars:goCarPage');
   }
@@ -127,8 +127,8 @@ export class ParticularsPage {
       }, 500);
     });
   }
-  doInfinite($event){
-    
+  doInfinite($event) {
+
   }
   presentModal(str) {
     let modal = this.modalCtrl.create('ParticularsModalPage', {
@@ -190,7 +190,7 @@ export class ParticularsPage {
     });
     modal.onDidDismiss(data => {
       if (data) {
-        if(data=='CarPage'){
+        if (data == 'CarPage') {
           this.navCtrl.push(data);
         }
       }

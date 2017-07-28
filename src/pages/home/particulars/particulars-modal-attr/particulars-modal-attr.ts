@@ -4,7 +4,7 @@ import { HttpService } from "../../../../providers/http-service";
 import { Native } from "../../../../providers/native";
 
 export class goodsSpectaclesParams {
-	number = 1;//所填写的商品的数量
+	number = 0;//所填写的商品的数量
 	spc = [];//商品选择的属性
 	qiujing = '';//所选的球镜
 	zhujing = '';//所选的柱镜
@@ -220,7 +220,11 @@ export class ParticularsModalAttrPage {
 				this.native.showToast('球镜与柱镜不能为空', null, false)
 				return;
 			}
-			this.getGoodsParamsArrs()
+			this.getGoodsParamsArrs();
+			if(this.memberArr.length==1&&this.memberArr[0]==0){
+				this.native.showToast('请选择商品数量', null, false)
+				return;
+			}
 			this.httpService.addToCartSpecJp({
 				goods_id: this.goodsId,
 				goods: {

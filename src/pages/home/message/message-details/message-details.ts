@@ -23,11 +23,13 @@ export class MessageDetailsPage {
     private httpService: HttpService
 
   ) {
-    this.getData();
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad MessageDetailsPage');
+  }
+  ngOnInit(){
+    this.getData();
   }
   getData() {
     if (this.type == 1) {

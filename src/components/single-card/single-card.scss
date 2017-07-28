@@ -43,6 +43,7 @@ single-foods-card {
             }
             .info {
                 padding: 8px 10px;
+                font-size: 1.2rem;
                 .text {
                     color: #808080;
                     white-space: nowrap;
@@ -52,7 +53,7 @@ single-foods-card {
                 }
                 .price {
                     color: #e60000;
-                    font-weight: 700;
+                    font-weight: 600;
                 }
             }
         }
