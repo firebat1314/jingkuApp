@@ -74,7 +74,7 @@ export class HomePage {
     this.getHomeData().then((res) => {
       console.log('首页加载完成')
     }).catch((res) => {
-      this.native.showToast('数据异常');
+      this.native.showToast('数据参数错误');
       return true;
     })
   }

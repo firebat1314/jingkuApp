@@ -43,7 +43,7 @@ export class CountInputComponent {
       this.element.nativeElement.getElementsByTagName('input')[0].value = this.newmaxValue;
       return;
     }
-    
+    console.log(this.value,this.value+1)
     this.valueChange.emit(this.value += Number(this.rank));
   }
   reduce() {
