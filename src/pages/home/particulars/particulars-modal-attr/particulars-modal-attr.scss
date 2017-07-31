@@ -65,41 +65,44 @@ page-particulars-modal-attr {
             }
         }
         /* —————————————————————————————————————————————————— */
-        .table {
-            flex: 1;
-            background: #fff;
-            .tr {
-                border-bottom: $border;
-                color: #808080;
-                padding: 10px 0;
-                .td-wrap {
-                    display: flex;
-                    align-items: center;
-                    .td {
-                        min-width: 74px;
-                        text-align: center;
+        .tabelbox {
+            display: flex;
+            .table {
+                flex: 1;
+                background: #fff;
+                .tr {
+                    border-bottom: $border;
+                    color: #808080;
+                    padding: 10px 0;
+                    .td-wrap {
                         display: flex;
-                        justify-content: center;
                         align-items: center;
-                        flex: 1;
-                        &:first-child {
-                            min-width: 100px;
-                        }
-                        .td.count-input-box {
-                            padding-left: 10px;
-                            padding-right: 10px;
-                            count-input {
-                                margin: 0 auto;
+                        .td {
+                            min-width: 74px;
+                            text-align: center;
+                            display: flex;
+                            justify-content: center;
+                            align-items: center;
+                            flex: 1;
+                            &:first-child {
+                                min-width: 100px;
+                            }
+                            .td.count-input-box {
+                                padding-left: 10px;
+                                padding-right: 10px;
+                                count-input {
+                                    margin: 0 auto;
+                                }
                             }
                         }
                     }
-                }
-                .other-attr {
-                    text-align: right;
-                    color: #b3b3b3;
-                    font-size: 1.2rem;
-                    padding-right: 20px;
-                    margin-top: 10px;
+                    .other-attr {
+                        text-align: right;
+                        color: #b3b3b3;
+                        font-size: 1.2rem;
+                        padding-right: 20px;
+                        margin-top: 10px;
+                    }
                 }
             }
         }
