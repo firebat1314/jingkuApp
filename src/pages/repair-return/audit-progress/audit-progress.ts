@@ -7,7 +7,9 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
  * See http://ionicframework.com/docs/components/#navigation for more info
  * on Ionic pages and navigation.
  */
-@IonicPage()
+@IonicPage({
+  segment:'audit-progress/:return_number/:add_time'
+})
 @Component({
   selector: 'page-audit-progress',
   templateUrl: 'audit-progress.html',

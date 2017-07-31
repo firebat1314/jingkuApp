@@ -9,12 +9,13 @@
 
     <div class="erweima-code-erea">
         <div class="code-tit">
-            <span>北京镜库科技</span>
+            <span>{{name}}</span>
         </div>
         <div class="code-box">
-            <img img-lazy-load="./assets/images/images/jingkoo.png" alt="">
+            <img *ngIf="data.type=='qrcode'" imageViewer img-lazy-load="{{qrcode}}" alt="">
+            <img *ngIf="data.type=='company_yyzz'" imageViewer img-lazy-load="{{data.company_yyzz}}" alt="">
         </div>
-        <p>邀请好友来扫一扫分享店铺给TA</p>
+        <p *ngIf="data.type=='qrcode'">邀请好友来扫一扫分享店铺给TA</p>
     </div>
 
 </ion-content>

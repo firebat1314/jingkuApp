@@ -24,15 +24,20 @@ export class GlassesDesignPage {
     public navParams: NavParams,
     public events: Events,
     public httpService: HttpService
-  ) {}
+  ) { }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad GlassesDesignPage');
   }
-  ngOnInit(){
+  ngOnInit() {
     this.getData();
   }
   getData() {
+    this.httpService.categoryGoods({ cat_id: 421 }).then((res) => {
+      if (res.status == 1) {
+        this.list = res;
+      }
+    })
     this.httpService.getHomebanner({ int_pos_id: 37 }).then((res) => {
       if (res.status == 1) {
         this.banner = res;
@@ -45,11 +50,6 @@ export class GlassesDesignPage {
           if (res.status == 1) {
             this.img = res;
           }
-          this.httpService.categoryGoods({ cat_id: 421 }).then((res) => {
-            if (res.status == 1) {
-              this.list = res;
-            }
-          })
         })
       })
     })

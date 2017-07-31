@@ -24,6 +24,7 @@ export class SingleCardComponent {
   }
   @Input() data: any;
   @Input() events: any;
+  @Input() toTop: any = true;
 
   animateClass: any;
   animateItems = [];
@@ -33,15 +34,8 @@ export class SingleCardComponent {
     this.clearBtn()
   }
   ngOnChanges() {
-    this.animateItems = [];
-    if (this.data) {
-      for (let i = 0; i < this.data.length; i++) {
-        setTimeout( () => {
-          this.data[i].showBtn = false;
-          this.animateItems.push(this.data[i]);
-        }, 50 * i);
-      }
-    }
+  this.animateItems = this.data;
+ 
   }
   clearBtn() {
     for (let i = 0; i < this.animateItems.length; i++) {
@@ -55,9 +49,8 @@ export class SingleCardComponent {
   onCollect(item,e) {
     if (e) { e.stopPropagation(); }
     this.httpService.getGoodsCollect({ goods_id: item.id }).then((res) => {
-      console.log(res)
       if (res.status == 1) {
-        this.native.showToast('关注成功~')
+        this.native.showToast('关注成功')
         item.is_collect = 1;
       }
     })

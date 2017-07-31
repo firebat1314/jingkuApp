@@ -6,7 +6,7 @@
 -->
 
 
-<ion-header no-border>
+<ion-header no-border style="padding-top: 0 !important;">
     <ion-toolbar color="modalHeadTool">
         <ion-buttons end>
             <button ion-button (click)="dismiss()"><ion-icon name="md-close" ></ion-icon></button>
@@ -39,7 +39,7 @@
             </div>
         </button>
     </div>
-    <div class="onemore" *ngIf="title=='赠送'">
+    <div class="onemore" *ngIf="title=='促销'">
         <ion-list>
             <button ion-item text-wrap *ngFor="let item of promotion">
                 <span class="title" item-left>{{item.promotion_name}}</span>
@@ -50,31 +50,25 @@
     <div *ngIf="title=='商品服务保障'">
         <ion-list *ngIf="GoodsInfo?.additional?.is_true||GoodsInfo?.additional?.is_hdfk||GoodsInfo?.additional?.is_inv">
             <ion-item *ngIf="GoodsInfo?.additional?.is_true">
-                <ion-avatar item-left>
-                    <img src="./assets/icon/images/particulars_05_03.png">
-                </ion-avatar>
+                <img width="25" item-left src="./assets/icon/images/particulars_05_03.png">
                 <h2>交易担保</h2>
             </ion-item>
             <ion-item *ngIf="GoodsInfo?.additional?.is_hdfk">
-                <ion-avatar item-left>
-                    <img src="./assets/icon/images/particulars_05_04.png">
-                </ion-avatar>
+                <img width="25" item-left src="./assets/icon/images/particulars_05_04.png">
                 <h2>货到付款</h2>
             </ion-item>
             <ion-item *ngIf="GoodsInfo?.additional?.is_inv">
-                <ion-avatar item-left>
-                    <img src="./assets/icon/images/particulars_2_16.png">
-                </ion-avatar>
+                <img width="25" item-left src="./assets/icon/images/particulars_2_16.png">
                 <h2>可退换货</h2>
             </ion-item>
         </ion-list>
     </div>
     <div class="sendto" *ngIf="title=='配送地址'">
-        <ion-list radio-group [(ngModel)]="ids" (ionChange)="setArea(ids)">
+        <ion-list radio-group>
             <ion-item mode="ios" *ngFor="let item of sendto">
                 <ion-label>{{item.region_name}}</ion-label>
                 <ion-icon color="danger" name="ios-pin-outline" item-left></ion-icon>
-                <ion-radio mode="ios" [checked]="item.selected==1" color="danger" [value]="item"></ion-radio>
+                <ion-radio mode="ios" [checked]="item.selected==1" (click)="!item.selected?setArea(item):return" color="danger" [value]="item"></ion-radio>
             </ion-item>
         </ion-list>
     </div>

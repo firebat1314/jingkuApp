@@ -23,11 +23,13 @@ export class MessageDetailsPage {
     private httpService: HttpService
 
   ) {
-    this.getData();
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad MessageDetailsPage');
+  }
+  ngOnInit(){
+    this.getData();
   }
   getData() {
     if (this.type == 1) {
@@ -70,5 +72,8 @@ export class MessageDetailsPage {
         infiniteScroll.complete();
       }, 500);
     })
+  }
+  goOrdersDetailPage(order_id) {
+    this.navCtrl.push('OrdersDetailPage', { order_id: order_id })
   }
 }

@@ -50,7 +50,7 @@ export class HttpService {
     this.storage.remove(key)
   }
 
-  clear(callBack){
+  clear(callBack) {
     this.storage.clear().then(callBack);
   }
 
@@ -111,7 +111,10 @@ export class HttpService {
     return this.http.get(this.ip + '/Goods/get_supplier_info', data)
   }
   getGoodsCollect(data?: Object) {//商品关注
-    return this.http.get(this.ip + '/Goods/get_goods_collect', data)
+    return this.http.post(this.ip + '/Goods/get_goods_collect', data)
+  }
+  CollectShop(data?: Object) {//店铺关注
+    return this.http.post(this.ip + '/Goods/CollectShop', data)
   }
   collectDel(data?: Object) {//取消商品关注
     return this.http.get(this.ip + '/Goods/collect_del', data)
@@ -424,5 +427,8 @@ export class HttpService {
   }
   repairInfo(data?: Object) {//7）服务单详情
     return this.http.post(this.ip + '/User/repair_info', data)
+  }
+  CatrgorySupplierInfo(data?: Object) {//7）服务单详情
+    return this.http.post(this.ip + '/Category/get_supplier_info', data)
   }
 }

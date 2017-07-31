@@ -36,7 +36,6 @@ export class SearchPage {
     this.getHotSearch();
   }
   searchbar(e) {
-    console.log(this.myHomeSearch)
     if (e) {
       if (e.keyCode == 13) {
         this.navCtrl.push('BrandListPage', { keyword: this.myHomeSearch })

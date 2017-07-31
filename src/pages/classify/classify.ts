@@ -1,5 +1,5 @@
 import { Component, ViewChild } from '@angular/core';
-import { NavController, NavParams, Content, Searchbar, Nav, Events, IonicPage } from 'ionic-angular';
+import { NavController, NavParams, Content, Searchbar, Nav, Events, IonicPage, FabButton } from 'ionic-angular';
 
 import { HttpService } from "../../providers/http-service";
 import { Native } from "../../providers/native";
@@ -39,6 +39,7 @@ export class ClassifyPage {
   @ViewChild('mySearchBar') mySearchBar: Searchbar;
   @ViewChild('myNav') myNav: Nav;
   @ViewChild(Content) content: Content;
+  @ViewChild(FabButton) fabButton: FabButton;
 
   constructor(
     public navCtrl: NavController,
@@ -56,10 +57,14 @@ export class ClassifyPage {
     console.log('ionViewDidLoad ClassifyPage');
   }
   ngAfterViewInit() {
+    /* 回到顶部按钮 */
+    this.fabButton.setElementClass('fab-button-out', true);
+    this.content.ionScroll.subscribe((d) => {
+      this.fabButton.setElementClass("fab-button-in", d.scrollTop >= d.contentHeight);
+    });
+    /* 返回按钮解决办法 */
     this.timer = setInterval(() => {
-      if (!this.myNav) {
-        this.showBackBtn = false;
-      } else if (!this.myNav.canGoBack()) {
+      if (!this.myNav || !this.myNav.canGoBack()) {
         this.showBackBtn = false;
       } else {
         this.showBackBtn = true;

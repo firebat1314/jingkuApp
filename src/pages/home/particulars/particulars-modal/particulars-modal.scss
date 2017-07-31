@@ -1,4 +1,8 @@
 page-particulars-modal {
+    .header .toolbar {
+        min-height: 53px;
+        padding-top: 4px !important;
+    }
     .privilege {
         .main {
             display: flex;

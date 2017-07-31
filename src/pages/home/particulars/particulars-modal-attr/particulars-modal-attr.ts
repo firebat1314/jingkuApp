@@ -4,7 +4,7 @@ import { HttpService } from "../../../../providers/http-service";
 import { Native } from "../../../../providers/native";
 
 export class goodsSpectaclesParams {
-	number = 1;//所填写的商品的数量
+	number = 0;//所填写的商品的数量
 	spc = [];//商品选择的属性
 	qiujing = '';//所选的球镜
 	zhujing = '';//所选的柱镜
@@ -18,10 +18,10 @@ export class goodsSpectaclesParams {
 
 })
 export class ParticularsModalAttrPage {
-	goodsId: any;
-	data: any;
-	headData: any;
-	type: any;
+	goodsId: any = this.navParams.get('id');
+	data: any = this.navParams.get('data');
+	headData: any = this.navParams.get('headData');
+	type: any = this.navParams.get('type');//goods_spectacles||goods
 
 	numberChangeData: any;
 	/*goods*/
@@ -35,8 +35,18 @@ export class ParticularsModalAttrPage {
 	zhouweiArr: Array<any> = [];
 
 	qiujing: string;
-	/*自定义镜片信息项目*/
+	/*自定义镜片信息(添加、删除)*/
 	goods: Array<any> = [(new goodsSpectaclesParams)];
+
+	/* 护理液主属性 */
+	mainAttrs: any;
+	/* 护理液主属性id */
+	checkMainAttrId: any;
+	/* 护理液主属性数量/瓶 */
+	checkMainAttrNum: any = 1;
+	/* 属性列表 */
+	attrsList: any;
+
 	constructor(
 		public navCtrl: NavController,
 		public navParams: NavParams,
@@ -44,15 +54,39 @@ export class ParticularsModalAttrPage {
 		public httpService: HttpService,
 		public native: Native,
 		private events: Events
-
-	) {
-		this.data = this.navParams.get('data');
-		this.type = this.navParams.get('type');
-		this.headData = this.navParams.get('headData');
-		this.goodsId = this.navParams.get('id');
-	}
+	) { }
 	ionViewDidLoad() {
 		console.log('ionViewDidLoad ParticularsModalJingjiaPage');
+	}
+	ngOnInit() {
+		if (this.type == 'goods') {
+			for (var i in this.data.data) {
+				if (this.data.data[i].is_main == 1) {
+					this.mainAttrs = this.data.data[i];
+					console.log(this.mainAttrs)
+					this.checkMainAttrId = this.data.data[i].values[0].id;
+					this.checkMainAttrNum = this.data.data[i].values[0].number||1;
+				}
+			}
+			this.getAttrList();
+		}
+	}
+	/* 获取普通商品属性 */
+	getAttrList() {
+		//默认选中商品主属性的属性值
+		this.httpService.getAttrList({ goods_id: this.goodsId, attr: this.checkMainAttrId }).then((res) => {
+			console.log(res)
+			this.attrsList = res;
+		})
+	}
+	checkMainAttr() {
+		this.clear();
+		this.getAttrList();
+	}
+	clear() {
+		this.attrId = [];
+		this.attrNumber = [];
+		this.numberChangeData = null;
 	}
 	/*关闭modal弹出*/
 	dismiss(data?: any) {
@@ -60,7 +94,6 @@ export class ParticularsModalAttrPage {
 	}
 	/*普通商品参数*/
 	numberIChange($event, item) {
-		console.log($event)
 		item.goods_attr_number = $event;
 		var index = this.attrId.indexOf(item.goods_attr_id)
 		if (index == -1) {
@@ -82,12 +115,12 @@ export class ParticularsModalAttrPage {
 				member: this.attrNumber
 			}
 		}).then((res) => {
-			console.log(res);
 			if (res.status == 1) {
 				this.numberChangeData = res;
 			}
 		})
 	}
+	/* 镜片数量改变 */
 	totalPrices = 0;
 	totalNumber = 0;
 	jingpianNumberChange($event, it) {
@@ -163,16 +196,18 @@ export class ParticularsModalAttrPage {
 	addToCart(goCart) {
 		/*普通商品添加到购物车*/
 		if (this.type == 'goods') {
+			/* if(this.attrNumber.length==1&&this.attrNumber[0]==0){
+				this.native.showToast('请至少选择一件商品',null,false)
+				return;
+			} */
 			this.httpService.addToCartSpec({
 				goods_id: this.goodsId,
 				goods: { member: this.attrNumber, spec: this.attrId }
 			}).then((res) => {
-				console.log(res)
 				if (res && res.status == 1) {
 					this.native.showToast('添加成功')
 					this.events.publish('car:updata');//更新购物车
-					this.viewCtrl.dismiss();
-					if (goCart) { goCart(); }
+					this.viewCtrl.dismiss(goCart);
 				}
 			}).catch((res) => {
 				console.log(res)
@@ -182,10 +217,14 @@ export class ParticularsModalAttrPage {
 		if (this.type == 'goods_spectacles') {
 			// this.viewCtrl.dismiss();
 			if (!this.goods[this.goods.length - 1].zhujing) {
-				this.native.showToast('球镜与柱镜不能为空')
+				this.native.showToast('球镜与柱镜不能为空', null, false)
 				return;
 			}
-			this.getGoodsParamsArrs()
+			this.getGoodsParamsArrs();
+			if(this.memberArr.length==1&&this.memberArr[0]==0){
+				this.native.showToast('请选择商品数量', null, false)
+				return;
+			}
 			this.httpService.addToCartSpecJp({
 				goods_id: this.goodsId,
 				goods: {
@@ -200,8 +239,7 @@ export class ParticularsModalAttrPage {
 				if (res && res.status == 1) {
 					this.native.showToast('添加成功')
 					this.events.publish('car:updata');//更新购物车
-					this.viewCtrl.dismiss();
-					if (goCart) { goCart() }
+					this.viewCtrl.dismiss(goCart);
 				}
 			}).catch((res) => {
 				console.log(res)
@@ -211,9 +249,7 @@ export class ParticularsModalAttrPage {
 		}
 	}
 	goCarPage() {
-		this.addToCart(() => {
-			this.events.publish('particulars:goCarPage');//跳转到购物车
-		})
+		this.addToCart('CarPage');
 	}
 
 }

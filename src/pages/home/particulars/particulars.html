@@ -21,7 +21,7 @@
         <swiper [data]="getGoodsInfo?.gallery"></swiper>
     </div>
     <div class="main-content">
-        <div class="price_time" *ngIf="getGoodsInfo?.data?.is_pre==1">
+        <div class="price_time" *ngIf="getGoodsInfo?.data?.is_pre==1 && getGoodsInfo?.data?.down_time>0">
             <div class="left">
                 <p><span class="number">{{getGoodsInfo?.data?.shop_price_formated}}</span>每人限购：{{getGoodsInfo?.data?.pre_number}}副</p>
                 <p>商品总量：{{getGoodsInfo?.data?.goods_number}}件</p>
@@ -58,7 +58,7 @@
                     <span class="number">{{getGoodsInfo?.data?.shop_price_formated}}</span>
                 </span>
                 <span class="old-price">{{getGoodsInfo?.data?.old_shop_price}}</span>&nbsp;
-                <span class="rush-icon" *ngIf="getGoodsInfo?.data?.is_pre==1">预售</span>
+                <span class="rush-icon" *ngIf="getGoodsInfo?.data?.is_pre==1 && getGoodsInfo?.data?.down_time>0">预售</span>
                 <span class="rush-icon" *ngIf="getGoodsInfo?.promotion?.type_name">{{getGoodsInfo?.promotion?.type_name}}</span>
             </div>
             <div class="bottom">
@@ -69,8 +69,8 @@
         <div class="fore price-info" *ngIf="getGoodsInfo?.price_section?.length!=0">
             <div class="main">
                 <div class="info-item" *ngFor="let item of getGoodsInfo?.price_section">
-                    <span *ngIf="item.max_num">{{item.number+'-'}}{{item.max_num}}盒</span>
-                    <span *ngIf="!item.max_num">大于{{item.number}}盒</span>
+                    <span *ngIf="item.max_num">{{item.number+'-'}}{{item.max_num}}</span>
+                    <span *ngIf="!item.max_num">大于{{item.number}}</span>
                     <span>{{item.format_price}}</span>
                 </div>
             </div>
@@ -79,20 +79,18 @@
             </div>
         </div>
         <div class="fore coupon">
-            <ion-list no-margin>
-                <button ion-item *ngIf="getGoodsInfo?.bonus?.length" [disabled]="!getGoodsInfo?.bonus?.length" class="button-coupon" (click)="presentModal('优惠券')">
-                    领券
-                    <span *ngFor="let item of getGoodsInfo?.bonus" class="coupon-show">{{"满"+item.min_goods_amount.slice(1)+'减'+item.int_type_money}}</span>
-                    <ion-note item-right>{{(!getGoodsInfo?.bonus?.length)?'无优惠券':'点击领取'}}</ion-note>
-                </button>
-                <button ion-item class="button-chuxiao" *ngIf="getGoodsInfo?.promotion?.length" [disabled]="!getGoodsInfo?.promotion?.length" (click)="presentModal('赠送')">
-                    促销
-                    <div>
-                        <p class="list-show" *ngFor="let item of getGoodsInfo?.promotion"><span class="title">{{item.promotion_name}}</span><span [innerHtml]="item.title"></span></p>
-                    </div>
-                    <ion-note *ngIf="!getGoodsInfo?.promotion?.length" item-right>无促销</ion-note>
-                </button>
-            </ion-list>
+            <button ion-item *ngIf="getGoodsInfo?.bonus?.length" [disabled]="!getGoodsInfo?.bonus?.length" class="button-coupon" (click)="presentModal('优惠券')">
+                领券
+                <span *ngFor="let item of getGoodsInfo?.bonus" class="coupon-show">{{"满"+item.min_goods_amount.slice(1)+'减'+item.int_type_money}}</span>
+                <ion-note item-right>{{(!getGoodsInfo?.bonus?.length)?'无优惠券':'点击领取'}}</ion-note>
+            </button>
+            <button ion-item no-lines class="button-chuxiao" *ngIf="getGoodsInfo?.promotion?.length" [disabled]="!getGoodsInfo?.promotion?.length" (click)="presentModal('促销')">
+                促销
+                <div>
+                    <p class="list-show" *ngFor="let item of getGoodsInfo?.promotion"><span class="title">{{item.promotion_name}}</span><span [innerHtml]="item.title"></span></p>
+                </div>
+                <ion-note *ngIf="!getGoodsInfo?.promotion?.length" item-right>无促销</ion-note>
+            </button>
         </div>
         <div class="fore">
             <div ion-item no-lines>
@@ -278,6 +276,10 @@
     <ion-fab right bottom tappable (click)="myContent.scrollToTop()">
         <button ion-fab color="dark" mini goBackTop></button>
     </ion-fab>
+
+    <!--     <ion-infinite-scroll (ionInfinite)="doInfinite($event)">
+        <ion-infinite-scroll-content loadingText="加载更多...">></ion-infinite-scroll-content>
+    </ion-infinite-scroll> -->
 </ion-content>
 <ion-footer>
     <div class="main">

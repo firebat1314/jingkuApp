@@ -16,10 +16,10 @@
 
 
 <ion-content>
-    <ion-list radio-group [(ngModel)]="region" (ionChange)="switcher(region)">
+    <ion-list radio-group>
         <ion-item mode="ios" *ngFor="let item of data">
             <ion-label>{{item.region_name}}</ion-label>
-            <ion-radio mode="ios" color="danger" [checked]="item.selected==1" [value]="item"></ion-radio>
+            <ion-radio mode="ios" color="danger" [checked]="item.selected==1" (click)="!item.selected?switcher(item):return" [value]="item"></ion-radio>
         </ion-item>
     </ion-list>
 </ion-content>

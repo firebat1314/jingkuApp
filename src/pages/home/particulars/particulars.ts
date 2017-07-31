@@ -5,7 +5,9 @@ import { HttpService } from "../../../providers/http-service";
 import { Native } from "../../../providers/native";
 
 declare var Swiper: any;
-@IonicPage()
+@IonicPage({
+  segment: 'page-particulars/:goodsId'
+})
 @Component({
   selector: 'page-particulars',
   templateUrl: 'particulars.html'
@@ -13,7 +15,7 @@ declare var Swiper: any;
 export class ParticularsPage {
   @ViewChild(Content) content: Content;
   @ViewChild(FabButton) fabButton: FabButton;
-  
+
   region_name: any;
   getCategoryRecommendGoodsHot: any;
   getLinkedGoods: any;
@@ -38,6 +40,9 @@ export class ParticularsPage {
 
   //存储swiper对象
   mySwiper: any = null;
+
+  //第一次进入页面
+  firstViewInit: boolean = false;
   constructor(
     public navCtrl: NavController,
     public navParams: NavParams,
@@ -50,41 +55,62 @@ export class ParticularsPage {
     console.log("商品ID:", this.goodsId);
   }
   ngAfterViewInit() {
+    /* 回到顶部按钮 */
+    this.fabButton.setElementClass('fab-button-out', true);
     this.content.ionScroll.subscribe((d) => {
-      this.fabButton.setElementClass("fab-button-out", d.directionY == "down");
+      this.fabButton.setElementClass("fab-button-in", d.scrollTop >= d.contentHeight);
     });
   }
   ionViewDidLoad() {
     console.log('ionViewDidLoad ParticularsPage');
-    this.getHttpDetails();
     this.http.getFlowGoods().then((res) => {//获取购物车数量
       this.badgeCount = res.total.real_goods_count;
     })
-    this.events.subscribe('particulars:goCarPage', () => {
-      this.navCtrl.push('CarPage');
-    });
     this.events.subscribe('car:goodsCount', (res) => {
       this.badgeCount = res;
     })
+  }
+  /*   ionViewCanEnter() {
+     if(this.firstViewInit){
+       return true;
+     }
+     return this.getHttpDetails().then((res) => {
+       this.firstViewInit = true;
+       return true;
+     }, (res) => {
+       this.native.showToast(res);
+       return false;
+     }).catch((res) => {
+       this.native.showToast('未知参数错误');
+       return false;
+     });
+   }  */
+  ngOnInit() {
+    this.getHttpDetails();
   }
   ngOnDestroy() {
     this.events.unsubscribe('particulars:goCarPage');
   }
   getHttpDetails(finished?) {
-    this.native.showLoading();
-    this.http.goodsInfos({ goods_id: this.goodsId }).then((res) => {
-      console.log("商品详情信息", res);
-      if (res.status == 1) {
-        this.getGoodsInfo = res;
-        this.getRegionName(res);
-      }
-      this.http.getCategoryRecommendGoodsHot({}).then((res) => {
-        console.log('为你推荐：', res)
-        if (res.status == 1) { this.getCategoryRecommendGoodsHot = res.data; }
+    return new Promise((resolve, reject) => {
+      this.native.showLoading();
+      this.http.goodsInfos({ goods_id: this.goodsId }).then((res) => {
+        // console.log("商品详情信息", res);
         this.native.hideLoading();
-        if (finished) { finished() }
+        if (res.status == 1) {
+          resolve(res.status);
+          this.getGoodsInfo = res;
+          this.getRegionName(res);
+        } else {
+          reject(res.info);
+        }
+        this.http.getCategoryRecommendGoodsHot({}).then((res) => {
+          // console.log('为你推荐：', res)
+          if (res.status == 1) { this.getCategoryRecommendGoodsHot = res.data; }
+          if (finished) { finished() }
+        })
       })
-    })
+    });
   }
   getRegionName(res) {
     for (var i = 0; i < res.sale_city.length; i++) {
@@ -100,6 +126,9 @@ export class ParticularsPage {
         refresher.complete();
       }, 500);
     });
+  }
+  doInfinite($event) {
+
   }
   presentModal(str) {
     let modal = this.modalCtrl.create('ParticularsModalPage', {
@@ -125,30 +154,24 @@ export class ParticularsPage {
    * 除商品属性 弹窗
    */
   presentModalAttr() {
-    this.native.showLoading();
     this.http.getGoodsAttribute({ goods_id: this.goodsId }).then((res) => {
-      this.native.hideLoading();
+      console.log("商品初始属性", res);
+      this.getGoodsAttribute = res;
       if (res.status == 1) {
-        console.log("商品初始属性", res);
-        this.getGoodsAttribute = res;
-        if (res.status == 1) {
-          if (res.goods_type == 'goods_spectacles') {
-            console.log("goods_type ☞'goods_spectacles'", res);
-            if (typeof res.spectacles_properties.list == 'object') {
-              let arr = new Array();
-              for (let item in res.spectacles_properties.list) {
-                arr.push(res.spectacles_properties.list[item]);
-              }
-              res.spectacles_properties.list = arr;
+        if (res.goods_type == 'goods_spectacles') {
+          console.log("goods_type ☞'goods_spectacles'", res);
+          if (typeof res.spectacles_properties.list == 'object') {
+            let arr = new Array();
+            for (let item in res.spectacles_properties.list) {
+              arr.push(res.spectacles_properties.list[item]);
             }
-            this.openAttrModal(res, 'goods_spectacles');
+            res.spectacles_properties.list = arr;
           }
-          if (res.goods_type == 'goods') {
-            this.http.getAttrList({ goods_id: this.goodsId }).then((res) => {
-              console.log("goods_type ☞'goods'", res);
-              this.openAttrModal(res, 'goods');
-            })
-          }
+          this.openAttrModal(res, 'goods_spectacles');
+        }
+        if (res.goods_type == 'goods') {
+          // console.log("goods_type ☞'goods'", res);
+          this.openAttrModal(res, 'goods');
         }
       }
     })
@@ -159,10 +182,17 @@ export class ParticularsPage {
    * @param type 商品类型（镜片、镜架）
    */
   openAttrModal(res, type) {
-    let modal = this.modalCtrl.create('ParticularsModalAttrPage', { data: res, type: type, headData: this.getGoodsInfo.data, id: this.goodsId });
+    let modal = this.modalCtrl.create('ParticularsModalAttrPage', {
+      data: res,
+      type: type,
+      headData: this.getGoodsInfo.data,
+      id: this.goodsId
+    });
     modal.onDidDismiss(data => {
       if (data) {
-        console.log(data);
+        if (data == 'CarPage') {
+          this.navCtrl.push(data);
+        }
       }
     });
     modal.present();
@@ -224,12 +254,12 @@ export class ParticularsPage {
     // this.navCtrl.push(AccountServicePage)
   }
   goParticularsHome() {
-    this.navCtrl.push('ParticularsHomePage', { supplierId: this.getGoodsInfo.supplier_info.id });
+    this.navCtrl.push('ParticularsHomePage', { suppliersId: this.getGoodsInfo.supplier_info.id });
   }
   goStore() {
-    this.navCtrl.push('BrandListPage', { supplierId: this.getGoodsInfo.supplier_info.id })
+    this.navCtrl.push('BrandListPage', { suppliersId: this.getGoodsInfo.supplier_info.id })
   }
   goCart() {
-    this.navCtrl.push('CarPage')
+    this.navCtrl.push('CarPage');
   }
 }

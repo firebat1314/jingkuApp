@@ -28,13 +28,14 @@ export class SwiperComponent {
           slidesPerView: "auto",
           centeredSlides: true,
           watchSlidesProgress: true,
-          onProgress: function (a) {
+          onProgress:  (a) => {
             var b, c, d, scale, es;
             for (b = 0; b < a.slides.length; b++) {
               c = a.slides[b];
               d = c.progress;
               scale = 1 - Math.min(Math.abs(.2 * d), 1);
               es = c.style;
+              // this.element.nativeElement.getElementsByClassName('myswiper-container')[0].style.height = es.offsetHeight+'px';
               es.opacity = 1 - Math.min(Math.abs(d / 2), 1);
               es.webkitTransform = es.MsTransform = es.msTransform = es.MozTransform = es.OTransform = es.transform = "translate3d(0px,0," + -Math.abs(150 * d) + "px)"
             }

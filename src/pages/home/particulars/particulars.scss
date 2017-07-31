@@ -129,8 +129,19 @@ page-particulars {
         }
     }
     .coupon {
+        .item:last-child {
+            .item-inner {
+                border-bottom: none;
+            }
+        }
         .label {
             display: flex;
+            &:after {
+                display: block;
+                position: absolute;
+                top: 0;
+                height: 100%;
+            }
         }
         .button-coupon {
             .coupon-show {

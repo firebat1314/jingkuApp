@@ -3,15 +3,11 @@ single-foods-item {
         margin-bottom: -1px;
     }
     ion-item.item {
-        border-bottom: 1px solid #dedede;
+        border-bottom: 1px solid #e0e0e0;
         position: relative;
-        ion-thumbnail[item-left] {
+        /* ion-thumbnail[item-left] {
             margin: 14px 16px 14px 0px;
-            img {
-                width: 100px;
-                height: 100px;
-            }
-        }
+        } */
         h2 {
             @include ellipsis_2;
         }

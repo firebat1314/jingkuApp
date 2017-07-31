@@ -36,33 +36,41 @@ export class MyPage {
     public events: Events,
     public native: Native
   ) {
-    this.httpService.getStorage('username').then((username) => {
+    /* this.httpService.getStorage('username').then((username) => {
       this.httpService.getStorage(username).then((userInfo) => {
         this.userInfo = userInfo;
       })
-    })
+    }) */
   }
   ionViewDidLoad() {
     console.log('ionViewDidLoad MyPages');
-    this.httpResult()
     this.events.subscribe('avatar:update', () => {
-      this.httpResult()
+      this.httpResult();
     })
   }
+  ngOnInit() {
+    this.httpResult()
+  }
   httpResult(finish?) {
-    this.httpService.userCount().then((res) => {
-      if (res.status == 1) {
-        this.usercount = res;
-      }
-      this.httpService.userInfo().then((res) => {
+    this.native.showLoading();
+    return new Promise((resolve, reject) => {
+      this.httpService.userCount().then((res) => {
         if (res.status == 1) {
-          this.userInfo = res;
-          this.httpService.setStorage(res.data.username, res);
-          this.httpService.setStorage('phonenumber', res.data.user_info.mobile_phone);
+          this.usercount = res;
         }
-        if (finish) { finish(); }
+        this.httpService.userInfo().then((res) => {
+          resolve();
+          this.native.hideLoading();
+          if (res.status == 1) {
+            this.userInfo = res;
+            // this.httpService.setStorage(res.data.username, res);
+            // this.httpService.setStorage('phonenumber', res.data.user_info.mobile_phone);
+          }
+          if (finish) { finish(); }
+        })
       })
     })
+
   }
   /*下拉刷新*/
   doRefresh(refresher) {
@@ -78,10 +86,15 @@ export class MyPage {
   goMessagePage() {
     this.navCtrl.push('MessagePage')
   }
-  /*goAccountProcessPage() {
-      this.native.showToast('敬请期待')
-      // this.navCtrl.push(AccountProcessPage)
-    }*/
+  goRepairReturnPage(){
+    console.log(1)
+    this.native.showToast('敬请期待',null,false);
+    // this.navCtrl.push('RepairReturnPage')
+  }
+  goAccountProcessPage() {
+    this.native.showToast('敬请期待',null,false);
+    // this.navCtrl.push('AccountProcessPage')
+  }
   goAccountServicePage() {
     this.native.openAlertBox('拨打客服电话：400-080-5118', () => {
       this.native.openCallNumber('400-080-5118', false);
@@ -89,5 +102,9 @@ export class MyPage {
   }
   goMySalesmanPage() {
     this.navCtrl.push('MySalesmanPage', { salesman: this.userInfo.data.ywy })
+  }
+  goAccountManagementPage(event) {
+    event.stopPropagation();
+    this.navCtrl.push('AccountManagementPage', { avatar: this.userInfo.data.avatar, username: this.userInfo.data.username });
   }
 }

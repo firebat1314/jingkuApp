@@ -5,6 +5,7 @@ import { CountdownComponentModule } from "../../../components/countdown/countdow
 import { ImgLazyLoadDirectiveModule } from "../../../directives/img-lazy-load/img-lazy-load.module";
 import { IonicImageViewerModule } from "ionic-img-viewer/dist/src/module";
 import { SwiperComponentModule } from "../../../components/swiper/swiper.module";
+import { CityPickerModule } from "ionic2-city-picker/dist/city-picker.module";
 
 @NgModule({
    declarations: [
@@ -15,7 +16,8 @@ import { SwiperComponentModule } from "../../../components/swiper/swiper.module"
       ImgLazyLoadDirectiveModule,
       CountdownComponentModule,
       IonicImageViewerModule,
-      SwiperComponentModule
+      SwiperComponentModule,
+      CityPickerModule,
    ]
 })
 

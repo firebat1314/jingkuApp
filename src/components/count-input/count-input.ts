@@ -12,41 +12,53 @@ import { Native } from "../../providers/native";
   templateUrl: 'count-input.html'
 })
 export class CountInputComponent {
+  newmaxValue: number;
 
   @Input() value: number = 0;
   @Input() defaultValue: number = 0;
-  @Input() maxValue: number;
   @Input() lock: boolean = false;
-  @Output() updateNumberI: EventEmitter<number> = new EventEmitter();
+  @Output() valueChange: EventEmitter<number> = new EventEmitter<number>();
+  @Input() maxValue: number;
+  @Input() rank: number = 1;
 
+
+  disabled: boolean = false;
   constructor(
     private native: Native,
     private element: ElementRef,
   ) {
     // console.log('Hello CountInput Component');
   }
+  ngOnInit() {
+    if (this.maxValue) this.newmaxValue = this.maxValue;
+    console.log(this.rank)
+    if (this.rank !== 1) this.disabled = true;
+  }
   increase() {
     if (this.lock) {
       return;
-    } else if (this.maxValue && this.value >= this.maxValue) {
-      this.native.showToast('最多选择' + this.maxValue + '件')
+    } else if (this.newmaxValue && (this.value >= this.newmaxValue)) {
+      console.log(this.newmaxValue)
+      this.native.showToast('最多选择' + this.newmaxValue + '件');
+      this.element.nativeElement.getElementsByTagName('input')[0].value = this.newmaxValue;
       return;
     }
-    this.updateNumberI.emit(++this.value);
+    console.log(this.value,this.value+1)
+    this.valueChange.emit(this.value += Number(this.rank));
   }
   reduce() {
     if (this.value <= this.defaultValue) {
       return;
     }
-    this.updateNumberI.emit(--this.value);
+    this.valueChange.emit(this.value -= Number(this.rank));
   }
   inputEvent(value) {
-    if (this.maxValue && (this.value >= this.maxValue)) {
-      this.native.showToast('最多选择' + this.maxValue + '件');
-      this.element.nativeElement.getElementsByTagName('input')[0] = this.maxValue;
-      this.value = this.maxValue;
+    if (this.newmaxValue && (this.value >= this.newmaxValue)) {
+      this.native.showToast('最多选择' + this.newmaxValue + '件');
+      this.element.nativeElement.getElementsByTagName('input')[0].value = this.newmaxValue;
+      this.value = this.newmaxValue;
     }
-    console.log(this.value, this.maxValue, this.value >= this.maxValue)
-    this.updateNumberI.emit(this.value);
+    this.valueChange.emit(this.value);
   }
+
 }

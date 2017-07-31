@@ -1,0 +1,150 @@
+// Font sizes
+$font-size-text:( 'h1': 2rem, 'h2': 1.8rem, 'h3': 1.6rem, 'h4': 1.4rem, 'h5': 1.2rem, 'h6': 1rem);
+@function font-size-text($key) {
+    @return map-get($font-size-text, $key);
+}
+
+@function get-color($key:'primary') {
+    @return map-get($colors, $key);
+}
+
+$border: 1px solid #e0e0e0;
+$border-img:1px solid #f0f0f0;
+@mixin mysearchbar {
+    .toolbar-background {
+        background-color: #f5f5f5;
+    }
+    .searchbar .searchbar-input {
+        background: #fff;
+    }
+}
+
+@mixin slidingList1 {
+    .list {
+        background: #fff;
+    }
+    .item-wrap {
+        display: flex;
+        align-items: center;
+        border-bottom: 1px solid #dedede;
+        ion-checkbox {
+            margin-right: 2px;
+        }
+        .item {
+            margin-bottom: 0;
+            .item-inner {
+                border-bottom: none;
+            }
+            h2 {
+                color: #666;
+                white-space: pre-wrap;
+                font-size: 1.4rem;
+                text-overflow: -o-ellipsis-lastline;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                display: -webkit-box;
+                -webkit-line-clamp: 2;
+                -webkit-box-orient: vertical;
+            }
+            .right-bottom {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                color: #e60000;
+                margin-top: 16px;
+                font-weight: 700;
+            }
+        }
+    }
+}
+
+@mixin ellipsis_1 {
+    color: #4d4d4d;
+    white-space: nowrap;
+    font-size: font-size-text('h4');
+    overflow: hidden;
+    text-overflow: ellipsis;
+    margin-bottom: 10px;
+}
+
+@mixin ellipsis_2 {
+    color: #4d4d4d;
+    font-size: font-size-text('h4');
+    margin-bottom: 7px;
+    white-space: pre-wrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+}
+
+
+/*————————————————————————————————————验证码图片CSS————————————————————————————————————*/
+
+@mixin certified-img {
+    .certified-img[item-right] {
+        display: flex;
+        align-items: center;
+        margin: 0;
+        border-left: 1px solid #e0e0e0;
+        height: 100%;
+        margin-left: 10px;
+        img {
+            margin-left: 5px;
+            min-width: 7rem;
+            max-height: 4rem;
+        }
+        ion-icon {
+            color: #999;
+            font-size: 1.5em;
+            margin: 0 10px;
+        }
+    }
+}
+
+
+/*————————————————————————————————————去头部阴影————————————————————————————————————*/
+
+@mixin deteleShadow {
+    .header::after {
+        background-image: none;
+    }
+    .scroll-content {
+        top: -1px;
+    }
+}
+
+
+/*———————————————————————————————————— 空白页面提示 ————————————————————————————————————*/
+
+@mixin reminderBlankPage {
+    width: 100%;
+    padding-top: 40px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    .img {
+        border: 1px solid #e0e0e0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 118px;
+        height: 118px;
+        border-radius: 50%;
+        margin-bottom: 10px;
+        img {
+            width: 50%;
+        }
+    }
+    .title {
+        color: get-color('gray3');
+        font-size: font-size-text('h3');
+        font-weight: 500;
+        margin-bottom: 10px;
+    }
+    .message {
+        font-size: font-size-text('h5');
+        color: #808080;
+    }
+}

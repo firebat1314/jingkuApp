@@ -1,5 +1,5 @@
 import { Component, ViewChild } from '@angular/core';
-import { NavController, NavParams, Events, Content, IonicPage } from 'ionic-angular';
+import { NavController, NavParams, Events, Content, IonicPage, FabButton } from 'ionic-angular';
 
 import { HttpService } from "../../../providers/http-service";
 
@@ -23,6 +23,7 @@ export class PeceiptPage {
   nowTime = new Date().getFullYear();
   // maxTime:any = '2017-3-17';
   @ViewChild(Content) content: Content
+  @ViewChild(FabButton) fabButton: FabButton
   constructor(
     public navCtrl: NavController,
     public navParams: NavParams,
@@ -35,6 +36,13 @@ export class PeceiptPage {
     })
   }
 
+  ngAfterViewInit() {
+    /* 回到顶部按钮 */
+    this.fabButton.setElementClass('fab-button-out',true);
+    this.content.ionScroll.subscribe((d) => {
+      this.fabButton.setElementClass("fab-button-in", d.scrollTop >= d.contentHeight);
+    });
+  }
   ionViewDidLoad() {
     console.log('ionViewDidLoad PeceiptPage');
   }
@@ -66,7 +74,7 @@ export class PeceiptPage {
 
   flag: boolean = true;
   doInfinite(infiniteScroll) {
-     if (this.receiptTool == 'receiptSskFor') {
+    if (this.receiptTool == 'receiptSskFor') {
       if (this.suoquList.page < this.suoquList.pages) {
         this.httpService.invoice({ page: ++this.suoquList.page }).then((res) => {
           if (res.status == 1) {
@@ -92,7 +100,7 @@ export class PeceiptPage {
       } else {
         this.flag = false;
       }
-    }else if (this.receiptTool == 'receiptInfo') {
+    } else if (this.receiptTool == 'receiptInfo') {
       if (this.invRoleList.page < this.invRoleList.pages) {
         this.httpService.invRole({ page: ++this.invRoleList.page }).then((res) => {
           if (res.status == 1) {

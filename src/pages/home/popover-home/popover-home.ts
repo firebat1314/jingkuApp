@@ -28,10 +28,10 @@ export class PopoverHomePage {
     this.viewCtrl.dismiss('MessagePage');
   }
   openScanner() {
-    this.native.openBarcodeScanner().then((res) => {
-      console.log('二维码',res);
-      this.native.openAlertBox(res['test'], () => {
-        console.log(res['format'])
+    this.native.openBarcodeScanner().then((result) => {
+      console.log(result)
+      this.native.openAlertBox(result['text'], () => {
+        console.log(result['format'])
       })
     }).catch(() => {
       console.log('openBarcodeScanner error')

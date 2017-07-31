@@ -7,7 +7,7 @@
 <ion-header>
     <ion-navbar>
         <ion-title>
-            <ion-searchbar [(ngModel)]="myHomeSearch" (ionInput)="onInput($event)" placeholder="搜索商品" animated="false" spellcheck="true" type="search" debounce="1000" mode="ios"></ion-searchbar>
+            <ion-searchbar [(ngModel)]="myHomeSearch" (ionInput)="onInput($event)" placeholder="搜索商品" animated="false" spellcheck="true" type="search" debounce="500" mode="ios" showCancelButton cancelButtonText="取消"></ion-searchbar>
         </ion-title>
         <ion-buttons end>
             <button ion-button clear icon-only icon-left (click)="listStyleflag=!listStyleflag">
@@ -66,14 +66,12 @@
         <ion-refresher-content refreshingSpinner="1" pullingIcon="0"></ion-refresher-content>
     </ion-refresher>
 
-
-    <div *ngIf="data?.goods?.length!=0" style=" background:#f7f7f7;">
-        <div style="padding:10px;" *ngIf="!listStyleflag">
-            <single-foods-card [data]="data?.goods"></single-foods-card>
-        </div>
-        <single-foods-item [data]="data?.goods" *ngIf="listStyleflag"></single-foods-item>
+    <div style="padding:4px;" *ngIf="!listStyleflag">
+        <single-foods-card [data]="data?.goods"></single-foods-card>
     </div>
+    <single-foods-item [data]="data?.goods" *ngIf="listStyleflag"></single-foods-item>
 
+    <no-goods *ngIf="data&&!data?.goods?.length"></no-goods>
     <ion-fab class="brand-list-car-btn" left bottom (click)="goCarPage()">
         <button ion-fab mini icon-only>
             <ion-icon name="ios-cart-outline" color="light"></ion-icon>
@@ -81,7 +79,7 @@
         <ion-badge color="danger">{{goodsCount||'0'}}</ion-badge>
     </ion-fab>
     <ion-fab right bottom (click)="scrollToTop()">
-        <button ion-fab color="dark" mini goBackTop></button>
+        <button ion-fab color="dark" #scrollToTop1 mini goBackTop></button>
     </ion-fab>
 
     <!--   <ion-infinite-scroll (ionInfinite)="doInfinite($event)" *ngIf="flag">

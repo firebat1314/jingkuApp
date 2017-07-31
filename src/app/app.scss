@@ -17,9 +17,8 @@
 }
 
 html {
-    // font-size: 57%;
+    // font-family: -apple-system, BlinkMacSystemFont, Helvetica Neue, Helvetica, Roboto, Arial, PingFang SC, Hiragino Sans GB, Microsoft Yahei, Microsoft Jhenghei, sans-serif !important;
     -webkit-overflow-scrolling: touch;
-    /*touch*/
 }
 
 .content {
@@ -27,10 +26,6 @@ html {
     .scroll-content {
         background: #f7f7f7;
     }
-}
-
-.scroll-content {
-    // background: #f7f7f7;
 }
 
 [goBackTop] {
@@ -42,7 +37,11 @@ html {
 }
 
 ion-thumbnail {
-    border: 1px solid #f0f0f0;
+    border: $border-img;
+}
+
+.item-ios {
+    color: #333;
 }
 
 .item-divider-ios {
@@ -62,14 +61,8 @@ ion-thumbnail {
     background: #f7f7f7;
 }
 
-.list>div:last-child .item {
-    .item-inner {
-        border: 0;
-    }
-}
-
 .card {
-    box-shadow: initial;
+    box-shadow: 0 1px 5px 0 rgba(0, 0, 0, 0.12);
 }
 
 .gobacktop {
@@ -81,6 +74,11 @@ ion-thumbnail {
         line-height: initial;
         font-size: 12px;
     }
+}
+
+.fore {
+    margin-bottom: 10px;
+    background: #fff;
 }
 
 
@@ -95,10 +93,14 @@ ion-thumbnail {
 }
 
 
-/*————————————————————————————————————输入框————————————————————————————————————*/
+/*———————————————————————————————————— input item 输入框 ————————————————————————————————————*/
 
 .item.item-label-fixed.item-input {
     min-height: 62px;
+    ion-label[fixed] {
+        flex-basis: 68px;
+        min-width: 68px;
+    }
 }
 
 
@@ -182,7 +184,12 @@ ion-refresher-content[state=ready] .refresher-pulling-icon {
 
 /*————————————————————————————————————loading CSS————————————————————————————————————*/
 
-.loading-style {}
+.loading-style {
+    .loading-wrapper {
+        background: none;
+        box-shadow: none;
+    }
+}
 
 
 /*————————————————————————————————————无数据显示页 CSS————————————————————————————————————*/
@@ -205,107 +212,6 @@ ion-refresher-content[state=ready] .refresher-pulling-icon {
 
 
 /*----------浏览记录+分类------------*/
-
-@mixin slidingList1 {
-    .list {
-        background: #fff;
-    }
-    .item-wrap {
-        display: flex;
-        align-items: center;
-        border-bottom: 1px solid #dedede;
-        ion-checkbox {
-            margin-right: 2px;
-        }
-        .item {
-            margin-bottom: 0;
-            .item-inner {
-                border-bottom: none;
-            }
-            h2 {
-                color: #666;
-                white-space: pre-wrap;
-                font-size: 1.4rem;
-                text-overflow: -o-ellipsis-lastline;
-                overflow: hidden;
-                text-overflow: ellipsis;
-                display: -webkit-box;
-                -webkit-line-clamp: 2;
-                -webkit-box-orient: vertical;
-            }
-            .right-bottom {
-                display: flex;
-                justify-content: space-between;
-                align-items: center;
-                color: #e60000;
-                margin-top: 16px;
-                font-weight: 700;
-            }
-        }
-    }
-}
-
-
-/*ion-item.item {
-    padding-left: 0;
-}*/
-
-@mixin ellipsis_1 {
-    color: #4d4d4d;
-    white-space: nowrap;
-    font-size: 1.6rem;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    margin-bottom: 10px;
-}
-
-@mixin ellipsis_2 {
-    color: #4d4d4d;
-    font-size: 1.6rem;
-    margin-bottom: 7px;
-    white-space: pre-wrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    display: -webkit-box;
-    -webkit-box-orient: vertical;
-    -webkit-line-clamp: 2;
-}
-
-
-/*————————————————————————————————————验证码图片CSS————————————————————————————————————*/
-
-@mixin certified-img {
-    .certified-img[item-right] {
-        display: flex;
-        align-items: center;
-        margin: 0;
-        border-left: 1px solid #e0e0e0;
-        height: 100%;
-        margin-left: 10px;
-        img {
-            margin-left: 5px;
-            min-width: 7rem;
-            max-height: 4rem;
-        }
-        ion-icon {
-            color: #999;
-            font-size: 1.5em;
-            margin: 0 10px;
-        }
-    }
-}
-
-
-/*————————————————————————————————————去头部阴影————————————————————————————————————*/
-
-@mixin deteleShadow {
-    .header::after {
-        background-image: none;
-    }
-    .scroll-content {
-        top: -1px;
-    }
-}
 
 
 /*————————————————————————————————————android导航栏字体居中————————————————————————————————————*/
@@ -400,15 +306,20 @@ ion-modal {
     border-top: 1px solid #e0e0e0;
     display: flex;
     .segment-button {
-        height: 2.7rem;
+        height: 2.5rem;
         line-height: 2.5rem;
     }
     .segment-md .segment-button {
         border: none;
-        font-size: 1.6rem;
+        font-size: 1.4rem;
         border-right: 1px solid #e0e0e0;
         &:last-child {
             border: none;
+        }
+    }
+    &.toolbar-ios {
+        .segment-button {
+            max-width: initial;
         }
     }
     .bar-buttons-md[right] {
@@ -462,6 +373,10 @@ ion-fab {
         &.fab-button-out {
             bottom: -80px !important;
             animation: fade-out 300ms ease-in;
+        }
+        &.fab-button-in {
+            animation: fade-out 300ms ease-in;
+            bottom: 0 !important;
         }
     }
 }

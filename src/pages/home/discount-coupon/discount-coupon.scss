@@ -1,7 +1,9 @@
 page-discount-coupon {
+    .no-coupon {
+        @include reminderBlankPage();
+    }
     .coupon {
         margin: 10px;
-        height: 8rem;
         display: flex;
         align-items: center;
         justify-content: space-between;
@@ -58,7 +60,7 @@ page-discount-coupon {
         }
         .right {
             background: #7986cb;
-            padding: 0 16px;
+            padding: 5px 16px 0;
             position: relative;
             display: flex;
             flex-direction: column;

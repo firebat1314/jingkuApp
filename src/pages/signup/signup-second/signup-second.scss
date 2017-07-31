@@ -1,16 +1,20 @@
 page-signup-second {
     .content .list-wrap {
         margin-bottom: 5px;
-        .item-label-fixed {
-            min-height: 62px;
-        }
-        .select-wrapper .input-wrapper {
-            display: flex;
-            justify-content: space-around;
-            padding: 15px;
-            ion-select {
-                border: 1px solid #ccc;
-                width: 30%;
+        .item {
+            ion-label[fixed] {
+                flex-basis: 100px;
+            }
+            &.select-wrapper .input-wrapper {
+                display: flex;
+                justify-content: space-around;
+                padding: 15px;
+                ion-select {
+                    border: 1px solid #ccc;
+                    width: 30%;
+                    padding: 8px 12px 8px 13px;
+                    border-radius: 4px;
+                }
             }
         }
     }

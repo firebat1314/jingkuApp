@@ -1,10 +1,12 @@
 page-signup {
     .content .list {
         margin-bottom: 5px;
-        .item-input {
-            min-height: 62px;
+        .item {
+            @include certified-img;
+            ion-label[fixed] {
+                flex-basis: 87px;
+            }
         }
-        @include certified-img;
     }
     .login {
         float: right;

@@ -35,23 +35,23 @@
     <!--——————————————————————————————————————————功能按钮——————————————————————————————————————————-->
     <div class="btn-tool" home-padding>
         <div class="top">
-            <div tappable (click)="goPresellPage()">
+            <div tappable (click)="goDiscountCouponPage();">
                 <div class="img">
-                    <img img-lazy-load="./assets/icon/home_icon_08.png" alt="">
+                    <img img-lazy-load="./assets/icon/home_icon_07.png" alt="">
                 </div>
-                <span>预售</span>
-            </div>
-            <div tappable (click)="goRechargePage()">
-                <div class="img">
-                    <img img-lazy-load="./assets/icon/home_icon_02.png" alt="">
-                </div>
-                <span>充值</span>
+                <span>优惠券</span>
             </div>
             <div tappable (click)="goFastbuyPage()">
                 <div class="img">
                     <img img-lazy-load="./assets/icon/home_icon_05.png" alt="">
                 </div>
                 <span>闪购</span>
+            </div>
+            <div tappable (click)="goPresellPage()">
+                <div class="img">
+                    <img img-lazy-load="./assets/icon/home_icon_08.png" alt="">
+                </div>
+                <span>预售</span>
             </div>
             <div tappable (click)="goClassPage('brand')">
                 <div class="img">
@@ -61,17 +61,17 @@
             </div>
         </div>
         <div class="bottom">
+            <div tappable (click)="goRechargePage()">
+                <div class="img">
+                    <img img-lazy-load="./assets/icon/home_icon_02.png" alt="">
+                </div>
+                <span>充值</span>
+            </div>
             <div tappable (click)="goWhitebarPage()">
                 <div class="img">
                     <img img-lazy-load="./assets/icon/home_icon_01.png" alt="">
                 </div>
                 <span>镜库金融</span>
-            </div>
-            <div tappable (click)="goDiscountCouponPage();">
-                <div class="img">
-                    <img img-lazy-load="./assets/icon/home_icon_07.png" alt="">
-                </div>
-                <span>优惠券</span>
             </div>
             <div tappable (click)="goIntegralstorePage();">
                 <div class="img">
@@ -85,10 +85,9 @@
                 </div>
                 <span>镜库设计</span>
             </div>
-
         </div>
     </div>
-    <!--——————————————————————————————————————————热门类型——————————————————————————————————————————-->
+    <!--—————————————————————————————————————————— 热门品类 ——————————————————————————————————————————-->
     <div class="hot-group home-content" home-padding>
         <div class="title">
             <span class="txt">热门品类</span>
@@ -100,7 +99,7 @@
             </div>
             <ion-grid>
                 <ion-row wrap>
-                    <ion-col *ngFor="let item of categoryAddetatils" navPush="BrandListPage" [navParams]="{listId:item.ad_id}" width-33 col-4>
+                    <ion-col *ngFor="let item of categoryAddetatils" [ads-click]="item?.link_type" width-33 col-4>
                         <img img-lazy-load="{{item.ad_img}}">
                         <!--<span>隐形眼镜</span>-->
                     </ion-col>
@@ -116,11 +115,11 @@
         </div>
         <div class="main">
             <div *ngFor="let item of getBrands">
-                <img img-lazy-load="{{item.brand_logo}}" tappable (click)="goBrandListPage(item.brand_id)">
+                <img img-lazy-load="{{item.ad_img}}" tappable [ads-click]="item?.link_type">
             </div>
-            <!--<div>
-                <img img-lazy-load="./assets/icon/homepage_53.png" alt=""  tappable (click)="goClassPage('brand')">
-            </div>-->
+            <div>
+                <img img-lazy-load="./assets/icon/homepage_53.png" alt="" tappable (click)="goClassPage('brand')">
+            </div>
         </div>
     </div>
     <!--——————————————————————————————————————————精选专题——————————————————————————————————————————-->
@@ -137,7 +136,7 @@
                     <div class="slide-title-unit" tappable (click)="goParticularsPage(slide.id)">
                         <img border-f0 img-lazy-load="{{slide?.goods_img}}">
                         <div class="info">
-                            <!--<div class="name">{{slide?.name}}</div>-->
+                            <div class="name">{{slide?.name}}</div>
                             <div class="price">{{slide?.shop_price}}</div>
                         </div>
                     </div>
@@ -162,7 +161,7 @@
                         <div class="slide-title-unit">
                             <img border-f0 img-lazy-load="{{slide?.goods_img}}">
                             <div class="info">
-                                <!--<div class="name">{{slide?.name}}</div>-->
+                                <div class="name">{{slide?.name}}</div>
                                 <div class="price">{{slide?.shop_price}}</div>
                             </div>
                         </div>
@@ -192,7 +191,7 @@
                                 <img border-f0 img-lazy-load="{{slide?.goods_img}}">
                             </div>
                             <div class="info">
-                                <!--<div class="name">{{slide?.name}}</div>-->
+                                <div class="name">{{slide?.name}}</div>
                                 <div class="price">{{slide?.shop_price}}</div>
                             </div>
                         </div>
@@ -221,30 +220,29 @@
         </div>-->
     </div>
     <!--——————————————————————————————————————————好店推荐——————————————————————————————————————————-->
-    <div class="good-shop home-content" home-padding>
+    <!--  <div class="good-shop home-content" home-padding>
         <div class="title">
             <span class="txt">好店推荐</span>
-            <!--<span class="more">更多&gt;</span>-->
+            <span class="more">更多&gt;</span>
         </div>
         <div class="main">
             <ion-slides loop="false" parallax="true" pager>
                 <ion-slide *ngFor="let item of jingxuan_img4">
                     <ion-card>
                         <img img-lazy-load="{{item?.ad_img}}" defaultSrc="./assets/images/images/640-320.jpg" [ads-click]="item.link_type">
-                        <!--<img [ads-click]="item.link_type" src="{{item?.ad_img}}" />-->
-                        <!--<div class="collect">
+                        <div class="collect">
                             <div class="left">
                                 <ion-icon name="md-heart-outline"></ion-icon>
                                 <ion-icon name="md-heart"></ion-icon>收藏
                             </div>
                             <div class="right">21212121人已收藏</div>
-                        </div>-->
+                        </div>
                     </ion-card>
                 </ion-slide>
             </ion-slides>
         </div>
-    </div>
-    <!--——————————————————————————————————————————热门单品——————————————————————————————————————————-->
+    </div> -->
+    <!--—————————————————————————————————————————— 热门商品 ——————————————————————————————————————————-->
     <div class="hot-other home-content" home-padding>
         <div class="title">
             <span class="txt">热门商品</span>

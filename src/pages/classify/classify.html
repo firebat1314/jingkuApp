@@ -19,9 +19,10 @@
             <ion-segment-button value="brand">
                 品牌
             </ion-segment-button>
+            <!-- 
             <ion-segment-button value="care">
                 关注
-            </ion-segment-button>
+            </ion-segment-button> -->
         </ion-segment>
         <ion-buttons class="editBtn" *ngIf="classSelect=='care'" right>
             <button ion-button clear (click)="checkBoxToggle()">
@@ -55,13 +56,13 @@
         <ion-nav [root]="root" swipeBackEnabled="true" #myNav></ion-nav>
     </div>
     <div *ngSwitchCase="'brand'" class="brand-wrap">
-        <div class="top-scrollbar">
+        <!-- <div class="top-scrollbar">
             <div *ngFor="let item of getCategorys" tappable (click)="toBrandList(item.cat_id)">
                 <div><img img-lazy-load="{{item.thumb}}" alt="{{item.cat_name}}"></div>
                 <span>{{item.cat_name}}</span>
             </div>
         </div>
-        <div class="background"></div>
+        <div class="background"></div> -->
         <div class="brand-content">
             <div class="fore1-jinxuan fore" padding>
                 <div class="title">
@@ -94,18 +95,21 @@
                     <div tappable [ads-click]="item.link_type" *ngFor="let item of fore4"><img img-lazy-load="{{item.ad_img}}" alt=""></div>
                 </div>
             </div>
-            <div class="fore-yinxing fore " padding *ngFor="let item of brandList?.data">
+            <div class="fore-yinxing fore" *ngFor="let item of brandList?.data">
                 <div class="title">
                     <span class="txt">{{item.cat_name}}</span>
-                    <span class="more" *ngIf="item.ads.length>3" tappable (click)="goToMoreBrand(item.ads)">更多&gt;</span>
+                    <span class="more" *ngIf="item.ads.length>9" tappable (click)="goToMoreBrand(item.ads)">更多&gt;</span>
                 </div>
                 <div class="body">
                     <!--<div class="top"><img src="./assets/icon/images/brand_1_13.jpg" alt=""></div>-->
-                    <!--<div class="top"><img src="./assets/icon/images/brand_1_20.jpg" alt=""></div>-->
+                    <div class="top"><img src="./assets/icon/images/brand_1_20.jpg" alt=""></div>
                     <div class="main">
-                        <div *ngFor="let img of item.ads;let i = index;" tappable [ads-click]="img.link_type">
-                            <img *ngIf="i<3" img-lazy-load="{{img.ad_img}}" alt="">
-                        </div>
+                        <ng-container *ngFor="let img of item.ads;let i = index;">
+                            <div tappable [ads-click]="img.link_type" *ngIf="i<9">
+                                <img img-lazy-load="{{img.ad_img}}" alt="">
+                            </div>
+                        </ng-container>
+
                     </div>
                 </div>
             </div>

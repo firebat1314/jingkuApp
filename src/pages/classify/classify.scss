@@ -2,15 +2,8 @@ page-classify {
     img {
         display: block;
     }
-    .swiper-slide {
-        text-align: initial;
-        .slide-zoom {
-            text-align: initial;
-        }
-    }
-    .slide-zoom {
-        height: 100%;
-        overflow: scroll;
+    [padding] {
+        padding: 10px;
     }
     @include deteleShadow;
     ion-header {
@@ -20,11 +13,6 @@ page-classify {
             }
             .top-segment {
                 width: 60%;
-                position: absolute;
-                top: 0;
-                left: 0;
-                right: 0;
-                bottom: 0;
                 margin: auto;
                 .segment-button {
                     border-color: #e6e6e6;
@@ -35,12 +23,7 @@ page-classify {
             }
         }
         .mysearchbar {
-            .toolbar-background-md {
-                background-color: #f5f5f5;
-            }
-            .searchbar-ios .searchbar-input {
-                background: #fff;
-            }
+            @include mysearchbar;
         }
     }
     .classify-wrap {
@@ -58,6 +41,10 @@ page-classify {
         .fore {
             background: #fff;
             margin-bottom: 10px;
+            padding: 10px;
+            &:last-child {
+                margin-bottom: 0;
+            }
         }
         .title {
             display: flex;
@@ -65,7 +52,7 @@ page-classify {
             align-items: center;
             margin-bottom: 16px;
             .txt {
-                border-left: 5px solid #000;
+                border-left: 5px solid #333;
                 font-size: 1.6rem;
                 padding-left: 10px;
                 font-weight: 500;
@@ -93,7 +80,7 @@ page-classify {
         @mixin body2 {
             overflow: hidden;
             >div {
-                width: 32.6%;
+                width: 32.66%;
                 float: left;
                 margin-right: 1%;
                 &:nth-child(3n) {
@@ -131,9 +118,8 @@ page-classify {
                     @include body1;
                     h3 {
                         color: #666;
-                        font-size: 1.8rem;
-                        margin-top: 1.3rem;
-                        margin-bottom: 0.8rem;
+                        margin-top: 1.2rem;
+                        margin-bottom: 0.5rem;
                     }
                 }
             }
@@ -157,6 +143,7 @@ page-classify {
                 .top {
                     img {
                         width: 100%;
+                        margin-bottom: 4px;
                     }
                 }
                 .main {

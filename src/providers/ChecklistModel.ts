@@ -26,7 +26,6 @@ export class ChecklistModel {
    }
 
    toggleItem(item): void {
-      console.log(item);
       let index = this.items.indexOf(item.cat_id);
       if (index > -1) {
          this.items.splice(index, 1);
@@ -35,7 +34,6 @@ export class ChecklistModel {
          this.items.push(item.cat_id);
          item.selected = 1;
       }
-      console.log(this.items);
    }
 
 }
@@ -45,23 +43,20 @@ export class RadiolistModel {
       this.item = item;
    }
    toggleItem(item, items): void {
-      console.log(item);
       if (item.selected == 1) {
          item.selected = 0;
-         this.item.lower = items.min || '';
-         this.item.upper = items.max || '';
+         this.item.min_price =  null;
+         this.item.max_price = null;
       } else {
-         this.item.lower = Number(item.min_price);
-         this.item.upper = Number(item.max_price);
+         this.item.min_price = Number(item.min_price);
+         this.item.max_price = Number(item.max_price);
          for (let i = 0; i < items.length; i++) {
             items[i].selected = 0;
          }
          item.selected = 1;
       }
-      console.log(this.item);
    }
    toggleItem2(item, items): void {
-      console.log(item);
       if (item.selected == 1) {
          item.selected = 0;
          this.item.cat_id = '';
@@ -72,10 +67,8 @@ export class RadiolistModel {
          item.selected = 1;
          this.item.cat_id = item.cat_id;
       }
-      console.log(this.item);
    }
    toggleItem3(item, items): void {
-      console.log(item);
       if (item.selected == 1) {
          item.selected = 0;
          this.item.brand_id = '';
@@ -86,10 +79,8 @@ export class RadiolistModel {
          item.selected = 1;
          this.item.brand_id = item.brand_id;
       }
-      console.log(this.item);
    }
    toggleItem4(item, items): void {
-      console.log(item);
       if (item.selected == 1) {
          item.selected = 0;
          this.item = null;
@@ -97,6 +88,5 @@ export class RadiolistModel {
          item.selected = 1;
          this.item = item.attr_id;
       }
-      console.log(this.item);
    }
 }

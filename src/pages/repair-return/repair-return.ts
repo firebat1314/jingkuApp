@@ -15,13 +15,18 @@ import { Native } from "../../providers/native";
   templateUrl: 'repair-return.html',
 })
 export class RepairReturnPage {
+  repair: any;
+  order: any;
   @ViewChild(Content) content: Content;
   @ViewChild(FabButton) fabButton: FabButton;
 
-  orderRepair: Array<any> = [];//售后申请列表
-  repairList: Array<any>;//申请记录列表
-
   applyTabs: string = 'apply' || 'applyLog';
+
+  options = {
+    size: 10,
+    page: 1,
+    order_sn: null
+  };
   constructor(
     public navCtrl: NavController,
     public navParams: NavParams,
@@ -29,8 +34,10 @@ export class RepairReturnPage {
     public native: Native,
   ) { }
   ngAfterViewInit() {
+    /* 回到顶部按钮 */
+    this.fabButton.setElementClass('fab-button-out',true);
     this.content.ionScroll.subscribe((d) => {
-      this.fabButton.setElementClass("fab-button-out", d.directionY == "down");
+      this.fabButton.setElementClass("fab-button-in", d.scrollTop >= d.contentHeight);
     });
   }
   ionViewDidLoad() {
@@ -38,45 +45,67 @@ export class RepairReturnPage {
     this.getOrderRepair();
     this.getRepairList();
   }
-  getOrderRepair(infiniteScroll?) {
-    this.httpService.orderRepair({
-      size: 1,
-      page: 1
-    }).then((res) => {
+  getOrderRepair(refresher?) {
+    this.httpService.orderRepair(this.options).then((res) => {
       if (res.status == 1) {
-        this.orderRepair = this.orderRepair.concat(res.list);
-
-        if (infiniteScroll) {
-          setTimeout(() => {
-            infiniteScroll.complete();
-          }, 500);
-        }
-
+        this.order = res;
+        refresher ? refresher() : null;
       }
     })
   }
-  getRepairList() {
-    this.httpService.repairList().then((res) => {
+  getRepairList(refresher?) {
+    this.httpService.repairList(this.options).then((res) => {
       if (res.status == 1) {
-        this.repairList = res.list;
+        this.repair = res;
+        refresher ? refresher() : null;
       }
     })
+  }
+  searchOrder() {
+    this.getOrderRepair();
+    this.getRepairList();
   }
   doRefresh(refresher) {
+    var fun = () => {
+      setTimeout(() => {
+        refresher.complete();
+      }, 500);
+    }
     if (this.applyTabs == 'apply') {
-      this.orderRepair = [];
-      this.getOrderRepair();
+      this.getOrderRepair(fun);
     }
     if (this.applyTabs == 'applyLog') {
-      this.repairList = [];
-      this.getRepairList();
+      this.getRepairList(fun);
     }
-    setTimeout(() => {
-      refresher.complete();
-    }, 500);
+
   }
   doInfinite(infiniteScroll) {
-    this.getOrderRepair(infiniteScroll);
+    if (this.applyTabs == 'apply') {
+      if (this.order.page < this.order.pages) {
+        this.httpService.orderRepair({ page: ++this.order.page, size: 10 }).then((res) => {
+          if (res.status == 1) {
+            this.order = res;
+            Array.prototype.push.apply(this.order.list, res.list);
+            infiniteScroll.complete();
+          }
+        })
+      } else {
+        infiniteScroll.complete();
+      }
+    }
+    if (this.applyTabs == 'applyLog') {
+      if (this.repair.page < this.repair.pages) {
+        this.httpService.repairList({ page: ++this.repair.page, size: 10 }).then((res) => {
+          if (res.status == 1) {
+            this.repair = res;
+            Array.prototype.push.apply(this.repair.list, res.list);
+            infiniteScroll.complete();
+          }
+        })
+      } else {
+        infiniteScroll.complete();
+      }
+    }
   }
   /**
    * 点击申请售后
@@ -96,10 +125,10 @@ export class RepairReturnPage {
     }
     this.httpService.repairApply({
       order_id: order_id,
-      rec_id: rec_ids
+      rec_ids: rec_ids
     }).then((res) => {
       if (res.status == 1) {
-        this.navCtrl.push('ApplyServicePage',res)
+        this.navCtrl.push('ApplyServicePage', { data: res })
       }
     })
   }
@@ -107,12 +136,17 @@ export class RepairReturnPage {
    * 复选框选中判断
    * @param subitem 订单项
    */
-  checkbox(subitem){
-    // for ( var i in subitem.goods){
-    //   if(subitem.goods[i].selected==false){
-    //     subitem.selected = false;
-    //   }
-    // }
+  checkbox(subitem) {
+   /*  subitem.selected = true
+    for (var i in item.goods) {
+      if (item.goods[i].selected == false) {
+        item.selected = true;
+      }
+    }
+    console.log(this.order.list[0]) */
+  }
+  checkall(item) {
+
   }
   /**
    * 取消售后申请
@@ -128,5 +162,7 @@ export class RepairReturnPage {
       })
     })
   }
-
+  goServiceOrderDetailsPage(return_id) {
+    this.navCtrl.push('ServiceOrderDetailsPage', { return_id: return_id });
+  }
 }
