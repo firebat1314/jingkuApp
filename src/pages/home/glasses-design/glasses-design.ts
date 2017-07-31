@@ -1,7 +1,6 @@
 import { Component, ViewChild } from '@angular/core';
-import { NavController, NavParams, Content, Events } from 'ionic-angular';
+import { NavController, NavParams, Content, Events, IonicPage } from 'ionic-angular';
 import { HttpService } from "../../../providers/http-service";
-import { ParticularsPage } from "../particulars/particulars";
 
 /*
   Generated class for the GlassesDesign page.
@@ -9,6 +8,7 @@ import { ParticularsPage } from "../particulars/particulars";
   See http://ionicframework.com/docs/v2/components/#navigation for more info on
   Ionic pages and navigation.
 */
+@IonicPage()
 @Component({
   selector: 'page-glasses-design',
   templateUrl: 'glasses-design.html'
@@ -24,15 +24,20 @@ export class GlassesDesignPage {
     public navParams: NavParams,
     public events: Events,
     public httpService: HttpService
-  ) {}
+  ) { }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad GlassesDesignPage');
   }
-  ngOnInit(){
+  ngOnInit() {
     this.getData();
   }
   getData() {
+    this.httpService.categoryGoods({ cat_id: 421 }).then((res) => {
+      if (res.status == 1) {
+        this.list = res;
+      }
+    })
     this.httpService.getHomebanner({ int_pos_id: 37 }).then((res) => {
       if (res.status == 1) {
         this.banner = res;
@@ -45,17 +50,12 @@ export class GlassesDesignPage {
           if (res.status == 1) {
             this.img = res;
           }
-          this.httpService.categoryGoods({ cat_id: 421 }).then((res) => {
-            if (res.status == 1) {
-              this.list = res;
-            }
-          })
         })
       })
     })
   }
   goParticularsPage(id) {
-    this.navCtrl.push(ParticularsPage, { goodsId: id })
+    this.navCtrl.push('ParticularsPage', { goodsId: id })
   }
   doInfinite(infiniteScroll) {
     var page = this.list.page;

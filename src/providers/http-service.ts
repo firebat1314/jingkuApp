@@ -14,8 +14,8 @@ import { Storage } from '@ionic/storage';
 export class HttpService {
   public HAS_LOGGED_IN = "hasLoggedIn";
   public hasLogin = false;
-  private ip = 'http://v402app.jingkoo.net';//app测试
-  // private ip = 'http://app.jingku.cn';//app正式
+  // private ip = 'http://v403app.jingkoo.net';//app测试
+  private ip = 'http://app.jingku.cn';//app正式
   // private ip = 'http://hl.jingkoo.net/';//响应速度测试
   // private ip = 'http://newm.jingkoo.net';//m站
 
@@ -49,6 +49,11 @@ export class HttpService {
   removeStorage(key) {
     this.storage.remove(key)
   }
+
+  clear(callBack) {
+    this.storage.clear().then(callBack);
+  }
+
   login(data?: Object) {//登录
     return this.http.post(this.ip + '/Login/index', data, true)
   }
@@ -106,7 +111,10 @@ export class HttpService {
     return this.http.get(this.ip + '/Goods/get_supplier_info', data)
   }
   getGoodsCollect(data?: Object) {//商品关注
-    return this.http.get(this.ip + '/Goods/get_goods_collect', data)
+    return this.http.post(this.ip + '/Goods/get_goods_collect', data)
+  }
+  CollectShop(data?: Object) {//店铺关注
+    return this.http.post(this.ip + '/Goods/CollectShop', data)
   }
   collectDel(data?: Object) {//取消商品关注
     return this.http.get(this.ip + '/Goods/collect_del', data)
@@ -210,7 +218,7 @@ export class HttpService {
   FileJsonRegion(data?: Object) {
     return this.http.get(this.ip + '/Public/FileJsonRegion', data)
   }
-  usercount(data?: Object) {//（1）个人中心获取用户统计
+  userCount(data?: Object) {//（1）个人中心获取用户统计
     return this.http.get(this.ip + '/User/usercount', data)
   }
   order(data?: Object) {//用户订单
@@ -387,13 +395,40 @@ export class HttpService {
   addAccount(data?: Object) {//充值
     return this.http.post(this.ip + '/User/addAccount', data)
   }
-  getAccountPayList(data?: Object){//充值新增转账付款方式
+  getAccountPayList(data?: Object) {//充值新增转账付款方式
     return this.http.get(this.ip + '/User/getAccountPayList', data)
   }
-  indexs(data?: Object){//首页统一
+  indexs(data?: Object) {//首页统一
     return this.http.get(this.ip + '/Index/indexs', data)
   }
-  suppliersIndex(data?: Object){//店铺首页
-    return this.http.get(this.ip + '/Category/suppliers_index', data)
+  suppliersIndex(data?: Object) {//店铺首页
+    return this.http.post(this.ip + '/Category/suppliers_index', data)
+  }
+  suppliersPromote(data?: Object) {//店铺促销
+    return this.http.post(this.ip + '/Category/suppliers_promote_goods', data)
+  }
+  orderRepair(data?: Object) {//售后申请列表
+    return this.http.post(this.ip + '/User/order_repair', data)
+  }
+  repairApply(data?: Object) {//点击申请售后
+    return this.http.post(this.ip + '/User/repair_apply', data)
+  }
+  submitRepair(data?: Object) {//3）提交返修退换货
+    return this.http.post(this.ip + '/User/submit_repair', data)
+  }
+  fuwudan(data?: Object) {//4）填写快递单
+    return this.http.post(this.ip + '/User/fuwudan', data)
+  }
+  repairList(data?: Object) {//5）返修单记录
+    return this.http.post(this.ip + '/User/repair_list', data)
+  }
+  cancelReturn(data?: Object) {//6）取消售后
+    return this.http.post(this.ip + '/User/cancel_return', data)
+  }
+  repairInfo(data?: Object) {//7）服务单详情
+    return this.http.post(this.ip + '/User/repair_info', data)
+  }
+  CatrgorySupplierInfo(data?: Object) {//7）服务单详情
+    return this.http.post(this.ip + '/Category/get_supplier_info', data)
   }
 }

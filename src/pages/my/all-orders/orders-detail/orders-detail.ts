@@ -1,9 +1,7 @@
 import { Component, ViewChild } from '@angular/core';
-import { NavController, NavParams, Content } from 'ionic-angular';
+import { NavController, NavParams, Content, IonicPage } from 'ionic-angular';
 import { HttpService } from "../../../../providers/http-service";
-import { ParticularsPage } from "../../../home/particulars/particulars";
 import { Native } from "../../../../providers/native";
-import { PaymentMethodPage } from "../payment-method/payment-method";
 
 /*
   Generated class for the OrdersDetail page.
@@ -11,6 +9,9 @@ import { PaymentMethodPage } from "../payment-method/payment-method";
   See http://ionicframework.com/docs/v2/components/#navigation for more info on
   Ionic pages and navigation.
 */
+@IonicPage({
+  segment:'orders-detail/:order_id'
+})
 @Component({
   selector: 'page-orders-detail',
   templateUrl: 'orders-detail.html'
@@ -61,13 +62,13 @@ export class OrdersDetailPage {
     }
   }*/
   goParticularsPage(id) {
-    this.navCtrl.push(ParticularsPage, { goodsId: id });
+    this.navCtrl.push('ParticularsPage', { goodsId: id });
   }
   toPay(id) {
     this.httpService.pay({ order_id: id }).then((res) => {
       console.log(res);
       if (res.status == 1) {
-        this.navCtrl.push(PaymentMethodPage, { data: res })
+        this.navCtrl.push('PaymentMethodPage', { data: res })
       }
     })
   }

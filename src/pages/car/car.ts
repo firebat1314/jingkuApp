@@ -1,9 +1,7 @@
 import { Component, ViewChild } from '@angular/core';
-import { NavController, NavParams, AlertController, Events, Content } from 'ionic-angular';
+import { NavController, NavParams, AlertController, Events, Content, IonicPage } from 'ionic-angular';
 import { Native } from "../../providers/native";
 import { HttpService } from "../../providers/http-service";
-import { WriteOrdersPage } from "../my/all-orders/write-orders/write-orders";
-import { ParticularsPage } from "../home/particulars/particulars";
 
 /*
   Generated class for the Car page.
@@ -11,6 +9,7 @@ import { ParticularsPage } from "../home/particulars/particulars";
   See http://ionicframework.com/docs/v2/components/#navigation for more info on
   Ionic pages and navigation.
 */
+@IonicPage()
 @Component({
   selector: 'page-car',
   templateUrl: 'car.html'
@@ -95,7 +94,7 @@ export class CarPage {
       this.httpService.dropCartGoods({ rec_id: item3.rec_id }).then((res) => {
         if (res.status == 1) {
           this.getFlowGoods();
-          this.native.showToast('删除成功')
+          this.native.showToast('删除成功');
         }
       })
     })
@@ -159,6 +158,7 @@ export class CarPage {
         if (res.status == 1) {
           this.native.showToast('删除成功')
           this.getFlowGoods();
+          this.isEdit = false;
         }
       })
     })
@@ -173,14 +173,13 @@ export class CarPage {
       }
     }
     this.httpService.delNoShop({ goods_ids: arr }).then((res) => {
-      console.log(res);
       if (res.status == 1) {
-        this.navCtrl.push(WriteOrdersPage);
+        this.navCtrl.push('WriteOrdersPage');
       }
     })
   }
   goParticularPage(id) {
-    this.navCtrl.push(ParticularsPage, { goodsId: id })
+    this.navCtrl.push('ParticularsPage', { goodsId: id })
   }
   /*——————————————————————————————————————————————————————————————————*/
   /*  calculateTotal() {//购物车总价格

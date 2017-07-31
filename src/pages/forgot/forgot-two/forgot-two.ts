@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams } from 'ionic-angular';
+import { NavController, NavParams, IonicPage } from 'ionic-angular';
 import { HttpService } from "../../../providers/http-service";
-import { ForgotThreePage } from "../forgot-three/forgot-three";
 
 /*
   Generated class for the ForgotTwo page.
@@ -9,6 +8,7 @@ import { ForgotThreePage } from "../forgot-three/forgot-three";
   See http://ionicframework.com/docs/v2/components/#navigation for more info on
   Ionic pages and navigation.
 */
+@IonicPage()
 @Component({
   selector: 'page-forgot-two',
   templateUrl: 'forgot-two.html'
@@ -115,7 +115,7 @@ export class ForgotTwoPage {
       mobile_phone:this.phoneNumber
     }).then((res)=>{
       if(res.status==1){
-        this.navCtrl.push(ForgotThreePage)
+        this.navCtrl.push('ForgotThreePage')
       }
     })
   }

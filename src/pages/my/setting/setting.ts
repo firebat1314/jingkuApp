@@ -1,9 +1,6 @@
 import { Component, ViewChild } from '@angular/core';
-import { NavController, NavParams, App, Toggle } from 'ionic-angular';
-import { LoginPage } from "../../login/login";
-// import { AboutUsPage } from "./about-us/about-us";
+import { NavController, NavParams, App, Toggle, IonicPage } from 'ionic-angular';
 import { HttpService } from "../../../providers/http-service";
-import { AccountHelperPage } from "../account-helper/account-helper";
 import { JpushService } from "../../../providers/jpush-service";
 import { Native } from "../../../providers/native";
 
@@ -13,6 +10,7 @@ import { Native } from "../../../providers/native";
   See http://ionicframework.com/docs/v2/components/#navigation for more info on
   Ionic pages and navigation.
 */
+@IonicPage()
 @Component({
   selector: 'page-setting',
   templateUrl: 'setting.html'
@@ -41,7 +39,7 @@ export class SettingPage {
     console.log('ionViewDidLoad SettingPage');
   }
   goAboutUs() {
-    this.navCtrl.push(AccountHelperPage);// AboutUsPage
+    this.navCtrl.push('AccountHelperPage');// AboutUsPage
   }
   toggle(push) {
     if (push.value) {
@@ -57,17 +55,19 @@ export class SettingPage {
   }
   clearCathe() {
     this.native.openAlertBox('清除本地缓存？', () => {
-      this.native.showToast('已清空缓存')
+      this.httpService.clear(()=>{
+        this.httpService.setStorage('firstIn','NO');
+        this.native.showToast('已清空缓存');
+      })
     })
   }
   signOut() {
     this.native.openAlertBox('确定退出登陆？', () => {
       this.httpService.logout().then((res) => {
         console.log(res);
-        this.app.getRootNav().setRoot(LoginPage);
+        this.app.getRootNav().setRoot('LoginPage',{},{animate:true});
         this.httpService.setStorage('hasLoggedIn', false);
         this.httpService.removeStorage("token");
-        this.httpService.removeStorage("username");
       })
     })
   }

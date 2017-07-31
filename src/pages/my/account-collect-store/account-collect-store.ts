@@ -1,8 +1,9 @@
 import { Component, ViewChild } from '@angular/core';
-import { NavController, NavParams, Content } from 'ionic-angular';
+import { NavController, NavParams, Content, IonicPage } from 'ionic-angular';
 import { HttpService } from "../../../providers/http-service";
 import { Native } from "../../../providers/native";
 
+@IonicPage()
 @Component({
   selector: 'page-account-collect-store',
   templateUrl: 'account-collect-store.html'
@@ -26,8 +27,7 @@ export class AccountCollectStorePage {
   }
   /*下拉刷新*/
   doRefresh(refresher?) {
-    this.httpService.collectionShop({ size: 10 }).then((res) => {
-      console.log('收藏店铺列表', res)
+    this.httpService.collectionShop({ size: 10,page:1 }).then((res) => {
       if (res.status == 1) { this.collectionShop = res; }
       if (refresher) {
         setTimeout(() => {
@@ -41,22 +41,16 @@ export class AccountCollectStorePage {
       this.httpService.delCollectionShop({ shop_ids: [suppliers_id] }).then((res) => {
         console.log(res);
         if (res.status == 1) {
-          this.native.showToast('已取消关注~')
+          this.native.showToast('已取消关注',null,false)
           this.doRefresh();
         }
       })
     })
   }
 
-  flag: boolean = true;
   doInfinite(infiniteScroll) {
     if (this.collectionShop.page < this.collectionShop.pages) {
-      this.collectionShop.page++;
-    } else {
-      this.flag = false;
-      return;
-    }
-    this.httpService.collectionShop({ page: this.collectionShop.page }).then((res) => {
+      this.httpService.collectionShop({ page: ++this.collectionShop.page }).then((res) => {
       console.log(res);
       if (res.status == 1) {
         Array.prototype.push.apply(this.collectionShop.list, res.list);
@@ -65,6 +59,10 @@ export class AccountCollectStorePage {
         infiniteScroll.complete();
       }, 500);
     })
+    } else {
+      infiniteScroll.enable(false);
+    }
+    
   }
   scrollToTop() {
     this.content.scrollToTop();

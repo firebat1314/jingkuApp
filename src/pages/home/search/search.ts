@@ -1,6 +1,5 @@
 import { Component, ViewChild } from '@angular/core';
-import { NavController, NavParams, Searchbar } from 'ionic-angular';
-import { BrandListPage } from "../brand-list/brand-list";
+import { NavController, NavParams, Searchbar, IonicPage } from 'ionic-angular';
 import { HttpService } from "../../../providers/http-service";
 
 /*
@@ -9,6 +8,7 @@ import { HttpService } from "../../../providers/http-service";
   See http://ionicframework.com/docs/v2/components/#navigation for more info on
   Ionic pages and navigation.
 */
+@IonicPage()
 @Component({
   selector: 'page-search',
   templateUrl: 'search.html'
@@ -36,13 +36,12 @@ export class SearchPage {
     this.getHotSearch();
   }
   searchbar(e) {
-    console.log(this.myHomeSearch)
     if (e) {
       if (e.keyCode == 13) {
-        this.navCtrl.push(BrandListPage, { keyword: this.myHomeSearch })
+        this.navCtrl.push('BrandListPage', { keyword: this.myHomeSearch })
       }
     } else {
-      this.navCtrl.push(BrandListPage, { keyword: this.myHomeSearch })
+      this.navCtrl.push('BrandListPage', { keyword: this.myHomeSearch })
     }
   }
   getHotSearch() {

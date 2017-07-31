@@ -1,4 +1,5 @@
-import { Component, Input, Output, EventEmitter } from '@angular/core';
+import { Component, Input, Output, EventEmitter, ElementRef } from '@angular/core';
+import { Native } from "../../providers/native";
 
 /*
   Generated class for the CountInput component.
@@ -11,29 +12,53 @@ import { Component, Input, Output, EventEmitter } from '@angular/core';
   templateUrl: 'count-input.html'
 })
 export class CountInputComponent {
-  
-  @Input() value = 0;
-  @Input() defaultValue:Number = 0;
-  @Input() lock:boolean = false;
-  @Output() updateNumberI: EventEmitter<number> = new EventEmitter();
-  constructor() {
-    console.log('Hello CountInput Component');
+  newmaxValue: number;
+
+  @Input() value: number = 0;
+  @Input() defaultValue: number = 0;
+  @Input() lock: boolean = false;
+  @Output() valueChange: EventEmitter<number> = new EventEmitter<number>();
+  @Input() maxValue: number;
+  @Input() rank: number = 1;
+
+
+  disabled: boolean = false;
+  constructor(
+    private native: Native,
+    private element: ElementRef,
+  ) {
+    // console.log('Hello CountInput Component');
+  }
+  ngOnInit() {
+    if (this.maxValue) this.newmaxValue = this.maxValue;
+    console.log(this.rank)
+    if (this.rank !== 1) this.disabled = true;
   }
   increase() {
     if (this.lock) {
       return;
+    } else if (this.newmaxValue && (this.value >= this.newmaxValue)) {
+      console.log(this.newmaxValue)
+      this.native.showToast('最多选择' + this.newmaxValue + '件');
+      this.element.nativeElement.getElementsByTagName('input')[0].value = this.newmaxValue;
+      return;
     }
-    this.value++;
-    this.updateNumberI.emit(this.value);
+    console.log(this.value,this.value+1)
+    this.valueChange.emit(this.value += Number(this.rank));
   }
   reduce() {
     if (this.value <= this.defaultValue) {
       return;
     }
-    this.value--;
-    this.updateNumberI.emit(this.value);
+    this.valueChange.emit(this.value -= Number(this.rank));
   }
-  inputEvent(){
-    this.updateNumberI.emit(this.value);
+  inputEvent(value) {
+    if (this.newmaxValue && (this.value >= this.newmaxValue)) {
+      this.native.showToast('最多选择' + this.newmaxValue + '件');
+      this.element.nativeElement.getElementsByTagName('input')[0].value = this.newmaxValue;
+      this.value = this.newmaxValue;
+    }
+    this.valueChange.emit(this.value);
   }
+
 }

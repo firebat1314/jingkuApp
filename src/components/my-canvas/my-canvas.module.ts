@@ -1,5 +1,5 @@
-/*import { NgModule } from '@angular/core';
-import { IonicPageModule } from 'ionic-angular';
+import { NgModule } from '@angular/core';
+import { IonicModule } from 'ionic-angular';
 import { MyCanvasComponent } from './my-canvas';
 
 @NgModule({
@@ -7,11 +7,10 @@ import { MyCanvasComponent } from './my-canvas';
     MyCanvasComponent,
   ],
   imports: [
-    IonicPageModule.forChild(MyCanvasComponent),
+    IonicModule
   ],
   exports: [
     MyCanvasComponent
   ]
 })
-export class MyCanvasComponentModule {}
-*/
+export class MyCanvasComponentModule { }

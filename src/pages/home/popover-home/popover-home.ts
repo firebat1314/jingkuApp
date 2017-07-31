@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import { ViewController, NavParams, NavController, IonicPage } from 'ionic-angular';
-import { MessagePage } from "../message/message";
 import { Native } from "../../../providers/native";
 
 /**
@@ -16,32 +15,27 @@ import { Native } from "../../../providers/native";
 })
 export class PopoverHomePage {
 
-  MessagePage: Component = MessagePage;
-
   constructor(
     public viewCtrl: ViewController,
     public navCtrl: NavController,
     public navParams: NavParams,
-    public native:Native
-  ) {
-  }
-
+    public native: Native
+  ) { }
   ionViewDidLoad() {
     console.log('ionViewDidLoad PopoverHomePage');
   }
   goMessagePage() {
-    this.navCtrl.push(MessagePage).then(()=>{
-      this.viewCtrl.dismiss();
-    })
+    this.viewCtrl.dismiss('MessagePage');
   }
-  openScanner(){
-    this.native.openBarcodeScanner().then((res)=>{
-      this.native.openAlertBox(res['test'],()=>{
-        console.log(res['format'])
+  openScanner() {
+    this.native.openBarcodeScanner().then((result) => {
+      console.log(result)
+      this.native.openAlertBox(result['text'], () => {
+        console.log(result['format'])
       })
-    }).catch(()=>{
+    }).catch(() => {
       console.log('openBarcodeScanner error')
-    }).then(()=>{
+    }).then(() => {
       this.viewCtrl.dismiss();
     })
   }

@@ -2,14 +2,21 @@ page-subnav-page1 {
     overflow: scroll;
     .content {
         background: #fff;
-    }
-    .scroll-content {
-        background: #fff;
+        .scroll-content {
+            background: #fff;
+        }
     }
     .classify-wrap {
-        padding: 15px 7%;
         display: flex;
         flex-wrap: wrap;
+        max-width: 650px;
+        margin: 10px auto;
+        width: 76%;
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
         >div {
             width: 50%;
             display: inline-block;
@@ -26,6 +33,9 @@ page-subnav-page1 {
             &:last-child {
                 border-bottom: 0;
             }
+            /*&:nth-last-of-type(2) {
+                border-bottom: 0;
+            }*/
             img {
                 width: 26%;
                 padding: 10px 0;

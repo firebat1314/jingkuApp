@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams, ViewController, Events } from 'ionic-angular';
+import { NavController, NavParams, ViewController, Events, IonicPage } from 'ionic-angular';
 import { HttpService } from "../../../../../providers/http-service";
-import { AddShippingAddressPage } from "../../../account-management/add-shipping-address/add-shipping-address";
 import { Native } from "../../../../../providers/native";
 
 /*
@@ -10,6 +9,7 @@ import { Native } from "../../../../../providers/native";
   See http://ionicframework.com/docs/v2/components/#navigation for more info on
   Ionic pages and navigation.
 */
+@IonicPage()
 @Component({
   selector: 'page-order-modal-shipping',
   templateUrl: 'order-modal-shipping.html'
@@ -40,6 +40,12 @@ export class OrderModalShippingPage {
     })
   }
   dismiss(data?: any) {
+    if(data.is_show == 0){
+      this.native.openAlertBox('不在可配送城市,是否切换城市？',()=>{
+        this.navCtrl.push('CityPage');
+      })
+      return;
+    }
     this.httpService.changeConsignee({ address_id: data.address_id }).then((res) => {
       console.log(res);
       if (res.status == 1) {
@@ -57,7 +63,7 @@ export class OrderModalShippingPage {
 
   }
   goEditAddress(addId) {
-    this.navCtrl.push(AddShippingAddressPage, { addId: addId })
+    this.navCtrl.push('AddShippingAddressPage', { addId: addId })
   }
   delete(addId) {
     this.native.openAlertBox('确认删除？', () => {
@@ -71,6 +77,6 @@ export class OrderModalShippingPage {
     })
   }
   goAddShippingAddressPage() {
-    this.navCtrl.push(AddShippingAddressPage);
+    this.navCtrl.push('AddShippingAddressPage');
   }
 }

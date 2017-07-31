@@ -1,0 +1,70 @@
+page-service-order-details {
+    .fore1 {
+        .item {
+            padding: 0 8px;
+            color: #666;
+            font-size: font-size-text('h4');
+        }
+    }
+    @mixin complete {
+        position: absolute;
+        top: -29px;
+        left: 50%;
+        color: #fff;
+        background: #50c65f;
+        border-radius: 10px;
+        padding: 1px 3px;
+        white-space: nowrap;
+        span {
+            border-width: 5px;
+            width: 0;
+            height: 0;
+            border: 5px solid transparent;
+            border-top: 5px solid #50c65f;
+            position: absolute;
+            top: 100%;
+            left: 50%;
+            margin-left: -5px;
+        }
+    }
+    .progressBar {
+        display: flex;
+        color: #50c65f;
+        align-items: center;
+        justify-content: center;
+        overflow: hidden;
+        padding: 40px 0 50px;
+        .status-item {
+            text-align: center;
+            font-size: 1.3rem;
+            position: relative;
+            white-space: nowrap;
+            margin: 0 11px;
+            .icon {
+                font-size: 24px;
+            }
+            .text {
+                position: absolute;
+                left: 50%;
+                width: 74px;
+                top: 30px;
+                margin-left: -37px;
+                white-space: pre-wrap;
+            }
+            .complete {
+                @include complete;
+                margin-left: -22px;
+            }
+        }
+        .status-line {
+            width: 35px;
+            border-top: 1px #50c65f solid;
+            position: relative;
+            .complete {
+                @include complete;
+                margin-left: -24px;
+                top: -41px;
+            }
+        }
+    }
+}

@@ -1,7 +1,6 @@
 import { Component, ViewChild } from '@angular/core';
-import { NavController, NavParams, Events, Content } from 'ionic-angular';
+import { NavController, NavParams, Events, Content, IonicPage, FabButton } from 'ionic-angular';
 import { HttpService } from "../../../providers/http-service";
-import { CarPage } from "../../car/car";
 import { Native } from "../../../providers/native";
 
 /*
@@ -10,6 +9,7 @@ import { Native } from "../../../providers/native";
   See http://ionicframework.com/docs/v2/components/#navigation for more info on
   Ionic pages and navigation.
 */
+@IonicPage()
 @Component({
 	selector: 'page-brand-list',
 	templateUrl: 'brand-list.html',
@@ -31,16 +31,15 @@ export class BrandListPage {
 		keywords: this.myHomeSearch,
 		supplier_id: null
 	}
-
-
 	@ViewChild(Content) content: Content;
+	@ViewChild('scrollToTop1') fabButton: FabButton;
 	constructor(
 		public navCtrl: NavController,
 		public navParams: NavParams,
 		public httpService: HttpService,
 		public events: Events,
 		public native: Native
-	) {}
+	) { }
 	ionViewDidLoad() {
 		console.log('ionViewDidLoad BrandListPage');
 		this.paramsData.cat_id = this.navParams.get('listId');
@@ -64,7 +63,17 @@ export class BrandListPage {
 			this.getListData();
 		});
 		this.events.subscribe('car:updata', () => {
-			this.getCarNumver(); 
+			this.getCarNumver();
+		});
+	}
+	ionViewDidLeave() {
+		this.events.unsubscribe('user:filterParams');//防止多次订阅事件
+	}
+	ngAfterViewInit() {
+		/* 回到顶部按钮 */
+		this.fabButton.setElementClass('fab-button-out', true);
+		this.content.ionScroll.subscribe((d) => {
+			this.fabButton.setElementClass("fab-button-in", d.scrollTop >= d.contentHeight);
 		});
 	}
 	ngAfterViewChecked() {
@@ -80,7 +89,7 @@ export class BrandListPage {
 			if (res.status == 1) {
 				this.data = res;
 				if (res.goods.length == 0) {
-					this.native.showToast('暂无商品')
+					this.native.showToast('抱歉！没有查询到相关商品', null, false);
 				}
 				this.events.publish('user:listFilter', res);
 			}
@@ -207,6 +216,6 @@ export class BrandListPage {
 		this.content.scrollToTop();
 	}
 	goCarPage() {
-		this.navCtrl.push(CarPage);
+		this.navCtrl.push('CarPage');
 	}
 }

@@ -23,7 +23,7 @@
     <nothing backgroundImg="url(./assets/images/images/no-car_1_03.png)" *ngIf="carDetails?.suppliers_goods_list.length==0"></nothing>
     <ion-list>
         <div class="single-shop" *ngFor="let item of carDetails?.suppliers_goods_list">
-            <div class="single-shop-head">
+            <div class="single-shop-head" tappable navPush="ParticularsHomePage" [navParams]="{suppliersId:item.suppliers_id}">
                 <ion-checkbox *ngIf="!isEdit" tappable (click)="checkGoods(item.suppliers_id,1,item.is_select==1?0:1);" [checked]="item?.is_select==1" mode="ios" margin-left></ion-checkbox>
                 <ion-checkbox *ngIf="isEdit" [checked]="carDetails.total.selected" [(ngModel)]="item.selected" mode="ios" margin-left></ion-checkbox>
                 <ion-item mode="ios" no-lines>
@@ -66,7 +66,7 @@
                                         <div class="bottom">
                                             <div class="price">¥{{item3?.goods_price}}</div>
                                             <div class="number">
-                                                <count-input [defaultValue]="1" (updateNumberI)="numberChangeI($event,item3)" [lock]="item3.inputLock" [value]="item3?.goods_number"></count-input>
+                                                <count-input [defaultValue]="1" (valueChange)="numberChangeI($event,item3)" [lock]="item3.inputLock" [value]="item3?.goods_number"></count-input>
                                             </div>
                                         </div>
                                     </div>
@@ -87,11 +87,11 @@
 <ion-footer>
     <div class="car-accounts" *ngIf="carDetails&&carDetails?.suppliers_goods_list?.length!=0">
         <div class="left">
-            <div class="select-all" margin-horizontal>
+            <label class="select-all" margin-horizontal>
                 <ion-checkbox *ngIf="!isEdit" tappable (click)="checkGoods(null,2,carDetails.total.is_select?0:1)" [checked]="carDetails.total.is_select" margin-right color="dark" mode="ios"></ion-checkbox>
                 <ion-checkbox [(ngModel)]="carDetails.total.selected" *ngIf="isEdit" mode="ios" margin-right></ion-checkbox>
                 全选
-            </div>
+            </label>
             <div *ngIf="!isEdit" class="price">合计：¥{{carDetails?.total?.goods_amount}}</div>
         </div>
         <div *ngIf="!isEdit" class="right" tappable (click)="goAccounts()">去结算({{carDetails?.total?.real_goods_count}})</div>

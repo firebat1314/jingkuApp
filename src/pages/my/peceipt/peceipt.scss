@@ -1,27 +1,25 @@
 page-peceipt {
-    .content {
-        background: #f7f7f7;
-    }
     .receiptSskFor {
         min-height: 100%;
-        background: #f7f7f7;
         .an-invoice {
-            padding: 5px;
+            padding: 0 5px;
             background: #fff;
+            border-radius: 3px;
             .main {
-                padding: 15px;
+                padding: 10px;
                 display: flex;
                 border-bottom: 1px solid #e0e0e0;
                 .type {
                     margin-right: 10px;
                     img {
                         margin-bottom: 5px;
-                        width: 24px;
+                        width: 20px;
+                        min-width: 20px;
                     }
                 }
                 .right {
                     >div:first-child {
-                        font-size: 1.8rem;
+                        font-size: 1.6rem;
                         span {
                             color: #526bb5;
                             font-size: 1.5rem;
@@ -37,9 +35,9 @@ page-peceipt {
             .bottom {
                 display: flex;
                 justify-content: flex-end;
-                padding: 5px;
+                padding: 4px;
                 .button {
-                    padding: 0 2em;
+                    padding: 0 1.8rem;
                 }
             }
         }
@@ -113,6 +111,7 @@ page-peceipt {
             padding: 18px 0 18px 30px;
             font-size: 1.6rem;
             border-bottom: map-get($colors, border) 1px solid;
+            display: flex;
             &:last-child {
                 border: none;
             }
@@ -121,6 +120,7 @@ page-peceipt {
                 width: 12rem;
             }
             .value {
+                @include ellipsis_1;
                 color: #999;
                 font-size: 1.4rem;
             }

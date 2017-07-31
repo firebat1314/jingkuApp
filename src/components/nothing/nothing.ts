@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { NavController } from "ionic-angular";
+import { NavController,Tabs } from "ionic-angular";
 
 /*
   Generated class for the Nothing component.
@@ -21,6 +21,6 @@ export class NothingComponent {
   }
   goHome() {
     this.navCtrl.popToRoot();
-    this.navCtrl.parent.select(0)
+    this.navCtrl.parent.select(0,{animate:true,direction:'forward'})
   }
 }

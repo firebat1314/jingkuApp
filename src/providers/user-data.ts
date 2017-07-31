@@ -88,7 +88,7 @@ export class UserData {
         if (showLoading) {
             this.native.hideLoading();
         }
-        let msg: string = '请求失败';
+        let msg: string = '参数错误';
         if (error.status == 401) {
             msg = '数据加载出错';
             if (error.statusText == 'Unauthorized') {

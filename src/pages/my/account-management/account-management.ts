@@ -1,32 +1,33 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams, Events } from 'ionic-angular';
-import { AccountSecurityPage } from "./account-security/account-security";
-import { AccountInfoPage } from "./account-info/account-info";
-import { ShippingAddressPage } from "./shipping-address/shipping-address";
-import { MemberCenterPage } from "./member-center/member-center";
-
+import { NavController, NavParams, Events, IonicPage, App } from 'ionic-angular';
+import { HttpService } from "../../../providers/http-service";
+import { Native } from "../../../providers/native";
 /*
   Generated class for the AccountManagement page.
 
   See http://ionicframework.com/docs/v2/components/#navigation for more info on
   Ionic pages and navigation.
 */
+@IonicPage()
 @Component({
   selector: 'page-account-management',
   templateUrl: 'account-management.html'
 })
 export class AccountManagementPage {
-  AccountSecurityPage: any = AccountSecurityPage;
-  AccountInfoPage: any = AccountInfoPage;
-  ShippingAddressPage: any = ShippingAddressPage;
-  MemberCenterPage: any = MemberCenterPage;
-  
+  AccountSecurityPage: any = 'AccountSecurityPage';
+  AccountInfoPage: any = 'AccountInfoPage';
+  ShippingAddressPage: any = 'ShippingAddressPage';
+  MemberCenterPage: any = 'MemberCenterPage';
+
   avatar: any = this.navParams.get('avatar');
   username: any = this.navParams.get('username');
   constructor(
     public navCtrl: NavController,
     public navParams: NavParams,
-    public events: Events
+    public events: Events,
+    public httpService: HttpService,
+    public app: App,
+    public native: Native,
   ) {
     this.events.subscribe('avatar:update', res => {
       this.avatar = res;
@@ -38,5 +39,13 @@ export class AccountManagementPage {
   ionViewDidLoad() {
     console.log('ionViewDidLoad AccountManagementPage');
   }
-
+  signOut() {
+    this.native.openAlertBox('确定退出登陆？', () => {
+      this.httpService.logout().then((res) => {
+        this.app.getRootNav().setRoot('LoginPage', {}, { animate: true });
+        this.httpService.setStorage('hasLoggedIn', false);
+        this.httpService.removeStorage("token");
+      })
+    })
+  }
 }

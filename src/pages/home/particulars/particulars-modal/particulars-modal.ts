@@ -1,8 +1,7 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams, ViewController, Events } from 'ionic-angular';
+import { NavController, NavParams, ViewController, Events, IonicPage } from 'ionic-angular';
 
 // import { CityPage } from "../../city/city"
-import { DredgeMoreCityPage } from '../dredge-more-city/dredge-more-city'
 import { HttpService } from "../../../../providers/http-service";
 import { Native } from "../../../../providers/native";
 /*
@@ -11,6 +10,7 @@ import { Native } from "../../../../providers/native";
   See http://ionicframework.com/docs/v2/components/#navigation for more info on
   Ionic pages and navigation.
 */
+@IonicPage()
 @Component({
   selector: 'page-particulars-modal',
   templateUrl: 'particulars-modal.html'
@@ -32,7 +32,7 @@ export class ParticularsModalPage {
   ionViewDidLoad() {
     console.log('ionViewDidLoad ParticularsModalPage');
   }
-  ngAfterViewInit(){
+  ngAfterViewInit() {
   }
   dredgeMoreCity() {
     this.dismiss('goDredgeMoreCityPage');
@@ -48,20 +48,17 @@ export class ParticularsModalPage {
   }
   setArea(ids) {
     console.log(ids)
-    if (ids) {
-      this.httpService.setArea({
-        goods_id: this.GoodsInfo.goods_id,
-        gaid: ids.gaid?ids.gaid:'',
-        region_id: ids.region_id
-      }).then((res) => {
-        if (res.status == 1) {
-          this.viewCtrl.dismiss({region_name:ids.region_name});
-          this.events.publish('home:updataArea');
-          this.native.showToast('切换成功');
-        }
-      })
-    }
-
+    this.httpService.setArea({
+      goods_id: this.GoodsInfo.goods_id,
+      gaid: ids.gaid ? ids.gaid : '',
+      region_id: ids.region_id
+    }).then((res) => {
+      if (res.status == 1) {
+        this.viewCtrl.dismiss({ region_name: ids.region_name });
+        this.events.publish('home:updataArea');
+        this.native.showToast('切换成功');
+      }
+    })
   }
   dismiss(data?: any) {
     // using the injected ViewController this page

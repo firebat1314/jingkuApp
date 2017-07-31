@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams, ViewController } from 'ionic-angular';
+import { NavController, NavParams, ViewController, IonicPage } from 'ionic-angular';
 import { HttpService } from "../../../../providers/http-service";
 import { Native } from "../../../../providers/native";
 // import { AllOrdersPage } from "../all-orders";
@@ -14,6 +14,8 @@ declare var pingpp: any;
 declare var Pingpp: any;
 declare var Wechat: any;
 declare var navigator: any;
+
+@IonicPage()
 @Component({
   selector: 'page-payment-method',
   templateUrl: 'payment-method.html'

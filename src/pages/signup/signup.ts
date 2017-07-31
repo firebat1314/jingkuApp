@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams, Events } from 'ionic-angular';
+import { NavController, NavParams, Events, IonicPage } from 'ionic-angular';
 
-import { SignupSecondPage } from './signup-second/signup-second';
 import { HttpService } from "../../providers/http-service";
 
 /*
@@ -10,6 +9,7 @@ import { HttpService } from "../../providers/http-service";
   See http://ionicframework.com/docs/v2/components/#navigation for more info on
   Ionic pages and navigation.
 */
+@IonicPage()
 @Component({
   selector: 'page-signup',
   templateUrl: 'signup.html'
@@ -116,10 +116,11 @@ export class SignupPage {
     this.navCtrl.pop();
   }
   registerBtn() {
+          this.navCtrl.push('SignupSecondPage');
     this.httpService.signupFirst(this.signupInfo).then(
       data => {
         if (data.status == 1) {
-          this.navCtrl.push(SignupSecondPage,{user_name:data.data.user_name});
+          this.navCtrl.push('SignupSecondPage',{user_name:data.data.user_name});
           this.events.publish("user:signupFirst", this.signupInfo.user_name);
           this.httpService.setUsername(this.signupInfo.user_name)
           this.httpService.setToken(data.data.token);

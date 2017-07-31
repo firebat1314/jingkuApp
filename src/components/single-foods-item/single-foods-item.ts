@@ -1,6 +1,5 @@
 import { Component, Input } from '@angular/core';
 
-import { ParticularsPage } from '../../pages/home/particulars/particulars'
 import { HttpService } from "../../providers/http-service";
 import { Native } from "../../providers/native";
 import { NavController } from 'ionic-angular';
@@ -28,10 +27,11 @@ export class SingleFoodsItemComponent {
   }
   @Input() data: any;
   @Input() events: any;
+  @Input() toTop: any = true;
 
   animateItems = [];
   animateClass: any;
-  ParticularsPage: any = ParticularsPage;
+  ParticularsPage: any = 'ParticularsPage';
 
   onEvent(event: string, item: any, e: any) {
     if (e) {
@@ -42,7 +42,9 @@ export class SingleFoodsItemComponent {
     }
   }
   ngOnChanges() {
-    this.animateItems = [];
+    if(this.toTop){
+      this.animateItems = [];
+    }
     let that = this;
     for (let i = 0; i < that.data.length; i++) {
       setTimeout(function () {
@@ -76,7 +78,7 @@ export class SingleFoodsItemComponent {
     })
   }
   goParticularsPage(id) {
-    this.navCtrl.push(ParticularsPage, { goodsId: id });
+    this.navCtrl.push('ParticularsPage', { goodsId: id });
   }
   ngOnDestroy() {
     this.clearBtn()

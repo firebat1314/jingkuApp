@@ -34,13 +34,16 @@ page-my {
             margin-top: 10px;
             ion-img {
                 margin-right: 10px;
+                img {
+                    width: 20px;
+                }
             }
         }
     }
     .item ion-avatar,
     .item ion-avatar ion-img,
     .item ion-avatar img {
-        width: 90px;
-        height: 90px;
+        width: 80px;
+        height: 80px;
     }
 }

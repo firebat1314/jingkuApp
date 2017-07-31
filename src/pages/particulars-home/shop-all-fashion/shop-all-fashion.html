@@ -1,0 +1,25 @@
+<!--
+  Generated template for the ShopAllFashionPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+    <ion-navbar>
+        <ion-title>店铺授权品牌</ion-title>
+    </ion-navbar>
+
+</ion-header>
+
+
+<ion-content>
+    <div class="all-fashion-tit">
+        <span>北京镜库科技有限公司共有{{brandList?.length||'0'}}个授权品牌：</span>
+    </div>
+    <div class="shop-fashion-content">
+        <div tappable *ngFor="let item of brandList;let i = index" class="shop-fashion-item">
+            <span>{{item.brand_name}}</span>
+        </div>
+    </div>
+</ion-content>

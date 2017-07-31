@@ -6,5 +6,5 @@
 -->
 
 <span tappable (click)="reduce()">—</span>
-<input type="number" [(ngModel)]="value" (input)="inputEvent()">
+<input type="number" [(ngModel)]="value" [disabled]="disabled" (input)="inputEvent(value)">
 <span tappable (click)="increase()">+</span>

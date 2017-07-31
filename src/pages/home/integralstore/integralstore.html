@@ -21,7 +21,7 @@
     <div class="main-content">
         <div class="fore fore1">
             <div class="btns">
-                <div tappable [navPush]="MemberCenterPage">积分 <span class="red">{{totalScore}}</span></div>
+                <div tappable>积分 <span class="red">{{totalScore}}</span></div>
                 <div tappable [navPush]="JifenHistoryPage">兑换记录</div>
             </div>
         </div>
@@ -44,7 +44,7 @@
         </button>
     </ion-fab>
     <ion-fab right bottom>
-        <button ion-fab color="dark" mini goBackTop (click)="scrollToTop()"></button>
+        <button ion-fab color="dark" #scrollToTop mini goBackTop (click)="scrollToTop()"></button>
     </ion-fab>
 
     <ion-infinite-scroll (ionInfinite)="doInfinite($event)">

@@ -23,6 +23,14 @@
         <img src="./assets/images/images/couponCenter_1_02.jpg" width="100%" alt="">
     </div>
     <div class="main-content">
+        <div class="no-coupon" *ngIf="data&&!data?.list?.length">
+            <div class="img">
+                <img src="./assets/icon/no-coupon.png" alt="">
+            </div>
+            <div class="message">
+                还没有优惠券哦
+            </div>
+        </div>
         <div class="coupon" [class.get]="item.is_get==1" *ngFor="let item of data?.list">
             <div class="get" *ngIf="item.is_get==1">
                 <img src="./assets/images/images/coupon_center_1_03.png" alt="">

@@ -1,11 +1,7 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams, Events, ActionSheetController } from 'ionic-angular';
-import { RealnamePage } from "./realname/realname";
-import { QqPage } from "./qq/qq";
-import { CompanynamePage } from "./companyname/companyname";
-import { HttpService } from "../../../../providers/http-service";
-import { AddressPage } from "./address/address";
+import { NavController, NavParams, Events, ActionSheetController, IonicPage } from 'ionic-angular';
 import { Native } from "../../../../providers/native";
+import { HttpService } from "../../../../providers/http-service";
 
 /*
   Generated class for the AccountInfo page.
@@ -13,16 +9,17 @@ import { Native } from "../../../../providers/native";
   See http://ionicframework.com/docs/v2/components/#navigation for more info on
   Ionic pages and navigation.
 */
+@IonicPage()
 @Component({
   selector: 'page-account-info',
   templateUrl: 'account-info.html'
 })
 export class AccountInfoPage {
   userInfo: any;
-  RealnamePage = RealnamePage;
-  QqPage = QqPage;
-  CompanynamePage = CompanynamePage;
-  AddressPage = AddressPage;
+  RealnamePage = 'RealnamePage';
+  QqPage = 'QqPage';
+  CompanynamePage = 'CompanynamePage';
+  AddressPage = 'AddressPage';
   constructor(
     public navCtrl: NavController,
     public navParams: NavParams,
@@ -83,7 +80,6 @@ export class AccountInfoPage {
   }
   uploadAvatar(data) {
     this.httpService.editAvatar({ avatar: 'data:image/jpeg;base64,' + data }).then((res) => {
-      console.log(res);
       if (res.status == 1) {
         this.native.showToast('头像上传成功');
         this.getUserData();

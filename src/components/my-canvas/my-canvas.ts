@@ -18,13 +18,13 @@ export class MyCanvasComponent {
   constructor() {
     console.log('Hello MyCanvasComponent Component');
   }
-
+  
   ngAfterViewInit() {
     this.myCanvas.changes.subscribe(data => data._results.forEach(
       (e, i) => {
         let ctx = e.nativeElement.getContext("2d");
         if (this.baifen) {
-          this.timer(ctx, 0, Number(this.baifen), 100);
+          this.timer(ctx, 0, Number(this.baifen), 50);
         }
       }));
     this.myCanvas.notifyOnChanges();
@@ -59,7 +59,7 @@ export class MyCanvasComponent {
     cxt.closePath();
     cxt.fill();
     //生成中间百分比文字
-    cxt.font = "1.6rem arial";
+    cxt.font = "1.2rem arial";
     cxt.fillStyle = "#fff";
     cxt.textAlign = "center";
     cxt.fillText('已抢', 30, 27);

@@ -1,10 +1,6 @@
 import { Component, ViewChild } from '@angular/core';
-import { NavController, NavParams, Content } from 'ionic-angular';
-import { PaymentMethodPage } from "./payment-method/payment-method";
-import { OrdersDetailPage } from "./orders-detail/orders-detail";
-// import { WriteOrdersPage } from "./write-orders/write-orders";
+import { NavController, NavParams, Content, IonicPage, FabButton } from 'ionic-angular';
 import { HttpService } from "../../../providers/http-service";
-import { ParticularsPage } from "../../home/particulars/particulars";
 import { Native } from "../../../providers/native";
 /*
   Generated class for the AllOrders page.
@@ -12,6 +8,7 @@ import { Native } from "../../../providers/native";
   See http://ionicframework.com/docs/v2/components/#navigation for more info on
   Ionic pages and navigation.
 */
+@IonicPage()
 @Component({
   selector: 'page-all-orders',
   templateUrl: 'all-orders.html'
@@ -21,6 +18,7 @@ export class AllOrdersPage {
   orderData: any;
   @ViewChild('mytabs') mytabs;
   @ViewChild(Content) content: Content;
+  @ViewChild(FabButton) fabButton: FabButton;
 
   constructor(
     public navCtrl: NavController,
@@ -32,6 +30,11 @@ export class AllOrdersPage {
     console.log('ionViewDidLoad AllOrdersPage');
   }
   ngAfterViewInit() {
+    /* 回到顶部按钮 */
+    this.fabButton.setElementClass('fab-button-out',true);
+    this.content.ionScroll.subscribe((d) => {
+      this.fabButton.setElementClass("fab-button-in", d.scrollTop >= d.contentHeight);
+    });
     //进入页面默认选中标签
     if (this.navParams.get('index')) {
       this.pageIndex = this.navParams.get('index');
@@ -80,14 +83,14 @@ export class AllOrdersPage {
   checkTab($event) {
     this.flag = true;
     this.pageIndex = $event;
-    this.content.scrollToTop();
+    this.content.scrollToTop(0);
     this.getByPageIndex();
   }
   goOrdersDetailPage(orderId) {
-    this.navCtrl.push(OrdersDetailPage, { order_id: orderId });
+    this.navCtrl.push('OrdersDetailPage', { order_id: orderId });
   }
   goParticularsPage(id) {
-    this.navCtrl.push(ParticularsPage, { goodsId: id });
+    this.navCtrl.push('ParticularsPage', { goodsId: id });
   }
 
   flag: boolean = true;
@@ -121,7 +124,7 @@ export class AllOrdersPage {
     this.httpService.pay({ order_id: id }).then((res) => {
       console.log(res);
       if (res.status == 1) {
-        this.navCtrl.push(PaymentMethodPage, { data: res })
+        this.navCtrl.push('PaymentMethodPage', { data: res })
       }
     })
   }

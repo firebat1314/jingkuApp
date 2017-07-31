@@ -18,7 +18,7 @@
         <ion-item>
             <h2>{{salesman?.name}}</h2>
             <p>{{salesman?.phone}}</p>
-            <button ion-button item-end icon-only clear>
+            <button ion-button item-end icon-only clear (click)="callNumber()">
               <ion-icon name="call" mode="ios"></ion-icon>
             </button>
         </ion-item>

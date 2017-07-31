@@ -1,10 +1,7 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams } from 'ionic-angular';
-import { LoginPage } from '../../login/login';
-import { SignupThirdPage } from '../signup-third/signup-third';
+import { NavController, NavParams, IonicPage } from 'ionic-angular';
 import { HttpService } from "../../../providers/http-service";
 import { Native } from "../../../providers/native";
-import { HelperDetailsPage } from "../../my/account-helper/helper-details/helper-details";
 
 /*
   Generated class for the SignupSecond page.
@@ -12,6 +9,7 @@ import { HelperDetailsPage } from "../../my/account-helper/helper-details/helper
   See http://ionicframework.com/docs/v2/components/#navigation for more info on
   Ionic pages and navigation.
 */
+@IonicPage()
 @Component({
   selector: 'page-signup-second',
   templateUrl: 'signup-second.html'
@@ -73,7 +71,7 @@ export class SignupSecondPage {
     console.log(this.file);
   }
   toLoginPage() {
-    this.navCtrl.push(LoginPage)
+    this.navCtrl.push('LoginPage')
   }
   openFile() {
     this.native.getPictureByPhotoLibrary().then((res) => {
@@ -84,12 +82,12 @@ export class SignupSecondPage {
     this.httpService.signupTwo(this.formData).then((res) => {
       if (res.status == 1) {
         this.native.showToast(res.info);
-        this.navCtrl.push(SignupThirdPage);
+        this.navCtrl.push('SignupThirdPage');
       }
     })
   }
   goHelperDetailsPage() {
-    this.navCtrl.push(HelperDetailsPage,{item:{article_id:36}})
+    this.navCtrl.push('HelperDetailsPage',{item:{article_id:36}})
   }
 
 }

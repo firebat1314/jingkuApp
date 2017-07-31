@@ -1,5 +1,5 @@
 import { Component, ViewChild } from '@angular/core';
-import { NavController, NavParams, Events, Content } from 'ionic-angular';
+import { NavController, NavParams, Events, Content, IonicPage, FabButton } from 'ionic-angular';
 import { HttpService } from "../../../providers/http-service";
 import { Native } from "../../../providers/native";
 
@@ -9,6 +9,7 @@ import { Native } from "../../../providers/native";
   See http://ionicframework.com/docs/v2/components/#navigation for more info on
   Ionic pages and navigation.
 */
+@IonicPage()
 @Component({
   selector: 'page-discount-coupon',
   templateUrl: 'discount-coupon.html'
@@ -16,6 +17,7 @@ import { Native } from "../../../providers/native";
 export class DiscountCouponPage {
   data: any;
   @ViewChild(Content) content: Content;
+  @ViewChild(FabButton) fabButton: FabButton;
   constructor(
     public navCtrl: NavController,
     public navParams: NavParams,
@@ -26,10 +28,16 @@ export class DiscountCouponPage {
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad DiscountCouponPage');
+  }
+  ngOnInit(){
     this.getCouponData();
   }
   ngAfterViewInit() {
-   
+    /* 回到顶部按钮 */
+    this.fabButton.setElementClass('fab-button-out',true);
+    this.content.ionScroll.subscribe((d) => {
+      this.fabButton.setElementClass("fab-button-in", d.scrollTop >= d.contentHeight);
+    });
   }
   getCouponData() {
     this.httpService.coupon({ page: 1 }).then((res) => {

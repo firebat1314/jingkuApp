@@ -1,6 +1,5 @@
 import { Component, ViewChild } from '@angular/core';
-import { NavController, NavParams, Content } from 'ionic-angular';
-import { DuihuanDetailsFinishPage } from "../duihuan-details-finish/duihuan-details-finish";
+import { NavController, NavParams, Content, IonicPage } from 'ionic-angular';
 import { HttpService } from "../../../../providers/http-service";
 
 /*
@@ -9,6 +8,7 @@ import { HttpService } from "../../../../providers/http-service";
   See http://ionicframework.com/docs/v2/components/#navigation for more info on
   Ionic pages and navigation.
 */
+@IonicPage()
 @Component({
   selector: 'page-jifen-history',
   templateUrl: 'jifen-history.html'
@@ -31,7 +31,7 @@ export class JifenHistoryPage {
   }
 
   goDuihuanDetailsFinishPage(item) {
-    this.navCtrl.push(DuihuanDetailsFinishPage, { item: item })
+    this.navCtrl.push('DuihuanDetailsFinishPage', { item: item })
   }
 
   getData() {

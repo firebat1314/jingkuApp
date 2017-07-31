@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams } from 'ionic-angular';
+import { NavController, NavParams, IonicPage } from 'ionic-angular';
 import { HttpService } from "../../../../providers/http-service";
 
 /*
@@ -8,6 +8,7 @@ import { HttpService } from "../../../../providers/http-service";
   See http://ionicframework.com/docs/v2/components/#navigation for more info on
   Ionic pages and navigation.
 */
+@IonicPage()
 @Component({
   selector: 'page-message-details',
   templateUrl: 'message-details.html'
@@ -22,11 +23,13 @@ export class MessageDetailsPage {
     private httpService: HttpService
 
   ) {
-    this.getData();
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad MessageDetailsPage');
+  }
+  ngOnInit(){
+    this.getData();
   }
   getData() {
     if (this.type == 1) {
@@ -69,5 +72,8 @@ export class MessageDetailsPage {
         infiniteScroll.complete();
       }, 500);
     })
+  }
+  goOrdersDetailPage(order_id) {
+    this.navCtrl.push('OrdersDetailPage', { order_id: order_id })
   }
 }

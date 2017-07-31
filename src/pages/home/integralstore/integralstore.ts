@@ -1,9 +1,6 @@
 import { Component, ViewChild } from '@angular/core';
-import { NavController, NavParams, Content } from 'ionic-angular';
-import { JifenHistoryPage } from "./jifen-history/jifen-history";
-import { DuihuanDetailsPage } from "./duihuan-details/duihuan-details";
-import { DuihuanDetailsFinishPage } from "./duihuan-details-finish/duihuan-details-finish";
-import { MemberCenterPage } from "../../my/account-management/member-center/member-center";
+import { NavController, NavParams, Content, IonicPage, FabButton } from 'ionic-angular';
+
 import { HttpService } from "../../../providers/http-service";
 
 /*
@@ -12,6 +9,7 @@ import { HttpService } from "../../../providers/http-service";
   See http://ionicframework.com/docs/v2/components/#navigation for more info on
   Ionic pages and navigation.
 */
+@IonicPage()
 @Component({
   selector: 'page-integralstore',
   templateUrl: 'integralstore.html'
@@ -20,12 +18,11 @@ export class IntegralstorePage {
   totalScore: any;
   data: any;
   @ViewChild(Content) content: Content;
-
-
-  JifenHistoryPage: any = JifenHistoryPage;
-  DuihuanDetailsPage: any = DuihuanDetailsPage;
-  DuihuanDetailsFinishPage: any = DuihuanDetailsFinishPage;
-  MemberCenterPage: any = MemberCenterPage;
+  @ViewChild('scrollToTop') fabButton: FabButton;
+  JifenHistoryPage: any = 'JifenHistoryPage';
+  DuihuanDetailsPage: any = 'DuihuanDetailsPage';
+  DuihuanDetailsFinishPage: any = 'DuihuanDetailsFinishPage';
+  MemberCenterPage: any = 'MemberCenterPage';
 
   constructor(
     public navCtrl: NavController,
@@ -39,17 +36,29 @@ export class IntegralstorePage {
     console.log('ionViewDidLoad IntegralstorePage');
   }
   goDuihuanDetailsPage(goodsId) {
-    this.navCtrl.push(DuihuanDetailsPage, { goodsId: goodsId })
+    this.navCtrl.push('DuihuanDetailsPage', { goodsId: goodsId })
+  }
+  ionViewWillEnter() {
+
   }
   getData() {
-    this.httpService.exchange({ page: 1 }).then((res) => {
-      if (res.status == 1) { this.data = res; }
-    })
-    this.httpService.userInfo().then((res) => {
-      if (res.status == 1) { this.totalScore = res.data.integral; }
+    return new Promise((resolve, reject) => {
+      this.httpService.exchange({ page: 1 }).then((res) => {
+        if (res.status == 1) { this.data = res; }
+      })
+      this.httpService.userInfo().then((res) => {
+        if (res.status == 1) { this.totalScore = res.data.integral; }
+        resolve()
+      })
     })
   }
-
+  ngAfterViewInit() {
+    /* 回到顶部按钮 */
+    this.fabButton.setElementClass('fab-button-out', true);
+    this.content.ionScroll.subscribe((d) => {
+      this.fabButton.setElementClass("fab-button-in", d.scrollTop >= d.contentHeight);
+    });
+  }
   doInfinite(infiniteScroll) {
     var page = this.data.page;
     if (page < this.data.pages) {

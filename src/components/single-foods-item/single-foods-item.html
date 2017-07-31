@@ -9,8 +9,7 @@
 
     <ion-item [ngClass]="animateClass" (press)="tapEvent(item,$event)" tappable [navPush]="ParticularsPage" [navParams]="{goodsId:item.id}" *ngFor="let item of animateItems; let i = index;">
         <ion-thumbnail item-left>
-            <img-lazy-load src="{{item?.goods_img}}"></img-lazy-load>
-            <!--<img [src]="item?.goods_img" alt="{{item?.short_name}}" />-->
+            <img img-lazy-load="{{item?.goods_img}}" alt="{{item?.short_name}}">
         </ion-thumbnail>
         <h2>{{item.short_name}}</h2>
         <h3>{{item.shop_price}}</h3>

@@ -39,7 +39,9 @@
             </ion-item>
         </ion-list>
         <div class="setDefault" *ngIf="!addressId">
+            <label>
             <ion-checkbox color="dark" mode="ios" [(ngModel)]="default" name="default" margin-horizontal></ion-checkbox>设置默认
+            </label>
         </div>
         <div padding>
             <button ion-button large block (click)="onsubmit()" [disabled]="!addAddress.form.valid">保存</button>

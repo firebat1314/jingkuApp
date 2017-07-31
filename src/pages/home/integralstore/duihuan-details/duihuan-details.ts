@@ -1,8 +1,7 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams } from 'ionic-angular';
+import { NavController, NavParams, IonicPage } from 'ionic-angular';
 import { HttpService } from "../../../../providers/http-service";
 import { Native } from "../../../../providers/native";
-import { WriteOrdersPage } from "../../../my/all-orders/write-orders/write-orders";
 
 /*
   Generated class for the DuihuanDetails page.
@@ -10,6 +9,7 @@ import { WriteOrdersPage } from "../../../my/all-orders/write-orders/write-order
   See http://ionicframework.com/docs/v2/components/#navigation for more info on
   Ionic pages and navigation.
 */
+@IonicPage()
 @Component({
   selector: 'page-duihuan-details',
   templateUrl: 'duihuan-details.html'
@@ -57,7 +57,7 @@ export class DuihuanDetailsPage {
       this.httpService.exchangebuy({ goods_id: this.goodsId }).then((res) => {
         if (res.status == 1) {
           this.native.showToast(res.data);
-          this.navCtrl.push(WriteOrdersPage,{type:'integral'})
+          this.navCtrl.push('WriteOrdersPage',{type:'integral'})
         }
       })
     })

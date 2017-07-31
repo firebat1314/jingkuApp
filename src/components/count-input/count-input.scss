@@ -5,18 +5,23 @@ count-input {
     justify-content: center;
     border: 1px solid #808080;
     border-radius: 3px;
-    height: 30px;
+    height: 26px;
+    max-width: 92px;
+    min-width: 92px;
+    overflow: hidden;
     span {
-        padding: 0 10px;
+        padding: 0 7px;
         font-size: 2rem;
         color: #808080;
         display: block;
+        text-align: center;
         &:first-child {
             font-size: 1rem;
         }
     }
     input {
-        width: 45px;
+        width: 13%;
+        flex: 1;
         color: red;
         text-align: center;
         height: 100%;

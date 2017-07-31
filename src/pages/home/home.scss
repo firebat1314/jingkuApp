@@ -2,6 +2,30 @@ page-home {
     [home-padding] {
         padding: 10px;
     }
+    .home-content {
+        background: #fff;
+        margin-bottom: 10px;
+        &:last-child {
+            margin: 0;
+        }
+        .title {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 16px;
+            .txt {
+                border-left: 5px solid #333;
+                font-weight: 500;
+                font-size: 1.6rem;
+                padding-left: 10px;
+                padding-top: 3px;
+            }
+            .more {
+                color: #666;
+                font-size: 12px;
+            }
+        }
+    }
     .mark-searchbar {
         position: absolute;
         top: 0;
@@ -59,27 +83,6 @@ page-home {
     .btn-tool .bottom {
         margin-bottom: 0px;
     }
-    .home-content {
-        background: #fff;
-        margin-bottom: 10px;
-        .title {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 16px;
-            .txt {
-                border-left: 5px solid #000;
-                font-weight: 500;
-                font-size: 1.6rem;
-                padding-left: 10px;
-                padding-top: 3px;
-            }
-            .more {
-                color: #666;
-                font-size: 12px;
-            }
-        }
-    }
     /*——————————————————————————————————————————热门品类——————————————————————————————————————————*/
     .hot-group {
         margin-bottom: 10px;
@@ -128,9 +131,9 @@ page-home {
                     display: block;
                     width: 100%;
                 }
-                /*&:last-child {
+                &:last-child {
                     width: 50%;
-                }*/
+                }
             }
         }
     }
@@ -168,13 +171,13 @@ page-home {
                             overflow: hidden;
                             text-overflow: ellipsis;
                             white-space: nowrap;
-                            font-size: 1.4rem;
+                            font-size: 1.2rem;
                             color: #666;
                         }
                         .price {
                             color: map_get($colors, danger);
-                            font-size: 1.5rem;
-                            margin-top: 10px;
+                            font-size: 1.3rem;
+                            // margin-top: 10px;
                         }
                     }
                     .watch-more {

@@ -18,9 +18,9 @@
 
         <ion-item mode="ios" tappable (click)="editAvatar()" detail-push>
             <h2>头像</h2>
-            <ion-thumbnail item-right>
-                <img style="border-radius: 50%;" src="{{userInfo?.data?.avatar}}">
-            </ion-thumbnail>
+            <ion-avatar item-right>
+                <img style="width: 75px;height: 75px;" img-lazy-load="{{userInfo?.data?.avatar}}">
+            </ion-avatar>
         </ion-item>
         <ion-item mode="ios">
             用户名
@@ -51,8 +51,8 @@
         </ion-item>
         <ion-item tappable mode="ios">
             营业执照
-            <div item-content style="width: 12rem;padding: 10px;">
-                <img img-lazy-load="{{userInfo?.data?.user_info?.zhizhao}}">
+            <div item-end style="width: 10rem;">
+                <img border-f0 img-lazy-load="{{userInfo?.data?.user_info?.zhizhao}}">
             </div>
         </ion-item>
     </ion-list>

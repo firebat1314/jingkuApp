@@ -1,0 +1,197 @@
+  .page-particulars-home-details-popover {
+      .popover-content {
+          width: 25rem;
+          height: 32rem;
+          //background: rgba(127,127,127,0.5);
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          position: inherit;
+      }
+  }
+  
+  page-particulars-home-details {
+      $item-line-height: 4.4rem;
+      .banner-shop {
+          background: #fff;
+          .banner-shadow {
+              width: 100%;
+              padding: 15px;
+              height: 100%;
+              overflow: hidden;
+              display: flex;
+              .banner-shop-logo {
+                  width: 80px;
+                  height: 80px;
+                  border-radius: 50%;
+                  background: #fff;
+                  display: flex;
+                  justify-content: center;
+                  align-items: center;
+                  margin-right: 1rem;
+                  overflow: hidden;
+                  border: $border-img;
+                  .banner-shop-anoLogo {
+                      width: 75px;
+                      height: 75px;
+                      border-radius: 50%;
+                      overflow: hidden;
+                      display: flex;
+                      align-items: center;
+                      justify-content: center;
+                      img {
+                          width: 100%;
+                          object-fit: contain;
+                      }
+                  }
+              }
+              .banner-shop-content {
+                  color: get-color('gray3');
+                  display: flex;
+                  flex-direction: column;
+                  justify-content: space-around;
+                  color: #666;
+                  font-weight: 500;
+                  .name {
+                      font-size: font-size-text('h3');
+                  }
+                  .heart {
+                      display: flex;
+                      align-items: center;
+                      .icon {
+                          font-size: 2.2rem;
+                          margin-right: 10px;
+                      }
+                  }
+              }
+          }
+      }
+      .details-fenlei-nav {
+          background: #fff;
+          border-bottom: $border;
+          border-top: $border;
+          padding: 10px 0;
+          overflow: hidden;
+          .fenlei-nav {
+              width: 33.3%;
+              border-right: 1px solid #e6e6e6;
+              float: left;
+              &:last-child {
+                  border-right: none;
+              }
+              .fenlei-nav-img {
+                  height: 2.3rem;
+                  background: url(../assets/icon/store-home/all.png) no-repeat center top;
+                  background-size: 20px;
+              }
+              .new {
+                  background: url(../assets/icon/store-home/new.png) no-repeat center top;
+                  background-size: 25px;
+              }
+              .cuxiao {
+                  background: url(../assets/icon/store-home/Sales-ranking2.png) no-repeat center top;
+                  background-size: 25px;
+              }
+              p {
+                  margin: 0;
+                  color: #666;
+                  font-size: 1.4rem;
+                  text-align: center;
+              }
+          }
+      }
+      .sale-info-content {
+          background: #fff;
+          margin-top: 10px;
+          .sale-info-item {
+              height: $item-line-height;
+              border-bottom: 1px solid #e6e6e6;
+              padding: 0 10px;
+              background-size: 20px;
+              background-position: 96% center;
+              background-repeat: no-repeat;
+              @include ellipsis_1;
+              margin: 0;
+              span {
+                  line-height: $item-line-height;
+                  color: #595959;
+                  font-size: 1.5rem;
+                  margin-right: 2%;
+                  &:first-child {
+                      width: 100px;
+                  }
+                  &:last-child {
+                      color: get-color('gray');
+                      font-size: 1.4rem;
+                  }
+              }
+              &.boss {
+                  background-image: url(../assets/icon/kefu.png);
+                  padding-right: 40px;
+              }
+              &.phone {
+                  background-image: url(../assets/icon/store-home/phone.png);
+                  padding-right: 40px;
+              }
+              &.erweima {
+                  background-image: url(../assets/icon/store-home/二维码.png);
+                  padding-right: 40px;
+              }
+              &.shenfenzheng {
+                  background-image: url(../assets/icon/store-home/people.png);
+                  padding-right: 40px;
+              }
+          }
+      }
+      .shop-fashion {
+          .shop-fashion-tit {
+              margin-top: 10px;
+              line-height: $item-line-height;
+              color: #595959;
+              font-size: 1.5rem;
+              background: #fff;
+              padding: 0 10px;
+          }
+          .shop-fashion-content {
+              border-bottom: 1px solid #e6e6e6;
+              overflow: hidden;
+              display: flex;
+              flex-wrap: wrap;
+              align-items: center;
+              justify-content: space-between;
+              padding: 5% 5% 0;
+              .shop-fashion-item {
+                  width: 45%;
+                  height: 3rem;
+                  background: #fff;
+                  text-align: center;
+                  float: left;
+                  margin-bottom: 5%;
+                  span {
+                      display: inline-block;
+                      line-height: 3rem;
+                      color: #666;
+                      font-size: 1.4rem;
+                      text-overflow: ellipsis;
+                      overflow: hidden;
+                      white-space: nowrap;
+                  }
+              }
+          }
+          .shop-details-more-fashion {
+              background: #fff;
+              .into-more-fashion {
+                  height: 4rem;
+                  border-bottom: 1px solid #e6e6e6;
+                  span {
+                      line-height: $item-line-height;
+                      color: #666;
+                      font-size: font-size-text('h4');
+                      display: inline-block;
+                      float: right;
+                      margin-right: 5%;
+                  }
+              }
+          }
+      }
+  }

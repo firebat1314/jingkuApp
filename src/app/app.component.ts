@@ -5,8 +5,6 @@ import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 
 import { TabsPage } from '../pages/tabs/tabs';
-import { WelcomePage } from '../pages/welcome/welcome';
-import { LoginPage } from '../pages/login/login';
 import { JpushService } from "../providers/jpush-service";
 
 /*import { ParticularsPage } from '../pages/home/particulars/particulars'
@@ -45,21 +43,21 @@ export class MyApp {
     // 初次进入app引导页面
     this.storage.get('hasLoggedIn').then((result) => {
       if (result) {
-        this.rootPage = TabsPage;
+        this.rootPage = 'TabsPage';//ApplyService2Page
       } else {
         this.storage.get('firstIn').then((result) => {
           if (result) {
-            this.rootPage = LoginPage;
+            this.rootPage = 'LoginPage';
           } else {
-            this.rootPage = WelcomePage;
+            this.rootPage = 'WelcomePage';
           }
         })
-      }
+      } 
     });
     this.initializeApp();//注册返回按键事件
     //用户失效事件
     this.events.subscribe('signOut', () => {
-      this.nav.setRoot(LoginPage);
+      this.nav.setRoot('LoginPage',{},{animate:true,});
     })
   }
   ngOnDestroy() {

@@ -14,14 +14,8 @@
 
 
 <ion-content parallax-header>
-    <div class="imgs header-image">
-        <ion-slides parallax="true">
-            <ion-slide *ngFor="let item of getGoodsGallery">
-                <ion-card>
-                    <img img-lazy-load="{{item.img_url}}" imageViewer />
-                </ion-card>
-            </ion-slide>
-        </ion-slides>
+    <div class="header-image">
+        <swiper [data]="getGoodsGallery"></swiper>
     </div>
     <div class="main-content">
         <div class="info">

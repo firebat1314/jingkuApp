@@ -1,8 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams, PopoverController } from 'ionic-angular';
-
-
-import { PopoverContentPage } from "./popover-content/popover-content"
+import { NavController, NavParams, PopoverController, IonicPage } from 'ionic-angular';
 import { HttpService } from "../../../../providers/http-service";
 import { Native } from "../../../../providers/native";
 /*
@@ -11,6 +8,7 @@ import { Native } from "../../../../providers/native";
   See http://ionicframework.com/docs/v2/components/#navigation for more info on
   Ionic pages and navigation.
 */
+@IonicPage()
 @Component({
   selector: 'page-dredge-more-city',
   templateUrl: 'dredge-more-city.html'
@@ -29,20 +27,30 @@ export class DredgeMoreCityPage {
     public navParams: NavParams,
     public popover: PopoverController,
     public httpService: HttpService,
-    public native:Native
-  ) {
-    this.getHttpData();
-  }
+    public native: Native
+  ) {}
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad DredgeMoreCityPage');
   }
+  ionViewCanEnter() {
+    return this.getHttpData().then((res) => {
+      return true;
+    },(res)=>{
+      this.native.showToast('没有未开通城市',null,false)
+      return false;
+    });
+  }
   getHttpData() {
-    this.httpService.regionApply().then((res) => {
-      if (res.status == 1) {
-        this.reginArr = res;
-      }
+    return new Promise((resolve, reject) => {
+      this.httpService.regionApply().then((res) => {
+        if(res.no_user_citys.length==0){reject();}else{resolve();}
+        if (res.status == 1) {
+          this.reginArr = res;
+        }
+      })
     })
+
   }
   selectCity(item) {
     let arr = this.formData.region_ids
@@ -56,7 +64,7 @@ export class DredgeMoreCityPage {
     }
   }
   opanNative(type) {
-    let popover = this.popover.create(PopoverContentPage);
+    let popover = this.popover.create('PopoverContentPage');
     popover.onDidDismiss((imageData) => {
       if (imageData) {
         if (type == 0) {//正面身份照

@@ -9,22 +9,63 @@
     </ion-item>
     <div class="background"></div>
     <div *ngIf="type=='goods'" class="goods_main">
-        <table>
+        <!-- is_subsidy 是否显示促销价 -->
+        <!-- <table>
             <tr>
-                <th>价格</th>
+                <th>数量</th>
+                <th *ngIf="data.data[0].is_subsidy">促销价</th>
+                <th *ngIf="data.data[0].is_subsidy">原价</th>
+                <th *ngIf="!data.data[0].is_subsidy">价格</th>
                 <th *ngFor="let item of data.data[0].goods_attr">{{item.attr_name}}</th>
                 <th>库存</th>
-                <th>数量</th>
             </tr>
             <tr *ngFor="let item of data.data">
-                <td>{{item.price}}</td>
+                <td class="count-input-box">
+                    <count-input (valueChange)="numberIChange($event,item)"></count-input>
+                </td>
+                <td *ngIf="item.is_subsidy">{{item.price}}</td>
+                <td *ngIf="item.is_subsidy">{{item.old_price}}</td>
+                <td *ngIf="!item.is_subsidy">{{item.price}}</td>
                 <td *ngFor="let group of item.goods_attr">{{group.attr_val}}</td>
                 <td>{{item.product_number}}</td>
-                <td>
-                    <count-input (updateNumberI)="numberIChange($event,item)"></count-input>
-                </td>
             </tr>
-        </table>
+        </table> -->
+        <div class="main-attr-wrap" *ngIf="mainAttrs">
+            <div ion-button [outline]="item.id!=checkMainAttrId" class="main-attr" small *ngFor="let item of mainAttrs.values" tappable (click)="checkMainAttrId=item.id;checkMainAttrNum=item.number||1;checkMainAttr()">{{item.label}}</div>
+        </div>
+        <div class="tabelbox">
+            <div class="table">
+                <div class="tr">
+                    <div class="td-wrap">
+                        <div class="td">数量</div>
+                        <div class="td" *ngIf="attrsList?.data[0]?.is_subsidy">促销价</div>
+                        <div class="td" *ngIf="attrsList?.data[0]?.is_subsidy">原价</div>
+                        <div class="td" *ngIf="!attrsList?.data[0]?.is_subsidy">价格</div>
+                        <div class="td" *ngFor="let item of attrsList?.data[0]?.goods_attr">
+                            {{item.attr_name}}
+                        </div>
+                        <div class="td">库存</div>
+                    </div>
+                </div>
+                <div class="tr" *ngFor="let item of attrsList?.data">
+                    <div class="td-wrap">
+                        <div class="td count-input-box">
+                            <count-input [rank]="checkMainAttrNum" (valueChange)="numberIChange($event,item)"></count-input>
+                        </div>
+                        <div class="td" *ngIf="item.is_subsidy">{{item.price+checkMainAttrNum}}</div>
+                        <div class="td" *ngIf="item.is_subsidy">{{item.old_price}}</div>
+                        <div class="td" *ngIf="!item.is_subsidy">{{item.price}}</div>
+                        <div class="td" *ngFor="let group of item.goods_attr">{{group.attr_val}}</div>
+                        <div class="td">{{item.product_number}}</div>
+                    </div>
+                    <div class="other-attr" *ngIf="item.alone_attr">
+                        <span *ngFor="let group of item.alone_attr">
+                        {{group.attr_name+'：'+group.attr_val}}&nbsp;
+                    </span>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
     <div *ngIf="type=='goods_spectacles'" class="goods_spectacles_main">
         <div class="title">请选择蔡司1.56非球面镜片信息</div>
@@ -37,7 +78,7 @@
                     <ion-option *ngFor="let item of it.getZhujingList?.data">{{item}}</ion-option>
                 </ion-select>
                 <div class="input">
-                    <input type="text" [(ngModel)]="it.zhouwei" placeholder="填写轴位">
+                    <input type="text" [(ngModel)]="it.zhouwei" placeholder="轴位">
                 </div>
                 <ion-select *ngFor="let item of data.specification;let i=index" [(ngModel)]="it[item.name]" placeholder="{{item.name}}" [selectOptions]="{subTitle: item.name}" okText="确定" cancelText="取消">
                     <ion-option *ngFor="let item1 of item?.values" value="{{item1.id}}">{{item1.label}}</ion-option>
@@ -46,7 +87,7 @@
             <div class="bottom">
                 <div>{{headData.shop_price_formated}}</div>
                 <div>
-                    <count-input (updateNumberI)="jingpianNumberChange($event,it)"></count-input>
+                    <count-input (valueChange)="jingpianNumberChange($event,it)"></count-input>
                 </div>
             </div>
         </div>
@@ -60,15 +101,14 @@
 <ion-footer>
     <ion-toolbar>
         <div class="result">
-            <span>合计:{{numberChangeData?.goods_total||totalPrices||0}}</span>
             <span>共{{numberChangeData?.number||totalNumber||0}}件</span>
+            <span>合计:{{numberChangeData?.goods_total||totalPrices||0}}</span>
         </div>
     </ion-toolbar>
     <div class="btns">
         <button color="cancelBtn" no-margin ion-button large full class="modal-button" (click)="addToCart()">加入购物车</button>
         <button color="modalBtn" no-margin ion-button large full class="modal-button" (click)="goCarPage() ">立即购买</button>
     </div>
-
 </ion-footer>
 <!--    <div class="main">
         <ion-grid>
@@ -83,7 +123,7 @@
                 <ion-col *ngFor="let group of item.goods_attr">{{group.attr_val}}</ion-col>
                 <ion-col>{{item.product_number}}</ion-col>
                 <ion-col col-2>
-                    <count-input (updateNumberI)="numberIChange($event)"></count-input>
+                    <count-input (valueChange)="numberIChange($event)"></count-input>
                 </ion-col>
             </ion-row>
         </ion-grid>

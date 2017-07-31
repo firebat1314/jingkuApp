@@ -1,0 +1,30 @@
+<!--
+  Generated template for the WriteCourierNumberPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+    <ion-navbar>
+        <ion-title>填写快递单号</ion-title>
+    </ion-navbar>
+
+</ion-header>
+
+
+<ion-content>
+    <form #name="ngForm" novalidate>
+        <ion-item no-lines>
+            <ion-label mode="ios" fixed>快递单号</ion-label>
+            <ion-input [(ngModel)]="number" name="number" required clearInput type="text" placeholder="请填写快递单号"></ion-input>
+        </ion-item>
+        <ion-item no-lines>
+            <ion-label mode="ios" fixed>快递类型</ion-label>
+            <ion-input [(ngModel)]="number" name="number" required clearInput type="text" placeholder="请填写快递单号"></ion-input>
+        </ion-item>
+        <div padding>
+            <button ion-button block large color="dark" (click)="onsubmit()" [disabled]="!name.form.valid">提交</button>
+        </div>
+    </form>
+</ion-content>

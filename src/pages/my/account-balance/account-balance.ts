@@ -1,8 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams } from 'ionic-angular';
-import { RechargePage } from "../../home/recharge/recharge";
-import { AccountWithdrawPage } from "../account-withdraw/account-withdraw";
-import { AccountMoneyDetailPage } from "../account-money-detail/account-money-detail";
+import { NavController, NavParams, IonicPage } from 'ionic-angular';
 import { HttpService } from "../../../providers/http-service";
 
 /*
@@ -11,6 +8,8 @@ import { HttpService } from "../../../providers/http-service";
   See http://ionicframework.com/docs/v2/components/#navigation for more info on
   Ionic pages and navigation.
 */
+
+@IonicPage()
 @Component({
   selector: 'page-account-balance',
   templateUrl: 'account-balance.html'
@@ -33,12 +32,12 @@ export class AccountBalancePage {
   }
 
   goRechargePage() {
-    this.navCtrl.push(RechargePage);
+    this.navCtrl.push('RechargePage');
   }
   goAccountWithdrawPage() {
-    this.navCtrl.push(AccountWithdrawPage);
+    this.navCtrl.push('AccountWithdrawPage');
   }
   goAccountMoneyDetailPage() {
-    this.navCtrl.push(AccountMoneyDetailPage);
+    this.navCtrl.push('AccountMoneyDetailPage');
   }
 }

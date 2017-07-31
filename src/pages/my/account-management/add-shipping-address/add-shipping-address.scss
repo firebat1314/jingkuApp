@@ -1,9 +1,13 @@
 page-add-shipping-address {
     .setDefault {
-        display: flex;
-        align-items: center;
+        label {
+            display: flex;
+            align-items: center;
+        }
     }
     .item {
-        min-height: 60px;
+        ion-label[fixed] {
+            flex-basis: 100px !important;
+        }
     }
 }

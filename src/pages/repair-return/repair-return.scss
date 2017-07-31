@@ -2,15 +2,154 @@ page-repair-return {
     .toolbar {
         .segment-ios {
             width: 76%;
-            margin: auto
+            margin: auto;
         }
     }
     .mysearchbar {
-        .toolbar-background-md {
-            background-color: #f5f5f5;
-        }
-        .searchbar-ios .searchbar-input {
+        @include mysearchbar;
+    }
+    .not-search {
+        color: #e0e0e0;
+        text-align: center;
+        margin-top: 20px;
+    }
+    @mixin order {
+        .order {
             background: #fff;
+            margin-bottom: 12px;
+            overflow: hidden;
+            .order-head {
+                border-bottom: $border;
+                color: #666;
+                white-space: nowrap;
+                display: flex;
+                justify-content: space-between;
+                padding: 12px 6px;
+                margin: 0 10px;
+                span {
+                    text-overflow: ellipsis;
+                    overflow: hidden;
+                }
+                span:first-child {
+                    margin-right: 10px;
+                }
+            }
+            .order-body {
+                .order-body-item {
+                    display: flex;
+                    justify-content: space-between;
+                    align-items: center;
+                    border-bottom: $border;
+                    overflow: hidden;
+                    width: calc(100% - 20px);
+                    padding: 0 6px;
+                    margin: 0 10px;
+                    .checkbox {
+                        margin: 10px 10px 10px 0px;
+                    }
+                    .img {
+                        width: 65px;
+                        height: 65px;
+                        margin: 10px 10px 10px 0px;
+                        border: #e1e1e1 1px solid;
+                        position: relative;
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                    }
+                    .guoqi {
+                        position: absolute;
+                        width: 80%;
+                        height: 80%;
+                        background: rgba(0, 0, 0, 0.6);
+                        color: #fff;
+                        border-radius: 50%;
+                        overflow: hidden;
+                        top: 0;
+                        left: 0;
+                        right: 0;
+                        bottom: 0;
+                        margin: auto;
+                        text-align: center;
+                        display: flex;
+                        align-items: center;
+                        font-size: 1.2rem;
+                    }
+                    .order-body-item-content {
+                        display: flex;
+                        overflow: hidden;
+                        flex-direction: column;
+                        justify-content: center;
+                        flex: 1;
+                        margin: 11px 7px 11px 0;
+                        h2 {
+                            white-space: pre-wrap;
+                            overflow: hidden;
+                            text-overflow: ellipsis;
+                            display: -webkit-box;
+                            -webkit-line-clamp: 2;
+                            -webkit-box-orient: vertical;
+                            color: #4d4d4d;
+                            font-size: font-size-text('h4');
+                            margin: 0 0 7px 0;
+                        }
+                        p {
+                            color: #808080;
+                            margin: 2px 0;
+                        }
+                    }
+                }
+            }
+            .order-foot {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                overflow: hidden;
+                margin: 10px 16px;
+                label {
+                    display: flex;
+                    align-items: center;
+                    color: #666;
+                    .checkbox {
+                        margin-right: 10px;
+                    }
+                }
+            }
+        }
+    }
+    .apply {
+        @include order;
+    }
+    .applyLog {
+        @include order;
+        .order {
+            .order-head {
+                span:last-child {
+                    color: #e60000;
+                }
+            }
+            .order-body {
+                .order-body-item {
+                    &:last-child {
+                        border: none;
+                    }
+                }
+            }
+            .item {
+                font-size: font-size-text('h4');
+                background: #f7f7f7;
+                margin: 10px 0px;
+                img {
+                    width: 20px;
+                }
+                color: #808080;
+            }
+            .order-foot {
+                justify-content: flex-end;
+                .button {
+                    float: right;
+                }
+            }
         }
     }
 }

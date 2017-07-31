@@ -5,36 +5,108 @@ page-particulars-modal-attr {
             @include ellipsis_2;
         }
     }
-    .item p:last-child {
-        font-size: 2rem;
-        color: red;
+    .item p {
+        font-size: font-size-text('h5');
+        &:last-child {
+            font-size: font-size-text('h3');
+            color: red;
+        }
     }
     .price {
         color: map-get($colors, danger);
     }
     .goods_main {
-        background: #fff;
         overflow: scroll;
         color: #808080;
-        font-size: 1.6rem;
+        font-size: font-size-text('h4');
         margin-bottom: 10px;
-        tr {
-            height: 47px;
-            border-bottom: 1px solid #e0e0e0;
-            &:last-child {
-                border: 0;
+        display: flex;
+        flex-direction: column;
+        .main-attr-wrap {
+            margin-bottom: 10px;
+            background: #fff;
+            display: flex;
+            padding: 5px 0;
+            width: 100%;
+            overflow: scroll;
+            .main-attr {
+                border: #333 1px solid;
+                border-radius: 4px;
+                padding: 5px 10px;
+                margin: 6px;
             }
-            th {
-                min-width: 100px;
-                font-weight: 500;
-            }
-            td {
-                text-align: center;
-                &:first-child {
-                    color: #e60000;
+        }
+        /* —————————————————————————————————————————————————— */
+        table {
+            min-width: 100%;
+            tr {
+                height: 40px;
+                border-bottom: $border;
+                td.count-input-box {
+                    padding-left: 10px;
+                    padding-right: 10px;
+                    count-input {
+                        margin: 0 auto;
+                    }
+                }
+                &:last-child {
+                    border: 0;
+                }
+                th {
+                    min-width: 74px;
+                    font-weight: 500;
+                }
+                td {
+                    text-align: center;
+                    &:first-child {
+                        color: #e60000;
+                    }
                 }
             }
         }
+        /* —————————————————————————————————————————————————— */
+        .tabelbox {
+            display: flex;
+            .table {
+                flex: 1;
+                background: #fff;
+                .tr {
+                    border-bottom: $border;
+                    color: #808080;
+                    padding: 10px 0;
+                    .td-wrap {
+                        display: flex;
+                        align-items: center;
+                        .td {
+                            min-width: 74px;
+                            text-align: center;
+                            display: flex;
+                            justify-content: center;
+                            align-items: center;
+                            flex: 1;
+                            &:first-child {
+                                min-width: 100px;
+                            }
+                            .td.count-input-box {
+                                padding-left: 10px;
+                                padding-right: 10px;
+                                count-input {
+                                    margin: 0 auto;
+                                }
+                            }
+                        }
+                    }
+                    .other-attr {
+                        text-align: right;
+                        color: #b3b3b3;
+                        font-size: 1.2rem;
+                        padding-right: 20px;
+                        margin-top: 10px;
+                    }
+                }
+            }
+        }
+        /* —————————————————————————————————————————————————— */
     }
     .goods_spectacles_main {
         .title {
@@ -49,7 +121,7 @@ page-particulars-modal-attr {
                 overflow: hidden;
                 border-bottom: 1px solid #e0e0e0;
                 padding: 10px 0;
-                ion-select,
+                .select,
                 .input {
                     width: 45%;
                     border-radius: 8%;
@@ -62,6 +134,7 @@ page-particulars-modal-attr {
                 .input {
                     padding: 9px;
                     overflow: hidden;
+                    color: #999;
                     input {
                         border: 0;
                     }
@@ -109,12 +182,13 @@ page-particulars-modal-attr {
             justify-content: flex-end;
             align-items: center;
             span:first-child {
-                font-size: 1.7rem;
-                color: red;
                 margin-right: 10px;
+                color: #808080;
             }
             span:last-child {
-                color: #808080;
+                margin-right: 5px;
+                font-size: 1.5rem;
+                color: red;
             }
         }
     }

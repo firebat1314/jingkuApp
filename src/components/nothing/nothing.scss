@@ -1,4 +1,5 @@
 nothing {
+    $default-size: 10rem;
     .nothings-show {
         height: 100%;
         display: flex;
@@ -7,18 +8,15 @@ nothing {
         align-items: center;
         background: #fff;
         .img {
-            width: 12rem;
-            min-width: 12rem;
-            height: 12rem;
-            min-height: 12rem;
+            width: $default-size;
+            min-width: $default-size;
+            height: $default-size;
+            min-height: $default-size;
             border-radius: 50%;
-            border: 2px solid #cbced0;
+            border: 1px solid #cbced0;
             background-position: center center;
             background-size: 50%;
             background-repeat: no-repeat;
-        }
-        .button {
-            padding: 0 2.1em;
         }
     }
 }

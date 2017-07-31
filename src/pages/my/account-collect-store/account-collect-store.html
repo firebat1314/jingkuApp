@@ -20,7 +20,7 @@
 
     <nothing *ngIf="collectionShop?.count=='0'" title="暂无收藏" text="去收藏你喜欢的店铺吧~" backgroundImg="url(./assets/icon/images/homepage_42_03.png)"></nothing>
     <ion-list *ngIf="collectionShop?.count!='0'">
-        <div class="item-wrap" *ngFor="let item of collectionShop?.data;let i = index">
+        <div class="item-wrap" tappable navPush="ParticularsHomePage" [navParams]="{suppliersId:item.suppliers_id}" *ngFor="let item of collectionShop?.data;let i = index">
             <div margin-left [ngClass]="{'activein':showCheckBox}" *ngIf="showCheckBox">
                 <ion-checkbox color="dark" mode="ios" [(ngModel)]="item.selected"></ion-checkbox>
             </div>
@@ -46,7 +46,7 @@
         </button>
     </ion-fab>
 
-    <ion-infinite-scroll (ionInfinite)="doInfinite($event)" *ngIf="flag">
+    <ion-infinite-scroll (ionInfinite)="doInfinite($event)">
         <ion-infinite-scroll-content></ion-infinite-scroll-content>
     </ion-infinite-scroll>
 </ion-content>
