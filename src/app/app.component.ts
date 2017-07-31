@@ -5,7 +5,6 @@ import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 
 import { TabsPage } from '../pages/tabs/tabs';
-import { JpushService } from "../providers/jpush-service";
 
 /*import { ParticularsPage } from '../pages/home/particulars/particulars'
 import { DredgeMoreCityPage } from '../pages/home/particulars/dredge-more-city/dredge-more-city'
@@ -35,7 +34,6 @@ export class MyApp {
     private storage: Storage,
     private ionicApp: IonicApp,
     private events: Events,
-    private jpushService: JpushService,
     private statusBar: StatusBar,
     private splashScreen: SplashScreen,
     private keyboard: Keyboard
@@ -69,19 +67,7 @@ export class MyApp {
       // Here you can do any higher level native things you might need.
       this.statusBar.styleDefault();
       this.splashScreen.hide();
-      
-      if (this.platform.is('mobile') && !this.platform.is('mobileweb')) {
-        this.jpushService.initJpush();//初始化极光推送
-        this.jpushService.getRegistrationID();
-        this.jpushService.setTags();
-      }
-      this.storage.get('JPUSH_FLAG').then((res) => {
-        if (res === 1) {
-          this.jpushService.resumePush();
-        } else if (res === 0) {
-          this.jpushService.stopPush();
-        }
-      })
+
       //注册返回按键事件
       this.platform.registerBackButtonAction((): any => {
         if (this.keyboard.isOpen()) {
