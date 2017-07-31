@@ -40,22 +40,23 @@ export class MyApp {
   ) {
     // 初次进入app引导页面
     this.storage.get('hasLoggedIn').then((result) => {
+      console.log(result)
       if (result) {
         this.rootPage = 'TabsPage';//ApplyService2Page
       } else {
-        this.storage.get('firstIn').then((result) => {
-          if (result) {
-            this.rootPage = 'LoginPage';
-          }/* else {
-            this.rootPage = 'WelcomePage';
-          }*/
-        })
-      } 
+        // this.storage.get('firstIn').then((result) => {
+        // if (result) {
+        this.rootPage = 'LoginPage';
+        // } else {
+        // this.rootPage = 'WelcomePage';
+        // }
+        // })
+      }
     });
     this.initializeApp();//注册返回按键事件
     //用户失效事件
     this.events.subscribe('signOut', () => {
-      this.nav.setRoot('LoginPage',{},{animate:true,});
+      this.nav.setRoot('LoginPage', {}, { animate: true, });
     })
   }
   ngOnDestroy() {
