@@ -8,7 +8,7 @@
 
     <ion-navbar>
         <ion-title class="mysearchbar">
-            <ion-searchbar [(ngModel)]="myHomeSearch" placeholder="搜索镜库商品/店铺" mode="ios" showCancelButton="true" cancelButtonText="取消" debounce="500" (keypress)="searchbar($event)"></ion-searchbar>
+            <ion-searchbar [(ngModel)]="myHomeSearch" placeholder="搜索镜库商品/店铺" mode="ios" showCancelButton="true" cancelButtonText="取消" debounce="500" type="search" animated (keypress)="searchbar($event)"></ion-searchbar>
         </ion-title>
     </ion-navbar>
 
@@ -18,7 +18,7 @@
 <ion-content padding>
     <div class="head">
         <div>热门搜索</div>
-        <div tappable (click)="getNewBatch()">换一换</div>
+        <div tappable (click)="getNewBatch()" *ngIf="data?.data?.length">换一换</div>
     </div>
     <div class="btns">
         <button ion-button outline [color]="nowIndex==i?'dark':'cancelBtn'" *ngFor="let item of data?.data;let i=index" tappable (click)="nowIndex=i;myHomeSearch=item.title;searchbar()">{{item.title}}</button>

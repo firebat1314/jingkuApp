@@ -15,7 +15,14 @@
 
 <ion-content *ngIf="type==1">
     <!--————————————————————————物流消息————————————————————————————-->
-    <nothing *ngIf="wuLiuTidings&&!wuLiuTidings?.list?.length" backgroundImg="url(./assets/images/message_center_1_03)"></nothing>
+    <div class="no-message" *ngIf="wuLiuTidings&&!wuLiuTidings?.list?.length">
+        <div class="img">
+            <img src="./assets/images/images/message_center_1_03.png" alt="">
+        </div>
+        <div class="title">
+            暂无消息
+        </div>
+    </div>
     <div class="period" *ngFor="let item of wuLiuTidings?.list">
         <div class="time"><span>{{item.add_time}}</span></div>
         <ion-card tappable (click)="goOrdersDetailPage(item.order_id)">
@@ -40,7 +47,14 @@
 
 </ion-content>
 <ion-content *ngIf="type==2">
-    <nothing *ngIf="userTidings&&!userTidings?.list?.length" backgroundImg="url(./assets/images/images/message_center_1_03.png)"></nothing>
+    <div class="no-message" *ngIf="userTidings&&!userTidings?.list?.length">
+        <div class="img">
+            <img src="./assets/images/images/message_center_1_03.png" alt="">
+        </div>
+        <div class="title">
+            暂无消息
+        </div>
+    </div>
     <!--————————————————————————用户消息————————————————————————————-->
     <div class="period" *ngFor="let item of userTidings?.list">
         <div class="time"><span>{{item.dateline}}</span></div>

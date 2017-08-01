@@ -14,8 +14,8 @@ import { Storage } from '@ionic/storage';
 export class HttpService {
   public HAS_LOGGED_IN = "hasLoggedIn";
   public hasLogin = false;
-  // private ip = 'http://v403app.jingkoo.net';//app测试
-  private ip = 'http://app.jingku.cn';//app正式
+  private ip = 'http://v403app.jingkoo.net';//app测试
+  // private ip = 'http://app.jingku.cn';//app正式
   // private ip = 'http://hl.jingkoo.net/';//响应速度测试
   // private ip = 'http://newm.jingkoo.net';//m站
 
@@ -147,7 +147,7 @@ export class HttpService {
     return this.http.get(this.ip + '/Category/category_goods', data)
   }
   getGoodsAttribute(data?: Object) {//获取初始商品属性
-    return this.http.get(this.ip + '/Goods/get_goods_attribute', data)
+    return this.http.get(this.ip + '/Goods/get_goods_attribute', data ,true)
   }
   getZhujing(data?: Object) {//如果返回的(good_type) 商品类型是goods_spectacles 根据所选球镜，获取柱镜列表
     return this.http.get(this.ip + '/Goods/get_zhujing', data)
@@ -348,7 +348,7 @@ export class HttpService {
     return this.http.get(this.ip + '/User/accountLog', data)
   }
   presell(data?: Object) {//预售促销商品列表
-    return this.http.get(this.ip + '/Index/presell', data)
+    return this.http.get(this.ip + '/Index/presell', data, true)
   }
   helpInfo(data?: Object) {//帮助中心
     return this.http.get(this.ip + '/User/helpInfo', data, true)

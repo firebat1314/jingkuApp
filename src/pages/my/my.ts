@@ -41,15 +41,18 @@ export class MyPage {
         this.userInfo = userInfo;
       })
     }) */
-  }
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad MyPages');
-    this.events.subscribe('avatar:update', () => {
+    /* this.events.subscribe('avatar:update', () => {
+      this.httpResult();
+    }) */
+    this.events.subscribe('my:refresh', () => {
       this.httpResult();
     })
   }
+  ionViewDidLoad() {
+    console.log('ionViewDidLoad MyPages');
+  }
   ngOnInit() {
-    this.httpResult()
+    this.httpResult();
   }
   httpResult(finish?) {
     this.native.showLoading();

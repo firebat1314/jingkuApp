@@ -12,6 +12,7 @@ import { Native } from "../../providers/native";
   templateUrl: 'home.html'
 })
 export class HomePage {
+  indexHotGoods: any;
   jingxuan_img4: any;
   hotBrand_img: string;
   jingxuan_img3: string;
@@ -46,7 +47,9 @@ export class HomePage {
     public alertCtrl: AlertController
   ) {
     //地址更新
-    this.events.subscribe('home:updataArea', () => { this.updataArea() })
+    this.events.subscribe('home:updataArea', () => {
+      this.getHomeData()
+    })
   }
   ngAfterViewInit() {
     this.fabButton.setElementClass('fab-button-out', true);
@@ -56,8 +59,6 @@ export class HomePage {
   }
   ionViewDidLoad() {
     console.log('ionViewDidLoad HomePage');
-    this.updataArea();
-    this.updateCarCount();
   }
   ngOnDestroy() {
     this.events.unsubscribe('home:updataArea');
@@ -77,6 +78,7 @@ export class HomePage {
       this.native.showToast('数据参数错误');
       return true;
     })
+    this.updateCarCount();
   }
   /* ionViewCanEnter() {
     if (!this.firstInit) {
@@ -96,11 +98,18 @@ export class HomePage {
     this.firstInit = false;
     this.native.showLoading();
     return new Promise((resolve, reject) => {
-      this.updataArea();
       this.httpService.indexs().then((res) => {
         this.native.hideLoading();
         if (res.status == 1) {
           resolve();
+          //城市列表
+          this.areaList = res.data.getAreaList;
+          //默认城市
+          for (let i = 0; i < this.areaList.length; i++) {
+            if (this.areaList[i].selected == 1) {
+              this.area = this.areaList[i].region_name;
+            }
+          }
           //轮播 
           this.bannerImgs = res.data.ads_banner;
           //热门品类 大图
@@ -111,7 +120,7 @@ export class HomePage {
           this.getBrands = res.data.ads_brand;
           //精选专题 大图1
           this.jingxuan_img1 = res.data.ads_jxzt['0'];
-          this.getCategoryRecommendGoodsHot = res.data.index_hot_goods;
+          this.getCategoryRecommendGoodsHot = res.data.hot_recommend_goods;
           //精选专题 大图2
           this.jingxuan_img2 = res.data.ads_jxzttwo['0'];
           this.getCategoryRecommendGoods = res.data.new_recommend_goods;
@@ -120,6 +129,8 @@ export class HomePage {
           this.getCategoryRecommendGoodsBest = res.data.best_recommend_goods;
           //好店推荐
           this.jingxuan_img4 = res.data.ads_hdtj;
+
+          this.indexHotGoods = res.data.index_hot_goods;
           if (finish) { finish(); }
         } else {
           reject(res.info);
@@ -178,7 +189,7 @@ export class HomePage {
       }, 500);
     })
   }
-  updataArea() {
+  /* updataArea() {
     this.httpService.getAreaList().then((res) => {
       if (res && res.status == 1) {
         this.areaList = res.data;
@@ -187,9 +198,11 @@ export class HomePage {
             this.area = res.data[i].region_name;
           }
         }
+      }else if(res.status==0){
+        
       }
     })
-  }
+  } */
   updateCarCount() {
     this.httpService.getFlowGoods().then((res) => {
       if (res.status == 1) {
@@ -209,6 +222,7 @@ export class HomePage {
     })
   }
   goClassPage(value) {
+    // this.navCtrl.parent.getByIndex(2).rootParams={select:'goods'}
     this.navCtrl.popToRoot();
     this.navCtrl.parent.select(1);
     this.events.publish('classify:selectSegment', value)
@@ -218,10 +232,10 @@ export class HomePage {
       this.alertCtrl.create({
         cssClass: 'alert-style',
         title: '提示',
-        message: '您还未开通城市',
+        subTitle: '您还未申请开通城市',
         buttons: [{
           text: '去开通',
-          handler: () => {this.navCtrl.push('DredgeMoreCityPage');}
+          handler: () => { this.navCtrl.push('DredgeMoreCityPage'); }
         }, {
           text: '取消'
         }],

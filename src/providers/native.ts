@@ -81,22 +81,21 @@ export class Native {
 	 * 统一调用此方法显示loading
 	 * @param content 显示的内容
 	 */
-	showLoading = (content: string = '') => {
+	showLoading = (content: string = '', showBackdrop: boolean = true) => {
 		this.loading = this.loadingCtrl.create({
 			content: content,
-			showBackdrop: true,
+			showBackdrop: showBackdrop,
 			cssClass: 'loading-style',
 			spinner: 'dots'
 		});
 		this.loading.present();
-		setTimeout(() => {//最长显示20秒
-			this.loading.dismiss();
-		}, 10000);
 	};
 	/**
 	 * 关闭loading
 	 */
-	hideLoading = () => this.loading.dismiss();
+	hideLoading = () => {
+		this.loading.dismiss()
+	};
 	/**
 	 * 手机拨号
 	 */
@@ -111,7 +110,7 @@ export class Native {
 	openAlertBox(title, confirmHandler, cancelHandler?) {
 		let confirm = this.alertCtrl.create({
 			cssClass: 'alert-style',
-			subTitle: title,
+			title: title,
 			buttons: [
 				{
 					text: '取消',
@@ -207,7 +206,7 @@ export class Native {
 				// quality: 90,//图像质量，范围为0 - 100
 				outputType: 1,// defaults to 0 (FILE_URI)
 			}, options)).then(files => {
-					resolve(files);
+				resolve(files);
 				/* if (destinationType === 1) {
 					resolve(files);
 				} else {

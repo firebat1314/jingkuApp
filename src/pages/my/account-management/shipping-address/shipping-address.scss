@@ -32,18 +32,9 @@ page-shipping-address {
             }
         }
         .no-add {
-            text-align: center;
-            height: 100%;
-            padding-top: 30px;
-            background: #fff;
-            font-size: 2rem;
-            .img {
-                width: 13rem;
-                height: 13rem;
-                border-radius: 50%;
-                border: 2px solid #cbced0;
-                margin: 50px auto 10px;
-                background: url(../assets/images/images/coupon_4_03.png) center center/50% 50% no-repeat;
+            @include reminderBlankPage();
+            .button {
+                font-size: 1.4rem;
             }
         }
     }

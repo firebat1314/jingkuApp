@@ -35,8 +35,10 @@
         <ion-item detail-push mode="ios" no-lines margin-top [navPush]="AddShippingAddressPage">添加收获地址</ion-item>
     </div>
     <div class="no-add" *ngIf="addressList?.data?.length==0">
-        <div class="img"></div>
-        <div class="text">暂无收货地址</div>
+        <div class="img">
+            <img src="./assets/images/images/address_1_03.png" alt="">
+        </div>
+        <div class="title">暂无收货地址</div>
         <p><button ion-button outline tappable [navPush]="AddShippingAddressPage">+添加收货地址</button></p>
     </div>
 </ion-content>

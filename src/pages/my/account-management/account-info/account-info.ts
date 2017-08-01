@@ -83,7 +83,7 @@ export class AccountInfoPage {
       if (res.status == 1) {
         this.native.showToast('头像上传成功');
         this.getUserData();
-        this.events.publish('avatar:update','data:image/jpeg;base64,' + data);
+        this.events.publish('my:refresh','data:image/jpeg;base64,' + data);
       }
     })
   }

@@ -48,8 +48,8 @@
                 <div style="width: 60px;height: 60px;">
                     <my-canvas [baifen]="item.baifen.slice(0,-1)" *ngIf="item.is_get==0"></my-canvas>
                 </div>
-                <div ion-button small round block class="click" *ngIf="item.is_get==0" (click)="getPrivilege(0,item.type_id)">点击领劵</div>
-                <div ion-button small round block class="touse" *ngIf="item.is_get==1" (click)="getPrivilege(1,item.type_id)">去使用</div>
+                <div ion-button small round block class="click" *ngIf="item.is_get==0" (click)="getPrivilege(0,item.type_id,item.suppliers_id)">点击领劵</div>
+                <div ion-button small round block class="touse" *ngIf="item.is_get==1" (click)="getPrivilege(1,item.type_id,item.suppliers_id)">去使用</div>
             </div>
         </div>
     </div>

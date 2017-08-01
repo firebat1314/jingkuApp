@@ -29,7 +29,8 @@ export class BrandListPage {
 		order: null,
 		stort: 'DESC',
 		keywords: this.myHomeSearch,
-		supplier_id: null
+		supplier_id: null,
+		type:null
 	}
 	@ViewChild(Content) content: Content;
 	@ViewChild('scrollToTop1') fabButton: FabButton;
@@ -42,15 +43,19 @@ export class BrandListPage {
 	) { }
 	ionViewDidLoad() {
 		console.log('ionViewDidLoad BrandListPage');
+	}
+	ngOnInit(){
 		this.paramsData.cat_id = this.navParams.get('listId');
 		this.paramsData.brand_id = this.navParams.get('brandId');
 		this.paramsData.supplier_id = this.navParams.get('supplierId');
 		this.paramsData.keywords = this.navParams.get('keyword');
+		this.paramsData.type = this.navParams.get('type');
 		this.myHomeSearch = this.paramsData.keywords;
 		console.log('列表ID:', this.paramsData.cat_id);
 		console.log('品牌ID:', this.paramsData.brand_id);
 		console.log('supplier_id:', this.paramsData.supplier_id);
 		console.log('keywords:', this.paramsData.keywords);
+		console.log('type:', this.paramsData.type);
 
 		this.getListData();
 		this.getCarNumver();
@@ -142,7 +147,8 @@ export class BrandListPage {
 			order: null,
 			stort: 'DESC',
 			keywords: this.myHomeSearch,
-			supplier_id: null
+			supplier_id: null,
+			type:null
 		}
 		this.httpService.categoryGoods(this.paramsData).then((res) => {
 			this.data = res;

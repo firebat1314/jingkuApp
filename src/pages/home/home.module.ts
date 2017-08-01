@@ -10,8 +10,8 @@ import { ImgLazyLoadDirectiveModule } from "../../directives/img-lazy-load/img-l
       HomePage,
    ],
    imports: [
-      IonicPageModule.forChild(HomePage),
       AdsClickDirectiveModule,
+      IonicPageModule.forChild(HomePage),
       SingleCardComponentModule,
       ImgLazyLoadDirectiveModule
    ],

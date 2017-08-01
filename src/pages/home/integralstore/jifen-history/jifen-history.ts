@@ -22,14 +22,14 @@ export class JifenHistoryPage {
     public navCtrl: NavController,
     public navParams: NavParams,
     public httpService: HttpService
-  ) {
-    this.getData();
-  }
+  ) {}
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad JifenHistoryPage');
   }
-
+  ngOnInit(){
+    this.getData();
+  }
   goDuihuanDetailsFinishPage(item) {
     this.navCtrl.push('DuihuanDetailsFinishPage', { item: item })
   }

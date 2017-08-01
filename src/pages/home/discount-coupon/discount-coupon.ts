@@ -46,9 +46,9 @@ export class DiscountCouponPage {
       }
     })
   }
-  getPrivilege(is_get, type_id) {
+  getPrivilege(is_get, type_id,suppliers_id) {
     if (is_get == 1) {
-      this.goClassPage('classify');
+      this.navCtrl.push('ParticularsHomePage',{suppliersId:suppliers_id})
     } else if (is_get == 0) {
       this.native.openAlertBox('确认领取优惠券', () => {
         this.httpService.sendByUser({ type_id: type_id }).then((res) => {

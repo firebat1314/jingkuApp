@@ -27,9 +27,10 @@
     </div>
     <ion-item class="fore" mode="ios" no-lines margin-right detail-push tappable (click)="openOrderPaymentModal(data)">
         支付方式
-        <ion-note item-right style="margin:0;" *ngFor="let mtd of data?.payment_list">
-            <span *ngIf="mtd.selected==1">{{mtd.pay_name}}</span>
-        </ion-note>
+        <ng-container item-right *ngFor="let mtd of data?.payment_list">
+            <ion-note style="margin:0;" *ngIf="mtd.selected==1">{{mtd.pay_name}}</ion-note>
+        </ng-container>
+
     </ion-item>
     <ion-list class="fore fore2" *ngFor="let item of data?.cart_goods_list;let i=index">
         <ion-item-divider>
@@ -99,30 +100,36 @@
     </ion-item>-->
     <div class="fore fore3" *ngIf="goodsType!='integral'">
         <div>
-            <span>购物金额小计：</span><span class="price">¥{{data?.total?.formated_goods_price}}</span>
+            <span>商品金额：</span>
+            <span class="price">¥{{data?.total?.formated_goods_price}}</span>
         </div>
         <div *ngIf="data?.total?.suppliers_shipping_fee_formated.slice(1)!=0">
-            <span>配送费用：</span><span>{{data?.total?.suppliers_shipping_fee_formated}}</span>
+            <span>配送费用：</span>
+            <span class="price">+{{data?.total?.suppliers_shipping_fee_formated}}</span>
         </div>
         <div *ngIf="data?.total?.formated_subsidy_price!=0">
-            <span>商品补贴：</span><span>¥{{data?.total?.formated_subsidy_price}}</span>
+            <span>商品补贴：</span>
+            <span class="price">-¥{{data?.total?.formated_subsidy_price}}</span>
         </div>
         <div *ngIf="data?.total?.formated_shipping_subsidy.slice(1)!=0">
-            <span>运费补贴：</span><span>{{data?.total?.formated_shipping_subsidy}}</span>
+            <span>运费补贴：</span>
+            <span class="price">-{{data?.total?.formated_shipping_subsidy}}</span>
         </div>
         <div *ngIf="data?.total?.bonus_formated!=0">
-            <span>优惠券：</span><span>¥{{data?.total?.bonus_formated}}</span>
+            <span>优惠券：</span>
+            <span class="price">-¥{{data?.total?.bonus_formated}}</span>
         </div>
         <div *ngIf="data?.total?.will_get_integral!=0">
-            <span>消费积分：</span><span>{{data?.total?.will_get_integral}}</span>
+            <span>消费积分：</span>
+            <span class="price">{{data?.total?.will_get_integral}}</span>
         </div>
     </div>
     <div class="fore fore3" *ngIf="goodsType=='integral'">
         <div>
-            <span>购物积分：</span><span class="price">¥{{data?.total?.integral}}</span>
+            <span>购物积分：</span><span class="price">+¥{{data?.total?.integral}}</span>
         </div>
         <div>
-            <span>配送费用：</span><span>{{data?.total?.suppliers_shipping_fee_formated}}</span>
+            <span>配送费用：</span><span>-{{data?.total?.suppliers_shipping_fee_formated}}</span>
         </div>
     </div>
 </ion-content>
@@ -131,7 +138,7 @@
     <ion-toolbar no-padding>
         <div class="pagefoot">
             <div class="left">
-                合计: <span class="price">¥{{data?.total?.amount_formated}}</span><span *ngIf="goodsType=='integral'">&nbsp;积分: <span class="price">{{data?.total?.integral}}</span></span>
+                <span class="price">实付款: ¥{{data?.total?.amount_formated}}</span><span *ngIf="goodsType=='integral'">&nbsp;积分: <span class="price">{{data?.total?.integral}}</span></span>
             </div>
             <div class="right">
                 <div ion-button no-margin full large color="dark" tappable (click)="onsubmit()">提交订单</div>

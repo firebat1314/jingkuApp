@@ -127,12 +127,13 @@ page-write-orders {
     .pagefoot {
         display: flex;
         align-items: center;
-        justify-content: space-between;
+        justify-content: flex-end;
         background: #fff;
         .left {
-            margin-left: 10px;
             .price {
                 color: #e60000;
+                margin-right: 10px;
+                font-size: 1.6rem;
             }
         }
         .right {

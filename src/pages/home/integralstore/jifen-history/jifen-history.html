@@ -14,6 +14,12 @@
 
 
 <ion-content>
+    <div class="no-list" *ngIf="data&&!data?.list?.length">
+        <div class="img">
+            <img src="./assets/icon/no-log.png" alt="">
+        </div>
+        <div class="title">暂无兑换记录</div>
+    </div>
     <ion-list>
         <ion-item mode="ios" detail-push tappable (click)="goDuihuanDetailsFinishPage(item)" *ngFor="let item of data?.list">
             <ion-thumbnail item-left>
@@ -25,7 +31,7 @@
         </ion-item>
     </ion-list>
 
-    <ion-fab right bottom (click)="scrollToTop()">
+    <ion-fab right bottom *ngIf="data?.pages" (click)="scrollToTop()">
         <button ion-fab color="dark" mini>
             {{data?.page}}/{{data?.pages}}
         </button>

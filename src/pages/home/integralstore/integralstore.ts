@@ -18,7 +18,7 @@ export class IntegralstorePage {
   totalScore: any;
   data: any;
   @ViewChild(Content) content: Content;
-  @ViewChild('scrollToTop') fabButton: FabButton;
+  @ViewChild('ToTop') fabButton: FabButton;
   JifenHistoryPage: any = 'JifenHistoryPage';
   DuihuanDetailsPage: any = 'DuihuanDetailsPage';
   DuihuanDetailsFinishPage: any = 'DuihuanDetailsFinishPage';

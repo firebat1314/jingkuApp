@@ -26,22 +26,35 @@ export class OrderModalShippingPage {
     private native: Native
   ) {
     this.getHttpData();
-    this.events.subscribe('updateAddress', () => { this.getHttpData() });
+    this.events.subscribe('updateAddress', () => {
+      this.getHttpData();
+      this.events.publish('writeOrder:refresh');
+    });
   }
   ionViewDidLoad() {
     console.log('ionViewDidLoad OrderModalShippingPage');
+  }
+  ngOnDestroy() {
+    this.events.unsubscribe('updateAddress');
   }
   getHttpData() {
     this.httpService.checkout().then((res) => {
       console.log(res);
       if (res && res.status == 1) {
         this.data = res.consignee_list;
+        if (!res.consignee_list.length) {
+          this.native.openAlertBox('是否添加收货地址？', () => {
+            this.navCtrl.push('AddShippingAddressPage');
+          },()=>{
+            this.navCtrl.pop();
+          })
+        }
       }
     })
   }
   dismiss(data?: any) {
-    if(data.is_show == 0){
-      this.native.openAlertBox('不在可配送城市,是否切换城市？',()=>{
+    if (data.is_show == 0) {
+      this.native.openAlertBox('不在可配送城市,是否切换城市？', () => {
         this.navCtrl.push('CityPage');
       })
       return;
@@ -71,6 +84,7 @@ export class OrderModalShippingPage {
         console.log("删除收货地址==>", res)
         if (res.status == 1) {
           this.getHttpData();
+          this.events.publish('writeOrder:refresh');
           this.native.showToast('成功删除')
         }
       })
