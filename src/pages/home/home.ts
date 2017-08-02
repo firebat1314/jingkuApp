@@ -96,7 +96,7 @@ export class HomePage {
   } */
   getHomeData(finish?) {
     this.firstInit = false;
-    this.native.showLoading();
+    this.native.showLoading('',false);
     return new Promise((resolve, reject) => {
       this.httpService.indexs().then((res) => {
         this.native.hideLoading();
