@@ -7,16 +7,7 @@ page-coupon {
             background: #f7f7f7;
             min-height: 100%;
             .no-coupon {
-                text-align: center;
-                color: #999;
-                .img {
-                    width: 13rem;
-                    height: 13rem;
-                    border-radius: 50%;
-                    border: 2px solid #cbced0;
-                    margin: 50px auto 10px;
-                    background: url(../assets/images/images/coupon_4_03.png) center center/50% 50% no-repeat;
-                }
+                @include reminderBlankPage();
             }
             .item {
                 display: flex;
