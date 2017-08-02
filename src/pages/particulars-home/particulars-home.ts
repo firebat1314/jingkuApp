@@ -35,7 +35,7 @@ export class ParticularsHomePage {
     order: null,
     stort: 'DESC',
     keywords: this.myHomeSearch,
-    supplier_id: null
+    suppliers_id: null
   }
 
   suppliers_id = this.navParams.get('suppliersId');
@@ -325,7 +325,7 @@ export class ParticularsHomePage {
       order: null,
       stort: 'DESC',
       keywords: this.myHomeSearch,
-      supplier_id: null
+      suppliers_id: null
     }
     this.httpService.categoryGoods(Object.assign(this.paramsData, { suppliers_id: this.suppliers_id })).then((res) => {
       this.alldata = res;

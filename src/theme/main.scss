@@ -148,3 +148,12 @@ $border-img:1px solid #f0f0f0;
         color: #808080;
     }
 }
+
+
+/*———————————————————————————————————— fixed label width ————————————————————————————————————*/
+
+@mixin fixedLabelWidth($width) {
+    ion-label[fixed] {
+        flex-basis: $width !important;
+    }
+}

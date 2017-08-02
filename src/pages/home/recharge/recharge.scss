@@ -19,14 +19,10 @@ page-recharge {
         margin: 0 12px;
         background: #fff url(../assets/icon/images/recharge_bg_1_03.jpg) left bottom repeat-x;
         .item {
-            color: #666;
             border-bottom: 1px solid #e0e0e0;
             .input {
                 .text-input {
-                    margin-left: 0;
-                    margin-right: 0;
-                    width: 100%;
-                    padding-right: 20px;
+                    font-size: 1.8rem;
                 }
                 .text-input-clear-icon {
                     right: 0;
@@ -65,6 +61,9 @@ page-recharge {
                 border: 0 !important;
             }
         }
+    }
+    .comfirmBtn {
+        padding: 16px 40px !important;
     }
 }
 
