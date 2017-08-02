@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams, Events, IonicPage } from 'ionic-angular';
+import { NavController, NavParams, Events, IonicPage, AlertController } from 'ionic-angular';
 import { HttpService } from "../../../providers/http-service";
 import { Native } from "../../../providers/native";
 
@@ -22,12 +22,13 @@ export class CityPage {
     public navParams: NavParams,
     private httpService: HttpService,
     private native: Native,
-    public events: Events
+    public events: Events,
+    public alertCtrl: AlertController
   ) { }
   ionViewDidLoad() {
     console.log('ionViewDidLoad CityPage');
   }
-  ngOnInit(){
+  ngOnInit() {
     this.getData();
   }
   switcher(region) {
@@ -47,6 +48,20 @@ export class CityPage {
     this.httpService.indexs().then((res) => {
       if (res.status == 1) {
         this.data = res.data.getAreaList
+        if(!this.data.length){
+          this.alertCtrl.create({
+          cssClass: 'alert-style',
+          title: '提示',
+          subTitle: '您还未申请开通城市',
+          buttons: [{
+            text: '去开通',
+            handler: () => { this.navCtrl.push('DredgeMoreCityPage'); }
+          }, {
+            text: '取消',
+            handler: () => { this.navCtrl.popToRoot(); }
+          }],
+        }).present();
+        }
       }
     })
   }

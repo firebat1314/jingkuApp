@@ -19,7 +19,7 @@ import { Native } from "../../../providers/native";
 })
 export class ParticularsHomeDetailsPage {
   shopdata: any;
-  supplier_id = this.navParams.get('suppliersId');
+  suppliers_id = this.navParams.get('suppliersId');
 
   constructor(
     public navCtrl: NavController,
@@ -38,7 +38,7 @@ export class ParticularsHomeDetailsPage {
     console.log('ionViewDidLoad ParticularsHomeDetailsPage');
   }
   getShopData() {
-    this.httpService.CatrgorySupplierInfo({ suppliers_id: this.supplier_id }).then((res) => {
+    this.httpService.CatrgorySupplierInfo({ suppliers_id: this.suppliers_id }).then((res) => {
       if (res.status == 1) {
         this.shopdata = res;
       }
@@ -53,7 +53,7 @@ export class ParticularsHomeDetailsPage {
   }
   collectStore(is_collect) {
     if (is_collect) {
-      this.httpService.CollectShop({ id: this.supplier_id, type: 0 }).then((res) => {
+      this.httpService.CollectShop({ id: this.suppliers_id, type: 0 }).then((res) => {
         if (res.status) {
           this.native.showToast('已取消关注', null, false);
           //更新上一页收藏状态
@@ -62,7 +62,7 @@ export class ParticularsHomeDetailsPage {
         }
       })
     } else {
-      this.httpService.CollectShop({ id: this.supplier_id, type: 1 }).then((res) => {
+      this.httpService.CollectShop({ id: this.suppliers_id, type: 1 }).then((res) => {
         if (res.status) {
           this.native.showToast('收藏成功', null, false);
           this.events.publish('particulars-home-details:update-collect');
@@ -83,6 +83,6 @@ export class ParticularsHomeDetailsPage {
     this.navCtrl.push('ShopAllFashionPage', { brandList: this.shopdata.data.brand_list })
   }
   goBackPage(type) {
-    this.navCtrl.push('ParticularsHomePage', { type: type, suppliersId: this.supplier_id });
+    this.navCtrl.push('ParticularsHomePage', { type: type, suppliersId: this.suppliers_id });
   }
 }

@@ -78,7 +78,6 @@ export class HomePage {
       this.native.showToast('数据参数错误');
       return true;
     })
-    this.updateCarCount();
   }
   /* ionViewCanEnter() {
     if (!this.firstInit) {
@@ -96,7 +95,7 @@ export class HomePage {
   } */
   getHomeData(finish?) {
     this.firstInit = false;
-    this.native.showLoading('',false);
+    this.native.showLoading('', false);
     return new Promise((resolve, reject) => {
       this.httpService.indexs().then((res) => {
         this.native.hideLoading();
@@ -203,13 +202,6 @@ export class HomePage {
       }
     })
   } */
-  updateCarCount() {
-    this.httpService.getFlowGoods().then((res) => {
-      if (res.status == 1) {
-        this.events.publish('car:goodsCount', res.total.real_goods_count);
-      }
-    })
-  }
   presentPopover(myEvent) {
     let popover = this.popoverCtrl.create('PopoverHomePage', {}, {});
     popover.present({
@@ -222,27 +214,14 @@ export class HomePage {
     })
   }
   goClassPage(value) {
-    // this.navCtrl.parent.getByIndex(2).rootParams={select:'goods'}
     this.navCtrl.popToRoot();
     this.navCtrl.parent.select(1);
-    this.events.publish('classify:selectSegment', value)
+    setTimeout(() => {
+      this.events.publish('classify:selectSegment', value)
+    },300);
   }
   goCityPage() {
-    if (this.areaList.length == 0) {
-      this.alertCtrl.create({
-        cssClass: 'alert-style',
-        title: '提示',
-        subTitle: '您还未申请开通城市',
-        buttons: [{
-          text: '去开通',
-          handler: () => { this.navCtrl.push('DredgeMoreCityPage'); }
-        }, {
-          text: '取消'
-        }],
-      }).present();
-    } else {
       this.navCtrl.push('CityPage', { areaList: this.areaList })
-    }
   }
   goParticularsPage(id) {
     this.navCtrl.push('ParticularsPage', { goodsId: id })

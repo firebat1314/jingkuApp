@@ -14,8 +14,8 @@ import { Storage } from '@ionic/storage';
 export class HttpService {
   public HAS_LOGGED_IN = "hasLoggedIn";
   public hasLogin = false;
-  // private ip = 'http://v403app.jingkoo.net';//app测试
-  private ip = 'http://app.jingku.cn';//app正式
+  private ip = 'http://v403app.jingkoo.net';//app测试
+  // private ip = 'http://app.jingku.cn';//app正式
   // private ip = 'http://hl.jingkoo.net/';//响应速度测试
   // private ip = 'http://newm.jingkoo.net';//m站
 
@@ -406,6 +406,9 @@ export class HttpService {
   }
   suppliersPromote(data?: Object) {//店铺促销
     return this.http.post(this.ip + '/Category/suppliers_promote_goods', data)
+  }
+  suppliersCategoryGoods(data?: Object) {//店铺促销
+    return this.http.post(this.ip + '/Category/suppliers_category_goods', data)
   }
   orderRepair(data?: Object) {//售后申请列表
     return this.http.post(this.ip + '/User/order_repair', data)

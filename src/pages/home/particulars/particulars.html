@@ -62,7 +62,7 @@
                 <span class="rush-icon" *ngIf="getGoodsInfo?.promotion?.type_name">{{getGoodsInfo?.promotion?.type_name}}</span>
             </div>
             <div class="bottom">
-                <div>建议零售价&nbsp;：<span class="offer-price">¥{{getGoodsInfo?.data?.market_price}}</span></div>
+                <div *ngIf="getGoodsInfo?.data?.market_price!=0">建议零售价&nbsp;：<span class="offer-price">¥{{getGoodsInfo?.data?.market_price}}</span></div>
                 <div>商品编号&nbsp;：{{getGoodsInfo?.data?.goods_sn}}</div>
             </div>
         </div>

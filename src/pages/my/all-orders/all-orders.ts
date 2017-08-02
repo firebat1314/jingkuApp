@@ -142,7 +142,7 @@ export class AllOrdersPage {
     this.native.showToast('敬请期待');
   }
   cancelOrder(order_id) {
-    this.native.openAlertBox('取消订单操作', () => {
+    this.native.openAlertBox('是否取消订单', () => {
       this.httpService.cancelOrder({ order_id: order_id }).then((res) => {
         if (res.status == 1) {
           this.native.showToast('订单操作成功');
@@ -160,6 +160,8 @@ export class AllOrdersPage {
         }
       })
     })
-
+  }
+  goParticularsHomePage(id){
+    this.navCtrl.push('ParticularsHomePage',{suppliersId:id})
   }
 }

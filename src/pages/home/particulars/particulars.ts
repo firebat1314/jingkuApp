@@ -35,7 +35,7 @@ export class ParticularsPage {
   selectGroupRecommend = "group" || 'recommend';
   selectPicArguments = "pic";
 
-  goodsId: number;
+  goodsId: number = this.navParams.get('goodsId');/*3994 5676*/;
   badgeCount: number;
 
   //存储swiper对象
@@ -51,8 +51,16 @@ export class ParticularsPage {
     public native: Native,
     private events: Events
   ) {
-    this.goodsId = this.navParams.get('goodsId') || '3994';/*3994 5676*/
-    console.log("商品ID:", this.goodsId);
+     this.events.subscribe('car:goodsCount', () => {
+      this.getCarCount();
+    }) 
+    this.events.subscribe('car:updata', () => {
+      this.getCarCount();
+    })
+  }
+  ngOnInit() {
+    this.getHttpDetails();
+    this.getCarCount();
   }
   ngAfterViewInit() {
     /* 回到顶部按钮 */
@@ -63,12 +71,7 @@ export class ParticularsPage {
   }
   ionViewDidLoad() {
     console.log('ionViewDidLoad ParticularsPage');
-    this.http.getFlowGoods().then((res) => {//获取购物车数量
-      this.badgeCount = res.total.real_goods_count;
-    })
-    this.events.subscribe('car:goodsCount', (res) => {
-      this.badgeCount = res;
-    })
+    console.log("商品ID:", this.goodsId);
   }
   /*   ionViewCanEnter() {
      if(this.firstViewInit){
@@ -85,11 +88,10 @@ export class ParticularsPage {
        return false;
      });
    }  */
-  ngOnInit() {
-    this.getHttpDetails();
-  }
-  ngOnDestroy() {
-    this.events.unsubscribe('particulars:goCarPage');
+  getCarCount() {
+    this.http.getFlowGoods().then((res) => {//获取购物车数量
+      this.badgeCount = res.total.real_goods_count;
+    })
   }
   getHttpDetails(finished?) {
     return new Promise((resolve, reject) => {
@@ -121,6 +123,7 @@ export class ParticularsPage {
   }
   /*下拉刷新*/
   doRefresh(refresher) {
+    this.getCarCount();
     this.getHttpDetails(() => {
       setTimeout(() => {
         refresher.complete();
@@ -217,7 +220,7 @@ export class ParticularsPage {
       });
     }
   }
-  addToShoppingCart() {
+  /* addToShoppingCart() {
     if (this.getGoodsAttribute.status == 1) {
       if (this.getGoodsAttribute.goods_type == 'goods') {
         this.http.getAttrList({ goods_id: this.goodsId }).then((res) => {
@@ -242,7 +245,7 @@ export class ParticularsPage {
         })
       }
     }
-  }
+  } */
   goParticularsPage(id) {
     this.navCtrl.push(ParticularsPage, { goodsId: id })
   }

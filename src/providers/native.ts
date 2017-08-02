@@ -81,7 +81,7 @@ export class Native {
 	 * 统一调用此方法显示loading
 	 * @param content 显示的内容
 	 */
-	showLoading = (content: string = '', showBackdrop: boolean = true) => {
+	showLoading = (content: string = '', showBackdrop: boolean = false) => {
 		this.loading = this.loadingCtrl.create({
 			content: content,
 			showBackdrop: showBackdrop,

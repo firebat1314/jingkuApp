@@ -87,7 +87,6 @@ export class BrandListPage {
 	ngOnDestroy() {
 		//退出页面取消事件订阅
 		this.events.unsubscribe('user:filterParams');
-		this.events.unsubscribe('car:updata');
 	}
 	getListData(params?) {
 		this.httpService.categoryGoods(Object.assign(this.paramsData, params)).then((res) => {
@@ -109,7 +108,6 @@ export class BrandListPage {
 				refresher.complete();
 			}, 500);
 		})
-		this.getCarNumver();
 	}
 	// flag: boolean = true;
 	// doInfinite(infiniteScroll) {
