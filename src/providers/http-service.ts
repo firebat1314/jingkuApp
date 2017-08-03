@@ -206,7 +206,7 @@ export class HttpService {
     return this.http.post(this.ip + '/Flow/del_no_shop', data, true)
   }
   submitOrder(data?: Object) {//提交订单
-    return this.http.post(this.ip + '/Flow/done', data)
+    return this.http.post(this.ip + '/Flow/done', data, true)
   }
   pay(data: Object) {//支付方式
     return this.http.get(this.ip + '/Flow/pay', data, true)
