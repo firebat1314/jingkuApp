@@ -51,7 +51,6 @@ export class CarPage {
   getFlowGoods(finished?) {
     this.goodsIdArray = [];
     this.httpService.getFlowGoods().then((res) => {
-      console.log(res)
       if (res.status == 1) {
         this.carDetails = res;
         this.content.resize();

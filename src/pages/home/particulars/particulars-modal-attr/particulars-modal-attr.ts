@@ -206,6 +206,10 @@ export class ParticularsModalAttrPage {
 				this.native.showToast('请至少选择一件商品',null,false)
 				return;
 			} */
+			if (this.attrNumber.length == 0) {
+				this.native.showToast('请选择商品数量', null, false)
+				return;
+			}
 			this.httpService.addToCartSpec({
 				goods_id: this.goodsId,
 				goods: { member: this.attrNumber, spec: this.attrId }

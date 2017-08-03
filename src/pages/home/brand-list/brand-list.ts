@@ -30,7 +30,7 @@ export class BrandListPage {
 		stort: 'DESC',
 		keywords: this.myHomeSearch,
 		supplier_id: null,
-		type:null
+		type: null
 	}
 	@ViewChild(Content) content: Content;
 	@ViewChild('scrollToTop1') fabButton: FabButton;
@@ -44,7 +44,7 @@ export class BrandListPage {
 	ionViewDidLoad() {
 		console.log('ionViewDidLoad BrandListPage');
 	}
-	ngOnInit(){
+	ngOnInit() {
 		this.paramsData.cat_id = this.navParams.get('listId');
 		this.paramsData.brand_id = this.navParams.get('brandId');
 		this.paramsData.supplier_id = this.navParams.get('supplierId');
@@ -89,21 +89,25 @@ export class BrandListPage {
 		this.events.unsubscribe('user:filterParams');
 	}
 	getListData(params?) {
-		this.httpService.categoryGoods(Object.assign(this.paramsData, params)).then((res) => {
-			if (res.status == 1) {
-				this.data = res;
-				if (res.goods.length == 0) {
-					this.native.showToast('抱歉！没有查询到相关商品', null, false);
+		return new Promise((resolve, reject) => {
+			this.httpService.categoryGoods(Object.assign(this.paramsData, params)).then((res) => {
+				resolve()
+				if (res.status == 1) {
+					this.data = res;
+					this.content.scrollToTop();
+					if (res.goods.length == 0) {
+						this.native.showToast('抱歉！没有查询到相关商品', null, false);
+					}
+					this.events.publish('user:listFilter', res);
 				}
-				this.events.publish('user:listFilter', res);
-			}
+			}).catch(() => {
+				reject()
+			})
 		})
 	}
 	doRefresh(refresher) {
-		this.httpService.categoryGoods(this.paramsData).then((res) => {
-			if (res.status == 1) {
-				this.data = res;
-			}
+		this.getCarNumver();
+		this.getListData().then(() => {
 			setTimeout(() => {
 				refresher.complete();
 			}, 500);
@@ -146,12 +150,9 @@ export class BrandListPage {
 			stort: 'DESC',
 			keywords: this.myHomeSearch,
 			supplier_id: null,
-			type:null
+			type: null
 		}
-		this.httpService.categoryGoods(this.paramsData).then((res) => {
-			this.data = res;
-			this.events.publish('user:listFilter', res);
-		})
+		this.getListData()
 	}
 	allStatus = true;
 	salesNumStatus = true;
@@ -202,18 +203,12 @@ export class BrandListPage {
 	}
 	previousPage() {
 		if (this.data.page > 1) {
-			let pagingParam = Object.assign(this.paramsData, { page: --this.data.page });
-			this.httpService.categoryGoods(pagingParam).then((res) => {
-				this.data = res;
-			})
+			this.getListData({ page: --this.data.page })
 		}
 	}
 	nextPage() {
 		if (this.data.page < this.data.pages) {
-			let pagingParam = Object.assign(this.paramsData, { page: ++this.data.page });
-			this.httpService.categoryGoods(pagingParam).then((res) => {
-				this.data = res;
-			})
+			this.getListData({ page: ++this.data.page })
 		}
 	}
 	scrollToTop() {

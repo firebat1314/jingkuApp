@@ -292,8 +292,12 @@ ion-modal {
 .alert-style {
     .alert-head {
         .alert-title {
+            color: #333;
             font-size: 16px;
         }
+    }
+    .alert-message:empty {
+        padding: 0;
     }
     .alert-button-group {
         padding: 8px 0 0 0;

@@ -32,7 +32,7 @@
                 </div>
             </div>
         </div>
-        <ion-item detail-push mode="ios" no-lines margin-top [navPush]="AddShippingAddressPage">添加收获地址</ion-item>
+        <ion-item detail-push no-lines margin-top tappable [navPush]="AddShippingAddressPage">添加收获地址</ion-item>
     </div>
     <div class="no-add" *ngIf="addressList?.data?.length==0">
         <div class="img">

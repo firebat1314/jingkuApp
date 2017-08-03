@@ -194,7 +194,7 @@ export class ParticularsHomePage {
     if (this.classShop == "allGoods") {
       var page = this.alldata.page;
       if (page < this.alldata.pages) {
-        this.httpService.suppliersCategoryGoods(Object.assign(this.paramsData, { page: ++this.alldata.page,  suppliers_id: this.suppliers_id })).then((res) => {
+        this.httpService.suppliersCategoryGoods(Object.assign(this.paramsData, { page: ++this.alldata.page, suppliers_id: this.suppliers_id })).then((res) => {
           if (res.status == 1) {
             console.log(res);
             this.alldata.page = res.page;
@@ -212,7 +212,7 @@ export class ParticularsHomePage {
     else if (this.classShop == "goNew") {
       var page = this.newdata.page;
       if (page < this.newdata.pages) {
-        this.httpService.suppliersCategoryGoods({ suppliers_id: this.suppliers_id, page: ++page }).then((res) => {
+        this.httpService.suppliersCategoryGoods({ suppliers_id: this.suppliers_id, new: 1, page: ++page }).then((res) => {
           if (res.status == 1) {
             this.newdata.page = res.page;
             this.newdata.goods = this.newdata.goods.concat(res.goods);
@@ -333,7 +333,7 @@ export class ParticularsHomePage {
   sales_NumStatus = true;
   shop_PriceStatus = true;
   alltoolChange() {
-    this.paramsData.page = 1; 
+    this.paramsData.page = 1;
     if (this.alltool == 'all') {
       this.paramsData.order = '';
       this.sales_NumStatus = true;
