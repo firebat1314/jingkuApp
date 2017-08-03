@@ -6,5 +6,6 @@
 -->
 
 <ion-content>
+    <div *ngIf="data?.length" tappable (click)="viewCtrl.dismiss('all')">全部</div>
     <div *ngFor="let item of data;" tappable (click)="viewCtrl.dismiss(item.cat_id)">{{item.cat_name}}</div>
 </ion-content>

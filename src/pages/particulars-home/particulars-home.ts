@@ -110,7 +110,11 @@ export class ParticularsHomePage {
     });
     popover.onDidDismiss(supp_cat_id => {
       if (supp_cat_id) {
-        this.paramsData.supp_cat_id = supp_cat_id;
+        if (supp_cat_id == 'all') {
+          this.paramsData.supp_cat_id = null;
+        } else {
+          this.paramsData.supp_cat_id = supp_cat_id;
+        }
         this.classShop = 'allGoods';
         this.getAllData();
       }
@@ -188,6 +192,22 @@ export class ParticularsHomePage {
           }
         }
       }, 500);
+    }
+    if (this.classShop == 'allGoods') {
+      /* this.httpService.suppliersCategoryGoods({
+        size: 30,
+        page: 1,
+        stort: 'DESC',
+        suppliers_id: this.suppliers_id
+      }).then((res) => {
+        if (res.status == 1) {
+          this.alldata = res;
+          if (res.goods.length == 0) {
+            this.native.showToast('抱歉！没有查询到商品');
+          }
+          // this.events.publish('user:listFilter', res);
+        }
+      }) */
     }
   }
   doInfinite(infiniteScroll) {
