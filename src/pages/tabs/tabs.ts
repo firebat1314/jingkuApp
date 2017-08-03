@@ -28,10 +28,12 @@ export class TabsPage {
   }
   getCarCount() {
     this.httpService.getFlowGoods().then((res) => {//获取购物车数量
-      this.carNumber = res.total.real_goods_count;
+      if (res.status == 1) {
+        this.carNumber = res.goods_count;
+      }
     })
   }
   ionViewDidLoad() {
-    console.log(this.tabs);
+    // console.log(this.tabs);
   }
 }

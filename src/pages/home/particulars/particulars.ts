@@ -90,7 +90,7 @@ export class ParticularsPage {
    }  */
   getCarCount() {
     this.http.getFlowGoods().then((res) => {//获取购物车数量
-      this.badgeCount = res.total.real_goods_count;
+      this.badgeCount = res.goods_count;
     })
   }
   getHttpDetails(finished?) {

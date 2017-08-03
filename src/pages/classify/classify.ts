@@ -80,11 +80,11 @@ export class ClassifyPage {
   getHttpData(finished?) {
     this.httpService.getCategorys().then((res) => {
       if (res.status == 1) { this.getCategorys = res.data; }
-      this.httpService.getHomebanner({ int_pos_id: 49 }).then((res) => {
+      this.httpService.getHomebanner({ int_pos_id: 49,app:1 }).then((res) => {
         if (res.status == 1) { this.fore2 = res.data; }
-        this.httpService.getHomebanner({ int_pos_id: 50 }).then((res) => {
+        this.httpService.getHomebanner({ int_pos_id: 50,app:1 }).then((res) => {
           if (res.status == 1) { this.fore3 = res.data; }
-          this.httpService.getHomebanner({ int_pos_id: 51 }).then((res) => {
+          this.httpService.getHomebanner({ int_pos_id: 51,app:1 }).then((res) => {
             if (res.status == 1) { this.fore4 = res.data; }
             this.httpService.brandList().then((res) => {
               if (res.status == 1) { this.brandList = res }

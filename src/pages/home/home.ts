@@ -19,7 +19,7 @@ export class HomePage {
   jingxuan_img2: string;
   jingxuan_img1: string;
 
-  area: string = '北京';
+  area: string = '请选择';
   areaList: any;
 
   @ViewChild('bannerSlide') slides: Slides;
@@ -203,7 +203,7 @@ export class HomePage {
     })
   } */
   presentPopover(myEvent) {
-    let popover = this.popoverCtrl.create('PopoverHomePage', {}, {});
+    let popover = this.popoverCtrl.create('PopoverHomePage', {}, {cssClass:''});
     popover.present({
       ev: myEvent
     });
