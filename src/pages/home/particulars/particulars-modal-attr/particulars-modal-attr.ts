@@ -65,7 +65,7 @@ export class ParticularsModalAttrPage {
 					this.mainAttrs = this.data.data[i];
 					console.log(this.mainAttrs)
 					this.checkMainAttrId = this.data.data[i].values[0].id;
-					this.checkMainAttrNum = this.data.data[i].values[0].number||1;
+					this.checkMainAttrNum = this.data.data[i].values[0].number || 1;
 				}
 			}
 			this.getAttrList();
@@ -95,17 +95,23 @@ export class ParticularsModalAttrPage {
 	/*普通商品参数*/
 	numberIChange($event, item) {
 		item.goods_attr_number = $event;
-		var index = this.attrId.indexOf(item.goods_attr_id)
+		var index = this.attrId.indexOf(item.goods_attr_id);
 		if (index == -1) {
 			this.attrId.push(item.goods_attr_id);
 			this.attrNumber.push(item.goods_attr_number);
-		} else {
+		} else if (item.goods_attr_number == 0) {
+
+
+			this.attrId.splice(index, 1)
+			this.attrNumber.splice(index, 1)
 			// if (this.attrNumber[index] == 0) {
 			// 	this.attrId.splice(index, 1);
 			// 	this.attrNumber.splice(index, 1);
 			// } else {
-			this.attrNumber[index] = item.goods_attr_number;
+			// this.attrNumber[index] = item.goods_attr_number;
 			// }
+		} else {
+			this.attrNumber[index] = item.goods_attr_number;
 		}
 		console.log(this.attrId, this.attrNumber)
 		this.httpService.changeGoodsNumber({
@@ -200,6 +206,10 @@ export class ParticularsModalAttrPage {
 				this.native.showToast('请至少选择一件商品',null,false)
 				return;
 			} */
+			if (this.attrNumber.length == 0) {
+				this.native.showToast('请选择商品数量', null, false)
+				return;
+			}
 			this.httpService.addToCartSpec({
 				goods_id: this.goodsId,
 				goods: { member: this.attrNumber, spec: this.attrId }
@@ -221,9 +231,11 @@ export class ParticularsModalAttrPage {
 				return;
 			}
 			this.getGoodsParamsArrs();
-			if(this.memberArr.length==1&&this.memberArr[0]==0){
-				this.native.showToast('请选择商品数量', null, false)
-				return;
+			for (let i = 0; i < this.memberArr.length; i++) {
+				if (!(this.memberArr[i] > 0)) {
+					this.native.showToast('请选择商品数量', null, false)
+					return;
+				}
 			}
 			this.httpService.addToCartSpecJp({
 				goods_id: this.goodsId,

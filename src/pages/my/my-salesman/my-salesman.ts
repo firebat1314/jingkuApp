@@ -15,7 +15,7 @@ import { Native } from "../../../providers/native";
 })
 export class MySalesmanPage {
 
-  salesman:any = this.navParams.get('salesman');
+  salesman: any = this.navParams.get('salesman');
 
 
   constructor(
@@ -28,11 +28,10 @@ export class MySalesmanPage {
   ionViewDidLoad() {
     console.log('ionViewDidLoad MySalesmanPage');
   }
-  callNumber(){
-    if(this.salesman.phone){
-    this.native.openCallNumber(this.salesman.phone,false);
-
-    }else{
+  callNumber() {
+    if (this.salesman.phone) {
+      this.native.openCallNumber(this.salesman.phone, false);
+    } else {
       this.native.showToast('无手机号');
     }
   }

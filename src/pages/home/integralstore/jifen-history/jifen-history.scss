@@ -1,4 +1,7 @@
 page-jifen-history {
+    .no-list {
+        @include reminderBlankPage();
+    }
     .item {
         color: #4d4d4d;
         ion-thumbnail {

@@ -139,26 +139,29 @@ page-peceipt {
                 margin-right: 10px;
             }
         }
-        .an-invoice {
+        .receiptInfo-invoice {
             background: #fff;
             margin-bottom: 10px;
-            .fore {
-                padding: 18px 0 18px 30px;
-                font-size: 1.6rem;
-                border-bottom: map-get($colors, border) 1px solid;
-                .name {
-                    display: inline-block;
-                    width: 12rem;
-                }
-                .value {
-                    color: #999;
-                    font-size: 1.4rem;
+            .list {
+                padding: 0 10px;
+                .row {
+                    padding: 18px 0 18px 30px;
+                    font-size: 1.6rem;
+                    border-bottom: map-get($colors, border) 1px solid;
+                    .name {
+                        display: inline-block;
+                        width: 12rem;
+                    }
+                    .value {
+                        color: #999;
+                        font-size: 1.4rem;
+                    }
                 }
             }
             .bottom {
                 display: flex;
                 justify-content: flex-end;
-                padding: 5px;
+                padding: 5px 12px;
                 .button {
                     padding: 0 2em;
                 }

@@ -21,13 +21,14 @@ export class UserData {
 
     public get(url: string, paramObj?: any, showLoading?: boolean) {
         if (showLoading) {
-            this.native.showLoading();
+            this.native.showLoading('',false);
         }
         return this.storage.get('token').then((res) => {
             var headers = new Headers();
             headers.append('Authorization', 'Basic ' + btoa(res + ':'));
             let options = new RequestOptions({ headers: headers });
             return this.http.get(url + this.toQueryString(paramObj), options)
+                .timeout(5000)
                 .toPromise()
                 .then(res => this.handleSuccess(res.json(), showLoading))
                 .catch(error => this.handleError(error, showLoading));
@@ -36,13 +37,14 @@ export class UserData {
     public post(url: string, paramObj: any, showLoading?: boolean) {
         // this.native.showLoading();
         if (showLoading) {
-            this.native.showLoading();
+            this.native.showLoading('',false);
         }
         return this.storage.get('token').then((res) => {
             let headers = new Headers();
             headers.append('Authorization', 'Basic ' + btoa(res + ':'));
             let options = new RequestOptions({ headers: headers });
             return this.http.post(url, paramObj, options)
+                .timeout(5000)
                 .toPromise()
                 .then(res => this.handleSuccess(res.json(), showLoading))
                 .catch(error => this.handleError(error, showLoading));
@@ -50,13 +52,14 @@ export class UserData {
     }
     public postBody(url: string, paramObj: any, showLoading?: boolean) {
         if (showLoading) {
-            this.native.showLoading();
+            this.native.showLoading('',false);
         }
         return this.storage.get('token').then((res) => {
             let headers = new Headers();
             headers.append('Authorization', 'Basic ' + btoa(res + ':'));
             let options = new RequestOptions({ headers: headers });
             return this.http.post(url, this.toBodyString(paramObj), options)
+                .timeout(5000)
                 .toPromise()
                 .then(res => this.handleSuccess(res.json(), showLoading))
                 .catch(error => this.handleError(error, showLoading));

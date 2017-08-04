@@ -28,7 +28,7 @@
                     <ion-thumbnail item-left>
                         <img img-lazy-load="{{item.img||'./assets/icon/images/brand_1_10.jpg'}}">
                     </ion-thumbnail>
-                    <h2>{{item.goods_name}}</h2>
+                    <h2 tappable (click)="joinCar(item.goods_id)">{{item.goods_name}}</h2>
                     <p class="right-bottom">
                         <span class="price">{{item.shop_price}}</span>
                         <button ion-button outline (click)="joinCar(item.goods_id)">加入购物车</button>

@@ -34,18 +34,24 @@ export class WriteOrdersPage {
     this.events.subscribe('writeOrder:refresh', () => {
       this.getHttpData();
     })
+    this.events.subscribe('updateAddress', () => {
+      this.getHttpData();
+    });
   }
   ngOnDestroy() {
     this.events.unsubscribe('writeOrder:refresh');
+    this.events.unsubscribe('updateAddress');
   }
   ionViewDidLoad() {
     console.log('ionViewDidLoad WriteOrdersPage');
   }
-  ionViewCanEnter() {
+  /* ionViewCanEnter() {
     return this.getHttpData().then((res) => {
         return true;
-     
     });
+  } */
+  ngOnInit() {
+    this.getHttpData();
   }
   getHttpData() {
     return new Promise((resolve, reject) => {
@@ -54,9 +60,13 @@ export class WriteOrdersPage {
         if (res && res.status == 1) {
           this.data = res;
           //选中地址
-          for (let i = 0; i < this.data.consignee_list.length; i++) {
-            if (this.data.consignee_list[i].selected == 1) {
-              this.defaultShipping = this.data.consignee_list[i]
+          if (this.data.consignee_list.length == 0) {
+            this.defaultShipping = null;
+          } else {
+            for (let i = 0; i < this.data.consignee_list.length; i++) {
+              if (this.data.consignee_list[i].selected == 1) {
+                this.defaultShipping = this.data.consignee_list[i]
+              }
             }
           }
           //选中支付方式
@@ -160,6 +170,7 @@ export class WriteOrdersPage {
           if (res.status == 1) {
             this.native.showToast(res.info);
             this.navCtrl.push('AllOrdersPage');
+            this.events.publish('my:refresh');
             this.events.publish('car:updata');
             // this.viewCtrl.dismiss();
           }
@@ -173,6 +184,7 @@ export class WriteOrdersPage {
         }
       }).then((res) => {
         if (res.status == 1) {
+          this.events.publish('my:refresh');
           this.events.publish('car:updata');
           if (this.paymentMothdID == 6) {
             this.httpService.pay({ order_id: res.order_id }).then((res) => {

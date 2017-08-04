@@ -21,11 +21,8 @@
     </ion-refresher>
     <!--——————————————————————————————————————————轮播图——————————————————————————————————————————-->
     <div class="banner-wrapper">
-        <ion-slides #bannerSlide autoplay="4000" pager (ionSlideAutoplayStop)="bannerSlide.startAutoplay()">
-            <!--[loop]="bannerImgs?.length>1?true:false"-->
-            <ion-slide *ngIf="!bannerImgs">
-                <img img-lazy-load="" defaultSrc="./assets/images/images/640-320.jpg" alt="">
-            </ion-slide>
+        <ion-slides #bannerSlide autoplay="4000" pager (ionSlideAutoplayStop)="bannerSlide.startAutoplay()" *ngIf="bannerImgs?.length">
+            <!-- *ngIf="bannerImgs" loop-->
             <ion-slide *ngFor="let item of bannerImgs" tappable [ads-click]="item.link_type">
                 <!--<img [img-lazy-load]="item.ad_img">-->
                 <img [img-lazy-load]="item.ad_img" defaultSrc="./assets/images/images/640-320.jpg" alt="">
@@ -246,10 +243,10 @@
     <div class="hot-other home-content" home-padding>
         <div class="title">
             <span class="txt">热门商品</span>
-            <span class="more" navPush="BrandListPage" [navParams]="{list:'singleHot'}">更多&gt;</span>
+            <span class="more" navPush="BrandListPage" [navParams]="{type:'hot'}">更多&gt;</span>
         </div>
         <div class="main">
-            <single-foods-card [data]="getCategoryRecommendGoodsHot"></single-foods-card>
+            <single-foods-card [data]="indexHotGoods"></single-foods-card>
         </div>
     </div>
     <ion-fab right bottom tappable (click)="myContent.scrollToTop()">

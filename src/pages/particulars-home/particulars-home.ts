@@ -30,12 +30,11 @@ export class ParticularsHomePage {
   paramsData = {
     size: 30,
     page: 1,
-    brand_id: null,
-    cat_id: null,
+    supp_cat_id: null,
     order: null,
     stort: 'DESC',
     keywords: this.myHomeSearch,
-    supplier_id: null
+    suppliers_id: null
   }
 
   suppliers_id = this.navParams.get('suppliersId');
@@ -53,41 +52,37 @@ export class ParticularsHomePage {
     private renderer: Renderer,
     private httpService: HttpService,
     public popoverCtrl: PopoverController
-
   ) { }
   ngOnInit() {
+    if (this.defaultSelect) {
+      this.classShop = this.defaultSelect;
+    }
     this.getHomeData();
     this.getShopData();
 
     this.changeType(this.typeNumber);
     this.NewType(this.newType);
-
-    this.events.subscribe('user:filterParams', (res) => {
+    //筛选菜单数据传输
+    /* this.events.subscribe('user:filterParams', (res) => {
       this.paramsData = Object.assign(this.paramsData, res);
       console.log(this.paramsData)
       this.alldata.page = 1;
       this.mytool = 'all';
       this.paramsData.stort = 'DESC';
       this.getAllData();
-    });
+    }); */
     this.events.subscribe('particulars-home-details:update-collect', () => {
       this.getShopData();
     })
-    this.httpService.categoryGoods(Object.assign(this.paramsData, { suppliers_id: this.suppliers_id })).then((res) => {
+    this.httpService.suppliersCategoryGoods(Object.assign(this.paramsData, { suppliers_id: this.suppliers_id })).then((res) => {
       if (res.status == 1) {
         this.alldata = res;
-        console.log(res);
-        this.events.publish('user:listFilter', res);
+        // this.events.publish('user:listFilter', res);
       }
     })
   }
   ionViewDidLoad() {
     console.log('ionViewDidLoad ParticularsHomePage');
-  }
-  ngAfterViewInit() {
-    if (this.defaultSelect) {
-      this.classShop = this.defaultSelect;
-    }
   }
   ionViewDidLeave() {
     this.events.unsubscribe('user:filterParams');//防止多次订阅事件
@@ -113,9 +108,13 @@ export class ParticularsHomePage {
     popover.present({
       ev: myEvent
     });
-    popover.onDidDismiss(cat_id => {
-      if (cat_id) {
-        this.paramsData.cat_id = cat_id;
+    popover.onDidDismiss(supp_cat_id => {
+      if (supp_cat_id) {
+        if (supp_cat_id == 'all') {
+          this.paramsData.supp_cat_id = null;
+        } else {
+          this.paramsData.supp_cat_id = supp_cat_id;
+        }
         this.classShop = 'allGoods';
         this.getAllData();
       }
@@ -151,7 +150,7 @@ export class ParticularsHomePage {
     })
   }
   NewType(newType) {
-    this.httpService.categoryGoods({ suppliers_id: this.suppliers_id, new: newType }).then((res) => {
+    this.httpService.suppliersCategoryGoods({ suppliers_id: this.suppliers_id, new: newType }).then((res) => {
       if (res.status == 1) {
         this.newdata = res;
         console.log(res);
@@ -160,13 +159,13 @@ export class ParticularsHomePage {
   }
 
   getAllData(params?) {
-    this.httpService.categoryGoods(Object.assign(this.paramsData, params)).then((res) => {
+    this.httpService.suppliersCategoryGoods(Object.assign(this.paramsData, params)).then((res) => {
       if (res.status == 1) {
         this.alldata = res;
         if (res.goods.length == 0) {
           this.native.showToast('抱歉！没有查询到商品');
         }
-        this.events.publish('user:listFilter', res);
+        // this.events.publish('user:listFilter', res);
       }
     })
   }
@@ -194,12 +193,28 @@ export class ParticularsHomePage {
         }
       }, 500);
     }
+    if (this.classShop == 'allGoods') {
+      /* this.httpService.suppliersCategoryGoods({
+        size: 30,
+        page: 1,
+        stort: 'DESC',
+        suppliers_id: this.suppliers_id
+      }).then((res) => {
+        if (res.status == 1) {
+          this.alldata = res;
+          if (res.goods.length == 0) {
+            this.native.showToast('抱歉！没有查询到商品');
+          }
+          // this.events.publish('user:listFilter', res);
+        }
+      }) */
+    }
   }
   doInfinite(infiniteScroll) {
     if (this.classShop == "allGoods") {
       var page = this.alldata.page;
       if (page < this.alldata.pages) {
-        this.httpService.categoryGoods(Object.assign(this.paramsData, { page: ++this.alldata.page,  suppliers_id: this.suppliers_id })).then((res) => {
+        this.httpService.suppliersCategoryGoods(Object.assign(this.paramsData, { page: ++this.alldata.page, suppliers_id: this.suppliers_id })).then((res) => {
           if (res.status == 1) {
             console.log(res);
             this.alldata.page = res.page;
@@ -217,7 +232,7 @@ export class ParticularsHomePage {
     else if (this.classShop == "goNew") {
       var page = this.newdata.page;
       if (page < this.newdata.pages) {
-        this.httpService.categoryGoods({ suppliers_id: this.suppliers_id, page: ++page }).then((res) => {
+        this.httpService.suppliersCategoryGoods({ suppliers_id: this.suppliers_id, new: 1, page: ++page }).then((res) => {
           if (res.status == 1) {
             this.newdata.page = res.page;
             this.newdata.goods = this.newdata.goods.concat(res.goods);
@@ -234,7 +249,7 @@ export class ParticularsHomePage {
     else if (this.typeNumber == 0) {
       var page = this.cxdata.page;
       if (page < this.cxdata.pages) {
-        this.httpService.categoryGoods(Object.assign(this.paramsData, { page: ++this.cxdata.page, type: 0, suppliers_id: this.suppliers_id })).then((res) => {
+        this.httpService.suppliersCategoryGoods(Object.assign(this.paramsData, { page: ++this.cxdata.page, type: 0, suppliers_id: this.suppliers_id })).then((res) => {
           if (res.status == 1) {
             this.cxdata.page = res.page;
             this.cxdata.goods_list = this.cxdata.goods_list.concat(res.goods_list);
@@ -252,7 +267,7 @@ export class ParticularsHomePage {
     else if (this.typeNumber == 1) {
       var page = this.cxdata.page;
       if (page < this.cxdata.pages) {
-        this.httpService.categoryGoods(Object.assign(this.paramsData, { page: ++this.cxdata.page, type: 1, suppliers_id: this.suppliers_id })).then((res) => {
+        this.httpService.suppliersCategoryGoods(Object.assign(this.paramsData, { page: ++this.cxdata.page, type: 1, suppliers_id: this.suppliers_id })).then((res) => {
           if (res.status == 1) {
             this.cxdata.page = res.page;
             //Array.prototype.push.apply(this.cxdata.goods_list, res.goods_list);
@@ -269,7 +284,7 @@ export class ParticularsHomePage {
     else if (this.typeNumber == 2) {
       var page = this.cxdata.page;
       if (page < this.cxdata.pages) {
-        this.httpService.categoryGoods(Object.assign(this.paramsData, { page: ++this.cxdata.page, type: 2, suppliers_id: this.suppliers_id })).then((res) => {
+        this.httpService.suppliersCategoryGoods(Object.assign(this.paramsData, { page: ++this.cxdata.page, type: 2, suppliers_id: this.suppliers_id })).then((res) => {
           if (res.status == 1) {
             this.cxdata.page = res.page;
             //Array.prototype.push.apply(this.cxdata.goods_list, res.goods_list);
@@ -286,7 +301,7 @@ export class ParticularsHomePage {
     else if (this.typeNumber == 3) {
       var page = this.cxdata.page;
       if (page < this.cxdata.pages) {
-        this.httpService.categoryGoods(Object.assign(this.paramsData, { page: ++this.cxdata.page, type: 3, suppliers_id: this.suppliers_id })).then((res) => {
+        this.httpService.suppliersCategoryGoods(Object.assign(this.paramsData, { page: ++this.cxdata.page, type: 3, suppliers_id: this.suppliers_id })).then((res) => {
           if (res.status == 1) {
             this.cxdata.page = res.page;
             //Array.prototype.push.apply(this.cxdata.goods_list, res.goods_list);
@@ -302,7 +317,7 @@ export class ParticularsHomePage {
     }
   }
   // doRefresh(refresher) {
-  // 	this.httpService.categoryGoods((this.paramsData ,{new:1,suppliers_id: this.suppliers_id})).then((res) => {
+  // 	this.httpService.suppliersCategoryGoods((this.paramsData ,{new:1,suppliers_id: this.suppliers_id})).then((res) => {
   // 		if (res.status == 1) {
   // 			this.alldata = res;
   // 		}
@@ -320,17 +335,16 @@ export class ParticularsHomePage {
     this.paramsData = {
       size: 30,
       page: 1,
-      brand_id: null,
-      cat_id: null,
+      supp_cat_id: null,
       order: null,
       stort: 'DESC',
       keywords: this.myHomeSearch,
-      supplier_id: null
+      suppliers_id: null
     }
-    this.httpService.categoryGoods(Object.assign(this.paramsData, { suppliers_id: this.suppliers_id })).then((res) => {
+    this.httpService.suppliersCategoryGoods(Object.assign(this.paramsData, { suppliers_id: this.suppliers_id })).then((res) => {
       this.alldata = res;
       this.classShop = 'allGoods';
-      this.events.publish('user:listFilter', res);
+      // this.events.publish('user:listFilter', res);
     })
   }
 
@@ -339,7 +353,7 @@ export class ParticularsHomePage {
   sales_NumStatus = true;
   shop_PriceStatus = true;
   alltoolChange() {
-    this.paramsData.page = 1; 
+    this.paramsData.page = 1;
     if (this.alltool == 'all') {
       this.paramsData.order = '';
       this.sales_NumStatus = true;

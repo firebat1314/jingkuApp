@@ -31,7 +31,7 @@ export class CountInputComponent {
   }
   ngOnInit() {
     if (this.maxValue) this.newmaxValue = this.maxValue;
-    console.log(this.rank)
+    console.log('增减量：' + this.rank)
     if (this.rank !== 1) this.disabled = true;
   }
   increase() {
@@ -43,7 +43,6 @@ export class CountInputComponent {
       this.element.nativeElement.getElementsByTagName('input')[0].value = this.newmaxValue;
       return;
     }
-    console.log(this.value,this.value+1)
     this.valueChange.emit(this.value += Number(this.rank));
   }
   reduce() {

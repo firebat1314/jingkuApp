@@ -16,29 +16,35 @@
 <ion-content>
     <div radio-group class="fore item" padding-left [(ngModel)]="formData.type">
         <ion-label fixed>开具类型：</ion-label>
-        <ion-radio mode="md" color="danger" [value]="1"></ion-radio><span>个人</span>
-        <ion-radio mode="md" color="danger" [value]="2"></ion-radio><span>企业</span>
+        <label><ion-radio mode="md" color="danger" [value]="1"></ion-radio><span>个人</span></label>
+        <label><ion-radio mode="md" color="danger" [value]="2"></ion-radio><span>企业</span></label>
     </div>
-    <div class="background"></div>
     <div class="fore item" padding-left>
         <ion-label fixed>开票抬头：</ion-label>
         <input type="text" [(ngModel)]="formData.payee">
     </div>
-    <div class="background"></div>
+    <div class="fore item" padding-left>
+        <ion-label fixed>企业税号：</ion-label>
+        <input type="text" [(ngModel)]="formData.sw_sn">
+    </div>
     <div radio-group class="fore item" padding-left [(ngModel)]="formData.inv_type">
         <ion-label fixed>发票类型：</ion-label>
-        <ion-radio mode="md" color="danger" [value]="1" [checked]="formData.type==1"></ion-radio><span>普通发票</span>
-        <ion-radio mode="md" color="danger" [value]="2" [checked]="formData.type==2" *ngIf="formData.type==2"></ion-radio><span *ngIf="formData.type==2">增值税专用发票</span>
+        <label>
+            <ion-radio mode="md" color="danger" [value]="1" [checked]="formData.type==1"></ion-radio><span>普通发票</span>
+        </label>
+        <label>
+            <ion-radio mode="md" color="danger" [value]="2" [checked]="formData.type==2" *ngIf="formData.type==2"></ion-radio><span *ngIf="formData.type==2">增值税专用发票</span>
+        </label>
     </div>
     <div class="fore main" *ngIf="formData.inv_type==2&&formData.type==2">
         <div>
             <div class="name">税务等级单位名称：</div>
             <div class="input"><input type="text" [(ngModel)]="formData.company"></div>
         </div>
-        <div>
+        <!-- <div>
             <div class="name">税务登记证号：</div>
             <div class="input"><input type="text" [(ngModel)]="formData.sw_sn"></div>
-        </div>
+        </div> -->
         <div>
             <div class="name">基本户开户银行名称：</div>
             <div class="input"><input type="text" [(ngModel)]="formData.bank_name"></div>
@@ -65,7 +71,7 @@
             </div>
         </div>
         <img class="fuyingjian" src="{{formData.yyzz}}" alt="">
-        <div>
+        <!-- <div>
             <div class="name">税务登记复印件：</div>
             <div class="input">
                 <div class="fuyin" (click)="openFile(2)">
@@ -84,7 +90,7 @@
                 </div>
             </div>
         </div>
-        <img class="fuyingjian" src="{{formData.zgez}}" alt="">
+        <img class="fuyingjian" src="{{formData.zgez}}" alt=""> -->
     </div>
 </ion-content>
 

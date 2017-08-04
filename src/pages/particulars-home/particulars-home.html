@@ -91,14 +91,14 @@
 
             <div class="new-arrival-goods-box" *ngIf="!listStyleflag||data?.new_list?.length">
                 <div class="new-arrival-goods" *ngFor="let item of data?.new_list">
-                    <img img-lazy-load="{{item.goods_img}}" alt="">
+                    <img img-lazy-load="{{item.goods_img}}" tappable (click)="goParticularsPage(item.id)" alt="">
                     <div class="price">
                         <span>{{item.shop_price}}</span>
                         <button (click)="goParticularsPage(item.id)">立即抢购</button>
                     </div>
                 </div>
             </div>
-            <single-foods-item [data]="data?.new_list" *ngIf="listStyleflag"></single-foods-item>
+            <!-- <single-foods-item [data]="data?.new_list" *ngIf="listStyleflag"></single-foods-item> -->
 
             <div class="new-arrival" *ngIf="data?.hot_list?.length">
                 <p>POPULARITY LIST</p>
@@ -156,10 +156,10 @@
                             </div>
                         </div>
                     </ion-segment-button>
-                    <ion-segment-button menuToggle value="">
+                    <!-- <ion-segment-button menuToggle value="">
                         筛选
                         <img img-lazy-load="./assets/icon/images/filter.png" width="18" alt="">
-                    </ion-segment-button>
+                    </ion-segment-button> -->
                 </ion-segment>
             </ion-toolbar>
             <ion-list>

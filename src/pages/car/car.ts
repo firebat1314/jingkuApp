@@ -32,25 +32,25 @@ export class CarPage {
     public alertCtrl: AlertController,
     public httpService: HttpService,
     public events: Events,
-  ) { }
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad CarPage');
+  ) {
     this.events.subscribe('car:updata', () => {
       this.getFlowGoods();
       this.content.resize();
       this.isEdit = false;
     })
   }
-  ngAfterViewInit(){
-    this.getFlowGoods();
+  ionViewDidLoad() {
+    console.log('ionViewDidLoad CarPage');
   }
   ngOnDestroy() {
     this.events.unsubscribe('car:updata');
   }
+  ngOnInit() {
+    this.getFlowGoods();
+  }
   getFlowGoods(finished?) {
     this.goodsIdArray = [];
     this.httpService.getFlowGoods().then((res) => {
-      console.log(res)
       if (res.status == 1) {
         this.carDetails = res;
         this.content.resize();
@@ -105,12 +105,16 @@ export class CarPage {
    * @param item 单个商品
    */
   numberChangeI(event, item) {
+    this.native.showLoading('', false);
     this.httpService.changeNumCart({ rec_id: item.rec_id, number: event }).then((res) => {
       if (res.status == 1) {
         item.goods_number = event
         item.inputLock = false;
-        this.getFlowGoods();
+        this.getFlowGoods(() => {
+          this.native.hideLoading();
+        });
       } else {
+        this.native.hideLoading();
         item.inputLock = true;
       }
     });
@@ -130,7 +134,7 @@ export class CarPage {
     } else {
       this.goodsIdArray.splice(goodsIdIndex, 1);
     }
-    console.log("goodsIdArray",this.goodsIdArray)
+    console.log("goodsIdArray", this.goodsIdArray)
   }
 
   beCareFor() {

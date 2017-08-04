@@ -2,5 +2,6 @@ page-account-withdraw {
     .item {
         height: 5.4rem;
         padding-right: 16px;
+        @include fixedLabelWidth(100px);
     }
 }

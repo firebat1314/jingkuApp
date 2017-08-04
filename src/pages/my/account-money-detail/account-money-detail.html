@@ -14,6 +14,12 @@
 
 
 <ion-content>
+    <div class="no-list" *ngIf="data&&!data?.list?.length">
+        <div class="img">
+            <img src="./assets/icon/no-log.png" alt="">
+        </div>
+        <div class="title">暂无收支明细</div>
+    </div>
     <ion-list>
         <ion-item *ngFor="let item of data?.list;">
             <h2>{{item.title}}</h2>
@@ -22,7 +28,7 @@
         </ion-item>
     </ion-list>
 
-    <ion-fab right bottom (click)="scrollToTop()">
+    <ion-fab right bottom (click)="scrollToTop()" *ngIf="data?.pages">
         <button ion-fab color="dark" mini>
             {{data?.page}}/{{data?.pages}}
         </button>

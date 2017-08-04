@@ -14,10 +14,12 @@ import { Storage } from '@ionic/storage';
 export class HttpService {
   public HAS_LOGGED_IN = "hasLoggedIn";
   public hasLogin = false;
-  // private ip = 'http://v402app.jingkoo.net';//app测试
+  // private ip = 'http://v403app.jingkoo.net';//app测试
   // private ip = 'http://app.jingku.cn';//app正式
   // private ip = 'http://hl.jingkoo.net/';//响应速度测试
-  private ip = 'http://newm.jingkoo.net';//m站
+  // private ip = 'http://newm.jingkoo.net';//m站
+  private ip = 'http://newpc.jingkoo.net';//pc站
+  
 
   constructor(public http: UserData, private storage: Storage) {
     console.log('Hello HttpService Provider');
@@ -147,7 +149,7 @@ export class HttpService {
     return this.http.get(this.ip + '/Category/category_goods', data)
   }
   getGoodsAttribute(data?: Object) {//获取初始商品属性
-    return this.http.get(this.ip + '/Goods/get_goods_attribute', data)
+    return this.http.get(this.ip + '/Goods/get_goods_attribute', data ,true)
   }
   getZhujing(data?: Object) {//如果返回的(good_type) 商品类型是goods_spectacles 根据所选球镜，获取柱镜列表
     return this.http.get(this.ip + '/Goods/get_zhujing', data)
@@ -204,7 +206,7 @@ export class HttpService {
     return this.http.post(this.ip + '/Flow/del_no_shop', data, true)
   }
   submitOrder(data?: Object) {//提交订单
-    return this.http.post(this.ip + '/Flow/done', data)
+    return this.http.post(this.ip + '/Flow/done', data, true)
   }
   pay(data: Object) {//支付方式
     return this.http.get(this.ip + '/Flow/pay', data, true)
@@ -348,7 +350,7 @@ export class HttpService {
     return this.http.get(this.ip + '/User/accountLog', data)
   }
   presell(data?: Object) {//预售促销商品列表
-    return this.http.get(this.ip + '/Index/presell', data)
+    return this.http.get(this.ip + '/Index/presell', data, true)
   }
   helpInfo(data?: Object) {//帮助中心
     return this.http.get(this.ip + '/User/helpInfo', data, true)
@@ -406,6 +408,9 @@ export class HttpService {
   }
   suppliersPromote(data?: Object) {//店铺促销
     return this.http.post(this.ip + '/Category/suppliers_promote_goods', data)
+  }
+  suppliersCategoryGoods(data?: Object) {//店铺促销
+    return this.http.post(this.ip + '/Category/suppliers_category_goods', data)
   }
   orderRepair(data?: Object) {//售后申请列表
     return this.http.post(this.ip + '/User/order_repair', data)

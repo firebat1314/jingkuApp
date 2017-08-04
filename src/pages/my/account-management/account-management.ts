@@ -29,12 +29,12 @@ export class AccountManagementPage {
     public app: App,
     public native: Native,
   ) {
-    this.events.subscribe('avatar:update', res => {
+    this.events.subscribe('my:refresh', res => {
       this.avatar = res;
     })
   }
   ngOnDestroy() {
-    this.events.unsubscribe('avatar:update');
+    this.events.unsubscribe('my:refresh');
   }
   ionViewDidLoad() {
     console.log('ionViewDidLoad AccountManagementPage');

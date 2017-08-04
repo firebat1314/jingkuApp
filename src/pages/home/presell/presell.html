@@ -37,7 +37,7 @@
         <ion-list>
             <div class="nomore" *ngIf="data?.data?.length<=0">该分类下暂无预售</div>
             <div class="fore singleton" *ngFor="let item of data?.data">
-                <div class="left">
+                <div class="left" tappable (click)="goParticularsPage(item.id)">
                     <div class="img-wrap">
                         <img img-lazy-load="http://img.jing-ku.com/{{item.goods_img}}" alt="">
                         <div class="time">
@@ -50,7 +50,7 @@
                     <div class="title">{{item.name}}</div>
                     <div class="strip">
                         <div class="wrap">
-                            <div [ngStyle]="{'width.%':20}"></div>
+                            <div [ngStyle]="{'width.%':item.sales_num/item.goods_number*100}"></div>
                         </div>
                         <div class="number">
                             <span>已抢购{{item.sales_num+item.unit}}</span>
@@ -58,8 +58,8 @@
                         </div>
                     </div>
                     <div class="price">
-                        <div class="red">{{item.promote_price}}</div>
-                        <div class="old-price">{{item.shop_price}}</div>
+                        <div class="red">{{item.shop_price}}</div>
+                        <!-- <div class="old-price">{{item.promote_price}}</div> -->
                         <div ion-button color="dark" no-margin tappable (click)="goParticularsPage(item.id)">立即购买</div>
                     </div>
                 </div>
