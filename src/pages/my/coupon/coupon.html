@@ -31,8 +31,10 @@
     </ion-refresher>
     <div padding class="unused" *ngSwitchCase="'unused'">
         <div class="no-coupon" *ngIf="unusedBonusData?.data.length==0">
-            <div class="img"></div>
-            <div class="text">您还没有优惠券哦！</div>
+            <div class="img">
+                <img src="./assets/images/images/coupon_4_03.png" alt="">
+            </div>
+            <div class="title">您还没有优惠券哦！</div>
         </div>
         <div class="item" *ngFor="let item of unusedBonusData?.data">
             <div class="fore">
@@ -48,8 +50,10 @@
     </div>
     <div padding class="stale" *ngSwitchCase="'stale'">
         <div class="no-coupon" *ngIf="staleBonusData?.data.length==0">
-            <div class="img"></div>
-            <div class="text">您还没有优惠券哦！</div>
+            <div class="img">
+                <img src="./assets/images/images/coupon_4_03.png" alt="">
+            </div>
+            <div class="title">您还没有优惠券哦！</div>
         </div>
         <div class="item" *ngFor="let item of staleBonusData?.data">
             <div class="fore">
@@ -65,8 +69,10 @@
     </div>
     <div padding class="used" *ngSwitchCase="'used'">
         <div class="no-coupon" *ngIf="usedBonusData?.data.length==0">
-            <div class="img"></div>
-            <div class="text">您还没有使用过优惠券哦！</div>
+            <div class="img">
+                <img src="./assets/images/images/coupon_4_03.png" alt="">
+            </div>
+            <div class="title">您还没有优惠券哦！</div>
         </div>
         <div class="item" *ngFor="let item of usedBonusData?.data">
             <div class="fore">

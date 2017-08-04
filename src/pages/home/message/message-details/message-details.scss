@@ -1,4 +1,7 @@
 page-message-details {
+    .no-message {
+        @include reminderBlankPage();
+    }
     .period {
         .card {
             box-shadow: initial;

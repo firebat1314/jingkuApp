@@ -32,8 +32,7 @@
         </ion-buttons>
     </ion-toolbar>
     <ion-toolbar *ngIf="classSelect!='care'" class="mysearchbar">
-        <ion-searchbar mode="ios" #mySearchBar debounce="500" placeholder="搜索品牌、分类或者关注" animated="true">
-        </ion-searchbar>
+        <ion-searchbar [(ngModel)]="searchkey" placeholder="搜索品牌、分类或者关注" mode="ios" debounce="500" animated (keypress)="searchbar($event)" type="search"></ion-searchbar>
     </ion-toolbar>
     <ion-toolbar class="segment-style" *ngIf="classSelect=='care'">
         <ion-segment mode="md" [(ngModel)]="careSelect">
@@ -95,14 +94,16 @@
                     <div tappable [ads-click]="item.link_type" *ngFor="let item of fore4"><img img-lazy-load="{{item.ad_img}}" alt=""></div>
                 </div>
             </div>
-            <div class="fore-yinxing fore" *ngFor="let item of brandList?.data">
+            <div class="fore-yinxing fore" *ngFor="let item of brandList?.data;let i = index;">
                 <div class="title">
                     <span class="txt">{{item.cat_name}}</span>
                     <span class="more" *ngIf="item.ads.length>9" tappable (click)="goToMoreBrand(item.ads)">更多&gt;</span>
                 </div>
                 <div class="body">
                     <!--<div class="top"><img src="./assets/icon/images/brand_1_13.jpg" alt=""></div>-->
-                    <div class="top"><img src="./assets/icon/images/brand_1_20.jpg" alt=""></div>
+                    <div class="top" *ngIf="brandList?.cate_ads&&brandList?.cate_ads[i]">
+                        <img tappable [ads-click]="brandList?.cate_ads[i]?.link_type" img-lazy-load="{{brandList?.cate_ads[i]?.ad_img}}" alt="">
+                    </div>
                     <div class="main">
                         <ng-container *ngFor="let img of item.ads;let i = index;">
                             <div tappable [ads-click]="img.link_type" *ngIf="i<9">

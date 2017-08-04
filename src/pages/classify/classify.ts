@@ -15,6 +15,7 @@ import { Native } from "../../providers/native";
   templateUrl: 'classify.html'
 })
 export class ClassifyPage {
+  searchkey: any;
   fore4: any;
   fore3: any;
   fore2: any;
@@ -48,13 +49,15 @@ export class ClassifyPage {
     public native: Native,
     private events: Events
   ) {
-    this.getHttpData();
     this.events.subscribe('classify:selectSegment', (res) => {
       this.classSelect = res;
     })
   }
   ionViewDidLoad() {
     console.log('ionViewDidLoad ClassifyPage');
+  }
+  ngOnInit(){
+    this.getHttpData();
   }
   ngAfterViewInit() {
     /* 回到顶部按钮 */
@@ -77,11 +80,11 @@ export class ClassifyPage {
   getHttpData(finished?) {
     this.httpService.getCategorys().then((res) => {
       if (res.status == 1) { this.getCategorys = res.data; }
-      this.httpService.getHomebanner({ int_pos_id: 49 }).then((res) => {
+      this.httpService.getHomebanner({ int_pos_id: 49,app:1 }).then((res) => {
         if (res.status == 1) { this.fore2 = res.data; }
-        this.httpService.getHomebanner({ int_pos_id: 50 }).then((res) => {
+        this.httpService.getHomebanner({ int_pos_id: 50,app:1 }).then((res) => {
           if (res.status == 1) { this.fore3 = res.data; }
-          this.httpService.getHomebanner({ int_pos_id: 51 }).then((res) => {
+          this.httpService.getHomebanner({ int_pos_id: 51,app:1 }).then((res) => {
             if (res.status == 1) { this.fore4 = res.data; }
             this.httpService.brandList().then((res) => {
               if (res.status == 1) { this.brandList = res }
@@ -214,5 +217,15 @@ export class ClassifyPage {
       }
     }
 
+  }
+  /* 商品搜索 */
+  searchbar(e) {
+    if (e) {
+      if (e.keyCode == 13) {
+        this.navCtrl.push('BrandListPage', { keyword: this.searchkey })
+      }
+    } else {
+      this.navCtrl.push('BrandListPage', { keyword: this.searchkey })
+    }
   }
 }

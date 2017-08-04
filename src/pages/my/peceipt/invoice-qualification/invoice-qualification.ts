@@ -27,8 +27,8 @@ export class InvoiceQualificationPage {
     address: '',
     tel: '',
     yyzz: null,//执照复印件
-    swdj: null,//税务登记复印件
-    zgez: null//资格认证复印件
+    // swdj: null,//税务登记复印件
+    // zgez: null//资格认证复印件
   }
   constructor(
     public navCtrl: NavController,
@@ -58,8 +58,8 @@ export class InvoiceQualificationPage {
         this.formData.address = res.data.address;
         this.formData.tel = res.data.tel;
         this.formData.yyzz = res.data.yyzz;
-        this.formData.swdj = res.data.swdj;
-        this.formData.zgez = res.data.zgez;
+        // this.formData.swdj = res.data.swdj;
+        // this.formData.zgez = res.data.zgez;
       }
     })
   }
@@ -79,9 +79,9 @@ export class InvoiceQualificationPage {
       if (type === 1) {
         this.formData.yyzz = 'data:image/jpeg;base64,' + res;
       } else if (type === 2) {
-        this.formData.swdj = 'data:image/jpeg;base64,' + res;
+        // this.formData.swdj = 'data:image/jpeg;base64,' + res;
       } else if (type === 3) {
-        this.formData.zgez = 'data:image/jpeg;base64,' + res;
+        // this.formData.zgez = 'data:image/jpeg;base64,' + res;
       }
     })
   }

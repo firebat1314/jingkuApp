@@ -30,7 +30,7 @@
             </ion-avatar>
             <h3>消息通知</h3>
             <p>{{userTidings?.list?.msg_content}}</p>
-            <ion-note item-right>{{userTidings?.list?.dateline}}</ion-note>
+            <ion-note item-right *ngIf="userTidings?.list?.number!=0">{{userTidings?.list?.dateline}}</ion-note>
         </ion-item>
     </ion-list>
 

@@ -79,9 +79,10 @@ page-classify {
         }
         @mixin body2 {
             overflow: hidden;
+            display: flex;
+            flex-wrap: wrap;
             >div {
                 width: 32.66%;
-                float: left;
                 margin-right: 1%;
                 &:nth-child(3n) {
                     margin-right: 0;

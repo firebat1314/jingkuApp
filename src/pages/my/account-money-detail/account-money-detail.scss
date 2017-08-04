@@ -1,4 +1,7 @@
 page-account-money-detail {
+    .no-list {
+        @include reminderBlankPage();
+    }
     .item {
         p,
         ion-note {

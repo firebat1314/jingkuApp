@@ -29,7 +29,8 @@ export class BrandListPage {
 		order: null,
 		stort: 'DESC',
 		keywords: this.myHomeSearch,
-		supplier_id: null
+		supplier_id: null,
+		type: null
 	}
 	@ViewChild(Content) content: Content;
 	@ViewChild('scrollToTop1') fabButton: FabButton;
@@ -42,15 +43,19 @@ export class BrandListPage {
 	) { }
 	ionViewDidLoad() {
 		console.log('ionViewDidLoad BrandListPage');
+	}
+	ngOnInit() {
 		this.paramsData.cat_id = this.navParams.get('listId');
 		this.paramsData.brand_id = this.navParams.get('brandId');
 		this.paramsData.supplier_id = this.navParams.get('supplierId');
 		this.paramsData.keywords = this.navParams.get('keyword');
+		this.paramsData.type = this.navParams.get('type');
 		this.myHomeSearch = this.paramsData.keywords;
 		console.log('列表ID:', this.paramsData.cat_id);
 		console.log('品牌ID:', this.paramsData.brand_id);
 		console.log('supplier_id:', this.paramsData.supplier_id);
 		console.log('keywords:', this.paramsData.keywords);
+		console.log('type:', this.paramsData.type);
 
 		this.getListData();
 		this.getCarNumver();
@@ -82,29 +87,31 @@ export class BrandListPage {
 	ngOnDestroy() {
 		//退出页面取消事件订阅
 		this.events.unsubscribe('user:filterParams');
-		this.events.unsubscribe('car:updata');
 	}
 	getListData(params?) {
-		this.httpService.categoryGoods(Object.assign(this.paramsData, params)).then((res) => {
-			if (res.status == 1) {
-				this.data = res;
-				if (res.goods.length == 0) {
-					this.native.showToast('抱歉！没有查询到相关商品', null, false);
+		return new Promise((resolve, reject) => {
+			this.httpService.categoryGoods(Object.assign(this.paramsData, params)).then((res) => {
+				resolve()
+				if (res.status == 1) {
+					this.data = res;
+					this.content.scrollToTop();
+					if (res.goods.length == 0) {
+						this.native.showToast('抱歉！没有查询到相关商品', null, false);
+					}
+					this.events.publish('user:listFilter', res);
 				}
-				this.events.publish('user:listFilter', res);
-			}
+			}).catch(() => {
+				reject()
+			})
 		})
 	}
 	doRefresh(refresher) {
-		this.httpService.categoryGoods(this.paramsData).then((res) => {
-			if (res.status == 1) {
-				this.data = res;
-			}
+		this.getCarNumver();
+		this.getListData().then(() => {
 			setTimeout(() => {
 				refresher.complete();
 			}, 500);
 		})
-		this.getCarNumver();
 	}
 	// flag: boolean = true;
 	// doInfinite(infiniteScroll) {
@@ -142,12 +149,10 @@ export class BrandListPage {
 			order: null,
 			stort: 'DESC',
 			keywords: this.myHomeSearch,
-			supplier_id: null
+			supplier_id: null,
+			type: null
 		}
-		this.httpService.categoryGoods(this.paramsData).then((res) => {
-			this.data = res;
-			this.events.publish('user:listFilter', res);
-		})
+		this.getListData()
 	}
 	allStatus = true;
 	salesNumStatus = true;
@@ -198,18 +203,12 @@ export class BrandListPage {
 	}
 	previousPage() {
 		if (this.data.page > 1) {
-			let pagingParam = Object.assign(this.paramsData, { page: --this.data.page });
-			this.httpService.categoryGoods(pagingParam).then((res) => {
-				this.data = res;
-			})
+			this.getListData({ page: --this.data.page })
 		}
 	}
 	nextPage() {
 		if (this.data.page < this.data.pages) {
-			let pagingParam = Object.assign(this.paramsData, { page: ++this.data.page });
-			this.httpService.categoryGoods(pagingParam).then((res) => {
-				this.data = res;
-			})
+			this.getListData({ page: ++this.data.page })
 		}
 	}
 	scrollToTop() {

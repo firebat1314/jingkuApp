@@ -17,25 +17,26 @@
     <ion-refresher (ionRefresh)="doRefresh($event)" pullMax="60">
         <ion-refresher-content refreshingSpinner="1" pullingIcon="0"></ion-refresher-content>
     </ion-refresher>
-    <div class="imgs header-image">
-        <swiper [data]="getGoodsInfo?.gallery"></swiper>
-    </div>
-    <div class="main-content">
-        <div class="price_time" *ngIf="getGoodsInfo?.data?.is_pre==1 && getGoodsInfo?.data?.down_time>0">
-            <div class="left">
-                <p><span class="number">{{getGoodsInfo?.data?.shop_price_formated}}</span>每人限购：{{getGoodsInfo?.data?.pre_number}}副</p>
-                <p>商品总量：{{getGoodsInfo?.data?.goods_number}}件</p>
-            </div>
-            <div class="right" [ngSwitch]="getGoodsInfo?.data?.type">
-                <p *ngSwitchCase="2">距离活动结束还剩：</p>
-                <p *ngSwitchCase="1">距离活动开始还剩：</p>
-                <p *ngSwitchDefault>暂无活动</p>
-                <p *ngIf="getGoodsInfo?.data?.down_time">
-                    <countdown [endDate]="getGoodsInfo?.data?.down_time"></countdown>
-                </p>
-            </div>
+    <div *ngIf="getGoodsInfo">
+        <div class="imgs header-image">
+            <swiper [data]="getGoodsInfo?.gallery"></swiper>
         </div>
-        <!--<div class="price_time" *ngIf="getGoodsInfo?.promotion">
+        <div class="main-content">
+            <div class="price_time" *ngIf="getGoodsInfo?.data?.is_pre==1 && getGoodsInfo?.data?.down_time>0">
+                <div class="left">
+                    <p><span class="number">{{getGoodsInfo?.data?.shop_price_formated}}</span>每人限购：{{getGoodsInfo?.data?.pre_number}}副</p>
+                    <p>商品总量：{{getGoodsInfo?.data?.goods_number}}件</p>
+                </div>
+                <div class="right" [ngSwitch]="getGoodsInfo?.data?.type">
+                    <p *ngSwitchCase="2">距离活动结束还剩：</p>
+                    <p *ngSwitchCase="1">距离活动开始还剩：</p>
+                    <p *ngSwitchDefault>暂无活动</p>
+                    <p *ngIf="getGoodsInfo?.data?.down_time">
+                        <countdown [endDate]="getGoodsInfo?.data?.down_time"></countdown>
+                    </p>
+                </div>
+            </div>
+            <!--<div class="price_time" *ngIf="getGoodsInfo?.promotion">
             <div class="left">
                 <p [innerHtml]="getGoodsInfo?.promotion.title"></p>
             </div>
@@ -48,228 +49,230 @@
                 </p>
             </div>
         </div>-->
-        <div class="fore info">
-            <div class="title">
-                {{getGoodsInfo?.data?.goods_name}}
-            </div>
-            <div class="body">
-                批发价&nbsp;：
-                <span class="now-price">
+            <div class="fore info">
+                <div class="title">
+                    {{getGoodsInfo?.data?.goods_name}}
+                </div>
+                <div class="body">
+                    批发价&nbsp;：
+                    <span class="now-price">
                     <span class="number">{{getGoodsInfo?.data?.shop_price_formated}}</span>
-                </span>
-                <span class="old-price">{{getGoodsInfo?.data?.old_shop_price}}</span>&nbsp;
-                <span class="rush-icon" *ngIf="getGoodsInfo?.data?.is_pre==1 && getGoodsInfo?.data?.down_time>0">预售</span>
-                <span class="rush-icon" *ngIf="getGoodsInfo?.promotion?.type_name">{{getGoodsInfo?.promotion?.type_name}}</span>
-            </div>
-            <div class="bottom">
-                <div>建议零售价&nbsp;：<span class="offer-price">¥{{getGoodsInfo?.data?.market_price}}</span></div>
-                <div>商品编号&nbsp;：{{getGoodsInfo?.data?.goods_sn}}</div>
-            </div>
-        </div>
-        <div class="fore price-info" *ngIf="getGoodsInfo?.price_section?.length!=0">
-            <div class="main">
-                <div class="info-item" *ngFor="let item of getGoodsInfo?.price_section">
-                    <span *ngIf="item.max_num">{{item.number+'-'}}{{item.max_num}}</span>
-                    <span *ngIf="!item.max_num">大于{{item.number}}</span>
-                    <span>{{item.format_price}}</span>
+                    </span>
+                    <span class="old-price">{{getGoodsInfo?.data?.old_shop_price}}</span>&nbsp;
+                    <span class="rush-icon" *ngIf="getGoodsInfo?.data?.is_pre==1 && getGoodsInfo?.data?.down_time>0">预售</span>
+                    <span class="rush-icon" *ngIf="getGoodsInfo?.promotion?.type_name">{{getGoodsInfo?.promotion?.type_name}}</span>
+                </div>
+                <div class="bottom">
+                    <div *ngIf="getGoodsInfo?.data?.market_price!=0">建议零售价&nbsp;：<span class="offer-price">¥{{getGoodsInfo?.data?.market_price}}</span></div>
+                    <div>商品编号&nbsp;：{{getGoodsInfo?.data?.goods_sn}}</div>
                 </div>
             </div>
-            <div class="right">
-                <ion-icon name="ios-arrow-forward"></ion-icon>
+            <div class="fore price-info" *ngIf="getGoodsInfo?.price_section?.length!=0">
+                <div class="main">
+                    <div class="info-item" *ngFor="let item of getGoodsInfo?.price_section">
+                        <span *ngIf="item.max_num">{{item.number+'-'}}{{item.max_num}}</span>
+                        <span *ngIf="!item.max_num">大于{{item.number}}</span>
+                        <span>{{item.format_price}}</span>
+                    </div>
+                </div>
+                <div class="right">
+                    <ion-icon name="ios-arrow-forward"></ion-icon>
+                </div>
             </div>
-        </div>
-        <div class="fore coupon">
-            <button ion-item *ngIf="getGoodsInfo?.bonus?.length" [disabled]="!getGoodsInfo?.bonus?.length" class="button-coupon" (click)="presentModal('优惠券')">
+            <div class="fore coupon">
+                <button ion-item *ngIf="getGoodsInfo?.bonus?.length" [disabled]="!getGoodsInfo?.bonus?.length" class="button-coupon" (click)="presentModal('优惠券')">
                 领券
                 <span *ngFor="let item of getGoodsInfo?.bonus" class="coupon-show">{{"满"+item.min_goods_amount.slice(1)+'减'+item.int_type_money}}</span>
                 <ion-note item-right>{{(!getGoodsInfo?.bonus?.length)?'无优惠券':'点击领取'}}</ion-note>
             </button>
-            <button ion-item no-lines class="button-chuxiao" *ngIf="getGoodsInfo?.promotion?.length" [disabled]="!getGoodsInfo?.promotion?.length" (click)="presentModal('促销')">
+                <button ion-item no-lines class="button-chuxiao" *ngIf="getGoodsInfo?.promotion?.length" [disabled]="!getGoodsInfo?.promotion?.length" (click)="presentModal('促销')">
                 促销
                 <div>
                     <p class="list-show" *ngFor="let item of getGoodsInfo?.promotion"><span class="title">{{item.promotion_name}}</span><span [innerHtml]="item.title"></span></p>
                 </div>
                 <ion-note *ngIf="!getGoodsInfo?.promotion?.length" item-right>无促销</ion-note>
             </button>
-        </div>
-        <div class="fore">
-            <div ion-item no-lines>
-                发货地：{{getGoodsInfo?.supplier_info?.city_name}}
-                <!--<ion-note>配送时间：预计7-14个工作日送达</ion-note>-->
             </div>
-        </div>
-        <div class="fore will-address">
-            <button ion-item no-lines (click)="presentModal('配送地址')">
+            <div class="fore">
+                <div ion-item no-lines>
+                    发货地：{{getGoodsInfo?.supplier_info?.city_name}}
+                    <!--<ion-note>配送时间：预计7-14个工作日送达</ion-note>-->
+                </div>
+            </div>
+            <div class="fore will-address">
+                <button ion-item no-lines (click)="presentModal('配送地址')">
                 送至：{{region_name||'选择地址'}}<span class="nogoods"></span>
             </button>
-            <!--<ion-item no-lines>
+                <!--<ion-item no-lines>
                 <ion-note>
                     快递：该商品满99包邮，运费10元
                 </ion-note>
             </ion-item>-->
-        </div>
-        <div class="fore attribute">
-            <button ion-item (click)="presentModalAttr()" no-lines>
+            </div>
+            <div class="fore attribute">
+                <button ion-item (click)="presentModalAttr()" no-lines>
                 选择：规格、光度等
             </button>
-        </div>
-        <div class="fore goods-service">
-            <button ion-item no-lines (click)="presentModal('商品服务保障')">
+            </div>
+            <div class="fore goods-service">
+                <button ion-item no-lines (click)="presentModal('商品服务保障')">
                 <ion-icon name="bao1" item-left></ion-icon>
                 商品服务保障
             </button>
-            <div class="bottom" *ngIf="getGoodsInfo?.data?.additional?.is_true||getGoodsInfo?.data?.additional?.is_hdfk||getGoodsInfo?.data?.additional?.is_inv">
-                <ion-note *ngIf="getGoodsInfo?.data?.additional?.is_true">
-                    <img src="./assets/icon/images/particulars_05_03.png" alt=""> 正品保障
-                </ion-note>
-                <ion-note *ngIf="getGoodsInfo?.data?.additional?.is_hdfk">
-                    <img src="./assets/icon/images/particulars_05_04.png" alt=""> 货到付款
-                </ion-note>
-                <ion-note *ngIf="getGoodsInfo?.data?.additional?.is_inv">
-                    <img src="./assets/icon/images/particulars_2_16.png" alt=""> 可退换货
-                </ion-note>
-                <!--<ion-note>
+                <div class="bottom" *ngIf="getGoodsInfo?.data?.additional?.is_true||getGoodsInfo?.data?.additional?.is_hdfk||getGoodsInfo?.data?.additional?.is_inv">
+                    <ion-note *ngIf="getGoodsInfo?.data?.additional?.is_true">
+                        <img src="./assets/icon/images/particulars_05_03.png" alt=""> 正品保障
+                    </ion-note>
+                    <ion-note *ngIf="getGoodsInfo?.data?.additional?.is_hdfk">
+                        <img src="./assets/icon/images/particulars_05_04.png" alt=""> 货到付款
+                    </ion-note>
+                    <ion-note *ngIf="getGoodsInfo?.data?.additional?.is_inv">
+                        <img src="./assets/icon/images/particulars_2_16.png" alt=""> 可退换货
+                    </ion-note>
+                    <!--<ion-note>
                     <ion-icon color="danger" name="baitiao1"></ion-icon> 白条支付
                 </ion-note>-->
-            </div>
-        </div>
-        <!--————————————————————————供应商店铺————————————————————————-->
-        <div class="fore store">
-            <div class="head">
-                <ion-item no-lines padding-left>
-                    <ion-thumbnail style="border:1px solid #e0e0e0;" item-left>
-                        <img img-lazy-load="{{getGoodsInfo?.supplier_info?.logo}}">
-                    </ion-thumbnail>
-                    <h2>{{getGoodsInfo?.supplier_info?.name}}</h2>
-                </ion-item>
-            </div>
-            <div class="data">
-                <div>
-                    <span>{{getGoodsInfo?.supplier_info?.new_goods}}</span>
-                    <span>新品</span>
-                </div>
-                <div>
-                    <span>{{getGoodsInfo?.supplier_info?.promote_goods}}</span>
-                    <span>促销</span>
-                </div>
-                <div>
-                    <span>{{getGoodsInfo?.supplier_info?.hot_goods}}</span>
-                    <span>热销</span>
                 </div>
             </div>
-            <div class="btn">
-                <button (click)="goParticularsHome()" ion-button icon-right icon-left color="dark" outline>
+            <!--————————————————————————供应商店铺————————————————————————-->
+            <div class="fore store">
+                <div class="head">
+                    <ion-item no-lines padding-left>
+                        <ion-thumbnail style="border:1px solid #e0e0e0;" item-left>
+                            <img img-lazy-load="{{getGoodsInfo?.supplier_info?.logo}}">
+                        </ion-thumbnail>
+                        <h2>{{getGoodsInfo?.supplier_info?.name}}</h2>
+                    </ion-item>
+                </div>
+                <div class="data">
+                    <div>
+                        <span>{{getGoodsInfo?.supplier_info?.new_goods}}</span>
+                        <span>新品</span>
+                    </div>
+                    <div>
+                        <span>{{getGoodsInfo?.supplier_info?.promote_goods}}</span>
+                        <span>促销</span>
+                    </div>
+                    <div>
+                        <span>{{getGoodsInfo?.supplier_info?.hot_goods}}</span>
+                        <span>热销</span>
+                    </div>
+                </div>
+                <div class="btn">
+                    <button (click)="goParticularsHome()" ion-button icon-right icon-left color="dark" outline>
                     <ion-icon name="shop"></ion-icon>
                     进入店铺
                     <ion-icon name="ios-arrow-forward"></ion-icon>
                 </button>
-            </div>
-            <div ion-item detail-push *ngIf="getGoodsInfo?.supplier_info?.inv_type!=0">
-                <div class="note-wrap">
-                    <!--<ion-note><ion-icon><img src="./assets/icon/images/particulars_2_20.jpg"></ion-icon>担保交易</ion-note>
+                </div>
+                <div ion-item detail-push *ngIf="getGoodsInfo?.supplier_info?.inv_type!=0">
+                    <div class="note-wrap">
+                        <!--<ion-note><ion-icon><img src="./assets/icon/images/particulars_2_20.jpg"></ion-icon>担保交易</ion-note>
                     <ion-note><ion-icon><img src="./assets/icon/images/particulars_2_14.jpg"></ion-icon>客户自提</ion-note>
                     <ion-note><ion-icon><img src="./assets/icon/images/particulars_2_16.jpg"></ion-icon>返修退换货</ion-note>-->
-                    <ion-note *ngIf="getGoodsInfo?.supplier_info?.inv_type==1||getGoodsInfo?.supplier_info?.inv_type==3">
-                        <ion-icon>
-                            <img src="./assets/icon/images/particulars_2_18.png">
-                        </ion-icon>
-                        普通发票
-                    </ion-note>
-                    <ion-note *ngIf="getGoodsInfo?.supplier_info?.inv_type==2||getGoodsInfo?.supplier_info?.inv_type==3">
-                        <ion-icon>
-                            <img src="./assets/icon/images/particulars_2_19.png">
-                        </ion-icon>
-                        增值发票
-                    </ion-note>
+                        <ion-note *ngIf="getGoodsInfo?.supplier_info?.inv_type==1||getGoodsInfo?.supplier_info?.inv_type==3">
+                            <ion-icon>
+                                <img src="./assets/icon/images/particulars_2_18.png">
+                            </ion-icon>
+                            普通发票
+                        </ion-note>
+                        <ion-note *ngIf="getGoodsInfo?.supplier_info?.inv_type==2||getGoodsInfo?.supplier_info?.inv_type==3">
+                            <ion-icon>
+                                <img src="./assets/icon/images/particulars_2_19.png">
+                            </ion-icon>
+                            增值发票
+                        </ion-note>
+                    </div>
+                </div>
+                <div ion-item no-lines>
+                    <ion-icon item-left name="ios-pin-outline"></ion-icon>
+                    <ion-note>{{getGoodsInfo?.supplier_info?.region}}</ion-note>
+                    <div ion-button icon-only item-right clear tappable (click)="openCallNumber()">
+                        <ion-icon name="ios-call"></ion-icon>
+                    </div>
                 </div>
             </div>
-            <div ion-item no-lines>
-                <ion-icon item-left name="ios-pin-outline"></ion-icon>
-                <ion-note>{{getGoodsInfo?.supplier_info?.region}}</ion-note>
-                <div ion-button icon-only item-right clear tappable (click)="openCallNumber()">
-                    <ion-icon name="ios-call"></ion-icon>
+            <!--————————————————————————套餐组合————————————————————————-->
+            <div class="fore group-and-recommend">
+                <div class="segment-style">
+                    <ion-segment [(ngModel)]="selectGroupRecommend" mode="md">
+                        <ion-segment-button value="group">
+                            套餐组合
+                        </ion-segment-button>
+                        <ion-segment-button value="recommend">
+                            为你推荐
+                        </ion-segment-button>
+                    </ion-segment>
+                </div>
+                <div [ngSwitch]="selectGroupRecommend">
+                    <div class="group" *ngSwitchCase="'group'">
+                        <div *ngIf="getGoodsInfo?.fittings?.length==0" margin-left>无组合套餐</div>
+                        <ion-slides *ngIf="getGoodsInfo?.fittings?.length!=0" slidesPerView="3" pager>
+                            <ion-slide *ngFor="let item of getGoodsInfo?.fittings">
+                                <div class="goods">
+                                    <div class="top">
+                                        <ion-checkbox mode="ios"></ion-checkbox>
+                                        <img border-f0 img-lazy-load="{{item.goods_thumb}}" alt="">
+                                    </div>
+                                    <div class="bottom">
+                                        <h6>{{item.short_name}}</h6>
+                                        <h6>{{item.fittings_price}}</h6>
+                                    </div>
+                                </div>
+                            </ion-slide>
+                        </ion-slides>
+                    </div>
+                    <div class="recommend" *ngSwitchCase="'recommend'">
+                        <div *ngIf="!getCategoryRecommendGoodsHot" margin-left>无组合套餐</div>
+                        <ion-slides slidesPerView="3" pager>
+                            <ion-slide *ngFor="let item of getCategoryRecommendGoodsHot">
+                                <div class="goods" tappable (click)="goParticularsPage(item.id)">
+                                    <div class="top">
+                                        <!--<ion-checkbox mode="ios"></ion-checkbox>-->
+                                        <img border-f0 img-lazy-load="{{item.goods_img}}" alt="">
+                                    </div>
+                                    <div class="bottom">
+                                        <h6>{{item.short_name}}</h6>
+                                        <h6>{{item.shop_price}}</h6>
+                                    </div>
+                                </div>
+                            </ion-slide>
+                        </ion-slides>
+                    </div>
                 </div>
             </div>
-        </div>
-        <!--————————————————————————套餐组合————————————————————————-->
-        <div class="fore group-and-recommend">
-            <div class="segment-style">
-                <ion-segment [(ngModel)]="selectGroupRecommend" mode="md">
-                    <ion-segment-button value="group">
-                        套餐组合
+            <!--————————————————————————图文详情————————————————————————-->
+            <div class="fore pic-and-arguments">
+                <ion-segment [(ngModel)]="selectPicArguments" mode="md">
+                    <ion-segment-button value="pic">
+                        图文详情
                     </ion-segment-button>
-                    <ion-segment-button value="recommend">
-                        为你推荐
+                    <ion-segment-button value="arguments">
+                        商品参数
                     </ion-segment-button>
                 </ion-segment>
-            </div>
-            <div [ngSwitch]="selectGroupRecommend">
-                <div class="group" *ngSwitchCase="'group'">
-                    <div *ngIf="getGoodsInfo?.fittings?.length==0" margin-left>无组合套餐</div>
-                    <ion-slides *ngIf="getGoodsInfo?.fittings?.length!=0" slidesPerView="3" pager>
-                        <ion-slide *ngFor="let item of getGoodsInfo?.fittings">
-                            <div class="goods">
-                                <div class="top">
-                                    <ion-checkbox mode="ios"></ion-checkbox>
-                                    <img border-f0 img-lazy-load="{{item.goods_thumb}}" alt="">
-                                </div>
-                                <div class="bottom">
-                                    <h6>{{item.short_name}}</h6>
-                                    <h6>{{item.fittings_price}}</h6>
-                                </div>
-                            </div>
-                        </ion-slide>
-                    </ion-slides>
-                </div>
-                <div class="recommend" *ngSwitchCase="'recommend'">
-                    <div *ngIf="!getCategoryRecommendGoodsHot" margin-left>无组合套餐</div>
-                    <ion-slides slidesPerView="3" pager>
-                        <ion-slide *ngFor="let item of getCategoryRecommendGoodsHot">
-                            <div class="goods" tappable (click)="goParticularsPage(item.id)">
-                                <div class="top">
-                                    <!--<ion-checkbox mode="ios"></ion-checkbox>-->
-                                    <img border-f0 img-lazy-load="{{item.goods_img}}" alt="">
-                                </div>
-                                <div class="bottom">
-                                    <h6>{{item.short_name}}</h6>
-                                    <h6>{{item.shop_price}}</h6>
-                                </div>
-                            </div>
-                        </ion-slide>
-                    </ion-slides>
-                </div>
-            </div>
-        </div>
-        <!--————————————————————————图文详情————————————————————————-->
-        <div class="fore pic-and-arguments">
-            <ion-segment [(ngModel)]="selectPicArguments" mode="md">
-                <ion-segment-button value="pic">
-                    图文详情
-                </ion-segment-button>
-                <ion-segment-button value="arguments">
-                    商品参数
-                </ion-segment-button>
-            </ion-segment>
-            <div [ngSwitch]="selectPicArguments">
-                <div class="pic" *ngSwitchCase="'pic'">
-                    <!--<ion-item class="check" detail-push>
+                <div [ngSwitch]="selectPicArguments">
+                    <div class="pic" *ngSwitchCase="'pic'">
+                        <!--<ion-item class="check" detail-push>
                         <ion-icon name="ios-arrow-down"></ion-icon>
                         上拉查看详情
                     </ion-item>-->
-                    <div padding *ngIf="!getGoodsInfo?.data?.goods_desc">无商品详情</div>
-                    <div class="desc" [innerHTML]="getGoodsInfo?.data?.goods_desc"></div>
-                </div>
-                <div class="arguments" *ngSwitchCase="'arguments'">
-                    <div padding *ngIf="!getGoodsInfo?.parameter">该商品暂无参数</div>
-                    <div class="wrapper" *ngIf="getGoodsInfo?.parameter">
-                        <div class="attr" *ngFor="let item of getGoodsInfo?.parameter">
-                            <div class="name">{{item.name}}：<span>{{item.value}}</span></div>
+                        <div padding *ngIf="!getGoodsInfo?.data?.goods_desc">无商品详情</div>
+                        <div class="desc" [innerHTML]="getGoodsInfo?.data?.goods_desc"></div>
+                    </div>
+                    <div class="arguments" *ngSwitchCase="'arguments'">
+                        <div padding *ngIf="!getGoodsInfo?.parameter">该商品暂无参数</div>
+                        <div class="wrapper" *ngIf="getGoodsInfo?.parameter">
+                            <div class="attr" *ngFor="let item of getGoodsInfo?.parameter">
+                                <div class="name">{{item.name}}：<span>{{item.value}}</span></div>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+
     <!--<div class="warning-show">
         <span>请用电脑下单！</span>
     </div>-->

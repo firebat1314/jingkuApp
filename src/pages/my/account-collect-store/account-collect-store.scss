@@ -5,6 +5,9 @@ page-account-collect-store {
         h2 {
             @include ellipsis_2;
         }
+        .item {
+            height: 5rem;
+        }
         .type {
             color: #fff;
             padding: 1px 8px;

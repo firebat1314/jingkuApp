@@ -38,11 +38,11 @@ export class AccountCollectGoodsPage {
     })
   }
   unfollowGoods(goods_id, index) {
-    this.native.openAlertBox('确认取消关注改商铺', () => {
+    this.native.openAlertBox('取消关注改商铺?', () => {
       this.httpService.delCollectionGoods({ rec_ids: [goods_id] }).then((res) => {
         console.log(res);
         if (res.status == 1) {
-          this.native.showToast('已取消关注~')
+          this.native.showToast('已取消关注')
           this.doRefresh();
         }
       })

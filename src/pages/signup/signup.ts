@@ -116,7 +116,6 @@ export class SignupPage {
     this.navCtrl.pop();
   }
   registerBtn() {
-          this.navCtrl.push('SignupSecondPage');
     this.httpService.signupFirst(this.signupInfo).then(
       data => {
         if (data.status == 1) {

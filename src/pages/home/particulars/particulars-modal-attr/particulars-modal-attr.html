@@ -52,7 +52,7 @@
                         <div class="td count-input-box">
                             <count-input [rank]="checkMainAttrNum" (valueChange)="numberIChange($event,item)"></count-input>
                         </div>
-                        <div class="td" *ngIf="item.is_subsidy">{{item.price+checkMainAttrNum}}</div>
+                        <div class="td" *ngIf="item.is_subsidy">{{item.price}}</div>
                         <div class="td" *ngIf="item.is_subsidy">{{item.old_price}}</div>
                         <div class="td" *ngIf="!item.is_subsidy">{{item.price}}</div>
                         <div class="td" *ngFor="let group of item.goods_attr">{{group.attr_val}}</div>

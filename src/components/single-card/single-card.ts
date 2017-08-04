@@ -20,13 +20,12 @@ export class SingleCardComponent {
 
   ) {
     console.log('Hello SingleCard Component');
-    this.animateClass = { 'fade-in-item': true };
   }
   @Input() data: any;
   @Input() events: any;
   @Input() toTop: any = true;
 
-  animateClass: any;
+  animateClass: any = { 'fade-in-item': true };
   animateItems = [];
   ParticularsPage: any = 'ParticularsPage';
 
@@ -34,8 +33,7 @@ export class SingleCardComponent {
     this.clearBtn()
   }
   ngOnChanges() {
-  this.animateItems = this.data;
- 
+    this.animateItems = this.data;
   }
   clearBtn() {
     for (let i = 0; i < this.animateItems.length; i++) {
@@ -46,7 +44,7 @@ export class SingleCardComponent {
     this.clearBtn();
     item.showBtn = true;
   }
-  onCollect(item,e) {
+  onCollect(item, e) {
     if (e) { e.stopPropagation(); }
     this.httpService.getGoodsCollect({ goods_id: item.id }).then((res) => {
       if (res.status == 1) {

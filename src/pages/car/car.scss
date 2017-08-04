@@ -142,7 +142,11 @@ page-car {
                         color: #808080;
                     }
                     .price {
-                        color: #666;
+                        font-size: 1.4rem;
+                        .subtotal {
+                            color: #666;
+                            font-size: 1rem;
+                        }
                     }
                 }
                 &.right {

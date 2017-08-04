@@ -21,6 +21,16 @@ html {
     -webkit-overflow-scrolling: touch;
 }
 
+
+/*———————————————————————————————————— 隐藏滚动条 ————————————————————————————————————*/
+
+::-webkit-scrollbar {
+    display: none !important;
+}
+
+
+/*————————————————————————————————————  ————————————————————————————————————*/
+
 .content {
     background: #f7f7f7;
     .scroll-content {
@@ -82,7 +92,7 @@ ion-thumbnail {
 }
 
 
-/*————————————————————————————————————城市选择————————————————————————————————————*/
+/*———————————————————————————————————— 城市选择 ————————————————————————————————————*/
 
 .picker-opt {
     text-overflow: initial;
@@ -280,6 +290,15 @@ ion-modal {
 /*————————————————————————————————————alterCSS————————————————————————————————————*/
 
 .alert-style {
+    .alert-head {
+        .alert-title {
+            color: #333;
+            font-size: 16px;
+        }
+    }
+    .alert-message:empty {
+        padding: 0;
+    }
     .alert-button-group {
         padding: 8px 0 0 0;
         .alert-button {
