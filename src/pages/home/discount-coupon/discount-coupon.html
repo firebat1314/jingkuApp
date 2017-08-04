@@ -32,10 +32,11 @@
             </div>
         </div>
         <div class="coupon" [class.get]="item.is_get==1" *ngFor="let item of data?.list">
-            <div class="get" *ngIf="item.is_get==1">
-                <img src="./assets/images/images/coupon_center_1_03.png" alt="">
+            <div class="get">
+                <img *ngIf="item.is_get==1" src="./assets/images/images/coupon_center_1_03.png" alt="">
+                <img *ngIf="item.is_get==2" style="width: 4.5rem;" src="./assets/images/images/coupon_center_1_04.png" alt="">
             </div>
-            <div class="left">
+            <div class="left" tappable (click)="goParticularsHomePage()">
                 <div class="img">
                     <img src="{{item.logo}}" alt="">
                 </div>
@@ -50,6 +51,7 @@
                 </div>
                 <div ion-button small round block class="click" *ngIf="item.is_get==0" (click)="getPrivilege(0,item.type_id,item.suppliers_id)">点击领劵</div>
                 <div ion-button small round block class="touse" *ngIf="item.is_get==1" (click)="getPrivilege(1,item.type_id,item.suppliers_id)">去使用</div>
+                <div ion-button small round block class="touse" *ngIf="item.is_get==2" (click)="getPrivilege(2,item.type_id,item.suppliers_id)">去看看</div>
             </div>
         </div>
     </div>

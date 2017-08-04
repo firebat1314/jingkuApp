@@ -27,7 +27,7 @@ export class CompanynamePage {
   ) { }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad QqPage');
+    console.log('ionViewDidLoad CompanynamePage');
   }
   onsubmit() {
     this.httpServive.editProfile({ company: this.usercompany }).then((res) => {

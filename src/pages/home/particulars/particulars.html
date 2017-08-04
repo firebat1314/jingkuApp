@@ -115,10 +115,10 @@
             </button>
             </div>
             <div class="fore goods-service">
-                <button ion-item no-lines (click)="presentModal('商品服务保障')">
-                <ion-icon name="bao1" item-left></ion-icon>
-                商品服务保障
-            </button>
+                <button ion-item no-lines detail-none (click)="presentModal('商品服务保障')">
+                    <ion-icon name="bao1" item-left></ion-icon>
+                    商品服务保障
+                </button>
                 <div class="bottom" *ngIf="getGoodsInfo?.data?.additional?.is_true||getGoodsInfo?.data?.additional?.is_hdfk||getGoodsInfo?.data?.additional?.is_inv">
                     <ion-note *ngIf="getGoodsInfo?.data?.additional?.is_true">
                         <img src="./assets/icon/images/particulars_05_03.png" alt=""> 正品保障
