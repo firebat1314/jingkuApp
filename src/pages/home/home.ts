@@ -12,6 +12,7 @@ import { Native } from "../../providers/native";
   templateUrl: 'home.html'
 })
 export class HomePage {
+  data: any;
   indexHotGoods: any;
   jingxuan_img4: any;
   hotBrand_img: string;
@@ -73,9 +74,9 @@ export class HomePage {
   } */
   ngOnInit() {
     this.getHomeData().then((res) => {
-      console.log('首页加载完成')
+      console.log('首页加载完成');
     }).catch((res) => {
-      this.native.showToast('数据参数错误');
+      this.native.showToast('首页加载失败');
       return true;
     })
   }
@@ -93,15 +94,16 @@ export class HomePage {
       return true;
     })
   } */
-  getHomeData(finish?) {
+  getHomeData() {
     this.firstInit = false;
     this.native.showLoading('', false);
     return new Promise((resolve, reject) => {
       this.httpService.indexs().then((res) => {
         this.native.hideLoading();
+        resolve();
         if (res.status == 1) {
-          resolve();
           //城市列表
+          this.data = res;
           this.areaList = res.data.getAreaList;
           //默认城市
           for (let i = 0; i < this.areaList.length; i++) {
@@ -128,9 +130,8 @@ export class HomePage {
           this.getCategoryRecommendGoodsBest = res.data.best_recommend_goods;
           //好店推荐
           this.jingxuan_img4 = res.data.ads_hdtj;
-
+          //热门商品
           this.indexHotGoods = res.data.index_hot_goods;
-          if (finish) { finish(); }
         } else {
           reject(res.info);
         }
@@ -182,7 +183,7 @@ export class HomePage {
   }
   /*下拉刷新*/
   doRefresh(refresher) {
-    this.getHomeData(() => {
+    this.getHomeData().then(() => {
       setTimeout(() => {
         refresher.complete();
       }, 500);
@@ -203,7 +204,7 @@ export class HomePage {
     })
   } */
   presentPopover(myEvent) {
-    let popover = this.popoverCtrl.create('PopoverHomePage', {}, {cssClass:''});
+    let popover = this.popoverCtrl.create('PopoverHomePage', {}, { cssClass: '' });
     popover.present({
       ev: myEvent
     });
@@ -218,10 +219,10 @@ export class HomePage {
     this.navCtrl.parent.select(1);
     setTimeout(() => {
       this.events.publish('classify:selectSegment', value)
-    },300);
+    }, 300);
   }
   goCityPage() {
-      this.navCtrl.push('CityPage', { areaList: this.areaList })
+    this.navCtrl.push('CityPage', { areaList: this.areaList })
   }
   goParticularsPage(id) {
     this.navCtrl.push('ParticularsPage', { goodsId: id })

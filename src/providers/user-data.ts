@@ -16,7 +16,7 @@ export class UserData {
         private http: Http,
         private native: Native,
         private alertCtrl: AlertController,
-        private storage: Storage
+        private storage: Storage,
     ) { }
 
     public get(url: string, paramObj?: any, showLoading?: boolean) {
@@ -105,6 +105,8 @@ export class UserData {
                 }
             }
             console.log(msg);
+        } else if (error.status == 404) {
+        this.native.showToast('服务器出错了，404');
         }
         console.log(error);
 

@@ -62,10 +62,10 @@ export class Native {
 	 */
 	showToastTime: boolean = false;
 
-	showToast = (message: string, duration: number = 800, useNative?: boolean) => {
+	showToast = (message: string, duration?: number, useNative?: boolean) => {
 
-		if (useNative === true || this.isMobile()) {
-			this.toast.show(message, String(duration), 'center').subscribe((toast) => {
+		if (useNative === true && this.isMobile()) {
+			this.toast.show(message, '800', 'center').subscribe((toast) => {
 				console.log(toast);
 			});
 		} else {
