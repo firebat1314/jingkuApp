@@ -51,9 +51,9 @@ export class ParticularsPage {
     public native: Native,
     private events: Events
   ) {
-     this.events.subscribe('car:goodsCount', () => {
+    this.events.subscribe('car:goodsCount', () => {
       this.getCarCount();
-    }) 
+    })
     this.events.subscribe('car:updata', () => {
       this.getCarCount();
     })
@@ -145,7 +145,9 @@ export class ParticularsPage {
       console.log(data);
       if (data && data.region_name) {
         this.region_name = data.region_name;
-        this.getHttpDetails();
+        this.getHttpDetails().then(() => {
+          this.events.publish('home:updataArea');
+        });
       }
       if (data == 'goDredgeMoreCityPage') {
         this.navCtrl.push('DredgeMoreCityPage');

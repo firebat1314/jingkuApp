@@ -138,7 +138,7 @@
                         <div class="slide-title-unit" tappable (click)="goParticularsPage(slide.id)">
                             <img border-f0 img-lazy-load="{{slide?.goods_img}}">
                             <div class="info">
-                                <div class="name">{{slide?.name}}</div>
+                                <!-- <div class="name">{{slide?.name}}</div> -->
                                 <div class="price">{{slide?.shop_price}}</div>
                             </div>
                         </div>
@@ -163,7 +163,7 @@
                             <div class="slide-title-unit">
                                 <img border-f0 img-lazy-load="{{slide?.goods_img}}">
                                 <div class="info">
-                                    <div class="name">{{slide?.name}}</div>
+                                    <!-- <div class="name">{{slide?.name}}</div> -->
                                     <div class="price">{{slide?.shop_price}}</div>
                                 </div>
                             </div>
@@ -193,7 +193,7 @@
                                     <img border-f0 img-lazy-load="{{slide?.goods_img}}">
                                 </div>
                                 <div class="info">
-                                    <div class="name">{{slide?.name}}</div>
+                                    <!-- <div class="name">{{slide?.name}}</div> -->
                                     <div class="price">{{slide?.shop_price}}</div>
                                 </div>
                             </div>
@@ -245,7 +245,7 @@
         </div>
     </div> -->
         <!--—————————————————————————————————————————— 热门商品 ——————————————————————————————————————————-->
-        <div class="hot-other home-content" home-padding>
+        <div class="hot-other home-content">
             <div class="title">
                 <span class="txt">热门商品</span>
                 <span class="more" navPush="BrandListPage" [navParams]="{type:'hot'}">更多&gt;</span>

@@ -223,7 +223,7 @@ export class ParticularsHomePage {
           }
           setTimeout(() => {
             infiniteScroll.complete();
-          }, 1500);
+          }, 500);
         })
       } else {
         infiniteScroll.enable(false);

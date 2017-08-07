@@ -22,6 +22,9 @@ page-car {
             display: flex;
             align-items: center;
             border-bottom: #e0e0e0 1px solid;
+            .icon {
+                font-size: 2.5rem;
+            }
             .item-inner {
                 font-size: 1.5rem;
                 color: #747474;
@@ -91,7 +94,7 @@ page-car {
                                 span {
                                     width: 33.33%;
                                     color: #808080;
-                                    font-size: 1.1rem;
+                                    font-size: 1.3rem;
                                     margin-bottom: 10px;
                                     /* display: inline-block; */
                                     /* text-align: center; */

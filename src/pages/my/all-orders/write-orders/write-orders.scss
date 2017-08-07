@@ -34,19 +34,11 @@ page-write-orders {
             display: flex;
             align-items: center;
             h2 {
-                color: #4d4d4d;
-                white-space: pre-wrap;
-                font-size: 1.6rem;
-                overflow: hidden;
-                text-overflow: ellipsis;
-                display: -webkit-box;
-                -webkit-line-clamp: 2;
-                -webkit-box-orient: vertical;
-                margin-bottom: 7px;
+                @include ellipsis_2;
             }
             .type {
                 display: inline-block;
-                color: #e60000;
+                color: get-color('danger');
                 font-size: 1.3rem;
                 margin-top: 4px;
                 white-space: pre-wrap;
@@ -56,6 +48,7 @@ page-write-orders {
             // border-bottom: 1px solid #dedede;
             margin: 0 16px;
             font-size: 1.2rem;
+            overflow: hidden;
             .one {
                 background: #f7f7f7;
                 border-radius: 3px;
@@ -86,27 +79,37 @@ page-write-orders {
                 }
             }
         }
-        .option {
-            border-top: 1px solid #dedede;
-            .input {
-                text-align: center;
-                padding: 10px 0;
-                input {
-                    border: 1px solid #e0e0e0;
-                    border-radius: 4px;
-                    width: 90%;
-                    height: 4rem;
-                    padding: 0 10px;
-                }
-            }
-        }
         .result {
             border-top: 1px solid #dedede;
             text-align: right;
             padding: 10px;
             .price {
-                color: #e60000;
+                color: get-color('danger');
                 font-size: 1.6rem;
+            }
+        }
+    }
+    .fore4 {
+        .count {
+            font-size: 1.2rem;
+            display: inline-block;
+            border: get-color('danger') 1px solid;
+            color: get-color('danger');
+            border-radius: 4px;
+            padding: 2px 4px;
+        }
+    }
+    .option {
+        border-top: 1px solid #dedede;
+        .input {
+            text-align: center;
+            padding: 10px 0;
+            input {
+                border: 1px solid #e0e0e0;
+                border-radius: 4px;
+                width: 90%;
+                height: 4rem;
+                padding: 0 10px;
             }
         }
     }
@@ -120,7 +123,7 @@ page-write-orders {
             justify-content: space-between;
             line-height: 2rem;
             .price {
-                color: #e60000;
+                color: get-color('danger');
             }
         }
     }
@@ -131,7 +134,7 @@ page-write-orders {
         background: #fff;
         .left {
             .price {
-                color: #e60000;
+                color: get-color('danger');
                 margin-right: 10px;
                 font-size: 1.6rem;
             }

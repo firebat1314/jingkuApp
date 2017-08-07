@@ -66,9 +66,7 @@
         <ion-refresher-content refreshingSpinner="1" pullingIcon="0"></ion-refresher-content>
     </ion-refresher>
 
-    <div style="padding:4px;" *ngIf="!listStyleflag">
-        <single-foods-card [data]="data?.goods"></single-foods-card>
-    </div>
+    <single-foods-card [data]="data?.goods" *ngIf="!listStyleflag"></single-foods-card>
     <single-foods-item [data]="data?.goods" *ngIf="listStyleflag"></single-foods-item>
 
     <no-goods *ngIf="data&&!data?.goods?.length"></no-goods>
@@ -82,11 +80,11 @@
         <button ion-fab color="dark" #scrollToTop1 mini goBackTop></button>
     </ion-fab>
 
-    <!--   <ion-infinite-scroll (ionInfinite)="doInfinite($event)" *ngIf="flag">
+    <ion-infinite-scroll (ionInfinite)="doInfinite($event)">
         <ion-infinite-scroll-content></ion-infinite-scroll-content>
-    </ion-infinite-scroll>-->
+    </ion-infinite-scroll>
 </ion-content>
-<ion-footer>
+<!-- <ion-footer>
     <ion-toolbar color="light">
         <ion-buttons left>
             <button (click)="previousPage()" ion-button>
@@ -100,4 +98,4 @@
             </button>
         </ion-buttons>
     </ion-toolbar>
-</ion-footer>
+</ion-footer> -->

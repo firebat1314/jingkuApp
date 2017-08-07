@@ -113,22 +113,21 @@ export class BrandListPage {
 			}, 500);
 		})
 	}
-	// flag: boolean = true;
-	// doInfinite(infiniteScroll) {
-	// 	if (this.data.page < this.data.pages) {
-	// 		let pagingParam = Object.assign(this.paramsData, { page: ++this.data.page });
-	// 		this.httpService.categoryGoods(pagingParam).then((res) => {
-	// 			if (res.status == 1) {
-	// 				Array.prototype.push.apply(this.data.goods, res.goods);
-	// 			}
-	// 			setTimeout(() => {
-	// 				infiniteScroll.complete();
-	// 			}, 500);
-	// 		})
-	// 	} else {
-	// 		this.flag = false;
-	// 	}
-	// }
+	doInfinite(infiniteScroll) {
+		if (this.data.page < this.data.pages) {
+			let pagingParam = Object.assign(this.paramsData, { page: ++this.data.page });
+			this.httpService.categoryGoods(pagingParam).then((res) => {
+				if (res.status == 1) {
+					this.data.goods = this.data.goods.concat(res.goods);
+				}
+				setTimeout(() => {
+					infiniteScroll.complete();
+				}, 500);
+			})
+		} else {
+			infiniteScroll.enable(false);
+		}
+	}
 	getCarNumver() {
 		this.httpService.getFlowGoods().then((res) => {
 			if (res.status == 1) {
@@ -200,7 +199,7 @@ export class BrandListPage {
 				this.getListData();
 			}
 		}
-	}
+	}/* 
 	previousPage() {
 		if (this.data.page > 1) {
 			this.getListData({ page: --this.data.page })
@@ -210,7 +209,7 @@ export class BrandListPage {
 		if (this.data.page < this.data.pages) {
 			this.getListData({ page: ++this.data.page })
 		}
-	}
+	} */
 	scrollToTop() {
 		this.content.scrollToTop();
 	}

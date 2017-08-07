@@ -26,79 +26,116 @@
                 选择收货地址
             </div>
         </div>
-        <ion-item class="fore" mode="ios" no-lines margin-right detail-push tappable (click)="openOrderPaymentModal(data)">
+        <!-- <ion-item class="fore" mode="ios" no-lines margin-right detail-push tappable (click)="openOrderPaymentModal(data)">
             支付方式
             <ng-container item-right *ngFor="let mtd of data?.payment_list">
                 <ion-note style="margin:0;" *ngIf="mtd.selected==1">{{mtd.pay_name}}</ion-note>
             </ng-container>
-
-        </ion-item>
-        <ion-list class="fore fore2" *ngFor="let item of data?.cart_goods_list;let i=index">
-            <ion-item-divider>
+        </ion-item> -->
+        <ng-container *ngIf="data?.cart_goods_list?.length==1">
+            <ion-list class="fore fore2" *ngFor="let item of data?.cart_goods_list;let i=index">
+                <!-- <ion-item-divider>
                 <span ion-text color="danger">订单{{i+1}}: </span>{{item.title}}
-            </ion-item-divider>
-            <div class="goods-list" *ngFor="let goods of item?.goods_list;">
-                <ion-item no-lines>
-                    <ion-thumbnail item-left>
-                        <img img-lazy-load="{{goods.goods_img}}">
-                    </ion-thumbnail>
-                    <h2>{{goods.goods_name}}</h2>
-                    <span class="type" *ngIf="goods?.gift_list">{{goods?.gift_list?.title}}</span>
-                </ion-item>
-                <div class="attr-wrap">
-                    <div class="one" *ngFor="let attr of goods?.attrs;">
-                        <div class="left">
-                            <div class="top">
-                                <div *ngIf="attr.qiujing">球镜：{{attr.qiujing}}</div>
-                                <div *ngIf="attr.zhujing">柱镜：{{attr.zhujing}}</div>
-                                <div *ngIf="attr.zhouwei">轴位：{{attr.zhouwei}}</div>
-                                <div *ngFor="let attr2 of attr?.attrs;">{{attr2}}</div>
+            </ion-item-divider> -->
+                <div class="goods-list" *ngFor="let goods of item?.goods_list;">
+                    <ion-item no-lines>
+                        <ion-thumbnail item-left>
+                            <img img-lazy-load="{{goods.goods_img}}">
+                        </ion-thumbnail>
+                        <h2>{{goods.goods_name}}</h2>
+                        <span class="type" *ngIf="goods?.gift_list">{{goods?.gift_list?.title}}</span>
+                    </ion-item>
+                    <div class="attr-wrap">
+                        <div class="one" *ngFor="let attr of goods?.attrs;">
+                            <div class="left">
+                                <div class="top">
+                                    <div *ngIf="attr.qiujing">球镜：{{attr.qiujing}}</div>
+                                    <div *ngIf="attr.zhujing">柱镜：{{attr.zhujing}}</div>
+                                    <div *ngIf="attr.zhouwei">轴位：{{attr.zhouwei}}</div>
+                                    <div *ngFor="let attr2 of attr?.attrs;">{{attr2}}</div>
+                                </div>
+                                <div class="bottom">
+                                    <div>单价：{{attr.goods_price}}</div>
+                                </div>
                             </div>
-                            <div class="bottom">
-                                <div>单价：{{attr.goods_price}}</div>
+                            <div class="right">
+                                <div class="price color">¥{{attr.formated_subtotal}}</div>
+                                <div class="count">x{{attr.goods_number}}</div>
                             </div>
-                        </div>
-                        <div class="right">
-                            <div class="price color">¥{{attr.formated_subtotal}}</div>
-                            <div class="count">{{attr.goods_number}}</div>
                         </div>
                     </div>
                 </div>
-            </div>
-            <div class="option">
-                <ion-item mode="ios" detail-push *ngIf="item?.shipping?.length!=0" tappable (click)="openOrderModalDistributionPage(item)">
-                    配送方式
-                    <ion-note item-right style="margin:0;" *ngFor="let mtd of item.shipping">
-                        <span *ngIf="mtd.selected==1">{{mtd.shipping_name}}</span>
-                    </ion-note>
-                </ion-item>
-                <ion-item mode="ios" detail-push *ngIf="item?.shipping?.length==0">
-                    配送方式
-                    <ion-note style="margin:0;" item-right>
-                        <span>无配送方式</span>
-                    </ion-note>
-                </ion-item>
-                <ion-item mode="ios" detail-push *ngIf="item.use_bonus?.length!=0&&goodsType!='integral'" tappable (click)="openOrderModalCouponPage(item)">
-                    优惠券选择
-                    <ion-note style="margin:0;" item-right>
-                        可使用{{item.use_bonus?.length}}个优惠券
-                    </ion-note>
-                </ion-item>
-                <ion-item mode="ios" detail-push *ngIf="item.use_bonus?.length==0&&goodsType!='integral'">
-                    优惠券选择
-                    <ion-note style="margin:0;" item-right>
-                        无可用优惠券
-                    </ion-note>
-                </ion-item>
-                <div class="input">
-                    <input type="text" [(ngModel)]="item.beizhu" placeholder="商家备注">
-                </div>
-            </div>
-            <div class="result">小计：<span class="price">{{item.goods_subtotal}}</span> 共{{item.count_goods}}件</div>
+                <!-- <div class="result">小计：<span class="price">{{item.goods_subtotal}}</span> 共{{item.count_goods}}件</div> -->
+            </ion-list>
+        </ng-container>
+        <!-- <ng-container *ngIf="data?.cart_goods_list?.length>1"> -->
+        <div class="fore more-goods">
+            <ion-item mode="ios" detail-push no-lines>
+                <ion-thumbnail item-left>
+                    <img img-lazy-load="{{''}}">
+                </ion-thumbnail>
+                <ion-thumbnail item-left>
+                    <img img-lazy-load="{{''}}">
+                </ion-thumbnail>
+                <ion-thumbnail item-left>
+                    <img img-lazy-load="{{''}}">
+                </ion-thumbnail>
+                <ion-note item-end><span style="font-weight: 700;">···</span>&nbsp;共{{'???'||'0'}}件</ion-note>
+            </ion-item>
+        </div>
+        <!-- </ng-container> -->
+        <ion-list class="fore fore4">
+            <ion-item mode="ios" detail-push tappable navPush="goodslistPage" style="border-top:none;">
+                支付配送
+                <ion-note item-end>
+                    <div>在线支付+余额支付</div>
+                    <div>普通快递+顺丰快递</div>
+                </ion-note>
+            </ion-item>
+            <ion-item mode="ios" tappable navPush="UseCouponPage" detail-push class="coupon">
+                优惠券选择
+                <span class="count">已选1张</span>
+                <span class="count">2张可用</span>
+                <ion-note item-end>
+                    - ¥10.00？？？
+                </ion-note>
+            </ion-item>
+            <ion-item mode="ios" detail-push tappable navPush="BusinessmenNotePage" style="border-bottom:none;">
+                商家备注
+            </ion-item>
         </ion-list>
         <!--<ion-item mode="ios" no-lines margin-right detail-push>
-        来镜加工
-    </ion-item>-->
+            来镜加工
+        </ion-item>-->
+        <!-- <div class="fore option">
+            <ion-item mode="ios" detail-push *ngIf="item?.shipping?.length!=0" tappable (click)="openOrderModalDistributionPage(item)">
+                配送方式
+                <ion-note item-right style="margin:0;" *ngFor="let mtd of item.shipping">
+                    <span *ngIf="mtd.selected==1">{{mtd.shipping_name}}</span>
+                </ion-note>
+            </ion-item>
+            <ion-item mode="ios" detail-push *ngIf="item?.shipping?.length==0">
+                配送方式
+                <ion-note style="margin:0;" item-right>
+                    <span>无配送方式</span>
+                </ion-note>
+            </ion-item>
+            <ion-item mode="ios" detail-push *ngIf="item.use_bonus?.length!=0&&goodsType!='integral'" tappable (click)="openOrderModalCouponPage(item)">
+                优惠券选择
+                <ion-note style="margin:0;" item-right>
+                    可使用{{item.use_bonus?.length}}个优惠券
+                </ion-note>
+            </ion-item>
+            <ion-item mode="ios" detail-push *ngIf="item.use_bonus?.length==0&&goodsType!='integral'">
+                优惠券选择
+                <ion-note style="margin:0;" item-right>
+                    无可用优惠券
+                </ion-note>
+            </ion-item>
+            <div class="input">
+                <input type="text" [(ngModel)]="item.beizhu" placeholder="商家备注">
+            </div>
+        </div> -->
         <div class="fore fore3" *ngIf="goodsType!='integral'">
             <div>
                 <span>商品金额：</span>

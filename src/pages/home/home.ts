@@ -49,7 +49,11 @@ export class HomePage {
   ) {
     //地址更新
     this.events.subscribe('home:updataArea', () => {
-      this.getHomeData()
+      this.getHomeData().then((res) => {
+      console.log('首页加载完成');
+      }).catch((res) => {
+        this.native.showToast('首页加载失败');
+      })
     })
   }
   ngAfterViewInit() {
@@ -96,7 +100,7 @@ export class HomePage {
   } */
   getHomeData() {
     this.firstInit = false;
-    this.native.showLoading('', false);
+    this.native.showLoading();
     return new Promise((resolve, reject) => {
       this.httpService.indexs().then((res) => {
         this.native.hideLoading();

@@ -94,7 +94,7 @@ export class Native {
 	 * 关闭loading
 	 */
 	hideLoading = () => {
-		this.loading.dismiss()
+		this.loading.dismissAll()
 	};
 	/**
 	 * 手机拨号
