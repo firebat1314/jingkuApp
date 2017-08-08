@@ -9,10 +9,21 @@
     <ion-navbar>
         <ion-title>使用优惠券</ion-title>
     </ion-navbar>
-
+    <ion-toolbar class="segment-style">
+        <ion-segment mode="md" [(ngModel)]="couponSelect">
+            <ion-segment-button value="usable">
+                可用优惠券（？？？）
+            </ion-segment-button>
+            <ion-segment-button value="unusable">
+                不可用优惠券（？？？）
+            </ion-segment-button>
+        </ion-segment>
+    </ion-toolbar>
 </ion-header>
 
 
-<ion-content padding>
+
+
+<ion-content>
 
 </ion-content>

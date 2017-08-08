@@ -6,13 +6,52 @@
 -->
 <ion-header>
 
-  <ion-navbar>
-    <ion-title>goodslist</ion-title>
-  </ion-navbar>
+    <ion-navbar>
+        <ion-title>商品清单</ion-title>
+    </ion-navbar>
 
 </ion-header>
 
 
-<ion-content padding>
-
+<ion-content>
+    <ion-list class="fore fore2" *ngFor="let item of data?.cart_goods_list;let i=index">
+        <!-- <ion-item-divider>
+                <span ion-text color="danger">订单{{i+1}}: </span>{{item.title}}
+            </ion-item-divider> -->
+        <div class="goods-list" *ngFor="let goods of item?.goods_list;">
+            <ion-item no-lines>
+                <ion-thumbnail item-left>
+                    <img img-lazy-load="{{goods.goods_img}}">
+                </ion-thumbnail>
+                <h2>{{goods.goods_name}}</h2>
+                <span class="type" *ngIf="goods?.gift_list">{{goods?.gift_list?.title}}</span>
+            </ion-item>
+            <div class="attr-wrap">
+                <ng-container *ngFor="let attr of goods?.attrs;let i = index">
+                    <div class="one" *ngIf="goods.show?i<goods?.attrs?.length:i<2">
+                        <div class="left">
+                            <div class="top">
+                                <div *ngIf="attr.qiujing">球镜：{{attr.qiujing}}</div>
+                                <div *ngIf="attr.zhujing">柱镜：{{attr.zhujing}}</div>
+                                <div *ngIf="attr.zhouwei">轴位：{{attr.zhouwei}}</div>
+                                <div *ngFor="let attr2 of attr?.attrs;">{{attr2}}</div>
+                            </div>
+                            <div class="bottom">
+                                <div>单价：{{attr.goods_price}}</div>
+                            </div>
+                        </div>
+                        <div class="right">
+                            <div class="price color">¥{{attr.formated_subtotal}}</div>
+                            <div class="count">x{{attr.goods_number}}</div>
+                        </div>
+                    </div>
+                </ng-container>
+                <div class="show-more" *ngIf="goods?.attrs?.length>2" tappable (click)="goods.show=!goods.show">
+                    查看更多属性&nbsp;
+                    <ion-icon [name]="goods.show?'ios-arrow-up':'ios-arrow-down'"></ion-icon>
+                </div>
+            </div>
+        </div>
+        <!-- <div class="result">小计：<span class="price">{{item.goods_subtotal}}</span> 共{{item.count_goods}}件</div> -->
+    </ion-list>
 </ion-content>

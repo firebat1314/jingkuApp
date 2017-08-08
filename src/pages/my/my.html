@@ -34,7 +34,7 @@
                 <ion-img src="{{userInfo?.data?.avatar}}"></ion-img>
             </ion-avatar>
             <h2>{{userInfo?.data?.username}}</h2>
-            <p class="vip">
+            <p class="vip" tappable navPush="MemberCenterPage" (click)="$event.stopPropagation()">
                 <ion-img src="{{userInfo?.data?.user_info?.rank_icon}}"></ion-img>
                 <ion-note>{{userInfo?.data?.user_info?.rank_name||'暂无等级'}}</ion-note>
             </p>
@@ -43,9 +43,9 @@
                 账号管理
             </div>
         </ion-item>
-        <ion-item tappable padding-left [navPush]="AllOrdersPage" [navParams]="{index:0}" no-lines mode="ios" detail-push style="border-bottom: 1px solid #e0e0e0;">
+        <!-- <ion-item tappable padding-left [navPush]="AllOrdersPage" [navParams]="{index:0}" no-lines mode="ios" detail-push style="border-bottom: 1px solid #e0e0e0;">
             <img src="./assets/icon/images/user_center_5.png" alt="" item-left class="myitem-icon"> 全部订单
-        </ion-item>
+        </ion-item> -->
         <ion-item>
             <div class="indent-info">
                 <div tappable [navPush]="AllOrdersPage" [navParams]="{index:1}">
@@ -63,6 +63,10 @@
                 <div tappable (click)="goRepairReturnPage()">
                     <div class="number">{{usercount?.data?.return||0}}</div>
                     <div class="text">返修退换</div>
+                </div>
+                <div tappable (click)="goRepairReturnPage()">
+                    <div class="number">{{usercount?.data?.return||0}}？？？</div>
+                    <div class="text">全部订单</div>
                 </div>
             </div>
         </ion-item>

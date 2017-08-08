@@ -14,8 +14,8 @@ import { Storage } from '@ionic/storage';
 export class HttpService {
   public HAS_LOGGED_IN = "hasLoggedIn";
   public hasLogin = false;
-  // private ip = 'http://v403app.jingkoo.net';//app测试
-  private ip = 'http://app.jingku.cn';//app正式
+  private ip = 'http://v403app.jingkoo.net';//app测试
+  // private ip = 'http://app.jingku.cn';//app正式
   // private ip = 'http://hl.jingkoo.net/';//响应速度测试
   // private ip = 'http://newm.jingkoo.net';//m站
   // private ip = 'http://newpc.jingkoo.net';//pc站
@@ -200,7 +200,7 @@ export class HttpService {
     return this.http.get(this.ip + '/Flow/suppliers_bouns', data)
   }
   checkout(data?: Object) {//购物车去结算
-    return this.http.get(this.ip + '/Flow/checkout', data)
+    return this.http.get(this.ip + '/Flow/checkout', data, true)
   }
   delNoShop(data?: Object) {//删除未选中的商品
     return this.http.post(this.ip + '/Flow/del_no_shop', data, true)
@@ -233,7 +233,7 @@ export class HttpService {
     return this.http.get(this.ip + '/User/user_info', data)
   }
   getUserBonus(data?: Object) {//（3）个人中心优惠券
-    return this.http.get(this.ip + '/User/get_user_bonus', data)
+    return this.http.get(this.ip + '/User/get_user_bonus', data, true)
   }
   editPwd(data?: Object) {//（4）修改密码
     return this.http.post(this.ip + '/User/edit_pwd', data)

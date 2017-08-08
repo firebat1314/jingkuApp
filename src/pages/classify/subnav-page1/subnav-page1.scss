@@ -7,9 +7,10 @@ page-subnav-page1 {
         }
     }
     .classify-wrap {
+        padding: 10px 0;
         display: flex;
         flex-wrap: wrap;
-        max-width: 650px;
+        max-width: 280px;
         margin: 10px auto;
         width: 76%;
         position: absolute;
@@ -22,11 +23,10 @@ page-subnav-page1 {
             display: inline-block;
             display: flex;
             flex-direction: column;
-            justify-content: space-around;
+            justify-content: center;
             align-items: center;
             border-right: 1px solid #e0e0e0;
             border-bottom: 1px solid #e0e0e0;
-            padding-bottom: 20px;
             &:nth-child(2n) {
                 border-right: 0;
             }
@@ -38,7 +38,7 @@ page-subnav-page1 {
             }*/
             img {
                 width: 26%;
-                padding: 10px 0;
+                margin-bottom: 10px;
             }
         }
     }

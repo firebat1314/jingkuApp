@@ -13,10 +13,11 @@ page-coupon {
                 display: flex;
                 margin-bottom: 10px;
                 box-shadow: 2px 3px 9px #e6e6e6;
+                min-height: 87px;
                 &:last-child {
                     margin: 0;
                 }
-                .fore {
+                .head {
                     min-width: 110px;
                     flex: 0.3;
                     color: #fff;
@@ -36,6 +37,7 @@ page-coupon {
                         white-space: nowrap;
                         text-overflow: ellipsis;
                         overflow: hidden;
+                        font-size: 1.2rem;
                     }
                 }
                 .main {
@@ -44,7 +46,7 @@ page-coupon {
                     min-width: 200px;
                     display: flex;
                     flex: 1;
-                    padding: 10px 10px 10px 20px;
+                    padding: 10px 10px 10px 13px;
                     min-width: 100px;
                     flex-direction: column;
                     justify-content: space-around;
@@ -62,6 +64,7 @@ page-coupon {
                             border: 1px solid #5068b4;
                             padding: 1px 2px;
                             border-radius: 2px;
+                            font-size: 1.2rem;
                         }
                     }
                 }
@@ -69,11 +72,11 @@ page-coupon {
         }
         .stale {
             .item {
-                .fore {
+                .head {
                     background: url(../assets/images/images/coupon_2_03.png) left center/100% 100% no-repeat;
                 }
                 .main {
-                    background: #fff url(../assets/images/images/coupon_3_03.png) right top/82px no-repeat;
+                    background: #fff url(../assets/images/images/coupon_3_03.png) right top/69px no-repeat;
                     .name {
                         span {
                             color: #999;
@@ -85,7 +88,7 @@ page-coupon {
         }
         .used {
             .item {
-                .fore {
+                .head {
                     background: url(../assets/images/images/coupon_2_03.png) left center/100% 100% no-repeat;
                 }
                 .main {

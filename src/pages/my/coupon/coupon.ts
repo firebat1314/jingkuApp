@@ -14,41 +14,30 @@ import { HttpService } from "../../../providers/http-service";
   templateUrl: 'coupon.html'
 })
 export class CouponPage {
-  unusedBonusData: any;
-  usedBonusData: any;
-  staleBonusData: any;
-  couponSelect = 'unused';//or stale or used or unused
+  data: any;
+  couponSelect = '';//'' or over_time or use
   constructor(
     public navCtrl: NavController,
     public navParams: NavParams,
     public httpService: HttpService
   ) {
-    this.httpResult()
+    this.segmentChange()
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad CouponPage');
   }
 
-  httpResult(finish?) {
+  segmentChange(finish?) {
     //over_time use 
-    this.httpService.getUserBonus().then((res) => {
-      console.log('可用红包', res)
-      if (res.status == 1) { this.unusedBonusData = res; }
-      this.httpService.getUserBonus({ bonus_type: 'over_time' }).then((res) => {
-        console.log('过期红包', res)
-        if (res.status == 1) { this.staleBonusData = res; }
-        this.httpService.getUserBonus({ bonus_type: 'use' }).then((res) => {
-          console.log('已使用红包', res)
-          if (res.status == 1) { this.usedBonusData = res; }
-          if (finish) { finish() }
-        })
+    this.httpService.getUserBonus({ bonus_type: this.couponSelect||null }).then((res) => {
+        if (res.status == 1) { this.data = res; }
+        if (finish) { finish() }
       })
-    })
   }
   /*下拉刷新*/
   doRefresh(refresher) {
-    this.httpResult(() => {
+    this.segmentChange(() => {
       setTimeout(() => {
         refresher.complete();
       }, 500);

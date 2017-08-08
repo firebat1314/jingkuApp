@@ -1,16 +1,13 @@
 page-subnav-page2 {
     .collapsible-header {
-        button[item-right] {
-            margin: 0;
-            height: 100%;
-            width: 50px;
-            ion-icon {
-                transition: transform 100ms ease-in-out;
-                transform: rotate(0deg);
-                font-size: 2.3rem;
-                &.rotate {
-                    transform: rotate(180deg)
-                }
+        ion-icon {
+            transition: transform 100ms ease-in-out;
+            transform: rotate(0deg);
+            font-size: 2.3rem;
+            display: flex;
+            align-items: center;
+            &.rotate {
+                transform: rotate(180deg)
             }
         }
     }

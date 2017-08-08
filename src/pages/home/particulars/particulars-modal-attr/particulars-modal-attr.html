@@ -102,7 +102,7 @@
     <ion-toolbar>
         <div class="result">
             <span>共{{numberChangeData?.number||totalNumber||0}}件</span>
-            <span>合计:{{numberChangeData?.goods_total||totalPrices||0}}</span>
+            <span>合计：¥{{numberChangeData?.goods_total||totalPrices||0 | tofixed}}</span>
         </div>
     </ion-toolbar>
     <div class="btns">

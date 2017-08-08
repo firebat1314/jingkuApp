@@ -25,57 +25,60 @@ page-write-orders {
         }
     }
     .fore2 {
-        background: #fff;
-        ion-item-divider.item {
-            font-weight: 500;
-            font-size: 1.5rem;
-        }
-        .item {
-            display: flex;
-            align-items: center;
-            h2 {
-                @include ellipsis_2;
-            }
-            .type {
-                display: inline-block;
-                color: get-color('danger');
-                font-size: 1.3rem;
-                margin-top: 4px;
-                white-space: pre-wrap;
-            }
-        }
-        .attr-wrap {
-            // border-bottom: 1px solid #dedede;
-            margin: 0 16px;
-            font-size: 1.2rem;
-            overflow: hidden;
-            .one {
-                background: #f7f7f7;
-                border-radius: 3px;
+        background: transparent;
+        .goods-list {
+            background: #fff;
+            margin-bottom: 10px;
+            .item {
                 display: flex;
-                justify-content: space-between;
-                color: #808080;
-                padding: 10px;
-                line-height: 2rem;
-                margin-bottom: 10px;
-                .color {
-                    color: #4c4c4c;
+                align-items: center;
+                h2 {
+                    @include ellipsis_2;
                 }
-                .left {
-                    .top {
-                        >div {
-                            float: left;
-                            min-width: 50%;
+                .type {
+                    display: inline-block;
+                    color: get-color('danger');
+                    font-size: 1.3rem;
+                    margin-top: 4px;
+                    white-space: pre-wrap;
+                }
+            }
+            .attr-wrap {
+                // border-bottom: 1px solid #dedede;
+                margin: 0 16px;
+                font-size: 1.2rem;
+                overflow: hidden;
+                .one {
+                    background: #f7f7f7;
+                    border-radius: 3px;
+                    display: flex;
+                    justify-content: space-between;
+                    color: #808080;
+                    padding: 10px;
+                    line-height: 2rem;
+                    margin-bottom: 10px;
+                    .color {
+                        color: #4c4c4c;
+                        font-weight: 500;
+                    }
+                    .left {
+                        flex: 1;
+                        .top {
+                            overflow: hidden;
+                            >div {
+                                float: left;
+                                min-width: 50%;
+                            }
+                        }
+                        .bottom {
+                            clear: both;
                         }
                     }
-                    .bottom {
-                        clear: both;
+                    .right {
+                        text-align: right;
+                        font-size: 1.4rem;
+                        font-weight: 500;
                     }
-                }
-                .right {
-                    text-align: right;
-                    font-size: 1.4rem;
-                    font-weight: 500;
                 }
             }
         }

@@ -8,7 +8,6 @@ page-car {
     @mixin item-style {
         display: flex;
         align-items: center;
-        margin-bottom: 10px;
         .item.item-block .item-inner {
             padding-right: 0;
             .label {
@@ -22,8 +21,10 @@ page-car {
             display: flex;
             align-items: center;
             border-bottom: #e0e0e0 1px solid;
-            .icon {
-                font-size: 2.5rem;
+            .item {
+                >.icon {
+                    font-size: 2.5rem;
+                }
             }
             .item-inner {
                 font-size: 1.5rem;
@@ -74,16 +75,10 @@ page-car {
             .single-shop-goods-body {
                 .item-wrap {
                     @include item-style;
-                    &:last-child {
-                        margin-bottom: 0;
-                    }
                     .sliding-item-box {
                         width: 100%;
                     }
-                    &:last-child .sliding-item-box {
-                        border-bottom: 1px solid #e0e0e0;
-                        padding-bottom: 17px;
-                    }
+                    margin-bottom: 10px;
                     .label {
                         .goodsinfo {
                             background: #f7f7f7;
@@ -122,6 +117,7 @@ page-car {
             font-size: 1.5rem;
             color: #4d4d4d;
             padding-right: 10px;
+            border-top: 1px solid #e0e0e0;
             .red {
                 color: #e60000;
                 font-size: 1.8rem;

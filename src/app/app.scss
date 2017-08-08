@@ -358,10 +358,7 @@ ion-modal {
     font-weight: 500;
 }
 
-
-/*fadeIn animate*/
-
-@-webkit-keyframes fadeIn {
+@keyframes fadeIn {
     from {
         opacity: 0;
     }
@@ -370,12 +367,12 @@ ion-modal {
     }
 }
 
-@keyframes fadeIn {
+@keyframes fadeout {
     from {
-        opacity: 0;
+        opacity: 1;
     }
     to {
-        opacity: 1;
+        opacity: 0;
     }
 }
 
@@ -400,6 +397,12 @@ ion-fab {
         &.fab-button-in {
             animation: fade-out 300ms ease-in;
             bottom: 0 !important;
+        }
+        &.fab-button-fadein {
+            opacity: 1 !important;
+        }
+        &.fab-button-fadeout {
+            opacity: 0;
         }
     }
 }

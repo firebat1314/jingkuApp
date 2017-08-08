@@ -78,8 +78,9 @@ export class UserData {
             if (result.info != "获取商品参数") {
                 this.native.showToast(result.info);
             }
+        }else{
+            return result;
         }
-        return result;
     }
     /**
      * 请求失败处理函数

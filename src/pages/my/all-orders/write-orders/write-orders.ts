@@ -85,7 +85,7 @@ export class WriteOrdersPage {
     this.navCtrl.push('ShippingAddressPage')
   }
   openOrderModalShippingPage() {//收货地址
-    this.navCtrl.push('OrderModalShippingPage', { data: this.data.consignee_list, callBack: this.callBack });
+    this.navCtrl.push('OrderModalShippingPage', { callBack: this.callBack });
   }
   checkShipping(params) {
     this.httpService.changeConsignee({ address_id: params.address_id }).then((res) => {
@@ -148,9 +148,6 @@ export class WriteOrdersPage {
       }
     });
     modal.present();
-  }
-  popPage() {
-    this.events.publish('car:updata');
   }
   onsubmit() {
     let commentArr = [];
