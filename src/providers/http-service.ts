@@ -19,7 +19,7 @@ export class HttpService {
   // private ip = 'http://hl.jingkoo.net/';//响应速度测试
   // private ip = 'http://newm.jingkoo.net';//m站
   // private ip = 'http://newpc.jingkoo.net';//pc站
-  
+
 
   constructor(public http: UserData, private storage: Storage) {
     console.log('Hello HttpService Provider');
@@ -149,7 +149,7 @@ export class HttpService {
     return this.http.get(this.ip + '/Category/category_goods', data)
   }
   getGoodsAttribute(data?: Object) {//获取初始商品属性
-    return this.http.get(this.ip + '/Goods/get_goods_attribute', data ,true)
+    return this.http.get(this.ip + '/Goods/get_goods_attribute', data, true)
   }
   getZhujing(data?: Object) {//如果返回的(good_type) 商品类型是goods_spectacles 根据所选球镜，获取柱镜列表
     return this.http.get(this.ip + '/Goods/get_zhujing', data)
@@ -191,13 +191,16 @@ export class HttpService {
     return this.http.get(this.ip + '/Flow/change_consignee', data)
   }
   selectPayment(data?: Object) {//选择支付方式
-    return this.http.get(this.ip + '/Flow/select_payment', data)
+    return this.http.get(this.ip + '/Flow/select_payment', data, true)
   }
   selectShippinSuppliers(data?: Object) {//选择配送方式
     return this.http.get(this.ip + '/Flow/select_shippin_suppliers', data)
   }
+  newSelectShippinSuppliers(data?: Object) {//改版 选择配送方式
+    return this.http.get(this.ip + '/Flow/new_select_shippin_suppliers', data)
+  }
   suppliersBouns(data?: Object) {//使用优惠券
-    return this.http.get(this.ip + '/Flow/suppliers_bouns', data)
+    return this.http.get(this.ip + '/Flow/suppliers_bouns', data, true)
   }
   checkout(data?: Object) {//购物车去结算
     return this.http.get(this.ip + '/Flow/checkout', data, true)

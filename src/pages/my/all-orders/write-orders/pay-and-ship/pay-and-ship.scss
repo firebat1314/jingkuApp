@@ -1,3 +1,47 @@
 page-pay-and-ship {
-
+    .pay-head,
+    .ship-head {
+        border-bottom: $border;
+        color: #666;
+        padding-left: 10px;
+        display: flex;
+        align-items: center;
+        min-height: 47px;
+        font-weight: 500;
+        img {
+            width: 20px;
+            margin: 5px 10px 5px 0;
+        }
+    }
+    .ship-body,
+    .pay-body {
+        .options {
+            padding: 8px 10px;
+        }
+        .button {
+            font-size: 1.3rem;
+            height: 3rem;
+        }
+    }
+    .ship-body {
+        >div {
+            border-bottom: $border;
+        }
+        .scroll-img {
+            overflow-y: scroll;
+            padding-left: 10px;
+            padding: 10px 13px 0;
+            white-space: nowrap;
+            display: flex;
+            .img {
+                width: 65px;
+                height: 65px;
+                border: $border;
+                margin-right: 10px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
+        }
+    }
 }

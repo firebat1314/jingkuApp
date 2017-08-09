@@ -29,7 +29,7 @@
     <ion-refresher (ionRefresh)="doRefresh($event)" pullMax="60">
         <ion-refresher-content refreshingSpinner="1" pullingIcon="0"></ion-refresher-content>
     </ion-refresher>
-    <div padding [ngClass]="{unused:couponSelect=='',stale:couponSelect=='over_time',used:couponSelect=='use'}">
+    <div [ngClass]="{unused:couponSelect=='',stale:couponSelect=='over_time',used:couponSelect=='use'}">
         <div class="no-coupon" *ngIf="data?.data.length==0">
             <div class="img">
                 <img src="./assets/images/images/coupon_4_03.png" alt="">
@@ -43,8 +43,8 @@
             </div>
             <div class="main">
                 <div class="name"><span>{{item.type_name}}</span></div>
-                <!-- <div>(仅限购买隐形眼镜部分商品)!</div> -->
-                <div class="time">{{item.use_end_date}} 到期</div>
+                <div>{{item.suppliers_name}}</div>
+                <div class="time">{{item.use_end_date}}</div>
             </div>
         </div>
     </div>

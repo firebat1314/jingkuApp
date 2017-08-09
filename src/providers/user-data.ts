@@ -21,7 +21,7 @@ export class UserData {
 
     public get(url: string, paramObj?: any, showLoading?: boolean) {
         if (showLoading) {
-            this.native.showLoading('',false);
+            this.native.showLoading('', false);
         }
         return this.storage.get('token').then((res) => {
             var headers = new Headers();
@@ -37,7 +37,7 @@ export class UserData {
     public post(url: string, paramObj: any, showLoading?: boolean) {
         // this.native.showLoading();
         if (showLoading) {
-            this.native.showLoading('',false);
+            this.native.showLoading('', false);
         }
         return this.storage.get('token').then((res) => {
             let headers = new Headers();
@@ -52,7 +52,7 @@ export class UserData {
     }
     public postBody(url: string, paramObj: any, showLoading?: boolean) {
         if (showLoading) {
-            this.native.showLoading('',false);
+            this.native.showLoading('', false);
         }
         return this.storage.get('token').then((res) => {
             let headers = new Headers();
@@ -78,9 +78,8 @@ export class UserData {
             if (result.info != "获取商品参数") {
                 this.native.showToast(result.info);
             }
-        }else{
-            return result;
         }
+        return result;
     }
     /**
      * 请求失败处理函数
@@ -107,7 +106,7 @@ export class UserData {
             }
             console.log(msg);
         } else if (error.status == 404) {
-        this.native.showToast('服务器出错了，404');
+            this.native.showToast('服务器出错了，404');
         }
         console.log(error);
 

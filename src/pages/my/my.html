@@ -53,11 +53,11 @@
                     <div class="text">待付款</div>
                 </div>
                 <div tappable [navPush]="AllOrdersPage" [navParams]="{index:2}">
-                    <div class="number">{{usercount?.data?.shipping||0}}</div>
+                    <div class="number">{{usercount?.data?.send||0}}</div>
                     <div class="text">待发货</div>
                 </div>
                 <div tappable [navPush]="AllOrdersPage" [navParams]="{index:3}">
-                    <div class="number">{{usercount?.data?.unshipping||0}}</div>
+                    <div class="number">{{usercount?.data?.collect||0}}</div>
                     <div class="text">待收货</div>
                 </div>
                 <div tappable (click)="goRepairReturnPage()">
@@ -65,7 +65,7 @@
                     <div class="text">返修退换</div>
                 </div>
                 <div tappable (click)="goRepairReturnPage()">
-                    <div class="number">{{usercount?.data?.return||0}}？？？</div>
+                    <div class="number">？？？</div>
                     <div class="text">全部订单</div>
                 </div>
             </div>

@@ -20,7 +20,8 @@ export class WriteOrdersPage {
   data: any;
   defaultShipping: any;
   goodsType: string = this.navParams.get('type');
-
+  //选中的快递
+  selectedShip: string;
   constructor(
     public navCtrl: NavController,
     public navParams: NavParams,
@@ -76,6 +77,19 @@ export class WriteOrdersPage {
               this.paymentMothdDesc = this.data.payment_list[i].pay_desc
             }
           }
+          //选中的快递方式
+          var aShip = new Array();
+          for (let i = 0, store = this.data.cart_goods_list; i < store.length; i++) {
+            for (let j = 0, ship = store[i].shipping; j < ship.length; j++) {
+              if (ship[j].selected == 1) {
+                if (aShip.indexOf(ship[j].shipping_name) == -1) {
+                  aShip.push(ship[j].shipping_name)
+                }
+              }
+            }
+          }
+          this.selectedShip = aShip.join('+');
+          aShip = null;
         }
       })
     });
@@ -87,14 +101,14 @@ export class WriteOrdersPage {
   openOrderModalShippingPage() {//收货地址
     this.navCtrl.push('OrderModalShippingPage', { callBack: this.callBack });
   }
-  checkShipping(params) {
-    this.httpService.changeConsignee({ address_id: params.address_id }).then((res) => {
-      console.log(res);
-      if (res.status == 1) {
-        this.getHttpData();
-      }
-    })
-  }
+  /*   checkShipping(params) {
+      this.httpService.changeConsignee({ address_id: params.address_id }).then((res) => {
+        console.log(res);
+        if (res.status == 1) {
+          this.getHttpData();
+        }
+      })
+    } */
   callBack(params) {
     return new Promise((resolve, reject) => {
       if (typeof (params) != 'undefined') {
@@ -148,6 +162,51 @@ export class WriteOrdersPage {
       }
     });
     modal.present();
+  }
+  goPayAndShipPage() {
+    this.navCtrl.push('PayAndShipPage', {
+      data: this.data,
+      callback: (params) => {
+        return new Promise((resolve, reject) => {
+          if (typeof (params) != 'undefined') {
+            console.log(params)
+            resolve(params);
+          } else {
+            reject();
+          }
+        })
+      }
+    })
+  }
+  goUsecouponPage() {
+    this.navCtrl.push('UsecouponPage', {
+      data: this.data,
+      callback: (params) => {
+        return new Promise((resolve, reject) => {
+          if (typeof (params) != 'undefined') {
+            console.log(params)
+            resolve(params);
+          } else {
+            reject();
+          }
+        })
+      }
+    })
+  }
+  goBusinessmenNotePage() {
+    this.navCtrl.push('BusinessmenNotePage', {
+      data: this.data,
+      callback: (params) => {
+        return new Promise((resolve, reject) => {
+          if (typeof (params) != 'undefined') {
+            console.log(params)
+            resolve(params);
+          } else {
+            reject();
+          }
+        })
+      }
+    })
   }
   onsubmit() {
     let commentArr = [];

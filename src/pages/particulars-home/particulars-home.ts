@@ -103,6 +103,11 @@ export class ParticularsHomePage {
     })
   }
   openPopover(myEvent) {
+    console.log(this.alldata.suppliers_cat_list.length==0)
+    if (this.alldata.suppliers_cat_list.length==0) {
+      this.native.showToast('该店铺暂无热门分类哦', null, false);
+      return;
+    }
     myEvent.stopPropagation();
     let popover = this.popoverCtrl.create('StoreHomePopoverPage', { data: this.alldata.suppliers_cat_list }, { cssClass: 'store-home-popover-style' });
     popover.present({

@@ -59,19 +59,19 @@ export class AllOrdersPage {
         }
       })
     } else if (this.pageIndex == 1) {
-      this.httpService.order({ page: 1, type: 'pay' }).then((res) => {
+      this.httpService.order({ page: 1, type: 'unpay' }).then((res) => {
         if (res.status == 1) {
           this.orderData = res;
         }
       })
     } else if (this.pageIndex == 2) {
-      this.httpService.order({ page: 1, type: 'shi' }).then((res) => {
+      this.httpService.order({ page: 1, type: 'send' }).then((res) => {
         if (res.status == 1) {
           this.orderData = res;
         }
       })
     } else if (this.pageIndex == 3) {
-      this.httpService.order({ page: 1, type: 'dsh' }).then((res) => {
+      this.httpService.order({ page: 1, type: 'collect' }).then((res) => {
         if (res.status == 1) {
           this.orderData = res;
         }
@@ -98,11 +98,11 @@ export class AllOrdersPage {
     if (this.pageIndex == 0) {
       this.infiniteScrollq(infiniteScroll, '')
     } else if (this.pageIndex == 1) {
-      this.infiniteScrollq(infiniteScroll, 'pay')
+      this.infiniteScrollq(infiniteScroll, 'unpay')
     } else if (this.pageIndex == 2) {
-      this.infiniteScrollq(infiniteScroll, 'shi')
+      this.infiniteScrollq(infiniteScroll, 'send')
     } else if (this.pageIndex == 3) {
-      this.infiniteScrollq(infiniteScroll, 'dsh')
+      this.infiniteScrollq(infiniteScroll, 'collect')
     } else if (this.pageIndex == 4) {
     }
   }
