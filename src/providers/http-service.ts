@@ -203,7 +203,7 @@ export class HttpService {
     return this.http.get(this.ip + '/Flow/suppliers_bouns', data, true)
   }
   checkout(data?: Object) {//购物车去结算
-    return this.http.get(this.ip + '/Flow/checkout', data, true)
+    return this.http.get(this.ip + '/Flow/checkout', data)
   }
   delNoShop(data?: Object) {//删除未选中的商品
     return this.http.post(this.ip + '/Flow/del_no_shop', data, true)

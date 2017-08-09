@@ -35,11 +35,9 @@ export class UsecouponPage {
   }
   suppliersBouns(suppliers_id, bonus_id) {
     this.httpService.suppliersBouns({ suppliers_id: suppliers_id, bonus_id: bonus_id }).then((res) => {
-      console.log(res);
       if (res.status == 1) {
         this.getData().then(() => {
           this.events.publish('writeOrder:refresh');
-          this.navCtrl.pop();
         })
       }
     })

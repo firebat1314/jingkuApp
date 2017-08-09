@@ -31,22 +31,20 @@
                 <div class="title">您还没有优惠券哦！</div>
             </div>
             <ng-container *ngFor="let item of data?.yes_bonus">
-                <ng-container *ngFor="let subitem of item">
-                    <div class="coupon" (click)="suppliersBouns(subitem.suppliers_id,subitem.bonus_id)">
-                        <div class="head">
-                            <div class="price">￥<span>{{subitem.type_money}}</span></div>
-                            <div class="canbe">满{{subitem.min_goods_amount}}元可用</div>
-                        </div>
-                        <div class="main">
-                            <div class="name"><span>{{subitem.type_name}}</span></div>
-                            <div>{{subitem.suppliers_name}}</div>
-                            <div class="time">{{subitem.use_end_date}}</div>
-                        </div>
-                        <div class="coupon-check">
-                            <ion-checkbox [checked]="subitem.selected"></ion-checkbox>
-                        </div>
+                <div class="coupon" (click)="suppliersBouns(item.suppliers_id,item.bonus_id)">
+                    <div class="head">
+                        <div class="price">￥<span>{{item.type_money}}</span></div>
+                        <div class="canbe">满{{item.min_goods_amount}}元可用</div>
                     </div>
-                </ng-container>
+                    <div class="main">
+                        <div class="name"><span>{{item.type_name}}</span></div>
+                        <div>{{item.suppliers_name}}</div>
+                        <div class="time">{{item.use_end_date}}</div>
+                    </div>
+                    <div class="coupon-check">
+                        <ion-checkbox [checked]="item.selected"></ion-checkbox>
+                    </div>
+                </div>
             </ng-container>
         </ng-container>
         <ng-container *ngSwitchCase="'unusable'">
@@ -57,20 +55,18 @@
                 <div class="title">没有不可用优惠券哦！</div>
             </div>
             <ng-container *ngFor="let item of data?.no_bonus">
-                <ng-container *ngFor="let subitem of item">
-                    <div class="coupon unusable">
-                        <div class="head">
-                            <div class="price">￥<span>{{subitem.type_money}}</span></div>
-                            <div class="canbe">满{{subitem.min_goods_amount}}元可用</div>
-                        </div>
-                        <div class="main">
-                            <div class="name"><span>{{subitem.type_name}}</span></div>
-                            <div>{{subitem.suppliers_name}}</div>
-                            <div class="time">{{subitem.use_end_date}}</div>
-                        </div>
-                        <div class="use-info">所结算商品中没有符合条件的商品</div>
+                <div class="coupon unusable">
+                    <div class="head">
+                        <div class="price">￥<span>{{item.type_money}}</span></div>
+                        <div class="canbe">满{{item.min_goods_amount}}元可用</div>
                     </div>
-                </ng-container>
+                    <div class="main">
+                        <div class="name"><span>{{item.type_name}}</span></div>
+                        <div>{{item.suppliers_name}}</div>
+                        <div class="time">{{item.use_end_date}}</div>
+                    </div>
+                    <div class="use-info">所结算商品中没有符合条件的商品</div>
+                </div>
             </ng-container>
         </ng-container>
 

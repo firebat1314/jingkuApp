@@ -97,7 +97,7 @@
                 <span class="count">已选1张</span>
                 <span class="count">{{data?.yes_bonus?.length||0}}张可用</span>
                 <ion-note item-end>
-                    - ¥10.00？？？
+                    - ¥{{data?.total?.bonus_formated}}
                 </ion-note>
             </ion-item>
             <ion-item mode="ios" detail-push tappable (click)="goBusinessmenNotePage()" style="border-bottom:none;">
