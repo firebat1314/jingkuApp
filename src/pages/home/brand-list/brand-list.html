@@ -65,11 +65,10 @@
     <ion-refresher (ionRefresh)="doRefresh($event)" pullMax="60">
         <ion-refresher-content refreshingSpinner="1" pullingIcon="0"></ion-refresher-content>
     </ion-refresher>
-    <div *ngIf="data">
-        <no-goods *ngIf="data&&!data?.goods?.length"></no-goods>
-        <single-foods-card [data]="data?.goods" *ngIf="!listStyleflag"></single-foods-card>
-        <single-foods-item [data]="data?.goods" *ngIf="listStyleflag"></single-foods-item>
-    </div>
+
+    <no-goods *ngIf="data&&!data?.goods?.length"></no-goods>
+    <single-foods-card [data]="data?.goods" *ngIf="!listStyleflag"></single-foods-card>
+    <single-foods-item [data]="data?.goods" *ngIf="listStyleflag"></single-foods-item>
 
     <ion-fab class="brand-list-car-btn" left bottom>
         <button class="car" ion-fab mini icon-only (click)="goCarPage()">
@@ -78,8 +77,10 @@
         <ion-badge color="danger">{{goodsCount||'0'}}</ion-badge>
     </ion-fab>
     <ion-fab right bottom>
-        <button ion-fab #scrollToTop1 mini goBackTop (click)="scrollToTop()"></button>
-        <button ion-fab color="dark" mini *ngIf="data?.pages">
+        <button class="fab-button-fadeout" ion-fab #scrollToTop1 mini goBackTop (click)="scrollToTop()"></button>
+    </ion-fab>
+    <ion-fab bottom center class="page" style="pointer-events: none;">
+        <button ion-fab mini id="pagebtn" class="fab-button-fadeout">
             {{data?.page}}/{{data?.pages}}
         </button>
     </ion-fab>

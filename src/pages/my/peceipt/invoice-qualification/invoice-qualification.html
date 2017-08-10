@@ -16,8 +16,8 @@
 <ion-content>
     <div radio-group class="fore item" padding-left [(ngModel)]="formData.type">
         <ion-label fixed>开具类型：</ion-label>
-        <label><ion-radio mode="md" color="danger" [value]="1"></ion-radio><span>个人</span></label>
-        <label><ion-radio mode="md" color="danger" [value]="2"></ion-radio><span>企业</span></label>
+        <label tappable><ion-radio mode="md" color="danger" [value]="1"></ion-radio><span>个人</span></label>
+        <label tappable><ion-radio mode="md" color="danger" [value]="2"></ion-radio><span>企业</span></label>
     </div>
     <div class="fore item" padding-left>
         <ion-label fixed>开票抬头：</ion-label>
@@ -29,10 +29,10 @@
     </div>
     <div radio-group class="fore item" padding-left [(ngModel)]="formData.inv_type">
         <ion-label fixed>发票类型：</ion-label>
-        <label>
+        <label tappable>
             <ion-radio mode="md" color="danger" [value]="1" [checked]="formData.type==1"></ion-radio><span>普通发票</span>
         </label>
-        <label>
+        <label tappable>
             <ion-radio mode="md" color="danger" [value]="2" [checked]="formData.type==2" *ngIf="formData.type==2"></ion-radio><span *ngIf="formData.type==2">增值税专用发票</span>
         </label>
     </div>

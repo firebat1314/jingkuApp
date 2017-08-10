@@ -194,7 +194,7 @@ export class HttpService {
     return this.http.get(this.ip + '/Flow/select_payment', data, true)
   }
   selectShippinSuppliers(data?: Object) {//选择配送方式
-    return this.http.get(this.ip + '/Flow/select_shippin_suppliers', data)
+    return this.http.get(this.ip + '/Flow/select_shippin_suppliers', data, true)
   }
   newSelectShippinSuppliers(data?: Object) {//改版 选择配送方式
     return this.http.get(this.ip + '/Flow/new_select_shippin_suppliers', data)
@@ -207,6 +207,9 @@ export class HttpService {
   }
   delNoShop(data?: Object) {//删除未选中的商品
     return this.http.post(this.ip + '/Flow/del_no_shop', data, true)
+  }
+  writeNotes(data?: Object){//提交订单
+    return this.http.post(this.ip + '/Flow/write_notes', data, true)
   }
   submitOrder(data?: Object) {//提交订单
     return this.http.post(this.ip + '/Flow/done', data, true)

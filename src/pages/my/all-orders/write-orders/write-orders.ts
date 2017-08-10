@@ -18,10 +18,12 @@ export class WriteOrdersPage {
   paymentMothdID: any;
   paymentMothdDesc: any;
   data: any;
-  defaultShipping: any;
   goodsType: string = this.navParams.get('type');
+  //选中地址
+  defaultShipping: any;
   //选中的快递
   selectedShip: string;
+  selectedBonus: Array<any> = [];
   constructor(
     public navCtrl: NavController,
     public navParams: NavParams,
@@ -46,11 +48,6 @@ export class WriteOrdersPage {
   ionViewDidLoad() {
     console.log('ionViewDidLoad WriteOrdersPage');
   }
-  /* ionViewCanEnter() {
-    return this.getHttpData().then((res) => {
-        return true;
-    });
-  } */
   ngOnInit() {
     this.getHttpData();
   }
@@ -90,10 +87,15 @@ export class WriteOrdersPage {
           }
           this.selectedShip = aShip.join('+');
           aShip = null;
+          //已选择优惠券 yes_bonus
+          for (let i = 0, bonus = this.data.yes_bonus; i < bonus.length; i++) {
+            if (bonus[i].selected == 1) {
+              this.selectedBonus.push(bonus[i])
+            }
+          }
         }
       })
     });
-
   }
   checkShippingAddress() {
     this.navCtrl.push('ShippingAddressPage')
@@ -101,14 +103,6 @@ export class WriteOrdersPage {
   openOrderModalShippingPage() {//收货地址
     this.navCtrl.push('OrderModalShippingPage', { callBack: this.callBack });
   }
-  /*   checkShipping(params) {
-      this.httpService.changeConsignee({ address_id: params.address_id }).then((res) => {
-        console.log(res);
-        if (res.status == 1) {
-          this.getHttpData();
-        }
-      })
-    } */
   callBack(params) {
     return new Promise((resolve, reject) => {
       if (typeof (params) != 'undefined') {
@@ -120,112 +114,35 @@ export class WriteOrdersPage {
       }
     })
   }
-  openOrderModalDistributionPage(item) {//配送方式
-    let modal = this.modalCtrl.create('OrderModalDistributionPage', { data: item.shipping });
-    modal.onDidDismiss(data => {
-      console.log('配送方式', data);
-      if (data) {
-        this.httpService.selectShippinSuppliers({ suppliers_id: item.suppliers_id, shipping: data.shipping_id }).then((res) => {
-          console.log(res);
-          if (res.status == 1) {
-            this.getHttpData();
-            item.distributionMethod = data.shipping_name;
-          }
-        })
-      }
-    });
-    modal.present();
-  }
-  openOrderModalCouponPage(item) {//优惠券
-    let modal = this.modalCtrl.create('OrderModalCouponPage', { data: item.use_bonus });
-    modal.onDidDismiss(data => {
-      console.log('优惠券', data);
-      if (data) {
-        this.httpService.suppliersBouns({ suppliers_id: item.suppliers_id, bonus_id: data.bonus_id }).then((res) => {
-          console.log(res);
-          if (res.status == 1) { this.getHttpData() }
-        })
-      }
-    });
-    modal.present();
-  }
-  openOrderPaymentModal(item) {//支付方式
-    let modal = this.modalCtrl.create('OrderModalPaymentPage', { data: item.payment_list });
-    modal.onDidDismiss(data => {
-      console.log('支付方式', data);
-      if (data) {
-        this.paymentMothdID = data.pay_id;
-        this.httpService.selectPayment({ pay_id: data.pay_id }).then((res) => {
-          console.log(res);
-          if (res.status == 1) { this.getHttpData() }
-        })
-      }
-    });
-    modal.present();
-  }
   goPayAndShipPage() {
-    this.navCtrl.push('PayAndShipPage', {
-      data: this.data,
-      callback: (params) => {
-        return new Promise((resolve, reject) => {
-          if (typeof (params) != 'undefined') {
-            console.log(params)
-            resolve(params);
-          } else {
-            reject();
-          }
-        })
-      }
-    })
+    if(!this.defaultShipping){
+      this.native.showToast('请选择收货地址')
+      return
+    }
+    this.navCtrl.push('PayAndShipPage')
   }
   goUsecouponPage() {
-    this.navCtrl.push('UsecouponPage', {
-      data: this.data,
-      callback: (params) => {
-        return new Promise((resolve, reject) => {
-          if (typeof (params) != 'undefined') {
-            console.log(params)
-            resolve(params);
-          } else {
-            reject();
-          }
-        })
-      }
-    })
+    if(!this.defaultShipping){
+      this.native.showToast('请选择收货地址')
+      return
+    }
+    this.navCtrl.push('UsecouponPage')
   }
   goBusinessmenNotePage() {
-    this.navCtrl.push('BusinessmenNotePage', {
-      data: this.data,
-      callback: (params) => {
-        return new Promise((resolve, reject) => {
-          if (typeof (params) != 'undefined') {
-            console.log(params)
-            resolve(params);
-          } else {
-            reject();
-          }
-        })
-      }
-    })
+    if(!this.defaultShipping){
+      this.native.showToast('请选择收货地址')
+      return
+    }
+    this.navCtrl.push('BusinessmenNotePage')
   }
   onsubmit() {
-    let commentArr = [];
-    let suppliers = [];
-    for (var i = 0; i < this.data.cart_goods_list.length; i++) {
-      commentArr.push(this.data.cart_goods_list[i].beizhu)
-      suppliers.push(this.data.cart_goods_list[i].suppliers_id)
-    }
     if (this.paymentMothdID == 3) {
       this.native.openAlertBox('确认余额支付', () => {
-        this.httpService.submitOrder({
-          notes: {
-            note: commentArr,
-            suppliers: suppliers
-          }
-        }).then((res) => {
+        this.httpService.submitOrder().then((res) => {
           if (res.status == 1) {
             this.native.showToast(res.info);
             this.navCtrl.push('AllOrdersPage');
+                this.navCtrl.remove(1);
             this.events.publish('my:refresh');
             this.events.publish('car:updata');
             // this.viewCtrl.dismiss();
@@ -233,12 +150,7 @@ export class WriteOrdersPage {
         })
       })
     } else {
-      this.httpService.submitOrder({
-        notes: {
-          note: commentArr,
-          suppliers: suppliers
-        }
-      }).then((res) => {
+      this.httpService.submitOrder().then((res) => {
         if (res.status == 1) {
           this.events.publish('my:refresh');
           this.events.publish('car:updata');
@@ -246,10 +158,12 @@ export class WriteOrdersPage {
             this.httpService.pay({ order_id: res.order_id }).then((res) => {
               if (res.status == 1) {
                 this.navCtrl.push('PaymentMethodPage', { data: res });
+                this.navCtrl.remove(1);
               }
             })
           } else if (this.paymentMothdID == 4) {
             this.navCtrl.push('OrdersDetailPage', { order_id: res.order_id });
+                this.navCtrl.remove(1);
             this.alertCtrl.create({
               title: '汇款须知',
               subTitle: this.paymentMothdDesc,

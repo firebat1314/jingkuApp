@@ -14,5 +14,16 @@
 
 
 <ion-content>
-
+    <ng-container *ngIf="data">
+        <div class="store" *ngFor="let item of data.cart_goods_list">
+            <div class="imgbox">
+                <div class="img" *ngFor="let img of item.goods_list">
+                    <img img-lazy-load="{{img.goods_img}}" alt="">
+                </div>
+            </div>
+            <div class="writein">
+                <ion-textarea [(ngModel)]="data?.suppliers_notes&&data?.suppliers_notes[item.suppliers_id]" placeholder="填写备注"></ion-textarea>
+            </div>
+        </div>
+    </ng-container>
 </ion-content>

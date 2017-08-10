@@ -94,7 +94,7 @@
             </ion-item>
             <ion-item mode="ios" tappable (click)="goUsecouponPage()" detail-push class="coupon">
                 优惠券选择
-                <span class="count">已选1张</span>
+                <span class="count">已选{{selectedBonus.length||0}}张</span>
                 <span class="count">{{data?.yes_bonus?.length||0}}张可用</span>
                 <ion-note item-end>
                     - ¥{{data?.total?.bonus_formated}}
@@ -176,7 +176,7 @@
 </ion-content>
 
 <ion-footer>
-    <ion-toolbar no-padding>
+    <ion-toolbar no-padding *ngIf="data">
         <div class="pagefoot">
             <div class="left">
                 <span class="price">实付款: ¥{{data?.total?.amount_formated}}</span><span *ngIf="goodsType=='integral'">&nbsp;积分: <span class="price">{{data?.total?.integral}}</span></span>

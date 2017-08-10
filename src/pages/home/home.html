@@ -20,7 +20,7 @@
         <ion-refresher-content refreshingSpinner="1" pullingIcon="0"></ion-refresher-content>
     </ion-refresher>
     <!--——————————————————————————————————————————轮播图——————————————————————————————————————————-->
-    <div *ngIf="data">
+    <ng-container *ngIf="data">
 
         <div class="banner-wrapper">
             <ion-slides #bannerSlide autoplay="4000" pager (ionSlideAutoplayStop)="bannerSlide.startAutoplay()" *ngIf="bannerImgs?.length">
@@ -115,12 +115,12 @@
                 <span class="txt">热门品牌</span>
                 <span class="more" tappable (click)="goClassPage('brand')">更多&gt;</span>
             </div>
-            <div class="main">
+            <div class="main" *ngIf="getBrands?.length">
                 <div *ngFor="let item of getBrands">
                     <img img-lazy-load="{{item.ad_img}}" tappable [ads-click]="item?.link_type">
                 </div>
                 <div>
-                    <img img-lazy-load="./assets/icon/homepage_53.png" alt="" tappable (click)="goClassPage('brand')">
+                    <img img-lazy-load="./assets/icon/homepage_53.jpg" alt="" tappable (click)="goClassPage('brand')">
                 </div>
             </div>
         </div>
@@ -248,13 +248,14 @@
         <div class="hot-other home-content">
             <div class="title">
                 <span class="txt">热门商品</span>
-                <span class="more" navPush="BrandListPage" [navParams]="{type:'hot'}">更多&gt;</span>
+                <!-- navPush="BrandListPage" [navParams]="{type:'hot'}" -->
+                <span class="more" (click)="goFastbuyPage()">更多&gt;</span>
             </div>
             <div class="main">
                 <single-foods-card [data]="indexHotGoods"></single-foods-card>
             </div>
         </div>
-    </div>
+    </ng-container>
     <ion-fab right bottom tappable (click)="myContent.scrollToTop()">
         <button ion-fab color="dark" mini goBackTop></button>
     </ion-fab>

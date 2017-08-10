@@ -1,3 +1,33 @@
 page-businessmen-note {
-
+    .store {
+        border-bottom: $border;
+        background: #fff;
+        overflow: hidden;
+        .imgbox {
+            display: flex;
+            margin: 10px;
+            overflow-y: scroll;
+            white-space: nowrap;
+            .img {
+                border: $border-img;
+                height: 70px;
+                width: 70px;
+                min-width: 70px;
+                margin-right: 10px;
+            }
+        }
+        ion-textarea {
+            margin: 10px;
+            min-height: 70px;
+            height: 70px;
+            background: #f7f7f7;
+            border: $border-img;
+            width: auto;
+            padding: 5px;
+            textarea {
+                margin: 0;
+                height: 100%;
+            }
+        }
+    }
 }

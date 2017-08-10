@@ -123,7 +123,6 @@ export class CarPage {
   checkGoods(id, type, is_select) {
     console.log(id, type, is_select)
     this.httpService.selectChangePrice({ id: id, type: type, is_select: is_select }).then((res) => {
-      console.log(res)
       this.getFlowGoods();
     })
   }

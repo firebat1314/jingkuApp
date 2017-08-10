@@ -60,7 +60,7 @@
                 </div>
             </div>
             <div class="order-foot">
-                <label><ion-checkbox mode="ios" [(ngModel)]="item.selected"></ion-checkbox>全选</label>
+                <label tappable><ion-checkbox mode="ios" [(ngModel)]="item.selected"></ion-checkbox>全选</label>
                 <button ion-button (click)="goApplyServicePage(item.order_id,item.goods)">申请售后</button>
             </div>
         </div>

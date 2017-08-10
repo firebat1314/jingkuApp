@@ -16,7 +16,7 @@ page-pay-and-ship {
     .ship-body,
     .pay-body {
         .options {
-            padding: 8px 10px;
+            padding: 5px 10px;
         }
         .button {
             font-size: 1.3rem;
@@ -35,6 +35,7 @@ page-pay-and-ship {
             display: flex;
             .img {
                 width: 65px;
+                min-width: 65px;
                 height: 65px;
                 border: $border;
                 margin-right: 10px;
