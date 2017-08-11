@@ -91,11 +91,13 @@ export class WriteOrdersPage {
           this.selectedShip = aShip.join('+');
           aShip = null;
           //已选择优惠券 yes_bonus
+          this.selectedBonus =[];
           for (let i = 0, bonus = this.data.yes_bonus; i < bonus.length; i++) {
             if (bonus[i].selected == 1) {
               this.selectedBonus.push(bonus[i])
             }
           }
+          console.log(this.selectedBonus)
           //note 是否填写
           this.noteStatus = JSON.stringify(this.data.suppliers_notes) == '[]';
         }
