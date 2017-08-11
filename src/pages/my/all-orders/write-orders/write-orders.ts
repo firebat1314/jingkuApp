@@ -9,12 +9,15 @@ import { Native } from "../../../../providers/native";
   See http://ionicframework.com/docs/v2/components/#navigation for more info on
   Ionic pages and navigation.
 */
-@IonicPage()
+@IonicPage({
+  segment:'write-orders'
+})
 @Component({
   selector: 'page-write-orders',
   templateUrl: 'write-orders.html'
 })
 export class WriteOrdersPage {
+  noteStatus: boolean;
   paymentMothdID: any;
   paymentMothdDesc: any;
   data: any;
@@ -93,6 +96,8 @@ export class WriteOrdersPage {
               this.selectedBonus.push(bonus[i])
             }
           }
+          //note 是否填写
+          this.noteStatus = JSON.stringify(this.data.suppliers_notes) == '[]';
         }
       })
     });

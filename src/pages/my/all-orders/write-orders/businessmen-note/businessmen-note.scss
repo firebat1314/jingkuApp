@@ -4,17 +4,10 @@ page-businessmen-note {
         background: #fff;
         overflow: hidden;
         .imgbox {
-            display: flex;
-            margin: 10px;
-            overflow-y: scroll;
-            white-space: nowrap;
-            .img {
-                border: $border-img;
-                height: 70px;
-                width: 70px;
-                min-width: 70px;
-                margin-right: 10px;
-            }
+            @include scroll-img(66px);
+        }
+        .badge-box {
+            .button {}
         }
         ion-textarea {
             margin: 10px;

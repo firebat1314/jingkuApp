@@ -28,21 +28,7 @@ page-pay-and-ship {
             border-bottom: $border;
         }
         .scroll-img {
-            overflow-y: scroll;
-            padding-left: 10px;
-            padding: 10px 13px 0;
-            white-space: nowrap;
-            display: flex;
-            .img {
-                width: 65px;
-                min-width: 65px;
-                height: 65px;
-                border: $border;
-                margin-right: 10px;
-                display: flex;
-                align-items: center;
-                justify-content: center;
-            }
+            @include scroll-img(66px);
         }
     }
 }

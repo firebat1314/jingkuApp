@@ -159,7 +159,7 @@ $border-img:1px solid #f0f0f0;
 }
 
 
-/*—————————————— fixed label width —————————————————*/
+/*—————————————— 优惠券卡片 —————————————————*/
 
 @mixin coupon {
     display: flex;
@@ -236,5 +236,26 @@ $border-img:1px solid #f0f0f0;
             color: #808080;
             top: 100%;
         }
+    }
+}
+
+
+/*—————————————— 结算页支付配送 —————————————————*/
+
+@mixin scroll-img ($width:65px) {
+    overflow-x: scroll;
+    padding-left: 10px;
+    padding: 10px 13px 0;
+    white-space: nowrap;
+    display: flex;
+    .img {
+        width: $width;
+        min-width: $width;
+        height: $width;
+        border: $border;
+        margin-right: 10px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
     }
 }
