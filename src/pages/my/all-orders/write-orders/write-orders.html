@@ -94,9 +94,15 @@
             </ion-item>
             <ion-item mode="ios" tappable (click)="goUsecouponPage()" detail-push class="coupon">
                 优惠券选择
-                <span class="count">已选{{selectedBonus.length||0}}张</span>
-                <span class="count">{{data?.yes_bonus?.length||0}}张可用</span>
-                <ion-note item-end>
+                <span class="count" *ngIf="!data?.yes_bonus?.length">已选{{selectedBonus.length||0}}张</span>
+                <span class="count" *ngIf="!selectedBonus.length">{{data?.yes_bonus?.length||0}}张可用</span>
+                <ion-note *ngIf="!data?.yes_bonus?.length" item-end>
+                    暂无可用
+                </ion-note>
+                <ion-note *ngIf="data?.yes_bonus?.length" item-end>
+                    请选择
+                </ion-note>
+                <ion-note *ngIf="selectedBonus.length" item-end>
                     - ¥{{data?.total?.bonus_formated}}
                 </ion-note>
             </ion-item>
