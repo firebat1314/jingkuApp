@@ -10,7 +10,7 @@ import { Native } from "../../../../providers/native";
   Ionic pages and navigation.
 */
 @IonicPage({
-  segment:'write-orders'
+  segment: 'write-orders'
 })
 @Component({
   selector: 'page-write-orders',
@@ -91,10 +91,12 @@ export class WriteOrdersPage {
           this.selectedShip = aShip.join('+');
           aShip = null;
           //已选择优惠券 yes_bonus
-          this.selectedBonus =[];
-          for (let i = 0, bonus = this.data.yes_bonus; i < bonus.length; i++) {
-            if (bonus[i].selected == 1) {
-              this.selectedBonus.push(bonus[i])
+          this.selectedBonus = [];
+          for (let i = 0, item = this.data.cart_goods_list; i < item.length; i++) {
+            for (let j = 0, bonus = item[i].use_bonus; j < bonus.length; j++) {
+              if (bonus[j].selected == 1) {
+                this.selectedBonus.push(bonus[j])
+              }
             }
           }
           console.log(this.selectedBonus)
@@ -122,34 +124,47 @@ export class WriteOrdersPage {
     })
   }
   goPayAndShipPage() {
-    if(!this.defaultShipping){
+    if (!this.defaultShipping) {
       this.native.showToast('请选择收货地址')
       return
     }
     this.navCtrl.push('PayAndShipPage')
   }
   goUsecouponPage() {
-    if(!this.defaultShipping){
+    if (!this.defaultShipping) {
       this.native.showToast('请选择收货地址')
       return
     }
     this.navCtrl.push('UsecouponPage')
   }
   goBusinessmenNotePage() {
-    if(!this.defaultShipping){
+    if (!this.defaultShipping) {
       this.native.showToast('请选择收货地址')
       return
     }
     this.navCtrl.push('BusinessmenNotePage')
   }
   onsubmit() {
+    let commentArr = [];
+    let suppliers = [];
+    for (var i in this.data.suppliers_notes) {
+      if (this.data.suppliers_notes[i]) {
+        commentArr.push(this.data.suppliers_notes[i])
+        suppliers.push(i)
+      }
+    }
     if (this.paymentMothdID == 3) {
       this.native.openAlertBox('确认余额支付', () => {
-        this.httpService.submitOrder().then((res) => {
+        this.httpService.submitOrder({
+          notes: {
+            note: commentArr,
+            suppliers: suppliers
+          }
+        }).then((res) => {
           if (res.status == 1) {
             this.native.showToast(res.info);
             this.navCtrl.push('AllOrdersPage');
-                this.navCtrl.remove(1);
+            this.navCtrl.remove(1);
             this.events.publish('my:refresh');
             this.events.publish('car:updata');
             // this.viewCtrl.dismiss();
@@ -157,7 +172,12 @@ export class WriteOrdersPage {
         })
       })
     } else {
-      this.httpService.submitOrder().then((res) => {
+      this.httpService.submitOrder({
+        notes: {
+          note: commentArr,
+          suppliers: suppliers
+        }
+      }).then((res) => {
         if (res.status == 1) {
           this.events.publish('my:refresh');
           this.events.publish('car:updata');
@@ -170,7 +190,7 @@ export class WriteOrdersPage {
             })
           } else if (this.paymentMothdID == 4) {
             this.navCtrl.push('OrdersDetailPage', { order_id: res.order_id });
-                this.navCtrl.remove(1);
+            this.navCtrl.remove(1);
             this.alertCtrl.create({
               title: '汇款须知',
               subTitle: this.paymentMothdDesc,
