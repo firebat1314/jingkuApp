@@ -46,8 +46,8 @@
         <!-- <ion-item tappable padding-left [navPush]="AllOrdersPage" [navParams]="{index:0}" no-lines mode="ios" detail-push style="border-bottom: 1px solid #e0e0e0;">
             <img src="./assets/icon/images/user_center_5.png" alt="" item-left class="myitem-icon"> 全部订单
         </ion-item> -->
-        <ion-item>
-            <div class="indent-info">
+        <ion-item class="indent-info">
+            <div class="indent-info-content">
                 <div tappable [navPush]="AllOrdersPage" [navParams]="{index:1}">
                     <div class="number">{{usercount?.data?.unpay||0}}</div>
                     <div class="text">待付款</div>
@@ -64,9 +64,11 @@
                     <div class="number">{{usercount?.data?.return||0}}</div>
                     <div class="text">返修退换</div>
                 </div>
-                <div tappable (click)="goRepairReturnPage()">
-                    <div class="number">？？？</div>
-                    <div class="text">全部订单</div>
+                <div tappable [navPush]="AllOrdersPage" [navParams]="{index:0}">
+                    <div class="number">
+                        <img src="./assets/icon/images/user_center_5.png" class="allorder-icon">
+                    </div>
+                    <div class="text">我的订单</div>
                 </div>
             </div>
         </ion-item>
