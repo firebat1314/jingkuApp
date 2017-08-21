@@ -1,0 +1,21 @@
+page-app-advertising {
+    .main {
+        height: 100%;
+        width: 100%;
+        background-color: #fff;
+        img {
+            display: block;
+            height: 100%;
+            width: 100%;
+        }
+        .button {
+            position: absolute;
+            right: 20px;
+            top: 20px;
+            font-size: 1.3rem;
+            height: 3rem;
+            padding: 0 2rem;
+            background: #666;
+        }
+    }
+}

@@ -41,19 +41,13 @@ export class MyApp {
     private keyboard: Keyboard
   ) {
     // 初次进入app引导页面
-    this.storage.get('hasLoggedIn').then((result) => {
+    this.storage.get('firstIn').then((result) => {
       if (result) {
-        this.rootPage = 'TabsPage';//ApplyService2Page
+        this.rootPage = 'AppAdvertisingPage';
       } else {
-        this.storage.get('firstIn').then((result) => {
-          if (result) {
-            this.rootPage = 'LoginPage';
-          } else {
-            this.rootPage = 'WelcomePage';
-          }
-        })
-      } 
-    });
+        this.rootPage = 'WelcomePage';
+      }
+    })
     this.initializeApp();//注册返回按键事件
     //用户失效事件
     this.events.subscribe('signOut', () => {

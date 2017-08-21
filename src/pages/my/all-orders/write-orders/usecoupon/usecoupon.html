@@ -24,7 +24,12 @@
 <ion-content>
     <ng-container *ngIf="data" [ngSwitch]="couponSelect">
         <ng-container *ngSwitchCase="'usable'">
-
+            <div class="no-coupon" *ngIf="!data?.yes_bonus">
+                <div class="img">
+                    <img src="./assets/images/images/coupon_4_03.png" alt="">
+                </div>
+                <div class="title">您还没有优惠券哦！</div>
+            </div>
             <ng-container *ngFor="let item of data?.cart_goods_list">
                 <ng-container *ngFor="let bonus of item.use_bonus">
                     <div class="coupon" (click)="suppliersBouns(bonus.suppliers_id,bonus.bonus_id)">
@@ -45,7 +50,12 @@
             </ng-container>
         </ng-container>
         <ng-container *ngSwitchCase="'unusable'">
-
+            <div class="no-coupon" *ngIf="!data?.no_bonus">
+                <div class="img">
+                    <img src="./assets/images/images/coupon_4_03.png" alt="">
+                </div>
+                <div class="title">您还没有优惠券哦！</div>
+            </div>
             <ng-container *ngFor="let item of data?.cart_goods_list">
                 <ng-container *ngFor="let bonus of item?.no_use_bonus">
                     <div class="coupon unusable">

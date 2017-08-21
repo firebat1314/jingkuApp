@@ -44,7 +44,7 @@ export class LoginPage {
           this.httpService.hasLogin = true;
           // this.events.publish("user:login", user.username);
           let toast = this.toastCtrl.create({
-            message: "欢迎回来," + data.data.user_name || this.loginInfo.username,
+            message: "欢迎回来，" + data.data.user_name || this.loginInfo.username,
             duration: 2000,
             position: "top"
           });
