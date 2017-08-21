@@ -62,7 +62,7 @@ export class MyApp {
       });
     }
     //ionic-image-loader optional
-    this.imageLoaderConfig.setFallbackUrl('../assets/images/images/640-320.jpg'); // if images fail to load, display this image instead
+    this.imageLoaderConfig.setFallbackUrl('../assets/images/images/800-800.jpg'); // if images fail to load, display this image instead
     this.imageLoaderConfig.setCacheDirectoryName('jingkuapp-loader-cache');
     this.imageLoaderConfig.setMaximumCacheSize(100 * 1024 * 1024); // set max size to 20MB
     this.imageLoaderConfig.setMaximumCacheAge(7 * 24 * 60 * 60 * 1000); // 7 days

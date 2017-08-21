@@ -77,31 +77,14 @@ export class HomePage {
     this.storage.get('homeData').then((res) => {
       if (res) {
         this.assignData(res);
-      } else {
-        this.getHomeData().then(() => {
-          console.log('首页加载完成');
-        }).catch((res) => {
-          this.native.showToast('首页加载失败');
-          return true;
-        })
       }
+      this.getHomeData().then(() => {
+        console.log('首页加载完成');
+      }).catch((res) => {
+        this.native.showToast('首页加载失败');
+      })
     })
-
   }
-  /* ionViewCanEnter() {
-    if (!this.firstInit) {
-      return true;
-    }
-    return this.getHomeData().then(() => {
-      return true;
-    }, (info) => {
-      this.native.showToast(info, null, false);
-      return true;
-    }).catch((res) => {
-      this.native.showToast('数据异常');
-      return true;
-    })
-  } */
   getHomeData() {
     this.firstInit = false;
     this.native.showLoading();

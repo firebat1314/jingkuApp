@@ -96,12 +96,12 @@
         </div>
         <div class="main">
             <div class="banner">
-                <img img-lazy-load="{{hotBrand_img?.ad_img}}" defaultSrc="./assets/images/images/640-320.jpg" tappable [ads-click]="hotBrand_img?.link_type">
+                <img-loader [src]="hotBrand_img?.ad_img" fallback="./assets/images/images/640-320.jpg" useImg tappable [ads-click]="hotBrand_img?.link_type"></img-loader>
             </div>
             <ion-grid>
                 <ion-row wrap>
                     <ion-col *ngFor="let item of categoryAddetatils" tappable [ads-click]="item?.link_type" width-33 col-4>
-                        <img img-lazy-load="{{item.ad_img}}">
+                        <img-loader [src]="item.ad_img" useImg></img-loader>
                         <!--<span>隐形眼镜</span>-->
                     </ion-col>
                 </ion-row>
@@ -116,7 +116,8 @@
         </div>
         <div class="main" *ngIf="getBrands?.length">
             <div *ngFor="let item of getBrands">
-                <img img-lazy-load="{{item.ad_img}}" tappable [ads-click]="item?.link_type">
+                <img-loader [src]="item.ad_img" useImg tappable [ads-click]="item?.link_type"></img-loader>
+                <!-- <img img-lazy-load="{{item.ad_img}}" tappable [ads-click]="item?.link_type"> -->
             </div>
             <div>
                 <img img-lazy-load="./assets/icon/homepage_53.jpg" alt="" tappable (click)="goClassPage('brand')">
