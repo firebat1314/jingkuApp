@@ -77,15 +77,21 @@ export class BrandListPage {
 		this.events.unsubscribe('user:filterParams');//防止多次订阅事件
 	}
 	ngAfterViewInit() {
+		var pagebtn = this.element.nativeElement.querySelector('#pagebtn');
 		/* 回到顶部按钮 */
 		this.content.ionScroll.subscribe((d) => {
 			this.fabButton.setElementClass("fab-button-fadein", d.scrollTop >= d.contentHeight);
 		});
-		var pagebtn = this.element.nativeElement.querySelector('#pagebtn')
-		this.renderer.listen(this.element.nativeElement, 'touchstart', () => {
+		/*this.renderer.listen(this.element.nativeElement, 'touchstart', () => {
 			this.renderer.listen(this.element.nativeElement, 'touchmove', () => {
 				this.renderer.setElementClass(pagebtn, 'fab-button-fadein', true)
 			});
+		});
+		this.content.ionScrollEnd.subscribe((d) => {
+			this.renderer.setElementClass(pagebtn, 'fab-button-fadein', false)
+		}); */
+		this.content.ionScrollStart.subscribe((d) => {
+			this.renderer.setElementClass(pagebtn, 'fab-button-fadein', true)
 		});
 		this.content.ionScrollEnd.subscribe((d) => {
 			this.renderer.setElementClass(pagebtn, 'fab-button-fadein', false)

@@ -24,7 +24,7 @@
         </ion-fab>-->
 
     </div>
-    <div class="background" tappable (click)="item.showBtn=false" *ngIf="item.showBtn"></div>
+    <!-- <div class="background" tappable (click)="item.showBtn=false" *ngIf="item.showBtn"></div> -->
 
     <ion-fab center middle #fab *ngIf="item.showBtn">
         <button color="light" ion-fab [navPush]="ParticularsPage" [navParams]="{goodsId:item.id}">购物车</button>
