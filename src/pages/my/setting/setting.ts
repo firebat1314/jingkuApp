@@ -56,7 +56,7 @@ export class SettingPage {
   clearCathe() {
     this.native.openAlertBox('清除本地缓存？', () => {
       this.httpService.clear(() => {
-        this.httpService.setStorage('firstIn', 'NO');
+        this.httpService.setStorage('firstIn', true);
         setTimeout(() => {
           this.native.showToast('已清空缓存');
         }, 500);

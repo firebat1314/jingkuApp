@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { IonicPageModule } from 'ionic-angular';
 import { DetailErweimaPage } from './detail-erweima';
 import { ImgLazyLoadDirectiveModule } from "../../../directives/img-lazy-load/img-lazy-load.module";
-import { IonicImageViewerModule } from "ionic-img-viewer/dist/ionic-img-viewer";
+import { IonicImageViewerModule } from "ionic-img-viewer";
 
 @NgModule({
   declarations: [

@@ -21,10 +21,12 @@ import { StatusBar } from "@ionic-native/status-bar";
 import { BarcodeScanner } from "@ionic-native/barcode-scanner";
 import { AndroidFullScreen } from "@ionic-native/android-full-screen";
 import { Badge } from '@ionic-native/badge';
+
 /*———————————————————————————————— 插件 ————————————————————————————————*/
 import { MeunItemComponentModule } from "../components/meun-item/meun-item.module";
 import { CityPickerModule } from "ionic2-city-picker/dist/city-picker.module";
-import { IonicImageViewerModule } from "ionic-img-viewer/dist/ionic-img-viewer";
+import { IonicImageViewerModule } from 'ionic-img-viewer';
+import { IonicImageLoader } from 'ionic-image-loader';
 
 @NgModule({
   declarations: [
@@ -32,7 +34,7 @@ import { IonicImageViewerModule } from "ionic-img-viewer/dist/ionic-img-viewer";
   ],
   imports: [
     IonicModule.forRoot(MyApp, {
-      platforms:{
+      platforms: {
         ios: {}
       },
       backButtonText: '',
@@ -40,14 +42,14 @@ import { IonicImageViewerModule } from "ionic-img-viewer/dist/ionic-img-viewer";
       tabsHideOnSubPages: true,
       tabsPlacement: 'bottom',
       // activator: "highlight"
-      backButtonIcon:'ios-arrow-back-outline'
     }),
     IonicStorageModule.forRoot(),
+    IonicImageLoader.forRoot(),
     HttpModule,
     BrowserModule,
     MeunItemComponentModule,
     IonicImageViewerModule,
-    CityPickerModule
+    CityPickerModule,
   ],
   bootstrap: [IonicApp],
   entryComponents: [

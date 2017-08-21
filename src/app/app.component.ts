@@ -6,6 +6,7 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 
 import { TabsPage } from '../pages/tabs/tabs';
 import { JpushService } from "../providers/jpush-service";
+import { ImageLoaderConfig } from "ionic-image-loader/dist";
 
 /*import { ParticularsPage } from '../pages/home/particulars/particulars'
 import { DredgeMoreCityPage } from '../pages/home/particulars/dredge-more-city/dredge-more-city'
@@ -19,7 +20,6 @@ import { AccountJifenPage } from "../pages/my/account-jifen/account-jifen";
 import { AllOrdersPage } from "../pages/my/all-orders/all-orders";
 import { WriteOrdersPage } from "../pages/my/all-orders/write-orders/write-orders";
 import { SignupSecondPage } from "../pages/signup/signup-second/signup-second";*/
-
 
 @Component({
   templateUrl: 'app.html'
@@ -38,20 +38,41 @@ export class MyApp {
     private jpushService: JpushService,
     private statusBar: StatusBar,
     private splashScreen: SplashScreen,
-    private keyboard: Keyboard
+    private keyboard: Keyboard,
+    private imageLoaderConfig: ImageLoaderConfig
   ) {
     // 初次进入app引导页面
-    this.storage.get('firstIn').then((result) => {
-      if (result) {
-        this.rootPage = 'AppAdvertisingPage';
-      } else {
-        this.rootPage = 'WelcomePage';
-      }
-    })
-    this.initializeApp();//注册返回按键事件
+    if (this.platform.is('mobile') && !this.platform.is('mobileweb')) {
+      this.storage.get('firstIn').then((result) => {
+        if (result) {
+          this.rootPage = 'WelcomePage';
+        } else {
+          this.rootPage = 'AppAdvertisingPage';
+        }
+      })
+    } else {
+      this.storage.get('hasLoggedIn').then((result) => {
+        if (result) {
+          this.rootPage = 'TabsPage';
+          // this.nav.setRoot('TabsPage', {}, { animate: true, direction: 'forward' });
+        } else {
+          this.rootPage = 'LoginPage';
+          // this.nav.setRoot('LoginPage', {}, { animate: true, direction: 'forward' });
+        }
+      });
+    }
+    //ionic-image-loader optional
+    this.imageLoaderConfig.setFallbackUrl('../assets/images/images/640-320.jpg'); // if images fail to load, display this image instead
+    this.imageLoaderConfig.setCacheDirectoryName('jingkuapp-loader-cache');
+    this.imageLoaderConfig.setMaximumCacheSize(100 * 1024 * 1024); // set max size to 20MB
+    this.imageLoaderConfig.setMaximumCacheAge(7 * 24 * 60 * 60 * 1000); // 7 days
+    this.imageLoaderConfig.setSpinnerName('circles')
+    this.imageLoaderConfig.useImageTag(true); // use `<img>` tag by default
+    //注册返回按键事件
+    this.initializeApp();
     //用户失效事件
     this.events.subscribe('signOut', () => {
-      this.nav.setRoot('LoginPage',{},{animate:true,});
+      this.nav.setRoot('LoginPage', {}, { animate: true, });
     })
   }
   ngOnDestroy() {
@@ -63,7 +84,7 @@ export class MyApp {
       // Here you can do any higher level native things you might need.
       this.statusBar.styleDefault();
       this.splashScreen.hide();
-      
+
       if (this.platform.is('mobile') && !this.platform.is('mobileweb')) {
         this.jpushService.initJpush();//初始化极光推送
         this.jpushService.getRegistrationID();
