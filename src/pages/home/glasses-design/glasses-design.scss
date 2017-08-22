@@ -58,7 +58,8 @@ page-glasses-design {
             .price {
                 height: 30px;
                 padding-left: 40px;
-                line-height: 34px;
+                display: flex;
+                align-items: center;
                 color: #fff;
                 font-size: 1.6rem;
                 background: url(../assets/icon/images/APP_sheji_03.png) left top/auto 100% no-repeat;

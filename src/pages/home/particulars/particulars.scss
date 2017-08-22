@@ -200,6 +200,15 @@ page-particulars {
         }
     }
     .store {
+        .head {
+            .coupon {
+                padding: 10px 0 0;
+                ion-note {
+                    display: flex;
+                    align-items: center;
+                }
+            }
+        }
         .data {
             display: flex;
             padding: 10px;
@@ -232,7 +241,7 @@ page-particulars {
         .btn {
             display: flex;
             justify-content: center;
-            margin: 10px 0;
+            padding: 10px 0;
             .button {
                 border-radius: 25px;
             }

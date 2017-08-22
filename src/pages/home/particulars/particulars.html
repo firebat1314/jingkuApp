@@ -64,7 +64,7 @@
                 </div>
                 <div class="bottom">
                     <div *ngIf="getGoodsInfo?.data?.market_price!=0">建议零售价&nbsp;：<span class="offer-price">¥{{getGoodsInfo?.data?.market_price}}</span></div>
-                    <div>商品编号&nbsp;：{{getGoodsInfo?.data?.goods_sn}}</div>
+                    <!-- <div>商品编号&nbsp;：{{getGoodsInfo?.data?.goods_sn}}</div> -->
                 </div>
             </div>
             <div class="fore price-info" *ngIf="getGoodsInfo?.price_section?.length!=0">
@@ -138,10 +138,24 @@
             <div class="fore store">
                 <div class="head">
                     <ion-item no-lines padding-left>
-                        <ion-thumbnail style="border:1px solid #e0e0e0;" item-left>
+                        <ion-thumbnail item-left>
                             <img img-lazy-load="{{getGoodsInfo?.supplier_info?.logo}}">
                         </ion-thumbnail>
                         <h2>{{getGoodsInfo?.supplier_info?.name}}</h2>
+                        <p class="coupon">
+                            <ion-note *ngIf="getGoodsInfo?.supplier_info?.inv_type==1||getGoodsInfo?.supplier_info?.inv_type==3">
+                                <ion-icon>
+                                    <img src="./assets/icon/images/particulars_2_18.png">
+                                </ion-icon>
+                                普通发票
+                            </ion-note>
+                            <ion-note *ngIf="getGoodsInfo?.supplier_info?.inv_type==2||getGoodsInfo?.supplier_info?.inv_type==3">
+                                <ion-icon>
+                                    <img src="./assets/icon/images/particulars_2_19.png">
+                                </ion-icon>
+                                增值发票
+                            </ion-note>
+                        </p>
                     </ion-item>
                 </div>
                 <div class="data">
@@ -165,11 +179,20 @@
                     <ion-icon name="ios-arrow-forward"></ion-icon>
                 </button>
                 </div>
-                <div ion-item detail-push *ngIf="getGoodsInfo?.supplier_info?.inv_type!=0">
+                <!-- <div ion-item detail-push *ngIf="getGoodsInfo?.supplier_info?.inv_type!=0">
                     <div class="note-wrap">
-                        <!--<ion-note><ion-icon><img src="./assets/icon/images/particulars_2_20.jpg"></ion-icon>担保交易</ion-note>
-                    <ion-note><ion-icon><img src="./assets/icon/images/particulars_2_14.jpg"></ion-icon>客户自提</ion-note>
-                    <ion-note><ion-icon><img src="./assets/icon/images/particulars_2_16.jpg"></ion-icon>返修退换货</ion-note>-->
+                        <ion-note>
+                            <ion-icon><img src="./assets/icon/images/particulars_2_20.jpg"></ion-icon>
+                            担保交易
+                        </ion-note>
+                        <ion-note>
+                            <ion-icon><img src="./assets/icon/images/particulars_2_14.jpg"></ion-icon>
+                            客户自提
+                        </ion-note>
+                        <ion-note>
+                            <ion-icon><img src="./assets/icon/images/particulars_2_16.jpg"></ion-icon>
+                            返修退换货
+                        </ion-note>
                         <ion-note *ngIf="getGoodsInfo?.supplier_info?.inv_type==1||getGoodsInfo?.supplier_info?.inv_type==3">
                             <ion-icon>
                                 <img src="./assets/icon/images/particulars_2_18.png">
@@ -183,14 +206,14 @@
                             增值发票
                         </ion-note>
                     </div>
-                </div>
-                <div ion-item no-lines>
+                </div> -->
+                <!-- <div ion-item no-lines>
                     <ion-icon item-left name="ios-pin-outline"></ion-icon>
                     <ion-note>{{getGoodsInfo?.supplier_info?.region}}</ion-note>
                     <div ion-button icon-only item-right clear tappable (click)="openCallNumber()">
                         <ion-icon name="ios-call"></ion-icon>
                     </div>
-                </div>
+                </div> -->
             </div>
             <!--————————————————————————套餐组合————————————————————————-->
             <div class="fore group-and-recommend">
