@@ -143,9 +143,13 @@ export class ParticularsHomePage {
     }
   }
   callnumber(number) {
-    this.native.openAlertBox('拨打商家电话:' + number, () => {
-      this.native.openCallNumber(number, false);
-    })
+    if(number){
+      this.native.openAlertBox('拨打商家电话:' + number, () => {
+        this.native.openCallNumber(number, false);
+      })
+    }else{
+      this.native.showToast('该商家暂无电话');
+    }
   }
   changeType(typeNumber) {
     this.httpService.suppliersPromote({ suppliers_id: this.suppliers_id, type: typeNumber }).then((res) => {

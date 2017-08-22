@@ -36,7 +36,6 @@ export class HomePage {
   getCategoryRecommendGoodsHot;
   getBrands;
 
-  firstInit = true;
   constructor(
     public navCtrl: NavController,
     private userData: UserData,
@@ -65,14 +64,11 @@ export class HomePage {
   ngOnDestroy() {
     this.events.unsubscribe('home:updataArea');
   }
-  /*   getBanner() {
+  /*getBanner() {
       this.httpService.getHomebanner({ int_pos_id: 53, size: 10,is_app:1 }).then((res) => {
         if (res.status == 1) { this.bannerImgs = res.data; }
       })
     } */
-  /* ionViewWillEnter(){
-    console.log(111)
-  } */
   ngOnInit() {
     this.storage.get('homeData').then((res) => {
       if (res) {
@@ -86,16 +82,14 @@ export class HomePage {
     })
   }
   getHomeData() {
-    this.firstInit = false;
-    this.native.showLoading();
     return this.httpService.indexs().then((res) => {
-      this.native.hideLoading();
+      console.log(res)
       if (res.status == 1) {
         this.data = res;
         this.storage.set('homeData', res);
         this.assignData(res);
       }
-    }).catch((res) => {
+    }).catch((res) => { 
       console.log(res);
     })
     /*this.httpService.getHomebanner({ int_pos_id: 44, size: 1 }).then((res) => {

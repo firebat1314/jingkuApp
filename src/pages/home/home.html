@@ -24,9 +24,9 @@
     <div class="banner-wrapper">
         <ion-slides #bannerSlide autoplay="4000" pager (ionSlideAutoplayStop)="bannerSlide.startAutoplay()" *ngIf="bannerImgs?.length">
             <!-- *ngIf="bannerImgs" loop-->
-            <!-- <ion-slide *ngIf="!bannerImgs">
-                        <img defaultSrc="./assets/images/images/640-320.jpg" alt="">
-                    </ion-slide> -->
+            <ion-slide *ngIf="!bannerImgs">
+                <img defaultSrc="./assets/images/images/640-320.jpg" alt="">
+            </ion-slide>
             <ion-slide *ngFor="let item of bannerImgs" tappable [ads-click]="item.link_type">
                 <!-- <img [img-lazy-load]="item.ad_img" defaultSrc="./assets/images/images/640-320.jpg" alt=""> -->
                 <img-loader [src]="item.ad_img" fallback="./assets/images/images/640-320.jpg" useImg></img-loader>
