@@ -255,6 +255,7 @@ export class ParticularsPage {
     this.native.openCallNumber(this.getGoodsInfo.supplier_info.mobile, false);
   }
   goAccountServicePage() {
+    (<any>window).qimoChatClick();
     this.native.showToast('敬请期待')
     // this.navCtrl.push(AccountServicePage)
   }
