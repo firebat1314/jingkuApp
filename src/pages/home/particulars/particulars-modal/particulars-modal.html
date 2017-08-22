@@ -6,7 +6,7 @@
 -->
 
 
-<ion-header no-border style="padding-top: 0 !important;">
+<ion-header>
     <ion-toolbar color="modalHeadTool">
         <ion-buttons end>
             <button ion-button (click)="dismiss()"><ion-icon name="md-close" ></ion-icon></button>
@@ -42,7 +42,9 @@
     <div class="onemore" *ngIf="title=='促销'">
         <ion-list>
             <button ion-item text-wrap *ngFor="let item of promotion">
-                <span class="title" item-left>{{item.promotion_name}}</span>
+                <div item-left>
+                   <span class="title">{{item.promotion_name}}</span>
+                </div>
                 <span [innerHtml]="item.title"></span>
             </button>
         </ion-list>
