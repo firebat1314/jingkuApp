@@ -37,17 +37,26 @@ page-brand-list {
     }
     .brand-list-car-btn {
         .fab {
-            background: #000;
-            opacity: .5;
+            background: rgba(0, 0, 0, .5);
+        }
+        .car {
+            position: relative;
         }
         .badge {
             position: absolute;
             padding: 4px 4px;
             border-radius: 50%;
             background: red;
-            right: 0;
+            right: 3px;
             min-width: 20px;
             top: 3px;
+        }
+    }
+    .page {
+        .fab {
+            height: 20px;
+            border-radius: 10px;
+            background: rgba(0, 0, 0, 0.6);
         }
     }
 }

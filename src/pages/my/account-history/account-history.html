@@ -27,7 +27,7 @@
                 <ion-checkbox [(ngModel)]="item.selected" [checked]="data.selectedAll" color="dark" mode="ios"></ion-checkbox>
             </div>
             <ion-item-sliding>
-                <button ion-item (click)="goParticularsPage(item.id)">
+                <button ion-item (click)="goParticularsPage(item.goods_id)">
                     <ion-thumbnail item-left>
                         <img img-lazy-load="{{item.goods_thumb}}">
                     </ion-thumbnail>

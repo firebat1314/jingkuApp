@@ -5,7 +5,7 @@
   for more info on Angular 2 Components.
 -->
 <ion-card *ngFor="let item of animateItems; let i = index;" mode="md">
-    <div class="card-wrap" tappable (press)="tapEvent(item,$event)" [ngClass]="animateClass" [navPush]="ParticularsPage" [navParams]="{goodsId:item.id}">
+    <div class="card-wrap" tappable (click)="$event.stopPropagation();" [ngClass]="animateClass" [navPush]="ParticularsPage" [navParams]="{goodsId:item.id}">
         <div class="img">
             <img img-lazy-load="{{item?.goods_img}}" alt="">
         </div>
@@ -13,21 +13,11 @@
             <div class="text">{{item.short_name}}</div>
             <div class="price">{{item.shop_price}}</div>
         </div>
-        <!--<ion-fab center middle *ngIf="showBtn" >
-            <button ion-fab mini><ion-icon name="add"></ion-icon></button>
-            <ion-fab-list side="top">
-                <button ion-fab><ion-icon name="logo-vimeo"></ion-icon></button>
-            </ion-fab-list>
-            <ion-fab-list side="bottom">
-                <button ion-fab><ion-icon name="logo-vimeo"></ion-icon></button>
-            </ion-fab-list>
-        </ion-fab>-->
-
     </div>
-    <div class="background" tappable (click)="item.showBtn=false" *ngIf="item.showBtn"></div>
+    <div class="background" tappable (click)="item.showBtn=false;$event.stopPropagation()" *ngIf="item.showBtn"></div>
 
     <ion-fab center middle #fab *ngIf="item.showBtn">
-        <button color="light" ion-fab [navPush]="ParticularsPage" [navParams]="{goodsId:item.id}">购物车</button>
+        <button color="light" ion-fab (click)="$event.stopPropagation();" [navPush]="ParticularsPage" [navParams]="{goodsId:item.id}">购物车</button>
         <button color="danger" ion-fab [disabled]="item.is_collect" (click)="onCollect(item,$event)">{{item.is_collect?'已关注':'关注'}}</button>
     </ion-fab>
 </ion-card>

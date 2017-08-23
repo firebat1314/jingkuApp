@@ -17,7 +17,11 @@
     <form #name="ngForm" novalidate>
         <ion-item no-lines>
             <ion-label mode="ios" fixed>QQ</ion-label>
+<<<<<<< HEAD
             <ion-input [(ngModel)]="userqq" name="userqq" required clearInput type="text" [placeholder]="placeholder||'请输入QQ号'"></ion-input>
+=======
+            <ion-input [(ngModel)]="userqq" name="userqq" required clearInput type="text" [placeholder]="placeholder||'请输入qq号码'"></ion-input>
+>>>>>>> bug
         </ion-item>
         <div padding>
             <button ion-button block large color="dark" (click)="onsubmit()" [disabled]="!name.form.valid">确定</button>

@@ -25,6 +25,8 @@ page-login {
     .item {
         color: #fff;
         background: none;
+        padding-left: 0;
+        font-size: 1.6rem;
         .item-input {
             padding: 0;
         }
@@ -45,9 +47,9 @@ page-login {
         }
     }
     .btn-wrap {
-        padding: 0 30px;
+        padding: 0 21px;
         .button {
-            height: 2.7em;
+            // height: 2.6em;
             margin: 1.4rem 0.2rem;
         }
     }

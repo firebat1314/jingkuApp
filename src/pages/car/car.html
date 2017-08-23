@@ -87,15 +87,15 @@
 <ion-footer>
     <div class="car-accounts" *ngIf="carDetails&&carDetails?.suppliers_goods_list?.length!=0">
         <div class="left">
-            <label class="select-all" margin-horizontal>
+            <label tappable class="select-all" margin-horizontal>
                 <ion-checkbox *ngIf="!isEdit" tappable (click)="checkGoods(null,2,carDetails.total.is_select?0:1)" [checked]="carDetails.total.is_select" margin-right color="dark" mode="ios"></ion-checkbox>
                 <ion-checkbox [(ngModel)]="carDetails.total.selected" *ngIf="isEdit" mode="ios" margin-right></ion-checkbox>
                 全选
             </label>
             <div *ngIf="!isEdit" class="price">
-                <div class="total">合计：¥{{carDetails?.total?.goods_amount}}</div>
+                <div class="total">合计：¥{{carDetails?.total?.goods_amount | tofixed}}</div>
                 <div class="subtotal" *ngIf="carDetails?.total?.reduce_price!=0">
-                    总额：¥{{carDetails?.total?.old_price_amount}} 立减：¥{{carDetails?.total?.reduce_price}}
+                    总额：¥{{carDetails?.total?.old_price_amount| tofixed}} 立减：¥{{carDetails?.total?.reduce_price| tofixed}}
                 </div>
             </div>
         </div>

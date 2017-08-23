@@ -11,20 +11,22 @@ import { Native } from "../providers/native";
 import { HttpService } from "../providers/http-service";
 import { JpushService } from "../providers/jpush-service";
 /*———————————————————————————————— ionic-native ————————————————————————————————*/
+import { AppVersion } from '@ionic-native/app-version';
+import { AndroidFullScreen } from "@ionic-native/android-full-screen";
+import { Badge } from '@ionic-native/badge';
+import { BarcodeScanner } from "@ionic-native/barcode-scanner";
 import { ImagePicker } from "@ionic-native/image-picker";
 import { CallNumber } from '@ionic-native/call-number';
 import { Camera } from '@ionic-native/camera';
-import { Toast } from '@ionic-native/toast';
-import { AppVersion } from '@ionic-native/app-version';
 import { SplashScreen } from "@ionic-native/splash-screen";
 import { StatusBar } from "@ionic-native/status-bar";
-import { BarcodeScanner } from "@ionic-native/barcode-scanner";
-import { AndroidFullScreen } from "@ionic-native/android-full-screen";
-import { Badge } from '@ionic-native/badge';
+import { Toast } from '@ionic-native/toast';
+
 /*———————————————————————————————— 插件 ————————————————————————————————*/
 import { MeunItemComponentModule } from "../components/meun-item/meun-item.module";
 import { CityPickerModule } from "ionic2-city-picker/dist/city-picker.module";
-import { IonicImageViewerModule } from "ionic-img-viewer/dist/ionic-img-viewer";
+import { IonicImageViewerModule } from 'ionic-img-viewer';
+import { IonicImageLoader } from 'ionic-image-loader';
 
 @NgModule({
   declarations: [
@@ -32,7 +34,7 @@ import { IonicImageViewerModule } from "ionic-img-viewer/dist/ionic-img-viewer";
   ],
   imports: [
     IonicModule.forRoot(MyApp, {
-      platforms:{
+      platforms: {
         ios: {}
       },
       backButtonText: '',
@@ -40,14 +42,14 @@ import { IonicImageViewerModule } from "ionic-img-viewer/dist/ionic-img-viewer";
       tabsHideOnSubPages: true,
       tabsPlacement: 'bottom',
       // activator: "highlight"
-      backButtonIcon:'ios-arrow-back-outline'
     }),
     IonicStorageModule.forRoot(),
+    IonicImageLoader.forRoot(),
     HttpModule,
     BrowserModule,
     MeunItemComponentModule,
     IonicImageViewerModule,
-    CityPickerModule
+    CityPickerModule,
   ],
   bootstrap: [IonicApp],
   entryComponents: [

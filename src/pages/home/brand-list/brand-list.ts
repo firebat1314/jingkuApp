@@ -1,8 +1,7 @@
-import { Component, ViewChild } from '@angular/core';
-import { NavController, NavParams, Events, Content, IonicPage, FabButton } from 'ionic-angular';
+import { Component, ViewChild, ElementRef, Renderer } from '@angular/core';
+import { NavController, NavParams, Events, Content, IonicPage, FabButton, InfiniteScroll } from 'ionic-angular';
 import { HttpService } from "../../../providers/http-service";
 import { Native } from "../../../providers/native";
-
 /*
   Generated class for the BrandList page.
 
@@ -15,6 +14,7 @@ import { Native } from "../../../providers/native";
 	templateUrl: 'brand-list.html',
 })
 export class BrandListPage {
+	infiniteScroll: InfiniteScroll;
 	data: any;
 	goodsCount: any;//购物车商品数量
 	myHomeSearch = null;
@@ -39,17 +39,19 @@ export class BrandListPage {
 		public navParams: NavParams,
 		public httpService: HttpService,
 		public events: Events,
-		public native: Native
+		public native: Native,
+		public element: ElementRef,
+		public renderer: Renderer,
 	) { }
 	ionViewDidLoad() {
 		console.log('ionViewDidLoad BrandListPage');
 	}
 	ngOnInit() {
-		this.paramsData.cat_id = this.navParams.get('listId');
-		this.paramsData.brand_id = this.navParams.get('brandId');
-		this.paramsData.supplier_id = this.navParams.get('supplierId');
-		this.paramsData.keywords = this.navParams.get('keyword');
-		this.paramsData.type = this.navParams.get('type');
+		this.paramsData.cat_id = this.navParams.get('listId') || null;
+		this.paramsData.brand_id = this.navParams.get('brandId') || null;
+		this.paramsData.supplier_id = this.navParams.get('supplierId') || null;
+		this.paramsData.keywords = this.navParams.get('keyword') || null;
+		this.paramsData.type = this.navParams.get('type') || null;
 		this.myHomeSearch = this.paramsData.keywords;
 		console.log('列表ID:', this.paramsData.cat_id);
 		console.log('品牌ID:', this.paramsData.brand_id);
@@ -75,10 +77,24 @@ export class BrandListPage {
 		this.events.unsubscribe('user:filterParams');//防止多次订阅事件
 	}
 	ngAfterViewInit() {
+		var pagebtn = this.element.nativeElement.querySelector('#pagebtn');
 		/* 回到顶部按钮 */
-		this.fabButton.setElementClass('fab-button-out', true);
 		this.content.ionScroll.subscribe((d) => {
-			this.fabButton.setElementClass("fab-button-in", d.scrollTop >= d.contentHeight);
+			this.fabButton.setElementClass("fab-button-fadein", d.scrollTop >= d.contentHeight);
+		});
+		/*this.renderer.listen(this.element.nativeElement, 'touchstart', () => {
+			this.renderer.listen(this.element.nativeElement, 'touchmove', () => {
+				this.renderer.setElementClass(pagebtn, 'fab-button-fadein', true)
+			});
+		});
+		this.content.ionScrollEnd.subscribe((d) => {
+			this.renderer.setElementClass(pagebtn, 'fab-button-fadein', false)
+		}); */
+		this.content.ionScrollStart.subscribe((d) => {
+			this.renderer.setElementClass(pagebtn, 'fab-button-fadein', true)
+		});
+		this.content.ionScrollEnd.subscribe((d) => {
+			this.renderer.setElementClass(pagebtn, 'fab-button-fadein', false)
 		});
 	}
 	ngAfterViewChecked() {
@@ -88,9 +104,10 @@ export class BrandListPage {
 		//退出页面取消事件订阅
 		this.events.unsubscribe('user:filterParams');
 	}
-	getListData(params?) {
+	getListData() {
+		this.infiniteScroll ? this.infiniteScroll.enable(true) : null;
 		return new Promise((resolve, reject) => {
-			this.httpService.categoryGoods(Object.assign(this.paramsData, params)).then((res) => {
+			this.httpService.categoryGoods(Object.assign(this.paramsData, { page: 1 })).then((res) => {
 				resolve()
 				if (res.status == 1) {
 					this.data = res;
@@ -113,22 +130,22 @@ export class BrandListPage {
 			}, 500);
 		})
 	}
-	// flag: boolean = true;
-	// doInfinite(infiniteScroll) {
-	// 	if (this.data.page < this.data.pages) {
-	// 		let pagingParam = Object.assign(this.paramsData, { page: ++this.data.page });
-	// 		this.httpService.categoryGoods(pagingParam).then((res) => {
-	// 			if (res.status == 1) {
-	// 				Array.prototype.push.apply(this.data.goods, res.goods);
-	// 			}
-	// 			setTimeout(() => {
-	// 				infiniteScroll.complete();
-	// 			}, 500);
-	// 		})
-	// 	} else {
-	// 		this.flag = false;
-	// 	}
-	// }
+	doInfinite(infiniteScroll) {
+		this.infiniteScroll = infiniteScroll;
+		if (this.data.page < this.data.pages) {
+			let pagingParam = Object.assign(this.paramsData, { page: ++this.data.page });
+			this.httpService.categoryGoods(pagingParam).then((res) => {
+				if (res.status == 1) {
+					this.data.goods = this.data.goods.concat(res.goods);
+				}
+				setTimeout(() => {
+					this.infiniteScroll.complete();
+				}, 500);
+			})
+		} else {
+			this.infiniteScroll.enable(false);
+		}
+	}
 	getCarNumver() {
 		this.httpService.getFlowGoods().then((res) => {
 			if (res.status == 1) {
@@ -200,7 +217,7 @@ export class BrandListPage {
 				this.getListData();
 			}
 		}
-	}
+	}/* 
 	previousPage() {
 		if (this.data.page > 1) {
 			this.getListData({ page: --this.data.page })
@@ -210,7 +227,7 @@ export class BrandListPage {
 		if (this.data.page < this.data.pages) {
 			this.getListData({ page: ++this.data.page })
 		}
-	}
+	} */
 	scrollToTop() {
 		this.content.scrollToTop();
 	}

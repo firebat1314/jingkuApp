@@ -1,0 +1,26 @@
+page-businessmen-note {
+    .store {
+        border-bottom: $border;
+        background: #fff;
+        overflow: hidden;
+        .imgbox {
+            @include scroll-img(66px);
+        }
+        .badge-box {
+            .button {}
+        }
+        ion-textarea {
+            margin: 10px;
+            min-height: 70px;
+            height: 70px;
+            background: #f7f7f7;
+            border: $border-img;
+            width: auto;
+            padding: 5px;
+            textarea {
+                margin: 0;
+                height: 100%;
+            }
+        }
+    }
+}

@@ -9,18 +9,24 @@ import { Native } from "../../../../providers/native";
   See http://ionicframework.com/docs/v2/components/#navigation for more info on
   Ionic pages and navigation.
 */
-@IonicPage()
+@IonicPage({
+  segment: 'write-orders'
+})
 @Component({
   selector: 'page-write-orders',
   templateUrl: 'write-orders.html'
 })
 export class WriteOrdersPage {
+  noteStatus: boolean;
   paymentMothdID: any;
   paymentMothdDesc: any;
   data: any;
-  defaultShipping: any;
   goodsType: string = this.navParams.get('type');
-
+  //选中地址
+  defaultShipping: any;
+  //选中的快递
+  selectedShip: string;
+  selectedBonus: Array<any> = [];
   constructor(
     public navCtrl: NavController,
     public navParams: NavParams,
@@ -45,11 +51,6 @@ export class WriteOrdersPage {
   ionViewDidLoad() {
     console.log('ionViewDidLoad WriteOrdersPage');
   }
-  /* ionViewCanEnter() {
-    return this.getHttpData().then((res) => {
-        return true;
-    });
-  } */
   ngOnInit() {
     this.getHttpData();
   }
@@ -76,24 +77,40 @@ export class WriteOrdersPage {
               this.paymentMothdDesc = this.data.payment_list[i].pay_desc
             }
           }
+          //选中的快递方式
+          var aShip = new Array();
+          for (let i = 0, store = this.data.cart_goods_list; i < store.length; i++) {
+            for (let j = 0, ship = store[i].shipping; j < ship.length; j++) {
+              if (ship[j].selected == 1) {
+                if (aShip.indexOf(ship[j].shipping_name) == -1) {
+                  aShip.push(ship[j].shipping_name)
+                }
+              }
+            }
+          }
+          this.selectedShip = aShip.join('+');
+          aShip = null;
+          //已选择优惠券 yes_bonus
+          this.selectedBonus = [];
+          for (let i = 0, item = this.data.cart_goods_list; i < item.length; i++) {
+            for (let j = 0, bonus = item[i].use_bonus; j < bonus.length; j++) {
+              if (bonus[j].selected == 1) {
+                this.selectedBonus.push(bonus[j])
+              }
+            }
+          }
+          console.log(this.selectedBonus)
+          //note 是否填写
+          this.noteStatus = JSON.stringify(this.data.suppliers_notes) == '[]';
         }
       })
     });
-
   }
   checkShippingAddress() {
     this.navCtrl.push('ShippingAddressPage')
   }
   openOrderModalShippingPage() {//收货地址
-    this.navCtrl.push('OrderModalShippingPage', { data: this.data.consignee_list, callBack: this.callBack });
-  }
-  checkShipping(params) {
-    this.httpService.changeConsignee({ address_id: params.address_id }).then((res) => {
-      console.log(res);
-      if (res.status == 1) {
-        this.getHttpData();
-      }
-    })
+    this.navCtrl.push('OrderModalShippingPage', { callBack: this.callBack });
   }
   callBack(params) {
     return new Promise((resolve, reject) => {
@@ -106,58 +123,35 @@ export class WriteOrdersPage {
       }
     })
   }
-  openOrderModalDistributionPage(item) {//配送方式
-    let modal = this.modalCtrl.create('OrderModalDistributionPage', { data: item.shipping });
-    modal.onDidDismiss(data => {
-      console.log('配送方式', data);
-      if (data) {
-        this.httpService.selectShippinSuppliers({ suppliers_id: item.suppliers_id, shipping: data.shipping_id }).then((res) => {
-          console.log(res);
-          if (res.status == 1) {
-            this.getHttpData();
-            item.distributionMethod = data.shipping_name;
-          }
-        })
-      }
-    });
-    modal.present();
+  goPayAndShipPage() {
+    if (!this.defaultShipping) {
+      this.native.showToast('请选择收货地址')
+      return
+    }
+    this.navCtrl.push('PayAndShipPage')
   }
-  openOrderModalCouponPage(item) {//优惠券
-    let modal = this.modalCtrl.create('OrderModalCouponPage', { data: item.use_bonus });
-    modal.onDidDismiss(data => {
-      console.log('优惠券', data);
-      if (data) {
-        this.httpService.suppliersBouns({ suppliers_id: item.suppliers_id, bonus_id: data.bonus_id }).then((res) => {
-          console.log(res);
-          if (res.status == 1) { this.getHttpData() }
-        })
-      }
-    });
-    modal.present();
+  goUsecouponPage() {
+    if (!this.defaultShipping) {
+      this.native.showToast('请选择收货地址')
+      return
+    }
+    this.navCtrl.push('UsecouponPage')
   }
-  openOrderPaymentModal(item) {//支付方式
-    let modal = this.modalCtrl.create('OrderModalPaymentPage', { data: item.payment_list });
-    modal.onDidDismiss(data => {
-      console.log('支付方式', data);
-      if (data) {
-        this.paymentMothdID = data.pay_id;
-        this.httpService.selectPayment({ pay_id: data.pay_id }).then((res) => {
-          console.log(res);
-          if (res.status == 1) { this.getHttpData() }
-        })
-      }
-    });
-    modal.present();
-  }
-  popPage() {
-    this.events.publish('car:updata');
+  goBusinessmenNotePage() {
+    if (!this.defaultShipping) {
+      this.native.showToast('请选择收货地址')
+      return
+    }
+    this.navCtrl.push('BusinessmenNotePage')
   }
   onsubmit() {
     let commentArr = [];
     let suppliers = [];
-    for (var i = 0; i < this.data.cart_goods_list.length; i++) {
-      commentArr.push(this.data.cart_goods_list[i].beizhu)
-      suppliers.push(this.data.cart_goods_list[i].suppliers_id)
+    for (var i in this.data.suppliers_notes) {
+      if (this.data.suppliers_notes[i]) {
+        commentArr.push(this.data.suppliers_notes[i])
+        suppliers.push(i)
+      }
     }
     if (this.paymentMothdID == 3) {
       this.native.openAlertBox('确认余额支付', () => {
@@ -170,6 +164,7 @@ export class WriteOrdersPage {
           if (res.status == 1) {
             this.native.showToast(res.info);
             this.navCtrl.push('AllOrdersPage');
+            this.navCtrl.remove(1);
             this.events.publish('my:refresh');
             this.events.publish('car:updata');
             // this.viewCtrl.dismiss();
@@ -190,10 +185,12 @@ export class WriteOrdersPage {
             this.httpService.pay({ order_id: res.order_id }).then((res) => {
               if (res.status == 1) {
                 this.navCtrl.push('PaymentMethodPage', { data: res });
+                this.navCtrl.remove(1);
               }
             })
           } else if (this.paymentMothdID == 4) {
             this.navCtrl.push('OrdersDetailPage', { order_id: res.order_id });
+            this.navCtrl.remove(1);
             this.alertCtrl.create({
               title: '汇款须知',
               subTitle: this.paymentMothdDesc,

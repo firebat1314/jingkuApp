@@ -1,8 +1,11 @@
 page-write-orders {
     .fore {
         margin-bottom: 10px;
+        border-top: $border;
+        border-bottom: $border;
     }
     .fore1 {
+        border: none;
         background-color: #fff;
         background-image: url("data:image/svg+xml;charset=utf-8,<svg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2012%2020'><path%20d='M2,20l-2-2l8-8L0,2l2-2l10,10L2,20z'%20fill='%23c8c7cc'/></svg>");
         background-repeat: no-repeat;
@@ -25,78 +28,63 @@ page-write-orders {
         }
     }
     .fore2 {
-        background: #fff;
-        ion-item-divider.item {
-            font-weight: 500;
-            font-size: 1.5rem;
-        }
-        .item {
-            display: flex;
-            align-items: center;
-            h2 {
-                color: #4d4d4d;
-                white-space: pre-wrap;
-                font-size: 1.6rem;
-                overflow: hidden;
-                text-overflow: ellipsis;
-                display: -webkit-box;
-                -webkit-line-clamp: 2;
-                -webkit-box-orient: vertical;
-                margin-bottom: 7px;
+        background: transparent;
+        .goods-list {
+            background: #fff;
+            margin-bottom: 10px;
+            &:last-child {
+                margin-bottom: 0;
             }
-            .type {
-                display: inline-block;
-                color: #e60000;
-                font-size: 1.3rem;
-                margin-top: 4px;
-                white-space: pre-wrap;
-            }
-        }
-        .attr-wrap {
-            // border-bottom: 1px solid #dedede;
-            margin: 0 16px;
-            font-size: 1.2rem;
-            .one {
-                background: #f7f7f7;
-                border-radius: 3px;
+            .item {
                 display: flex;
-                justify-content: space-between;
-                color: #808080;
-                padding: 10px;
-                line-height: 2rem;
-                margin-bottom: 10px;
-                .color {
-                    color: #4c4c4c;
+                align-items: center;
+                h2 {
+                    @include ellipsis_2;
                 }
-                .left {
-                    .top {
-                        >div {
-                            float: left;
-                            min-width: 50%;
+                .type {
+                    display: inline-block;
+                    color: get-color('danger');
+                    font-size: 1.3rem;
+                    margin-top: 4px;
+                    white-space: pre-wrap;
+                }
+            }
+            .attr-wrap {
+                // border-bottom: 1px solid #dedede;
+                margin: 0 16px;
+                font-size: 1.2rem;
+                overflow: hidden;
+                .one {
+                    background: #f7f7f7;
+                    border-radius: 3px;
+                    display: flex;
+                    justify-content: space-between;
+                    color: #808080;
+                    padding: 10px;
+                    line-height: 2rem;
+                    margin-bottom: 10px;
+                    .color {
+                        color: #4c4c4c;
+                        font-weight: 500;
+                    }
+                    .left {
+                        flex: 1;
+                        .top {
+                            overflow: hidden;
+                            >div {
+                                float: left;
+                                min-width: 50%;
+                            }
+                        }
+                        .bottom {
+                            clear: both;
                         }
                     }
-                    .bottom {
-                        clear: both;
+                    .right {
+                        text-align: right;
+                        font-size: 1.4rem;
+                        font-weight: 500;
                     }
-                }
-                .right {
-                    text-align: right;
-                    font-size: 1.4rem;
-                    font-weight: 500;
-                }
-            }
-        }
-        .option {
-            border-top: 1px solid #dedede;
-            .input {
-                text-align: center;
-                padding: 10px 0;
-                input {
-                    border: 1px solid #e0e0e0;
-                    border-radius: 4px;
-                    width: 90%;
-                    height: 4rem;
-                    padding: 0 10px;
                 }
             }
         }
@@ -105,8 +93,26 @@ page-write-orders {
             text-align: right;
             padding: 10px;
             .price {
-                color: #e60000;
+                color: get-color('danger');
                 font-size: 1.6rem;
+            }
+        }
+    }
+    .fore4 {
+        .count {
+            font-size: 1.2rem;
+            display: inline-block;
+            border: get-color('danger') 1px solid;
+            color: get-color('danger');
+            border-radius: 4px;
+            padding: 2px 4px;
+        }
+        .payment-note {
+            >div {
+                max-width: 165px;
+                text-overflow: ellipsis;
+                white-space: nowrap;
+                overflow: hidden;
             }
         }
     }
@@ -115,12 +121,13 @@ page-write-orders {
         padding: 10px 16px;
         background: #fff;
         margin-bottom: 10px;
+        border: none;
         >div {
             display: flex;
             justify-content: space-between;
             line-height: 2rem;
             .price {
-                color: #e60000;
+                color: get-color('danger');
             }
         }
     }
@@ -131,7 +138,7 @@ page-write-orders {
         background: #fff;
         .left {
             .price {
-                color: #e60000;
+                color: get-color('danger');
                 margin-right: 10px;
                 font-size: 1.6rem;
             }

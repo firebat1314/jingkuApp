@@ -1,3 +1,8 @@
 page-forgot-two {
-    @include certified-img;
+    .item {
+        @include certified-img;
+        ion-label[fixed] {
+            flex-basis: 87px !important;
+        }
+    }
 }

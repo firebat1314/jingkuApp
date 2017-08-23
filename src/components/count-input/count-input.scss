@@ -11,16 +11,13 @@ count-input {
     overflow: hidden;
     span {
         padding: 0 9px;
-        font-size: 2rem;
+        font-size: 1.8rem;
         color: #808080;
         display: block;
-        text-align: center;
         height: 100%;
         display: flex;
         align-items: center;
-        &:first-child {
-            font-size: 1rem;
-        }
+        justify-content: center;
     }
     input {
         width: 13%;
@@ -29,9 +26,9 @@ count-input {
         text-align: center;
         height: 100%;
         border: none;
+        border-radius: 0;
         border-left: 1px solid #808080;
         border-right: 1px solid #808080;
         background: none;
-        border-radius: none;
     }
 }

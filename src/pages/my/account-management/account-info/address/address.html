@@ -17,7 +17,7 @@
     <form #name="ngForm" novalidate>
         <ion-item no-lines>
             <ion-label mode="ios" fixed>所在地</ion-label>
-            <ion-input [(ngModel)]="userAddress" name="userAddress" required clearInput type="text" [placeholder]="placeholder||'请填写所在地'"></ion-input>
+            <ion-input [(ngModel)]="userAddress" name="userAddress" required clearInput type="text" [placeholder]="placeholder||'请输入所在地'"></ion-input>
         </ion-item>
         <div padding>
             <button ion-button block large color="dark" (click)="onsubmit()" [disabled]="!name.form.valid">确定</button>

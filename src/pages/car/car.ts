@@ -105,25 +105,22 @@ export class CarPage {
    * @param item 单个商品
    */
   numberChangeI(event, item) {
-    this.native.showLoading('', false);
+    this.native.showLoading('');
     this.httpService.changeNumCart({ rec_id: item.rec_id, number: event }).then((res) => {
       if (res.status == 1) {
-        item.goods_number = event
         item.inputLock = false;
-        this.getFlowGoods(() => {
-          this.native.hideLoading();
-        });
       } else {
-        this.native.hideLoading();
         item.inputLock = true;
       }
+      this.getFlowGoods(() => {
+        this.native.hideLoading();
+      });
     });
     // this.calculateTotal();
   }
   checkGoods(id, type, is_select) {
     console.log(id, type, is_select)
     this.httpService.selectChangePrice({ id: id, type: type, is_select: is_select }).then((res) => {
-      console.log(res)
       this.getFlowGoods();
     })
   }

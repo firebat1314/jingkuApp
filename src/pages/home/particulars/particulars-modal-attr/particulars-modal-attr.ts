@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { NavController, NavParams, ViewController, Events, IonicPage } from 'ionic-angular';
 import { HttpService } from "../../../../providers/http-service";
 import { Native } from "../../../../providers/native";
+import { TofixedPipe } from "../../../../pipes/tofixed/tofixed";
 
 export class goodsSpectaclesParams {
 	number = 0;//所填写的商品的数量
@@ -138,20 +139,6 @@ export class ParticularsModalAttrPage {
 			this.totalNumber += Number(this.goods[i].number);
 			this.totalPrices += Number(this.goods[i].subtotal);
 		}
-	}
-	//制保留2位小数，
-	returnFloat(value) {
-		var val = Math.round(parseFloat(value) * 100) / 100;
-		var xsd = val.toString().split(".");
-		if (xsd.length == 1) {
-			value = Number(val.toString() + ".00").toFixed(2);
-		}
-		if (xsd.length > 1) {
-			if (xsd[1].length < 2) {
-				value = Number(val.toString() + "0").toFixed(2);
-			}
-		}
-		return value;
 	}
 	/*镜片商品参数*/
 	getGoodsParamsArrs() {

@@ -1,0 +1,81 @@
+page-goodslist {
+    .header {
+        .note {
+            font-size: 1.4rem;
+        }
+    }
+    .fore2 {
+        background: transparent;
+        .goods-list {
+            background: #fff;
+            margin-bottom: 10px;
+            .item {
+                display: flex;
+                align-items: center;
+                h2 {
+                    @include ellipsis_2;
+                }
+                .type {
+                    display: inline-block;
+                    color: get-color('danger');
+                    font-size: 1.3rem;
+                    margin-top: 4px;
+                    white-space: pre-wrap;
+                }
+            }
+            .attr-wrap {
+                // border-bottom: 1px solid #dedede;
+                margin: 0 16px;
+                font-size: 1.2rem;
+                overflow: hidden;
+                .one {
+                    background: #f7f7f7;
+                    border-radius: 3px;
+                    display: flex;
+                    justify-content: space-between;
+                    color: #808080;
+                    padding: 10px;
+                    line-height: 2rem;
+                    margin-bottom: 10px;
+                    .color {
+                        color: get-color('danger');
+                        // color: #4c4c4c;
+                        font-weight: 600;
+                    }
+                    .left {
+                        flex: 1;
+                        .top {
+                            overflow: hidden;
+                            >div {
+                                float: left;
+                                min-width: 50%;
+                            }
+                        }
+                        .bottom {
+                            clear: both;
+                        }
+                    }
+                    .right {
+                        text-align: right;
+                        font-size: 1.4rem;
+                        font-weight: 500;
+                    }
+                }
+                .show-more {
+                    border: $border;
+                    border-radius: 3px;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    color: #808080;
+                    height: 2.6rem;
+                    margin-bottom: 10px;
+                    &.activated {
+                        color: #333;
+                        background: #f7f7f7;
+                    }
+                }
+            }
+        }
+    }
+}

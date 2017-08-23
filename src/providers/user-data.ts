@@ -21,7 +21,7 @@ export class UserData {
 
     public get(url: string, paramObj?: any, showLoading?: boolean) {
         if (showLoading) {
-            this.native.showLoading('',false);
+            this.native.showLoading('', false);
         }
         return this.storage.get('token').then((res) => {
             var headers = new Headers();
@@ -37,7 +37,7 @@ export class UserData {
     public post(url: string, paramObj: any, showLoading?: boolean) {
         // this.native.showLoading();
         if (showLoading) {
-            this.native.showLoading('',false);
+            this.native.showLoading('', false);
         }
         return this.storage.get('token').then((res) => {
             let headers = new Headers();
@@ -52,7 +52,7 @@ export class UserData {
     }
     public postBody(url: string, paramObj: any, showLoading?: boolean) {
         if (showLoading) {
-            this.native.showLoading('',false);
+            this.native.showLoading('', false);
         }
         return this.storage.get('token').then((res) => {
             let headers = new Headers();
@@ -94,6 +94,7 @@ export class UserData {
         let msg: string = '参数错误';
         if (error.status == 401) {
             msg = '数据加载出错';
+            this.native.showToast('数据加载出错');
             if (error.statusText == 'Unauthorized') {
                 msg = '用户失效，请重新登陆';
                 this.storage.set('hasLoggedIn', false)
@@ -104,10 +105,17 @@ export class UserData {
                     }, 10000);
                 }
             }
-            console.log(msg);
-        } else if (error.status == 404) {
-        this.native.showToast('服务器出错了，404');
         }
+        if (error.status == 404) {
+            msg = '服务器出错了，404';
+            this.native.showToast('服务器出错了，404');
+        }
+
+        if (error.status == 0) {
+            msg = '请检查网络连接';
+            // this.native.showToast('请检查网络连接');
+        }
+        console.log(msg);
         console.log(error);
 
         return { status: 0, info: msg };

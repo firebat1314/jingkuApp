@@ -103,6 +103,11 @@ export class ParticularsHomePage {
     })
   }
   openPopover(myEvent) {
+    console.log(this.alldata.suppliers_cat_list.length==0)
+    if (this.alldata.suppliers_cat_list.length==0) {
+      this.native.showToast('该店铺暂无热门分类哦', null, false);
+      return;
+    }
     myEvent.stopPropagation();
     let popover = this.popoverCtrl.create('StoreHomePopoverPage', { data: this.alldata.suppliers_cat_list }, { cssClass: 'store-home-popover-style' });
     popover.present({
@@ -138,9 +143,13 @@ export class ParticularsHomePage {
     }
   }
   callnumber(number) {
-    this.native.openAlertBox('拨打商家电话:' + number, () => {
-      this.native.openCallNumber(number, false);
-    })
+    if(number){
+      this.native.openAlertBox('拨打商家电话:' + number, () => {
+        this.native.openCallNumber(number, false);
+      })
+    }else{
+      this.native.showToast('该商家暂无电话');
+    }
   }
   changeType(typeNumber) {
     this.httpService.suppliersPromote({ suppliers_id: this.suppliers_id, type: typeNumber }).then((res) => {
@@ -223,7 +232,7 @@ export class ParticularsHomePage {
           }
           setTimeout(() => {
             infiniteScroll.complete();
-          }, 1500);
+          }, 500);
         })
       } else {
         infiniteScroll.enable(false);

@@ -19,6 +19,8 @@ export class HttpService {
   // private ip = 'http://v403app.jingkoo.net';//app测试
   // private ip = 'http://hl.jingkoo.net/';//响应速度测试
   // private ip = 'http://newpc.jingkoo.net';//pc站
+
+
   constructor(public http: UserData, private storage: Storage) {
     console.log('Hello HttpService Provider');
   }
@@ -147,7 +149,7 @@ export class HttpService {
     return this.http.get(this.ip + '/Category/category_goods', data)
   }
   getGoodsAttribute(data?: Object) {//获取初始商品属性
-    return this.http.get(this.ip + '/Goods/get_goods_attribute', data ,true)
+    return this.http.get(this.ip + '/Goods/get_goods_attribute', data, true)
   }
   getZhujing(data?: Object) {//如果返回的(good_type) 商品类型是goods_spectacles 根据所选球镜，获取柱镜列表
     return this.http.get(this.ip + '/Goods/get_zhujing', data)
@@ -189,19 +191,25 @@ export class HttpService {
     return this.http.get(this.ip + '/Flow/change_consignee', data)
   }
   selectPayment(data?: Object) {//选择支付方式
-    return this.http.get(this.ip + '/Flow/select_payment', data)
+    return this.http.get(this.ip + '/Flow/select_payment', data, true)
   }
   selectShippinSuppliers(data?: Object) {//选择配送方式
-    return this.http.get(this.ip + '/Flow/select_shippin_suppliers', data)
+    return this.http.get(this.ip + '/Flow/select_shippin_suppliers', data, true)
+  }
+  newSelectShippinSuppliers(data?: Object) {//改版 选择配送方式
+    return this.http.get(this.ip + '/Flow/new_select_shippin_suppliers', data)
   }
   suppliersBouns(data?: Object) {//使用优惠券
-    return this.http.get(this.ip + '/Flow/suppliers_bouns', data)
+    return this.http.get(this.ip + '/Flow/suppliers_bouns', data, true)
   }
   checkout(data?: Object) {//购物车去结算
     return this.http.get(this.ip + '/Flow/checkout', data)
   }
   delNoShop(data?: Object) {//删除未选中的商品
     return this.http.post(this.ip + '/Flow/del_no_shop', data, true)
+  }
+  writeNotes(data?: Object){//提交订单
+    return this.http.post(this.ip + '/Flow/write_notes', data, true)
   }
   submitOrder(data?: Object) {//提交订单
     return this.http.post(this.ip + '/Flow/done', data, true)
@@ -231,7 +239,7 @@ export class HttpService {
     return this.http.get(this.ip + '/User/user_info', data)
   }
   getUserBonus(data?: Object) {//（3）个人中心优惠券
-    return this.http.get(this.ip + '/User/get_user_bonus', data)
+    return this.http.get(this.ip + '/User/get_user_bonus', data, true)
   }
   editPwd(data?: Object) {//（4）修改密码
     return this.http.post(this.ip + '/User/edit_pwd', data)

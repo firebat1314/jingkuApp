@@ -1,0 +1,8 @@
+page-usecoupon {
+    .no-coupon {
+        @include reminderBlankPage();
+    }
+    .coupon {
+        @include coupon;
+    }
+}

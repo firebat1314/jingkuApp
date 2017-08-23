@@ -55,7 +55,6 @@ export class ParticularsModalPage {
     }).then((res) => {
       if (res.status == 1) {
         this.viewCtrl.dismiss({ region_name: ids.region_name });
-        this.events.publish('home:updataArea');
         this.native.showToast('切换成功');
       }
     })

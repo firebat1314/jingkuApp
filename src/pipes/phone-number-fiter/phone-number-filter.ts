@@ -11,9 +11,6 @@ import { Injectable, Pipe } from '@angular/core';
 })
 @Injectable()
 export class PhoneNumberFilter {
-  /*
-    Takes a value and makes it lowercase.
-   */
   transform(value, args) {
     if(value){
       value = value.substring(0,3)+"****"+value.substring(9,11);  

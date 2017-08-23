@@ -1,0 +1,46 @@
+<!--
+  Generated template for the PayAndShipPage page.
+
+  See http://ionicframework.com/docs/components/let navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+    <ion-navbar>
+        <ion-title>选择支付配送方式</ion-title>
+    </ion-navbar>
+
+</ion-header>
+
+
+<ion-content>
+    <ng-container *ngIf="data">
+        <div class="fore pay">
+            <div class="pay-head">
+                <img src="./assets/icon/pay.png" alt=""> 支付方式
+            </div>
+            <div class="pay-body">
+                <div class="options">
+                    <button ion-button outline [color]="item.selected?'danger':'gray2'" *ngFor="let item of data?.payment_list" (click)="selectPayment(item.pay_id)">{{item.pay_name}}</button>
+                </div>
+            </div>
+        </div>
+        <div class="fore ship">
+            <div class="ship-head">
+                <img src="./assets/icon/ship.png" alt=""> 配送方式
+            </div>
+            <div class="ship-body">
+                <div *ngFor="let item of data?.cart_goods_list">
+                    <div class="scroll-img">
+                        <div class="img" *ngFor="let img of item.goods_list">
+                            <img img-lazy-load="{{img.goods_img}}" alt="">
+                        </div>
+                    </div>
+                    <div class="options">
+                        <button ion-button outline [color]="ship.selected?'danger':'gray2'" *ngFor="let ship of item.shipping" (click)="selectShippinSuppliers(item.suppliers_id,ship.shipping_id)">{{ship.shipping_name + '  ' + ship.shipping_free}}</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </ng-container>
+</ion-content>

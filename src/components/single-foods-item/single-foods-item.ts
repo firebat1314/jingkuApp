@@ -47,10 +47,10 @@ export class SingleFoodsItemComponent {
     }
     let that = this;
     for (let i = 0; i < that.data.length; i++) {
-      setTimeout(function () {
+      // setTimeout(function () {
         that.animateItems.push(that.data[i]);
         that.data[i].showBtn = false;
-      }, 80 * i);
+      // }, 80 * i);
     }
   }
 

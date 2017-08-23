@@ -5,6 +5,7 @@ import { NavController, Events, Slides, Content, FabButton, PopoverController, I
 import { UserData } from "../../providers/user-data";
 import { HttpService } from "../../providers/http-service";
 import { Native } from "../../providers/native";
+import { Storage } from '@ionic/storage';
 
 @IonicPage()
 @Component({
@@ -35,7 +36,6 @@ export class HomePage {
   getCategoryRecommendGoodsHot;
   getBrands;
 
-  firstInit = true;
   constructor(
     public navCtrl: NavController,
     private userData: UserData,
@@ -43,7 +43,7 @@ export class HomePage {
     private httpService: HttpService,
     // private formBuilder: FormBuilder,
     private native: Native,
-    // private storage: Storage,
+    private storage: Storage,
     public popoverCtrl: PopoverController,
     public alertCtrl: AlertController
   ) {
@@ -64,83 +64,34 @@ export class HomePage {
   ngOnDestroy() {
     this.events.unsubscribe('home:updataArea');
   }
-  /*   getBanner() {
+  /*getBanner() {
       this.httpService.getHomebanner({ int_pos_id: 53, size: 10,is_app:1 }).then((res) => {
         if (res.status == 1) { this.bannerImgs = res.data; }
       })
     } */
-  /* ionViewWillEnter(){
-    console.log(111)
-  } */
   ngOnInit() {
-    this.getHomeData().then((res) => {
-      console.log('首页加载完成');
-    }).catch((res) => {
-      this.native.showToast('首页加载失败');
-      return true;
-    })
-  }
-  /* ionViewCanEnter() {
-    if (!this.firstInit) {
-      return true;
-    }
-    return this.getHomeData().then(() => {
-      return true;
-    }, (info) => {
-      this.native.showToast(info, null, false);
-      return true;
-    }).catch((res) => {
-      this.native.showToast('数据异常');
-      return true;
-    })
-  } */
-  getHomeData() {
-    this.firstInit = false;
-    this.native.showLoading('', false);
-    return new Promise((resolve, reject) => {
-      this.httpService.indexs().then((res) => {
-        this.native.hideLoading();
-        resolve();
-        if (res.status == 1) {
-          //城市列表
-          this.data = res;
-          this.areaList = res.data.getAreaList;
-          //默认城市
-          for (let i = 0; i < this.areaList.length; i++) {
-            if (this.areaList[i].selected == 1) {
-              this.area = this.areaList[i].region_name;
-            }
-          }
-          //轮播 
-          this.bannerImgs = res.data.ads_banner;
-          //热门品类 大图
-          this.hotBrand_img = res.data.ads_rmpp['0'];
-          //热门品类 小图
-          this.categoryAddetatils = res.data.ads_emdp;
-          //热门品牌 
-          this.getBrands = res.data.ads_brand;
-          //精选专题 大图1
-          this.jingxuan_img1 = res.data.ads_jxzt['0'];
-          this.getCategoryRecommendGoodsHot = res.data.hot_recommend_goods;
-          //精选专题 大图2
-          this.jingxuan_img2 = res.data.ads_jxzttwo['0'];
-          this.getCategoryRecommendGoods = res.data.new_recommend_goods;
-          //精选专题 大图3
-          this.jingxuan_img3 = res.data.ads_jxztThree['0'];
-          this.getCategoryRecommendGoodsBest = res.data.best_recommend_goods;
-          //好店推荐
-          this.jingxuan_img4 = res.data.ads_hdtj;
-          //热门商品
-          this.indexHotGoods = res.data.index_hot_goods;
-        } else {
-          reject(res.info);
-        }
+    this.storage.get('homeData').then((res) => {
+      if (res) {
+        this.assignData(res);
+      }
+      this.getHomeData().then(() => {
+        console.log('首页加载完成');
       }).catch((res) => {
-        console.log(res);
-        reject(res.info);
+        this.native.showToast('首页加载失败');
       })
     })
-
+  }
+  getHomeData() {
+    return this.httpService.indexs().then((res) => {
+      console.log(res)
+      if (res.status == 1) {
+        this.data = res;
+        this.storage.set('homeData', res);
+        this.assignData(res);
+      }
+    }).catch((res) => { 
+      console.log(res);
+    })
     /*this.httpService.getHomebanner({ int_pos_id: 44, size: 1 }).then((res) => {
       if (res.status == 1) { this.hotBrand_img = res; }
       this.httpService.getCategoryAd({ int_pos_id: 27, int_size: 10 }).then((res) => {
@@ -173,6 +124,37 @@ export class HomePage {
         })
       })
     })*/
+  }
+  assignData(res) {
+    //城市列表
+    this.areaList = res.data.getAreaList;
+    //默认城市
+    for (let i = 0; i < this.areaList.length; i++) {
+      if (this.areaList[i].selected == 1) {
+        this.area = this.areaList[i].region_name;
+      }
+    }
+    //轮播 
+    this.bannerImgs = res.data.ads_banner;
+    //热门品类 大图
+    this.hotBrand_img = res.data.ads_rmpp['0'];
+    //热门品类 小图
+    this.categoryAddetatils = res.data.ads_emdp;
+    //热门品牌 
+    this.getBrands = res.data.ads_brand;
+    //精选专题 大图1
+    this.jingxuan_img1 = res.data.ads_jxzt['0'];
+    this.getCategoryRecommendGoodsHot = res.data.hot_recommend_goods;
+    //精选专题 大图2
+    this.jingxuan_img2 = res.data.ads_jxzttwo['0'];
+    this.getCategoryRecommendGoods = res.data.new_recommend_goods;
+    //精选专题 大图3
+    this.jingxuan_img3 = res.data.ads_jxztThree['0'];
+    this.getCategoryRecommendGoodsBest = res.data.best_recommend_goods;
+    //好店推荐
+    this.jingxuan_img4 = res.data.ads_hdtj;
+    //热门商品
+    this.indexHotGoods = res.data.index_hot_goods;
   }
   onscroll() {
     // if (this.content.scrollTop > 400) {

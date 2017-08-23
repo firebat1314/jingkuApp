@@ -36,6 +36,6 @@ export class WelcomePage {
   }
   goToHome() {
     this.navCtrl.setRoot('LoginPage',{},{animate:true,direction:'forward'});
-    this.storage.set('firstIn', 'NO');
+    this.storage.set('firstIn', false);
   }
 }

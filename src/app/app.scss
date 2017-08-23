@@ -21,6 +21,16 @@ html {
     -webkit-overflow-scrolling: touch;
 }
 
+ion-app {
+    font-family: Helvetica !important;
+}
+
+.back-button {
+    .icon {
+        font-size: 3rem;
+    }
+}
+
 
 /*———————————————————————————————————— 隐藏滚动条 ————————————————————————————————————*/
 
@@ -354,10 +364,7 @@ ion-modal {
     font-weight: 500;
 }
 
-
-/*fadeIn animate*/
-
-@-webkit-keyframes fadeIn {
+@keyframes fadeIn {
     from {
         opacity: 0;
     }
@@ -366,12 +373,12 @@ ion-modal {
     }
 }
 
-@keyframes fadeIn {
+@keyframes fadeout {
     from {
-        opacity: 0;
+        opacity: 1;
     }
     to {
-        opacity: 1;
+        opacity: 0;
     }
 }
 
@@ -396,6 +403,12 @@ ion-fab {
         &.fab-button-in {
             animation: fade-out 300ms ease-in;
             bottom: 0 !important;
+        }
+        &.fab-button-fadein {
+            opacity: 1 !important;
+        }
+        &.fab-button-fadeout {
+            opacity: 0;
         }
     }
 }
@@ -462,12 +475,6 @@ ion-fab {
 .ion-ios-search:before,
 .ion-ios-search-outline:before {
     content: "\e67a";
-}
-
-.ion-md-cart:before,
-.ion-ios-cart:before,
-.ion-ios-cart-outline:before {
-    content: "\e622";
 }
 
 .ion-md-bao1:before,

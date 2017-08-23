@@ -157,3 +157,105 @@ $border-img:1px solid #f0f0f0;
         flex-basis: $width !important;
     }
 }
+
+
+/*—————————————— 优惠券卡片 —————————————————*/
+
+@mixin coupon {
+    display: flex;
+    margin-bottom: 10px;
+    box-shadow: 2px 3px 9px #e6e6e6;
+    min-height: 87px;
+    margin: 10px;
+    background: #fff;
+    position: relative;
+    .head {
+        min-width: 110px;
+        flex: 0.3;
+        color: #fff;
+        text-align: center;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        background: url(../assets/images/images/coupon_1_03.png) left center/100% 100% no-repeat;
+        padding: 5px 5px;
+        .price {
+            margin-bottom: 5px;
+            span {
+                font-size: 2rem;
+            }
+        }
+        .canbe {
+            white-space: nowrap;
+            text-overflow: ellipsis;
+            overflow: hidden;
+            font-size: 1.2rem;
+        }
+    }
+    .main {
+        color: #999;
+        padding-left: 20px;
+        min-width: 200px;
+        display: flex;
+        flex: 1;
+        padding: 10px 10px 10px 13px;
+        min-width: 100px;
+        flex-direction: column;
+        justify-content: space-around;
+        background: #fff;
+        background-size: 82px;
+        >div {
+            margin-bottom: 9px;
+            &:last-child {
+                margin-bottom: 0;
+            }
+        }
+        .name {
+            span {
+                color: #5068b4;
+                border: 1px solid #5068b4;
+                padding: 1px 2px;
+                border-radius: 2px;
+                font-size: 1.2rem;
+            }
+        }
+    }
+    .coupon-check {
+        display: flex;
+        align-items: center;
+        margin: 10px 20px 10px 0;
+        pointer-events: none;
+    }
+    &.unusable {
+        margin-bottom: 50px;
+        .use-info {
+            position: absolute;
+            width: 100%;
+            padding: 9px 11px;
+            background: #fff;
+            color: #808080;
+            top: 100%;
+        }
+    }
+}
+
+
+/*—————————————— 结算页支付配送 —————————————————*/
+
+@mixin scroll-img ($width:65px) {
+    overflow-x: scroll;
+    padding-left: 10px;
+    padding: 10px 13px 0;
+    white-space: nowrap;
+    display: flex;
+    .img {
+        width: $width;
+        min-width: $width;
+        height: $width;
+        border: $border;
+        margin-right: 10px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+}

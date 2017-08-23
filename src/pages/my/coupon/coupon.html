@@ -10,14 +10,14 @@
         <ion-title>优惠券</ion-title>
     </ion-navbar>
     <ion-toolbar class="segment-style">
-        <ion-segment mode="md" [(ngModel)]="couponSelect">
-            <ion-segment-button value="unused">
+        <ion-segment mode="md" [(ngModel)]="couponSelect" (ionChange)="segmentChange()">
+            <ion-segment-button value="">
                 未使用
             </ion-segment-button>
-            <ion-segment-button value="stale">
+            <ion-segment-button value="over_time">
                 已过期
             </ion-segment-button>
-            <ion-segment-button value="used">
+            <ion-segment-button value="use">
                 已使用
             </ion-segment-button>
         </ion-segment>
@@ -29,60 +29,22 @@
     <ion-refresher (ionRefresh)="doRefresh($event)" pullMax="60">
         <ion-refresher-content refreshingSpinner="1" pullingIcon="0"></ion-refresher-content>
     </ion-refresher>
-    <div padding class="unused" *ngSwitchCase="'unused'">
-        <div class="no-coupon" *ngIf="unusedBonusData?.data.length==0">
+    <div [ngClass]="{unused:couponSelect=='',stale:couponSelect=='over_time',used:couponSelect=='use'}">
+        <div class="no-coupon" *ngIf="data?.data.length==0">
             <div class="img">
                 <img src="./assets/images/images/coupon_4_03.png" alt="">
             </div>
             <div class="title">您还没有优惠券哦！</div>
         </div>
-        <div class="item" *ngFor="let item of unusedBonusData?.data">
-            <div class="fore">
+        <div class="item" *ngFor="let item of data?.data">
+            <div class="head">
                 <div class="price">￥<span>{{item.type_money}}</span></div>
                 <div class="canbe">满{{item.min_goods_amount}}元可用</div>
             </div>
             <div class="main">
                 <div class="name"><span>{{item.type_name}}</span></div>
-                <div>(仅限购买隐形眼镜部分商品)!</div>
-                <div class="time">{{item.use_end_date}} 到期</div>
-            </div>
-        </div>
-    </div>
-    <div padding class="stale" *ngSwitchCase="'stale'">
-        <div class="no-coupon" *ngIf="staleBonusData?.data.length==0">
-            <div class="img">
-                <img src="./assets/images/images/coupon_4_03.png" alt="">
-            </div>
-            <div class="title">您还没有优惠券哦！</div>
-        </div>
-        <div class="item" *ngFor="let item of staleBonusData?.data">
-            <div class="fore">
-                <div class="price">￥<span>{{item.type_money}}</span></div>
-                <div class="canbe">满{{item.min_goods_amount}}元可用</div>
-            </div>
-            <div class="main">
-                <div class="name"><span>{{item.type_name}}</span></div>
-                <div>(仅限购买隐形眼镜部分商品)!</div>
-                <div class="time">{{item.use_end_date}} 到期</div>
-            </div>
-        </div>
-    </div>
-    <div padding class="used" *ngSwitchCase="'used'">
-        <div class="no-coupon" *ngIf="usedBonusData?.data.length==0">
-            <div class="img">
-                <img src="./assets/images/images/coupon_4_03.png" alt="">
-            </div>
-            <div class="title">您还没有优惠券哦！</div>
-        </div>
-        <div class="item" *ngFor="let item of usedBonusData?.data">
-            <div class="fore">
-                <div class="price">￥<span>{{item.type_money}}</span></div>
-                <div class="canbe">满{{item.min_goods_amount}}元可用</div>
-            </div>
-            <div class="main">
-                <div class="name"><span>{{item.type_name}}</span></div>
-                <div>(仅限购买隐形眼镜部分商品)!</div>
-                <div class="time">{{item.use_end_date}} 到期</div>
+                <div>{{item.suppliers_name}}</div>
+                <div class="time">{{item.use_end_date}}</div>
             </div>
         </div>
     </div>
