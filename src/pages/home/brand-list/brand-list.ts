@@ -190,18 +190,8 @@ export class BrandListPage {
 			}
 		}
 		if (this.mytool == 'sales_num') {
-			this.paramsData.order = 'sales_num';
-			this.shopPriceStatus = true;
-			this.allStatus = true;
-			if (this.salesNumStatus) {
-				this.paramsData.stort = 'ASC';
-				this.salesNumStatus = false;
-				this.getListData();
-			} else {
-				this.salesNumStatus = true;
-				this.paramsData.stort = 'DESC';
-				this.getListData();
-			}
+			this.paramsData.stort = 'DESC';
+			this.getListData();
 		}
 		if (this.mytool == 'shop_price') {
 			this.paramsData.order = 'shop_price';

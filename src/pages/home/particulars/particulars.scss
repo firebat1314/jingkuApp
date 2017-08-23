@@ -202,17 +202,17 @@ page-particulars {
     .store {
         .head {
             .coupon {
-                padding: 10px 0 0;
+                display: flex;
                 ion-note {
+                    padding: 10px 0 0;
                     display: flex;
                     align-items: center;
+                    margin-right: 4px;
                 }
             }
         }
         .data {
             display: flex;
-            padding: 10px;
-            font-size: 1.5rem;
             >div {
                 flex: 1;
                 color: #808080;
@@ -220,13 +220,27 @@ page-particulars {
                 flex-direction: column;
                 justify-content: center;
                 align-items: center;
-                border-right: 1px solid #808080;
+                border-right: 1px solid #f5f5f5;
+                font-size: 1.2rem;
                 &:last-child {
                     border: none;
                 }
+                .count {
+                    color: #333;
+                    font-size: initial;
+                }
             }
         }
-        .item {
+        .btn {
+            display: flex;
+            justify-content: center;
+            padding: 10px 0;
+            .button {
+                border-radius: 25px;
+            }
+        }
+        /* —————————————— 发票及店铺地址 ——————————————*/
+        /* .item {
             border-bottom: #e0e0e0 1px solid;
             >ion-icon:first-child {
                 margin-right: 4px;
@@ -236,14 +250,6 @@ page-particulars {
             }
             .item-inner {
                 border: 0;
-            }
-        }
-        .btn {
-            display: flex;
-            justify-content: center;
-            padding: 10px 0;
-            .button {
-                border-radius: 25px;
             }
         }
         .note-wrap {
@@ -257,7 +263,7 @@ page-particulars {
                     margin-right: 5px;
                 }
             }
-        }
+        } */
     }
     .group-and-recommend {
         .group,

@@ -111,6 +111,11 @@
                 <ion-note item-end *ngIf="noteStatus">填写备注信息</ion-note>
                 <ion-note item-end *ngIf="!noteStatus">已填写备注，点击查看</ion-note>
             </ion-item>
+            <ion-item>
+                <ion-label>余额支付</ion-label>
+                <!-- <h2 item-content>¥{{user_money}}</h2> -->
+                <ion-toggle mode="ios" #myToggle (ionChange)="changeSurplus(myToggle)"></ion-toggle>
+            </ion-item>
         </ion-list>
         <!--<ion-item mode="ios" no-lines margin-right detail-push>
             来镜加工
@@ -183,7 +188,7 @@
 </ion-content>
 
 <ion-footer>
-    <ion-toolbar no-padding *ngIf="data">
+    <ion-toolbar no-padding>
         <div class="pagefoot">
             <div class="left">
                 <span class="price">实付款: ¥{{data?.total?.amount_formated}}</span><span *ngIf="goodsType=='integral'">&nbsp;积分: <span class="price">{{data?.total?.integral}}</span></span>

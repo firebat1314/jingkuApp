@@ -8,23 +8,19 @@
 <ion-content>
     <!--<button ion-button navPop>返回</button>-->
     <ion-list>
-        <div *ngFor="let group of getChildrenCaCtegory;let gi = index;">
-            <div class="collapsible-header">
-                <ion-item padding-left tappable (click)="$event.stopPropagation();group.show=!group.show">
-                    <h2>{{group.cat_name}}</h2>
-                    <ion-icon tappable item-right *ngIf="group?.cat_list" color="colorsix" [ngClass]="{'rotate': group.show }" name="ios-arrow-down"></ion-icon>
+        <ng-container *ngFor="let group of getChildrenCaCtegory;let gi = index;">
+            <ion-item padding-left tappable (click)="$event.stopPropagation();group.show=!group.show">
+                <h2>{{group.cat_name}}</h2>
+                <ion-icon class="collapsible-header-icon" tappable item-right *ngIf="group?.cat_list" color="colorsix" [ngClass]="{'rotate': group.show }" name="ios-arrow-down"></ion-icon>
+            </ion-item>
+            <ion-list no-margin class="item-accordion" [ngStyle]="{'height':group.show?group?.cat_list?.length*50+50+'px':0}" [hidden]="!group.show">
+                <ion-item padding-left tappable (click)="onEvent(group.cat_id,$event)">
+                    <h3>全部</h3>
                 </ion-item>
-            </div>
-            <div class="item-accordion" [ngStyle]="{'height':group.show?group?.cat_list?.length*50+'px':0}" [hidden]="!group.show ">
-                <ion-list no-margin>
-                    <ion-item padding-left tappable (click)="onEvent(group.cat_id,$event)">
-                        <h3>全部</h3>
-                    </ion-item>
-                    <ion-item padding-left *ngFor="let item of group?.cat_list" tappable (click)="onEvent(item.cat_id,$event)">
-                        <h3>{{item.cat_name}}</h3>
-                    </ion-item>
-                </ion-list>
-            </div>
-        </div>
+                <ion-item padding-left *ngFor="let item of group?.cat_list" tappable (click)="onEvent(item.cat_id,$event)">
+                    <h3>{{item.cat_name}}</h3>
+                </ion-item>
+            </ion-list>
+        </ng-container>
     </ion-list>
 </ion-content>

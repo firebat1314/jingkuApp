@@ -1,14 +1,12 @@
 page-subnav-page2 {
-    .collapsible-header {
-        ion-icon {
-            transition: transform 100ms ease-in-out;
-            transform: rotate(0deg);
-            font-size: 2.3rem;
-            display: flex;
-            align-items: center;
-            &.rotate {
-                transform: rotate(180deg)
-            }
+    .collapsible-header-icon {
+        transition: transform 100ms ease-in-out;
+        transform: rotate(0deg);
+        font-size: 2.3rem;
+        display: flex;
+        align-items: center;
+        &.rotate {
+            transform: rotate(180deg)
         }
     }
     .item-accordion {
