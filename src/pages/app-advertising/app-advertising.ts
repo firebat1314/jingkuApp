@@ -15,7 +15,7 @@ import { Storage } from '@ionic/storage';
   templateUrl: 'app-advertising.html',
 })
 export class AppAdvertisingPage {
-  timer: number;
+  timer: any;
   timeDown: number = 3;
 
   constructor(

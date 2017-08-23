@@ -19,7 +19,7 @@ export class ClassifyPage {
   fore4: any;
   fore3: any;
   fore2: any;
-  timer: number;
+  timer: any;
   brandList: any;
   collectionList: any;//收藏商品列表
   collectionShop: any;//收藏店铺列表
