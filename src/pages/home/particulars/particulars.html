@@ -37,18 +37,18 @@
                 </div>
             </div>
             <!--<div class="price_time" *ngIf="getGoodsInfo?.promotion">
-            <div class="left">
-                <p [innerHtml]="getGoodsInfo?.promotion.title"></p>
-            </div>
-            <div class="right" [ngSwitch]="getGoodsInfo.promotion.type">
-                <p *ngSwitchCase="2">距离活动结束还剩：</p>
-                <p *ngSwitchCase="1">距离活动开始还剩：</p>
-                <p *ngSwitchDefault>暂无活动</p>
-                <p>
-                    <countdown [endDate]="getGoodsInfo.promotion.end_time_num"></countdown>
-                </p>
-            </div>
-        </div>-->
+                <div class="left">
+                    <p [innerHtml]="getGoodsInfo?.promotion.title"></p>
+                </div>
+                <div class="right" [ngSwitch]="getGoodsInfo.promotion.type">
+                    <p *ngSwitchCase="2">距离活动结束还剩：</p>
+                    <p *ngSwitchCase="1">距离活动开始还剩：</p>
+                    <p *ngSwitchDefault>暂无活动</p>
+                    <p>
+                        <countdown [endDate]="getGoodsInfo.promotion.end_time_num"></countdown>
+                    </p>
+                </div>
+            </div>-->
             <div class="fore info">
                 <div class="title">
                     {{getGoodsInfo?.data?.goods_name}}
@@ -82,40 +82,36 @@
             <div class="fore coupon">
                 <button ion-item *ngIf="getGoodsInfo?.bonus?.length" [disabled]="!getGoodsInfo?.bonus?.length" class="button-coupon" (click)="presentModal('优惠券')">
                 领券
-                <span *ngFor="let item of getGoodsInfo?.bonus" class="coupon-show">{{"满"+item.min_goods_amount.slice(1)+'减'+item.int_type_money}}</span>
-                <ion-note item-right>{{(!getGoodsInfo?.bonus?.length)?'无优惠券':'点击领取'}}</ion-note>
-            </button>
-                <button ion-item no-lines class="button-chuxiao" *ngIf="getGoodsInfo?.promotion?.length" [disabled]="!getGoodsInfo?.promotion?.length" (click)="presentModal('促销')">
-                促销
-                <div>
-                    <p class="list-show" *ngFor="let item of getGoodsInfo?.promotion"><span class="title">{{item.promotion_name}}</span><span [innerHtml]="item.title"></span></p>
-                </div>
-                <ion-note *ngIf="!getGoodsInfo?.promotion?.length" item-right>无促销</ion-note>
-            </button>
-            </div>
-            <div class="fore">
-                <div ion-item no-lines>
-                    发货地：{{getGoodsInfo?.supplier_info?.city_name}}
-                    <!--<ion-note>配送时间：预计7-14个工作日送达</ion-note>-->
-                </div>
-            </div>
-            <div class="fore will-address">
-                <button ion-item no-lines (click)="presentModal('配送地址')">
-                送至：{{region_name||'选择地址'}}<span class="nogoods"></span>
-            </button>
-                <!--<ion-item no-lines>
-                <ion-note>
-                    快递：该商品满99包邮，运费10元
-                </ion-note>
-            </ion-item>-->
+                    <span *ngFor="let item of getGoodsInfo?.bonus" class="coupon-show">{{"满"+item.min_goods_amount.slice(1)+'减'+item.int_type_money}}</span>
+                    <ion-note item-right>{{(!getGoodsInfo?.bonus?.length)?'无优惠券':'点击领取'}}</ion-note>
+                </button>
+                <button ion-item no-lines class="button-chuxiao" *ngIf="getGoodsInfo?.promotion?.length" [disabled]="!getGoodsInfo?.promotion?.length"
+                    (click)="presentModal('促销')">
+                    促销
+                    <div>
+                        <p class="list-show" *ngFor="let item of getGoodsInfo?.promotion"><span class="title">{{item.promotion_name}}</span><span [innerHtml]="item.title"></span></p>
+                    </div>
+                    <ion-note *ngIf="!getGoodsInfo?.promotion?.length" item-right>无促销</ion-note>
+                </button>
             </div>
             <div class="fore attribute">
                 <button ion-item (click)="presentModalAttr()" no-lines>
-                选择：规格、光度等
-            </button>
+                    选择：规格、光度等
+                </button>
+            </div>
+            <div class="fore">
+                <ion-item no-lines>
+                    发货地：{{getGoodsInfo?.supplier_info?.city_name}}
+                    <!--<ion-note>配送时间：预计7-14个工作日送达</ion-note>-->
+                </ion-item>
+            </div>
+            <div class="fore will-address">
+                <button ion-item no-lines (click)="presentModal('配送地址')">
+                    送至：{{region_name||'选择地址'}}<span class="nogoods"></span>
+                </button>
             </div>
             <div class="fore goods-service">
-                <button ion-item no-lines detail-none (click)="presentModal('商品服务保障')">
+                <button ion-item no-lines (click)="presentModal('商品服务保障')">
                     <ion-icon name="bao1" item-left></ion-icon>
                     商品服务保障
                 </button>
@@ -158,26 +154,26 @@
                         </p>
                     </ion-item>
                 </div>
-                <div class="data">
+                <div class="data" tappable (click)="goParticularsHome()">
                     <div>
-                        <span>{{getGoodsInfo?.supplier_info?.new_goods}}</span>
-                        <span>新品</span>
+                        <span class="count">{{getGoodsInfo?.supplier_info?.new_goods}}</span>
+                        <span class="txt">新品</span>
                     </div>
                     <div>
-                        <span>{{getGoodsInfo?.supplier_info?.promote_goods}}</span>
-                        <span>促销</span>
+                        <span class="count">{{getGoodsInfo?.supplier_info?.promote_goods}}</span>
+                        <span class="txt">促销</span>
                     </div>
                     <div>
-                        <span>{{getGoodsInfo?.supplier_info?.hot_goods}}</span>
-                        <span>热销</span>
+                        <span class="count">{{getGoodsInfo?.supplier_info?.hot_goods}}</span>
+                        <span class="txt">热销</span>
                     </div>
                 </div>
                 <div class="btn">
-                    <button (click)="goParticularsHome()" ion-button icon-right icon-left color="dark" outline>
-                    <ion-icon name="shop"></ion-icon>
-                    进入店铺
-                    <ion-icon name="ios-arrow-forward"></ion-icon>
-                </button>
+                    <button (click)="goParticularsHome()" ion-button icon-right icon-left color="gray" outline>
+                        <ion-icon name="shop"></ion-icon>
+                        进入店铺
+                        <ion-icon name="ios-arrow-forward"></ion-icon>
+                    </button>
                 </div>
                 <!-- <div ion-item detail-push *ngIf="getGoodsInfo?.supplier_info?.inv_type!=0">
                     <div class="note-wrap">
@@ -216,13 +212,13 @@
                 </div> -->
             </div>
             <!--————————————————————————套餐组合————————————————————————-->
-            <div class="fore group-and-recommend">
+            <div class="fore group-and-recommend" *ngIf="!(getCategoryRecommendGoodsHot?.length&&getGoodsInfo?.fittings?.length)">
                 <div class="segment-style">
                     <ion-segment [(ngModel)]="selectGroupRecommend" mode="md">
-                        <ion-segment-button value="group">
+                        <ion-segment-button value="group" *ngIf="getGoodsInfo?.fittings?.length">
                             套餐组合
                         </ion-segment-button>
-                        <ion-segment-button value="recommend">
+                        <ion-segment-button value="recommend" *ngIf="getCategoryRecommendGoodsHot?.length">
                             为你推荐
                         </ion-segment-button>
                     </ion-segment>

@@ -65,18 +65,23 @@ export class AllOrdersPage {
         }
       })
     } else if (this.pageIndex == 2) {
-      this.httpService.order({ page: 1, type: 'send' }).then((res) => {
-        if (res.status == 1) {
-          this.orderData = res;
-        }
-      })
-    } else if (this.pageIndex == 3) {
       this.httpService.order({ page: 1, type: 'collect' }).then((res) => {
         if (res.status == 1) {
           this.orderData = res;
         }
       })
+    } else if (this.pageIndex == 3) {
+      this.httpService.order({ page: 1, type: 'ok' }).then((res) => {
+        if (res.status == 1) {
+          this.orderData = res;
+        }
+      })
     } else if (this.pageIndex == 4) {
+      this.httpService.order({ page: 1, type: 'cancel' }).then((res) => {
+        if (res.status == 1) {
+          this.orderData = res;
+        }
+      })
     }
   }
 
@@ -100,10 +105,11 @@ export class AllOrdersPage {
     } else if (this.pageIndex == 1) {
       this.infiniteScrollq(infiniteScroll, 'unpay')
     } else if (this.pageIndex == 2) {
-      this.infiniteScrollq(infiniteScroll, 'send')
-    } else if (this.pageIndex == 3) {
       this.infiniteScrollq(infiniteScroll, 'collect')
+    } else if (this.pageIndex == 3) {
+      this.infiniteScrollq(infiniteScroll, 'ok')
     } else if (this.pageIndex == 4) {
+      this.infiniteScrollq(infiniteScroll, 'cancel')
     }
   }
   infiniteScrollq(infiniteScroll, type) {

@@ -442,4 +442,7 @@ export class HttpService {
   CatrgorySupplierInfo(data?: Object) {//7）服务单详情
     return this.http.post(this.ip + '/Category/get_supplier_info', data)
   }
+  changeSurplus(data?: Object) {//切换余额支付
+    return this.http.post(this.ip + '/Flow/change_surplus', data, true)
+  }
 }

@@ -39,10 +39,11 @@ export class ParticularsModalPage {
   }
   getPrivilege(is_get, type_id) {
     if (is_get == 1) {
-      this.native.showToast('已经领取过了');
+      this.native.showToast('已经领取过了哦');
     } else if (is_get == 0) {
       this.httpService.sendByUser({ type_id: type_id }).then((res) => {
-        this.getBonus.is_get = 1;
+        this.native.showToast('领取成功');
+        is_get = 1;
       });
     }
   }

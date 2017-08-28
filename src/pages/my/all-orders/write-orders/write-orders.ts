@@ -17,6 +17,7 @@ import { Native } from "../../../../providers/native";
   templateUrl: 'write-orders.html'
 })
 export class WriteOrdersPage {
+  user_money: any;
   noteStatus: boolean;
   paymentMothdID: any;
   paymentMothdDesc: any;
@@ -53,6 +54,10 @@ export class WriteOrdersPage {
   }
   ngOnInit() {
     this.getHttpData();
+    /* 获取余额 */
+    this.httpService.userInfo().then((res)=>{
+      if(res.status) this.user_money = res.data.user_money
+    })
   }
   getHttpData() {
     return new Promise((resolve, reject) => {
@@ -99,7 +104,7 @@ export class WriteOrdersPage {
               }
             }
           }
-          console.log(this.selectedBonus)
+          // console.log(this.selectedBonus)
           //note 是否填写
           this.noteStatus = JSON.stringify(this.data.suppliers_notes) == '[]';
         }
@@ -122,6 +127,13 @@ export class WriteOrdersPage {
         reject('error')
       }
     })
+  }
+  changeSurplus(toggle) {
+    if (toggle.checked) {
+      this.httpService.changeSurplus({ surplus: 1 }).then((res) => {});
+    } else {
+      this.httpService.changeSurplus({ surplus: 0 }).then((res) => {});
+    }
   }
   goPayAndShipPage() {
     if (!this.defaultShipping) {

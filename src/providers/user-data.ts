@@ -94,7 +94,6 @@ export class UserData {
         let msg: string = '参数错误';
         if (error.status == 401) {
             msg = '数据加载出错';
-            this.native.showToast('数据加载出错');
             if (error.statusText == 'Unauthorized') {
                 msg = '用户失效，请重新登陆';
                 this.storage.set('hasLoggedIn', false)

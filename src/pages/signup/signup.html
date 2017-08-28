@@ -34,7 +34,7 @@
             </ion-item>
             <ion-item>
                 <ion-label color="primary" fixed><span ion-text color="google">*</span>　短信验证</ion-label>
-                <ion-input required clearInput [(ngModel)]="signupInfo.Phone_code" name="Phone_code" type="number" placeholder="短信验证码"></ion-input>
+                <ion-input required clearInput [(ngModel)]="signupInfo.phone_code" name="Phone_code" type="number" placeholder="短信验证码"></ion-input>
                 <button ion-button outline round color="dark" item-right (click)="getMobileCode()" [disabled]="disabled">{{value}}</button>
             </ion-item>
             <ion-item>
