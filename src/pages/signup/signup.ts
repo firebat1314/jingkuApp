@@ -21,7 +21,7 @@ export class SignupPage {
     mobile_phone: '',
     password: '',
     cpassword: '',
-    Phone_code: '',
+    phone_code: '',
     str_verify: ''
   };
   constructor(
@@ -116,6 +116,8 @@ export class SignupPage {
     this.navCtrl.pop();
   }
   registerBtn() {
+    this.navCtrl.push('SignupSecondPage');
+    
     this.httpService.signupFirst(this.signupInfo).then(
       data => {
         if (data.status == 1) {
