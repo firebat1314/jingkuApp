@@ -4,7 +4,6 @@ import { NavController, NavParams, ModalController, Events, IonicPage, Content, 
 import { HttpService } from "../../../providers/http-service";
 import { Native } from "../../../providers/native";
 
-declare var Swiper: any;
 @IonicPage({
   segment: 'page-particulars/:goodsId'
 })
@@ -33,7 +32,7 @@ export class ParticularsPage {
   care: any;
 
   selectGroupRecommend = "group" || 'recommend';
-  selectPicArguments = "pic";
+  selectPicArguments = "pic";//arguments
 
   goodsId: number = this.navParams.get('goodsId');/*3994 5676*/;
   badgeCount: number;
@@ -108,7 +107,17 @@ export class ParticularsPage {
         }
         this.http.getCategoryRecommendGoodsHot({}).then((res) => {
           // console.log('为你推荐：', res)
-          if (res.status == 1) { this.getCategoryRecommendGoodsHot = res.data; }
+          if (res.status == 1) {
+            this.getCategoryRecommendGoodsHot = res.data;
+            /* 组合、推荐的默认标签 */
+            if (res.data.length == 0) {
+              this.selectGroupRecommend = "group";
+            }
+            /* 组合、推荐的默认标签 */
+            if (this.getGoodsInfo.fittings.length == 0) {
+              this.selectGroupRecommend = "recommend";
+            }
+          }
           if (finished) { finished() }
         })
       })

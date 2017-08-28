@@ -37,18 +37,18 @@
                 </div>
             </div>
             <!--<div class="price_time" *ngIf="getGoodsInfo?.promotion">
-            <div class="left">
-                <p [innerHtml]="getGoodsInfo?.promotion.title"></p>
-            </div>
-            <div class="right" [ngSwitch]="getGoodsInfo.promotion.type">
-                <p *ngSwitchCase="2">距离活动结束还剩：</p>
-                <p *ngSwitchCase="1">距离活动开始还剩：</p>
-                <p *ngSwitchDefault>暂无活动</p>
-                <p>
-                    <countdown [endDate]="getGoodsInfo.promotion.end_time_num"></countdown>
-                </p>
-            </div>
-        </div>-->
+                <div class="left">
+                    <p [innerHtml]="getGoodsInfo?.promotion.title"></p>
+                </div>
+                <div class="right" [ngSwitch]="getGoodsInfo.promotion.type">
+                    <p *ngSwitchCase="2">距离活动结束还剩：</p>
+                    <p *ngSwitchCase="1">距离活动开始还剩：</p>
+                    <p *ngSwitchDefault>暂无活动</p>
+                    <p>
+                        <countdown [endDate]="getGoodsInfo.promotion.end_time_num"></countdown>
+                    </p>
+                </div>
+            </div>-->
             <div class="fore info">
                 <div class="title">
                     {{getGoodsInfo?.data?.goods_name}}
@@ -85,7 +85,8 @@
                     <span *ngFor="let item of getGoodsInfo?.bonus" class="coupon-show">{{"满"+item.min_goods_amount.slice(1)+'减'+item.int_type_money}}</span>
                     <ion-note item-right>{{(!getGoodsInfo?.bonus?.length)?'无优惠券':'点击领取'}}</ion-note>
                 </button>
-                <button ion-item no-lines class="button-chuxiao" *ngIf="getGoodsInfo?.promotion?.length" [disabled]="!getGoodsInfo?.promotion?.length" (click)="presentModal('促销')">
+                <button ion-item no-lines class="button-chuxiao" *ngIf="getGoodsInfo?.promotion?.length" [disabled]="!getGoodsInfo?.promotion?.length"
+                    (click)="presentModal('促销')">
                     促销
                     <div>
                         <p class="list-show" *ngFor="let item of getGoodsInfo?.promotion"><span class="title">{{item.promotion_name}}</span><span [innerHtml]="item.title"></span></p>
@@ -211,13 +212,13 @@
                 </div> -->
             </div>
             <!--————————————————————————套餐组合————————————————————————-->
-            <div class="fore group-and-recommend">
+            <div class="fore group-and-recommend" *ngIf="!(getCategoryRecommendGoodsHot?.length&&getGoodsInfo?.fittings?.length)">
                 <div class="segment-style">
                     <ion-segment [(ngModel)]="selectGroupRecommend" mode="md">
-                        <ion-segment-button value="group">
+                        <ion-segment-button value="group" *ngIf="getGoodsInfo?.fittings?.length">
                             套餐组合
                         </ion-segment-button>
-                        <ion-segment-button value="recommend">
+                        <ion-segment-button value="recommend" *ngIf="getCategoryRecommendGoodsHot?.length">
                             为你推荐
                         </ion-segment-button>
                     </ion-segment>
