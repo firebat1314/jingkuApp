@@ -74,29 +74,29 @@ export class SignupSecondPage {
     this.navCtrl.push('LoginPage')
   }
   openFile() {
-    this.native.getPictureByPhotoLibrary().then((res) => {
+    /* this.native.getPictureByPhotoLibrary().then((res) => {
       this.formData.zhizhao = 'data:image/jpeg;base64,' + res;
-    }) 
-    /* var reader = new FileReader();
+    }) */
+    var reader = new FileReader();
     //获取文件
-    var file = document.getElementById("file").files[0];
+    var file = document.getElementById("file")['files'][0];
     var imageType = /^image\//;
     //是否是图片
-    if (!imageType.test(file.type)) {
-      alert("请选择图片！");
+    if (!imageType.test(file['type'])) {
+      this.native.showToast("请选择图片！");
       return;
     }
     //转码
     //读取完成
-    reader.onload = function (e) {
+    reader.onload =  (e)=> {
       //获取图片dom
       var img = document.getElementById("preview");
       //图片路径设置为读取的图片
-      var img_ava = e.target.result;
-      img.src = img_ava;
+      var img_ava = e.target['result'];
+      img['src'] = img_ava;
       this.formData.zhizhao = img_ava;
     };
-    reader.readAsDataURL(file); */
+    reader.readAsDataURL(file);
   }
   onSubmit() {
     this.httpService.signupTwo(this.formData).then((res) => {
@@ -107,7 +107,7 @@ export class SignupSecondPage {
     })
   }
   goHelperDetailsPage() {
-    this.navCtrl.push('HelperDetailsPage', { item: { article_id: 36 } })
+    this.navCtrl.push('HelperDetailsPage', { item: { article_id: 35 } })
   }
 
 }
