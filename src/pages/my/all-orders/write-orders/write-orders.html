@@ -190,7 +190,7 @@
     <ion-toolbar no-padding>
         <div class="pagefoot">
             <div class="left">
-                <span class="price">实付款: ¥{{data?.total?.amount_formated}}</span><span *ngIf="goodsType=='integral'">&nbsp;积分: <span class="price">{{data?.total?.integral}}</span></span>
+                <span class="price">实付款: ¥{{data?.total?.amount_formated||'0.00'}}</span><span *ngIf="goodsType=='integral'">&nbsp;积分: <span class="price">{{data?.total?.integral}}</span></span>
             </div>
             <div class="right">
                 <div ion-button no-margin full large color="dark" tappable (click)="onsubmit()">提交订单</div>

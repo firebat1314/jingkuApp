@@ -13,7 +13,7 @@ import { Injectable, Pipe } from '@angular/core';
 export class PhoneNumberFilter {
   transform(value, args) {
     if(value){
-      value = value.substring(0,3)+"****"+value.substring(9,11);  
+      value = value.substring(0,3)+"****"+value.substring(7,11);  
       value.toLowerCase();
     }
     return value

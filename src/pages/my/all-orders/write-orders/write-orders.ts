@@ -56,62 +56,62 @@ export class WriteOrdersPage {
   ngOnInit() {
     this.getHttpData();
     /* 获取余额 */
-    this.httpService.userInfo().then((res)=>{
-      if(res.status) this.user_money = res.data.user_money
+    this.httpService.userInfo().then((res) => {
+      if (res.status) this.user_money = res.data.user_money
     })
   }
   getHttpData() {
-    return new Promise((resolve, reject) => {
-      this.httpService.checkout().then((res) => {
-        resolve();
-        if (res && res.status == 1) {
-          this.data = res;
-          //选中地址
-          if (this.data.consignee_list.length == 0) {
-            this.defaultShipping = null;
-          } else {
-            for (let i = 0; i < this.data.consignee_list.length; i++) {
-              if (this.data.consignee_list[i].selected == 1) {
-                this.defaultShipping = this.data.consignee_list[i]
-              }
+    return this.httpService.checkout().then((res) => {
+      if (res.status == 0) {
+        this.navCtrl.pop();
+      }
+      if (res.status == 1) {
+        this.data = res;
+        //选中地址
+        if (this.data.consignee_list.length == 0) {
+          this.defaultShipping = null;
+        } else {
+          for (let i = 0; i < this.data.consignee_list.length; i++) {
+            if (this.data.consignee_list[i].selected == 1) {
+              this.defaultShipping = this.data.consignee_list[i]
             }
           }
-          //选中支付方式
-          for (let i = 0; i < this.data.payment_list.length; i++) {
-            if (this.data.payment_list[i].selected == 1) {
-              this.paymentMothdName = this.data.payment_list[i].pay_name;
-              this.paymentMothdID = this.data.payment_list[i].pay_id;
-              this.paymentMothdDesc = this.data.payment_list[i].pay_desc;
-            }
-          }
-          //选中的快递方式
-          var aShip = new Array();
-          for (let i = 0, store = this.data.cart_goods_list; i < store.length; i++) {
-            for (let j = 0, ship = store[i].shipping; j < ship.length; j++) {
-              if (ship[j].selected == 1) {
-                if (aShip.indexOf(ship[j].shipping_name) == -1) {
-                  aShip.push(ship[j].shipping_name)
-                }
-              }
-            }
-          }
-          this.selectedShip = aShip.join('+');
-          aShip = null;
-          //已选择优惠券 yes_bonus
-          this.selectedBonus = [];
-          for (let i = 0, item = this.data.cart_goods_list; i < item.length; i++) {
-            for (let j = 0, bonus = item[i].use_bonus; j < bonus.length; j++) {
-              if (bonus[j].selected == 1) {
-                this.selectedBonus.push(bonus[j])
-              }
-            }
-          }
-          // console.log(this.selectedBonus)
-          //note 是否填写
-          this.noteStatus = JSON.stringify(this.data.suppliers_notes) == '[]';
         }
-      })
-    });
+        //选中支付方式
+        for (let i = 0; i < this.data.payment_list.length; i++) {
+          if (this.data.payment_list[i].selected == 1) {
+            this.paymentMothdName = this.data.payment_list[i].pay_name;
+            this.paymentMothdID = this.data.payment_list[i].pay_id;
+            this.paymentMothdDesc = this.data.payment_list[i].pay_desc;
+          }
+        }
+        //选中的快递方式
+        var aShip = new Array();
+        for (let i = 0, store = this.data.cart_goods_list; i < store.length; i++) {
+          for (let j = 0, ship = store[i].shipping; j < ship.length; j++) {
+            if (ship[j].selected == 1) {
+              if (aShip.indexOf(ship[j].shipping_name) == -1) {
+                aShip.push(ship[j].shipping_name)
+              }
+            }
+          }
+        }
+        this.selectedShip = aShip.join('+');
+        aShip = null;
+        //已选择优惠券 yes_bonus
+        this.selectedBonus = [];
+        for (let i = 0, item = this.data.cart_goods_list; i < item.length; i++) {
+          for (let j = 0, bonus = item[i].use_bonus; j < bonus.length; j++) {
+            if (bonus[j].selected == 1) {
+              this.selectedBonus.push(bonus[j])
+            }
+          }
+        }
+        // console.log(this.selectedBonus)
+        //note 是否填写
+        this.noteStatus = JSON.stringify(this.data.suppliers_notes) == '[]';
+      }
+    })
   }
   checkShippingAddress() {
     this.navCtrl.push('ShippingAddressPage')
@@ -132,9 +132,9 @@ export class WriteOrdersPage {
   }
   changeSurplus(toggle) {
     if (toggle.checked) {
-      this.httpService.changeSurplus({ surplus: 1 }).then((res) => {});
+      this.httpService.changeSurplus({ surplus: 1 }).then((res) => { });
     } else {
-      this.httpService.changeSurplus({ surplus: 0 }).then((res) => {});
+      this.httpService.changeSurplus({ surplus: 0 }).then((res) => { });
     }
   }
   goPayAndShipPage() {
