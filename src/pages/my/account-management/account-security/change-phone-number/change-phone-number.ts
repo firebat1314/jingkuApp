@@ -65,10 +65,10 @@ export class ChangePhoneNumberPage {
 
   getSkey() {
     this.httpService.getVerificationImg({
-      fontSize: '12',
-      length: '4',
-      useNoise: 'false',
-      codeSet: '0',
+      fontSize: 14,
+      length: 4,
+      useNoise: 0,
+      codeSet: 0,
     }).then((data) => {
       if (data.status == 1) {
         this.skey = data.data.skey;
@@ -79,10 +79,10 @@ export class ChangePhoneNumberPage {
   }
   getImg() {
     this.httpService.getVerificationImg({
-      fontSize: '12',
-      length: '4',
-      useNoise: 'false',
-      codeSet: '0',
+      fontSize: 14,
+      length: 4,
+      useNoise: 0,
+      codeSet: 0,
       skey: this.skey
     }).then((data) => {
       if (data.status == 1) {
