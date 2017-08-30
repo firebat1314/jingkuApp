@@ -1,0 +1,83 @@
+<!--
+  Generated template for the BrandPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>品牌</ion-title>
+  </ion-navbar>
+    <ion-toolbar *ngIf="classSelect!='care'" class="mysearchbar">
+      <ion-searchbar [(ngModel)]="searchkey" placeholder="搜索品牌、分类或者关注" mode="ios" debounce="500" animated (keypress)="searchbar($event)"
+        type="search"></ion-searchbar>
+    </ion-toolbar>
+
+  
+</ion-header>
+
+<ion-content>
+  <ion-refresher (ionRefresh)="doRefresh($event)" pullMax="60">
+    <ion-refresher-content refreshingSpinner="1" pullingIcon="0"></ion-refresher-content>
+  </ion-refresher>
+  <!-- <div class="top-scrollbar">
+        <div *ngFor="let item of getCategorys" tappable (click)="toBrandList(item.cat_id)">
+            <div><img img-lazy-load="{{item.thumb}}" alt="{{item.cat_name}}"></div>
+            <span>{{item.cat_name}}</span>
+        </div>
+    </div>
+    <div class="background"></div> -->
+  <div class="brand-content">
+    <div class="fore1-jinxuan fore" padding>
+      <div class="title">
+        <span class="txt">精选品牌</span>
+      </div>
+      <div class="body">
+        <div tappable [ads-click]="item.link_type" *ngFor="let item of fore2">
+          <img img-lazy-load="{{item.ad_img}}" alt="">
+          <h3>{{item.ad_name}}</h3>
+          <span>{{item.link_man}}</span>
+        </div>
+      </div>
+    </div>
+    <!-- <div class="fore-huanxin fore" padding>
+          <div class="title">
+              <span class="txt">店铺换新</span>
+          </div>
+          <div class="body">
+              <div *ngFor="let item of fore3">
+                  <img tappable [ads-click]="item.link_type" img-lazy-load="{{item.ad_img}}" alt="">
+              </div>
+          </div>
+      </div> -->
+    <div class="fore-remen fore" padding>
+      <div class="title">
+        <span class="txt">热门品牌</span>
+        <!--<span class="more" (click)="goToMoreBrand()">更多&gt;</span>-->
+      </div>
+      <div class="body">
+        <div tappable [ads-click]="item.link_type" *ngFor="let item of fore4"><img img-lazy-load="{{item.ad_img}}" alt=""></div>
+      </div>
+    </div>
+    <div class="fore-yinxing fore" *ngFor="let item of brandList?.data;let i = index;">
+      <div class="title">
+        <span class="txt">{{item.cat_name}}</span>
+        <span class="more" *ngIf="item.ads.length>9" tappable (click)="goToMoreBrand(item.ads)">更多&gt;</span>
+      </div>
+      <div class="body">
+        <!--<div class="top"><img src="./assets/icon/images/brand_1_13.jpg" alt=""></div>-->
+        <div class="top" *ngIf="brandList?.cate_ads&&brandList?.cate_ads[i]">
+          <img tappable [ads-click]="brandList?.cate_ads[i]?.link_type" img-lazy-load="{{brandList?.cate_ads[i]?.ad_img}}" alt="">
+        </div>
+        <div class="main">
+          <ng-container *ngFor="let img of item.ads;let i = index;">
+            <div tappable [ads-click]="img.link_type" *ngIf="i<9">
+              <img img-lazy-load="{{img.ad_img}}" alt="">
+            </div>
+          </ng-container>
+        </div>
+      </div>
+    </div>
+  </div>
+</ion-content>

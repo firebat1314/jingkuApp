@@ -233,10 +233,13 @@ page-particulars {
         }
         .btn {
             display: flex;
-            justify-content: center;
+            justify-content: space-around;
             padding: 10px 0;
             .button {
-                border-radius: 25px;
+                margin-left: 7px;
+                margin-right: 7px;
+                width: 43%;
+                max-width: 170px;
             }
         }
         /* —————————————— 发票及店铺地址 ——————————————*/

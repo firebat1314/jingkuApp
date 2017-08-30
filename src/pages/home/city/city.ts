@@ -38,7 +38,7 @@ export class CityPage {
     this.httpService.editArea({ id: region.region_id }).then((res) => {
       if (res.status == 1) {
         this.events.publish('home:updataArea');
-        this.events.publish('car:updata');
+        this.events.publish('car:update');
         this.native.showToast('切换至' + region.region_name);
         this.navCtrl.popToRoot();
       }

@@ -8,7 +8,8 @@
 
     <ion-navbar>
         <ion-title class="mysearchbar">
-            <ion-searchbar [(ngModel)]="myHomeSearch" (ionInput)="onInput($event)" placeholder="搜索店铺商品" animated="false" spellcheck="true" type="search" debounce="1000" mode="ios"></ion-searchbar>
+            <ion-searchbar [(ngModel)]="myHomeSearch" (ionInput)="onInput($event)" placeholder="搜索店铺商品" animated="false" spellcheck="true"
+                type="search" debounce="1000" mode="ios"></ion-searchbar>
         </ion-title>
         <ion-buttons end>
             <button ion-button clear icon-only icon-left (click)="listStyleflag=!listStyleflag">
@@ -200,15 +201,21 @@
                     <p>即将结束</p>
                     <span>以下商品今日23.59结束促销</span>
                 </div>
-                <div class="cuXiao-time-goods-content" *ngFor="let item of cxdata?.end_list">
-                    <div class="time-goods-img">
-                        <img img-lazy-load="{{item.goods_img}}" alt="">
+                <ng-container *ngFor="let item of cxdata?.end_list;let i = index;">
+                    <div class="cuXiao-time-goods-content" *ngIf="show?i<cxdata?.end_list?.length:i<1" tappable navPush="ParticularsPage" [navParams]="{goodsId:item.goods_id}" >
+                        <div class="time-goods-img">
+                            <img img-lazy-load="{{item.goods_img}}" alt="">
+                        </div>
+                        <div class="right">
+                            <p title="{{item.goods_name}}">{{item.goods_name}}</p>
+                            <span>{{item.promote_price}}</span>
+                            <!-- <div class="button">限购</div> -->
+                        </div>
                     </div>
-                    <div class="right">
-                        <p title="{{item.goods_name}}">{{item.goods_name}}</p>
-                        <span>{{item.promote_price}}</span>
-                        <!-- <div class="button">限购</div> -->
-                    </div>
+                </ng-container>
+                <div class="show-more" *ngIf="cxdata?.end_list?.length>1" tappable (click)="show=!show">
+                    查看更多&nbsp;
+                    <ion-icon [name]="show?'ios-arrow-up':'ios-arrow-down'"></ion-icon>
                 </div>
             </div>
             <div class="cuXiao-tabs">
@@ -263,6 +270,11 @@
             </div>
         </div>
     </ion-list>
+
+    <ion-fab right bottom tappable (click)="myContent.scrollToTop()">
+        <button ion-fab color="dark" mini #goBackTop goBackTop></button>
+    </ion-fab>
+
 </ion-content>
 <ion-footer>
     <div class="shop-footer">

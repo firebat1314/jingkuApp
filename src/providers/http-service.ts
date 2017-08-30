@@ -155,7 +155,7 @@ export class HttpService {
     return this.http.get(this.ip + '/Goods/get_zhujing', data)
   }
   getAttrList(data?: Object) {//如果返回的(good_type) 商品类型是goods再调用接口如下
-    return this.http.get(this.ip + '/Goods/get_attr_list', data, true)
+    return this.http.get(this.ip + '/Goods/get_attr_list', data)
   }
   addToCartSpecJp(data?: Object) {//镜片商品加入购物车
     return this.http.post(this.ip + '/Goods/add_to_cart_spec_jp', data)

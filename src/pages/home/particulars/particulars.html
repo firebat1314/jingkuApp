@@ -169,10 +169,15 @@
                     </div>
                 </div>
                 <div class="btn">
-                    <button (click)="goParticularsHome()" ion-button icon-right icon-left color="gray" outline>
+                    <button (click)="goParticularsHome()" ion-button  icon-left color="gray" outline>
                         <ion-icon name="shop"></ion-icon>
                         进入店铺
-                        <ion-icon name="ios-arrow-forward"></ion-icon>
+                        <!-- <ion-icon name="ios-arrow-forward"></ion-icon> -->
+                    </button>
+                    <button (click)="openCallNumber()" ion-button  icon-left color="gray" outline>
+                        <ion-icon name="md-contacts"></ion-icon>
+                        联系卖家
+                        <!-- <ion-icon name="ios-arrow-forward"></ion-icon> -->
                     </button>
                 </div>
                 <!-- <div ion-item detail-push *ngIf="getGoodsInfo?.supplier_info?.inv_type!=0">
@@ -277,7 +282,7 @@
                         上拉查看详情
                     </ion-item>-->
                         <div padding *ngIf="!getGoodsInfo?.data?.goods_desc">无商品详情</div>
-                        <div class="desc" [innerHTML]="getGoodsInfo?.data?.goods_desc"></div>
+                        <div class="desc" [innerHTML]="goods_desc"></div>
                     </div>
                     <div class="arguments" *ngSwitchCase="'arguments'">
                         <div padding *ngIf="!getGoodsInfo?.parameter">该商品暂无参数</div>
@@ -299,9 +304,9 @@
         <button ion-fab color="dark" mini goBackTop></button>
     </ion-fab>
 
-    <!--     <ion-infinite-scroll (ionInfinite)="doInfinite($event)">
-        <ion-infinite-scroll-content loadingText="加载更多...">></ion-infinite-scroll-content>
-    </ion-infinite-scroll> -->
+    <ion-infinite-scroll threshold="0%" (ionInfinite)="doInfinite($event)">
+        <ion-infinite-scroll-content loadingText="加载详情…">></ion-infinite-scroll-content>
+    </ion-infinite-scroll>
 </ion-content>
 <ion-footer>
     <div class="main">

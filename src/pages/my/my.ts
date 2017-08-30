@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController, ModalController, ViewController, Events, IonicPage } from 'ionic-angular';
+import { NavController, ModalController, ViewController, Events, IonicPage, App } from 'ionic-angular';
 import { HttpService } from "../../providers/http-service";
 
 import { Native } from "../../providers/native";
@@ -34,7 +34,8 @@ export class MyPage {
     public modalCtrl: ModalController,
     public httpService: HttpService,
     public events: Events,
-    public native: Native
+    public native: Native,
+    public app: App,
   ) {
     /* this.httpService.getStorage('username').then((username) => {
       this.httpService.getStorage(username).then((userInfo) => {
@@ -44,7 +45,7 @@ export class MyPage {
     /* this.events.subscribe('avatar:update', () => {
       this.httpResult();
     }) */
-    this.events.subscribe('my:refresh', () => {
+    this.events.subscribe('my:update', () => {
       this.httpResult();
     })
   }
@@ -109,5 +110,14 @@ export class MyPage {
   goAccountManagementPage(event) {
     event.stopPropagation();
     this.navCtrl.push('AccountManagementPage', { avatar: this.userInfo.data.avatar, username: this.userInfo.data.username });
+  }
+  signOut() {
+    this.native.openAlertBox('确定退出登陆？', () => {
+      this.httpService.logout().then((res) => {
+        this.app.getRootNav().setRoot('LoginPage', {}, { animate: true });
+        this.httpService.setStorage('hasLoggedIn', false);
+        this.httpService.removeStorage("token");
+      })
+    })
   }
 }

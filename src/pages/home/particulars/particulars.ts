@@ -42,6 +42,10 @@ export class ParticularsPage {
 
   //第一次进入页面
   firstViewInit: boolean = false;
+
+  //图文详情
+  goods_desc: string = '';
+
   constructor(
     public navCtrl: NavController,
     public navParams: NavParams,
@@ -50,10 +54,8 @@ export class ParticularsPage {
     public native: Native,
     private events: Events
   ) {
-    this.events.subscribe('car:goodsCount', () => {
-      this.getCarCount();
-    })
-    this.events.subscribe('car:updata', () => {
+    console.log("商品ID:", this.goodsId);
+    this.events.subscribe('car:update', () => {
       this.getCarCount();
     })
   }
@@ -70,7 +72,6 @@ export class ParticularsPage {
   }
   ionViewDidLoad() {
     console.log('ionViewDidLoad ParticularsPage');
-    console.log("商品ID:", this.goodsId);
   }
   /*   ionViewCanEnter() {
      if(this.firstViewInit){
@@ -87,8 +88,11 @@ export class ParticularsPage {
        return false;
      });
    }  */
+  /**
+   * 获取购物车数量
+   */
   getCarCount() {
-    this.http.getFlowGoods().then((res) => {//获取购物车数量
+    this.http.getFlowGoods().then((res) => {
       this.badgeCount = res.goods_count;
     })
   }
@@ -139,8 +143,11 @@ export class ParticularsPage {
       }, 500);
     });
   }
-  doInfinite($event) {
-
+  doInfinite(infiniteScroll) {
+    setTimeout(() => {
+      infiniteScroll.enable(false);
+      this.goods_desc = this.getGoodsInfo.data.goods_desc;
+    }, 600);
   }
   presentModal(str) {
     let modal = this.modalCtrl.create('ParticularsModalPage', {
@@ -240,7 +247,7 @@ export class ParticularsPage {
             console.log('普通商品加入购物车：', res)
             if (res.status == 1) {
               this.native.showToast('已经加入购物车');
-              this.events.publish('car:updata');
+              this.events.publish('car:update');
             }
           })
         })
@@ -251,7 +258,7 @@ export class ParticularsPage {
           console.log('镜片商品加入购物车：', res)
           if (res.status == 1) {
             this.native.showToast('已经加入购物车')
-            this.events.publish('car:updata');
+            this.events.publish('car:update');
           }
         })
       }

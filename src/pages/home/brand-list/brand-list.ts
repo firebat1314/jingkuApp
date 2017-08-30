@@ -69,7 +69,7 @@ export class BrandListPage {
 			this.paramsData.stort = 'DESC';
 			this.getListData();
 		});
-		this.events.subscribe('car:updata', () => {
+		this.events.subscribe('car:update', () => {
 			this.getCarNumver();
 		});
 	}

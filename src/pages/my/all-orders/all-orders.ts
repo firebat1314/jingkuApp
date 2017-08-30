@@ -31,10 +31,12 @@ export class AllOrdersPage {
   }
   ngAfterViewInit() {
     /* 回到顶部按钮 */
-    this.fabButton.setElementClass('fab-button-out',true);
+    this.fabButton.setElementClass('fab-button-out', true);
     this.content.ionScroll.subscribe((d) => {
       this.fabButton.setElementClass("fab-button-in", d.scrollTop >= d.contentHeight);
     });
+    this.mytabs.slides = ['全部', '待付款', '待收货', '已完成', '已取消'];
+    this.mytabs.pageNumber = 5;
     //进入页面默认选中标签
     if (this.navParams.get('index')) {
       this.pageIndex = this.navParams.get('index');
@@ -167,7 +169,7 @@ export class AllOrdersPage {
       })
     })
   }
-  goParticularsHomePage(id){
-    this.navCtrl.push('ParticularsHomePage',{suppliersId:id})
+  goParticularsHomePage(id) {
+    this.navCtrl.push('ParticularsHomePage', { suppliersId: id })
   }
 }

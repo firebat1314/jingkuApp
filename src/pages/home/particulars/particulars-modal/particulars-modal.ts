@@ -37,13 +37,15 @@ export class ParticularsModalPage {
   dredgeMoreCity() {
     this.dismiss('goDredgeMoreCityPage');
   }
-  getPrivilege(is_get, type_id) {
-    if (is_get == 1) {
+  getPrivilege(item, event) {
+    if (item.is_get == 1) {
       this.native.showToast('已经领取过了哦');
-    } else if (is_get == 0) {
-      this.httpService.sendByUser({ type_id: type_id }).then((res) => {
-        this.native.showToast('领取成功');
-        is_get = 1;
+    } else if (item.is_get == 0) {
+      this.httpService.sendByUser({ type_id: item.type_id }).then((res) => {
+        if (res.status) {
+          this.native.showToast('领取成功');
+          this.getBonus[event].is_get = 1;
+        }
       });
     }
   }

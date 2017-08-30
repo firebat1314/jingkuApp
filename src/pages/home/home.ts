@@ -185,6 +185,9 @@ export class HomePage {
       }
     })
   } */
+  goMessagePage(){
+    this.navCtrl.push('MessagePage')
+  }
   presentPopover(myEvent) {
     let popover = this.popoverCtrl.create('PopoverHomePage', {}, { cssClass: '' });
     popover.present({
@@ -197,11 +200,12 @@ export class HomePage {
     })
   }
   goClassPage(value) {
-    this.navCtrl.popToRoot();
+    this.navCtrl.push('BrandPage')
+    /*this.navCtrl.popToRoot();
     this.navCtrl.parent.select(1);
     setTimeout(() => {
       this.events.publish('classify:selectSegment', value)
-    }, 300);
+    }, 300); */
   }
   goCityPage() {
     this.navCtrl.push('CityPage', { areaList: this.areaList })

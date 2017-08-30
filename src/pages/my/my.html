@@ -53,17 +53,21 @@
                     <div class="text">待付款</div>
                 </div>
                 <div tappable [navPush]="AllOrdersPage" [navParams]="{index:2}">
-                    <div class="number">{{usercount?.data?.send||0}}</div>
-                    <div class="text">待发货</div>
-                </div>
-                <div tappable [navPush]="AllOrdersPage" [navParams]="{index:3}">
                     <div class="number">{{usercount?.data?.collect||0}}</div>
                     <div class="text">待收货</div>
                 </div>
-                <div tappable (click)="goRepairReturnPage()">
+                <div tappable [navPush]="AllOrdersPage" [navParams]="{index:3}">
+                    <div class="number">{{usercount?.data?.ok||0}}</div>
+                    <div class="text">已完成</div>
+                </div>
+                <div tappable [navPush]="AllOrdersPage" [navParams]="{index:4}">
+                    <div class="number">{{usercount?.data?.cancel||0}}</div>
+                    <div class="text">已取消</div>
+                </div>
+                <!-- <div tappable (click)="goRepairReturnPage()">
                     <div class="number">{{usercount?.data?.return||0}}</div>
                     <div class="text">返修退换</div>
-                </div>
+                </div> -->
                 <div tappable [navPush]="AllOrdersPage" [navParams]="{index:0}">
                     <div class="number">
                         <img src="./assets/icon/images/user_center_5.png" class="allorder-icon">
@@ -136,4 +140,5 @@
             <img src="./assets/icon/images/user_cener_1_38.png" alt="" item-left class="myitem-icon"> 帮助中心
         </ion-item>
     </ion-list>
+    <button large ion-button block pull color="light" (click)="signOut()" margin-vertical >退出登录</button>
 </ion-content>

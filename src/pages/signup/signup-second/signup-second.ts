@@ -87,7 +87,7 @@ export class SignupSecondPage {
     })
   }
   goHelperDetailsPage() {
-    this.navCtrl.push('HelperDetailsPage',{item:{article_id:36}})
+    this.navCtrl.push('HelperDetailsPage',{item:{article_id:35}})
   }
 
 }
