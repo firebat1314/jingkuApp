@@ -1,0 +1,126 @@
+page-brand {
+    .fore {
+        background: #fff;
+        margin-bottom: 10px;
+        padding: 10px;
+        &:last-child {
+            margin-bottom: 0;
+        }
+    }
+    .title {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 16px;
+        .txt {
+            border-left: 5px solid #333;
+            font-size: 1.6rem;
+            padding-left: 10px;
+            font-weight: 500;
+            display: block;
+        }
+        .more {
+            color: #666;
+            font-size: 12px;
+        }
+    }
+    @mixin body1 {
+        min-width: 241px;
+        margin-right: 1.6rem;
+        &:last-child {
+            margin-right: 0;
+        }
+        img {
+            border-radius: 3px;
+        }
+        border-radius: 3px;
+        span {
+            color: #808080;
+        }
+    }
+    @mixin body2 {
+        overflow: hidden;
+        display: flex;
+        flex-wrap: wrap;
+        >div {
+            width: 32.66%;
+            margin-right: 1%;
+            &:nth-child(3n) {
+                margin-right: 0;
+            }
+            margin-bottom: 0.2rem;
+            img {
+                width: 100%;
+            }
+        }
+    }
+    .top-scrollbar {
+        background: #fff;
+        overflow-x: scroll;
+        display: flex;
+        padding: 10px 0;
+        border-bottom: 1px solid #e6e6e6;
+        >div {
+            min-width: 84px;
+            font-size: 1.3rem;
+            text-align: center;
+            margin-right: 1.6rem;
+            height: 100%;
+            img {
+                height: 28px;
+                margin: 5px auto;
+            }
+        }
+    }
+    .fore1-jinxuan {
+        .body {
+            display: flex;
+            overflow-x: scroll;
+            >div {
+                @include body1;
+                h3 {
+                    color: #666;
+                    margin-top: 1.2rem;
+                    margin-bottom: 0.5rem;
+                }
+            }
+        }
+    }
+    .fore-huanxin {
+        .body {
+            display: flex;
+            overflow-x: scroll;
+            >div {
+                @include body1
+            }
+        }
+    }
+    .fore-remen {
+        .body {
+            @include body2
+        }
+    }
+    .fore-yinxing {
+        .body {
+            .top {
+                img {
+                    width: 100%;
+                    margin-bottom: 4px;
+                }
+            }
+            .main {
+                @include body2;
+            }
+        }
+    }
+    .fore-meitong {
+        .top {
+            img {
+                width: 100%;
+            }
+        }
+        .main {
+            @include body2
+        }
+    }
+}

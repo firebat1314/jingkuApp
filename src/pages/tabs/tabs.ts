@@ -22,7 +22,7 @@ export class TabsPage {
     public httpService: HttpService,
   ) {
     this.getCarCount();
-    this.events.subscribe('car:goodsCount', () => {
+    this.events.subscribe('car:update', () => {
       this.getCarCount();
     })
   }

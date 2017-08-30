@@ -8,9 +8,14 @@
         </ion-buttons>
         <ion-searchbar placeholder="搜索镜库商品/店铺" mode="ios"></ion-searchbar>
         <div class="mark-searchbar" tappable navPush="SearchPage"></div>
-        <ion-buttons right tappable (click)="presentPopover($event)">
+        <!-- <ion-buttons right tappable (click)="presentPopover($event)">
             <button ion-button clear icon-only icon-left>
                <ion-icon name="ios-add-circle-outline"></ion-icon>
+            </button>
+        </ion-buttons> -->
+        <ion-buttons right>
+            <button ion-button clear icon-only icon-left right (click)="goMessagePage()">
+                <ion-icon name="mess"></ion-icon>
             </button>
         </ion-buttons>
     </ion-navbar>

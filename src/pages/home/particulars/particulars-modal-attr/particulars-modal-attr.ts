@@ -57,7 +57,7 @@ export class ParticularsModalAttrPage {
 		private events: Events
 	) { }
 	ionViewDidLoad() {
-		console.log('ionViewDidLoad ParticularsModalJingjiaPage');
+		console.log('ionViewDidLoad ParticularsModalAttrPage');
 	}
 	ngOnInit() {
 		if (this.type == 'goods') {
@@ -65,7 +65,7 @@ export class ParticularsModalAttrPage {
 				if (this.data.data[i].is_main == 1) {
 					this.mainAttrs = this.data.data[i];
 					console.log(this.mainAttrs)
-					this.checkMainAttrId = this.data.data[i].values[0].id;
+					this.checkMainAttrId = this.data.data[i].values[0].id || null;
 					this.checkMainAttrNum = this.data.data[i].values[0].number || 1;
 				}
 			}
@@ -146,20 +146,20 @@ export class ParticularsModalAttrPage {
 		this.qiujingArr = [];
 		this.zhujingArr = [];
 		this.zhouweiArr = [];
-		var spcArr = [];
-		for (let i = 0; i < this.data.specification.length; i++) {
-			spcArr.push([]);
-		}
+		this.spcArr = [];
 		for (let i = 0; i < this.goods.length; i++) {
 			this.memberArr.push(this.goods[i].number);
 			this.qiujingArr.push(this.goods[i].qiujing);
 			this.zhujingArr.push(this.goods[i].zhujing);
 			this.zhouweiArr.push(this.goods[i].zhouwei);
+			this.spcArr.push([]);
 			for (var j = 0; j < this.data.specification.length; j++) {
-				spcArr[j].push(this.goods[i][this.data.specification[j].name])
+				var attr = this.goods[i][this.data.specification[j].name];
+				if (attr) {
+					this.spcArr[i].push(this.goods[i][this.data.specification[j].name])
+				}
 			}
 		}
-		this.spcArr = spcArr;
 	}
 	/*镜片商品添加删除 项目*/
 	increasedJP() {
@@ -203,7 +203,7 @@ export class ParticularsModalAttrPage {
 			}).then((res) => {
 				if (res && res.status == 1) {
 					this.native.showToast('添加成功')
-					this.events.publish('car:updata');//更新购物车
+					this.events.publish('car:update');//更新购物车
 					this.viewCtrl.dismiss(goCart);
 				}
 			}).catch((res) => {
@@ -237,7 +237,7 @@ export class ParticularsModalAttrPage {
 				console.log(res)
 				if (res && res.status == 1) {
 					this.native.showToast('添加成功')
-					this.events.publish('car:updata');//更新购物车
+					this.events.publish('car:update');//更新购物车
 					this.viewCtrl.dismiss(goCart);
 				}
 			}).catch((res) => {

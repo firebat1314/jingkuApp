@@ -12,18 +12,22 @@
                 <ion-icon name="ios-arrow-back"></ion-icon>
             </button>
         </ion-buttons>
-        <ion-segment mode="ios" [(ngModel)]="classSelect" class="top-segment" (ionChange)="clickSegment()" color="primary">
+        
+        <ion-title>
+            分类
+        </ion-title>
+
+        <!-- <ion-segment mode="ios" [(ngModel)]="classSelect" class="top-segment" (ionChange)="clickSegment()" color="primary">
             <ion-segment-button value="classify">
                 分类
             </ion-segment-button>
             <ion-segment-button value="brand">
                 品牌
             </ion-segment-button>
-            <!-- 
             <ion-segment-button value="care">
                 关注
-            </ion-segment-button> -->
-        </ion-segment>
+            </ion-segment-button>
+        </ion-segment> -->
         <ion-buttons class="editBtn" *ngIf="classSelect=='care'" right>
             <button ion-button clear (click)="checkBoxToggle()">
                 <span *ngIf="!showCheckBox">编辑</span>
@@ -51,7 +55,7 @@
     <ion-refresher (ionRefresh)="doRefresh($event)" pullMax="60" *ngIf="classSelect!='classify'">
         <ion-refresher-content refreshingSpinner="1" pullingIcon="0"></ion-refresher-content>
     </ion-refresher>
-    <div *ngSwitchCase="'classify'" class="classify-wrap">
+    <div class="classify-wrap">
         <ion-nav [root]="root" swipeBackEnabled="true" #myNav></ion-nav>
     </div>
     <div *ngSwitchCase="'brand'" class="brand-wrap">

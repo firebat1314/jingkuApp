@@ -33,30 +33,28 @@ export class CarPage {
     public httpService: HttpService,
     public events: Events,
   ) {
-    this.events.subscribe('car:updata', () => {
+    this.events.subscribe('car:update', () => {
       this.getFlowGoods();
-      this.content.resize();
-      this.isEdit = false;
     })
   }
   ionViewDidLoad() {
     console.log('ionViewDidLoad CarPage');
   }
   ngOnDestroy() {
-    this.events.unsubscribe('car:updata');
+    this.events.unsubscribe('car:update');
   }
   ngOnInit() {
     this.getFlowGoods();
   }
-  getFlowGoods(finished?) {
+  getFlowGoods() {
     this.goodsIdArray = [];
-    this.httpService.getFlowGoods().then((res) => {
+    return this.httpService.getFlowGoods().then((res) => {
       if (res.status == 1) {
         this.carDetails = res;
         this.content.resize();
+        this.isEdit = false;
         this.events.publish('car:goodsCount', res.total.real_goods_count);//购物车商品数量
       }
-      if (finished) { finished(); }
     })
   }
   /*checkAll() {
@@ -79,7 +77,7 @@ export class CarPage {
    * @param refresher 
    */
   doRefresh(refresher) {
-    this.getFlowGoods(function () {
+    this.getFlowGoods().then(() => {
       setTimeout(() => {
         refresher.complete();
       }, 500);
@@ -105,21 +103,21 @@ export class CarPage {
    * @param item 单个商品
    */
   numberChangeI(event, item) {
-    this.native.showLoading('');
+    this.native.showLoading();
     this.httpService.changeNumCart({ rec_id: item.rec_id, number: event }).then((res) => {
       if (res.status == 1) {
         item.inputLock = false;
       } else {
         item.inputLock = true;
       }
-      this.getFlowGoods(() => {
+    }).then(() => {
+      this.getFlowGoods().then(() => {
         this.native.hideLoading();
       });
     });
     // this.calculateTotal();
   }
   checkGoods(id, type, is_select) {
-    console.log(id, type, is_select)
     this.httpService.selectChangePrice({ id: id, type: type, is_select: is_select }).then((res) => {
       this.getFlowGoods();
     })
@@ -133,7 +131,7 @@ export class CarPage {
     }
     console.log("goodsIdArray", this.goodsIdArray)
   }
-
+  /* 关注商品 */
   beCareFor() {
     if (this.goodsIdArray.length == 0) {
       this.native.showToast('请选择需要关注商品');
@@ -148,6 +146,7 @@ export class CarPage {
       }
     })
   }
+  /* 删除购物车商品 */
   dropCartGoodsSelect() {
     if (this.goodsIdArray.length == 0) {
       this.native.showToast('请选择需要删除商品');
@@ -164,6 +163,7 @@ export class CarPage {
       })
     })
   }
+  /* 去结算 */
   goAccounts() {
     var arr = []
     for (let i = 0, item = this.carDetails.suppliers_goods_list; i < item.length; i++) {
@@ -179,11 +179,12 @@ export class CarPage {
       }
     })
   }
+  /* 转跳商品详情 */
   goParticularPage(id) {
     this.navCtrl.push('ParticularsPage', { goodsId: id })
   }
-  /*——————————————————————————————————————————————————————————————————*/
-  /*  calculateTotal() {//购物车总价格
+  /*————————————————————————————— 购物车总价格计算 —————————————————————————————————————*/
+  /*  calculateTotal() {
       let total = 0;
       let number = 0;
       for (let i = 0, item = this.carDetails.suppliers_goods_list; i < item.length; i++) {

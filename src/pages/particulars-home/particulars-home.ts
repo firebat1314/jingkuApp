@@ -1,5 +1,5 @@
-import { Component, Renderer, ElementRef } from '@angular/core';
-import { IonicPage, NavController, NavParams, Events, PopoverController } from 'ionic-angular';
+import { Component, Renderer, ElementRef, ViewChild } from '@angular/core';
+import { IonicPage, NavController, NavParams, Events, PopoverController, Content, FabButton } from 'ionic-angular';
 import { HttpService } from "../../providers/http-service";
 import { Native } from "../../providers/native";
 
@@ -42,6 +42,9 @@ export class ParticularsHomePage {
   shopdata: any;
   classShop: any = "shopHome";
   defaultSelect: string = this.navParams.get('type');
+  
+  @ViewChild(Content) content: Content;
+  @ViewChild('goBackTop') fabButton: FabButton;
 
   constructor(
     public navCtrl: NavController,
@@ -71,6 +74,7 @@ export class ParticularsHomePage {
       this.paramsData.stort = 'DESC';
       this.getAllData();
     }); */
+    /* 更新店铺收藏的状态 */
     this.events.subscribe('particulars-home-details:update-collect', () => {
       this.getShopData();
     })
@@ -88,6 +92,12 @@ export class ParticularsHomePage {
     this.events.unsubscribe('user:filterParams');//防止多次订阅事件
     this.events.unsubscribe('particulars-home-details:update-collect');//防止多次订阅事件
   }
+  ngAfterViewInit() {
+    this.fabButton.setElementClass('fab-button-out', true);
+    this.content.ionScroll.subscribe((d) => {
+      this.fabButton.setElementClass("fab-button-in", d.scrollTop >= d.contentHeight);
+    });
+  }
   getHomeData() {
     this.httpService.suppliersIndex({ suppliers_id: this.suppliers_id }).then((res) => {
       if (res.status == 1) {
@@ -103,7 +113,7 @@ export class ParticularsHomePage {
     })
   }
   openPopover(myEvent) {
-    console.log(this.alldata.suppliers_cat_list.length==0)
+    // console.log(this.alldata.suppliers_cat_list.length==0)
     if (this.alldata.suppliers_cat_list.length==0) {
       this.native.showToast('该店铺暂无热门分类哦', null, false);
       return;
@@ -162,7 +172,6 @@ export class ParticularsHomePage {
     this.httpService.suppliersCategoryGoods({ suppliers_id: this.suppliers_id, new: newType }).then((res) => {
       if (res.status == 1) {
         this.newdata = res;
-        console.log(res);
       }
     })
   }
@@ -195,7 +204,6 @@ export class ParticularsHomePage {
             this.className = 'cuXiao-tabs-item actived';
             that.typeNumber = this.index;
             that.changeType(that.typeNumber);
-            //console.log(1);
             //console.log(this.value);
             //that.classShop =String(this.value)  
           }
@@ -225,7 +233,6 @@ export class ParticularsHomePage {
       if (page < this.alldata.pages) {
         this.httpService.suppliersCategoryGoods(Object.assign(this.paramsData, { page: ++this.alldata.page, suppliers_id: this.suppliers_id })).then((res) => {
           if (res.status == 1) {
-            console.log(res);
             this.alldata.page = res.page;
             this.alldata.goods = this.alldata.goods.concat(res.goods);
             //Array.prototype.push.apply(this.alldata.goods, res.goods);

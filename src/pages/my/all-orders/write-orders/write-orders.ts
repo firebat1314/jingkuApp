@@ -177,8 +177,8 @@ export class WriteOrdersPage {
             this.native.showToast(res.info);
             this.navCtrl.push('AllOrdersPage');
             this.navCtrl.remove(1);
-            this.events.publish('my:refresh');
-            this.events.publish('car:updata');
+            this.events.publish('my:update');
+            this.events.publish('car:update');
             // this.viewCtrl.dismiss();
           }
         })
@@ -191,8 +191,8 @@ export class WriteOrdersPage {
         }
       }).then((res) => {
         if (res.status == 1) {
-          this.events.publish('my:refresh');
-          this.events.publish('car:updata');
+          this.events.publish('my:update');
+          this.events.publish('car:update');
           if (this.paymentMothdID == 6) {
             this.httpService.pay({ order_id: res.order_id }).then((res) => {
               if (res.status == 1) {
