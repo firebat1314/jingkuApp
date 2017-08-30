@@ -86,10 +86,9 @@
             <ion-item mode="ios" detail-push tappable (click)="goPayAndShipPage()" style="border-top:none;">
                 支付配送
                 <ion-note item-end text-end class="payment-note">
-                    <ng-container *ngFor="let item of data?.payment_list">
-                        <div *ngIf="item.selected">{{item.pay_name}}</div>
-                    </ng-container>
+                    <div>{{paymentMothdName}}</div>
                     <div>{{selectedShip}}</div>
+                    <div *ngIf="(!selectedShip&&!paymentMothdName)">请选择</div>
                 </ion-note>
             </ion-item>
             <ion-item mode="ios" tappable (click)="goUsecouponPage()" detail-push class="coupon">
