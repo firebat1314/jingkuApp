@@ -42,10 +42,10 @@ export class SignupPage {
   private skey;
   private getSkey() {
     this.httpService.getVerificationImg({
-      fontSize: '12',
-      length: '4',
-      useNoise: 'false',
-      codeSet: '0',
+      fontSize: 14,
+      length: 4,
+      useNoise: 0,
+      codeSet: 0,
     }).then(
       data => {
         console.log(data);
@@ -57,10 +57,10 @@ export class SignupPage {
   }
   private getImg() {
     this.httpService.getVerificationImg({
-      fontSize: '12',
-      length: '4',
-      useNoise: 'false',
-      codeSet: '0',
+      fontSize: 14,
+      length: 4,
+      useNoise: 0,
+      codeSet: 0,
       skey: this.skey
     }).then(
       data => {
