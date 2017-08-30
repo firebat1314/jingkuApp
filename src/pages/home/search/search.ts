@@ -25,9 +25,10 @@ export class SearchPage {
     private httpService: HttpService
   ) { }
   ngAfterViewInit() {
+    this.mySearchBar.animated = true;
     setTimeout(() => {
       this.mySearchBar.setFocus();
-    }, 500);
+    }, 800);
   }
   ionViewDidLoad() {
     console.log('ionViewDidLoad SearchPage');

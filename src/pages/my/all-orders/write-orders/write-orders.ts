@@ -17,6 +17,7 @@ import { Native } from "../../../../providers/native";
   templateUrl: 'write-orders.html'
 })
 export class WriteOrdersPage {
+  paymentMothdName: any;
   user_money: any;
   noteStatus: boolean;
   paymentMothdID: any;
@@ -78,8 +79,9 @@ export class WriteOrdersPage {
           //选中支付方式
           for (let i = 0; i < this.data.payment_list.length; i++) {
             if (this.data.payment_list[i].selected == 1) {
-              this.paymentMothdID = this.data.payment_list[i].pay_id
-              this.paymentMothdDesc = this.data.payment_list[i].pay_desc
+              this.paymentMothdName = this.data.payment_list[i].pay_name;
+              this.paymentMothdID = this.data.payment_list[i].pay_id;
+              this.paymentMothdDesc = this.data.payment_list[i].pay_desc;
             }
           }
           //选中的快递方式

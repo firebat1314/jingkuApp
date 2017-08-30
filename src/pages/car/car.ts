@@ -53,25 +53,9 @@ export class CarPage {
         this.carDetails = res;
         this.content.resize();
         this.isEdit = false;
-        this.events.publish('car:goodsCount', res.total.real_goods_count);//购物车商品数量
       }
     })
   }
-  /*checkAll() {
-    this.checkedArray = [];//刷新完成之后清空选中商品
-    this.allGoodsId = [];
-    this.goodsIdArray = [];
-
-    this.carDetails.selected = true;
-    for (let i = 0, item = this.carDetails.suppliers_goods_list; i < item.length; i++) {
-      item[i].selected = true;
-      for (let k = 0; k < item[i].goods_list.length; k++) {
-        item[i].goods_list[k].selected = true;
-        this.checkGoods(item[i].goods_list[k])
-        this.allGoodsId.push(item[i].goods_list[k].goods_id)
-      }
-    }
-  }*/
   /**
    * 下拉刷新
    * @param refresher 
@@ -82,6 +66,7 @@ export class CarPage {
         refresher.complete();
       }, 500);
     })
+    this.events.publish('car:update');
   }
   /**
    * 滑动删除商品
@@ -91,8 +76,8 @@ export class CarPage {
     this.native.openAlertBox("确认删除该商品吗？", () => {
       this.httpService.dropCartGoods({ rec_id: item3.rec_id }).then((res) => {
         if (res.status == 1) {
-          this.getFlowGoods();
           this.native.showToast('删除成功');
+          this.events.publish('car:update');
         }
       })
     })
@@ -157,7 +142,7 @@ export class CarPage {
         console.log(res);
         if (res.status == 1) {
           this.native.showToast('删除成功')
-          this.getFlowGoods();
+          this.events.publish('car:update');
           this.isEdit = false;
         }
       })
