@@ -13,7 +13,7 @@
 </ion-header>
 
 
-<ion-content>
+<ion-content #myContent>
     <div class="search" [ngClass]="{'active':showSearch}">
         <div class="head">
             <ion-item mode="ios" no-lines (click)="showSearch=!showSearch">
@@ -65,10 +65,8 @@
             {{data?.page}}/{{data?.pages}}
         </button>
     </ion-fab>
-    <ion-fab right bottom (click)="scrollToTop()">
-        <button ion-fab color="dark" mini>
-            <img width="100%" src="./assets/icon/gotop.png" alt="">
-        </button>
+    <ion-fab right bottom (click)="myContent.scrollToTop()">
+        <button ion-fab color="dark" mini goBackTop></button>
     </ion-fab>
 
     <ion-infinite-scroll (ionInfinite)="doInfinite($event)" *ngIf="flag">

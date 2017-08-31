@@ -71,8 +71,7 @@ ion-thumbnail {
 //ParallaxHeader 指令样式
 .header-image {
     img {
-        display: block;
-        // width: 100%;
+        display: block; // width: 100%;
     }
 }
 
@@ -354,6 +353,15 @@ ion-modal {
     .bar-buttons-md[right] {
         position: absolute;
         right: 0;
+    }
+}
+
+
+/*———————————————————————————————————— popover ————————————————————————————————————*/
+
+.popover-menu {
+    .popover-content{
+        width: 100px;
     }
 }
 

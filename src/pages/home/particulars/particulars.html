@@ -8,6 +8,11 @@
 
     <ion-navbar>
         <ion-title>商品详情</ion-title>
+        <ion-buttons right>
+            <button ion-button clear icon-only icon-left right open-more="MoreMenuPage" >
+                <ion-icon name="ios-more"></ion-icon>
+            </button>
+        </ion-buttons>
     </ion-navbar>
 
 </ion-header>
@@ -17,7 +22,7 @@
     <ion-refresher (ionRefresh)="doRefresh($event)" pullMax="60">
         <ion-refresher-content refreshingSpinner="1" pullingIcon="0"></ion-refresher-content>
     </ion-refresher>
-    <div *ngIf="getGoodsInfo">
+    <ng-container *ngIf="getGoodsInfo?.data">
         <div class="imgs header-image">
             <swiper [data]="getGoodsInfo?.gallery"></swiper>
         </div>
@@ -169,12 +174,12 @@
                     </div>
                 </div>
                 <div class="btn">
-                    <button (click)="goParticularsHome()" ion-button  icon-left color="gray" outline>
+                    <button (click)="goParticularsHome()" ion-button icon-left color="gray" outline>
                         <ion-icon name="shop"></ion-icon>
                         进入店铺
                         <!-- <ion-icon name="ios-arrow-forward"></ion-icon> -->
                     </button>
-                    <button (click)="openCallNumber()" ion-button  icon-left color="gray" outline>
+                    <button (click)="openCallNumber()" ion-button icon-left color="gray" outline>
                         <ion-icon name="md-contacts"></ion-icon>
                         联系卖家
                         <!-- <ion-icon name="ios-arrow-forward"></ion-icon> -->
@@ -295,7 +300,7 @@
                 </div>
             </div>
         </div>
-    </div>
+    </ng-container>
 
     <!--<div class="warning-show">
         <span>请用电脑下单！</span>

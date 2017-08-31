@@ -69,7 +69,7 @@ export class InvoiceQualificationPage {
       if (res.status == 1) {
         this.native.showToast(res.info);
         this.navCtrl.pop();
-        this.events.publish('peceipt:update');
+        this.events.publish('receipt:update');
       }
     })
   }

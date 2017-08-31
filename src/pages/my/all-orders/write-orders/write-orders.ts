@@ -130,11 +130,16 @@ export class WriteOrdersPage {
       }
     })
   }
+  myToggle: boolean = false;
   changeSurplus(toggle) {
-    if (toggle.checked) {
-      this.httpService.changeSurplus({ surplus: 1 }).then((res) => { });
+    if (toggle) {
+      this.httpService.changeSurplus({ surplus: 1 }).then((res) => { }).then(() => {
+        this.getHttpData()
+      });
     } else {
-      this.httpService.changeSurplus({ surplus: 0 }).then((res) => { });
+      this.httpService.changeSurplus({ surplus: 0 }).then((res) => { }).then(() => {
+        this.getHttpData()
+      });
     }
   }
   goPayAndShipPage() {
@@ -167,8 +172,8 @@ export class WriteOrdersPage {
         suppliers.push(i)
       }
     }
-    if (this.paymentMothdID == 3) {
-      this.native.openAlertBox('确认余额支付', () => {
+    if (this.myToggle) {
+      this.native.openAlertBox('使用余额支付', () => {
         this.httpService.submitOrder({
           notes: {
             note: commentArr,
@@ -176,8 +181,16 @@ export class WriteOrdersPage {
           }
         }).then((res) => {
           if (res.status == 1) {
-            this.native.showToast(res.info);
-            this.navCtrl.push('AllOrdersPage');
+            if (res.is_pay) {
+              this.navCtrl.push('AllOrdersPage');
+            } else {
+              this.native.showToast('需要组合支付');
+              this.httpService.pay({ order_id: res.order_id }).then((res) => {
+                if (res.status == 1) {
+                  this.navCtrl.push('PaymentMethodPage', { data: res });
+                }
+              })
+            }
             this.navCtrl.remove(1);
             this.events.publish('my:update');
             this.events.publish('car:update');

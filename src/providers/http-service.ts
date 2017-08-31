@@ -208,7 +208,7 @@ export class HttpService {
   delNoShop(data?: Object) {//删除未选中的商品
     return this.http.post(this.ip + '/Flow/del_no_shop', data, true)
   }
-  writeNotes(data?: Object){//提交订单
+  writeNotes(data?: Object) {//提交订单
     return this.http.post(this.ip + '/Flow/write_notes', data, true)
   }
   submitOrder(data?: Object) {//提交订单
@@ -301,9 +301,6 @@ export class HttpService {
   batchGoodsCollect(data?: Object) {//批量关注
     return this.http.post(this.ip + '/Flow/batch_goods_collect', data)
   }
-  invoice(data?: Object) {//发票索取列表
-    return this.http.get(this.ip + '/User/invoice', data)
-  }
   addinv(data?: Object) {//选择供货商后选择订单开票
     return this.http.get(this.ip + '/User/addinv', data, true)
   }
@@ -313,11 +310,14 @@ export class HttpService {
   insertInv(data?: Object) {//插入发票信息
     return this.http.post(this.ip + '/User/insert_inv', data, true)
   }
+  invoice(data?: Object) {//发票索取列表
+    return this.http.get(this.ip + '/User/invoice', data, true)
+  }
   invList(data?: Object) {//发票列表
-    return this.http.get(this.ip + '/User/inv_list', data)
+    return this.http.get(this.ip + '/User/inv_list', data, true)
   }
   invRole(data?: Object) {//发票信息管理
-    return this.http.get(this.ip + '/User/inv_role', data)
+    return this.http.get(this.ip + '/User/inv_role', data, true)
   }
   updateInv(data?: Object) {//编辑发票资质
     return this.http.get(this.ip + '/User/update_inv', data)

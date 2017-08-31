@@ -96,14 +96,14 @@ export class ParticularsPage {
       this.badgeCount = res.goods_count;
     })
   }
-  getHttpDetails(finished?) {
+  getHttpDetails() {
     return new Promise((resolve, reject) => {
       this.native.showLoading();
       this.http.goodsInfos({ goods_id: this.goodsId }).then((res) => {
         // console.log("商品详情信息", res);
         this.native.hideLoading();
+        resolve(res.status);
         if (res.status == 1) {
-          resolve(res.status);
           this.getGoodsInfo = res;
           this.getRegionName(res);
         } else {
@@ -122,7 +122,6 @@ export class ParticularsPage {
               this.selectGroupRecommend = "recommend";
             }
           }
-          if (finished) { finished() }
         })
       })
     });
@@ -137,7 +136,7 @@ export class ParticularsPage {
   /*下拉刷新*/
   doRefresh(refresher) {
     this.getCarCount();
-    this.getHttpDetails(() => {
+    this.getHttpDetails().then(() => {
       setTimeout(() => {
         refresher.complete();
       }, 500);

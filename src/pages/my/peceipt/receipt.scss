@@ -1,4 +1,4 @@
-page-peceipt {
+page-receipt {
     .receiptSskFor {
         min-height: 100%;
         .an-invoice {
@@ -43,6 +43,7 @@ page-peceipt {
         }
     }
     .receiptList {
+        min-height: 100%;
         .head {
             background: #fff;
             margin-bottom: 10px;
@@ -63,12 +64,11 @@ page-peceipt {
                 }
             }
         }
-        .fore.time {
+        .line.time {
             display: flex;
             align-items: center;
-            padding-left: 46px;
             .name {
-                width: 10rem;
+                width: 8rem;
                 color: #333333;
             }
             .show {
@@ -84,6 +84,7 @@ page-peceipt {
                     position: relative;
                     margin-right: 10px;
                     padding-left: 5px;
+                    font-size: 1.2rem;
                     .btn {
                         height: calc(100% + 2px);
                         position: absolute;
@@ -107,7 +108,7 @@ page-peceipt {
             background: #fff;
             margin-bottom: 10px;
         }
-        .fore {
+        .line {
             padding: 18px 0 18px 30px;
             font-size: 1.6rem;
             border-bottom: map-get($colors, border) 1px solid;
@@ -117,16 +118,18 @@ page-peceipt {
             }
             .name {
                 display: inline-block;
-                width: 12rem;
+                width: 11rem;
             }
             .value {
                 @include ellipsis_1;
                 color: #999;
                 font-size: 1.4rem;
+                margin-bottom: 0;
             }
         }
     }
     .receiptInfo {
+        min-height: 100%;
         .head {
             padding: 10px;
             margin-bottom: 10px;

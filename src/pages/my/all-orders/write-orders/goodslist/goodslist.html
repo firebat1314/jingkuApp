@@ -40,11 +40,11 @@
                                 <div *ngFor="let attr2 of attr?.attrs;">{{attr2}}</div>
                             </div>
                             <div class="bottom">
-                                <div>单价：{{attr.goods_price}}</div>
+                                <!-- <div>总价：{{attr.formated_subtotal}}</div> -->
                             </div>
                         </div>
                         <div class="right">
-                            <div class="price color">¥{{attr.formated_subtotal}}</div>
+                            <div class="price color">{{attr.goods_price}}</div>
                             <div class="count">x{{attr.goods_number}}</div>
                         </div>
                     </div>

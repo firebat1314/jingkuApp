@@ -11,7 +11,7 @@ import { Native } from "../../providers/native";
 })
 export class MyPage {
   SettingPage: any = 'SettingPage';
-  PeceiptPage: any = 'PeceiptPage';
+  ReceiptPage: any = 'ReceiptPage';
   AllOrdersPage: any = 'AllOrdersPage';
   AccountAssetPage: any = 'AccountAssetPage';
   AccountAreaApplicationPage: any = 'AccountAreaApplicationPage';

@@ -29,7 +29,8 @@ export class SignupSecondPage {
     province: '',
     city: '',
     district: '',
-    zhizhao: ''
+    zhizhao: '',
+    parent_id:''
   }
   constructor(
     public navCtrl: NavController,

@@ -10,11 +10,11 @@ import { ImageLoaderConfig } from "ionic-image-loader/dist";
 
 /*import { ParticularsPage } from '../pages/home/particulars/particulars'
 import { DredgeMoreCityPage } from '../pages/home/particulars/dredge-more-city/dredge-more-city'
-import { PeceiptPage } from "../pages/my/peceipt/peceipt";
+import { ReceiptPage } from "../pages/my/receipt/receipt";
 import { SettingPage } from "../pages/my/setting/setting";
 import { AccountManagementPage } from "../pages/my/account-management/account-management";
 import { BrandListPage } from "../pages/home/brand-list/brand-list";
-import { InvoiceQualificationPage } from "../pages/my/peceipt/invoice-qualification/invoice-qualification";
+import { InvoiceQualificationPage } from "../pages/my/receipt/invoice-qualification/invoice-qualification";
 import { CouponPage } from "../pages/my/coupon/coupon";
 import { AccountJifenPage } from "../pages/my/account-jifen/account-jifen";
 import { AllOrdersPage } from "../pages/my/all-orders/all-orders";

@@ -4,7 +4,7 @@ import { Events, AlertController } from "ionic-angular";
 import { Storage } from '@ionic/storage';
 
 // Add the RxJS Observable operators.
-import '../app/rxjs-operators';
+import './rxjs-operators';
 
 import { Native } from '../providers/native';
 
@@ -28,7 +28,7 @@ export class UserData {
             headers.append('Authorization', 'Basic ' + btoa(res + ':'));
             let options = new RequestOptions({ headers: headers });
             return this.http.get(url + this.toQueryString(paramObj), options)
-                .timeout(5000)
+                .timeout(7000)
                 .toPromise()
                 .then(res => this.handleSuccess(res.json(), showLoading))
                 .catch(error => this.handleError(error, showLoading));
@@ -44,7 +44,7 @@ export class UserData {
             headers.append('Authorization', 'Basic ' + btoa(res + ':'));
             let options = new RequestOptions({ headers: headers });
             return this.http.post(url, paramObj, options)
-                .timeout(5000)
+                .timeout(7000)
                 .toPromise()
                 .then(res => this.handleSuccess(res.json(), showLoading))
                 .catch(error => this.handleError(error, showLoading));
@@ -59,7 +59,7 @@ export class UserData {
             headers.append('Authorization', 'Basic ' + btoa(res + ':'));
             let options = new RequestOptions({ headers: headers });
             return this.http.post(url, this.toBodyString(paramObj), options)
-                .timeout(5000)
+                .timeout(7000)
                 .toPromise()
                 .then(res => this.handleSuccess(res.json(), showLoading))
                 .catch(error => this.handleError(error, showLoading));
@@ -95,7 +95,6 @@ export class UserData {
         if (error.status == 401) {
             msg = '数据加载出错';
             if (error.statusText == 'Unauthorized') {
-                msg = '用户失效，请重新登陆';
                 this.storage.set('hasLoggedIn', false)
                 if (this.showToastTime) {
                     this.myAlert(msg);
@@ -106,15 +105,15 @@ export class UserData {
             }
         }
         if (error.status == 404) {
-            msg = '服务器出错了，404';
             this.native.showToast('服务器出错了，404');
         }
 
         if (error.status == 0) {
-            msg = '请检查网络连接';
-            // this.native.showToast('请检查网络连接');
+            this.native.showToast('请检查网络连接');
         }
-        console.log(msg);
+        if(error.name == "TimeoutError"){
+            this.native.showToast('连接超时，请稍后再试');
+        }
         console.log(error);
 
         return { status: 0, info: msg };
