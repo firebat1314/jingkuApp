@@ -139,7 +139,7 @@ export class ParticularsHomePage {
     if (is_collect) {
       this.httpService.CollectShop({ id: this.suppliers_id, type: 0 }).then((res) => {
         if (res.status) {
-          this.native.showToast('取消关注', null, false);
+          this.native.showToast('取消收藏', null, false);
           this.getShopData();
         }
       })
