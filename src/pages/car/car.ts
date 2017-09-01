@@ -9,7 +9,9 @@ import { HttpService } from "../../providers/http-service";
   See http://ionicframework.com/docs/v2/components/#navigation for more info on
   Ionic pages and navigation.
 */
-@IonicPage()
+@IonicPage({
+  defaultHistory:[]
+})
 @Component({
   selector: 'page-car',
   templateUrl: 'car.html'

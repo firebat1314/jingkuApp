@@ -19,8 +19,7 @@ export class DredgeMoreCityPage {
     region_ids: [],
     reason: null,
     phone: null,
-    frdb_code_zm: null,
-    frdb_code_fm: null
+    zhizhao: null,
   }
   constructor(
     public navCtrl: NavController,
@@ -28,7 +27,7 @@ export class DredgeMoreCityPage {
     public popover: PopoverController,
     public httpService: HttpService,
     public native: Native
-  ) {}
+  ) { }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad DredgeMoreCityPage');
@@ -36,15 +35,15 @@ export class DredgeMoreCityPage {
   ionViewCanEnter() {
     return this.getHttpData().then((res) => {
       return true;
-    },(res)=>{
-      this.native.showToast('没有未开通城市',null,false)
+    }, (res) => {
+      this.native.showToast('没有未开通城市', null, false)
       return false;
     });
   }
   getHttpData() {
     return new Promise((resolve, reject) => {
       this.httpService.regionApply().then((res) => {
-        if(res.no_user_citys.length==0){reject();}else{resolve();}
+        if (res.no_user_citys.length == 0) { reject(); } else { resolve(); }
         if (res.status == 1) {
           this.reginArr = res;
         }
@@ -67,11 +66,7 @@ export class DredgeMoreCityPage {
     let popover = this.popover.create('PopoverContentPage');
     popover.onDidDismiss((imageData) => {
       if (imageData) {
-        if (type == 0) {//正面身份照
-          this.formData.frdb_code_zm = 'data:image/jpeg;base64,' + imageData.image;
-        } else {//反面身份照
-          this.formData.frdb_code_fm = 'data:image/jpeg;base64,' + imageData.image;
-        }
+        this.formData.zhizhao = 'data:image/jpeg;base64,' + imageData.image;
       }
     })
     popover.present();

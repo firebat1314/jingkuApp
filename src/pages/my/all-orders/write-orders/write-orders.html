@@ -55,11 +55,11 @@
                                     <div *ngFor="let attr2 of attr?.attrs;">{{attr2}}</div>
                                 </div>
                                 <div class="bottom">
-                                    <div>单价：{{attr.goods_price}}</div>
+                                    <!-- <div>总价：{{attr.formated_subtotal}}</div> -->
                                 </div>
                             </div>
                             <div class="right">
-                                <div class="price color">¥{{attr.formated_subtotal}}</div>
+                                <div class="price color">{{attr.goods_price}}</div>
                                 <div class="count">x{{attr.goods_number}}</div>
                             </div>
                         </div>
@@ -110,10 +110,10 @@
                 <ion-note item-end *ngIf="noteStatus">填写备注信息</ion-note>
                 <ion-note item-end *ngIf="!noteStatus">已填写备注，点击查看</ion-note>
             </ion-item>
-            <ion-item>
+            <ion-item mode="ios">
                 <ion-label>余额支付</ion-label>
-                <!-- <h2 item-content>¥{{user_money}}</h2> -->
-                <ion-toggle mode="ios" #myToggle (ionChange)="changeSurplus(myToggle)"></ion-toggle>
+                <h2 item-content style="color: #aeacb4;">¥{{user_money}}</h2>
+                <ion-toggle mode="ios" [disabled]="user_money==0" [(ngModel)]="myToggle" (ionChange)="changeSurplus(myToggle)"></ion-toggle>
             </ion-item>
         </ion-list>
         <!--<ion-item mode="ios" no-lines margin-right detail-push>

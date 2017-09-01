@@ -6,6 +6,7 @@ import { ImgLazyLoadDirectiveModule } from "../../../directives/img-lazy-load/im
 import { IonicImageViewerModule } from "ionic-img-viewer";
 import { SwiperComponentModule } from "../../../components/swiper/swiper.module";
 import { CityPickerModule } from "ionic2-city-picker/dist/city-picker.module";
+import { OpenMoreDirectiveModule } from "../../../directives/open-more/open-more.module";
 
 @NgModule({
    declarations: [
@@ -18,6 +19,7 @@ import { CityPickerModule } from "ionic2-city-picker/dist/city-picker.module";
       IonicImageViewerModule,
       SwiperComponentModule,
       CityPickerModule,
+      OpenMoreDirectiveModule
    ]
 })
 

@@ -1,0 +1,16 @@
+page-more-menu {
+    .item {
+        padding: 0;
+        padding: 0 10px;
+        min-height: 3.4rem;
+        text-align: center;
+        .item-inner {
+            padding-right: 0 !important;
+        }
+        &:last-child {
+            .item-inner {
+                border: 0 !important;
+            }
+        }
+    }
+}

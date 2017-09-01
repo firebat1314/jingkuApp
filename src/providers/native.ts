@@ -60,22 +60,28 @@ export class Native {
 	 * @param message 信息内容
 	 * @param duration 显示时长
 	 */
-	showToastTime: boolean = false;
+	showToastTime: boolean = true;
 
 	showToast = (message: string, duration?: number, useNative?: boolean) => {
-
-		if (useNative === true && this.isMobile()) {
-			this.toast.show(message, '800', 'center').subscribe((toast) => {
-				console.log(toast);
-			});
-		} else {
-			this.toastCtrl.create({
-				message: message,
-				duration: duration || 800,
-				position: 'top',
-				showCloseButton: false
-			}).present();
+		if (this.showToastTime) {
+			if (useNative === true && this.isMobile()) {
+				this.toast.show(message, '800', 'center').subscribe((toast) => {
+					console.log(toast);
+				});
+			} else {
+				this.toastCtrl.create({
+					message: message,
+					duration: duration || 800,
+					position: 'top',
+					showCloseButton: false
+				}).present();
+			}
+			this.showToastTime = false;
+			setTimeout(() => {
+				this.showToastTime = true;
+			}, 1000);
 		}
+		console.log(message);
 	};
 	/**
 	 * 统一调用此方法显示loading

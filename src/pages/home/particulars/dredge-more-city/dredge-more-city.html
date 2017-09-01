@@ -29,18 +29,12 @@
         <ion-textarea class="textarea" required [(ngModel)]="formData.reason" name="reason"></ion-textarea>
         <p ion-text color="colorsix" padding-horizontal><span ion-text color="danger">* </span>手机号：</p>
         <ion-textarea class="textarea" type="number" required [(ngModel)]="formData.phone" name="phone"></ion-textarea>
-        <!--<p class="idcard" ion-text color="colorsix" padding-horizontal>
-            身份证正面：
-            <button ion-button color="dark" (click)="opanNative(0)" margin-horizontal>选择文件</button>
-            <span ion-text *ngIf="!formData.frdb_code_zm" color="danger">未选择任何文件</span>
-        </p>
-        <div text-center><img src="{{formData.frdb_code_zm}}" alt=""></div>
         <p class="idcard" ion-text color="colorsix" padding-horizontal>
-            身份证反面：
-            <button ion-button color="dark" (click)="opanNative(1)" margin-horizontal>选择文件</button>
-            <span ion-text *ngIf="!formData.frdb_code_fm" color="danger">未选择任何文件</span>
+            营业执照：
+            <button ion-button color="dark" (click)="opanNative()" margin-horizontal>选择文件</button>
+            <span ion-text *ngIf="!formData.zhizhao" color="danger">未选择任何文件</span>
         </p>
-        <div text-center><img src="{{formData.frdb_code_fm}}" alt=""></div>-->
+        <div text-center><img src="{{formData.zhizhao}}" alt=""></div>
     </form>
 </ion-content>
 <ion-footer>
