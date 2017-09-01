@@ -95,6 +95,7 @@ export class UserData {
         if (error.status == 401) {
             msg = '数据加载出错';
             if (error.statusText == 'Unauthorized') {
+                msg = '登录异常，请重新登录';
                 this.storage.set('hasLoggedIn', false)
                 if (this.showToastTime) {
                     this.myAlert(msg);
@@ -111,7 +112,7 @@ export class UserData {
         if (error.status == 0) {
             this.native.showToast('请检查网络连接');
         }
-        if(error.name == "TimeoutError"){
+        if (error.name == "TimeoutError") {
             this.native.showToast('连接超时，请稍后再试');
         }
         console.log(error);

@@ -84,7 +84,7 @@
         <ion-item padding-left>
             <div class="myAssets-info">
                 <div tappable [navPush]="CouponPage">
-                    <div class="number">{{usercount?.data?.bonus_count||0}}张可用</div>
+                    <div class="number">{{usercount?.data?.bonus_count||0}}</div>
                     <div class="text">优惠券</div>
                 </div>
                 <div tappable [navPush]="AccountJifenPage" [navParams]="{number:userInfo?.data?.integral}">

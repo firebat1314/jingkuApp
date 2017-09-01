@@ -119,15 +119,14 @@ export class Native {
 			title: title,
 			buttons: [
 				{
-					text: '取消',
-					handler: () => {
-						if (cancelHandler) { cancelHandler(); }
-					}
-				},
-				{
 					text: '确认',
 					handler: () => {
 						confirmHandler()
+					}
+				}, {
+					text: '取消',
+					handler: () => {
+						if (cancelHandler) { cancelHandler(); }
 					}
 				}
 			],
