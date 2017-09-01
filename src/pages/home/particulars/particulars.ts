@@ -97,39 +97,34 @@ export class ParticularsPage {
     })
   }
   getHttpDetails() {
-    return new Promise((resolve, reject) => {
-      this.native.showLoading();
-      this.http.goodsInfos({ goods_id: this.goodsId }).then((res) => {
-        // console.log("商品详情信息", res);
-        this.native.hideLoading();
-        resolve(res.status);
+    this.native.showLoading();
+    return this.http.goodsInfos({ goods_id: this.goodsId }).then((res) => {
+      // console.log("商品详情信息", res);
+      this.native.hideLoading();
+      if (res.status == 1) {
+        this.getGoodsInfo = res;
+        this.getRegionName(res);
+      }
+      this.http.getCategoryRecommendGoodsHot({}).then((res) => {
+        // console.log('为你推荐：', res)
         if (res.status == 1) {
-          this.getGoodsInfo = res;
-          this.getRegionName(res);
-        } else {
-          reject(res.info);
-        }
-        this.http.getCategoryRecommendGoodsHot({}).then((res) => {
-          // console.log('为你推荐：', res)
-          if (res.status == 1) {
-            this.getCategoryRecommendGoodsHot = res.data;
-            /* 组合、推荐的默认标签 */
-            if (res.data.length == 0) {
-              this.selectGroupRecommend = "group";
-            }
-            /* 组合、推荐的默认标签 */
-            if (this.getGoodsInfo.fittings.length == 0) {
-              this.selectGroupRecommend = "recommend";
-            }
+          this.getCategoryRecommendGoodsHot = res.data;
+          /* 组合、推荐的默认标签 */
+          if (res.data.length == 0) {
+            this.selectGroupRecommend = "group";
           }
-        })
+          /* 组合、推荐的默认标签 */
+          if (this.getGoodsInfo.fittings.length == 0) {
+            this.selectGroupRecommend = "recommend";
+          }
+        }
       })
-    });
+    })
   }
   getRegionName(res) {
     for (var i = 0; i < res.sale_city.length; i++) {
       if (res.sale_city[i].selected == 1) {
-        this.region_name = res.sale_city[i].region_name;
+        this.region_name = res.sale_city[i].region;
       }
     }
   }
@@ -154,14 +149,15 @@ export class ParticularsPage {
       getBonus: this.getGoodsInfo.bonus,
       sendto: this.getGoodsInfo.sale_city,
       GoodsInfo: this.getGoodsInfo.data,
-      promotion: this.getGoodsInfo.promotion
+      promotion: this.getGoodsInfo.promotion,
+      goodsId:this.goodsId
     });
     modal.onDidDismiss(data => {
       console.log(data);
-      if (data && data.region_name) {
-        this.region_name = data.region_name;
+      if (data && data.region) {
+        this.region_name = data.region;
         this.getHttpDetails().then(() => {
-          this.events.publish('home:updataArea');
+          this.events.publish('home:update');
         });
       }
       if (data == 'goDredgeMoreCityPage') {

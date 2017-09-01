@@ -16,6 +16,7 @@ import { Native } from "../../../../providers/native";
   templateUrl: 'particulars-modal.html'
 })
 export class ParticularsModalPage {
+  goodsId = this.navParams.get('goodsId');
   title = this.navParams.get('name');
   getBonus = this.navParams.get('getBonus');
   sendto = this.navParams.get('sendto');;
@@ -28,7 +29,11 @@ export class ParticularsModalPage {
     public httpService: HttpService,
     public events: Events,
     public native: Native
-  ) { }
+  ) { 
+    this.events.subscribe('particulars:update',()=>{
+      this.getAreaData();
+    })
+  }
   ionViewDidLoad() {
     console.log('ionViewDidLoad ParticularsModalPage');
   }
@@ -49,18 +54,41 @@ export class ParticularsModalPage {
       });
     }
   }
-  setArea(ids) {
-    console.log(ids)
-    this.httpService.setArea({
-      goods_id: this.GoodsInfo.goods_id,
-      gaid: ids.gaid ? ids.gaid : '',
-      region_id: ids.region_id
-    }).then((res) => {
-      if (res.status == 1) {
-        this.viewCtrl.dismiss({ region_name: ids.region_name });
-        this.native.showToast('切换成功');
+  getAreaData() {
+    return this.httpService.goodsInfos({ goods_id: this.goodsId }).then((res) => {
+      console.log(111)
+      if (res.status) {
+        this.sendto = res.sale_city;
       }
     })
+  }
+  setArea(item) {
+    console.log(item)
+    if (item.is_show == 0) {
+      this.native.openAlertBox('不在可配送城市,是否切换城市？', () => {
+        this.navCtrl.push('CityPage');
+      }, () => {
+        this.getAreaData();
+      })
+      return;
+    }
+    this.httpService.changeConsignee({ address_id: item.address_id }).then((res) => {
+      console.log(res);
+      if (res.status == 1) {
+        this.native.showToast('地址已切换')
+        this.viewCtrl.dismiss(item);
+      }
+    })
+    /* this.httpService.setArea({
+      goods_id: this.GoodsInfo.goods_id,
+      gaid: item.gaid ? item.gaid : '',
+      region_id: item.region_id
+    }).then((res) => {
+      if (res.status == 1) {
+        this.viewCtrl.dismiss({ region_name: item.region_name });
+        this.native.showToast('切换成功');
+      }
+    }) */
   }
   dismiss(data?: any) {
     // using the injected ViewController this page

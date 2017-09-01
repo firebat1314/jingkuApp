@@ -48,7 +48,7 @@ export class HomePage {
     public alertCtrl: AlertController
   ) {
     //地址更新
-    this.events.subscribe('home:updataArea', () => {
+    this.events.subscribe('home:update', () => {
       this.getHomeData()
     })
   }
@@ -62,7 +62,7 @@ export class HomePage {
     console.log('ionViewDidLoad HomePage');
   }
   ngOnDestroy() {
-    this.events.unsubscribe('home:updataArea');
+    this.events.unsubscribe('home:update');
   }
   /*getBanner() {
       this.httpService.getHomebanner({ int_pos_id: 53, size: 10,is_app:1 }).then((res) => {

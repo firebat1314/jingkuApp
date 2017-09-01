@@ -73,7 +73,6 @@ export class OrderModalShippingPage {
         })
       }
     })
-
   }
   goEditAddress(addId) {
     this.navCtrl.push('AddShippingAddressPage', { addId: addId })

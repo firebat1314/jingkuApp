@@ -45,8 +45,9 @@ export class OpenMoreDirective {
     });
     popover.onDidDismiss(data => {
       // this.navCtrl.popToRoot();
-      data(this.navCtrl)
+      if(data){
+        data(this.navCtrl)
+      }
     })
   }
-
 }
