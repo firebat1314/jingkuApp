@@ -1,11 +1,13 @@
 import { NgModule } from '@angular/core';
 import { IonicPageModule } from 'ionic-angular';
 import { SignupSecondPage } from "./signup-second";
+import { GetImageDirectiveModule } from "../../../directives/get-image/get-image.module";
 
 @NgModule({
   declarations: [SignupSecondPage],
   imports: [
-    IonicPageModule.forChild(SignupSecondPage)
+    IonicPageModule.forChild(SignupSecondPage),
+    GetImageDirectiveModule
   ]
 })
 
