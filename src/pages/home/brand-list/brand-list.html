@@ -59,8 +59,9 @@
     </ion-refresher>
 
     <no-goods *ngIf="data&&!data?.goods?.length"></no-goods>
-    <single-foods-card [data]="data?.goods" *ngIf="!listStyleflag"></single-foods-card>
+    <single-foods-card [data]="data?.goods" [class.yanjingjia]="data?.is_jingjia" *ngIf="!listStyleflag"></single-foods-card>
     <single-foods-item [data]="data?.goods" *ngIf="listStyleflag"></single-foods-item>
+
 
     <ion-fab class="brand-list-car-btn" left bottom>
         <button class="car" ion-fab mini icon-only (click)="goCarPage()">

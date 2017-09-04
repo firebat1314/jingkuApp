@@ -3,14 +3,14 @@ count-input {
     font-size: 1.6rem;
     align-items: center;
     justify-content: center;
-    border: 1px solid #808080;
+    border: 1px solid #ccc;
     border-radius: 3px;
     height: 29px;
-    max-width: 99px;
-    min-width: 99px;
+    max-width: 93px;
+    min-width: 93px;
     overflow: hidden;
     .btn {
-        padding: 0 9px;
+        width: 27px;
         font-size: 1.8rem;
         color: #808080;
         display: block;
@@ -18,17 +18,20 @@ count-input {
         display: flex;
         align-items: center;
         justify-content: center;
+        img{
+            width: 13px;
+        }
     }
     input {
-        width: 13%;
+        width: 26px;
         flex: 1;
         color: red;
         text-align: center;
         height: 100%;
         border: none;
         border-radius: 0;
-        border-left: 1px solid #808080;
-        border-right: 1px solid #808080;
+        border-left: 1px solid #ccc;
+        border-right: 1px solid #ccc;
         background: none;
     }
 }

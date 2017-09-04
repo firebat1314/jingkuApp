@@ -143,7 +143,7 @@ export class HttpService {
     return this.http.get(this.ip + '/Category/get_categorys', data)
   }
   getChildrenCaCtegory(data?: Object) {//获取九大分类下的子分类
-    return this.http.get(this.ip + '/Category/get_children_category', data, true)
+    return this.http.get(this.ip + '/Category/get_children_category', data)
   }
   categoryGoods(data?: Object) {//商品分类列表页(筛选)
     return this.http.get(this.ip + '/Category/category_goods', data)

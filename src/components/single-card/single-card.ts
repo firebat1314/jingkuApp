@@ -33,7 +33,7 @@ export class SingleCardComponent {
     this.clearBtn()
   }
   ngOnChanges() {
-    this.animateItems = this.data;
+    this.animateItems = this.data || [];
   }
   clearBtn() {
     for (let i = 0; i < this.animateItems.length; i++) {

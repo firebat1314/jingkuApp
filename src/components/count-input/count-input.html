@@ -4,10 +4,10 @@
   See https://angular.io/docs/ts/latest/api/core/index/ComponentMetadata-class.html
   for more info on Angular 2 Components.
 -->
-<div class="btn">
-    <span tappable (click)="reduce()">-</span>
+<div class="btn" tappable (click)="reduce()">
+        <img src="./assets/icon/minus.png" alt="">
 </div>
 <input type="number" [(ngModel)]="value" [disabled]="disabled" (input)="inputEvent(value)">
-<div class="btn">
-    <span tappable (click)="increase()">+</span>
+<div class="btn" tappable (click)="increase()">
+        <img src="./assets/icon/add.png" alt="">
 </div>
