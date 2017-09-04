@@ -1,0 +1,39 @@
+<!--
+  Generated template for the OrderWuliuPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>订单跟踪</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content>
+  <ng-container *ngIf="data">
+    <div class="new-order-track">
+      <span>物流编号：{{data?.data[0]?.invoice_no}}</span>
+      <span class="new-txt-rd2">状态：{{data?.data[0]?.state}}</span>
+    </div>
+    <div id="changeContent1" style="padding: 10px 20px;background: #fff;">
+
+      <div class="new-order-flow new-p-re">
+        <span class="new-order-arr"></span>
+        <ul class="new-of-storey">
+          <li *ngFor="let item of data?.data[0].arr.reverse();let i = index">
+            <span class="icon" [class.on]="i==0"></span>
+            <span>{{item.AcceptStation}}</span>
+            <span>{{item.AcceptTime}}</span>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <div id="changeContent2" class="new-order-map" style="display:none">
+    </div>
+  </ng-container>
+
+</ion-content>

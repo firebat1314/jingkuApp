@@ -2,11 +2,13 @@
     <ion-navbar>
         <ion-buttons left>
             <button ion-button clear icon-only icon-left tappable (click)="goCityPage()">
-               <ion-icon name="iconserverarea" style="font-size:1.2em;"></ion-icon>
+               <ion-icon name="iconserverarea" style="font-size:1.5rem;"></ion-icon>
                 {{area}}
             </button>
         </ion-buttons>
-        <ion-searchbar placeholder="搜索镜库商品/店铺" mode="ios"></ion-searchbar>
+        <form action="">
+            <ion-searchbar placeholder="搜索镜库商品/店铺" mode="ios"></ion-searchbar>
+        </form>
         <div class="mark-searchbar" tappable navPush="SearchPage"></div>
         <!-- <ion-buttons right tappable (click)="presentPopover($event)">
             <button ion-button clear icon-only icon-left>

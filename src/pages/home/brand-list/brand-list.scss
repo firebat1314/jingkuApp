@@ -1,4 +1,14 @@
 page-brand-list {
+    /* —————————————— 眼镜架样式 —————————————— */
+    .yanjingjia{
+        .card{
+            width: 100%;
+            .info{
+                text-align: center;
+            }
+        }
+    }
+    /* ———————————————————————————— */
     @include deteleShadow;
     .header-ios .toolbar-ios:last-child .toolbar-background-ios {
         border: 0;
