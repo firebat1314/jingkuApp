@@ -113,7 +113,7 @@
             <ion-item mode="ios">
                 <ion-label>余额支付</ion-label>
                 <h2 item-content style="color: #aeacb4;font-size: 1.4rem;">¥{{user_money}}</h2>
-                <ion-toggle mode="ios" [disabled]="user_money==0" [(ngModel)]="myToggle" (ionChange)="changeSurplus(myToggle)"></ion-toggle>
+                <ion-toggle mode="ios" [disabled]="user_money==0" [(ngModel)]="data.is_surplus" (ionChange)="changeSurplus(data.is_surplus)"></ion-toggle>
             </ion-item>
         </ion-list>
         <!--<ion-item mode="ios" no-lines margin-right detail-push>

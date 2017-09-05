@@ -64,7 +64,7 @@
     <single-foods-card [data]="data?.goods" [class.yanjingjia]="data?.is_jingjia" *ngIf="!listStyleflag"></single-foods-card>
     <single-foods-item [data]="data?.goods" *ngIf="listStyleflag"></single-foods-item>
 
-    <div *ngIf="data?.conut>6&&data?.page>=data?.pages" style="color: #d4d4d4;text-align: center;padding: 0 0 10px;">没有更多了~</div>
+    <div *ngIf="data?.count>6&&data?.page>=data?.pages" style="color: #d4d4d4;text-align: center;padding: 0 0 10px;">没有更多了~</div>
     <ion-fab class="brand-list-car-btn" left bottom>
         <button class="car" ion-fab mini icon-only (click)="goCarPage()">
             <ion-icon name="ios-cart-outline" color="light"></ion-icon>

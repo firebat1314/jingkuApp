@@ -165,6 +165,7 @@ export class CarPage {
     }
     this.httpService.delNoShop({ goods_ids: arr }).then((res) => {
       if (res.status == 1) {
+        // this.navCtrl.push('WriteOrdersPage');
         this.httpService.clearFlowOrder().then(()=>{
           this.navCtrl.push('WriteOrdersPage');
         });
