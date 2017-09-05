@@ -100,8 +100,7 @@ export class Native {
 	 * 关闭loading
 	 */
 	hideLoading = () => {
-		if(this.loading) this.loading.dismissAll();
-		this.loading=null;
+		this.loading.dismissAll();
 	};
 	/**
 	 * 手机拨号
