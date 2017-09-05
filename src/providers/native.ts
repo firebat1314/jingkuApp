@@ -14,7 +14,6 @@ declare var cordova;
 
 @Injectable()
 export class Native {
-	private loading;
 
 	constructor(
 		private platform: Platform,
@@ -87,6 +86,7 @@ export class Native {
 	 * 统一调用此方法显示loading
 	 * @param content 显示的内容
 	 */
+	private loading;
 	showLoading = (content: string = '', showBackdrop: boolean = false) => {
 		this.loading = this.loadingCtrl.create({
 			content: content,
@@ -100,7 +100,8 @@ export class Native {
 	 * 关闭loading
 	 */
 	hideLoading = () => {
-		this.loading.dismissAll()
+		if(this.loading) this.loading.dismissAll();
+		this.loading=null;
 	};
 	/**
 	 * 手机拨号

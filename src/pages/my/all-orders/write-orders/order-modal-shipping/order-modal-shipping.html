@@ -21,7 +21,7 @@
                     <h2><span class="name">{{item.consignee}}</span>{{item.mobile|phonenumberfilter}}</h2>
                     <p><span class="moren" *ngIf="item.is_default==1">默认</span>{{item.address}}</p>
                 </ion-label>
-                <ion-icon item-right name="ios-create-outline" (click)="goEditAddress(item.address_id)"></ion-icon>
+                <ion-icon item-right name="ios-create-outline" tappable (click)="goEditAddress(item.address_id)"></ion-icon>
             </ion-item>
             <ion-item-options side="right">
                 <button ion-button color="danger" (click)="delete(item.address_id)">删除</button>
