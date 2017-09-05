@@ -39,7 +39,7 @@ export class AccountCollectStorePage {
   unfollowShop(suppliers_id, index) {
     this.native.openAlertBox('是否取消关注改商铺', () => {
       this.httpService.delCollectionShop({ shop_ids: [suppliers_id] }).then((res) => {
-        console.log(res);
+        // console.log(res);
         if (res.status == 1) {
           this.native.showToast('已取消关注',null,false)
           this.doRefresh();
@@ -51,7 +51,7 @@ export class AccountCollectStorePage {
   doInfinite(infiniteScroll) {
     if (this.collectionShop.page < this.collectionShop.pages) {
       this.httpService.collectionShop({ page: ++this.collectionShop.page }).then((res) => {
-      console.log(res);
+      // console.log(res);
       if (res.status == 1) {
         Array.prototype.push.apply(this.collectionShop.list, res.list);
       }

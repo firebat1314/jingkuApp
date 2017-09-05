@@ -135,7 +135,7 @@ export class ClassifyPage {
     }
   }
   onSrcoll() {
-    console.log(111)
+    // console.log(111)
   }
   //转跳品牌列表页
   goToMoreBrand(data) {

@@ -35,7 +35,7 @@ export class AccountInfoPage {
   }
   getUserData() {
     this.httpService.userInfo().then((res) => {
-      console.log(res);
+      // console.log(res);
       this.userInfo = res;
     })
   }

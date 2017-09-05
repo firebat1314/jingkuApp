@@ -77,7 +77,7 @@ export class RechargePage {
   }
   getOrderInfo(data) {
     this.httpService.payCode({ code: data }).then((res) => {
-      console.log(res);
+      // console.log(res);
       if ((res.status == 1)) {
         // this.wechatPay(res.pingxx)
         this.openPingPayment(res.pingxx);

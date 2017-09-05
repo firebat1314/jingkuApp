@@ -30,7 +30,7 @@ export class RealnamePage {
   }
   onsubmit() {
     this.httpServive.editProfile({ true_name: this.username }).then((res) => {
-      console.log(res);
+      // console.log(res);
       if (res.status == 1) {
         this.native.showToast('修改成功');
         this.navCtrl.pop();

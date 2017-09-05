@@ -28,7 +28,7 @@ export class BusinessmenNotePage {
     /* this.callback = this.navParams.get('callback')
     console.log(this.callback)
     this.callback('sss').then((res)=>{
-      console.log(res)
+      // console.log(res)
     }) */
     this.getData();
   }

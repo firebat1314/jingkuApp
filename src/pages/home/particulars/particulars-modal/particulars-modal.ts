@@ -56,14 +56,14 @@ export class ParticularsModalPage {
   }
   getAreaData() {
     return this.httpService.goodsInfos({ goods_id: this.goodsId }).then((res) => {
-      console.log(111)
+      // console.log(111)
       if (res.status) {
         this.sendto = res.sale_city;
       }
     })
   }
   setArea(item) {
-    console.log(item)
+    // console.log(item)
     if (item.is_show == 0) {
       this.native.openAlertBox('不在可配送城市,是否切换城市？', () => {
         this.navCtrl.push('CityPage');
@@ -73,7 +73,7 @@ export class ParticularsModalPage {
       return;
     }
     this.httpService.changeConsignee({ address_id: item.address_id }).then((res) => {
-      console.log(res);
+      // console.log(res);
       if (res.status == 1) {
         this.native.showToast('地址已切换')
         this.viewCtrl.dismiss(item);

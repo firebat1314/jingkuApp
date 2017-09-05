@@ -31,7 +31,7 @@ export class CompanynamePage {
   }
   onsubmit() {
     this.httpServive.editProfile({ company: this.usercompany }).then((res) => {
-      console.log(res);
+      // console.log(res);
       if (res.status == 1) {
         this.native.showToast('修改成功');
         this.navCtrl.pop();

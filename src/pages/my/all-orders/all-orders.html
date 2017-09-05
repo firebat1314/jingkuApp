@@ -65,7 +65,7 @@
 
             <button ion-button outline navPush="OrderWuliuPage" [navParams]="{orderId:item.order_id}" *ngIf="(item.order_status==1&&item.pay_status==2)||(item.order_status==5&&item.pay_status==2&&item.shipping_status==1)||(item.order_status==5&&item.pay_status==2&&item.shipping_status==2)">物流跟踪</button>
             
-            <button ion-button color="dark" (click)="goOrdersDetailPage(item.order_id)" *ngIf="item.order_status==5">再次购买</button>
+            <button ion-button color="dark" (click)="goOrdersDetailPage(item.order_id)" *ngIf="item.order_status==5&&item.pay_status==2&&item.shipping_status==2">再次购买</button>
             <button ion-button color="dark" (click)="toPay(item.order_id)" *ngIf="item.pay_status == 0 && item.order_status!=4 && item.order_status!=2 && item.order_status!=3 && item.order_status!=7 && item.order_status!=8 ">去支付</button>
             <button ion-button color="dark" (click)="confirmReceipt(item.order_id)" *ngIf="item.order_status == '5' && item.shipping_status=='1'">确认收货</button>
             <!--  *ngIf="!((order.order_status==2 && order.pay_status==0 && order.shipping_status == 0) || (order.order_status==3 && order.pay_status==0 && order.shipping_status == 0)||(order.order_status==0 && order.pay_status==0 && order.gq==0))" -->

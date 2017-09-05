@@ -91,7 +91,7 @@ export class MyPage {
     this.navCtrl.push('MessagePage')
   }
   goRepairReturnPage(){
-    console.log(1)
+    // console.log(1)
     this.native.showToast('敬请期待',null,false);
     // this.navCtrl.push('RepairReturnPage')
   }

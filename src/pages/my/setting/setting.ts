@@ -44,7 +44,7 @@ export class SettingPage {
   signOut() {
     this.native.openAlertBox('确定退出登陆？', () => {
       this.httpService.logout().then((res) => {
-        console.log(res);
+        // console.log(res);
         this.app.getRootNav().setRoot('LoginPage', {}, { animate: true });
         this.httpService.setStorage('hasLoggedIn', false);
         this.httpService.removeStorage("token");

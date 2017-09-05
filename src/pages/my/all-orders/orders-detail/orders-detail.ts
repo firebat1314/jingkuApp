@@ -43,7 +43,7 @@ export class OrdersDetailPage {
   }
   getOrderInfo() {
     this.httpService.orderInfo({ order_id: this.orderId }).then((res) => {
-      console.log(res);
+      // console.log(res);
       if (res.status == 1) {
         this.data = res;
         // this.showBtn();
@@ -66,7 +66,7 @@ export class OrdersDetailPage {
   }
   toPay(id) {
     this.httpService.pay({ order_id: id }).then((res) => {
-      console.log(res);
+      // console.log(res);
       if (res.status == 1) {
         this.navCtrl.push('PaymentMethodPage', { data: res })
       }

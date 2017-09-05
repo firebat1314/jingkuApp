@@ -15,7 +15,7 @@ import { NavController, NavParams, ViewController, IonicPage } from 'ionic-angul
 export class OrderModalDistributionPage {
   data = this.navParams.get('data');
   constructor(public navCtrl: NavController, public navParams: NavParams,public viewCtrl:ViewController) {
-    console.log(this.data)
+    // console.log(this.data)
   }
 
   ionViewDidLoad() {

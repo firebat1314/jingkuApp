@@ -48,7 +48,7 @@ export class SignupPage {
       codeSet: 0,
     }).then(
       data => {
-        console.log(data);
+        // console.log(data);
         if (data.status == 1) {
           this.skey = data.data.skey;
           this.getImg()
@@ -64,14 +64,14 @@ export class SignupPage {
       skey: this.skey
     }).then(
       data => {
-        console.log(data);
+        // console.log(data);
         if (data.status == 1) {
           this.verifyImg = data.data.captcha + '?' + Math.random();
           this.skey = data.data.skey
         }
       },
       error => {
-        console.log(error);
+        // console.log(error);
       }
       );
   }
@@ -104,7 +104,7 @@ export class SignupPage {
       verify: this.signupInfo.str_verify,
       skey: this.skey
     }).then(data => {
-      console.log(data)
+      // console.log(data)
       if (data.status) {
         this.time();
       } else {

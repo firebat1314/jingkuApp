@@ -36,7 +36,7 @@ export class LoginPage {
   goToHome(form) {
     if (form.valid) {
       this.httpService.login(this.loginInfo).then(data => {
-        console.log(data)
+        // console.log(data)
         if (data.status == 1) {
           this.httpService.setUsername(this.loginInfo.username);
           this.httpService.setToken(data.data.token);
