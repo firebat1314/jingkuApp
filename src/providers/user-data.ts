@@ -21,7 +21,7 @@ export class UserData {
 
     public get(url: string, paramObj?: any, showLoading?: boolean) {
         if (showLoading) {
-            this.native.showLoading('', false);
+            this.native.showLoading();
         }
         return this.storage.get('token').then((res) => {
             var headers = new Headers();
@@ -30,14 +30,14 @@ export class UserData {
             return this.http.get(url + this.toQueryString(paramObj), options)
                 .timeout(7000)
                 .toPromise()
-                .then(res => this.handleSuccess(res.json(), showLoading))
-                .catch(error => this.handleError(error, showLoading));
+                .then(res => this.handleSuccess(res.json()))
+                .catch(error => this.handleError(error));
         })
     }
     public post(url: string, paramObj: any, showLoading?: boolean) {
         // this.native.showLoading();
         if (showLoading) {
-            this.native.showLoading('', false);
+            this.native.showLoading();
         }
         return this.storage.get('token').then((res) => {
             let headers = new Headers();
@@ -46,13 +46,13 @@ export class UserData {
             return this.http.post(url, paramObj, options)
                 .timeout(7000)
                 .toPromise()
-                .then(res => this.handleSuccess(res.json(), showLoading))
-                .catch(error => this.handleError(error, showLoading));
+                .then(res => this.handleSuccess(res.json()))
+                .catch(error => this.handleError(error ));
         })
     }
     public postBody(url: string, paramObj: any, showLoading?: boolean) {
         if (showLoading) {
-            this.native.showLoading('', false);
+            this.native.showLoading();
         }
         return this.storage.get('token').then((res) => {
             let headers = new Headers();
@@ -61,8 +61,8 @@ export class UserData {
             return this.http.post(url, this.toBodyString(paramObj), options)
                 .timeout(7000)
                 .toPromise()
-                .then(res => this.handleSuccess(res.json(), showLoading))
-                .catch(error => this.handleError(error, showLoading));
+                .then(res => this.handleSuccess(res.json()))
+                .catch(error => this.handleError(error));
         })
     }
     /**
@@ -70,10 +70,8 @@ export class UserData {
      * @param result
      * @return {any}
      */
-    private handleSuccess(result, showLoading) {
-        if (showLoading) {
-            this.native.hideLoading();
-        }
+    private handleSuccess(result) {
+        this.native.hideLoading();
         if (result && !result.status || result.status == -1) {
             if (result.info != "获取商品参数") {
                 this.native.showToast(result.info);
@@ -87,10 +85,8 @@ export class UserData {
      * @return {{success: boolean, msg: string}}
      */
     private showToastTime = true;
-    private handleError(error: Response | any, showLoading) {
-        if (showLoading) {
-            this.native.hideLoading();
-        }
+    private handleError(error: Response | any) {
+        this.native.hideLoading();
         let msg: string = '参数错误';
         if (error.status == 401) {
             msg = '数据加载出错';

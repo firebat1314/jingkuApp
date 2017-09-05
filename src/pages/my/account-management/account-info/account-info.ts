@@ -49,7 +49,8 @@ export class AccountInfoPage {
     this.native.showLoading()
     this.httpService.editAvatar({ avatar: data }).then((res) => {
       if (res.status == 1) {
-        this.native.showToast('头像上传成功');
+        this.native.hideLoading();
+        this.native.showToast('头像已更新');
         this.getUserData();
         this.events.publish(data);
       }

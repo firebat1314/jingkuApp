@@ -17,7 +17,6 @@ import { HttpService } from "../../providers/http-service";
 })
 export class LoginPage {
   private loginInfo: { username?: string, password?: string } = {};
-  private submitted = false;
   private signedName: String;
   ForgotPage = 'ForgotPage';
   constructor(
@@ -43,14 +42,17 @@ export class LoginPage {
           this.httpService.setStorage(this.httpService.HAS_LOGGED_IN, true);
           this.httpService.hasLogin = true;
           // this.events.publish("user:login", user.username);
+
           let toast = this.toastCtrl.create({
             message: "欢迎回来，" + data.data.user_name || this.loginInfo.username,
             duration: 2000,
             position: "top"
           });
-          toast.present();
-          this.submitted = true;
-          this.navCtrl.setRoot('TabsPage', {}, { animate: true, direction: 'forward' });
+          setTimeout(() => {
+            this.navCtrl.setRoot('TabsPage', {}, { animate: true, direction: 'forward' }).then(() => {
+              toast.present();
+            });
+          }, 100);
         }
       })
     }
