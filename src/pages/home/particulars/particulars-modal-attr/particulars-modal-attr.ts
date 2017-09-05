@@ -132,7 +132,7 @@ export class ParticularsModalAttrPage {
 	totalNumber = 0;
 	jingpianNumberChange($event, it) {
 		it.number = $event;
-		it.subtotal = (Number($event) * (Number(this.headData.shop_price_formated.substr(1)) * 1000)) / 1000;
+		it.subtotal = (Number($event) * (Number(this.headData.shop_price_formated.substr(1)) * 10000)) / 10000;
 		this.totalPrices = 0;
 		this.totalNumber = 0;
 		for (var i = 0; i < this.goods.length; i++) {

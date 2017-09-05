@@ -27,7 +27,7 @@ export class AddressPage {
   ) { }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad QqPage');
+    console.log('ionViewDidLoad AddressPage');
   }
   onsubmit() {
     this.httpServive.editProfile({ address: this.userAddress }).then((res) => {
