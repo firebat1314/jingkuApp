@@ -29,8 +29,8 @@ export class MyApp {
   ) {
     // 初次进入app引导页面
     if (this.platform.is('mobile') && !this.platform.is('mobileweb')) {
-      this.storage.get('firstIn').then((result) => {
-        if (result) {
+      this.storage.get('has_entered').then((result) => {
+        if (!result) {
           this.rootPage = 'WelcomePage';
         } else {
           this.rootPage = 'AppAdvertisingPage';
