@@ -1,5 +1,5 @@
 import { Component, ViewChild } from '@angular/core';
-import { NavController, NavParams, Content, IonicPage } from 'ionic-angular';
+import { NavController, NavParams, Content, IonicPage, Events } from 'ionic-angular';
 import { HttpService } from "../../../../providers/http-service";
 import { Native } from "../../../../providers/native";
 
@@ -30,7 +30,8 @@ export class OrdersDetailPage {
     public navCtrl: NavController,
     public navParams: NavParams,
     public httpService: HttpService,
-    public native: Native
+    public native: Native,
+    public events: Events,
   ) {
     this.getOrderInfo();
   }
@@ -98,6 +99,8 @@ export class OrdersDetailPage {
       this.httpService.delOrder({ order_id: order_id }).then((res) => {
         if (res.status == 1) {
           this.native.showToast(res.data);
+          this.navCtrl.pop();
+          this.events.publish('allOrders:update');
         }
       })
     })

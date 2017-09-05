@@ -9,12 +9,14 @@
   <ion-navbar>
     <ion-title>品牌</ion-title>
   </ion-navbar>
-    <ion-toolbar *ngIf="classSelect!='care'" class="mysearchbar">
-      <ion-searchbar [(ngModel)]="searchkey" placeholder="搜索品牌、分类或者关注" mode="ios" debounce="500" animated (keypress)="searchbar($event)"
+  <ion-toolbar *ngIf="classSelect!='care'" class="mysearchbar">
+    <form action="">
+      <ion-searchbar [(ngModel)]="searchkey" [ngModelOptions]="{standalone: true}" placeholder="搜索品牌、分类或者关注" mode="ios" debounce="500" animated (keypress)="searchbar($event)"
         type="search"></ion-searchbar>
-    </ion-toolbar>
+    </form>
+  </ion-toolbar>
 
-  
+
 </ion-header>
 
 <ion-content>

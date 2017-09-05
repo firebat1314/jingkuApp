@@ -7,7 +7,9 @@
 <ion-header>
     <ion-navbar>
         <ion-title>
-            <ion-searchbar [(ngModel)]="myHomeSearch" (ionInput)="onInput($event)" placeholder="搜索商品" animated="false" spellcheck="true" type="search" debounce="500" mode="ios" showCancelButton cancelButtonText="取消"></ion-searchbar>
+            <form action="">
+                <ion-searchbar [(ngModel)]="myHomeSearch" [ngModelOptions]="{standalone: true}" (ionInput)="onInput($event)" placeholder="搜索商品" animated="false" spellcheck="true" type="search" debounce="500"  mode="ios" showCancelButton cancelButtonText="取消"></ion-searchbar>
+            </form>
         </ion-title>
         <ion-buttons end>
             <button ion-button clear icon-only icon-left (click)="listStyleflag=!listStyleflag">

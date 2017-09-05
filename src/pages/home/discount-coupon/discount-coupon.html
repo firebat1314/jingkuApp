@@ -34,7 +34,7 @@
         <div class="coupon" [class.get]="item.is_get==1" *ngFor="let item of data?.list">
             <div class="get">
                 <img  *ngIf="item.is_get==1" src="./assets/images/images/coupon_center_1_03.png" alt="">
-                <img  *ngIf="item.is_get==2" style="margin-top: -12px;width: 4.7rem;" src="./assets/images/images/coupon_center_1_04.png" alt="">
+                <img  *ngIf="item.is_get==2" style="width: 4.7rem;" src="./assets/images/images/coupon_center_1_04.png" alt="">
             </div>
             <div class="left" tappable (click)="getPrivilege(1,item.type_id,item.suppliers_id)">
                 <div class="img">
