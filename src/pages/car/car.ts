@@ -63,11 +63,14 @@ export class CarPage {
    * @param refresher 
    */
   doRefresh(refresher) {
-    this.getFlowGoods().then(() => {
+    /* this.getFlowGoods().then(() => {
       setTimeout(() => {
         refresher.complete();
       }, 500);
-    })
+    }) */
+    setTimeout(() => {
+      refresher.complete();
+    }, 500);
     this.events.publish('car:update');
   }
   /**
