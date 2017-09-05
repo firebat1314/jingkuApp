@@ -48,6 +48,13 @@ page-order-wuliu {
         border-radius: 5px;
         background-color: #ccc;
     }
+    .new-of-storey li.time {
+        position: relative;
+        border-bottom: none;
+        padding: 10px 10px 0;
+        color: #333;
+        text-align: center;
+    }
     .new-of-storey li .icon.on {
         background-color: #e4393c;
         &+span{

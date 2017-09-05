@@ -196,9 +196,7 @@
                 <ion-slide *ngFor="let slide of getCategoryRecommendGoodsBest; let i = index;">
                     <div tappable (click)="goParticularsPage(slide.id)">
                         <div class="slide-title-unit">
-                            <div class="img">
-                                <img border-f0 img-lazy-load="{{slide?.goods_img}}">
-                            </div>
+                            <img border-f0 img-lazy-load="{{slide?.goods_img}}">
                             <div class="info">
                                 <!-- <div class="name">{{slide?.name}}</div> -->
                                 <div class="price">{{slide?.shop_price}}</div>

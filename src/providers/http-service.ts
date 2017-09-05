@@ -368,7 +368,7 @@ export class HttpService {
     return this.http.post(this.ip + '/User/affirm_received', data)
   }
   getWuLiu(data?: Object) {//订单物流
-    return this.http.get(this.ip + '/User/GetWuLiu', data)
+    return this.http.get(this.ip + '/User/shipping_log', data)
   }
   machining(data?: Object) {//来镜加工
     return this.http.get(this.ip + '/User/machining', data)
