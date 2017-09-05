@@ -8,6 +8,9 @@ import { NavController, NavParams, IonicPage } from 'ionic-angular';
  * on Ionic pages and navigation.
  */
 
+declare var Swiper: any;
+declare var WOW: any;
+
 @IonicPage()
 @Component({
   selector: 'page-wellcome-newm',
@@ -21,5 +24,15 @@ export class WellcomeNewmPage {
   ionViewDidLoad() {
     console.log('ionViewDidLoad WellcomeNewmPage');
   }
+  ngAfterViewInit() {
+    var wow = new WOW({
+      boxClass: 'wow',
+      animateClass: 'animated',
+      offset: 0,
+      mobile: true,
+      live: true
+    });
+    wow.init();
 
+  }
 }
