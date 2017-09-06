@@ -6,8 +6,14 @@ import { CallNumber } from '@ionic-native/call-number';
 import { Toast } from '@ionic-native/toast';
 import { AppVersion } from '@ionic-native/app-version';
 import { BarcodeScanner } from '@ionic-native/barcode-scanner';
-// import { Transfer, FileUploadOptions, TransferObject } from '@ionic-native/transfer';
-// import { File } from '@ionic-native/file';
+import { IOS_DOWNLOAD, APK_DOWNLOAD } from "./constants";
+
+import { Transfer, FileUploadOptions, TransferObject } from '@ionic-native/transfer';
+import { File } from '@ionic-native/file';
+
+import { HttpService } from "./http-service";
+
+
 declare var LocationPlugin;
 declare var AMapNavigation;
 declare var cordova;
@@ -25,7 +31,9 @@ export class Native {
 		private callNumber: CallNumber,
 		private toast: Toast,
 		private appVersion: AppVersion,
-		private barcodeScanner: BarcodeScanner
+		private barcodeScanner: BarcodeScanner,
+		private transfer: Transfer,
+		private file: File,
 	) { }
 
 	/**
@@ -338,7 +346,20 @@ export class Native {
 			console.log(value);//0.0.1
 		});
 	}
-
+	/**
+	 * @name 获得app版本号,如0.01
+	 * @description 对应/config.xml中version的值
+	 * @returns {Promise<string>}
+	 */
+	getVersionNumber(): Promise<string> {
+		return new Promise((resolve) => {
+			this.appVersion.getVersionNumber().then((value: string) => {
+				resolve(value);
+			}).catch(err => {
+				console.log('getVersionNumber:' + err);
+			});
+		});
+	}
 	/**
 	 * @name 获取网络类型
 	 */
@@ -348,7 +369,6 @@ export class Native {
 		}
 		return navigator['connection']['type'];// "none","wifi","4g","3g","2g"...
 	}
-
 	isConnecting() {
 		return this.getNetworkType() != 'none';
 	}
@@ -358,6 +378,9 @@ export class Native {
 
 	/**
 	 * @name 微信支付
+	 */
+	/**
+	 * @name 二维码扫描
 	 */
 	openBarcodeScanner() {
 		/* return new Promise((resolve, reject) => {
@@ -385,6 +408,71 @@ export class Native {
 			);
 		})
 	}
+	/**
+	* 检查app是否需要升级
+	*/
+	detectionUpgrade() {
+		//这里连接后台获取app最新版本号,然后与当前app版本号(this.getVersionNumber())对比
+		//版本号不一样就需要申请,不需要升级就return
+		this.getVersionNumber().then((res) => {
+			console.log("版本信息：" + res)
+		})
+		this.alertCtrl.create({
+			title: '升级',
+			subTitle: '发现新版本,是否立即升级？',
+			enableBackdropDismiss:false,
+			buttons: [{ text: '取消' },
+			{
+				text: '确定',
+				handler: () => {
+					this.downloadApp();
+					// this.platform.exitApp();
+				}
+			}
+			]
+		}).present();
+	}
+
+	/**
+	 * 下载安装app
+	 */
+	downloadApp() {
+		if (this.isAndroid()) {
+			let alert = this.alertCtrl.create({
+				title: '下载进度：0%',
+				enableBackdropDismiss: false,
+				buttons: ['后台下载']
+			});
+			alert.present();
+
+			const fileTransfer: TransferObject = this.transfer.create();
+			const apk = this.file.externalRootDirectory + 'jingku.apk'; //apk保存的目录
+
+			fileTransfer.download(APK_DOWNLOAD, apk).then(() => {
+				window['install'].install(apk.replace('file://', ''));
+			});
+
+			fileTransfer.onProgress((event: ProgressEvent) => {
+				let num = Math.floor(event.loaded / event.total * 100);
+				if (num === 100) {
+					alert.dismiss();
+				} else {
+					let title = document.getElementsByClassName('alert-title')[0];
+					title && (title.innerHTML = '下载进度：' + num + '%');
+				}
+			});
+		}
+		if (this.isIos()) {
+			(<any>window).open(IOS_DOWNLOAD);
+		}
+	}
+
+	/**
+	 * 通过浏览器打开url
+	 */
+	//  openUrlByBrowser(url:string):void {
+	// 	this.inAppBrowser.create(url, '_system');
+	//  }
 
 
 }
