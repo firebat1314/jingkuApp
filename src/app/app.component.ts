@@ -51,7 +51,7 @@ export class MyApp {
 
       //————————————————————————————————————————————————————————————————————————
       // 初次进入app引导页面
-      if (this.platform.is('mobile') && !this.platform.is('mobileweb')) {
+      if (this.native.isMobile()) {
         this.storage.get('has_entered').then((result) => {
           if (!result) {
             this.rootPage = 'WelcomePage';
@@ -72,12 +72,12 @@ export class MyApp {
       }
       //————————————————————————————————————————————————————————————————————————
       // app更新
-      if(this.native.isMobile()){
+      if (this.native.isMobile()) {
         this.native.detectionUpgrade();
       }
       //————————————————————————————————————————————————————————————————————————
       // 初始化极光推送
-      if (this.platform.is('mobile') && !this.platform.is('mobileweb')) {
+      if (this.native.isMobile()) {
         this.jpushService.initJpush();//初始化极光推送
         this.jpushService.getRegistrationID();
         this.jpushService.setTags();

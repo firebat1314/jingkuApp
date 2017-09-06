@@ -160,7 +160,7 @@ ion-thumbnail {
 /*————————————————————————————————————搜索框图标————————————————————————————————————*/
 
 .searchbar-ios .searchbar-search-icon {
-    top: 12px;
+    // top: 12px;
 }
 
 /*————————————————————————————————————下拉刷新CSS————————————————————————————————————*/
@@ -312,8 +312,9 @@ ion-modal {
     .alert-button-group {
         padding: 8px 0 0 0;
         .alert-button {
-            width: 50%;
+            flex: 1;
             margin: 0;
+            border: 0;
             padding: 13px 0;
             border-top: 1px solid #e0e0e0;
             &:first-child {

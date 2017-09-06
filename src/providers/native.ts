@@ -416,6 +416,7 @@ export class Native {
 		//版本号不一样就需要申请,不需要升级就return
 		this.getVersionNumber().then((res) => {
 			console.log("版本信息：" + res)
+			this.showToast('res')
 		})
 		this.alertCtrl.create({
 			title: '升级',
