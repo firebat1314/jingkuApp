@@ -10,7 +10,7 @@
         <ion-title>发票管理</ion-title>
     </ion-navbar>
     <ion-toolbar class="segment-style">
-        <ion-segment mode="md" [(ngModel)]="receiptTool" (ionChange)="flag=true;">
+        <ion-segment mode="md" [(ngModel)]="receiptTool" (ionChange)="flag=true;getHttpData()">
             <ion-segment-button value="receiptSskFor">
                 发票索取
             </ion-segment-button>
@@ -51,31 +51,32 @@
         </ion-card>
     </div>
     <div class="receiptList" *ngSwitchCase="'receiptList'" [ngStyle]="{background:!invoiceList?.data?.length?'url(./assets/images/images/invoice.png) no-repeat center 200px':null}">
-            <div class="head">
-                <div class="reminder">
-                    <div>
-                        <ion-icon name="md-alert"></ion-icon>
-                        发票在申请后的3个工作日开具并寄出
-                    </div>
-                </div>
-                <div class="line time">
-                    <span class="name">下单时间：</span>
-                    <div class="show">
-                        <div class="text">
-                            <ion-datetime cancelText="取消" doneText="确定" displayFormat="YYYY-MM-DD" min="2015" [max]="nowTime" [(ngModel)]="myDate"></ion-datetime>
-                            <ion-icon *ngIf="myDate" tappable (click)="myDate=null;search()" style="font-size:2.5rem;position: absolute;right: 45px;top: 4px;width: 19px;text-align: center;z-index:1000;" name="ios-close"></ion-icon>
-                            <div class="btn">
-                                <!--<img src="./assets/icon/images/user_cener_1_39_03.png">-->
-                                <ion-icon style="font-size:2.5rem;" name="md-calendar"></ion-icon>
-                            </div>
-                        </div>
-
-                        <div class="btn" (click)="search()">搜索</div>
-                    </div>
+        <div class="head">
+            <div class="reminder">
+                <div>
+                    <ion-icon name="md-alert"></ion-icon>
+                    发票在申请后的3个工作日开具并寄出
                 </div>
             </div>
+            <div class="line time">
+                <span class="name">下单时间：</span>
+                <div class="show">
+                    <div class="text">
+                        <ion-datetime cancelText="取消" doneText="确定" displayFormat="YYYY-MM-DD" min="2015" [max]="nowTime" [(ngModel)]="myDate"></ion-datetime>
+                        <ion-icon *ngIf="myDate" tappable (click)="myDate=null;search()" style="font-size:2.5rem;position: absolute;right: 45px;top: 4px;width: 19px;text-align: center;z-index:1000;"
+                            name="ios-close"></ion-icon>
+                        <div class="btn">
+                            <!--<img src="./assets/icon/images/user_cener_1_39_03.png">-->
+                            <ion-icon style="font-size:2.5rem;" name="md-calendar"></ion-icon>
+                        </div>
+                    </div>
+
+                    <div class="btn" (click)="search()">搜索</div>
+                </div>
+            </div>
+        </div>
         <ng-container *ngIf="invoiceList?.data?.length">
-                <ion-list no-margin *ngFor="let item of invoiceList?.data">
+            <ion-list no-margin *ngFor="let item of invoiceList?.data">
                 <div class="line">
                     <span class="name">商家名称：</span>
                     <span class="value">{{item.suppliers_name}}</span>
@@ -108,7 +109,7 @@
         <div class="head">
             <button ion-button color="blueBtn" (click)="goInvoiceQualificationPage()">新增发票资质</button>发票资质审核通过后不可删除修改
         </div>
-        <div class="receiptInfo-invoice" *ngFor="let item of invRoleList.data">
+        <div class="receiptInfo-invoice" *ngFor="let item of invRoleList?.data">
             <ion-list no-margin>
                 <div class="row">
                     <span class="name">开具类型：</span>

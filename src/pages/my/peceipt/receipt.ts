@@ -19,7 +19,7 @@ export class ReceiptPage {
   suoquList: any;
   invoiceList: any;
   receiptTool: any = 'receiptSskFor';//or receiptSskFor or receiptList or receiptInfo
-  myDate: any;
+  myDate: any = null;
   nowTime = new Date().getFullYear();
   // maxTime:any = '2017-3-17';
   @ViewChild(Content) content: Content
@@ -30,7 +30,6 @@ export class ReceiptPage {
     public httpService: HttpService,
     public events: Events
   ) {
-    this.getHttpData();
     this.events.subscribe('receipt:update', () => {
       this.getHttpData();
     })
@@ -38,7 +37,7 @@ export class ReceiptPage {
 
   ngAfterViewInit() {
     /* 回到顶部按钮 */
-    this.fabButton.setElementClass('fab-button-out',true);
+    this.fabButton.setElementClass('fab-button-out', true);
     this.content.ionScroll.subscribe((d) => {
       this.fabButton.setElementClass("fab-button-in", d.scrollTop >= d.contentHeight);
     });
@@ -47,21 +46,27 @@ export class ReceiptPage {
     console.log('ionViewDidLoad ReceiptPage');
   }
   getHttpData() {
-    this.httpService.invoice({ page: 1, time: this.myDate }).then((res) => {
-      if (res.status == 1) {
-        this.suoquList = res;
-      }
-    })
-    this.httpService.invList({ page: 1, time: this.myDate }).then((res) => {
-      if (res.status == 1) {
-        this.invoiceList = res;
-      }
-    })
-    this.httpService.invRole({ page: 1, time: this.myDate }).then((res) => {
-      if (res.status == 1) {
-        this.invRoleList = res;
-      }
-    })
+    if (this.receiptTool == 'receiptSskFor') {
+      this.httpService.invoice({ page: 1, time: this.myDate }).then((res) => {
+        if (res.status == 1) {
+          this.suoquList = res;
+        }
+      })
+    }
+    if (this.receiptTool == 'receiptList') {
+      this.httpService.invList({ page: 1, time: this.myDate }).then((res) => {
+        if (res.status == 1) {
+          this.invoiceList = res;
+        }
+      })
+    }
+    if (this.receiptTool == 'receiptInfo') {
+      this.httpService.invRole({ page: 1, time: this.myDate }).then((res) => {
+        if (res.status == 1) {
+          this.invRoleList = res;
+        }
+      })
+    }
   }
 
   search() {
@@ -71,7 +76,7 @@ export class ReceiptPage {
       }
     })
   }
-  doRefresh(refresher){
+  doRefresh(refresher) {
     this.getHttpData();
     setTimeout(() => {
       refresher.complete();

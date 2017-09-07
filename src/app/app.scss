@@ -159,10 +159,9 @@ ion-thumbnail {
 
 /*————————————————————————————————————搜索框图标————————————————————————————————————*/
 
-// .searchbar-ios .searchbar-search-icon {
-//     background-image: url(../assets/icon/search.png);
-//     // top: 7px;
-// }
+.searchbar-ios .searchbar-search-icon {
+    // top: 12px;
+}
 
 /*————————————————————————————————————下拉刷新CSS————————————————————————————————————*/
 
@@ -297,12 +296,44 @@ ion-modal {
 
 
 /*————————————————————————————————————alterCSS————————————————————————————————————*/
-
+.alert-ios,.alert-md,{
+    .alert-head {
+        .alert-title {
+            color: get-color(primary);
+            font-size: 16px;
+        }
+        .alert-sub-title{
+            margin-top: 14px;
+        }
+    }
+    .alert-message:empty {
+        padding: 0;
+    }
+    .alert-button-group {
+        padding: 8px 0 0 0;
+        .alert-button {
+            flex: 1;
+            margin: 0;
+            border: 0;
+            padding: 13px 0;
+            border-top: 1px solid #e0e0e0;
+            &:first-child {
+                border-right: 1px solid #e0e0e0;
+            }
+            .button-inner {
+                justify-content: center;
+            }
+        }
+    }
+}/* 
 .alert-style {
     .alert-head {
         .alert-title {
             color: #333;
             font-size: 16px;
+        }
+        .alert-sub-title{
+            margin-top: 14px;
         }
     }
     .alert-message:empty {
@@ -323,7 +354,7 @@ ion-modal {
             }
         }
     }
-}
+} */
 
 
 /*————————————————————————————————————segment-style————————————————————————————————————*/

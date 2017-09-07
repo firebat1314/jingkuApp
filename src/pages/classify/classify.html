@@ -12,7 +12,7 @@
                 <ion-icon name="ios-arrow-back"></ion-icon>
             </button>
         </ion-buttons>
-        
+
         <ion-title>
             分类
         </ion-title>
@@ -36,7 +36,9 @@
         </ion-buttons>
     </ion-toolbar>
     <ion-toolbar *ngIf="classSelect!='care'" class="mysearchbar">
-        <ion-searchbar [(ngModel)]="searchkey" placeholder="搜索品牌、分类或者关注" mode="ios" debounce="500" animated (keypress)="searchbar($event)" type="search"></ion-searchbar>
+        <form action="">
+            <ion-searchbar [(ngModel)]="searchkey" [ngModelOptions]="{standalone: true}" placeholder="搜索品牌、分类或者关注" mode="ios" debounce="500" animated (keypress)="searchbar($event)" type="search"></ion-searchbar>
+        </form>
     </ion-toolbar>
     <ion-toolbar class="segment-style" *ngIf="classSelect=='care'">
         <ion-segment mode="md" [(ngModel)]="careSelect">

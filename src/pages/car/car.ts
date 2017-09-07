@@ -63,11 +63,14 @@ export class CarPage {
    * @param refresher 
    */
   doRefresh(refresher) {
-    this.getFlowGoods().then(() => {
+    /* this.getFlowGoods().then(() => {
       setTimeout(() => {
         refresher.complete();
       }, 500);
-    })
+    }) */
+    setTimeout(() => {
+      refresher.complete();
+    }, 500);
     this.events.publish('car:update');
   }
   /**
@@ -162,7 +165,10 @@ export class CarPage {
     }
     this.httpService.delNoShop({ goods_ids: arr }).then((res) => {
       if (res.status == 1) {
-        this.navCtrl.push('WriteOrdersPage');
+        // this.navCtrl.push('WriteOrdersPage');
+        this.httpService.clearFlowOrder().then(()=>{
+          this.navCtrl.push('WriteOrdersPage');
+        });
       }
     })
   }

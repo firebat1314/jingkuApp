@@ -1,5 +1,5 @@
 import { Component, ViewChild } from '@angular/core';
-import { NavController, NavParams, Content, IonicPage, FabButton } from 'ionic-angular';
+import { NavController, NavParams, Content, IonicPage, FabButton, Events } from 'ionic-angular';
 import { HttpService } from "../../../providers/http-service";
 import { Native } from "../../../providers/native";
 /*
@@ -24,8 +24,13 @@ export class AllOrdersPage {
     public navCtrl: NavController,
     public navParams: NavParams,
     public httpService: HttpService,
-    public native: Native
-  ) { }
+    public native: Native,
+    public events:Events,
+  ) {
+    this.events.subscribe('allOrders:update',()=>{
+      this.getByPageIndex();
+    })
+  }
   ionViewDidLoad() {
     console.log('ionViewDidLoad AllOrdersPage');
   }
@@ -45,13 +50,6 @@ export class AllOrdersPage {
     } else {
       this.getByPageIndex();
     }
-  }
-  getHttpData() {
-    this.httpService.order({ page: 1 }).then((res) => {
-      if (res.status == 1) {
-        this.orderData = res;
-      }
-    })
   }
   getByPageIndex() {
     if (this.pageIndex == 0) {

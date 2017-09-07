@@ -7,6 +7,7 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 import { TabsPage } from '../pages/tabs/tabs';
 import { JpushService } from "../providers/jpush-service";
 import { ImageLoaderConfig } from "ionic-image-loader/dist";
+import { Native } from "../providers/native";
 
 @Component({
   templateUrl: 'app.html'
@@ -25,10 +26,14 @@ export class MyApp {
     private statusBar: StatusBar,
     private splashScreen: SplashScreen,
     private keyboard: Keyboard,
-    private imageLoaderConfig: ImageLoaderConfig
+    private imageLoaderConfig: ImageLoaderConfig,
+    private native: Native,
   ) {
+
+    //————————————————————————————————————————————————————————————————————————
     // 初次进入app引导页面
-    if (this.platform.is('mobile') && !this.platform.is('mobileweb')) {
+    console.log(this.native.isMobile())
+    if (this.native.isMobile()) {
       this.storage.get('has_entered').then((result) => {
         if (!result) {
           this.rootPage = 'WelcomePage';
@@ -47,14 +52,8 @@ export class MyApp {
         }
       });
     }
-    //ionic-image-loader optional
-    this.imageLoaderConfig.setFallbackUrl('../assets/images/images/800-800.jpg'); // if images fail to load, display this image instead
-    this.imageLoaderConfig.setCacheDirectoryName('jingkuapp-loader-cache');
-    this.imageLoaderConfig.setMaximumCacheSize(100 * 1024 * 1024); // set max size to 20MB
-    this.imageLoaderConfig.setMaximumCacheAge(7 * 24 * 60 * 60 * 1000); // 7 days
-    this.imageLoaderConfig.setSpinnerName('circles')
-    this.imageLoaderConfig.useImageTag(true); // use `<img>` tag by default
-    //注册返回按键事件
+    //————————————————————————————————————————————————————————————————————————
+    // app更新
     this.initializeApp();
     //用户失效事件
     this.events.subscribe('signOut', () => {
@@ -97,6 +96,15 @@ export class MyApp {
         //当前页面为tab栏，退出APP,当前页面为tab栏的子页面，正常返回
         return activeNav.canGoBack() ? activeNav.pop() : this.showExit()
       }, 1);
+      //————————————————————————————————————————————————————————————————————————
+      //ionic-image-loader optional
+      this.imageLoaderConfig.setFallbackUrl('../assets/images/images/800-800.jpg'); // if images fail to load, display this image instead
+      this.imageLoaderConfig.setCacheDirectoryName('jingkuapp-loader-cache');
+      this.imageLoaderConfig.setMaximumCacheSize(100 * 1024 * 1024); // set max size to 20MB
+      this.imageLoaderConfig.setMaximumCacheAge(7 * 24 * 60 * 60 * 1000); // 7 days
+      this.imageLoaderConfig.setSpinnerName('circles')
+      this.imageLoaderConfig.useImageTag(true); // use `<img>` tag by default
+      //————————————————————————————————————————————————————————————————————————
 
     });
   }
