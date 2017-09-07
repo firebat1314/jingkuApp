@@ -30,6 +30,7 @@ export class ReceiptPage {
     public httpService: HttpService,
     public events: Events
   ) {
+    this.getHttpData();
     this.events.subscribe('receipt:update', () => {
       this.getHttpData();
     })

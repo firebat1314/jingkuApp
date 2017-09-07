@@ -52,8 +52,9 @@ export class DredgeMoreCityPage {
 
   }
   selectCity(item) {
-    let arr = this.formData.region_ids
-    let index = arr.indexOf(item.region_id)
+    this.formData.region_ids = [];
+    let arr = this.formData.region_ids;
+    let index = arr.indexOf(item.region_id);
     if (index == -1) {
       arr.push(item.region_id);
       item.selected = true;

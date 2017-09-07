@@ -7,7 +7,7 @@
             </button>
         </ion-buttons>
         <form action="">
-            <ion-searchbar placeholder="搜索镜库商品/店铺" mode="ios"></ion-searchbar>
+            <ion-searchbar placeholder="搜索镜库商品" mode="ios"></ion-searchbar>
         </form>
         <div class="mark-searchbar" tappable navPush="SearchPage"></div>
         <!-- <ion-buttons right tappable (click)="presentPopover($event)">
@@ -27,7 +27,7 @@
         <ion-refresher-content refreshingSpinner="1" pullingIcon="0"></ion-refresher-content>
     </ion-refresher>
     <!--——————————————————————————————————————————轮播图——————————————————————————————————————————-->
-    <!-- <ng-container *ngIf="data"> -->
+    <ng-container *ngIf="data">
     <div class="banner-wrapper">
         <ion-slides #bannerSlide autoplay="4000" pager (ionSlideAutoplayStop)="bannerSlide.startAutoplay()" *ngIf="bannerImgs?.length">
             <!-- *ngIf="bannerImgs" loop-->
@@ -260,7 +260,7 @@
             <single-foods-card [data]="indexHotGoods"></single-foods-card>
         </div>
     </div>
-    <!-- </ng-container> -->
+    </ng-container>
 
     <ion-fab right bottom tappable (click)="myContent.scrollToTop()">
         <button ion-fab color="dark" mini goBackTop></button>

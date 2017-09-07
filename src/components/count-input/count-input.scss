@@ -19,7 +19,7 @@ count-input {
         align-items: center;
         justify-content: center;
         img{
-            width: 13px;
+            width: 10px;
         }
     }
     input {
@@ -33,5 +33,9 @@ count-input {
         border-left: 1px solid #ccc;
         border-right: 1px solid #ccc;
         background: none;
+    }
+    .disabled{
+        opacity: .3;
+        pointer-events: none;
     }
 }
