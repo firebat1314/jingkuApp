@@ -70,6 +70,7 @@ export class MyApp {
       this.statusBar.styleDefault();
       this.splashScreen.hide();
 
+      //————————————————————————————————————————————————————————————————————————
       //注册返回按键事件
       this.platform.registerBackButtonAction((): any => {
         if (this.keyboard.isOpen()) {

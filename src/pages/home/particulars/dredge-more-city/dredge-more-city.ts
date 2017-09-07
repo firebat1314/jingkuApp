@@ -52,16 +52,18 @@ export class DredgeMoreCityPage {
 
   }
   selectCity(item) {
-    this.formData.region_ids = [];
-    let arr = this.formData.region_ids;
-    let index = arr.indexOf(item.region_id);
-    if (index == -1) {
-      arr.push(item.region_id);
-      item.selected = true;
-    } else {
-      arr.splice(index, 1);
+    this.formData.region_ids = []
+    if (item.selected) {
+      this.formData.region_ids = []
       item.selected = false;
+    } else {
+      for (let i = 0; i < this.reginArr.no_user_citys.length; i++) {
+        this.reginArr.no_user_citys[i].selected = false;
+      }
+      this.formData.region_ids.push(item.region_id);
+      item.selected = true;
     }
+    console.log(this.formData.region_ids)
   }
   opanNative(type) {
     let popover = this.popover.create('PopoverContentPage');

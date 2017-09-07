@@ -445,7 +445,7 @@ export class HttpService {
   changeSurplus(data?: Object) {//切换余额支付
     return this.http.post(this.ip + '/Flow/change_surplus', data, true)
   }
-  clearFlowOrder(data?: Object) {//余额支付开关
-    return this.http.get(this.ip + '/Flow/clear_flow_order', data, true)
+  clearFlowOrder(data?: Object) {//去结算使用余额
+    return this.http.get(this.ip + '/Flow/clear_flow_order', data)
   }
 }
