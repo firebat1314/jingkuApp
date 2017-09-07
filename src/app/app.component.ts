@@ -33,6 +33,31 @@ export class MyApp {
     private native: Native,
   ) {
 
+    //————————————————————————————————————————————————————————————————————————
+    // 初次进入app引导页面
+    console.log(this.native.isMobile())
+    if (this.native.isMobile()) {
+      this.storage.get('has_entered').then((result) => {
+        if (!result) {
+          this.rootPage = 'WelcomePage';
+        } else {
+          this.rootPage = 'AppAdvertisingPage';
+        }
+      })
+    } else {
+      this.storage.get('hasLoggedIn').then((result) => {
+        if (result) {
+          this.rootPage = 'TabsPage';
+          // this.nav.setRoot('TabsPage', {}, { animate: true, direction: 'forward' });
+        } else {
+          this.rootPage = 'LoginPage';
+          // this.nav.setRoot('LoginPage', {}, { animate: true, direction: 'forward' });
+        }
+      });
+    }
+    //————————————————————————————————————————————————————————————————————————
+    // app更新
+      this.native.detectionUpgrade();
     this.initializeApp();
     //用户失效事件
     this.events.subscribe('signOut', () => {
@@ -49,46 +74,6 @@ export class MyApp {
       this.statusBar.styleDefault();
       this.splashScreen.hide();
 
-      //————————————————————————————————————————————————————————————————————————
-      // 初次进入app引导页面
-      if (this.native.isMobile()) {
-        this.storage.get('has_entered').then((result) => {
-          if (!result) {
-            this.rootPage = 'WelcomePage';
-          } else {
-            this.rootPage = 'AppAdvertisingPage';
-          }
-        })
-      } else {
-        this.storage.get('hasLoggedIn').then((result) => {
-          if (result) {
-            this.rootPage = 'TabsPage';
-            // this.nav.setRoot('TabsPage', {}, { animate: true, direction: 'forward' });
-          } else {
-            this.rootPage = 'LoginPage';
-            // this.nav.setRoot('LoginPage', {}, { animate: true, direction: 'forward' });
-          }
-        });
-      }
-      //————————————————————————————————————————————————————————————————————————
-      // app更新
-      if (this.native.isMobile()) {
-        this.native.detectionUpgrade();
-      }
-      //————————————————————————————————————————————————————————————————————————
-      // 初始化极光推送
-      if (this.native.isMobile()) {
-        this.jpushService.initJpush();//初始化极光推送
-        this.jpushService.getRegistrationID();
-        this.jpushService.setTags();
-      }
-      this.storage.get('JPUSH_FLAG').then((res) => {
-        if (res === 1) {
-          this.jpushService.resumePush();
-        } else if (res === 0) {
-          this.jpushService.stopPush();
-        }
-      })
       //————————————————————————————————————————————————————————————————————————
       //注册返回按键事件
       this.platform.registerBackButtonAction((): any => {
@@ -125,6 +110,21 @@ export class MyApp {
       this.imageLoaderConfig.setSpinnerName('circles')
       this.imageLoaderConfig.useImageTag(true); // use `<img>` tag by default
       //————————————————————————————————————————————————————————————————————————
+
+      //————————————————————————————————————————————————————————————————————————
+      // 初始化极光推送
+      if (this.native.isMobile()) {
+        this.jpushService.initJpush();//初始化极光推送
+        this.jpushService.getRegistrationID();
+        this.jpushService.setTags();
+      }
+      this.storage.get('JPUSH_FLAG').then((res) => {
+        if (res === 1) {
+          this.jpushService.resumePush();
+        } else if (res === 0) {
+          this.jpushService.stopPush();
+        }
+      })
     });
   }
   //双击退出提示框
