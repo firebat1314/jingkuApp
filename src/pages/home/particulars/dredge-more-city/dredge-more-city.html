@@ -29,12 +29,16 @@
         <ion-textarea class="textarea" required [(ngModel)]="formData.reason" name="reason"></ion-textarea>
         <p ion-text color="colorsix" padding-horizontal><span ion-text color="danger">* </span>手机号：</p>
         <ion-textarea class="textarea" type="number" required [(ngModel)]="formData.phone" name="phone"></ion-textarea>
-        <p class="idcard" ion-text color="colorsix" padding-horizontal>
+        <div class="idcard" ion-text color="colorsix" padding-horizontal>
             营业执照：
-            <button ion-button color="dark" (click)="opanNative()" margin-horizontal>选择文件</button>
-            <span ion-text *ngIf="!formData.zhizhao" color="danger">未选择任何文件</span>
-        </p>
-        <div text-center><img src="{{formData.zhizhao}}" alt=""></div>
+            <div class="add-zhizhao" (click)="opanNative()" item-center icon-top>
+                <ion-icon name="md-add"></ion-icon>
+                选择文件
+            </div>
+            <!--<input type="file" (change)="onFileChange($event)">-->
+            <span color="danger" *ngIf="!formData.zhizhao" ion-text>请上传图片</span>
+            <img src="{{formData.zhizhao}}" alt="">
+        </div>
     </form>
 </ion-content>
 <ion-footer>
