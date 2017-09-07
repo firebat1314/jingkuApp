@@ -5,7 +5,6 @@ import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 
 import { TabsPage } from '../pages/tabs/tabs';
-import { JpushService } from "../providers/jpush-service";
 import { ImageLoaderConfig } from "ionic-image-loader/dist";
 import { Native } from "../providers/native";
 

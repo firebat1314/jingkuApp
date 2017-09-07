@@ -46,15 +46,13 @@ export class AccountInfoPage {
     this.events.unsubscribe('userInfo:editOk');
   }
   editAvatar(data) {
-    this.native.showLoading()
     this.httpService.editAvatar({ avatar: data }).then((res) => {
       if (res.status == 1) {
-        this.native.hideLoading();
         this.native.showToast('头像已更新');
         this.getUserData();
-        this.events.publish(data);
+        this.events.publish('my:update',data);
       }
-    }).catch(()=>{
+    }).catch(() => {
       this.native.showToast('上传失败，请重试')
     })
   }

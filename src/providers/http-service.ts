@@ -329,7 +329,7 @@ export class HttpService {
     return this.http.post(this.ip + '/User/profile', data, true)
   }
   editAvatar(data?: Object) {//修改头像
-    return this.http.post(this.ip + '/User/avatar', data)
+    return this.http.post(this.ip + '/User/avatar', data, true)
   }
   /**
    * 后加接口
