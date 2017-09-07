@@ -54,7 +54,8 @@ export class AccountInfoPage {
         this.getUserData();
         this.events.publish(data);
       }
-    }).catch(()=>{
+    }).catch(() => {
+      this.native.hideLoading();
       this.native.showToast('上传失败，请重试')
     })
   }
