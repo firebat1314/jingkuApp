@@ -38,7 +38,6 @@ export class CountInputComponent {
     if (this.lock) {
       return;
     } else if (this.newmaxValue && (this.value >= this.newmaxValue)) {
-      console.log(this.newmaxValue)
       this.native.showToast('最多选择' + this.newmaxValue + '件');
       this.element.nativeElement.getElementsByTagName('input')[0].value = this.newmaxValue;
       return;

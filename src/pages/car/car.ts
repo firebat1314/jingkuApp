@@ -43,7 +43,7 @@ export class CarPage {
     console.log('ionViewDidLoad CarPage');
   }
   ngOnDestroy() {
-    this.events.unsubscribe('car:update');
+    // this.events.unsubscribe('car:update');
   }
   ngOnInit() {
     this.getFlowGoods();

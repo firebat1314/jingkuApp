@@ -33,7 +33,9 @@ export class RechargePage {
   }
   getAccountPayList() {
     this.httpService.getAccountPayList().then((res) => {
-      this.payList = res;
+      if (res.status) {
+        this.payList = res;
+      }
     })
   }
   onSubmit(money, type) {
@@ -61,8 +63,8 @@ export class RechargePage {
                         this.navCtrl.pop();
                       }
                     }, */ {
-                      text: '确认'
-                    }],
+                        text: '确认'
+                      }],
                     cssClass: 'recharge-alert'
                   }).present();
                 }
