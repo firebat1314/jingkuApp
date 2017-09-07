@@ -9,6 +9,8 @@ import { Native } from "../../../providers/native";
   See http://ionicframework.com/docs/v2/components/#navigation for more info on
   Ionic pages and navigation.
 */
+declare var pingpp: any;
+
 @IonicPage()
 @Component({
   selector: 'page-recharge',
@@ -77,7 +79,7 @@ export class RechargePage {
   }
   getOrderInfo(data) {
     this.httpService.payCode({ code: data }).then((res) => {
-      console.log(res);
+      // console.log(res);
       if ((res.status == 1)) {
         // this.wechatPay(res.pingxx)
         this.openPingPayment(res.pingxx);
@@ -85,7 +87,7 @@ export class RechargePage {
     })
   }
   openPingPayment(data) {
-    let that = this;
+    /*let that = this;
     (<any>window).navigator.pingpp.requestPayment(data, (result, err) => {
       that.navCtrl.pop();
       if (result == 'success') {
@@ -102,6 +104,16 @@ export class RechargePage {
         that.native.showToast("支付异常,请尝试其他支付方式");
       }
       console.log('fail', result, err)
+    });*/
+    pingpp.createPayment(data, function (result, err) {
+      console.log(result, err)
+      if (result == "success") {
+        // 只有微信公众账号 wx_pub 支付成功的结果会在这里返回，其他的支付结果都会跳转到 extra 中对应的 URL。
+      } else if (result == "fail") {
+        // charge 不正确或者微信公众账号支付失败时会在此处返回
+      } else if (result == "cancel") {
+        // 微信公众账号支付取消支付
+      }
     });
   }
 }

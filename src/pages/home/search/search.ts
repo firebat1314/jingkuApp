@@ -48,7 +48,7 @@ export class SearchPage {
       size: 10,
       page: this.page
     }).then((res) => {
-      console.log(res)
+      // console.log(res)
       if (res.status == 1) {
         this.data = res;
       }

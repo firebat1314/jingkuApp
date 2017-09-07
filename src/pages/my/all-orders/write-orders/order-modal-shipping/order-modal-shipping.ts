@@ -39,7 +39,7 @@ export class OrderModalShippingPage {
   }
   getHttpData() {
     this.httpService.checkout().then((res) => {
-      console.log(res);
+      // console.log(res);
       if (res && res.status == 1) {
         this.data = res.consignee_list;
         if (!res.consignee_list.length) {
@@ -60,16 +60,16 @@ export class OrderModalShippingPage {
       return;
     }
     this.httpService.changeConsignee({ address_id: data.address_id }).then((res) => {
-      console.log(res);
+      // console.log(res);
       if (res.status == 1) {
         this.native.showToast('已切换收货地址')
         this.viewCtrl.dismiss(data);
         this.callBack(data).then((res) => {
           // this.navCtrl.pop();
           this.events.publish('writeOrder:refresh');
-          console.log(res)
+          // console.log(res)
         }, (err) => {
-          console.log(err)
+          // console.log(err)
         })
       }
     })
@@ -80,7 +80,7 @@ export class OrderModalShippingPage {
   delete(addId) {
     this.native.openAlertBox('确认删除？', () => {
       this.httpService.delAddress({ address_ids: [addId] }).then((res) => {
-        console.log("删除收货地址==>", res)
+        // console.log("删除收货地址==>", res)
         if (res.status == 1) {
           this.getHttpData();
           this.events.publish('writeOrder:refresh');

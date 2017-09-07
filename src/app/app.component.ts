@@ -7,7 +7,6 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 import { TabsPage } from '../pages/tabs/tabs';
 import { JpushService } from "../providers/jpush-service";
 import { ImageLoaderConfig } from "ionic-image-loader/dist";
-import { AppUpdate } from '@ionic-native/app-update';
 import { Native } from "../providers/native";
 
 @Component({
@@ -24,13 +23,12 @@ export class MyApp {
     private storage: Storage,
     private ionicApp: IonicApp,
     private events: Events,
-    private jpushService: JpushService,
     private statusBar: StatusBar,
     private splashScreen: SplashScreen,
     private keyboard: Keyboard,
     private imageLoaderConfig: ImageLoaderConfig,
-    private appUpdate: AppUpdate,
     private native: Native,
+    private jpushService: JpushService,
   ) {
 
     //————————————————————————————————————————————————————————————————————————
@@ -47,7 +45,7 @@ export class MyApp {
     } else {
       this.storage.get('hasLoggedIn').then((result) => {
         if (result) {
-          this.rootPage = 'TabsPage';
+          this.rootPage = 'TabsPage';//TabsPage//WellcomeNewmPage
           // this.nav.setRoot('TabsPage', {}, { animate: true, direction: 'forward' });
         } else {
           this.rootPage = 'LoginPage';

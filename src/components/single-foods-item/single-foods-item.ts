@@ -70,7 +70,6 @@ export class SingleFoodsItemComponent {
   }
   onCollect(item) {
     this.httpService.getGoodsCollect({ goods_id: item.id }).then((res) => {
-      console.log(res)
       if (res.status == 1) {
         this.native.showToast('关注成功~')
         item.is_collect = 1;

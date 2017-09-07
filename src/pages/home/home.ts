@@ -83,14 +83,14 @@ export class HomePage {
   }
   getHomeData() {
     return this.httpService.indexs().then((res) => {
-      console.log(res)
+      // console.log(res)
       if (res.status == 1) {
         this.data = res;
         this.storage.set('homeData', res);
         this.assignData(res);
       }
     }).catch((res) => { 
-      console.log(res);
+      // console.log(res);
     })
     /*this.httpService.getHomebanner({ int_pos_id: 44, size: 1 }).then((res) => {
       if (res.status == 1) { this.hotBrand_img = res; }

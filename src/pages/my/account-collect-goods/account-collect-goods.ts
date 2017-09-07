@@ -28,7 +28,7 @@ export class AccountCollectGoodsPage {
   /*下拉刷新*/
   doRefresh(refresher?) {
     this.httpService.collectionList({ size: 10, page: 1 }).then((res) => {
-      console.log('收藏店商品列表', res)
+      // console.log('收藏店商品列表', res)
       if (res.status == 1) { this.collectionList = res; }
       if (refresher) {
         setTimeout(() => {
@@ -40,7 +40,7 @@ export class AccountCollectGoodsPage {
   unfollowGoods(goods_id, index) {
     this.native.openAlertBox('取消关注改商铺?', () => {
       this.httpService.delCollectionGoods({ rec_ids: [goods_id] }).then((res) => {
-        console.log(res);
+        // console.log(res);
         if (res.status == 1) {
           this.native.showToast('已取消关注')
           this.doRefresh();

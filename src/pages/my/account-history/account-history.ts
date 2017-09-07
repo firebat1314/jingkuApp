@@ -65,7 +65,7 @@ export class AccountHistoryPage {
           handler: () => {
             console.log('Agree clicked');
             this.httpService.delWatch({ goods_ids: [id] }).then((res) => {
-              console.log(res);
+              // console.log(res);
               this.getHttpData();
             })
           }
@@ -95,9 +95,9 @@ export class AccountHistoryPage {
                 arr.push(item[i].goods_id)
               }
             }
-            console.log(arr)
+            // console.log(arr)
             this.httpService.delWatch({ goods_ids: arr }).then((res) => {
-              console.log(res);
+              // console.log(res);
               this.getHttpData();
             })
           }

@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams, ToastController, IonicPage } from 'ionic-angular';
+import { NavController, NavParams, ToastController, IonicPage, AlertController, App } from 'ionic-angular';
 import { HttpService } from "../../../../../providers/http-service";
 
 /*
@@ -25,7 +25,9 @@ export class ChangePasswordPage {
     public navCtrl: NavController,
     public navParams: NavParams,
     public httpService: HttpService,
-    public toastCtrl: ToastController
+    public toastCtrl: ToastController,
+    private alertCtrl: AlertController,
+    public app: App,
   ) { }
 
   ionViewDidLoad() {
@@ -40,8 +42,22 @@ export class ChangePasswordPage {
           duration: 2000,
           position: 'top',
           showCloseButton: false
-        }).present().then(()=>{
-          this.navCtrl.pop();
+        }).present().then(() => {
+          this.app.getRootNav().setRoot('LoginPage', {}, { animate: true });
+          this.httpService.setStorage('hasLoggedIn', false);
+          /* this.alertCtrl.create({
+            title: '升级',
+            subTitle: '发现新版本,是否立即升级？',
+            enableBackdropDismiss:false,
+            buttons: [
+            {
+              text: '确定',
+              handler: () => {
+                // this.platform.exitApp();
+              }
+            }
+            ]
+          }).present(); */
         });
       }
     })

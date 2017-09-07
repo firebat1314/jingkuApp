@@ -42,13 +42,13 @@ export class SignupSecondPage {
     console.log('ionViewDidLoad SignupSecondPage');
     this.formData.user_name = this.navParams.get("user_name");
     this.httpService.changeRegion({ type: 1, parent_id: 1 }).then((res) => {
-      console.log(res);
+      // console.log(res);
       this.provinceList = res.data;
     })
   }
   provinceChange(id) {
     this.httpService.changeRegion({ type: 2, parent_id: id }).then((res) => {
-      console.log(res);
+      // console.log(res);
       if (res.status == 1) {
         this.cityList = res.data;
         this.formData.city = '';
@@ -58,7 +58,7 @@ export class SignupSecondPage {
   }
   cityChange(id) {
     this.httpService.changeRegion({ type: 3, parent_id: id }).then((res) => {
-      console.log(res);
+      // console.log(res);
       if (res.status == 1) {
         this.districtList = res.data;
       }

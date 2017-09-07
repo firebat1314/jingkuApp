@@ -128,7 +128,7 @@ export class AllOrdersPage {
   }
   toPay(id) {
     this.httpService.pay({ order_id: id }).then((res) => {
-      console.log(res);
+      // console.log(res);
       if (res.status == 1) {
         this.navCtrl.push('PaymentMethodPage', { data: res })
       }

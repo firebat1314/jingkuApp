@@ -31,13 +31,13 @@ export class MemberCenterPage {
   ionViewDidLoad() {
     console.log('ionViewDidLoad MemberCenterPage');
     this.httpService.userInfo().then((res) => {
-      console.log(res)
+      // console.log(res)
       if (res.status == 1) {
         this.userInfo = res;
       }
     })
     this.httpService.userRank().then((res) => {
-      console.log(res);
+      // console.log(res);
       if (res.status == 1) {
         this.data = res;
         for(let i = 0;i < res.data.length;i++){

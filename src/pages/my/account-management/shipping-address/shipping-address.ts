@@ -36,21 +36,21 @@ export class ShippingAddressPage {
   }
   getHttpData() {
     this.httpService.addressList().then((res) => {
-      console.log('收货地址列表：', res)
+      // console.log('收货地址列表：', res)
       if (res.status == 1) { this.addressList = res }
     })
   }
   deleteOne(id) {
     this.native.openAlertBox('删除该收获地址？', () => {
       this.httpService.delAddress({ address_ids: [id] }).then((res) => {
-        console.log(res);
+        // console.log(res);
         if (res.status == 1) { this.getHttpData() }
       })
     })
   }
   setDefaultAddress(id) {
     this.httpService.defaultAddress({ address_id: id }).then((res) => {
-      console.log(res);
+      // console.log(res);
       this.getHttpData();
       if (res.status == 1) {
         this.native.showToast('更换成功')

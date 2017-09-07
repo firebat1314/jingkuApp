@@ -21,7 +21,7 @@ export class AccountHelperPage {
     private httpService: HttpService
   ) {
     this.httpService.help().then((res) => {
-      console.log(res)
+      // console.log(res)
       if (res.status == 1) {
         this.data = res;
       }

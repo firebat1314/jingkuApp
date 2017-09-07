@@ -41,7 +41,7 @@ import { IonicImageLoader } from 'ionic-image-loader';
         ios: {}
       },
       backButtonText: '',
-      // mode:'md',
+      mode:'ios',
       tabsHideOnSubPages: true,
       tabsPlacement: 'bottom',
       // activator: "highlight"
