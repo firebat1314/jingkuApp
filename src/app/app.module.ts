@@ -21,7 +21,6 @@ import { Camera } from '@ionic-native/camera';
 import { SplashScreen } from "@ionic-native/splash-screen";
 import { StatusBar } from "@ionic-native/status-bar";
 import { Toast } from '@ionic-native/toast';
-import { AppUpdate } from '@ionic-native/app-update';
 import { Transfer } from "@ionic-native/transfer";
 import { File } from '@ionic-native/file';
 
@@ -74,7 +73,6 @@ import { IonicImageLoader } from 'ionic-image-loader';
     BarcodeScanner,
     AndroidFullScreen,
     Badge,
-    AppUpdate,
     Transfer,
     File
   ]

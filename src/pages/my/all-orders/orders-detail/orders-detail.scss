@@ -23,12 +23,12 @@ page-orders-detail {
                 margin-bottom: 10px;
                 display: flex;
                 justify-content: space-between;
-                .name {
-                    font-size: 1.6rem;
-                }
                 .phone {
                     color: #333;
                 }
+            }
+            .address {
+                font-size: 1.2rem;
             }
         }
         .fore3 {

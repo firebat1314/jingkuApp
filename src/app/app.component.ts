@@ -24,7 +24,7 @@ export class MyApp {
     private ionicApp: IonicApp,
     private events: Events,
     private jpushService: JpushService,
-    
+
     private statusBar: StatusBar,
     private splashScreen: SplashScreen,
     private keyboard: Keyboard,
@@ -57,7 +57,7 @@ export class MyApp {
     //————————————————————————————————————————————————————————————————————————
     // app更新
     this.native.detectionUpgrade();
-    
+
     this.initializeApp();
     //用户失效事件
     this.events.subscribe('signOut', () => {

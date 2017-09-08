@@ -31,13 +31,15 @@
         <ion-textarea class="textarea" type="number" required [(ngModel)]="formData.phone" name="phone"></ion-textarea>
         <div class="idcard" ion-text color="colorsix" padding-horizontal>
             营业执照：
-            <div class="add-zhizhao" (click)="opanNative()" item-center icon-top>
+            <div class="add-zhizhao" tappable (click)="opanNative()" item-center icon-top>
                 <ion-icon name="md-add"></ion-icon>
                 选择文件
             </div>
             <!--<input type="file" (change)="onFileChange($event)">-->
             <span color="danger" *ngIf="!formData.zhizhao" ion-text>请上传图片</span>
-            <img src="{{formData.zhizhao}}" alt="">
+            <div>
+                <img src="{{formData.zhizhao}}" alt="">
+            </div>
         </div>
     </form>
 </ion-content>
