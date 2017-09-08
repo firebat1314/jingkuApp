@@ -16,7 +16,6 @@ import { Native } from "../../../providers/native";
   templateUrl: 'setting.html'
 })
 export class SettingPage {
-
   constructor(
     public navCtrl: NavController,
     public navParams: NavParams,

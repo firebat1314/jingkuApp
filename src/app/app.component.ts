@@ -105,7 +105,6 @@ export class MyApp {
       this.imageLoaderConfig.setSpinnerName('circles')
       this.imageLoaderConfig.useImageTag(true); // use `<img>` tag by default
       //————————————————————————————————————————————————————————————————————————
-
     });
   }
   //双击退出提示框
