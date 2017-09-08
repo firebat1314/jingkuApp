@@ -24,9 +24,9 @@
       <div class="new-order-flow new-p-re">
         <span class="new-order-arr"></span>
         <ul class="new-of-storey">
-          <ng-container *ngFor="let item of box.list.reverse();let i = index">
+          <ng-container *ngFor="let item of box.list | reverse;let i = index">
             <li class="time">{{item.time}}</li>
-            <li *ngFor="let wuliu of item.data.reverse();let j = index">
+            <li *ngFor="let wuliu of item.data | reverse;let j = index">
               <span class="icon" [class.on]="i==0&&j==0"></span>
               <span>{{wuliu.context}}</span>
               <span>{{wuliu.time}}</span>

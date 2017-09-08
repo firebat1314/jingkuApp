@@ -8,6 +8,7 @@ import { TabsPage } from '../pages/tabs/tabs';
 import { ImageLoaderConfig } from "ionic-image-loader/dist";
 import { Native } from "../providers/native";
 import { JpushService } from "../providers/jpush-service";
+import { UpgradeProvider } from '../providers/upgrade';
 
 @Component({
   templateUrl: 'app.html'
@@ -24,17 +25,16 @@ export class MyApp {
     private ionicApp: IonicApp,
     private events: Events,
     private jpushService: JpushService,
-
     private statusBar: StatusBar,
     private splashScreen: SplashScreen,
     private keyboard: Keyboard,
     private imageLoaderConfig: ImageLoaderConfig,
     private native: Native,
+    private upgradeProvider: UpgradeProvider,
   ) {
 
     //————————————————————————————————————————————————————————————————————————
     // 初次进入app引导页面
-    console.log(this.native.isMobile())
     if (this.native.isMobile()) {
       this.storage.get('has_entered').then((result) => {
         if (!result) {
@@ -56,7 +56,7 @@ export class MyApp {
     }
     //————————————————————————————————————————————————————————————————————————
     // app更新
-    this.native.detectionUpgrade();
+    this.upgradeProvider.detectionUpgrade();
 
     this.initializeApp();
     //用户失效事件
