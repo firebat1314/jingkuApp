@@ -31,7 +31,6 @@ export class MyApp {
 
     //————————————————————————————————————————————————————————————————————————
     // 初次进入app引导页面
-    console.log(this.native.isMobile())
     if (this.native.isMobile()) {
       this.storage.get('has_entered').then((result) => {
         if (!result) {

@@ -145,6 +145,7 @@ page-fastbuy {
         float: left;
         padding-bottom: 10px;
         position: relative;
+        display: flex;
     }
     .goods_box_ul li .time_d {
         width: 80%;
@@ -188,6 +189,11 @@ page-fastbuy {
         background-color: #fff;
         border-radius: 3px;
         overflow: hidden;
+        display: flex;
+        flex-direction: column;
+    }
+    .box_ul_d .box_ul_dtop{
+        flex: 1;
     }
     .box_ul_d .box_ul_dtop img {
         width: 100%;
