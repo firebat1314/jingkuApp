@@ -37,8 +37,8 @@ export class UpgradeProvider {
     this.native.getVersionNumber().then((version) => {
       console.log("版本信息：" + version);
       this.httpService.versionInfo().then((res) => {
-        if (this.native.isIos) {
-          if (version > res.ios.version) {
+        if (this.native.isIos()) {
+          if (String(version) < res.ios.version) {
             if (res.ios.must) {
               this.alertCtrl.create({
                 title: '升级',
@@ -75,8 +75,8 @@ export class UpgradeProvider {
           }
 
         }
-        if (this.native.isAndroid) {
-          if (version > res.android.version) {
+        if (this.native.isAndroid()) {
+          if (String(version) < res.android.version) {
             if (res.android.must) {
               this.alertCtrl.create({
                 title: '升级',
