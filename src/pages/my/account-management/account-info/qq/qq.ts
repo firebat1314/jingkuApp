@@ -30,7 +30,6 @@ export class QqPage {
   }
   onsubmit() {
     this.httpServive.editProfile({ qq: this.userqq }).then((res) => {
-      console.log(res);
       if (res.status == 1) {
         this.native.showToast('修改成功');
         this.navCtrl.pop();

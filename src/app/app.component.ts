@@ -5,10 +5,9 @@ import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 
 import { TabsPage } from '../pages/tabs/tabs';
-import { JpushService } from "../providers/jpush-service";
 import { ImageLoaderConfig } from "ionic-image-loader/dist";
-import { AppUpdate } from '@ionic-native/app-update';
 import { Native } from "../providers/native";
+import { JpushService } from "../providers/jpush-service";
 
 @Component({
   templateUrl: 'app.html'
@@ -25,11 +24,11 @@ export class MyApp {
     private ionicApp: IonicApp,
     private events: Events,
     private jpushService: JpushService,
+    
     private statusBar: StatusBar,
     private splashScreen: SplashScreen,
     private keyboard: Keyboard,
     private imageLoaderConfig: ImageLoaderConfig,
-    private appUpdate: AppUpdate,
     private native: Native,
   ) {
 
@@ -47,7 +46,7 @@ export class MyApp {
     } else {
       this.storage.get('hasLoggedIn').then((result) => {
         if (result) {
-          this.rootPage = 'TabsPage';
+          this.rootPage = 'TabsPage';//TabsPage//WellcomeNewmPage
           // this.nav.setRoot('TabsPage', {}, { animate: true, direction: 'forward' });
         } else {
           this.rootPage = 'LoginPage';
@@ -57,7 +56,8 @@ export class MyApp {
     }
     //————————————————————————————————————————————————————————————————————————
     // app更新
-      this.native.detectionUpgrade();
+    this.native.detectionUpgrade();
+    
     this.initializeApp();
     //用户失效事件
     this.events.subscribe('signOut', () => {
@@ -110,7 +110,6 @@ export class MyApp {
       this.imageLoaderConfig.setSpinnerName('circles')
       this.imageLoaderConfig.useImageTag(true); // use `<img>` tag by default
       //————————————————————————————————————————————————————————————————————————
-
       //————————————————————————————————————————————————————————————————————————
       // 初始化极光推送
       if (this.native.isMobile()) {

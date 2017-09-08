@@ -130,14 +130,13 @@ export class WriteOrdersPage {
       }
     })
   }
-  myToggle: boolean = false;
   changeSurplus(toggle) {
     if (toggle) {
-      this.httpService.changeSurplus({ surplus: 1 }).then((res) => { }).then(() => {
+      this.httpService.changeSurplus({ surplus: 1 }).then((res) => {
         this.getHttpData()
       });
     } else {
-      this.httpService.changeSurplus({ surplus: 0 }).then((res) => { }).then(() => {
+      this.httpService.changeSurplus({ surplus: 0 }).then((res) => {
         this.getHttpData()
       });
     }
@@ -172,7 +171,7 @@ export class WriteOrdersPage {
         suppliers.push(i)
       }
     }
-    if (this.myToggle) {
+    if (this.data.is_surplus) {
       this.native.openAlertBox('使用余额支付', () => {
         this.httpService.submitOrder({
           notes: {
@@ -183,6 +182,7 @@ export class WriteOrdersPage {
           if (res.status == 1) {
             if (res.is_pay) {
               this.navCtrl.push('AllOrdersPage');
+              this.native.showToast('支付成功');
             } else {
               this.native.showToast('需要组合支付');
               this.httpService.pay({ order_id: res.order_id }).then((res) => {
@@ -191,7 +191,6 @@ export class WriteOrdersPage {
                 }
               })
             }
-            this.navCtrl.remove(1);
             this.events.publish('my:update');
             this.events.publish('car:update');
             // this.viewCtrl.dismiss();
@@ -212,12 +211,10 @@ export class WriteOrdersPage {
             this.httpService.pay({ order_id: res.order_id }).then((res) => {
               if (res.status == 1) {
                 this.navCtrl.push('PaymentMethodPage', { data: res });
-                this.navCtrl.remove(1);
               }
             })
           } else if (this.paymentMothdID == 4) {
             this.navCtrl.push('OrdersDetailPage', { order_id: res.order_id });
-            this.navCtrl.remove(1);
             this.alertCtrl.create({
               title: '汇款须知',
               subTitle: this.paymentMothdDesc,

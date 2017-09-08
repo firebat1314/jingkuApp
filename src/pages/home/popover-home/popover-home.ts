@@ -29,7 +29,7 @@ export class PopoverHomePage {
   }
   openScanner() {
     this.native.openBarcodeScanner().then((result) => {
-      console.log(result)
+      // console.log(result)
       this.native.openAlertBox(result['text'], () => {
         console.log(result['format'])
       })

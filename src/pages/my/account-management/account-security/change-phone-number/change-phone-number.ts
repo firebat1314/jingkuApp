@@ -106,8 +106,8 @@ export class ChangePhoneNumberPage {
       }
     })
   }
-  onSubmit(event) {
-    console.log(event)
+  onSubmit(event){
+    console.log(event);
   }
   onsubmit() {
     this.httpService.editMobile(this.formData).then((res) => {

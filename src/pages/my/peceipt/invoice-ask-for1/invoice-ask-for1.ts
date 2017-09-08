@@ -108,7 +108,7 @@ export class InvoiceAskFor1Page {
       return
     }
     this.httpService.selectzz({ order_ids: this.orderIds, suppliers_id: this.suppliersId }).then((res) => {
-      console.log(res);
+      // console.log(res);
       if (res.status == 1) {
         this.navCtrl.push('InvoiceAskFor2Page', { data: res });
       }

@@ -28,16 +28,16 @@ export class CouponPage {
     console.log('ionViewDidLoad CouponPage');
   }
 
-  segmentChange(finish?) {
+  segmentChange() {
     //over_time use 
-    this.httpService.getUserBonus({ bonus_type: this.couponSelect||null }).then((res) => {
-        if (res.status == 1) { this.data = res; }
-        if (finish) { finish() }
-      })
+    this.data = null;
+    return this.httpService.getUserBonus({ bonus_type: this.couponSelect || null }).then((res) => {
+      if (res.status == 1) { this.data = res; }
+    })
   }
   /*下拉刷新*/
   doRefresh(refresher) {
-    this.segmentChange(() => {
+    this.segmentChange().then(() => {
       setTimeout(() => {
         refresher.complete();
       }, 500);

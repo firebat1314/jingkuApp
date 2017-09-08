@@ -31,7 +31,7 @@ export class AddressPage {
   }
   onsubmit() {
     this.httpServive.editProfile({ address: this.userAddress }).then((res) => {
-      console.log(res);
+      // console.log(res);
       if (res.status == 1) {
         this.native.showToast('修改成功');
         this.navCtrl.pop();

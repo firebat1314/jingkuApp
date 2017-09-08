@@ -35,7 +35,7 @@ export class AccountInfoPage {
   }
   getUserData() {
     this.httpService.userInfo().then((res) => {
-      console.log(res);
+      // console.log(res);
       this.userInfo = res;
     })
   }
@@ -81,7 +81,6 @@ export class AccountInfoPage {
   uploadAvatar(data) {
     this.httpService.editAvatar({ avatar: 'data:image/jpeg;base64,' + data }).then((res) => {
       if (res.status == 1) {
-        this.native.hideLoading();
         this.native.showToast('头像已更新');
         this.getUserData();
         this.events.publish('my:update','data:image/jpeg;base64,' + data);

@@ -20,6 +20,6 @@ export class AccountProcessPage {
     console.log('ionViewDidLoad AccountProcessPage');
   }
   scroll(){
-    console.log(11)
+    // console.log(11)
   }
 }

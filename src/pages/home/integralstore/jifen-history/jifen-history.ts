@@ -36,7 +36,7 @@ export class JifenHistoryPage {
 
   getData() {
     this.httpService.exchangeGoods({ page: 1 }).then(res => {
-      console.log(res);
+      // console.log(res);
       if (res.status == 1) {
         this.data = res;
       }
