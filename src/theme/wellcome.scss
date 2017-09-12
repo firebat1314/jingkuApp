@@ -501,7 +501,7 @@ select {
     display: block;
     width: 50px;
     height: 50px;
-    background: url(../images/ico-1.png) no-repeat center;
+    background: url(../assets/images/wellcome-newm/ico-1.png) no-repeat center;
     background-size: 25px;
 }
 
@@ -721,39 +721,6 @@ select {
     box-shadow: 0 0 10px rgba(0, 0, 0, .2);
 }
 
-.head {
-    position: fixed;
-    top: 0;
-    left: 0;
-    z-index: 2000;
-    padding: 3px 0;
-    width: 100%;
-    background: #333;
-}
-
-.head .logo {
-    float: left;
-    display: block;
-    padding: 7px 0;
-    margin-left: 10px;
-}
-
-.head .logo img {
-    display: block;
-    height: 25px;
-    width: auto;
-}
-
-.head .dyon {
-    float: right;
-    margin-right: 10px;
-    display: block;
-    width: 40px;
-    height: 40px;
-    background: url(../assets/images/wellcome-newm/top-ico-1.png) no-repeat center;
-    background-size: 20px;
-    border-radius: 50%;
-}
 
 .head.bse {
     background: rgba(0, 0, 0, .7)

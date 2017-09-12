@@ -1,12 +1,9 @@
-<ion-content>
+<ion-content #myContent>
 
-  <div class="head clearfix">
-    <a  class="logo"><img src="./assets/images/wellcome-newm/logo.png"/></a>
-    <a  class="dyon"></a>
-  </div>
+  <wel-header  [content]="myContent"></wel-header>
 
   <div class="carousel j_carousel  wow animated  fadeInUp">
-    <swiper-newm  img="./assets/images/wellcome-newm/sj/banner.jpg"></swiper-newm>
+    <swiper-newm img="./assets/images/wellcome-newm/sj/banner.jpg"></swiper-newm>
   </div>
 
   <div class="sjfw-wrp">

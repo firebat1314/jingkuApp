@@ -1,15 +1,11 @@
-<ion-content>
+<ion-content #myContent>
 
-  <div class="head clearfix">
-    <a  class="logo"><img src="./assets/images/wellcome-newm/logo.png"/></a>
-    <a  class="dyon"></a>
-  </div>
+  <wel-header [content]="myContent"></wel-header>
 
   <div class="carousel j_carousel  wow animated  fadeInUp">
-
     <!-- Swiper -->
-    <swiper-newm  img="./assets/images/wellcome-newm/crm/banner.jpg"></swiper-newm>
-    
+    <swiper-newm img="./assets/images/wellcome-newm/crm/banner.jpg"></swiper-newm>
+
   </div>
 
   <div class="hlw_us">
@@ -79,18 +75,18 @@
       </div>
     </div>
     <div class="hye-cont">
-        <div class="item  wow animated  fadeInUp">
-          <div class="img"><img src="./assets/images/wellcome-newm/crm/yjtj.png" /></div>
-          <div class="txt">
-            <h3>业绩统计</h3>
-            <p>管理员可以在后台创建并发布奖励计划，包括业务员销售返佣和注册奖励，业务员得到奖励后可以后台提现相应的奖励金额</p>
-          </div>
+      <div class="item  wow animated  fadeInUp">
+        <div class="img"><img src="./assets/images/wellcome-newm/crm/yjtj.png" /></div>
+        <div class="txt">
+          <h3>业绩统计</h3>
+          <p>管理员可以在后台创建并发布奖励计划，包括业务员销售返佣和注册奖励，业务员得到奖励后可以后台提现相应的奖励金额</p>
         </div>
       </div>
+    </div>
   </div>
 
   <footer-rights></footer-rights>
-  
+
 
   <div class="f-top j_f_top"></div>
 

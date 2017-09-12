@@ -1,14 +1,11 @@
-<ion-content>
+<ion-content #myContent>
 
-  <div class="head clearfix">
-    <a  class="logo"><img src="./assets/images/wellcome-newm/logo.png"/></a>
-    <a  class="dyon"></a>
-  </div>
+  <wel-header [content]="myContent"></wel-header>
 
   <div class="carousel j_carousel  wow animated  fadeInUp">
 
-      <swiper-newm img="./assets/images/wellcome-newm/gys/banner.jpg"></swiper-newm>
-      
+    <swiper-newm img="./assets/images/wellcome-newm/gys/banner.jpg"></swiper-newm>
+
   </div>
 
   <div class="sbaiw-wrp">
@@ -51,7 +48,7 @@
   <div class="youzhi  wow animated  fadeInUp">
     <p class="p1  wow animated  fadeInUp">数百万优质店主分销您的好货</p>
     <p class="p2  wow animated  fadeInUp">Millions of quality shopkeepers distribute your good stuff</p>
-    <a  class="ys-btn  wow animated  fadeInUp">立即体验 <em></em></a>
+    <a class="ys-btn  wow animated  fadeInUp">立即体验 <em></em></a>
   </div>
 
   <div class="strong-wrp">
@@ -108,7 +105,7 @@
   </div>
 
   <footer-rights></footer-rights>
-  
+
 
   <div class="f-top j_f_top"></div>
 

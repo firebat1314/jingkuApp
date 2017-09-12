@@ -4,6 +4,7 @@ import { GhsPage } from './ghs';
 import { ImgLazyLoadDirectiveModule } from '../../../directives/img-lazy-load/img-lazy-load.module';
 import { SwiperNewmComponentModule } from '../../../components/swiper-newm/swiper-newm.module';
 import { FooterRightsComponentModule } from '../../../components/footer-rights/footer-rights.module';
+import { WelHeaderComponentModule } from '../../../components/wel-header/wel-header.module';
 
 @NgModule({
    declarations: [
@@ -14,6 +15,7 @@ import { FooterRightsComponentModule } from '../../../components/footer-rights/f
       ImgLazyLoadDirectiveModule,
       SwiperNewmComponentModule,
       FooterRightsComponentModule,
+      WelHeaderComponentModule
    ],
    exports: [
       GhsPage

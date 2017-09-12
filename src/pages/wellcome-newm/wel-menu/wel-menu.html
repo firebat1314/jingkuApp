@@ -1,0 +1,31 @@
+<!--
+  Generated template for the WelMenuPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+
+
+<ion-content>
+
+  <div class="head-xuan clearfix">
+    <a class="logo"><img src="./assets/images/wellcome-newm/logo-2.png"/></a>
+    <a class="chah" tappable (click)="viewCtrl.dismiss()"></a>
+  </div>
+
+  <div class="xuan-ner" tappable (click)="dismiss('WellcomeNewmPage')">
+    <div class="home"></div>
+    <ul class="xu-list">
+      <!-- <li><a  class="on">镜库采购商</a></li> -->
+      <li tappable (click)="dismiss('GhsPage')"><a>镜库供应商</a></li>
+      <li tappable (click)="dismiss('CrmPage')"><a>镜库CRM</a></li>
+      <li tappable (click)="dismiss('WdPage')"><a>镜库微店</a></li>
+      <li tappable (click)="dismiss('SjPage')"><a>镜库设计</a></li>
+      <li tappable (click)="dismiss('JzPage')"><a>镜库建站</a></li>
+      <!-- <li><a >镜库金融</a></li> -->
+      <!-- <li><a >镜库ERP</a></li> -->
+      <!-- <li><a >镜库云仓</a></li> -->
+      <!-- <li><a >镜库品牌商</a></li> -->
+    </ul>
+  </div>
+</ion-content>

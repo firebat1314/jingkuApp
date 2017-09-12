@@ -1,9 +1,6 @@
-<ion-content>
+<ion-content #myContent>
 
-  <div class="head clearfix">
-    <a  class="logo"><img src="./assets/images/wellcome-newm/logo.png"/></a>
-    <a  class="dyon"></a>
-  </div>
+  <wel-header  [content]="myContent"></wel-header>
 
   <div class="carousel j_carousel  wow animated  fadeInUp">
     <swiper-newm img="./assets/images/wellcome-newm/wd/banner.jpg"></swiper-newm>
@@ -61,7 +58,7 @@
   <div class="youzhi  wow animated  fadeInUp" style="background:url(./assets/images/wellcome-newm/weid-bg.jpg) no-repeat center;">
     <p class="p1  wow animated  fadeInUp">企业专属定制的微商城</p>
     <p class="p2  wow animated  fadeInUp">专业人员实时在线一对一服务门店，运营诊断指导落地营销进阶，运营进阶，战略进阶业界大咖线下互动分享</p>
-    <a  class="ys-btn  wow animated  fadeInUp">立即体验 <em></em></a>
+    <a class="ys-btn  wow animated  fadeInUp">立即体验 <em></em></a>
   </div>
 
   <div class="ydjj-wrp">

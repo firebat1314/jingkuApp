@@ -4,6 +4,7 @@ import { ImgLazyLoadDirectiveModule } from "../../directives/img-lazy-load/img-l
 import { WellcomeNewmPage } from "./wellcome-newm";
 import { SwiperNewmComponentModule } from '../../components/swiper-newm/swiper-newm.module';
 import { FooterRightsComponentModule } from '../../components/footer-rights/footer-rights.module';
+import { WelHeaderComponentModule } from '../../components/wel-header/wel-header.module';
 
 @NgModule({
    declarations: [
@@ -14,6 +15,7 @@ import { FooterRightsComponentModule } from '../../components/footer-rights/foot
       ImgLazyLoadDirectiveModule,
       SwiperNewmComponentModule,
       FooterRightsComponentModule,
+      WelHeaderComponentModule
    ],
    exports: [
       WellcomeNewmPage
