@@ -44,7 +44,8 @@ import { UpgradeProvider } from '../providers/upgrade';
       // mode:'md',
       tabsHideOnSubPages: true,
       tabsPlacement: 'bottom',
-      // activator: "highlight"
+      swipeBackEnabled: true,
+      // activator: "highlight",
     }),
     IonicStorageModule.forRoot(),
     IonicImageLoader.forRoot(),

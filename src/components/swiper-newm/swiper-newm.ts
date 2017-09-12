@@ -1,4 +1,6 @@
 import { Component, Input, ElementRef, Renderer } from '@angular/core';
+import { NavController } from 'ionic-angular';
+import { Storage } from '@ionic/storage';
 
 /**
  * Generated class for the SwiperNewmComponent component.
@@ -19,6 +21,8 @@ export class SwiperNewmComponent {
   constructor(
     private ele: ElementRef,
     private render: Renderer,
+    private navCtrl: NavController,
+    private storage: Storage,
   ) {
     console.log('Hello SwiperNewmComponent Component');
   }
@@ -34,6 +38,17 @@ export class SwiperNewmComponent {
       loop: false,
       // parallax: true,
       // speed: 800,
+    });
+  }
+  goToHome() {
+    
+    this.storage.get('hasLoggedIn').then((result) => {
+      if (result) {
+        this.navCtrl.setRoot('TabsPage', {}, { animate: true, direction: 'forward' });
+      } else {
+        // this.navCtrl.setRoot('LoginPage', {}, { animate: true, direction: 'forward' });
+        this.navCtrl.push('LoginPage');
+      }
     });
   }
 }
