@@ -13,10 +13,10 @@
     <a class="chah" tappable (click)="viewCtrl.dismiss()"></a>
   </div>
 
-  <div class="xuan-ner" tappable (click)="dismiss('WellcomeNewmPage')">
-    <div class="home"></div>
+  <div class="xuan-ner">
+    <div class="home" tappable (click)="dismiss('WellcomeNewmPage')"></div>
     <ul class="xu-list">
-      <!-- <li><a  class="on">镜库采购商</a></li> -->
+      <li tappable (click)="dismiss('WellcomeNewmPage')"><a>镜库采购商</a></li>
       <li tappable (click)="dismiss('GhsPage')"><a>镜库供应商</a></li>
       <li tappable (click)="dismiss('CrmPage')"><a>镜库CRM</a></li>
       <li tappable (click)="dismiss('WdPage')"><a>镜库微店</a></li>

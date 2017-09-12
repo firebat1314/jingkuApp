@@ -7,3 +7,5 @@ export const IP = 'http://v403app.jingkoo.net';//app测试
 // export const IP = 'http://newm.jingkoo.net';//m站
 // export const IP = 'http://hl.jingkoo.net/';//响应速度测试
 // export const IP = 'http://newpc.jingkoo.net';//pc站
+
+export const welpage_selected = '';

@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams, IonicPage, ViewController } from 'ionic-angular';
+import { welpage_selected } from '../../../providers/constants';
+
 
 /**
  * Generated class for the WelMenuPage page.
@@ -26,7 +28,6 @@ export class WelMenuPage {
     console.log('ionViewDidLoad WelMenuPage');
   }
   
-
 
   dismiss(page){
     this.viewCtrl.dismiss((nav)=>{

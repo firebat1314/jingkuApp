@@ -472,39 +472,6 @@ select {
     width: 100%;
 }
 
-.header {
-    padding: 0 0;
-    background: #1a1a1a;
-}
-
-.header .logo {
-    float: left;
-    width: calc(100% - 50px);
-    height: 50px;
-    padding-top: 10px;
-}
-
-.header .logo img {
-    display: block;
-    height: 30px;
-    width: auto;
-    margin-left: 10px;
-}
-
-.header .nav-tc {
-    float: right;
-    width: 50px;
-    height: 50px;
-}
-
-.header .nav-tc .sk {
-    display: block;
-    width: 50px;
-    height: 50px;
-    background: url(../assets/images/wellcome-newm/ico-1.png) no-repeat center;
-    background-size: 25px;
-}
-
 .header:after {
     content: " ";
     display: block;
@@ -718,6 +685,7 @@ select {
     border-radius: 2px;
     background: #3f69a5;
     color: #fff;
+    font-size: 1.4rem;
     box-shadow: 0 0 10px rgba(0, 0, 0, .2);
 }
 
