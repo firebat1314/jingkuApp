@@ -15,6 +15,8 @@
 .tabs .tabbar {
     background: #fff;
 }
+ol,ul{list-style:none;padding: 0;margin: 0;}
+a{text-decoration: none;font-size:.7rem;color:#797979;cursor: pointer;}
 
 html {
     // font-family: -apple-system, BlinkMacSystemFont, Helvetica Neue, Helvetica, Roboto, Arial, PingFang SC, Hiragino Sans GB, Microsoft Yahei, Microsoft Jhenghei, sans-serif !important;

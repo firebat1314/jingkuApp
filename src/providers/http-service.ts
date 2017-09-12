@@ -17,7 +17,6 @@ export class HttpService {
   public hasLogin = false;
 
 
-
   constructor(public http: UserData, private storage: Storage) {
     console.log('Hello HttpService Provider');
   }
