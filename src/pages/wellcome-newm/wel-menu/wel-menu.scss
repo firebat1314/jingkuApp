@@ -1,0 +1,23 @@
+page-wel-menu {
+    .scroll-content {
+        background: #fff !important;
+    }
+    @import "./theme/wellcome";
+}
+
+ion-modal {
+    .toolbar {
+        min-height: inherit;
+    }
+    ion-backdrop {
+        visibility: inherit;
+    }
+    .modal-wrapper {
+        position: inherit;
+        top: inherit;
+        left: inherit;
+        width: inherit;
+        height: inherit;
+        bottom: inherit;
+    }
+}

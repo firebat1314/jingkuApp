@@ -16,6 +16,8 @@ import { Native } from "../../../providers/native";
   templateUrl: 'setting.html'
 })
 export class SettingPage {
+  // @ViewChild(Toggle) myToggle: Toggle
+  
   constructor(
     public navCtrl: NavController,
     public navParams: NavParams,
@@ -24,12 +26,33 @@ export class SettingPage {
     public native: Native,
     public httpService: HttpService
   ) { }
+  // ngAfterViewInit() {
+  //   this.httpService.getStorage('JPUSH_FLAG').then((res) => {
+  //     if (res) {
+  //       this.myToggle.value = true;
+  //     } else {
+  //       this.myToggle.value = true;
+  //     }
+  //   })
+  // }
   ionViewDidLoad() {
     console.log('ionViewDidLoad SettingPage');
   }
   goAboutUs() {
     this.navCtrl.push('AccountHelperPage');// AboutUsPage
   }
+  // toggle(push) {
+  //   if (push.value) {
+  //     this.jpushService.resumePush();
+  //     this.httpService.setStorage('JPUSH_FLAG', true);
+  //   } else {
+  //     this.jpushService.stopPush();
+  //     this.httpService.setStorage('JPUSH_FLAG', false);
+  //   }
+  //   this.jpushService.isPushStopped((res) => {
+  //     console.log(res)
+  //   })
+  // }
   clearCathe() {
     this.native.openAlertBox('清除本地缓存？', () => {
       this.httpService.clear(() => {

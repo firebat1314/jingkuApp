@@ -74,24 +74,11 @@ export class SignupSecondPage {
   toLoginPage() {
     this.navCtrl.push('LoginPage')
   }
-  openFile(e) {
-    if(!e){return;}
-    var reader = new FileReader();
-    //获取文件
-    var file = e['files'][0];
-    var imageType = /^image\//; 
-    //是否是图片
-    if (!imageType.test(file['type'])) {
-      this.native.showToast("请选择图片！");
-      return;
-    }
-    //读取完成
-    reader.onload =  (e)=> {
-      //获取图片dom
-      var img_ava = e.target['result'];
-      this.formData.zhizhao = img_ava;
-    };
-    reader.readAsDataURL(file);
+  openFile() {
+    // this.native.getPictureByPhotoLibrary().then((res) => {
+    //   this.formData.zhizhao = 'data:image/jpeg;base64,' + res;
+    // })
+
   }
   onSubmit() {
     this.httpService.signupTwo(this.formData).then((res) => {

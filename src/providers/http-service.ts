@@ -445,6 +445,6 @@ export class HttpService {
     return this.http.get(IP + '/Flow/clear_flow_order', data)
   }
   versionInfo(data?: Object) {//版本更新
-    return this.http.get(IP + '/Public/version_info', data)
+    return this.http.get(IP + '/Login/version_info', data)
   }
 }

@@ -74,4 +74,15 @@ export class InvoiceQualificationPage {
     })
   }
 
+  openFile(type) {
+    this.native.getPictureByPhotoLibrary().then((res) => {
+      if (type === 1) {
+        this.formData.yyzz = 'data:image/jpeg;base64,' + res;
+      } else if (type === 2) {
+        // this.formData.swdj = 'data:image/jpeg;base64,' + res;
+      } else if (type === 3) {
+        // this.formData.zgez = 'data:image/jpeg;base64,' + res;
+      }
+    })
+  }
 }

@@ -72,13 +72,15 @@ export class HomePage {
   ngOnInit() {
     this.storage.get('homeData').then((res) => {
       if (res) {
+        this.data = res;
         this.assignData(res);
+      } else {
+        this.getHomeData().then(() => {
+          console.log('首页加载完成');
+        }).catch((res) => {
+          this.native.showToast('首页加载失败');
+        })
       }
-      this.getHomeData().then(() => {
-        console.log('首页加载完成');
-      }).catch((res) => {
-        this.native.showToast('首页加载失败');
-      })
     })
   }
   getHomeData() {
@@ -86,10 +88,10 @@ export class HomePage {
       // console.log(res)
       if (res.status == 1) {
         this.data = res;
-        this.storage.set('homeData', res);
         this.assignData(res);
+        this.storage.set('homeData', res);
       }
-    }).catch((res) => { 
+    }).catch((res) => {
       // console.log(res);
     })
     /*this.httpService.getHomebanner({ int_pos_id: 44, size: 1 }).then((res) => {
@@ -185,7 +187,7 @@ export class HomePage {
       }
     })
   } */
-  goMessagePage(){
+  goMessagePage() {
     this.navCtrl.push('MessagePage')
   }
   presentPopover(myEvent) {

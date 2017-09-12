@@ -23,12 +23,13 @@ import { StatusBar } from "@ionic-native/status-bar";
 import { Toast } from '@ionic-native/toast';
 import { Transfer } from "@ionic-native/transfer";
 import { File } from '@ionic-native/file';
-
+import { InAppBrowser } from '@ionic-native/in-app-browser';
 /*———————————————————————————————— 插件 ————————————————————————————————*/
 import { MeunItemComponentModule } from "../components/meun-item/meun-item.module";
 import { CityPickerModule } from "ionic2-city-picker/dist/city-picker.module";
 import { IonicImageViewerModule } from 'ionic-img-viewer';
 import { IonicImageLoader } from 'ionic-image-loader';
+import { UpgradeProvider } from '../providers/upgrade';
 
 @NgModule({
   declarations: [
@@ -40,10 +41,11 @@ import { IonicImageLoader } from 'ionic-image-loader';
         ios: {}
       },
       backButtonText: '',
-      mode:'ios',
+      // mode:'md',
       tabsHideOnSubPages: true,
       tabsPlacement: 'bottom',
-      // activator: "highlight"
+      swipeBackEnabled: true,
+      // activator: "highlight",
     }),
     IonicStorageModule.forRoot(),
     IonicImageLoader.forRoot(),
@@ -63,6 +65,7 @@ import { IonicImageLoader } from 'ionic-image-loader';
     Native,
     HttpService,
     JpushService,
+    UpgradeProvider,
     Camera,
     ImagePicker,
     AppVersion,
@@ -74,7 +77,8 @@ import { IonicImageLoader } from 'ionic-image-loader';
     AndroidFullScreen,
     Badge,
     Transfer,
-    File
+    File,
+    InAppBrowser
   ]
 })
 export class AppModule { }

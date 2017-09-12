@@ -7,6 +7,8 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 import { TabsPage } from '../pages/tabs/tabs';
 import { ImageLoaderConfig } from "ionic-image-loader/dist";
 import { Native } from "../providers/native";
+import { JpushService } from "../providers/jpush-service";
+import { UpgradeProvider } from '../providers/upgrade';
 
 @Component({
   templateUrl: 'app.html'
@@ -22,11 +24,13 @@ export class MyApp {
     private storage: Storage,
     private ionicApp: IonicApp,
     private events: Events,
+    private jpushService: JpushService,
     private statusBar: StatusBar,
     private splashScreen: SplashScreen,
     private keyboard: Keyboard,
     private imageLoaderConfig: ImageLoaderConfig,
     private native: Native,
+    private upgradeProvider: UpgradeProvider,
   ) {
 
     //————————————————————————————————————————————————————————————————————————
@@ -40,18 +44,21 @@ export class MyApp {
         }
       })
     } else {
+      // this.rootPage = 'WellcomeNewmPage';//TabsPage//WellcomeNewmPage
       this.storage.get('hasLoggedIn').then((result) => {
         if (result) {
           this.rootPage = 'TabsPage';//TabsPage//WellcomeNewmPage
           // this.nav.setRoot('TabsPage', {}, { animate: true, direction: 'forward' });
         } else {
-          this.rootPage = 'LoginPage';
+          this.rootPage = 'WellcomeNewmPage';
           // this.nav.setRoot('LoginPage', {}, { animate: true, direction: 'forward' });
         }
       });
     }
     //————————————————————————————————————————————————————————————————————————
     // app更新
+    this.upgradeProvider.detectionUpgrade();
+
     this.initializeApp();
     //用户失效事件
     this.events.subscribe('signOut', () => {
@@ -104,6 +111,20 @@ export class MyApp {
       this.imageLoaderConfig.setSpinnerName('circles')
       this.imageLoaderConfig.useImageTag(true); // use `<img>` tag by default
       //————————————————————————————————————————————————————————————————————————
+      //————————————————————————————————————————————————————————————————————————
+      // 初始化极光推送
+      if (this.native.isMobile()) {
+        this.jpushService.initJpush();//初始化极光推送
+        this.jpushService.getRegistrationID();
+        this.jpushService.setTags();
+      }
+      this.storage.get('JPUSH_FLAG').then((res) => {
+        if (res === 1) {
+          this.jpushService.resumePush();
+        } else if (res === 0) {
+          this.jpushService.stopPush();
+        }
+      })
     });
   }
   //双击退出提示框

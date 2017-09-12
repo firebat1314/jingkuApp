@@ -35,7 +35,7 @@ export class WelcomePage {
     console.log('ionViewDidLoad WelcomePage');
   }
   goToHome() {
-    this.navCtrl.setRoot('LoginPage',{},{animate:true,direction:'forward'});
+    this.navCtrl.setRoot('WellcomeNewmPage',{},{animate:true,direction:'forward'});
     this.storage.set('has_entered', true);
   }
 }
