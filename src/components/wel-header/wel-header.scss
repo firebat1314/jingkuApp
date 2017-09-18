@@ -1,3 +1,19 @@
+ion-app.ios.platform-cordova {
+    wel-header {
+        .head {
+            padding-top: 20px;
+            .dyon {
+                top: 18px;
+            }
+        }
+        .color {
+            .dyon {
+                top: 39px;
+            }
+        }
+    }
+}
+
 wel-header {
     .head {
         position: absolute;
@@ -6,7 +22,7 @@ wel-header {
         z-index: 2000;
         padding: 3px 0;
         width: 100%;
-        background: rgba(51, 51, 51, 1);
+        // background: rgba(51, 51, 51, 1);
         transition: all 1000ms cubic-bezier(.19, 1.12, .65, .91);
     }
     .head .logo {
@@ -34,7 +50,7 @@ wel-header {
         margin-top: 0px;
         transition: all 300ms cubic-bezier(.19, 1.12, .65, .91);
         margin-right: 0px;
-        background-color: rgba(51, 51, 51, 1);
+        background-color: transparent;/* rgba(51, 51, 51, 1) */
     }
     .color {
         background: rgba(27, 11, 11, 0) !important;

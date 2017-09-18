@@ -633,7 +633,7 @@ select {
     text-align: center;
     background: #fff;
     overflow: hidden;
-    padding: 117px 0 39px;
+    padding: 100px 0 43px;
     flex-direction: column;
 }
 
@@ -672,7 +672,7 @@ select {
 }
 
 .car-swiper .swiper-slide .p4 {
-    margin-top: 40px;
+    margin-top: 22px;
 }
 
 .car-swiper .swiper-slide .p4 .xzpp {
@@ -684,9 +684,17 @@ select {
     text-align: center;
     border-radius: 2px;
     background: #3f69a5;
-    color: #fff;
+    color: #eef0f4;
     font-size: 1.4rem;
     box-shadow: 0 0 10px rgba(0, 0, 0, .2);
+}
+
+.car-swiper .swiper-slide .p5 {
+    margin-top: 14px;
+    a {
+        color: rgba(255, 255, 255, 0.77);
+        font-size: 1.4rem;
+    }
 }
 
 .head.bse {
@@ -1990,71 +1998,4 @@ lesshat-selector {
 
 .sheji-swiper .swiper-slide .wrp img {
     display: block;
-}
-
-.head-xuan {
-    position: fixed;
-    top: 0;
-    left: 0;
-    z-index: 2000;
-    padding: 3px 0;
-    width: 100%;
-    background: #fff;
-}
-
-.head-xuan .logo {
-    float: left;
-    display: block;
-    padding: 7px 0;
-    margin-left: 10px;
-}
-
-.head-xuan .logo img {
-    display: block;
-    height: 25px;
-    width: auto;
-}
-
-.head-xuan .chah {
-    float: right;
-    margin-right: 10px;
-    display: block;
-    width: 40px;
-    height: 40px;
-    background: url(../assets/images/wellcome-newm/chah.png) no-repeat center;
-    background-size: 20px;
-    border-radius: 50%;
-}
-
-.xuan-ner {
-    padding-top: 70px;
-}
-
-.xuan-ner .home {
-    width: 40px;
-    height: 40px;
-    margin: 0 auto;
-    background: url(../assets/images/wellcome-newm/fangzi.png) no-repeat center;
-    background-size: 70%;
-}
-
-.xu-list {
-    padding: 10px 0;
-}
-
-.xu-list li {
-    text-align: center;
-    padding: 0 0;
-}
-
-.xu-list li a {
-    display: inline-block;
-    padding: 10px 10px;
-    border-bottom: 1px solid #fff;
-    font-size: 16px;
-    color: #666;
-}
-
-.xu-list li a.on {
-    border-bottom: 1px solid #ccc;
 }
