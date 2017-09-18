@@ -65,7 +65,7 @@ export class WelHeaderComponent {
     })
   }
   openWelMenu() {
-    let modal = this.modalCtrl.create('WelMenuPage');
+    let modal = this.modalCtrl.create('WelMenuPage',{},{cssClass:'wel-menu-modal'});
     modal.onDidDismiss((data) => {
       if (data) data(this.navCtrl);
     })

@@ -44,8 +44,8 @@ export class MyApp {
         }
       })
     } else {
-      // this.rootPage = 'WellcomeNewmPage';//TabsPage//WellcomeNewmPage
-      this.storage.get('hasLoggedIn').then((result) => {
+      this.rootPage = 'WellcomeNewmPage';//TabsPage//WellcomeNewmPage
+      /* this.storage.get('hasLoggedIn').then((result) => {
         if (result) {
           this.rootPage = 'TabsPage';//TabsPage//WellcomeNewmPage
           // this.nav.setRoot('TabsPage', {}, { animate: true, direction: 'forward' });
@@ -53,7 +53,7 @@ export class MyApp {
           this.rootPage = 'WellcomeNewmPage';
           // this.nav.setRoot('LoginPage', {}, { animate: true, direction: 'forward' });
         }
-      });
+      }); */
     }
     //————————————————————————————————————————————————————————————————————————
     // app更新
