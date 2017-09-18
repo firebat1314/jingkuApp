@@ -17,8 +17,7 @@ page-login {
         text-align: center;
         width: 100%;
         margin-bottom: 3rem;
-        padding: 0 14px;
-        // background: url(../assets/icon/jingku_logo_03.png) no-repeat center top;
+        padding: 0 14px; // background: url(../assets/icon/jingku_logo_03.png) no-repeat center top;
         // background-size: 83%;
         img {
             max-width: 100%;
@@ -39,14 +38,18 @@ page-login {
         }
         &:nth-child(2) .item-inner {
             background-image: url(../assets/icon/images/icon_07.png);
+            .input-cover {
+                height: 0;
+                width: 0;
+            }
         }
-        .input{
-            .text-input-clear-icon{
+        .input {
+            .text-input-clear-icon {
                 right: 0;
             }
         }
-        .s_h{
-            img{
+        .s_h {
+            img {
                 width: 26px;
                 display: block;
             }

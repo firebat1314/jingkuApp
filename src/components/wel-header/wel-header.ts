@@ -1,5 +1,6 @@
 import { Component, Input, ChangeDetectorRef } from '@angular/core';
 import { Content, ModalController, NavController } from 'ionic-angular';
+import { Storage } from '@ionic/storage';
 
 /**
  * Generated class for the WelHeaderComponent component.
@@ -28,6 +29,7 @@ export class WelHeaderComponent {
     public ref: ChangeDetectorRef,
     public modalCtrl: ModalController,
     public navCtrl: NavController,
+    public storage: Storage,
   ) {
     console.log('Hello WelHeaderComponent Component');
   }
@@ -70,5 +72,15 @@ export class WelHeaderComponent {
       if (data) data(this.navCtrl);
     })
     modal.present();
+  }
+  goToHome() {
+    this.storage.get('hasLoggedIn').then((result) => {
+      if (result) {
+        this.navCtrl.setRoot('TabsPage', {}, { animate: true, direction: 'forward' });
+      } else {
+        // this.navCtrl.setRoot('LoginPage', {}, { animate: true, direction: 'forward' });
+        this.navCtrl.push('LoginPage');
+      }
+    });
   }
 }
