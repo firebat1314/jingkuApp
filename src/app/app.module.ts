@@ -44,7 +44,7 @@ import { UpgradeProvider } from '../providers/upgrade';
       // mode:'md',
       tabsHideOnSubPages: true,
       tabsPlacement: 'bottom',
-      swipeBackEnabled: true,
+      swipeBackEnabled: false,
       // activator: "highlight",
     }),
     IonicStorageModule.forRoot(),
