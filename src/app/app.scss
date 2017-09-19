@@ -15,8 +15,20 @@
 .tabs .tabbar {
     background: #fff;
 }
-ol,ul{list-style:none;padding: 0;margin: 0;}
-a{text-decoration: none;font-size:.7rem;color:#797979;cursor: pointer;}
+
+ol,
+ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+a {
+    text-decoration: none;
+    font-size: .7rem;
+    color: #797979;
+    cursor: pointer;
+}
 
 html {
     // font-family: -apple-system, BlinkMacSystemFont, Helvetica Neue, Helvetica, Roboto, Arial, PingFang SC, Hiragino Sans GB, Microsoft Yahei, Microsoft Jhenghei, sans-serif !important;
@@ -51,7 +63,7 @@ ion-app {
 }
 
 [goBackTop] {
-    background: url(../assets/icon/gotop.png) center/100% 100% no-repeat;
+    background: url(../assets/icon/scroll-to-top-icon.png) center/100% 100% no-repeat;
 }
 
 [border-f0] {
@@ -165,6 +177,7 @@ ion-thumbnail {
     // top: 12px;
 }
 
+
 /*————————————————————————————————————下拉刷新CSS————————————————————————————————————*/
 
 ion-refresher-content[state=ready] .refresher-pulling-icon {
@@ -251,7 +264,7 @@ ion-refresher-content[state=ready] .refresher-pulling-icon {
 /*————————————————————————————————————轮播图按钮style————————————————————————————————————*/
 
 button.swiper-pagination-bullet {
-    border: 1px solid #000;
+    border: 1px solid get-color(jingku1);
 }
 
 .swiper-pagination-bullet {
@@ -265,7 +278,7 @@ button.swiper-pagination-bullet {
 }
 
 .swiper-pagination-bullet-active {
-    background: #000;
+    background: get-color(jingku1);
 }
 
 
@@ -298,13 +311,16 @@ ion-modal {
 
 
 /*————————————————————————————————————alterCSS————————————————————————————————————*/
-.alert-ios,.alert-md,{
+
+.alert-ios,
+.alert-md,
+{
     .alert-head {
         .alert-title {
             color: get-color(primary);
             font-size: 16px;
         }
-        .alert-sub-title{
+        .alert-sub-title {
             margin-top: 14px;
         }
     }
@@ -327,7 +343,10 @@ ion-modal {
             }
         }
     }
-}/* 
+}
+
+
+/* 
 .alert-style {
     .alert-head {
         .alert-title {
@@ -393,7 +412,7 @@ ion-modal {
 /*———————————————————————————————————— popover ————————————————————————————————————*/
 
 .popover-menu {
-    .popover-content{
+    .popover-content {
         width: 100px;
     }
 }

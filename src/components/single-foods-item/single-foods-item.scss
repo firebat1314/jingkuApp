@@ -3,18 +3,23 @@ single-foods-item {
         margin-bottom: -1px;
     }
     ion-item.item {
-        border-bottom: 1px solid #e0e0e0;
+        border-bottom: 1px solid #e6e6e6;
         position: relative;
-        /* ion-thumbnail[item-left] {
-            margin: 14px 16px 14px 0px;
-        } */
+        ion-thumbnail {
+            border: 0;
+            img{
+                width: 85px;
+                height: 85px;
+            }
+        }
         h2 {
             @include ellipsis_2;
         }
         h3 {
             color: color($colors, danger);
-            font-weight: 700;
+            font-weight: 500;
             margin: 10px 0px;
+            font-size: 1.4rem;
         }
         .chips {
             display: flex;

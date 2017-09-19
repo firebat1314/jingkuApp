@@ -245,12 +245,13 @@ page-particulars {
         .btn {
             display: flex;
             justify-content: space-around;
-            padding: 10px 0;
+            padding: 10px 7px;
             .button {
                 margin-left: 7px;
                 margin-right: 7px;
-                width: 43%;
+                width: 50%;
                 max-width: 170px;
+                border: #e6e6e6 solid 1px;
             }
         }
         /* —————————————— 发票及店铺地址 ——————————————*/

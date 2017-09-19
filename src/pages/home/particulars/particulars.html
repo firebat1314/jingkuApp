@@ -220,7 +220,7 @@
             <!--————————————————————————套餐组合————————————————————————-->
             <div class="fore group-and-recommend" *ngIf="!(getCategoryRecommendGoodsHot?.length&&getGoodsInfo?.fittings?.length)">
                 <div class="segment-style">
-                    <ion-segment [(ngModel)]="selectGroupRecommend" mode="md">
+                    <ion-segment color="jingku1" [(ngModel)]="selectGroupRecommend" mode="md">
                         <ion-segment-button value="group" *ngIf="getGoodsInfo?.fittings?.length">
                             套餐组合
                         </ion-segment-button>
@@ -301,8 +301,8 @@
     <!--<div class="warning-show">
         <span>请用电脑下单！</span>
     </div>-->
-    <ion-fab right bottom tappable (click)="myContent.scrollToTop()">
-        <button ion-fab color="dark" mini goBackTop></button>
+    <ion-fab right bottom tappable>
+        <button ion-fab color="dark" mini goBackTop  scroll-to-top></button>
     </ion-fab>
 
     <ion-infinite-scroll threshold="0%" (ionInfinite)="doInfinite($event)">
@@ -339,8 +339,8 @@
         <div class="right">
             <!--<button color="cancelBtn" no-margin ion-button large full class="modal-button">暂不支持手机下单</button>-->
             <div class="btns">
-                <button color="cancelBtn" no-margin ion-button large full class="modal-button" tappable (click)="presentModalAttr()">加入购物车</button>
-                <button color="modalBtn" no-margin ion-button large full class="modal-button" tappable (click)="presentModalAttr()">立即购买</button>
+                <button color="jingku1" no-margin ion-button large full class="modal-button" tappable (click)="presentModalAttr()">加入购物车</button>
+                <button color="jingku2" no-margin ion-button large full class="modal-button" tappable (click)="presentModalAttr()">立即购买</button>
             </div>
         </div>
     </div>

@@ -16,6 +16,7 @@ export class SwiperComponent {
   //存储swiper对象
   mySwiper: any = null;
   @Input() data: any;
+  activeIndex = 0;
 
   constructor(private element: ElementRef) { }
 
@@ -28,7 +29,7 @@ export class SwiperComponent {
           slidesPerView: "auto",
           centeredSlides: true,
           watchSlidesProgress: true,
-          onProgress:  (a) => {
+          onProgress: (a) => {
             var b, c, d, scale, es;
             for (b = 0; b < a.slides.length; b++) {
               c = a.slides[b];
@@ -45,6 +46,9 @@ export class SwiperComponent {
               let es = a.slides[c].style;
               es.webkitTransitionDuration = es.MsTransitionDuration = es.msTransitionDuration = es.MozTransitionDuration = es.OTransitionDuration = es.transitionDuration = b + "ms"
             }
+          },
+          onSlideChangeEnd: (swiper) => {
+            this.activeIndex = swiper.activeIndex; //切换结束时，告诉我现在是第几个slide
           }
         })
       }
