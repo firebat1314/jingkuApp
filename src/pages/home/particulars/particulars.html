@@ -9,7 +9,7 @@
     <ion-navbar>
         <ion-title>商品详情</ion-title>
         <ion-buttons right>
-            <button ion-button clear icon-only icon-left right open-more="MoreMenuPage" >
+            <button ion-button clear icon-only icon-left right open-more="MoreMenuPage">
                 <ion-icon name="ios-more"></ion-icon>
             </button>
         </ion-buttons>
@@ -86,13 +86,13 @@
             </div>
             <div class="fore coupon">
                 <button ion-item *ngIf="getGoodsInfo?.bonus?.length" [disabled]="!getGoodsInfo?.bonus?.length" class="button-coupon" (click)="presentModal('优惠券')">
-                领券
+                    <span style="color: #808080;">领券</span>
                     <span *ngFor="let item of getGoodsInfo?.bonus" class="coupon-show">{{"满"+item.min_goods_amount.slice(1)+'减'+item.int_type_money}}</span>
                     <ion-note item-right>{{(!getGoodsInfo?.bonus?.length)?'无优惠券':'点击领取'}}</ion-note>
                 </button>
                 <button ion-item no-lines class="button-chuxiao" *ngIf="getGoodsInfo?.promotion?.length" [disabled]="!getGoodsInfo?.promotion?.length"
                     (click)="presentModal('促销')">
-                    促销
+                    <span style="color: #808080;">促销&nbsp;</span>
                     <div>
                         <p class="list-show" *ngFor="let item of getGoodsInfo?.promotion"><span class="title">{{item.promotion_name}}</span><span [innerHtml]="item.title"></span></p>
                     </div>
@@ -101,7 +101,7 @@
             </div>
             <div class="fore attribute">
                 <button ion-item (click)="presentModalAttr()" no-lines>
-                    选择：规格、光度等
+                    <span style="color: #808080;">选择&nbsp;&nbsp;</span>规格 光度等
                 </button>
             </div>
             <!-- <div class="fore">
@@ -112,13 +112,7 @@
             </div> -->
             <div class="fore will-address">
                 <button ion-item no-lines (click)="presentModal('配送地址')">
-                    送至：{{region_name||'选择地址'}}<span class="nogoods"></span>
-                </button>
-            </div>
-            <div class="fore goods-service">
-                <button ion-item no-lines (click)="presentModal('商品服务保障')">
-                    <ion-icon name="bao1" item-left></ion-icon>
-                    商品服务保障
+                    <span style="color: #808080;">送至&nbsp;&nbsp;</span>{{region_name||'选择地址'}}<span class="nogoods"></span>
                 </button>
                 <div class="bottom" *ngIf="getGoodsInfo?.data?.additional?.is_true||getGoodsInfo?.data?.additional?.is_hdfk||getGoodsInfo?.data?.additional?.is_inv">
                     <ion-note *ngIf="getGoodsInfo?.data?.additional?.is_true">
@@ -131,8 +125,8 @@
                         <img src="./assets/icon/images/particulars_2_16.png" alt=""> 可退换货
                     </ion-note>
                     <!--<ion-note>
-                    <ion-icon color="danger" name="baitiao1"></ion-icon> 白条支付
-                </ion-note>-->
+                        <ion-icon color="danger" name="baitiao1"></ion-icon> 白条支付
+                    </ion-note>-->
                 </div>
             </div>
             <!--————————————————————————供应商店铺————————————————————————-->
@@ -180,7 +174,9 @@
                         <!-- <ion-icon name="ios-arrow-forward"></ion-icon> -->
                     </button>
                     <button (click)="openCallNumber()" ion-button icon-left color="gray" outline>
-                        <ion-icon name="md-contacts"></ion-icon>
+                        <ion-icon>
+                            <img src="./assets/icon/images/particulars_07.jpg" alt="">
+                        </ion-icon>
                         联系卖家
                         <!-- <ion-icon name="ios-arrow-forward"></ion-icon> -->
                     </button>

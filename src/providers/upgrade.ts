@@ -34,6 +34,7 @@ export class UpgradeProvider {
   detectionUpgrade() {
     //这里连接后台获取app最新版本号,然后与当前app版本号(this.getVersionNumber())对比
     //版本号不一样就需要申请,不需要升级就return
+    console.log('this.native.isIos()', this.native.isIos())
     this.native.getVersionNumber().then((version) => {
       console.log("版本信息：" + version);
       this.httpService.versionInfo().then((res) => {
@@ -120,29 +121,29 @@ export class UpgradeProvider {
 	 * 下载安装app
 	 */
   downloadApp(url) {
-      let alert = this.alertCtrl.create({
-        title: '下载进度：0%',
-        enableBackdropDismiss: false,
-        buttons: ['后台下载']
-      });
-      alert.present();
+    let alert = this.alertCtrl.create({
+      title: '下载进度：0%',
+      enableBackdropDismiss: false,
+      buttons: ['后台下载']
+    });
+    alert.present();
 
-      const fileTransfer: TransferObject = this.transfer.create();
-      const apk = this.file.externalRootDirectory + 'jingku.apk'; //apk保存的目录
+    const fileTransfer: TransferObject = this.transfer.create();
+    const apk = this.file.externalRootDirectory + 'jingku.apk'; //apk保存的目录
 
-      fileTransfer.download(url, apk).then(() => {
-        window['install'].install(apk.replace('file://', ''));
-      });
+    fileTransfer.download(url, apk).then(() => {
+      window['install'].install(apk.replace('file://', ''));
+    });
 
-      fileTransfer.onProgress((event: ProgressEvent) => {
-        let num = Math.floor(event.loaded / event.total * 100);
-        if (num === 100) {
-          alert.dismiss();
-        } else {
-          let title = document.getElementsByClassName('alert-title')[0];
-          title && (title.innerHTML = '下载进度：' + num + '%');
-        }
-      });
+    fileTransfer.onProgress((event: ProgressEvent) => {
+      let num = Math.floor(event.loaded / event.total * 100);
+      if (num === 100) {
+        alert.dismiss();
+      } else {
+        let title = document.getElementsByClassName('alert-title')[0];
+        title && (title.innerHTML = '下载进度：' + num + '%');
+      }
+    });
 
     /**
      * 通过浏览器打开url
