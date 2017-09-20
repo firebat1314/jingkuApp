@@ -1,6 +1,30 @@
 page-sj {
-   .scroll-content {
-      background: #fff !important;
-  }
-  @import "./theme/wellcome";
+    .scroll-content {
+        background: #fff !important;
+    }
+    @import "./theme/wellcome";
+    .sheji-swiper {
+        width: 100%;
+        perspective: 1200px;
+        .swiper-wrapper {
+            align-items: center;
+            .swiper-slide {
+                width: 70%;
+                margin: 0 20px;
+                transform-style: preserve-3d;
+                flex-shrink: 0;
+                .main-img {
+                    margin: 0 auto;
+                    display: block;
+                }
+            }
+        }
+        .swiper-slide,
+        .swiper-wrapper {
+            height: 100%;
+            position: relative;
+            transform-style: preserve-3d;
+            width: 100%;
+        }
+    }
 }

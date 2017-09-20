@@ -3,33 +3,31 @@ footer-rights {
         background: #f7f7f7;
         text-align: center;
         padding: 20px 0;
+        font-size: 12px;
     }
     .footer .fto-1 {
         color: #666;
-        font-size: 14px;
     }
     .footer .fto-1 em {
         position: relative;
         top: -1px;
         vertical-align: middle;
         display: inline-block;
-        width: 30px;
-        height: 30px;
-        margin-right: 10px;
+        width: 20px;
+        height: 20px;
+        margin-right: 3px;
         background: url(../assets/images/wellcome-newm/foot-ico-1.png) no-repeat center;
-        background-size: 20px
+        background-size: 14px;
     }
     .footer .fto-2 {
         margin-bottom: 5px;
     }
     .footer .fto-2 a {
         color: #666;
-        font-size: 14px;
         margin: 0 5px;
     }
     .footer .fto-3 {
         color: #666;
-        font-size: 14px;
         line-height: normal
     }
 }
