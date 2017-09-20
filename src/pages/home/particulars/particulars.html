@@ -174,7 +174,9 @@
                         <!-- <ion-icon name="ios-arrow-forward"></ion-icon> -->
                     </button>
                     <a href="tel:{{getGoodsInfo?.supplier_info?.mobile}}" ion-button icon-left color="gray" outline>
-                        <ion-icon name="md-contacts"></ion-icon>
+                        <ion-icon>
+                            <img src="./assets/icon/images/particulars_07.jpg" alt="">
+                        </ion-icon>
                         联系卖家
                         <!-- <ion-icon name="ios-arrow-forward"></ion-icon> -->
                     </a>
@@ -300,7 +302,7 @@
         <span>请用电脑下单！</span>
     </div>-->
     <ion-fab right bottom tappable>
-        <button ion-fab color="dark" mini goBackTop  scroll-to-top></button>
+        <button ion-fab color="jingku1" mini goBackTop  scroll-to-top></button>
     </ion-fab>
 
     <ion-infinite-scroll threshold="0%" (ionInfinite)="doInfinite($event)">

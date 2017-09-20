@@ -27,7 +27,7 @@
             <ion-item>
                 <ion-label color="primary" fixed><span ion-text color="google">*</span>　短信验证</ion-label>
                 <ion-input required clearInput name="Phone_code" [(ngModel)]="Phone_code" name="Phone_code" type="number" placeholder="短信验证码"></ion-input>
-                <button ion-button outline round color="dark" item-right [disabled]="disabled" (click)="getMobileCode() ">{{value}}</button>
+                <button ion-button outline round color="jingku1" item-right [disabled]="disabled" (click)="getMobileCode() ">{{value}}</button>
             </ion-item>
             <ion-item>
                 <ion-label color="primary" fixed><span ion-text color="google">*</span>　密码</ion-label>
@@ -40,7 +40,7 @@
         </ion-list>
 
         <div padding>
-            <button ion-button block color="dark" type="submit" large [disabled]="!secondForm.form.valid" (click)="onSubmit()">确认</button>
+            <button ion-button block color="jingku1" type="submit" large [disabled]="!secondForm.form.valid" (click)="onSubmit()">确认</button>
         </div>
         <!---->
     </form>

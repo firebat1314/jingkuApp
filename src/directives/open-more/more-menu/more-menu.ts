@@ -32,9 +32,6 @@ export class MoreMenuPage {
   }
   goHomePage() {
     this.viewCtrl.dismiss((navCtrl) => {
-      navCtrl.push('MessagePage')
-    });
-    this.viewCtrl.dismiss((navCtrl) => {
       navCtrl.parent.select(0);
       navCtrl.popToRoot();
     });
@@ -58,5 +55,20 @@ export class MoreMenuPage {
       navCtrl.popToRoot();
     });
 
+  }
+  goAccountHistoryPage() {
+    this.viewCtrl.dismiss((navCtrl) => {
+      navCtrl.push('AccountHistoryPage')
+    });
+  }
+  goAccountCollectGoodsPage(){
+    this.viewCtrl.dismiss((navCtrl) => {
+      navCtrl.push('AccountCollectGoodsPage')
+    });
+  }
+  goSearchPage(){
+    this.viewCtrl.dismiss((navCtrl) => {
+      navCtrl.push('SearchPage')
+    });
   }
 }

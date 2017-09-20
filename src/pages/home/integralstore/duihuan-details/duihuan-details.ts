@@ -27,13 +27,14 @@ export class DuihuanDetailsPage {
     public httpService: HttpService,
     public native: Native
   ) {
-    this.getData();
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad DuihuanDetailsPage');
   }
-
+  ngAfterViewInit(){
+    this.getData();
+  }
   getData() {
     this.httpService.getGoodsGallery({ goods_id: this.goodsId }).then((res) => {
       if (res.status == 1) {

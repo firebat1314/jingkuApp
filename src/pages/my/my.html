@@ -60,14 +60,14 @@
                     <div class="number">{{usercount?.data?.ok||0}}</div>
                     <div class="text">已完成</div>
                 </div>
-                <div tappable [navPush]="AllOrdersPage" [navParams]="{index:4}">
+                <!-- <div tappable [navPush]="AllOrdersPage" [navParams]="{index:4}">
                     <div class="number">{{usercount?.data?.cancel||0}}</div>
                     <div class="text">已取消</div>
-                </div>
-                <!-- <div tappable (click)="goRepairReturnPage()">
+                </div> -->
+                <div tappable (click)="goRepairReturnPage()">
                     <div class="number">{{usercount?.data?.return||0}}</div>
                     <div class="text">返修退换</div>
-                </div> -->
+                </div>
                 <div tappable [navPush]="AllOrdersPage" [navParams]="{index:0}">
                     <div class="number">
                         <img src="./assets/icon/images/user_center_5.png" class="allorder-icon">

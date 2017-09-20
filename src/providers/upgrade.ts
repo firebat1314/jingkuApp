@@ -4,7 +4,7 @@ import { Transfer, TransferObject } from '@ionic-native/transfer';
 import { File } from '@ionic-native/file';
 import { AlertController } from 'ionic-angular';
 import { Native } from './native';
-import { IP } from "./constants";
+import { IP, version } from "./constants";
 import { HttpService } from './http-service';
 import { InAppBrowser } from '@ionic-native/in-app-browser';
 
@@ -35,34 +35,16 @@ export class UpgradeProvider {
     //这里连接后台获取app最新版本号,然后与当前app版本号(this.getVersionNumber())对比
     //版本号不一样就需要申请,不需要升级就return
     console.log('this.native.isIos()', this.native.isIos())
-    this.native.getVersionNumber().then((version) => {
-      console.log("版本信息：" + version);
-      this.httpService.versionInfo().then((res) => {
-        if (this.native.isIos()) {
-          if (String(version) < res.ios.version) {
-            if (res.ios.must) {
-              this.alertCtrl.create({
-                title: '升级',
-                subTitle: '发现新版本,是否立即升级？',
-                message: '',
-                enableBackdropDismiss: false,
-                buttons: [
-                  {
-                    text: '确定',
-                    handler: () => {
-                      this.iab.create(res.ios.url, '_system');
-                      // this.platform.exitApp();
-                    }
-                  }
-                ]
-              }).present();
-            } else {
-              this.alertCtrl.create({
-                title: '升级',
-                subTitle: '发现新版本,是否立即升级？',
-                message: '',
-                enableBackdropDismiss: false,
-                buttons: [{ text: '取消' },
+    this.httpService.versionInfo().then((res) => {
+      if (this.native.isIos()) {
+        if (String(version) < res.ios.version) {
+          if (res.ios.must) {
+            this.alertCtrl.create({
+              title: '升级',
+              subTitle: '发现新版本,是否立即升级？',
+              message: '',
+              enableBackdropDismiss: false,
+              buttons: [
                 {
                   text: '确定',
                   handler: () => {
@@ -70,37 +52,37 @@ export class UpgradeProvider {
                     // this.platform.exitApp();
                   }
                 }
-                ]
-              }).present();
-            }
+              ]
+            }).present();
+          } else {
+            this.alertCtrl.create({
+              title: '升级',
+              subTitle: '发现新版本,是否立即升级？',
+              message: '',
+              enableBackdropDismiss: false,
+              buttons: [{ text: '取消' },
+              {
+                text: '确定',
+                handler: () => {
+                  this.iab.create(res.ios.url, '_system');
+                  // this.platform.exitApp();
+                }
+              }
+              ]
+            }).present();
           }
-
         }
-        if (this.native.isAndroid()) {
-          if (String(version) < res.android.version) {
-            if (res.android.must) {
-              this.alertCtrl.create({
-                title: '升级',
-                subTitle: '发现新版本,是否立即升级？',
-                message: '',
-                enableBackdropDismiss: false,
-                buttons: [
-                  {
-                    text: '确定',
-                    handler: () => {
-                      this.downloadApp(res.android.url);
-                      // this.platform.exitApp();
-                    }
-                  }
-                ]
-              }).present();
-            } else {
-              this.alertCtrl.create({
-                title: '升级',
-                subTitle: '发现新版本,是否立即升级？',
-                message: '',
-                enableBackdropDismiss: false,
-                buttons: [{ text: '取消' },
+
+      }
+      if (this.native.isAndroid()) {
+        if (String(version) < res.android.version) {
+          if (res.android.must) {
+            this.alertCtrl.create({
+              title: '升级',
+              subTitle: '发现新版本,是否立即升级？',
+              message: '',
+              enableBackdropDismiss: false,
+              buttons: [
                 {
                   text: '确定',
                   handler: () => {
@@ -108,12 +90,27 @@ export class UpgradeProvider {
                     // this.platform.exitApp();
                   }
                 }
-                ]
-              }).present();
-            }
+              ]
+            }).present();
+          } else {
+            this.alertCtrl.create({
+              title: '升级',
+              subTitle: '发现新版本,是否立即升级？',
+              message: '',
+              enableBackdropDismiss: false,
+              buttons: [{ text: '取消' },
+              {
+                text: '确定',
+                handler: () => {
+                  this.downloadApp(res.android.url);
+                  // this.platform.exitApp();
+                }
+              }
+              ]
+            }).present();
           }
         }
-      })
+      }
     })
   }
 

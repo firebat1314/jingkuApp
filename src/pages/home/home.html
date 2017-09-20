@@ -31,7 +31,7 @@
         <div class="banner-wrapper">
             <ion-slides #bannerSlide autoplay="4000" pager (ionSlideAutoplayStop)="bannerSlide.startAutoplay()" *ngIf="bannerImgs?.length">
                 <!-- *ngIf="bannerImgs" loop-->
-                <ion-slide *ngIf="!bannerImgs">
+                <ion-slide *ngIf="!bannerImgs.length">
                     <img defaultSrc="./assets/images/images/640-320.jpg" alt="">
                 </ion-slide>
                 <ion-slide *ngFor="let item of bannerImgs" tappable [ads-click]="item.link_type">
@@ -265,6 +265,6 @@
     </ng-container>
 
     <ion-fab right bottom tappable (click)="myContent.scrollToTop()">
-        <button ion-fab color="dark" mini goBackTop></button>
+        <button ion-fab color="jingku1" mini goBackTop></button>
     </ion-fab>
 </ion-content>

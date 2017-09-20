@@ -1,3 +1,9 @@
-page-tabs {
-
+ion-tabs {
+   
+   .tab-button[aria-selected=true]{
+      color: get-color(jingku1) !important;
+      .icon{
+         color: get-color(jingku1) !important;
+      }
+   }
 }

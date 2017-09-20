@@ -39,12 +39,12 @@
 
 
     <ion-fab left bottom>
-        <button ion-fab color="dark" mini *ngIf="data?.pages">
+        <button ion-fab color="jingku1" mini *ngIf="data?.pages">
             {{data?.page}}/{{data?.pages}}
         </button>
     </ion-fab>
     <ion-fab right bottom>
-        <button ion-fab color="dark" #ToTop mini goBackTop (click)="scrollToTop()"></button>
+        <button ion-fab color="jingku1" #ToTop mini goBackTop (click)="scrollToTop()"></button>
     </ion-fab>
 
     <ion-infinite-scroll (ionInfinite)="doInfinite($event)">

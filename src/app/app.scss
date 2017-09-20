@@ -409,11 +409,18 @@ ion-modal {
 }
 
 
-/*———————————————————————————————————— popover ————————————————————————————————————*/
+/*———————————————————————————————————— 功能菜单 ————————————————————————————————————*/
 
 .popover-menu {
     .popover-content {
-        width: 100px;
+        width: 145px;
+        background: rgba(0, 0, 0, 0.7);
+        border-radius: 5px;
+    }
+    .popover-arrow {
+        &:after {
+            background: rgba(0, 0, 0, 0.7);
+        }
     }
 }
 
