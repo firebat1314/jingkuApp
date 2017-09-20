@@ -60,19 +60,19 @@
                     <div class="price">
                         <div class="red">{{item.shop_price}}</div>
                         <!-- <div class="old-price">{{item.promote_price}}</div> -->
-                        <div ion-button color="dark" no-margin tappable (click)="goParticularsPage(item.id)">立即购买</div>
+                        <div ion-button color="jingku1" no-margin tappable (click)="goParticularsPage(item.id)">立即购买</div>
                     </div>
                 </div>
             </div>
         </ion-list>
     </div>
     <!--<ion-fab left bottom>
-        <button ion-fab color="dark" mini>
+        <button ion-fab color="jingku1" mini>
             {{data?.page}}/{{data?.pages}}
         </button>
     </ion-fab>-->
     <ion-fab right bottom>
-        <button ion-fab color="dark" mini goBackTop (click)="scrollToTop()"></button>
+        <button ion-fab color="jingku1" mini goBackTop (click)="scrollToTop()"></button>
     </ion-fab>
 
     <ion-infinite-scroll></ion-infinite-scroll>

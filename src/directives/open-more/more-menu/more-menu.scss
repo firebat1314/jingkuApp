@@ -1,15 +1,24 @@
 page-more-menu {
-    .item {
-        padding: 0;
+    .menu-wrap {
         padding: 0 10px;
-        min-height: 3.4rem;
-        text-align: center;
-        .item-inner {
-            padding-right: 0 !important;
-        }
-        &:last-child {
-            .item-inner {
+        font-size: 1.3rem;
+        .btn {
+            min-height: 4rem;
+            margin-top: -1px;
+            color: #fff;
+            background: transparent;
+            border-bottom: 1px solid #909090;
+            display: flex;
+            align-items: center;
+            &:last-child {
                 border: 0 !important;
+            }
+            .icon {
+                img {
+                    width: 20px;
+                    margin-right: 6px;
+                    margin-top: 2px;
+                }
             }
         }
     }

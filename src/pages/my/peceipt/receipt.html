@@ -45,7 +45,7 @@
                     <!--<img src="./assets/icon/images/user_cener_2_06.png" alt="">-->
                 </div>
                 <div class="bottom">
-                    <button ion-button color="dark" (click)="goInvoiceAskFor1Page(item.suppliers_id)">索取</button>
+                    <button ion-button color="jingku1" (click)="goInvoiceAskFor1Page(item.suppliers_id)">索取</button>
                 </div>
             </div>
         </ion-card>
@@ -132,13 +132,13 @@
                 </div>
             </ion-list>
             <div class="bottom">
-                <button ion-button color="dark" (click)="goInvoiceQualificationPage(item.ivid)">修改</button>
+                <button ion-button color="jingku1" (click)="goInvoiceQualificationPage(item.ivid)">修改</button>
             </div>
         </div>
     </div>
 
     <ion-fab right bottom (click)="myContent.scrollToTop()">
-        <button ion-fab color="dark" mini goBackTop></button>
+        <button ion-fab color="jingku1" mini goBackTop></button>
     </ion-fab>
 
     <ion-infinite-scroll (ionInfinite)="doInfinite($event)" *ngIf="flag">

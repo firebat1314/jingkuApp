@@ -24,7 +24,7 @@
     <ion-list *ngIf="data?.data.length!='0'">
         <div class="item-wrap" *ngFor="let item of data?.data">
             <div margin-left [ngClass]="{'activein':showCheckBox}" *ngIf="showCheckBox">
-                <ion-checkbox [(ngModel)]="item.selected" [checked]="data.selectedAll" color="dark" mode="ios"></ion-checkbox>
+                <ion-checkbox [(ngModel)]="item.selected" [checked]="data.selectedAll" color="jingku1" mode="ios"></ion-checkbox>
             </div>
             <ion-item-sliding>
                 <button ion-item (click)="goParticularsPage(item.goods_id)">
@@ -49,8 +49,8 @@
 <ion-footer *ngIf="showCheckBox&&data&&data?.data?.length!=0">
     <div class="wrap">
         <div class="left-box">
-            <ion-checkbox [(ngModel)]="data.selectedAll" mode="ios"></ion-checkbox>全选
+            <ion-checkbox color="jingku1" [(ngModel)]="data.selectedAll" mode="ios"></ion-checkbox>全选
         </div>
-        <button no-margin ion-button full large color="dark" (click)="deleteSelected()">删除</button>
+        <button no-margin ion-button full large color="jingku1" (click)="deleteSelected()">删除</button>
     </div>
 </ion-footer>

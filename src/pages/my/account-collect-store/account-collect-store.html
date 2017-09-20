@@ -22,7 +22,7 @@
     <ion-list *ngIf="collectionShop?.count!='0'">
         <div class="item-wrap" *ngFor="let item of collectionShop?.data;let i = index">
             <div margin-left [ngClass]="{'activein':showCheckBox}" *ngIf="showCheckBox">
-                <ion-checkbox color="dark" mode="ios" [(ngModel)]="item.selected"></ion-checkbox>
+                <ion-checkbox color="jingku1" mode="ios" [(ngModel)]="item.selected"></ion-checkbox>
             </div>
             <ion-item-sliding>
                 <ion-item tappable navPush="ParticularsHomePage" [navParams]="{suppliersId:item.suppliers_id}">
@@ -41,7 +41,7 @@
     </ion-list>
 
     <ion-fab right bottom (click)="scrollToTop()" *ngIf="collectionShop?.count!=0">
-        <button ion-fab color="dark" mini>
+        <button ion-fab color="jingku1" mini>
             {{collectionShop?.page}}/{{collectionShop?.pages}}
         </button>
     </ion-fab>

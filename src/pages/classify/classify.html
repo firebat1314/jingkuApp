@@ -127,7 +127,7 @@
             <ion-list *ngIf="collectionShop?.count!='0'">
                 <div class="item-wrap" *ngFor="let item of collectionShop?.data;let i = index">
                     <div margin-left [ngClass]="{'activein':showCheckBox}" *ngIf="showCheckBox">
-                        <ion-checkbox color="dark" mode="ios" [(ngModel)]="item.selected"></ion-checkbox>
+                        <ion-checkbox color="jingku1" mode="ios" [(ngModel)]="item.selected"></ion-checkbox>
                     </div>
                     <ion-item-sliding>
                         <ion-item>
@@ -150,7 +150,7 @@
             <ion-list>
                 <div class="item-wrap" *ngFor="let item of collectionList?.data;let i = index">
                     <div margin-left [ngClass]="{'activein':showCheckBox}" *ngIf="showCheckBox">
-                        <ion-checkbox color="dark" mode="ios" [(ngModel)]="item.selected"></ion-checkbox>
+                        <ion-checkbox color="jingku1" mode="ios" [(ngModel)]="item.selected"></ion-checkbox>
                     </div>
                     <ion-item-sliding>
                         <ion-item tappable (click)="joinCar(item.goods_id)">
@@ -172,10 +172,10 @@
         </div>
     </div>
     <ion-fab right bottom tappable (click)="myContent.scrollToTop()">
-        <button ion-fab color="dark" mini goBackTop></button>
+        <button ion-fab color="jingku1" mini goBackTop></button>
     </ion-fab>
 </ion-content>
 <ion-footer *ngIf="classSelect=='care'&&showCheckBox&&(collectionList?.count!='0'||collectionShop?.count!='0')">
     <!--showCheckBox&&((classSelect=='care'&&collectionShop?.count!='0')||(classSelect=='goods'&&collectionList?.count!='0'))-->
-    <button ion-button full large no-margin color="dark" (click)="confirmForCollection()">取消关注</button>
+    <button ion-button full large no-margin color="jingku1" (click)="confirmForCollection()">取消关注</button>
 </ion-footer>

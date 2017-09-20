@@ -40,14 +40,14 @@ export class WellcomeNewmPage {
     //   });
     //   wow.init();
     // }, 2000);
-    TouchSlide({
-      slideCell: "#hez-cont",
+    // TouchSlide({
+      // slideCell: "#hez-cont",
     //   endFun: (i) => { //高度自适应
     //     console.log(this.ele.nativeElement.querySelector("#tabBox1-bd"))
     //     var bd = this.ele.nativeElement.querySelector("#tabBox1-bd");
     //     bd.parentNode.style.height = bd.children[i].children[0].offsetHeight + "px";
     //     if (i > 0) bd.parentNode.style.transition = "200ms";//添加动画效果
     //   }
-    });
+    // });
   }
 }
