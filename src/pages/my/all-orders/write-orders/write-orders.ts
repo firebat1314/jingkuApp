@@ -162,7 +162,7 @@ export class WriteOrdersPage {
     }
     this.navCtrl.push('BusinessmenNotePage')
   }
-  onsubmit() {
+  done(): Promise<any> {
     let commentArr = [];
     let suppliers = [];
     for (var i in this.data.suppliers_notes) {
@@ -171,14 +171,25 @@ export class WriteOrdersPage {
         suppliers.push(i)
       }
     }
+    return new Promise((resolve) => {
+      this.httpService.submitOrder({
+        notes: {
+          note: commentArr,
+          suppliers: suppliers
+        }
+      }).then((res) => {
+        if(res.info=='请先完善收货信息'){
+          this.openOrderModalShippingPage();
+          return
+        }
+        resolve(res)
+      })
+    });
+  }
+  onsubmit() {
     if (this.data.is_surplus) {
       this.native.openAlertBox('使用余额支付', () => {
-        this.httpService.submitOrder({
-          notes: {
-            note: commentArr,
-            suppliers: suppliers
-          }
-        }).then((res) => {
+        this.done().then((res) => {
           if (res.status == 1) {
             if (res.is_pay) {
               this.navCtrl.push('AllOrdersPage');
@@ -198,12 +209,7 @@ export class WriteOrdersPage {
         })
       })
     } else {
-      this.httpService.submitOrder({
-        notes: {
-          note: commentArr,
-          suppliers: suppliers
-        }
-      }).then((res) => {
+      this.done().then((res) => {
         if (res.status == 1) {
           this.events.publish('my:update');
           this.events.publish('car:update');

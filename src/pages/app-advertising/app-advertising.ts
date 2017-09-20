@@ -39,7 +39,6 @@ export class AppAdvertisingPage {
   }
 
   ngOnDestroy() {
-    clearInterval(this.timer);
   }
 
   jumpOver() {
@@ -48,7 +47,7 @@ export class AppAdvertisingPage {
       if (result) {
         this.navCtrl.setRoot('TabsPage', {}, { animate: true, direction: 'forward' });
       } else {
-        this.navCtrl.setRoot('WellcomeNewmPage', {}, { animate: true, direction: 'forward' });
+        this.navCtrl.setRoot('LoginPage', {}, { animate: true, direction: 'forward' });
       }
     });
   }

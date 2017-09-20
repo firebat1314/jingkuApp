@@ -64,11 +64,7 @@ export class ParticularsPage {
     this.getCarCount();
   }
   ngAfterViewInit() {
-    /* 回到顶部按钮 */
-    this.fabButton.setElementClass('fab-button-out', true);
-    this.content.ionScroll.subscribe((d) => {
-      this.fabButton.setElementClass("fab-button-in", d.scrollTop >= d.contentHeight);
-    });
+    
   }
   ionViewDidLoad() {
     console.log('ionViewDidLoad ParticularsPage');

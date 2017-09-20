@@ -13,7 +13,7 @@
                 <h2>{{group.cat_name}}</h2>
                 <ion-icon class="collapsible-header-icon" tappable item-right *ngIf="group?.cat_list" color="colorsix" [ngClass]="{'rotate': group.show }" name="ios-arrow-down"></ion-icon>
             </ion-item>
-            <ion-list no-margin class="item-accordion" [ngStyle]="{'height':group.show?group?.cat_list?.length*50+50+'px':0}" [hidden]="!group.show">
+            <ion-list no-margin class="item-accordion" [ngStyle]="{'height':group.show?group?.cat_list?.length*50+50+'px':0,'margin':group.show?'-1px':'0'}" [hidden]="!group.show">
                 <ion-item padding-left tappable (click)="onEvent(group.cat_id,$event)">
                     <h3>全部</h3>
                 </ion-item>

@@ -45,7 +45,7 @@ export class OrderModalShippingPage {
         if (!res.consignee_list.length) {
           this.native.openAlertBox('是否添加收货地址？', () => {
             this.navCtrl.push('AddShippingAddressPage');
-          },()=>{
+          }, () => {
             this.navCtrl.pop();
           })
         }
@@ -56,6 +56,8 @@ export class OrderModalShippingPage {
     if (data.is_show == 0) {
       this.native.openAlertBox('不在可配送城市,是否切换城市？', () => {
         this.navCtrl.push('CityPage');
+      }, null, () => {
+        this.getHttpData();
       })
       return;
     }

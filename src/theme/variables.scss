@@ -25,7 +25,29 @@ $h6-font-size:1rem;
 // to match your app's branding. Ionic uses a Sass map of
 // colors so you can add, rename and remove colors as needed.
 // The "primary" color is the only required color in the map.
-$colors: ( primary: #333333, secondary: #32db64, danger: #f53d3d, light: #ffffff, dark: #333333, favorite: #69BB7B, twitter: #1da1f4, google: #dc4a38, vimeo: #23b6ea, facebook: #3b5998, colorsix:#666666, gray:#808080, gray2:#666666, gray3:#4d4d4d, border:#e0e0e0, modalBtn:( base: #333333, contrast: #ffffff), modalHeadTool:( base:#fafafa, contrast:#999999), cancelBtn:( base:#cccccc, contrast:#fff), blueBtn:( base: #526bb5, contrast: #ffffff));
+$colors: ( 
+    primary: #333333,
+    secondary: #32db64,
+    danger: #f53d3d,
+    light: #ffffff,
+    dark: #333333,
+    favorite: #69BB7B,
+    twitter: #1da1f4,
+    google: #dc4a38, 
+    vimeo: #23b6ea,
+    facebook: #3b5998,
+    colorsix:#666666,
+    gray:#808080,
+    gray2:#666666,
+    gray3:#4d4d4d,
+    border:#e0e0e0,
+    modalBtn:( base: #333333, contrast: #ffffff),
+    modalHeadTool:(base:#fafafa,contrast:#999999),
+    cancelBtn:( base:#cccccc, contrast:#fff),
+    blueBtn:( base: #526bb5, contrast: #ffffff),
+    jingku1:#3f69a5,
+    jingku2:#042c6e,
+);
 // App iOS Variables
 // --------------------------------------------------
 // iOS only Sass variables can go here
@@ -59,6 +81,7 @@ $button-ios-strong-font-weight: 500;
 $button-ios-height: 3.4rem;
 $button-ios-large-font-size: 1.6rem;
 $button-ios-padding-end: 1rem;
+$button-ios-font-size: 1.4rem;
 //list
 $list-ios-margin-bottom:10px;
 $list-ios-header-background-color: #fff;

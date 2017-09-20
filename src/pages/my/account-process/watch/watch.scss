@@ -1,0 +1,28 @@
+page-watch {
+    header {
+        margin: 10px;
+    }
+    section {
+        margin: 10px;
+        background: #fff;
+        padding: 0 10px;
+        >div {
+            display: flex;
+            justify-content: space-between;
+            padding: 15px 0;
+            border-bottom: $border;
+            &:last-child {
+                border: 0;
+            }
+            span {
+                color: #808080;
+                max-width: 153px;
+                text-align: right;
+                &:first-child {
+                    color: #4d4d4d;
+                    white-space: nowrap;
+                }
+            }
+        }
+    }
+}

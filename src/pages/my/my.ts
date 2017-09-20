@@ -92,11 +92,11 @@ export class MyPage {
   }
   goRepairReturnPage(){
     // console.log(1)
-    this.native.showToast('敬请期待',null,false);
+    this.native.showToast('暂未开放',null,false);
     // this.navCtrl.push('RepairReturnPage')
   }
   goAccountProcessPage() {
-    this.native.showToast('敬请期待',null,false);
+    this.native.showToast('暂未开放',null,false);
     // this.navCtrl.push('AccountProcessPage')
   }
   goAccountServicePage() {

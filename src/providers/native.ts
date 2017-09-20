@@ -118,7 +118,7 @@ export class Native {
 	/**
 	 * 确认弹窗
 	 */
-	openAlertBox(title, confirmHandler, cancelHandler?) {
+	openAlertBox(title, confirmHandler, cancelHandler?,didDismiss?) {
 		let confirm = this.alertCtrl.create({
 			cssClass: 'alert-style',
 			title: title,
@@ -137,6 +137,9 @@ export class Native {
 			],
 		});
 		confirm.present();
+		confirm.onDidDismiss(()=>{
+			return didDismiss?didDismiss():null;
+		})
 	}
 	/**
 	 * 使用 cordova-plugin-camera 获取照片的base64
@@ -350,7 +353,8 @@ export class Native {
 	 */
 	getVersionNumber(): Promise<string> {
 		return new Promise((resolve) => {
-			this.appVersion.getVersionNumber().then((value: string) => {
+			this.appVersion.getVersionNumber().then((value) => {
+				console.log('Version',value)
 				resolve(value);
 			}).catch(err => {
 				console.log('getVersionNumber:' + err);

@@ -1,5 +1,71 @@
 page-account-process {
-    .scroll-content {
-        div {}
+    .single-shop {
+        margin: 10px;
+        background: #fff;
+        >div:last-child {
+            border: 0;
+        }
+        .item-divider {
+            .item-inner {
+                margin-left: 0;
+            }
+        }
+        .item {
+            border-bottom: 1px solid #e0e0e0;
+            .my-content {
+                display: flex;
+                color: #4d4d4d;
+                justify-content: space-between;
+                .left {
+                    color: #999;
+                    font-size: 1.2rem;
+                    h2 {
+                        color: #4d4d4d;
+                        white-space: pre-wrap;
+                        font-size: 1.6rem;
+                        text-overflow: -o-ellipsis-lastline;
+                        overflow: hidden;
+                        text-overflow: ellipsis;
+                        display: -webkit-box;
+                        -webkit-line-clamp: 2;
+                        -webkit-box-orient: vertical;
+                        margin-bottom: 10px;
+                    }
+                }
+                .right {
+                    color: #000;
+                    text-align: right;
+                    min-width: 80px;
+                    .count {
+                        margin-top: 10px;
+                        color: #999;
+                    }
+                }
+            }
+        }
+        .result {
+            text-align: right;
+            padding: 10px;
+            border-bottom: 1px solid #e0e0e0;
+            .count {
+                color: #4d4d4d;
+            }
+            .price {
+                font-size: 1.5rem;
+                span {
+                    font-weight: 600;
+                }
+            }
+        }
+        .btn {
+            text-align: right;
+            padding: 10px;
+            .button {
+                width: 90px;
+                /* &:first-child {
+                    border-color: #b6b6b6;
+                } */
+            }
+        }
     }
 }
