@@ -5,6 +5,7 @@ import { ImgLazyLoadDirectiveModule } from '../../../directives/img-lazy-load/im
 import { SwiperNewmComponentModule } from '../../../components/swiper-newm/swiper-newm.module';
 import { FooterRightsComponentModule } from '../../../components/footer-rights/footer-rights.module';
 import { WelHeaderComponentModule } from '../../../components/wel-header/wel-header.module';
+import { ScrollToTopDirectiveModule } from '../../../directives/scroll-to-top/scroll-to-top.module';
 
 @NgModule({
    declarations: [
@@ -15,7 +16,8 @@ import { WelHeaderComponentModule } from '../../../components/wel-header/wel-hea
       ImgLazyLoadDirectiveModule,
       SwiperNewmComponentModule,
       FooterRightsComponentModule,
-      WelHeaderComponentModule
+      WelHeaderComponentModule,
+      ScrollToTopDirectiveModule
    ],
    exports: [
       SjPage

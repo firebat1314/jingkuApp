@@ -21,8 +21,7 @@ wel-header {
         left: 0;
         z-index: 2000;
         padding: 3px 0;
-        width: 100%;
-        // background: rgba(51, 51, 51, 1);
+        width: 100%; // background: rgba(51, 51, 51, 1);
         transition: all 1000ms cubic-bezier(.19, 1.12, .65, .91);
     }
     .head .logo {
@@ -37,7 +36,8 @@ wel-header {
         height: 25px;
         width: auto;
     }
-    .head .dyon,.head .dyon1 {
+    .head .dyon,
+    .head .dyon1 {
         position: absolute;
         right: 8px;
         top: 2px;
@@ -50,10 +50,11 @@ wel-header {
         margin-top: 0px;
         transition: all 300ms cubic-bezier(.19, 1.12, .65, .91);
         margin-right: 0px;
-        background-color: transparent;/* rgba(51, 51, 51, 1) */
+        background-color: transparent;
+        /* rgba(51, 51, 51, 1) */
         z-index: 100;
     }
-    .head .dyon1{
+    .head .dyon1 {
         background: #3f69a5;
         color: #fff;
         font-size: 1.2rem;
@@ -62,7 +63,6 @@ wel-header {
         z-index: 1;
         opacity: 0;
     }
-
     .color {
         background: rgba(27, 11, 11, 0) !important;
         .logo {
@@ -71,15 +71,15 @@ wel-header {
         .dyon {
             background-image: url(../assets/images/wellcome-newm/top-ico-2.png);
             position: absolute;
-            box-shadow: 0px 0px 17px #666;
+            box-shadow: 0px 0px 7px #666;
             right: 21px;
             top: 19px;
             background-color: rgba(255, 255, 255, 1) !important;
         }
-        .dyon1{
+        .dyon1 {
             right: 21px;
             top: 68px;
-            box-shadow: 0px 0px 17px #666;
+            box-shadow: 0px 0px 7px #666;
             opacity: 1;
         }
     }

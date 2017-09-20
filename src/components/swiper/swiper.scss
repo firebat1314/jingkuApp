@@ -28,13 +28,13 @@ swiper {
                 }
             }
         }
-    }
-    .swiper-slide,
-    .swiper-wrapper {
-        height: 100%;
-        position: relative;
-        transform-style: preserve-3d;
-        width: 100%;
+        .swiper-slide,
+        .swiper-wrapper {
+            height: 100%;
+            position: relative;
+            transform-style: preserve-3d;
+            width: 100%;
+        }
     }
     .page-nub {
         font-size: 14px;
@@ -50,11 +50,11 @@ swiper {
         text-align: center;
         line-height: 40px;
         overflow: hidden;
-        em{
+        em {
             font-style: normal;
             color: #fff;
         }
-        .fz14{
+        .fz14 {
             font-size: 16px;
         }
     }

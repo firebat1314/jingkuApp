@@ -687,7 +687,7 @@ select {
 }
 
 .about-cont .ico {
-    width: 40px;
+    width: 28px;
     height: 40px;
     margin: 0 auto;
 }
@@ -1216,14 +1216,6 @@ lesshat-selector {
 }
 
 .f-top {
-    display: none;
-    position: fixed;
-    bottom: 50px;
-    right: 30px;
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    cursor: pointer;
     background: #3f69a5 url(../assets/images/wellcome-newm/f-top.png) no-repeat center;
 }
 
@@ -1368,7 +1360,7 @@ lesshat-selector {
 
 .sbaiw-cont li .txt {
     text-align: center;
-    font-size: 16px;
+    font-size: 12px;
     color: #333;
     margin-top: 10px;
     color: #666;
@@ -1383,8 +1375,8 @@ lesshat-selector {
 
 .youzhi .p1 {
     color: #fff;
-    font-size: 20px;
-    margin-bottom: 10px;
+    font-size: 16px;
+    margin-bottom: 15px;
 }
 
 .youzhi .p2 {
@@ -1625,7 +1617,7 @@ lesshat-selector {
 }
 
 .cgong3-cont {
-    padding: 20px 0 0;
+    padding: 20px 20px 0;
 }
 
 .cgong3-cont .item {
@@ -1739,10 +1731,12 @@ lesshat-selector {
 
 .sjfw-cont li .wrp .icon {
     display: block;
-    width: 40px;
-    height: 40px;
-    min-width: 40px;
+    width: 35px;
+    height: 33px;
+    min-width: 30px;
     text-align: center;
+    margin-top: -6px;
+    margin-right: 5px;
 }
 
 .sjfw-cont li .wrp .txt {}

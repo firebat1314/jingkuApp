@@ -30,7 +30,7 @@ export class SwiperNewmComponent {
   ngAfterViewInit() {
     var swiperContainer = this.ele.nativeElement.querySelector('.swiper-slide');
     this.render.setElementStyle(swiperContainer, 'background', 'url(' + this.img + ') no-repeat center/100% auto')
-    var swiper = new Swiper('.swiper-container', {
+    var swiper = new Swiper('.car-swiper', {
       animate: false,
       // pagination: '.swiper-pagination',
       // paginationClickable: true,
