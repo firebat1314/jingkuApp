@@ -8,14 +8,16 @@ import { HttpService } from "../../../../providers/http-service";
   See http://ionicframework.com/docs/v2/components/#navigation for more info on
   Ionic pages and navigation.
 */
-@IonicPage()
+@IonicPage({
+  segment:'page-duihuan-details-finish/:item'
+})
 @Component({
   selector: 'page-duihuan-details-finish',
   templateUrl: 'duihuan-details-finish.html'
 })
 export class DuihuanDetailsFinishPage {
   data: any;
-  item: any = this.navParams.get('item');
+  item: any = JSON.parse(this.navParams.get('item'));
 
   constructor(
     public navCtrl: NavController,
