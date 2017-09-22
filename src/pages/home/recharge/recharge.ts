@@ -41,8 +41,10 @@ export class RechargePage {
     })
   }
   onSubmit(money, type) {
-    this.httpService.rechargeMoney({amount:money,pay:type,note:''}).then((res)=>{
-      this.getOrderInfo(this.payCode[type]);
+    this.httpService.rechargeMoney({ amount: money, pay: type, note: '' }).then((res) => {
+      if (res.status&&res.pingxx) {
+        this.openPingPayment(res.pingxx);
+      }
     })
     // this.httpService.addAccount({ amount: money, payment_id: 6 }).then((res) => {
     //   if (res.status == 1) {
@@ -80,34 +82,8 @@ export class RechargePage {
     //   }
     // })
   }
-  getOrderInfo(data) {
-    this.httpService.payCode({ code: data }).then((res) => {
-      // console.log(res);
-      if ((res.status == 1)) {
-        // this.wechatPay(res.pingxx)
-        this.openPingPayment(res.pingxx);
-      }
-    })
-  }
   openPingPayment(data) {
-    /*let that = this;
-    (<any>window).navigator.pingpp.requestPayment(data, (result, err) => {
-      that.navCtrl.pop();
-      if (result == 'success') {
-        that.native.showToast("支付成功");
-      } else if (result == 'cancel') {
-        that.native.showToast("取消支付");
-      }
-      console.log('success', result, err)
-      return;
-    }, (result, err) => {
-      if (result == 'cancel') {
-        that.native.showToast("取消支付");
-      } else {
-        that.native.showToast("支付异常,请尝试其他支付方式");
-      }
-      console.log('fail', result, err)
-    });*/
+    console.log(pingpp)
     pingpp.createPayment(data, function (result, err) {
       console.log(result, err)
       if (result == "success") {
