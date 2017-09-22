@@ -16,4 +16,52 @@ page-payment-method {
             }
         } */
     }
+    .zffs {
+        background: #fff;
+        overflow: hidden;
+        .zffs_h {
+            font-size: $item-ios-body-text-font-size;
+            margin-left: 16px;
+            color: get-color(primary);
+            padding: 10px 0 0;
+            margin-bottom: 10px;
+            .text {
+                color: #ff3333;
+                font-size: 1.1rem;
+                margin-left: 3px;
+            }
+        }
+        .main {
+            display: flex;
+            flex-wrap: wrap;
+            margin: 2%;
+            .zf_x {
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                border: 1px solid transparent;
+                width: 46%;
+                box-shadow: 0px 0px 8px #e6e6e6;
+                margin: 2%;
+                min-height: 90px;
+                img {
+                    max-height: 28px;
+                    display: block;
+                    margin-bottom: 7px;
+                }
+                .p1 {
+                    color: #666667;
+                }
+                .p2 {
+                    color: #808080;
+                }
+                &.selected {
+                    border-color: #3f69a5;
+                    background: url(../assets/icon/images/close_ico_03.png) no-repeat right 10px top 5px;
+                    background-size: 16px;
+                }
+            }
+        }
+    }
 }

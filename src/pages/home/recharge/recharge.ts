@@ -39,41 +39,44 @@ export class RechargePage {
     })
   }
   onSubmit(money, type) {
-    this.httpService.addAccount({ amount: money, payment_id: 6 }).then((res) => {
-      if (res.status == 1) {
-        this.httpService.pay({ log_id: res.log_id, type: 'log' }).then((res) => {
-          if (res.status == 1) {
-            this.payCode = res;
-            if (type == '微信支付') {
-              this.getOrderInfo(this.payCode.weixin);
-            } else if (type == '支付宝') {
-              this.getOrderInfo(this.payCode.alipay);
-            } else if (type == '银联支付') {
-              this.getOrderInfo(this.payCode.upacp);
-            } else if (type == "银行汇款/转账") {
-              this.httpService.addAccount({ amount: money, payment_id: 4 }).then((res) => {
-                if (res.status == 1) {
-                  this.alertCtrl.create({
-                    title: '汇款须知',
-                    subTitle: this.payList.data[0].pay_desc,
-                    buttons: [/* {
-                      text: '个人中心',
-                      handler: () => {
-                        this.navCtrl.parent.select(3);
-                        this.navCtrl.pop();
-                      }
-                    }, */ {
-                        text: '确认'
-                      }],
-                    cssClass: 'recharge-alert'
-                  }).present();
-                }
-              })
-            }
-          }
-        })
-      }
+    this.httpService.rechargeMoney({amount:money,pay:type,note:''}).then((res)=>{
+      this.getOrderInfo(this.payCode[type]);
     })
+    // this.httpService.addAccount({ amount: money, payment_id: 6 }).then((res) => {
+    //   if (res.status == 1) {
+    //     this.httpService.pay({ log_id: res.log_id, type: 'log' }).then((res) => {
+    //       if (res.status == 1) {
+    //         this.payCode = res;
+    //         if (type == 'wx') {
+    //           this.getOrderInfo(this.payCode.weixin);
+    //         } else if (type == 'alipay') {
+    //           this.getOrderInfo(this.payCode.alipay);
+    //         } else if (type == 'upacp') {
+    //           this.getOrderInfo(this.payCode.upacp);
+    //         } else if (type == "银行汇款/转账") {
+    //           this.httpService.addAccount({ amount: money, payment_id: 4 }).then((res) => {
+    //             if (res.status == 1) {
+    //               this.alertCtrl.create({
+    //                 title: '汇款须知',
+    //                 subTitle: this.payList.data[0].pay_desc,
+    //                 buttons: [/* {
+    //                   text: '个人中心',
+    //                   handler: () => {
+    //                     this.navCtrl.parent.select(3);
+    //                     this.navCtrl.pop();
+    //                   }
+    //                 }, */ {
+    //                     text: '确认'
+    //                   }],
+    //                 cssClass: 'recharge-alert'
+    //               }).present();
+    //             }
+    //           })
+    //         }
+    //       }
+    //     })
+    //   }
+    // })
   }
   getOrderInfo(data) {
     this.httpService.payCode({ code: data }).then((res) => {

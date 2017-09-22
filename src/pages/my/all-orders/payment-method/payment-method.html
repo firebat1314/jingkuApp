@@ -14,36 +14,79 @@
 
 
 <ion-content>
-    <ion-item mode="ios" no-lines>
-        订单金额
-        <span item-right ion-text color="danger">{{'¥' + data.amout}}</span>
-    </ion-item>
-    <div class="background"></div>
-    <ion-list radio-group>
-        <ion-list-header mode="ios">支付方式</ion-list-header>
-        <ion-item mode="ios" tappable (click)="toPay(1)">
-            <img class="pay-icon" src="./assets/images/images/alipay_icon_03.png" alt="">
+    <ng-container *ngIf="data">
+
+        <ion-item mode="ios" no-lines>
+            订单金额
+            <span item-right ion-text color="danger">{{'¥' + data?.amout}}</span>
         </ion-item>
-        <ion-item mode="ios" tappable (click)="toPay(2)">
-            <img class="pay-icon" src="./assets/images/images/online_icon_02.png" alt="">
-        </ion-item>
-        <ion-item mode="ios" tappable (click)="toPay(3)">
-            <img class="pay-icon" src="./assets/images/images/wechat_icon_02.png" alt="">
-        </ion-item>
-    </ion-list>
-    <!--<ion-list radio-group>
-        <ion-item-divider>支付方式</ion-item-divider>
-        <ion-item mode="ios">
-            <ion-label><img class="pay-icon" src="./assets/icon/images/patfor_06.jpg" alt=""></ion-label>
-            <ion-checkbox mode="ios" (click)="toPay(1)" color="jingku1"></ion-checkbox>
-        </ion-item>
-        <ion-item mode="ios">
-            <ion-label><img class="pay-icon" src="./assets/icon/images/patfor_03.jpg" alt=""></ion-label>
-            <ion-checkbox mode="ios" (click)="toPay(2)" color="jingku1"></ion-checkbox>
-        </ion-item>
-        <ion-item mode="ios">
-            <ion-label><img class="pay-icon" src="./assets/icon/images/patfor_08.jpg" alt=""></ion-label>
-            <ion-checkbox mode="ios" (click)="toPay(3)" color="jingku1"></ion-checkbox>
-        </ion-item>
-    </ion-list>-->
+        <div class="background"></div>
+        <!-- <ion-list radio-group>
+                    <ion-list-header mode="ios">支付方式</ion-list-header>
+                    <ion-item mode="ios" tappable (click)="toPay(1)">
+                        <img class="pay-icon" src="./assets/images/images/alipay_icon_03.png" alt="">
+                    </ion-item>
+                    <ion-item mode="ios" tappable (click)="toPay(2)">
+                        <img class="pay-icon" src="./assets/images/images/online_icon_02.png" alt="">
+                    </ion-item>
+                    <ion-item mode="ios" tappable (click)="toPay(3)">
+                        <img class="pay-icon" src="./assets/images/images/wechat_icon_02.png" alt="">
+                    </ion-item>
+                </ion-list> -->
+        <!--<ion-list radio-group>
+                    <ion-item-divider>支付方式</ion-item-divider>
+                    <ion-item mode="ios">
+                        <ion-label><img class="pay-icon" src="./assets/icon/images/patfor_06.jpg" alt=""></ion-label>
+                        <ion-checkbox mode="ios" (click)="toPay(1)" color="jingku1"></ion-checkbox>
+                    </ion-item>
+                    <ion-item mode="ios">
+                        <ion-label><img class="pay-icon" src="./assets/icon/images/patfor_03.jpg" alt=""></ion-label>
+                        <ion-checkbox mode="ios" (click)="toPay(2)" color="jingku1"></ion-checkbox>
+                    </ion-item>
+                    <ion-item mode="ios">
+                        <ion-label><img class="pay-icon" src="./assets/icon/images/patfor_08.jpg" alt=""></ion-label>
+                        <ion-checkbox mode="ios" (click)="toPay(3)" color="jingku1"></ion-checkbox>
+                    </ion-item>
+                </ion-list>-->
+        <section class="zffs">
+            <header class="zffs_h">
+                支付方式
+                <!-- <span class="text">需组合支付</span> -->
+            </header>
+            <div class="main">
+                <div class="zf_x" tappable (click)="userYue()" [class.selected]="yE">
+                    <img src="./assets/icon/close_ico4.png" alt="">
+                    <div class="p1">镜库余额</div>
+                    <div class="p2">可用余额：{{user_money}}</div>
+                </div>
+                <div class="zf_x" (click)="paymentType='alipay'" [class.selected]="paymentType=='alipay'">
+                    <img src="./assets/icon/close_ico5.png" alt="">
+                    <div class="p1">支付宝支付</div>
+                    <div class="p2"></div>
+                </div>
+                <div class="zf_x" (click)="paymentType='upacp'" [class.selected]="paymentType=='upacp'">
+                    <img src="./assets/icon/close_ico6.png" alt="">
+                    <div class="p1">微信支付</div>
+                    <div class="p2"></div>
+                </div>
+                <div class="zf_x" (click)="paymentType='weixin'" [class.selected]="paymentType=='weixin'">
+                    <img src="./assets/icon/close_ico7.png" alt="">
+                    <div class="p1">中国银联支付</div>
+                    <div class="p2"></div>
+                </div>
+            </div>
+            <header class="zffs_h">
+                支付密码
+            </header>
+            <div class="input_ps">
+                <!-- <input type="password"> -->
+
+                <pay-password (code)="payPassword = $event"></pay-password>
+            </div>
+        </section>
+    </ng-container>
 </ion-content>
+
+<ion-footer>
+    <button color="jingku1" no-margin ion-button large full class="modal-button" (click)="toPay()"><span *ngIf="paymentType&&yE">组合支付</span>{{'¥' + data?.amout}}</button>
+</ion-footer>
