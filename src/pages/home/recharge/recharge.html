@@ -25,23 +25,23 @@
             <ion-item mode="md" *ngIf="payList?.is_weixin===1" no-lines>
                 <img item-start src="./assets/icon/images/2.png" alt="">
                 <ion-label>微信支付</ion-label>
-                <ion-radio value="微信支付" mode="md" checked></ion-radio>
+                <ion-radio value="wx" mode="md" checked></ion-radio>
             </ion-item>
             <ion-item mode="md" *ngIf="payList?.is_weixin===0" no-lines>
                 <img item-start src="./assets/icon/images/1.png" alt="">
                 <ion-label>支付宝</ion-label>
-                <ion-radio value="支付宝" mode="md"></ion-radio>
+                <ion-radio value="alipay" mode="md"></ion-radio>
             </ion-item>
             <ion-item mode="md" no-lines *ngIf="payList?.is_weixin===0">
                 <img item-start src="./assets/icon/images/3.png" alt="">
                 <ion-label>银联支付</ion-label>
-                <ion-radio value="银联支付" mode="md"></ion-radio>
+                <ion-radio value="upacp" mode="md"></ion-radio>
             </ion-item>
-            <ion-item mode="md" no-lines>
+            <!-- <ion-item mode="md" no-lines>
                 <img item-start src="./assets/icon/images/4.png" alt="">
                 <ion-label>银行汇款/转账</ion-label>
                 <ion-radio value="银行汇款/转账" mode="md"></ion-radio>
-            </ion-item>
+            </ion-item> -->
         </ion-list>
         <div padding class="comfirmBtn">
             <button color="jingku1" large ion-button [disabled]="!recharge.form.valid" (click)="onSubmit(money,payMethod)" block>确认</button>

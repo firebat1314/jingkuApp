@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams, ViewController, IonicPage } from 'ionic-angular';
+import { NavController, NavParams, ViewController, IonicPage, AlertController } from 'ionic-angular';
 import { HttpService } from "../../../../providers/http-service";
 import { Native } from "../../../../providers/native";
 // import { AllOrdersPage } from "../all-orders";
@@ -15,7 +15,9 @@ declare var Pingpp: any;
 declare var Wechat: any;
 declare var navigator: any;
 
-@IonicPage()
+@IonicPage({
+  segment: 'payment-method/:data'
+})
 @Component({
   selector: 'page-payment-method',
   templateUrl: 'payment-method.html'
@@ -23,15 +25,50 @@ declare var navigator: any;
 export class PaymentMethodPage {
 
   payResult: any;
-  data = this.navParams.get('data');
-
+  data: any;
+  order_id = this.navParams.get('order_id');
+  user_money: string;
+  is_pay_pass: any;
+  yE: boolean = false;//是否使用余额
+  paymentType: any;//支付方式
+  payPassword: any;//用户支付密码
   constructor(
     public navCtrl: NavController,
     public navParams: NavParams,
     public viewCtrl: ViewController,
     public httpService: HttpService,
-    public native: Native
-  ) { }
+    public native: Native,
+    public alertCtrl: AlertController
+  ) {
+    this.httpService.pay({ order_id: this.order_id }).then((res) => {
+      if (res.status == 1) {
+        this.data = res;
+      }
+    })
+    this.httpService.userInfo().then((res) => {
+      if (res.status) {
+        this.user_money = res.data.user_money;
+        this.is_pay_pass = res.data.user_money;
+        if (!this.is_pay_pass) {
+          this.alertCtrl.create({
+            title: '提示',
+            subTitle: '还没有设置支付密码请前往设置',
+            message: '',
+            enableBackdropDismiss: false,
+            buttons: [
+              {
+                text: '确定',
+                handler: () => {
+                  this.navCtrl.push('ChangePayPasswordPage');
+                  // this.platform.exitApp();
+                }
+              }
+            ]
+          }).present();
+        }
+      }
+    }) 
+  }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad PaymentMethodPage');
@@ -40,124 +77,76 @@ export class PaymentMethodPage {
   dismiss(data?: any) {
     this.viewCtrl.dismiss(data);
   }
-  toPay(type) {
-    if (type == 1) {
-      this.httpService.payCode({ code: this.data.alipay }).then((res) => {
-        console.log(res);
-        if (res.status == 1 && pingpp) {
-          console.log(pingpp)
-          pingpp.createPayment(res.pingxx, function(result, err) {
-            console.log(result, err)
-            if (result == "success") {
-              // 只有微信公众账号 wx_pub 支付成功的结果会在这里返回，其他的支付结果都会跳转到 extra 中对应的 URL。
- 
-            } else if (result == "fail") {
-              // charge 不正确或者微信公众账号支付失败时会在此处返回
-            } else if (result == "cancel") {
-              // 微信公众账号支付取消支付
+  toPay() {
+    this.httpService.checkPayPass({ password: this.payPassword }).then((res) => {
+      if (res.status) {
+        if (this.yE) {
+          this.httpService.doublePayment({ code: this.data[this.paymentType] }).then((res) => {
+            if (res.status) {
+              if (res.type == 'pay') {
+                this.openPingPayment(res.pingxx);
+              }
             }
-          });
+          })
+        } else {
+          this.getOrderInfo(this.data[this.paymentType]);
         }
-      })
-    } else if (type == 2) {
-      this.httpService.payCode({ code: this.data.upacp }).then((res) => {
-        console.log(res);
-        if (res.status == 1 && pingpp) {
-          console.log(pingpp)
-          pingpp.createPayment(res.pingxx, function(result, err) {
-            console.log(result, err)
-            if (result == "success") {
-              // 只有微信公众账号 wx_pub 支付成功的结果会在这里返回，其他的支付结果都会跳转到 extra 中对应的 URL。
- 
-            } else if (result == "fail") {
-              // charge 不正确或者微信公众账号支付失败时会在此处返回
-            } else if (result == "cancel") {
-              // 微信公众账号支付取消支付
-            }
-          });
-        }
-      })
-    } else if (type == 3) {
-      this.httpService.payCode({ code: this.data.WeChat }).then((res) => {
-        console.log(res);
-        if (res.status == 1 && pingpp) {
-          console.log(pingpp)
-          pingpp.createPayment(res.pingxx, function(result, err) {
-            console.log(result, err)
-            if (result == "success") {
-              // 只有微信公众账号 wx_pub 支付成功的结果会在这里返回，其他的支付结果都会跳转到 extra 中对应的 URL。
- 
-            } else if (result == "fail") {
-              // charge 不正确或者微信公众账号支付失败时会在此处返回
-            } else if (result == "cancel") {
-              // 微信公众账号支付取消支付
-            }
-          });
-        }
-      })
-    }
-  }
-  /*toPay(type) {
-    if (type == 1) {
-      this.getOrderInfo(this.data.alipay);
-    } else if (type == 2) {
-      this.getOrderInfo(this.data.upacp);
-
-    } else if (type == 3) {
-      this.getOrderInfo(this.data.weixin);
-    }
+      }
+    })
   }
   getOrderInfo(data) {
     this.httpService.payCode({ code: data }).then((res) => {
-      console.log(res);
       if ((res.status == 1)) {
         // this.wechatPay(res.pingxx)
         this.openPingPayment(res.pingxx);
       }
     })
   }
+  userYue() {
+    this.yE = !this.yE;
+  }
+
   openPingPayment(data) {
     let that = this;
-    (<any>window).navigator.pingpp.requestPayment(data, (result, err) => {
-      that.navCtrl.pop();
-      if (result == 'success') {
-        that.native.showToast("支付成功");
-      } else if (result == 'cancel') {
-        that.native.showToast("取消支付");
+    this.httpService.payCode({ code: this.data.upacp }).then((res) => {
+      if (res.status == 1 && pingpp) {
+        console.log(pingpp)
+        pingpp.createPayment(res.pingxx, function (result, err) {
+          console.log(result, err)
+          if (result == "success") {
+            // 只有微信公众账号 wx_pub 支付成功的结果会在这里返回，其他的支付结果都会跳转到 extra 中对应的 URL。
+
+          } else if (result == "fail") {
+            // charge 不正确或者微信公众账号支付失败时会在此处返回
+          } else if (result == "cancel") {
+            // 微信公众账号支付取消支付
+          }
+        });
       }
-      console.log('success', result, err)
-      return;
-    }, (result, err) => {
-      that.navCtrl.pop();
-      if (result == 'cancel') {
-        that.native.showToast("取消支付");
-      } else {
-        that.native.showToast("支付异常,请尝试其他支付方式");
-      }
-      console.log('fail', result, err)
-    });*/
-    /*——————————————————————————————————————————————————————————————————————————*/
-    // pingpp.createPayment(data, (result) => {
-    //   console.log('success',result);
-    // }, function (err) {
-    //   console.log(err);
-    // });
-    /*——————————————————————————————————————————————————————————————————————————*/
-    // let that = this;
-    // Pingpp.createPayment(data, (result, error) => {//scheme 为iOS返回应用
-    //   console.log(result);
-    //   console.log(error);
-    //   alert('result' + result);
-    //   alert('error' + error);
-    //   that.navCtrl.push(AllOrdersPage);
-    //   if (result == 'success') {
-    //     that.native.showToast('支付成功');
-    //   }
-    // })
-    // Pingpp.setDebugMode(true)
-    // Pingpp.getVersion(function (version) {
-    //   alert("当前SDK版本号是:" + version);
-    // });
+    })
+  }
+  /*——————————————————————————————————————————————————————————————————————————*/
+  // pingpp.createPayment(data, (result) => {
+  //   console.log('success',result);
+  // }, function (err) {
+  //   console.log(err);
+  // });
+  /*——————————————————————————————————————————————————————————————————————————*/
+  // let that = this;
+  // Pingpp.createPayment(data, (result, error) => {//scheme 为iOS返回应用
+  //   console.log(result);
+  //   console.log(error);
+  //   alert('result' + result);
+  //   alert('error' + error);
+  //   that.navCtrl.push(AllOrdersPage);
+  //   if (result == 'success') {
+  //     that.native.showToast('支付成功');
+  //   }
+  // })
+  // Pingpp.setDebugMode(true)
+  // Pingpp.getVersion(function (version) {
+  //   alert("当前SDK版本号是:" + version);
+  // });
   // }
 
   // alipayPay(alipayOrder) {

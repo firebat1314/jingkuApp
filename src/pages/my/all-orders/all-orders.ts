@@ -127,12 +127,7 @@ export class AllOrdersPage {
     }
   }
   toPay(id) {
-    this.httpService.pay({ order_id: id }).then((res) => {
-      // console.log(res);
-      if (res.status == 1) {
-        this.navCtrl.push('PaymentMethodPage', { data: res })
-      }
-    })
+    this.navCtrl.push('PaymentMethodPage', { order_id: id })
   }
   confirmReceipt(order_id) {
     this.native.openAlertBox('确认收货', () => {

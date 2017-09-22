@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { IonicPageModule } from 'ionic-angular';
-import { ChangePhoneNumberPage } from "./change-phone-number";
 import { ImgLazyLoadDirectiveModule } from "../../../../../directives/img-lazy-load/img-lazy-load.module";
+import { ChangePhoneNumberPage } from './change-phone-number';
 
 @NgModule({
   declarations: [ChangePhoneNumberPage],

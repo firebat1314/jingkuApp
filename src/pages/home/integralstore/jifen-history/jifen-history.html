@@ -31,7 +31,8 @@
         </ion-item>
     </ion-list>
 
-    <ion-fab right bottom *ngIf="data?.pages" (click)="scrollToTop()">
+    <ion-fab right bottom *ngIf="data?.pages">
+        <button ion-fab color="jingku1" mini goBackTop scroll-to-top></button>
         <button ion-fab color="jingku1" mini>
             {{data?.page}}/{{data?.pages}}
         </button>

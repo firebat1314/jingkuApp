@@ -178,7 +178,7 @@ export class WriteOrdersPage {
           suppliers: suppliers
         }
       }).then((res) => {
-        if(res.info=='请先完善收货信息'){
+        if (res.info == '请先完善收货信息') {
           this.openOrderModalShippingPage();
           return
         }
@@ -196,11 +196,7 @@ export class WriteOrdersPage {
               this.native.showToast('支付成功');
             } else {
               this.native.showToast('需要组合支付');
-              this.httpService.pay({ order_id: res.order_id }).then((res) => {
-                if (res.status == 1) {
-                  this.navCtrl.push('PaymentMethodPage', { data: res });
-                }
-              })
+              this.navCtrl.push('PaymentMethodPage', { order_id: res.order_id });
             }
             this.events.publish('my:update');
             this.events.publish('car:update');
@@ -214,11 +210,7 @@ export class WriteOrdersPage {
           this.events.publish('my:update');
           this.events.publish('car:update');
           if (this.paymentMothdID == 6) {
-            this.httpService.pay({ order_id: res.order_id }).then((res) => {
-              if (res.status == 1) {
-                this.navCtrl.push('PaymentMethodPage', { data: res });
-              }
-            })
+            this.navCtrl.push('PaymentMethodPage', { order_id: res.order_id });
           } else if (this.paymentMothdID == 4) {
             this.navCtrl.push('OrdersDetailPage', { order_id: res.order_id });
             this.alertCtrl.create({

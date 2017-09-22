@@ -447,4 +447,16 @@ export class HttpService {
   versionInfo(data?: Object) {//版本更新
     return this.http.get(IP + '/Login/version_info', data)
   }
+  doublePayment(data?: Object) {//余额改版
+    return this.http.get(IP + '/Flow/double_payment', data)
+  }
+  checkPayPass(data?: Object) {//支付密码
+    return this.http.post(IP + '/Flow/check_pay_pass', data)
+  }
+  editPaypwd(data?: Object) {//修改密码
+    return this.http.post(IP + '/User/edit_paypwd', data)
+  }
+  rechargeMoney(data?: Object) {//新充值
+    return this.http.post(IP + '/User/recharge_money', data)
+  }
 }

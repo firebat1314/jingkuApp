@@ -31,7 +31,7 @@ export class JifenHistoryPage {
     this.getData();
   }
   goDuihuanDetailsFinishPage(item) {
-    this.navCtrl.push('DuihuanDetailsFinishPage', { item: item })
+    this.navCtrl.push('DuihuanDetailsFinishPage', { item: JSON.stringify(item) })
   }
 
   getData() {
