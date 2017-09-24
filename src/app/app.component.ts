@@ -57,7 +57,7 @@ export class MyApp {
     }
     //————————————————————————————————————————————————————————————————————————
     // app更新
-    this.upgradeProvider.detectionUpgrade();
+    // this.upgradeProvider.detectionUpgrade();
 
     this.initializeApp();
     //用户失效事件
