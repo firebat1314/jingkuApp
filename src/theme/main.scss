@@ -260,3 +260,13 @@ $border-img:1px solid #f0f0f0;
         justify-content: center;
     }
 }
+
+
+/*—————————————— content背景颜色 —————————————————*/
+
+@mixin content_bg($color:#fff) {
+    background: $color;
+    .scroll-content {
+        background: $color;
+    }
+}
