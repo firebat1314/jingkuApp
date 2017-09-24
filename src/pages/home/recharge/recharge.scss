@@ -23,6 +23,22 @@ page-recharge {
             .input {
                 .text-input {
                     font-size: 1.8rem;
+                    &::-webkit-input-placeholder {
+                        /* WebKit browsers */
+                        font-size: 14px;
+                    }
+                    &:-moz-placeholder {
+                        /* Mozilla Firefox 4 to 18 */
+                        font-size: 14px;
+                    }
+                    &::-moz-placeholder {
+                        /* Mozilla Firefox 19+ */
+                        font-size: 14px;
+                    }
+                    &:-ms-input-placeholder {
+                        /* Internet Explorer 10+ */
+                        font-size: 14px;
+                    }
                 }
                 .text-input-clear-icon {
                     right: 0;

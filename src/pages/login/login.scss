@@ -47,6 +47,28 @@ page-login {
             .text-input-clear-icon {
                 right: 0;
             }
+            .text-input{
+                &::-webkit-input-placeholder {
+                    /* WebKit browsers */
+                    font-size: 14px;
+                    color: #d4d4d4;
+                }
+                &:-moz-placeholder {
+                    /* Mozilla Firefox 4 to 18 */
+                    color: #d4d4d4;
+                    font-size: 14px;
+                }
+                &::-moz-placeholder {
+                    /* Mozilla Firefox 19+ */
+                    font-size: 14px;
+                    color: #d4d4d4;
+                }
+                &:-ms-input-placeholder {
+                    /* Internet Explorer 10+ */
+                    font-size: 14px;
+                    color: #d4d4d4;
+                }
+            }
         }
         .s_h {
             img {
