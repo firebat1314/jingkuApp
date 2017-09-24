@@ -51,7 +51,7 @@
         <section class="zffs">
             <header class="zffs_h">
                 支付方式
-                <!-- <span class="text">需组合支付</span> -->
+                <span class="text" *ngIf="data?.balance!=1">需组合支付</span>
             </header>
             <div class="main">
                 <div class="zf_x" tappable (click)="userYue()" [class.selected]="yE">
@@ -64,12 +64,12 @@
                     <div class="p1">支付宝支付</div>
                     <div class="p2"></div>
                 </div>
-                <div class="zf_x" (click)="paymentType='upacp'" [class.selected]="paymentType=='upacp'">
+                <div class="zf_x" (click)="paymentType='weixin'"  *ngIf="data?.is_weixin===1" [class.selected]="paymentType=='weixin'">
                     <img src="./assets/icon/close_ico6.png" alt="">
                     <div class="p1">微信支付</div>
                     <div class="p2"></div>
                 </div>
-                <div class="zf_x" (click)="paymentType='weixin'" [class.selected]="paymentType=='weixin'">
+                <div class="zf_x" (click)="paymentType='upacp'" [class.selected]="paymentType=='upacp'">
                     <img src="./assets/icon/close_ico7.png" alt="">
                     <div class="p1">中国银联支付</div>
                     <div class="p2"></div>
@@ -88,5 +88,5 @@
 </ion-content>
 
 <ion-footer>
-    <button color="jingku1" no-margin ion-button large full class="modal-button" (click)="toPay()"><span *ngIf="paymentType&&yE">组合支付</span>{{'¥' + data?.amout}}</button>
+    <button color="jingku1" no-margin ion-button large full class="modal-button" (click)="toPay()"><span *ngIf="paymentType&&yE">组合支付</span>¥{{data?.amout || '0.00'}}</button>
 </ion-footer>

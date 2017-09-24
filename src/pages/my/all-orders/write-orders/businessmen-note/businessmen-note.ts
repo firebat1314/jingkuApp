@@ -36,10 +36,10 @@ export class BusinessmenNotePage {
     console.log('ionViewDidLoad BusinessmenNotePage');
   }
   ionViewWillLeave() {
-    this.writeNotes().then(()=>{
+    this.writeNotes().then(() => {
 
-    },()=>{
-      
+    }, () => {
+
     })
   } /* 
    ionViewCanLeave() {
@@ -70,53 +70,50 @@ export class BusinessmenNotePage {
   getData() {
     return this.httpService.checkout().then((res) => {
       this.data = res;
-      for (var i in this.data.cart_goods_list) {
-        this.data.cart_goods_list[i].badge = [
-          {
-            name: '加急',
-            selected: 0
-          }, {
-            name: '不放货单',
-            selected: 0
-          }, {
-            name: '今天发出',
-            selected: 0
-          }, {
-            name: '来镜加工',
-            selected: 0
-          },
-        ]
-      }
     })
   }
-  checkBadge(item, items) {
-    var index = items.badgeStr.indexOf(item.name);
-    if (item.selected) {
-      item.selected = 0;
+  checkBadge(i, suppliers_id) {
+    let arr: Array<any> = this.data.suppliers_label[suppliers_id];
+    let index = arr.indexOf(i);
+    if (index > -1) {
+      arr.splice(index, 1);
     } else {
-      item.selected = 1;
-      if (index > -1) {
-        items.badgeStr.splice(index, 1)
-      } else {
-        items.badgeStr.push(item.name)
+      arr.push(i)
+    }
+    console.log(this.data.suppliers_label)
+
+  }
+  is_select(index, suppliers_id) {
+    for (var i = 0, arr = this.data.suppliers_label[suppliers_id]; i < arr.length; i++) {
+      if (arr[i] == index) {
+        return true
       }
     }
   }
   writeNotes() {
     let commentArr = [];
     let suppliers = [];
+    let label = [];
 
     for (var i in this.data.suppliers_notes) {
-      if (this.data.suppliers_notes[i]) {
-        commentArr.push(this.data.suppliers_notes[i])
-        suppliers.push(i)
+      commentArr.push(this.data.suppliers_notes[i])
+      suppliers.push(i)
+    }
+    for (let i = 0; i < this.data.cart_goods_list.length; i++) {
+      var sArr = []
+      for (var j = 0; j < this.data.cart_goods_list[i].order_label.length; j++) {
+        if (this.data.cart_goods_list[i].order_label[j].selected) {
+          sArr.push(j)
+        }
       }
+      label.push(sArr)
     }
     return new Promise((resolve, reject) => {
       this.httpService.writeNotes({
         notes: {
           note: commentArr,
-          suppliers: suppliers
+          suppliers: suppliers,
+          label: label
         }
       }).then((res) => {
         if (res.status == 1) {

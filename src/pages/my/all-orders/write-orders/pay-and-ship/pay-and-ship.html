@@ -21,7 +21,7 @@
             </div>
             <div class="pay-body">
                 <div class="options">
-                    <button ion-button outline [color]="item.selected?'danger':'gray2'" *ngFor="let item of data?.payment_list" (click)="selectPayment(item.pay_id)">{{item.pay_name}}</button>
+                    <button ion-button outline [color]="item.selected?'danger':'jingku1'" *ngFor="let item of data?.payment_list" (click)="selectPayment(item.pay_id)">{{item.pay_name}}</button>
                 </div>
             </div>
         </div>
@@ -37,10 +37,13 @@
                         </div>
                     </div>
                     <div class="options">
-                        <button ion-button outline [color]="ship.selected?'danger':'gray2'" *ngFor="let ship of item.shipping" (click)="selectShippinSuppliers(item.suppliers_id,ship.shipping_id)">{{ship.shipping_name + '  ' + ship.shipping_free}}</button>
+                        <button ion-button outline [color]="ship.selected?'danger':'jingku1'" *ngFor="let ship of item.shipping" (click)="selectShippinSuppliers(item.suppliers_id,ship.shipping_id)">{{ship.shipping_name + '  ' + ship.shipping_free}}</button>
                     </div>
                 </div>
             </div>
+        </div>
+        <div padding>
+            <button ion-button large full color="jingku1" navPop>确定</button>
         </div>
     </ng-container>
 </ion-content>

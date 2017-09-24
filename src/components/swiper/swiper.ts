@@ -22,7 +22,6 @@ export class SwiperComponent {
 
   ngAfterViewInit() {
     var timer = setTimeout(() => {
-      console.log(this.data)
       if (this.data.length) {
         this.mySwiper = new Swiper(".myswiper-container", {
           // loop: true,

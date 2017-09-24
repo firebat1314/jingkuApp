@@ -16,7 +16,7 @@ declare var Wechat: any;
 declare var navigator: any;
 
 @IonicPage({
-  segment: 'payment-method/:data'
+  segment: 'payment-method/:order_id'
 })
 @Component({
   selector: 'page-payment-method',
@@ -43,9 +43,12 @@ export class PaymentMethodPage {
     this.httpService.pay({ order_id: this.order_id }).then((res) => {
       if (res.status == 1) {
         this.data = res;
+      } else if (res.status == 0) {
+        this.navCtrl.parent.select(3);
+        this.navCtrl.setPages([{ page: 'MyPage' }, { page: 'AllOrdersPage' }])
       }
     })
-    this.httpService.userInfo().then((res) => {
+    this.httpService.userInfo().then((res) => {//检查是否有支付密码
       if (res.status) {
         this.user_money = res.data.user_money;
         this.is_pay_pass = res.data.user_money;
@@ -67,10 +70,11 @@ export class PaymentMethodPage {
           }).present();
         }
       }
-    }) 
+    })
   }
 
   ionViewDidLoad() {
+
     console.log('ionViewDidLoad PaymentMethodPage');
     // this.navCtrl.remove(this.navCtrl.indexOf(this.navCtrl.getPrevious(this.navCtrl.last())),1);
   }
@@ -78,23 +82,46 @@ export class PaymentMethodPage {
     this.viewCtrl.dismiss(data);
   }
   toPay() {
-    this.httpService.checkPayPass({ password: this.payPassword }).then((res) => {
+    // this.navCtrl.remove()
+    if (!this.yE && !this.paymentType) {
+      this.native.showToast('请选择支付方式');
+      return
+    }
+    this.httpService.checkPayPass({ password: this.payPassword }).then((res) => {//验证密码
       if (res.status) {
-        if (this.yE) {
-          this.httpService.doublePayment({ code: this.data[this.paymentType] }).then((res) => {
-            if (res.status) {
-              if (res.type == 'pay') {
-                this.openPingPayment(res.pingxx);
-              }
-            }
-          })
-        } else {
-          this.getOrderInfo(this.data[this.paymentType]);
+        if (this.yE) {//使用余额
+          if (!this.paymentType && this.data.balance == 1) {//使用余额且没有选中在线支付的情况
+            this.userBalance(this.data.alipay);
+          } else {
+            this.userBalance(this.data[this.paymentType])
+          }
+        } else {//不使用余额
+          this.noUserBalance(this.data[this.paymentType]);
         }
       }
     })
   }
-  getOrderInfo(data) {
+  /**
+   * 使用余额
+   * @param data pingxx
+   */
+  userBalance(data) {
+    this.httpService.doublePayment({ code: data }).then((res) => {//
+      if (res.status) {
+        if (res.type == 'pay') {
+          this.openPingPayment(res.pingxx);
+        } else if (res.type == 'balance') {
+          this.native.showToast(res.info);
+          this.navCtrl.setPages([{ page: 'CarPage' }, { page: 'AllOrdersPage' }])
+        }
+      }
+    })
+  }
+  /**
+   * 不使用余额
+   * @param data pingxx
+   */
+  noUserBalance(data) {
     this.httpService.payCode({ code: data }).then((res) => {
       if ((res.status == 1)) {
         // this.wechatPay(res.pingxx)
@@ -108,22 +135,17 @@ export class PaymentMethodPage {
 
   openPingPayment(data) {
     let that = this;
-    this.httpService.payCode({ code: this.data.upacp }).then((res) => {
-      if (res.status == 1 && pingpp) {
-        console.log(pingpp)
-        pingpp.createPayment(res.pingxx, function (result, err) {
-          console.log(result, err)
-          if (result == "success") {
-            // 只有微信公众账号 wx_pub 支付成功的结果会在这里返回，其他的支付结果都会跳转到 extra 中对应的 URL。
-
-          } else if (result == "fail") {
-            // charge 不正确或者微信公众账号支付失败时会在此处返回
-          } else if (result == "cancel") {
-            // 微信公众账号支付取消支付
-          }
-        });
+    this.navCtrl.setPages([{ page: 'CarPage' }, { page: 'AllOrdersPage' }])
+    pingpp.createPayment(data, function (result, err) {
+      console.log(result, err)
+      if (result == "success") {
+        // 只有微信公众账号 wx_pub 支付成功的结果会在这里返回，其他的支付结果都会跳转到 extra 中对应的 URL。
+      } else if (result == "fail") {
+        // charge 不正确或者微信公众账号支付失败时会在此处返回
+      } else if (result == "cancel") {
+        // 微信公众账号支付取消支付
       }
-    })
+    });
   }
   /*——————————————————————————————————————————————————————————————————————————*/
   // pingpp.createPayment(data, (result) => {
