@@ -28,7 +28,7 @@ export class PayPasswordComponent {
     }).blur(() => {
       $(".sixDigitPassword").find("i").removeClass("active");
     });
-    $(".i-text").keyup(function () {
+    $(".i-text").keypress(function () {
       var inp_v = $(this).val();
       var inp_l = inp_v.length;
       _this.code.emit(inp_v);
