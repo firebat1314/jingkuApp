@@ -63,7 +63,8 @@ export class WriteOrdersPage {
   getHttpData() {
     return this.httpService.checkout().then((res) => {
       if (res.status == 0) {
-        this.navCtrl.pop();
+        this.navCtrl.parent.select(3);
+        this.navCtrl.popToRoot({}, () => { });
       }
       if (res.status == 1) {
         this.data = res;
@@ -166,67 +167,80 @@ export class WriteOrdersPage {
     let commentArr = [];
     let suppliers = [];
     for (var i in this.data.suppliers_notes) {
-      if (this.data.suppliers_notes[i]) {
-        commentArr.push(this.data.suppliers_notes[i])
-        suppliers.push(i)
+      commentArr.push(this.data.suppliers_notes[i])
+      suppliers.push(i)
+    }
+    let label = [];
+    for (let i = 0; i < this.data.cart_goods_list.length; i++) {
+      var sArr = []
+      for (var j = 0; j < this.data.cart_goods_list[i].order_label.length; j++) {
+        if (this.data.cart_goods_list[i].order_label[j].selected) {
+          sArr.push(j)
+        }
       }
+      label.push(sArr)
     }
     return new Promise((resolve) => {
       this.httpService.submitOrder({
         notes: {
           note: commentArr,
-          suppliers: suppliers
+          suppliers: suppliers,
+          label: label
         }
       }).then((res) => {
         if (res.info == '请先完善收货信息') {
           this.openOrderModalShippingPage();
           return
+        } else if (res.info == '购物车中没有商品') {
+          this.navCtrl.popToRoot();
+        } else if (res.info == '请选择支付方式') {
+          this.goPayAndShipPage();
         }
         resolve(res)
       })
     });
   }
   onsubmit() {
-    if (this.data.is_surplus) {
-      this.native.openAlertBox('使用余额支付', () => {
-        this.done().then((res) => {
-          if (res.status == 1) {
-            if (res.is_pay) {
-              this.navCtrl.push('AllOrdersPage');
-              this.native.showToast('支付成功');
-            } else {
-              this.native.showToast('需要组合支付');
-              this.navCtrl.push('PaymentMethodPage', { order_id: res.order_id });
-            }
-            this.events.publish('my:update');
-            this.events.publish('car:update');
-            // this.viewCtrl.dismiss();
-          }
-        })
-      })
-    } else {
-      this.done().then((res) => {
-        if (res.status == 1) {
-          this.events.publish('my:update');
-          this.events.publish('car:update');
-          if (this.paymentMothdID == 6) {
-            this.navCtrl.push('PaymentMethodPage', { order_id: res.order_id });
-          } else if (this.paymentMothdID == 4) {
-            this.navCtrl.push('OrdersDetailPage', { order_id: res.order_id });
-            this.alertCtrl.create({
-              title: '汇款须知',
-              subTitle: this.paymentMothdDesc,
-              buttons: [{
-                text: '确认'
-              }],
-              cssClass: 'recharge-alert'
-            }).present();
-          }
-          // this.viewCtrl.dismiss();
-        } else if (res.status == -1) {
-          this.navCtrl.pop();
+    // if (this.data.is_surplus) {//是否使用余额支付按钮
+    //   this.native.openAlertBox('使用余额支付', () => {
+    //     this.done().then((res) => {
+    //       if (res.status == 1) {
+    //         if (res.is_pay) {
+    //           this.navCtrl.push('AllOrdersPage');
+    //           this.native.showToast('支付成功');
+    //         } else {
+    //           this.native.showToast('需要组合支付');
+    //           this.navCtrl.push('PaymentMethodPage', { order_id: res.order_id });
+    //         }
+    //         this.events.publish('my:update');
+    //         this.events.publish('car:update');
+    //         // this.viewCtrl.dismiss();
+    //       }
+    //     })
+    //   })
+    // } else {
+    this.done().then((res) => {
+      if (res.status == 1) {
+        this.events.publish('my:update');
+        this.events.publish('car:update');
+        if (this.paymentMothdID == 6) {
+          this.navCtrl.push('PaymentMethodPage', { order_id: res.order_id });
+        } else if (this.paymentMothdID == 4) {
+          this.navCtrl.push('OrdersDetailPage', { order_id: res.order_id });
+          this.alertCtrl.create({
+            title: '汇款须知',
+            subTitle: this.paymentMothdDesc,
+            buttons: [{
+              text: '确认'
+            }],
+            cssClass: 'recharge-alert'
+          }).present();
         }
-      })
-    }
+        // this.viewCtrl.dismiss();
+      } else if (res.status == -1) {
+        this.navCtrl.popToRoot();
+      }
+    })
+    // }
   }
 }

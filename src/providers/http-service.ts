@@ -448,7 +448,7 @@ export class HttpService {
     return this.http.get(IP + '/Login/version_info', data)
   }
   doublePayment(data?: Object) {//余额改版
-    return this.http.get(IP + '/Flow/double_payment', data)
+    return this.http.get(IP + '/Flow/double_payment', data, true)
   }
   checkPayPass(data?: Object) {//支付密码
     return this.http.post(IP + '/Flow/check_pay_pass', data)

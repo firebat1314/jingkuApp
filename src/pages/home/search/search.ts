@@ -1,5 +1,5 @@
 import { Component, ViewChild } from '@angular/core';
-import { NavController, NavParams, Searchbar, IonicPage } from 'ionic-angular';
+import { NavController, NavParams, Searchbar, IonicPage, Keyboard } from 'ionic-angular';
 import { HttpService } from "../../../providers/http-service";
 
 /*
@@ -11,7 +11,7 @@ import { HttpService } from "../../../providers/http-service";
 @IonicPage()
 @Component({
   selector: 'page-search',
-  templateUrl: 'search.html'
+  templateUrl: 'search.html',
 })
 export class SearchPage {
   page: any = 1;
@@ -22,7 +22,8 @@ export class SearchPage {
   constructor(
     public navCtrl: NavController,
     public navParams: NavParams,
-    private httpService: HttpService
+    private httpService: HttpService,
+    private keyboard: Keyboard,
   ) { }
   ngAfterViewInit() {
     this.mySearchBar.animated = true;

@@ -201,7 +201,7 @@ page-particulars {
                 ion-thumbnail {
                     min-height: 50px;
                     min-width: 50px;
-                    img{
+                    img {
                         height: 50px;
                         width: 50px;
                     }
@@ -215,8 +215,8 @@ page-particulars {
                 ion-note {
                     display: flex;
                     align-items: center;
-                    margin:10px 10px 0px 0;
-                    .icon{
+                    margin: 10px 10px 0px 0;
+                    .icon {
                         margin-right: 5px;
                     }
                 }
@@ -393,16 +393,20 @@ page-particulars {
                         padding: 2px 4px;
                         font-size: 1rem;
                         z-index: 10;
+                        color: #f53d3d;
+                        background: #fff;
+                        border: 1px solid #f53d3d;
                     }
                 }
             }
             .right {
-                flex: 6;
+                // flex: 6;
                 .btns {
                     height: 100%;
                     display: flex;
                     .button {
                         font-size: 1.6rem;
+                        min-width: 152px;
                         height: 50px;
                         padding: 0;
                     }
