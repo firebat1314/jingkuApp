@@ -101,14 +101,12 @@
     <plugin name="cordova-plugin-screen-orientation" spec="~2.0.1" />
     <plugin name="cordova-plugin-camera" spec="~2.4.0" />
     <plugin name="cordova-plugin-splashscreen" spec="~4.0.3" />
-    <plugin name="com.justep.cordova.plugin.pingpp" spec="https://github.com/litaoyu/cordova-plugin-pingpp.git" />
     <plugin name="cordova-plugin-fullscreen" spec="~1.1.0" />
     <plugin name="mx.ferreyra.callnumber" spec="~0.0.2" />
     <icon src="resources\android\icon\drawable-xhdpi-icon.png" />
     <plugin name="cordova-plugin-badge" spec="~0.8.1" />
     <plugin name="cordova-plugin-file-transfer" spec="~1.6.3" />
-    <engine name="ios" spec="~4.3.1" />
-    <engine name="android" spec="~6.1.2" />
     <plugin name="cordova-plugin-inappbrowser" spec="~1.7.1" />
     <plugin name="cordova-plugin-app-version" spec="~0.1.9" />
+    <plugin name="cordova-plugin-pingpp" spec="https://git.coding.net/pingplusplus/pingpp-cordova.git" />
 </widget>

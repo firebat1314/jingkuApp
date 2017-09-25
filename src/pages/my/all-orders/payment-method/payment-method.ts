@@ -87,19 +87,20 @@ export class PaymentMethodPage {
       this.native.showToast('请选择支付方式');
       return
     }
-    this.httpService.checkPayPass({ password: this.payPassword }).then((res) => {//验证密码
-      if (res.status) {
-        if (this.yE) {//使用余额
+    if (this.yE) {//使用余额
+      this.httpService.checkPayPass({ password: this.payPassword }).then((res) => {//验证密码
+        if (res.status) {
           if (!this.paymentType && this.data.balance == 1) {//使用余额且没有选中在线支付的情况
             this.userBalance(this.data.alipay);
           } else {
             this.userBalance(this.data[this.paymentType])
           }
-        } else {//不使用余额
-          this.noUserBalance(this.data[this.paymentType]);
         }
-      }
-    })
+      })
+    } else {//不使用余额
+      this.noUserBalance(this.data[this.paymentType]);
+    }
+
   }
   /**
    * 使用余额
@@ -135,7 +136,7 @@ export class PaymentMethodPage {
   }
 
   openPingPayment(data) {
-    let that = this;
+    /* let that = this;
     (<any>window).navigator.pingpp.requestPayment(data, (result, err) => {
       this.navCtrl.parent.select(3);
       this.navCtrl.setPages([{ page: 'MyPage' }, { page: 'AllOrdersPage' }])
@@ -155,7 +156,7 @@ export class PaymentMethodPage {
         that.native.showToast("支付异常,请尝试其他支付方式");
       }
       console.log('fail', result, err)
-    });
+    }); */
     /*——————————————————————————————————————————————————————————————————————————*/
     // pingpp.createPayment(data, (result) => {
     //   console.log('success',result);
@@ -163,21 +164,22 @@ export class PaymentMethodPage {
     //   console.log(err);
     // });
     /*——————————————————————————————————————————————————————————————————————————*/
-    // let that = this;
-    // Pingpp.createPayment(data, (result, error) => {//scheme 为iOS返回应用
-    //   console.log(result);
-    //   console.log(error);
-    //   alert('result' + result);
-    //   alert('error' + error);
-    //   that.navCtrl.push(AllOrdersPage);
-    //   if (result == 'success') {
-    //     that.native.showToast('支付成功');
-    //   }
-    // })
+    let that = this;
+    (<any>window).navigator.Pingpp.createPayment(data, (result, error) => {//scheme 为iOS返回应用
+      console.log('result' + result);
+      console.log('error' + error);
+      this.navCtrl.parent.select(3);
+      this.navCtrl.setPages([{ page: 'MyPage' }, { page: 'AllOrdersPage' }])
+      if (result == 'success') {
+        that.native.showToast('支付成功');
+      } else {
+        that.native.showToast('支付失败');
+      }
+    })
     // Pingpp.setDebugMode(true)
-    // Pingpp.getVersion(function (version) {
-    //   alert("当前SDK版本号是:" + version);
-    // });
+    Pingpp.getVersion(function (version) {
+      console.log("当前SDK版本号是:" + version);
+    });
   }
 
   // alipayPay(alipayOrder) {
