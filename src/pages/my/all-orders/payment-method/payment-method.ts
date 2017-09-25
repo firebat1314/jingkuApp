@@ -87,19 +87,20 @@ export class PaymentMethodPage {
       this.native.showToast('请选择支付方式');
       return
     }
-    this.httpService.checkPayPass({ password: this.payPassword }).then((res) => {//验证密码
-      if (res.status) {
-        if (this.yE) {//使用余额
+    if (this.yE) {//使用余额
+      this.httpService.checkPayPass({ password: this.payPassword }).then((res) => {//验证密码
+        if (res.status) {
           if (!this.paymentType && this.data.balance == 1) {//使用余额且没有选中在线支付的情况
             this.userBalance(this.data.alipay);
           } else {
             this.userBalance(this.data[this.paymentType])
           }
-        } else {//不使用余额
-          this.noUserBalance(this.data[this.paymentType]);
         }
-      }
-    })
+      })
+    } else {//不使用余额
+      this.noUserBalance(this.data[this.paymentType]);
+    }
+
   }
   /**
    * 使用余额
@@ -135,6 +136,7 @@ export class PaymentMethodPage {
 
   openPingPayment(data) {
     let that = this;
+    this.navCtrl.parent.select(3);
     this.navCtrl.setPages([{ page: 'CarPage' }, { page: 'AllOrdersPage' }])
     pingpp.createPayment(data, function (result, err) {
       console.log(result, err)

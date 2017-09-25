@@ -17,8 +17,6 @@ import { Native } from "../../providers/native";
 export class RepairReturnPage {
   repair: any;
   order: any;
-  @ViewChild(Content) content: Content;
-  @ViewChild(FabButton) fabButton: FabButton;
 
   applyTabs: string = 'apply' || 'applyLog';
 
@@ -33,37 +31,31 @@ export class RepairReturnPage {
     public httpService: HttpService,
     public native: Native,
   ) { }
-  ngAfterViewInit() {
-    /* 回到顶部按钮 */
-    this.fabButton.setElementClass('fab-button-out',true);
-    this.content.ionScroll.subscribe((d) => {
-      this.fabButton.setElementClass("fab-button-in", d.scrollTop >= d.contentHeight);
-    });
-  }
   ionViewDidLoad() {
     console.log('ionViewDidLoad RepairReturnPage');
     this.getOrderRepair();
     this.getRepairList();
   }
-  getOrderRepair(refresher?) {
-    this.httpService.orderRepair(this.options).then((res) => {
+  getOrderRepair() {
+    return this.httpService.orderRepair(this.options).then((res) => {
       if (res.status == 1) {
         this.order = res;
-        refresher ? refresher() : null;
       }
     })
   }
-  getRepairList(refresher?) {
-    this.httpService.repairList(this.options).then((res) => {
+
+  getRepairList() {
+    return this.httpService.repairList(this.options).then((res) => {
       if (res.status == 1) {
         this.repair = res;
-        refresher ? refresher() : null;
       }
     })
   }
-  searchOrder() {
-    this.getOrderRepair();
-    this.getRepairList();
+  searchOrder(e) {
+    if (e.keyCode == 13) {
+      this.getOrderRepair();
+      this.getRepairList();
+    }
   }
   doRefresh(refresher) {
     var fun = () => {
@@ -72,10 +64,14 @@ export class RepairReturnPage {
       }, 500);
     }
     if (this.applyTabs == 'apply') {
-      this.getOrderRepair(fun);
+      this.getOrderRepair().then((res) => {
+        fun()
+      });
     }
     if (this.applyTabs == 'applyLog') {
-      this.getRepairList(fun);
+      this.getRepairList().then((res) => {
+        fun()
+      });
     }
 
   }
@@ -84,20 +80,18 @@ export class RepairReturnPage {
       if (this.order.page < this.order.pages) {
         this.httpService.orderRepair({ page: ++this.order.page, size: 10 }).then((res) => {
           if (res.status == 1) {
-            this.order = res;
             Array.prototype.push.apply(this.order.list, res.list);
             infiniteScroll.complete();
           }
         })
       } else {
-        infiniteScroll.complete();
+        infiniteScroll.enable(false);
       }
     }
     if (this.applyTabs == 'applyLog') {
       if (this.repair.page < this.repair.pages) {
         this.httpService.repairList({ page: ++this.repair.page, size: 10 }).then((res) => {
           if (res.status == 1) {
-            this.repair = res;
             Array.prototype.push.apply(this.repair.list, res.list);
             infiniteScroll.complete();
           }
@@ -112,24 +106,12 @@ export class RepairReturnPage {
    * @param order_id 订单id
    * @param goods 订单商品列表
    */
-  goApplyServicePage(order_id, goods) {
-    var rec_ids = [];
-    if (goods.length) for (let i = 0; i < goods.length; i++) {
-      if (goods[i].selected) {
-        rec_ids.push(goods[i].rec_id);
-      }
-    }
-    if (!rec_ids.length) {
-      this.native.showToast('请选择商品');
-      return
-    }
-    this.httpService.repairApply({
+  goApplyServicePage(order_id, rec_id) {
+    var rec_ids = [rec_id];
+
+    this.navCtrl.push('ApplyServicePage', {
       order_id: order_id,
-      rec_ids: rec_ids
-    }).then((res) => {
-      if (res.status == 1) {
-        this.navCtrl.push('ApplyServicePage', { data: res })
-      }
+      rec_ids: rec_id
     })
   }
   /**
@@ -137,13 +119,13 @@ export class RepairReturnPage {
    * @param subitem 订单项
    */
   checkbox(subitem) {
-   /*  subitem.selected = true
-    for (var i in item.goods) {
-      if (item.goods[i].selected == false) {
-        item.selected = true;
-      }
-    }
-    console.log(this.order.list[0]) */
+    /*  subitem.selected = true
+     for (var i in item.goods) {
+       if (item.goods[i].selected == false) {
+         item.selected = true;
+       }
+     }
+     console.log(this.order.list[0]) */
   }
   checkall(item) {
 

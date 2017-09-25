@@ -84,7 +84,7 @@ export class MyApp {
         }
         let activeVC = this.nav.getActive();
         let page = activeVC.instance;
-        let activePortal = this.ionicApp._modalPortal.getActive() || this.ionicApp._loadingPortal.getActive() || this.ionicApp._overlayPortal.getActive();/*this.ionicApp._toastPortal.getActive() || */
+        let activePortal = this.ionicApp._modalPortal.getActive() || this.ionicApp._loadingPortal.getActive() /* || this.ionicApp._overlayPortal.getActive(); *//*this.ionicApp._toastPortal.getActive() || */
         if (activePortal) {
           activePortal.dismiss().catch(() => { });
           activePortal.onDidDismiss(() => { });

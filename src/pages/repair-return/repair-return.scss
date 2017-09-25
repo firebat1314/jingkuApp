@@ -101,11 +101,11 @@ page-repair-return {
                 }
             }
             .order-foot {
-                display: flex;
-                justify-content: space-between;
-                align-items: center;
                 overflow: hidden;
                 margin: 10px 16px;
+                .button{
+                    float: right;
+                }
                 label {
                     display: flex;
                     align-items: center;

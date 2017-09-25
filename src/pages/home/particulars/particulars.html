@@ -100,7 +100,7 @@
                 </button>
             </div>
             <div class="fore attribute">
-                <button ion-item (click)="presentModalAttr()" no-lines>
+                <button ion-item [disabled]="getGoodsInfo?.data?.isdingzhi" (click)="presentModalAttr()" no-lines>
                     <span style="color: #808080;">选择&nbsp;&nbsp;</span>规格 光度等
                 </button>
             </div>
@@ -114,7 +114,8 @@
                 <button ion-item no-lines (click)="presentModal('配送地址')">
                     <span style="color: #808080;">送至&nbsp;&nbsp;</span>{{region_name||'选择地址'}}<span class="nogoods"></span>
                 </button>
-                <div class="bottom" *ngIf="getGoodsInfo?.data?.additional?.is_true||getGoodsInfo?.data?.additional?.is_hdfk||getGoodsInfo?.data?.additional?.is_inv" tappable (click)="presentModal('商品服务保障')">
+                <div class="bottom" *ngIf="getGoodsInfo?.data?.additional?.is_true||getGoodsInfo?.data?.additional?.is_hdfk||getGoodsInfo?.data?.additional?.is_inv"
+                    tappable (click)="presentModal('商品服务保障')">
                     <ion-note *ngIf="getGoodsInfo?.data?.additional?.is_true">
                         <img src="./assets/icon/images/particulars_05_03.png" alt=""> 正品保障
                     </ion-note>
@@ -298,11 +299,9 @@
         </div>
     </ng-container>
 
-    <!--<div class="warning-show">
-        <span>请用电脑下单！</span>
-    </div>-->
+
     <ion-fab right bottom tappable>
-        <button ion-fab color="jingku1" mini goBackTop  scroll-to-top></button>
+        <button ion-fab color="jingku1" mini goBackTop scroll-to-top></button>
     </ion-fab>
 
     <ion-infinite-scroll threshold="0%" (ionInfinite)="doInfinite($event)">
@@ -310,6 +309,9 @@
     </ion-infinite-scroll>
 </ion-content>
 <ion-footer>
+    <div class="warning-show" *ngIf="getGoodsInfo?.data?.isdingzhi">
+        <span>请用电脑下单！</span>
+    </div>
     <div class="main">
         <div class="left" [ngSwitch]="getGoodsInfo?.data?.is_collect">
             <div tappable (click)="goAccountServicePage()">
@@ -341,10 +343,11 @@
         </div>
 
         <div class="right">
-            <!--<button color="cancelBtn" no-margin ion-button large full class="modal-button">暂不支持手机下单</button>-->
+            <!--<button color="cancelBtn" no-margin ion-button large full>暂不支持手机下单</button>-->
             <div class="btns">
-                <button color="jingku1" no-margin ion-button large full class="modal-button" tappable (click)="presentModalAttr()">加入购物车</button>
-                <!-- <button color="jingku2" no-margin ion-button large full class="modal-button" tappable (click)="presentModalAttr()">立即购买</button> -->
+                <button color="jingku1" *ngIf="!getGoodsInfo?.data?.isdingzhi" no-margin ion-button large full tappable (click)="presentModalAttr()">加入购物车</button>
+                <button color="cancelBtn" disabled *ngIf="getGoodsInfo?.data?.isdingzhi" no-margin ion-button large full>暂不支持手机下单</button>
+                <!-- <button color="jingku2" no-margin ion-button large full tappable (click)="presentModalAttr()">立即购买</button> -->
             </div>
         </div>
     </div>

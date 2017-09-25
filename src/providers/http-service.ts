@@ -204,7 +204,7 @@ export class HttpService {
   delNoShop(data?: Object) {//删除未选中的商品
     return this.http.post(IP + '/Flow/del_no_shop', data, true)
   }
-  writeNotes(data?: Object) {//提交订单
+  writeNotes(data?: Object) {//商家备注
     return this.http.post(IP + '/Flow/write_notes', data, true)
   }
   submitOrder(data?: Object) {//提交订单

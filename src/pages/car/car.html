@@ -66,7 +66,7 @@
                                         <div class="bottom">
                                             <div class="price">¥{{item3?.goods_price}}</div>
                                             <div class="number">
-                                                <count-input [defaultValue]="1" (valueChange)="numberChangeI($event,item3)" [lock]="item3.inputLock" [value]="item3?.goods_number"></count-input>
+                                                <count-input [defaultValue]="1"  [rank]="item2?.goods_properties?.number" (valueChange)="numberChangeI($event,item3)" [lock]="item3.inputLock" [value]="item3?.goods_number"></count-input>
                                             </div>
                                         </div>
                                     </div>
@@ -75,7 +75,7 @@
                                     <button ion-button color="danger" tappable (click)="deleteItem(item3)">删除</button>
                                 </ion-item-options>
                             </ion-item-sliding>
-                        </div>
+                        </div>  
                     </div>
                 </div>
             </div>

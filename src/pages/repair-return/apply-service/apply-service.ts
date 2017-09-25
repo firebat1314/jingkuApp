@@ -11,7 +11,7 @@ import { Native } from "../../../providers/native";
  */
 @IonicPage({
   defaultHistory: ['RepairReturnPage'],
-  segment: 'repair-return'
+  segment: 'apply-service/:order_id/:rec_ids'
 })
 @Component({
   selector: 'page-apply-service',
@@ -19,10 +19,12 @@ import { Native } from "../../../providers/native";
 })
 export class ApplyServicePage {
 
-  data: any = this.navParams.get("data");
+  order_id: any = this.navParams.get("order_id");
+  rec_id: any = this.navParams.get("rec_id");
+  data;
   params = {
     rec_ids: {},
-    order_id: this.data.order_info ? this.data.order_info.order_id : null,
+    order_id: this.order_id,
     return_type: null,
     type_note: null,
     str_desc: null,
@@ -39,6 +41,17 @@ export class ApplyServicePage {
   ) { }
   ionViewDidLoad() {
     console.log('ionViewDidLoad ApplyServicePage');
+    this.getData()
+  }
+  getData(){
+    this.httpService.repairApply({
+      order_id: this.order_id,
+      rec_ids: [this.rec_id]
+    }).then((res) => {
+      if (res.status == 1) {
+        this.data = res
+      }
+    })
   }
   openCamra() {
     if (this.params.return_img.length >= 5) {
@@ -48,14 +61,13 @@ export class ApplyServicePage {
     this.native.getMultiplePicture({
       outputType: 1,
       maximumImagesCount: 5 - this.params.return_img.length
-    }).then((data) => {
-      console.log(data)
-      if (data instanceof Array) {
-        if (this.params.return_img.concat(data).length > 5) {
+    }).then((res) => {
+      if (res instanceof Array) {
+        if (this.params.return_img.concat(res).length > 5) {
           this.native.showToast('最多选择5张照片');
-          this.params.return_img = this.params.return_img.concat(data).slice(0, 5);
+          this.params.return_img = this.params.return_img.concat(res).slice(0, 5);
         } else {
-          this.params.return_img.concat(data);
+          this.params.return_img.concat(res);
         }
       }
     }, (err) => {

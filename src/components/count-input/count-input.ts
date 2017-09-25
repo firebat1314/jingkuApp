@@ -19,7 +19,12 @@ export class CountInputComponent {
   @Input() lock: boolean = false;
   @Output() valueChange: EventEmitter<number> = new EventEmitter<number>();
   @Input() maxValue: number;
-  @Input() rank: number = 1;
+
+  defaultRank = 1;
+  @Input() set rank(rank){
+    console.log(rank)
+    this.defaultRank = Number(rank) || this.defaultRank;
+  }   
 
 
   disabled: boolean = false;
@@ -30,9 +35,9 @@ export class CountInputComponent {
     // console.log('Hello CountInput Component');
   }
   ngOnInit() {
+    console.log('增减量：' + this.defaultRank)
     if (this.maxValue) this.newmaxValue = this.maxValue;
-    console.log('增减量：' + this.rank)
-    if (this.rank !== 1) this.disabled = true;
+    if (this.defaultRank !== 1) this.disabled = true;
   }
   increase() {
     if (this.lock) {
@@ -42,13 +47,13 @@ export class CountInputComponent {
       this.element.nativeElement.getElementsByTagName('input')[0].value = this.newmaxValue;
       return;
     }
-    this.valueChange.emit(this.value += Number(this.rank));
+    this.valueChange.emit(this.value += this.defaultRank);
   }
   reduce() {
     if (this.value <= this.defaultValue) {
       return;
     }
-    this.valueChange.emit(this.value -= Number(this.rank));
+    this.valueChange.emit(this.value -= this.defaultRank);
   }
   inputEvent(value) {
     if (this.newmaxValue && (this.value >= this.newmaxValue)) {

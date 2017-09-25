@@ -6,7 +6,7 @@
 -->
 <ion-header>
     <ion-navbar>
-        <ion-segment mode="ios" [(ngModel)]="applyTabs" color="primary">
+        <ion-segment mode="ios" [(ngModel)]="applyTabs" color="jingku1">
             <ion-segment-button value="apply">
                 售后申请
             </ion-segment-button>
@@ -21,7 +21,10 @@
         </ion-buttons> -->
     </ion-navbar>
     <ion-toolbar class="mysearchbar">
-        <ion-searchbar mode="ios" #mySearchBar debounce="500" [(ngModel)]="options.order_sn" (ionInput)="searchOrder()" placeholder="请输入订单号或者商品编号" animated="true" showCancelButton cancelButtonText="取消"></ion-searchbar>
+        <form action="">
+            <ion-searchbar mode="ios" [ngModelOptions]="{standalone: true}" [(ngModel)]="options.order_sn" (keypress)="searchOrder($event)"
+                placeholder="请输入订单号或者商品编号" animated="true" showCancelButton cancelButtonText="取消"></ion-searchbar>
+        </form>
     </ion-toolbar>
 </ion-header>
 
@@ -46,22 +49,22 @@
                 <span>下单时间：{{item.add_time}}</span>
             </div>
             <div class="order-body">
-                <div class="order-body-item" tappable navPush="ParticularsPage" [navParams]="{goodsId:subitem.goods_id}" *ngFor="let subitem of item.goods">
-                    <ion-checkbox mode="ios" (ionChange)="checkbox(item)" [(ngModel)]="subitem.selected" [checked]="item.selected"></ion-checkbox>
+                <div class="order-body-item" tappable navPush="ParticularsPage" [navParams]="{goodsId:item.goods_id}">
+                    <!-- <ion-checkbox mode="ios" (ionChange)="checkbox(item)" [(ngModel)]="item.selected" [checked]="item.selected"></ion-checkbox> -->
                     <!--<ion-icon class="checkbox" name="ios-help-circle-outline"></ion-icon>-->
                     <div class="img">
-                        <img img-lazy-load="{{subitem.original_img}}">
+                        <img img-lazy-load="{{item.goods_thumb}}">
                         <!--<div class="guoqi">超过售后期</div>-->
                     </div>
                     <div class="order-body-item-content">
-                        <h2 style="-webkit-box-orient: vertical;">{{subitem.goods_name}}</h2>
-                        <p>数量：{{subitem.goods_number}}</p>
+                        <h2 style="-webkit-box-orient: vertical;">{{item.goods_name}}</h2>
+                        <p>数量：{{item.goods_number}}</p>
                     </div>
                 </div>
             </div>
             <div class="order-foot">
-                <label tappable><ion-checkbox mode="ios" [(ngModel)]="item.selected"></ion-checkbox>全选</label>
-                <button ion-button (click)="goApplyServicePage(item.order_id,item.goods)">申请售后</button>
+                <!-- <label tappable><ion-checkbox mode="ios" [(ngModel)]="item.selected"></ion-checkbox>全选</label> -->
+                <button ion-button color="jingku1" (click)="goApplyServicePage(item.order_id,item.rec_id)">申请售后</button>
             </div>
         </div>
     </div>
@@ -94,8 +97,8 @@
             </div>
         </div>
     </div>
-    <ion-fab right bottom tappable (click)="myContent.scrollToTop(0)">
-        <button ion-fab color="jingku1" mini goBackTop></button>
+    <ion-fab right bottom tappable>
+        <button ion-fab color="jingku1" mini goBackTop scroll-to-top></button>
     </ion-fab>
 
     <ion-infinite-scroll (ionInfinite)="doInfinite($event)">

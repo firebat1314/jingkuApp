@@ -420,15 +420,16 @@ page-particulars {
     .warning-show {
         width: 100%;
         height: 44px;
-        background: #000;
-        opacity: .5;
-        position: fixed;
+        background: #666;
+        opacity: .9;
+        position: absolute;
         bottom: 5.6rem;
         color: #fff;
-        animation: fadeIn 800ms;
         z-index: 1;
         display: flex;
         justify-content: center;
         align-items: center;
+        top: -44px;
+        left: 0;
     }
 }
