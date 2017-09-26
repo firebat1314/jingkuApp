@@ -19,13 +19,17 @@
         <div class="h1">
             售后服务单申请成功
             <div class="h2">
-                <div>申请时间：<span class="red">{{data?.return_type||'- -'}}</span></div>
-                <div>申请类型：<span class="red">{{data?.add_time||'- -'}}</span></div>
+                <div>申请类型：
+                    <span class="red" *ngIf="data?.return_type==1">退货</span>
+                    <span class="red" *ngIf="data?.return_type==2">换货</span>
+                    <span class="red" *ngIf="data?.return_type==3">维修</span>
+                </div>
+                <div>申请时间：<span class="red">{{data?.add_time||'- -'}}</span></div>
             </div>
         </div>
 
         <div class="btns">
-            <button ion-button color="cancel" outline (click)="goAuditProgressPage()">进度查询</button>
+            <!-- <button ion-button color="jingku1" outline (click)="goAuditProgressPage()">进度查询</button> -->
             <button ion-button color="jingku1" outline (click)="goRepairReturnPage()">售后首页</button>
         </div>
     </div>

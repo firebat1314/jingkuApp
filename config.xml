@@ -108,5 +108,6 @@
     <plugin name="cordova-plugin-file-transfer" spec="~1.6.3" />
     <plugin name="cordova-plugin-inappbrowser" spec="~1.7.1" />
     <plugin name="cordova-plugin-app-version" spec="~0.1.9" />
-    <plugin name="cordova-plugin-pingpp" spec="https://git.coding.net/pingplusplus/pingpp-cordova.git" />
+    <plugin name="com.justep.cordova.plugin.pingpp" spec="https://github.com/litaoyu/cordova-plugin-pingpp.git" />
+    <engine name="android" spec="~6.1.2" />
 </widget>

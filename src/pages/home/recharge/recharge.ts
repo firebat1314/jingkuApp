@@ -83,6 +83,7 @@ export class RechargePage {
   openPingPayment(data) {
     let that = this;
     (<any>window).navigator.pingpp.requestPayment(data, (result, err) => {
+      this.navCtrl.popToRoot();
       this.navCtrl.parent.select(3);
       this.navCtrl.setPages([{ page: 'MyPage' }, { page: 'AllOrdersPage' }])
       if (result == 'success') {

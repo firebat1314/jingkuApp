@@ -4,10 +4,10 @@
   See https://angular.io/docs/ts/latest/api/core/index/ComponentMetadata-class.html
   for more info on Angular 2 Components.
 -->
-<div class="btn" tappable (click)="reduce()" [class.disabled]="value <= defaultValue">
+<div class="btn" tappable (click)="reduce()" [class.disabled]="value <= minValue">
         <img src="./assets/icon/minus.png" alt="">
 </div>
 <input type="number" [(ngModel)]="value" [disabled]="disabled" (input)="inputEvent(value)">
-<div class="btn" tappable (click)="increase()" [class.disabled]="maxValue && (value >= maxValue)">
+<div class="btn" tappable (click)="increase()" [class.disabled]="this.maxValue && (this.maxValue - this.value) < this.rank">
         <img src="./assets/icon/add.png" alt="">
 </div>

@@ -136,8 +136,9 @@ export class PaymentMethodPage {
   }
 
   openPingPayment(data) {
-    /* let that = this;
+    let that = this;
     (<any>window).navigator.pingpp.requestPayment(data, (result, err) => {
+      this.navCtrl.popToRoot();
       this.navCtrl.parent.select(3);
       this.navCtrl.setPages([{ page: 'MyPage' }, { page: 'AllOrdersPage' }])
       if (result == 'success') {
@@ -148,15 +149,17 @@ export class PaymentMethodPage {
       console.log('success', result, err)
       return;
     }, (result, err) => {
+      this.navCtrl.popToRoot();
       this.navCtrl.parent.select(3);
       this.navCtrl.setPages([{ page: 'MyPage' }, { page: 'AllOrdersPage' }])
       if (result == 'cancel') {
         that.native.showToast("取消支付");
-      } else {
-        that.native.showToast("支付异常,请尝试其他支付方式");
+      } else if (result == 'fail') {
+        that.native.showToast("支付失败");
+      } else if (result == 'invalid') {
       }
       console.log('fail', result, err)
-    }); */
+    });
     /*——————————————————————————————————————————————————————————————————————————*/
     // pingpp.createPayment(data, (result) => {
     //   console.log('success',result);
@@ -164,7 +167,7 @@ export class PaymentMethodPage {
     //   console.log(err);
     // });
     /*——————————————————————————————————————————————————————————————————————————*/
-    let that = this;
+    /* let that = this;
     (<any>window).navigator.Pingpp.createPayment(data, (result, error) => {//scheme 为iOS返回应用
       console.log('result' + result);
       console.log('error' + error);
@@ -179,7 +182,7 @@ export class PaymentMethodPage {
     // Pingpp.setDebugMode(true)
     Pingpp.getVersion(function (version) {
       console.log("当前SDK版本号是:" + version);
-    });
+    }); */
   }
 
   // alipayPay(alipayOrder) {

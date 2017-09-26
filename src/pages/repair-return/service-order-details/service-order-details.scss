@@ -1,4 +1,9 @@
 page-service-order-details {
+    $defaultColor: #cbcbcb;
+    $color: #50c65f;
+    .scroll-content {
+        background: #fff !important;
+    }
     .fore1 {
         .item {
             padding: 0 8px;
@@ -11,16 +16,17 @@ page-service-order-details {
         top: -29px;
         left: 50%;
         color: #fff;
-        background: #50c65f;
+        background: $color;
         border-radius: 10px;
         padding: 1px 3px;
         white-space: nowrap;
+        font-size: 1rem;
         span {
             border-width: 5px;
             width: 0;
             height: 0;
             border: 5px solid transparent;
-            border-top: 5px solid #50c65f;
+            border-top: 5px solid $color;
             position: absolute;
             top: 100%;
             left: 50%;
@@ -29,11 +35,19 @@ page-service-order-details {
     }
     .progressBar {
         display: flex;
-        color: #50c65f;
+        color: $defaultColor;
         align-items: center;
         justify-content: center;
         overflow: hidden;
         padding: 40px 0 50px;
+        .weiwc {
+            color: $color;
+            border-color: $color !important;
+            .complete {
+                background: $color;
+                color: $color;
+            }
+        }
         .status-item {
             text-align: center;
             font-size: 1.3rem;
@@ -41,13 +55,14 @@ page-service-order-details {
             white-space: nowrap;
             margin: 0 11px;
             .icon {
-                font-size: 24px;
+                font-size: 26px;
             }
             .text {
                 position: absolute;
                 left: 50%;
                 width: 74px;
                 top: 30px;
+                font-size: 1rem;
                 margin-left: -37px;
                 white-space: pre-wrap;
             }
@@ -58,13 +73,32 @@ page-service-order-details {
         }
         .status-line {
             width: 35px;
-            border-top: 1px #50c65f solid;
+            border-top: 2px $defaultColor solid;
             position: relative;
             .complete {
                 @include complete;
                 margin-left: -24px;
                 top: -41px;
             }
+        }
+    }
+    .fore2 {
+        padding: 0 10px;
+        .title {
+            line-height: 3;
+            border-bottom: $border;
+        }
+        .imgs {
+            overflow: hidden;
+            padding: 10px 0;
+            img {
+                width: 73px;
+                margin-right: 10px;
+                float: left;
+            }
+        }
+        .time {
+            color: get-color(gray);
         }
     }
 }

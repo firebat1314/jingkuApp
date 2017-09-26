@@ -17,6 +17,7 @@ export class ApplyService2Page {
   data = this.navParams.get('data');
   constructor(public navCtrl: NavController, public navParams: NavParams) {
     // console.log(this.navCtrl.indexOf(this.navCtrl.getActive()))
+    console.log(this.navCtrl.length(),this.navCtrl.indexOf(this.navCtrl.getActive()))
   }
 
   ionViewDidLoad() {

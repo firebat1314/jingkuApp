@@ -12,19 +12,42 @@ import { Native } from "../../providers/native";
   templateUrl: 'count-input.html'
 })
 export class CountInputComponent {
-  newmaxValue: number;
 
-  @Input() value: number = 0;
-  @Input() defaultValue: number = 0;
   @Input() lock: boolean = false;
   @Output() valueChange: EventEmitter<number> = new EventEmitter<number>();
-  @Input() maxValue: number;
 
-  defaultRank = 1;
-  @Input() set rank(rank){
-    console.log(rank)
-    this.defaultRank = Number(rank) || this.defaultRank;
-  }   
+
+  _minValue: number = 0;
+  @Input() set minValue(minValue: number) {
+    this._minValue = minValue;
+  };
+  get minValue() {
+    return Number(this._minValue);
+  }
+
+  _value: number = 0;
+  @Input() set value(value: number) {
+    this._value = Number(value) || this.minValue;
+  };
+  get value() {
+    return Number(this._value);
+  }
+
+  _maxValue: number;
+  @Input() set maxValue(maxValue: number) {
+    this._maxValue = Number(maxValue);
+  };
+  get maxValue() {
+    return Number(this._maxValue);
+  }
+
+  _rank = 1;
+  @Input() set rank(rank) {
+    this._rank = Number(rank) || this._rank;
+  }
+  get rank() {
+    return Number(this._rank)
+  }
 
 
   disabled: boolean = false;
@@ -35,31 +58,27 @@ export class CountInputComponent {
     // console.log('Hello CountInput Component');
   }
   ngOnInit() {
-    console.log('增减量：' + this.defaultRank)
-    if (this.maxValue) this.newmaxValue = this.maxValue;
-    if (this.defaultRank !== 1) this.disabled = true;
+    if (this.rank !== 1) this.disabled = true;
   }
   increase() {
-    if (this.lock) {
-      return;
-    } else if (this.newmaxValue && (this.value >= this.newmaxValue)) {
-      this.native.showToast('最多选择' + this.newmaxValue + '件');
-      this.element.nativeElement.getElementsByTagName('input')[0].value = this.newmaxValue;
+    if (this.maxValue && (this.maxValue - this.value) < this.rank) {
+      this.native.showToast('最多选择' + this.maxValue + '件');
+      this.element.nativeElement.getElementsByTagName('input')[0].value = this.value;
       return;
     }
-    this.valueChange.emit(this.value += this.defaultRank);
+    this.valueChange.emit(this.value += this.rank);
   }
   reduce() {
-    if (this.value <= this.defaultValue) {
+    if (this.value <= this.minValue) {
       return;
     }
-    this.valueChange.emit(this.value -= this.defaultRank);
+    this.valueChange.emit(this.value -= this.rank);
   }
   inputEvent(value) {
-    if (this.newmaxValue && (this.value >= this.newmaxValue)) {
-      this.native.showToast('最多选择' + this.newmaxValue + '件');
-      this.element.nativeElement.getElementsByTagName('input')[0].value = this.newmaxValue;
-      this.value = this.newmaxValue;
+    if (this.maxValue && (this.value >= this.maxValue)) {
+      this.native.showToast('最多选择' + this.maxValue + '件');
+      this.element.nativeElement.getElementsByTagName('input')[0].value = this.maxValue;
+      this.value = this.maxValue;
     }
     this.valueChange.emit(this.value);
   }

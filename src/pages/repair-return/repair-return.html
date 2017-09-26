@@ -78,7 +78,7 @@
                 <span>{{item.type}}</span>
             </div>
             <div class="order-body">
-                <div class="order-body-item" *ngFor="let subitem of item.goods">
+                <div class="order-body-item" tappable navPush="ParticularsPage" [navParams]="{goodsId:subitem.goods_id}" *ngFor="let subitem of item.goods">
                     <div class="img">
                         <img img-lazy-load="{{subitem.original_img}}">
                     </div>
@@ -93,7 +93,7 @@
                 <span>{{item.status}}</span>
             </ion-item>
             <div class="order-foot" *ngIf="item.return_status==0">
-                <button ion-button outline (click)="cancelApply(item.return_id)">取消申请</button>
+                <button ion-button outline color="jingku1" (click)="cancelApply(item.return_id)">取消申请</button>
             </div>
         </div>
     </div>

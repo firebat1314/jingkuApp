@@ -1,3 +1,79 @@
 page-audit-progress {
-
+    .check-progress .info-tree,
+    .transport .info-tree {
+        padding-right: 10px;
+        background: #fff;
+    }
+    .check-progress .floor,
+    .transport .floor {
+        padding: .5rem 0 0 2.4rem;
+        background-color: #FFF;
+        color: #848689;
+        position: relative
+    }
+    .check-progress .floor em,
+    .check-progress .floor i,
+    .transport .floor em,
+    .transport .floor i {
+        display: block
+    }
+    .check-progress .floor em,
+    .transport .floor em {
+        margin-bottom: .4rem;
+        position: relative
+    }
+    .check-progress .floor i,
+    .transport .floor i {
+        border-bottom: 0;
+        padding-bottom: .4rem
+    }
+    .check-progress .floor i:last-child,
+    .invite-back section:before,
+    .transport .floor i:last-child {
+        border-bottom: 1px solid #E3E5E9
+    }
+    .check-progress .floor em:before,
+    .transport .floor em:before {
+        position: absolute;
+        content: '';
+        top: 0.65rem;
+        left: -1.45rem;
+        width: .5rem;
+        height: .5rem;
+        background-color: #C4C4C4;
+        border-radius: 100%;
+    }
+    .check-progress .floor:before,
+    .transport .floor:before {
+        content: '';
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: 1.2rem;
+        width: 1px;
+        background-color: #E3E5E9
+    }
+    .check-progress .floor:last-child,
+    .transport .floor:last-child {
+        border-bottom: 0
+    }
+    .check-progress .floor:last-child:before,
+    .transport .floor:last-child:before {
+        bottom: inherit;
+        height: .85rem
+    }
+    .check-progress .floor:first-child:before,
+    .transport .floor:first-child:before {
+        top: .85rem
+    }
+    .check-progress .floor:first-child em:before,
+    .transport .floor:first-child em:before {
+        top: 0.4rem;
+        width: 1rem;
+        height: 1rem;
+        background-color: #F55B5B;
+        left: -1.7rem;
+        -webkit-box-shadow: 0 0 0 0.1rem #FABFBF;
+        box-shadow: 0 0 0 0.1rem #FABFBF;
+    }
 }
