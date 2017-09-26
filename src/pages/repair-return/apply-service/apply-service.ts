@@ -53,8 +53,13 @@ export class ApplyServicePage {
       }
     })
   }
-  openCamra() {
+  openCamra(event) {
     if (this.params.return_img.length >= 5) {
+      this.native.showToast('最多选择5张照片');
+      return;
+    }
+    this.params.return_img.push(event);
+    /* if (this.params.return_img.length >= 5) {
       this.native.showToast('最多选择5张照片', null, false);
       return;
     }
@@ -72,7 +77,7 @@ export class ApplyServicePage {
       }
     }, (err) => {
       console.log(err)
-    })
+    }) */
   }
   deletePic(i) {
     this.params.return_img.splice(i, 1);
@@ -88,11 +93,11 @@ export class ApplyServicePage {
     modal.present();
   }
   goServiceOrderDetailsPage() {
-    /* this.data.goodslist.forEach(item => {
+    this.data.goodslist.forEach(item => {
       if (item.goods_number) {
         this.params.rec_ids[this.rec_id] = item.goods_number;
       }
-    }) */
+    })
     // this.native.showToast('提交成功',800,false)
     this.httpService.submitRepair(this.params).then((res) => {
       if (res.status == 1) {

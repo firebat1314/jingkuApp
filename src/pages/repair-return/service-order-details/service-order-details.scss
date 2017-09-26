@@ -84,9 +84,13 @@ page-service-order-details {
     }
     .fore2 {
         padding: 0 10px;
+        
         .title {
             line-height: 3;
             border-bottom: $border;
+        }
+        .main{
+            padding: 10px;   
         }
         .imgs {
             overflow: hidden;

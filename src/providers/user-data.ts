@@ -28,7 +28,7 @@ export class UserData {
             headers.append('Authorization', 'Basic ' + btoa(res + ':'));
             let options = new RequestOptions({ headers: headers });
             return this.http.get(url + this.toQueryString(paramObj), options)
-                .timeout(7000)
+                .timeout(10000)
                 .toPromise()
                 .then(res => this.handleSuccess(res.json(),showLoading))
                 .catch(error => this.handleError(error,showLoading));
@@ -44,7 +44,7 @@ export class UserData {
             headers.append('Authorization', 'Basic ' + btoa(res + ':'));
             let options = new RequestOptions({ headers: headers });
             return this.http.post(url, paramObj, options)
-                .timeout(7000)
+                .timeout(10000)
                 .toPromise()
                 .then(res => this.handleSuccess(res.json(),showLoading))
                 .catch(error => this.handleError(error,showLoading));
@@ -59,7 +59,7 @@ export class UserData {
             headers.append('Authorization', 'Basic ' + btoa(res + ':'));
             let options = new RequestOptions({ headers: headers });
             return this.http.post(url, this.toBodyString(paramObj), options)
-                .timeout(7000)
+                .timeout(10000)
                 .toPromise()
                 .then(res => this.handleSuccess(res.json(),showLoading))
                 .catch(error => this.handleError(error,showLoading));
