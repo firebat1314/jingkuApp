@@ -100,7 +100,7 @@
                 </button>
             </div>
             <div class="fore attribute">
-                <button ion-item [disabled]="getGoodsInfo?.data?.isdingzhi" (click)="presentModalAttr()" no-lines>
+                <button ion-item [disabled]="is_dingzhi" (click)="presentModalAttr()" no-lines>
                     <span style="color: #808080;">选择&nbsp;&nbsp;</span>规格 光度等
                 </button>
             </div>
@@ -309,7 +309,7 @@
     </ion-infinite-scroll>
 </ion-content>
 <ion-footer>
-    <div class="warning-show" *ngIf="getGoodsInfo?.data?.isdingzhi">
+    <div class="warning-show" *ngIf="is_dingzhi">
         <span>请用电脑下单！</span>
     </div>
     <div class="main">
@@ -345,8 +345,8 @@
         <div class="right">
             <!--<button color="cancelBtn" no-margin ion-button large full>暂不支持手机下单</button>-->
             <div class="btns">
-                <button color="jingku1" *ngIf="!getGoodsInfo?.data?.isdingzhi" no-margin ion-button large full tappable (click)="presentModalAttr()">加入购物车</button>
-                <button color="cancelBtn" disabled *ngIf="getGoodsInfo?.data?.isdingzhi" no-margin ion-button large full>暂不支持手机下单</button>
+                <button color="jingku1" *ngIf="!is_dingzhi" no-margin ion-button large full tappable (click)="presentModalAttr()">加入购物车</button>
+                <button color="cancelBtn" disabled *ngIf="is_dingzhi" no-margin ion-button large full>暂不支持手机下单{{getGoodsInfo?.data?.isdingzhi}}</button>
                 <!-- <button color="jingku2" no-margin ion-button large full tappable (click)="presentModalAttr()">立即购买</button> -->
             </div>
         </div>

@@ -20,7 +20,7 @@ import { Native } from "../../../providers/native";
 export class ApplyServicePage {
 
   order_id: any = this.navParams.get("order_id");
-  rec_id: any = this.navParams.get("rec_id");
+  rec_id: any = this.navParams.get("rec_ids");
   data;
   params = {
     rec_ids: {},
@@ -43,10 +43,10 @@ export class ApplyServicePage {
     console.log('ionViewDidLoad ApplyServicePage');
     this.getData()
   }
-  getData(){
+  getData() {
     this.httpService.repairApply({
       order_id: this.order_id,
-      rec_ids: [this.rec_id]
+      rec_ids: this.rec_id
     }).then((res) => {
       if (res.status == 1) {
         this.data = res
@@ -55,7 +55,7 @@ export class ApplyServicePage {
   }
   openCamra() {
     if (this.params.return_img.length >= 5) {
-      this.native.showToast('最多选择5张照片', null,false);
+      this.native.showToast('最多选择5张照片', null, false);
       return;
     }
     this.native.getMultiplePicture({
@@ -88,13 +88,12 @@ export class ApplyServicePage {
     modal.present();
   }
   goServiceOrderDetailsPage() {
-    this.data.goodslist.forEach(item => {
+    /* this.data.goodslist.forEach(item => {
       if (item.goods_number) {
-        this.params.rec_ids[item.rec_id] = item.goods_number;
+        this.params.rec_ids[this.rec_id] = item.goods_number;
       }
-    })
+    }) */
     // this.native.showToast('提交成功',800,false)
-    this.navCtrl.push('ApplyService2Page');
     this.httpService.submitRepair(this.params).then((res) => {
       if (res.status == 1) {
         this.navCtrl.push('ApplyService2Page', { data: res });

@@ -113,6 +113,8 @@ export class PaymentMethodPage {
           this.openPingPayment(res.pingxx);
         } else if (res.type == 'balance') {
           this.native.showToast(res.info);
+          this.navCtrl.popToRoot();
+          this.navCtrl.parent.select(3);
           this.navCtrl.setPages([{ page: 'CarPage' }, { page: 'AllOrdersPage' }])
         }
       }
@@ -136,6 +138,7 @@ export class PaymentMethodPage {
 
   openPingPayment(data) {
     let that = this;
+    this.navCtrl.popToRoot();
     this.navCtrl.parent.select(3);
     this.navCtrl.setPages([{ page: 'CarPage' }, { page: 'AllOrdersPage' }])
     pingpp.createPayment(data, function (result, err) {

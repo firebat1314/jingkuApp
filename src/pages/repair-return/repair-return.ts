@@ -1,5 +1,5 @@
 import { Component, ViewChild } from '@angular/core';
-import { IonicPage, NavController, NavParams, Content, FabButton } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, Content, FabButton, Events } from 'ionic-angular';
 import { HttpService } from "../../providers/http-service";
 import { Native } from "../../providers/native";
 
@@ -30,11 +30,18 @@ export class RepairReturnPage {
     public navParams: NavParams,
     public httpService: HttpService,
     public native: Native,
+    public events: Events,
   ) { }
   ionViewDidLoad() {
     console.log('ionViewDidLoad RepairReturnPage');
     this.getOrderRepair();
     this.getRepairList();
+    this.events.subscribe('repair-return:update', () => {
+      this.getRepairList();
+    })
+  }
+  ngOnDestory(){
+    this.events.unsubscribe('repair-return:update');
   }
   getOrderRepair() {
     return this.httpService.orderRepair(this.options).then((res) => {

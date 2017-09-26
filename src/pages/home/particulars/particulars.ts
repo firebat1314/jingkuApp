@@ -12,39 +12,42 @@ import { Native } from "../../../providers/native";
   templateUrl: 'particulars.html'
 })
 export class ParticularsPage {
-  @ViewChild(Content) content: Content;
-  @ViewChild(FabButton) fabButton: FabButton;
-
+  /**
+   * 用户选中的收货地址
+   */
   region_name: any;
+  /**
+   * 为你推荐
+   */
   getCategoryRecommendGoodsHot: any;
-  getLinkedGoods: any;
-  getGoodsAttribute: any;
-  getGoodsGallery: any;
-  getPriceSection: any;
+  /**
+   * 商品总信息
+   */
   getGoodsInfo: any;
-  getGoodsParameter: any;
-  getGoodsSaleCity: any;
-  getSupplierInfo: any;
-  getBonus: any;
-  getGoodsFittings: any;
-  collectDel: any;
-  searchGoods: any;
-  care: any;
-
+  /**
+   * 组合、推荐
+   */
   selectGroupRecommend = "group" || 'recommend';
+  /**
+   * 详情、参数
+   */
   selectPicArguments = "pic";//arguments
-
+  /**
+   * 商品id
+   */
   goodsId: number = this.navParams.get('goodsId');/*3994 5676*/;
+  /**
+   * 购物车数量
+   */
   badgeCount: number;
-
-  //存储swiper对象
-  mySwiper: any = null;
-
-  //第一次进入页面
-  firstViewInit: boolean = false;
-
-  //图文详情
+  /**
+   * 图文详情
+   */
   goods_desc: string = '';
+  /**
+   * 定制商品
+   */
+  is_dingzhi:boolean = false;
 
   constructor(
     public navCtrl: NavController,
@@ -64,7 +67,7 @@ export class ParticularsPage {
     this.getCarCount();
   }
   ngAfterViewInit() {
-    
+
   }
   ionViewDidLoad() {
     console.log('ionViewDidLoad ParticularsPage');
@@ -100,6 +103,7 @@ export class ParticularsPage {
       if (res.status == 1) {
         this.getGoodsInfo = res;
         this.getRegionName(res);
+        this.is_dingzhi = res.data.isdingzhi==1?true:false;
       }
       this.http.getCategoryRecommendGoodsHot({}).then((res) => {
         // console.log('为你推荐：', res)
@@ -146,7 +150,7 @@ export class ParticularsPage {
       sendto: this.getGoodsInfo.sale_city,
       GoodsInfo: this.getGoodsInfo.data,
       promotion: this.getGoodsInfo.promotion,
-      goodsId:this.goodsId
+      goodsId: this.goodsId
     });
     modal.onDidDismiss(data => {
       console.log(data);
@@ -167,11 +171,10 @@ export class ParticularsPage {
    */
   presentModalAttr() {
     this.http.getGoodsAttribute({ goods_id: this.goodsId }).then((res) => {
-      console.log("商品初始属性", res);
-      this.getGoodsAttribute = res;
+      // console.log("商品初始属性", res);
       if (res.status == 1) {
         if (res.goods_type == 'goods_spectacles') {
-          console.log("goods_type ☞'goods_spectacles'", res);
+          // console.log("goods_type ☞'goods_spectacles'", res);
           if (typeof res.spectacles_properties.list == 'object') {
             let arr = new Array();
             for (let item in res.spectacles_properties.list) {

@@ -66,6 +66,9 @@ export class UpgradeProvider {
                 handler: () => {
                   this.iab.create(res.ios.url, '_system');
                   // this.platform.exitApp();
+                  setTimeout(function () {
+                    this.platform.exitApp();
+                  }, 100);
                 }
               }
               ]
@@ -103,7 +106,7 @@ export class UpgradeProvider {
                 text: '确定',
                 handler: () => {
                   this.downloadApp(res.android.url);
-                  // this.platform.exitApp();
+
                 }
               }
               ]

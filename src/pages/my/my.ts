@@ -92,8 +92,8 @@ export class MyPage {
   }
   goRepairReturnPage(){
     // console.log(1)
-    this.native.showToast('暂未开放',null,false);
-    // this.navCtrl.push('RepairReturnPage');
+    // this.native.showToast('暂未开放',null,false);
+    this.navCtrl.push('RepairReturnPage');
   }
   goAccountProcessPage() {
     this.native.showToast('暂未开放',null,false);
