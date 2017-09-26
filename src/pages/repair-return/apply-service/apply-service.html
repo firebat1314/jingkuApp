@@ -46,14 +46,17 @@
                 <span>{{params.str_desc?.length||0}}/500</span>
             </div>
             <div class="upload-pic">
-                <div class="camra" tappable (click)="openCamra()"><img src="./assets/icon/images/camra.png" alt=""></div>
+                <div class="camra" tappable>
+                    <img src="./assets/icon/images/camra.png" alt="">
+                    <input type="file" (get-image)="openCamra($event)" style="width:100%;height:100%;position: absolute;opacity: 0;top:0;">
+                </div>
                 <div class="text-wrap">为了帮助我们更好的解决问题，请上传照片。最多5张，每张不超过5M，支持JPG、BPM、PNG</div>
             </div>
         </section>
-        <section class="fore item4" #item4 *ngIf="picArr?.length">
-            <div class="camra userpic" *ngFor="let item of picArr;let i = index;">
+        <section class="fore item4" #item4 *ngIf="params.return_img.length">
+            <div class="camra userpic" *ngFor="let item of params.return_img;let i = index;">
                 <img [src]="item" alt="">
-                <span class="delete-icon" tappable (click)="deletePic(i)">{{i}}</span>
+                <span class="delete-icon" tappable (click)="deletePic(i)"></span>
             </div>
         </section>
         <section class="fore item5">
