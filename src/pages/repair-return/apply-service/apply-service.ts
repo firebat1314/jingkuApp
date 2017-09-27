@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, ModalController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, ModalController, Events } from 'ionic-angular';
 import { HttpService } from "../../../providers/http-service";
 import { Native } from "../../../providers/native";
 
@@ -38,6 +38,7 @@ export class ApplyServicePage {
     public httpService: HttpService,
     public native: Native,
     public modalCtrl: ModalController,
+    public events: Events,
   ) { }
   ionViewDidLoad() {
     console.log('ionViewDidLoad ApplyServicePage');
@@ -102,6 +103,7 @@ export class ApplyServicePage {
     this.httpService.submitRepair(this.params).then((res) => {
       if (res.status == 1) {
         this.navCtrl.push('ApplyService2Page', { data: res });
+        this.events.publish('repair-return:update');
       }
     })
   }

@@ -107,7 +107,7 @@
                     {{data?.repair_info?.return_desc}}
                 </div>
                 <div class="imgs">
-                    <img *ngFor="let img of data?.repair_info?.img" img-lazy-load="img" border-f0 alt="">
+                    <img *ngFor="let img of data?.repair_info?.imgs" [img-lazy-load]="img" border-f0 alt="">
                 </div>
                 <div class="time">{{data?.repair_info?.add_time}}</div>
             </div>

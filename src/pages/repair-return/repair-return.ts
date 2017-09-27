@@ -38,9 +38,10 @@ export class RepairReturnPage {
     this.getRepairList();
     this.events.subscribe('repair-return:update', () => {
       this.getRepairList();
+      this.getOrderRepair();
     })
   }
-  ngOnDestory(){
+  ngOnDestroy() {
     this.events.unsubscribe('repair-return:update');
   }
   getOrderRepair() {
