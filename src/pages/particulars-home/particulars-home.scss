@@ -74,6 +74,7 @@ page-particulars-home {
                     font-size: font-size-text('h6');
                     position: absolute;
                     right: 5%;
+                    border-radius: 2px;
                     padding: 6px 8px;
                 }
             }
@@ -425,7 +426,7 @@ page-particulars-home {
             justify-content: center;
             width: 33.33%;
             color: get-color('gray3');
-            >div {
+            .lx_tel {
                 height: 2rem;
                 display: flex;
                 align-items: center;
@@ -435,7 +436,7 @@ page-particulars-home {
                 text-align: center;
             }
             &:last-child {
-                >div {
+                .lx_tel {
                     border-right: none;
                 }
             }

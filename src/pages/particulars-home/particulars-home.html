@@ -279,21 +279,21 @@
 <ion-footer>
     <div class="shop-footer">
         <div tappable class="shop-footer-items" (click)="goParticularsHomeDetails()">
-            <div><span>店铺详情</span></div>
+            <a class="lx_tel"><span>店铺详情</span></a>
         </div>
         <div class="shop-footer-items" tappable (click)="openPopover($event)">
-            <div>
+            <a class="lx_tel">
                 <ion-icon name="ios-menu" style="pointer-events: none;"></ion-icon>
                 <span style="pointer-events: none;">热门分类</span>
-            </div>
+            </a>
         </div>
         <div class="shop-footer-items">
-            <div tappable (click)="callnumber(shopdata?.data?.mobile)">
+            <a href="tel:{{shopdata?.data?.mobile}}" class="lx_tel">
                 <ion-icon>
                     <img img-lazy-load="./assets/icon/kefu.png" alt="">
                 </ion-icon>
                 <span>联系卖家</span>
-            </div>
+            </a>
         </div>
     </div>
 </ion-footer>
