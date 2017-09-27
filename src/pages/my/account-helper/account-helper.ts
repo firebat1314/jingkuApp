@@ -27,8 +27,8 @@ export class AccountHelperPage {
       }
     })
   }
-  goHelperDetailsPage(item) {
-    this.navCtrl.push('HelperDetailsPage', { item: item });
+  goHelperDetailsPage(article_id) {
+    this.navCtrl.push('HelperDetailsPage', { article_id: article_id });
   }
   ionViewDidLoad() {
     console.log('ionViewDidLoad AccountHelperPage');

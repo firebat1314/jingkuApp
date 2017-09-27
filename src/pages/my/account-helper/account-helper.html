@@ -19,7 +19,7 @@
         <ion-item-divider>
             <img img-lazy-load="{{list.img}}" item-left> {{list.cat_name}}
         </ion-item-divider>
-        <ion-item tappable detail-push *ngFor="let item of list.article" (click)="goHelperDetailsPage(item)">
+        <ion-item tappable detail-push *ngFor="let item of list.article" (click)="goHelperDetailsPage(item.article_id)">
             {{item.title}}
         </ion-item>
     </ion-list>
