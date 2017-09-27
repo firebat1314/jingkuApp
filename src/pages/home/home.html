@@ -26,21 +26,21 @@
     <ion-refresher (ionRefresh)="doRefresh($event)" pullMax="60">
         <ion-refresher-content refreshingSpinner="1" pullingIcon="0"></ion-refresher-content>
     </ion-refresher>
-    <!--——————————————————————————————————————————轮播图——————————————————————————————————————————-->
     <ng-container *ngIf="data">
+    <!--———————————————————————————————— 轮播图 ————————————————————————————————-->
         <div class="banner-wrapper">
-            <ion-slides #bannerSlide autoplay="4000" pager (ionSlideAutoplayStop)="bannerSlide.startAutoplay()" *ngIf="bannerImgs?.length">
+            <ion-slides #bannerSlide autoplay="4000" pager (ionSlideAutoplayStop)="bannerSlide.startAutoplay()">
                 <!-- *ngIf="bannerImgs" loop-->
-                <ion-slide *ngIf="!bannerImgs.length">
-                    <img defaultSrc="./assets/images/images/640-320.jpg" alt="">
+                <ion-slide *ngIf="!data">
+                    <img img-lazy-load defaultSrc="./assets/images/images/640-360.jpg" alt="">
                 </ion-slide>
                 <ion-slide *ngFor="let item of bannerImgs" tappable [ads-click]="item.link_type">
-                    <img [img-lazy-load]="item.ad_img" defaultSrc="./assets/images/images/640-320.jpg" alt="">
+                    <img [img-lazy-load]="item.ad_img" defaultSrc="./assets/images/images/640-360.jpg" alt="">
                     <!-- <img-loader [src]="item.ad_img" fallback="./assets/images/images/640-320.jpg" useImg></img-loader> -->
                 </ion-slide>
             </ion-slides>
         </div>
-        <!--——————————————————————————————————————————功能按钮——————————————————————————————————————————-->
+        <!--———————————————————————————————— 功能按钮 ————————————————————————————————-->
         <div class="btn-tool" home-padding>
             <div class="top">
                 <div tappable (click)="goDiscountCouponPage();">
