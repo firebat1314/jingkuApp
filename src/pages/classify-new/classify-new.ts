@@ -66,7 +66,6 @@ export class ClassifyNewPage {
   clickItem(cat_id) {
     this.selectedId = cat_id;
     this.getChildrenCaCtegory().then((res) => {
-      console.log(cat_id)
     })
   }
   doRefresh(refresher) {
