@@ -1,4 +1,4 @@
-import { Component, ViewChild, ElementRef, Renderer } from '@angular/core';
+import { Component, ViewChild, ElementRef, Renderer, ChangeDetectorRef } from '@angular/core';
 import { NavController, NavParams, Events, Content, IonicPage, FabButton, InfiniteScroll } from 'ionic-angular';
 import { HttpService } from "../../../providers/http-service";
 import { Native } from "../../../providers/native";
@@ -14,6 +14,7 @@ import { Native } from "../../../providers/native";
 	templateUrl: 'brand-list.html',
 })
 export class BrandListPage {
+	timer: number;
 	infiniteScroll: InfiniteScroll;
 	data: any;
 	goodsCount: any;//购物车商品数量
@@ -33,7 +34,6 @@ export class BrandListPage {
 		type: null
 	}
 	@ViewChild(Content) content: Content;
-	@ViewChild('scrollToTop1') fabButton: FabButton;
 	constructor(
 		public navCtrl: NavController,
 		public navParams: NavParams,
@@ -42,6 +42,8 @@ export class BrandListPage {
 		public native: Native,
 		public element: ElementRef,
 		public renderer: Renderer,
+		public ref: ChangeDetectorRef,
+		
 	) { }
 	ionViewDidLoad() {
 		console.log('ionViewDidLoad BrandListPage');
@@ -78,23 +80,15 @@ export class BrandListPage {
 	}
 	ngAfterViewInit() {
 		var pagebtn = this.element.nativeElement.querySelector('#pagebtn');
-		/* 回到顶部按钮 */
+
 		this.content.ionScroll.subscribe((d) => {
-			this.fabButton.setElementClass("fab-button-fadein", d.scrollTop >= d.contentHeight);
-		});
-		/*this.renderer.listen(this.element.nativeElement, 'touchstart', () => {
-			this.renderer.listen(this.element.nativeElement, 'touchmove', () => {
-				this.renderer.setElementClass(pagebtn, 'fab-button-fadein', true)
-			});
+			clearTimeout(this.timer);
+			this.renderer.setElementClass(pagebtn, 'fab-button-fadein', true);
 		});
 		this.content.ionScrollEnd.subscribe((d) => {
-			this.renderer.setElementClass(pagebtn, 'fab-button-fadein', false)
-		}); */
-		this.content.ionScrollStart.subscribe((d) => {
-			this.renderer.setElementClass(pagebtn, 'fab-button-fadein', true)
-		});
-		this.content.ionScrollEnd.subscribe((d) => {
-			this.renderer.setElementClass(pagebtn, 'fab-button-fadein', false)
+			this.timer = setTimeout(()=> {
+				this.renderer.setElementClass(pagebtn, 'fab-button-fadein', false)
+			}, 500);
 		});
 	}
 	ngAfterViewChecked() {
@@ -132,6 +126,7 @@ export class BrandListPage {
 	}
 	doInfinite(infiniteScroll) {
 		this.infiniteScroll = infiniteScroll;
+		var page = this.data.page
 		if (this.data.page < this.data.pages) {
 			let pagingParam = Object.assign(this.paramsData, { page: ++this.data.page });
 			this.httpService.categoryGoods(pagingParam).then((res) => {
@@ -218,9 +213,6 @@ export class BrandListPage {
 			this.getListData({ page: ++this.data.page })
 		}
 	} */
-	scrollToTop() {
-		this.content.scrollToTop();
-	}
 	goCarPage() {
 		this.navCtrl.push('CarPage');
 	}

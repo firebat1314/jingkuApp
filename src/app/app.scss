@@ -59,9 +59,9 @@ ion-app {
 /*————————————————————————————————————  ————————————————————————————————————*/
 
 .content {
-    background: #f7f7f7;
+    background: $content-bg;
     .scroll-content {
-        background: #f7f7f7;
+        background: $content-bg;
     }
 }
 

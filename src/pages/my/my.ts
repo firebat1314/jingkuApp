@@ -96,8 +96,8 @@ export class MyPage {
     this.navCtrl.push('RepairReturnPage');
   }
   goAccountProcessPage() {
-    this.native.showToast('暂未开放',null,false);
-    // this.navCtrl.push('AccountProcessPage');
+    // this.native.showToast('暂未开放',null,false);
+    this.navCtrl.push('AccountProcessPage');
   }
   goAccountServicePage() {
     this.native.openAlertBox('拨打客服电话：400-080-5118', () => {
