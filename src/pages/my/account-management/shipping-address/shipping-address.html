@@ -23,12 +23,12 @@
                 </ion-item>
             </div>
             <div class="bottom">
-                <label tappable class="checkbox">
-                    <ion-checkbox [checked]="item.selected==1" [disabled]="item.selected==1" (ionChange)="setDefaultAddress(item.address_id)" mode="ios"></ion-checkbox>默认地址
+                <label tappable class="checkbox" [style.pointerEvents]="item.selected?'none':'auto'">
+                    <ion-checkbox color="jingku1" [checked]="item.selected==1" [disabled]="item.selected==1" (ionChange)="setDefaultAddress(item.address_id)" mode="ios"></ion-checkbox>默认地址
                 </label>
                 <div class="btns">
-                    <button ion-button outline (click)="deleteOne(item.address_id)">删除</button>
-                    <button ion-button [navPush]="AddShippingAddressPage" [navParams]="{addId:item.address_id}">编辑</button>
+                    <button ion-button outline color="jingku1" (click)="deleteOne(item.address_id)">删除</button>
+                    <button ion-button color="jingku1" [navPush]="AddShippingAddressPage" [navParams]="{addId:item.address_id}">编辑</button>
                 </div>
             </div>
         </div>

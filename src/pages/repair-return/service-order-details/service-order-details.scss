@@ -59,11 +59,11 @@ page-service-order-details {
             }
             .text {
                 position: absolute;
-                left: 50%;
-                width: 74px;
+                left: 49%;
+                width: 62px;
                 top: 30px;
                 font-size: 1rem;
-                margin-left: -37px;
+                margin-left: -31px;
                 white-space: pre-wrap;
             }
             .complete {
@@ -95,6 +95,8 @@ page-service-order-details {
         .imgs {
             overflow: hidden;
             padding: 10px 0;
+            display: flex;
+            align-items: center;
             img {
                 width: 73px;
                 margin-right: 10px;
