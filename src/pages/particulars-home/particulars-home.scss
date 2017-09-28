@@ -97,9 +97,12 @@ page-particulars-home {
             padding-top: 4px;
             padding-bottom: 4px;
             height: inherit;
-            &.segment-activated {
+            &.segment-activated,&.activated {
                 border-color: get-color('danger');
                 color: get-color('danger');
+            }
+            .num{
+                height: 2.3rem;
             }
             .shop-tabs-item-img {
                 height: 2.3rem;

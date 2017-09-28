@@ -366,9 +366,6 @@ export class HttpService {
   getWuLiu(data?: Object) {//订单物流
     return this.http.get(IP + '/User/shipping_log', data)
   }
-  machining(data?: Object) {//来镜加工
-    return this.http.get(IP + '/User/machining', data)
-  }
   exchangeGoods(data?: Object) {//积分兑换列表
     return this.http.get(IP + '/User/exchangeGoods', data)
   }
@@ -458,5 +455,24 @@ export class HttpService {
   }
   rechargeMoney(data?: Object) {//新充值
     return this.http.post(IP + '/User/recharge_money', data)
+  }
+  /**
+   * 来镜加工 User/machining
+   */
+  machining(data?: Object) {
+    return this.http.get(IP + '/User/machining', data)
+  }
+  /**
+   * 申请加工
+   * @param 
+   */
+  glassMachining(data?: Object) {
+    return this.http.post(IP + '/Machining/glass_machining', data)
+  }
+  /**
+   * 极验验证
+   */
+  geeTestinit(data?: Object) {
+    return this.http.get(IP + '/Login/geeTestinit', data)
   }
 }

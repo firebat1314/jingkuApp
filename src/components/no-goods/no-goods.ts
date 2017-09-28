@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { IonicPage } from "ionic-angular";
 
 /**
@@ -13,10 +13,11 @@ import { IonicPage } from "ionic-angular";
 })
 export class NoGoodsComponent {
 
-  text: string;
+  @Input() title: string;
+  @Input() subtitle: string;
 
   constructor() {
     console.log('Hello NoGoodsComponent Component');
   }
-
+  
 }

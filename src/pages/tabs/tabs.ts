@@ -2,7 +2,9 @@ import { Component, ViewChild } from '@angular/core';
 import { Tabs, Events, IonicPage } from "ionic-angular";
 import { HttpService } from "../../providers/http-service";
 
-@IonicPage()
+@IonicPage({
+  priority: 'high'
+})
 @Component({
   templateUrl: 'tabs.html'
 })

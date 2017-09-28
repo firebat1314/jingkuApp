@@ -151,7 +151,7 @@ export class ParticularsPage {
       GoodsInfo: this.getGoodsInfo.data,
       promotion: this.getGoodsInfo.promotion,
       goodsId: this.goodsId
-    });
+    },{cssClass:'my-modal-style'});
     modal.onDidDismiss(data => {
       console.log(data);
       if (data && data.region) {
@@ -202,7 +202,7 @@ export class ParticularsPage {
       type: type,
       headData: this.getGoodsInfo.data,
       id: this.goodsId
-    });
+    },{cssClass:'my-modal-style'});
     modal.onDidDismiss(data => {
       if (data) {
         if (data == 'CarPage') {
@@ -216,18 +216,18 @@ export class ParticularsPage {
   beCareFor() {
     if (this.getGoodsInfo.data.is_collect) {
       this.http.collectDel({ goods_id: this.goodsId }).then((res) => {
-        console.log("取消商品关注", res);
+        // console.log("取消商品关注", res);
         if (res.status) {
           this.getGoodsInfo.data.is_collect = 0;
-          this.native.showToast('已取消关注')
+          // this.native.showToast('取消关注')
         }
       });
     } else {
       this.http.getGoodsCollect({ goods_id: this.goodsId }).then((res) => {
-        console.log("商品关注", res);
+        // console.log("商品关注", res);
         if (res.status) {
           this.getGoodsInfo.data.is_collect = 1;
-          this.native.showToast('关注成功')
+          // this.native.showToast('关注成功')
         }
       });
     }

@@ -44,8 +44,8 @@ export class AllOrdersPage {
     this.mytabs.pageNumber = 5;
     //进入页面默认选中标签
     if (this.navParams.get('index')) {
-      this.pageIndex = this.navParams.get('index');
-      this.mytabs.selectedIndex = this.pageIndex;
+      this.pageIndex = this.navParams.get('index');//tab下标
+      this.mytabs.selectedIndex = this.pageIndex;//切换tab标签
       this.getByPageIndex();
     } else {
       this.getByPageIndex();
@@ -53,38 +53,45 @@ export class AllOrdersPage {
   }
   getByPageIndex() {
     if (this.pageIndex == 0) {
-      this.httpService.order({ page: 1 }).then((res) => {
+      return this.httpService.order({ page: 1 }).then((res) => {
         if (res.status == 1) {
           this.orderData = res;
         }
       })
     } else if (this.pageIndex == 1) {
-      this.httpService.order({ page: 1, type: 'unpay' }).then((res) => {
+      return this.httpService.order({ page: 1, type: 'unpay' }).then((res) => {
         if (res.status == 1) {
           this.orderData = res;
         }
       })
     } else if (this.pageIndex == 2) {
-      this.httpService.order({ page: 1, type: 'collect' }).then((res) => {
+      return this.httpService.order({ page: 1, type: 'collect' }).then((res) => {
         if (res.status == 1) {
           this.orderData = res;
         }
       })
     } else if (this.pageIndex == 3) {
-      this.httpService.order({ page: 1, type: 'ok' }).then((res) => {
+      return this.httpService.order({ page: 1, type: 'ok' }).then((res) => {
         if (res.status == 1) {
           this.orderData = res;
         }
       })
     } else if (this.pageIndex == 4) {
-      this.httpService.order({ page: 1, type: 'cancel' }).then((res) => {
+      return this.httpService.order({ page: 1, type: 'cancel' }).then((res) => {
         if (res.status == 1) {
           this.orderData = res;
         }
       })
     }
   }
-
+  /*下拉刷新*/
+  doRefresh(refresher) {
+    this.getByPageIndex().then(() => {
+      setTimeout(() => {
+        refresher.complete();
+      }, 500);
+    })
+  }
   checkTab($event) {
     this.flag = true;
     this.pageIndex = $event;
@@ -164,5 +171,9 @@ export class AllOrdersPage {
   }
   goParticularsHomePage(id) {
     this.navCtrl.push('ParticularsHomePage', { suppliersId: id })
+  }
+  goAddProcess(order_parent){
+    // this.navCtrl.push('AddProcessPage', { order_parent: order_parent })
+    this.native.showToast('暂未开放',null,false);
   }
 }

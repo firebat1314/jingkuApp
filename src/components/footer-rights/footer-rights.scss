@@ -3,10 +3,16 @@ footer-rights {
         background: #f7f7f7;
         text-align: center;
         padding: 10px 0;
-        font-size: 14px;
+        font-size: 1.2rem;
     }
     .footer .fto-1 {
         color: #666;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        a {
+            font-size: 1.2rem;
+        }
     }
     .footer .fto-1 em {
         position: relative;
@@ -17,9 +23,12 @@ footer-rights {
         height: 20px;
         margin-right: 3px;
         background: url(../assets/images/wellcome-newm/foot-ico-1.png) no-repeat center;
-        background-size: 14px;
+        background-size: 16px;
     }
     .footer .fto-2 {
+        a {
+            font-size: 1.2rem;
+        }
         margin-bottom: 5px;
     }
     .footer .fto-2 a {

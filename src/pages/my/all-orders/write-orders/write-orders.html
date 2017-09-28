@@ -187,14 +187,12 @@
 </ion-content>
 
 <ion-footer>
-    <ion-toolbar no-padding>
-        <div class="pagefoot">
-            <div class="left">
-                <span class="price">实付款: ¥{{data?.total?.amount_formated||'0.00'}}</span><span *ngIf="goodsType=='integral'">&nbsp;积分: <span class="price">{{data?.total?.integral}}</span></span>
-            </div>
-            <div class="right">
-                <div ion-button no-margin full large color="jingku1" tappable (click)="onsubmit()">提交订单</div>
-            </div>
+    <div class="pagefoot">
+        <div class="left">
+            <span class="price">实付款: ¥{{data?.total?.amount_formated||'0.00'}}</span><span *ngIf="goodsType=='integral'">&nbsp;积分: <span class="price">{{data?.total?.integral}}</span></span>
         </div>
-    </ion-toolbar>
+        <div class="right">
+            <div ion-button no-margin full large color="jingku1" tappable (click)="onsubmit()">提交订单</div>
+        </div>
+    </div>
 </ion-footer>

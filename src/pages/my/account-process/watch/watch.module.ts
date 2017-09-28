@@ -8,7 +8,8 @@ import { ImgLazyLoadDirectiveModule } from '../../../../directives/img-lazy-load
   imports: [
     IonicPageModule.forChild(WatchPage),
     ImgLazyLoadDirectiveModule
-  ]
+  ],
+  exports: [WatchPage]
 })
 
 export class WatchPageModule { }

@@ -8,7 +8,9 @@ import { HttpService } from "../../../providers/http-service";
   See http://ionicframework.com/docs/v2/components/#navigation for more info on
   Ionic pages and navigation.
 */
-@IonicPage()
+@IonicPage({
+  defaultHistory: ['AccountBalancePage']
+})
 @Component({
   selector: 'page-account-money-detail',
   templateUrl: 'account-money-detail.html'
@@ -26,10 +28,12 @@ export class AccountMoneyDetailPage {
 
   getData() {
     this.httpService.accountLog({ page: 1 }).then((res) => {
-      this.data = res;
+      if(res.status){
+        this.data = res;
+      }
     })
   }
-  
+
   flag: boolean = true;
   doInfinite(infiniteScroll) {
     if (this.data.page < this.data.pages) {

@@ -20,7 +20,7 @@
     <ion-refresher (ionRefresh)="doRefresh($event)" pullMax="60">
         <ion-refresher-content refreshingSpinner="1" pullingIcon="0"></ion-refresher-content>
     </ion-refresher>
-    <nothing backgroundImg="url(./assets/images/images/no-car_1_03.png)" *ngIf="carDetails?.suppliers_goods_list.length==0"></nothing>
+    <nothing backgroundImg="url(./assets/icon/no-cart.png)" *ngIf="carDetails?.suppliers_goods_list.length==0"></nothing>
     <ion-list>
         <div class="single-shop" *ngFor="let item of carDetails?.suppliers_goods_list">
             <div class="single-shop-head" tappable navPush="ParticularsHomePage" [navParams]="{suppliersId:item.suppliers_id}">

@@ -84,7 +84,7 @@ export class ApplyServicePage {
     this.params.return_img.splice(i, 1);
   }
   openReasonModal() {
-    var modal = this.modalCtrl.create('ReasonModalPage');
+    var modal = this.modalCtrl.create('ReasonModalPage',{},{cssClass:'my-modal-style'});
     modal.onDidDismiss((data) => {
       if (data) {
         this.params.type_note = data.type_note;

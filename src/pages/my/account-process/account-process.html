@@ -10,14 +10,17 @@
         <ion-title>来镜加工</ion-title>
     </ion-navbar>
     <ion-toolbar class="segment-style">
-        <ion-segment [(ngModel)]="segment" mode="md">
-            <ion-segment-button value="1">
+        <ion-segment (ionChange)="myContent.scrollToTop(0);checkList()" [(ngModel)]="jgSegment" mode="md">
+            <ion-segment-button [value]="1">
+                全部
+            </ion-segment-button>
+            <ion-segment-button [value]="2">
                 未支付
             </ion-segment-button>
-            <ion-segment-button value="2">
+            <ion-segment-button [value]="3">
                 已支付
             </ion-segment-button>
-            <ion-segment-button value="3">
+            <ion-segment-button [value]="4">
                 已完成
             </ion-segment-button>
         </ion-segment>
@@ -25,151 +28,58 @@
 </ion-header>
 
 
-<ion-content>
-    <ion-refresher pullMax="60">
+<ion-content #myContent>
+    <ion-refresher (ionRefresh)="doRefresh($event)" pullMax="60">
         <ion-refresher-content refreshingSpinner="1" pullingIcon="0"></ion-refresher-content>
     </ion-refresher>
-    <div class="single-shop">
-        <ion-item-divider>
-            <ion-icon *ngIf="1" item-left>
-                <img width="25" height="25" src="./assets/icon/order_num.png" alt="">
-            </ion-icon>
-            <div class="shop-title" tappable>
-                {{1}}
-            </div>
-            <button item-right ion-button clear color="danger" icon-right>
-                <!-- {{1}} -->
-                <!-- <ion-icon name="ios-trash-outline"></ion-icon> -->
-            </button>
-        </ion-item-divider>
-        <ion-item no-lines tappable>
-            <ion-thumbnail item-left>
-                <img [img-lazy-load]="111">
-            </ion-thumbnail>
-            <div class="my-content">
-                <div class="left">
-                    <h2>{{1}}</h2>
-                    <div [innerHtml]="1"></div>
-                    <div [innerHtml]="1"></div>
-                </div>
-            </div>
-        </ion-item>
-        <ion-item no-lines style="overflow-x:scroll" tappable *ngIf="0">
-            <!--  (click)="$event.stopPropagation();goParticularsPage(goods.goods_id);"  -->
-            <ion-thumbnail item-left>
-                <img [img-lazy-load]="1">
-            </ion-thumbnail>
-            <ion-thumbnail item-left>
-                <img [img-lazy-load]="1">
-            </ion-thumbnail>
-            <ion-thumbnail item-left>
-                <img [img-lazy-load]="1">
-            </ion-thumbnail>
-        </ion-item>
-        <div class="result">
-            <span class="count">共{{1}}件商品</span>&nbsp;&nbsp;<span class="price">合计: <span>￥{{1}}</span></span>
-        </div>
-        <div class="btn">
+    <ng-container *ngIf="data">
 
-            <button color="jingku1" ion-button navPush="AddProcessPage">立即申请</button>
-
-        </div>
-    </div>
-    <div class="single-shop">
+        <no-goods title="暂无订单" *ngIf="!data?.list?.length"></no-goods>
+        <div class="single-shop" *ngFor="let item of data?.list">
             <ion-item-divider>
                 <ion-icon *ngIf="1" item-left>
                     <img width="25" height="25" src="./assets/icon/order_num.png" alt="">
                 </ion-icon>
                 <div class="shop-title" tappable>
-                    来镜加工单号{{1}}
+                    来镜加工单号：{{item.sn}}
                 </div>
-                <button item-right ion-button clear color="danger" icon-right>
-                    <!-- {{1}} -->
-                    <!-- <ion-icon name="ios-trash-outline"></ion-icon> -->
-                </button>
+                <!-- <button item-right ion-button clear color="danger" icon-right>
+                    {{1}}
+                    <ion-icon name="ios-trash-outline"></ion-icon>
+                </button> -->
             </ion-item-divider>
-            <ion-item style="overflow-x:scroll" no-lines tappable>
+            <ion-item no-lines tappable *ngFor="let goods of item.pian_goods" (click)="goParticularsPage(goods.goods_id)">
                 <ion-thumbnail item-left>
-                    <img [img-lazy-load]="111">
+                    <img [img-lazy-load]="goods.goods_img">
                 </ion-thumbnail>
                 <div class="my-content">
                     <div class="left">
-                        <h2>{{1}}</h2>
-                        <div>商品编号：</div>
-                        <div>商品名称：</div>
-                        <div>数量：</div>
+                        <div>商品编号：{{goods.goods_sn}}</div>
+                        <div>商品名称：{{goods.goods_name}}</div>
+                        <div>数量：{{goods.goods_number}}</div>
                     </div>
                 </div>
             </ion-item>
-            <ion-item no-lines tappable *ngIf="0">
-                <!--  (click)="$event.stopPropagation();goParticularsPage(goods.goods_id);"  -->
-                <ion-thumbnail item-left>
-                    <img [img-lazy-load]="1">
-                </ion-thumbnail>
-                <ion-thumbnail item-left>
-                    <img [img-lazy-load]="1">
-                </ion-thumbnail>
+            <!-- 多个商品样式 -->
+            <ion-item no-lines style="overflow-x:scroll" tappable *ngIf="0">
                 <ion-thumbnail item-left>
                     <img [img-lazy-load]="1">
                 </ion-thumbnail>
             </ion-item>
             <div class="result">
-                <span class="count">共{{1}}件商品</span>&nbsp;&nbsp;<span class="price">合计: <span>￥{{1}}</span></span>
+                <span class="count">共{{item.count}}件商品</span>&nbsp;&nbsp;<span class="price">合计: <span>{{item.amount}}</span></span>
             </div>
-            <div class="btn">
-    
-                <button color="jingku1" ion-button  navPush="WatchPage">查看</button>
-    
-            </div>
+            <!-- <div class="btn">
+                <button color="gray" outline ion-button (click)="goWatchPage()" *ngIf="item.is_pay=='1'">查看</button>
+                <button color="jingku1" ion-button (click)="toPay()" *ngIf="item.is_pay=='0'">去支付</button>
+            </div> -->
         </div>
-        <div class="single-shop">
-                <ion-item-divider>
-                    <ion-icon *ngIf="1" item-left>
-                        <img width="25" height="25" src="./assets/icon/order_num.png" alt="">
-                    </ion-icon>
-                    <div class="shop-title" tappable>
-                        {{1}}
-                    </div>
-                    <button item-right ion-button clear color="danger" icon-right>
-                        <!-- {{1}} -->
-                        <!-- <ion-icon name="ios-trash-outline"></ion-icon> -->
-                    </button>
-                </ion-item-divider>
-                <ion-item style="overflow-x:scroll" no-lines tappable>
-                    <ion-thumbnail item-left>
-                        <img [img-lazy-load]="111">
-                    </ion-thumbnail>
-                    <div class="my-content">
-                        <div class="left">
-                            <h2>商品编号：123123123123123</h2>
-                            <div></div>
-                            <div [innerHtml]="1"></div>
-                        </div>
-                    </div>
-                </ion-item>
-                <ion-item no-lines tappable *ngIf="0">
-                    <!--  (click)="$event.stopPropagation();goParticularsPage(goods.goods_id);"  -->
-                    <ion-thumbnail item-left>
-                        <img [img-lazy-load]="1">
-                    </ion-thumbnail>
-                    <ion-thumbnail item-left>
-                        <img [img-lazy-load]="1">
-                    </ion-thumbnail>
-                    <ion-thumbnail item-left>
-                        <img [img-lazy-load]="1">
-                    </ion-thumbnail>
-                </ion-item>
-                <div class="result">
-                    <span class="count">共{{1}}件商品</span>&nbsp;&nbsp;
-                    <span class="price">
-                        合计: <span>￥{{1}}</span>
-                    </span>
-                </div>
-                <div class="btn">
-        
-                    <button ion-button >取消订单</button>
-        
-                </div>
-            </div>
-            
+    </ng-container>
+    <ion-fab right bottom tappable>
+        <button ion-fab color="jingku1" mini goBackTop scroll-to-top></button>
+    </ion-fab>
+
+    <ion-infinite-scroll threshold="40%" (ionInfinite)="doInfinite($event)">
+        <ion-infinite-scroll-content></ion-infinite-scroll-content>
+    </ion-infinite-scroll>
 </ion-content>

@@ -6,6 +6,9 @@ import { AddProcessPage } from './add-process';
   declarations: [AddProcessPage],
   imports: [
     IonicPageModule.forChild(AddProcessPage),
+  ],
+  exports: [
+    AddProcessPage
   ]
 })
 

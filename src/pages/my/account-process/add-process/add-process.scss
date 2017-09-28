@@ -1,3 +1,66 @@
 page-add-process {
-
+    [margin] {
+        background: #fff;
+    }
+    .add_btn {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #e60000;
+        padding: 10px 0;
+        font-weight: 500;
+        .icon {
+            font-weight: 600;
+            margin-right: 10px;
+        }
+    }
+    .main_cfd {
+        header {
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            padding: 13px 0;
+            .head_title {
+                color: #4d4d4d;
+                margin-bottom: 5px;
+                .icon-tool {
+                    position: absolute;
+                    right: 15px;
+                    top: 9px;
+                    .icon {
+                        color: #b8b8b8;
+                        font-size: 20px;
+                    }
+                    .icon:first-child {
+                        margin-right: 10px;
+                    }
+                }
+            }
+            .head_msg {
+                color: #37baa1;
+                font-size: 1.2rem;
+            }
+        }
+        section {
+            .item {
+                color: #808080;
+            }
+            .item:first-child {
+                border-top: $border;
+            }
+            .dian1,
+            .dian2 {
+                width: 7px;
+                height: 7px;
+                border-radius: 50%;
+                background: #37baa1;
+                background: #37baa1;
+            }
+            .dian2 {
+                background: #fd9e67;
+            }
+        }
+    }
 }

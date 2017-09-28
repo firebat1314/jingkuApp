@@ -65,8 +65,8 @@
             {{data?.page}}/{{data?.pages}}
         </button>
     </ion-fab>
-    <ion-fab right bottom (click)="myContent.scrollToTop()">
-        <button ion-fab color="jingku1" mini goBackTop></button>
+    <ion-fab right bottom >
+        <button ion-fab color="jingku1" mini goBackTop scroll-to-top></button>
     </ion-fab>
 
     <ion-infinite-scroll (ionInfinite)="doInfinite($event)" *ngIf="flag">
@@ -88,6 +88,6 @@
         </div>
     </ion-toolbar>
     <ion-toolbar no-padding>
-        <button no-margin (click)="onsubmit()" ion-button large full style="height:56px;">索取发票</button>
+        <button no-margin color="jingku1" (click)="onsubmit()" ion-button large full style="height:56px;">索取发票</button>
     </ion-toolbar>
 </ion-footer>

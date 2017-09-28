@@ -48,15 +48,15 @@
         </ion-item> -->
         <ion-item class="indent-info">
             <div class="indent-info-content">
-                <div tappable [navPush]="AllOrdersPage" [navParams]="{index:1}">
+                <div tappable navPush="AllOrdersPage" [navParams]="{index:1}">
                     <div class="number">{{usercount?.data?.unpay||0}}</div>
                     <div class="text">待付款</div>
                 </div>
-                <div tappable [navPush]="AllOrdersPage" [navParams]="{index:2}">
+                <div tappable navPush="AllOrdersPage" [navParams]="{index:2}">
                     <div class="number">{{usercount?.data?.collect||0}}</div>
                     <div class="text">待收货</div>
                 </div>
-                <div tappable [navPush]="AllOrdersPage" [navParams]="{index:3}">
+                <div tappable navPush="AllOrdersPage" [navParams]="{index:3}">
                     <div class="number">{{usercount?.data?.ok||0}}</div>
                     <div class="text">已完成</div>
                 </div>
@@ -83,15 +83,15 @@
         </ion-item>
         <ion-item padding-left>
             <div class="myAssets-info">
-                <div tappable [navPush]="CouponPage">
+                <div tappable navPush="CouponPage">
                     <div class="number">{{usercount?.data?.bonus_count||0}}</div>
                     <div class="text">优惠券</div>
                 </div>
-                <div tappable [navPush]="AccountJifenPage" [navParams]="{number:userInfo?.data?.integral}">
+                <div tappable navPush="AccountJifenPage" [navParams]="{number:userInfo?.data?.integral}">
                     <div class="number">{{userInfo?.data?.integral||0}}</div>
                     <div class="text">积分</div>
                 </div>
-                <div tappable [navPush]="AccountBalancePage">
+                <div tappable navPush="AccountBalancePage">
                     <div class="number">{{userInfo?.data?.user_money||0}}</div>
                     <div class="text">余额</div>
                 </div>
@@ -102,7 +102,7 @@
             </div>
         </ion-item>
     </ion-list>
-    <ion-list *ngIf="userInfo?.data?.ywy?.name!='您是业务员！'">
+    <ion-list *ngIf="userInfo&&userInfo?.data?.ywy?.name!='您是业务员！'">
         <ion-item tappable (click)="goMySalesmanPage()" padding-left mode="ios" detail-push>
             <img src="./assets/icon/images/user_center_11.png" alt="" item-left class="myitem-icon"> 我的业务员
         </ion-item>
@@ -111,23 +111,23 @@
         <ion-item tappable (click)="goAccountProcessPage()" padding-left mode="ios" detail-push>
             <img src="./assets/icon/images/user_center_1.png" alt="" item-left class="myitem-icon"> 来镜加工
         </ion-item>
-        <ion-item tappable [navPush]="ReceiptPage" padding-left mode="ios" detail-push>
+        <ion-item tappable navPush="ReceiptPage" padding-left mode="ios" detail-push>
             <img src="./assets/icon/images/user_center_4.png" alt="" item-left class="myitem-icon"> 发票管理
         </ion-item>
     </ion-list>
     <ion-list>
-        <ion-item tappable [navPush]="DredgeMoreCityPage" padding-left mode="ios" detail-push>
+        <ion-item tappable navPush="DredgeMoreCityPage" padding-left mode="ios" detail-push>
             <img src="./assets/icon/images/user_center_2.png" alt="" item-left class="myitem-icon"> 地区申请
         </ion-item>
     </ion-list>
     <ion-list>
-        <ion-item tappable [navPush]="AccountCollectGoodsPage" padding-left mode="ios" detail-push>
+        <ion-item tappable navPush="AccountCollectGoodsPage" padding-left mode="ios" detail-push>
             <img src="./assets/icon/images/user_center_8.png" alt="" item-left class="myitem-icon"> 收藏的商品
         </ion-item>
-        <ion-item tappable [navPush]="AccountCollectStorePage" padding-left mode="ios" detail-push>
+        <ion-item tappable navPush="AccountCollectStorePage" padding-left mode="ios" detail-push>
             <img src="./assets/icon/images/user_center_3.png" alt="" item-left class="myitem-icon"> 收藏的店铺
         </ion-item>
-        <ion-item tappable [navPush]="AccountHistoryPage" padding-left mode="ios" detail-push>
+        <ion-item tappable navPush="AccountHistoryPage" padding-left mode="ios" detail-push>
             <img src="./assets/icon/images/user_center_7.png" alt="" item-left class="myitem-icon"> 浏览记录
             <!--<ion-icon color="gray" name="ios-arrow-forward" item-right></ion-icon>-->
         </ion-item>
@@ -136,7 +136,7 @@
         <a ion-item tappable href="tel:400-080-5118" padding-left mode="ios" detail-push>
             <img src="./assets/icon/images/user_center_6.png" alt="" item-left class="myitem-icon"> 镜库客服
         </a>
-        <ion-item tappable [navPush]="AccountHelperPage" padding-left mode="ios" detail-push>
+        <ion-item tappable navPush="AccountHelperPage" padding-left mode="ios" detail-push>
             <img src="./assets/icon/images/user_cener_1_38.png" alt="" item-left class="myitem-icon"> 帮助中心
         </ion-item>
     </ion-list>

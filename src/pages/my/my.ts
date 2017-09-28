@@ -10,22 +10,6 @@ import { Native } from "../../providers/native";
   templateUrl: 'my.html'
 })
 export class MyPage {
-  SettingPage: any = 'SettingPage';
-  ReceiptPage: any = 'ReceiptPage';
-  AllOrdersPage: any = 'AllOrdersPage';
-  AccountAssetPage: any = 'AccountAssetPage';
-  AccountAreaApplicationPage: any = 'AccountAreaApplicationPage';
-  AccountCollectGoodsPage: any = 'AccountCollectGoodsPage';
-  AccountCollectStorePage: any = 'AccountCollectStorePage';
-  AccountHistoryPage: any = 'AccountHistoryPage';
-  AccountServicePage: any = 'AccountServicePage';
-  AccountHelperPage: any = 'AccountHelperPage';
-  AccountManagementPage: any = 'AccountManagementPage';
-  CouponPage: any = 'CouponPage';
-  AccountJifenPage: any = 'AccountJifenPage';
-  AccountBalancePage: any = 'AccountBalancePage';
-  DredgeMoreCityPage: any = 'DredgeMoreCityPage';
-
   usercount: any;
   userInfo: any;
   constructor(
