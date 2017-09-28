@@ -1340,7 +1340,7 @@ lesshat-selector {
 }
 
 .sbaiw-cont {
-    padding: 10px 0;
+    padding: 10px 16px;
 }
 
 .sbaiw-cont li {
@@ -1413,9 +1413,12 @@ lesshat-selector {
 }
 
 .strong-cont {
-    padding: 20px 10px 0;
+    padding: 20px 20px 0;
 }
-
+.strong-cont .item{
+    display: flex;
+    align-items: center;
+}
 .strong-cont .img {
     float: left;
     width: 50%;
@@ -1423,7 +1426,9 @@ lesshat-selector {
 
 .strong-cont .img img {
     display: block;
-    width: 90%;
+    width: 85%;
+    margin: 0 auto;
+
 }
 
 .strong-cont .txt {
@@ -1433,8 +1438,9 @@ lesshat-selector {
 
 .strong-cont .txt h4 {
     color: #333;
-    font-size: 16px;
+    font-size: 15px;
     padding: 15px 0 10px;
+    font-weight: 500;
 }
 
 .strong-cont .txt p {
@@ -1494,7 +1500,7 @@ lesshat-selector {
 
 .cgong-cont li .wrp {
     position: relative;
-    border-radius: 5px;
+    // border-radius: 5px;
     overflow: hidden;
     background: #e6e6e6;
 }
@@ -1695,7 +1701,7 @@ lesshat-selector {
 .ydjj-cont li .wrp {}
 
 .ydjj-cont li .wrp .img {
-    border-radius: 3px;
+    // border-radius: 3px;
     background: #e6e6e6;
     overflow: hidden;
 }

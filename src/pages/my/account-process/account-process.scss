@@ -2,16 +2,19 @@ page-account-process {
     .single-shop {
         margin: 10px;
         background: #fff;
-        >div:last-child {
-            border: 0;
-        }
         .item-divider {
+            .icon{
+                margin-right: 5px;
+            }
             .item-inner {
                 margin-left: 0;
             }
         }
         .item {
-            border-bottom: 1px solid #e0e0e0;
+            border-top: $border;
+            &:first-child {
+                border: 0;
+            }
             .my-content {
                 display: flex;
                 color: #4d4d4d;
@@ -46,7 +49,7 @@ page-account-process {
         .result {
             text-align: right;
             padding: 10px;
-            border-bottom: 1px solid #e0e0e0;
+            border-top: $border;
             .count {
                 color: #4d4d4d;
             }
@@ -60,6 +63,7 @@ page-account-process {
         .btn {
             text-align: right;
             padding: 10px;
+            border-top: $border;
             .button {
                 width: 90px;
                 /* &:first-child {

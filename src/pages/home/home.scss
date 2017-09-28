@@ -1,6 +1,6 @@
 page-home {
     [home-padding] {
-        padding: 10px;
+        // padding: 0 10px;
     }
     .home-content {
         background: #fff;
@@ -12,18 +12,22 @@ page-home {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-bottom: 16px;
+            background: #fff;
+            padding: 17px 10px;
             .txt {
                 border-left: 5px solid #333;
                 font-weight: 500;
                 font-size: 1.6rem;
                 padding-left: 10px;
-                padding-top: 3px;
+                line-height: 1;
             }
             .more {
                 color: #666;
                 font-size: 12px;
             }
+        }
+        .main {
+            padding: 0 10px 10px;;
         }
     }
     .mark-searchbar {
@@ -53,6 +57,7 @@ page-home {
     .btn-tool {
         background-color: #fff;
         margin-bottom: 10px;
+        padding: 15px 10px;
     }
     .btn-tool .top,
     .btn-tool .bottom {
@@ -116,24 +121,26 @@ page-home {
     /*——————————————————————————————————————————热门品牌——————————————————————————————————————————*/
     .hot-brand {
         .main {
-            display: flex;
-            flex-wrap: wrap;
-            border-top: 1px solid #e0e0e0;
-            border-left: 1px solid #e0e0e0;
-            >div {
-                width: 25%;
-                border-right: 1px solid #e0e0e0;
-                border-bottom: 1px solid #e0e0e0;
-                overflow: hidden;
+            .brand-list {
                 display: flex;
-                min-height: 80px;
-                align-items: center;
-                img {
-                    display: block;
-                    width: 100%;
-                }
-                &:last-child {
-                    width: 50%;
+                flex-wrap: wrap;
+                border-top: 1px solid #e0e0e0;
+                border-left: 1px solid #e0e0e0;
+                >div {
+                    width: 25%;
+                    border-right: 1px solid #e0e0e0;
+                    border-bottom: 1px solid #e0e0e0;
+                    overflow: hidden;
+                    display: flex;
+                    min-height: 80px;
+                    align-items: center;
+                    img {
+                        display: block;
+                        width: 100%;
+                    }
+                    &:last-child {
+                        width: 50%;
+                    }
                 }
             }
         }
@@ -141,6 +148,9 @@ page-home {
     /*——————————————————————————————————————————精选专题——————————————————————————————————————————*/
     .handpick {
         .show {
+            &:first-child{
+                margin-top: 0;
+            }
             margin: 1rem auto;
             min-height: 150px;
             img {
@@ -177,8 +187,7 @@ page-home {
                         }
                         .price {
                             color: map_get($colors, danger);
-                            font-size: 1.3rem;
-                            // margin-top: 10px;
+                            font-size: 1.3rem; // margin-top: 10px;
                         }
                     }
                     .watch-more {
@@ -233,10 +242,14 @@ page-home {
     }
     /*——————————————————————————————————————————热门单品——————————————————————————————————————————*/
     .hot-other {
+        background: initial;
         .title {
-            padding: 10px 10px 0;
-            margin-bottom: 10px;
+            background: #fff;
+            padding: 17px 10px;
+            margin-bottom: 0;
         }
-        .main {}
+        .main {
+            padding: 0;
+        }
     }
 }

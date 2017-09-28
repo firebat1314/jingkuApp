@@ -21,7 +21,7 @@ export class GetImageDirective {
 
   @HostListener('change', ['$event']) onchange(e) {
     if (!e) { return; }
-    console.log(e)
+    // console.log(e)
     var reader = new FileReader();
     //获取文件
     var file = e['target']['files'][0];
@@ -36,7 +36,7 @@ export class GetImageDirective {
     //读取完成
     reader.onload = (e) => {
       //获取图片dom
-      console.log('reader',e)
+      // console.log('reader',e)
       var img_ava = e.target['result'];
       this.fileChecked.emit(img_ava);
     };

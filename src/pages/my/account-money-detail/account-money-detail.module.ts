@@ -6,7 +6,8 @@ import { AccountMoneyDetailPage } from "./account-money-detail";
   declarations: [AccountMoneyDetailPage],
   imports: [
     IonicPageModule.forChild(AccountMoneyDetailPage)
-  ]
+  ],
+  exports: [AccountMoneyDetailPage]
 })
 
 export class AccountMoneyDetailPageModule { }

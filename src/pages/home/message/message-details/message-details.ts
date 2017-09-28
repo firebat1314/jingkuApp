@@ -21,14 +21,12 @@ export class MessageDetailsPage {
     public navCtrl: NavController,
     public navParams: NavParams,
     private httpService: HttpService
-
-  ) {
-  }
+  ) { }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad MessageDetailsPage');
   }
-  ngOnInit(){
+  ngOnInit() {
     this.getData();
   }
   getData() {

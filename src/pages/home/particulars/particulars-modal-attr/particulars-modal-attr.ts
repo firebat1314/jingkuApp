@@ -114,7 +114,7 @@ export class ParticularsModalAttrPage {
 		} else {
 			this.attrNumber[index] = item.goods_attr_number;
 		}
-		console.log(this.attrId, this.attrNumber)
+		// console.log(this.attrId, this.attrNumber)
 		this.httpService.changeGoodsNumber({
 			goods_id: this.goodsId,
 			goods: {

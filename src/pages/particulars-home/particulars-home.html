@@ -41,24 +41,24 @@
         </div>
     </div>
     <div>
-        <ion-segment class="shop-tabs" mode="md" color="" [(ngModel)]="classShop" (ionChange)="classShopChange()">
+        <ion-segment class="shop-tabs" mode="md" [(ngModel)]="classShop" (ionChange)="classShopChange()">
             <ion-segment-button value="shopHome">
-                <div class="shop-tabs-item-img">
+                <div class="num shop-tabs-item-img">
                     <img src="./assets/icon/store-home/shop.png" *ngIf="classShop!='shopHome'" alt="">
                     <img src="./assets/icon/store-home/shop1.png" *ngIf="classShop=='shopHome'" alt="">
                 </div>
                 <span>店铺首页</span>
             </ion-segment-button>
             <ion-segment-button value="allGoods">
-                <div><span>{{alldata?.count||'0'}}</span></div>
+                <div class="num"><span>{{alldata?.count||'0'}}</span></div>
                 <span>全部商品</span>
             </ion-segment-button>
             <ion-segment-button value="cuXiao">
-                <div><span>{{shopdata?.data?.promote_goods||0}}</span></div>
+                <div class="num"><span>{{shopdata?.data?.promote_goods||0}}</span></div>
                 <span>促销</span>
             </ion-segment-button>
             <ion-segment-button value="goNew">
-                <div><span>{{newdata?.count||'0'}}</span></div>
+                <div class="num"><span>{{newdata?.count||'0'}}</span></div>
                 <span>上新</span>
             </ion-segment-button>
         </ion-segment>
@@ -90,7 +90,7 @@
                 <p>新品推荐</p>
             </div>
 
-            <div class="new-arrival-goods-box" *ngIf="!listStyleflag||data?.new_list?.length">
+            <div class="new-arrival-goods-box" *ngIf="listStyleflag||data?.new_list?.length">
                 <div class="new-arrival-goods" *ngFor="let item of data?.new_list">
                     <img img-lazy-load="{{item.goods_img}}" tappable (click)="goParticularsPage(item.id)" alt="">
                     <div class="price">

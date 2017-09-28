@@ -15,6 +15,7 @@ import { Native } from "../../providers/native";
   templateUrl: 'repair-return.html',
 })
 export class RepairReturnPage {
+  infiniteScroll: any;
   repair: any;
   order: any;
 
@@ -34,66 +35,54 @@ export class RepairReturnPage {
   ) { }
   ionViewDidLoad() {
     console.log('ionViewDidLoad RepairReturnPage');
-    this.getOrderRepair();
-    this.getRepairList();
+    this.checkList();
     this.events.subscribe('repair-return:update', () => {
-      this.getRepairList();
-      this.getOrderRepair();
+      this.checkList();
     })
   }
   ngOnDestroy() {
     this.events.unsubscribe('repair-return:update');
   }
-  getOrderRepair() {
-    return this.httpService.orderRepair(this.options).then((res) => {
-      if (res.status == 1) {
-        this.order = res;
-      }
-    })
-  }
-
-  getRepairList() {
-    return this.httpService.repairList(this.options).then((res) => {
-      if (res.status == 1) {
-        this.repair = res;
-      }
-    })
+  checkList(){
+    if(this.infiniteScroll) this.infiniteScroll.enable(true);
+    if(this.applyTabs == 'apply'){
+      return this.httpService.orderRepair(this.options).then((res) => {
+        if (res.status == 1) {
+          this.order = res;
+        }
+      })
+    }else if(this.applyTabs == 'applyLog'){
+      return this.httpService.repairList(this.options).then((res) => {
+        if (res.status == 1) {
+          this.repair = res;
+        }
+      })
+    }
   }
   searchOrder(e) {
     if (e.keyCode == 13) {
-      this.getOrderRepair();
-      this.getRepairList();
+      this.checkList();
     }
   }
   doRefresh(refresher) {
-    var fun = () => {
+    this.checkList().then((res) => {
       setTimeout(() => {
         refresher.complete();
       }, 500);
-    }
-    if (this.applyTabs == 'apply') {
-      this.getOrderRepair().then((res) => {
-        fun()
-      });
-    }
-    if (this.applyTabs == 'applyLog') {
-      this.getRepairList().then((res) => {
-        fun()
-      });
-    }
-
+    });
   }
   doInfinite(infiniteScroll) {
+    this.infiniteScroll = infiniteScroll;
     if (this.applyTabs == 'apply') {
       if (this.order.page < this.order.pages) {
         this.httpService.orderRepair({ page: ++this.order.page, size: 10 }).then((res) => {
           if (res.status == 1) {
             Array.prototype.push.apply(this.order.list, res.list);
-            infiniteScroll.complete();
+            this.infiniteScroll.complete();
           }
         })
       } else {
-        infiniteScroll.enable(false);
+        this.infiniteScroll.enable(false);
       }
     }
     if (this.applyTabs == 'applyLog') {
@@ -101,11 +90,11 @@ export class RepairReturnPage {
         this.httpService.repairList({ page: ++this.repair.page, size: 10 }).then((res) => {
           if (res.status == 1) {
             Array.prototype.push.apply(this.repair.list, res.list);
-            infiniteScroll.complete();
+            this.infiniteScroll.complete();
           }
         })
       } else {
-        infiniteScroll.complete();
+        this.infiniteScroll.enable(false);
       }
     }
   }
@@ -147,7 +136,7 @@ export class RepairReturnPage {
       this.httpService.cancelReturn({ id: id }).then((res) => {
         if (res.status == 1) {
           this.native.showToast('取消成功');
-          this.getRepairList();
+          this.checkList();
         }
       })
     })

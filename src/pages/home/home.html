@@ -27,7 +27,7 @@
         <ion-refresher-content refreshingSpinner="1" pullingIcon="0"></ion-refresher-content>
     </ion-refresher>
     <ng-container *ngIf="data">
-    <!--———————————————————————————————— 轮播图 ————————————————————————————————-->
+        <!--———————————————————————————————— 轮播图 ————————————————————————————————-->
         <div class="banner-wrapper">
             <ion-slides #bannerSlide autoplay="4000" pager (ionSlideAutoplayStop)="bannerSlide.startAutoplay()">
                 <!-- *ngIf="bannerImgs" loop-->
@@ -124,12 +124,14 @@
                 <span class="more" tappable (click)="goClassPage('brand')">更多&gt;</span>
             </div>
             <div class="main" *ngIf="getBrands?.length">
-                <div *ngFor="let item of getBrands">
-                    <img img-lazy-load="{{item.ad_img}}" tappable [ads-click]="item?.link_type">
-                    <!-- <img-loader [src]="item.ad_img" useImg tappable [ads-click]="item?.link_type"></img-loader> -->
-                </div>
-                <div>
-                    <img img-lazy-load="./assets/icon/homepage_53.jpg" alt="" tappable (click)="goClassPage('brand')">
+                <div class="brand-list">
+                    <div *ngFor="let item of getBrands">
+                        <img img-lazy-load="{{item.ad_img}}" tappable [ads-click]="item?.link_type">
+                        <!-- <img-loader [src]="item.ad_img" useImg tappable [ads-click]="item?.link_type"></img-loader> -->
+                    </div>
+                    <div>
+                        <img img-lazy-load="./assets/icon/homepage_53.jpg" alt="" tappable (click)="goClassPage('brand')">
+                    </div>
                 </div>
             </div>
         </div>
@@ -138,85 +140,87 @@
             <div class="title">
                 <span class="txt">精选专题</span>
             </div>
-            <div class="show">
-                <img img-lazy-load="{{jingxuan_img1?.ad_img}}" defaultSrc="./assets/images/images/640-320.jpg" tappable [ads-click]="jingxuan_img1?.link_type">
-            </div>
-            <div class="pick">
-                <ion-slides class="slide-title" slidesPerView="3">
-                    <ion-slide *ngFor="let slide of getCategoryRecommendGoodsHot; let i = index;">
-                        <div class="slide-title-unit" tappable (click)="goParticularsPage(slide.id)">
-                            <img border-f0 img-lazy-load="{{slide?.goods_img}}">
-                            <div class="info">
-                                <!-- <div class="name">{{slide?.name}}</div> -->
-                                <div class="price">{{slide?.shop_price}}</div>
-                            </div>
-                        </div>
-                    </ion-slide>
-                    <!--<ion-slide>
-                    <div class="slide-title-unit">
-                        <div class="watch-more">
-                            <p>查&nbsp;看</p>
-                            <p>更&nbsp;多</p>
-                        </div>
-                    </div>
-                </ion-slide>-->
-                </ion-slides>
-            </div>
-            <div class="show">
-                <img img-lazy-load="{{jingxuan_img2?.ad_img}}" defaultSrc="./assets/images/images/640-320.jpg" tappable [ads-click]="jingxuan_img2?.link_type">
-            </div>
-            <div class="pick">
-                <ion-slides class="slide-title" slidesPerView="3">
-                    <ion-slide *ngFor="let slide of getCategoryRecommendGoods; let i = index;">
-                        <div tappable (click)="goParticularsPage(slide.id)">
-                            <div class="slide-title-unit">
+            <div class="main">
+                <div class="show">
+                    <img img-lazy-load="{{jingxuan_img1?.ad_img}}" defaultSrc="./assets/images/images/640-320.jpg" tappable [ads-click]="jingxuan_img1?.link_type">
+                </div>
+                <div class="pick">
+                    <ion-slides class="slide-title" slidesPerView="3">
+                        <ion-slide *ngFor="let slide of getCategoryRecommendGoodsHot; let i = index;">
+                            <div class="slide-title-unit" tappable (click)="goParticularsPage(slide.id)">
                                 <img border-f0 img-lazy-load="{{slide?.goods_img}}">
                                 <div class="info">
                                     <!-- <div class="name">{{slide?.name}}</div> -->
                                     <div class="price">{{slide?.shop_price}}</div>
                                 </div>
                             </div>
-                        </div>
-                    </ion-slide>
-                    <!--<ion-slide>
-                    <div>
-                        <div class="slide-title-unit">
-                            <div class="watch-more">
-                                <p>查&nbsp;看</p>
-                                <p>更&nbsp;多</p>
-                            </div>
-                        </div>
-                    </div>
-                </ion-slide>-->
-                </ion-slides>
-            </div>
-            <div class="show">
-                <img img-lazy-load="{{jingxuan_img3?.ad_img}}" defaultSrc="./assets/images/images/640-320.jpg" tappable [ads-click]="jingxuan_img3?.link_type">
-            </div>
-            <div class="pick">
-                <ion-slides class="slide-title" slidesPerView="3">
-                    <ion-slide *ngFor="let slide of getCategoryRecommendGoodsBest; let i = index;">
-                        <div tappable (click)="goParticularsPage(slide.id)">
-                            <div class="slide-title-unit">
-                                <img border-f0 img-lazy-load="{{slide?.goods_img}}">
-                                <div class="info">
-                                    <!-- <div class="name">{{slide?.name}}</div> -->
-                                    <div class="price">{{slide?.shop_price}}</div>
+                        </ion-slide>
+                        <!--<ion-slide>
+                                <div class="slide-title-unit">
+                                    <div class="watch-more">
+                                        <p>查&nbsp;看</p>
+                                        <p>更&nbsp;多</p>
+                                    </div>
+                                </div>
+                            </ion-slide>-->
+                    </ion-slides>
+                </div>
+                <div class="show">
+                    <img img-lazy-load="{{jingxuan_img2?.ad_img}}" defaultSrc="./assets/images/images/640-320.jpg" tappable [ads-click]="jingxuan_img2?.link_type">
+                </div>
+                <div class="pick">
+                    <ion-slides class="slide-title" slidesPerView="3">
+                        <ion-slide *ngFor="let slide of getCategoryRecommendGoods; let i = index;">
+                            <div tappable (click)="goParticularsPage(slide.id)">
+                                <div class="slide-title-unit">
+                                    <img border-f0 img-lazy-load="{{slide?.goods_img}}">
+                                    <div class="info">
+                                        <!-- <div class="name">{{slide?.name}}</div> -->
+                                        <div class="price">{{slide?.shop_price}}</div>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                    </ion-slide>
-                    <!--<ion-slide>
-                    <div>
-                        <div class="slide-title-unit">
-                            <div class="watch-more">
-                                <p>查&nbsp;看</p>
-                                <p>更&nbsp;多</p>
+                        </ion-slide>
+                        <!--<ion-slide>
+                                <div>
+                                    <div class="slide-title-unit">
+                                        <div class="watch-more">
+                                            <p>查&nbsp;看</p>
+                                            <p>更&nbsp;多</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </ion-slide>-->
+                    </ion-slides>
+                </div>
+                <div class="show">
+                    <img img-lazy-load="{{jingxuan_img3?.ad_img}}" defaultSrc="./assets/images/images/640-320.jpg" tappable [ads-click]="jingxuan_img3?.link_type">
+                </div>
+                <div class="pick">
+                    <ion-slides class="slide-title" slidesPerView="3">
+                        <ion-slide *ngFor="let slide of getCategoryRecommendGoodsBest; let i = index;">
+                            <div tappable (click)="goParticularsPage(slide.id)">
+                                <div class="slide-title-unit">
+                                    <img border-f0 img-lazy-load="{{slide?.goods_img}}">
+                                    <div class="info">
+                                        <!-- <div class="name">{{slide?.name}}</div> -->
+                                        <div class="price">{{slide?.shop_price}}</div>
+                                    </div>
+                                </div>
                             </div>
-                        </div>
-                    </div>
-                </ion-slide>-->
-                </ion-slides>
+                        </ion-slide>
+                        <!--<ion-slide>
+                                <div>
+                                    <div class="slide-title-unit">
+                                        <div class="watch-more">
+                                            <p>查&nbsp;看</p>
+                                            <p>更&nbsp;多</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </ion-slide>-->
+                    </ion-slides>
+                </div>
             </div>
             <!--<div class="main" *ngIf="getCategoryRecommendGoodsHot">
             <img-tabs2 (slideClick)="onSlideClick($event)" [slides]="getCategoryRecommendGoodsHot" [pageNumber]="3"></img-tabs2>

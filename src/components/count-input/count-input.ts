@@ -29,7 +29,7 @@ export class CountInputComponent {
   @Input() set value(value: number) {
     this._value = Number(value) || this.minValue;
   };
-  get value() {
+  get value(): number {
     return Number(this._value);
   }
 
@@ -74,13 +74,16 @@ export class CountInputComponent {
     }
     this.valueChange.emit(this.value -= this.rank);
   }
-  inputEvent(value) {
+
+  inputEvent() {
     if (this.maxValue && (this.value >= this.maxValue)) {
       this.native.showToast('最多选择' + this.maxValue + '件');
       this.element.nativeElement.getElementsByTagName('input')[0].value = this.maxValue;
       this.value = this.maxValue;
+    } else if (!this.value) {
+      this.element.nativeElement.getElementsByTagName('input')[0].value = 0;
+      return
     }
     this.valueChange.emit(this.value);
   }
-
 }

@@ -14,5 +14,36 @@
 
 
 <ion-content>
-  
+  <div margin class="add_btn" tappble (click)="addOrder()">
+    <ion-icon name="ios-add-circle-outline"></ion-icon>
+    添加工单
+  </div>
+  <div margin class="main_cfd" *ngFor="let item of list;let i = index;">
+    <header>
+      <div class="head_title">
+        加工处方单{{i+1}}
+        <div class="icon-tool">
+          <ion-icon [name]="item.showBody?'ios-arrow-up':'ios-arrow-down'" tappable (click)="item.showBody = !item.showBody"></ion-icon>
+          <ion-icon tappable (click)="removeOrder(i)" name="ios-trash-outline"></ion-icon>
+        </div>
+      </div>
+      <div class="head_msg">
+        加工费：15元每副（全自动进口磨边机切割）
+      </div>
+    </header>
+    <section *ngIf="item.showBody">
+      <button ion-item detail-none tappable (click)="checkOrder()">
+          <span class="dian1" item-start></span>
+          选择镜架
+        </button>
+      <button ion-item no-lines detail-none tappable (click)="checkOrder()">
+          <span class="dian2" item-start></span>
+          选择镜架
+        </button>
+    </section>
+  </div>
+  <div margin class="submit">
+    <button ion-button full large color="jingku1">提交订单</button>
+  </div>
+
 </ion-content>

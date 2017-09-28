@@ -11,7 +11,7 @@ import { ScrollToTopDirectiveModule } from '../../directives/scroll-to-top/scrol
   imports: [
     IonicPageModule.forChild(RepairReturnPage),
     ImgLazyLoadDirectiveModule,
-    ScrollToTopDirectiveModule
+    ScrollToTopDirectiveModule,
   ],
   exports: [
     RepairReturnPage
