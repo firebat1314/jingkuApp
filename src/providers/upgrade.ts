@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import 'rxjs/add/operator/map';
 import { Transfer, TransferObject } from '@ionic-native/transfer';
 import { File } from '@ionic-native/file';
-import { AlertController } from 'ionic-angular';
+import { AlertController, Platform } from 'ionic-angular';
 import { Native } from './native';
 import { IP, version } from "./constants";
 import { HttpService } from './http-service';
@@ -23,7 +23,8 @@ export class UpgradeProvider {
     private alertCtrl: AlertController,
     private native: Native,
     private httpService: HttpService,
-    private iab: InAppBrowser
+    private iab: InAppBrowser,
+    private platform: Platform
   ) {
     console.log('Hello UpgradeProvider Provider');
   }
@@ -49,7 +50,9 @@ export class UpgradeProvider {
                   text: '确定',
                   handler: () => {
                     this.iab.create(res.ios.url, '_system');
-                    // this.platform.exitApp();
+                    setTimeout(() => {
+                      this.platform.exitApp();
+                    }, 400);
                   }
                 }
               ]
@@ -65,10 +68,6 @@ export class UpgradeProvider {
                 text: '确定',
                 handler: () => {
                   this.iab.create(res.ios.url, '_system');
-                  // this.platform.exitApp();
-                  setTimeout(function () {
-                    this.platform.exitApp();
-                  }, 100);
                 }
               }
               ]
@@ -90,7 +89,6 @@ export class UpgradeProvider {
                   text: '确定',
                   handler: () => {
                     this.downloadApp(res.android.url);
-                    // this.platform.exitApp();
                   }
                 }
               ]
@@ -106,7 +104,6 @@ export class UpgradeProvider {
                 text: '确定',
                 handler: () => {
                   this.downloadApp(res.android.url);
-
                 }
               }
               ]
