@@ -1,6 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, ElementRef } from '@angular/core';
 import { NavController, NavParams, IonicPage } from 'ionic-angular';
 declare var Swiper: any;
+declare var WOW: any;
 
 /**
  * Generated class for the SjPage page.
@@ -16,20 +17,27 @@ declare var Swiper: any;
 })
 export class SjPage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  constructor(public navCtrl: NavController, public navParams: NavParams,
+    public ele: ElementRef,
+  ) {
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad SjPage');
   }
 
-  ngAfterViewInit(){
+  ngAfterViewInit() {
+
+    var wow = new WOW({
+      element:this.ele.nativeElement.querySelector('.content'),
+      scrollElement: this.ele.nativeElement.querySelector('.scroll-content')
+    }).init();
     new Swiper(".sheji-swiper", {
       // loop: true,
       slidesPerView: "auto",
       centeredSlides: true,
       watchSlidesProgress: true,
-      loop:true,
+      loop: true,
       onProgress: (swiper, progress) => {
         var b, c, d, scale, es, nub;
         for (b = 0; b < swiper.slides.length; b++) {

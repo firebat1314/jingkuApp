@@ -14,7 +14,6 @@ page-service-order-details {
     @mixin complete {
         position: absolute;
         top: -29px;
-        left: 50%;
         color: #fff;
         background: $color;
         border-radius: 10px;
@@ -68,7 +67,7 @@ page-service-order-details {
             }
             .complete {
                 @include complete;
-                margin-left: -22px;
+                margin-left: -10px;
             }
         }
         .status-line {
@@ -84,13 +83,12 @@ page-service-order-details {
     }
     .fore2 {
         padding: 0 10px;
-        
         .title {
             line-height: 3;
             border-bottom: $border;
         }
-        .main{
-            padding: 10px;   
+        .main {
+            padding: 10px;
         }
         .imgs {
             overflow: hidden;

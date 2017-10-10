@@ -418,7 +418,7 @@ export class HttpService {
     return this.http.post(IP + '/User/repair_apply', data)
   }
   submitRepair(data?: Object) {//3）提交返修退换货
-    return this.http.post(IP + '/User/submit_repair', data)
+    return this.http.post(IP + '/User/submit_repair', data, true)
   }
   fuwudan(data?: Object) {//4）填写快递单
     return this.http.post(IP + '/User/fuwudan', data)

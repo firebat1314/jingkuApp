@@ -79,14 +79,14 @@
                 支付密码
             </header>
             <div class="input_ps" *ngIf="yE">
-                <!-- <input type="password"> -->
-
                 <pay-password (code)="payPassword = $event"></pay-password>
+
+                <a navPush="ChangePayPasswordPage" style="float: right;margin-right: 17px;">忘记密码？</a>
             </div>
         </section>
     </ng-container>
 </ion-content>
 
 <ion-footer>
-    <button color="jingku1" no-margin ion-button large full class="modal-button" (click)="toPay()"><span *ngIf="paymentType&&yE">组合支付</span>¥{{data?.amout || '0.00'}}</button>
+    <button color="jingku1" no-margin ion-button large full class="modal-button" (click)="toPay()"><span *ngIf="paymentType&&yE">组合支付 </span>¥{{data?.amout || '0.00'}}</button>
 </ion-footer>

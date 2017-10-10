@@ -8,7 +8,6 @@ import { NavController, NavParams, IonicPage } from 'ionic-angular';
  * on Ionic pages and navigation.
  */
 
-declare var Swiper: any;
 declare var WOW: any;
 declare var TouchSlide: any;
 
@@ -18,6 +17,7 @@ declare var TouchSlide: any;
   templateUrl: 'wellcome-newm.html',
 })
 export class WellcomeNewmPage {
+  wow: any;
 
   constructor(
     public navCtrl: NavController,
@@ -30,21 +30,14 @@ export class WellcomeNewmPage {
     console.log('ionViewDidLoad WellcomeNewmPage');
   }
   ngAfterViewInit() {
-    // setTimeout(function () {
-    // var wow = new WOW({
-    //     boxClass: 'wow',
-    //     animateClass: 'animated',
-    //     offset: 0,
-    //     mobile: true,
-    //     live: true
-    //   });
-    //   wow.init();
-    // }, 2000);
-    setTimeout(function() {
-      TouchSlide({
-        slideCell: "#hez-cont"
-      });
-    }, 1500);
-    
+    this.wow = new WOW({
+      element:this.ele.nativeElement.querySelector('.content'),
+      scrollElement: this.ele.nativeElement.querySelector('.scroll-content')
+    })
+    this.wow.init();
+    TouchSlide({
+      slideCell: "#hez-cont"
+    });
   }
+
 }
