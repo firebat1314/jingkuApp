@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ElementRef } from '@angular/core';
 import { NavController, NavParams, IonicPage, ViewController } from 'ionic-angular';
 import { welpage_selected } from '../../../providers/constants';
 
@@ -9,6 +9,7 @@ import { welpage_selected } from '../../../providers/constants';
  * See http://ionicframework.com/docs/components/#navigation for more info
  * on Ionic pages and navigation.
  */
+declare var WOW: any;
 
 @IonicPage()
 @Component({
@@ -20,14 +21,13 @@ export class WelMenuPage {
   constructor(
     public navCtrl: NavController,
     public navParams: NavParams,
-		public viewCtrl: ViewController,
+    public viewCtrl: ViewController,
   ) {
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad WelMenuPage');
   }
-  
 
   dismiss(page){
     this.viewCtrl.dismiss((nav)=>{

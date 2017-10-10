@@ -1,6 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, ElementRef } from '@angular/core';
 import { NavController, NavParams, IonicPage } from 'ionic-angular';
 
+declare var WOW: any;
 /**
  * Generated class for the CrmPage page.
  *
@@ -15,22 +16,19 @@ import { NavController, NavParams, IonicPage } from 'ionic-angular';
 })
 export class CrmPage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  constructor(public navCtrl: NavController, public navParams: NavParams,
+    public ele: ElementRef,
+  ) {
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad CrmPage');
   }
 
-  ngAfterViewInit(){
-    // var wow = new WOW({
-    //   boxClass: 'wow',
-    //   animateClass: 'animated',
-    //   offset: 0,
-    //   mobile: true,
-    //   live: true
-    // });
-    // wow.init();
-
+  ngAfterViewInit() {
+    var wow = new WOW({
+      element:this.ele.nativeElement.querySelector('.content'),
+      scrollElement: this.ele.nativeElement.querySelector('.scroll-content')
+    }).init();
   }
 }

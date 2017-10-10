@@ -1,7 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, ElementRef } from '@angular/core';
 import { NavController, NavParams, IonicPage } from 'ionic-angular';
-
-declare let Swiper:any;
+declare var WOW: any;
+declare let Swiper: any;
 /**
  * Generated class for the JzPage page.
  *
@@ -16,20 +16,26 @@ declare let Swiper:any;
 })
 export class JzPage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  constructor(public navCtrl: NavController, public navParams: NavParams,    public ele: ElementRef,
+  ) {
   }
-  
+
   ionViewDidLoad() {
     console.log('ionViewDidLoad JzPage');
   }
-  ngAfterViewInit(){
+  ngAfterViewInit() {
+
+    var wow = new WOW({
+      element:this.ele.nativeElement.querySelector('.content'),
+      scrollElement: this.ele.nativeElement.querySelector('.scroll-content')
+    }).init();
     var swiper = new Swiper('.cgong2-swiper', {
       pagination: '.swiper-pagination-cog',
       slidesPerView: 'auto',
       centeredSlides: true,
       paginationClickable: true,
       spaceBetween: 20,
-      loop:true
-  });
+      loop: true
+    });
   }
 }

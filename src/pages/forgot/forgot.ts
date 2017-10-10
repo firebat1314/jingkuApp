@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams, IonicPage } from 'ionic-angular';
 import { HttpService } from "../../providers/http-service";
+import { Native } from '../../providers/native';
 
 
 /*
@@ -20,7 +21,8 @@ export class ForgotPage {
   constructor(
     public navCtrl: NavController,
     public navParams: NavParams,
-    private httpService: HttpService
+    private httpService: HttpService,
+    private native: Native
   ) {
     this.secondPage = 'ForgotTwoPage';
   }
@@ -34,7 +36,11 @@ export class ForgotPage {
       step: 'one'
     }).then((res) => {
       if (res.status == 1) {
-        this.navCtrl.push('ForgotTwoPage', { phoneNumber: res.phoneNumber });
+        if(res.phoneNumber){
+          this.navCtrl.push('ForgotTwoPage', { phoneNumber: res.phoneNumber });
+        }else{
+          this.native.showToast('未绑定电话号码');
+        }
       }
     })
   }

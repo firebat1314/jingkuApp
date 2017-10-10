@@ -68,7 +68,7 @@
                     <div class="number">{{usercount?.data?.return||0}}</div>
                     <div class="text">返修退换</div>
                 </div>
-                <div tappable [navPush]="AllOrdersPage" [navParams]="{index:0}">
+                <div tappable navPush="AllOrdersPage" [navParams]="{index:0}">
                     <div class="number">
                         <img src="./assets/icon/images/user_center_5.png" class="allorder-icon">
                     </div>
@@ -140,5 +140,5 @@
             <img src="./assets/icon/images/user_cener_1_38.png" alt="" item-left class="myitem-icon"> 帮助中心
         </ion-item>
     </ion-list>
-    <button large ion-button block pull color="light" (click)="signOut()" margin-vertical >退出登录</button>
+    <button large ion-button block pull color="light" (click)="signOut()" margin-vertical>退出登录</button>
 </ion-content>
