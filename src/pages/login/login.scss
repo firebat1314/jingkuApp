@@ -1,94 +1,111 @@
 page-login {
     .content {
-        background: url(../assets/images/bg_login.jpg) center top no-repeat;
-        background-size: cover;
+        background: #fff;
         .scroll-content {
             background: none;
         }
-    }
-    .form-wrap {
-        max-width: 370px;
-        width: 57%;
-        min-width: 213px;
-        margin: 0 auto;
-        padding-top: 30%;
-    }
-    .logo {
-        text-align: center;
-        width: 100%;
-        margin-bottom: 3rem;
-        padding: 0 14px; // background: url(../assets/icon/jingku_logo_03.png) no-repeat center top;
-        // background-size: 83%;
-        img {
-            max-width: 100%;
+        .form-wrap {
+            max-width: 402px;
+            width: 90%;
+            min-width: 213px;
+            margin: 0 auto;
         }
-    }
-    .item {
-        color: #fff;
-        background: none;
-        padding-left: 0;
-        font-size: 1.6rem;
-        .item-input {
-            padding: 0;
-        }
-        .item-inner {
-            padding-left: 33px;
-            background: url(../assets/icon/images/icon_03.png) 0px center no-repeat;
-            background-size: 25px;
-        }
-        &:nth-child(2) .item-inner {
-            background-image: url(../assets/icon/images/icon_07.png);
-            .input-cover {
-                height: 0;
-                width: 0;
-            }
-        }
-        .input {
-            .text-input-clear-icon {
-                right: 0;
-            }
-            .text-input{
-                &::-webkit-input-placeholder {
-                    /* WebKit browsers */
-                    font-size: 14px;
-                    color: #d4d4d4;
-                }
-                &:-moz-placeholder {
-                    /* Mozilla Firefox 4 to 18 */
-                    color: #d4d4d4;
-                    font-size: 14px;
-                }
-                &::-moz-placeholder {
-                    /* Mozilla Firefox 19+ */
-                    font-size: 14px;
-                    color: #d4d4d4;
-                }
-                &:-ms-input-placeholder {
-                    /* Internet Explorer 10+ */
-                    font-size: 14px;
-                    color: #d4d4d4;
-                }
-            }
-        }
-        .s_h {
+        .logo {
+            text-align: center;
+            width: 100%;
+            margin: 6rem 0 4rem;
+            padding: 0 70px; // background: url(../assets/icon/jingku_logo_03.png) no-repeat center top;
+            // background-size: 83%;
             img {
-                width: 26px;
-                display: block;
+                max-width: 100%;
             }
         }
-    }
-    .forgot-password {
-        overflow: hidden;
-        margin-bottom: 2rem;
-        .button {
-            float: right;
+        .item {
+            padding-left: 0;
+            font-size: 1.6rem;
+            color: #333333;
+            min-height: 3.4rem;
+            margin-top: 13px;
+            .item-input {
+                padding: 0;
+            }
+            .itme-inner {
+                border-color: #e6e6e6;
+                ;
+            }
+            &:nth-child(2) .item-inner {
+                .input-cover {
+                    height: 0;
+                    width: 0;
+                }
+            }
+            .input {
+                .text-input-clear-icon {
+                    right: 0;
+                }
+                .text-input {
+                    &::-webkit-input-placeholder {
+                        /* WebKit browsers */
+                        font-size: 14px;
+                        color: #999999;
+                    }
+                    &:-moz-placeholder {
+                        /* Mozilla Firefox 4 to 18 */
+                        color: #999999;
+                        font-size: 14px;
+                    }
+                    &::-moz-placeholder {
+                        /* Mozilla Firefox 19+ */
+                        font-size: 14px;
+                        color: #999999;
+                    }
+                    &:-ms-input-placeholder {
+                        /* Internet Explorer 10+ */
+                        font-size: 14px;
+                        color: #999999;
+                    }
+                }
+            }
+            .s_h {
+                margin-right: 0;
+                img {
+                    width: 26px;
+                    display: block;
+                }
+            }
         }
-    }
-    .btn-wrap {
-        padding: 0 15px;
-        .button {
-            // height: 2.6em;
-            margin: 1.4rem 0.2rem;
+        .forgot-password {
+            overflow: hidden;
+            margin-bottom: 2rem;
+            .button {
+                float: right;
+                color: #999999;
+                font-size: 1rem;
+            }
+        }
+        .and_line {
+            height: 1px;
+            background: #e6e6e6;
+            margin: 37px 0 23px;
+            position: relative;
+            .txt {
+                background: #fff;
+                color: #999999;
+                width: 54px;
+                text-align: center;
+                position: absolute;
+                top: -8px;
+                right: 0;
+                bottom: 0;
+                left: 0; 
+                margin: 0 auto;
+            }
+        }
+        .btn-wrap {
+            .button {
+                // height: 2.6em;
+                // margin: 1.4rem 0.2rem;
+            }
         }
     }
 }

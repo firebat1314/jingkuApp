@@ -54,7 +54,7 @@ export class MyApp {
           this.rootPage = 'TabsPage';//TabsPage//WellcomeNewmPage
           // this.nav.setRoot('TabsPage', {}, { animate: true, direction: 'forward' });
         } else {
-          this.rootPage = 'WellcomeNewmPage';
+          this.rootPage = 'LoginPage';
           // this.nav.setRoot('LoginPage', {}, { animate: true, direction: 'forward' });
         }
       });

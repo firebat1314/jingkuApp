@@ -9,13 +9,18 @@ page-all-orders {
         @include reminderBlankPage();
     }
     .single-shop {
-        padding: 0 10px;
         margin-bottom: 10px;
         background: #fff;
         >div:last-child {
             border: 0;
         }
         .item-divider {
+            >.icon:first-child{
+                font-size: 2rem;
+                display: flex;
+                align-items: center;
+                margin-right: 6px;
+            }
             .item-inner {
                 margin-left: 0;
             }
@@ -55,7 +60,7 @@ page-all-orders {
         }
         .result {
             text-align: right;
-            padding: 10px 0;
+            padding: 10px;
             border-bottom: 1px solid #e0e0e0;
             .count {
                 color: #4d4d4d;
@@ -69,7 +74,7 @@ page-all-orders {
         }
         .btn {
             text-align: right;
-            padding: 5px 0;
+            padding: 5px;
             .button {
                 width: 90px;
                 /* &:first-child {
