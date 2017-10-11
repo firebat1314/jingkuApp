@@ -14,8 +14,6 @@ import { IP } from './constants';
 @Injectable()
 export class HttpService {
   public HAS_LOGGED_IN = "hasLoggedIn";
-  public hasLogin = false;
-
 
   constructor(public http: UserData, private storage: Storage) {
     console.log('Hello HttpService Provider');
@@ -175,7 +173,7 @@ export class HttpService {
     return this.http.get(IP + '/Flow/change_num_cart', data)
   }
   dropCartGoods(data?: Object) {//(3)删除购物车中单独选择的商品
-    return this.http.get(IP + '/Flow/drop_cart_goods', data)
+    return this.http.get(IP + '/Flow/drop_cart_goods_select', data)
   }
   dropCartGoodsSelect(data?: Object) {//删除购物车中全选的商品
     return this.http.post(IP + '/Flow/drop_cart_goods_select', data)

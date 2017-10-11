@@ -8,32 +8,38 @@
 <ion-content>
     <div class="form-wrap">
         <div class="logo">
-            <img src="./assets/icon/jingku_logo_03.png">
+            <img src="./assets/icon/images/login_logo.png">
         </div>
         <form #loginForm="ngForm" novalidate>
             <ion-item>
-                <ion-input mode="md" [(ngModel)]="loginInfo.username" clearInput="true" name="username" type="text" spellcheck="false" autocapitalize="off" placeholder="用户名/手机号" required>
+                <ion-input [(ngModel)]="loginInfo.username" clearInput="true" name="username" type="text" spellcheck="false" autocapitalize="off" placeholder="用户名/手机号" required>
                 </ion-input>
             </ion-item>
             <ion-item>
-                <ion-input mode="md" [(ngModel)]="loginInfo.password" name="password" [type]="showPsw?'text':'password'" required placeholder="输入密码">
+                <ion-input [(ngModel)]="loginInfo.password" name="password" [type]="showPsw?'text':'password'" required placeholder="输入密码">
                 </ion-input>
                 <div class="s_h" item-end tappable  (click)="showPsw=!showPsw">
-                    <img *ngIf="showPsw" src="./assets/icon/psw_hide_2.png" alt="">
+                    <img *ngIf="showPsw" src="./assets/icon/psw_hide.png" alt="">
                     <img *ngIf="!showPsw" src="./assets/icon/psw_show.png" alt="">
                 </div>
             </ion-item>
             <div class="forgot-password">
-                <div ion-button clear small color="light" [navPush]="ForgotPage">忘记密码？</div>
+                <div ion-button clear small [navPush]="ForgotPage">忘记密码？</div>
             </div>
             <div class="btn-wrap">
-                <button ion-button color="light" [disabled]="!loginForm.form.valid" (click)="goToHome(loginForm)" type="submit" large round block>登录</button>
-                <button ion-button color="light" (click)="goSignup()" large round block outline>注册</button>
+                <button ion-button color="jingku1" [disabled]="!loginForm.form.valid" (click)="goToHome(loginForm)" type="submit" large block>登录</button>
             </div>
+            <div class="and_line">
+                <div class="txt">或</div>
+            </div>
+            <button ion-button navPush="LoginByPhonePage" outline color="jingku1" style="margin: 0 auto;display: block;">手机号快捷登录</button>
         </form>
     </div>
+    <!-- ———————————————————————— 登录改版 ———————————————————————— -->
 </ion-content>
-
+<ion-footer>
+    <button ion-button (click)="goSignup()" style="margin: 0 auto;display: block;color: #999999;" clear>免费注册</button>
+</ion-footer>
 
 <!--
     <form (ngSubmit)="logForm()">
