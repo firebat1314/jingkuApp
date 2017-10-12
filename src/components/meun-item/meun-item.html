@@ -4,29 +4,37 @@
   See https://angular.io/docs/ts/latest/api/core/index/ComponentMetadata-class.html
   for more info on Angular 2 Components.
 -->
-<ion-content style="margin-top:10px;">
+<ion-content>
     <ng-container *ngFor="let item of data?.goods_attr_arr">
         <div class="box" *ngIf="item.data?.length">
             <div class="head" *ngIf="item.data?.length != 0">
                 <span class="title">{{item.name}}</span>
-                <!--<span class="all">全部<ion-icon name="ios-arrow-down" ></ion-icon></span>-->
+                <span class="all" (click)="item.showmore=!item.showmore">全部<ion-icon [name]="item.showmore?'ios-arrow-up':'ios-arrow-down'" ></ion-icon></span>
             </div>
             <div class="body" *ngIf="item.name=='商品品牌'">
                 <div class="tap-box">
-                    <div class="tap" *ngFor="let group of item?.data" tappable (click)="radiolist3.toggleItem3(group,item?.data)" [ngClass]="group.selected==0?'select':'selected'">{{group.brand_name}}</div>
+                    <ng-container *ngFor="let group of item?.data;let i = index">
+                        <div class="tap" tappable *ngIf="item.showmore||i<6" (click)="radiolist3.toggleItem3(group,item?.data)" [ngClass]="group.selected==0?'select':'selected'"><em></em>{{group.brand_name}}</div>
+                    </ng-container>
                 </div>
             </div>
             <div class="body" *ngIf="item.name=='商品分类'">
                 <div class="tap-box">
-                    <div class="tap" *ngFor="let group of item?.data" tappable (click)="radiolist2.toggleItem2(group,item?.data)" [ngClass]="group.selected==0?'select':'selected'">{{group.cat_name}}</div>
+                    <ng-container *ngFor="let group of item?.data;let i = index">
+                        <div class="tap" tappable *ngIf="item.showmore||i<6" (click)="radiolist2.toggleItem2(group,item?.data)" [ngClass]="group.selected==0?'select':'selected'"><em></em>{{group.cat_name}}</div>
+                    </ng-container>
                 </div>
             </div>
             <div class="body" *ngIf="item.name=='商品价格区间'">
                 <div class="price-input">
-                    <input type="number" [(ngModel)]="filterParams.min_price" placeholder="最低价"> — <input type="number" [(ngModel)]="filterParams.max_price" placeholder="最高价">
+                    <input type="number" [(ngModel)]="filterParams.min_price" placeholder="最低价">
+                    <span style="color: #e6e6e6;">—</span>
+                    <input type="number" [(ngModel)]="filterParams.max_price" placeholder="最高价">
                 </div>
                 <div class="tap-box">
-                    <div class="tap" *ngFor="let group of item?.data" tappable (click)="radiolist.toggleItem(group,item?.data);" [ngClass]="group.selected==0?'select':'selected'">{{group.min_price}}~{{group.max_price}}</div>
+                    <ng-container *ngFor="let group of item?.data;let i = index;">
+                        <div class="tap" tappable *ngIf="item.showmore||i<6" (click)="radiolist.toggleItem(group,item?.data);" [ngClass]="group.selected==0?'select':'selected'">{{group.min_price}}~{{group.max_price}}</div>
+                    </ng-container>
                 </div>
             </div>
             <div class="range" *ngIf="item.name=='商品价格区间'">
@@ -39,9 +47,12 @@
                 </div> -->
             </div>
             <div class="selectedbox" *ngIf="item.data.length!=0&&item.name=='商品属性'">
-                <ion-select *ngFor="let group of item?.data;let i = index;" placeholder="{{group.attr_name}}" [(ngModel)]="group.selected" okText="确定" cancelText="取消" [selectOptions]="{subTitle: group.attr_name}">
-                    <ion-option *ngFor="let subgroup of group?.values;let i = index;" [value]="subgroup.id">{{subgroup.value}}</ion-option>
-                </ion-select>
+                <ng-container *ngFor="let group of item?.data;let i = index;">
+                    <ion-select *ngIf="item.showmore||i<6" placeholder="{{group.attr_name}}" [(ngModel)]="group.selected" okText="确定" cancelText="取消"
+                        [selectOptions]="{subTitle: group.attr_name}">
+                        <ion-option *ngFor="let subgroup of group?.values;let i = index;" [value]="subgroup.id">{{subgroup.value}}</ion-option>
+                    </ion-select>
+                </ng-container>
             </div>
         </div>
     </ng-container>
@@ -49,6 +60,6 @@
 
 </ion-content>
 <ion-footer>
-    <button full large ion-button color="cancelBtn" (click)="reset()">重置</button>
+    <button full large ion-button color="light" (click)="reset()">重置</button>
     <button full large ion-button color="jingku1" menuClose tappable (click)="confirm()">确定</button>
 </ion-footer>
