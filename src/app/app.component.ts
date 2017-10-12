@@ -45,7 +45,7 @@ export class MyApp {
       })
     } else {
       if(!this.native.isMobileweb()){
-        location.href = 'http://newpc.jingkoo.net';
+        location.href = 'http://newwww.jingkoo.net';
         return;
       }
       // this.rootPage = 'WellcomeNewmPage';//TabsPage//WellcomeNewmPage
