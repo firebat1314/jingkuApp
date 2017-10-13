@@ -20,12 +20,12 @@
 
 <ion-content parallax-header>
     <div class="header-image">
-        <img src="./assets/images/images/couponCenter_1_02.jpg" width="100%" alt="">
+        <img img-lazy-load="./assets/images/images/couponCenter_1_02.jpg" defaultSrc="./assets/images/images/640-320.jpg" width="100%" alt="">
     </div>
     <div class="main-content">
         <div class="no-coupon" *ngIf="data&&!data?.list?.length">
             <div class="img">
-                <img src="./assets/icon/no-coupon.png" alt="">
+                <img img-lazy-load="./assets/icon/no-coupon.png" alt="">
             </div>
             <div class="message">
                 还没有优惠券哦
@@ -49,7 +49,7 @@
                 <div style="width: 60px;height: 60px;">
                     <my-canvas [baifen]="item.baifen.slice(0,-1)" *ngIf="item.is_get==0"></my-canvas>
                 </div>
-                <div ion-button small round block class="click" *ngIf="item.is_get==0" (click)="getPrivilege(0,item.type_id,item.suppliers_id)">点击领劵</div>
+                <div ion-button small round block class="click touse" *ngIf="item.is_get==0" (click)="getPrivilege(0,item.type_id,item.suppliers_id)">点击领劵</div>
                 <div ion-button small round block class="touse" *ngIf="item.is_get==1" (click)="getPrivilege(1,item.type_id,item.suppliers_id)">去使用</div>
                 <div ion-button small round block class="touse" *ngIf="item.is_get==2" (click)="getPrivilege(2,item.type_id,item.suppliers_id)">去看看</div>
             </div>

@@ -11,8 +11,8 @@
   </ion-navbar>
   <ion-toolbar *ngIf="classSelect!='care'" class="mysearchbar">
     <form action="">
-      <ion-searchbar [(ngModel)]="searchkey" [ngModelOptions]="{standalone: true}" placeholder="搜索品牌、分类或者关注" mode="ios" debounce="500" animated (keypress)="searchbar($event)"
-        type="search"></ion-searchbar>
+      <ion-searchbar [(ngModel)]="searchkey" [ngModelOptions]="{standalone: true}" placeholder="搜索品牌、分类或者关注" mode="ios" debounce="500"
+        animated (keypress)="searchbar($event)" type="search"></ion-searchbar>
     </form>
   </ion-toolbar>
 
@@ -30,8 +30,8 @@
         </div>
     </div>
     <div class="background"></div> -->
-  <div class="brand-content">
-    <div class="fore1-jinxuan fore" padding>
+  <div class="brand-content" *ngIf="fore2" style="animation:fadeIn 1s;">
+    <div class="fore1-jinxuan fore" >
       <div class="title">
         <span class="txt">精选品牌</span>
       </div>
@@ -53,7 +53,7 @@
               </div>
           </div>
       </div> -->
-    <div class="fore-remen fore" padding>
+    <div class="fore-remen fore" *ngIf="fore4" style="animation:fadeIn 1s;" >
       <div class="title">
         <span class="txt">热门品牌</span>
         <!--<span class="more" (click)="goToMoreBrand()">更多&gt;</span>-->
@@ -62,7 +62,7 @@
         <div tappable [ads-click]="item.link_type" *ngFor="let item of fore4"><img img-lazy-load="{{item.ad_img}}" alt=""></div>
       </div>
     </div>
-    <div class="fore-yinxing fore" *ngFor="let item of brandList?.data;let i = index;">
+    <div class="fore-yinxing fore" style="animation:fadeIn 1s;" *ngFor="let item of brandList?.data;let i = index;">
       <div class="title">
         <span class="txt">{{item.cat_name}}</span>
         <span class="more" *ngIf="item.ads.length>9" tappable (click)="goToMoreBrand(item.ads)">更多&gt;</span>

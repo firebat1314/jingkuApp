@@ -25,7 +25,7 @@ export class BrandPage {
     public navCtrl: NavController,
     public navParams: NavParams,
     public httpService: HttpService,
-
+    public native: HttpService,
   ) {
   }
 
@@ -43,7 +43,7 @@ export class BrandPage {
         if (res.status == 1) { this.fore3 = res.data; }
         this.httpService.getHomebanner({ int_pos_id: 51, app: 1 }).then((res) => {
           if (res.status == 1) { this.fore4 = res.data; }
-          this.httpService.brandList().then((res) => {
+          return this.httpService.brandList().then((res) => {
             if (res.status == 1) { this.brandList = res }
           })
         })

@@ -22,18 +22,18 @@
     </div>
     <ion-list>
         <ion-item *ngFor="let item of data?.list;">
-            <h2>{{item.title}}</h2>
+            <h2 style="font-size:1.5rem;">{{item.title}}</h2>
             <p>{{item.change_time}}</p>
             <span item-right ion-text [color]="item.number>0?'danger':'dark'">{{item.number}}</span>
         </ion-item>
     </ion-list>
 
-    <ion-fab right bottom (click)="scrollToTop()" *ngIf="data?.pages">
+    <ion-fab right bottom *ngIf="data?.pages">
         <button ion-fab color="jingku1" mini>
             {{data?.page}}/{{data?.pages}}
         </button>
+        <button ion-fab mini goBackTop scroll-to-top></button>
     </ion-fab>
-
     <ion-infinite-scroll (ionInfinite)="doInfinite($event)" *ngIf="flag">
         <ion-infinite-scroll-content></ion-infinite-scroll-content>
     </ion-infinite-scroll>

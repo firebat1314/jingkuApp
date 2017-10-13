@@ -468,6 +468,27 @@ export class HttpService {
     return this.http.post(IP + '/Machining/glass_machining', data)
   }
   /**
+   * 闪购
+   * @param 
+   */
+  getCategoryPromote(data?: Object) {
+    return this.http.post(IP + '/Index/getCategoryPromote', data)
+  }
+  /**
+   * 预售
+   * @param 
+   */
+  getCategoryPre(data?: Object) {
+    return this.http.post(IP + '/Index/getCategoryPre', data)
+  }
+  /**
+   * 再次购买加入购物车
+   * @param 
+   */
+  alignBuy(data?: Object) {
+    return this.http.post(IP + '/User/align_buy', data)
+  }
+  /**
    * 极验验证
    */
   geeTestinit(data?: Object) {

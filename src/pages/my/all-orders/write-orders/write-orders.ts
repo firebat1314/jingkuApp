@@ -224,9 +224,14 @@ export class WriteOrdersPage {
         this.events.publish('my:update');
         this.events.publish('car:update');
         if (this.paymentMothdID == 6) {
-          this.navCtrl.push('PaymentMethodPage', { order_id: res.order_id });
+          this.navCtrl.push('PaymentMethodPage', { order_id: res.order_id }).then(()=>{
+            this.navCtrl.remove(this.navCtrl.indexOf(this.navCtrl.getActive())-1, 1);
+          });
+          
         } else if (this.paymentMothdID == 4) {
-          this.navCtrl.push('OrdersDetailPage', { order_id: res.order_id });
+          this.navCtrl.push('OrdersDetailPage', { order_id: res.order_id }).then(()=>{
+            this.navCtrl.remove(this.navCtrl.indexOf(this.navCtrl.getActive())-1, 1);
+          });;
           this.alertCtrl.create({
             title: '汇款须知',
             subTitle: this.paymentMothdDesc,

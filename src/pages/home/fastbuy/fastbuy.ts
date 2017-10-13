@@ -15,6 +15,7 @@ import { HttpService } from "../../../providers/http-service";
 })
 export class FastbuyPage {
 
+  category: any;
   data: any;
   selected = 0;
 
@@ -25,7 +26,11 @@ export class FastbuyPage {
     public navParams: NavParams,
     public httpService: HttpService,
     public elementRef: ElementRef
-  ) { }
+  ) {
+    this.httpService.getCategoryPromote().then((data)=>{
+      this.category = data;
+    })
+  }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad FastbuyPage');

@@ -1,0 +1,46 @@
+<!--
+  Generated template for the NewMyPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+    <div class="my-head">
+        <div class="t_btn">
+            <button color="light" ion-button clear icon-only (click)="goSettingPage()">
+                <ion-icon name="ios-settings-outline"></ion-icon>
+            </button>
+            <button color="light" ion-button clear icon-only (click)="goMessagePage()">
+                <ion-icon name="mess"></ion-icon>
+            </button>
+        </div>
+        <div class="h-body">
+            <div class="user_logo">
+                <img img-lazy-load="" alt="">
+            </div>
+            <div class="r_wrap">
+                <div class="user_info">
+                    <div class="name">用户名称</div>
+                    <div class="vip">
+                        <div class="vip_logo">
+                            <img img-lazy-load="" alt="">
+                        </div>
+                        <div class="vip_name">铜牌会员</div>
+                    </div>
+                </div>
+                <div tappable (click)="goAccountManagementPage($event)" color="light" ion-button round outline icon-left item-right>
+                    <ion-icon><img style="width:1.3rem;" src="./assets/icon/images/user_cener_1_11.png" alt=""></ion-icon>
+                    账号管理
+                </div>
+            </div>
+        </div>
+        <div class="h_bottom">
+        </div>
+    </div>
+</ion-header>
+
+
+<ion-content>
+
+</ion-content>

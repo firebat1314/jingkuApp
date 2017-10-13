@@ -18,6 +18,16 @@
     <div class="quick_buy">
         <ul class="top_menu">
             <li class="menu_ico" tappable (click)="getData(0)" [ngClass]="{'meon':selected==0}">
+                <input type="button" class="menu_ip0" />
+                <p>全部</p>
+            </li>
+            <ng-container *ngFor="let item of category?.data">
+                <li class="menu_ico" tappable (click)="getData(item)" [ngClass]="{'meon':selected==item}">
+                    <input type="button" class="menu_ip{{item}}" />
+                    <p>全部</p>
+                </li>
+            </ng-container>
+            <!-- <li class="menu_ico" tappable (click)="getData(0)" [ngClass]="{'meon':selected==0}">
                 <input type="button" class="menu_ip1" />
                 <p>全部</p>
             </li>
@@ -56,7 +66,7 @@
             <li class="menu_ico" tappable (click)="getData(9)" [ngClass]="{'meon':selected==9}">
                 <input type="button" class="menu_ip10" />
                 <p>工具</p>
-            </li>
+            </li> -->
         </ul>
     </div>
 

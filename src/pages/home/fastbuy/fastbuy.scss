@@ -47,83 +47,83 @@ page-fastbuy {
         padding-top: 3px;
         margin: 0;
     }
-    .menu_ico .menu_ip1 {
+    .menu_ico .menu_ip0 {
         background: url(../assets/icon/sg/0.png) center center no-repeat;
         background-size: 70%;
     }
-    .menu_ico .menu_ip2 {
+    .menu_ico .menu_ip1 {
         background: url(../assets/icon/sg/1.png) center center no-repeat;
         background-size: 100%;
     }
-    .menu_ico .menu_ip3 {
+    .menu_ico .menu_ip2 {
         background: url(../assets/icon/sg/2.png) center center no-repeat;
         background-size: 100%;
     }
-    .menu_ico .menu_ip4 {
+    .menu_ico .menu_ip3 {
         background: url(../assets/icon/sg/3.png) center center no-repeat;
         background-size: 80%;
     }
-    .menu_ico .menu_ip5 {
+    .menu_ico .menu_ip4 {
         background: url(../assets/icon/sg/4.png) center center no-repeat;
         background-size: 70%;
     }
-    .menu_ico .menu_ip6 {
+    .menu_ico .menu_ip5 {
         background: url(../assets/icon/sg/5.png) center center no-repeat;
         background-size: 85%;
     }
-    .menu_ico .menu_ip7 {
+    .menu_ico .menu_ip6 {
         background: url(../assets/icon/sg/6.png) center center no-repeat;
         background-size: 80%;
     }
-    .menu_ico .menu_ip8 {
+    .menu_ico .menu_ip7 {
         background: url(../assets/icon/sg/7.png) center center no-repeat;
         background-size: 80%;
     }
-    .menu_ico .menu_ip9 {
+    .menu_ico .menu_ip8 {
         background: url(../assets/icon/sg/8.png) center center no-repeat;
         background-size: 80%;
     }
-    .menu_ico .menu_ip10 {
+    .menu_ico .menu_ip9 {
         background: url(../assets/icon/sg/9.png) center center no-repeat;
         background-size: 80%;
     }
-    .menu_ico.meon .menu_ip1 {
+    .menu_ico.meon .menu_ip0 {
         background: url(../assets/icon/sg/00.png) center center no-repeat;
         background-size: 70%;
     }
-    .menu_ico.meon .menu_ip2 {
+    .menu_ico.meon .menu_ip1 {
         background: url(../assets/icon/sg/11.png) center center no-repeat;
         background-size: 100%;
     }
-    .menu_ico.meon .menu_ip3 {
+    .menu_ico.meon .menu_ip2 {
         background: url(../assets/icon/sg/22.png) center center no-repeat;
         background-size: 100%;
     }
-    .menu_ico.meon .menu_ip4 {
+    .menu_ico.meon .menu_ip3 {
         background: url(../assets/icon/sg/33.png) center center no-repeat;
         background-size: 80%;
     }
-    .menu_ico.meon .menu_ip5 {
+    .menu_ico.meon .menu_ip4 {
         background: url(../assets/icon/sg/44.png) center center no-repeat;
         background-size: 70%;
     }
-    .menu_ico.meon .menu_ip6 {
+    .menu_ico.meon .menu_ip5 {
         background: url(../assets/icon/sg/55.png) center center no-repeat;
         background-size: 85%;
     }
-    .menu_ico.meon .menu_ip7 {
+    .menu_ico.meon .menu_ip6 {
         background: url(../assets/icon/sg/66.png) center center no-repeat;
         background-size: 80%;
     }
-    .menu_ico.meon .menu_ip8 {
+    .menu_ico.meon .menu_ip7 {
         background: url(../assets/icon/sg/77.png) center center no-repeat;
         background-size: 80%;
     }
-    .menu_ico.meon .menu_ip9 {
+    .menu_ico.meon .menu_ip8 {
         background: url(../assets/icon/sg/88.png) center center no-repeat;
         background-size: 80%;
     }
-    .menu_ico.meon .menu_ip10 {
+    .menu_ico.meon .menu_ip9 {
         background: url(../assets/icon/sg/99.png) center center no-repeat;
         background-size: 80%;
     }
@@ -155,7 +155,7 @@ page-fastbuy {
         font-size: 12px;
         position: absolute;
         top: 10px;
-        left: 5px;
+        left: 0px;
         background-color: rgba(0, 0, 0, .5);
         border-radius: 0 17.5px 17.5px 0;
         countdown {
@@ -194,6 +194,8 @@ page-fastbuy {
     }
     .box_ul_d .box_ul_dtop{
         flex: 1;
+        display: flex;
+        align-items: center;
     }
     .box_ul_d .box_ul_dtop img {
         width: 100%;
@@ -217,7 +219,7 @@ page-fastbuy {
         overflow: hidden;
         text-overflow: ellipsis;
         display: -webkit-box;
-        -webkit-line-clamp: 2;
+        -webkit-line-clamp: 1;
         -webkit-box-orient: vertical;
         color: #666666;
         font-size: 12px;
