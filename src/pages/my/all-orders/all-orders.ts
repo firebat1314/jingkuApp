@@ -176,4 +176,11 @@ export class AllOrdersPage {
     // this.navCtrl.push('AddProcessPage', { order_parent: order_parent })
     this.native.showToast('暂未开放',null,false);
   }
+  buyAgain(order_id){
+    this.httpService.alignBuy({order_id:order_id}).then((res)=>{
+      if(res.status){
+        this.navCtrl.push('CarPage');
+      }
+    })
+  }
 }

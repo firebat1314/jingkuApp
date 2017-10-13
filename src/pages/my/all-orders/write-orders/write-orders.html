@@ -17,7 +17,7 @@
     <ng-container *ngIf="data">
         <div class="fore fore1" tappable (click)="openOrderModalShippingPage()" *ngIf="defaultShipping">
             <div class="wrap">
-                <div>{{defaultShipping.consignee}}<span class="phone">{{defaultShipping.mobile | phonenumberfilter}}</span></div>
+                <div style="color: #4c4c4c;font-size: 1.6rem;">{{defaultShipping.consignee}}<span class="phone">{{defaultShipping.mobile | phonenumberfilter}}</span></div>
                 <div>{{defaultShipping.address}}</div>
             </div>
         </div>

@@ -91,7 +91,7 @@ export class ParticularsModalAttrPage {
 	}
 	/*关闭modal弹出*/
 	dismiss(data?: any) {
-		this.viewCtrl.dismiss(data);
+		this.viewCtrl.dismiss(data||null);
 	}
 	/*普通商品参数*/
 	numberIChange($event, item) {

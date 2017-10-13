@@ -29,10 +29,15 @@ a {
     color: #797979;
     cursor: pointer;
 }
-b, em, i, strong {
+
+b,
+em,
+i,
+strong {
     font-style: normal;
     font-weight: 400;
 }
+
 html {
     // font-family: -apple-system, BlinkMacSystemFont, Helvetica Neue, Helvetica, Roboto, Arial, PingFang SC, Hiragino Sans GB, Microsoft Yahei, Microsoft Jhenghei, sans-serif !important;
     -webkit-overflow-scrolling: touch;
@@ -73,6 +78,16 @@ ion-app {
     border: 1px solid #f0f0f0;
 }
 
+[first-letter] {
+    display: inline-block;
+    &:first-letter {
+        font-size: 1.2rem;
+    }
+}
+a[disabled], button[disabled], [ion-button][disabled]{
+    background-color: #e0e0e0;
+    opacity: 1 !important;
+}
 ion-thumbnail {
     border: $border-img;
 }
@@ -295,7 +310,7 @@ button.swiper-pagination-bullet {
 
 /*————————————————————————————————————modalCSS————————————————————————————————————*/
 
-.my-modal-style{
+.my-modal-style {
     ion-backdrop {
         visibility: visible;
     }
@@ -308,8 +323,9 @@ button.swiper-pagination-bullet {
             height: 435px;
             bottom: 0;
         }
-      }
+    }
 }
+
 
 /*————————————————————————————————————alterCSS————————————————————————————————————*/
 
@@ -414,24 +430,25 @@ button.swiper-pagination-bullet {
 
 .popover-menu {
     .popover-content {
-        width: 145px;
-        background: rgba(0, 0, 0, 0.7);
+        width: 145px; // background: rgba(0, 0, 0, 0.7);
+        background: #7a7a7a;
         border-radius: 5px;
     }
     .popover-arrow {
         &:after {
-            background: rgba(0, 0, 0, 0.7);
+            background: #7a7a7a;
         }
     }
 }
-.platform-cordova#chatIframe{
 
-}
-#chatIframe{
-    .header{
+.platform-cordova#chatIframe {}
+
+#chatIframe {
+    .header {
         background-color: red
     }
 }
+
 
 /*———————————————————————————————————— ios-title-style ————————————————————————————————————*/
 

@@ -6,6 +6,7 @@ page-add-shipping-address {
         }
     }
     .item {
+        min-height: 62px !important;
         ion-label[fixed] {
             flex-basis: 100px !important;
         }

@@ -8,6 +8,7 @@ import { HttpService } from "../../../providers/http-service";
   templateUrl: 'presell.html'
 })
 export class PresellPage {
+  categorys: any;
   data: any;
   getCategorys: any;
 
@@ -18,7 +19,11 @@ export class PresellPage {
     public navCtrl: NavController,
     public navParams: NavParams,
     private httpService: HttpService
-  ) {}
+  ) {
+    this.httpService.getCategoryPre().then((data)=>{
+      this.categorys = data;
+    })
+  }
   ionViewDidLoad() {
     console.log('ionViewDidLoad PresellPage');
   }
