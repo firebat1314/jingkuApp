@@ -85,8 +85,8 @@ ion-app {
     }
 }
 a[disabled], button[disabled], [ion-button][disabled]{
-    background-color: #e0e0e0;
-    opacity: 1 !important;
+    background-color: #666;
+    // opacity: 1 !important;
 }
 ion-thumbnail {
     border: $border-img;
