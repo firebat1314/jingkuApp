@@ -41,7 +41,7 @@ import { UpgradeProvider } from '../providers/upgrade';
         ios: {}
       },
       backButtonText: '',
-      mode: 'md',
+      mode: 'ios',
       tabsHideOnSubPages: true,
       tabsPlacement: 'bottom',
       swipeBackEnabled: false
