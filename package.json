@@ -65,8 +65,8 @@
     "zone.js": "^0.8.17"
   },
   "devDependencies": {
-    "@ionic/app-scripts": "^3.0.0",
-    "ionic": "3.13.0",
+    "@ionic/app-scripts": "^2.0.2",
+    "ionic": "3.13.1",
     "typescript": "2.2.1"
   },
   "cordovaPlugins": [

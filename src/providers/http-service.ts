@@ -494,4 +494,10 @@ export class HttpService {
   geeTestinit(data?: Object) {
     return this.http.get(IP + '/Login/geeTestinit', data)
   }
+  /**
+   * 金融
+   */
+  Ximu(data?: Object) {
+    return this.http.get(IP + '/Ximu', data)
+  }
 }
