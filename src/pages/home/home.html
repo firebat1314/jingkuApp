@@ -26,7 +26,7 @@
     <ion-refresher (ionRefresh)="doRefresh($event)" pullMax="60">
         <ion-refresher-content refreshingSpinner="1" pullingIcon="0"></ion-refresher-content>
     </ion-refresher>
-    <div *ngIf="data" style="animation:fadeIn 500ms;" >
+    <div style="animation:fadeIn 500ms;" >
         <!--———————————————————————————————— 轮播图 ————————————————————————————————-->
         <div class="banner-wrapper">
             <ion-slides #bannerSlide autoplay="4000" pager (ionSlideAutoplayStop)="bannerSlide.startAutoplay()">
