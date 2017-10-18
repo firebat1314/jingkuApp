@@ -26,7 +26,7 @@ export class BrandListPage {
 		size: 30,
 		page: 1,
 		brand_id: null,
-		cat_id: null,
+		cat_id: this.navParams.get('listId'),
 		order: null,
 		stort: 'DESC',
 		keywords: this.myHomeSearch,
@@ -55,8 +55,8 @@ export class BrandListPage {
 		this.paramsData.keywords = this.navParams.get('keyword') || null;
 		this.paramsData.type = this.navParams.get('type') || null;
 		this.myHomeSearch = this.paramsData.keywords;
-		console.log('列表ID:', this.paramsData.cat_id);
-		console.log('品牌ID:', this.paramsData.brand_id);
+		console.log('cat_id:', this.paramsData.cat_id);
+		console.log('brand_id:', this.paramsData.brand_id);
 		console.log('supplier_id:', this.paramsData.supplier_id);
 		console.log('keywords:', this.paramsData.keywords);
 		console.log('type:', this.paramsData.type);
@@ -152,18 +152,9 @@ export class BrandListPage {
 		this.searchGoods()
 	}
 	searchGoods() {
-		this.data.page = 1
-		this.paramsData = {
-			size: 30,
-			page: 1,
-			brand_id: null,
-			cat_id: null,
-			order: null,
-			stort: 'DESC',
-			keywords: this.myHomeSearch,
-			supplier_id: null,
-			type: null
-		}
+		this.data.page = 1;
+		this.paramsData.page = 1;
+		this.paramsData.keywords = this.myHomeSearch;
 		this.getListData()
 	}
 	allStatus = true;
@@ -171,7 +162,7 @@ export class BrandListPage {
 	shopPriceStatus = true;
 	mytoolChange() {//——_——|||.....
 		if (this.mytool == 'all') {
-			this.paramsData.order = '';
+			/* this.paramsData.order = '';
 			this.salesNumStatus = true;
 			this.shopPriceStatus = true;
 			if (this.allStatus) {
@@ -182,11 +173,22 @@ export class BrandListPage {
 				this.allStatus = true;
 				this.paramsData.stort = 'DESC';
 				this.getListData();
-			}
+			} */
+			this.getListData();
 		}
 		if (this.mytool == 'sales_num') {
-			this.paramsData.stort = 'DESC';
-			this.getListData();
+			this.paramsData.order = 'sales_num';
+			this.allStatus = true;
+			this.shopPriceStatus = true;
+			if (!this.salesNumStatus) {
+				this.paramsData.stort = 'ASC';
+				this.salesNumStatus = true;
+				this.getListData();
+			} else {
+				this.salesNumStatus = false;
+				this.paramsData.stort = 'DESC';
+				this.getListData();
+			}
 		}
 		if (this.mytool == 'shop_price') {
 			this.paramsData.order = 'shop_price';

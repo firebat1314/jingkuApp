@@ -23,7 +23,18 @@
         <ion-segment mode="md" [(ngModel)]="mytool" (click)="mytoolChange()" color="primary">
             <ion-segment-button value="all">
                 综合
-                <div [ngClass]="allStatus==false?'sortup':'sortdown'" class="myicon">
+                <!-- <div [ngClass]="allStatus==false?'sortup':'sortdown'" class="myicon">
+                    <div [ngStyle]="{'height':'7px'}">
+                        <ion-icon name="md-arrow-dropup"></ion-icon>
+                    </div>
+                    <div>
+                        <ion-icon name="md-arrow-dropdown"></ion-icon>
+                    </div>
+                </div> -->
+            </ion-segment-button>
+            <ion-segment-button value="sales_num">
+                销量
+                <div [ngClass]="salesNumStatus==false?'sortup':'sortdown'" class="myicon">
                     <div [ngStyle]="{'height':'7px'}">
                         <ion-icon name="md-arrow-dropup"></ion-icon>
                     </div>
@@ -31,9 +42,6 @@
                         <ion-icon name="md-arrow-dropdown"></ion-icon>
                     </div>
                 </div>
-            </ion-segment-button>
-            <ion-segment-button value="sales_num">
-                销量
             </ion-segment-button>
             <ion-segment-button value="shop_price">
                 价格

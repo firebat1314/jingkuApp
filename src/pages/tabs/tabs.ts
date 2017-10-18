@@ -14,7 +14,7 @@ export class TabsPage {
   tab1Root: any = 'HomePage';
   tab2Root: any = 'ClassifyNewPage';
   tab3Root: any = 'CarPage';
-  tab4Root: any = 'MyPage';
+  tab4Root: any = 'NewMyPage';
   carNumber: number = 0;
 
   @ViewChild("tabs") tabs: Tabs;
