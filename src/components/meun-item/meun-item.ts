@@ -15,7 +15,7 @@ export class MeunItemComponent {
 		min_price: null,
 		max_price: null,
 		brand_id: null,
-		cat_id: null,
+		// cat_id: null,
 		attr_id: null,
 		filter: null
 	}
@@ -46,7 +46,7 @@ export class MeunItemComponent {
 				this.filterParams.brand_id = null;
 			}
 			if (!this.data.goods_attr_arr[1].data.length) {
-				this.filterParams.cat_id = null;
+				// this.filterParams.cat_id = null;
 			}
 			if (!this.data.goods_attr_arr[2].data.length) {
 				this.filterParams.min_price = null;

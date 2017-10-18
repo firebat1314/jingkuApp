@@ -88,6 +88,11 @@ a[disabled], button[disabled], [ion-button][disabled]{
     background-color: #666;
     // opacity: 1 !important;
 }
+/* .badge {
+    border: 1px solid #416aa6 !important;
+    color: #416aa6 !important;
+    background: none !important;
+} */
 ion-thumbnail {
     border: $border-img;
 }

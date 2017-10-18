@@ -72,11 +72,9 @@ page-brand-list {
         }
         .badge {
             position: absolute;
-            padding: 4px 4px;
-            border-radius: 50%;
+            border-radius: 10px;
             background: red;
             right: 3px;
-            min-width: 20px;
             top: 3px;
         }
     }

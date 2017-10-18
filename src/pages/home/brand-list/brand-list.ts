@@ -26,7 +26,7 @@ export class BrandListPage {
 		size: 30,
 		page: 1,
 		brand_id: null,
-		cat_id: null,
+		cat_id: this.navParams.get('listId'),
 		order: null,
 		stort: 'DESC',
 		keywords: this.myHomeSearch,
@@ -55,8 +55,8 @@ export class BrandListPage {
 		this.paramsData.keywords = this.navParams.get('keyword') || null;
 		this.paramsData.type = this.navParams.get('type') || null;
 		this.myHomeSearch = this.paramsData.keywords;
-		console.log('列表ID:', this.paramsData.cat_id);
-		console.log('品牌ID:', this.paramsData.brand_id);
+		console.log('cat_id:', this.paramsData.cat_id);
+		console.log('brand_id:', this.paramsData.brand_id);
 		console.log('supplier_id:', this.paramsData.supplier_id);
 		console.log('keywords:', this.paramsData.keywords);
 		console.log('type:', this.paramsData.type);
