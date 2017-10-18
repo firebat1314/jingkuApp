@@ -33,35 +33,9 @@ export class MyApp {
     private upgradeProvider: UpgradeProvider,
   ) {
 
-    //————————————————————————————————————————————————————————————————————————
-    // 初次进入app引导页面
-    if (this.native.isMobile()) {
-      this.storage.get('has_entered').then((result) => {
-        if (!result) {
-          this.rootPage = 'WelcomePage';
-        } else {
-          this.rootPage = 'AppAdvertisingPage';
-        }
-      })
-    } else {
-      if(!this.native.isMobileweb()){
-        location.href = 'http://newwww.jingkoo.net';
-        return;
-      }
-      // this.rootPage = 'WellcomeNewmPage';//TabsPage//WellcomeNewmPage
-      this.storage.get('hasLoggedIn').then((result) => {
-        if (result) {
-          this.rootPage = 'TabsPage';//TabsPage//WellcomeNewmPage
-          // this.nav.setRoot('TabsPage', {}, { animate: true, direction: 'forward' });
-        } else {
-          this.rootPage = 'WellcomeNewmPage';
-          // this.nav.setRoot('LoginPage', {}, { animate: true, direction: 'forward' });
-        }
-      });
-    }
-    //————————————————————————————————————————————————————————————————————————
-    // app更新
-    this.upgradeProvider.detectionUpgrade();
+
+    //———————————————————————— app更新 ————————————————————————
+    // this.upgradeProvider.detectionUpgrade();
 
     this.initializeApp();
     //用户失效事件
@@ -78,9 +52,32 @@ export class MyApp {
       // Here you can do any higher level native things you might need.
       this.statusBar.styleDefault();
       this.splashScreen.hide();
-
-      //————————————————————————————————————————————————————————————————————————
-      //注册返回按键事件
+      //———————————————————————— 初次进入app引导页面 ————————————————————————
+      if (this.native.isMobile()) {
+        this.storage.get('has_entered').then((result) => {
+          if (!result) {
+            this.rootPage = 'WelcomePage';
+          } else {
+            this.rootPage = 'AppAdvertisingPage';
+          }
+        })
+      } else {
+        if (!this.native.isMobileweb()) {
+          location.href = 'http://newwww.jingkoo.net';
+          return;
+        }
+        // this.rootPage = 'WellcomeNewmPage';//TabsPage//WellcomeNewmPage
+        this.storage.get('hasLoggedIn').then((result) => {
+          if (result) {
+            this.rootPage = 'TabsPage';//TabsPage//WellcomeNewmPage
+            // this.nav.setRoot('TabsPage', {}, { animate: true, direction: 'forward' });
+          } else {
+            this.rootPage = 'WellcomeNewmPage';
+            // this.nav.setRoot('LoginPage', {}, { animate: true, direction: 'forward' });
+          }
+        });
+      }
+      //———————————————————————— 注册返回按键事件 ————————————————————————
       this.platform.registerBackButtonAction((): any => {
         if (this.keyboard.isOpen()) {
           this.keyboard.close();

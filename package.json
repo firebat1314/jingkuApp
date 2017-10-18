@@ -11,14 +11,14 @@
     "ionic:serve": "ionic-app-scripts serve"
   },
   "dependencies": {
-    "@angular/common": "4.1.3",
-    "@angular/compiler": "4.1.3",
-    "@angular/compiler-cli": "4.1.3",
-    "@angular/core": "4.1.3",
-    "@angular/forms": "4.1.3",
-    "@angular/http": "4.1.3",
-    "@angular/platform-browser": "4.1.3",
-    "@angular/platform-browser-dynamic": "4.1.3",
+    "@angular/common": "^4.4.3",
+    "@angular/compiler": "^4.4.3",
+    "@angular/compiler-cli": "^4.4.3",
+    "@angular/core": "^4.4.3",
+    "@angular/forms": "^4.4.3",
+    "@angular/http": "^4.4.3",
+    "@angular/platform-browser": "^4.4.3",
+    "@angular/platform-browser-dynamic": "^4.4.3",
     "@ionic-native/alipay": "^3.4.4",
     "@ionic-native/android-full-screen": "^4.0.0",
     "@ionic-native/app-update": "^4.2.1",
@@ -52,7 +52,7 @@
     "cordova-plugin-whitelist": "^1.3.1",
     "cordova-plugin-x-toast": "^2.6.0",
     "es6-promise-plugin": "git+https://github.com/vstirbu/PromisesPlugin.git",
-    "ionic-angular": "3.5.3",
+    "ionic-angular": "^3.7.0",
     "ionic-image-loader": "^4.1.1",
     "ionic-img-viewer": "^2.6.1",
     "ionic-plugin-keyboard": "^2.2.1",
@@ -60,12 +60,12 @@
     "ionic2-super-tabs": "^2.6.3",
     "ionicons": "3.0.0",
     "phonegap-plugin-barcodescanner": "^6.0.6",
-    "rxjs": "5.4.0",
+    "rxjs": "^5.4.3",
     "sw-toolbox": "3.6.0",
-    "zone.js": "0.8.12"
+    "zone.js": "^0.8.17"
   },
   "devDependencies": {
-    "@ionic/app-scripts": "2.0.2",
+    "@ionic/app-scripts": "^3.0.0",
     "ionic": "3.13.0",
     "typescript": "2.2.1"
   },
