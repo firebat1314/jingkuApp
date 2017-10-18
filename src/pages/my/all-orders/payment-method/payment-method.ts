@@ -87,7 +87,7 @@ export class PaymentMethodPage {
       this.native.showToast('请选择支付方式');
       return
     }
-    if (this.yE) {//使用余额
+    if (this.yE) {
       this.httpService.checkPayPass({ password: this.payPassword }).then((res) => {//验证密码
         if (res.status) {
           if (!this.paymentType && this.data.balance == 1) {//使用余额且没有选中在线支付的情况
@@ -115,7 +115,7 @@ export class PaymentMethodPage {
           this.native.showToast(res.info);
           this.navCtrl.popToRoot();
           this.navCtrl.parent.select(3);
-          this.navCtrl.setPages([{ page: 'CarPage' }, { page: 'AllOrdersPage' }])
+          this.navCtrl.setPages([{ page: 'MyPage' }, { page: 'AllOrdersPage' }])
         }
       }
     })
@@ -140,7 +140,7 @@ export class PaymentMethodPage {
     let that = this;
     this.navCtrl.popToRoot();
     this.navCtrl.parent.select(3);
-    this.navCtrl.setPages([{ page: 'CarPage' }, { page: 'AllOrdersPage' }])
+    this.navCtrl.setPages([{ page: 'MyPage' }, { page: 'AllOrdersPage' }])
     pingpp.createPayment(data, function (result, err) {
       console.log(result, err)
       if (result == "success") {

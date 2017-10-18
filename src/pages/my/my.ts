@@ -3,6 +3,7 @@ import { NavController, ModalController, ViewController, Events, IonicPage, App 
 import { HttpService } from "../../providers/http-service";
 
 import { Native } from "../../providers/native";
+import { InAppBrowser } from '@ionic-native/in-app-browser';
 
 @IonicPage()
 @Component({
@@ -20,6 +21,7 @@ export class MyPage {
     public events: Events,
     public native: Native,
     public app: App,
+    private iab: InAppBrowser,
   ) {
     /* this.httpService.getStorage('username').then((username) => {
       this.httpService.getStorage(username).then((userInfo) => {
@@ -74,7 +76,7 @@ export class MyPage {
   goMessagePage() {
     this.navCtrl.push('MessagePage')
   }
-  goRepairReturnPage(){
+  goRepairReturnPage() {
     // console.log(1)
     // this.native.showToast('暂未开放',null,false);
     this.navCtrl.push('RepairReturnPage');
@@ -103,5 +105,17 @@ export class MyPage {
         this.httpService.removeStorage("token");
       })
     })
+  }
+  openXimu() {
+    this.httpService.Ximu().then((res) => {
+      if (res.status) {
+        if (this.native.isMobile()) {
+          this.iab.create(res.data.url, '_system');
+        } else {
+          location.href = (res.data.url)
+        }
+      }
+    })
+
   }
 }

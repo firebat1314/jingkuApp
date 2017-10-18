@@ -54,11 +54,11 @@
                 <span class="text" *ngIf="data?.balance===0">需组合支付</span>
             </header>
             <div class="main">
-                <div class="zf_x" tappable (click)="userYue()" [class.selected]="yE">
+                <!-- <div class="zf_x" tappable (click)="userYue()" [class.selected]="yE">
                     <img src="./assets/icon/close_ico4.png" alt="">
                     <div class="p1">镜库余额</div>
                     <div class="p2">可用余额：{{user_money}}</div>
-                </div>
+                </div> -->
                 <div class="zf_x" (click)="paymentType='alipay'" [class.selected]="paymentType=='alipay'">
                     <img src="./assets/icon/close_ico5.png" alt="">
                     <div class="p1">支付宝支付</div>
