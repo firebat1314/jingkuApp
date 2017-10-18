@@ -6,7 +6,8 @@ page-welcome {
         width: 170px;
         height: 50px;
         position: relative;
-        bottom: 150px;
+        bottom: 170px;
+        opacity: 0 !important;
     }
     .slide-zoom {
         height: 100%;
@@ -22,6 +23,7 @@ page-welcome {
             border-radius: 8px;
             border-width: 2px;
             transition: width 500ms ease-in-out;
+            border-color: #f4d05b !important;
         }
         .swiper-pagination-bullet-active {
             width: 23px;

@@ -10,7 +10,7 @@ import { Native } from "../../../../providers/native";
   Ionic pages and navigation.
 */
 @IonicPage({
-  segment:'orders-detail/:order_id'
+  segment: 'orders-detail/:order_id'
 })
 @Component({
   selector: 'page-orders-detail',
@@ -19,13 +19,13 @@ import { Native } from "../../../../providers/native";
 export class OrdersDetailPage {
   data: any;
   orderId: any = this.navParams.get('order_id');
-  
+
   payBtn: boolean = false;
   shippingBtn: boolean = false;
   confirmBtn: boolean = false;
   cancelBtn: boolean = false;
-  
-  @ViewChild(Content) content:Content
+
+  @ViewChild(Content) content: Content
   constructor(
     public navCtrl: NavController,
     public navParams: NavParams,
@@ -66,12 +66,7 @@ export class OrdersDetailPage {
     this.navCtrl.push('ParticularsPage', { goodsId: id });
   }
   toPay(id) {
-    this.httpService.pay({ order_id: id }).then((res) => {
-      // console.log(res);
-      if (res.status == 1) {
-        this.navCtrl.push('PaymentMethodPage', { data: res })
-      }
-    })
+    this.navCtrl.push('PaymentMethodPage', { order_id: id })
   }
   confirmReceipt(order_id) {
     this.native.openAlertBox('确认收货', () => {
@@ -82,8 +77,8 @@ export class OrdersDetailPage {
       })
     })
   }
-  orderTracking(order_id){
-     this.native.showToast('敬请期待');
+  orderTracking(order_id) {
+    this.native.showToast('敬请期待');
   }
   cancelOrder(order_id) {
     this.native.openAlertBox('取消订单操作', () => {
@@ -94,7 +89,7 @@ export class OrdersDetailPage {
       })
     })
   }
-  deleteOrder(order_id){
+  deleteOrder(order_id) {
     this.native.openAlertBox('删除订单', () => {
       this.httpService.delOrder({ order_id: order_id }).then((res) => {
         if (res.status == 1) {

@@ -498,6 +498,6 @@ export class HttpService {
    * 金融
    */
   Ximu(data?: Object) {
-    return this.http.get(IP + '/Ximu', data)
+    return this.http.post(IP + '/Ximu', data)
   }
 }

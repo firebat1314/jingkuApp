@@ -201,13 +201,16 @@ export class HomePage {
       }
     })
   }
-  goClassPage(value) {
+  goBrandPage() {
     this.navCtrl.push('BrandPage')
     /*this.navCtrl.popToRoot();
     this.navCtrl.parent.select(1);
     setTimeout(() => {
       this.events.publish('classify:selectSegment', value)
     }, 300); */
+  }
+  goClassPage(){
+    this.navCtrl.parent.select(1);
   }
   goCityPage() {
     this.navCtrl.push('CityPage', { areaList: this.areaList })
