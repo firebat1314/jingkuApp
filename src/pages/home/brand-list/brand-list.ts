@@ -152,18 +152,9 @@ export class BrandListPage {
 		this.searchGoods()
 	}
 	searchGoods() {
-		this.data.page = 1
-		this.paramsData = {
-			size: 30,
-			page: 1,
-			brand_id: null,
-			cat_id: null,
-			order: null,
-			stort: 'DESC',
-			keywords: this.myHomeSearch,
-			supplier_id: null,
-			type: null
-		}
+		this.data.page = 1;
+		this.paramsData.page = 1;
+		this.paramsData.keywords = this.myHomeSearch;
 		this.getListData()
 	}
 	allStatus = true;
@@ -171,7 +162,7 @@ export class BrandListPage {
 	shopPriceStatus = true;
 	mytoolChange() {//——_——|||.....
 		if (this.mytool == 'all') {
-			this.paramsData.order = '';
+			/* this.paramsData.order = '';
 			this.salesNumStatus = true;
 			this.shopPriceStatus = true;
 			if (this.allStatus) {
@@ -182,11 +173,22 @@ export class BrandListPage {
 				this.allStatus = true;
 				this.paramsData.stort = 'DESC';
 				this.getListData();
-			}
+			} */
+			this.getListData();
 		}
 		if (this.mytool == 'sales_num') {
-			this.paramsData.stort = 'DESC';
-			this.getListData();
+			this.paramsData.order = 'sales_num';
+			this.allStatus = true;
+			this.shopPriceStatus = true;
+			if (!this.salesNumStatus) {
+				this.paramsData.stort = 'ASC';
+				this.salesNumStatus = true;
+				this.getListData();
+			} else {
+				this.salesNumStatus = false;
+				this.paramsData.stort = 'DESC';
+				this.getListData();
+			}
 		}
 		if (this.mytool == 'shop_price') {
 			this.paramsData.order = 'shop_price';

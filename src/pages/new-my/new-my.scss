@@ -1,10 +1,154 @@
 page-new-my {
-   .my-head{
-      background: url(../assets/images/images/bannerShop_02.jpg) no-repeat center top/auto 100%;
-      color: #fff;
-      .t_btn{
-         display: flex;
-         justify-content: space-between;
-      }
-   }
+    .my-head {
+        background: url(../assets/images/images/bannerShop_02.jpg) no-repeat center top/100% 100%;
+        color: #fff;
+        position: relative;
+        .t_btn {
+            display: flex;
+            justify-content: space-between;
+        }
+        .h-body {
+            display: flex;
+            align-items: center;
+            padding: 10px 10px 25px 20px;
+            .user_logo {
+                width: 68px;
+                height: 68px;
+                border-radius: 50%;
+                margin-right: 13px;
+                overflow: hidden;
+            }
+            .r_wrap {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                flex: 1;
+                .user_info {
+                    .name {
+                        font-size: 1.4rem;
+                    }
+                    .vip {
+                        display: flex;
+                        align-items: center;
+                        margin-top: 10px;
+                        .vip_logo {
+                            width: 17px;
+                            height: 17px;
+                            margin-right: 5px;
+                        }
+                        .vip_name {
+                            font-size: 1.2rem;
+                        }
+                    }
+                }
+                .gl_btn {
+                    border-radius: 64px;
+                    padding: 4px 10px;
+                    border-color: #ffffff;
+                    border-width: 1px;
+                    border-style: solid;
+                    color: #ffffff;
+                    background-color: transparent;
+                    display: flex;
+                    align-items: center;
+                    font-size: 1rem;
+                    img {
+                        width: 14px;
+                        height: 14px;
+                        margin-right: 5px;
+                    }
+                }
+            }
+        }
+        .h_bottom {
+            display: flex;
+            position: relative;
+            bottom: 0;
+            padding: 10px 0;
+            background: rgba(0, 0, 0, 0.1);
+            >div {
+                width: 25%;
+                text-align: center;
+                border-right: 1px solid #307ebf;
+                &:last-child {
+                    border-right: none;
+                }
+                >span {
+                    display: block;
+                    &.icon_num {}
+                    &.txt {
+                        font-size: 1rem;
+                        margin-top: 5px;
+                    }
+                }
+            }
+        }
+    }
+    .fore {
+        .badge {
+            border: 1px solid #416aa6 !important;
+            color: #416aa6 !important;
+            background: none !important;
+        }
+        .title {
+            padding: 13px 0;
+            margin: 0 16px;
+            display: flex;
+            justify-content: space-between;
+            border-bottom: 1px #d9d9d9 dashed;
+            color: #333;
+            .lookall {
+                background-image: url("data:image/svg+xml;charset=utf-8,<svg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2012%2020'><path%20d='M2,20l-2-2l8-8L0,2l2-2l10,10L2,20z'%20fill='%23c8c7cc'/></svg>");
+                padding-right: 14px;
+                background-position: right center;
+                background-repeat: no-repeat;
+                background-size: 10px 12px;
+                color: #999999;
+                font-size: 12px;
+            }
+        }
+        .main {
+            display: flex;
+            justify-content: space-around;
+            color: #666666;
+            >div,
+            >a {
+                color: #666666;
+                display: block;
+                width: 25%;
+                text-align: center;
+                display: flex;
+                flex-direction: column;
+                justify-content: space-between;
+                padding: 15px 0;
+                &:last-child {
+                    border-right: none;
+                }
+                >span {
+                    display: block;
+                    &.icon_num {
+                        position: relative;
+                        color: initial;
+                        img {
+                            width: 23px;
+                            height: 23px;
+                        }
+                        .badge {
+                            position: absolute;
+                            top: -8px;
+                            right: 26px;
+                            background: #fff !important;
+                            font-size: 12px;
+                            padding: 2px 4px;
+                            font-weight: normal;
+                        }
+                    }
+                    &.txt {
+                        font-size: 1rem;
+                        margin-top: 5px;
+                    }
+                }
+            }
+        }
+    }
 }
