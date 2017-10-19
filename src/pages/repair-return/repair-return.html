@@ -6,7 +6,7 @@
 -->
 <ion-header>
     <ion-navbar>
-        <ion-segment mode="ios" (ionChange)="myContent.scrollToTop(0);checkList();" [(ngModel)]="applyTabs" color="jingku1">
+        <ion-segment mode="ios" (ionChange)="myContent.scrollToTop(0);myContent.resize();checkList();" [(ngModel)]="applyTabs" color="jingku1">
             <ion-segment-button value="apply">
                 售后申请
             </ion-segment-button>
@@ -50,8 +50,8 @@
             </div>
             <div class="order-body">
                 <div class="order-body-item" tappable navPush="ParticularsPage" [navParams]="{goodsId:item.goods_id}">
-                    <!-- <ion-checkbox mode="ios" (ionChange)="checkbox(item)" [(ngModel)]="item.selected" [checked]="item.selected"></ion-checkbox> -->
-                    <!--<ion-icon class="checkbox" name="ios-help-circle-outline"></ion-icon>-->
+                    <!-- <ion-checkbox color="jingku1" mode="ios" (ionChange)="checkbox(item)" [(ngModel)]="item.selected" [checked]="item.selected"></ion-checkbox> -->
+                    <!-- <ion-icon class="checkbox" name="ios-help-circle-outline"></ion-icon> -->
                     <div class="img">
                         <img img-lazy-load="{{item.goods_thumb}}">
                         <!--<div class="guoqi">超过售后期</div>-->
@@ -63,7 +63,7 @@
                 </div>
             </div>
             <div class="order-foot">
-                <!-- <label tappable><ion-checkbox mode="ios" [(ngModel)]="item.selected"></ion-checkbox>全选</label> -->
+                <!-- <label tappable><ion-checkbox color="jingku1" mode="ios" [(ngModel)]="item.selected"></ion-checkbox>全选</label> -->
                 <button ion-button color="jingku1" (click)="goApplyServicePage(item.order_id,item.rec_id)">申请售后</button>
             </div>
         </div>
@@ -80,7 +80,7 @@
             <div class="order-body">
                 <div class="order-body-item" tappable navPush="ParticularsPage" [navParams]="{goodsId:subitem.goods_id}" *ngFor="let subitem of item.goods">
                     <div class="img">
-                        <img img-lazy-load="{{subitem.original_img}}">
+                        <img img-lazy-load="{{subitem.goods_thumb}}">
                     </div>
                     <div class="order-body-item-content">
                         <h2 style="-webkit-box-orient: vertical;">{{subitem.goods_name}}</h2>
@@ -105,3 +105,7 @@
         <ion-infinite-scroll-content loadingSpinner="bubbles" loadingText="加载更多...">></ion-infinite-scroll-content>
     </ion-infinite-scroll>
 </ion-content>
+
+<!-- <ion-footer *ngIf="applyTabs=='apply'" slideInUp >
+        <button no-margin block full ion-button color="jingku1">申请售后</button>
+</ion-footer> -->

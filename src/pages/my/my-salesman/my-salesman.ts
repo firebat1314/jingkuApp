@@ -22,15 +22,18 @@ export class MySalesmanPage {
     public navCtrl: NavController,
     public navParams: NavParams,
     public native: Native,
-  ) {
-  }
+  ) { }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad MySalesmanPage');
   }
   callNumber() {
     if (this.salesman.phone) {
-      this.native.openCallNumber(this.salesman.phone, false);
+      if (this.native.isMobile()) {
+        this.native.openCallNumber(this.salesman.phone, false);
+      } else {
+        window.location.href = 'tel:' + this.salesman.phone;
+      }
     } else {
       this.native.showToast('无手机号');
     }

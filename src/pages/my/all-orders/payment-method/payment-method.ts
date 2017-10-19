@@ -11,9 +11,9 @@ import { Native } from "../../../../providers/native";
   Ionic pages and navigation.
 */
 declare var pingpp: any;
-declare var Pingpp: any;
-declare var Wechat: any;
-declare var navigator: any;
+// declare var Pingpp: any;
+// declare var Wechat: any;
+// declare var navigator: any;
 
 @IonicPage({
   segment: 'payment-method/:order_id/:log_id/:type'
@@ -102,7 +102,6 @@ export class PaymentMethodPage {
     } else {//不使用余额
       this.noUserBalance(this.data[this.paymentType]);
     }
-
   }
   /**
    * 使用余额
