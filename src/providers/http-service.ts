@@ -350,7 +350,7 @@ export class HttpService {
     return this.http.get(IP + '/User/accountLog', data)
   }
   presell(data?: Object) {//预售促销商品列表
-    return this.http.get(IP + '/Index/presell', data, true)
+    return this.http.get(IP + '/Index/presell', data)
   }
   helpInfo(data?: Object) {//帮助中心
     return this.http.get(IP + '/User/helpInfo', data, true)

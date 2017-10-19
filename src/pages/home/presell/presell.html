@@ -8,65 +8,67 @@
 
 
 <ion-content parallax-header>
-    <div class="header-image">
-        <img src="./assets/images/images/yushou_01_02.jpg" alt="">
-    </div>
-
-    <div class="main-content">
-        <div class="fore fore1">
-            <div class="banner">
-                <div class="top-scrollbar">
-                    <ng-container *ngFor="let item of categorys;let i = index">
-                        <div tappable (click)="getList(item)">
-                            <div class="select" *ngIf="checkedIndex==i"></div>
-                            <div>
-                                <img *ngIf="item==0" [img-lazy-load]="checkedIndex==0?'./assets/icon/sg/11.png':'./assets/icon/sg/1.png'" alt="">
-                                <img *ngIf="item==1" [img-lazy-load]="checkedIndex==1?'./assets/icon/sg/22.png':'./assets/icon/sg/2.png'" alt="">
-                                <img *ngIf="item==2" [img-lazy-load]="checkedIndex==2?'./assets/icon/sg/33.png':'./assets/icon/sg/3.png'" alt="">
-                                <img *ngIf="item==3" [img-lazy-load]="checkedIndex==3?'./assets/icon/sg/44.png':'./assets/icon/sg/4.png'" alt="">
-                                <img *ngIf="item==4" [img-lazy-load]="checkedIndex==4?'./assets/icon/sg/55.png':'./assets/icon/sg/5.png'" alt="">
-                                <img *ngIf="item==5" [img-lazy-load]="checkedIndex==5?'./assets/icon/sg/66.png':'./assets/icon/sg/6.png'" alt="">
-                                <img *ngIf="item==6" [img-lazy-load]="checkedIndex==6?'./assets/icon/sg/77.png':'./assets/icon/sg/7.png'" alt="">
-                                <img *ngIf="item==7" [img-lazy-load]="checkedIndex==7?'./assets/icon/sg/88.png':'./assets/icon/sg/8.png'" alt="">
-                                <img *ngIf="item==8" [img-lazy-load]="checkedIndex==8?'./assets/icon/sg/99.png':'./assets/icon/sg/9.png'" alt="">
-                            </div>
-                            <span>{{item.cat_name}}</span>
-                        </div>
-                    </ng-container>
-                </div>
-            </div>
+    <div *ngIf="categorys" fadeIn>
+        <div class="header-image">
+            <img src="./assets/images/images/yushou_01_02.jpg" alt="">
         </div>
-        <ion-list>
-            <div class="nomore" *ngIf="data?.data?.length<=0">该分类下暂无预售</div>
-            <div class="fore singleton" *ngFor="let item of data?.data">
-                <div class="left" tappable (click)="goParticularsPage(item.id)">
-                    <div class="img-wrap">
-                        <img img-lazy-load="http://img.jing-ku.com/{{item.goods_img}}" alt="">
-                        <div class="time">
-                            <ion-icon name="ios-time-outline"></ion-icon>
-                            <countdown endDate="{{item.pre_end_date}}"></countdown>
-                        </div>
-                    </div>
-                </div>
-                <div class="right">
-                    <div class="title">{{item.name}}</div>
-                    <div class="strip">
-                        <div class="wrap">
-                            <div [ngStyle]="{'width.%':item.sales_num/item.goods_number*100}"></div>
-                        </div>
-                        <div class="number">
-                            <span>已抢购{{item.sales_num+item.unit}}</span>
-                            <span>仅剩{{item.goods_number+item.unit}}</span>
-                        </div>
-                    </div>
-                    <div class="price">
-                        <div class="red">{{item.shop_price}}</div>
-                        <!-- <div class="old-price">{{item.promote_price}}</div> -->
-                        <div ion-button color="jingku1" no-margin tappable (click)="goParticularsPage(item.id)">立即购买</div>
+
+        <div class="main-content">
+            <div class="fore fore1">
+                <div class="banner">
+                    <div class="top-scrollbar">
+                        <ng-container *ngFor="let item of categorys;">
+                            <div tappable (click)="getList(item.cat_id)">
+                                <div class="select" *ngIf="checkedIndex==item.cat_id"></div>
+                                <div>
+                                    <img *ngIf="item.cat_id==1" [img-lazy-load]="checkedIndex==1?'./assets/icon/sg/11.png':'./assets/icon/sg/1.png'" alt="">
+                                    <img *ngIf="item.cat_id==2" [img-lazy-load]="checkedIndex==2?'./assets/icon/sg/22.png':'./assets/icon/sg/2.png'" alt="">
+                                    <img *ngIf="item.cat_id==3" [img-lazy-load]="checkedIndex==3?'./assets/icon/sg/33.png':'./assets/icon/sg/3.png'" alt="">
+                                    <img *ngIf="item.cat_id==4" [img-lazy-load]="checkedIndex==4?'./assets/icon/sg/44.png':'./assets/icon/sg/4.png'" alt="">
+                                    <img *ngIf="item.cat_id==5" [img-lazy-load]="checkedIndex==5?'./assets/icon/sg/55.png':'./assets/icon/sg/5.png'" alt="">
+                                    <img *ngIf="item.cat_id==6" [img-lazy-load]="checkedIndex==6?'./assets/icon/sg/66.png':'./assets/icon/sg/6.png'" alt="">
+                                    <img *ngIf="item.cat_id==7" [img-lazy-load]="checkedIndex==7?'./assets/icon/sg/77.png':'./assets/icon/sg/7.png'" alt="">
+                                    <img *ngIf="item.cat_id==8" [img-lazy-load]="checkedIndex==8?'./assets/icon/sg/88.png':'./assets/icon/sg/8.png'" alt="">
+                                    <img *ngIf="item.cat_id==9" [img-lazy-load]="checkedIndex==9?'./assets/icon/sg/99.png':'./assets/icon/sg/9.png'" alt="">
+                                </div>
+                                <span>{{item.cat_name}}</span>
+                            </div>
+                        </ng-container>
                     </div>
                 </div>
             </div>
-        </ion-list>
+            <ion-list>
+                <div class="nomore" *ngIf="data?.data?.length<=0">该分类下暂无预售</div>
+                <div class="fore singleton" *ngFor="let item of data?.data">
+                    <div class="left" tappable (click)="goParticularsPage(item.id)">
+                        <div class="img-wrap">
+                            <img img-lazy-load="http://img.jing-ku.com/{{item.goods_img}}" alt="">
+                            <div class="time">
+                                <ion-icon name="ios-time-outline"></ion-icon>
+                                <countdown endDate="{{item.pre_end_date}}"></countdown>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="right">
+                        <div class="title">{{item.name}}</div>
+                        <div class="strip">
+                            <div class="wrap">
+                                <div [ngStyle]="{'width.%':item.sales_num/item.goods_number*100}"></div>
+                            </div>
+                            <div class="number">
+                                <span>已抢购{{item.sales_num+item.unit}}</span>
+                                <span>仅剩{{item.goods_number+item.unit}}</span>
+                            </div>
+                        </div>
+                        <div class="price">
+                            <div class="red">{{item.shop_price}}</div>
+                            <!-- <div class="old-price">{{item.promote_price}}</div> -->
+                            <div ion-button color="jingku1" no-margin tappable (click)="goParticularsPage(item.id)">立即购买</div>
+                        </div>
+                    </div>
+                </div>
+            </ion-list>
+        </div>
     </div>
     <!--<ion-fab left bottom>
         <button ion-fab color="jingku1" mini>
