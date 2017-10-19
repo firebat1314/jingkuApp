@@ -91,18 +91,16 @@ export class ParticularsModalAttrPage {
 	}
 	/*关闭modal弹出*/
 	dismiss(data?: any) {
-		this.viewCtrl.dismiss(data||null);
+		this.viewCtrl.dismiss(data || null);
 	}
 	/*普通商品参数*/
-	numberIChange($event, item) {
-		item.goods_attr_number = $event;
+
+	numberIChange(item) {
 		var index = this.attrId.indexOf(item.goods_attr_id);
 		if (index == -1) {
 			this.attrId.push(item.goods_attr_id);
 			this.attrNumber.push(item.goods_attr_number);
 		} else if (item.goods_attr_number == 0) {
-
-
 			this.attrId.splice(index, 1)
 			this.attrNumber.splice(index, 1)
 			// if (this.attrNumber[index] == 0) {
@@ -124,6 +122,10 @@ export class ParticularsModalAttrPage {
 		}).then((res) => {
 			if (res.status == 1) {
 				this.numberChangeData = res;
+				item.num = item.goods_attr_number;
+			} else {
+				item.goods_attr_number = item.num || 0;
+				this.attrNumber[index] = item.goods_attr_number;
 			}
 		})
 	}

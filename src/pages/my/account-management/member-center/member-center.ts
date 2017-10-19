@@ -40,13 +40,13 @@ export class MemberCenterPage {
       // console.log(res);
       if (res.status == 1) {
         this.data = res;
-        for(let i = 0;i < res.data.length;i++){
+        /* for(let i = 0;i < res.data.length;i++){
           if(Number(res.data[i].min_points)<=Number(res.rank_points)&&Number(res.data[i].max_points)>Number(res.rank_points)){
             this.rankName = res.data[i].rank_name;
             this.nextRank = res.data[i].max_points-res.rank_points;
             this.nextRankName = res.data[i+1].rank_name
           }
-        }
+        } */
       }
     })
   }

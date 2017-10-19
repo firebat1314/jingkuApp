@@ -58,7 +58,7 @@
                 <div class="tr" *ngFor="let item of attrsList?.data">
                     <div class="td-wrap">
                         <div class="td count-input-box">
-                            <count-input  [maxValue]="item.product_number" [rank]="checkMainAttrNum" (valueChange)="numberIChange($event,item)"></count-input>
+                            <count-input  [maxValue]="item.product_number" [rank]="checkMainAttrNum" [(value)]="item.goods_attr_number" (valueChange)="numberIChange(item)"></count-input>
                         </div>
                         <div class="td" *ngIf="item.is_subsidy">{{item.price}}</div>
                         <div class="td" *ngIf="item.is_subsidy">{{item.old_price}}</div>

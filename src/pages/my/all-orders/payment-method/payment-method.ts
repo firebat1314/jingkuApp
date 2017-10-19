@@ -16,7 +16,7 @@ declare var Wechat: any;
 declare var navigator: any;
 
 @IonicPage({
-  segment: 'payment-method/:order_id'
+  segment: 'payment-method/:order_id/:log_id/:type'
 })
 @Component({
   selector: 'page-payment-method',
@@ -27,6 +27,8 @@ export class PaymentMethodPage {
   payResult: any;
   data: any;
   order_id = this.navParams.get('order_id');
+  log_id = this.navParams.get('log_id');
+  type = this.navParams.get('type');
   user_money: string;
   is_pay_pass: any;
   yE: boolean = false;//是否使用余额
@@ -40,12 +42,12 @@ export class PaymentMethodPage {
     public native: Native,
     public alertCtrl: AlertController
   ) {
-    this.httpService.pay({ order_id: this.order_id }).then((res) => {
+    this.httpService.pay({ order_id: this.order_id, log_id: this.log_id, type: this.type }).then((res) => {
       if (res.status == 1) {
         this.data = res;
       } else if (res.status == 0) {
         this.navCtrl.parent.select(3);
-        this.navCtrl.setPages([{ page: 'MyPage' }, { page: 'AllOrdersPage' }])
+        this.navCtrl.setPages([{ page: 'NewMyPage' }/* , { page: 'AllOrdersPage' } */])
       }
     })
     this.httpService.userInfo().then((res) => {//检查是否有支付密码
@@ -115,7 +117,7 @@ export class PaymentMethodPage {
           this.native.showToast(res.info);
           this.navCtrl.popToRoot();
           this.navCtrl.parent.select(3);
-          this.navCtrl.setPages([{ page: 'MyPage' }, { page: 'AllOrdersPage' }])
+          this.navCtrl.setPages([{ page: 'NewMyPage' }, { page: 'AllOrdersPage' }])
         }
       }
     })
@@ -140,7 +142,7 @@ export class PaymentMethodPage {
     let that = this;
     this.navCtrl.popToRoot();
     this.navCtrl.parent.select(3);
-    this.navCtrl.setPages([{ page: 'MyPage' }, { page: 'AllOrdersPage' }])
+    this.navCtrl.setPages([{ page: 'NewMyPage' }/* , { page: 'AllOrdersPage' } */])
     pingpp.createPayment(data, function (result, err) {
       console.log(result, err)
       if (result == "success") {

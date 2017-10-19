@@ -500,4 +500,10 @@ export class HttpService {
   Ximu(data?: Object) {
     return this.http.post(IP + '/Ximu', data)
   }
+  /**
+   * 来镜加工详情
+   */
+  machiningInfo(data?: Object) {
+    return this.http.post(IP + '/Machining/machining_info', data)
+  }
 }

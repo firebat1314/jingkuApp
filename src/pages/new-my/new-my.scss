@@ -1,6 +1,15 @@
+ion-app.ios.platform-cordova {
+    page-new-my {
+        .my-head {
+            padding-top: 20px;
+        }
+    }
+}
+
 page-new-my {
     .my-head {
-        background: url(../assets/images/images/bannerShop_02.jpg) no-repeat center top/100% 100%;
+        background: url(../assets/images/images/bannerShop_02.jpg) no-repeat center top;
+        background-size: cover;
         color: #fff;
         position: relative;
         .t_btn {
@@ -85,16 +94,12 @@ page-new-my {
         }
     }
     .fore {
-        .badge {
-            border: 1px solid #416aa6 !important;
-            color: #416aa6 !important;
-            background: none !important;
-        }
         .title {
             padding: 13px 0;
             margin: 0 16px;
             display: flex;
             justify-content: space-between;
+            align-items: center;
             border-bottom: 1px #d9d9d9 dashed;
             color: #333;
             .lookall {
@@ -117,6 +122,7 @@ page-new-my {
                 display: block;
                 width: 25%;
                 text-align: center;
+                align-items: center;
                 display: flex;
                 flex-direction: column;
                 justify-content: space-between;
@@ -136,7 +142,7 @@ page-new-my {
                         .badge {
                             position: absolute;
                             top: -8px;
-                            right: 26px;
+                            right: -10px;
                             background: #fff !important;
                             font-size: 12px;
                             padding: 2px 4px;

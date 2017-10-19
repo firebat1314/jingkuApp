@@ -18,7 +18,7 @@
 
         <ion-item mode="ios" no-lines>
             订单金额
-            <span item-right ion-text color="danger">{{'¥' + data?.amout}}</span>
+            <span item-right ion-text color="danger">{{data?.amout||'--'}}</span>
         </ion-item>
         <div class="background"></div>
         <!-- <ion-list radio-group>
@@ -64,7 +64,7 @@
                     <div class="p1">支付宝支付</div>
                     <div class="p2"></div>
                 </div>
-                <div class="zf_x" (click)="paymentType='weixin'"  *ngIf="data?.is_weixin===1" [class.selected]="paymentType=='weixin'">
+                <div class="zf_x" (click)="paymentType='weixin'" *ngIf="data?.is_weixin===1" [class.selected]="paymentType=='weixin'">
                     <img src="./assets/icon/close_ico6.png" alt="">
                     <div class="p1">微信支付</div>
                     <div class="p2"></div>
@@ -88,5 +88,147 @@
 </ion-content>
 
 <ion-footer>
-    <button color="jingku1" no-margin ion-button large full class="modal-button" (click)="toPay()"><span *ngIf="paymentType&&yE">组合支付 </span>¥{{data?.amout || '0.00'}}</button>
+    <button color="jingku1" no-margin ion-button large full class="modal-button" (click)="toPay()">
+        <span *ngIf="paymentType&&yE">组合支付 </span>{{data?.amout || '--'}}</button>
 </ion-footer>
+
+
+
+<!-- <div class="am-section">
+
+
+
+    <div class="J-keyboard am-password-handy">
+        <input type="tel" class="J-pwd J-needsclick J-needsfocus " id="spwd_unencrypt" name="spwd_unencrypt" maxlength="6" pattern="\d*"
+            autocomplete="off">
+        <input type="hidden" id="spwd" name="spwd" class="J-encryptpwd" value="">
+        <ul class="am-password-handy-security">
+            <li>
+                <i></i>
+            </li>
+            <li>
+                <i></i>
+            </li>
+            <li>
+                <i></i>
+            </li>
+            <li>
+                <i></i>
+            </li>
+            <li>
+                <i></i>
+            </li>
+            <li>
+                <i></i>
+            </li>
+        </ul>
+    </div>
+
+
+</div>
+<style>
+    .am-section {
+        padding: 0 15px 10px;
+        overflow: auto;
+    }
+
+    .am-button {
+        -ms-box-sizing: border-box;
+        box-sizing: border-box;
+        display: inline-block;
+        margin: 0;
+        padding: 4px 8px;
+        width: 100%;
+        text-align: center;
+        font-size: 18px;
+        line-height: 2;
+        border-radius: 4px;
+        background-clip: padding-box;
+    }
+
+    .am-button-blue {
+        border: 1px solid #0ae;
+        color: #fff;
+        background: #0ae;
+    }
+
+    .am-list {
+        padding: 0 0 20px;
+    }
+
+    .am-list,
+    .am-list .am-list-item {
+        -ms-box-sizing: border-box;
+        box-sizing: border-box;
+    }
+
+    .am-list .am-list-item {
+        display: block;
+        position: relative;
+        z-index: 10;
+        margin: 0;
+        padding: 10px 30px 10px 15px;
+        width: 100%;
+        border-top: 1px solid #e5e5e5;
+        background-color: #fff;
+        color: #000;
+        text-align: left;
+        vertical-align: middle;
+    }
+
+    .am-list .am-list-item a {
+        color: #000;
+    }
+
+    .am-list .am-list-item:after {
+        visibility: hidden;
+        display: block;
+        font-size: 0;
+        content: " ";
+        clear: both;
+        height: 0;
+    }
+
+    .am-list div.am-list-item {
+        padding: 10px 15px;
+    }
+
+    .am-list .am-list-item:last-child {
+        border-bottom: 1px solid #e5e5e5;
+    }
+
+    .am-list .am-list-item .am-list-item-text,
+    .am-list .am-list-item .am-list-item-title {
+        display: block;
+    }
+
+    .am-list .am-list-item .am-list-item-title {
+        float: left;
+        width: 90px;
+        color: #000;
+    }
+
+    .am-list div.am-list-item .am-list-item-title {
+        width: 112px;
+    }
+
+    .am-list .am-list-item .am-list-item-text {
+        text-align: right;
+        width: auto;
+        color: gray;
+    }
+
+    .am-list div.am-list-item-form {
+        -ms-box-sizing: border-box;
+        box-sizing: border-box;
+        padding: 0 15px;
+    }
+
+    .am-list div.am-list-item-form input[type=email],
+    .am-list div.am-list-item-form input[type=number],
+    .am-list div.am-list-item-form input[type=password],
+    .am-list div.am-list-item-form input[type=search],
+    .am-list div.am-list-item-form input[type=tel]{
+
+    }
+</style> -->
