@@ -100,10 +100,10 @@ export class AccountProcessPage {
   goParticularsPage(goods_id) {
     this.navCtrl.push('ParticularsPage', { goodsId: goods_id })
   }
-  goWatchPage(){
-    this.navCtrl.push('WatchPage')
+  goWatchPage(mid) {
+    this.navCtrl.push('WatchPage', { mid: mid })
   }
-  toPay(){
-    
+  toPay(id) {
+    this.navCtrl.push('PaymentMethodPage', { log_id: id, type: 'mach' })
   }
 }

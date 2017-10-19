@@ -12,39 +12,13 @@
 // To declare rules for a specific mode, create a child rule
 // for the .md, .ios, or .wp mode classes. The mode class is
 // automatically applied to the <body> element in the app.
-.tabs .tabbar {
-    background: #fff;
-}
-
-ol,
-ul {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-}
-
-a {
-    text-decoration: none;
-    cursor: pointer;
-}
-
-b,
-em,
-i,
-strong {
-    font-style: normal;
-    font-weight: 400;
-}
-
-html {
-    // font-family: -apple-system, BlinkMacSystemFont, Helvetica Neue, Helvetica, Roboto, Arial, PingFang SC, Hiragino Sans GB, Microsoft Yahei, Microsoft Jhenghei, sans-serif !important;
-    -webkit-overflow-scrolling: touch;
-}
-
 ion-app {
     font-family: Helvetica !important;
-}
-
+ }
+ 
+.tabs .tabbar {
+    background: #fff;
+ }
 .badge {
     border: 1px solid #416aa6 !important;
     color: #416aa6 !important;

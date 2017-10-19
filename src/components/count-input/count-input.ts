@@ -82,7 +82,6 @@ export class CountInputComponent {
       this.value = this.maxValue;
     } else if (!this.value) {
       this.element.nativeElement.getElementsByTagName('input')[0].value = 0;
-      return
     }
     this.valueChange.emit(this.value);
   }

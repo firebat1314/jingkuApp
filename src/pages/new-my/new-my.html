@@ -42,19 +42,19 @@
         </div>
         <div class="h_bottom">
             <div tappable navPush="AccountCollectGoodsPage">
-                <span class="icon_num">???</span>
+                <span class="icon_num">{{usercount?.data?.collect_goods_num||'--'}}</span>
                 <span class="txt">收藏商品</span>
             </div>
             <div tappable navPush="AccountCollectStorePage">
-                <span class="icon_num">???</span>
+                <span class="icon_num">{{usercount?.data?.collect_shop_num||'--'}}</span>
                 <span class="txt">收藏店铺</span>
             </div>
             <div tappable navPush="AccountHistoryPage">
-                <span class="icon_num">???</span>
+                <span class="icon_num">{{usercount?.data?.history_num||'--'}}</span>
                 <span class="txt">浏览记录</span>
             </div>
             <div tappable (click)="goAccountProcessPage()">
-                <span class="icon_num">???</span>
+                <span class="icon_num">{{usercount?.data?.process_num||'--'}}</span>
                 <span class="txt">来镜加工</span>
             </div>
         </div>
@@ -75,28 +75,28 @@
             <a navPush="AllOrdersPage" [navParams]="{index:1}">
                 <span class="icon_num">
                     <img src="./assets/icon/new_center/7.png" alt="">
-                    <ion-badge>{{usercount?.data?.unpay||0}}</ion-badge>
+                    <ion-badge>{{usercount?.data?.unpay||'--'}}</ion-badge>
                 </span>
                 <span class="txt">代付款</span>
             </a>
             <a navPush="AllOrdersPage" [navParams]="{index:2}">
                 <span class="icon_num">
-                    <img src="./assets/icon/new_center/8.png" alt="">
-                    <ion-badge>{{usercount?.data?.collect||0}}</ion-badge>
+                    <img src="./assets/icon/new_center/99.png" alt="">
+                    <ion-badge>{{usercount?.data?.collect||'--'}}</ion-badge>
                 </span>
                 <span class="txt">待收货</span>
             </a>
             <a navPush="AllOrdersPage" [navParams]="{index:3}">
                 <span class="icon_num">
-                    <img src="./assets/icon/new_center/99.png" alt="">
-                    <ion-badge>{{usercount?.data?.ok||0}}</ion-badge>
+                    <img src="./assets/icon/new_center/8.png" alt="">
+                    <ion-badge>{{usercount?.data?.ok||'--'}}</ion-badge>
                 </span>
                 <span class="txt">已完成</span>
             </a>
             <a (click)="goRepairReturnPage()">
                 <span class="icon_num">
                     <img src="./assets/icon/new_center/9.png" alt="">
-                    <ion-badge>{{usercount?.data?.return||0}}</ion-badge>
+                    <ion-badge>{{usercount?.data?.return||'--'}}</ion-badge>
                 </span>
                 <span class="txt">退换货</span>
             </a>
@@ -109,19 +109,19 @@
         <div class="main">
             <a navPush="CouponPage">
                 <span class="icon_num">
-                    {{usercount?.data?.bonus_count||0}}
+                    {{usercount?.data?.bonus_count||'--'}}
                 </span>
                 <span class="txt">优惠券</span>
             </a>
             <a navPush="AccountJifenPage">
                 <span class="icon_num">
-                    {{userInfo?.data?.integral||0}}
+                    {{userInfo?.data?.integral||'--'}}
                 </span>
                 <span class="txt">积分</span>
             </a>
             <a navPush="AccountBalancePage">
                 <span class="icon_num">
-                    {{userInfo?.data?.user_money||0}}
+                    {{userInfo?.data?.user_money||'--'}}
                 </span>
                 <span class="txt">余额</span>
             </a>
