@@ -133,10 +133,11 @@ $alert-md-button-font-weight: 500;
 // then be future customized. This import comes last
 // so that the above variables are used and Ionic's
 // default are overridden.
+@import "reset";
+
 @import "ionic.theme.default";
 // App Animation
 @import "animate";
-@import "reset";
 // @import "wellcome";
 // App Main Sass
 @import "main";

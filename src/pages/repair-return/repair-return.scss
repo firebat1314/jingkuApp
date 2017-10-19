@@ -103,6 +103,8 @@ page-repair-return {
             .order-foot {
                 overflow: hidden;
                 margin: 10px 16px;
+                display: flex;
+                justify-content: space-between;
                 .button{
                     float: right;
                 }

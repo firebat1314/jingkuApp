@@ -11,9 +11,9 @@ import { Native } from "../../../../providers/native";
   Ionic pages and navigation.
 */
 declare var pingpp: any;
-declare var Pingpp: any;
-declare var Wechat: any;
-declare var navigator: any;
+// declare var Pingpp: any;
+// declare var Wechat: any;
+// declare var navigator: any;
 
 @IonicPage({
   segment: 'payment-method/:order_id/:log_id/:type'
@@ -102,7 +102,6 @@ export class PaymentMethodPage {
     } else {//不使用余额
       this.noUserBalance(this.data[this.paymentType]);
     }
-
   }
   /**
    * 使用余额
@@ -115,9 +114,9 @@ export class PaymentMethodPage {
           this.openPingPayment(res.pingxx);
         } else if (res.type == 'balance') {
           this.native.showToast(res.info);
-          this.navCtrl.popToRoot();
+          // this.navCtrl.popToRoot();
           this.navCtrl.parent.select(3);
-          this.navCtrl.setPages([{ page: 'NewMyPage' }, { page: 'AllOrdersPage' }])
+          this.navCtrl.setPages([{ page: 'NewMyPage' }/* , { page: 'AllOrdersPage' } */])
         }
       }
     })
@@ -139,8 +138,8 @@ export class PaymentMethodPage {
   }
 
   openPingPayment(data) {
-    let that = this;
-    this.navCtrl.popToRoot();
+    // let that = this;
+    // this.navCtrl.popToRoot();
     this.navCtrl.parent.select(3);
     this.navCtrl.setPages([{ page: 'NewMyPage' }/* , { page: 'AllOrdersPage' } */])
     pingpp.createPayment(data, function (result, err) {

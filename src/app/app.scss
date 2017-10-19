@@ -65,6 +65,12 @@ ion-app {
 [fadeIn]{
     animation:fadeIn 500ms;
 }
+[slideInUp]{
+    animation:slideInUp 500ms;
+}
+[slideOutDown]{
+    animation:slideOutDown 500ms;
+}
 a[disabled], button[disabled], [ion-button][disabled]{
     background-color: #666;
     // opacity: 1 !important;
