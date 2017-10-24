@@ -14,11 +14,11 @@
                 申请记录
             </ion-segment-button>
         </ion-segment>
-        <!-- <ion-buttons right>
+        <ion-buttons *ngIf="applyTabs=='apply'&&order?.list?.length" right (click)="PL=!PL;myContent.resize()">
             <button ion-button clear icon-only>
-                <ion-icon name="ios-funnel-outline"></ion-icon>
+                多选
             </button>
-        </ion-buttons> -->
+        </ion-buttons>
     </ion-navbar>
     <ion-toolbar class="mysearchbar">
         <form action="">
@@ -50,8 +50,8 @@
             </div>
             <div class="order-body">
                 <div class="order-body-item" tappable navPush="ParticularsPage" [navParams]="{goodsId:item.goods_id}">
-                    <!-- <ion-checkbox color="jingku1" mode="ios" (ionChange)="checkbox(item)" [(ngModel)]="item.selected" [checked]="item.selected"></ion-checkbox> -->
-                    <!-- <ion-icon class="checkbox" name="ios-help-circle-outline"></ion-icon> -->
+                    <ion-checkbox *ngIf="PL&&!(item.huan_end==0&&item.tui_end==0&&item.xiu_end==0)" color="jingku1" mode="ios" (ionChange)="checkbox(item)" [(ngModel)]="item.selected" [checked]="item.selected"></ion-checkbox>
+                    <ion-icon *ngIf="PL&&(item.huan_end==0&&item.tui_end==0&&item.xiu_end==0)" style="font-size: 23px;color: #666666;" class="checkbox" name="ios-help-circle-outline" (click)="clickWarn($event)"></ion-icon>
                     <div class="img">
                         <img img-lazy-load="{{item.goods_thumb}}">
                         <!--<div class="guoqi">超过售后期</div>-->
@@ -64,7 +64,11 @@
             </div>
             <div class="order-foot">
                 <!-- <label tappable><ion-checkbox color="jingku1" mode="ios" [(ngModel)]="item.selected"></ion-checkbox>全选</label> -->
-                <button ion-button color="jingku1" (click)="goApplyServicePage(item.order_id,item.rec_id)">申请售后</button>
+                <span *ngIf="item.huan_end==0&&item.tui_end==0&&item.xiu_end==0" class="mj_ico1">不可售后</span>
+                <span *ngIf="item.huan_end==1" class="mj_ico1">可换货</span>
+                <span *ngIf="item.tui_end==1" class="mj_ico1">可退货</span>
+                <span *ngIf="item.xiu_end==1" class="mj_ico1">可维修</span>
+                <button ion-button color="jingku1" outline [disabled]="item.huan_end==0&&item.tui_end==0&&item.xiu_end==0" (click)="goApplyServicePage(item.order_id,item.rec_id)">申请售后</button>
             </div>
         </div>
     </div>
@@ -106,6 +110,6 @@
     </ion-infinite-scroll>
 </ion-content>
 
-<!-- <ion-footer *ngIf="applyTabs=='apply'" slideInUp >
-        <button no-margin block full ion-button color="jingku1">申请售后</button>
-</ion-footer> -->
+<ion-footer *ngIf="PL&&applyTabs=='apply'" slideInUp >
+        <button (click)="submitAll()" no-margin block full ion-button color="jingku1">批量申请售后</button>
+</ion-footer>

@@ -1,5 +1,5 @@
 import { Component, ViewChild } from '@angular/core';
-import { IonicPage, NavController, NavParams, Content, FabButton, Events } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, Content, FabButton, Events, ActionSheetController } from 'ionic-angular';
 import { HttpService } from "../../providers/http-service";
 import { Native } from "../../providers/native";
 
@@ -15,9 +15,9 @@ import { Native } from "../../providers/native";
   templateUrl: 'repair-return.html',
 })
 export class RepairReturnPage {
-  infiniteScroll: any;
-  repair: any;
-  order: any;
+  infiniteScroll: any;//下拉刷新对象
+  repair: any;//售后申请
+  order: any;//申请记录
 
   applyTabs: string = 'apply' || 'applyLog';
 
@@ -26,12 +26,16 @@ export class RepairReturnPage {
     page: 1,
     order_sn: null
   };
+
+  // rec_ids: Array<string>;
+  // order_ids: Array<string>;
   constructor(
     public navCtrl: NavController,
     public navParams: NavParams,
     public httpService: HttpService,
     public native: Native,
     public events: Events,
+    public actionSheetCtrl: ActionSheetController
   ) { }
   ionViewDidLoad() {
     console.log('ionViewDidLoad RepairReturnPage');
@@ -43,15 +47,15 @@ export class RepairReturnPage {
   ngOnDestroy() {
     this.events.unsubscribe('repair-return:update');
   }
-  checkList(){
-    if(this.infiniteScroll) this.infiniteScroll.enable(true);
-    if(this.applyTabs == 'apply'){
+  checkList() {
+    if (this.infiniteScroll) this.infiniteScroll.enable(true);
+    if (this.applyTabs == 'apply') {
       return this.httpService.orderRepair(this.options).then((res) => {
         if (res.status == 1) {
           this.order = res;
         }
       })
-    }else if(this.applyTabs == 'applyLog'){
+    } else if (this.applyTabs == 'applyLog') {
       return this.httpService.repairList(this.options).then((res) => {
         if (res.status == 1) {
           this.repair = res;
@@ -107,7 +111,7 @@ export class RepairReturnPage {
     var rec_ids = [rec_id];
 
     this.navCtrl.push('ApplyServicePage', {
-      order_id: order_id,
+      order_ids: order_id,
       rec_ids: rec_id
     })
   }
@@ -126,6 +130,90 @@ export class RepairReturnPage {
   }
   checkall(item) {
 
+  }
+  /**
+   * 批量申请售后
+   * @param 
+   */
+  submitAll() {
+    let order_ids = [];
+    let rec_ids = [];
+    for (var i in this.order.list) {
+      if (this.order.list[i].selected) {
+        order_ids.push(this.order.list[i].order_id);
+        rec_ids.push(this.order.list[i].rec_id);
+      }
+    }
+
+    let actionSheet = this.actionSheetCtrl.create({
+      title: '服务类型',
+      buttons: [
+        {
+          text: '退货',
+          role: '',
+          handler: () => {
+            console.log('1');
+            this.httpService.isGoodsRepair({
+              orders: {
+                order_ids: order_ids.join(','),
+                rec_ids: rec_ids.join(',')
+              }, type: 1
+            }).then((res) => {
+              if (res.status) {
+                this.navCtrl.push('ApplyServicePage', {
+                  order_ids: order_ids.join(','), rec_ids: rec_ids.join(','), type: 1
+                });
+              }
+            })
+          }
+        }, {
+          text: '换货',
+          handler: () => {
+            console.log('2');
+            this.httpService.isGoodsRepair({
+              orders: {
+                order_ids: order_ids.join(','),
+                rec_ids: rec_ids.join(',')
+              }, type: 2
+            }).then((res) => {
+              if (res.status) {
+                this.navCtrl.push('ApplyServicePage', {
+                  order_ids: order_ids.join(','), rec_ids: rec_ids.join(','), type: 2
+                });
+              }
+            })
+          }
+        }, {
+          text: '维修',
+          handler: () => {
+            console.log('3');
+            this.httpService.isGoodsRepair({
+              orders: {
+                order_ids: order_ids.join(','),
+                rec_ids: rec_ids.join(',')
+              }, type: 3
+            }).then((res) => {
+              if (res.status) {
+                this.navCtrl.push('ApplyServicePage', {
+                  order_ids: order_ids.join(','), rec_ids: rec_ids.join(','), type: 3
+                });
+              }
+            })
+          }
+        }, {
+          text: '取消',
+          role: 'cancel',
+          handler: () => {
+
+          }
+        }
+      ]
+    });
+    actionSheet.present();
+  }
+  clickWarn(e) {
+    e.stopPropagation();
+    this.native.showToast('该商品不可售后');
   }
   /**
    * 取消售后申请

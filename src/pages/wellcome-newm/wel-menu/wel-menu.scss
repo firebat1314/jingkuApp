@@ -11,12 +11,13 @@ page-wel-menu {
         padding: 0 10px;
         font-size: 1.3rem;
         .btn {
-            min-height: 4rem;
+            min-height: 3.8rem;
             margin-top: -1px;
             color: #fff;
             background: transparent;
             display: flex;
             align-items: center;
+            border-bottom: 1px solid #666;
             &:last-child {
                 border: 0 !important;
             }

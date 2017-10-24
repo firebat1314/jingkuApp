@@ -104,7 +104,12 @@ page-repair-return {
                 overflow: hidden;
                 margin: 10px 16px;
                 display: flex;
-                justify-content: space-between;
+                justify-content: flex-end;
+                align-items: center;
+                color: #666;
+                >span{
+                    margin-right: 4px;
+                }
                 .button{
                     float: right;
                 }
@@ -145,12 +150,6 @@ page-repair-return {
                     width: 20px;
                 }
                 color: #808080;
-            }
-            .order-foot {
-                justify-content: flex-end;
-                .button {
-                    float: right;
-                }
             }
         }
     }

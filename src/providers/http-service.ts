@@ -506,4 +506,16 @@ export class HttpService {
   machiningInfo(data?: Object) {
     return this.http.post(IP + '/Machining/machining_info', data)
   }
+  /**
+   * 申请售后
+   */
+  isGoodsRepair(data?: Object) {
+    return this.http.post(IP + '/User/is_goods_repair ', data)
+  }
+  /**
+   * 退换返修
+   */
+  moreGoodsRepair(data?: Object) {
+    return this.http.post(IP + '/User/more_goods_repair  ', data)
+  }
 }

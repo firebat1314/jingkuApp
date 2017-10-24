@@ -71,7 +71,7 @@
             </div>
             <div class="btn">
                 <button color="gray" outline ion-button (click)="goWatchPage(item.mid)" *ngIf="item.is_pay=='1'">查看</button>
-                <button color="jingku1" ion-button (click)="toPay(item.log_id)" *ngIf="item.is_pay=='0'">去支付</button>
+                <button color="jingku1" ion-button outline (click)="toPay(item.log_id)" *ngIf="item.is_pay=='0'">去支付</button>
             </div>
         </div>
     </ng-container>
