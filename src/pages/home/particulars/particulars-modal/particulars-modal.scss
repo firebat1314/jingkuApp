@@ -1,5 +1,8 @@
+ion-app.ios.platform-cordova .toolbar.statusbar-padding:first-child,{
+    padding-top: 0 !important;
+}
 page-particulars-modal {
-    .header .toolbar {
+    /* .header .toolbar {
         min-height: 44px !important;
         max-height: 44px !important;
         padding-top: 4px !important;
@@ -11,7 +14,7 @@ page-particulars-modal {
                 margin-top: 0 !important;
             }
         }
-    }
+    } */
     .privilege {
         .main {
             display: flex;
