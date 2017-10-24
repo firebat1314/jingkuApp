@@ -1,6 +1,48 @@
 page-dredge-more-city {
-    form {
-        margin-bottom: 10px;
+    .scroll-content {
+        background: #fff !important;
+    }
+    .dredge-more-city-tit{
+        font-size: 1.4rem;
+        padding: 10px 14px;
+        color: #666;
+    }
+    .tap {
+        border-radius: 3px;
+        background-color: #f5f6fa;
+        border: 1px solid transparent;
+        color: #4d4d4d;
+        font-size: 1rem;
+        transition: background-color 400ms;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        overflow: hidden;
+        text-align: center;
+        width: 23%;
+        margin: 6px 1%;
+        float: left;
+        padding: 10px 7px;
+        &:nth-child(3n) {
+            margin-right: 0;
+        }
+        &.selected {
+            // background: #ccc url(../assets/images/images/toggle-mune_03_03.png) right bottom no-repeat;
+            color: #3f69a5;
+            border-color: #3f69a5;
+            background: #fff;
+            em {
+                display: block;
+                border-left: 1px solid #3f69a5;
+                width: 10px;
+                height: 6px;
+                border-bottom: 1px solid #3f69a5;
+                transform: rotateZ(-45deg);
+                display: block;
+                margin-top: -2px;
+                margin-right: 4px;
+            }
+        }
     }
     .checkbox-wrapper {
         /*display: flex;
@@ -8,20 +50,6 @@ page-dredge-more-city {
         justify-content: space-around;*/
         padding: 0 10px;
         overflow: hidden;
-        >div {
-            text-align: center;
-            padding: 7px 0px;
-            background: #d9d9d9;
-            color: #fff;
-            width: 23%;
-            margin: 6px 1%;
-            float: left;
-            padding: 10px 7px;
-            &.selected {
-                background: #333;
-                color: #fff;
-            }
-        }
     }
     .textarea {
         textarea {
@@ -30,7 +58,7 @@ page-dredge-more-city {
             display: block;
             height: 6rem;
             border-radius: 4px;
-            border: 1px solid rgb(179, 179, 179);
+            border: $border;
             padding: 5px;
         }
     }
@@ -48,6 +76,9 @@ page-dredge-more-city {
         align-items: center;
         white-space: nowrap;
         padding: 10px 0;
+        .dredge-more-city-tit{
+            align-self: flex-start;
+        }
         .add-zhizhao {
             height: 7rem;
             width: 7rem;
@@ -57,9 +88,10 @@ page-dredge-more-city {
             font-size: 1.3rem;
             flex-direction: column;
             align-items: center;
-            background: #e0e0e0;
+            background: #fff;
+            border: 1px solid #ccc;
             border-radius: 3px;
-            color: #fff;
+            color: #999;
             justify-content: center;
             margin: 10px 0;
             margin-right: 20px;
@@ -69,6 +101,7 @@ page-dredge-more-city {
         }
     }
     ion-footer {
+        border-top: $border;
         .btns {
             display: flex;
             .button {

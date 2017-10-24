@@ -63,7 +63,7 @@ export class DredgeMoreCityPage {
       this.formData.region_ids.push(item.region_id);
       item.selected = true;
     }
-    console.log(this.formData.region_ids)
+    // console.log(this.formData.region_ids)
   }
   opanNative(type) {
     let popover = this.popover.create('PopoverContentPage');

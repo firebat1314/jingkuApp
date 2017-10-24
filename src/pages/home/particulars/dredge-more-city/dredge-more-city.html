@@ -15,38 +15,45 @@
 
 <ion-content>
     <form action="" novalidate #dredgeCity="ngForm">
-        <div class="head">
-            <p ion-text color="colorsix" padding-horizontal>
-                已开通城市：
-                <span *ngFor="let item of reginArr?.user_citys">{{item.region_name}} </span>
-            </p>
-            <p ion-text color="colorsix" padding-horizontal>未开通城市：(点击即可，只可单选)</p>
-        </div>
+        <h2 class="dredge-more-city-tit" >已开通城市：</h2>
         <div class="checkbox-wrapper">
-            <div *ngFor="let item of reginArr?.no_user_citys" [ngClass]="{'selected':item.selected}" (click)="selectCity(item)" tappable>{{item.region_name}}</div>
+            <ng-container *ngFor="let item of reginArr?.user_citys">
+                <div class="tap">{{item.region_name}}</div>
+            </ng-container>
         </div>
-        <p ion-text color="colorsix" padding-horizontal><span ion-text color="danger">* </span>申请原因：</p>
+        <h2 class="dredge-more-city-tit">未开通城市：(点击即可，只可单选)</h2>
+        <div class="checkbox-wrapper">
+            <ng-container *ngFor="let item of reginArr?.no_user_citys">
+                <div class="tap" tappable (click)="selectCity(item)" [ngClass]="!item.selected?'select':'selected'"><em></em>{{item.region_name}}</div>
+            </ng-container>
+        </div>
+        <div class="background"></div>
+        <h2 class="dredge-more-city-tit">
+            <span ion-text color="danger">* </span>申请原因：</h2>
         <ion-textarea class="textarea" required [(ngModel)]="formData.reason" name="reason"></ion-textarea>
-        <p ion-text color="colorsix" padding-horizontal><span ion-text color="danger">* </span>手机号：</p>
+        <h2 class="dredge-more-city-tit">
+            <span ion-text color="danger">* </span>手机号：</h2>
         <ion-textarea class="textarea" type="number" required [(ngModel)]="formData.phone" name="phone"></ion-textarea>
-        <div class="idcard" ion-text color="colorsix" padding-horizontal>
-            营业执照：
-            <div class="add-zhizhao" style="position: relative; " item-center icon-top>
-                <ion-icon name="md-add"></ion-icon>
-                选择文件
+        <div class="idcard">
+            <span class="dredge-more-city-tit">营业执照：</span>
+            <div class="add-zhizhao click" style="position: relative; " item-center icon-top>
+                <img style="height: 27px;margin-bottom: 10px;" src="./assets/icon/images/camra.png" alt=""> 选择文件
                 <input type="file" style="width:100%;height:100%;position: absolute;opacity: 0;top:0;left: 0;" (get-image)="formData.zhizhao = $event">
+            </div>
+            <div class="add-zhizhao show" *ngIf="formData.zhizhao">
+                <img style="height: 80%;" [src]="formData.zhizhao" alt="">
             </div>
             <!--<input type="file" (change)="onFileChange($event)">-->
             <span color="danger" *ngIf="!formData.zhizhao" ion-text>请上传图片</span>
-            <div>
+            <!-- <div>
                 <img src="{{formData.zhizhao}}" alt="">
-            </div>
+            </div> -->
         </div>
     </form>
 </ion-content>
 <ion-footer>
     <div class="btns">
-        <button large ion-button color="cancelBtn" navPop>取消</button>
+        <button large ion-button color="light" navPop>取消</button>
         <button large ion-button color="jingku1" [disabled]="!dredgeCity.form.valid" (click)="onsubmit()">确定</button>
     </div>
 </ion-footer>
