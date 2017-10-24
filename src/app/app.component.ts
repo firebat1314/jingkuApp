@@ -32,8 +32,6 @@ export class MyApp {
     private native: Native,
     private upgradeProvider: UpgradeProvider,
   ) {
-
-
     //———————————————————————— app更新 ————————————————————————
     // this.upgradeProvider.detectionUpgrade();
     //———————————————————————— 初次进入app引导页面 ————————————————————————

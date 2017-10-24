@@ -8,6 +8,9 @@ nothing {
         align-items: center;
         // background: #fff;
         padding-bottom: 63px;
+        .mar{
+            margin-top: 5px;
+        }
         .img {
             width: $default-size;
             min-width: $default-size;

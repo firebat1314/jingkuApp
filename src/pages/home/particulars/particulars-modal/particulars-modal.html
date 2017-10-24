@@ -65,10 +65,10 @@
     </div>
     <div class="sendto" *ngIf="title=='配送地址'">
         <ion-list radio-group>
-            <ion-item mode="ios" *ngFor="let item of sendto" [style.opacity]="item.is_show?'1':'0.3'">
+            <ion-item mode="ios" *ngFor="let item of sendto"><!--  [style.opacity]="item.is_show?'1':'0.3'" -->
                 <ion-label>{{item.region+'-'+item.address}}</ion-label>
                 <ion-icon color="danger" name="ios-pin-outline" item-left></ion-icon>
-                <ion-radio mode="ios" [checked]="item.selected==1" (click)="!item.selected?setArea(item):return" color="danger" [value]="item"></ion-radio>
+                <ion-radio mode="ios" [disabled]="!item.is_show" [checked]="item.selected==1" (click)="!item.selected?setArea(item):return" color="danger" [value]="item"></ion-radio>
             </ion-item>
         </ion-list>
     </div>

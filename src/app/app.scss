@@ -12,13 +12,15 @@
 // To declare rules for a specific mode, create a child rule
 // for the .md, .ios, or .wp mode classes. The mode class is
 // automatically applied to the <body> element in the app.
+@import "../theme/reset";
 ion-app {
     font-family: Helvetica !important;
- }
- 
+}
+
 .tabs .tabbar {
     background: #fff;
- }
+}
+
 .badge {
     border: 1px solid #416aa6 !important;
     color: #416aa6 !important;
@@ -62,24 +64,32 @@ ion-app {
         font-size: 1.2rem;
     }
 }
-[fadeIn]{
-    animation:fadeIn 500ms;
+
+[fadeIn] {
+    animation: fadeIn 500ms;
 }
-[slideInUp]{
-    animation:slideInUp 500ms;
+
+[slideInUp] {
+    animation: slideInUp 500ms;
 }
-[slideOutDown]{
-    animation:slideOutDown 500ms;
+
+[slideOutDown] {
+    animation: slideOutDown 500ms;
 }
-a[disabled], button[disabled], [ion-button][disabled]{
-    background-color: #666;
-    // opacity: 1 !important;
-}
+
+/* a[disabled],
+button[disabled],
+[ion-button][disabled] {
+    background-color: #666; // opacity: 1 !important;
+} */
+
+
 /* .badge {
     border: 1px solid #416aa6 !important;
     color: #416aa6 !important;
     background: none !important;
 } */
+
 ion-thumbnail {
     border: $border-img;
 }
@@ -422,13 +432,14 @@ button.swiper-pagination-bullet {
 
 .popover-menu {
     .popover-content {
-        width: 145px; // background: rgba(0, 0, 0, 0.7);
-        background: #7a7a7a;
+        width: 145px;
+        background: rgba(0, 0, 0, 0.7); // background: #7a7a7a;
         border-radius: 5px;
     }
     .popover-arrow {
         &:after {
-            background: #7a7a7a;
+            // background: #7a7a7a;
+            background: rgba(0, 0, 0, 0.7);
         }
     }
 }
