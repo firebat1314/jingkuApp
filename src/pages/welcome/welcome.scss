@@ -2,6 +2,9 @@ page-welcome {
     ion-slide {
         background-color: #eeeeee;
     }
+    .scroll-content {
+        -webkit-overflow-scrolling: auto !important;
+    }
     .startapp {
         width: 170px;
         height: 50px;
@@ -24,6 +27,7 @@ page-welcome {
             border-width: 2px;
             transition: width 500ms ease-in-out;
             border-color: #f4d05b !important;
+            background: transparent;
         }
         .swiper-pagination-bullet-active {
             width: 23px;

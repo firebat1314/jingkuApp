@@ -61,7 +61,7 @@
                     </div>
                     <span>预售</span>
                 </div>
-                <div tappable (click)="goClassPage('brand')">
+                <div tappable (click)="goBrandPage()">
                     <div class="img">
                         <img img-lazy-load="./assets/icon/home_icon_04.png" alt="">
                     </div>
@@ -99,7 +99,7 @@
         <div class="hot-group home-content" home-padding>
             <div class="title">
                 <span class="txt">热门品类</span>
-                <span class="more" tappable (click)="goBrandPage()">更多&gt;</span>
+                <span class="more" tappable (click)="goClassPage()">更多&gt;</span>
             </div>
             <div class="main">
                 <div class="banner">
@@ -121,7 +121,7 @@
         <div class="hot-brand home-content" home-padding>
             <div class="title">
                 <span class="txt">热门品牌</span>
-                <span class="more" tappable (click)="goClassPage()">更多&gt;</span>
+                <span class="more" tappable (click)="goBrandPage()">更多&gt;</span>
             </div>
             <div class="main" *ngIf="getBrands?.length">
                 <div class="brand-list">
