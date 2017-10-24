@@ -14,7 +14,7 @@ import { Native } from "../../../providers/native";
 	templateUrl: 'brand-list.html',
 })
 export class BrandListPage {
-	timer: number;
+	timer: any;
 	infiniteScroll: InfiniteScroll;
 	data: any;
 	goodsCount: any;//购物车商品数量
