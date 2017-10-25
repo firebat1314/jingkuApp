@@ -110,7 +110,7 @@ export class NewMyPage {
     this.httpService.Ximu().then((res) => {
       if (res.status) {
         if (this.native.isMobile()) {
-          this.iab.create(res.data.url, '_system');
+          this.iab.create(res.data.url);
         } else {
           location.href = (res.data.url)
         }

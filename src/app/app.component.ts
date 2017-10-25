@@ -33,7 +33,7 @@ export class MyApp {
     private upgradeProvider: UpgradeProvider,
   ) {
     //———————————————————————— app更新 ————————————————————————
-    // this.upgradeProvider.detectionUpgrade();
+    this.upgradeProvider.detectionUpgrade();
     //———————————————————————— 初次进入app引导页面 ————————————————————————
     if (this.native.isMobile()) {
       this.storage.get('has_entered').then((result) => {
