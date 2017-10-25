@@ -29,8 +29,8 @@ export class ParticularsModalPage {
     public httpService: HttpService,
     public events: Events,
     public native: Native
-  ) { 
-    this.events.subscribe('particulars:update',()=>{
+  ) {
+    this.events.subscribe('particulars:update', () => {
       this.getAreaData();
     })
   }
@@ -64,7 +64,7 @@ export class ParticularsModalPage {
   }
   setArea(item) {
     // console.log(item)
-    if (item.is_show == 0) {
+    if (item.is_goods_city == 0) {
       this.native.openAlertBox('不在可配送城市,是否切换城市？', () => {
         this.navCtrl.push('CityPage');
       }, () => {
@@ -72,13 +72,22 @@ export class ParticularsModalPage {
       })
       return;
     }
-    this.httpService.changeConsignee({ address_id: item.address_id }).then((res) => {
-      // console.log(res);
+    this.httpService.editArea({ id: item.province }).then((res) => {
       if (res.status == 1) {
-        this.native.showToast('地址已切换')
-        this.viewCtrl.dismiss(item);
+        this.events.publish('home:update');
+        this.events.publish('car:update');
+        this.httpService.changeConsignee({ address_id: item.address_id }).then((res) => {
+          // console.log(res);
+          if (res.status == 1) {
+            this.native.showToast('地址已切换')
+            this.viewCtrl.dismiss(item);
+          } else {
+            this.getAreaData();
+          }
+        })
       }
     })
+
     /* this.httpService.setArea({
       goods_id: this.GoodsInfo.goods_id,
       gaid: item.gaid ? item.gaid : '',
