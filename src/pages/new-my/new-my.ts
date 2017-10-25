@@ -107,9 +107,16 @@ export class NewMyPage {
     })
   }
   openXimu() {
+    // this.native.showToast('暂未开放', null, false);
     this.httpService.Ximu().then((res) => {
       if (res.status) {
-        this.navCtrl.push('IframeBrowserPage',{url:res.data.url});
+        this.navCtrl.push('IframeBrowserPage', { url: res.data.url });
+        // this.navCtrl.push('IframeBrowserPage',{url:res.data.url});
+        /* if (this.native.isMobile()) {
+          this.iab.create(res.data.url, '_system');
+        } else {
+          location.href = (res.data.url)
+        } */
       }
     })
 
