@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams, IonicPage } from 'ionic-angular';
-
+import { DomSanitizer } from '@angular/platform-browser';
 /**
  * Generated class for the IframeBrowserPage page.
  *
@@ -14,8 +14,10 @@ import { NavController, NavParams, IonicPage } from 'ionic-angular';
   templateUrl: 'iframe-browser.html',
 })
 export class IframeBrowserPage {
-
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  srcUrl: any = this.navParams.get('url');
+  constructor(public navCtrl: NavController, public navParams: NavParams, private sanitizer: DomSanitizer) {
+    this.srcUrl = this.sanitizer.bypassSecurityTrustResourceUrl(navParams.get('url'));
+    console.log(this.srcUrl)
   }
 
   ionViewDidLoad() {
