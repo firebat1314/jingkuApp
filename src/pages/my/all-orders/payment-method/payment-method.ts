@@ -10,8 +10,8 @@ import { Native } from "../../../../providers/native";
   See http://ionicframework.com/docs/v2/components/#navigation for more info on
   Ionic pages and navigation.
 */
-declare var pingpp: any;
-// declare var Pingpp: any;
+// declare var pingpp: any;
+declare var Pingpp: any;
 // declare var Wechat: any;
 // declare var navigator: any;
 
@@ -48,29 +48,6 @@ export class PaymentMethodPage {
       } else if (res.status == 0) {
         this.navCtrl.parent.select(3);
         this.navCtrl.setPages([{ page: 'NewMyPage' }/* , { page: 'AllOrdersPage' } */])
-      }
-    })
-    this.httpService.userInfo().then((res) => {//检查是否有支付密码
-      if (res.status) {
-        this.user_money = res.data.user_money;
-        this.is_pay_pass = res.data.user_money;
-        if (!this.is_pay_pass) {
-          this.alertCtrl.create({
-            title: '提示',
-            subTitle: '还没有设置支付密码请前往设置',
-            message: '',
-            enableBackdropDismiss: false,
-            buttons: [
-              {
-                text: '确定',
-                handler: () => {
-                  this.navCtrl.push('ChangePayPasswordPage');
-                  // this.platform.exitApp();
-                }
-              }
-            ]
-          }).present();
-        }
       }
     })
   }
@@ -136,14 +113,45 @@ export class PaymentMethodPage {
   }
   userYue() {
     this.yE = !this.yE;
+    if(this.yE){
+      this.httpService.userInfo().then((res) => {//检查是否有支付密码
+        if (res.status) {
+          this.user_money = res.data.user_money;
+          this.is_pay_pass = res.data.user_money;
+          if (!this.is_pay_pass) {
+            this.alertCtrl.create({
+              title: '提示',
+              subTitle: '还没有设置支付密码请前往设置',
+              message: '',
+              enableBackdropDismiss: false,
+              buttons: [
+                {
+                  text: '确定',
+                  handler: () => {
+                    this.yE = false;
+                    this.navCtrl.push('ChangePayPasswordPage');
+                  }
+                },{
+                  text: '取消',
+                  handler: () => {
+                    this.yE = false;
+                  }
+                }
+              ]
+            }).present();
+          }
+        }
+      })
+    }
+    
   }
 
   openPingPayment(data) {
-    let that = this;
+    /* let that = this;
     (<any>window).navigator.pingpp.requestPayment(data, (result, err) => {
       // this.navCtrl.popToRoot();
       this.navCtrl.parent.select(3);
-      this.navCtrl.setPages([{ page: 'MyPage' }/* , { page: 'AllOrdersPage' } */])
+      this.navCtrl.setPages([{ page: 'NewMyPage' }])
       if (result == 'success') {
         that.native.showToast("支付成功");
       } else if (result == 'cancel') {
@@ -154,7 +162,7 @@ export class PaymentMethodPage {
     }, (result, err) => {
       // this.navCtrl.popToRoot();
       this.navCtrl.parent.select(3);
-      this.navCtrl.setPages([{ page: 'MyPage' }/* , { page: 'AllOrdersPage' } */])
+      this.navCtrl.setPages([{ page: 'NewMyPage' }])
       if (result == 'cancel') {
         that.native.showToast("取消支付");
       } else if (result == 'fail') {
@@ -162,7 +170,7 @@ export class PaymentMethodPage {
       } else if (result == 'invalid') {
       }
       console.log('fail', result, err)
-    });
+    }); */
     /*——————————————————————————————————————————————————————————————————————————*/
     // pingpp.createPayment(data, (result) => {
     //   console.log('success',result);
@@ -170,22 +178,18 @@ export class PaymentMethodPage {
     //   console.log(err);
     // });
     /*——————————————————————————————————————————————————————————————————————————*/
-    /* let that = this;
+    let that = this;
     (<any>window).navigator.Pingpp.createPayment(data, (result, error) => {//scheme 为iOS返回应用
       console.log('result' + result);
       console.log('error' + error);
       this.navCtrl.parent.select(3);
-      this.navCtrl.setPages([{ page: 'MyPage' }, { page: 'AllOrdersPage' }])
+      this.navCtrl.setPages([{ page: 'NewMyPage' }])
       if (result == 'success') {
         that.native.showToast('支付成功');
       } else {
         that.native.showToast('支付失败');
       }
     })
-    // Pingpp.setDebugMode(true)
-    Pingpp.getVersion(function (version) {
-      console.log("当前SDK版本号是:" + version);
-    }); */
   }
 
   // alipayPay(alipayOrder) {

@@ -9,6 +9,8 @@ import { Native } from "../../../providers/native";
   See http://ionicframework.com/docs/v2/components/#navigation for more info on
   Ionic pages and navigation.
 */
+declare var navigator : any;
+
 @IonicPage()
 @Component({
   selector: 'page-recharge',
@@ -81,11 +83,11 @@ export class RechargePage {
   //   }
   // })
   openPingPayment(data) {
-    let that = this;
-    (<any>window).navigator.pingpp.requestPayment(data, (result, err) => {
+    /*let that = this;
+     (<any>window).navigator.pingpp.requestPayment(data, (result, err) => {
       this.navCtrl.popToRoot();
       this.navCtrl.parent.select(3);
-      this.navCtrl.setPages([{ page: 'MyPage' }, { page: 'AllOrdersPage' }])
+      this.navCtrl.setPages([{ page: 'NewMyPage' }, { page: 'NewMyPage' }])
       if (result == 'success') {
         that.native.showToast("支付成功");
       } else if (result == 'cancel') {
@@ -100,6 +102,18 @@ export class RechargePage {
         that.native.showToast("支付异常,请尝试其他支付方式");
       }
       console.log('fail', result, err)
+    }) */
+    let that = this;
+    navigator.Pingpp.createPayment(data, (result, error) => {//scheme 为iOS返回应用
+      console.log('result' + result);
+      console.log('error' + error);
+      this.navCtrl.parent.select(3);
+      this.navCtrl.setPages([{ page: 'NewMyPage' }, { page: 'NewMyPage' }])
+      if (result == 'success') {
+        that.native.showToast('充值成功');
+      } else {
+        that.native.showToast('充值失败');
+      }
     })
   }
 }

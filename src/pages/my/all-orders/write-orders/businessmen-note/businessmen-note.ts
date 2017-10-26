@@ -94,19 +94,19 @@ export class BusinessmenNotePage {
     let commentArr = [];
     let suppliers = [];
     let label = [];
-
+    
     for (var i in this.data.suppliers_notes) {
-      commentArr.push(this.data.suppliers_notes[i])
-      suppliers.push(i)
+      commentArr.push(this.data.suppliers_notes[i]);
     }
     for (let i = 0; i < this.data.cart_goods_list.length; i++) {
-      var sArr = []
+      suppliers.push(this.data.cart_goods_list[i].suppliers_id);
+      var sArr = [];
       for (var j = 0; j < this.data.cart_goods_list[i].order_label.length; j++) {
         if (this.data.cart_goods_list[i].order_label[j].selected) {
-          sArr.push(j)
+          sArr.push(j);
         }
       }
-      label.push(sArr)
+      label.push(sArr);
     }
     return new Promise((resolve, reject) => {
       this.httpService.writeNotes({
