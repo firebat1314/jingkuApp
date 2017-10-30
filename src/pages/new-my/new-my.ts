@@ -5,6 +5,8 @@ import { HttpService } from "../../providers/http-service";
 import { Native } from "../../providers/native";
 import { InAppBrowser } from '@ionic-native/in-app-browser';
 
+declare var cordova: any;
+
 @IonicPage()
 @Component({
   selector: 'page-new-my',
@@ -110,7 +112,17 @@ export class NewMyPage {
     // this.native.showToast('暂未开放', null, false);
     this.httpService.Ximu().then((res) => {
       if (res.status) {
-        this.navCtrl.push('IframeBrowserPage', { url: res.data.url });
+        // this.navCtrl.push('IframeBrowserPage', { url: res.data.url });
+        cordova.exec(
+          (result) => {
+            if (result != null) {this.native.showToast(result, null, false);}
+          },
+          (msg) => {
+            this.native.showToast(msg, null, false);
+          },
+          "CallActivityPlugin",
+          "call",[res.data.url])
+
         // this.navCtrl.push('IframeBrowserPage',{url:res.data.url});
         /* if (this.native.isMobile()) {
           this.iab.create(res.data.url, '_system');
@@ -119,6 +131,5 @@ export class NewMyPage {
         } */
       }
     })
-
   }
 }
