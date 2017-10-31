@@ -35,9 +35,11 @@ export class WellcomeNewmPage {
       scrollElement: this.ele.nativeElement.querySelector('.scroll-content')
     })
     this.wow.init();
-    TouchSlide({
-      slideCell: "#hez-cont"
-    });
+    setTimeout(function() {
+      TouchSlide({
+        slideCell: "#hez-cont"
+      });
+    }, 1000);
   }
 
 }

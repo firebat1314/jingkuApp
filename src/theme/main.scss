@@ -78,7 +78,14 @@ $border-img:1px solid #f0f0f0;
     -webkit-box-orient: vertical;
     -webkit-line-clamp: 2;
 }
-
+@mixin ellipsis_3 {
+    white-space: pre-wrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 3;
+}
 
 /*————————————————————————————————————验证码图片CSS————————————————————————————————————*/
 

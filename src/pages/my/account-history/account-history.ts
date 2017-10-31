@@ -79,12 +79,7 @@ export class AccountHistoryPage {
       cssClass: 'alert-style',
       subTitle: '确认删除该浏览记录',
       buttons: [
-        {
-          text: '取消',
-          handler: () => {
-            console.log('Disagree clicked');
-          }
-        },
+        
         {
           text: '确认',
           handler: () => {
@@ -101,7 +96,13 @@ export class AccountHistoryPage {
               this.getHttpData();
             })
           }
-        }
+        },
+        {
+          text: '取消',
+          handler: () => {
+            console.log('Disagree clicked');
+          }
+        },
       ],
     });
     confirm.present();
