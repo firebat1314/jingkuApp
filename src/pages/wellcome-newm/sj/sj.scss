@@ -31,9 +31,14 @@ page-sj {
     .yyfw-cont {
         .wrp {
             p {
-                @include ellipsis_2();
+                @include ellipsis_1();
             }
         }
     }
-    
+    .sjfw-cont{
+        h2{
+            @include ellipsis_1();
+            margin-bottom: 0;
+        }
+    }
 }
