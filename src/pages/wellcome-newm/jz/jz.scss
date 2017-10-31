@@ -1,7 +1,20 @@
-   /*@import "./theme/wellcomepage";*/
-   page-jz {
-   .scroll-content {
-      background: #fff !important;
-   }
-   /*@import "./theme/wellcomepage";*/
+page-jz {
+      .scroll-content {
+         background: #fff !important;
+      }
+      /*@import "./theme/wellcomepage";*/
+      .cgong2-cont{
+         .wrp{
+            p{
+               @include ellipsis_3;
+            }
+         }
+      }
+      .fanw-cont{
+         .txt{
+             h3{
+                 @include ellipsis_1();
+             }
+         }
+     }
 }

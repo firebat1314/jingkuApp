@@ -1,5 +1,6 @@
     /*@import "./theme/wellcomepage";*/
-    page-sj {
+
+page-sj {
     .scroll-content {
         background: #fff !important;
     }
@@ -27,4 +28,12 @@
             width: 100%;
         }
     }
+    .yyfw-cont {
+        .wrp {
+            p {
+                @include ellipsis_2();
+            }
+        }
+    }
+    
 }
