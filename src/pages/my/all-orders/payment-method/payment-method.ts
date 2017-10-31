@@ -138,7 +138,7 @@ export class PaymentMethodPage {
   }
 
   openPingPayment(data) {
-    // let that = this;
+    let that = this;
     // this.navCtrl.popToRoot();
     this.navCtrl.parent.select(3);
     this.navCtrl.setPages([{ page: 'NewMyPage' }/* , { page: 'AllOrdersPage' } */])
@@ -148,6 +148,7 @@ export class PaymentMethodPage {
         // 只有微信公众账号 wx_pub 支付成功的结果会在这里返回，其他的支付结果都会跳转到 extra 中对应的 URL。
       } else if (result == "fail") {
         // charge 不正确或者微信公众账号支付失败时会在此处返回
+        that.native.showToast("支付异常");
       } else if (result == "cancel") {
         // 微信公众账号支付取消支付
       }

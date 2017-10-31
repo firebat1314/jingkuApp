@@ -15,8 +15,7 @@ page-login {
         }
         .logo {
             text-align: center;
-            width: 100%;
-            // padding: 0 90px;
+            width: 100%; // padding: 0 90px;
             // background: url(../assets/icon/jingku_logo_03.png) no-repeat center top;
             // background-size: 83%;
             width: 68%;
@@ -36,7 +35,6 @@ page-login {
             }
             .itme-inner {
                 border-color: #e6e6e6;
-                ;
             }
             &:nth-child(2) .item-inner {
                 .input-cover {
