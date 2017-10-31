@@ -10,4 +10,4 @@ export const IP = 'http://v403app.jingkoo.net';//app测试
 
 export const welpage_selected = '';
 
-export const version = '1.1.1';
+export const version = '1.2.6';

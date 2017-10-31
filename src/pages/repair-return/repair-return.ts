@@ -119,14 +119,20 @@ export class RepairReturnPage {
    * 复选框选中判断
    * @param subitem 订单项
    */
+  order_ids: Array<any> = [];
+  PL:boolean;
   checkbox(subitem) {
-    /*  subitem.selected = true
-     for (var i in item.goods) {
-       if (item.goods[i].selected == false) {
-         item.selected = true;
-       }
-     }
-     console.log(this.order.list[0]) */
+/*     var index = this.order_ids.indexOf(subitem.order_id)
+    if (index > -1) {
+      this.order_ids.splice(index, 1)
+    } else {
+      this.order_ids.push(subitem.order_id);
+    }
+    if(this.order_ids.length>0){
+      this.PL = true;
+    }else{
+      this.PL = false;
+    } */
   }
   checkall(item) {
 

@@ -9,7 +9,7 @@ import { Native } from "../../../providers/native";
   See http://ionicframework.com/docs/v2/components/#navigation for more info on
   Ionic pages and navigation.
 */
-declare var navigator : any;
+declare var navigator: any;
 
 @IonicPage()
 @Component({
@@ -82,6 +82,7 @@ export class RechargePage {
   //     })
   //   }
   // })
+  money: any;
   openPingPayment(data) {
     /*let that = this;
      (<any>window).navigator.pingpp.requestPayment(data, (result, err) => {
@@ -104,13 +105,14 @@ export class RechargePage {
       console.log('fail', result, err)
     }) */
     let that = this;
-    navigator.Pingpp.createPayment(data, (result, error) => {//scheme 为iOS返回应用
+    (<any>window).Pingpp.createPayment(data, (result, error) => {//scheme 为iOS返回应用
       console.log('result' + result);
       console.log('error' + error);
-      this.navCtrl.parent.select(3);
-      this.navCtrl.setPages([{ page: 'NewMyPage' }, { page: 'NewMyPage' }])
       if (result == 'success') {
+        this.money = 0;
         that.native.showToast('充值成功');
+        this.navCtrl.parent.select(3);
+        this.navCtrl.setPages([{ page: 'NewMyPage' }, { page: 'AccountMoneyDetailPage' }])
       } else {
         that.native.showToast('充值失败');
       }

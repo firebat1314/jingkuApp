@@ -11,9 +11,9 @@ import { Native } from "../../../../providers/native";
   Ionic pages and navigation.
 */
 // declare var pingpp: any;
-declare var Pingpp: any;
+// declare var Pingpp: any;
 // declare var Wechat: any;
-// declare var navigator: any;
+declare var navigator: any;
 
 @IonicPage({
   segment: 'payment-method/:order_id/:log_id/:type'
@@ -179,9 +179,10 @@ export class PaymentMethodPage {
     // });
     /*——————————————————————————————————————————————————————————————————————————*/
     let that = this;
-    (<any>window).navigator.Pingpp.createPayment(data, (result, error) => {//scheme 为iOS返回应用
+    (<any>window).Pingpp.createPayment(data, (result, error) => {//scheme 为iOS返回应用
       console.log('result' + result);
       console.log('error' + error);
+      console.log(window)
       this.navCtrl.parent.select(3);
       this.navCtrl.setPages([{ page: 'NewMyPage' }])
       if (result == 'success') {
