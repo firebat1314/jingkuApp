@@ -15,19 +15,26 @@ page-home {
             background: #fff;
             padding: 17px 10px;
             .txt {
-                border-left: 5px solid #333;
+                border-left: 5px solid get-color(jingku1);
                 font-weight: 500;
                 font-size: 1.6rem;
                 padding-left: 10px;
                 line-height: 1;
             }
             .more {
-                color: #666;
+                color: #999;
                 font-size: 12px;
+                display: flex;
+                align-items: center;
+                ion-icon {
+                    color: get-color(jingku1);
+                    font-size: 19px;
+                    margin-left: 5px;
+                }
             }
         }
         .main {
-            padding: 0 10px 10px;;
+            padding: 0 10px 10px;
         }
     }
     .mark-searchbar {
@@ -74,22 +81,95 @@ page-home {
             .img {
                 width: 43px;
                 height: 43px;
-                margin-bottom: 7px;
-                border: 1px solid #666;
+                margin-bottom: 7px; // border: 1px solid #666;
                 border-radius: 50%;
                 display: flex;
                 justify-content: center;
                 align-items: center;
-                img {
-                    height: 56%;
-                }
+                box-shadow: 0px 0 20px #f5f5f5;
             }
         }
     }
     .btn-tool .bottom {
         margin-bottom: 0px;
     }
-    /*——————————————————————————————————————————热门品类——————————————————————————————————————————*/
+    /*———————————————————————————————— 闪购商品 ————————————————————————————————*/
+    .shan_gou {
+        .title {
+            background: url(../assets/icon/home/home_ico7.png) no-repeat 10px center/25px;
+            padding: 15px 11px 13px 30px;
+            .txt {
+                border: none;
+                color: get-color(jingku1);
+            }
+        }
+        .main {
+            .scroll_wrap {
+                overflow-y: scroll;
+                display: flex;
+                .item {
+                    text-align: center;
+                    margin-right: 10px;
+                    &:last-child {
+                        margin-right: 0;
+                    }
+                    .img {
+                        width: 100px;
+                        height: 100px;
+                        display: flex;
+                        align-items: center;
+                    }
+                    .txt {
+                        padding: 8px 0;
+                        .price {
+                            color: #e60000;
+                            font-size: 1.3rem;
+                            &:first-letter {
+                                font-size: 1.2rem;
+                            }
+                        }
+                        .old_price {
+                            font-size: 1.2rem;
+                            text-decoration: line-through;
+                            color: #999;
+                            &:first-letter {
+                                font-size: 1.1rem;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+    /*———————————————————————————————— 广告位 ————————————————————————————————*/
+    .ad_wrap {
+        $width: 10px;
+        padding: $width;
+        background: #fff;
+        margin-bottom: 10px;
+        img {
+            display: block;
+        }
+        .line1 {
+            display: flex;
+            >div {
+                margin-right: $width;
+                width: calc(50% - 5px);
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                &:last-child {
+                    margin: 0;
+                }
+            }
+        }
+        .line2 {
+            img {
+                margin-top: $width;
+            }
+        }
+    }
+    /*————————————————————————————————热门品类————————————————————————————————*/
     .hot-group {
         margin-bottom: 10px;
         .main {
@@ -118,7 +198,7 @@ page-home {
             }
         }
     }
-    /*——————————————————————————————————————————热门品牌——————————————————————————————————————————*/
+    /*————————————————————————————————热门品牌————————————————————————————————*/
     .hot-brand {
         .main {
             .brand-list {
@@ -145,18 +225,17 @@ page-home {
             }
         }
     }
-    /*——————————————————————————————————————————精选专题——————————————————————————————————————————*/
+    /*————————————————————————————————精选专题————————————————————————————————*/
     .handpick {
         .show {
-            &:first-child{
+            &:first-child {
                 margin-top: 0;
             }
             margin: 1rem auto;
             min-height: 150px;
             img {
                 display: block;
-                margin: 0 auto;
-                border-radius: 5px;
+                margin: 0 auto; // border-radius: 5px;
             }
         }
         .pick {
@@ -208,7 +287,7 @@ page-home {
             }
         }
     }
-    /*——————————————————————————————————————————好店推荐——————————————————————————————————————————*/
+    /*————————————————————————————————好店推荐————————————————————————————————*/
     .good-shop {
         .main {
             ion-slides {
@@ -240,7 +319,7 @@ page-home {
             }
         }
     }
-    /*——————————————————————————————————————————热门单品——————————————————————————————————————————*/
+    /*————————————————————————————————热门单品————————————————————————————————*/
     .hot-other {
         background: initial;
         .title {

@@ -44,7 +44,10 @@ page-classify-new {
                     display: flex;
                     flex-wrap: wrap;
                     padding: 0 0 22px;
+                    justify-content: space-between;
                     .brand {
+                        flex-basis: 32.33%;
+                        text-align: center;
                         .brand_img {
                             display: flex;
                             align-items: center;
@@ -53,12 +56,11 @@ page-classify-new {
                                 display: block;
                             }
                         }
-                        flex-basis: 33.33%;
-                        text-align: center;
                     }
                     .brand_name {
                         color: #606366;
                         font-size: 1rem;
+                        margin-top: 10px;
                     }
                 }
             }

@@ -14,6 +14,7 @@ import { Storage } from '@ionic/storage';
 })
 export class HomePage {
   data: any;
+  fastbuyData: any;
   indexHotGoods: any;
   jingxuan_img4: any;
   hotBrand_img: string;
@@ -74,58 +75,25 @@ export class HomePage {
       if (res) {
         this.data = res;
         this.assignData(res);
-      } else {
-        this.getHomeData().then(() => {
-          console.log('首页加载完成');
-        }).catch((res) => {
-          this.native.showToast('首页加载失败');
-        })
       }
+      this.getHomeData().then(() => {
+        console.log('首页加载完成');
+      }).catch((res) => {
+        this.native.showToast('首页加载失败');
+      })
     })
   }
   getHomeData() {
+    this.httpService.presell({ type: 'is_promote', cat_id: 0 }).then((res) => {
+      if (res.status == 1) { this.fastbuyData = res; }
+    });
     return this.httpService.indexs().then((res) => {
-      // console.log(res)
       if (res.status == 1) {
         this.data = res;
         this.assignData(res);
         this.storage.set('homeData', res);
       }
-    }).catch((res) => {
-      // console.log(res);
     })
-    /*this.httpService.getHomebanner({ int_pos_id: 44, size: 1 }).then((res) => {
-      if (res.status == 1) { this.hotBrand_img = res; }
-      this.httpService.getCategoryAd({ int_pos_id: 27, int_size: 10 }).then((res) => {
-        if (res.status == 1) { this.categoryAddetatils = res.data; }
-        this.httpService.getHomebanner({ int_pos_id: 45, size: 1 }).then((res) => {
-          if (res.status == 1) { this.jingxuan_img1 = res.data[0]; }
-          this.native.hideLoading();
-          if (finish) { finish(); }
-          this.httpService.getBrands().then(((res) => {
-            if (res.status == 1) { this.getBrands = res.data; }
-            this.httpService.getHomebanner({ int_pos_id: 46, size: 1 }).then((res) => {
-              if (res.status == 1) { this.jingxuan_img2 = res.data[0]; }
-              this.httpService.getCategoryRecommendGoodsHot().then(((res) => {
-                if (res.status == 1) { this.getCategoryRecommendGoodsHot = res.data; }
-                this.httpService.getHomebanner({ int_pos_id: 47, size: 1 }).then((res) => {
-                  if (res.status == 1) { this.jingxuan_img3 = res.data[0]; }
-                  this.httpService.getCategoryRecommendGoods().then((res) => {
-                    if (res.status == 1) { this.getCategoryRecommendGoods = res.data; }
-                    this.httpService.getHomebanner({ int_pos_id: 48 }).then((res) => {
-                      if (res.status == 1) { this.jingxuan_img4 = res.data; }
-                      this.httpService.getCategoryRecommendGoodsBest().then(((res) => {
-                        if (res.status == 1) { this.getCategoryRecommendGoodsBest = res.data; }
-                      }))
-                    })
-                  })
-                })
-              }))
-            })
-          }))
-        })
-      })
-    })*/
   }
   assignData(res) {
     //城市列表
@@ -138,12 +106,12 @@ export class HomePage {
     }
     //轮播 
     this.bannerImgs = res.data.ads_banner;
-    //热门品类 大图
-    this.hotBrand_img = res.data.ads_rmpp['0'];
-    //热门品类 小图
-    this.categoryAddetatils = res.data.ads_emdp;
-    //热门品牌 
-    this.getBrands = res.data.ads_brand;
+    //闪购 左
+    this.hotBrand_img = res.data.ads_sgz['0'];
+    //闪购 右
+    this.categoryAddetatils = res.data.ads_sgy['0'];
+    //闪购 下
+    this.getBrands = res.data.ads_sgx['0'];
     //精选专题 大图1
     this.jingxuan_img1 = res.data.ads_jxzt['0'];
     this.getCategoryRecommendGoodsHot = res.data.hot_recommend_goods;
@@ -168,6 +136,10 @@ export class HomePage {
   /*下拉刷新*/
   doRefresh(refresher) {
     this.getHomeData().then(() => {
+      setTimeout(() => {
+        refresher.complete();
+      }, 500);
+    }).catch(()=>{
       setTimeout(() => {
         refresher.complete();
       }, 500);
@@ -209,7 +181,7 @@ export class HomePage {
       this.events.publish('classify:selectSegment', value)
     }, 300); */
   }
-  goClassPage(){
+  goClassPage() {
     this.navCtrl.parent.select(1);
   }
   goCityPage() {

@@ -27,8 +27,10 @@ export class FastbuyPage {
     public httpService: HttpService,
     public elementRef: ElementRef
   ) {
-    this.httpService.getCategoryPromote().then((data)=>{
-      this.category = data;
+    this.httpService.getCategoryPromote().then((data) => {
+      if (data.status) {
+        this.category = data;
+      }
     })
   }
 
@@ -42,7 +44,7 @@ export class FastbuyPage {
       this.fabButton.setElementClass("fab-button-in", d.scrollTop >= d.contentHeight);
     });
   }
-  ngOnInit(){
+  ngOnInit() {
     this.getData(this.selected);
   }
   getData(id) {

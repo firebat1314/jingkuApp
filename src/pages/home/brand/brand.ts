@@ -60,12 +60,11 @@ export class BrandPage {
   }
   /* 商品搜索 */
   searchbar(e) {
-    if (e) {
-      if (e.keyCode == 13) {
-        this.navCtrl.push('BrandListPage', { keyword: this.searchkey })
-      }
-    } else {
+    if (e.keyCode == 13) {
       this.navCtrl.push('BrandListPage', { keyword: this.searchkey })
     }
+  }
+  goToMoreBrand(data) {
+    this.navCtrl.push('MoreBrandPage', { data: data });
   }
 }
