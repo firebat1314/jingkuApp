@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams, ViewController, IonicPage, AlertController } from 'ionic-angular';
+import { NavController, NavParams, ViewController, IonicPage, AlertController, Events } from 'ionic-angular';
 import { HttpService } from "../../../../providers/http-service";
 import { Native } from "../../../../providers/native";
 // import { AllOrdersPage } from "../all-orders";
@@ -40,8 +40,19 @@ export class PaymentMethodPage {
     public viewCtrl: ViewController,
     public httpService: HttpService,
     public native: Native,
+    public events: Events,
     public alertCtrl: AlertController
   ) {
+
+
+  }
+
+  ionViewDidLoad() {
+
+    console.log('ionViewDidLoad PaymentMethodPage');
+    // this.navCtrl.remove(this.navCtrl.indexOf(this.navCtrl.getPrevious(this.navCtrl.last())),1);
+  }
+  ngOnInit() {
     this.httpService.pay({ order_id: this.order_id, log_id: this.log_id, type: this.type }).then((res) => {
       if (res.status == 1) {
         this.data = res;
@@ -50,12 +61,21 @@ export class PaymentMethodPage {
         this.navCtrl.setPages([{ page: 'NewMyPage' }/* , { page: 'AllOrdersPage' } */])
       }
     })
+    this.getUserInfo();
+    this.events.subscribe('ChangePayPasswordPage:editPaypwd', () => {
+      this.getUserInfo();
+    });
   }
-
-  ionViewDidLoad() {
-
-    console.log('ionViewDidLoad PaymentMethodPage');
-    // this.navCtrl.remove(this.navCtrl.indexOf(this.navCtrl.getPrevious(this.navCtrl.last())),1);
+  ngOnDestroy() {
+    this.events.unsubscribe('ChangePayPasswordPage:editPaypwd');
+  }
+  getUserInfo() {
+    this.httpService.userInfo().then((res) => {//检查是否有支付密码
+      if (res.status) {
+        this.user_money = res.data.user_money;
+        this.is_pay_pass = res.data.is_pay_pass;
+      }
+    })
   }
   dismiss(data?: any) {
     this.viewCtrl.dismiss(data);
@@ -113,37 +133,28 @@ export class PaymentMethodPage {
   }
   userYue() {
     this.yE = !this.yE;
-    if(this.yE){
-      this.httpService.userInfo().then((res) => {//检查是否有支付密码
-        if (res.status) {
-          this.user_money = res.data.user_money;
-          this.is_pay_pass = res.data.user_money;
-          if (!this.is_pay_pass) {
-            this.alertCtrl.create({
-              title: '提示',
-              subTitle: '还没有设置支付密码请前往设置',
-              message: '',
-              enableBackdropDismiss: false,
-              buttons: [
-                {
-                  text: '确定',
-                  handler: () => {
-                    this.yE = false;
-                    this.navCtrl.push('ChangePayPasswordPage');
-                  }
-                },{
-                  text: '取消',
-                  handler: () => {
-                    this.yE = false;
-                  }
-                }
-              ]
-            }).present();
+    if (this.yE && !this.is_pay_pass) {
+      this.alertCtrl.create({
+        title: '提示',
+        subTitle: '还没有设置支付密码请前往设置',
+        message: '',
+        enableBackdropDismiss: false,
+        buttons: [
+          {
+            text: '确定',
+            handler: () => {
+              this.yE = false;
+              this.navCtrl.push('ChangePayPasswordPage');
+            }
+          }, {
+            text: '取消',
+            handler: () => {
+              this.yE = false;
+            }
           }
-        }
-      })
+        ]
+      }).present();
     }
-    
   }
 
   openPingPayment(data) {
