@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams, IonicPage, ToastController } from 'ionic-angular';
+import { NavController, NavParams, IonicPage, ToastController, Events } from 'ionic-angular';
 import { HttpService } from '../../../../../providers/http-service';
 
 /**
@@ -15,12 +15,13 @@ import { HttpService } from '../../../../../providers/http-service';
 })
 export class ChangePayPasswordPage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams,
-  
+  constructor(
+    public navCtrl: NavController,
+    public navParams: NavParams,
     public httpService: HttpService,
+    public events: Events,
     public toastCtrl: ToastController,
-  ) {
-  }
+  ) { }
 
 
   ionViewDidLoad() {
@@ -101,7 +102,7 @@ export class ChangePayPasswordPage {
       }
     })
   }
-  onSubmit(event){
+  onSubmit(event) {
     console.log(event);
   }
   onsubmit() {
@@ -114,6 +115,7 @@ export class ChangePayPasswordPage {
           showCloseButton: false
         }).present().then(() => {
           this.navCtrl.pop();
+          this.events.publish('ChangePayPasswordPage:editPaypwd');
         });
       }
     })
