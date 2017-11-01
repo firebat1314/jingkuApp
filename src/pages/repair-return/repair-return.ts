@@ -150,7 +150,10 @@ export class RepairReturnPage {
         rec_ids.push(this.order.list[i].rec_id);
       }
     }
-
+    if(!order_ids.length||!rec_ids.length){
+      this.native.showToast('请选择订单');
+      return;
+    }
     let actionSheet = this.actionSheetCtrl.create({
       title: '服务类型',
       buttons: [

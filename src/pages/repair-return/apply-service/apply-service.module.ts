@@ -5,6 +5,7 @@ import { ImgLazyLoadDirectiveModule } from "../../../directives/img-lazy-load/im
 import { CountInputComponentModule } from "../../../components/count-input/count-input.module";
 import { PhoneNumberFilterModule } from "../../../pipes/phone-number-fiter/phone-number-fiter.module";
 import { GetImageDirectiveModule } from '../../../directives/get-image/get-image.module';
+import { IonicImageViewerModule } from 'ionic-img-viewer';
 
 @NgModule({
   declarations: [
@@ -15,7 +16,8 @@ import { GetImageDirectiveModule } from '../../../directives/get-image/get-image
     ImgLazyLoadDirectiveModule,
     CountInputComponentModule,
     PhoneNumberFilterModule,
-    GetImageDirectiveModule
+    GetImageDirectiveModule,
+    IonicImageViewerModule,
   ],
   exports: [
     ApplyServicePage

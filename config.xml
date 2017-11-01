@@ -107,7 +107,6 @@
     <plugin name="cordova-plugin-file-transfer" spec="~1.6.3" />
     <plugin name="cordova-plugin-inappbrowser" spec="~1.7.1" />
     <plugin name="cordova-plugin-app-version" spec="~0.1.9" />
-    <plugin name="com.justep.cordova.plugin.pingpp" spec="https://github.com/litaoyu/cordova-plugin-pingpp.git" />
     <plugin name="cordova-plugin-ionic-webview" spec="~1.1.15" />
     <plugin name="cordova-plugin-statusbar" spec="https://github.com/apache/cordova-plugin-statusbar.git" />
     <engine name="ios" spec="~4.3.1" />
