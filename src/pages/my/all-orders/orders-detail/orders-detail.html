@@ -104,6 +104,6 @@
         <button ion-button large full no-margin color="cancelBtn" (click)="deleteOrder(data?.order?.order_id)" *ngIf="(data?.order?.order_status==5 && data?.order?.shipping_status==2)||data?.order?.order_status==2||data?.order?.order_status==3">删除订单</button>
         <button ion-button large full no-margin color="jingku1" navPush="OrderWuliuPage" [navParams]="{orderId:data?.order?.order_id}" *ngIf="(data?.order?.order_status==1&&data?.order?.pay_status==2)||(data?.order?.order_status==5&&data?.order?.pay_status==2&&data?.order?.shipping_status==1)||(data?.order?.order_status==5&&data?.order?.pay_status==2&&data?.order?.shipping_status==2)">物流跟踪</button>
         <button ion-button large full no-margin color="jingku1" (click)="toPay(data?.order?.order_id)" *ngIf="data?.order?.pay_status == 0 && data?.order?.order_status!=4 && data?.order?.order_status!=2 && data?.order?.order_status!=3 && data?.order?.order_status!=7 && data?.order?.order_status!=8 ">去支付</button>
-        <button ion-button large full no-margin color="jingku1" (click)="confirmReceipt(data?.order?.order_id)" *ngIf="data?.order?.order_status == '5' && data?.order?.shipping_status=='1'">确认收货</button>
+        <button ion-button large full no-margin color="jingku2" (click)="confirmReceipt(data?.order?.order_id)" *ngIf="data?.order?.order_status == '5' && data?.order?.shipping_status=='1'">确认收货</button>
     </div>
 </ion-footer>
