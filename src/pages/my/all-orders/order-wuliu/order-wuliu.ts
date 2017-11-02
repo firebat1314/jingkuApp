@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams, IonicPage } from 'ionic-angular';
 import { HttpService } from "../../../../providers/http-service";
+import { Native } from '../../../../providers/native';
 
 /**
  * Generated class for the OrderWuliuPage page.
@@ -24,6 +25,7 @@ export class OrderWuliuPage {
     public navCtrl: NavController,
     public navParams: NavParams,
     public httpService: HttpService,
+    public native: Native,
   ) {
     this.getWuLiu();
   }
@@ -35,6 +37,10 @@ export class OrderWuliuPage {
     this.httpService.getWuLiu({order_id:this.orderId}).then((res)=>{
         if (res.status) {
           this.data = res;
+          if(res.data[0].state==0){
+            this.native.showToast(res.data[0].msg);
+            this.navCtrl.pop();
+          }
         }
     })
   }
