@@ -62,6 +62,7 @@ export class MyApp {
     this.initializeApp();
     //用户失效事件
     this.events.subscribe('signOut', () => {
+      console.log(111)
       this.nav.setRoot('LoginPage', {}, { animate: true, });
     })
   }

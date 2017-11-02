@@ -94,10 +94,10 @@ export class UserData {
                 msg = '登录异常，请重新登录';
                 this.storage.set('hasLoggedIn', false)
                 if (this.showToastTime) {
-                    this.myAlert(msg);
-                    setTimeout(function () {
+                    this.myAlert(msg,()=>{
+                        this.events.publish('signOut');
                         this.showToastTime = true;
-                    }, 10000);
+                    });
                 }
             }
         }
@@ -115,7 +115,7 @@ export class UserData {
 
         return { status: 0, info: msg };
     }
-    myAlert(msg) {
+    myAlert(msg,callback:Function = null) {
         // this.native.showToast(msg);
         this.showToastTime = false;
         let alert = this.alertCtrl.create({
@@ -124,12 +124,12 @@ export class UserData {
             enableBackdropDismiss: false,
             buttons: [{
                 text: '确定',
-                handler: () => {
-                    this.events.publish('signOut');
+                handler: ()=>{
+                    callback()
                 }
             }]
         });
-        alert.present();
+        return alert.present();
     }
     /*private handleError(error: Response | any) {
         // In a real world app, we might use a remote logging infrastructure
