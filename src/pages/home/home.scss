@@ -96,7 +96,7 @@ page-home {
     /*———————————————————————————————— 闪购商品 ————————————————————————————————*/
     .shan_gou {
         .title {
-            background: url(../assets/icon/home/home_ico7.png) no-repeat 10px center/25px;
+            background: url(../assets/icon/home/home_ico7.png) no-repeat 10px center/22px;
             padding: 15px 11px 13px 30px;
             .txt {
                 border: none;
@@ -110,6 +110,7 @@ page-home {
                 .item {
                     text-align: center;
                     margin-right: 10px;
+                    min-width: 100px;
                     &:last-child {
                         margin-right: 0;
                     }

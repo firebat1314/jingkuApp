@@ -89,10 +89,10 @@ export class PaymentMethodPage {
     if (this.yE) {
       this.httpService.checkPayPass({ password: this.payPassword }).then((res) => {//验证密码
         if (res.status) {
-          if (!this.paymentType && this.data.balance == 1) {//使用余额且没有选中在线支付的情况
+          if (this.paymentType) {
+            this.userBalance(this.data[this.paymentType]);
+          }else{
             this.userBalance(this.data.alipay);
-          } else {
-            this.userBalance(this.data[this.paymentType])
           }
         }
       })

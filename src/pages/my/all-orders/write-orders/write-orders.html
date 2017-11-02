@@ -107,8 +107,8 @@
             </ion-item>
             <ion-item mode="ios" detail-push tappable (click)="goBusinessmenNotePage()" style="border-bottom:none;">
                 商家备注
-                <ion-note item-end *ngIf="noteStatus">填写备注信息</ion-note>
-                <ion-note item-end *ngIf="!noteStatus">已填写备注，点击查看</ion-note>
+                <ion-note item-end *ngIf="!noteStatus">填写备注信息</ion-note>
+                <ion-note item-end *ngIf="noteStatus">已填写备注，点击查看</ion-note>
             </ion-item>
             <!-- <ion-item mode="ios">
                 <ion-label>可用余额</ion-label>

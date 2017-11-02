@@ -19,7 +19,7 @@ import { Native } from "../../../../providers/native";
 export class WriteOrdersPage {
   paymentMothdName: any;
   user_money: any;
-  noteStatus: boolean;
+  noteStatus: boolean = false;
   paymentMothdID: any;
   paymentMothdDesc: any;
   data: any;
@@ -110,7 +110,26 @@ export class WriteOrdersPage {
         }
         // console.log(this.selectedBonus)
         //note 是否填写
-        this.noteStatus = JSON.stringify(this.data.suppliers_notes) == '[]';
+        this.noteStatus = false;
+        for (var note in this.data.suppliers_notes) {
+          if (this.data.suppliers_notes.hasOwnProperty(note)) {
+            var item = this.data.suppliers_notes[note];
+            if (item) {
+              this.noteStatus = true;
+              console.log(item);
+              break;
+            }
+          }
+        }
+        for (let i = 0, item = this.data.cart_goods_list; i < item.length; i++) {
+          for (let j = 0, order_label = item[i].order_label; j < order_label.length; j++) {
+            if (order_label[j].selected) {
+              this.noteStatus = true;
+              break;
+            }
+          }
+        }
+        console.log(this.noteStatus)
       }
     })
   }
