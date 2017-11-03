@@ -72,7 +72,10 @@ export class OrdersDetailPage {
     this.native.openAlertBox('确认收货', () => {
       this.httpService.affirmReceived({ order_id: order_id }).then((res) => {
         if (res.status == 1) {
-          this.native.showToast('订单操作成功');
+          this.native.showToast(res.data);
+          this.navCtrl.pop();
+          this.events.publish('allOrders:update');
+          this.events.publish('my:update');
         }
       })
     })
@@ -81,10 +84,13 @@ export class OrdersDetailPage {
     this.native.showToast('敬请期待');
   }
   cancelOrder(order_id) {
-    this.native.openAlertBox('取消订单操作', () => {
+    this.native.openAlertBox('取消订单', () => {
       this.httpService.cancelOrder({ order_id: order_id }).then((res) => {
         if (res.status == 1) {
-          this.native.showToast('订单操作成功');
+          this.native.showToast(res.data);
+          this.navCtrl.pop();
+          this.events.publish('allOrders:update');
+          this.events.publish('my:update');
         }
       })
     })
@@ -96,6 +102,7 @@ export class OrdersDetailPage {
           this.native.showToast(res.data);
           this.navCtrl.pop();
           this.events.publish('allOrders:update');
+          this.events.publish('my:update');
         }
       })
     })
