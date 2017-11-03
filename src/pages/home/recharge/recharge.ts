@@ -19,6 +19,8 @@ declare var navigator: any;
 export class RechargePage {
   payCode: any;
   payList: any;
+
+  payMethod: string = 'wx';
   constructor(
     public navCtrl: NavController,
     public navParams: NavParams,
