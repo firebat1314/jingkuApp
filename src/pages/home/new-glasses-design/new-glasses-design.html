@@ -87,7 +87,7 @@
     </div>
   </div>
   <div class="pager" *ngIf="goodsList?.pages>0">
-      <div [ngClass]="{'disable':goodsList?.page<=1}" (click)="preview();mycontent.scrollTo(0,goodsssssss.offsetTop)"><</div>
-      <div [ngClass]="{'disable':goodsList?.page>=goodsList?.pages}" (click)="next();mycontent.scrollTo(0,goodsssssss.offsetTop)">></div>
+      <div [ngClass]="{'disable':goodsList?.page<=1}" (click)="preview();mycontent.scrollTo(0,goodsssssss.offsetTop)"><ion-icon name="arrow-back"></ion-icon></div>
+      <div [ngClass]="{'disable':goodsList?.page>=goodsList?.pages}" (click)="next();mycontent.scrollTo(0,goodsssssss.offsetTop)"><ion-icon name="arrow-forward"></ion-icon></div>
     </div>
 </ion-content>
