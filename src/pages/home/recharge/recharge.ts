@@ -31,9 +31,9 @@ export class RechargePage {
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad RechargePage');
-    this.getAccountPayList();
   }
   ngAfterViewInit() {
+    this.getAccountPayList();
   }
   getAccountPayList() {
     this.httpService.getAccountPayList().then((res) => {

@@ -63,8 +63,8 @@ export class WriteOrdersPage {
   getHttpData() {
     return this.httpService.checkout().then((res) => {
       if (res.status == 0) {
-        this.navCtrl.parent.select(3);
         this.navCtrl.popToRoot({}, () => { });
+        this.navCtrl.parent.select(2);
       }
       if (res.status == 1) {
         this.data = res;
@@ -212,6 +212,7 @@ export class WriteOrdersPage {
           return
         } else if (res.info == '购物车中没有商品') {
           this.navCtrl.popToRoot();
+          this.navCtrl.parent.select(2);
         } else if (res.info == '请选择支付方式') {
           this.goPayAndShipPage();
         }
@@ -239,9 +240,9 @@ export class WriteOrdersPage {
     //   })
     // } else {
     this.done().then((res) => {
+      this.events.publish('car:update');
       if (res.status == 1) {
         this.events.publish('my:update');
-        this.events.publish('car:update');
         if (this.paymentMothdID == 6) {
           this.navCtrl.push('PaymentMethodPage', { order_id: res.order_id }).then(() => {
             this.navCtrl.removeView(this.viewCtrl);
@@ -261,8 +262,6 @@ export class WriteOrdersPage {
           }).present();
         }
         // this.viewCtrl.dismiss();
-      } else if (res.status == -1) {
-        this.navCtrl.popToRoot();
       }
     })
     // }
