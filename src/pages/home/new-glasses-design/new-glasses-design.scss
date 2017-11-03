@@ -1,0 +1,118 @@
+page-new-glasses-design {
+    img {
+        display: block;
+    }
+    color: #4d4d4d;
+    .title {
+        text-align: center;
+        font-size: 1.6rem;
+        color: #4d4d4d;
+        padding: 15px 0;
+    }
+    .fore2 {
+        padding: 12px;
+        display: flex;
+        flex-wrap: wrap;
+        padding-bottom: 0;
+        >div {
+            display: flex;
+            align-items: center;
+            width: calc(50% - 6px);
+            margin-right: 12px;
+            margin-bottom: 12px;
+            padding: 20px 17px;
+            background: #fff;
+            &:nth-child(2n) {
+                margin-right: 0;
+            }
+            img {
+                margin-right: 10px;
+                width: 53px;
+            }
+        }
+    }
+    .fore3 {
+        .main {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            .item {
+                flex-basis: 33.333%;
+                text-align: center;
+                margin-bottom: 10px;
+                .img {
+                    img {
+                        border-radius: 50%;
+                        width: 90px;
+                        height: 90px;
+                        margin: 0 auto;
+                        margin-bottom: 6px;
+                    }
+                }
+            }
+        }
+    }
+    .fore4 {
+        margin: 0;
+        color: #666666;
+        .main {
+            display: flex;
+            flex-wrap: wrap;
+            padding: 0 12px;
+            .item {
+                width: calc(50% - 6px);
+                margin-right: 12px;
+                margin-bottom: 12px;
+                background: #fff;
+                &:nth-child(2n) {
+                    margin-right: 0;
+                }
+                .img {
+                    img {
+                        margin-bottom: 6px;
+                    }
+                }
+                .info {
+                    display: flex;
+                    align-items: center;
+                    justify-content: space-between;
+                    .name {
+                        @include ellipsis_1();
+                        margin-bottom: 0;
+                        width: 70%;
+                    }
+                    .price {
+                        color: #e60000;
+                    }
+                }
+            }
+        }
+    }
+    .pager {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: #fff;
+        padding: 10px 0 25px;
+        >div {
+            width: 32px;
+            height: 32px;
+            line-height: 29px;
+            text-align: center;
+            margin: 3px;
+            font-family: consolas;
+            font-size: 21px;
+            border: 1px solid #e0e0e0;
+            color: #999;
+            &.on {
+                background: #3f69a5;
+                color: #fff;
+                border-color: transparent;
+            }
+            &.disable{
+               pointer-events: none;
+               opacity: .7;
+            }
+        }
+    }
+}

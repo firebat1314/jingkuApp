@@ -212,6 +212,6 @@ export class HomePage {
     this.navCtrl.push('IntegralstorePage');
   }
   goGlassesDesignPage() {
-    this.navCtrl.push('GlassesDesignPage');
+    this.navCtrl.push('NewGlassesDesignPage');
   }
 }
