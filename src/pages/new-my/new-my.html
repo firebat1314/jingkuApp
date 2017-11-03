@@ -16,7 +16,7 @@
             </button>
         </div>
         <div class="h-body">
-            <div class="user_logo">
+            <div class="user_logo" tappable (click)="goAccountManagementPage($event)">
                 <img [img-lazy-load]="userInfo?.data?.avatar" alt="">
             </div>
             <div class="r_wrap">

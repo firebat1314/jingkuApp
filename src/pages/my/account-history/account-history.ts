@@ -38,7 +38,6 @@ export class AccountHistoryPage {
       console.log('个人中心浏览记录', res)
       if (res.status) { this.data = res; }
       if (finish) { finish() }
-
     })
   }
   /*下拉刷新*/
@@ -55,12 +54,6 @@ export class AccountHistoryPage {
       subTitle: '确认删除该浏览记录',
       buttons: [
         {
-          text: '取消',
-          handler: () => {
-            console.log('Disagree clicked');
-          }
-        },
-        {
           text: '确认',
           handler: () => {
             console.log('Agree clicked');
@@ -69,7 +62,13 @@ export class AccountHistoryPage {
               this.getHttpData();
             })
           }
-        }
+        },
+        {
+          text: '取消',
+          handler: () => {
+            console.log('Disagree clicked');
+          }
+        },
       ],
     });
     confirm.present();
