@@ -1,0 +1,93 @@
+<!--
+  Generated template for the NewGlassesDesignPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>镜库设计</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content #mycontent>
+  <div class="fore1" *ngIf="banner">
+    <ion-slides #bannerSlide autoplay="2500" [loop]="false" >
+      <ion-slide *ngFor="let item of banner">
+        <img img-lazy-load="{{item.ad_img}}" defaultSrc="./assets/images/images/640-320" tappable />
+      </ion-slide>
+    </ion-slides>
+  </div>
+  <div class="fore2">
+    <div>
+      <img src="./assets/icon/glasses-design/11.png" alt="">品牌设计</div>
+    <div>
+      <img src="./assets/icon/glasses-design/12.png" alt="">营销推广</div>
+    <div>
+      <img src="./assets/icon/glasses-design/14.png" alt="">电商服务</div>
+    <div>
+      <img src="./assets/icon/glasses-design/13.png" alt="">技术开发</div>
+  </div>
+  <div class="fore3 fore">
+    <div class="title">热门推荐</div>
+    <div class="main">
+      <div class="item" tappable navPush="ParticularsPage" [navParams]="{goodsId:4847}">
+        <div class="img">
+          <img img-lazy-load="./assets/icon/glasses-design/app.png" alt="">
+        </div>
+        <div class="name">建站</div>
+      </div>
+      <div class="item" tappable navPush="ParticularsPage" [navParams]="{goodsId:4151}">
+        <div class="img">
+          <img img-lazy-load="./assets/icon/glasses-design/vi.png" alt="">
+        </div>
+        <div class="name">VI设计</div>
+      </div>
+      <div class="item" tappable navPush="ParticularsPage" [navParams]="{goodsId:3635}">
+        <div class="img">
+          <img img-lazy-load="./assets/icon/glasses-design/shoot.png" alt="">
+        </div>
+        <div class="name">产品拍摄</div>
+      </div>
+      <div class="item" tappable navPush="ParticularsPage" [navParams]="{goodsId:4374}">
+        <div class="img">
+          <img img-lazy-load="./assets/icon/glasses-design/idcard.png" alt="">
+        </div>
+        <div class="name">名片设计</div>
+      </div>
+      <div class="item" tappable navPush="ParticularsPage" [navParams]="{goodsId:6249}">
+        <div class="img">
+          <img img-lazy-load="./assets/icon/glasses-design/print_ads.png" alt="">
+        </div>
+        <div class="name">平面广告</div>
+      </div>
+      <div class="item" tappable navPush="ParticularsPage" [navParams]="{goodsId:6245}">
+        <div class="img">
+          <img img-lazy-load="./assets/icon/glasses-design/details.png" alt="">
+        </div>
+        <div class="name">详情页设计</div>
+      </div>
+    </div>
+  </div>
+  <div class="fore4 fore" #goodsssssss>
+    <div class="title">热门商品</div>
+    <div class="main">
+      <div class="item"  tappable navPush="ParticularsPage" [navParams]="{goodsId:item.id}" *ngFor="let item of goodsList?.goods">
+        <div class="img">
+          <img img-lazy-load="{{item.goods_img}}" alt="">
+        </div>
+        <div class="info">
+          <div class="name">{{item.name}}</div>
+          <div class="price">{{item.shop_price}}</div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="pager" *ngIf="goodsList?.pages>0">
+      <div [ngClass]="{'disable':goodsList?.page<=1}" (click)="preview();mycontent.scrollTo(0,goodsssssss.offsetTop)"><</div>
+      <div [ngClass]="{'disable':goodsList?.page>=goodsList?.pages}" (click)="next();mycontent.scrollTo(0,goodsssssss.offsetTop)">></div>
+    </div>
+</ion-content>
