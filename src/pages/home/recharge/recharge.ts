@@ -19,6 +19,8 @@ declare var pingpp: any;
 export class RechargePage {
   payCode: any;
   payList: any;
+
+  payMethod:string = 'wx_pub';
   constructor(
     public navCtrl: NavController,
     public navParams: NavParams,
@@ -37,6 +39,9 @@ export class RechargePage {
     this.httpService.getAccountPayList().then((res) => {
       if (res.status) {
         this.payList = res;
+        if(this.payList.is_weixin==0){
+          this.payMethod = 'alipay_wap';
+        }
       }
     })
   }
