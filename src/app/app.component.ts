@@ -45,7 +45,7 @@ export class MyApp {
       })
     } else {
       if (!this.native.isMobileweb()) {
-        location.href = 'http://newwww.jingkoo.net';
+        location.href = 'http://www.jingku.cn/index1.html';
         return;
       }
       // this.rootPage = 'WellcomeNewmPage';//TabsPage//WellcomeNewmPage

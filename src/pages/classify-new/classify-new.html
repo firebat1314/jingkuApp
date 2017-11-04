@@ -44,7 +44,7 @@
         {{item.cat_name}}
       </div>
       <div class="list3">
-        <div class="brand" tappable (click)="goBrandList(item.cat_id)" *ngFor="let item1 of item.cat_list ">
+        <div class="brand" tappable (click)="goBrandList(item1.cat_id)" *ngFor="let item1 of item.cat_list ">
           <div class="brand_img">
             <img [img-lazy-load]="item1.thumb" defaultSrc="./assets/images/images/640-360.jpg" alt="">
           </div>

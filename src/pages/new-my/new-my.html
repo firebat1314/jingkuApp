@@ -78,7 +78,7 @@
                         <img src="./assets/icon/new_center/7.png" alt="">
                         <ion-badge>{{usercount?.data?.unpay||'--'}}</ion-badge>
                     </span>
-                    <span class="txt">代付款</span>
+                    <span class="txt">待付款</span>
                 </a>
                 <a navPush="AllOrdersPage" [navParams]="{index:2}">
                     <span class="icon_num">
@@ -163,7 +163,7 @@
                     </span>
                     <span class="txt">帮助中心</span>
                 </a>
-                <a href="tel:400-080-5118">
+                <a (click)="goAccountServicePage()">
                     <span class="icon_num">
                         <img src="./assets/icon/new_center/5.png" alt="">
                     </span>

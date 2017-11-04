@@ -71,6 +71,11 @@ export class HomePage {
       })
     } */
   ngOnInit() {
+    this.storage.get('fastbuyData').then((res) => {
+      if(res){
+        this.fastbuyData = res;
+      }
+    })
     this.storage.get('homeData').then((res) => {
       if (res) {
         this.data = res;
@@ -85,7 +90,10 @@ export class HomePage {
   }
   getHomeData() {
     this.httpService.presell({ type: 'is_promote', cat_id: 0 }).then((res) => {
-      if (res.status == 1) { this.fastbuyData = res; }
+      if (res.status == 1) {
+        this.fastbuyData = res;
+        this.storage.set('fastbuyData', res);
+      }
     });
     return this.httpService.indexs().then((res) => {
       if (res.status == 1) {
@@ -139,7 +147,7 @@ export class HomePage {
       setTimeout(() => {
         refresher.complete();
       }, 500);
-    }).catch(()=>{
+    }).catch(() => {
       setTimeout(() => {
         refresher.complete();
       }, 500);

@@ -20,7 +20,7 @@ export class RechargePage {
   payCode: any;
   payList: any;
 
-  payMethod:string = 'wx_pub';
+  payMethod: string = 'wx_pub';
   constructor(
     public navCtrl: NavController,
     public navParams: NavParams,
@@ -39,7 +39,7 @@ export class RechargePage {
     this.httpService.getAccountPayList().then((res) => {
       if (res.status) {
         this.payList = res;
-        if(this.payList.is_weixin==0){
+        if (this.payList.is_weixin == 0) {
           this.payMethod = 'alipay_wap';
         }
       }
@@ -47,8 +47,8 @@ export class RechargePage {
   }
   onSubmit(money, type) {
     this.httpService.rechargeMoney({ amount: money, pay: type, note: '' }).then((res) => {
-      if (res.status && res.pingxx) {
-        this.openPingPayment(res.pingxx);
+      if (res.status) {
+        this.openPingPayment(res);
       }
     })
     // this.httpService.addAccount({ amount: money, payment_id: 6 }).then((res) => {
@@ -124,16 +124,21 @@ export class RechargePage {
   // })
   money: any;
   openPingPayment(data) {
-    pingpp.createPayment(data,  (result, err) => {
-      console.log(result, err)
-      if (result == "success") {
-        // 只有微信公众账号 wx_pub 支付成功的结果会在这里返回，其他的支付结果都会跳转到 extra 中对应的 URL。
-      } else if (result == "fail") {
-        // charge 不正确或者微信公众账号支付失败时会在此处返回
-        this.native.showToast("支付异常");
-      } else if (result == "cancel") {
-        // 微信公众账号支付取消支付
-      }
-    });
+    if (this.payMethod == 'wx_pub') {
+      console.log('pay with wx_pub');
+      location.href = data.url;
+    } else {
+      pingpp.createPayment(data.pingxx, (result, err) => {
+        console.log(result, err)
+        if (result == "success") {
+          // 只有微信公众账号 wx_pub 支付成功的结果会在这里返回，其他的支付结果都会跳转到 extra 中对应的 URL。
+        } else if (result == "fail") {
+          // charge 不正确或者微信公众账号支付失败时会在此处返回
+          this.native.showToast("支付异常");
+        } else if (result == "cancel") {
+          // 微信公众账号支付取消支付
+        }
+      });
+    }
   }
 }
