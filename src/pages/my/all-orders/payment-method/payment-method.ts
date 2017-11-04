@@ -195,7 +195,6 @@ export class PaymentMethodPage {
     (<any>window).Pingpp.createPayment(data.pingxx, (result, error) => {//scheme 为iOS返回应用
       console.log('result' + result);
       console.log('error' + error);
-      console.log(window)
       this.navCtrl.parent.select(3);
       this.navCtrl.setPages([{ page: 'NewMyPage' }])
       if (result == 'success') {
