@@ -267,6 +267,7 @@ export class ParticularsPage {
   }
   goAccountServicePage(access_id) {
     // this.native.showToast('敬请期待')
+    console.log(access_id)
     if (!access_id) {
       // this.native.showToast('该店铺暂无客服');
     }
@@ -283,7 +284,7 @@ export class ParticularsPage {
     qimo.onload = function () {
       setTimeout(function () {
         qimoChatClick();
-      }, 400);
+      }, 600);
     }
     // this.navCtrl.push(AccountServicePage)
   }
