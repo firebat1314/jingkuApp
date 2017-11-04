@@ -518,4 +518,10 @@ export class HttpService {
   moreGoodsRepair(data?: Object) {
     return this.http.post(IP + '/User/more_goods_repair  ', data)
   }
+  /**
+   * 镜片属性价格
+   */
+  changeprice(data?: Object) {
+    return this.http.post(IP + '/Goods/changeprice  ', data)
+  }
 }

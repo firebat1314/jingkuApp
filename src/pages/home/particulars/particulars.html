@@ -169,9 +169,9 @@
                     </div>
                 </div>
                 <div class="btn">
-                    <button (click)="openCallNumber()" ion-button icon-left color="gray" outline>
+                    <a (click)="goAccountServicePage(getGoodsInfo?.data?.access_id)" ion-button icon-left color="gray" outline>
                         <ion-icon>
-                            <img width="21" src="./assets/icon/images/particulars_08.png" alt="">
+                            <img width="21" src="./assets/icon/images/dd-2.png" alt="">
                         </ion-icon>
                         联系卖家
                         <!-- <ion-icon name="ios-arrow-forward"></ion-icon> -->
@@ -314,7 +314,7 @@
     </div>
     <div class="main">
         <div class="left" [ngSwitch]="getGoodsInfo?.data?.is_collect">
-            <div tappable (click)="goAccountServicePage()">
+            <div tappable (click)="goAccountServicePage(getGoodsInfo?.data?.access_id)">
                 <ion-icon name="mess"></ion-icon>
                 <span>客服</span>
             </div>

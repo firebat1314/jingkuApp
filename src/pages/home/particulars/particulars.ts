@@ -4,6 +4,7 @@ import { NavController, NavParams, ModalController, Events, IonicPage, Content, 
 import { HttpService } from "../../../providers/http-service";
 import { Native } from "../../../providers/native";
 
+declare let qimoChatClick;
 @IonicPage({
   segment: 'page-particulars/:goodsId'
 })
@@ -47,7 +48,7 @@ export class ParticularsPage {
   /**
    * 定制商品
    */
-  is_dingzhi:boolean = false;
+  is_dingzhi: boolean = false;
 
   constructor(
     public navCtrl: NavController,
@@ -103,7 +104,7 @@ export class ParticularsPage {
       if (res.status == 1) {
         this.getGoodsInfo = res;
         this.getRegionName(res);
-        this.is_dingzhi = res.data.isdingzhi==1?true:false;
+        this.is_dingzhi = res.data.isdingzhi == 1 ? true : false;
       }
       this.http.getCategoryRecommendGoodsHot({}).then((res) => {
         // console.log('为你推荐：', res)
@@ -151,7 +152,7 @@ export class ParticularsPage {
       GoodsInfo: this.getGoodsInfo.data,
       promotion: this.getGoodsInfo.promotion,
       goodsId: this.goodsId
-    },{cssClass:'my-modal-style'});
+    }, { cssClass: 'my-modal-style' });
     modal.onDidDismiss(data => {
       console.log(data);
       if (data && data.region) {
@@ -202,7 +203,7 @@ export class ParticularsPage {
       type: type,
       headData: this.getGoodsInfo.data,
       id: this.goodsId
-    },{cssClass:'my-modal-style'});
+    }, { cssClass: 'my-modal-style' });
     modal.onDidDismiss(data => {
       if (data) {
         if (data == 'CarPage') {
@@ -264,9 +265,26 @@ export class ParticularsPage {
   openCallNumber() {
     this.native.openCallNumber(this.getGoodsInfo.supplier_info.mobile, false);
   }
-  goAccountServicePage() {
-    (<any>window).qimoChatClick();
-    this.native.showToast('敬请期待')
+  goAccountServicePage(access_id) {
+    // this.native.showToast('敬请期待')
+    if (!access_id) {
+      // this.native.showToast('该店铺暂无客服');
+    }
+    var old = document.getElementsByClassName('qimo')[0]
+    //console.log(old);
+    if (old) {
+      old.parentNode.removeChild(old);
+    }
+    let qimo: HTMLScriptElement = document.createElement('script');
+    qimo.src = 'https://webchat.7moor.com/javascripts/7moorInit.js?accessId=' + (access_id||'b441f710-80d9-11e7-8ddd-b18e4f0e2471') + '&autoShow=false';
+    console.log(qimo.src)
+    qimo.className = 'qimo';
+    document.getElementsByTagName('body')[0].appendChild(qimo);
+    qimo.onload = function () {
+      setTimeout(function () {
+        qimoChatClick();
+      }, 400);
+    }
     // this.navCtrl.push(AccountServicePage)
   }
   goParticularsHome() {

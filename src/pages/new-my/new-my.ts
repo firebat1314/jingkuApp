@@ -6,6 +6,7 @@ import { Native } from "../../providers/native";
 import { InAppBrowser } from '@ionic-native/in-app-browser';
 
 declare var cordova: any;
+declare let qimoChatClick;
 
 @IonicPage()
 @Component({
@@ -64,6 +65,7 @@ export class NewMyPage {
     })
 
   }
+  
   /*下拉刷新*/
   doRefresh(refresher) {
     this.httpResult(() => {
@@ -87,10 +89,30 @@ export class NewMyPage {
     // this.native.showToast('暂未开放',null,false);
     this.navCtrl.push('AccountProcessPage');
   }
-  goAccountServicePage() {
-    this.native.openAlertBox('拨打客服电话：400-080-5118', () => {
+  goAccountServicePage(access_id) {
+    /* this.native.openAlertBox('拨打客服电话：400-080-5118', () => {
       this.native.openCallNumber('400-080-5118', false);
-    })
+    }) */
+    // this.native.showToast('敬请期待')
+    if (!access_id) {
+      // this.native.showToast('该店铺暂无客服');
+    }
+    var old = document.getElementsByClassName('qimo')[0]
+    //console.log(old);
+    if (old) {
+      old.parentNode.removeChild(old);
+    }
+    let qimo: HTMLScriptElement = document.createElement('script');
+    qimo.src = 'https://webchat.7moor.com/javascripts/7moorInit.js?accessId=' + (access_id||'b441f710-80d9-11e7-8ddd-b18e4f0e2471') + '&autoShow=false';
+    console.log(qimo.src)
+    qimo.className = 'qimo';
+    document.getElementsByTagName('body')[0].appendChild(qimo);
+    qimo.onload = function () {
+      setTimeout(function () {
+        qimoChatClick();
+      }, 400);
+    }
+    // this.navCtrl.push(AccountServicePage)
   }
   goMySalesmanPage() {
     this.navCtrl.push('MySalesmanPage', { salesman: this.userInfo.data.ywy })

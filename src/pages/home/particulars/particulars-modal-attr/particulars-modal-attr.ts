@@ -10,6 +10,7 @@ export class goodsSpectaclesParams {
 	qiujing = '';//所选的球镜
 	zhujing = '';//所选的柱镜
 	zhouwei = '';//所填写的轴位
+	price = '0.00';
 }
 
 @IonicPage()
@@ -134,7 +135,7 @@ export class ParticularsModalAttrPage {
 	totalNumber = 0;
 	jingpianNumberChange($event, it) {
 		it.number = $event;
-		it.subtotal = (Number($event) * (Number(this.headData.shop_price_formated.substr(1)) * 10000)) / 10000;
+		it.subtotal = (Number($event) * (Number(it.price * 10000))) / 10000;
 		this.totalPrices = 0;
 		this.totalNumber = 0;
 		for (var i = 0; i < this.goods.length; i++) {
@@ -184,6 +185,26 @@ export class ParticularsModalAttrPage {
 			console.log('镜柱属性：', res)
 			if (res.status == 1) {
 				item.getZhujingList = res;
+			}
+		})
+	}
+	attrChange(item) {
+		var spcArr = [];
+		console.log(item)
+		for (var j = 0; j < this.data.specification.length; j++) {
+			var attr = item[this.data.specification[j].name];
+			if (attr) {
+				spcArr.push(item[this.data.specification[j].name])
+			}
+		}
+		this.httpService.changeprice({
+			goods_id: this.goodsId,
+			attr: spcArr,
+			qiujing: item.qiujing,
+			zhujing: item.zhujing
+		}).then((res) => {
+			if (res.status) {
+				item.price = res.data.price;
 			}
 		})
 	}

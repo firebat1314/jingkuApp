@@ -86,17 +86,19 @@ export class PaymentMethodPage {
       this.native.showToast('请选择支付方式');
       return
     }
+
     if (this.yE) {
       this.httpService.checkPayPass({ password: this.payPassword }).then((res) => {//验证密码
         if (res.status) {
           if (this.paymentType) {
             this.userBalance(this.data[this.paymentType]);
-          }else{
+          } else {
             this.userBalance(this.data.alipay);
           }
         }
       })
     } else {//不使用余额
+
       this.noUserBalance(this.data[this.paymentType]);
     }
   }
@@ -108,7 +110,7 @@ export class PaymentMethodPage {
     this.httpService.doublePayment({ code: data }).then((res) => {//
       if (res.status) {
         if (res.type == 'pay') {
-          this.openPingPayment(res.pingxx);
+          this.openPingPayment(res);
         } else if (res.type == 'balance') {
           this.native.showToast(res.info);
           // this.navCtrl.popToRoot();
@@ -127,7 +129,7 @@ export class PaymentMethodPage {
       console.log(res);
       if ((res.status == 1)) {
         // this.wechatPay(res.pingxx)
-        this.openPingPayment(res.pingxx);
+        this.openPingPayment(res);
       }
     })
   }

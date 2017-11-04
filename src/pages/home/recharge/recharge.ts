@@ -44,8 +44,8 @@ export class RechargePage {
   }
   onSubmit(money, type) {
     this.httpService.rechargeMoney({ amount: money, pay: type, note: '' }).then((res) => {
-      if (res.status && res.pingxx) {
-        this.openPingPayment(res.pingxx);
+      if (res.status) {
+        this.openPingPayment(res);
       }
     })
   }
