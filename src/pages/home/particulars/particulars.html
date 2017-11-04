@@ -90,8 +90,7 @@
                     <span *ngFor="let item of getGoodsInfo?.bonus" class="coupon-show">{{"满"+item.min_goods_amount.slice(1)+'减'+item.int_type_money}}</span>
                     <ion-note item-right>{{(!getGoodsInfo?.bonus?.length)?'无优惠券':'点击领取'}}</ion-note>
                 </button>
-                <button ion-item no-lines class="button-chuxiao" *ngIf="getGoodsInfo?.promotion?.length" [disabled]="!getGoodsInfo?.promotion?.length"
-                    (click)="presentModal('促销')">
+                <button ion-item no-lines class="button-chuxiao" *ngIf="getGoodsInfo?.promotion?.length" [disabled]="!getGoodsInfo?.promotion?.length" (click)="presentModal('促销')">
                     <span style="color: #808080;">促销&nbsp;</span>
                     <div>
                         <p class="list-show" *ngFor="let item of getGoodsInfo?.promotion"><span class="title">{{item.promotion_name}}</span><span [innerHtml]="item.title"></span></p>
@@ -114,8 +113,7 @@
                 <button ion-item no-lines (click)="presentModal('配送地址')">
                     <span style="color: #808080;">送至&nbsp;&nbsp;</span>{{region_name||'选择地址'}}<span class="nogoods"></span>
                 </button>
-                <div class="bottom" *ngIf="getGoodsInfo?.data?.additional?.is_true||getGoodsInfo?.data?.additional?.is_hdfk||getGoodsInfo?.data?.additional?.is_inv"
-                    tappable (click)="presentModal('商品服务保障')">
+                <div class="bottom" *ngIf="getGoodsInfo?.data?.additional?.is_true||getGoodsInfo?.data?.additional?.is_hdfk||getGoodsInfo?.data?.additional?.is_inv" tappable (click)="presentModal('商品服务保障')">
                     <ion-note *ngIf="getGoodsInfo?.data?.additional?.is_true">
                         <img src="./assets/icon/images/particulars_05_03.png" alt=""> 正品保障
                     </ion-note>
@@ -175,7 +173,7 @@
                         </ion-icon>
                         联系卖家
                         <!-- <ion-icon name="ios-arrow-forward"></ion-icon> -->
-                    </button>
+                    </a>
                     <button (click)="goParticularsHome()" ion-button icon-left color="gray" outline>
                         <ion-icon name="shop"></ion-icon>
                         进入店铺
