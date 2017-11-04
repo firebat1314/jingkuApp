@@ -175,7 +175,7 @@
                         </ion-icon>
                         联系卖家
                         <!-- <ion-icon name="ios-arrow-forward"></ion-icon> -->
-                    </button>
+                    </a>
                     <button (click)="goParticularsHome()" ion-button icon-left color="gray" outline>
                         <ion-icon name="shop"></ion-icon>
                         进入店铺
@@ -314,7 +314,7 @@
     </div>
     <div class="main">
         <div class="left" [ngSwitch]="getGoodsInfo?.data?.is_collect">
-            <div tappable (click)="goAccountServicePage(getGoodsInfo?.data?.access_id)">
+           <div tappable (click)="goAccountServicePage(getGoodsInfo?.supplier_info?.access_id)">
                 <ion-icon name="mess"></ion-icon>
                 <span>客服</span>
             </div>
