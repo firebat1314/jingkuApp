@@ -59,12 +59,12 @@
                     <div class="p1">镜库余额</div>
                     <div class="p2">可用余额：{{user_money||'0.00'}}</div>
                 </div>
-                <div class="zf_x" (click)="paymentType='alipay'" *ngIf="data?.is_weixin===0" [class.selected]="paymentType=='alipay'">
+                <div class="zf_x" (click)="paymentType='alipay'"  [class.selected]="paymentType=='alipay'">
                     <img src="./assets/icon/close_ico5.png" alt="">
                     <div class="p1">支付宝支付</div>
                     <div class="p2"></div>
                 </div>
-                <div class="zf_x" (click)="paymentType='weixin'" *ngIf="data?.is_weixin===1" [class.selected]="paymentType=='weixin'">
+                <div class="zf_x" (click)="paymentType='weixin'" [class.selected]="paymentType=='weixin'">
                     <img src="./assets/icon/close_ico6.png" alt="">
                     <div class="p1">微信支付</div>
                     <div class="p2"></div>

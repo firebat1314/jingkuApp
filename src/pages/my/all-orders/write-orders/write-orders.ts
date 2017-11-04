@@ -249,7 +249,7 @@ export class WriteOrdersPage {
           });
 
         } else if (this.paymentMothdID == 4) {
-          this.navCtrl.push('OrdersDetailPage', { order_id: res.order_id }).then(() => {
+          this.navCtrl.push('AllOrdersPage').then(() => {
             this.navCtrl.removeView(this.viewCtrl);
           });;
           this.alertCtrl.create({

@@ -37,7 +37,7 @@
                         </div>
                     </div>
                     <div class="options">
-                        <button ion-button outline [color]="ship.selected?'danger':'jingku1'" *ngFor="let ship of item.shipping" (click)="selectShippinSuppliers(item.suppliers_id,ship.shipping_id)">{{ship.shipping_name + '  ' + ship.shipping_free}}</button>
+                        <button ion-button [disabled]="ship.disabled" outline [color]="ship.selected?'danger':'jingku1'" *ngFor="let ship of item.shipping" (click)="selectShippinSuppliers(item.suppliers_id,ship.shipping_id)">{{ship.shipping_name + '  ' + ship.shipping_free}}</button>
                     </div>
                 </div>
             </div>

@@ -169,7 +169,7 @@
                     </div>
                 </div>
                 <div class="btn">
-                    <a (click)="goAccountServicePage(getGoodsInfo?.data?.access_id)" ion-button icon-left color="gray" outline>
+                    <a (click)="goAccountServicePage(getGoodsInfo?.supplier_info?.access_id)" ion-button icon-left color="gray" outline>
                         <ion-icon>
                             <img width="21" src="./assets/icon/images/dd-2.png" alt="">
                         </ion-icon>
@@ -314,7 +314,7 @@
     </div>
     <div class="main">
         <div class="left" [ngSwitch]="getGoodsInfo?.data?.is_collect">
-            <div tappable (click)="goAccountServicePage(getGoodsInfo?.data?.access_id)">
+            <div tappable (click)="goAccountServicePage(getGoodsInfo?.supplier_info?.access_id)">
                 <ion-icon name="mess"></ion-icon>
                 <span>客服</span>
             </div>
