@@ -53,6 +53,13 @@ export class PaymentMethodPage {
     // this.navCtrl.remove(this.navCtrl.indexOf(this.navCtrl.getPrevious(this.navCtrl.last())),1);
   }
   ngOnInit() {
+    
+    this.getUserInfo();
+    this.events.subscribe('ChangePayPasswordPage:editPaypwd', () => {
+      this.getUserInfo();
+    });
+  }
+  ngAfterViewInit(){
     this.httpService.pay({ order_id: this.order_id, log_id: this.log_id, type: this.type }).then((res) => {
       if (res.status == 1) {
         this.data = res;
@@ -61,10 +68,6 @@ export class PaymentMethodPage {
         this.navCtrl.setPages([{ page: 'NewMyPage' }/* , { page: 'AllOrdersPage' } */])
       }
     })
-    this.getUserInfo();
-    this.events.subscribe('ChangePayPasswordPage:editPaypwd', () => {
-      this.getUserInfo();
-    });
   }
   ngOnDestroy() {
     this.events.unsubscribe('ChangePayPasswordPage:editPaypwd');

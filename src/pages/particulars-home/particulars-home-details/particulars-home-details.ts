@@ -75,9 +75,13 @@ export class ParticularsHomeDetailsPage {
     return i > 4;
   }
   callnumber(number) {
+    if (this.native.isMobile()) {
       this.native.openAlertBox('拨打商家电话:' + number, () => {
         this.native.openCallNumber(number, false);
       })
+    } else {
+      location.href = 'tel:'+number
+    }
   }
   goShopAllFashionPage() {
     this.navCtrl.push('ShopAllFashionPage', { brandList: this.shopdata.data.brand_list })

@@ -7,14 +7,19 @@
 <ion-header>
 
     <ion-navbar>
-        <ion-title class="mysearchbar">
-            <ion-searchbar [(ngModel)]="myHomeSearch" (ionInput)="onInput($event)" placeholder="搜索店铺商品" animated="false" spellcheck="true"
-                type="search" debounce="1000" mode="ios"></ion-searchbar>
-        </ion-title>
-        <ion-buttons end>
+        <form action="">
+            <ion-searchbar [(ngModel)]="myHomeSearch" [ngModelOptions]="{standalone: true}" (ionInput)="onInput($event)" placeholder="搜索店铺商品"
+                animated="false" spellcheck="true" type="search" debounce="1000" mode="ios"></ion-searchbar>
+        </form>
+        <!-- <ion-buttons right>
             <button ion-button clear icon-only icon-left (click)="listStyleflag=!listStyleflag">
                 <img img-lazy-load="./assets/icon/images/list_01.png" width="22" *ngIf="!listStyleflag" alt="">
                 <img img-lazy-load="./assets/icon/images/list_02.png" width="22" *ngIf="listStyleflag" alt="">
+            </button>
+        </ion-buttons> -->
+        <ion-buttons right>
+            <button ion-button clear icon-only icon-left right open-more="MoreMenuPage">
+                <ion-icon name="md-more"></ion-icon>
             </button>
         </ion-buttons>
     </ion-navbar>
@@ -50,15 +55,21 @@
                 <span>店铺首页</span>
             </ion-segment-button>
             <ion-segment-button value="allGoods">
-                <div class="num"><span>{{alldata?.count||'0'}}</span></div>
+                <div class="num">
+                    <span>{{alldata?.count||'0'}}</span>
+                </div>
                 <span>全部商品</span>
             </ion-segment-button>
             <ion-segment-button value="cuXiao">
-                <div class="num"><span>{{shopdata?.data?.promote_goods||0}}</span></div>
+                <div class="num">
+                    <span>{{shopdata?.data?.promote_goods||0}}</span>
+                </div>
                 <span>促销</span>
             </ion-segment-button>
             <ion-segment-button value="goNew">
-                <div class="num"><span>{{newdata?.count||'0'}}</span></div>
+                <div class="num">
+                    <span>{{newdata?.count||'0'}}</span>
+                </div>
                 <span>上新</span>
             </ion-segment-button>
         </ion-segment>
@@ -202,7 +213,7 @@
                     <span>以下商品今日23.59结束促销</span>
                 </div>
                 <ng-container *ngFor="let item of cxdata?.end_list;let i = index;">
-                    <div class="cuXiao-time-goods-content" *ngIf="show?i<cxdata?.end_list?.length:i<1" tappable navPush="ParticularsPage" [navParams]="{goodsId:item.goods_id}" >
+                    <div class="cuXiao-time-goods-content" *ngIf="show?i<cxdata?.end_list?.length:i<1" tappable navPush="ParticularsPage" [navParams]="{goodsId:item.goods_id}">
                         <div class="time-goods-img">
                             <img img-lazy-load="{{item.goods_img}}" alt="">
                         </div>
@@ -279,7 +290,9 @@
 <ion-footer>
     <div class="shop-footer">
         <div tappable class="shop-footer-items" (click)="goParticularsHomeDetails()">
-            <div><span>店铺详情</span></div>
+            <div class="lx_tel">
+                <span>店铺详情</span>
+            </div>
         </div>
         <div class="shop-footer-items" tappable (click)="openPopover($event)">
             <div>

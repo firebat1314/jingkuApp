@@ -13,7 +13,7 @@
 </ion-header>
 
 
-<ion-content>
+<ion-content #content>
     <ng-container *ngIf="data">
 
         <ion-item mode="ios" no-lines>
@@ -48,13 +48,13 @@
                         <ion-checkbox mode="ios" (click)="toPay(3)" color="jingku1"></ion-checkbox>
                     </ion-item>
                 </ion-list>-->
-        <section class="zffs">
+        <section class="zffs" *ngIf="data?.order_info?.pay_id!=4">
             <header class="zffs_h">
                 支付方式
                 <span class="text" *ngIf="data?.balance===0">需组合支付</span>
             </header>
             <div class="main">
-                <div class="zf_x" tappable (click)="userYue()" [class.selected]="yE" [class.disable]="!user_money" >
+                <div class="zf_x" tappable (click)="userYue()" [class.selected]="yE" [class.disable]="!user_money">
                     <img src="./assets/icon/close_ico4.png" alt="">
                     <div class="p1">镜库余额</div>
                     <div class="p2">可用余额：{{user_money||'0.00'}}</div>
@@ -79,17 +79,21 @@
                 支付密码
             </header>
             <div class="input_ps" *ngIf="yE">
-                
+
                 <pay-password (code)="payPassword = $event"></pay-password>
 
                 <a navPush="ChangePayPasswordPage" style="float: right;margin-right: 17px;margin-top
                 :10px;">忘记支付密码？</a>
             </div>
         </section>
+        <section class="zffs" *ngIf="data?.order_info?.pay_id==4" style="padding: 20px;line-height: 27px;color: #666;">
+            <div class="zf_x" [innerHtml]="data?.pay_info?.pay_desc">
+            </div>
+        </section>
     </ng-container>
 </ion-content>
 
-<ion-footer>
+<ion-footer *ngIf="data?.order_info?.pay_id!=4">
     <button color="jingku1" no-margin ion-button large full class="modal-button" (click)="toPay()">
         <span *ngIf="paymentType&&yE">组合支付 </span>{{data?.amout || '--'}}</button>
 </ion-footer>
