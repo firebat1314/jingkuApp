@@ -5,6 +5,7 @@ import { ImgLazyLoadDirectiveModule } from "../../directives/img-lazy-load/img-l
 import { SingleFoodsItemComponentModule } from "../../components/single-foods-item/single-foods-item.module";
 import { SingleCardComponentModule } from "../../components/single-card/single-card.module";
 import { NoGoodsComponentModule } from "../../components/no-goods/no-goods.module";
+import { OpenMoreDirectiveModule } from '../../directives/open-more/open-more.module';
 
 @NgModule({
   declarations: [
@@ -15,7 +16,8 @@ import { NoGoodsComponentModule } from "../../components/no-goods/no-goods.modul
     ImgLazyLoadDirectiveModule,
     SingleFoodsItemComponentModule,
     SingleCardComponentModule,
-    NoGoodsComponentModule
+    NoGoodsComponentModule,
+    OpenMoreDirectiveModule
   ],
   exports: [
     ParticularsHomePage

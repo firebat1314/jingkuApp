@@ -9,7 +9,9 @@ import { Native } from "../../../../providers/native";
   See http://ionicframework.com/docs/v2/components/#navigation for more info on
   Ionic pages and navigation.
 */
-@IonicPage()
+@IonicPage({
+  segment:'invoice-ask-for2/:data'
+})
 @Component({
   selector: 'page-invoice-ask-for2',
   templateUrl: 'invoice-ask-for2.html'
