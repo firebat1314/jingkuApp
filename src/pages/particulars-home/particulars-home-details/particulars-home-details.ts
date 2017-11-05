@@ -75,9 +75,14 @@ export class ParticularsHomeDetailsPage {
     return i > 4;
   }
   callnumber(number) {
-    this.native.openAlertBox('拨打商家电话:' + number, () => {
-      this.native.openCallNumber(number, false);
-    })
+    alert(1)
+    if (this.native.isMobile()) {
+      this.native.openAlertBox('拨打商家电话:' + number, () => {
+        this.native.openCallNumber(number, false);
+      })
+    } else {
+      location.href = number
+    }
   }
   goShopAllFashionPage() {
     this.navCtrl.push('ShopAllFashionPage', { brandList: this.shopdata.data.brand_list })

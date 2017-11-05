@@ -37,7 +37,9 @@ export class WellcomeNewmPage {
     this.wow.init();
     setTimeout(function() {
       TouchSlide({
-        slideCell: "#hez-cont"
+        slideCell: "#hez-cont",
+        autoPlay:true,
+        titCell:".hd li"
       });
     }, 1000);
   }

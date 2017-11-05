@@ -1,0 +1,2945 @@
+@charset "UTF-8";
+/*clear clearfix*/
+page-wellcome-newm,
+page-wd,
+page-sj,
+page-jz,
+page-ghs,
+page-crm {
+  /*布局*/
+  /*form*/
+}
+
+page-wellcome-newm .clearfix:after,
+page-wd .clearfix:after,
+page-sj .clearfix:after,
+page-jz .clearfix:after,
+page-ghs .clearfix:after,
+page-crm .clearfix:after {
+  content: " ";
+  display: block;
+  height: 0;
+  clear: both;
+  visibility: hidden;
+}
+
+page-wellcome-newm .clearfix,
+page-wd .clearfix,
+page-sj .clearfix,
+page-jz .clearfix,
+page-ghs .clearfix,
+page-crm .clearfix {
+  zoom: 1;
+}
+
+page-wellcome-newm .clear,
+page-wd .clear,
+page-sj .clear,
+page-jz .clear,
+page-ghs .clear,
+page-crm .clear {
+  clear: both;
+}
+
+page-wellcome-newm .c-333,
+page-wd .c-333,
+page-sj .c-333,
+page-jz .c-333,
+page-ghs .c-333,
+page-crm .c-333 {
+  color: #333 !important;
+}
+
+page-wellcome-newm .radius5,
+page-wd .radius5,
+page-sj .radius5,
+page-jz .radius5,
+page-ghs .radius5,
+page-crm .radius5 {
+  -moz-border-radius: 5px;
+  /* Gecko browsers*/
+  -webkit-border-radius: 5px;
+  /* Webkit browsers*/
+  border-radius: 5px;
+}
+
+page-wellcome-newm .p10,
+page-wd .p10,
+page-sj .p10,
+page-jz .p10,
+page-ghs .p10,
+page-crm .p10 {
+  padding: 0 10px;
+}
+
+page-wellcome-newm .ty,
+page-wd .ty,
+page-sj .ty,
+page-jz .ty,
+page-ghs .ty,
+page-crm .ty {
+  -webkit-box-shadow: 0px 2px 2px #CCC;
+  -moz-box-shadow: 0px 2px 2px #CCC;
+  box-shadow: 0px 2px 2px #CCC;
+}
+
+page-wellcome-newm .f,
+page-wd .f,
+page-sj .f,
+page-jz .f,
+page-ghs .f,
+page-crm .f {
+  float: left;
+}
+
+page-wellcome-newm .r,
+page-wd .r,
+page-sj .r,
+page-jz .r,
+page-ghs .r,
+page-crm .r {
+  float: right;
+}
+
+page-wellcome-newm .bg-f5,
+page-wd .bg-f5,
+page-sj .bg-f5,
+page-jz .bg-f5,
+page-ghs .bg-f5,
+page-crm .bg-f5 {
+  background: #f5f5f5;
+}
+
+page-wellcome-newm .bg-fff,
+page-wd .bg-fff,
+page-sj .bg-fff,
+page-jz .bg-fff,
+page-ghs .bg-fff,
+page-crm .bg-fff {
+  background: #fff;
+}
+
+page-wellcome-newm .mb10,
+page-wd .mb10,
+page-sj .mb10,
+page-jz .mb10,
+page-ghs .mb10,
+page-crm .mb10 {
+  margin-bottom: 10px !important;
+}
+
+page-wellcome-newm .mb20,
+page-wd .mb20,
+page-sj .mb20,
+page-jz .mb20,
+page-ghs .mb20,
+page-crm .mb20 {
+  margin-bottom: 20px !important;
+}
+
+page-wellcome-newm .over-hide,
+page-wd .over-hide,
+page-sj .over-hide,
+page-jz .over-hide,
+page-ghs .over-hide,
+page-crm .over-hide {
+  overflow: hidden;
+}
+
+page-wellcome-newm .hide,
+page-wd .hide,
+page-sj .hide,
+page-jz .hide,
+page-ghs .hide,
+page-crm .hide {
+  display: none;
+}
+
+page-wellcome-newm .show,
+page-wd .show,
+page-sj .show,
+page-jz .show,
+page-ghs .show,
+page-crm .show {
+  display: block;
+}
+
+page-wellcome-newm .ty-b,
+page-wd .ty-b,
+page-sj .ty-b,
+page-jz .ty-b,
+page-ghs .ty-b,
+page-crm .ty-b {
+  -webkit-box-shadow: 0 3px 5px #ccc;
+  -moz-box-shadow: 0 3px 5px #ccc;
+  box-shadow: 0 3px 5px #ccc;
+}
+
+page-wellcome-newm .ty-t,
+page-wd .ty-t,
+page-sj .ty-t,
+page-jz .ty-t,
+page-ghs .ty-t,
+page-crm .ty-t {
+  -webkit-box-shadow: 0 -2px 5px #ccc;
+  -moz-box-shadow: 0 -2px 5px #ccc;
+  box-shadow: 0 -2px 5px #ccc;
+}
+
+page-wellcome-newm .ui-row-flex,
+page-wd .ui-row-flex,
+page-sj .ui-row-flex,
+page-jz .ui-row-flex,
+page-ghs .ui-row-flex,
+page-crm .ui-row-flex {
+  display: -webkit-box;
+  width: 100%;
+  -webkit-box-sizing: border-box;
+}
+
+page-wellcome-newm .ui-list-info,
+page-wd .ui-list-info,
+page-sj .ui-list-info,
+page-jz .ui-list-info,
+page-ghs .ui-list-info,
+page-crm .ui-list-info {
+  -webkit-box-flex: 1;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-box-pack: center;
+}
+
+page-wellcome-newm .ui-info,
+page-wd .ui-info,
+page-sj .ui-info,
+page-jz .ui-info,
+page-ghs .ui-info,
+page-crm .ui-info {
+  -webkit-box-flex: 1;
+}
+
+page-wellcome-newm .ui-border-t,
+page-wd .ui-border-t,
+page-sj .ui-border-t,
+page-jz .ui-border-t,
+page-ghs .ui-border-t,
+page-crm .ui-border-t {
+  border-top: 1px solid #e0e0e0;
+}
+
+page-wellcome-newm .ui-border-b,
+page-wd .ui-border-b,
+page-sj .ui-border-b,
+page-jz .ui-border-b,
+page-ghs .ui-border-b,
+page-crm .ui-border-b {
+  border-bottom: 1px solid #e0e0e0;
+}
+
+page-wellcome-newm .ui-border-tb,
+page-wd .ui-border-tb,
+page-sj .ui-border-tb,
+page-jz .ui-border-tb,
+page-ghs .ui-border-tb,
+page-crm .ui-border-tb {
+  border-top: 1px solid #e0e0e0;
+  border-bottom: 1px solid #e0e0e0;
+}
+
+page-wellcome-newm .ui-col-20,
+page-wd .ui-col-20,
+page-sj .ui-col-20,
+page-jz .ui-col-20,
+page-ghs .ui-col-20,
+page-crm .ui-col-20 {
+  width: 20%;
+}
+
+page-wellcome-newm .ui-col-25,
+page-wd .ui-col-25,
+page-sj .ui-col-25,
+page-jz .ui-col-25,
+page-ghs .ui-col-25,
+page-crm .ui-col-25 {
+  width: 25%;
+}
+
+page-wellcome-newm .ui-col-33,
+page-wd .ui-col-33,
+page-sj .ui-col-33,
+page-jz .ui-col-33,
+page-ghs .ui-col-33,
+page-crm .ui-col-33 {
+  width: 33.33%;
+}
+
+page-wellcome-newm .ui-col-50,
+page-wd .ui-col-50,
+page-sj .ui-col-50,
+page-jz .ui-col-50,
+page-ghs .ui-col-50,
+page-crm .ui-col-50 {
+  width: 50%;
+}
+
+page-wellcome-newm .ui-nowrap,
+page-wd .ui-nowrap,
+page-sj .ui-nowrap,
+page-jz .ui-nowrap,
+page-ghs .ui-nowrap,
+page-crm .ui-nowrap {
+  max-width: 100%;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+page-wellcome-newm .ui-list-img,
+page-wd .ui-list-img,
+page-sj .ui-list-img,
+page-jz .ui-list-img,
+page-ghs .ui-list-img,
+page-crm .ui-list-img {
+  width: 4rem;
+  height: 4rem;
+  margin: 10px;
+  position: relative;
+}
+
+page-wellcome-newm .ui-list li,
+page-wd .ui-list li,
+page-sj .ui-list li,
+page-jz .ui-list li,
+page-ghs .ui-list li,
+page-crm .ui-list li {
+  position: relative;
+  display: -webkit-box;
+}
+
+page-wellcome-newm .ui-bgfff,
+page-wd .ui-bgfff,
+page-sj .ui-bgfff,
+page-jz .ui-bgfff,
+page-ghs .ui-bgfff,
+page-crm .ui-bgfff {
+  background: #fff;
+}
+
+page-wellcome-newm .c-h,
+page-wd .c-h,
+page-sj .c-h,
+page-jz .c-h,
+page-ghs .c-h,
+page-crm .c-h {
+  color: #ea1432;
+}
+
+page-wellcome-newm .ui-form-field,
+page-wd .ui-form-field,
+page-sj .ui-form-field,
+page-jz .ui-form-field,
+page-ghs .ui-form-field,
+page-crm .ui-form-field {
+  outline: none;
+  width: 100%;
+  padding: 8px 5px;
+  font-size: 15px;
+  line-height: 1.2;
+  color: #555;
+  vertical-align: middle;
+  background-color: #fff;
+  background-image: none;
+  border: none;
+  height: 1.9rem;
+}
+
+page-wellcome-newm .ui-btn,
+page-wd .ui-btn,
+page-sj .ui-btn,
+page-jz .ui-btn,
+page-ghs .ui-btn,
+page-crm .ui-btn {
+  display: inline-block;
+  margin-bottom: 0;
+  padding: 5px 10px;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 1.2;
+  text-align: center;
+  white-space: nowrap;
+  background-image: none;
+  border: 1px solid transparent;
+  cursor: pointer;
+  outline: 0;
+  user-select: none;
+}
+
+page-wellcome-newm select,
+page-wd select,
+page-sj select,
+page-jz select,
+page-ghs select,
+page-crm select {
+  -webkit-appearance: none;
+  border: 0;
+  background: 0 0;
+  width: 100%;
+  padding-right: 30px;
+}
+
+page-wellcome-newm .ui-checkbox input,
+page-wd .ui-checkbox input,
+page-sj .ui-checkbox input,
+page-jz .ui-checkbox input,
+page-ghs .ui-checkbox input,
+page-crm .ui-checkbox input {
+  display: inline-block;
+  width: .9rem;
+  height: .9rem;
+  position: relative;
+  overflow: visible;
+  background: none;
+  border: 0;
+  border-radius: 3px;
+  -webkit-appearance: none;
+  outline: 0;
+  vertical-align: middle;
+  border: 1px solid #bfbfbf;
+}
+
+page-wellcome-newm .ui-checkbox input:checked,
+page-wd .ui-checkbox input:checked,
+page-sj .ui-checkbox input:checked,
+page-jz .ui-checkbox input:checked,
+page-ghs .ui-checkbox input:checked,
+page-crm .ui-checkbox input:checked {
+  background: #ea1432;
+  border: 1px solid #ea1432;
+}
+
+page-wellcome-newm .ui-checkbox input:before,
+page-wd .ui-checkbox input:before,
+page-sj .ui-checkbox input:before,
+page-jz .ui-checkbox input:before,
+page-ghs .ui-checkbox input:before,
+page-crm .ui-checkbox input:before {
+  width: .8rem;
+  height: .8rem;
+  font-style: normal;
+  -webkit-font-smoothing: antialiased;
+  -webkit-text-stroke-width: .2px;
+  display: block;
+  color: rgba(0, 0, 0, 0.5);
+  content: " ";
+  color: #18b4ed;
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  color: #dedfe0;
+  z-index: 7;
+}
+
+page-wellcome-newm .ui-checkbox input:checked:before,
+page-wd .ui-checkbox input:checked:before,
+page-sj .ui-checkbox input:checked:before,
+page-jz .ui-checkbox input:checked:before,
+page-ghs .ui-checkbox input:checked:before,
+page-crm .ui-checkbox input:checked:before {
+  background: url(../images/ico_g.png) no-repeat center;
+  background-size: 12px;
+  top: 0px;
+}
+
+page-wellcome-newm .head_wrap,
+page-wd .head_wrap,
+page-sj .head_wrap,
+page-jz .head_wrap,
+page-ghs .head_wrap,
+page-crm .head_wrap {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 30;
+  width: 100%;
+}
+
+page-wellcome-newm .header:after,
+page-wd .header:after,
+page-sj .header:after,
+page-jz .header:after,
+page-ghs .header:after,
+page-crm .header:after {
+  content: " ";
+  display: block;
+  clear: both;
+  overflovw: hidden;
+  height: 0;
+}
+
+page-wellcome-newm .display-none,
+page-wellcome-newm .icon-settings,
+page-wd .display-none,
+page-wd .icon-settings,
+page-sj .display-none,
+page-sj .icon-settings,
+page-jz .display-none,
+page-jz .icon-settings,
+page-ghs .display-none,
+page-ghs .icon-settings,
+page-crm .display-none,
+page-crm .icon-settings {
+  display: none;
+}
+
+page-wellcome-newm .ceb-left,
+page-wd .ceb-left,
+page-sj .ceb-left,
+page-jz .ceb-left,
+page-ghs .ceb-left,
+page-crm .ceb-left {
+  position: fixed;
+  left: -60px;
+  top: 0;
+  z-index: 71;
+  width: 60px;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+}
+
+page-wellcome-newm .ceb-left .close,
+page-wd .ceb-left .close,
+page-sj .ceb-left .close,
+page-jz .ceb-left .close,
+page-ghs .ceb-left .close,
+page-crm .ceb-left .close {
+  position: relative;
+  top: 10px;
+  width: 40px;
+  height: 40px;
+  margin: 0 auto;
+  background: url(../images/ico-3.png) no-repeat center;
+  background-size: 20px 20px;
+}
+
+page-wellcome-newm .ceb-right,
+page-wd .ceb-right,
+page-sj .ceb-right,
+page-jz .ceb-right,
+page-ghs .ceb-right,
+page-crm .ceb-right {
+  position: fixed;
+  right: -100%;
+  top: 0;
+  z-index: 70;
+  width: calc(100% - 60px);
+  height: 100%;
+  background: #2d2d2d;
+}
+
+page-wellcome-newm .ceb-right .ul-ceb,
+page-wd .ceb-right .ul-ceb,
+page-sj .ceb-right .ul-ceb,
+page-jz .ceb-right .ul-ceb,
+page-ghs .ceb-right .ul-ceb,
+page-crm .ceb-right .ul-ceb {
+  width: 100%;
+  padding-right: 0;
+}
+
+page-wellcome-newm .ceb-right .ul-ceb li,
+page-wd .ceb-right .ul-ceb li,
+page-sj .ceb-right .ul-ceb li,
+page-jz .ceb-right .ul-ceb li,
+page-ghs .ceb-right .ul-ceb li,
+page-crm .ceb-right .ul-ceb li {
+  text-align: left;
+}
+
+page-wellcome-newm .ceb-right .ul-ceb li .un-hd,
+page-wd .ceb-right .ul-ceb li .un-hd,
+page-sj .ceb-right .ul-ceb li .un-hd,
+page-jz .ceb-right .ul-ceb li .un-hd,
+page-ghs .ceb-right .ul-ceb li .un-hd,
+page-crm .ceb-right .ul-ceb li .un-hd {
+  position: relative;
+  background: #252424;
+  color: #fff;
+  padding: 0 20px;
+  height: 45px;
+  line-height: 45px;
+  color: #d4d4d4;
+  font-size: 15px;
+  border-bottom: 1px solid #3a3a3a;
+}
+
+page-wellcome-newm .ceb-right .ul-ceb li .un-hd em,
+page-wd .ceb-right .ul-ceb li .un-hd em,
+page-sj .ceb-right .ul-ceb li .un-hd em,
+page-jz .ceb-right .ul-ceb li .un-hd em,
+page-ghs .ceb-right .ul-ceb li .un-hd em,
+page-crm .ceb-right .ul-ceb li .un-hd em {
+  position: absolute;
+  right: 15px;
+  top: 10px;
+  display: block;
+  width: 20px;
+  height: 20px;
+  background: url(../images/jt.png) no-repeat center;
+  background-size: 20px auto;
+  transform: rotate(180deg);
+  -ms-transform: rotate(180deg);
+  /* IE 9 */
+  -moz-transform: rotate(180deg);
+  /* Firefox */
+  -webkit-transform: rotate(180deg);
+  /* Safari 和 Chrome */
+  -o-transform: rotate(180deg);
+  /* Opera */
+}
+
+page-wellcome-newm .ceb-right .ul-ceb li .un-bd,
+page-wd .ceb-right .ul-ceb li .un-bd,
+page-sj .ceb-right .ul-ceb li .un-bd,
+page-jz .ceb-right .ul-ceb li .un-bd,
+page-ghs .ceb-right .ul-ceb li .un-bd,
+page-crm .ceb-right .ul-ceb li .un-bd {
+  display: none;
+}
+
+page-wellcome-newm .ceb-right .ul-ceb li .un-bd p,
+page-wd .ceb-right .ul-ceb li .un-bd p,
+page-sj .ceb-right .ul-ceb li .un-bd p,
+page-jz .ceb-right .ul-ceb li .un-bd p,
+page-ghs .ceb-right .ul-ceb li .un-bd p,
+page-crm .ceb-right .ul-ceb li .un-bd p {
+  height: 40px;
+  line-height: 40px;
+  padding: 0 20px;
+  color: #fff;
+  border-bottom: 1px solid #3a3a3a;
+}
+
+page-wellcome-newm .ceb-right .ul-ceb li .open .un-bd,
+page-wd .ceb-right .ul-ceb li .open .un-bd,
+page-sj .ceb-right .ul-ceb li .open .un-bd,
+page-jz .ceb-right .ul-ceb li .open .un-bd,
+page-ghs .ceb-right .ul-ceb li .open .un-bd,
+page-crm .ceb-right .ul-ceb li .open .un-bd {
+  display: block;
+}
+
+page-wellcome-newm .ceb-right .ul-ceb li .open .un-hd em,
+page-wd .ceb-right .ul-ceb li .open .un-hd em,
+page-sj .ceb-right .ul-ceb li .open .un-hd em,
+page-jz .ceb-right .ul-ceb li .open .un-hd em,
+page-ghs .ceb-right .ul-ceb li .open .un-hd em,
+page-crm .ceb-right .ul-ceb li .open .un-hd em {
+  transform: rotate(0deg);
+  -ms-transform: rotate(0deg);
+  /* IE 9 */
+  -moz-transform: rotate(0deg);
+  /* Firefox */
+  -webkit-transform: rotate(0deg);
+  /* Safari 和 Chrome */
+  -o-transform: rotate(0deg);
+  /* Opera */
+}
+
+page-wellcome-newm .ceb.emerge .ceb-left,
+page-wd .ceb.emerge .ceb-left,
+page-sj .ceb.emerge .ceb-left,
+page-jz .ceb.emerge .ceb-left,
+page-ghs .ceb.emerge .ceb-left,
+page-crm .ceb.emerge .ceb-left {
+  left: 0;
+}
+
+page-wellcome-newm .ceb.emerge .ceb-right,
+page-wd .ceb.emerge .ceb-right,
+page-sj .ceb.emerge .ceb-right,
+page-jz .ceb.emerge .ceb-right,
+page-ghs .ceb.emerge .ceb-right,
+page-crm .ceb.emerge .ceb-right {
+  right: 0;
+}
+
+page-wellcome-newm .all *,
+page-wd .all *,
+page-sj .all *,
+page-jz .all *,
+page-ghs .all *,
+page-crm .all * {
+  transition: all .3s;
+  -moz-transition: all .3s;
+  /* Firefox 4 */
+  -webkit-transition: all .3s;
+  /* Safari 和 Chrome */
+  -o-transition: all .3s;
+  /* Opera */
+}
+
+page-wellcome-newm .all-eac *,
+page-wd .all-eac *,
+page-sj .all-eac *,
+page-jz .all-eac *,
+page-ghs .all-eac *,
+page-crm .all-eac * {
+  transition: all .3s ease-in;
+  -moz-transition: all .3s ease-in;
+  /* Firefox 4 */
+  -webkit-transition: all .3s ease-in;
+  /* Safari 和 Chrome */
+  -o-transition: all .3s ease-in;
+  /* Opera */
+}
+
+page-wellcome-newm .head.bse,
+page-wd .head.bse,
+page-sj .head.bse,
+page-jz .head.bse,
+page-ghs .head.bse,
+page-crm .head.bse {
+  background: rgba(0, 0, 0, 0.7);
+}
+
+page-wellcome-newm .about_us,
+page-wd .about_us,
+page-sj .about_us,
+page-jz .about_us,
+page-ghs .about_us,
+page-crm .about_us {
+  padding: 20px 0 0;
+}
+
+page-wellcome-newm .ggy-bt,
+page-wd .ggy-bt,
+page-sj .ggy-bt,
+page-jz .ggy-bt,
+page-ghs .ggy-bt,
+page-crm .ggy-bt {
+  text-align: center;
+  padding: 10px 10px 0;
+}
+
+page-wellcome-newm .ggy-bt .ggy-h3,
+page-wd .ggy-bt .ggy-h3,
+page-sj .ggy-bt .ggy-h3,
+page-jz .ggy-bt .ggy-h3,
+page-ghs .ggy-bt .ggy-h3,
+page-crm .ggy-bt .ggy-h3 {
+  color: #333;
+  font-size: 20px;
+  margin-bottom: 15px;
+  font-weight: normal;
+  line-height: normal;
+}
+
+page-wellcome-newm .ggy-bt .ggy-eko,
+page-wd .ggy-bt .ggy-eko,
+page-sj .ggy-bt .ggy-eko,
+page-jz .ggy-bt .ggy-eko,
+page-ghs .ggy-bt .ggy-eko,
+page-crm .ggy-bt .ggy-eko {
+  margin: 10px 0;
+}
+
+page-wellcome-newm .ggy-bt .ggy-eko em,
+page-wd .ggy-bt .ggy-eko em,
+page-sj .ggy-bt .ggy-eko em,
+page-jz .ggy-bt .ggy-eko em,
+page-ghs .ggy-bt .ggy-eko em,
+page-crm .ggy-bt .ggy-eko em {
+  display: inline-block;
+  width: 75px;
+  height: 1px;
+  background: #ccc;
+  vertical-align: middle;
+}
+
+page-wellcome-newm .ggy-bt .ggy-eko i,
+page-wd .ggy-bt .ggy-eko i,
+page-sj .ggy-bt .ggy-eko i,
+page-jz .ggy-bt .ggy-eko i,
+page-ghs .ggy-bt .ggy-eko i,
+page-crm .ggy-bt .ggy-eko i {
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  background: #3f69a5;
+  border-radius: 50%;
+  vertical-align: middle;
+  margin: 0 10px;
+}
+
+page-wellcome-newm .ggy-bt .ggy-ep,
+page-wd .ggy-bt .ggy-ep,
+page-sj .ggy-bt .ggy-ep,
+page-jz .ggy-bt .ggy-ep,
+page-ghs .ggy-bt .ggy-ep,
+page-crm .ggy-bt .ggy-ep {
+  color: #808080;
+  font-size: 12px;
+  line-height: 20px;
+}
+
+page-wellcome-newm .about-cont,
+page-wd .about-cont,
+page-sj .about-cont,
+page-jz .about-cont,
+page-ghs .about-cont,
+page-crm .about-cont {
+  padding: 10px 5px 0;
+  overflow: hidden;
+}
+
+page-wellcome-newm .about-cont ul,
+page-wd .about-cont ul,
+page-sj .about-cont ul,
+page-jz .about-cont ul,
+page-ghs .about-cont ul,
+page-crm .about-cont ul {
+  padding: 5px 0;
+}
+
+page-wellcome-newm .about-cont li,
+page-wd .about-cont li,
+page-sj .about-cont li,
+page-jz .about-cont li,
+page-ghs .about-cont li,
+page-crm .about-cont li {
+  float: left;
+  width: 50%;
+  padding: 5px;
+}
+
+page-wellcome-newm .about-cont .wrp,
+page-wd .about-cont .wrp,
+page-sj .about-cont .wrp,
+page-jz .about-cont .wrp,
+page-ghs .about-cont .wrp,
+page-crm .about-cont .wrp {
+  background: #f5f5f5;
+  padding: 10px 10px 10px;
+  border-radius: 3px;
+  overflow: hidden;
+}
+
+page-wellcome-newm .about-cont .ico,
+page-wd .about-cont .ico,
+page-sj .about-cont .ico,
+page-jz .about-cont .ico,
+page-ghs .about-cont .ico,
+page-crm .about-cont .ico {
+  width: 32px;
+  height: 40px;
+  margin: 0 auto;
+}
+
+page-wellcome-newm .about-cont .title,
+page-wd .about-cont .title,
+page-sj .about-cont .title,
+page-jz .about-cont .title,
+page-ghs .about-cont .title,
+page-crm .about-cont .title {
+  margin-top: 5px;
+  color: #666;
+  font-size: 14px;
+  text-align: center;
+  letter-spacing: .5px;
+}
+
+page-wellcome-newm .expe-wrp,
+page-wd .expe-wrp,
+page-sj .expe-wrp,
+page-jz .expe-wrp,
+page-ghs .expe-wrp,
+page-crm .expe-wrp {
+  padding: 20px 0 20px;
+}
+
+page-wellcome-newm .expe-cont,
+page-wd .expe-cont,
+page-sj .expe-cont,
+page-jz .expe-cont,
+page-ghs .expe-cont,
+page-crm .expe-cont {
+  position: relative;
+  padding: 20px 0 0;
+  overflow: hidden;
+}
+
+page-wellcome-newm .expe-cont .expe-left,
+page-wd .expe-cont .expe-left,
+page-sj .expe-cont .expe-left,
+page-jz .expe-cont .expe-left,
+page-ghs .expe-cont .expe-left,
+page-crm .expe-cont .expe-left {
+  float: left;
+  width: 100%;
+  padding: 0 5%;
+}
+
+page-wellcome-newm .expe-cont .expe-left img,
+page-wd .expe-cont .expe-left img,
+page-sj .expe-cont .expe-left img,
+page-jz .expe-cont .expe-left img,
+page-ghs .expe-cont .expe-left img,
+page-crm .expe-cont .expe-left img {
+  display: block;
+  width: 100%;
+}
+
+page-wellcome-newm .expe-cont .expe-right,
+page-wd .expe-cont .expe-right,
+page-sj .expe-cont .expe-right,
+page-jz .expe-cont .expe-right,
+page-ghs .expe-cont .expe-right,
+page-crm .expe-cont .expe-right {
+  position: absolute;
+  right: 4.5%;
+  bottom: 0;
+  height: 70%;
+}
+
+page-wellcome-newm .expe-cont .expe-right img,
+page-wd .expe-cont .expe-right img,
+page-sj .expe-cont .expe-right img,
+page-jz .expe-cont .expe-right img,
+page-ghs .expe-cont .expe-right img,
+page-crm .expe-cont .expe-right img {
+  display: block;
+  height: 100%;
+  width: auto;
+}
+
+page-wellcome-newm .adva-wrp .adva-cont,
+page-wd .adva-wrp .adva-cont,
+page-sj .adva-wrp .adva-cont,
+page-jz .adva-wrp .adva-cont,
+page-ghs .adva-wrp .adva-cont,
+page-crm .adva-wrp .adva-cont {
+  padding: 15px 5px;
+  overflow: hidden;
+}
+
+page-wellcome-newm .adva-wrp .adva-cont li,
+page-wd .adva-wrp .adva-cont li,
+page-sj .adva-wrp .adva-cont li,
+page-jz .adva-wrp .adva-cont li,
+page-ghs .adva-wrp .adva-cont li,
+page-crm .adva-wrp .adva-cont li {
+  float: left;
+  width: 33.33%;
+  padding: 5px 5px;
+}
+
+page-wellcome-newm .adva-wrp .adva-cont li .wrp,
+page-wd .adva-wrp .adva-cont li .wrp,
+page-sj .adva-wrp .adva-cont li .wrp,
+page-jz .adva-wrp .adva-cont li .wrp,
+page-ghs .adva-wrp .adva-cont li .wrp,
+page-crm .adva-wrp .adva-cont li .wrp {
+  padding: 1px;
+  background: #fff;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+page-wellcome-newm .adva-wrp .adva-cont li .wrp .icon,
+page-wd .adva-wrp .adva-cont li .wrp .icon,
+page-sj .adva-wrp .adva-cont li .wrp .icon,
+page-jz .adva-wrp .adva-cont li .wrp .icon,
+page-ghs .adva-wrp .adva-cont li .wrp .icon,
+page-crm .adva-wrp .adva-cont li .wrp .icon {
+  display: block;
+  width: 40px;
+  height: 40px;
+  margin: 10px auto;
+  text-align: center;
+}
+
+page-wellcome-newm .adva-wrp .adva-cont li .wrp .txt,
+page-wd .adva-wrp .adva-cont li .wrp .txt,
+page-sj .adva-wrp .adva-cont li .wrp .txt,
+page-jz .adva-wrp .adva-cont li .wrp .txt,
+page-ghs .adva-wrp .adva-cont li .wrp .txt,
+page-crm .adva-wrp .adva-cont li .wrp .txt {
+  color: #666;
+  font-size: 12px;
+  text-align: center;
+  padding-bottom: 15px;
+}
+
+page-wellcome-newm .map-wrp,
+page-wd .map-wrp,
+page-sj .map-wrp,
+page-jz .map-wrp,
+page-ghs .map-wrp,
+page-crm .map-wrp {
+  padding: 0 0 20px;
+}
+
+page-wellcome-newm .map,
+page-wd .map,
+page-sj .map,
+page-jz .map,
+page-ghs .map,
+page-crm .map {
+  position: relative;
+  height: 633px;
+  margin: 40px auto 0;
+  background: url(../assets/images/wellcome-newm/map.png) no-repeat center;
+  zoom: .45;
+}
+
+page-wellcome-newm .point-area,
+page-wd .point-area,
+page-sj .point-area,
+page-jz .point-area,
+page-ghs .point-area,
+page-crm .point-area {
+  text-align: center;
+  position: absolute;
+  width: 150px;
+  height: 150px;
+  transition: opacity .5s ease-out;
+}
+
+page-wellcome-newm .point-area .point,
+page-wd .point-area .point,
+page-sj .point-area .point,
+page-jz .point-area .point,
+page-ghs .point-area .point,
+page-crm .point-area .point {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  width: 10px;
+  height: 10px;
+  margin: auto;
+  -webkit-border-radius: 50%;
+  -webkit-background-clip: padding-box;
+  -moz-border-radius: 50%;
+  -moz-background-clip: padding;
+  border-radius: 50%;
+  background-clip: padding-box;
+  background: transparent;
+}
+
+page-wellcome-newm .point-area .point-shadow:after,
+page-wd .point-area .point-shadow:after,
+page-sj .point-area .point-shadow:after,
+page-jz .point-area .point-shadow:after,
+page-ghs .point-area .point-shadow:after,
+page-crm .point-area .point-shadow:after {
+  box-shadow: inset 0 0 5em rgba(0, 205, 236, 0.16);
+}
+
+page-wellcome-newm .point-area .point-white,
+page-wd .point-area .point-white,
+page-sj .point-area .point-white,
+page-jz .point-area .point-white,
+page-ghs .point-area .point-white,
+page-crm .point-area .point-white {
+  background-color: #fff;
+  border: 1px solid #00c1de;
+}
+
+page-wellcome-newm .point-area .point-dot,
+page-wd .point-area .point-dot,
+page-sj .point-area .point-dot,
+page-jz .point-area .point-dot,
+page-ghs .point-area .point-dot,
+page-crm .point-area .point-dot {
+  z-index: 1;
+  background-color: #3f69a5;
+  /*border:1px solid rgba(0,205,236,.37)*/
+}
+
+page-wellcome-newm .point-area .point-10,
+page-wd .point-area .point-10,
+page-sj .point-area .point-10,
+page-jz .point-area .point-10,
+page-ghs .point-area .point-10,
+page-crm .point-area .point-10 {
+  width: 100%;
+  height: 100%;
+}
+
+page-wellcome-newm .point-area .point-10:after,
+page-wd .point-area .point-10:after,
+page-sj .point-area .point-10:after,
+page-jz .point-area .point-10:after,
+page-ghs .point-area .point-10:after,
+page-crm .point-area .point-10:after {
+  content: "";
+  display: block;
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  border-radius: 50%;
+  border: 2px solid #3f69a5;
+  opacity: 0;
+  -webkit-animation: ripple 4.5s ease-out 225ms infinite;
+  animation: ripple 4.5s ease-out 225ms infinite;
+}
+
+page-wellcome-newm .point-area .point-20,
+page-wd .point-area .point-20,
+page-sj .point-area .point-20,
+page-jz .point-area .point-20,
+page-ghs .point-area .point-20,
+page-crm .point-area .point-20 {
+  width: 100%;
+  height: 100%;
+}
+
+page-wellcome-newm .point-area .point-20:after,
+page-wd .point-area .point-20:after,
+page-sj .point-area .point-20:after,
+page-jz .point-area .point-20:after,
+page-ghs .point-area .point-20:after,
+page-crm .point-area .point-20:after {
+  content: "";
+  display: block;
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  border-radius: 50%;
+  border: 2px solid #3f69a5;
+  opacity: 0;
+  -webkit-animation: ripple 4.5s ease-out .45s infinite;
+  animation: ripple 4.5s ease-out .45s infinite;
+}
+
+page-wellcome-newm .point-area .point-30,
+page-wd .point-area .point-30,
+page-sj .point-area .point-30,
+page-jz .point-area .point-30,
+page-ghs .point-area .point-30,
+page-crm .point-area .point-30 {
+  width: 100%;
+  height: 100%;
+}
+
+page-wellcome-newm .point-area .point-30:after,
+page-wd .point-area .point-30:after,
+page-sj .point-area .point-30:after,
+page-jz .point-area .point-30:after,
+page-ghs .point-area .point-30:after,
+page-crm .point-area .point-30:after {
+  content: "";
+  display: block;
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  border-radius: 50%;
+  border: 2px solid #3f69a5;
+  opacity: 0;
+  -webkit-animation: ripple 4.5s ease-out 675ms infinite;
+  animation: ripple 4.5s ease-out 675ms infinite;
+}
+
+page-wellcome-newm .point-area .point-40,
+page-wd .point-area .point-40,
+page-sj .point-area .point-40,
+page-jz .point-area .point-40,
+page-ghs .point-area .point-40,
+page-crm .point-area .point-40 {
+  width: 100%;
+  height: 100%;
+}
+
+page-wellcome-newm .point-area .point-40:after,
+page-wd .point-area .point-40:after,
+page-sj .point-area .point-40:after,
+page-jz .point-area .point-40:after,
+page-ghs .point-area .point-40:after,
+page-crm .point-area .point-40:after {
+  content: "";
+  display: block;
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  border-radius: 50%;
+  border: 2px solid #3f69a5;
+  opacity: 0;
+  -webkit-animation: ripple 4.5s ease-out .9s infinite;
+  animation: ripple 4.5s ease-out .9s infinite;
+}
+
+page-wellcome-newm .point-area .point-50,
+page-wd .point-area .point-50,
+page-sj .point-area .point-50,
+page-jz .point-area .point-50,
+page-ghs .point-area .point-50,
+page-crm .point-area .point-50 {
+  width: 100%;
+  height: 100%;
+}
+
+page-wellcome-newm .point-area .point-50:after,
+page-wd .point-area .point-50:after,
+page-sj .point-area .point-50:after,
+page-jz .point-area .point-50:after,
+page-ghs .point-area .point-50:after,
+page-crm .point-area .point-50:after {
+  content: "";
+  display: block;
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  border-radius: 50%;
+  border: 2px solid #3f69a5;
+  opacity: 0;
+  -webkit-animation: ripple 4.5s ease-out 1125ms infinite;
+  animation: ripple 4.5s ease-out 1125ms infinite;
+}
+
+page-wellcome-newm .point-area .point-60,
+page-wd .point-area .point-60,
+page-sj .point-area .point-60,
+page-jz .point-area .point-60,
+page-ghs .point-area .point-60,
+page-crm .point-area .point-60 {
+  width: 100%;
+  height: 100%;
+}
+
+page-wellcome-newm .point-area .point-60:after,
+page-wd .point-area .point-60:after,
+page-sj .point-area .point-60:after,
+page-jz .point-area .point-60:after,
+page-ghs .point-area .point-60:after,
+page-crm .point-area .point-60:after {
+  content: "";
+  display: block;
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  border-radius: 50%;
+  border: 2px solid #3f69a5;
+  opacity: 0;
+  -webkit-animation: ripple 4.5s ease-out 1.35s infinite;
+  animation: ripple 4.5s ease-out 1.35s infinite;
+}
+
+page-wellcome-newm .point-area .point-70,
+page-wd .point-area .point-70,
+page-sj .point-area .point-70,
+page-jz .point-area .point-70,
+page-ghs .point-area .point-70,
+page-crm .point-area .point-70 {
+  width: 100%;
+  height: 100%;
+}
+
+page-wellcome-newm .point-area .point-70:after,
+page-wd .point-area .point-70:after,
+page-sj .point-area .point-70:after,
+page-jz .point-area .point-70:after,
+page-ghs .point-area .point-70:after,
+page-crm .point-area .point-70:after {
+  content: "";
+  display: block;
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  border-radius: 50%;
+  border: 2px solid #3f69a5;
+  opacity: 0;
+  -webkit-animation: ripple 4.5s ease-out 1575ms infinite;
+  animation: ripple 4.5s ease-out 1575ms infinite;
+}
+
+page-wellcome-newm .point-area .point-80,
+page-wd .point-area .point-80,
+page-sj .point-area .point-80,
+page-jz .point-area .point-80,
+page-ghs .point-area .point-80,
+page-crm .point-area .point-80 {
+  width: 100%;
+  height: 100%;
+}
+
+page-wellcome-newm .point-area .point-80:after,
+page-wd .point-area .point-80:after,
+page-sj .point-area .point-80:after,
+page-jz .point-area .point-80:after,
+page-ghs .point-area .point-80:after,
+page-crm .point-area .point-80:after {
+  content: "";
+  display: block;
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  border-radius: 50%;
+  border: 2px solid #3f69a5;
+  opacity: 0;
+  -webkit-animation: ripple 4.5s ease-out 1.8s infinite;
+  animation: ripple 4.5s ease-out 1.8s infinite;
+}
+
+page-wellcome-newm .point-area .point-90,
+page-wd .point-area .point-90,
+page-sj .point-area .point-90,
+page-jz .point-area .point-90,
+page-ghs .point-area .point-90,
+page-crm .point-area .point-90 {
+  width: 100%;
+  height: 100%;
+}
+
+page-wellcome-newm .point-area .point-90:after,
+page-wd .point-area .point-90:after,
+page-sj .point-area .point-90:after,
+page-jz .point-area .point-90:after,
+page-ghs .point-area .point-90:after,
+page-crm .point-area .point-90:after {
+  content: "";
+  display: block;
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  border-radius: 50%;
+  border: 2px solid #3f69a5;
+  opacity: 0;
+  -webkit-animation: ripple 4.5s ease-out 2025ms infinite;
+  animation: ripple 4.5s ease-out 2025ms infinite;
+}
+
+page-wellcome-newm .point-area .point-100,
+page-wd .point-area .point-100,
+page-sj .point-area .point-100,
+page-jz .point-area .point-100,
+page-ghs .point-area .point-100,
+page-crm .point-area .point-100 {
+  width: 100%;
+  height: 100%;
+}
+
+page-wellcome-newm .point-area .point-100:after,
+page-wd .point-area .point-100:after,
+page-sj .point-area .point-100:after,
+page-jz .point-area .point-100:after,
+page-ghs .point-area .point-100:after,
+page-crm .point-area .point-100:after {
+  content: "";
+  display: block;
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  border-radius: 50%;
+  border: 2px solid #3f69a5;
+  opacity: 0;
+  -webkit-animation: ripple 4.5s ease-out 2.25s infinite;
+  animation: ripple 4.5s ease-out 2.25s infinite;
+}
+
+page-wellcome-newm lesshat-selector,
+page-wd lesshat-selector,
+page-sj lesshat-selector,
+page-jz lesshat-selector,
+page-ghs lesshat-selector,
+page-crm lesshat-selector {
+  -lh-property: 0;
+}
+
+@-webkit-keyframes ripple {
+  0% {
+    opacity: 0;
+    -webkit-transform: scale(0.1);
+  }
+  5% {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+    -webkit-transform: scale(1);
+  }
+}
+
+@keyframes ripple {
+  0% {
+    opacity: 0;
+    -webkit-transform: scale(0.1);
+    transform: scale(0.1);
+  }
+  5% {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+    -webkit-transform: scale(1);
+    transform: scale(1);
+  }
+}
+
+page-wellcome-newm [not-existing],
+page-wd [not-existing],
+page-sj [not-existing],
+page-jz [not-existing],
+page-ghs [not-existing],
+page-crm [not-existing] {
+  zoom: 1;
+}
+
+page-wellcome-newm .lic-wrp,
+page-wd .lic-wrp,
+page-sj .lic-wrp,
+page-jz .lic-wrp,
+page-ghs .lic-wrp,
+page-crm .lic-wrp {
+  padding: 20px 0;
+  background: url(../assets/images/wellcome-newm/yygo-1.jpg) no-repeat center;
+  background-size: 100% 100%;
+}
+
+page-wellcome-newm .lic-wrp .ggy-bt .ggy-h3,
+page-wd .lic-wrp .ggy-bt .ggy-h3,
+page-sj .lic-wrp .ggy-bt .ggy-h3,
+page-jz .lic-wrp .ggy-bt .ggy-h3,
+page-ghs .lic-wrp .ggy-bt .ggy-h3,
+page-crm .lic-wrp .ggy-bt .ggy-h3 {
+  color: #fff;
+}
+
+page-wellcome-newm .lic-wrp .ggy-bt .ggy-eko em,
+page-wellcome-newm .lic-wrp .ggy-bt .ggy-eko i,
+page-wd .lic-wrp .ggy-bt .ggy-eko em,
+page-wd .lic-wrp .ggy-bt .ggy-eko i,
+page-sj .lic-wrp .ggy-bt .ggy-eko em,
+page-sj .lic-wrp .ggy-bt .ggy-eko i,
+page-jz .lic-wrp .ggy-bt .ggy-eko em,
+page-jz .lic-wrp .ggy-bt .ggy-eko i,
+page-ghs .lic-wrp .ggy-bt .ggy-eko em,
+page-ghs .lic-wrp .ggy-bt .ggy-eko i,
+page-crm .lic-wrp .ggy-bt .ggy-eko em,
+page-crm .lic-wrp .ggy-bt .ggy-eko i {
+  background: #fff;
+}
+
+page-wellcome-newm .lic-wrp .ggy-bt .ggy-ep,
+page-wd .lic-wrp .ggy-bt .ggy-ep,
+page-sj .lic-wrp .ggy-bt .ggy-ep,
+page-jz .lic-wrp .ggy-bt .ggy-ep,
+page-ghs .lic-wrp .ggy-bt .ggy-ep,
+page-crm .lic-wrp .ggy-bt .ggy-ep {
+  color: #fff;
+}
+
+page-wellcome-newm .lic-cont,
+page-wd .lic-cont,
+page-sj .lic-cont,
+page-jz .lic-cont,
+page-ghs .lic-cont,
+page-crm .lic-cont {
+  padding: 20px 20px 10px;
+}
+
+page-wellcome-newm .lic-cont ul,
+page-wd .lic-cont ul,
+page-sj .lic-cont ul,
+page-jz .lic-cont ul,
+page-ghs .lic-cont ul,
+page-crm .lic-cont ul {
+  border-left: 1px solid #fff;
+  padding-left: 35px;
+  margin-left: 15px;
+}
+
+page-wellcome-newm .lic-cont ul li,
+page-wd .lic-cont ul li,
+page-sj .lic-cont ul li,
+page-jz .lic-cont ul li,
+page-ghs .lic-cont ul li,
+page-crm .lic-cont ul li {
+  margin-bottom: 10px;
+}
+
+page-wellcome-newm .lic-cont ul li .wrp,
+page-wd .lic-cont ul li .wrp,
+page-sj .lic-cont ul li .wrp,
+page-jz .lic-cont ul li .wrp,
+page-ghs .lic-cont ul li .wrp,
+page-crm .lic-cont ul li .wrp {
+  position: relative;
+  background: #fff;
+  border-radius: 3px;
+  padding: 15px 10px;
+}
+
+page-wellcome-newm .lic-cont ul li .wrp .rli,
+page-wd .lic-cont ul li .wrp .rli,
+page-sj .lic-cont ul li .wrp .rli,
+page-jz .lic-cont ul li .wrp .rli,
+page-ghs .lic-cont ul li .wrp .rli,
+page-crm .lic-cont ul li .wrp .rli {
+  position: absolute;
+  left: -53px;
+  top: 50%;
+  margin-top: -17px;
+  width: 35px;
+  height: 35px;
+  background: #fff url(../assets/images/wellcome-newm/yygo-ico-1.png) no-repeat center;
+  background-size: 20px;
+  border-radius: 50%;
+}
+
+page-wellcome-newm .lic-cont ul li .wrp .bsu,
+page-wd .lic-cont ul li .wrp .bsu,
+page-sj .lic-cont ul li .wrp .bsu,
+page-jz .lic-cont ul li .wrp .bsu,
+page-ghs .lic-cont ul li .wrp .bsu,
+page-crm .lic-cont ul li .wrp .bsu {
+  float: left;
+  width: 35px;
+  height: 35px;
+  text-align: center;
+  line-height: 35px;
+  color: #fff;
+  font-size: 15px;
+  border-radius: 50%;
+  background: #3f69a5;
+}
+
+page-wellcome-newm .lic-cont ul li .wrp .txt,
+page-wd .lic-cont ul li .wrp .txt,
+page-sj .lic-cont ul li .wrp .txt,
+page-jz .lic-cont ul li .wrp .txt,
+page-ghs .lic-cont ul li .wrp .txt,
+page-crm .lic-cont ul li .wrp .txt {
+  padding-left: 45px;
+}
+
+page-wellcome-newm .lic-cont ul li .wrp .txt h3,
+page-wd .lic-cont ul li .wrp .txt h3,
+page-sj .lic-cont ul li .wrp .txt h3,
+page-jz .lic-cont ul li .wrp .txt h3,
+page-ghs .lic-cont ul li .wrp .txt h3,
+page-crm .lic-cont ul li .wrp .txt h3 {
+  color: #3f69a5;
+  font-size: 18px;
+  line-height: 35px;
+  margin-bottom: 5px;
+}
+
+page-wellcome-newm .lic-cont ul li .wrp .txt p,
+page-wd .lic-cont ul li .wrp .txt p,
+page-sj .lic-cont ul li .wrp .txt p,
+page-jz .lic-cont ul li .wrp .txt p,
+page-ghs .lic-cont ul li .wrp .txt p,
+page-crm .lic-cont ul li .wrp .txt p {
+  color: #3f69a5;
+  font-size: 13px;
+}
+
+page-wellcome-newm .hez-wrp,
+page-wd .hez-wrp,
+page-sj .hez-wrp,
+page-jz .hez-wrp,
+page-ghs .hez-wrp,
+page-crm .hez-wrp {
+  padding: 20px 0;
+}
+
+page-wellcome-newm .hez-cont .item,
+page-wd .hez-cont .item,
+page-sj .hez-cont .item,
+page-jz .hez-cont .item,
+page-ghs .hez-cont .item,
+page-crm .hez-cont .item {
+  width: 100%;
+  overflow: hidden;
+}
+
+page-wellcome-newm .coop-list,
+page-wd .coop-list,
+page-sj .coop-list,
+page-jz .coop-list,
+page-ghs .coop-list,
+page-crm .coop-list {
+  width: 630px;
+  margin: 0 auto;
+  padding: 70px 0 30px;
+  zoom: .5;
+  position: relative;
+  left: 50px;
+}
+
+page-wellcome-newm .coop-list ul,
+page-wd .coop-list ul,
+page-sj .coop-list ul,
+page-jz .coop-list ul,
+page-ghs .coop-list ul,
+page-crm .coop-list ul {
+  position: relative;
+}
+
+page-wellcome-newm .coop-list li,
+page-wd .coop-list li,
+page-sj .coop-list li,
+page-jz .coop-list li,
+page-ghs .coop-list li,
+page-crm .coop-list li {
+  float: left;
+  width: 130px;
+  height: 130px;
+  margin: 0 40px;
+}
+
+page-wellcome-newm .coop-list li .cop-wrp,
+page-wd .coop-list li .cop-wrp,
+page-sj .coop-list li .cop-wrp,
+page-jz .coop-list li .cop-wrp,
+page-ghs .coop-list li .cop-wrp,
+page-crm .coop-list li .cop-wrp {
+  width: 130px;
+  height: 130px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  cursor: pointer;
+  transform: rotate(45deg);
+  -ms-transform: rotate(45deg);
+  /* IE 9 */
+  -moz-transform: rotate(45deg);
+  /* Firefox */
+  -webkit-transform: rotate(45deg);
+  /* Safari 和 Chrome */
+  -o-transform: rotate(45deg);
+  /* Opera */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+page-wellcome-newm .coop-list li .cop-wrp .gode,
+page-wd .coop-list li .cop-wrp .gode,
+page-sj .coop-list li .cop-wrp .gode,
+page-jz .coop-list li .cop-wrp .gode,
+page-ghs .coop-list li .cop-wrp .gode,
+page-crm .coop-list li .cop-wrp .gode {
+  transform: rotate(-45deg);
+  -ms-transform: rotate(-45deg);
+  /* IE 9 */
+  -moz-transform: rotate(-45deg);
+  /* Firefox */
+  -webkit-transform: rotate(-45deg);
+  /* Safari 和 Chrome */
+  -o-transform: rotate(-45deg);
+  /* Opera */
+}
+
+page-wellcome-newm .coop-list ul:nth-child(2n),
+page-wd .coop-list ul:nth-child(2n),
+page-sj .coop-list ul:nth-child(2n),
+page-jz .coop-list ul:nth-child(2n),
+page-ghs .coop-list ul:nth-child(2n),
+page-crm .coop-list ul:nth-child(2n) {
+  left: -105px;
+}
+
+page-wellcome-newm .coop-list ul.top20,
+page-wd .coop-list ul.top20,
+page-sj .coop-list ul.top20,
+page-jz .coop-list ul.top20,
+page-ghs .coop-list ul.top20,
+page-crm .coop-list ul.top20 {
+  top: -20px;
+}
+
+page-wellcome-newm .coop-list ul.top40,
+page-wd .coop-list ul.top40,
+page-sj .coop-list ul.top40,
+page-jz .coop-list ul.top40,
+page-ghs .coop-list ul.top40,
+page-crm .coop-list ul.top40 {
+  top: -40px;
+}
+
+page-wellcome-newm .f-top,
+page-wd .f-top,
+page-sj .f-top,
+page-jz .f-top,
+page-ghs .f-top,
+page-crm .f-top {
+  background: #3f69a5 url(../assets/images/wellcome-newm/f-top.png) no-repeat center;
+}
+
+page-wellcome-newm .hlw_us,
+page-wd .hlw_us,
+page-sj .hlw_us,
+page-jz .hlw_us,
+page-ghs .hlw_us,
+page-crm .hlw_us {
+  padding: 20px 0;
+}
+
+page-wellcome-newm .ggy-bt.crm .ggy-ep,
+page-wd .ggy-bt.crm .ggy-ep,
+page-sj .ggy-bt.crm .ggy-ep,
+page-jz .ggy-bt.crm .ggy-ep,
+page-ghs .ggy-bt.crm .ggy-ep,
+page-crm .ggy-bt.crm .ggy-ep {
+  margin-top: 10px;
+}
+
+page-wellcome-newm .ggy-bt.crm .ggy-eko i,
+page-wd .ggy-bt.crm .ggy-eko i,
+page-sj .ggy-bt.crm .ggy-eko i,
+page-jz .ggy-bt.crm .ggy-eko i,
+page-ghs .ggy-bt.crm .ggy-eko i,
+page-crm .ggy-bt.crm .ggy-eko i {
+  background: #fff;
+  border: 1px solid #ccc;
+  margin: 0;
+}
+
+page-wellcome-newm .hlw-cont img,
+page-wd .hlw-cont img,
+page-sj .hlw-cont img,
+page-jz .hlw-cont img,
+page-ghs .hlw-cont img,
+page-crm .hlw-cont img {
+  display: block;
+  padding: 10px 10px;
+}
+
+page-wellcome-newm .zhis,
+page-wd .zhis,
+page-sj .zhis,
+page-jz .zhis,
+page-ghs .zhis,
+page-crm .zhis {
+  background: #f5f5f5;
+  padding: 0px 10px;
+}
+
+page-wellcome-newm .zhis .item,
+page-wd .zhis .item,
+page-sj .zhis .item,
+page-jz .zhis .item,
+page-ghs .zhis .item,
+page-crm .zhis .item {
+  padding: 10px 0;
+  border-bottom: 1px solid #e6e6e6;
+  display: flex;
+}
+
+page-wellcome-newm .zhis .item:last-child,
+page-wd .zhis .item:last-child,
+page-sj .zhis .item:last-child,
+page-jz .zhis .item:last-child,
+page-ghs .zhis .item:last-child,
+page-crm .zhis .item:last-child {
+  border: 0;
+}
+
+page-wellcome-newm .zhis .item .ico,
+page-wd .zhis .item .ico,
+page-sj .zhis .item .ico,
+page-jz .zhis .item .ico,
+page-ghs .zhis .item .ico,
+page-crm .zhis .item .ico {
+  float: left;
+  width: 54px;
+  height: 54px;
+  min-width: 54px;
+  background: #fff;
+  border-radius: 50%;
+}
+
+page-wellcome-newm .zhis .item .txt,
+page-wd .zhis .item .txt,
+page-sj .zhis .item .txt,
+page-jz .zhis .item .txt,
+page-ghs .zhis .item .txt,
+page-crm .zhis .item .txt {
+  padding-left: 18px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+page-wellcome-newm .zhis .item .txt h2,
+page-wd .zhis .item .txt h2,
+page-sj .zhis .item .txt h2,
+page-jz .zhis .item .txt h2,
+page-ghs .zhis .item .txt h2,
+page-crm .zhis .item .txt h2 {
+  color: #333;
+  font-size: 14px;
+  font-weight: normal;
+  margin-bottom: 5px;
+}
+
+page-wellcome-newm .zhis .item .txt p,
+page-wd .zhis .item .txt p,
+page-sj .zhis .item .txt p,
+page-jz .zhis .item .txt p,
+page-ghs .zhis .item .txt p,
+page-crm .zhis .item .txt p {
+  color: #808080;
+  font-size: 12px;
+}
+
+page-wellcome-newm .yyong-wrp,
+page-wd .yyong-wrp,
+page-sj .yyong-wrp,
+page-jz .yyong-wrp,
+page-ghs .yyong-wrp,
+page-crm .yyong-wrp {
+  padding: 20px 0;
+}
+
+page-wellcome-newm .yyon-cont img,
+page-wd .yyon-cont img,
+page-sj .yyon-cont img,
+page-jz .yyon-cont img,
+page-ghs .yyon-cont img,
+page-crm .yyon-cont img {
+  display: block;
+  width: 70%;
+  margin: 0 auto;
+}
+
+page-wellcome-newm .hye-wrp,
+page-wd .hye-wrp,
+page-sj .hye-wrp,
+page-jz .hye-wrp,
+page-ghs .hye-wrp,
+page-crm .hye-wrp {
+  padding: 20px 0;
+}
+
+page-wellcome-newm .hye-cont,
+page-wd .hye-cont,
+page-sj .hye-cont,
+page-jz .hye-cont,
+page-ghs .hye-cont,
+page-crm .hye-cont {
+  padding: 20px 10px 0;
+}
+
+page-wellcome-newm .hye-cont .item,
+page-wd .hye-cont .item,
+page-sj .hye-cont .item,
+page-jz .hye-cont .item,
+page-ghs .hye-cont .item,
+page-crm .hye-cont .item {
+  border-bottom: 1px solid #e6e6e6;
+}
+
+page-wellcome-newm .hye-cont .item:last-child,
+page-wd .hye-cont .item:last-child,
+page-sj .hye-cont .item:last-child,
+page-jz .hye-cont .item:last-child,
+page-ghs .hye-cont .item:last-child,
+page-crm .hye-cont .item:last-child {
+  border: 0;
+}
+
+page-wellcome-newm .hye-cont .item .img,
+page-wd .hye-cont .item .img,
+page-sj .hye-cont .item .img,
+page-jz .hye-cont .item .img,
+page-ghs .hye-cont .item .img,
+page-crm .hye-cont .item .img {
+  background: #e6e6e6;
+  min-height: 200px;
+}
+
+page-wellcome-newm .hye-cont .item .img img,
+page-wd .hye-cont .item .img img,
+page-sj .hye-cont .item .img img,
+page-jz .hye-cont .item .img img,
+page-ghs .hye-cont .item .img img,
+page-crm .hye-cont .item .img img {
+  display: block;
+}
+
+page-wellcome-newm .hye-cont .item .txt,
+page-wd .hye-cont .item .txt,
+page-sj .hye-cont .item .txt,
+page-jz .hye-cont .item .txt,
+page-ghs .hye-cont .item .txt,
+page-crm .hye-cont .item .txt {
+  padding: 15px 0 10px;
+}
+
+page-wellcome-newm .hye-cont .item .txt h3,
+page-wd .hye-cont .item .txt h3,
+page-sj .hye-cont .item .txt h3,
+page-jz .hye-cont .item .txt h3,
+page-ghs .hye-cont .item .txt h3,
+page-crm .hye-cont .item .txt h3 {
+  margin-bottom: 10px;
+  color: #333;
+  font-size: 16px;
+}
+
+page-wellcome-newm .hye-cont .item .txt p,
+page-wd .hye-cont .item .txt p,
+page-sj .hye-cont .item .txt p,
+page-jz .hye-cont .item .txt p,
+page-ghs .hye-cont .item .txt p,
+page-crm .hye-cont .item .txt p {
+  color: #808080;
+  font-size: 12px;
+}
+
+page-wellcome-newm .sbaiw-wrp,
+page-wd .sbaiw-wrp,
+page-sj .sbaiw-wrp,
+page-jz .sbaiw-wrp,
+page-ghs .sbaiw-wrp,
+page-crm .sbaiw-wrp {
+  padding: 20px 0;
+}
+
+page-wellcome-newm .sbaiw-cont,
+page-wd .sbaiw-cont,
+page-sj .sbaiw-cont,
+page-jz .sbaiw-cont,
+page-ghs .sbaiw-cont,
+page-crm .sbaiw-cont {
+  padding: 10px 16px;
+}
+
+page-wellcome-newm .sbaiw-cont li,
+page-wd .sbaiw-cont li,
+page-sj .sbaiw-cont li,
+page-jz .sbaiw-cont li,
+page-ghs .sbaiw-cont li,
+page-crm .sbaiw-cont li {
+  float: left;
+  width: 33.33%;
+  padding: 10px 0;
+}
+
+page-wellcome-newm .sbaiw-cont li .icon,
+page-wd .sbaiw-cont li .icon,
+page-sj .sbaiw-cont li .icon,
+page-jz .sbaiw-cont li .icon,
+page-ghs .sbaiw-cont li .icon,
+page-crm .sbaiw-cont li .icon {
+  display: block;
+  width: 50px;
+  height: 50px;
+  margin: 0 auto;
+  border-radius: 50%;
+  background-color: #f7f7f7;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 50%;
+  text-align: center;
+}
+
+page-wellcome-newm .sbaiw-cont li .txt,
+page-wd .sbaiw-cont li .txt,
+page-sj .sbaiw-cont li .txt,
+page-jz .sbaiw-cont li .txt,
+page-ghs .sbaiw-cont li .txt,
+page-crm .sbaiw-cont li .txt {
+  text-align: center;
+  font-size: 12px;
+  color: #333;
+  margin-top: 10px;
+  color: #666;
+}
+
+page-wellcome-newm .youzhi,
+page-wd .youzhi,
+page-sj .youzhi,
+page-jz .youzhi,
+page-ghs .youzhi,
+page-crm .youzhi {
+  padding: 30px 0;
+  text-align: center;
+  background: url(../assets/images/wellcome-newm/ghs-bje.jpg) no-repeat center;
+  background-size: 100% 100%;
+}
+
+page-wellcome-newm .youzhi .p1,
+page-wd .youzhi .p1,
+page-sj .youzhi .p1,
+page-jz .youzhi .p1,
+page-ghs .youzhi .p1,
+page-crm .youzhi .p1 {
+  color: #fff;
+  font-size: 16px;
+  margin-bottom: 15px;
+}
+
+page-wellcome-newm .youzhi .p2,
+page-wd .youzhi .p2,
+page-sj .youzhi .p2,
+page-jz .youzhi .p2,
+page-ghs .youzhi .p2,
+page-crm .youzhi .p2 {
+  color: #fff;
+  font-size: 14px;
+  padding: 0 20px;
+  margin-bottom: 10px;
+}
+
+page-wellcome-newm .youzhi .ys-btn,
+page-wd .youzhi .ys-btn,
+page-sj .youzhi .ys-btn,
+page-jz .youzhi .ys-btn,
+page-ghs .youzhi .ys-btn,
+page-crm .youzhi .ys-btn {
+  display: inline-block;
+  padding: 5px 20px;
+  border: 1px solid #fff;
+  border-radius: 3px;
+  color: #fff;
+  font-size: 14px;
+}
+
+page-wellcome-newm .youzhi .ys-btn em,
+page-wd .youzhi .ys-btn em,
+page-sj .youzhi .ys-btn em,
+page-jz .youzhi .ys-btn em,
+page-ghs .youzhi .ys-btn em,
+page-crm .youzhi .ys-btn em {
+  vertical-align: middle;
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  background: url(../assets/images/wellcome-newm/bjt.png) no-repeat center;
+  background-size: 15px;
+}
+
+page-wellcome-newm .strong-wrp,
+page-wd .strong-wrp,
+page-sj .strong-wrp,
+page-jz .strong-wrp,
+page-ghs .strong-wrp,
+page-crm .strong-wrp {
+  padding: 20px 0;
+}
+
+page-wellcome-newm .strong-cont,
+page-wd .strong-cont,
+page-sj .strong-cont,
+page-jz .strong-cont,
+page-ghs .strong-cont,
+page-crm .strong-cont {
+  padding: 20px 20px 0;
+}
+
+page-wellcome-newm .strong-cont .item,
+page-wd .strong-cont .item,
+page-sj .strong-cont .item,
+page-jz .strong-cont .item,
+page-ghs .strong-cont .item,
+page-crm .strong-cont .item {
+  display: flex;
+  align-items: center;
+}
+
+page-wellcome-newm .strong-cont .img,
+page-wd .strong-cont .img,
+page-sj .strong-cont .img,
+page-jz .strong-cont .img,
+page-ghs .strong-cont .img,
+page-crm .strong-cont .img {
+  float: left;
+  width: 50%;
+}
+
+page-wellcome-newm .strong-cont .img img,
+page-wd .strong-cont .img img,
+page-sj .strong-cont .img img,
+page-jz .strong-cont .img img,
+page-ghs .strong-cont .img img,
+page-crm .strong-cont .img img {
+  display: block;
+  width: 85%;
+  margin: 0 auto;
+}
+
+page-wellcome-newm .strong-cont .txt,
+page-wd .strong-cont .txt,
+page-sj .strong-cont .txt,
+page-jz .strong-cont .txt,
+page-ghs .strong-cont .txt,
+page-crm .strong-cont .txt {
+  float: left;
+  width: 50%;
+}
+
+page-wellcome-newm .strong-cont .txt h4,
+page-wd .strong-cont .txt h4,
+page-sj .strong-cont .txt h4,
+page-jz .strong-cont .txt h4,
+page-ghs .strong-cont .txt h4,
+page-crm .strong-cont .txt h4 {
+  color: #333;
+  font-size: 15px;
+  padding: 15px 0 10px;
+  font-weight: 500;
+}
+
+page-wellcome-newm .strong-cont .txt p,
+page-wd .strong-cont .txt p,
+page-sj .strong-cont .txt p,
+page-jz .strong-cont .txt p,
+page-ghs .strong-cont .txt p,
+page-crm .strong-cont .txt p {
+  color: #808080;
+  font-size: 12px;
+}
+
+page-wellcome-newm .fanw-wrp,
+page-wd .fanw-wrp,
+page-sj .fanw-wrp,
+page-jz .fanw-wrp,
+page-ghs .fanw-wrp,
+page-crm .fanw-wrp {
+  padding: 20px 0;
+}
+
+page-wellcome-newm .fanw-cont,
+page-wd .fanw-cont,
+page-sj .fanw-cont,
+page-jz .fanw-cont,
+page-ghs .fanw-cont,
+page-crm .fanw-cont {
+  padding: 2%;
+}
+
+page-wellcome-newm .fanw-cont li,
+page-wd .fanw-cont li,
+page-sj .fanw-cont li,
+page-jz .fanw-cont li,
+page-ghs .fanw-cont li,
+page-crm .fanw-cont li {
+  float: left;
+  width: 50%;
+  padding: 2%;
+}
+
+page-wellcome-newm .fanw-cont li .img,
+page-wd .fanw-cont li .img,
+page-sj .fanw-cont li .img,
+page-jz .fanw-cont li .img,
+page-ghs .fanw-cont li .img,
+page-crm .fanw-cont li .img {
+  background: #e6e6e6;
+  overflow: hidden;
+}
+
+page-wellcome-newm .fanw-cont li .img img,
+page-wd .fanw-cont li .img img,
+page-sj .fanw-cont li .img img,
+page-jz .fanw-cont li .img img,
+page-ghs .fanw-cont li .img img,
+page-crm .fanw-cont li .img img {
+  display: block;
+}
+
+page-wellcome-newm .fanw-cont li .txt h3,
+page-wd .fanw-cont li .txt h3,
+page-sj .fanw-cont li .txt h3,
+page-jz .fanw-cont li .txt h3,
+page-ghs .fanw-cont li .txt h3,
+page-crm .fanw-cont li .txt h3 {
+  color: #4c4c4c;
+  font-size: 16px;
+  padding: 10px 0 5px;
+  font-weight: 500;
+}
+
+page-wellcome-newm .fanw-cont li .txt p,
+page-wd .fanw-cont li .txt p,
+page-sj .fanw-cont li .txt p,
+page-jz .fanw-cont li .txt p,
+page-ghs .fanw-cont li .txt p,
+page-crm .fanw-cont li .txt p {
+  color: #8c8c8c;
+  font-size: 12px;
+}
+
+page-wellcome-newm .cgong-wrp,
+page-wd .cgong-wrp,
+page-sj .cgong-wrp,
+page-jz .cgong-wrp,
+page-ghs .cgong-wrp,
+page-crm .cgong-wrp {
+  padding: 20px 0;
+}
+
+page-wellcome-newm .cgong-cont,
+page-wd .cgong-cont,
+page-sj .cgong-cont,
+page-jz .cgong-cont,
+page-ghs .cgong-cont,
+page-crm .cgong-cont {
+  padding: 20px 0 0;
+}
+
+page-wellcome-newm .cgong-cont li,
+page-wd .cgong-cont li,
+page-sj .cgong-cont li,
+page-jz .cgong-cont li,
+page-ghs .cgong-cont li,
+page-crm .cgong-cont li {
+  margin-bottom: 10px;
+  padding: 0 10px;
+}
+
+page-wellcome-newm .cgong-cont li .wrp,
+page-wd .cgong-cont li .wrp,
+page-sj .cgong-cont li .wrp,
+page-jz .cgong-cont li .wrp,
+page-ghs .cgong-cont li .wrp,
+page-crm .cgong-cont li .wrp {
+  position: relative;
+  overflow: hidden;
+  background: #e6e6e6;
+}
+
+page-wellcome-newm .cgong-cont li .wrp img,
+page-wd .cgong-cont li .wrp img,
+page-sj .cgong-cont li .wrp img,
+page-jz .cgong-cont li .wrp img,
+page-ghs .cgong-cont li .wrp img,
+page-crm .cgong-cont li .wrp img {
+  display: block;
+  width: 100%;
+}
+
+page-wellcome-newm .cgong-cont li .wrp .txt,
+page-wd .cgong-cont li .wrp .txt,
+page-sj .cgong-cont li .wrp .txt,
+page-jz .cgong-cont li .wrp .txt,
+page-ghs .cgong-cont li .wrp .txt,
+page-crm .cgong-cont li .wrp .txt {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 40px;
+  line-height: 40px;
+  padding: 0 10px;
+  color: #fff;
+  font-size: 14px;
+  background: rgba(0, 0, 0, 0.5);
+}
+
+page-wellcome-newm .cgong2-wrp,
+page-wd .cgong2-wrp,
+page-sj .cgong2-wrp,
+page-jz .cgong2-wrp,
+page-ghs .cgong2-wrp,
+page-crm .cgong2-wrp {
+  padding: 20px 0;
+  background: url(../assets/images/wellcome-newm/jzhan-3.jpg) no-repeat center;
+  background-size: 100% 100%;
+}
+
+page-wellcome-newm .cgong2-cont,
+page-wd .cgong2-cont,
+page-sj .cgong2-cont,
+page-jz .cgong2-cont,
+page-ghs .cgong2-cont,
+page-crm .cgong2-cont {
+  padding: 20px 0 0;
+}
+
+page-wellcome-newm .cgong2-swiper,
+page-wd .cgong2-swiper,
+page-sj .cgong2-swiper,
+page-jz .cgong2-swiper,
+page-ghs .cgong2-swiper,
+page-crm .cgong2-swiper {
+  width: 100%;
+  padding-bottom: 10px;
+}
+
+page-wellcome-newm .cgong2-swiper .swiper-slide,
+page-wd .cgong2-swiper .swiper-slide,
+page-sj .cgong2-swiper .swiper-slide,
+page-jz .cgong2-swiper .swiper-slide,
+page-ghs .cgong2-swiper .swiper-slide,
+page-crm .cgong2-swiper .swiper-slide {
+  text-align: center;
+  background: none;
+  width: 75%;
+  padding: 20px 0;
+  /* Center slide text vertically */
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  -webkit-justify-content: center;
+  justify-content: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  -webkit-align-items: center;
+  align-items: center;
+}
+
+page-wellcome-newm .cgong2-swiper .swiper-slide .wrp,
+page-wd .cgong2-swiper .swiper-slide .wrp,
+page-sj .cgong2-swiper .swiper-slide .wrp,
+page-jz .cgong2-swiper .swiper-slide .wrp,
+page-ghs .cgong2-swiper .swiper-slide .wrp,
+page-crm .cgong2-swiper .swiper-slide .wrp {
+  height: 100%;
+  padding: 1px 0;
+  background: #fff;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+page-wellcome-newm .cgong2-swiper .swiper-slide .wrp .icon,
+page-wd .cgong2-swiper .swiper-slide .wrp .icon,
+page-sj .cgong2-swiper .swiper-slide .wrp .icon,
+page-jz .cgong2-swiper .swiper-slide .wrp .icon,
+page-ghs .cgong2-swiper .swiper-slide .wrp .icon,
+page-crm .cgong2-swiper .swiper-slide .wrp .icon {
+  display: block;
+  width: 50px;
+  height: 50px;
+  margin: 20px auto;
+  text-align: center;
+}
+
+page-wellcome-newm .cgong2-swiper .swiper-slide .wrp .txt,
+page-wd .cgong2-swiper .swiper-slide .wrp .txt,
+page-sj .cgong2-swiper .swiper-slide .wrp .txt,
+page-jz .cgong2-swiper .swiper-slide .wrp .txt,
+page-ghs .cgong2-swiper .swiper-slide .wrp .txt,
+page-crm .cgong2-swiper .swiper-slide .wrp .txt {
+  padding: 0 20px 20px;
+}
+
+page-wellcome-newm .cgong2-swiper .swiper-slide .wrp .txt h3,
+page-wd .cgong2-swiper .swiper-slide .wrp .txt h3,
+page-sj .cgong2-swiper .swiper-slide .wrp .txt h3,
+page-jz .cgong2-swiper .swiper-slide .wrp .txt h3,
+page-ghs .cgong2-swiper .swiper-slide .wrp .txt h3,
+page-crm .cgong2-swiper .swiper-slide .wrp .txt h3 {
+  color: #333;
+  font-size: 16px;
+  font-weight: normal;
+  margin-bottom: 10px;
+}
+
+page-wellcome-newm .cgong2-swiper .swiper-slide .wrp .txt p,
+page-wd .cgong2-swiper .swiper-slide .wrp .txt p,
+page-sj .cgong2-swiper .swiper-slide .wrp .txt p,
+page-jz .cgong2-swiper .swiper-slide .wrp .txt p,
+page-ghs .cgong2-swiper .swiper-slide .wrp .txt p,
+page-crm .cgong2-swiper .swiper-slide .wrp .txt p {
+  color: #999;
+  font-size: 13px;
+  line-height: 30px;
+}
+
+page-wellcome-newm .cgong2-swiper .swiper-pagination,
+page-wd .cgong2-swiper .swiper-pagination,
+page-sj .cgong2-swiper .swiper-pagination,
+page-jz .cgong2-swiper .swiper-pagination,
+page-ghs .cgong2-swiper .swiper-pagination,
+page-crm .cgong2-swiper .swiper-pagination {
+  bottom: 0;
+}
+
+page-wellcome-newm .cgong2-swiper .swiper-pagination .swiper-pagination-bullet,
+page-wd .cgong2-swiper .swiper-pagination .swiper-pagination-bullet,
+page-sj .cgong2-swiper .swiper-pagination .swiper-pagination-bullet,
+page-jz .cgong2-swiper .swiper-pagination .swiper-pagination-bullet,
+page-ghs .cgong2-swiper .swiper-pagination .swiper-pagination-bullet,
+page-crm .cgong2-swiper .swiper-pagination .swiper-pagination-bullet {
+  position: relative;
+  border: 1px solid #3f69a5;
+  width: 13px;
+  height: 13px;
+  vertical-align: middle;
+  background: none;
+  opacity: 1;
+  border-radius: 50%;
+}
+
+page-wellcome-newm .cgong2-swiper .swiper-pagination .swiper-pagination-bullet.swiper-pagination-bullet-active,
+page-wd .cgong2-swiper .swiper-pagination .swiper-pagination-bullet.swiper-pagination-bullet-active,
+page-sj .cgong2-swiper .swiper-pagination .swiper-pagination-bullet.swiper-pagination-bullet-active,
+page-jz .cgong2-swiper .swiper-pagination .swiper-pagination-bullet.swiper-pagination-bullet-active,
+page-ghs .cgong2-swiper .swiper-pagination .swiper-pagination-bullet.swiper-pagination-bullet-active,
+page-crm .cgong2-swiper .swiper-pagination .swiper-pagination-bullet.swiper-pagination-bullet-active {
+  width: 15px;
+  height: 15px;
+}
+
+page-wellcome-newm .cgong2-swiper .swiper-pagination .swiper-pagination-bullet.swiper-pagination-bullet-active:after,
+page-wd .cgong2-swiper .swiper-pagination .swiper-pagination-bullet.swiper-pagination-bullet-active:after,
+page-sj .cgong2-swiper .swiper-pagination .swiper-pagination-bullet.swiper-pagination-bullet-active:after,
+page-jz .cgong2-swiper .swiper-pagination .swiper-pagination-bullet.swiper-pagination-bullet-active:after,
+page-ghs .cgong2-swiper .swiper-pagination .swiper-pagination-bullet.swiper-pagination-bullet-active:after,
+page-crm .cgong2-swiper .swiper-pagination .swiper-pagination-bullet.swiper-pagination-bullet-active:after {
+  content: "";
+  position: absolute;
+  top: 3px;
+  left: 3px;
+  display: block;
+  width: 7px;
+  height: 7px;
+  background: #3e69a5;
+  border-radius: 50%;
+}
+
+page-wellcome-newm .cgong3-wrp,
+page-wd .cgong3-wrp,
+page-sj .cgong3-wrp,
+page-jz .cgong3-wrp,
+page-ghs .cgong3-wrp,
+page-crm .cgong3-wrp {
+  padding: 20px 0;
+}
+
+page-wellcome-newm .cgong3-cont,
+page-wd .cgong3-cont,
+page-sj .cgong3-cont,
+page-jz .cgong3-cont,
+page-ghs .cgong3-cont,
+page-crm .cgong3-cont {
+  padding: 20px 20px 0;
+}
+
+page-wellcome-newm .cgong3-cont .item,
+page-wd .cgong3-cont .item,
+page-sj .cgong3-cont .item,
+page-jz .cgong3-cont .item,
+page-ghs .cgong3-cont .item,
+page-crm .cgong3-cont .item {
+  float: left;
+  width: 25%;
+}
+
+page-wellcome-newm .cgong3-cont .item .icon,
+page-wd .cgong3-cont .item .icon,
+page-sj .cgong3-cont .item .icon,
+page-jz .cgong3-cont .item .icon,
+page-ghs .cgong3-cont .item .icon,
+page-crm .cgong3-cont .item .icon {
+  display: block;
+  width: 50px;
+  height: 50px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+page-wellcome-newm .cgong3-cont .item .txt,
+page-wd .cgong3-cont .item .txt,
+page-sj .cgong3-cont .item .txt,
+page-jz .cgong3-cont .item .txt,
+page-ghs .cgong3-cont .item .txt,
+page-crm .cgong3-cont .item .txt {
+  text-align: center;
+  color: #666;
+  font-size: 14px;
+  margin-top: 10px;
+}
+
+page-wellcome-newm .zhic-wrp,
+page-wd .zhic-wrp,
+page-sj .zhic-wrp,
+page-jz .zhic-wrp,
+page-ghs .zhic-wrp,
+page-crm .zhic-wrp {
+  padding: 20px 0;
+}
+
+page-wellcome-newm .zhic-cont,
+page-wd .zhic-cont,
+page-sj .zhic-cont,
+page-jz .zhic-cont,
+page-ghs .zhic-cont,
+page-crm .zhic-cont {
+  padding: 20px 5px 0;
+}
+
+page-wellcome-newm .zhic-cont li,
+page-wd .zhic-cont li,
+page-sj .zhic-cont li,
+page-jz .zhic-cont li,
+page-ghs .zhic-cont li,
+page-crm .zhic-cont li {
+  float: left;
+  width: 33.33%;
+  padding: 5px 5px;
+}
+
+page-wellcome-newm .zhic-cont li .wrp,
+page-wd .zhic-cont li .wrp,
+page-sj .zhic-cont li .wrp,
+page-jz .zhic-cont li .wrp,
+page-ghs .zhic-cont li .wrp,
+page-crm .zhic-cont li .wrp {
+  padding: 1px 0;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+}
+
+page-wellcome-newm .zhic-cont li .wrp .icon,
+page-wd .zhic-cont li .wrp .icon,
+page-sj .zhic-cont li .wrp .icon,
+page-jz .zhic-cont li .wrp .icon,
+page-ghs .zhic-cont li .wrp .icon,
+page-crm .zhic-cont li .wrp .icon {
+  display: block;
+  width: 40px;
+  height: 40px;
+  margin: 15px auto 10px;
+  text-align: center;
+}
+
+page-wellcome-newm .zhic-cont li .wrp .txt,
+page-wd .zhic-cont li .wrp .txt,
+page-sj .zhic-cont li .wrp .txt,
+page-jz .zhic-cont li .wrp .txt,
+page-ghs .zhic-cont li .wrp .txt,
+page-crm .zhic-cont li .wrp .txt {
+  padding-bottom: 10px;
+  color: #666;
+  font-size: 16px;
+  text-align: center;
+}
+
+page-wellcome-newm .ydjj-wrp,
+page-wd .ydjj-wrp,
+page-sj .ydjj-wrp,
+page-jz .ydjj-wrp,
+page-ghs .ydjj-wrp,
+page-crm .ydjj-wrp {
+  padding: 20px 0;
+}
+
+page-wellcome-newm .ydjj-cont,
+page-wd .ydjj-cont,
+page-sj .ydjj-cont,
+page-jz .ydjj-cont,
+page-ghs .ydjj-cont,
+page-crm .ydjj-cont {
+  padding: 20px 5px 0px;
+}
+
+page-wellcome-newm .ydjj-cont li,
+page-wd .ydjj-cont li,
+page-sj .ydjj-cont li,
+page-jz .ydjj-cont li,
+page-ghs .ydjj-cont li,
+page-crm .ydjj-cont li {
+  float: left;
+  width: 50%;
+  padding: 5px 5px;
+}
+
+page-wellcome-newm .ydjj-cont li .wrp .img,
+page-wd .ydjj-cont li .wrp .img,
+page-sj .ydjj-cont li .wrp .img,
+page-jz .ydjj-cont li .wrp .img,
+page-ghs .ydjj-cont li .wrp .img,
+page-crm .ydjj-cont li .wrp .img {
+  background: #e6e6e6;
+  overflow: hidden;
+}
+
+page-wellcome-newm .ydjj-cont li .wrp .img img,
+page-wd .ydjj-cont li .wrp .img img,
+page-sj .ydjj-cont li .wrp .img img,
+page-jz .ydjj-cont li .wrp .img img,
+page-ghs .ydjj-cont li .wrp .img img,
+page-crm .ydjj-cont li .wrp .img img {
+  display: block;
+}
+
+page-wellcome-newm .ydjj-cont li .wrp .txt,
+page-wd .ydjj-cont li .wrp .txt,
+page-sj .ydjj-cont li .wrp .txt,
+page-jz .ydjj-cont li .wrp .txt,
+page-ghs .ydjj-cont li .wrp .txt,
+page-crm .ydjj-cont li .wrp .txt {
+  padding: 10px 0;
+  color: #4c4c4c;
+  font-size: 14px;
+}
+
+page-wellcome-newm .sjfw-wrp,
+page-wd .sjfw-wrp,
+page-sj .sjfw-wrp,
+page-jz .sjfw-wrp,
+page-ghs .sjfw-wrp,
+page-crm .sjfw-wrp {
+  padding: 20px 0;
+}
+
+page-wellcome-newm .sjfw-cont,
+page-wd .sjfw-cont,
+page-sj .sjfw-cont,
+page-jz .sjfw-cont,
+page-ghs .sjfw-cont,
+page-crm .sjfw-cont {
+  padding: 20px 5px 0;
+}
+
+page-wellcome-newm .sjfw-cont li,
+page-wd .sjfw-cont li,
+page-sj .sjfw-cont li,
+page-jz .sjfw-cont li,
+page-ghs .sjfw-cont li,
+page-crm .sjfw-cont li {
+  float: left;
+  width: 50%;
+  padding: 5px;
+}
+
+page-wellcome-newm .sjfw-cont li .wrp,
+page-wd .sjfw-cont li .wrp,
+page-sj .sjfw-cont li .wrp,
+page-jz .sjfw-cont li .wrp,
+page-ghs .sjfw-cont li .wrp,
+page-crm .sjfw-cont li .wrp {
+  background: #f7f7f7;
+  border-radius: 3px;
+  padding: 15px 15px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+page-wellcome-newm .sjfw-cont li .wrp .icon,
+page-wd .sjfw-cont li .wrp .icon,
+page-sj .sjfw-cont li .wrp .icon,
+page-jz .sjfw-cont li .wrp .icon,
+page-ghs .sjfw-cont li .wrp .icon,
+page-crm .sjfw-cont li .wrp .icon {
+  display: block;
+  width: 35px;
+  height: 33px;
+  min-width: 30px;
+  text-align: center;
+  margin-top: -6px;
+  margin-right: 5px;
+}
+
+page-wellcome-newm .sjfw-cont li .wrp .txt h2,
+page-wd .sjfw-cont li .wrp .txt h2,
+page-sj .sjfw-cont li .wrp .txt h2,
+page-jz .sjfw-cont li .wrp .txt h2,
+page-ghs .sjfw-cont li .wrp .txt h2,
+page-crm .sjfw-cont li .wrp .txt h2 {
+  color: #4c4c4c;
+  font-size: 14px;
+  font-weight: normal;
+}
+
+page-wellcome-newm .sjfw-cont li .wrp .txt p,
+page-wd .sjfw-cont li .wrp .txt p,
+page-sj .sjfw-cont li .wrp .txt p,
+page-jz .sjfw-cont li .wrp .txt p,
+page-ghs .sjfw-cont li .wrp .txt p,
+page-crm .sjfw-cont li .wrp .txt p {
+  color: #808080;
+  font-size: 12px;
+}
+
+page-wellcome-newm .yewu-cont,
+page-wd .yewu-cont,
+page-sj .yewu-cont,
+page-jz .yewu-cont,
+page-ghs .yewu-cont,
+page-crm .yewu-cont {
+  padding: 20px 0 0;
+}
+
+page-wellcome-newm .yewu-cont .ye-1 li,
+page-wd .yewu-cont .ye-1 li,
+page-sj .yewu-cont .ye-1 li,
+page-jz .yewu-cont .ye-1 li,
+page-ghs .yewu-cont .ye-1 li,
+page-crm .yewu-cont .ye-1 li {
+  margin-bottom: 15px;
+  padding: 0 10px;
+}
+
+page-wellcome-newm .yewu-cont .ye-1 li .wrp .img,
+page-wd .yewu-cont .ye-1 li .wrp .img,
+page-sj .yewu-cont .ye-1 li .wrp .img,
+page-jz .yewu-cont .ye-1 li .wrp .img,
+page-ghs .yewu-cont .ye-1 li .wrp .img,
+page-crm .yewu-cont .ye-1 li .wrp .img {
+  overflow: hidden;
+  border-radius: 3px;
+  background: #e6e6e6;
+}
+
+page-wellcome-newm .yewu-cont .ye-1 li .wrp .img img,
+page-wd .yewu-cont .ye-1 li .wrp .img img,
+page-sj .yewu-cont .ye-1 li .wrp .img img,
+page-jz .yewu-cont .ye-1 li .wrp .img img,
+page-ghs .yewu-cont .ye-1 li .wrp .img img,
+page-crm .yewu-cont .ye-1 li .wrp .img img {
+  display: block;
+}
+
+page-wellcome-newm .yewu-cont .ye-1 li .wrp .txt,
+page-wd .yewu-cont .ye-1 li .wrp .txt,
+page-sj .yewu-cont .ye-1 li .wrp .txt,
+page-jz .yewu-cont .ye-1 li .wrp .txt,
+page-ghs .yewu-cont .ye-1 li .wrp .txt,
+page-crm .yewu-cont .ye-1 li .wrp .txt {
+  padding: 10px 10px 15px;
+  text-align: center;
+  border-radius: 3px;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+}
+
+page-wellcome-newm .yewu-cont .ye-1 li .wrp .txt h3,
+page-wd .yewu-cont .ye-1 li .wrp .txt h3,
+page-sj .yewu-cont .ye-1 li .wrp .txt h3,
+page-jz .yewu-cont .ye-1 li .wrp .txt h3,
+page-ghs .yewu-cont .ye-1 li .wrp .txt h3,
+page-crm .yewu-cont .ye-1 li .wrp .txt h3 {
+  color: #4169a5;
+  font-size: 16px;
+  font-weight: normal;
+  padding: 5px 0 7px;
+}
+
+page-wellcome-newm .yewu-cont .ye-1 li .wrp .txt p,
+page-wd .yewu-cont .ye-1 li .wrp .txt p,
+page-sj .yewu-cont .ye-1 li .wrp .txt p,
+page-jz .yewu-cont .ye-1 li .wrp .txt p,
+page-ghs .yewu-cont .ye-1 li .wrp .txt p,
+page-crm .yewu-cont .ye-1 li .wrp .txt p {
+  color: #808080;
+  font-size: 13px;
+}
+
+page-wellcome-newm .yewu-cont .ye-2,
+page-wd .yewu-cont .ye-2,
+page-sj .yewu-cont .ye-2,
+page-jz .yewu-cont .ye-2,
+page-ghs .yewu-cont .ye-2,
+page-crm .yewu-cont .ye-2 {
+  padding: 0 5px 0;
+}
+
+page-wellcome-newm .yewu-cont .ye-2 li,
+page-wd .yewu-cont .ye-2 li,
+page-sj .yewu-cont .ye-2 li,
+page-jz .yewu-cont .ye-2 li,
+page-ghs .yewu-cont .ye-2 li,
+page-crm .yewu-cont .ye-2 li {
+  float: left;
+  width: 50%;
+  padding: 5px 5px;
+}
+
+page-wellcome-newm .yewu-cont .ye-2 li .wrp .img,
+page-wd .yewu-cont .ye-2 li .wrp .img,
+page-sj .yewu-cont .ye-2 li .wrp .img,
+page-jz .yewu-cont .ye-2 li .wrp .img,
+page-ghs .yewu-cont .ye-2 li .wrp .img,
+page-crm .yewu-cont .ye-2 li .wrp .img {
+  border-radius: 3px;
+  overflow: hidden;
+}
+
+page-wellcome-newm .yewu-cont .ye-2 li .wrp .img img,
+page-wd .yewu-cont .ye-2 li .wrp .img img,
+page-sj .yewu-cont .ye-2 li .wrp .img img,
+page-jz .yewu-cont .ye-2 li .wrp .img img,
+page-ghs .yewu-cont .ye-2 li .wrp .img img,
+page-crm .yewu-cont .ye-2 li .wrp .img img {
+  display: block;
+}
+
+page-wellcome-newm .yewu-cont .ye-2 li .wrp .txt,
+page-wd .yewu-cont .ye-2 li .wrp .txt,
+page-sj .yewu-cont .ye-2 li .wrp .txt,
+page-jz .yewu-cont .ye-2 li .wrp .txt,
+page-ghs .yewu-cont .ye-2 li .wrp .txt,
+page-crm .yewu-cont .ye-2 li .wrp .txt {
+  padding: 0 10px;
+  height: 35px;
+  line-height: 35px;
+  background: #fff;
+  border-radius: 3px;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+  color: #666;
+  font-size: 13px;
+}
+
+page-wellcome-newm .yyfw-wrp,
+page-wd .yyfw-wrp,
+page-sj .yyfw-wrp,
+page-jz .yyfw-wrp,
+page-ghs .yyfw-wrp,
+page-crm .yyfw-wrp {
+  padding: 20px 0;
+}
+
+page-wellcome-newm .yyfw-cont,
+page-wd .yyfw-cont,
+page-sj .yyfw-cont,
+page-jz .yyfw-cont,
+page-ghs .yyfw-cont,
+page-crm .yyfw-cont {
+  padding: 20px 10px 0;
+}
+
+page-wellcome-newm .yyfw-cont li,
+page-wd .yyfw-cont li,
+page-sj .yyfw-cont li,
+page-jz .yyfw-cont li,
+page-ghs .yyfw-cont li,
+page-crm .yyfw-cont li {
+  float: left;
+  width: 50%;
+}
+
+page-wellcome-newm .yyfw-cont li .wrp,
+page-wd .yyfw-cont li .wrp,
+page-sj .yyfw-cont li .wrp,
+page-jz .yyfw-cont li .wrp,
+page-ghs .yyfw-cont li .wrp,
+page-crm .yyfw-cont li .wrp {
+  padding: 1px 20px;
+  border-bottom: 1px solid #e6e6e6;
+  border-right: 1px solid #e6e6e6;
+}
+
+page-wellcome-newm .yyfw-cont li:nth-child(2n) .wrp,
+page-wd .yyfw-cont li:nth-child(2n) .wrp,
+page-sj .yyfw-cont li:nth-child(2n) .wrp,
+page-jz .yyfw-cont li:nth-child(2n) .wrp,
+page-ghs .yyfw-cont li:nth-child(2n) .wrp,
+page-crm .yyfw-cont li:nth-child(2n) .wrp {
+  border-right: 0;
+}
+
+page-wellcome-newm .yyfw-cont li .wrp .icon,
+page-wd .yyfw-cont li .wrp .icon,
+page-sj .yyfw-cont li .wrp .icon,
+page-jz .yyfw-cont li .wrp .icon,
+page-ghs .yyfw-cont li .wrp .icon,
+page-crm .yyfw-cont li .wrp .icon {
+  display: block;
+  width: 50px;
+  height: 50px;
+  margin: 20px auto;
+  border-radius: 50%;
+  text-align: center;
+}
+
+page-wellcome-newm .yyfw-cont li .wrp .txt,
+page-wd .yyfw-cont li .wrp .txt,
+page-sj .yyfw-cont li .wrp .txt,
+page-jz .yyfw-cont li .wrp .txt,
+page-ghs .yyfw-cont li .wrp .txt,
+page-crm .yyfw-cont li .wrp .txt {
+  text-align: center;
+  padding-bottom: 10px;
+}
+
+page-wellcome-newm .yyfw-cont li .wrp .txt h3,
+page-wd .yyfw-cont li .wrp .txt h3,
+page-sj .yyfw-cont li .wrp .txt h3,
+page-jz .yyfw-cont li .wrp .txt h3,
+page-ghs .yyfw-cont li .wrp .txt h3,
+page-crm .yyfw-cont li .wrp .txt h3 {
+  color: #4c4c4c;
+  font-size: 16px;
+  margin-bottom: 5px;
+}
+
+page-wellcome-newm .yyfw-cont li .wrp .txt p,
+page-wd .yyfw-cont li .wrp .txt p,
+page-sj .yyfw-cont li .wrp .txt p,
+page-jz .yyfw-cont li .wrp .txt p,
+page-ghs .yyfw-cont li .wrp .txt p,
+page-crm .yyfw-cont li .wrp .txt p {
+  font-size: 13px;
+  color: #8c8c8c;
+}
+
+page-wellcome-newm .sheji-swiper,
+page-wd .sheji-swiper,
+page-sj .sheji-swiper,
+page-jz .sheji-swiper,
+page-ghs .sheji-swiper,
+page-crm .sheji-swiper {
+  width: 100%;
+  padding-bottom: 10px;
+}
+
+page-wellcome-newm .sheji-swiper .swiper-slide,
+page-wd .sheji-swiper .swiper-slide,
+page-sj .sheji-swiper .swiper-slide,
+page-jz .sheji-swiper .swiper-slide,
+page-ghs .sheji-swiper .swiper-slide,
+page-crm .sheji-swiper .swiper-slide {
+  text-align: center;
+  background: none;
+  width: 75%;
+  padding: 20px 0;
+  /* Center slide text vertically */
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  -webkit-justify-content: center;
+  justify-content: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  -webkit-align-items: center;
+  align-items: center;
+}
+
+page-wellcome-newm .sheji-swiper .swiper-slide .wrp,
+page-wd .sheji-swiper .swiper-slide .wrp,
+page-sj .sheji-swiper .swiper-slide .wrp,
+page-jz .sheji-swiper .swiper-slide .wrp,
+page-ghs .sheji-swiper .swiper-slide .wrp,
+page-crm .sheji-swiper .swiper-slide .wrp {
+  border-radius: 3px;
+  overflow: hidden;
+}
+
+page-wellcome-newm .sheji-swiper .swiper-slide .wrp img,
+page-wd .sheji-swiper .swiper-slide .wrp img,
+page-sj .sheji-swiper .swiper-slide .wrp img,
+page-jz .sheji-swiper .swiper-slide .wrp img,
+page-ghs .sheji-swiper .swiper-slide .wrp img,
+page-crm .sheji-swiper .swiper-slide .wrp img {
+  display: block;
+}

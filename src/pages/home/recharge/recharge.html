@@ -22,17 +22,17 @@
         </div>
         <div class="text-select">选择支付方式</div>
         <ion-list radio-group required [(ngModel)]="payMethod" name="pay" class="pay-list">
-            <ion-item mode="md" no-lines>
+            <ion-item mode="md" *ngIf="payList?.is_weixin===1" no-lines>
                 <img item-start src="./assets/icon/images/2.png" alt="">
                 <ion-label>微信支付</ion-label>
                 <ion-radio value="wx_pub" mode="md"></ion-radio>
             </ion-item>
-            <ion-item mode="md" no-lines>
+            <ion-item mode="md" *ngIf="payList?.is_weixin===0" no-lines>
                 <img item-start src="./assets/icon/images/1.png" alt="">
                 <ion-label>支付宝</ion-label>
                 <ion-radio value="alipay_wap" mode="md"></ion-radio>
             </ion-item>
-            <ion-item mode="md" no-lines>
+            <ion-item mode="md" *ngIf="payList?.is_weixin===0" no-lines>
                 <img item-start src="./assets/icon/images/3.png" alt="">
                 <ion-label>银联支付</ion-label>
                 <ion-radio value="upacp_wap" mode="md"></ion-radio>
