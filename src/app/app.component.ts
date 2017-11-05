@@ -33,7 +33,7 @@ export class MyApp {
     private upgradeProvider: UpgradeProvider,
   ) {
     //———————————————————————— app更新 ————————————————————————
-    this.upgradeProvider.detectionUpgrade();
+    // this.upgradeProvider.detectionUpgrade();
 
     this.initializeApp();
     //用户失效事件
@@ -61,7 +61,7 @@ export class MyApp {
         })
       } else {
         if (!this.native.isMobileweb()) {
-          location.href = 'http://newwww.jingkoo.net';
+          location.href = 'http://www.jingku.cn/default.html';
           return;
         }
         // this.rootPage = 'WellcomeNewmPage';//TabsPage//WellcomeNewmPage

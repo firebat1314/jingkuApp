@@ -85,7 +85,7 @@
                 <ion-select [disabled]="!it.getZhujingList" [(ngModel)]="it.zhujing" (ionChange)="attrChange(it)" placeholder="选择柱镜" [selectOptions]="{subTitle: '选择柱镜'}" okText="确定" cancelText="取消">
                     <ion-option *ngFor="let item of it.getZhujingList?.data">{{item}}</ion-option>
                 </ion-select>
-                <div class="input" *ngIf="data?.data?.zhouwei">
+                <div class="input" *ngIf="headData?.zhouwei">
                     <input type="text" [(ngModel)]="it.zhouwei" placeholder="轴位">
                 </div>
                 <ion-select *ngFor="let item of data.specification;let i=index" (ionChange)="attrChange(it)" [(ngModel)]="it[item.name]" placeholder="{{item.name}}" [selectOptions]="{subTitle: item.name}" okText="确定" cancelText="取消">
