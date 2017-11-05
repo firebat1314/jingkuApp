@@ -75,7 +75,6 @@ export class ParticularsHomeDetailsPage {
     return i > 4;
   }
   callnumber(number) {
-    alert(1)
     if (this.native.isMobile()) {
       this.native.openAlertBox('拨打商家电话:' + number, () => {
         this.native.openCallNumber(number, false);
