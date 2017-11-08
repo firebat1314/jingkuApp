@@ -97,10 +97,8 @@ export class ParticularsPage {
     })
   }
   getHttpDetails() {
-    this.native.showLoading();
     return this.http.goodsInfos({ goods_id: this.goodsId }).then((res) => {
       // console.log("商品详情信息", res);
-      this.native.hideLoading();
       if (res.status == 1) {
         this.getGoodsInfo = res;
         this.getRegionName(res);
@@ -268,6 +266,7 @@ export class ParticularsPage {
   goAccountServicePage(access_id) {
     // this.native.showToast('敬请期待')
     console.log(access_id)
+    this.native.showLoading();
     if (!access_id) {
       // this.native.showToast('该店铺暂无客服');
     }
@@ -277,15 +276,21 @@ export class ParticularsPage {
       old.parentNode.removeChild(old);
     }
     let qimo: HTMLScriptElement = document.createElement('script');
-    qimo.src = 'https://webchat.7moor.com/javascripts/7moorInit.js?accessId=' + (access_id||'b441f710-80d9-11e7-8ddd-b18e4f0e2471') + '&autoShow=false';
+    qimo.type = 'text/javascript';
+    qimo.src = 'https://webchat.7moor.com/javascripts/7moorInit.js?accessId=' + (access_id || 'b441f710-80d9-11e7-8ddd-b18e4f0e2471') + '&autoShow=false';
     console.log(qimo.src)
     qimo.className = 'qimo';
     document.getElementsByTagName('body')[0].appendChild(qimo);
-    qimo.onload = function () {
-      setTimeout(function () {
-        qimoChatClick();
-      }, 600);
-    }
+    let that = this;
+    qimo.onload = qimo['onreadystatechange'] = function () {
+      that.native.hideLoading();
+      if (!this.readyState || this.readyState === "loaded" || this.readyState === "complete") {
+        setTimeout(function () {
+          qimoChatClick();
+        }, 600);
+        qimo.onload = qimo['onreadystatechange'] = null;
+      }
+    };
     // this.navCtrl.push(AccountServicePage)
   }
   goParticularsHome() {

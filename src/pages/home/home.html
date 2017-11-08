@@ -32,7 +32,7 @@
             <ion-slides #bannerSlide autoplay="4000" pager (ionSlideAutoplayStop)="bannerSlide.startAutoplay()">
                 <!-- *ngIf="bannerImgs" loop-->
                 <ion-slide *ngIf="!data">
-                    <img img-lazy-load="./assets/images/images/640-360.jpg" alt="">
+                    <img img-lazy-load="./assets/images/images/640-360.jpg" defaultSrc="./assets/images/images/640-360.jpg" alt="">
                 </ion-slide>
                 <ion-slide *ngFor="let item of bannerImgs" tappable [ads-click]="item.link_type">
                     <img [img-lazy-load]="item.ad_img" defaultSrc="./assets/images/images/640-360.jpg" alt="">

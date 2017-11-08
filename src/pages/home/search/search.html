@@ -21,6 +21,7 @@
         <div tappable (click)="getNewBatch()" *ngIf="data?.pagers>1">换一换</div>
     </div>
     <div class="btns">
-        <button ion-button [outline]="nowIndex==i?0:1" [color]="nowIndex==i?'jingku1':'cancelBtn'" *ngFor="let item of data?.data;let i=index" tappable (click)="nowIndex=i;myHomeSearch=item.title;searchbar()">{{item.title}}</button>
+        <button ion-button outline [color]="nowIndex==i?'jingku1':'cancelBtn'" *ngFor="let item of data?.data;let i=index" tappable
+            (click)="nowIndex=i;myHomeSearch=item.title;searchbar()">{{item.title}}</button>
     </div>
 </ion-content>

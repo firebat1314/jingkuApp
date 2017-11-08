@@ -137,34 +137,34 @@
                 <ion-segment mode="md" [(ngModel)]="alltool" (click)="alltoolChange()" color="primary">
                     <ion-segment-button value="all">
                         综合
-                        <div [ngClass]="all_Status==false?'sortup':'sortdown'" class="myicon">
+                        <!-- <div [ngClass]="all_Status==false?'sortup':'sortdown'" class="myicon">
                             <div [ngStyle]="{'height':'7px'}">
                                 <ion-icon name="md-arrow-dropup"></ion-icon>
                             </div>
                             <div>
                                 <ion-icon name="md-arrow-dropdown"></ion-icon>
                             </div>
-                        </div>
+                        </div> -->
                     </ion-segment-button>
                     <ion-segment-button value="sales_num">
                         销量
-                        <div [ngClass]="sales_NumStatus==false?'sortup':'sortdown'" class="myicon">
+                        <!-- <div [ngClass]="sales_NumStatus==false?'sortup':'sortdown'" class="myicon">
                             <div [ngStyle]="{'height':'7px'}">
                                 <ion-icon name="md-arrow-dropup"></ion-icon>
                             </div>
                             <div>
                                 <ion-icon name="md-arrow-dropdown"></ion-icon>
                             </div>
-                        </div>
+                        </div> -->
                     </ion-segment-button>
                     <ion-segment-button value="shop_price">
                         价格
                         <div [ngClass]="shop_PriceStatus==false?'sortup':'sortdown'" class="myicon">
                             <div [ngStyle]="{'height':'7px'}">
-                                <ion-icon name="md-arrow-dropup"></ion-icon>
+                                <ion-icon color="jingku1" name="md-arrow-dropup"></ion-icon>
                             </div>
                             <div>
-                                <ion-icon name="md-arrow-dropdown"></ion-icon>
+                                <ion-icon color="jingku1" name="md-arrow-dropdown"></ion-icon>
                             </div>
                         </div>
                     </ion-segment-button>
@@ -301,7 +301,7 @@
             </div>
         </div>
         <div class="shop-footer-items">
-            <div tappable (click)="callnumber(shopdata?.data?.mobile)">
+            <a (click)="goAccountServicePage(shopdata?.data?.access_id)" class="lx_tel">
                 <ion-icon>
                     <img img-lazy-load="./assets/icon/kefu.png" alt="">
                 </ion-icon>

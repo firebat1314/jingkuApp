@@ -96,8 +96,10 @@ export class Native {
 		this.loading = this.loadingCtrl.create({
 			content: content,
 			showBackdrop: showBackdrop,
+			enableBackdropDismiss: true,
 			cssClass: 'loading-style',
-			spinner: 'dots'
+			spinner: 'dots',
+			dismissOnPageChange: false
 		});
 		this.loading.present();
 	};
@@ -118,7 +120,7 @@ export class Native {
 	/**
 	 * 确认弹窗
 	 */
-	openAlertBox(title, confirmHandler, cancelHandler?,didDismiss?) {
+	openAlertBox(title, confirmHandler, cancelHandler?, didDismiss?) {
 		let confirm = this.alertCtrl.create({
 			cssClass: 'alert-style',
 			title: title,
@@ -137,8 +139,8 @@ export class Native {
 			],
 		});
 		confirm.present();
-		confirm.onDidDismiss(()=>{
-			return didDismiss?didDismiss():null;
+		confirm.onDidDismiss(() => {
+			return didDismiss ? didDismiss() : null;
 		})
 	}
 	/**
@@ -354,7 +356,7 @@ export class Native {
 	getVersionNumber(): Promise<string> {
 		return new Promise((resolve) => {
 			this.appVersion.getVersionNumber().then((value) => {
-				console.log('Version',value)
+				console.log('Version', value)
 				resolve(value);
 			}).catch(err => {
 				console.log('getVersionNumber:' + err);

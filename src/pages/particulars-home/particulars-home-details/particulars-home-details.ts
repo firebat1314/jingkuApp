@@ -80,7 +80,7 @@ export class ParticularsHomeDetailsPage {
         this.native.openCallNumber(number, false);
       })
     } else {
-      location.href = 'tel:'+number
+      location.href = 'tel:'+number;
     }
   }
   goShopAllFashionPage() {

@@ -10,6 +10,7 @@ import { Native } from "../../../providers/native";
   Ionic pages and navigation.
 */
 declare var navigator: any;
+declare var pingpp: any;
 
 @IonicPage()
 @Component({
@@ -86,38 +87,36 @@ export class RechargePage {
   // })
   money: any;
   openPingPayment(data) {
-    /*let that = this;
-     (<any>window).navigator.pingpp.requestPayment(data, (result, err) => {
-      this.navCtrl.popToRoot();
-      this.navCtrl.parent.select(3);
-      this.navCtrl.setPages([{ page: 'NewMyPage' }, { page: 'NewMyPage' }])
-      if (result == 'success') {
-        that.native.showToast("支付成功");
-      } else if (result == 'cancel') {
-        that.native.showToast("取消支付");
-      }
-      console.log('success', result, err)
-      return;
-    }, (result, err) => {
-      if (result == 'cancel') {
-        that.native.showToast("取消支付");
+    if (this.native.isMobile()) {
+      let that = this;
+      (<any>window).Pingpp.createPayment(data.pingxx, (result, error) => {//scheme 为iOS返回应用
+        console.log('result' + result);
+        console.log('error' + error);
+        if (result == 'success') {
+          this.money = 0;
+          that.native.showToast('充值成功');
+          this.navCtrl.parent.select(3);
+          this.navCtrl.setPages([{ page: 'NewMyPage' }, { page: 'AccountMoneyDetailPage' }])
+        } else {
+          that.native.showToast('充值失败');
+        }
+      })
+    } else {
+      if (this.payMethod == 'wx_pub') {
+        location.href = data.url;
       } else {
-        that.native.showToast("支付异常,请尝试其他支付方式");
+        pingpp.createPayment(data.pingxx, (result, err) => {
+          console.log(result, err)
+          if (result == "success") {
+            // 只有微信公众账号 wx_pub 支付成功的结果会在这里返回，其他的支付结果都会跳转到 extra 中对应的 URL。
+          } else if (result == "fail") {
+            // charge 不正确或者微信公众账号支付失败时会在此处返回
+            this.native.showToast("支付异常");
+          } else if (result == "cancel") {
+            // 微信公众账号支付取消支付
+          }
+        });
       }
-      console.log('fail', result, err)
-    }) */
-    let that = this;
-    (<any>window).Pingpp.createPayment(data.pingxx, (result, error) => {//scheme 为iOS返回应用
-      console.log('result' + result);
-      console.log('error' + error);
-      if (result == 'success') {
-        this.money = 0;
-        that.native.showToast('充值成功');
-        this.navCtrl.parent.select(3);
-        this.navCtrl.setPages([{ page: 'NewMyPage' }, { page: 'AccountMoneyDetailPage' }])
-      } else {
-        that.native.showToast('充值失败');
-      }
-    })
+    }
   }
 }

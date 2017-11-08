@@ -185,10 +185,10 @@ export class HttpService {
     return this.http.get(IP + '/Flow/change_consignee', data)
   }
   selectPayment(data?: Object) {//选择支付方式
-    return this.http.get(IP + '/Flow/select_payment', data, true)
+    return this.http.get(IP + '/Flow/select_payment', data, )
   }
   selectShippinSuppliers(data?: Object) {//选择配送方式
-    return this.http.get(IP + '/Flow/select_shippin_suppliers', data, true)
+    return this.http.get(IP + '/Flow/select_shippin_suppliers', data,)
   }
   newSelectShippinSuppliers(data?: Object) {//改版 选择配送方式
     return this.http.get(IP + '/Flow/new_select_shippin_suppliers', data)
@@ -523,5 +523,11 @@ export class HttpService {
    */
   changeprice(data?: Object) {
     return this.http.post(IP + '/Goods/changeprice  ', data)
+  }
+  /**
+   * 购物车商品属性
+   */
+  changeProductNum(data?: Object) {
+    return this.http.post(IP + '/Flow/change_product_num  ', data)
   }
 }

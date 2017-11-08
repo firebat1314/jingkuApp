@@ -129,7 +129,6 @@ export class WriteOrdersPage {
             }
           }
         }
-        console.log(this.noteStatus)
       }
     })
   }

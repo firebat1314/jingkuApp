@@ -5,7 +5,7 @@ import { Native } from "../../../../providers/native";
 import { TofixedPipe } from "../../../../pipes/tofixed/tofixed";
 
 export class goodsSpectaclesParams {
-	number = 0;//所填写的商品的数量
+	number = 1;//所填写的商品的数量
 	spc = [];//商品选择的属性
 	qiujing = '';//所选的球镜
 	zhujing = '';//所选的柱镜
@@ -134,6 +134,7 @@ export class ParticularsModalAttrPage {
 	totalPrices = 0;
 	totalNumber = 0;
 	jingpianNumberChange($event, it) {
+		console.log(it)
 		it.number = $event;
 		it.subtotal = (Number($event) * (Number(it.price * 10000))) / 10000;
 		this.totalPrices = 0;
@@ -190,7 +191,6 @@ export class ParticularsModalAttrPage {
 	}
 	attrChange(item) {
 		var spcArr = [];
-		console.log(item)
 		for (var j = 0; j < this.data.specification.length; j++) {
 			var attr = item[this.data.specification[j].name];
 			if (attr) {
@@ -204,9 +204,18 @@ export class ParticularsModalAttrPage {
 			zhujing: item.zhujing
 		}).then((res) => {
 			if (res.status) {
-				item.price = res.data.price;
+				if (res.data.promotion_id > 0) {
+					item.price = res.data.promotion_price.substr(1);
+					item.youhui = (res.data.price-(res.data.promotion_price.substr(1))).toFixed(2);
+				} else {
+					item.price = res.data.price;
+				}
+				this.jingpianNumberChange(item.number, item);
 			}
 		})
+
+
+
 	}
 	/*添加到购物车*/
 	addToCart(goCart) {

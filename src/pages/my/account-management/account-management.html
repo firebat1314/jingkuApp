@@ -16,7 +16,7 @@
 <ion-content>
     <button [navPush]="AccountInfoPage" ion-item mode="ios" no-lines>
         <ion-avatar item-left>
-             <img style="width: 75px;height: 75px;" src="{{avatar}}">
+             <img style="width: 75px;height: 75px;" img-lazy-load="{{avatar}}">
         </ion-avatar>
         <h2>{{username}}</h2>
     </button>
