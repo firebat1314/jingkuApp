@@ -69,7 +69,8 @@
                                             <span *ngFor="let item4 of item3?.arr_attr;">{{item4}}</span>
                                         </div>
                                         <div class="bottom">
-                                            <div class="price">¥{{item3?.goods_price}}<!-- <span class="old">¥{{item3?.promote_price}}</span> --></div>
+                                            <div class="price" *ngIf="item3?.cha_price">{{item3?.shop_goods_price}}<span class="old">¥{{item3?.goods_price}}</span></div>
+                                            <div class="price" *ngIf="!item3?.cha_price">¥{{item3?.goods_price}}</div>
                                             <div class="number">
                                                 <count-input [minValue]="1" [rank]="item2?.goods_properties?.number" (valueChange)="numberChangeI($event,item3)" [lock]="item3.inputLock"
                                                     [value]="item3?.goods_number"></count-input>

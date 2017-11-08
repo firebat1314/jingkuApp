@@ -17,13 +17,13 @@ import { HttpService } from "../../providers/http-service";
   templateUrl: 'car.html'
 })
 export class CarPage {
-  goodsAttrIdArray: any = [];
   isEdit: boolean = false;
   carDetails: any;
   @ViewChild(Content) content: Content;
 
   // checkedArray: Array<number> = [];//rec_id
-  goodsIdArray: Array<number> = [];//goods_id
+  // goodsAttrIdArray: any = [];
+  // goodsIdArray: Array<number> = [];//goods_id
 
   // allRecId: Array<number> = [];//rec_id
   // allGoodsId: Array<number> = [];//goods_id
@@ -44,13 +44,12 @@ export class CarPage {
     console.log('ionViewDidLoad CarPage');
   }
   ngOnDestroy() {
-    this.events.unsubscribe('car:update');
+    // this.events.unsubscribe('car:update');
   }
   ngOnInit() {
     this.getFlowGoods();
   }
   getFlowGoods() {
-    this.goodsIdArray = [];
     return this.httpService.getFlowGoods().then((res) => {
       if (res.status == 1) {
         this.carDetails = res;
@@ -139,12 +138,12 @@ export class CarPage {
   check4() { }
   /* 关注商品 */
   beCareFor() {
-    if (this.goodsIdArray.length == 0) {
+    if (!this.check().goodsIds.length) {
       this.native.showToast('请选择需要关注商品');
       return;
     }
     this.httpService.batchGoodsCollect({
-      goods_ids: this.goodsIdArray
+      goods_ids: this.check().goodsIds
     }).then((res) => {
       console.log(res);
       if (res.status == 1) {
