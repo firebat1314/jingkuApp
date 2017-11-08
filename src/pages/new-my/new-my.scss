@@ -26,6 +26,9 @@ page-new-my {
                 border-radius: 50%;
                 margin-right: 13px;
                 overflow: hidden;
+                display: flex;
+                align-items: center;
+                justify-content: center;
             }
             .r_wrap {
                 display: flex;

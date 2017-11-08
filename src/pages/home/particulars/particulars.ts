@@ -6,7 +6,9 @@ import { Native } from "../../../providers/native";
 
 declare let qimoChatClick;
 @IonicPage({
-  segment: 'page-particulars/:goodsId'
+  name:'ParticularsPage',
+  segment: 'particulars/:goodsId',
+  defaultHistory: ['HomePage']
 })
 @Component({
   selector: 'page-particulars',

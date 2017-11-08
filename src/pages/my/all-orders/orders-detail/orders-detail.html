@@ -42,9 +42,9 @@
                     <div class="left">
                         <h2>{{item.goods_name}}</h2>
                         <div>
-                            <span *ngIf="item.qiujing">{{item.qiujing}}&nbsp;</span>
-                            <span *ngIf="item.zhujing">{{item.zhujing}}&nbsp;</span>
-                            <span *ngIf="item.zhouwei">{{item.zhouwei}}&nbsp;</span>
+                            <span *ngIf="item.qiujing">球镜：{{item.qiujing}}&nbsp;</span>
+                            <span *ngIf="item.zhujing">柱镜：{{item.zhujing}}&nbsp;</span>
+                            <span *ngIf="item.zhouwei">轴位：{{item.zhouwei}}&nbsp;</span>
                             <div [innerHtml]="item.goods_attr"></div>
                         </div>
                     </div>

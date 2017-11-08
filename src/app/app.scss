@@ -304,7 +304,8 @@ button.swiper-pagination-bullet {
 }
 
 .swiper-pagination-bullet-active {
-    background: get-color(jingku1);
+    background: get-color(jingku1) !important;
+    opacity: 1 !important;
 }
 
 

@@ -51,6 +51,12 @@ page-home {
     }
     .banner-wrapper {
         background: #fff;
+        button.swiper-pagination-bullet{
+            border-radius: 50%;
+            border-color: transparent;
+            background:#666;
+            opacity: .5;
+        }
         ion-slide {
             img {
                 max-width: 100%;

@@ -108,8 +108,7 @@ export class AddShippingAddressPage {
         }
       })
     } else {
-      this.default ? this.default = '1' : this.default = '0';
-      this.httpService.addAddress(Object.assign(this.formData, { default: this.default })).then((res) => {
+      this.httpService.addAddress(Object.assign(this.formData, { default: this.default?'1' : '0' })).then((res) => {
         if (res.status == 1) {
           this.events.publish('updateAddress');
           this.navCtrl.pop();

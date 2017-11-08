@@ -96,7 +96,7 @@
     <ion-list [ngSwitch]="classShop">
         <div class="shopHome-main" *ngSwitchCase="'shopHome'">
             <no-goods *ngIf="data&&(!data?.new_list?.length)&&(!data?.hot_list?.length)"></no-goods>
-            <div class="new-arrival" *ngIf="data?.new_list?.length">
+            <div class="new-arrival" *ngIf="data?.new_list?.length" style="margin-top: 7px;">
                 <p>2017 NEW ARRIVAL</p>
                 <p>新品推荐</p>
             </div>

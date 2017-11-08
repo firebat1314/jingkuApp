@@ -7,7 +7,10 @@ import { HttpService } from "../../providers/http-service";
 import { Native } from "../../providers/native";
 import { Storage } from '@ionic/storage';
 
-@IonicPage()
+@IonicPage({
+  segment:'home',
+  name:'HomePage'
+})
 @Component({
   selector: 'page-home',
   templateUrl: 'home.html'

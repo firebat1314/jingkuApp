@@ -61,7 +61,7 @@ export class CountInputComponent {
     if (this.rank !== 1) this.disabled = true;
   }
   increase() {
-    if (this.maxValue && (this.maxValue - this.value) < this.rank) {
+    if (this.maxValue != undefined && (this.maxValue - this.value) < this.rank) {
       this.native.showToast('最多选择' + this.maxValue + '件');
       this.element.nativeElement.getElementsByTagName('input')[0].value = this.value;
       return;

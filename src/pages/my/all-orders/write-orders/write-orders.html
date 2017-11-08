@@ -73,7 +73,7 @@
                 <ion-item mode="ios" detail-push no-lines tappable navPush="GoodslistPage">
                     <ng-container item-left *ngFor="let item of data?.cart_goods_list">
                         <ng-container *ngFor="let goods of item?.goods_list;let i=index">
-                            <ion-thumbnail item-left *ngIf="i<2">
+                            <ion-thumbnail item-left>
                                 <img img-lazy-load="{{goods.goods_img}}">
                             </ion-thumbnail>
                         </ng-container>
