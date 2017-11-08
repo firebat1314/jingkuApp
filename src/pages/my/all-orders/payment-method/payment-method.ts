@@ -53,13 +53,13 @@ export class PaymentMethodPage {
     // this.navCtrl.remove(this.navCtrl.indexOf(this.navCtrl.getPrevious(this.navCtrl.last())),1);
   }
   ngOnInit() {
-    
+
     this.getUserInfo();
     this.events.subscribe('ChangePayPasswordPage:editPaypwd', () => {
       this.getUserInfo();
     });
   }
-  ngAfterViewInit(){
+  ngAfterViewInit() {
     this.httpService.pay({ order_id: this.order_id, log_id: this.log_id, type: this.type }).then((res) => {
       if (res.status == 1) {
         this.data = res;
@@ -163,23 +163,36 @@ export class PaymentMethodPage {
 
   openPingPayment(data) {
     let that = this;
-    // this.navCtrl.popToRoot();
-    this.navCtrl.parent.select(3);
-    this.navCtrl.setPages([{ page: 'NewMyPage' }/* , { page: 'AllOrdersPage' } */]);
-    if (this.paymentType == 'weixin') {
-      location.href = data.url;
-    } else {
-      pingpp.createPayment(data.pingxx, function (result, err) {
-        console.log(result, err)
-        if (result == "success") {
-          // 只有微信公众账号 wx_pub 支付成功的结果会在这里返回，其他的支付结果都会跳转到 extra 中对应的 URL。
-        } else if (result == "fail") {
-          // charge 不正确或者微信公众账号支付失败时会在此处返回
-          that.native.showToast("支付异常");
-        } else if (result == "cancel") {
-          // 微信公众账号支付取消支付
+    if (this.native.isMobile()) {
+      (<any>window).Pingpp.createPayment(data.pingxx, (result, error) => {//scheme 为iOS返回应用
+        console.log('result' + result);
+        console.log('error' + error);
+        this.navCtrl.parent.select(3);
+        this.navCtrl.setPages([{ page: 'NewMyPage' }])
+        if (result == 'success') {
+          that.native.showToast('支付成功');
+        } else {
+          that.native.showToast('支付失败');
         }
-      });
+      })
+    } else {
+      if (this.paymentType == 'weixin') {
+        location.href = data.url;
+      } else {
+        pingpp.createPayment(data.pingxx, function (result, err) {
+          this.navCtrl.parent.select(3);
+          this.navCtrl.setPages([{ page: 'NewMyPage' }, { page: 'AllOrdersPage' }]);
+          console.log(result, err)
+          if (result == "success") {
+            // 只有微信公众账号 wx_pub 支付成功的结果会在这里返回，其他的支付结果都会跳转到 extra 中对应的 URL。
+          } else if (result == "fail") {
+            // charge 不正确或者微信公众账号支付失败时会在此处返回
+            that.native.showToast("支付异常");
+          } else if (result == "cancel") {
+            // 微信公众账号支付取消支付
+          }
+        });
+      }
     }
   }
   /*——————————————————————————————————————————————————————————————————————————*/

@@ -3,6 +3,7 @@ import { IonicPage, NavController, NavParams, Events, PopoverController, Content
 import { HttpService } from "../../providers/http-service";
 import { Native } from "../../providers/native";
 
+declare var qimoChatClick: any;
 /**
  * Generated class for the ParticularsHomePage page.
  *
@@ -42,7 +43,7 @@ export class ParticularsHomePage {
   shopdata: any;
   classShop: any = "shopHome";
   defaultSelect: string = this.navParams.get('type');
-  
+
   @ViewChild(Content) content: Content;
   @ViewChild('goBackTop') fabButton: FabButton;
 
@@ -114,7 +115,7 @@ export class ParticularsHomePage {
   }
   openPopover(myEvent) {
     // console.log(this.alldata.suppliers_cat_list.length==0)
-    if (this.alldata.suppliers_cat_list.length==0) {
+    if (this.alldata.suppliers_cat_list.length == 0) {
       this.native.showToast('该店铺暂无热门分类哦', null, false);
       return;
     }
@@ -153,11 +154,16 @@ export class ParticularsHomePage {
     }
   }
   callnumber(number) {
-    if(number){
-      this.native.openAlertBox('拨打商家电话:' + number, () => {
-        this.native.openCallNumber(number, false);
-      })
-    }else{
+    if (number) {
+      if (this.native.isMobile()) {
+        this.native.openAlertBox('拨打商家电话:' + number, () => {
+          this.native.openCallNumber(number, false);
+        })
+      } else {
+        location.href = 'tel:' + number;
+      }
+
+    } else {
       this.native.showToast('该商家暂无电话');
     }
   }
@@ -371,7 +377,7 @@ export class ParticularsHomePage {
   alltoolChange() {
     this.paramsData.page = 1;
     if (this.alltool == 'all') {
-      this.paramsData.order = '';
+      /* this.paramsData.order = '';
       this.sales_NumStatus = true;
       this.shop_PriceStatus = true;
       if (this.all_Status) {
@@ -382,10 +388,11 @@ export class ParticularsHomePage {
         this.all_Status = true;
         this.paramsData.stort = 'DESC';
         this.getAllData();
-      }
+      } */
+      this.getAllData();
     }
     if (this.alltool == 'sales_num') {
-      this.paramsData.order = 'sales_num';
+      /* this.paramsData.order = 'sales_num';
       this.shop_PriceStatus = true;
       this.all_Status = true;
       if (this.sales_NumStatus) {
@@ -396,7 +403,8 @@ export class ParticularsHomePage {
         this.sales_NumStatus = true;
         this.paramsData.stort = 'DESC';
         this.getAllData();
-      }
+      } */
+      this.getAllData();
     }
     if (this.alltool == 'shop_price') {
       this.paramsData.order = 'shop_price';
@@ -419,5 +427,35 @@ export class ParticularsHomePage {
   }
   goParticularsHomeDetails() {
     this.navCtrl.push('ParticularsHomeDetailsPage', { suppliersId: this.suppliers_id });
+  }
+  goAccountServicePage(access_id) {
+    // this.native.showToast('敬请期待')
+    console.log(access_id)
+    this.native.showLoading();
+    if (!access_id) {
+      // this.native.showToast('该店铺暂无客服');
+    }
+    var old = document.getElementsByClassName('qimo')[0]
+    //console.log(old);
+    if (old) {
+      old.parentNode.removeChild(old);
+    }
+    let qimo: HTMLScriptElement = document.createElement('script');
+    qimo.type = 'text/javascript';
+    qimo.src = 'https://webchat.7moor.com/javascripts/7moorInit.js?accessId=' + (access_id || 'b441f710-80d9-11e7-8ddd-b18e4f0e2471') + '&autoShow=false';
+    console.log(qimo.src)
+    qimo.className = 'qimo';
+    document.getElementsByTagName('body')[0].appendChild(qimo);
+    let that = this;
+    qimo.onload = qimo['onreadystatechange'] = function () {
+      that.native.hideLoading();
+      if (!this.readyState || this.readyState === "loaded" || this.readyState === "complete") {
+        setTimeout(function () {
+          qimoChatClick();
+        }, 600);
+        qimo.onload = qimo['onreadystatechange'] = null;
+      }
+    };
+    // this.navCtrl.push(AccountServicePage)
   }
 }

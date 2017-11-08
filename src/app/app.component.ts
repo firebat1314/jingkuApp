@@ -48,7 +48,7 @@ export class MyApp {
         location.href = 'http://www.jingku.cn/default.html';
         return;
       }
-      // this.rootPage = 'WellcomeNewmPage';//TabsPage//WellcomeNewmPage
+      // this.rootPage = 'WellcomeNewmPage';
       this.storage.get('hasLoggedIn').then((result) => {
         if (result) {
           this.rootPage = 'TabsPage';//TabsPage//WellcomeNewmPage

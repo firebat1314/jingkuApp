@@ -32,6 +32,12 @@ export class AccountManagementPage {
     this.events.subscribe('my:update', res => {
       this.avatar = res;
     })
+    this.httpService.userInfo().then((res) => {
+      if (res.status == 1) {
+        this.avatar = res.data.avatar;
+        this.username = res.data.username;
+      }
+    })
   }
   ngOnDestroy() {
     this.events.unsubscribe('my:update');

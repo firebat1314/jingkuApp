@@ -45,7 +45,6 @@ export class NewMyPage {
     this.httpResult();
   }
   httpResult(finish?) {
-    this.native.showLoading();
     return new Promise((resolve, reject) => {
       this.httpService.userCount().then((res) => {
         if (res.status == 1) {
@@ -53,7 +52,6 @@ export class NewMyPage {
         }
         this.httpService.userInfo().then((res) => {
           resolve();
-          this.native.hideLoading();
           if (res.status == 1) {
             this.userInfo = res;
             // this.httpService.setStorage(res.data.username, res);

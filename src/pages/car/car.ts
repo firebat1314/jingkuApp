@@ -10,13 +10,14 @@ import { HttpService } from "../../providers/http-service";
   Ionic pages and navigation.
 */
 @IonicPage({
-  defaultHistory:[]
+  defaultHistory: []
 })
 @Component({
   selector: 'page-car',
   templateUrl: 'car.html'
 })
 export class CarPage {
+  goodsAttrIdArray: any = [];
   isEdit: boolean = false;
   carDetails: any;
   @ViewChild(Content) content: Content;
@@ -74,20 +75,6 @@ export class CarPage {
     this.events.publish('car:update');
   }
   /**
-   * 滑动删除商品
-   * @param item3 
-   */
-  deleteItem(item3) {
-    this.native.openAlertBox("确认删除该商品吗？", () => {
-      this.httpService.dropCartGoods({ rec_id: item3.rec_id }).then((res) => {
-        if (res.status == 1) {
-          this.native.showToast('删除成功');
-          this.events.publish('car:update');
-        }
-      })
-    })
-  }
-  /**
    * 加减数量
    * @param event 点击事件=>商品数量
    * @param item 单个商品
@@ -112,14 +99,37 @@ export class CarPage {
       this.getFlowGoods();
     })
   }
-  check(item) {
-    let goodsIdIndex = this.goodsIdArray.indexOf(item.goods_id);
+  checkGoodsAttr(rec_id, is_select) {
+    this.httpService.changeProductNum({
+      rec_id: rec_id,
+      type: is_select
+    }).then((res) => {
+      if (res.status) {
+        this.getFlowGoods();
+      }
+    })
+  }
+  check(goods_id) {
+    let goodsIdIndex = this.goodsIdArray.indexOf(goods_id);
     if (goodsIdIndex == -1) {
-      this.goodsIdArray.push(item.goods_id);
+      this.goodsIdArray.push(goods_id);
     } else {
       this.goodsIdArray.splice(goodsIdIndex, 1);
     }
     console.log("goodsIdArray", this.goodsIdArray)
+  }
+  checkAttr() {
+    var attrIds = [];
+    for (let i = 0, item1 = this.carDetails.suppliers_goods_list; i < item1.length; i++) {
+      for (let n = 0, item2 = item1[i].goods_list; n < item2.length; n++) {
+        for (let g = 0, item3 = item2[n].attrs; g < item3.length; g++) {
+          if (item3[g].selected) {
+            attrIds.push(item3[g].rec_id);
+          }
+        }
+      }
+    }
+    return attrIds;
   }
   /* 关注商品 */
   beCareFor() {
@@ -136,14 +146,28 @@ export class CarPage {
       }
     })
   }
+  /**
+   * 滑动删除商品
+   * @param item3 
+   */
+  deleteItem(item3) {
+    this.native.openAlertBox("确认删除该商品吗？", () => {
+      this.httpService.dropCartGoodsSelect({ rec_id: item3.rec_id }).then((res) => {
+        if (res.status == 1) {
+          this.native.showToast('删除成功');
+          this.events.publish('car:update');
+        }
+      })
+    })
+  }
   /* 删除购物车商品 */
   dropCartGoodsSelect() {
-    if (this.goodsIdArray.length == 0) {
+    if (!this.goodsIdArray.length && !this.checkAttr().length) {
       this.native.showToast('请选择需要删除商品');
       return;
     }
     this.native.openAlertBox('删除购物车选中商品？', () => {
-      this.httpService.dropCartGoodsSelect({ goods_ids: this.goodsIdArray }).then((res) => {
+      this.httpService.dropCartGoodsSelect({ goods_ids: this.goodsIdArray, rec_ids: this.checkAttr() }).then((res) => {
         console.log(res);
         if (res.status == 1) {
           this.native.showToast('删除成功')
@@ -166,7 +190,7 @@ export class CarPage {
     this.httpService.delNoShop({ goods_ids: arr }).then((res) => {
       if (res.status == 1) {
         // this.navCtrl.push('WriteOrdersPage');
-        this.httpService.clearFlowOrder().then(()=>{
+        this.httpService.clearFlowOrder().then(() => {
           this.navCtrl.push('WriteOrdersPage');
         });
       }

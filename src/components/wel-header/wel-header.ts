@@ -76,7 +76,7 @@ export class WelHeaderComponent {
   goToHome() {
     this.storage.get('hasLoggedIn').then((result) => {
       if (result) {
-        this.navCtrl.setRoot('TabsPage', {}, { animate: true, direction: 'forward' });
+        this.navCtrl.push('TabsPage', {}, { animate: true, direction: 'forward' });
       } else {
         // this.navCtrl.setRoot('LoginPage', {}, { animate: true, direction: 'forward' });
         this.navCtrl.push('LoginPage');

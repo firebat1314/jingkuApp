@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 
-import { NavController, NavParams, Events, ToastController, IonicPage } from 'ionic-angular';
+import { NavController, NavParams, Events, ToastController, IonicPage, AlertController } from 'ionic-angular';
 
 import { HttpService } from "../../providers/http-service";
 
@@ -23,8 +23,9 @@ export class LoginPage {
     private navCtrl: NavController,
     private navParams: NavParams,
     private events: Events,
+    private alertCtrl: AlertController,
     private toastCtrl: ToastController,
-    private httpService: HttpService
+    private httpService: HttpService,
   ) {
     this.signedName = navParams.get('username');
     this.httpService.getUsername().then((data) => { this.loginInfo.username = this.signedName || data || '' })
@@ -50,6 +51,16 @@ export class LoginPage {
               toast.present();
             });
           }, 100);
+        } else if (data.status == -1) {
+          this.alertCtrl.create({
+            title: '镜库科技',
+            message: data.info,
+            buttons: [
+              {
+                text: '确定',
+              }
+            ]
+          }).present();
         }
       })
     }

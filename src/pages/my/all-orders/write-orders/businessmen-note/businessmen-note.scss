@@ -10,17 +10,25 @@ page-businessmen-note {
             margin: 10px;
             .button {}
         }
-        ion-textarea {
-            margin: 10px;
+        .writein{
+            display: flex;
+        }
+        textarea {
             min-height: 70px;
             height: 70px;
             background: #f7f7f7;
             border: $border-img;
             width: auto;
             padding: 5px;
-            textarea {
-                margin: 0;
-                height: 100%;
+            margin: 10px;
+            margin-top: 0;
+            height: 100%;
+            resize: none;
+            outline-style:none;
+            overflow: auto;
+            flex: 1;
+            &:focus{
+                border-color: #999999;
             }
         }
     }

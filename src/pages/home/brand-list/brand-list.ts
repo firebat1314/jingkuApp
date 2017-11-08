@@ -177,7 +177,7 @@ export class BrandListPage {
 			this.getListData();
 		}
 		if (this.mytool == 'sales_num') {
-			this.paramsData.order = 'sales_num';
+			/* this.paramsData.order = 'sales_num';
 			this.allStatus = true;
 			this.shopPriceStatus = true;
 			if (!this.salesNumStatus) {
@@ -188,7 +188,8 @@ export class BrandListPage {
 				this.salesNumStatus = false;
 				this.paramsData.stort = 'DESC';
 				this.getListData();
-			}
+			} */
+			this.getListData();
 		}
 		if (this.mytool == 'shop_price') {
 			this.paramsData.order = 'shop_price';
