@@ -44,7 +44,7 @@ export class CarPage {
     console.log('ionViewDidLoad CarPage');
   }
   ngOnDestroy() {
-    // this.events.unsubscribe('car:update');
+    this.events.unsubscribe('car:update');
   }
   ngOnInit() {
     this.getFlowGoods();
@@ -109,28 +109,34 @@ export class CarPage {
       }
     })
   }
-  check(goods_id) {
-    let goodsIdIndex = this.goodsIdArray.indexOf(goods_id);
-    if (goodsIdIndex == -1) {
-      this.goodsIdArray.push(goods_id);
-    } else {
-      this.goodsIdArray.splice(goodsIdIndex, 1);
-    }
-    console.log("goodsIdArray", this.goodsIdArray)
-  }
-  checkAttr() {
+  check() {
+    var goodsIds = [];
     var attrIds = [];
-    for (let i = 0, item1 = this.carDetails.suppliers_goods_list; i < item1.length; i++) {
-      for (let n = 0, item2 = item1[i].goods_list; n < item2.length; n++) {
-        for (let g = 0, item3 = item2[n].attrs; g < item3.length; g++) {
+
+    for (let i = 0, item1 = this.carDetails.suppliers_goods_list; i < item1.length; i++) {//店铺列表
+      for (let n = 0, item2 = item1[i].goods_list; n < item2.length; n++) {//商品列表
+        if (item2[n].selected) {
+          goodsIds.push(item2[n].goods_id);
+        }
+        for (let g = 0, item3 = item2[n].attrs; g < item3.length; g++) {//商品属性列表
           if (item3[g].selected) {
             attrIds.push(item3[g].rec_id);
           }
         }
       }
     }
-    return attrIds;
+    console.log(goodsIds, attrIds)
+    return {
+      goodsIds: goodsIds,
+      attrIds: attrIds
+    };
   }
+  check1() {
+    
+  }
+  check2() { }
+  check3() { }
+  check4() { }
   /* 关注商品 */
   beCareFor() {
     if (this.goodsIdArray.length == 0) {
@@ -162,12 +168,12 @@ export class CarPage {
   }
   /* 删除购物车商品 */
   dropCartGoodsSelect() {
-    if (!this.goodsIdArray.length && !this.checkAttr().length) {
+    if (!this.check().goodsIds.length && !this.check().attrIds.length) {
       this.native.showToast('请选择需要删除商品');
       return;
     }
     this.native.openAlertBox('删除购物车选中商品？', () => {
-      this.httpService.dropCartGoodsSelect({ goods_ids: this.goodsIdArray, rec_ids: this.checkAttr() }).then((res) => {
+      this.httpService.dropCartGoodsSelect({ goods_ids: this.check().goodsIds, rec_ids: this.check().attrIds }).then((res) => {
         console.log(res);
         if (res.status == 1) {
           this.native.showToast('删除成功')

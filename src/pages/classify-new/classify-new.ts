@@ -48,10 +48,21 @@ export class ClassifyNewPage {
     this.getHttpData();
   }
   getHttpData() {
+    this.httpService.getStorage('getCategorys').then((res) => {
+      if (res) {
+        this.getCategorys = res.data;
+      }
+    })
+    this.httpService.getStorage('childrenCaCtegory').then((res) => {
+      if (res) {
+        this.childrenCaCtegory = res.data;
+      }
+    })
     this.httpService.getCategorys().then((res) => {
       if (res.status == 1) {
         this.getCategorys = res.data;
         this.selectedId = res.data[0].cat_id
+        this.httpService.setStorage('getCategorys', res)
         this.getChildrenCaCtegory();
       }
     })
@@ -60,6 +71,9 @@ export class ClassifyNewPage {
     return this.httpService.getChildrenCaCtegory({ cat_id: this.selectedId }).then((res) => {
       if (res.status == 1) {
         this.childrenCaCtegory = res.data;
+        if (this.selectedId == 1) {
+          this.httpService.setStorage('childrenCaCtegory', res)
+        }
       }
     })
   }

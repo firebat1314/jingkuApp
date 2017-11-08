@@ -86,7 +86,7 @@ page-car {
                                 display: flex;
                                 flex-wrap: wrap;
                                 span {
-                                    width: 33.33%;
+                                    // width: 33.33%;
                                     color: #808080;
                                     font-size: 1.3rem;
                                     margin-bottom: 10px;
@@ -95,6 +95,7 @@ page-car {
                                     overflow: hidden;
                                     text-overflow: ellipsis;
                                     padding-right: 5px;
+                                    margin: 0 10px 10px 0;
                                 }
                             }
                             .bottom {
@@ -103,6 +104,12 @@ page-car {
                                 align-items: center;
                                 .price {
                                     color: #e60000;
+                                    .old{
+                                        text-decoration: line-through;
+                                        color: #999;
+                                        margin-left: 6px;
+                                        font-size: 1rem;
+                                    }
                                 }
                             }
                         }

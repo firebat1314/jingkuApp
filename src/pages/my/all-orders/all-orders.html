@@ -38,7 +38,7 @@
                 <!-- <ion-icon name="ios-trash-outline"></ion-icon> -->
             </button>
         </ion-item-divider>
-        <ion-item no-lines tappable (click)="goOrdersDetailPage(item.order_id)" *ngIf="item.goods.length<2">
+        <ion-item no-lines tappable (click)="goOrdersDetailPage(item.order_id)" *ngIf="item.goods.length==1">
             <ion-thumbnail item-left>
                 <img [img-lazy-load]="item.goods[0]?.original_img">
             </ion-thumbnail>
@@ -53,7 +53,7 @@
                 </div>
             </div>
         </ion-item>
-        <ion-item style="overflow-x:scroll" no-lines tappable (click)="goOrdersDetailPage(item.order_id)" *ngIf="item.goods.length>=2">
+        <ion-item style="overflow-x:scroll" no-lines tappable (click)="goOrdersDetailPage(item.order_id)" *ngIf="item.goods.length>1">
             <!--  (click)="$event.stopPropagation();goParticularsPage(goods.goods_id);"  -->
             <ion-thumbnail item-left *ngFor="let goods of item.goods">
                 <img [img-lazy-load]="goods.original_img">

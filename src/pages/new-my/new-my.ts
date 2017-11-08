@@ -42,22 +42,45 @@ export class NewMyPage {
     console.log('ionViewDidLoad NewMyPage');
   }
   ngOnInit() {
+    this.httpService.getStorage('username').then((res) => {
+      if (res) {
+        this.httpService.getStorage(res+'_usercount').then((res) => {
+          if (res) {
+            this.usercount = res;
+          }
+        })
+        this.httpService.getStorage(res+'_userInfo').then((res) => {
+          if (res) {
+            this.userInfo = res;
+          }
+        })
+      }
+    })
+    
     this.httpResult();
   }
-  httpResult(finish?) {
+  httpResult() {
     return new Promise((resolve, reject) => {
       this.httpService.userCount().then((res) => {
         if (res.status == 1) {
           this.usercount = res;
+          this.httpService.getStorage('username').then((res) => {
+            if (res) {
+              this.httpService.setStorage(res+'_usercount', this.usercount)
+            }
+          })
         }
         this.httpService.userInfo().then((res) => {
           resolve();
           if (res.status == 1) {
             this.userInfo = res;
-            // this.httpService.setStorage(res.data.username, res);
+            this.httpService.getStorage('username').then((res) => {
+              if (res) {
+                this.httpService.setStorage(res+'_userInfo', this.userInfo)
+              }
+            })
             // this.httpService.setStorage('phonenumber', res.data.user_info.mobile_phone);
           }
-          if (finish) { finish(); }
         })
       })
     })
@@ -66,10 +89,10 @@ export class NewMyPage {
   
   /*下拉刷新*/
   doRefresh(refresher) {
-    this.httpResult(() => {
-      setTimeout(() => {
-        refresher.complete();
-      }, 500);
+    this.httpResult().then(()=>{
+        setTimeout(() => {
+          refresher.complete();
+        }, 500);
     })
   }
   goSettingPage() {
