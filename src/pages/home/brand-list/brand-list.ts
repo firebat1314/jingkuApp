@@ -99,6 +99,7 @@ export class BrandListPage {
 		this.events.unsubscribe('user:filterParams');
 	}
 	getListData() {
+		this.getCarNumver();
 		this.infiniteScroll ? this.infiniteScroll.enable(true) : null;
 		return new Promise((resolve, reject) => {
 			this.httpService.categoryGoods(Object.assign(this.paramsData, { page: 1 })).then((res) => {
@@ -117,7 +118,6 @@ export class BrandListPage {
 		})
 	}
 	doRefresh(refresher) {
-		this.getCarNumver();
 		this.getListData().then(() => {
 			setTimeout(() => {
 				refresher.complete();
@@ -142,9 +142,9 @@ export class BrandListPage {
 		}
 	}
 	getCarNumver() {
-		this.httpService.getFlowGoods().then((res) => {
+		this.httpService.get_flow_goods_number().then((res) => {
 			if (res.status == 1) {
-				this.goodsCount = res.goods_count;
+				this.goodsCount = res.data;
 			}
 		})
 	}

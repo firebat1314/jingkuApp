@@ -8,6 +8,7 @@ import { SwiperComponentModule } from "../../../components/swiper/swiper.module"
 import { CityPickerModule } from "ionic2-city-picker/dist/city-picker.module";
 import { OpenMoreDirectiveModule } from "../../../directives/open-more/open-more.module";
 import { ScrollToTopDirectiveModule } from '../../../directives/scroll-to-top/scroll-to-top.module';
+import { ParallaxHeaderModule } from '../../../directives/parallax-header/parallax-header.module';
 
 @NgModule({
    declarations: [
@@ -21,7 +22,8 @@ import { ScrollToTopDirectiveModule } from '../../../directives/scroll-to-top/sc
       SwiperComponentModule,
       CityPickerModule,
       OpenMoreDirectiveModule,
-      ScrollToTopDirectiveModule
+      ScrollToTopDirectiveModule,
+      ParallaxHeaderModule,
    ]
 })
 

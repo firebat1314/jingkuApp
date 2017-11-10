@@ -15,7 +15,10 @@
 @import "../theme/reset";
 html {
 // font-family: -apple-system, BlinkMacSystemFont, Helvetica Neue, Helvetica, Roboto, Arial, PingFang SC, Hiragino Sans GB, Microsoft Yahei, Microsoft Jhenghei, sans-serif !important;
--webkit-overflow-scrolling: auto;
+// -webkit-overflow-scrolling: auto;
+body{
+    // position: absolute !important;
+}
 }
 
 ion-app {
@@ -198,10 +201,9 @@ ion-thumbnail {
 
 /*————————————————————————————————————搜索框图标————————————————————————————————————*/
 
-.searchbar-ios .searchbar-search-icon {
-    // top: 12px;
-}
-
+/* .searchbar-ios .searchbar-search-icon {
+    top: 12px;
+} */
 
 /*————————————————————————————————————下拉刷新CSS————————————————————————————————————*/
 

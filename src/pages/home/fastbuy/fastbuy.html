@@ -13,11 +13,12 @@
 </ion-header>
 
 
-<ion-content>
-    <div fadeIn *ngIf="category">
-        <div class="top_img">
-            <img img-lazy-load="./assets/images/shangou.jpg" defaultSrc="./assets/images/images/640-320.jpg" width="100%" alt="">
-        </div>
+<ion-content parallax-header>
+    <div class="top_img header-image">
+        <img img-lazy-load="./assets/images/shangou.jpg" defaultSrc="./assets/images/images/640-320.jpg" width="100%" alt="">
+    </div>
+    <div class="main-content">
+
         <div class="quick_buy">
             <ul class="top_menu">
                 <li class="menu_ico" tappable (click)="getData(0)" [ngClass]="{'meon':selected==0}">
@@ -104,4 +105,7 @@
     <ion-fab right bottom>
         <button ion-fab color="jingku1" (click)="scrollToTop()" mini goBackTop></button>
     </ion-fab>
+    <ion-infinite-scroll threshold="40%" (ionInfinite)="doInfinite($event)">
+        <ion-infinite-scroll-content></ion-infinite-scroll-content>
+    </ion-infinite-scroll>
 </ion-content>

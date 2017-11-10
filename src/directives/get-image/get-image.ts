@@ -25,13 +25,15 @@ export class GetImageDirective {
     var reader = new FileReader();
     //获取文件
     var file = e['target']['files'][0];
+    console.log(file)
     var imageType = /^image\//;
     //是否是图片
     if (!imageType.test(file['type'])) {
       this.native.showToast("请选择图片！");
       return;
-    }else if(file['size']>(5*1024*1024)){
+    }else if(file['size']>(3*1024*1024)){
       this.native.showToast("图片超过限制");
+      return;
     }
     //读取完成
     reader.onload = (e) => {

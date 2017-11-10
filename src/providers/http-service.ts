@@ -530,4 +530,11 @@ export class HttpService {
   changeProductNum(data?: Object) {
     return this.http.post(IP + '/Flow/change_product_num  ', data)
   }
+  /**
+   * 购物车商品属性
+   */
+  get_flow_goods_number(data?: Object) {
+    return this.http.post(IP + '/Flow/get_flow_goods_number  ', data)
+  }
+  
 }

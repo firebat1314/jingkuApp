@@ -15,6 +15,7 @@ import { UpgradeProvider } from '../providers/upgrade';
 })
 export class MyApp {
   rootPage: any;
+  rootParams: any;
   backButtonPressed: boolean = false;  //用于判断返回键是否触发
   @ViewChild(Nav) nav: Nav;
 
@@ -46,6 +47,10 @@ export class MyApp {
   }
   ngOnDestroy() {
     this.events.unsubscribe("signOut");
+  }
+  ngAfterViewInit() {
+    console.log(this.nav)
+
   }
   initializeApp() {
     this.platform.ready().then(() => {

@@ -9,6 +9,7 @@ import { Native } from "../../../providers/native";
   templateUrl: 'account-collect-Goods.html'
 })
 export class AccountCollectGoodsPage {
+  infiniteScroll: any;
   collectionList: any;
 
   @ViewChild(Content) content: Content
@@ -27,6 +28,7 @@ export class AccountCollectGoodsPage {
   }
   /*下拉刷新*/
   doRefresh(refresher?) {
+    if(this.infiniteScroll) this.infiniteScroll.enable(true);
     this.httpService.collectionList({ size: 10, page: 1 }).then((res) => {
       // console.log('收藏店商品列表', res)
       if (res.status == 1) { this.collectionList = res; }
@@ -53,19 +55,20 @@ export class AccountCollectGoodsPage {
   }
 
   doInfinite(infiniteScroll) {
+    this.infiniteScroll = infiniteScroll;
     var page = this.collectionList.page;
     if (page < this.collectionList.pages) {
-      this.httpService.collectionList({ size: 10,page: ++page }).then((res) => {
+      this.httpService.collectionList({ size: 10, page: ++page }).then((res) => {
         if (res.status == 1) {
           this.collectionList.page = res.page;
           Array.prototype.push.apply(this.collectionList.data, res.data);
         }
         setTimeout(() => {
-          infiniteScroll.complete();
+          this.infiniteScroll.complete();
         }, 500);
       })
     } else {
-      infiniteScroll.enable(false);
+      this.infiniteScroll.enable(false);
     }
   }
   scrollToTop() {
