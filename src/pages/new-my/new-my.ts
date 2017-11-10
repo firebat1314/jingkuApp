@@ -111,10 +111,9 @@ export class NewMyPage {
     this.navCtrl.push('AccountProcessPage');
   }
   goAccountServicePage(access_id) {
-    /* this.native.openAlertBox('拨打客服电话：400-080-5118', () => {
-      this.native.openCallNumber('400-080-5118', false);
-    }) */
     // this.native.showToast('敬请期待')
+    console.log(access_id)
+    this.native.showLoading();
     if (!access_id) {
       // this.native.showToast('该店铺暂无客服');
     }
@@ -124,16 +123,21 @@ export class NewMyPage {
       old.parentNode.removeChild(old);
     }
     let qimo: HTMLScriptElement = document.createElement('script');
-    qimo.src = 'https://webchat.7moor.com/javascripts/7moorInit.js?accessId=' + (access_id||'b441f710-80d9-11e7-8ddd-b18e4f0e2471') + '&autoShow=false';
+    qimo.type = 'text/javascript';
+    qimo.src = 'https://webchat.7moor.com/javascripts/7moorInit.js?accessId=' + (access_id || 'b441f710-80d9-11e7-8ddd-b18e4f0e2471') + '&autoShow=false';
     console.log(qimo.src)
     qimo.className = 'qimo';
     document.getElementsByTagName('body')[0].appendChild(qimo);
-    qimo.onload = function () {
-      setTimeout(function () {
-        qimoChatClick();
-      }, 400);
-    }
-    // this.navCtrl.push(AccountServicePage)
+    let that = this;
+    qimo.onload = qimo['onreadystatechange'] = function () {
+      that.native.hideLoading();
+      if (!this.readyState || this.readyState === "loaded" || this.readyState === "complete") {
+        setTimeout(function () {
+          qimoChatClick();
+        }, 600);
+        qimo.onload = qimo['onreadystatechange'] = null;
+      }
+    };
   }
   goMySalesmanPage() {
     this.navCtrl.push('MySalesmanPage', { salesman: this.userInfo.data.ywy })
