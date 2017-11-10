@@ -94,8 +94,8 @@ export class ParticularsPage {
    * 获取购物车数量
    */
   getCarCount() {
-    this.http.getFlowGoods().then((res) => {
-      this.badgeCount = res.goods_count;
+    this.http.get_flow_goods_number().then((res) => {
+      this.badgeCount = res.data;
     })
   }
   getHttpDetails() {

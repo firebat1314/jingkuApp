@@ -54,7 +54,7 @@ export class CarPage {
       if (res.status == 1) {
         this.carDetails = res;
         this.content.resize();
-        this.isEdit = false;
+        // this.isEdit = false;
       }
     })
   }
@@ -81,21 +81,14 @@ export class CarPage {
   numberChangeI(event, item) {
     this.native.showLoading();
     this.httpService.changeNumCart({ rec_id: item.rec_id, number: event }).then((res) => {
-      if (res.status == 1) {
-        item.inputLock = false;
-      } else {
-        item.inputLock = true;
-      }
-    }).then(() => {
-      this.getFlowGoods().then(() => {
-        this.native.hideLoading();
-      });
-    });
+      this.native.hideLoading();
+      this.getFlowGoods().then(() => { });
+    })
     // this.calculateTotal();
   }
   checkGoods(id, type, is_select) {
     this.httpService.selectChangePrice({ id: id, type: type, is_select: is_select }).then((res) => {
-      this.getFlowGoods();
+      this.events.publish('car:update');
     })
   }
   checkGoodsAttr(rec_id, is_select) {
@@ -105,14 +98,18 @@ export class CarPage {
     }).then((res) => {
       if (res.status) {
         this.getFlowGoods();
+        this.events.publish('car:update');
       }
     })
   }
   check() {
+    var shopIds = [];
     var goodsIds = [];
     var attrIds = [];
-
     for (let i = 0, item1 = this.carDetails.suppliers_goods_list; i < item1.length; i++) {//店铺列表
+      if (item1[i].selected) {
+        shopIds.push(item1[i].suppliers_id);
+      }
       for (let n = 0, item2 = item1[i].goods_list; n < item2.length; n++) {//商品列表
         if (item2[n].selected) {
           goodsIds.push(item2[n].goods_id);
@@ -124,18 +121,121 @@ export class CarPage {
         }
       }
     }
-    console.log(goodsIds, attrIds)
+    console.log(shopIds, goodsIds, attrIds)
     return {
+      shopIds: shopIds,
       goodsIds: goodsIds,
       attrIds: attrIds
     };
   }
-  check1() {
-    
+  checkAll() {
+    if (this.carDetails.selected) {
+      for (let i = 0, item1 = this.carDetails.suppliers_goods_list; i < item1.length; i++) {//店铺列表
+        item1[i].selected = true;
+        this.check1(item1[i], this.carDetails);
+      }
+    } else {
+      for (let i = 0, item1 = this.carDetails.suppliers_goods_list; i < item1.length; i++) {//店铺列表
+        item1[i].selected = false;
+        this.check1(item1[i], this.carDetails);
+      }
+    }
   }
-  check2() { }
-  check3() { }
-  check4() { }
+  /* 店铺 */
+  check1(item, _item) {
+    if (item.selected) {
+      var index = 0;
+      for (let i = 0, item1 = _item.suppliers_goods_list; i < item1.length; i++) {//
+        if (item1[i].selected) {
+          index++;
+        }
+      }
+      if (index == _item.suppliers_goods_list.length) {
+        this.carDetails.selected = true;
+      }
+      for (let i = 0, item1 = item.goods_list; i < item1.length; i++) {//
+        item1[i].selected = true;
+        this.check2(item1[i], item)
+      }
+    } else {
+      this.carDetails.selected = false;
+
+      for (let i = 0, item1 = item.goods_list; i < item1.length; i++) {//
+        item1[i].selected = false;
+        this.check2(item1[i], item)
+      }
+    }
+  }
+  /* 商品 */
+  check2(item, _item) {
+    if (item.selected) {
+      var index = 0;
+      for (let i = 0, item1 = _item.goods_list; i < item1.length; i++) {//
+        if (item1[i].selected) {
+          index++;
+        }
+      }
+      if (index == _item.goods_list.length) {
+        _item.selected = true;
+      }
+      var index = 0;
+      for (let i = 0, item1 = this.carDetails.suppliers_goods_list; i < item1.length; i++) {//
+        if (item1[i].selected) {
+          index++;
+        }
+      }
+      if (index == this.carDetails.suppliers_goods_list.length) {
+        this.carDetails.selected = true;
+      }
+      for (let i = 0, item1 = item.attrs; i < item1.length; i++) {//
+        item1[i].selected = true;
+        this.check3(item1[i], item, _item)
+      }
+    } else {
+      _item.selected = false;
+      this.carDetails.selected = false;
+      for (let i = 0, item1 = item.attrs; i < item1.length; i++) {//
+        item1[i].selected = false;
+        this.check3(item1[i], item, _item)
+      }
+    }
+  }
+  /* 属性 */
+  check3(item, _item, __item) {
+    if (item.selected) {
+      var index = 0;
+      for (let i = 0, item1 = _item.attrs; i < item1.length; i++) {//
+        if (item1[i].selected) {
+          index++;
+        }
+      }
+      if (index == _item.attrs.length) {
+        _item.selected = true;
+      }
+      var index = 0;
+      for (let i = 0, item1 = __item.goods_list; i < item1.length; i++) {//
+        if (item1[i].selected) {
+          index++;
+        }
+      }
+      if (index == __item.goods_list.length) {
+        __item.selected = true;
+      }
+      var index = 0;
+      for (let i = 0, item1 = this.carDetails.suppliers_goods_list; i < item1.length; i++) {//
+        if (item1[i].selected) {
+          index++;
+        }
+      }
+      if (index == this.carDetails.suppliers_goods_list.length) {
+        this.carDetails.selected = true;
+      }
+    } else {
+      _item.selected = false;
+      __item.selected = false;
+      this.carDetails.selected = false;
+    }
+  }
   /* 关注商品 */
   beCareFor() {
     if (!this.check().goodsIds.length) {
@@ -167,12 +267,14 @@ export class CarPage {
   }
   /* 删除购物车商品 */
   dropCartGoodsSelect() {
-    if (!this.check().goodsIds.length && !this.check().attrIds.length) {
+    var obj = this.check();
+    console.log(obj)
+    if (!obj.goodsIds.length && !obj.attrIds.length) {
       this.native.showToast('请选择需要删除商品');
       return;
     }
     this.native.openAlertBox('删除购物车选中商品？', () => {
-      this.httpService.dropCartGoodsSelect({ goods_ids: this.check().goodsIds, rec_ids: this.check().attrIds }).then((res) => {
+      this.httpService.dropCartGoodsSelect({ goods_ids: obj.goodsIds, rec_id: obj.attrIds }).then((res) => {
         console.log(res);
         if (res.status == 1) {
           this.native.showToast('删除成功')

@@ -14,11 +14,13 @@ import { HttpService } from "../../../providers/http-service";
   templateUrl: 'fastbuy.html'
 })
 export class FastbuyPage {
+  infiniteScroll: any;
+  size: any = 4;
 
   category: any;
   data: any;
   selected = 0;
-
+  page = 1;
   @ViewChild(Content) content: Content;
   @ViewChild(FabButton) fabButton: FabButton;
   constructor(
@@ -48,18 +50,12 @@ export class FastbuyPage {
     this.getData(this.selected);
   }
   getData(id) {
-    /* 	var lileng = $('.top_menu li').length;
-        var uwi = lileng * 100 + 'px';
-        console.log()
-        $('.top_menu').width(uwi)
-        console.log(lileng);
-        
-        $('.top_menu>li').click(function () {
-          $(this).addClass('meon').siblings().removeClass('meon');
-        })*/
-    // this.elementRef.nativeElement.getElementsBy
-    this.selected = id
-    this.httpService.presell({ type: 'is_promote', cat_id: id }).then((res) => {
+    this.page = 1;
+
+    this.selected = id;
+    this.infiniteScroll ? this.infiniteScroll.enable(true) : null;
+
+    this.httpService.presell({ page:this.page,num: this.size, type: 'is_promote', cat_id: id }).then((res) => {
       if (res.status == 1) { this.data = res; }
     })
   }
@@ -68,5 +64,19 @@ export class FastbuyPage {
   }
   scrollToTop() {
     this.content.scrollToTop();
+  }
+  doInfinite(infiniteScroll) {
+    this.infiniteScroll = infiniteScroll;
+    this.httpService.presell({ num: this.size, page: ++this.page, type: 'is_promote', cat_id: this.selected }).then((res) => {
+      if (res.status == 1) {
+        if (!res.data.length) {
+          this.infiniteScroll.enable(false);
+        }
+        this.data.data = this.data.data.concat(res.data);
+      }
+      setTimeout(() => {
+        this.infiniteScroll.complete();
+      }, 500);
+    })
   }
 }

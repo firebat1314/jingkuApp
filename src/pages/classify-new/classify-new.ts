@@ -83,10 +83,16 @@ export class ClassifyNewPage {
     })
   }
   doRefresh(refresher) {
-    this.getChildrenCaCtegory().then((res) => {
-      setTimeout(function () {
-        refresher.complete();
-      }, 500);
+    this.httpService.getCategorys().then((res) => {
+      if (res.status == 1) {
+        this.getCategorys = res.data;
+        this.httpService.setStorage('getCategorys', res);
+        this.getChildrenCaCtegory().then((res) => {
+          setTimeout(function () {
+            refresher.complete();
+          }, 500);
+        });
+      }
     })
   }
   //转跳品牌列表页

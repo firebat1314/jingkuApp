@@ -29,9 +29,9 @@ export class TabsPage {
     })
   }
   getCarCount() {
-    this.httpService.getFlowGoods().then((res) => {//获取购物车数量
+    this.httpService.get_flow_goods_number().then((res) => {//获取购物车数量
       if (res.status == 1) {
-        this.carNumber = res.goods_count;
+        this.carNumber = res.data;
       }
     })
   }
