@@ -102,7 +102,7 @@ export class UserData {
             }
         }
         if (error.status == 404) {
-            this.native.showToast('服务器出错了，404');
+            this.native.showToast('数据出错了，404');
         }
 
         if (error.status == 0) {
