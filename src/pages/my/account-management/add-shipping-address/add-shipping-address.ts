@@ -52,6 +52,7 @@ export class AddShippingAddressPage {
             address: res.address_info.address,
             mobile: res.address_info.mobile
           }
+          this.default = res.default;
         }
         this.cityName = this.getCityName(res.address_info.province, res.address_info.city, res.address_info.district)
       })
@@ -100,7 +101,7 @@ export class AddShippingAddressPage {
   }
   onsubmit() {
     if (this.addressId != undefined) {
-      this.httpService.editAddress(this.formData).then((res) => {
+      this.httpService.editAddress(Object.assign(this.formData, { default: this.default?'1' : '0' })).then((res) => {
         if (res.status == 1) {
           this.native.showToast(res.info)
           this.events.publish('updateAddress');

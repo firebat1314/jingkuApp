@@ -14,5 +14,5 @@ export const IP = 'http://app.jingku.cn';
 // export const IP = 'http://newm.jingkoo.net';//m站
 
 export const welpage_selected = '';
-
+ 
 export const version = '1.1.1';

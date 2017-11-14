@@ -8,7 +8,9 @@ import { Native } from "../../../providers/native";
   See http://ionicframework.com/docs/v2/components/#navigation for more info on
   Ionic pages and navigation.
 */
-@IonicPage()
+@IonicPage({
+	segment:'brand-list/:listId'
+})
 @Component({
 	selector: 'page-brand-list',
 	templateUrl: 'brand-list.html',
