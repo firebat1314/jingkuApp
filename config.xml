@@ -113,4 +113,5 @@
     <plugin name="cordova-plugin-camera" spec="~2.4.0" />
     <engine name="android" spec="~6.1.2" />
     <plugin name="cordova-plugin-pingpp" spec="https://github.com/firebat1314/pingpp-cordova.git" />
+    <plugin name="com.phonegap.plugins.barcodescanner" spec="~2.0.0" />
 </widget>

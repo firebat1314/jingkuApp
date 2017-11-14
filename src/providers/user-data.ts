@@ -22,7 +22,7 @@ export class UserData {
     public get(url: string, paramObj?: any, showLoading?: boolean) {
         if (showLoading) {
             this.native.showLoading();
-        }
+        }  
         return this.storage.get('token').then((res) => {
             var headers = new Headers();
             headers.append('Authorization', 'Basic ' + btoa(res + ':'));

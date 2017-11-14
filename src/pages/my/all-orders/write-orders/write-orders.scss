@@ -84,6 +84,12 @@ page-write-orders {
                         text-align: right;
                         font-size: 1.4rem;
                         font-weight: 500;
+                        .old{
+                            color: #999;
+                            font-size: 1.2rem;
+                            margin-left: 5px;
+                            text-decoration: line-through;
+                        }
                     }
                 }
             }

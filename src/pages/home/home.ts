@@ -8,8 +8,8 @@ import { Native } from "../../providers/native";
 import { Storage } from '@ionic/storage';
 
 @IonicPage({
-  segment:'home',
-  name:'HomePage'
+  segment: 'home',
+  name: 'HomePage'
 })
 @Component({
   selector: 'page-home',
@@ -55,6 +55,9 @@ export class HomePage {
     this.events.subscribe('home:update', () => {
       this.getHomeData()
     })
+    /* this.storage.get('sss').then((res) => {
+      alert(res)
+    }) */
   }
   ngAfterViewInit() {
     this.fabButton.setElementClass('fab-button-out', true);
@@ -75,7 +78,7 @@ export class HomePage {
     } */
   ngOnInit() {
     this.storage.get('fastbuyData').then((res) => {
-      if(res){
+      if (res) {
         this.fastbuyData = res;
       }
     })

@@ -17,7 +17,9 @@
     <ng-container *ngIf="data">
         <div class="fore fore1" tappable (click)="openOrderModalShippingPage()" *ngIf="defaultShipping">
             <div class="wrap">
-                <div style="color: #4c4c4c;font-size: 1.6rem;">{{defaultShipping.consignee}}<span class="phone">{{defaultShipping.mobile | phonenumberfilter}}</span></div>
+                <div style="color: #4c4c4c;font-size: 1.6rem;">{{defaultShipping.consignee}}
+                    <span class="phone">{{defaultShipping.mobile | phonenumberfilter}}</span>
+                </div>
                 <div>{{defaultShipping.address}}</div>
             </div>
         </div>
@@ -59,7 +61,10 @@
                                 </div>
                             </div>
                             <div class="right">
-                                <div class="price color">{{attr.goods_price}}</div>
+                                <div class="price color" *ngIf="!(attr?.pro_id>0)">{{attr.goods_price}}</div>
+                                <div class="price color" *ngIf="attr?.pro_id>0">{{attr.goodsPrice}}
+                                    <p class="old">{{attr.goods_price}}</p>
+                                </div>
                                 <div class="count">x{{attr.goods_number}}</div>
                             </div>
                         </div>
@@ -78,7 +83,8 @@
                             </ion-thumbnail>
                         </ng-container>
                     </ng-container>
-                    <ion-note item-end><span style="font-weight: 700;" *ngIf="data?.total?.real_goods_count>3">···</span>&nbsp;共{{data?.total?.real_goods_count||'0'}}件</ion-note>
+                    <ion-note item-end>
+                        <span style="font-weight: 700;" *ngIf="data?.total?.real_goods_count>3">···</span>&nbsp;共{{data?.total?.real_goods_count||'0'}}件</ion-note>
                 </ion-item>
             </div>
         </ng-container>
@@ -176,10 +182,12 @@
         </div>
         <div class="fore fore3" *ngIf="goodsType=='integral'">
             <div>
-                <span>购物积分：</span><span class="price">+ ¥{{data?.total?.integral}}</span>
+                <span>购物积分：</span>
+                <span class="price">+ ¥{{data?.total?.integral}}</span>
             </div>
             <div>
-                <span>配送费用：</span><span>- {{data?.total?.suppliers_shipping_fee_formated}}</span>
+                <span>配送费用：</span>
+                <span>- {{data?.total?.suppliers_shipping_fee_formated}}</span>
             </div>
         </div>
     </ng-container>
@@ -189,7 +197,10 @@
 <ion-footer>
     <div class="pagefoot">
         <div class="left">
-            <span class="price">实付款: ¥{{data?.total?.amount_formated||'0.00'}}</span><span *ngIf="goodsType=='integral'">&nbsp;积分: <span class="price">{{data?.total?.integral}}</span></span>
+            <span class="price">实付款: ¥{{data?.total?.amount_formated||'0.00'}}</span>
+            <span *ngIf="goodsType=='integral'">&nbsp;积分:
+                <span class="price">{{data?.total?.integral}}</span>
+            </span>
         </div>
         <div class="right">
             <div ion-button no-margin full large color="jingku1" tappable (click)="onsubmit()">提交订单</div>
