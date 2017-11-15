@@ -1,8 +1,8 @@
 {
   "name": "jingku",
-  "version": "1.1.1",
+  "version": "1.1.2",
   "author": "jingku team",
-  "homepage": "",
+  "homepage": "http://m.jingku.cn?v=1.1.2",
   "private": false,
   "scripts": {
     "clean": "ionic-app-scripts clean",

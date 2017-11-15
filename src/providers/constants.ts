@@ -15,4 +15,4 @@ export const IP = 'http://app.jingku.cn';
 
 export const welpage_selected = '';
  
-export const version = '1.1.1';
+export const version = '1.1.2';
