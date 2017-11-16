@@ -16,15 +16,15 @@
             </button>
         </div>
         <div class="h-body">
-            <div class="user_logo">
-                <img [img-lazy-load]="userInfo?.data?.avatar" alt="">
+            <div class="user_logo" tappable (click)="goAccountManagementPage($event)">
+                <img img-lazy-load="{{userInfo?.data?.avatar}}" alt="">
             </div>
             <div class="r_wrap">
                 <div class="user_info">
                     <div class="name">{{userInfo?.data?.username}}</div>
                     <div class="vip" tappable navPush="MemberCenterPage" (click)="$event.stopPropagation()">
                         <div class="vip_logo">
-                            <img [img-lazy-load]="userInfo?.data?.user_info?.rank_icon" alt="">
+                            <img img-lazy-load="{{userInfo?.data?.user_info?.rank_icon}}" alt="">
                         </div>
                         <div class="vip_name">{{userInfo?.data?.user_info?.rank_name||'暂无等级'}}</div>
                     </div>
