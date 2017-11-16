@@ -121,19 +121,19 @@ export class HomePage {
     //轮播 
     this.bannerImgs = res.data.ads_banner;
     //闪购 左
-    this.hotBrand_img = res.data.ads_sgz['0'];
+    this.hotBrand_img = res.data.ads_sgz[0];
     //闪购 右
-    this.categoryAddetatils = res.data.ads_sgy['0'];
+    this.categoryAddetatils = res.data.ads_sgy[0];
     //闪购 下
-    this.getBrands = res.data.ads_sgx['0'];
+    this.getBrands = res.data.ads_sgx[0];
     //精选专题 大图1
-    this.jingxuan_img1 = res.data.ads_jxzt['0'];
+    this.jingxuan_img1 = res.data.ads_jxzt[0];
     this.getCategoryRecommendGoodsHot = res.data.hot_recommend_goods;
     //精选专题 大图2
-    this.jingxuan_img2 = res.data.ads_jxzttwo['0'];
+    this.jingxuan_img2 = res.data.ads_jxzttwo[0];
     this.getCategoryRecommendGoods = res.data.new_recommend_goods;
     //精选专题 大图3
-    this.jingxuan_img3 = res.data.ads_jxztThree['0'];
+    this.jingxuan_img3 = res.data.ads_jxztThree[0];
     this.getCategoryRecommendGoodsBest = res.data.best_recommend_goods;
     //好店推荐
     this.jingxuan_img4 = res.data.ads_hdtj;

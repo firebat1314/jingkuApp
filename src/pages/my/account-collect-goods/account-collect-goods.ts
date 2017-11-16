@@ -18,25 +18,26 @@ export class AccountCollectGoodsPage {
     public navParams: NavParams,
     public httpService: HttpService,
     public native: Native
-
-  ) {
-    this.doRefresh();
-  }
+  ) {}
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad AccountCollectGoodsPage');
   }
-  /*下拉刷新*/
-  doRefresh(refresher?) {
-    if(this.infiniteScroll) this.infiniteScroll.enable(true);
-    this.httpService.collectionList({ size: 10, page: 1 }).then((res) => {
-      // console.log('收藏店商品列表', res)
+  ngOnInit(){
+    this.getData();
+  }
+  getData(){
+    return this.httpService.collectionList({ size: 10, page: 1 }).then((res) => {
       if (res.status == 1) { this.collectionList = res; }
-      if (refresher) {
-        setTimeout(() => {
-          refresher.complete();
-        }, 500);
-      }
+    })
+  }
+  /*下拉刷新*/
+  doRefresh(refresher) {
+    if(this.infiniteScroll) this.infiniteScroll.enable(true);
+    this.getData().then(()=>{
+      setTimeout(() => {
+        refresher.complete();
+      }, 500);
     })
   }
   unfollowGoods(goods_id, index) {
@@ -45,7 +46,7 @@ export class AccountCollectGoodsPage {
         // console.log(res);
         if (res.status == 1) {
           this.native.showToast('已取消关注')
-          this.doRefresh();
+          this.getData();
         }
       })
     })
