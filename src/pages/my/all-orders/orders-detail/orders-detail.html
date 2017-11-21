@@ -49,7 +49,8 @@
                         </div>
                     </div>
                     <div class="right">
-                        <div>¥{{item.goods_price}}</div>
+                        <div class="price color" *ngIf="!(item?.pro_id>0)">¥{{item.goods_price}}</div>
+                        <div class="price color" *ngIf="item?.pro_id>0">{{item.reduce_price}}<p class="old">{{item.goods_price}}</p></div>
                         <div class="count">x{{item.goods_number}}</div>
                         <!--<div ion-button small (click)="clickAftermarket($event)">申请售后</div>-->
                     </div>
@@ -78,16 +79,34 @@
                     <span class="price">¥{{data?.order?.formated_goods_amount}}</span>
                 </div>
                 <div>
-                    <span>+配送费用：</span>
-                    <span class="price">¥{{data?.order?.formated_shipping_fee}}</span>
+                    <span>配送费用：</span>
+                    <span class="price">+ ¥{{data?.order?.formated_shipping_fee}}</span>
                 </div>
-                <!--            <div>
+                <div *ngIf="data?.order?.formated_subsidy_amount!=0">
+                    <span>优惠：</span>
+                    <span class="price">- ¥{{data?.order?.formated_subsidy_amount}}</span>
+                </div>
+                <div *ngIf="data?.order?.shipping_subsidy!=0">
+                    <span>运费补贴：</span>
+                    <span class="price">- ¥{{data?.order?.shipping_subsidy}}</span>
+                </div>
+                <div *ngIf="data?.order?.bonus!=0">
+                    <span>优惠券：</span>
+                    <span class="price">- ¥{{data?.order?.bonus}}</span>
+                </div>
+                <div *ngIf="data?.order?.rank_points!=0">
+                    <span>消费积分：</span>
+                    <span class="price">{{data?.order?.rank_points}}</span>
+                </div>
+                <!--<div>
                     <span>+获赠积分：</span>
                     <span class="price">¥???</span>
                 </div>-->
             </div>
             <div class="bottom">
-                <div>实付款：<span class="price">¥{{data?.order?.formated_money_paid}}</span></div>
+                <div>实付款：
+                    <span class="price">¥{{data?.order?.formated_money_paid}}</span>
+                </div>
                 <div class="date">下单时间：{{data?.order?.formated_add_time}}</div>
             </div>
         </div>
@@ -102,7 +121,8 @@
     <div class="foot-button" style="border-top: 1px solid #dedede;">
         <button ion-button large full no-margin color="cancelBtn" (click)="cancelOrder(data?.order?.order_id)" *ngIf="data?.order?.order_status == 0">取消订单</button>
         <button ion-button large full no-margin color="cancelBtn" (click)="deleteOrder(data?.order?.order_id)" *ngIf="(data?.order?.order_status==5 && data?.order?.shipping_status==2)||data?.order?.order_status==2||data?.order?.order_status==3">删除订单</button>
-        <button ion-button large full no-margin color="jingku1" navPush="OrderWuliuPage" [navParams]="{orderId:data?.order?.order_id}" *ngIf="(data?.order?.order_status==1&&data?.order?.pay_status==2)||(data?.order?.order_status==5&&data?.order?.pay_status==2&&data?.order?.shipping_status==1)||(data?.order?.order_status==5&&data?.order?.pay_status==2&&data?.order?.shipping_status==2)&&data?.order?.invoice_no">物流跟踪</button>
+        <button ion-button large full no-margin color="jingku1" navPush="OrderWuliuPage" [navParams]="{orderId:data?.order?.order_id}"
+            *ngIf="(data?.order?.order_status==1&&data?.order?.pay_status==2)||(data?.order?.order_status==5&&data?.order?.pay_status==2&&data?.order?.shipping_status==1)||(data?.order?.order_status==5&&data?.order?.pay_status==2&&data?.order?.shipping_status==2)&&data?.order?.invoice_no">物流跟踪</button>
         <button ion-button large full no-margin color="jingku1" (click)="toPay(data?.order?.order_id)" *ngIf="data?.order?.pay_status == 0 && data?.order?.order_status!=4 && data?.order?.order_status!=2 && data?.order?.order_status!=3 && data?.order?.order_status!=7 && data?.order?.order_status!=8 ">去支付</button>
         <button ion-button large full no-margin color="jingku2" (click)="confirmReceipt(data?.order?.order_id)" *ngIf="data?.order?.order_status == '5' && data?.order?.shipping_status=='1'">确认收货</button>
     </div>

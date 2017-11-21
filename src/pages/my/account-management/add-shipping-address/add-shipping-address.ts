@@ -3,7 +3,9 @@ import { NavController, NavParams, Events, IonicPage } from 'ionic-angular';
 import { HttpService } from "../../../../providers/http-service";
 import { Native } from "../../../../providers/native";
 
-@IonicPage()
+@IonicPage({
+  segment:'add-shipping-address/:addId'
+})
 @Component({
   selector: 'page-add-shipping-address',
   templateUrl: 'add-shipping-address.html'
@@ -101,7 +103,7 @@ export class AddShippingAddressPage {
   }
   onsubmit() {
     if (this.addressId != undefined) {
-      this.httpService.editAddress(Object.assign(this.formData, { default: this.default?'1' : '0' })).then((res) => {
+      this.httpService.editAddress(Object.assign(this.formData, { default: this.default?1 : 0 })).then((res) => {
         if (res.status == 1) {
           this.native.showToast(res.info)
           this.events.publish('updateAddress');
@@ -109,7 +111,7 @@ export class AddShippingAddressPage {
         }
       })
     } else {
-      this.httpService.addAddress(Object.assign(this.formData, { default: this.default?'1' : '0' })).then((res) => {
+      this.httpService.addAddress(Object.assign(this.formData, { default: this.default?1 : 0 })).then((res) => {
         if (res.status == 1) {
           this.events.publish('updateAddress');
           this.navCtrl.pop();

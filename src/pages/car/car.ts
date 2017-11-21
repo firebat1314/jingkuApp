@@ -245,7 +245,6 @@ export class CarPage {
     this.httpService.batchGoodsCollect({
       goods_ids: this.check().goodsIds
     }).then((res) => {
-      console.log(res);
       if (res.status == 1) {
         this.native.showToast('关注成功')
       }
@@ -275,11 +274,9 @@ export class CarPage {
     }
     this.native.openAlertBox('删除购物车选中商品？', () => {
       this.httpService.dropCartGoodsSelect({ goods_ids: obj.goodsIds, rec_id: obj.attrIds }).then((res) => {
-        console.log(res);
         if (res.status == 1) {
           this.native.showToast('删除成功')
           this.events.publish('car:update');
-          this.isEdit = false;
         }
       })
     })

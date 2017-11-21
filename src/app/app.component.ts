@@ -9,6 +9,7 @@ import { ImageLoaderConfig } from "ionic-image-loader/dist";
 import { Native } from "../providers/native";
 import { JpushService } from "../providers/jpush-service";
 import { UpgradeProvider } from '../providers/upgrade';
+import { WxServiceProvider } from '../providers/wx-service/wx-service';
 
 @Component({
   templateUrl: 'app.html'
@@ -48,10 +49,6 @@ export class MyApp {
   ngOnDestroy() {
     this.events.unsubscribe("signOut");
   }
-  ngAfterViewInit() {
-    console.log(this.nav)
-
-  }
   initializeApp() {
     this.platform.ready().then(() => {
       //———————————————————————— 初次进入app引导页面 ————————————————————————
@@ -79,7 +76,6 @@ export class MyApp {
           }
         });
       }
-
       // Okay, so the platform is ready and our plugins are available.
       // Here you can do any higher level native things you might need.
       this.statusBar.styleDefault();

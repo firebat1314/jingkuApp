@@ -30,6 +30,7 @@ import { CityPickerModule } from "ionic2-city-picker/dist/city-picker.module";
 import { IonicImageViewerModule } from 'ionic-img-viewer';
 import { IonicImageLoader } from 'ionic-image-loader';
 import { UpgradeProvider } from '../providers/upgrade';
+import { WxServiceProvider } from '../providers/wx-service/wx-service';
 
 @NgModule({
   declarations: [
@@ -78,7 +79,8 @@ import { UpgradeProvider } from '../providers/upgrade';
     Badge,
     Transfer,
     File,
-    InAppBrowser
+    InAppBrowser,
+    WxServiceProvider
   ]
 })
 export class AppModule { }
