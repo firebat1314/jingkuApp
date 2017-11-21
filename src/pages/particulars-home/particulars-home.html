@@ -8,8 +8,7 @@
 
     <ion-navbar>
         <form action="">
-            <ion-searchbar [(ngModel)]="myHomeSearch" [ngModelOptions]="{standalone: true}" (ionInput)="onInput($event)" placeholder="搜索店铺商品"
-                animated="false" spellcheck="true" type="search" debounce="1000" mode="ios"></ion-searchbar>
+            <ion-searchbar [(ngModel)]="myHomeSearch" [ngModelOptions]="{standalone: true}" (ionInput)="onInput($event)" placeholder="搜索店铺商品" animated="false" spellcheck="true" type="search" debounce="1000" mode="ios"></ion-searchbar>
         </form>
         <!-- <ion-buttons right>
             <button ion-button clear icon-only icon-left (click)="listStyleflag=!listStyleflag">
@@ -306,7 +305,7 @@
                     <img img-lazy-load="./assets/icon/images/dd-2.png" alt="">
                 </ion-icon>
                 <span>联系卖家</span>
-            </div>
+            </a>
         </div>
     </div>
 </ion-footer>
