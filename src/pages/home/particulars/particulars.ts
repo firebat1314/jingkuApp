@@ -78,7 +78,7 @@ export class ParticularsPage {
     return this.http.goodsInfos({ goods_id: this.goodsId }).then((res) => {
       // console.log("商品详情信息", res);
       if (res.status == 1) {
-        if (this.native.isMobile()) {
+        if (!this.native.isMobile()) {
 
           this.wxService.config().then(() => {
             this.wxService.oWx.onMenuShareTimeline({
