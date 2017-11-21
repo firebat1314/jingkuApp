@@ -164,7 +164,7 @@
                 <span class="price">+ {{data?.total?.suppliers_shipping_fee_formated}}</span>
             </div>
             <div *ngIf="data?.total?.formated_subsidy_price!=0">
-                <span>商品补贴：</span>
+                <span>优惠：</span>
                 <span class="price">- ¥{{data?.total?.formated_subsidy_price}}</span>
             </div>
             <div *ngIf="data?.total?.formated_shipping_subsidy.slice(1)!=0">
@@ -177,7 +177,7 @@
             </div>
             <div *ngIf="data?.total?.will_get_integral!=0">
                 <span>消费积分：</span>
-                <span class="price">+ {{data?.total?.will_get_integral}}</span>
+                <span class="price">{{data?.total?.will_get_integral}}</span>
             </div>
         </div>
         <div class="fore fore3" *ngIf="goodsType=='integral'">
@@ -187,7 +187,7 @@
             </div>
             <div>
                 <span>配送费用：</span>
-                <span>- {{data?.total?.suppliers_shipping_fee_formated}}</span>
+                <span>{{data?.total?.suppliers_shipping_fee_formated}}</span>
             </div>
         </div>
     </ng-container>

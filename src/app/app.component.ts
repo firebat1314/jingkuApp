@@ -9,6 +9,7 @@ import { ImageLoaderConfig } from "ionic-image-loader/dist";
 import { Native } from "../providers/native";
 import { JpushService } from "../providers/jpush-service";
 import { UpgradeProvider } from '../providers/upgrade';
+import { WxServiceProvider } from '../providers/wx-service/wx-service';
 
 @Component({
   templateUrl: 'app.html'
@@ -35,31 +36,7 @@ export class MyApp {
   ) {
     //———————————————————————— app更新 ————————————————————————
     // this.upgradeProvider.detectionUpgrade();
-    //———————————————————————— 初次进入app引导页面 ————————————————————————
-    if (this.native.isMobile()) {
-      this.storage.get('has_entered').then((result) => {
-        if (!result) {
-          this.rootPage = 'WelcomePage';
-        } else {
-          this.rootPage = 'AppAdvertisingPage';
-        }
-      })
-    } else {
-      if (!this.native.isMobileweb()) {
-        location.href = 'http://www.jingku.cn/default.html';
-        return;
-      }
-      // this.rootPage = 'WellcomeNewmPage';
-      this.storage.get('hasLoggedIn').then((result) => {
-        if (result) {
-          this.rootPage = 'TabsPage';//TabsPage//WellcomeNewmPage
-          // this.nav.setRoot('TabsPage', {}, { animate: true, direction: 'forward' });
-        } else {
-          this.rootPage = 'WellcomeNewmPage';
-          // this.nav.setRoot('LoginPage', {}, { animate: true, direction: 'forward' });
-        }
-      });
-    }
+    
     this.initializeApp();
     //用户失效事件
     this.events.subscribe('signOut', () => {
@@ -73,12 +50,33 @@ export class MyApp {
   ngOnDestroy() {
     this.events.unsubscribe("signOut");
   }
-  ngAfterViewInit() {
-    console.log(this.nav)
-
-  }
   initializeApp() {
     this.platform.ready().then(() => {
+      //———————————————————————— 初次进入app引导页面 ————————————————————————
+      if (this.native.isMobile()) {
+        this.storage.get('has_entered').then((result) => {
+          if (!result) {
+            this.rootPage = 'WelcomePage';
+          } else {
+            this.rootPage = 'AppAdvertisingPage';
+          }
+        })
+      } else {
+        if (!this.native.isMobileweb()) {
+          location.href = 'http://www.jingku.cn/default.html';
+          return;
+        }
+        // this.rootPage = 'WellcomeNewmPage';
+        this.storage.get('hasLoggedIn').then((result) => {
+          if (result) {
+            this.rootPage = 'TabsPage';//TabsPage//WellcomeNewmPage
+            // this.nav.setRoot('TabsPage', {}, { animate: true, direction: 'forward' });
+          } else {
+            this.rootPage = 'WellcomeNewmPage';
+            // this.nav.setRoot('LoginPage', {}, { animate: true, direction: 'forward' });
+          }
+        });
+      }
       // Okay, so the platform is ready and our plugins are available.
       // Here you can do any higher level native things you might need.
       this.statusBar.styleDefault();

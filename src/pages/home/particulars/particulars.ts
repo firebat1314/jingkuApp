@@ -3,54 +3,29 @@ import { NavController, NavParams, ModalController, Events, IonicPage, Content, 
 /*http服务*/
 import { HttpService } from "../../../providers/http-service";
 import { Native } from "../../../providers/native";
+import { WxServiceProvider } from '../../../providers/wx-service/wx-service';
 
 declare let qimoChatClick;
+declare let wx;
 @IonicPage({
-  name:'ParticularsPage',
+  name: 'ParticularsPage',
   segment: 'particulars/:goodsId',
-  defaultHistory: ['HomePage']
+  defaultHistory: ['classify']
 })
 @Component({
   selector: 'page-particulars',
   templateUrl: 'particulars.html'
 })
 export class ParticularsPage {
-  /**
-   * 用户选中的收货地址
-   */
-  region_name: any;
-  /**
-   * 为你推荐
-   */
-  getCategoryRecommendGoodsHot: any;
-  /**
-   * 商品总信息
-   */
-  getGoodsInfo: any;
-  /**
-   * 组合、推荐
-   */
-  selectGroupRecommend = "group" || 'recommend';
-  /**
-   * 详情、参数
-   */
-  selectPicArguments = "pic";//arguments
-  /**
-   * 商品id
-   */
-  goodsId: number = this.navParams.get('goodsId');/*3994 5676*/;
-  /**
-   * 购物车数量
-   */
-  badgeCount: number;
-  /**
-   * 图文详情
-   */
-  goods_desc: string = '';
-  /**
-   * 定制商品
-   */
-  is_dingzhi: boolean = false;
+  region_name: any;//用户选中的收货地址
+  getCategoryRecommendGoodsHot: any;//为你推荐
+  getGoodsInfo: any;//商品总信息
+  selectGroupRecommend = "group" || 'recommend';//组合、推荐
+  selectPicArguments = "pic";//arguments//详情、参数
+  goodsId: number = this.navParams.get('goodsId');//3994 5676//商品id
+  badgeCount: number;//购物车数量
+  goods_desc: string = '';//图文详情
+  is_dingzhi: boolean = false;//定制商品
 
   constructor(
     public navCtrl: NavController,
@@ -58,7 +33,8 @@ export class ParticularsPage {
     private http: HttpService,
     public modalCtrl: ModalController,
     public native: Native,
-    private events: Events
+    private events: Events,
+    private wxService: WxServiceProvider,
   ) {
     console.log("商品ID:", this.goodsId);
     this.events.subscribe('car:update', () => {
@@ -102,6 +78,66 @@ export class ParticularsPage {
     return this.http.goodsInfos({ goods_id: this.goodsId }).then((res) => {
       // console.log("商品详情信息", res);
       if (res.status == 1) {
+        this.wxService.config().then(() => {
+          this.wxService.oWx.onMenuShareTimeline({
+            title: '镜库科技', // 分享标题
+            link: 'http://newm.jingkoo.net/#/nav/n4/tabs/tabs/t0/home/particulars/' + res.data.goods_id, // 分享链接，该链接域名或路径必须与当前页面对应的公众号JS安全域名一致
+            imgUrl: res.data.goods_thumb, // 分享图标
+            success: function () {
+              // 用户确认分享后执行的回调函数
+              this.native.showToast('分享成功');
+            },
+            cancel: function () {
+              // 用户取消分享后执行的回调函数
+              this.native.showToast('取消分享');
+            }
+          });
+          this.wxService.oWx.onMenuShareAppMessage({
+            title: '镜库科技', // 分享标题
+            desc: res.data.goods_name, // 分享描述
+            link: 'http://newm.jingkoo.net/#/nav/n4/tabs/tabs/t0/home/particulars/' + res.data.goods_id, // 分享链接，该链接域名或路径必须与当前页面对应的公众号JS安全域名一致
+            imgUrl: res.data.goods_thumb, // 分享图标
+            type: 'link', // 分享类型,music、video或link，不填默认为link
+            dataUrl: '', // 如果type是music或video，则要提供数据链接，默认为空
+            success: function () {
+              // 用户确认分享后执行的回调函数
+              this.native.showToast('分享成功');
+            },
+            cancel: function () {
+              // 用户取消分享后执行的回调函数
+              this.native.showToast('取消分享');
+            }
+          });
+          this.wxService.oWx.onMenuShareQQ({
+            title: '镜库科技', // 分享标题
+            desc: res.data.goods_name, // 分享描述
+            link: 'http://newm.jingkoo.net/#/nav/n4/tabs/tabs/t0/home/particulars/' + res.data.goods_id, // 分享链接，该链接域名或路径必须与当前页面对应的公众号JS安全域名一致
+            imgUrl: res.data.goods_thumb, // 分享图标
+            success: function () {
+              // 用户确认分享后执行的回调函数
+              this.native.showToast('分享成功');
+            },
+            cancel: function () {
+              // 用户取消分享后执行的回调函数
+              this.native.showToast('取消分享');
+            }
+          });
+          this.wxService.oWx.onMenuShareWeibo({
+            title: '镜库科技', // 分享标题
+            desc: res.data.goods_name, // 分享描述
+            link: 'http://newm.jingkoo.net/#/nav/n4/tabs/tabs/t0/home/particulars/' + res.data.goods_id, // 分享链接，该链接域名或路径必须与当前页面对应的公众号JS安全域名一致
+            imgUrl: res.data.goods_thumb, // 分享图标
+            success: function () {
+              // 用户确认分享后执行的回调函数
+              this.native.showToast('分享成功');
+            },
+            cancel: function () {
+              // 用户取消分享后执行的回调函数
+              this.native.showToast('取消分享');
+            }
+          });
+        });
+
         this.getGoodsInfo = res;
         this.getRegionName(res);
         this.is_dingzhi = res.data.isdingzhi == 1 ? true : false;

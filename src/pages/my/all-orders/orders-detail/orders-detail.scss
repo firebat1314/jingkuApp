@@ -69,6 +69,16 @@ page-orders-detail {
                                 background: #e6e6e6;
                                 color: #333;
                             }
+                            .color {
+                                color: get-color('danger'); // color: #4c4c4c;
+                                font-weight: 600;
+                                .old {
+                                    color: #999;
+                                    font-size: 1.2rem;
+                                    margin-left: 5px;
+                                    text-decoration: line-through;
+                                }
+                            }
                         }
                     }
                 }
@@ -111,7 +121,7 @@ page-orders-detail {
                 }
             }
             .bottom {
-                padding: 10px 0;
+                padding: 10px 0 0;
                 text-align: right;
                 .price {
                     color: #e60000;

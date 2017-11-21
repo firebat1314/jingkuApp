@@ -6,7 +6,6 @@ import { CallNumber } from '@ionic-native/call-number';
 import { Toast } from '@ionic-native/toast';
 import { AppVersion } from '@ionic-native/app-version';
 import { BarcodeScanner } from '@ionic-native/barcode-scanner';
-import { IP } from "./constants";
 
 import { Transfer, FileUploadOptions, TransferObject } from '@ionic-native/transfer';
 import { File } from '@ionic-native/file';
@@ -260,7 +259,7 @@ export class Native {
 	/**
 	 * 上传文件
 	 */
-	/*fileTransfer: TransferObject = this.transfer.create();
+	fileTransfer: TransferObject = this.transfer.create();
 	// full example
 	upload(fileurl,apiurl,params) {
 		let options: FileUploadOptions = {
@@ -281,7 +280,7 @@ export class Native {
 		}, (error) => {
 			// handle error
 		});
-	}*/
+	}
 	/**
 	 * 获得用户当前坐标
 	 * @return {Promise<T>}

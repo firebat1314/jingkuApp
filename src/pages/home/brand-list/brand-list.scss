@@ -40,6 +40,9 @@ page-brand-list {
         display: flex;
         justify-content: center;
         align-items: center;
+        &.segment-activated{
+            color: #3f69a5;
+        }
         .myicon {
             margin-left: 5px;
             margin-left: 4px;
@@ -85,15 +88,12 @@ page-brand-list {
         height: 1px;
         border-top: 1px solid #e0e0e0;
         width: 63%;
-        margin: 10px auto;
+        margin: 25px auto;
         font-size: 1rem;
         >div {
-            background: $content-bg;
-            margin: -10px auto 0;
             background: #f5f5f5;
-            margin: -10px auto 0;
-            width: max-content;
-            padding: 0 10px;
+            margin: -8px auto 0;
+            padding: 0 30px;
         }
     }
     .page {

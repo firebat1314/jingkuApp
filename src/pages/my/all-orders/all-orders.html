@@ -48,7 +48,8 @@
                     <div [innerHtml]="item.goods[0].goods_attr"></div>
                 </div>
                 <div class="right">
-                    <div>{{item.goods[0].format_amount}}</div>
+                    <div class="price color" *ngIf="!(item.goods[0].pro_id>0)">{{item.goods[0].format_goods_price}}</div>
+                    <div class="price color" *ngIf="item.goods[0].pro_id>0">{{item.goods[0].reduce_price}}<p class="old">{{item.goods[0].format_goods_price}}</p></div>
                     <div class="count">x{{item.goods[0].goods_number}}</div>
                 </div>
             </div>

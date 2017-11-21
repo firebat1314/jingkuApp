@@ -67,7 +67,11 @@ export class SettingPage {
     this.native.openAlertBox('确定退出登陆？', () => {
       this.httpService.logout().then((res) => {
         // console.log(res);
-        this.app.getRootNav().setRoot('LoginPage', {}, { animate: true });
+        if (this.native.isMobile()) {
+          this.app.getRootNav().setRoot('LoginPage', {}, { animate: true });
+        } else {
+          this.app.getRootNav().setRoot('WellcomeNewmPage', {}, { animate: true });
+        }
         this.httpService.setStorage('hasLoggedIn', false);
         this.httpService.removeStorage("token");
       })

@@ -7,8 +7,8 @@
 <ion-header>
 
     <ion-navbar>
-        <ion-title *ngIf="!addressId">添加收获地址</ion-title>
-        <ion-title *ngIf="addressId">编辑收获地址</ion-title>
+        <ion-title *ngIf="!addressId">添加收货地址</ion-title>
+        <ion-title *ngIf="addressId">编辑收货地址</ion-title>
         <ion-buttons end>
             <button ion-button clear (click)="deleteThis()" *ngIf="addressId!=undefined">删除</button>
         </ion-buttons>
@@ -23,25 +23,25 @@
         <ion-list>
             <ion-item>
                 <ion-label mode="ios" fixed>收货人姓名</ion-label>
-                <ion-input required clearInput type="text" placeholder="请填写" [(ngModel)]="formData.consignee" name="consignee"></ion-input>
+                <ion-input tappable required clearInput type="text" placeholder="请填写" [(ngModel)]="formData.consignee" name="consignee"></ion-input>
             </ion-item>
             <ion-item>
                 <ion-label mode="ios" fixed>手机号码</ion-label>
-                <ion-input required clearInput type="number" placeholder="手机号码" [(ngModel)]="formData.mobile" name="mobile"></ion-input>
+                <ion-input tappable required clearInput type="number" placeholder="手机号码" [(ngModel)]="formData.mobile" name="mobile"></ion-input>
             </ion-item>
             <ion-item mode="ios" detail-push>
                 <ion-label mode="ios" fixed>所在地区</ion-label>
-                <city-picker required item-content margin-left cancelText="取消" doneText="完成" separator="-" [citiesData]="cityData" [(ngModel)]="cityName" name="cityName" (ionChange)="cityChange($event)" placeholder="请选择">
+                <city-picker tappable required item-content margin-left cancelText="取消" doneText="完成" separator="-" [citiesData]="cityData" [(ngModel)]="cityName" name="cityName" (ionChange)="cityChange($event)" placeholder="请选择">
                 </city-picker>
             </ion-item>
             <ion-item>
                 <ion-label mode="ios" fixed>详细地址</ion-label>
-                <ion-textarea type="text" required clearInput placeholder="请填写" [(ngModel)]="formData.address" name="address"></ion-textarea>
+                <ion-textarea tappable type="text" required clearInput placeholder="请填写" [(ngModel)]="formData.address" name="address"></ion-textarea>
             </ion-item>
         </ion-list>
         <div class="setDefault">
             <label tappable>
-                <ion-checkbox color="jingku1" mode="ios" [(ngModel)]="default" name="default" margin-horizontal></ion-checkbox>设置默认
+                <ion-checkbox tappable color="jingku1" mode="ios" [(ngModel)]="default" name="default" margin-horizontal></ion-checkbox>设置默认
             </label>
         </div>
         <div padding>

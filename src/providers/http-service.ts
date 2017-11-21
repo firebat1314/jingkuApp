@@ -188,7 +188,7 @@ export class HttpService {
     return this.http.get(IP + '/Flow/select_payment', data, )
   }
   selectShippinSuppliers(data?: Object) {//选择配送方式
-    return this.http.get(IP + '/Flow/select_shippin_suppliers', data,)
+    return this.http.get(IP + '/Flow/select_shippin_suppliers', data, )
   }
   newSelectShippinSuppliers(data?: Object) {//改版 选择配送方式
     return this.http.get(IP + '/Flow/new_select_shippin_suppliers', data)
@@ -353,7 +353,7 @@ export class HttpService {
     return this.http.get(IP + '/Index/presell', data)
   }
   helpInfo(data?: Object) {//帮助中心
-    return this.http.get(IP + '/User/helpInfo', data, true)
+    return this.http.get(IP + '/User/helpInfo', data)
   }
   userRank(data?: Object) {//用户等级
     return this.http.get(IP + '/User/UserRank', data)
@@ -510,31 +510,36 @@ export class HttpService {
    * 申请售后
    */
   isGoodsRepair(data?: Object) {
-    return this.http.post(IP + '/User/is_goods_repair ', data)
+    return this.http.post(IP + '/User/is_goods_repair', data)
   }
   /**
    * 退换返修
    */
   moreGoodsRepair(data?: Object) {
-    return this.http.post(IP + '/User/more_goods_repair  ', data)
+    return this.http.post(IP + '/User/more_goods_repair', data)
   }
   /**
    * 镜片属性价格
    */
   changeprice(data?: Object) {
-    return this.http.post(IP + '/Goods/changeprice  ', data)
+    return this.http.post(IP + '/Goods/changeprice', data)
   }
   /**
    * 购物车商品属性
    */
   changeProductNum(data?: Object) {
-    return this.http.post(IP + '/Flow/change_product_num  ', data)
+    return this.http.post(IP + '/Flow/change_product_num', data)
   }
   /**
    * 购物车商品属性
    */
   get_flow_goods_number(data?: Object) {
-    return this.http.post(IP + '/Flow/get_flow_goods_number  ', data)
+    return this.http.post(IP + '/Flow/get_flow_goods_number', data)
   }
-  
+  /**
+   * 微信分享
+   */
+  weixinfenx(data?: Object) {
+    return this.http.post(IP + '/Index/weixinfenx', data)
+  }
 }
