@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import 'rxjs/add/operator/map';
 import { Transfer, TransferObject } from '@ionic-native/transfer';
 import { File } from '@ionic-native/file';
-import { AlertController, Platform } from 'ionic-angular';
+import { AlertController, Platform, App } from 'ionic-angular';
 import { Native } from './native';
 import { IP, version } from "./constants";
 import { HttpService } from './http-service';
@@ -24,6 +24,7 @@ export class UpgradeProvider {
     private native: Native,
     private httpService: HttpService,
     private iab: InAppBrowser,
+    private app: App,
     private platform: Platform
   ) {
     console.log('Hello UpgradeProvider Provider');
@@ -35,7 +36,6 @@ export class UpgradeProvider {
   detectionUpgrade() {
     //这里连接后台获取app最新版本号,然后与当前app版本号(this.getVersionNumber())对比
     //版本号不一样就需要申请,不需要升级就return
-    console.log('this.native.isIos()', this.native.isIos())
     this.httpService.versionInfo().then((res) => {
       if (this.native.isIos()) {
         if (String(version) < res.ios.version) {
@@ -110,6 +110,31 @@ export class UpgradeProvider {
             }).present();
           }
         }
+      }
+      if (this.native.isMobileweb()) {
+        this.httpService.getStorage('version').then((ver) => {
+          if (ver != version) {
+            this.httpService.setStorage('version', version);
+            this.httpService.getStorage('hasLoggedIn').then((hasLoggedIn) => {
+              if (hasLoggedIn) {
+                this.alertCtrl.create({
+                  title: '镜库',
+                  subTitle: '请重新登录',
+                  message: '',
+                  enableBackdropDismiss: false,
+                  buttons: [{
+                    text: '确定',
+                    handler: () => {
+                      this.app.getRootNav().setRoot('LoginPage', {}, { animate: true });
+                      this.httpService.setStorage('hasLoggedIn', false);
+                      this.httpService.removeStorage("token");
+                    }
+                  }]
+                }).present();
+              }
+            })
+          }
+        })
       }
     })
   }

@@ -30,12 +30,12 @@ export class MeunItemComponent {
 	) {
 		this.events.subscribe('user:listFilter', (res) => {
 			this.data = res;
-			// this.default_data = res;
 			this.storage.set('filterList', res);
 
 			this.selectItem(res.goods_attr_arr[0].data, 'brand_id');
 			this.selectItem(res.goods_attr_arr[1].data, 'cat_id');
 			this.selectPrice(res);
+			
 			let firstItem = this.data.goods_attr_arr[2].data[0];
 			let index = this.data.goods_attr_arr[2].data.length - 1;
 			let lastItem = this.data.goods_attr_arr[2].data[index];
@@ -76,24 +76,32 @@ export class MeunItemComponent {
 			}
 		}
 	}
+	attrToggle(item,items){
+		if (item.selected) {
+         item.selected = 0;
+      } else {
+         for (let i = 0; i < items.values.length; i++) {
+            items.values[i].selected = 0;
+			}
+			items.selectedid = item.id
+         item.selected = 1;
+      }
+	}
 	confirm() {
 		var filter = [];
 		this.filterParams.filter = '';
 		var data = this.data.goods_attr_arr[3].data
 		for (let i = 0; i < data.length; i++) {
-			if (data[i].selected || data[i].selected == 0) {
-				filter.push(data[i].selected);
+			if (data[i].selectedid) {
+				filter.push(data[i].selectedid);
 			}
 		}
 		this.filterParams.filter = filter.join('.');
 		this.events.publish('user:filterParams', this.filterParams);
 		console.log("我一共选择了：", this.filterParams);
 
-
 	}
 	reset() {
-		// console.log(this.data == this.default_data)
-		// console.log(this.data, this.default_data)
 		this.storage.get('filterList').then((res) => {
 			this.data = res;
 			this.selectPrice(res);

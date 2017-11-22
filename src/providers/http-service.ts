@@ -540,6 +540,6 @@ export class HttpService {
    * 微信分享
    */
   weixinfenx(data?: Object) {
-    return this.http.post(IP + '/Index/weixinfenx', data)
+    return this.http.post(IP + '/Login/weixinfenx', data)
   }
 }

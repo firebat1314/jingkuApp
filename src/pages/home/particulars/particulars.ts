@@ -75,68 +75,16 @@ export class ParticularsPage {
     })
   }
   getHttpDetails() {
+
     return this.http.goodsInfos({ goods_id: this.goodsId }).then((res) => {
       // console.log("商品详情信息", res);
       if (res.status == 1) {
-        this.wxService.config().then(() => {
-          this.wxService.oWx.onMenuShareTimeline({
-            title: '镜库科技', // 分享标题
-            link: 'http://newm.jingkoo.net/#/nav/n4/tabs/tabs/t0/home/particulars/' + res.data.goods_id, // 分享链接，该链接域名或路径必须与当前页面对应的公众号JS安全域名一致
-            imgUrl: res.data.goods_thumb, // 分享图标
-            success: function () {
-              // 用户确认分享后执行的回调函数
-              this.native.showToast('分享成功');
-            },
-            cancel: function () {
-              // 用户取消分享后执行的回调函数
-              this.native.showToast('取消分享');
-            }
-          });
-          this.wxService.oWx.onMenuShareAppMessage({
-            title: '镜库科技', // 分享标题
-            desc: res.data.goods_name, // 分享描述
-            link: 'http://newm.jingkoo.net/#/nav/n4/tabs/tabs/t0/home/particulars/' + res.data.goods_id, // 分享链接，该链接域名或路径必须与当前页面对应的公众号JS安全域名一致
-            imgUrl: res.data.goods_thumb, // 分享图标
-            type: 'link', // 分享类型,music、video或link，不填默认为link
-            dataUrl: '', // 如果type是music或video，则要提供数据链接，默认为空
-            success: function () {
-              // 用户确认分享后执行的回调函数
-              this.native.showToast('分享成功');
-            },
-            cancel: function () {
-              // 用户取消分享后执行的回调函数
-              this.native.showToast('取消分享');
-            }
-          });
-          this.wxService.oWx.onMenuShareQQ({
-            title: '镜库科技', // 分享标题
-            desc: res.data.goods_name, // 分享描述
-            link: 'http://newm.jingkoo.net/#/nav/n4/tabs/tabs/t0/home/particulars/' + res.data.goods_id, // 分享链接，该链接域名或路径必须与当前页面对应的公众号JS安全域名一致
-            imgUrl: res.data.goods_thumb, // 分享图标
-            success: function () {
-              // 用户确认分享后执行的回调函数
-              this.native.showToast('分享成功');
-            },
-            cancel: function () {
-              // 用户取消分享后执行的回调函数
-              this.native.showToast('取消分享');
-            }
-          });
-          this.wxService.oWx.onMenuShareWeibo({
-            title: '镜库科技', // 分享标题
-            desc: res.data.goods_name, // 分享描述
-            link: 'http://newm.jingkoo.net/#/nav/n4/tabs/tabs/t0/home/particulars/' + res.data.goods_id, // 分享链接，该链接域名或路径必须与当前页面对应的公众号JS安全域名一致
-            imgUrl: res.data.goods_thumb, // 分享图标
-            success: function () {
-              // 用户确认分享后执行的回调函数
-              this.native.showToast('分享成功');
-            },
-            cancel: function () {
-              // 用户取消分享后执行的回调函数
-              this.native.showToast('取消分享');
-            }
-          });
-        });
+        /* this.wxService.config(location.hash,{
+          title: '镜库科技', // 分享标题
+          desc: res.data.goods_name, // 分享描述
+          link:  location.href, // 分享链接，该链接域名或路径必须与当前页面对应的公众号JS安全域名一致
+          imgUrl: res.data.goods_thumb, // 分享图标
+        }) */
 
         this.getGoodsInfo = res;
         this.getRegionName(res);

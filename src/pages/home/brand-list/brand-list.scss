@@ -43,6 +43,9 @@ page-brand-list {
         &.segment-activated{
             color: #3f69a5;
         }
+        &[menuToggle]{
+            color: inherit;
+        }
         .myicon {
             margin-left: 5px;
             margin-left: 4px;

@@ -69,7 +69,7 @@ export class RadiolistModel {
       }
    }
    toggleItem3(item, items): void {
-      if (item.selected == 1) {
+      if (item.selected) {
          item.selected = 0;
          this.item.brand_id = '';
       } else {
