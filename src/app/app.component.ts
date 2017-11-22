@@ -1,6 +1,6 @@
 import { Component, ViewChild } from '@angular/core';
 import { Storage } from '@ionic/storage';
-import { Platform, ToastController, Nav, IonicApp, Events, Keyboard } from 'ionic-angular';
+import { Platform, ToastController, Nav, IonicApp, Events, Keyboard, App } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 
@@ -33,9 +33,11 @@ export class MyApp {
     private imageLoaderConfig: ImageLoaderConfig,
     private native: Native,
     private upgradeProvider: UpgradeProvider,
+    private app: App,
+    private wxService: WxServiceProvider,
   ) {
     //———————————————————————— app更新 ————————————————————————
-    // this.upgradeProvider.detectionUpgrade();
+    this.upgradeProvider.detectionUpgrade();
     
     this.initializeApp();
     //用户失效事件
@@ -130,6 +132,13 @@ export class MyApp {
         } else if (res === 0) {
           this.jpushService.stopPush();
         }
+      })
+      this.app.viewDidEnter.subscribe((e)=>{
+        console.log(1)
+        this.wxService.config(location.href,{
+          title: '镜库科技', // 分享标题
+          link:  location.href, // 分享链接，该链接域名或路径必须与当前页面对应的公众号JS安全域名一致
+        })
       })
     });
   }

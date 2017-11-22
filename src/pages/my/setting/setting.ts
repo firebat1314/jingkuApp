@@ -59,6 +59,9 @@ export class SettingPage {
         // this.httpService.setStorage('has_entered', false);
         setTimeout(() => {
           this.native.showToast('已清空缓存');
+          if (!this.native.isMobile()) {
+            this.app.getRootNav().setRoot('LoginPage', {}, { animate: true });
+          }
         }, 500);
       })
     })
