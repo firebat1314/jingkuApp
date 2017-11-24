@@ -165,10 +165,11 @@ export class BrandListPage {
 	shopPriceStatus = true;
 	mytoolChange() {//——_——|||.....
 		if (this.mytool == 'all') {
-			/* this.paramsData.order = '';
+			
+			this.paramsData.order = '';
 			this.salesNumStatus = true;
 			this.shopPriceStatus = true;
-			if (this.allStatus) {
+			/* if (this.allStatus) {
 				this.paramsData.stort = 'ASC';
 				this.allStatus = false;
 				this.getListData();
@@ -180,10 +181,11 @@ export class BrandListPage {
 			this.getListData();
 		}
 		if (this.mytool == 'sales_num') {
-			/* this.paramsData.order = 'sales_num';
+			
+			this.paramsData.order = 'sales_num';
 			this.allStatus = true;
 			this.shopPriceStatus = true;
-			if (!this.salesNumStatus) {
+			/* if (!this.salesNumStatus) {
 				this.paramsData.stort = 'ASC';
 				this.salesNumStatus = true;
 				this.getListData();

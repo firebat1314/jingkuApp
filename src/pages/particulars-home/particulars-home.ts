@@ -377,10 +377,10 @@ export class ParticularsHomePage {
   alltoolChange() {
     this.paramsData.page = 1;
     if (this.alltool == 'all') {
-      /* this.paramsData.order = '';
+       this.paramsData.order = '';
       this.sales_NumStatus = true;
       this.shop_PriceStatus = true;
-      if (this.all_Status) {
+      /*if (this.all_Status) {
         this.paramsData.stort = 'ASC';
         this.all_Status = false;
         this.getAllData();
@@ -392,10 +392,10 @@ export class ParticularsHomePage {
       this.getAllData();
     }
     if (this.alltool == 'sales_num') {
-      /* this.paramsData.order = 'sales_num';
+       this.paramsData.order = 'sales_num';
       this.shop_PriceStatus = true;
       this.all_Status = true;
-      if (this.sales_NumStatus) {
+      /* if (this.sales_NumStatus) {
         this.paramsData.stort = 'ASC';
         this.sales_NumStatus = false;
         this.getAllData();

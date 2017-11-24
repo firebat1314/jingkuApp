@@ -59,7 +59,7 @@ export class MyCanvasComponent {
     cxt.closePath();
     cxt.fill();
     //生成中间百分比文字
-    cxt.font = "1.2rem arial";
+    cxt.font = "13px arial";
     cxt.fillStyle = "#fff";
     cxt.textAlign = "center";
     cxt.fillText('已抢', 30, 27);
