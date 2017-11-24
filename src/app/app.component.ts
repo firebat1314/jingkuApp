@@ -38,7 +38,7 @@ export class MyApp {
   ) {
     //———————————————————————— app更新 ————————————————————————
     this.upgradeProvider.detectionUpgrade();
-    
+
     this.initializeApp();
     //用户失效事件
     this.events.subscribe('signOut', () => {
@@ -133,13 +133,15 @@ export class MyApp {
           this.jpushService.stopPush();
         }
       })
-      this.app.viewDidEnter.subscribe((e)=>{
-        console.log(1)
-        this.wxService.config(location.href,{
-          title: '镜库科技', // 分享标题
-          link:  location.href, // 分享链接，该链接域名或路径必须与当前页面对应的公众号JS安全域名一致
+      if (this.native.isMobileweb()) {
+        this.app.viewDidLoad.subscribe((e) => {
+          console.log(1, location.href)
+          this.wxService.config(location.href, {
+            title: '镜库科技', // 分享标题
+            link: location.href, // 分享链接，该链接域名或路径必须与当前页面对应的公众号JS安全域名一致
+          })
         })
-      })
+      }
     });
   }
   //双击退出提示框

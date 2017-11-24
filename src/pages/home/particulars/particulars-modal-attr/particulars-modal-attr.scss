@@ -1,27 +1,38 @@
+/* .content-ios:not([no-bounce]) > .scroll-content::before{
+    bottom: 0px;
+} */
+
 page-particulars-modal-attr {
-    .toolbar {
-        min-height: 44px;
-    }
     .head {
         h2 {
             color: #666;
             @include ellipsis_2;
         }
-    }
-    .item p {
-        font-size: font-size-text('h5');
-        &:last-child {
-            font-size: font-size-text('h3');
-            color: red;
+        p {
+            font-size: font-size-text('h5');
+            &:last-child {
+                font-size: font-size-text('h3');
+                color: red;
+            }
         }
     }
     .price {
         color: map-get($colors, danger);
     }
+    .scroll-content {
+        display: flex;
+        flex-direction: column;
+        .head {
+            flex-shrink: 0;
+        }
+        .main {
+            margin-top: 10px;
+            overflow-x: scroll;
+        }
+    }
     .goods_main {
         color: #808080;
         font-size: font-size-text('h4');
-        margin-bottom: 10px;
         display: flex;
         flex-direction: column;
         .main-attr-wrap {
@@ -40,6 +51,7 @@ page-particulars-modal-attr {
         /* —————————————————————————————————————————————————— */
         table {
             min-width: 100%;
+            background: #fff;
             tr {
                 height: 40px;
                 border-bottom: $border;
@@ -55,6 +67,7 @@ page-particulars-modal-attr {
                 }
                 th {
                     min-width: 74px;
+                    text-align: center;
                     font-weight: 500;
                 }
                 td {
@@ -69,9 +82,9 @@ page-particulars-modal-attr {
         .tabelbox {
             display: flex;
             overflow: scroll;
+            background: #fff;
             .table {
                 flex: 1;
-                background: #fff;
                 .tr {
                     border-bottom: $border;
                     color: #808080;
@@ -81,14 +94,14 @@ page-particulars-modal-attr {
                         align-items: center;
                         .td {
                             min-width: 74px;
-                            margin: 0 10px;
+                            padding: 0 10px;
                             text-align: center;
                             display: flex;
                             justify-content: center;
                             align-items: center;
                             flex: 1;
                             &:first-child {
-                                min-width: 100px;
+                                min-width: 114px;
                             }
                             .td.count-input-box {
                                 padding-left: 10px;
@@ -152,7 +165,7 @@ page-particulars-modal-attr {
                 font-size: 1.6rem;
                 div:first-child {
                     color: #e60000;
-                    .youhui{
+                    .youhui {
                         color: #666;
                         font-size: 1.4rem;
                     }
@@ -168,6 +181,7 @@ page-particulars-modal-attr {
             >button {
                 border: 1px solid #e0e0e0;
                 width: 45%;
+                color: #333;
             }
         }
     }
