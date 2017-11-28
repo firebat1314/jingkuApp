@@ -16,19 +16,20 @@ import { Native } from "../../../../providers/native";
 })
 export class InvoiceQualificationPage {
   formData = {
-    ivid: this.navParams.get('ivid') || '',
+    ivid: this.navParams.get('ivid') || null,
     type: '1',
-    payee: '',
+    payee: null,
     inv_type: '1',
-    company: '',
-    sw_sn: '',
-    bank_name: '',
-    bank_sn: '',
-    address: '',
-    tel: '',
+    company: null,
+    sw_sn: null,
+    bank_name: null,
+    bank_sn: null,
+    address: null,
+    tel: null,
     yyzz: null,//执照复印件
     // swdj: null,//税务登记复印件
     // zgez: null//资格认证复印件
+    taxpayer_num: null
   }
   constructor(
     public navCtrl: NavController,
@@ -58,6 +59,7 @@ export class InvoiceQualificationPage {
         this.formData.address = res.data.address;
         this.formData.tel = res.data.tel;
         this.formData.yyzz = res.data.yyzz;
+        this.formData.taxpayer_num = res.data.taxpayer_num;
         // this.formData.swdj = res.data.swdj;
         // this.formData.zgez = res.data.zgez;
       }
