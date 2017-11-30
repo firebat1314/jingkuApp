@@ -4,7 +4,7 @@
     "start_url": "index.html",
     "display": "standalone",
     "icons": [{
-        "src": "assets/icon/jingku.ico",
+        "src": "./assets/icon/jingku.ico",
         "sizes": "64x64",
         "type": "image/x-icon"
     }],

@@ -38,9 +38,12 @@ export class LoginPage {
       this.httpService.login(this.loginInfo).then(data => {
         // console.log(data)
         if (data.status == 1) {
-          this.httpService.setUsername(this.loginInfo.username);
-          this.httpService.setToken(data.data.token);
-          this.httpService.setStorage(this.httpService.HAS_LOGGED_IN, true);
+          
+          this.httpService.setStorage('token', data.data.token);
+          this.httpService.setStorage('hasLoggedIn', true);
+          this.httpService.setStorage('username', data.data.username);
+          this.httpService.setStorage('login_info', data);
+
           let toast = this.toastCtrl.create({
             message: "欢迎回来，" + data.data.user_name || this.loginInfo.username,
             duration: 2000,

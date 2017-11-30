@@ -13,7 +13,6 @@ import { IP } from './constants';
 */
 @Injectable()
 export class HttpService {
-  public HAS_LOGGED_IN = "hasLoggedIn";
 
   constructor(public http: UserData, private storage: Storage) {
     console.log('Hello HttpService Provider');
