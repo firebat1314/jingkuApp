@@ -4,7 +4,10 @@
 
 page-particulars-modal {
     .header .toolbar {
+        min-height: 44px;
+        padding-top: 4px;
         .title {
+            padding-top: 0;
             .toolbar-title {
                 min-height: 44px;
                 min-width: 44px;
