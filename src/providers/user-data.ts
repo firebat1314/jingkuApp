@@ -92,7 +92,12 @@ export class UserData {
             msg = '数据加载出错';
             if (error.statusText == 'Unauthorized') {
                 msg = '登录异常，请重新登录';
-                this.storage.set('hasLoggedIn', false)
+                
+                this.storage.remove('hasLoggedIn');
+                this.storage.remove("token");
+                this.storage.remove("username");
+                this.storage.remove("login_info");
+
                 if (this.showToastTime) {
                     this.myAlert(msg,()=>{
                         this.events.publish('signOut');
