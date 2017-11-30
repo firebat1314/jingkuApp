@@ -4,7 +4,7 @@ import { Transfer, TransferObject } from '@ionic-native/transfer';
 import { File } from '@ionic-native/file';
 import { AlertController, Platform, App } from 'ionic-angular';
 import { Native } from './native';
-import { IP, version } from "./constants";
+import { IP, version, version_m } from "./constants";
 import { HttpService } from './http-service';
 import { InAppBrowser } from '@ionic-native/in-app-browser';
 
@@ -112,11 +112,12 @@ export class UpgradeProvider {
         }
       }
       if (this.native.isMobileweb()) {
-        this.httpService.getStorage('version').then((ver) => {
-          if (ver != version) {
-            this.httpService.setStorage('version', version);
+        this.httpService.getStorage('version_m').then((ver) => {
+          if (ver != version_m) {
+            this.httpService.setStorage('version_m', version_m);
             this.httpService.getStorage('hasLoggedIn').then((hasLoggedIn) => {
               if (hasLoggedIn) {
+                this.httpService.removeStorage('token');
                 this.alertCtrl.create({
                   title: '镜库',
                   subTitle: '请重新登录',

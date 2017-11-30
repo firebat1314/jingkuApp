@@ -205,10 +205,10 @@ export class ParticularsModalAttrPage {
 		}).then((res) => {
 			if (res.status) {
 				if (res.data.promotion_id > 0) {
-					item.price = res.data.promotion_price.substr(1);
+					item.price = res.data.promotion_price.substr(1).toFixed(2);
 					item.youhui = (res.data.price-(res.data.promotion_price.substr(1))).toFixed(2);
 				} else {
-					item.price = res.data.price;
+					item.price = res.data.price.toFixed(2);
 				}
 				this.jingpianNumberChange(item.number, item);
 			}

@@ -53,6 +53,10 @@ export class MyApp {
   }
   initializeApp() {
     this.platform.ready().then(() => {
+      window.addEventListener('statusTap', function() {
+        console.log(111)
+          // scroll-up with document.body.scrollTop = 0; or do whatever you want
+      });
       //———————————————————————— 初次进入app引导页面 ————————————————————————
       if (this.native.isMobile()) {
         this.storage.get('has_entered').then((result) => {
@@ -64,7 +68,7 @@ export class MyApp {
         })
       } else {
         if (!this.native.isMobileweb()) {
-          location.href = 'http://www.jingku.cn/default.html';
+          location.href = 'https://www.jingku.cn/default.html';
           return;
         }
         // this.rootPage = 'WellcomeNewmPage';//TabsPage//WellcomeNewmPage
