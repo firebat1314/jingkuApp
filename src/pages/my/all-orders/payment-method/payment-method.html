@@ -57,7 +57,7 @@
                 <div class="zf_x" tappable (click)="userYue()" [class.selected]="yE" [class.disable]="!user_money">
                     <img src="./assets/icon/close_ico4.png" alt="">
                     <div class="p1">镜库余额</div>
-                    <div class="p2">可用余额：{{user_money||'0.00'}}</div>
+                    <div class="p2">可用余额：¥{{user_money||'0.00'}}</div>
                 </div>
                 <div class="zf_x" (click)="paymentType='alipay'" *ngIf="data?.is_weixin===0" [class.selected]="paymentType=='alipay'">
                     <img src="./assets/icon/close_ico5.png" alt="">
@@ -95,7 +95,10 @@
 
 <ion-footer *ngIf="data?.order_info?.pay_id!=4">
     <button color="jingku1" no-margin ion-button large full class="modal-button" (click)="toPay()">
-        <span *ngIf="paymentType&&yE">组合支付 </span>{{data?.amout || '--'}}</button>
+        <span *ngIf="paymentType&&yE">组合支付&nbsp;</span>
+        <span *ngIf="!(paymentType&&yE)">支付&nbsp;</span>
+        {{data?.amout || '--'}}
+    </button>
 </ion-footer>
 
 

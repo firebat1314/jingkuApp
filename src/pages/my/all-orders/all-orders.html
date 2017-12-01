@@ -45,6 +45,9 @@
             <div class="my-content">
                 <div class="left">
                     <h2>{{item.goods[0].goods_name}}</h2>
+                    <span *ngIf="item.qiujing">球镜：{{item.goods[0].qiujing}}<br/></span>
+                    <span *ngIf="item.goods[0].zhujing">柱镜：{{item.goods[0].zhujing}}<br/></span>
+                    <span *ngIf="item.goods[0].zhouwei">轴位：{{item.zhouwei}}<br/></span>
                     <div [innerHtml]="item.goods[0].goods_attr"></div>
                 </div>
                 <div class="right">
