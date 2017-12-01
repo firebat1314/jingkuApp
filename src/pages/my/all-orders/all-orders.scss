@@ -42,6 +42,7 @@ page-all-orders {
                         &+div{
                             @include ellipsis_2();
                             color: inherit;
+                            font-size: 1.2rem;
                         }
                     }
                 }
