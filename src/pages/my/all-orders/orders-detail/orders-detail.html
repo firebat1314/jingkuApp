@@ -24,7 +24,7 @@
                 <div class="name">收货人：{{data?.order?.consignee}}</div>
                 <div class="phone">{{data?.order?.mobile | phonenumberfilter}}</div>
             </div>
-            <div class="address">{{data?.order?.address}}</div>
+            <div class="address">{{data?.order?.region + data?.order?.address}}</div>
         </div>
         <div class="fore3">
             <ion-item-divider>
@@ -69,6 +69,15 @@
                     <div>{{data?.order?.shipping_name}}</div>
                 </div>
                 <div>由商家选择合作快递为您配送</div>
+            </div>
+        </div>
+        <div class="background"></div>
+        <div class="fore4" padding *ngIf="data?.order?.postscript">
+            <div class="top">
+                <div>订单备注</div>
+            </div>
+            <div class="bottom">
+                <div>{{data?.order?.postscript}}</div>
             </div>
         </div>
         <div class="background"></div>

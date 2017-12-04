@@ -36,11 +36,11 @@ export class BusinessmenNotePage {
     console.log('ionViewDidLoad BusinessmenNotePage');
   }
   ionViewWillLeave() {
-    this.writeNotes().then(() => {
+    /* this.writeNotes().then(() => {
 
     }, () => {
 
-    })
+    }) */
   } /* 
    ionViewCanLeave() {
     return this.writeNotes().then(() => {
@@ -124,6 +124,13 @@ export class BusinessmenNotePage {
           reject();
         }
       })
+    })
+  }
+  pagePop(){
+    this.writeNotes().then(() => {
+      this.navCtrl.pop();
+    }, () => {
+      
     })
   }
 }

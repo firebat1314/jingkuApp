@@ -84,7 +84,7 @@ export class ParticularsHomeDetailsPage {
     }
   }
   goShopAllFashionPage() {
-    this.navCtrl.push('ShopAllFashionPage', { brandList: this.shopdata.data.brand_list })
+    this.navCtrl.push('ShopAllFashionPage', { shopdata: this.shopdata.data })
   }
   goBackPage(type) {
     this.navCtrl.push('ParticularsHomePage', { type: type, suppliersId: this.suppliers_id });

@@ -7,7 +7,10 @@
 <ion-header>
 
     <ion-navbar>
-        <ion-title>支付方式</ion-title>
+        <ion-title>镜库收银台</ion-title>
+        <ion-buttons right>
+            <button ion-button clear *ngIf="navCtrl.getPrevious()?.id!='AllOrdersPage'" (click)="goAllOrdersPage()">订单中心</button>
+        </ion-buttons>
     </ion-navbar>
 
 </ion-header>
