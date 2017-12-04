@@ -7,17 +7,18 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
  * See http://ionicframework.com/docs/components/#navigation for more info
  * on Ionic pages and navigation.
  */
-@IonicPage()
+@IonicPage({
+  segment:'shop-all-fashion/:shopdata'
+})
 @Component({
   selector: 'page-shop-all-fashion',
   templateUrl: 'shop-all-fashion.html',
 })
 export class ShopAllFashionPage {
 
-  brandList = this.navParams.get('brandList');
+  shopdata = this.navParams.get('shopdata');
   
   constructor(public navCtrl: NavController, public navParams: NavParams) {
-    console.log(this.brandList)
   }
 
   ionViewDidLoad() {

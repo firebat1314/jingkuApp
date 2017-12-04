@@ -208,6 +208,9 @@ page-particulars-home {
             display: flex;
             justify-content: center;
             align-items: center;
+            &.segment-activated{
+                color: #3f69a5;
+            }
             .myicon {
                 margin-left: 5px;
                 margin-left: 4px;

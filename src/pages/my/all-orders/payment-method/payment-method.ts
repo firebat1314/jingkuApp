@@ -72,6 +72,35 @@ export class PaymentMethodPage {
   ngOnDestroy() {
     this.events.unsubscribe('ChangePayPasswordPage:editPaypwd');
   }
+  ionViewCanLeave() {
+    return new Promise((resolve,reject)=>{
+      this.alertCtrl.create({
+        title: '确认要离开收银台？',
+        message: '您的订单在23小时59分钟内未支付将被取消，请尽快完成支付。',
+        buttons: [
+          {
+            text: '继续支付',
+            handler: () => {
+              resolve(false);
+            }
+          },
+          {
+            text: '确认离开',
+            handler: () => {
+              resolve(true);
+            }
+          }
+        ]
+      }).present()
+    }).then((res)=>{
+      return res;
+    });
+    
+  }
+  goAllOrdersPage(){
+    this.navCtrl.removeView(this.navCtrl.last(),{animate:false});
+    this.navCtrl.push('AllOrdersPage');
+  }
   getUserInfo() {
     this.httpService.userInfo().then((res) => {//检查是否有支付密码
       if (res.status) {
@@ -118,7 +147,7 @@ export class PaymentMethodPage {
           this.native.showToast(res.info);
           // this.navCtrl.popToRoot();
           this.navCtrl.parent.select(3);
-          this.navCtrl.setPages([{ page: 'NewMyPage' }/* , { page: 'AllOrdersPage' } */])
+          this.navCtrl.setPages([{ page: 'NewMyPage' }/* , { page: 'AllOrdersPage' } */]);
         }
       }
     })
