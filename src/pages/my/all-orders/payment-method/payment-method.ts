@@ -79,7 +79,7 @@ export class PaymentMethodPage {
       if (this.canLeave) {
         resolve(true);
       } else {
-        this.alertCtrl.create({
+        var alert = this.alertCtrl.create({
           title: '确认要离开收银台？',
           message: '您的订单在23小时59分钟内未支付将被取消，请尽快完成支付。',
           buttons: [
@@ -96,7 +96,11 @@ export class PaymentMethodPage {
               }
             }
           ]
-        }).present();
+        })
+        alert.present();
+        alert.onDidDismiss((a, b) => {
+          resolve(false);
+        })
       }
     }).then((res) => {
       return res;
