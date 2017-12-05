@@ -30,7 +30,7 @@
         </ion-item-divider>
         <ion-item *ngFor="let item of data?.list">
             <h2>{{item.title}}
-                <ion-note>(订单号 {{item.title}})</ion-note>
+                <ion-note>（{{item.title}}）</ion-note>
             </h2>
             <p>{{item.change_time}}</p>
             <h2 item-right ion-text [color]="item.number>0?'danger':''">{{item.number}}</h2>
