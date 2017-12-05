@@ -158,7 +158,7 @@
                     </ion-segment-button>
                     <ion-segment-button value="shop_price">
                         价格
-                        <div [ngClass]="shop_PriceStatus==false?'sortup':'sortdown'" class="myicon">
+                        <div [ngClass]="alltool=='shop_price'?(shop_PriceStatus==false?'sortup':'sortdown'):'sort'" class="myicon">
                             <div [ngStyle]="{'height':'7px'}">
                                 <ion-icon color="jingku1" name="md-arrow-dropup"></ion-icon>
                             </div>

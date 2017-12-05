@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { IonicPageModule } from 'ionic-angular';
 import { ParticularsHomeDetailsPage } from './particulars-home-details';
 import { ImgLazyLoadDirectiveModule } from "../../../directives/img-lazy-load/img-lazy-load.module";
+import { OpenMoreDirectiveModule } from '../../../directives/open-more/open-more.module';
 
 @NgModule({
   declarations: [
@@ -9,7 +10,8 @@ import { ImgLazyLoadDirectiveModule } from "../../../directives/img-lazy-load/im
   ],
   imports: [
     IonicPageModule.forChild(ParticularsHomeDetailsPage),
-    ImgLazyLoadDirectiveModule
+    ImgLazyLoadDirectiveModule,
+    OpenMoreDirectiveModule
   ],
   exports: [
     ParticularsHomeDetailsPage

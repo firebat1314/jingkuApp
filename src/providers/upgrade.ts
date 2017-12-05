@@ -111,7 +111,7 @@ export class UpgradeProvider {
           }
         }
       }
-      if (this.native.isMobileweb()) {
+      /* if (this.native.isMobileweb()) {
         this.httpService.getStorage('version_m').then((ver) => {
           if (ver != version_m) {
             this.httpService.setStorage('version_m', version_m);
@@ -136,7 +136,13 @@ export class UpgradeProvider {
             })
           }
         })
-      }
+      } */
+      /* if (this.native.isMobileweb()) {
+          if (String(version_m) != res.mobileweb.version) {
+            this.httpService.setStorage('version_m', version_m);
+            location.reload();
+          }
+      } */
     })
   }
 

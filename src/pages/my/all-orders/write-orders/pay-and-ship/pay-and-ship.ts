@@ -33,21 +33,31 @@ export class PayAndShipPage {
       this.data = res;
     })
   }
-  selectPayment(pay_id) {
-    this.httpService.selectPayment({ pay_id: pay_id }).then((res) => {
+  selectPayment(item, items) {
+    this.httpService.selectPayment({ pay_id: item.pay_id }).then((res) => {
       if (res.status == 1) {
-        this.getData().then(() => {
-          this.events.publish('writeOrder:refresh');
-        });
+        for (let i = 0; i < items.length; i++) {
+          const element = items[i].selected = false;
+        }
+        item.selected = true;
+        this.events.publish('writeOrder:refresh');
+        /* this.getData().then(() => {
+        this.events.publish('writeOrder:refresh');
+      }); */
       }
     })
   }
-  selectShippinSuppliers(suppliers_id, shipping_id) {
-    this.httpService.selectShippinSuppliers({ suppliers_id: suppliers_id, shipping: shipping_id }).then((res) => {
+  selectShippinSuppliers(suppliers_id, item, items) {
+    this.httpService.selectShippinSuppliers({ suppliers_id: suppliers_id, shipping: item.shipping_id }).then((res) => {
       if (res.status == 1) {
-        this.getData().then(() => {
-          this.events.publish('writeOrder:refresh');
-        });
+        for (let i = 0; i < items.length; i++) {
+          const element = items[i].selected = false;
+        }
+        item.selected = true;
+        this.events.publish('writeOrder:refresh');
+        /*  this.getData().then(() => {
+        this.events.publish('writeOrder:refresh');
+      }); */
       }
     })
   }
