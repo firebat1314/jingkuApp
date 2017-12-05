@@ -60,7 +60,9 @@ page-brand-list {
                 }
             }
             &.sort {
-                color: #ccc;
+                >div ion-icon {
+                    color: #ccc;
+                }
             }
         }
         ion-icon {

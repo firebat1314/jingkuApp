@@ -34,6 +34,7 @@ export class PaymentMethodPage {
   yE: boolean = false;//是否使用余额
   paymentType: any;//支付方式
   payPassword: any;//用户支付密码
+  canLeave: boolean = false;
   constructor(
     public navCtrl: NavController,
     public navParams: NavParams,
@@ -64,6 +65,7 @@ export class PaymentMethodPage {
       if (res.status == 1) {
         this.data = res;
       } else if (res.status == 0) {
+        this.canLeave = true;
         this.navCtrl.parent.select(3);
         this.navCtrl.setPages([{ page: 'NewMyPage' }/* , { page: 'AllOrdersPage' } */])
       }
@@ -73,33 +75,40 @@ export class PaymentMethodPage {
     this.events.unsubscribe('ChangePayPasswordPage:editPaypwd');
   }
   ionViewCanLeave() {
-    return new Promise((resolve,reject)=>{
-      this.alertCtrl.create({
-        title: '确认要离开收银台？',
-        message: '您的订单在23小时59分钟内未支付将被取消，请尽快完成支付。',
-        buttons: [
-          {
-            text: '继续支付',
-            handler: () => {
-              resolve(false);
+    return new Promise((resolve, reject) => {
+      if (this.canLeave) {
+        resolve(true);
+      } else {
+        this.alertCtrl.create({
+          title: '确认要离开收银台？',
+          message: '您的订单在23小时59分钟内未支付将被取消，请尽快完成支付。',
+          buttons: [
+            {
+              text: '继续支付',
+              handler: () => {
+                resolve(false);
+              }
+            },
+            {
+              text: '确认离开',
+              handler: () => {
+                resolve(true);
+              }
             }
-          },
-          {
-            text: '确认离开',
-            handler: () => {
-              resolve(true);
-            }
-          }
-        ]
-      }).present()
-    }).then((res)=>{
+          ]
+        }).present();
+      }
+    }).then((res) => {
       return res;
     });
-    
   }
-  goAllOrdersPage(){
-    this.navCtrl.removeView(this.navCtrl.last(),{animate:false});
+  leavePageMethod() {
+    this.navCtrl.removeView(this.navCtrl.last(), { animate: false });
     this.navCtrl.push('AllOrdersPage');
+  }
+  goAllOrdersPage() {
+    this.canLeave = true;
+    this.leavePageMethod();
   }
   getUserInfo() {
     this.httpService.userInfo().then((res) => {//检查是否有支付密码
@@ -119,7 +128,7 @@ export class PaymentMethodPage {
       return
     }
 
-    if (this.yE) {
+    if (this.yE) {//使用余额
       this.httpService.checkPayPass({ password: this.payPassword }).then((res) => {//验证密码
         if (res.status) {
           if (this.paymentType) {
@@ -139,15 +148,13 @@ export class PaymentMethodPage {
    * @param data pingxx
    */
   userBalance(data) {
-    this.httpService.doublePayment({ code: data }).then((res) => {//
+    this.httpService.doublePayment({ code: data }).then((res) => {
       if (res.status) {
-        if (res.type == 'pay') {
-          this.openPingPayment(res);
-        } else if (res.type == 'balance') {
+        if (res.type == 'balance') {
           this.native.showToast(res.info);
-          // this.navCtrl.popToRoot();
-          this.navCtrl.parent.select(3);
-          this.navCtrl.setPages([{ page: 'NewMyPage' }/* , { page: 'AllOrdersPage' } */]);
+          this.goAllOrdersPage();
+        } else if (res.type == 'pay') {
+          this.native.showToast('余额不足，请选择其他支付方式');
         }
       }
     })
@@ -189,16 +196,14 @@ export class PaymentMethodPage {
       }).present();
     }
   }
-
   openPingPayment(data) {
     let that = this;
     if (this.native.isMobile()) {
       (<any>window).Pingpp.createPayment(data.pingxx, (result, error) => {//scheme 为iOS返回应用
         console.log('result' + result);
         console.log('error' + error);
-        this.navCtrl.parent.select(3);
-        this.navCtrl.setPages([{ page: 'NewMyPage' }])
         if (result == 'success') {
+          this.goAllOrdersPage();
           that.native.showToast('支付成功');
         } else {
           that.native.showToast('支付失败');
@@ -206,11 +211,13 @@ export class PaymentMethodPage {
       })
     } else {
       if (this.paymentType == 'weixin') {
+        this.canLeave = true;
         location.href = data.url;
       } else {
         pingpp.createPayment(data.pingxx, function (result, err) {
-          this.navCtrl.parent.select(3);
-          this.navCtrl.setPages([{ page: 'NewMyPage' }, { page: 'AllOrdersPage' }]);
+
+          this.goAllOrdersPage();
+
           console.log(result, err)
           if (result == "success") {
             // 只有微信公众账号 wx_pub 支付成功的结果会在这里返回，其他的支付结果都会跳转到 extra 中对应的 URL。

@@ -9,7 +9,7 @@
         <div class="box" *ngIf="item.data?.length">
             <div class="head" *ngIf="item.data?.length != 0 && item.name != '商品属性'">
                 <span class="title">{{item.name}}</span>
-                <span class="all" (click)="item.showmore=!item.showmore" *ngIf="item?.data?.length>3">全部<ion-icon [name]="item.showmore?'ios-arrow-up':'ios-arrow-down'" ></ion-icon></span>
+                <span class="all" (click)="item.showmore=!item.showmore" *ngIf="item?.data?.length>3&&item.name != '商品价格区间'">全部<ion-icon [name]="item.showmore?'ios-arrow-up':'ios-arrow-down'" ></ion-icon></span>
             </div>
             <div class="body" *ngIf="item.name=='商品品牌'">
                 <div class="tap-box">

@@ -36,7 +36,7 @@ export class AccountMoneyDetailPage {
 
   flag: boolean = true;
   doInfinite(infiniteScroll) {
-    if (this.data.page < this.data.pages) {
+    if (this.data.has_more) {
       this.httpService.accountLog({ page: ++this.data.page }).then((res) => {
         if (res.status == 1) {
           Array.prototype.push.apply(this.data.list, res.list);

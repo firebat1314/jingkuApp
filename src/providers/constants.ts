@@ -17,4 +17,4 @@ export const welpage_selected = '';
  
 export const version = '1.1.2';
 
-export const version_m = '1.1.2';
+export const version_m = '1.1.1';

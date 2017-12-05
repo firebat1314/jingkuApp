@@ -226,7 +226,9 @@ page-particulars-home {
                     }
                 }
                 &.sort {
-                    color: #ccc;
+                    >div ion-icon {
+                        color: #ccc;
+                    }
                 }
             }
             ion-icon {

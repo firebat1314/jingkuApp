@@ -30,7 +30,9 @@ export class AccountBalancePage {
       if (res.status == 1) { this.userInfo = res; }
     })
   }
-
+  goAllOrdersPage(){
+    this.navCtrl.setPages([{ page: 'NewMyPage' }, { page: 'AllOrdersPage' }])
+  }
   goRechargePage() {
     this.navCtrl.push('RechargePage');
   }
