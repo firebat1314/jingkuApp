@@ -31,7 +31,7 @@ export class AccountBalancePage {
     })
   }
   goAllOrdersPage(){
-    this.navCtrl.setPages([{ page: 'NewMyPage' }, { page: 'AllOrdersPage' }])
+    this.navCtrl.push('AllOrdersPage');
   }
   goRechargePage() {
     this.navCtrl.push('RechargePage');

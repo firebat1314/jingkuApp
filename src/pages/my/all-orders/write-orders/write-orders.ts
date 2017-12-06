@@ -10,7 +10,7 @@ import { Native } from "../../../../providers/native";
   Ionic pages and navigation.
 */
 @IonicPage({
-  segment: 'write-orders'
+  segment: 'write-orders/:type'
 })
 @Component({
   selector: 'page-write-orders',
@@ -102,7 +102,7 @@ export class WriteOrdersPage {
         //已选择优惠券 yes_bonus
         this.selectedBonus = [];
         for (let i = 0, item = this.data.cart_goods_list; i < item.length; i++) {
-          for (let j = 0, bonus = item[i].use_bonus; j < bonus.length; j++) {
+          for (let j = 0, bonus = item[i].use_bonus||[]; j < bonus.length; j++) {
             if (bonus[j].selected == 1) {
               this.selectedBonus.push(bonus[j])
             }

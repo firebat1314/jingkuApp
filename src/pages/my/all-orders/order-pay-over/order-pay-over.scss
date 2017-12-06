@@ -1,0 +1,61 @@
+page-order-pay-over {
+    .fore1 {
+        padding: 0 10px;
+        .main {
+            padding: 63px 0 50px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            img {
+                width: 48px;
+                margin-right: 10px;
+            }
+            .text_wrap {
+                display: flex;
+                flex-direction: column;
+                >span {
+                    font-size: 1.4rem;
+                    font-weight: 500;
+                    margin-bottom: 10px;
+                    span {
+                        color: #e60000;
+                    }
+                }
+            }
+        }
+        >.button {
+            border-color: #e0e0e0;
+            margin-bottom: 10px;
+        }
+        .careful {
+            color: #999999;
+            font-size: 1.2rem;
+            padding-bottom: 13px;
+        }
+    }
+    .fore2{
+       .supplier{
+          display: flex;
+          justify-content: flex-start;
+          padding: 10px;
+          align-items: center;
+          .logo{
+             border: 1px solid #f0f0f0;
+            margin-right: 10px;
+            width: 70px;
+          }
+          .main{
+             h2{
+                font-size: 1.3rem;
+                margin-bottom: 10px;
+             }
+          }
+       }
+    }
+    .is-heart {
+        .icon {
+            color: #f53d3d;
+            animation: bounceIn 500ms;
+        }
+    }
+}
