@@ -111,6 +111,7 @@ export class PaymentMethodPage {
     this.navCtrl.push('AllOrdersPage');
   }
   goAllOrdersPage() {
+    this.events.publish('allOrders:update');
     this.canLeave = true;
     this.leavePageMethod();
   }
@@ -158,7 +159,11 @@ export class PaymentMethodPage {
           this.native.showToast(res.info);
           this.goAllOrdersPage();
         } else if (res.type == 'pay') {
-          this.native.showToast('余额不足，请选择其他支付方式');
+          if (this.paymentType) {
+            this.openPingPayment(res);
+          }else{
+            this.native.showToast('余额不足，请选择其他支付方式');
+          }
         }
       }
     })

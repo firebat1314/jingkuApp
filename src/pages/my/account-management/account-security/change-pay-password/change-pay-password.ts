@@ -21,8 +21,11 @@ export class ChangePayPasswordPage {
     public httpService: HttpService,
     public events: Events,
     public toastCtrl: ToastController,
-  ) { }
-
+  ) {
+    this.httpService.getStorage('login_info').then((res)=>{
+      this.formData.phone = res.data.mobile_phone;
+    })
+  }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad ChangePayPasswordPage');
