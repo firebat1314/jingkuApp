@@ -97,7 +97,6 @@ export class CarPage {
       type: is_select
     }).then((res) => {
       if (res.status) {
-        this.getFlowGoods();
         this.events.publish('car:update');
       }
     })
