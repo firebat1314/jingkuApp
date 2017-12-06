@@ -36,7 +36,7 @@
         <span class="txt">精选品牌</span>
       </div>
       <div class="body">
-        <div tappable [ads-click]="item.link_type" *ngFor="let item of fore2">
+        <div tappable [ads-click]="item.link_type" defaultSrc="./assets/images/images/262-185.jpg" *ngFor="let item of fore2">
           <img img-lazy-load="{{item.ad_img}}" alt="">
           <h3>{{item.ad_name}}</h3>
           <span>{{item.link_man}}</span>
@@ -70,7 +70,7 @@
       <div class="body">
         <!--<div class="top"><img src="./assets/icon/images/brand_1_13.jpg" alt=""></div>-->
         <div class="top" *ngIf="brandList?.cate_ads&&brandList?.cate_ads[i]">
-          <img tappable [ads-click]="brandList?.cate_ads[i]?.link_type" img-lazy-load="{{brandList?.cate_ads[i]?.ad_img}}" alt="">
+          <img tappable [ads-click]="brandList?.cate_ads[i]?.link_type" img-lazy-load="{{brandList?.cate_ads[i]?.ad_img}}" defaultSrc="./assets/images/images/262-185.jpg" alt="">
         </div>
         <div class="main">
           <ng-container *ngFor="let img of item.ads;let i = index;">

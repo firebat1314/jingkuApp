@@ -97,7 +97,7 @@
                     <div *ngIf="(!selectedShip&&!paymentMothdName)">请选择</div>
                 </ion-note>
             </ion-item>
-            <ion-item mode="ios" tappable (click)="goUsecouponPage()" detail-push class="coupon">
+            <ion-item mode="ios" tappable (click)="goUsecouponPage()" detail-push class="coupon" *ngIf="goodsType!='integral'">
                 优惠券选择
                 <span class="count" *ngIf="selectedBonus.length">已选{{selectedBonus.length||0}}张</span>
                 <span class="count" *ngIf="data?.yes_bonus&&!selectedBonus.length">{{data?.yes_bonus||0}}张可用</span>
@@ -181,10 +181,10 @@
             </div>
         </div>
         <div class="fore fore3" *ngIf="goodsType=='integral'">
-            <div>
+            <!-- <div>
                 <span>购物积分：</span>
                 <span class="price">+ ¥{{data?.total?.integral}}</span>
-            </div>
+            </div> -->
             <div>
                 <span>配送费用：</span>
                 <span>{{data?.total?.suppliers_shipping_fee_formated}}</span>
@@ -198,8 +198,7 @@
     <div class="pagefoot">
         <div class="left">
             <span class="price">实付款: ¥{{data?.total?.amount_formated||'0.00'}}</span>
-            <span *ngIf="goodsType=='integral'">&nbsp;积分:
-                <span class="price">{{data?.total?.integral}}</span>
+            <span *ngIf="goodsType=='integral'">&nbsp;积分:<span class="price">{{data?.total?.integral}}</span>
             </span>
         </div>
         <div class="right">

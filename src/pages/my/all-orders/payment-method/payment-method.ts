@@ -106,14 +106,18 @@ export class PaymentMethodPage {
       return res;
     });
   }
-  leavePageMethod() {
-    this.navCtrl.removeView(this.navCtrl.last(), { animate: false });
-    this.navCtrl.push('AllOrdersPage');
-  }
   goAllOrdersPage() {
     this.events.publish('allOrders:update');
+    this.events.publish('my:update');
     this.canLeave = true;
-    this.leavePageMethod();
+    if (this.navCtrl.getPrevious().id == 'AllOrdersPage') {
+      this.navCtrl.pop();
+    } else {
+      var nav = this.navCtrl.last();
+      this.navCtrl.push('AllOrdersPage').then(() => {
+        this.navCtrl.removeView(nav, { animate: false });
+      });
+    }
   }
   getUserInfo() {
     this.httpService.userInfo().then((res) => {//检查是否有支付密码
@@ -161,7 +165,7 @@ export class PaymentMethodPage {
         } else if (res.type == 'pay') {
           if (this.paymentType) {
             this.openPingPayment(res);
-          }else{
+          } else {
             this.native.showToast('余额不足，请选择其他支付方式');
           }
         }
@@ -224,8 +228,6 @@ export class PaymentMethodPage {
         location.href = data.url;
       } else {
         pingpp.createPayment(data.pingxx, function (result, err) {
-
-          this.goAllOrdersPage();
 
           console.log(result, err)
           if (result == "success") {

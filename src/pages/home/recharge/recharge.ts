@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams, AlertController, IonicPage } from 'ionic-angular';
+import { NavController, NavParams, AlertController, IonicPage, Events } from 'ionic-angular';
 import { HttpService } from "../../../providers/http-service";
 import { Native } from "../../../providers/native";
 
@@ -26,7 +26,8 @@ export class RechargePage {
     public navParams: NavParams,
     public httpService: HttpService,
     public native: Native,
-    private alertCtrl: AlertController
+    private alertCtrl: AlertController,
+    public events: Events,
   ) { }
 
   ionViewDidLoad() {
@@ -97,8 +98,11 @@ export class RechargePage {
         if (result == 'success') {
           this.money = 0;
           that.native.showToast('充值成功');
-          this.navCtrl.parent.select(3);
-          this.navCtrl.setPages([{ page: 'NewMyPage' }, { page: 'AccountMoneyDetailPage' }])
+          this.events.publish('my:update');
+          var nav = this.navCtrl.last();
+          this.navCtrl.push('AccountMoneyDetailPage').then(()=>{
+            this.navCtrl.removeView(nav, { animate: false });
+          });
         } else {
           that.native.showToast('充值失败');
         }
