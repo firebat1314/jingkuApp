@@ -1,5 +1,5 @@
 import { Component, ViewChild, ElementRef, Renderer, ChangeDetectorRef } from '@angular/core';
-import { NavController, NavParams, Events, Content, IonicPage, FabButton, InfiniteScroll } from 'ionic-angular';
+import { NavController, NavParams, Events, Content, IonicPage, FabButton, InfiniteScroll, MenuController } from 'ionic-angular';
 import { HttpService } from "../../../providers/http-service";
 import { Native } from "../../../providers/native";
 /*
@@ -45,7 +45,7 @@ export class BrandListPage {
 		public element: ElementRef,
 		public renderer: Renderer,
 		public ref: ChangeDetectorRef,
-		
+		public menuCtrl: MenuController
 	) { }
 	ionViewDidLoad() {
 		console.log('ionViewDidLoad BrandListPage');
@@ -210,7 +210,12 @@ export class BrandListPage {
 				this.getListData();
 			}
 		}
-	}/* 
+	}
+	openMenu(e){
+		e.stopPropagation();
+		this.menuCtrl.toggle();
+	}
+	/* 
 	previousPage() {
 		if (this.data.page > 1) {
 			this.getListData({ page: --this.data.page })

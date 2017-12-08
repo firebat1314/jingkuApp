@@ -42,6 +42,7 @@ export class ParticularsPage {
     })
   }
   ngOnInit() {
+    
     this.getHttpDetails();
     this.getCarCount();
   }
@@ -51,6 +52,11 @@ export class ParticularsPage {
   ionViewDidLoad() {
     console.log('ionViewDidLoad ParticularsPage');
   }
+  /* ionViewWillEnter(){
+      this.navCtrl.insertPages(0,[{page:'HomePage'}]);
+      console.log(this.navCtrl.getPrevious())
+  } */
+  /* ------------------------- */
   /*   ionViewCanEnter() {
      if(this.firstViewInit){
        return true;

@@ -53,10 +53,10 @@ export class MyApp {
   }
   initializeApp() {
     this.platform.ready().then(() => {
-      window.addEventListener('statusTap', function() {
+      /* window.addEventListener('statusTap', function() {
         console.log(111)
           // scroll-up with document.body.scrollTop = 0; or do whatever you want
-      });
+      }); */
       //———————————————————————— 初次进入app引导页面 ————————————————————————
       if (this.native.isMobile()) {
         this.storage.get('has_entered').then((result) => {
@@ -77,7 +77,11 @@ export class MyApp {
             this.rootPage = 'TabsPage';//TabsPage//WellcomeNewmPage
             // this.nav.setRoot('TabsPage', {}, { animate: true, direction: 'forward' });
           } else {
-            this.rootPage = 'WellcomeNewmPage';
+            if (location.href.indexOf('signup') > -1) {
+              this.rootPage = 'SignupPage';
+            } else {
+              this.rootPage = 'WellcomeNewmPage';
+            }
             // this.nav.setRoot('LoginPage', {}, { animate: true, direction: 'forward' });
           }
         });

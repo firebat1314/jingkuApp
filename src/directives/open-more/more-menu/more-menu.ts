@@ -32,27 +32,27 @@ export class MoreMenuPage {
   }
   goHomePage() {
     this.viewCtrl.dismiss((navCtrl) => {
-      navCtrl.parent.select(0);
-      navCtrl.popToRoot();
+      navCtrl.goToRoot({animate:true });
+      navCtrl.parent.select(0);    
     });
   }
   goClassPage() {
     this.viewCtrl.dismiss((navCtrl) => {
+      navCtrl.goToRoot({animate:true });
       navCtrl.parent.select(1);
-      navCtrl.popToRoot();
     });
   }
   goCartPage() {
     this.viewCtrl.dismiss((navCtrl) => {
+      navCtrl.goToRoot({animate:true });
       navCtrl.parent.select(2);
-      navCtrl.popToRoot();
     });
 
   }
   goMyPage() {
     this.viewCtrl.dismiss((navCtrl) => {
+      navCtrl.goToRoot({animate:true });
       navCtrl.parent.select(3);
-      navCtrl.popToRoot();
     });
 
   }

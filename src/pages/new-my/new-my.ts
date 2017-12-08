@@ -144,7 +144,7 @@ export class NewMyPage {
   }
   goAccountManagementPage(event) {
     event.stopPropagation();
-    this.navCtrl.push('AccountManagementPage', { avatar: this.userInfo.data.avatar, username: this.userInfo.data.username });
+    this.navCtrl.push('AccountManagementPage');
   }
   signOut() {
     this.native.openAlertBox('确定退出登陆？', () => {

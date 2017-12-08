@@ -9,7 +9,7 @@
   <ion-navbar>
     <ion-title>订单支付完成</ion-title>
     <ion-buttons right>
-      <button ion-button clear>完成</button>
+      <button ion-button clear (click)="finishBtn()">完成</button>
     </ion-buttons>
   </ion-navbar>
 
@@ -27,18 +27,18 @@
           <span>订单金额：<span>¥520.00</span></span>
       </div>
     </div>
-    <button ion-button large block  outline color="gray">返回首页</button>
-    <button ion-button large block color="jingku1">查看订单</button>
+    <button ion-button large block outline color="gray" (click)="goHome()">返回首页</button>
+    <button ion-button large block color="jingku1" (click)="goAllorder()">查看订单</button>
     <p class="careful">注意：镜库平台及销售商不会以订单异常、系统升级为由要求您点击任何 网站链接进行退款操作。</p>
   </section>
   <section class="fore fore2">
     <div class="supplier">
       <div class="logo">
-          <img src="./assets/icon/pay_over.png" alt="">
+          <img src="http://img.jingku.cn/data/catthumb/2017-11-01/ea39f913b222c090a11c213ebf51a18c_59f967cf56743.jpg" alt="">
       </div>
       <div class="main">
         <h2>北京沙福隆眼镜有限公司</h2>
-        <button ion-button icon-left small outline color="jingku1" (click)="is_collect=!is_collect" [class.is-heart]="is_collect?true:false">
+        <button ion-button icon-left small outline color="jingku1" style="font-size: 1rem;" (click)="is_collect=!is_collect" [ngClass]="{'heart':is_collect}">
             <ion-icon [name]="is_collect?'ios-heart':'ios-heart-outline'"></ion-icon>
             <span>{{is_collect?'已关注':'关注'}}</span>
         </button>

@@ -44,17 +44,13 @@ export class PaymentMethodPage {
     public events: Events,
     public alertCtrl: AlertController
   ) {
-
-
   }
 
   ionViewDidLoad() {
-
     console.log('ionViewDidLoad PaymentMethodPage');
     // this.navCtrl.remove(this.navCtrl.indexOf(this.navCtrl.getPrevious(this.navCtrl.last())),1);
   }
   ngOnInit() {
-
     this.getUserInfo();
     this.events.subscribe('ChangePayPasswordPage:editPaypwd', () => {
       this.getUserInfo();
@@ -65,9 +61,7 @@ export class PaymentMethodPage {
       if (res.status == 1) {
         this.data = res;
       } else if (res.status == 0) {
-        this.canLeave = true;
-        this.navCtrl.parent.select(3);
-        this.navCtrl.setPages([{ page: 'NewMyPage' }/* , { page: 'AllOrdersPage' } */])
+        this.goAllOrdersPage();
       }
     })
   }
@@ -161,7 +155,9 @@ export class PaymentMethodPage {
       if (res.status) {
         if (res.type == 'balance') {
           this.native.showToast(res.info);
+          
           this.goAllOrdersPage();
+
         } else if (res.type == 'pay') {
           if (this.paymentType) {
             this.openPingPayment(res);

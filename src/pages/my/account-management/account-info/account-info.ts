@@ -28,12 +28,22 @@ export class AccountInfoPage {
     public actionSheetCtrl: ActionSheetController,
     public native: Native
   ) {
-    this.getUserData()
+    this.httpService.getStorage('username').then((res) => {
+      if (res) {
+        this.httpService.getStorage(res+'_userInfo').then((res) => {
+          if (res) {
+            this.userInfo = res;
+          }
+        })
+      }
+    })
+    this.getUserData();
     this.events.subscribe('userInfo:editOk', () => {
-      this.getUserData()
+      this.getUserData();
     })
   }
   getUserData() {
+
     this.httpService.userInfo().then((res) => {
       // console.log(res);
       this.userInfo = res;

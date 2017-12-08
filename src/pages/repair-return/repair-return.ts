@@ -27,6 +27,8 @@ export class RepairReturnPage {
     order_sn: null
   };
 
+  @ViewChild('myContent') myContent: Content;
+  
   // rec_ids: Array<string>;
   // order_ids: Array<string>;
   constructor(
@@ -53,6 +55,7 @@ export class RepairReturnPage {
       return this.httpService.orderRepair(this.options).then((res) => {
         if (res.status == 1) {
           this.order = res;
+          this.myContent.resize();
         }
       })
     } else if (this.applyTabs == 'applyLog') {

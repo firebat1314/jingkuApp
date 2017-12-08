@@ -29,17 +29,16 @@ export class IntegralstorePage {
     public navParams: NavParams,
     public httpService: HttpService
   ) {
-    this.getData();
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad IntegralstorePage');
   }
+  ngOnInit(){
+    this.getData();
+  }
   goDuihuanDetailsPage(goodsId) {
     this.navCtrl.push('DuihuanDetailsPage', { goodsId: goodsId })
-  }
-  ionViewWillEnter() {
-
   }
   getData() {
     return new Promise((resolve, reject) => {

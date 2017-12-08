@@ -55,11 +55,15 @@
                     </div>
                 </div>
             </ion-segment-button>
-            <ion-segment-button menuToggle value="">
+            <ion-segment-button (click)="openMenu($event)">
                 筛选
                 <img src="./assets/icon/images/filter.png" width="18" alt="">
             </ion-segment-button>
         </ion-segment>
+        <!-- <button ion-button menuToggle end>
+            筛选
+            <img src="./assets/icon/images/filter.png" width="18" alt="">
+        </button> -->
     </ion-toolbar>
 </ion-header>
 

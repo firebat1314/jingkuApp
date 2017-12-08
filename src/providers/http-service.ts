@@ -50,19 +50,19 @@ export class HttpService {
   }
 
   login(data?: Object) {//登录
-    return this.http.post(IP + '/Login/index', data, true)
+    return this.http.post(IP + '/Login/index', data, { showLoading: true })
   }
   signupFirst(data?: Object) {//注册
     return this.http.post(IP + '/Login/register', data)
   }
   signupTwo(data?: Object) {//注册2
-    return this.http.post(IP + '/Login/register', data)
+    return this.http.post(IP + '/Login/register', data, { timeout: 20000, showLoading: true })
   }
   getVerificationImg(data?: Object) {//图片验证码
     return this.http.post(IP + '/Login/verify', data)
   }
   getMobileCode(data?: Object) {//短信验证码
-    return this.http.post(IP + '/Login/getMobileCode', data, true)
+    return this.http.post(IP + '/Login/getMobileCode', data, { showLoading: true })
   }
   /*首页*/
   getHomebanner(data?: Object) {//轮播图
@@ -142,7 +142,7 @@ export class HttpService {
     return this.http.get(IP + '/Category/category_goods', data)
   }
   getGoodsAttribute(data?: Object) {//获取初始商品属性
-    return this.http.get(IP + '/Goods/get_goods_attribute', data, true)
+    return this.http.get(IP + '/Goods/get_goods_attribute', data, { showLoading: true })
   }
   getZhujing(data?: Object) {//如果返回的(good_type) 商品类型是goods_spectacles 根据所选球镜，获取柱镜列表
     return this.http.get(IP + '/Goods/get_zhujing', data)
@@ -154,7 +154,7 @@ export class HttpService {
     return this.http.post(IP + '/Goods/add_to_cart_spec_jp', data)
   }
   addToCartSpec(data?: Object) {//普通商品加入购物车
-    return this.http.post(IP + '/Goods/add_to_cart_spec', data, true)
+    return this.http.post(IP + '/Goods/add_to_cart_spec', data, { showLoading: true })
   }
   changeGoodsNumber(data?: Object) {//改变商品数量 获取价格
     return this.http.post(IP + '/Goods/change_goods_number', data)
@@ -193,25 +193,25 @@ export class HttpService {
     return this.http.get(IP + '/Flow/new_select_shippin_suppliers', data)
   }
   suppliersBouns(data?: Object) {//使用优惠券
-    return this.http.get(IP + '/Flow/suppliers_bouns', data, true)
+    return this.http.get(IP + '/Flow/suppliers_bouns', data, { showLoading: true })
   }
   checkout(data?: Object) {//购物车去结算
     return this.http.get(IP + '/Flow/checkout', data)
   }
   delNoShop(data?: Object) {//删除未选中的商品
-    return this.http.post(IP + '/Flow/del_no_shop', data, true)
+    return this.http.post(IP + '/Flow/del_no_shop', data, { showLoading: true })
   }
   writeNotes(data?: Object) {//商家备注
-    return this.http.post(IP + '/Flow/write_notes', data, true)
+    return this.http.post(IP + '/Flow/write_notes', data, { showLoading: true })
   }
   submitOrder(data?: Object) {//提交订单
-    return this.http.post(IP + '/Flow/done', data, true)
+    return this.http.post(IP + '/Flow/done', data, { showLoading: true })
   }
   pay(data: Object) {//支付方式
-    return this.http.get(IP + '/Flow/pay', data, true)
+    return this.http.get(IP + '/Flow/pay', data, { showLoading: true })
   }
   payCode(data: Object) {//去支付
-    return this.http.get(IP + '/Flow/pay_code', data, true)
+    return this.http.get(IP + '/Flow/pay_code', data, { showLoading: true })
   }
   /**
    * 个人中心页
@@ -232,13 +232,13 @@ export class HttpService {
     return this.http.get(IP + '/User/user_info', data)
   }
   getUserBonus(data?: Object) {//（3）个人中心优惠券
-    return this.http.get(IP + '/User/get_user_bonus', data, true)
+    return this.http.get(IP + '/User/get_user_bonus', data, { showLoading: true })
   }
   editPwd(data?: Object) {//（4）修改密码
     return this.http.post(IP + '/User/edit_pwd', data)
   }
   editMobile(data?: Object) {//（5）修改手机号
-    return this.http.post(IP + '/User/edit_mobile', data, true)
+    return this.http.post(IP + '/User/edit_mobile', data, { showLoading: true })
   }
   logout(data?: Object) {//（6）退出登录
     return this.http.post(IP + '/User/logout', data)
@@ -259,10 +259,10 @@ export class HttpService {
     return this.http.get(IP + '/User/edit_address', data)
   }
   editAddress(data?: Object) {//（12）编辑收货地址
-    return this.http.post(IP + '/User/edit_address', data, true)
+    return this.http.post(IP + '/User/edit_address', data, { showLoading: true })
   }
   addAddress(data?: Object) {//（12.1）添加收货地址
-    return this.http.post(IP + '/User/add_address', data, true)
+    return this.http.post(IP + '/User/add_address', data, { showLoading: true })
   }
   defaultAddress(data?: Object) {//（12.2）设置默认收货地址address_id
     return this.http.get(IP + '/User/default_address', data)
@@ -295,34 +295,34 @@ export class HttpService {
     return this.http.post(IP + '/Flow/batch_goods_collect', data)
   }
   addinv(data?: Object) {//选择供货商后选择订单开票
-    return this.http.get(IP + '/User/addinv', data, true)
+    return this.http.get(IP + '/User/addinv', data, { showLoading: true })
   }
   selectzz(data?: Object) {//	发票索取信息
-    return this.http.post(IP + '/User/selectzz', data, true)
+    return this.http.post(IP + '/User/selectzz', data, { showLoading: true })
   }
   insertInv(data?: Object) {//插入发票信息
-    return this.http.post(IP + '/User/insert_inv', data, true)
+    return this.http.post(IP + '/User/insert_inv', data, { showLoading: true })
   }
   invoice(data?: Object) {//发票索取列表
-    return this.http.get(IP + '/User/invoice', data, true)
+    return this.http.get(IP + '/User/invoice', data, { showLoading: true })
   }
   invList(data?: Object) {//发票列表
-    return this.http.get(IP + '/User/inv_list', data, true)
+    return this.http.get(IP + '/User/inv_list', data, { showLoading: true })
   }
   invRole(data?: Object) {//发票信息管理
-    return this.http.get(IP + '/User/inv_role', data, true)
+    return this.http.get(IP + '/User/inv_role', data, { showLoading: true })
   }
   updateInv(data?: Object) {//编辑发票资质
     return this.http.get(IP + '/User/update_inv', data)
   }
   updateInvPost(data?: Object) {//添加或编辑发票资质提交
-    return this.http.post(IP + '/User/update_inv', data, true)
+    return this.http.post(IP + '/User/update_inv', data, { showLoading: true })
   }
   editProfile(data?: Object) {//修改用户资料
-    return this.http.post(IP + '/User/profile', data, true)
+    return this.http.post(IP + '/User/profile', data, { showLoading: true })
   }
   editAvatar(data?: Object) {//修改头像
-    return this.http.post(IP + '/User/avatar', data, true)
+    return this.http.post(IP + '/User/avatar', data, { showLoading: true })
   }
   /**
    * 后加接口
@@ -382,10 +382,10 @@ export class HttpService {
     return this.http.get(IP + '/Goods/goods_infos', data)
   }
   forgotPwd(data?: Object) {//忘记密码
-    return this.http.post(IP + '/Login/forgotPwd', data, true)
+    return this.http.post(IP + '/Login/forgotPwd', data, { showLoading: true })
   }
   coupon(data?: Object) {//首页优惠券
-    return this.http.get(IP + '/Index/coupon', data, true)
+    return this.http.get(IP + '/Index/coupon', data, { showLoading: true })
   }
   delOrder(data?: Object) {//删除订单
     return this.http.get(IP + '/User/del_order', data)
@@ -415,7 +415,7 @@ export class HttpService {
     return this.http.post(IP + '/User/repair_apply', data)
   }
   submitRepair(data?: Object) {//3）提交返修退换货
-    return this.http.post(IP + '/User/submit_repair', data, true)
+    return this.http.post(IP + '/User/submit_repair', data, { showLoading: true })
   }
   fuwudan(data?: Object) {//4）填写快递单
     return this.http.post(IP + '/User/fuwudan', data)
@@ -433,7 +433,7 @@ export class HttpService {
     return this.http.post(IP + '/Category/get_supplier_info', data)
   }
   changeSurplus(data?: Object) {//切换余额支付
-    return this.http.post(IP + '/Flow/change_surplus', data, true)
+    return this.http.post(IP + '/Flow/change_surplus', data, { showLoading: true })
   }
   clearFlowOrder(data?: Object) {//去结算使用余额
     return this.http.get(IP + '/Flow/clear_flow_order', data)
@@ -442,7 +442,7 @@ export class HttpService {
     return this.http.get(IP + '/Login/version_info', data)
   }
   doublePayment(data?: Object) {//余额改版
-    return this.http.get(IP + '/Flow/double_payment', data, true)
+    return this.http.get(IP + '/Flow/double_payment', data, { showLoading: true })
   }
   checkPayPass(data?: Object) {//支付密码
     return this.http.post(IP + '/Flow/check_pay_pass', data)

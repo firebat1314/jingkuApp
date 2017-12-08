@@ -72,7 +72,7 @@ export class LoginByPhonePage {
       if (data.status == 1) {
         this.httpService.setStorage('token', data.data.token);
         this.httpService.setStorage('hasLoggedIn', true);
-        this.httpService.setStorage('username', data.data.username);
+        this.httpService.setStorage('username', data.data.user_name);
         this.httpService.setStorage('login_info', data);
 
         let toast = this.toastCtrl.create({

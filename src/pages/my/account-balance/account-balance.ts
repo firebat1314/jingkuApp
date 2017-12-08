@@ -18,9 +18,11 @@ export class AccountBalancePage {
   userInfo: any;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public httpService: HttpService) {
-    this.getData();
   }
 
+  ngOnInit(){
+    this.getData();
+  }
   ionViewDidLoad() {
     console.log('ionViewDidLoad AccountBalancePage');
   }
