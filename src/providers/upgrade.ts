@@ -4,9 +4,10 @@ import { Transfer, TransferObject } from '@ionic-native/transfer';
 import { File } from '@ionic-native/file';
 import { AlertController, Platform, App } from 'ionic-angular';
 import { Native } from './native';
-import { IP, version, version_m } from "./constants";
+// import { IP, version, version_m } from "./constants";
 import { HttpService } from './http-service';
 import { InAppBrowser } from '@ionic-native/in-app-browser';
+import { AppVersion } from '@ionic-native/app-version';
 
 /*
   Generated class for the UpgradeProvider provider.
@@ -25,7 +26,8 @@ export class UpgradeProvider {
     private httpService: HttpService,
     private iab: InAppBrowser,
     private app: App,
-    private platform: Platform
+    private platform: Platform,
+    private appVersion: AppVersion,
   ) {
     console.log('Hello UpgradeProvider Provider');
   }
@@ -37,113 +39,119 @@ export class UpgradeProvider {
     //这里连接后台获取app最新版本号,然后与当前app版本号(this.getVersionNumber())对比
     //版本号不一样就需要申请,不需要升级就return
     this.httpService.versionInfo().then((res) => {
-      if (this.native.isIos()) {
-        if (String(version) < res.ios.version) {
-          if (res.ios.must) {
-            this.alertCtrl.create({
-              title: '升级',
-              subTitle: '发现新版本,是否立即升级？',
-              message: '',
-              enableBackdropDismiss: false,
-              buttons: [
+      this.appVersion.getVersionNumber().then((version) => {
+        console.log(version);
+        if (this.native.isIos()) {
+          if (String(version) < res.ios.version) {
+            if (res.ios.must) {
+              this.alertCtrl.create({
+                title: '升级',
+                subTitle: '发现新版本,是否立即升级？',
+                message: '',
+                enableBackdropDismiss: false,
+                buttons: [
+                  {
+                    text: '确定',
+                    handler: () => {
+                      this.iab.create(res.ios.url, '_system');
+                      setTimeout(() => {
+                        this.platform.exitApp();
+                      }, 400);
+                    }
+                  }
+                ]
+              }).present();
+            } else {
+              this.alertCtrl.create({
+                title: '升级',
+                subTitle: '发现新版本,是否立即升级？',
+                message: '',
+                enableBackdropDismiss: false,
+                buttons: [{ text: '取消' },
                 {
                   text: '确定',
                   handler: () => {
                     this.iab.create(res.ios.url, '_system');
-                    setTimeout(() => {
-                      this.platform.exitApp();
-                    }, 400);
                   }
                 }
-              ]
-            }).present();
-          } else {
-            this.alertCtrl.create({
-              title: '升级',
-              subTitle: '发现新版本,是否立即升级？',
-              message: '',
-              enableBackdropDismiss: false,
-              buttons: [{ text: '取消' },
-              {
-                text: '确定',
-                handler: () => {
-                  this.iab.create(res.ios.url, '_system');
-                }
-              }
-              ]
-            }).present();
+                ]
+              }).present();
+            }
           }
-        }
 
-      }
-      if (this.native.isAndroid()) {
-        if (String(version) < res.android.version) {
-          if (res.android.must) {
-            this.alertCtrl.create({
-              title: '升级',
-              subTitle: '发现新版本,是否立即升级？',
-              message: '',
-              enableBackdropDismiss: false,
-              buttons: [
+        }
+        if (this.native.isAndroid()) {
+          if (String(version) < res.android.version) {
+            if (res.android.must) {
+              this.alertCtrl.create({
+                title: '升级',
+                subTitle: '发现新版本,是否立即升级？',
+                message: '',
+                enableBackdropDismiss: false,
+                buttons: [
+                  {
+                    text: '确定',
+                    handler: () => {
+                      this.downloadApp(res.android.url);
+                    }
+                  }
+                ]
+              }).present();
+            } else {
+              this.alertCtrl.create({
+                title: '升级',
+                subTitle: '发现新版本,是否立即升级？',
+                message: '',
+                enableBackdropDismiss: false,
+                buttons: [{ text: '取消' },
                 {
                   text: '确定',
                   handler: () => {
                     this.downloadApp(res.android.url);
                   }
                 }
-              ]
-            }).present();
-          } else {
-            this.alertCtrl.create({
-              title: '升级',
-              subTitle: '发现新版本,是否立即升级？',
-              message: '',
-              enableBackdropDismiss: false,
-              buttons: [{ text: '取消' },
-              {
-                text: '确定',
-                handler: () => {
-                  this.downloadApp(res.android.url);
-                }
-              }
-              ]
-            }).present();
+                ]
+              }).present();
+            }
           }
         }
-      }
-      /* if (this.native.isMobileweb()) {
-        this.httpService.getStorage('version_m').then((ver) => {
-          if (ver != version_m) {
-            this.httpService.setStorage('version_m', version_m);
-            this.httpService.getStorage('hasLoggedIn').then((hasLoggedIn) => {
-              if (hasLoggedIn) {
-                this.httpService.removeStorage('token');
-                this.alertCtrl.create({
-                  title: '镜库',
-                  subTitle: '请重新登录',
-                  message: '',
-                  enableBackdropDismiss: false,
-                  buttons: [{
-                    text: '确定',
-                    handler: () => {
-                      this.app.getRootNav().setRoot('LoginPage', {}, { animate: true });
-                      this.httpService.setStorage('hasLoggedIn', false);
-                      this.httpService.removeStorage("token");
-                    }
-                  }]
-                }).present();
-              }
-            })
-          }
-        })
-      } */
-      /* if (this.native.isMobileweb()) {
-          if (String(version_m) != res.mobileweb.version) {
-            this.httpService.setStorage('version_m', version_m);
-            location.reload();
-          }
-      } */
+        /* if (this.native.isMobileweb()) {
+          this.httpService.getStorage('version_m').then((ver) => {
+            if (ver != version_m) {
+              this.httpService.setStorage('version_m', version_m);
+              this.httpService.getStorage('hasLoggedIn').then((hasLoggedIn) => {
+                if (hasLoggedIn) {
+                  this.httpService.removeStorage('token');
+                  this.alertCtrl.create({
+                    title: '镜库',
+                    subTitle: '请重新登录',
+                    message: '',
+                    enableBackdropDismiss: false,
+                    buttons: [{
+                      text: '确定',
+                      handler: () => {
+                        this.app.getRootNav().setRoot('LoginPage', {}, { animate: true });
+                        this.httpService.setStorage('hasLoggedIn', false);
+                        this.httpService.removeStorage("token");
+                      }
+                    }]
+                  }).present();
+                }
+              })
+            }
+          })
+        } */
+        /* if (this.native.isMobileweb()) {
+            if (String(version_m) != res.mobileweb.version) {
+              this.httpService.setStorage('version_m', version_m);
+              location.reload();
+            }
+        } */
+      }).catch(err => {
+        console.log('getVersionNumber:' + err);
+      });
     })
+
   }
 
 	/**
