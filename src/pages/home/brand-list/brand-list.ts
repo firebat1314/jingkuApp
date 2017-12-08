@@ -9,7 +9,7 @@ import { Native } from "../../../providers/native";
   Ionic pages and navigation.
 */
 @IonicPage({
-	segment:'brand-list/:listId'
+	segment: 'brand-list/:listId'
 })
 @Component({
 	selector: 'page-brand-list',
@@ -83,7 +83,7 @@ export class BrandListPage {
 			this.renderer.setElementClass(pagebtn, 'fab-button-fadein', true);
 		});
 		this.content.ionScrollEnd.subscribe((d) => {
-			this.timer = setTimeout(()=> {
+			this.timer = setTimeout(() => {
 				this.renderer.setElementClass(pagebtn, 'fab-button-fadein', false)
 			}, 500);
 		});
@@ -103,7 +103,7 @@ export class BrandListPage {
 			this.httpService.categoryGoods(Object.assign(this.paramsData, { page: 1 })).then((res) => {
 				resolve()
 				if (res.status == 1) {
-					res.is_jingpian?this.listStyleflag = true:null;
+					res.is_jingpian ? this.listStyleflag = true : null;
 					this.data = res;
 					this.content.scrollToTop();
 					if (res.goods.length == 0) {
@@ -161,26 +161,28 @@ export class BrandListPage {
 	shopPriceStatus = true;
 	mytoolChange() {//——_——|||.....
 		if (this.mytool == 'all') {
-			
+
 			this.paramsData.order = '';
 			this.salesNumStatus = true;
 			this.shopPriceStatus = true;
+			this.paramsData.stort = 'DESC';
 			/* if (this.allStatus) {
-				this.paramsData.stort = 'ASC';
-				this.allStatus = false;
-				this.getListData();
-			} else {
-				this.allStatus = true;
-				this.paramsData.stort = 'DESC';
-				this.getListData();
-			} */
+			this.paramsData.stort = 'ASC';
+			this.allStatus = false;
+			this.getListData();
+		} else {
+			this.allStatus = true;
+			this.paramsData.stort = 'DESC';
+			this.getListData();
+		} */
 			this.getListData();
 		}
 		if (this.mytool == 'sales_num') {
-			
+
 			this.paramsData.order = 'sales_num';
 			this.allStatus = true;
 			this.shopPriceStatus = true;
+			this.paramsData.stort = 'DESC';
 			/* if (!this.salesNumStatus) {
 				this.paramsData.stort = 'ASC';
 				this.salesNumStatus = true;
@@ -207,7 +209,7 @@ export class BrandListPage {
 			}
 		}
 	}
-	openMenu(e){
+	openMenu(e) {
 		e.stopPropagation();
 		this.menuCtrl.toggle();
 	}

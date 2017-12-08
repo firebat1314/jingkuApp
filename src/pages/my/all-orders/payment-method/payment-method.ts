@@ -157,7 +157,7 @@ export class PaymentMethodPage {
       if (res.status) {
         if (res.type == 'balance') {
           this.native.showToast(res.info);
-          
+
           this.goAllOrdersPage();
 
         } else if (res.type == 'pay') {
