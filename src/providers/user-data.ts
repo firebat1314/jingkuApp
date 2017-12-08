@@ -8,6 +8,11 @@ import './rxjs-operators';
 
 import { Native } from '../providers/native';
 
+interface HttpOptions {
+    showLoading?: boolean;
+    timeout?: number;
+}
+
 @Injectable()
 export class UserData {
 
@@ -19,24 +24,33 @@ export class UserData {
         private storage: Storage,
     ) { }
 
-    public get(url: string, paramObj?: any, showLoading?: boolean) {
-        if (showLoading) {
+    public get(url: string, paramObj?: any, option?: HttpOptions) {
+        var op = Object.assign({
+            showLoading: false,
+            timeout: 10000,
+        }, option);
+        if (op.showLoading) {
             this.native.showLoading();
-        }  
+        }
         return this.storage.get('token').then((res) => {
             var headers = new Headers();
             headers.append('Authorization', 'Basic ' + btoa(res + ':'));
             let options = new RequestOptions({ headers: headers });
             return this.http.get(url + this.toQueryString(paramObj), options)
-                .timeout(10000)
+                .timeout(op.timeout)
                 .toPromise()
-                .then(res => this.handleSuccess(res.json(),showLoading))
-                .catch(error => this.handleError(error,showLoading));
+                .then(res => this.handleSuccess(res.json(), op.showLoading))
+                .catch(error => this.handleError(error, op.showLoading));
         })
     }
-    public post(url: string, paramObj: any, showLoading?: boolean) {
+    public post(url: string, paramObj: any, option?: HttpOptions) {
         // this.native.showLoading();
-        if (showLoading) {
+        var op = Object.assign({
+            showLoading: false,
+            timeout: 10000,
+        }, option);
+
+        if (op.showLoading) {
             this.native.showLoading();
         }
         return this.storage.get('token').then((res) => {
@@ -44,14 +58,18 @@ export class UserData {
             headers.append('Authorization', 'Basic ' + btoa(res + ':'));
             let options = new RequestOptions({ headers: headers });
             return this.http.post(url, paramObj, options)
-                .timeout(10000)
+                .timeout(op.timeout)
                 .toPromise()
-                .then(res => this.handleSuccess(res.json(),showLoading))
-                .catch(error => this.handleError(error,showLoading));
+                .then(res => this.handleSuccess(res.json(), op.showLoading))
+                .catch(error => this.handleError(error, op.showLoading));
         })
     }
-    public postBody(url: string, paramObj: any, showLoading?: boolean) {
-        if (showLoading) {
+    public postBody(url: string, paramObj: any, option?: HttpOptions) {
+        var op = Object.assign({
+            showLoading: false,
+            timeout: 10000,
+        }, option);
+        if (op.showLoading) {
             this.native.showLoading();
         }
         return this.storage.get('token').then((res) => {
@@ -59,10 +77,10 @@ export class UserData {
             headers.append('Authorization', 'Basic ' + btoa(res + ':'));
             let options = new RequestOptions({ headers: headers });
             return this.http.post(url, this.toBodyString(paramObj), options)
-                .timeout(10000)
+                .timeout(op.timeout)
                 .toPromise()
-                .then(res => this.handleSuccess(res.json(),showLoading))
-                .catch(error => this.handleError(error,showLoading));
+                .then(res => this.handleSuccess(res.json(), op.showLoading))
+                .catch(error => this.handleError(error, op.showLoading));
         })
     }
     /**
@@ -70,8 +88,8 @@ export class UserData {
      * @param result
      * @return {any}
      */
-    private handleSuccess(result,showLoading) {
-        if(showLoading) this.native.hideLoading();
+    private handleSuccess(result, showLoading) {
+        if (showLoading) this.native.hideLoading();
         if (result && !result.status || result.status == -1) {
             if (result.info != "获取商品参数") {
                 this.native.showToast(result.info);
@@ -85,21 +103,21 @@ export class UserData {
      * @return {{success: boolean, msg: string}}
      */
     private showToastTime = true;
-    private handleError(error: Response | any,showLoading) {
-        if(showLoading) this.native.hideLoading();
+    private handleError(error: Response | any, showLoading) {
+        if (showLoading) this.native.hideLoading();
         let msg: string = '参数错误';
         if (error.status == 401) {
             msg = '数据加载出错';
             if (error.statusText == 'Unauthorized') {
                 msg = '登录异常，请重新登录';
-                
+
                 this.storage.remove('hasLoggedIn');
                 this.storage.remove("token");
                 this.storage.remove("username");
                 this.storage.remove("login_info");
 
                 if (this.showToastTime) {
-                    this.myAlert(msg,()=>{
+                    this.myAlert(msg, () => {
                         this.events.publish('signOut');
                         this.showToastTime = true;
                     });
@@ -120,7 +138,7 @@ export class UserData {
 
         return { status: 0, info: msg };
     }
-    myAlert(msg,callback:Function = null) {
+    myAlert(msg, callback: Function = null) {
         // this.native.showToast(msg);
         this.showToastTime = false;
         let alert = this.alertCtrl.create({
@@ -129,7 +147,7 @@ export class UserData {
             enableBackdropDismiss: false,
             buttons: [{
                 text: '确定',
-                handler: ()=>{
+                handler: () => {
                     callback()
                 }
             }]

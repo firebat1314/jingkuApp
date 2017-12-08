@@ -19,8 +19,8 @@ export class AccountManagementPage {
   ShippingAddressPage: any = 'ShippingAddressPage';
   MemberCenterPage: any = 'MemberCenterPage';
 
-  avatar: any = this.navParams.get('avatar');
-  username: any = this.navParams.get('username');
+  avatar: any;
+  username: any;
   constructor(
     public navCtrl: NavController,
     public navParams: NavParams,
@@ -32,16 +32,27 @@ export class AccountManagementPage {
     this.events.subscribe('my:update', res => {
       this.avatar = res;
     })
-    this.httpService.userInfo().then((res) => {
-      if (res.status == 1) {
-        this.avatar = res.data.avatar;
-        this.username = res.data.username;
+    this.httpService.getStorage('username').then((res) => {
+      if (res) {
+        this.httpService.getStorage(res+'_userInfo').then((res) => {
+          if (res) {
+            this.avatar = res.data.avatar;
+            this.username = res.data.username;
+          }
+        })
       }
+    }).then(()=>{
+      this.httpService.userInfo().then((res) => {
+        if (res.status == 1) {
+          this.avatar = res.data.avatar;
+          this.username = res.data.username;
+        }
+      })
     })
   }
-  ngOnDestroy() {
+  /* ngOnDestroy() {
     this.events.unsubscribe('my:update');
-  }
+  } */
   ionViewDidLoad() {
     console.log('ionViewDidLoad AccountManagementPage');
   }

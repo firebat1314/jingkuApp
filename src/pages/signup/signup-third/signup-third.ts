@@ -41,7 +41,7 @@ export class SignupThirdPage {
     }
   }
   toLogin() {
-    this.navCtrl.popToRoot();
+    this.navCtrl.goToRoot({animate:true});
   }
   ngOnDestroy() {
     clearTimeout(this.timer);

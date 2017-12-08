@@ -16,10 +16,22 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 export class OrderPayOverPage {
 
   constructor(public navCtrl: NavController, public navParams: NavParams) {
+    console.log();
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad OrderPayOverPage');
   }
 
+  finishBtn(){
+    if(this.navCtrl.getPrevious()){
+      this.navCtrl.pop();
+    }else{
+
+    }
+  }
+  goHome(){
+    
+  }
+  goAllorder(){}
 }

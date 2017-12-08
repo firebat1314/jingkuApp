@@ -63,7 +63,7 @@ export class WriteOrdersPage {
   getHttpData() {
     return this.httpService.checkout().then((res) => {
       if (res.status == 0) {
-        this.navCtrl.popToRoot({}, () => { });
+        this.navCtrl.goToRoot({ animate: true });
         this.navCtrl.parent.select(2);
       }
       if (res.status == 1) {
@@ -102,7 +102,7 @@ export class WriteOrdersPage {
         //已选择优惠券 yes_bonus
         this.selectedBonus = [];
         for (let i = 0, item = this.data.cart_goods_list; i < item.length; i++) {
-          for (let j = 0, bonus = item[i].use_bonus||[]; j < bonus.length; j++) {
+          for (let j = 0, bonus = item[i].use_bonus || []; j < bonus.length; j++) {
             if (bonus[j].selected == 1) {
               this.selectedBonus.push(bonus[j])
             }
@@ -211,7 +211,7 @@ export class WriteOrdersPage {
           this.openOrderModalShippingPage();
           return
         } else if (res.info == '购物车中没有商品') {
-          this.navCtrl.popToRoot();
+          this.navCtrl.goToRoot({ animate: true });
           this.navCtrl.parent.select(2);
         } else if (res.info == '请选择支付方式') {
           this.goPayAndShipPage();
@@ -244,13 +244,15 @@ export class WriteOrdersPage {
       if (res.status == 1) {
         this.events.publish('my:update');
         if (this.paymentMothdID == 6) {
+          var view = this.viewCtrl;
           this.navCtrl.push('PaymentMethodPage', { order_id: res.order_id }).then(() => {
-            this.navCtrl.removeView(this.viewCtrl);
+            this.navCtrl.removeView(view);
           });
 
         } else if (this.paymentMothdID == 4) {
+          var view = this.viewCtrl;
           this.navCtrl.push('AllOrdersPage').then(() => {
-            this.navCtrl.removeView(this.viewCtrl);
+            this.navCtrl.removeView(view);
           });;
           this.alertCtrl.create({
             title: '汇款须知',

@@ -6,8 +6,8 @@ page-signup-third {
         text-align: center;
         .img {
             border: 2px solid #cbced0;
-            width: 12rem;
-            height: 12rem;
+            width: 11rem;
+            height: 11rem;
             margin: 0 auto;
             border-radius: 50%;
             display: flex;
@@ -17,9 +17,13 @@ page-signup-third {
                 width: 60%;
             }
         }
+        h5{
+            font-size: 1.4rem;
+            margin: 10px 0 5px;
+        }
         .button {
             padding: 0 3.1em;
-            margin-top: 20px;
+            margin-top: 15px;
         }
     }
 }

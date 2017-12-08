@@ -9,7 +9,7 @@ import { HttpService } from "../../providers/http-service";
   See http://ionicframework.com/docs/v2/components/#navigation for more info on
   Ionic pages and navigation.
 */
-@IonicPage()
+@IonicPage({segment:'signup'})
 @Component({
   selector: 'page-signup',
   templateUrl: 'signup.html'

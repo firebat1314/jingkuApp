@@ -11,7 +11,9 @@ import { NavController, NavParams, IonicPage } from 'ionic-angular';
 declare var WOW: any;
 declare var TouchSlide: any;
 
-@IonicPage()
+@IonicPage({
+  segment:'wellcome-newm',
+})
 @Component({
   selector: 'page-wellcome-newm',
   templateUrl: 'wellcome-newm.html',

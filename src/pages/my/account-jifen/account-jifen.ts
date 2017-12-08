@@ -20,9 +20,10 @@ export class AccountJifenPage {
 
   @ViewChild(Content) content:Content;
   constructor(public navCtrl: NavController, public navParams: NavParams, public httpService: HttpService) {
+  }
+  ngOnInit(){
     this.getData();
   }
-
   ionViewDidLoad() {
     console.log('ionViewDidLoad AccountJifenPage');
   }
