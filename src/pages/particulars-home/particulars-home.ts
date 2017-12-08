@@ -380,6 +380,8 @@ export class ParticularsHomePage {
        this.paramsData.order = '';
       this.sales_NumStatus = true;
       this.shop_PriceStatus = true;
+      this.paramsData.stort = 'DESC';
+      
       /*if (this.all_Status) {
         this.paramsData.stort = 'ASC';
         this.all_Status = false;
@@ -395,6 +397,8 @@ export class ParticularsHomePage {
        this.paramsData.order = 'sales_num';
       this.shop_PriceStatus = true;
       this.all_Status = true;
+      this.paramsData.stort = 'DESC';
+      
       /* if (this.sales_NumStatus) {
         this.paramsData.stort = 'ASC';
         this.sales_NumStatus = false;

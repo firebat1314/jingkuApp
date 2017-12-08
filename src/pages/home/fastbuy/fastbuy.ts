@@ -28,14 +28,15 @@ export class FastbuyPage {
     public navParams: NavParams,
     public httpService: HttpService,
     public elementRef: ElementRef
-  ) {
+  ) {}
+  ngOnInit(){
     this.httpService.getCategoryPromote().then((data) => {
       if (data.status) {
         this.category = data;
       }
     })
+    this.getData(this.selected);
   }
-
   ionViewDidLoad() {
     console.log('ionViewDidLoad FastbuyPage');
   }
@@ -45,9 +46,6 @@ export class FastbuyPage {
     this.content.ionScroll.subscribe((d) => {
       this.fabButton.setElementClass("fab-button-in", d.scrollTop >= d.contentHeight);
     });
-  }
-  ngOnInit() {
-    this.getData(this.selected);
   }
   getData(id) {
     this.page = 1;
