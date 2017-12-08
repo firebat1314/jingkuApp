@@ -17,17 +17,16 @@ export class AccountCollectStorePage {
     public navParams: NavParams,
     public httpService: HttpService,
     public native: Native
-
-  ) {
+  ) { }
+  ngOnInit() {
     this.doRefresh();
   }
-
   ionViewDidLoad() {
     console.log('ionViewDidLoad AccountCollectStorePage');
   }
   /*下拉刷新*/
   doRefresh(refresher?) {
-    this.httpService.collectionShop({ size: 10,page:1 }).then((res) => {
+    this.httpService.collectionShop({ size: 10, page: 1 }).then((res) => {
       if (res.status == 1) { this.collectionShop = res; }
       if (refresher) {
         setTimeout(() => {
@@ -41,7 +40,7 @@ export class AccountCollectStorePage {
       this.httpService.delCollectionShop({ shop_ids: [suppliers_id] }).then((res) => {
         // console.log(res);
         if (res.status == 1) {
-          this.native.showToast('已取消关注',null,false)
+          this.native.showToast('已取消关注', null, false)
           this.doRefresh();
         }
       })
@@ -51,18 +50,18 @@ export class AccountCollectStorePage {
   doInfinite(infiniteScroll) {
     if (this.collectionShop.page < this.collectionShop.pages) {
       this.httpService.collectionShop({ page: ++this.collectionShop.page }).then((res) => {
-      // console.log(res);
-      if (res.status == 1) {
-        Array.prototype.push.apply(this.collectionShop.list, res.list);
-      }
-      setTimeout(() => {
-        infiniteScroll.complete();
-      }, 500);
-    })
+        // console.log(res);
+        if (res.status == 1) {
+          Array.prototype.push.apply(this.collectionShop.list, res.list);
+        }
+        setTimeout(() => {
+          infiniteScroll.complete();
+        }, 500);
+      })
     } else {
       infiniteScroll.enable(false);
     }
-    
+
   }
   scrollToTop() {
     this.content.scrollToTop();

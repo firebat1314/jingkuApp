@@ -9,7 +9,7 @@ import { HttpService } from "../../../../providers/http-service";
   Ionic pages and navigation.
 */
 @IonicPage({
-  segment:'page-duihuan-details-finish/:item'
+  segment: 'page-duihuan-details-finish/:item'
 })
 @Component({
   selector: 'page-duihuan-details-finish',
@@ -23,10 +23,10 @@ export class DuihuanDetailsFinishPage {
     public navCtrl: NavController,
     public navParams: NavParams,
     public httpService: HttpService
-  ) {
+  ) { }
+  ngOnInit() {
     this.getData();
   }
-
   ionViewDidLoad() {
     console.log('ionViewDidLoad DuihuanDetailsFinishPage');
   }

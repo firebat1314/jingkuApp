@@ -18,10 +18,13 @@ export class PresellPage {
     public navCtrl: NavController,
     public navParams: NavParams,
     private httpService: HttpService
-  ) {
+  ) {}
+  
+  ngOnInit() {
     this.httpService.getCategoryPre().then((data) => {
       this.categorys = data.data || [];
     })
+    this.getPresell();
   }
   ionViewDidLoad() {
     console.log('ionViewDidLoad PresellPage');
@@ -32,9 +35,6 @@ export class PresellPage {
     this.content.ionScroll.subscribe((d) => {
       this.fabButton.setElementClass("fab-button-in", d.scrollTop >= d.contentHeight);
     });
-  }
-  ngOnInit() {
-    this.getPresell();
   }
   getList(id) {
     this.checkedIndex = id;
