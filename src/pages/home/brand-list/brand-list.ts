@@ -103,7 +103,7 @@ export class BrandListPage {
 			this.httpService.categoryGoods(Object.assign(this.paramsData, { page: 1 })).then((res) => {
 				resolve()
 				if (res.status == 1) {
-					res.is_jingpian?this.listStyleflag = true:this.listStyleflag = false;
+					res.is_jingpian?this.listStyleflag = true:null;
 					this.data = res;
 					this.content.scrollToTop();
 					if (res.goods.length == 0) {
