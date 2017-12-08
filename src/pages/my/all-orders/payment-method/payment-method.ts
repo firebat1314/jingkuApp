@@ -101,17 +101,19 @@ export class PaymentMethodPage {
     });
   }
   goAllOrdersPage() {
-    this.events.publish('allOrders:update');
-    this.events.publish('my:update');
-    this.canLeave = true;
-    if (this.navCtrl.getPrevious().id == 'AllOrdersPage') {
-      this.navCtrl.pop();
-    } else {
-      var nav = this.navCtrl.last();
-      this.navCtrl.push('AllOrdersPage').then(() => {
-        this.navCtrl.removeView(nav, { animate: false });
-      });
-    }
+    setTimeout(() => {
+      this.events.publish('allOrders:update');
+      this.events.publish('my:update');
+      this.canLeave = true;
+      if (this.navCtrl.getPrevious().id == 'AllOrdersPage') {
+        this.navCtrl.pop();
+      } else {
+        var nav = this.navCtrl.last();
+        this.navCtrl.push('AllOrdersPage').then(() => {
+          this.navCtrl.removeView(nav, { animate: false });
+        });
+      }
+    }, 800);
   }
   getUserInfo() {
     this.httpService.userInfo().then((res) => {//检查是否有支付密码
@@ -155,7 +157,7 @@ export class PaymentMethodPage {
       if (res.status) {
         if (res.type == 'balance') {
           this.native.showToast(res.info);
-          
+
           this.goAllOrdersPage();
 
         } else if (res.type == 'pay') {
