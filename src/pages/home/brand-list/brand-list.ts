@@ -69,16 +69,11 @@ export class BrandListPage {
 			this.paramsData = Object.assign(this.paramsData, res);
 			console.log(this.paramsData)
 			this.data.page = 1;
-			this.mytool = 'all';
-			this.paramsData.stort = 'DESC';
 			this.getListData();
 		});
 		this.events.subscribe('car:update', () => {
 			this.getCarNumver();
 		});
-	}
-	ionViewDidLeave() {
-		this.events.unsubscribe('user:filterParams');//防止多次订阅事件
 	}
 	ngAfterViewInit() {
 		var pagebtn = this.element.nativeElement.querySelector('#pagebtn');
@@ -97,6 +92,7 @@ export class BrandListPage {
 		this.content.resize();
 	}
 	ngOnDestroy() {
+		console.log('user:filterParams')
 		//退出页面取消事件订阅
 		this.events.unsubscribe('user:filterParams');
 	}
