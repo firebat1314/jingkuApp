@@ -22,6 +22,7 @@ export class BrandListPage {
 	goodsCount: any;//购物车商品数量
 	myHomeSearch = null;
 	listStyleflag: Boolean;//列表样式切换
+	listStyleLock: Boolean;//列表样式 锁定
 	mytool = 'all';//当前筛选
 
 	paramsData = {
@@ -103,7 +104,7 @@ export class BrandListPage {
 			this.httpService.categoryGoods(Object.assign(this.paramsData, { page: 1 })).then((res) => {
 				resolve()
 				if (res.status == 1) {
-					res.is_jingpian ? this.listStyleflag = true : null;
+					res.is_jingpian&&!this.listStyleLock ? this.listStyleflag = true : null;
 					this.data = res;
 					this.content.scrollToTop();
 					if (res.goods.length == 0) {
