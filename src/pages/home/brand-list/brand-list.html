@@ -13,7 +13,7 @@
             <ion-searchbar [(ngModel)]="myHomeSearch" [ngModelOptions]="{standalone: true}" (ionInput)="onInput($event)" placeholder="搜索商品" animated="false" spellcheck="true" type="search" debounce="500"  mode="ios" showCancelButton cancelButtonText="取消"></ion-searchbar>
         </form>
         <ion-buttons end>
-            <button ion-button clear icon-only icon-left (click)="listStyleflag=!listStyleflag">
+            <button ion-button clear icon-only icon-left (click)="listStyleflag=!listStyleflag;listStyleLock=true">
                 <img src="./assets/icon/images/list_01.png" width="22" *ngIf="!listStyleflag" alt="">
                 <img src="./assets/icon/images/list_02.png" width="22" *ngIf="listStyleflag" alt="">
             </button>
