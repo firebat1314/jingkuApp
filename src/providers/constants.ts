@@ -10,8 +10,8 @@ export const IOS_DOWNLOAD = 'https://itunes.apple.com/cn/app/%E9%95%9C%E5%BA%93/
 
 // export const IP = 'http://app.jingku.cn';
 // export const IP = 'http://newapp.jingkoo.net';
-// export const IP = 'https://m.jingku.cn';
-export const IP = 'http://newm.jingkoo.net';//m站
+export const IP = 'https://m.jingku.cn';
+// export const IP = 'http://newm.jingkoo.net';//m站
 
 export const welpage_selected = '';
  

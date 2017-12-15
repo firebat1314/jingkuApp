@@ -1,5 +1,5 @@
 import { Component, ViewChild } from '@angular/core';
-import { NavController, NavParams, Content, AlertController, IonicPage } from 'ionic-angular';
+import { NavController, NavParams, Content, AlertController, IonicPage, Events } from 'ionic-angular';
 import { HttpService } from "../../../providers/http-service";
 
 /*
@@ -21,7 +21,8 @@ export class AccountHistoryPage {
     public navCtrl: NavController,
     public navParams: NavParams,
     public httpService: HttpService,
-    public alertCtrl: AlertController
+    public alertCtrl: AlertController,
+    public events: Events
   ) {
     this.getHttpData()
   }
@@ -35,7 +36,6 @@ export class AccountHistoryPage {
   }
   getHttpData(finish?) {
     this.httpService.watch().then((res) => {
-      console.log('个人中心浏览记录', res)
       if (res.status) { this.data = res; }
       if (finish) { finish() }
     })
@@ -60,6 +60,7 @@ export class AccountHistoryPage {
             this.httpService.delWatch({ goods_ids: [id] }).then((res) => {
               // console.log(res);
               this.getHttpData();
+              this.events.publish('my:update');
             })
           }
         },

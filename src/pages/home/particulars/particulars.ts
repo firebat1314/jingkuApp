@@ -86,7 +86,7 @@ export class ParticularsPage {
       // console.log("商品详情信息", res);
       if (res.status == 1) {
         console.log(2,location.href)
-        this.wxService.config(location.hash,{
+        this.wxService.config(location.href,{
           title: '镜库科技', // 分享标题
           desc: res.data.goods_name, // 分享描述
           link:  location.href, // 分享链接，该链接域名或路径必须与当前页面对应的公众号JS安全域名一致

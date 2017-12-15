@@ -1,5 +1,5 @@
 import { Component, ViewChild } from '@angular/core';
-import { NavController, NavParams, Content, IonicPage } from 'ionic-angular';
+import { NavController, NavParams, Content, IonicPage, Events } from 'ionic-angular';
 import { HttpService } from "../../../providers/http-service";
 import { Native } from "../../../providers/native";
 
@@ -17,7 +17,8 @@ export class AccountCollectGoodsPage {
     public navCtrl: NavController,
     public navParams: NavParams,
     public httpService: HttpService,
-    public native: Native
+    public native: Native,
+    public events: Events,
   ) {}
 
   ionViewDidLoad() {
@@ -45,8 +46,9 @@ export class AccountCollectGoodsPage {
       this.httpService.delCollectionGoods({ rec_ids: [goods_id] }).then((res) => {
         // console.log(res);
         if (res.status == 1) {
-          this.native.showToast('已取消关注')
+          this.native.showToast('已取消关注');
           this.getData();
+          this.events.publish('my:update');
         }
       })
     })
