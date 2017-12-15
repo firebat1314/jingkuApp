@@ -31,46 +31,6 @@
                         <p>{{item.cat_name}}</p>
                     </li>
                 </ng-container>
-                <!-- <li class="menu_ico" tappable (click)="getData(0)" [ngClass]="{'meon':selected==0}">
-                            <input type="button" class="menu_ip1" />
-                            <p>全部</p>
-                        </li>
-                        <li class="menu_ico" tappable (click)="getData(1)" [ngClass]="{'meon':selected==1}">
-                            <input type="button" class="menu_ip2" />
-                            <p>透明隐形眼镜</p>
-                        </li>
-                        <li class="menu_ico" tappable (click)="getData(2)" [ngClass]="{'meon':selected==2}">
-                            <input type="button" class="menu_ip3" />
-                            <p>彩色隐形眼镜</p>
-                        </li>
-                        <li class="menu_ico" tappable (click)="getData(3)" [ngClass]="{'meon':selected==3}">
-                            <input type="button" class="menu_ip4" />
-                            <p>护理用品</p>
-                        </li>
-                        <li class="menu_ico" tappable (click)="getData(4)" [ngClass]="{'meon':selected==4}">
-                            <input type="button" class="menu_ip5" />
-                            <p>光学镜架</p>
-                        </li>
-                        <li class="menu_ico" tappable (click)="getData(5)" [ngClass]="{'meon':selected==5}">
-                            <input type="button" class="menu_ip6" />
-                            <p>太阳眼镜</p>
-                        </li>
-                        <li class="menu_ico" tappable (click)="getData(6)" [ngClass]="{'meon':selected==6}">
-                            <input type="button" class="menu_ip7" />
-                            <p>眼镜片</p>
-                        </li>
-                        <li class="menu_ico" tappable (click)="getData(7)" [ngClass]="{'meon':selected==7}">
-                            <input type="button" class="menu_ip8" />
-                            <p>功能眼镜</p>
-                        </li>
-                        <li class="menu_ico" tappable (click)="getData(8)" [ngClass]="{'meon':selected==8}">
-                            <input type="button" class="menu_ip9" />
-                            <p>配镜</p>
-                        </li>
-                        <li class="menu_ico" tappable (click)="getData(9)" [ngClass]="{'meon':selected==9}">
-                            <input type="button" class="menu_ip10" />
-                            <p>工具</p>
-                        </li> -->
             </ul>
         </div>
 
@@ -105,7 +65,7 @@
     <ion-fab right bottom>
         <button ion-fab color="jingku1" (click)="scrollToTop()" mini goBackTop></button>
     </ion-fab>
-    <ion-infinite-scroll threshold="40%" (ionInfinite)="doInfinite($event)">
+    <ion-infinite-scroll threshold="20%" (ionInfinite)="doInfinite($event)">
         <ion-infinite-scroll-content></ion-infinite-scroll-content>
     </ion-infinite-scroll>
 </ion-content>
