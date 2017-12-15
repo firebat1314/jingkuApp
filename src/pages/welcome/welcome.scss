@@ -6,10 +6,11 @@ page-welcome {
         -webkit-overflow-scrolling: auto !important;
     }
     .startapp {
-        width: 170px;
-        height: 50px;
-        position: relative;
-        bottom: 170px;
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        left: 0px;
+        top: 0;
         opacity: 0 !important;
     }
     .slide-zoom {
