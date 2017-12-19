@@ -29,8 +29,10 @@ import { MeunItemComponentModule } from "../components/meun-item/meun-item.modul
 import { CityPickerModule } from "ionic2-city-picker/dist/city-picker.module";
 import { IonicImageViewerModule } from 'ionic-img-viewer';
 import { IonicImageLoader } from 'ionic-image-loader';
-import { UpgradeProvider } from '../providers/upgrade';
+import { UpgradeProvider } from '../providers/upgrade/upgrade';
 import { WxServiceProvider } from '../providers/wx-service/wx-service';
+import { QimoChatProvider } from '../providers/qimo-chat/qimo-chat';
+import { XimuProvider } from '../providers/ximu/ximu';
 
 @NgModule({
   declarations: [
@@ -80,7 +82,9 @@ import { WxServiceProvider } from '../providers/wx-service/wx-service';
     Transfer,
     File,
     InAppBrowser,
-    WxServiceProvider
+    WxServiceProvider,
+    QimoChatProvider,
+    XimuProvider
   ]
 })
 export class AppModule { }

@@ -78,7 +78,7 @@ page-home {
     .btn-tool .top,
     .btn-tool .bottom {
         display: flex;
-        justify-content: space-around;
+        justify-content: flex-start;
         align-items: center;
         margin-bottom: 10px;
         >div {

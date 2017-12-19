@@ -4,8 +4,8 @@ import { NavController, NavParams, ModalController, Events, IonicPage, Content, 
 import { HttpService } from "../../../providers/http-service";
 import { Native } from "../../../providers/native";
 import { WxServiceProvider } from '../../../providers/wx-service/wx-service';
+import { QimoChatProvider } from '../../../providers/qimo-chat/qimo-chat';
 
-declare let qimoChatClick;
 declare let wx;
 @IonicPage({
   name: 'ParticularsPage',
@@ -35,14 +35,15 @@ export class ParticularsPage {
     public native: Native,
     private events: Events,
     private wxService: WxServiceProvider,
+    private QimoChat: QimoChatProvider,
   ) {
+
+  }
+  ngOnInit() {
     console.log("商品ID:", this.goodsId);
     this.events.subscribe('car:update', () => {
       this.getCarCount();
     })
-  }
-  ngOnInit() {
-    
     this.getHttpDetails();
     this.getCarCount();
   }
@@ -85,13 +86,16 @@ export class ParticularsPage {
     return this.http.goodsInfos({ goods_id: this.goodsId }).then((res) => {
       // console.log("商品详情信息", res);
       if (res.status == 1) {
-        console.log(2,location.href)
-        this.wxService.config(location.href,{
-          title: '镜库科技', // 分享标题
-          desc: res.data.goods_name, // 分享描述
-          link:  location.href, // 分享链接，该链接域名或路径必须与当前页面对应的公众号JS安全域名一致
-          imgUrl: res.data.goods_thumb, // 分享图标
-        })
+
+        if (this.native.isWeixin()) {
+          console.log('详情页', location.href)
+          this.wxService.config(location.href, {
+            title: '镜库科技', // 分享标题
+            desc: res.data.goods_name, // 分享描述
+            link: location.href, // 分享链接，该链接域名或路径必须与当前页面对应的公众号JS安全域名一致
+            imgUrl: res.data.goods_thumb, // 分享图标
+          })
+        }
 
         this.getGoodsInfo = res;
         this.getRegionName(res);
@@ -257,34 +261,7 @@ export class ParticularsPage {
     this.native.openCallNumber(this.getGoodsInfo.supplier_info.mobile, false);
   }
   goAccountServicePage(access_id) {
-    // this.native.showToast('敬请期待')
-    console.log(access_id)
-    this.native.showLoading();
-    if (!access_id) {
-      // this.native.showToast('该店铺暂无客服');
-    }
-    var old = document.getElementsByClassName('qimo')[0]
-    //console.log(old);
-    if (old) {
-      old.parentNode.removeChild(old);
-    }
-    let qimo: HTMLScriptElement = document.createElement('script');
-    qimo.type = 'text/javascript';
-    qimo.src = 'https://webchat.7moor.com/javascripts/7moorInit.js?accessId=' + (access_id || 'b441f710-80d9-11e7-8ddd-b18e4f0e2471') + '&autoShow=false';
-    console.log(qimo.src)
-    qimo.className = 'qimo';
-    document.getElementsByTagName('body')[0].appendChild(qimo);
-    let that = this;
-    qimo.onload = qimo['onreadystatechange'] = function () {
-      that.native.hideLoading();
-      if (!this.readyState || this.readyState === "loaded" || this.readyState === "complete") {
-        setTimeout(function () {
-          qimoChatClick();
-        }, 600);
-        qimo.onload = qimo['onreadystatechange'] = null;
-      }
-    };
-    // this.navCtrl.push(AccountServicePage)
+    this.QimoChat.qimoChatClick({ access_id: access_id });
   }
   goParticularsHome() {
     this.navCtrl.push('ParticularsHomePage', { suppliersId: this.getGoodsInfo.supplier_info.id });

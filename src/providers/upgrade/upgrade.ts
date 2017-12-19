@@ -3,11 +3,11 @@ import 'rxjs/add/operator/map';
 import { Transfer, TransferObject } from '@ionic-native/transfer';
 import { File } from '@ionic-native/file';
 import { AlertController, Platform, App } from 'ionic-angular';
-import { Native } from './native';
-// import { IP, version, version_m } from "./constants";
-import { HttpService } from './http-service';
 import { InAppBrowser } from '@ionic-native/in-app-browser';
 import { AppVersion } from '@ionic-native/app-version';
+import { HttpService } from '../http-service';
+import { Native } from '../native';
+// import { IP, version, version_m } from "../constants";
 
 /*
   Generated class for the UpgradeProvider provider.

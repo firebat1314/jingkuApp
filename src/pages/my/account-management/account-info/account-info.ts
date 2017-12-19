@@ -47,6 +47,11 @@ export class AccountInfoPage {
     this.httpService.userInfo().then((res) => {
       // console.log(res);
       this.userInfo = res;
+      this.httpService.getStorage('username').then((res) => {
+        if (res) {
+          this.httpService.setStorage(res + '_userInfo', this.userInfo)
+        }
+      })
     })
   }
   ionViewDidLoad() {

@@ -4,9 +4,8 @@ import { HttpService } from "../../providers/http-service";
 
 import { Native } from "../../providers/native";
 import { InAppBrowser } from '@ionic-native/in-app-browser';
-
-declare var cordova: any;
-declare let qimoChatClick;
+import { QimoChatProvider } from '../../providers/qimo-chat/qimo-chat';
+import { XimuProvider } from '../../providers/ximu/ximu';
 
 @IonicPage()
 @Component({
@@ -25,6 +24,8 @@ export class NewMyPage {
     public native: Native,
     public app: App,
     private iab: InAppBrowser,
+    private QimoChat: QimoChatProvider,
+    private ximu: XimuProvider,
   ) {
     /* this.httpService.getStorage('username').then((username) => {
       this.httpService.getStorage(username).then((userInfo) => {
@@ -44,19 +45,19 @@ export class NewMyPage {
   ngOnInit() {
     this.httpService.getStorage('username').then((res) => {
       if (res) {
-        this.httpService.getStorage(res+'_usercount').then((res) => {
+        this.httpService.getStorage(res + '_usercount').then((res) => {
           if (res) {
             this.usercount = res;
           }
         })
-        this.httpService.getStorage(res+'_userInfo').then((res) => {
+        this.httpService.getStorage(res + '_userInfo').then((res) => {
           if (res) {
             this.userInfo = res;
           }
         })
       }
     })
-    
+
     this.httpResult();
   }
   httpResult() {
@@ -66,7 +67,7 @@ export class NewMyPage {
           this.usercount = res;
           this.httpService.getStorage('username').then((res) => {
             if (res) {
-              this.httpService.setStorage(res+'_usercount', this.usercount)
+              this.httpService.setStorage(res + '_usercount', this.usercount)
             }
           })
         }
@@ -76,7 +77,7 @@ export class NewMyPage {
             this.userInfo = res;
             this.httpService.getStorage('username').then((res) => {
               if (res) {
-                this.httpService.setStorage(res+'_userInfo', this.userInfo)
+                this.httpService.setStorage(res + '_userInfo', this.userInfo)
               }
             })
             // this.httpService.setStorage('phonenumber', res.data.user_info.mobile_phone);
@@ -86,13 +87,13 @@ export class NewMyPage {
     })
 
   }
-  
+
   /*下拉刷新*/
   doRefresh(refresher) {
-    this.httpResult().then(()=>{
-        setTimeout(() => {
-          refresher.complete();
-        }, 500);
+    this.httpResult().then(() => {
+      setTimeout(() => {
+        refresher.complete();
+      }, 500);
     })
   }
   goSettingPage() {
@@ -110,34 +111,8 @@ export class NewMyPage {
     // this.native.showToast('暂未开放',null,false);
     this.navCtrl.push('AccountProcessPage');
   }
-  goAccountServicePage(access_id) {
-    // this.native.showToast('敬请期待')
-    console.log(access_id)
-    this.native.showLoading();
-    if (!access_id) {
-      // this.native.showToast('该店铺暂无客服');
-    }
-    var old = document.getElementsByClassName('qimo')[0]
-    //console.log(old);
-    if (old) {
-      old.parentNode.removeChild(old);
-    }
-    let qimo: HTMLScriptElement = document.createElement('script');
-    qimo.type = 'text/javascript';
-    qimo.src = 'https://webchat.7moor.com/javascripts/7moorInit.js?accessId=' + (access_id || 'b441f710-80d9-11e7-8ddd-b18e4f0e2471') + '&autoShow=false';
-    console.log(qimo.src)
-    qimo.className = 'qimo';
-    document.getElementsByTagName('body')[0].appendChild(qimo);
-    let that = this;
-    qimo.onload = qimo['onreadystatechange'] = function () {
-      that.native.hideLoading();
-      if (!this.readyState || this.readyState === "loaded" || this.readyState === "complete") {
-        setTimeout(function () {
-          qimoChatClick();
-        }, 600);
-        qimo.onload = qimo['onreadystatechange'] = null;
-      }
-    };
+  goAccountServicePage() {
+    this.QimoChat.qimoChatClick();
   }
   goMySalesmanPage() {
     this.navCtrl.push('MySalesmanPage', { salesman: this.userInfo.data.ywy })
@@ -156,27 +131,15 @@ export class NewMyPage {
     })
   }
   openXimu() {
-    // this.native.showToast('暂未开放', null, false);
-    this.httpService.Ximu().then((res) => {
-      if (res.status) {
-        // this.navCtrl.push('IframeBrowserPage', { url: res.data.url });
-        cordova.exec(
-          (result) => {
-            if (result != null) {this.native.showToast(result, null, false);}
-          },
-          (msg) => {
-            this.native.showToast(msg, null, false);
-          },
-          "CallActivityPlugin",
-          "call",[res.data.url])
-
-        // this.navCtrl.push('IframeBrowserPage',{url:res.data.url});
-        /* if (this.native.isMobile()) {
-          this.iab.create(res.data.url, '_system');
-        } else {
-          location.href = (res.data.url)
-        } */
-      }
-    })
+    if (this.native.isIos()) {
+      // this.iab.create(res.data.url, '_system');
+      this.native.showToast('暂未开放', null, true);
+    } else if (this.native.isAndroid()) {
+      // location.href = (res.data.url)
+      this.navCtrl.push('BtAuthorizationPage');
+    } else {
+      // this.native.showToast('暂未开放', null, true);
+      this.navCtrl.push('BtAuthorizationPage');
+    }
   }
 }

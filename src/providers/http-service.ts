@@ -499,6 +499,12 @@ export class HttpService {
   Ximu(data?: Object) {
     return this.http.post(IP + '/Ximu', data)
   }
+  XimuUserapply(data?: Object) {
+    return this.http.post(IP + '/Ximu/userapply', data)
+  }
+  baitiao_b(data?: Object) {
+    return this.http.post(IP + '/User/baitiao', data)
+  }
   /**
    * 来镜加工详情
    */
