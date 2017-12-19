@@ -30,7 +30,7 @@ export class Native {
 		private barcodeScanner: BarcodeScanner,
 		private transfer: Transfer,
 		private file: File,
-	) { }
+	) {}
 
 	/**
 	 * 是否真机环境
@@ -49,7 +49,12 @@ export class Native {
 	isAndroid() {
 		return this.isMobile() && this.platform.is('android');
 	}
-
+	isWeixin() {
+		var ua = navigator.userAgent.toLowerCase();
+		if(ua.match(/MicroMessenger/i)){
+			return ua.match(/MicroMessenger/i)[0] == "micromessenger";
+		}
+	}
 	/**
 	 * 是否ios真机环境
 	 * @return {boolean}
@@ -261,17 +266,17 @@ export class Native {
 	 */
 	fileTransfer: TransferObject = this.transfer.create();
 	// full example
-	upload(fileurl,apiurl,params) {
+	upload(fileurl, apiurl, params) {
 		let options: FileUploadOptions = {
 			fileKey: 'file',
 			fileName: '',
 			headers: {
 				Authorization: 'Basic ' + btoa(localStorage.getItem('token') + ':')
 			},
-			params:params
+			params: params
 		}
 		return this.fileTransfer.upload(fileurl, apiurl, options)
-			
+
 	}
 	download() {
 		const url = 'http://www.example.com/file.pdf';

@@ -53,6 +53,7 @@ export class PaymentMethodPage {
   ngOnInit() {
     this.getUserInfo();
     this.events.subscribe('ChangePayPasswordPage:editPaypwd', () => {
+      this.yE = true;
       this.getUserInfo();
     });
   }
@@ -195,6 +196,7 @@ export class PaymentMethodPage {
             text: '确定',
             handler: () => {
               this.yE = false;
+              this.canLeave = true;
               this.navCtrl.push('ChangePayPasswordPage');
             }
           }, {

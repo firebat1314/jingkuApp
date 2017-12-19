@@ -42,7 +42,7 @@
     </ion-list>
     <div class="background"></div>
     <ion-list no-margin>
-        <ion-item tappable [navPush]="CompanynamePage" [navParams]="userInfo?.data?.user_info?.company" mode="ios" detail-push>
+        <ion-item tappable [navPush]="CompanynamePage" [navParams]="{company:userInfo?.data?.user_info?.company}" mode="ios" detail-push>
             公司名称
             <ion-note item-right>{{userInfo?.data?.user_info?.company || '点击设置'}}</ion-note>
         </ion-item>
