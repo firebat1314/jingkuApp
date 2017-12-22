@@ -33,6 +33,11 @@ count-input {
         border-left: 1px solid #ccc;
         border-right: 1px solid #ccc;
         background: none;
+        &:disabled{
+            -webkit-text-fill-color: #e60000;
+            -webkit-opacity: 1;
+            color: #e60000;
+        }
     }
     .disabled{
         opacity: .3;

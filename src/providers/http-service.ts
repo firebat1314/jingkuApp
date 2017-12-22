@@ -509,7 +509,7 @@ export class HttpService {
   }
   /* 白条是否开通状态 */
   loan_status(data?: Object) {
-    return this.http.post(IP + '/User/loan_status', data, { showToast: false })
+    return this.http.post(IP + '/User/loan_status', data, { showToast: false, showLoading: true })
   }
   /* 白条支付 */
   ximu_order(data?: {
@@ -531,14 +531,14 @@ export class HttpService {
     code_sn?: string | number;//身份证号
     mobile?: string | number;//手机号
   }) {
-    return this.http.post(IP + '/User/enterprise_info', data)
+    return this.http.post(IP + '/User/enterprise_info', data, { showLoading: true })
   }
   /* 企业信息管理 */
   get_enterprise_info(data?) {
     return this.http.get(IP + '/User/enterprise_info', data)
   }
   /* 白条支付是否完成 */
-  ximuIsPay(data:{order_id}) {
+  ximuIsPay(data: { order_id }) {
     return this.http.post(IP + '/User/is_pay', data)
   }
   /**
@@ -581,6 +581,6 @@ export class HttpService {
    * 微信分享
    */
   weixinfenx(data?: Object) {
-    return this.http.post(IP + '/Login/weixinfenx', data)
+    return this.http.post(IP + '/Login/weixinfenx', data, { showToast: false })
   }
 }

@@ -8,6 +8,6 @@
         <img src="./assets/icon/minus.png" alt="">
 </div>
 <input type="number" [(ngModel)]="value" (input)="inputEvent()" [disabled]="disabled">
-<div class="btn" tappable (click)="increase()" [class.disabled]="this.maxValue != undefined && (this.maxValue - this.value) < this.rank">
+<div class="btn" tappable (click)="increase()" [class.disabled]="maxValue != undefined && (maxValue - value) < rank">
         <img src="./assets/icon/add.png" alt="">
 </div>

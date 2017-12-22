@@ -156,7 +156,7 @@ export class UserData {
             }
         }
         if (error.status == 404) {
-            this.native.showToast('数据出错了，404');
+            this.native.showToast('数据找不到了');
         }
 
         if (error.status == 0) {

@@ -212,15 +212,15 @@ export class HomePage {
     this.navCtrl.push('BrandListPage', { brandId: id })
   }
   goWhitebarPage() {
-    if (this.native.isAndroid()) {
+    // if (this.native.isAndroid()) {
       if(this.baitiao.status){
         this.ximu.openXimu(this.baitiao.data.url);
       }else{
         this.navCtrl.push('BtAuthorizationPage');
       }
-    } else {
-      this.native.showToast('该功能现仅在安卓客户端开放');
-    }
+    // } else {
+      // this.native.showToast('该功能现仅在安卓客户端开放');
+    // }
   }
   goPresellPage() {
     this.navCtrl.push('PresellPage');

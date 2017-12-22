@@ -50,7 +50,7 @@ export class CountInputComponent {
   }
 
 
-  disabled: boolean = false;
+  disabled: boolean = false;//禁用输入框手动输入
   constructor(
     private native: Native,
     private element: ElementRef,
@@ -69,10 +69,9 @@ export class CountInputComponent {
     this.valueChange.emit(this.value += this.rank);
   }
   reduce() {
-    if (this.value <= this.minValue) {
-      return;
+    if (this.value > this.minValue) {
+      this.valueChange.emit(this.value -= this.rank);
     }
-    this.valueChange.emit(this.value -= this.rank);
   }
 
   inputEvent() {
