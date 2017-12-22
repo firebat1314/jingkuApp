@@ -35,7 +35,7 @@
             手机号
             <ion-note item-right>{{(userInfo?.data?.user_info?.mobile_phone | phonenumberfilter) || '未绑定手机号'}}</ion-note>
         </ion-item>
-        <ion-item tappable [navPush]="QqPage" [navParams]="userInfo?.data?.user_info?.qq" mode="ios" detail-push>
+        <ion-item tappable [navPush]="QqPage" [navParams]="{qq:userInfo?.data?.user_info?.qq}" mode="ios" detail-push>
             QQ
             <ion-note item-right>{{userInfo?.data?.user_info?.qq || '点击设置'}}</ion-note>
         </ion-item>

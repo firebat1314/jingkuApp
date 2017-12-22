@@ -19,33 +19,39 @@ page-car {
             align-items: center;
             border-bottom: #e0e0e0 1px solid;
             .item {
-                >.icon {
-                    font-size: 2rem;
-                    margin-right: 5px;
-                    padding-top: 5px; 
+                .item-inner {
+                    font-size: 1.5rem;
+                    color: #747474;
+                    .label {
+                        display: flex;
+                        align-items: center;
+                        .icon {
+                            font-size: 2rem;
+                            color: inherit;
+                        }
+                        span{
+                            margin: 0 5px;
+                        }
+                    }
                 }
-            }
-            .item-inner {
-                font-size: 1.5rem;
-                color: #747474;
             }
         }
         .single-shop-goods {
-            &.disable{
-                .single-shop-goods-head{
-                    .item{
+            &.disable {
+                .single-shop-goods-head {
+                    .item {
                         opacity: .4;
                     }
                 }
-                .single-shop-goods-body{
+                .single-shop-goods-body {
                     .item {
-                        .attr,.bottom{
+                        .attr,
+                        .bottom {
                             opacity: .4;
                             pointer-events: none;
                         }
                     }
                 }
-                
             }
             .item {
                 padding-left: 0;
@@ -106,7 +112,7 @@ page-car {
                                 align-items: center;
                                 .price {
                                     color: #e60000;
-                                    .old{
+                                    .old {
                                         text-decoration: line-through;
                                         color: #999;
                                         margin-left: 6px;
@@ -120,20 +126,20 @@ page-car {
             }
         }
         .single-shop-little-result {
-            text-align: right;
-            padding: 10px 0;
-            font-size: 1.5rem;
+            padding: 10px;
             color: #4d4d4d;
-            padding-right: 10px;
             border-top: 1px solid #e0e0e0;
-            .fgx{
+            display: flex;
+            justify-content: flex-end;
+            align-items: center;
+            font-size: 1.2rem;
+            .fgx {
                 margin: 0 5px;
                 vertical-align: top;
-                color: #e6e6e6;
             }
             .red {
                 color: #e60000;
-                font-size: 1.8rem;
+                font-size: 1.5rem;
             }
         }
     }

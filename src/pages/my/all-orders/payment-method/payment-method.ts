@@ -210,24 +210,29 @@ export class PaymentMethodPage {
         }
       })
     } else if (this.bt) {//使用白条
-      this.httpService.ximu_order({ order_id: this.order_id }).then((res) => {
-        if (res.status) {
-          if (!res.loan_status) {
-            this.canLeave = true;
-            this.pushPage('BtAuthorizationPage');
-          } else {
-            this.ximu.openXimu(res.data.url, (res) => {
-              if (res == 1) {
-                this.httpService.ximuIsPay({ order_id: this.order_id }).then((res) => {
-                  if (res.status) {
-                    this.goAllOrdersPage();
-                  }
-                })
-              }
-            });
-          }
+      this.httpService.loan_status().then((res) => {
+        if (!res.loan_status) {
+          this.canLeave = true;
+          this.navCtrl.push('BtAuthorizationPage').then(()=>{
+            this.canLeave = false;
+          });
+        } else {
+          this.httpService.ximu_order({ order_id: this.order_id }).then((res) => {
+            if (res.status) {
+              this.ximu.openXimu(res.data.url, (res) => {
+                if (res == 1) {
+                  this.httpService.ximuIsPay({ order_id: this.order_id }).then((res) => {
+                    if (res.status) {
+                      this.goAllOrdersPage();
+                    }
+                  })
+                }
+              });
+            }
+          })
         }
       })
+
     } else {//不使用余额
       this.noUserBalance(this.data[this.paymentType]);
     }

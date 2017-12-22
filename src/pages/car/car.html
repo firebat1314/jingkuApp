@@ -29,8 +29,8 @@
                     mode="ios" margin-left></ion-checkbox>
                 <ion-checkbox *ngIf="isEdit" color="jingku1" (click)="check1(item1,carDetails)" [(ngModel)]="item1.selected" mode="ios" margin-left></ion-checkbox>
                 <ion-item mode="ios" no-lines>
-                    <ion-icon color="colorsix" item-left name="shop"></ion-icon>
-                    {{item1.title}}&nbsp;
+                    <ion-icon color="colorsix" name="shop"></ion-icon>
+                    <span>{{item1.title}}</span>
                     <ion-icon color="colorsix" name="ios-arrow-forward"></ion-icon>
                     <!--<button item-right ion-button clear color="danger">优惠券???</button>-->
                 </ion-item>
@@ -76,7 +76,7 @@
                                             </div>
                                             <div class="price" *ngIf="!item3?.cha_price">¥{{item3?.goods_price}}</div>
                                             <div class="number">
-                                                <count-input [minValue]="1" [rank]="item2?.goods_properties?.number" (valueChange)="numberChangeI($event,item3)" [value]="item3?.goods_number"></count-input>
+                                                <count-input [minValue]="item2?.goods_properties?.number||1" [maxValue]="item3?.product_number" [rank]="item2?.goods_properties?.number" (valueChange)="numberChangeI($event,item3)" [value]="item3?.goods_number"></count-input>
                                             </div>
                                         </div>
                                     </div>
@@ -90,7 +90,7 @@
                 </div>
             </div>
             <div class="single-shop-little-result">共{{item1?.goods_count}}件
-                <span class="fgx"> | </span>小计:
+                <span class="fgx">|</span>小计：
                 <span class="red">¥{{item1?.goods_price_total}}</span>
             </div>
             <div class="background"></div>

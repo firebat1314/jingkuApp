@@ -29,7 +29,9 @@ export class BtAuthorizationPage {
   ionViewDidLoad() {
     console.log('ionViewDidLoad BtAuthorizationPage');
   }
-
+  /* ionViewCanEnter() {
+    
+  } */
   ngOnInit() {
     this.events.subscribe('userInfo:editOk', () => {
       this.getData();
@@ -48,7 +50,7 @@ export class BtAuthorizationPage {
       if (res.status) {
         this.ximu.openXimu(res.data.url);
       } else {
-        this.navCtrl.goToRoot({ animate: true });
+        // this.navCtrl.goToRoot({ animate: true });
       }
     })
   }
