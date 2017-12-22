@@ -15,6 +15,7 @@ import { XimuProvider } from '../../providers/ximu/ximu';
 export class NewMyPage {
   usercount: any;
   userInfo: any;
+  baitiao: any;
   constructor(
     public viewCtrl: ViewController,
     public navCtrl: NavController,
@@ -55,6 +56,11 @@ export class NewMyPage {
             this.userInfo = res;
           }
         })
+        this.httpService.getStorage(res + '_userBaitiao').then((res) => {
+          if (res) {
+            this.baitiao = res;
+          }
+        })
       }
     })
 
@@ -82,6 +88,14 @@ export class NewMyPage {
             })
             // this.httpService.setStorage('phonenumber', res.data.user_info.mobile_phone);
           }
+        })
+        this.httpService.loan_status().then((res) => {
+          this.baitiao = res;
+          this.httpService.getStorage('username').then((res) => {
+            if (res) {
+              this.httpService.setStorage(res + '_userBaitiao', this.baitiao)
+            }
+          })
         })
       })
     })
@@ -131,15 +145,14 @@ export class NewMyPage {
     })
   }
   openXimu() {
-    if (this.native.isIos()) {
-      // this.iab.create(res.data.url, '_system');
-      this.native.showToast('暂未开放', null, true);
-    } else if (this.native.isAndroid()) {
-      // location.href = (res.data.url)
-      this.navCtrl.push('BtAuthorizationPage');
+    if (this.native.isAndroid()) {
+      if (this.baitiao.status) {
+        this.ximu.openXimu(this.baitiao.data.url);
+      } else {
+        this.navCtrl.push('BtAuthorizationPage');
+      }
     } else {
-      // this.native.showToast('暂未开放', null, true);
-      this.navCtrl.push('BtAuthorizationPage');
+      this.native.showToast('该功能现仅在安卓客户端开放', null, true);
     }
   }
 }

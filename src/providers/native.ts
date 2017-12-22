@@ -30,7 +30,9 @@ export class Native {
 		private barcodeScanner: BarcodeScanner,
 		private transfer: Transfer,
 		private file: File,
-	) {}
+	) {
+		console.log(navigator.userAgent.toLowerCase())
+	}
 
 	/**
 	 * 是否真机环境

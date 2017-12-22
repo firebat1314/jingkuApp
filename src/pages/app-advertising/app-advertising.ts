@@ -45,9 +45,9 @@ export class AppAdvertisingPage {
     clearInterval(this.timer);
     this.storage.get('hasLoggedIn').then((result) => {
       if (result) {
-        this.navCtrl.setRoot('TabsPage', {}, { animate: true, direction: 'forward' });
+        this.navCtrl.setRoot('TabsPage', {}, { animate: true, animation: 'md-transition', direction: 'forward' });
       } else {
-        this.navCtrl.setRoot('LoginPage', {}, { animate: true, direction: 'forward' });
+        this.navCtrl.setRoot('LoginPage', {}, { animate: true, animation: 'md-transition', direction: 'forward' });
       }
     });
   }

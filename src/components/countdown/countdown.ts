@@ -1,4 +1,4 @@
-import { Component, Input, OnDestroy, AfterViewInit } from '@angular/core';
+import { Component, Input, OnDestroy, AfterViewInit, Output, EventEmitter } from '@angular/core';
 
 /*
   Generated class for the Countdown component.
@@ -8,12 +8,14 @@ import { Component, Input, OnDestroy, AfterViewInit } from '@angular/core';
 */
 @Component({
   selector: 'countdown',
-  template: `<span>{{day}}</span>天<span>{{hour}}</span>时<span>{{minute}}</span>分<span>{{second}}</span>`
+  template: `${this.day ? '<span>' + this.day + '</span>天' : ''}<span>{{hour}}</span>时<span>{{minute}}</span>分<span>{{second}}</span>`
 })
 
 export class CountdownComponent implements AfterViewInit, OnDestroy {
   // 父组件传递截止日期
   @Input() endDate: number;
+  @Output() endDateChange: EventEmitter<any> = new EventEmitter<any>();
+
   // day差
   private day: number = 0;
   // 小时差
@@ -40,6 +42,7 @@ export class CountdownComponent implements AfterViewInit, OnDestroy {
     this.timer = setInterval(() => {
       this.endDate -= 1;
       this.diff = this.endDate;
+      this.endDateChange.emit(this.endDate);
     }, 1000);
   }
 

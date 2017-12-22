@@ -14,10 +14,6 @@ import { Native } from "../../../providers/native";
   templateUrl: 'account-management.html'
 })
 export class AccountManagementPage {
-  AccountSecurityPage: any = 'AccountSecurityPage';
-  AccountInfoPage: any = 'AccountInfoPage';
-  ShippingAddressPage: any = 'ShippingAddressPage';
-  MemberCenterPage: any = 'MemberCenterPage';
 
   avatar: any;
   username: any;
@@ -32,6 +28,11 @@ export class AccountManagementPage {
     this.events.subscribe('my:update', res => {
       this.avatar = res;
     })
+  }
+  /* ngOnDestroy() {
+    this.events.unsubscribe('my:update');
+  } */
+  ngOnInit(){
     this.httpService.getStorage('username').then((res) => {
       if (res) {
         this.httpService.getStorage(res+'_userInfo').then((res) => {
@@ -50,9 +51,6 @@ export class AccountManagementPage {
       })
     })
   }
-  /* ngOnDestroy() {
-    this.events.unsubscribe('my:update');
-  } */
   ionViewDidLoad() {
     console.log('ionViewDidLoad AccountManagementPage');
   }
