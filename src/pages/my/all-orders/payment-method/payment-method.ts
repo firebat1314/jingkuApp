@@ -43,6 +43,7 @@ export class PaymentMethodPage {
   // canBt: boolean;//能否白条支付
 
   isWeixin: boolean = this.native.isWeixin();
+  isMobile: boolean = this.native.isMobile();
 
   @ViewChildren('totalprice') totalprice: QueryList<ElementRef>;
 

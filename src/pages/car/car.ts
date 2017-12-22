@@ -36,24 +36,31 @@ export class CarPage {
     public httpService: HttpService,
     public events: Events,
   ) {
-    this.events.subscribe('car:update', () => {
-      this.getFlowGoods();
-    })
+
   }
   ionViewDidLoad() {
     console.log('ionViewDidLoad CarPage');
   }
-  ngOnDestroy() {
+  ionViewDidEnter() {
+    
+  }
+  ionViewDidLeave() {
     // this.events.unsubscribe('car:update');
   }
   ngOnInit() {
+    this.events.subscribe('car:update', () => {
+      this.getFlowGoods();
+    }) 
     this.getFlowGoods();
+  }
+  ngOnDestroy() {
+    // this.events.unsubscribe('car:update');
   }
   getFlowGoods() {
     return this.httpService.getFlowGoods().then((res) => {
       if (res.status == 1) {
         this.carDetails = res;
-        this.content.resize();
+        // this.content.resize();
         // this.isEdit = false;
       }
     })
@@ -88,7 +95,7 @@ export class CarPage {
   }
   checkGoods(id, type, is_select) {
     this.httpService.selectChangePrice({ id: id, type: type, is_select: is_select }).then((res) => {
-      this.events.publish('car:update');
+      this.getFlowGoods();
     })
   }
   checkGoodsAttr(rec_id, is_select) {
@@ -97,7 +104,7 @@ export class CarPage {
       type: is_select
     }).then((res) => {
       if (res.status) {
-        this.events.publish('car:update');
+        this.getFlowGoods();
       }
     })
   }
