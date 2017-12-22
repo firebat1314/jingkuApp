@@ -23,7 +23,7 @@
         <div class="txt">企业信息</div>
       </div>
       <div class="status">
-        <button ion-button round navPush="CompanynamePage" *ngIf="baitiao&&baitiao?.company==0">立即填写</button>
+        <button ion-button round navPush="CompanyInfoPage" *ngIf="baitiao&&baitiao?.company==0">立即填写</button>
         <button ion-button clear icon-left style="color:#3f69a5" *ngIf="baitiao&&baitiao?.company==1">
           <img src="./assets/icon/bai-tiao/gg.png" width="17" style="margin-right: 5px;" alt="已认证">已完成</button>
       </div>
@@ -62,7 +62,7 @@
     </div>
   </div>
 </ion-content>
-<ion-footer>
+<ion-footer *ngIf="baitiao?.count>=5&&baitiao?.checks&&baitiao?.company">
   <!--  *ngIf="baitiao?.count>=5&&baitiao?.checks&&baitiao?.company" -->
   <button ion-button full large block no-margin class="submit" (click)="jihuo()">立即激活</button>
 </ion-footer>

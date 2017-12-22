@@ -499,11 +499,47 @@ export class HttpService {
   Ximu(data?: Object) {
     return this.http.post(IP + '/Ximu', data)
   }
+  /* 白条激活 */
   XimuUserapply(data?: Object) {
-    return this.http.post(IP + '/Ximu/userapply', data)
+    return this.http.post(IP + '/Ximu/userapply', data, { showLoading: true })
   }
+  /* 白条开通条件 */
   baitiao_b(data?: Object) {
     return this.http.post(IP + '/User/baitiao', data)
+  }
+  /* 白条是否开通状态 */
+  loan_status(data?: Object) {
+    return this.http.post(IP + '/User/loan_status', data, { showToast: false })
+  }
+  /* 白条支付 */
+  ximu_order(data?: {
+    order_id: number | string;
+  }) {
+    return this.http.post(IP + '/Ximu/order', data, { showLoading: true })
+  }
+  /* 企业信息管理 */
+  enterprise_info(data?: {
+    company?: string | number;//企业名称
+    province?: string | number;//省
+    city?: string | number;//市
+    district?: string | number;//区
+    address?: string | number;//经营地址
+    zctel?: string | number;//注册电话
+    xk?: string | number;//银行开户许可证
+    yyzzsn?: string | number;//营业执照编号
+    fr?: string | number;//法人姓名
+    code_sn?: string | number;//身份证号
+    mobile?: string | number;//手机号
+  }) {
+    return this.http.post(IP + '/User/enterprise_info', data)
+  }
+  /* 企业信息管理 */
+  get_enterprise_info(data?) {
+    return this.http.get(IP + '/User/enterprise_info', data)
+  }
+  /* 白条支付是否完成 */
+  ximuIsPay(data:{order_id}) {
+    return this.http.post(IP + '/User/is_pay', data)
   }
   /**
    * 来镜加工详情

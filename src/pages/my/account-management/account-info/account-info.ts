@@ -28,6 +28,9 @@ export class AccountInfoPage {
     public actionSheetCtrl: ActionSheetController,
     public native: Native
   ) {
+
+  }
+  ngOnInit(){
     this.httpService.getStorage('username').then((res) => {
       if (res) {
         this.httpService.getStorage(res+'_userInfo').then((res) => {
@@ -43,7 +46,6 @@ export class AccountInfoPage {
     })
   }
   getUserData() {
-
     this.httpService.userInfo().then((res) => {
       // console.log(res);
       this.userInfo = res;

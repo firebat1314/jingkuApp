@@ -27,7 +27,7 @@
             用户名
             <ion-note item-right>{{userInfo?.data?.user_info?.user_name}}</ion-note>
         </ion-item>
-        <ion-item tappable [navPush]="RealnamePage" [navParams]="userInfo?.data?.user_info?.true_name" mode="ios" detail-push>
+        <ion-item tappable [navPush]="RealnamePage" [navParams]="{true_name:userInfo?.data?.user_info?.true_name}" mode="ios" detail-push>
             姓名
             <ion-note item-right>{{userInfo?.data?.user_info?.true_name}}</ion-note>
         </ion-item>

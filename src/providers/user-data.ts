@@ -11,6 +11,7 @@ import { Native } from '../providers/native';
 interface HttpOptions {
     showLoading?: boolean;
     timeout?: number;
+    showToast?:boolean;
 }
 
 @Injectable()
@@ -28,6 +29,7 @@ export class UserData {
         var op = Object.assign({
             showLoading: false,
             timeout: 10000,
+            showToast:true
         }, option);
         if (op.showLoading) {
             this.native.showLoading();
@@ -39,7 +41,16 @@ export class UserData {
             return this.http.get(url + this.toQueryString(paramObj), options)
                 .timeout(op.timeout)
                 .toPromise()
-                .then(res => this.handleSuccess(res.json(), op.showLoading))
+                .then(res => {
+                    var result = res.json();
+                    if (op.showLoading) this.native.hideLoading();
+                    if (result && result.status <= 0 && op.showToast) {
+                        if (result.info != "获取商品参数") {
+                            this.native.showToast(result.info);
+                        }
+                    }
+                    return result;
+                })
                 .catch(error => this.handleError(error, op.showLoading));
         })
     }
@@ -48,6 +59,7 @@ export class UserData {
         var op = Object.assign({
             showLoading: false,
             timeout: 10000,
+            showToast:true
         }, option);
 
         if (op.showLoading) {
@@ -60,7 +72,16 @@ export class UserData {
             return this.http.post(url, paramObj, options)
                 .timeout(op.timeout)
                 .toPromise()
-                .then(res => this.handleSuccess(res.json(), op.showLoading))
+                .then(res => {
+                    var result = res.json();
+                    if (op.showLoading) this.native.hideLoading();
+                    if (result && result.status <= 0 && op.showToast) {
+                        if (result.info != "获取商品参数") {
+                            this.native.showToast(result.info);
+                        }
+                    }
+                    return result;
+                })
                 .catch(error => this.handleError(error, op.showLoading));
         })
     }
@@ -68,6 +89,7 @@ export class UserData {
         var op = Object.assign({
             showLoading: false,
             timeout: 10000,
+            showToast:true
         }, option);
         if (op.showLoading) {
             this.native.showLoading();
@@ -79,7 +101,16 @@ export class UserData {
             return this.http.post(url, this.toBodyString(paramObj), options)
                 .timeout(op.timeout)
                 .toPromise()
-                .then(res => this.handleSuccess(res.json(), op.showLoading))
+                .then(res => {
+                    var result = res.json();
+                    if (op.showLoading) this.native.hideLoading();
+                    if (result && result.status <= 0 && op.showToast) {
+                        if (result.info != "获取商品参数") {
+                            this.native.showToast(result.info);
+                        }
+                    }
+                    return result;
+                })
                 .catch(error => this.handleError(error, op.showLoading));
         })
     }

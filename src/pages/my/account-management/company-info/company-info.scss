@@ -1,0 +1,73 @@
+page-company-info {
+    .content {
+        background: #ffffff;
+        .scroll-content {
+            background: #ffffff;
+        }
+    }
+    input:disabled{
+        -webkit-text-fill-color: #999;
+        -webkit-opacity: 1;
+        color: #999;
+    }
+    .tit {
+        padding: 15px 12px;
+        font-size: 1.4rem;
+        border-top: 0.5px solid #e0e0e0;
+        border-bottom: 0.5px solid #e0e0e0;
+        &:first-child {
+            border-top: 0;
+        }
+    }
+    .list {
+        padding-left: 14px;
+        .li {
+            padding: 18px 0;
+            font-size: 1.3rem;
+            display: flex;
+            border-bottom: 0.5px solid #e0e0e0;
+            padding-right: 22px;
+            &:last-child {
+                border-bottom: 0;
+            }
+            .name {
+                white-space: nowrap;
+                color: #666666;
+                flex-basis: 137px;
+            }
+            .inp {
+                flex: 1;
+                color: #999999;
+                border: none;
+            }
+        }
+    }
+    .camra {
+        border: 1px solid #e0e0e0;
+        height: 85px;
+        width: 85px;
+        border-radius: 5px;
+        position: relative;
+        margin-right: 10px;
+        overflow: hidden;
+        &:last-child{
+           margin-right: 0;
+        }
+        img {
+            position: absolute;
+            top: 0;
+            right: 0;
+            left: 0;
+            bottom: 0;
+            margin: auto;
+            width: 58%;
+            max-height: 100%;
+        }
+        &.ui {
+            img {
+                width: 100%;
+                max-height: 100%;
+            }
+        }
+    }
+}

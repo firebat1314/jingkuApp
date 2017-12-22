@@ -14,7 +14,7 @@
 
 
 <ion-content>
-    <button [navPush]="AccountInfoPage" ion-item mode="ios" no-lines>
+    <button ion-item mode="ios" navPush="AccountInfoPage" no-lines>
         <ion-avatar item-left>
              <img style="width: 75px;height: 75px;" img-lazy-load="{{avatar}}">
         </ion-avatar>
@@ -22,16 +22,19 @@
     </button>
     <div class="background"></div>
     <ion-list>
-        <button [navPush]="AccountInfoPage" ion-item mode="ios">
+        <button ion-item mode="ios" navPush="AccountInfoPage">
             个人信息
         </button>
-        <button [navPush]="MemberCenterPage" ion-item mode="ios">
+        <button ion-item mode="ios" navPush="MemberCenterPage">
             会员中心
         </button>
-        <button [navPush]="ShippingAddressPage" ion-item mode="ios">
+        <button ion-item mode="ios" navPush="ShippingAddressPage">
             收货地址
         </button>
-        <button [navPush]="AccountSecurityPage" ion-item mode="ios">
+        <button ion-item mode="ios" navPush="CompanyInfoPage">
+            企业信息
+        </button>
+        <button ion-item mode="ios" navPush="AccountSecurityPage">
             账号安全
         </button>
     </ion-list>

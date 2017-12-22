@@ -3,6 +3,11 @@ page-new-glasses-design {
         display: block;
     }
     color: #4d4d4d;
+    .swiper-slide {
+        img{
+            width: 100% !important;
+        }
+    }
     .sj_title {
         text-align: center;
         font-size: 1.6rem;

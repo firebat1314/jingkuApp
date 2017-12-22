@@ -1,0 +1,109 @@
+<!--
+  Generated template for the CompanyInfoPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+	<ion-navbar>
+		<ion-title>企业资料</ion-title>
+		<ion-buttons right>
+			<button ion-button clear icon-only icon-left right open-more="MoreMenuPage">
+				 <ion-icon name="ios-more"></ion-icon>
+			</button>
+	  </ion-buttons>
+	</ion-navbar>
+
+</ion-header>
+
+
+<ion-content>
+	<ng-container *ngIf="data">
+
+		<div class="tit">企业信息</div>
+		<div class="list">
+			<div class="li">
+				<div class="name">企业名称：</div>
+				<input class="inp" [disabled]="checks" [(ngModel)]="params.company" placeholder="请填写" type="text" value="">
+			</div>
+			<div class="li">
+				<div class="name">经营所在地：</div>
+				<div class="inp" style="position: relative;">
+					<city-picker tappable required item-content cancelText="取消" doneText="完成" separator="-" [citiesData]="cityData" [(ngModel)]="cityName"
+					 name="cityName" [disabled]="checks" (ionChange)="cityChange($event)" placeholder="请选择"></city-picker>
+				</div>
+			</div>
+			<div class="li">
+				<div class="name">经营地址：</div>
+				<input class="inp" [disabled]="checks" [(ngModel)]="params.address" placeholder="请填写" type="text" value="">
+			</div>
+			<div class="li">
+				<div class="name">注册电话</div>
+				<input class="inp" [disabled]="checks" [(ngModel)]="params.zctel" placeholder="请填写" type="text" value="">
+			</div>
+			<div class="li">
+				<div class="name">银行开户行可许证：</div>
+				<input class="inp" [disabled]="checks" [(ngModel)]="params.xk" placeholder="请填写" type="text" value="">
+			</div>
+			<div class="li">
+				<div class="name">营业执照编号：</div>
+				<input class="inp" [disabled]="checks" [(ngModel)]="params.yyzzsn" placeholder="请填写" type="text" value="">
+			</div>
+			<div class="li">
+				<div class="name">营业执照：</div>
+				<div class="camra" tappable *ngIf="!checks">
+					<img img-lazy-load="./assets/icon/choosefile.png" alt="">
+					<input type="file" [quality]="0.7" (get-image)="params.zhizhao = $event" style="width:100%;height:100%;position: absolute;opacity: 0;top:0;">
+				</div>
+				<div class="camra ui" tappable>
+					<img img-lazy-load="{{params.zhizhao || data?.data?.zhizhao || './assets/icon/choosefile_2.png'}}" alt="">
+				</div>
+			</div>
+		</div>
+		<div class="tit">法人信息</div>
+		<div class="list">
+			<div class="li">
+				<div class="name">法人姓名：</div>
+				<input class="inp" [disabled]="checks" [(ngModel)]="params.fr" placeholder="请填写" type="text" value="">
+			</div>
+			<div class="li">
+				<div class="name">身份证号：</div>
+				<input class="inp" [disabled]="checks" [(ngModel)]="params.code_sn" placeholder="请填写" type="text" value="">
+			</div>
+			<div class="li">
+				<div class="name">手机号码：</div>
+				<input class="inp" [disabled]="checks" [(ngModel)]="params.mobile" placeholder="请填写" type="number" value="">
+			</div>
+			<div class="li">
+				<div class="name">身份证正面照片：</div>
+				<div class="camra" tappable *ngIf="!checks">
+					<img img-lazy-load="./assets/icon/choosefile.png" alt="">
+					<input type="file" [quality]="0.7" (get-image)="params.zsfz = $event" style="width:100%;height:100%;position: absolute;opacity: 0;top:0;">
+				</div>
+				<div class="camra ui" tappable>
+					<img img-lazy-load="{{params.zsfz || data?.data?.zsfz || './assets/icon/choosefile_1.png'}}" alt="">
+				</div>
+			</div>
+			<div class="li">
+				<div class="name">身份证反面照片：</div>
+				<div class="camra" tappable *ngIf="!checks">
+					<img img-lazy-load="./assets/icon/choosefile.png" alt="">
+					<input type="file" [quality]="0.7" (get-image)="params.fsfz = $event" style="width:100%;height:100%;position: absolute;opacity: 0;top:0;">
+				</div>
+				<div class="camra ui" tappable>
+					<img img-lazy-load="{{params.fsfz || data?.data?.fsfz || './assets/icon/choosefile_3.png'}}" alt="">
+				</div>
+			</div>
+			<div class="li">
+				<div class="name">营业执照：</div>
+				<div class="camra ui" tappable>
+					<img img-lazy-load="{{data?.data?.zhizhao}}" alt="">
+				</div>
+			</div>
+		</div>
+		<div class="submit" padding style="padding-top: 0;" *ngIf="!checks">
+			<button ion-button block color="jingku1" (click)="submit()" large>确认</button>
+		</div>
+	</ng-container>
+</ion-content>

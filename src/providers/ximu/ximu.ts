@@ -17,17 +17,20 @@ export class XimuProvider {
     console.log('Hello XimuProvider Provider');
   }
 
-  openXimu(url) {
-    cordova.exec(
-      (result) => {
-        if (result != null) {
-          this.native.showToast(result, null, true);
-        }
-      },
-      (msg) => {
-        this.native.showToast(msg, null, true);
-      },
-      "CallActivityPlugin",
-      "call", [url])
+  openXimu(url, successCallback?) {
+    if (typeof cordova != "undefined") {
+      cordova.exec(
+        (response) => {
+          if (typeof response !== 'object') { response = JSON.parse(response); }
+          successCallback ? successCallback(response) : null;
+        },
+        (msg) => {
+          this.native.showToast(msg, null, true);
+        },
+        "CallActivityPlugin",
+        "call", [url])
+    } else {
+      this.native.showToast('请在安卓客户端操作')
+    }
   }
 }

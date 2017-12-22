@@ -1,7 +1,8 @@
-import { Component } from '@angular/core';
+import { Component, Renderer, ElementRef, ViewChild, QueryList, ViewChildren } from '@angular/core';
 import { NavController, NavParams, ViewController, IonicPage, AlertController, Events } from 'ionic-angular';
 import { HttpService } from "../../../../providers/http-service";
 import { Native } from "../../../../providers/native";
+import { XimuProvider } from '../../../../providers/ximu/ximu';
 // import { AllOrdersPage } from "../all-orders";
 
 /*
@@ -23,18 +24,28 @@ declare var pingpp: any;
   templateUrl: 'payment-method.html'
 })
 export class PaymentMethodPage {
-
-  payResult: any;
   data: any;
   order_id = this.navParams.get('order_id');
   log_id = this.navParams.get('log_id');
   type = this.navParams.get('type');
-  user_money: string;
-  is_pay_pass: any;
+  user_money: string;//账户余额
+  is_pay_pass: any;//是否设置支付密码
+
   yE: boolean = false;//是否使用余额
+  bt: boolean = false;//是否使用白条
+
   paymentType: any;//支付方式
   payPassword: any;//用户支付密码
-  canLeave: boolean = false;
+  canLeave: boolean = false;//能否离开
+
+  end_time: any;//订单支付剩余时间
+
+  // canBt: boolean;//能否白条支付
+
+  isWeixin: boolean = this.native.isWeixin();
+
+  @ViewChildren('totalprice') totalprice: QueryList<ElementRef>;
+
   constructor(
     public navCtrl: NavController,
     public navParams: NavParams,
@@ -42,9 +53,11 @@ export class PaymentMethodPage {
     public httpService: HttpService,
     public native: Native,
     public events: Events,
-    public alertCtrl: AlertController
-  ) {
-  }
+    public alertCtrl: AlertController,
+    public ximu: XimuProvider,
+    private renderer: Renderer,
+    private el: ElementRef,
+  ) { }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad PaymentMethodPage');
@@ -61,22 +74,30 @@ export class PaymentMethodPage {
     this.httpService.pay({ order_id: this.order_id, log_id: this.log_id, type: this.type }).then((res) => {
       if (res.status == 1) {
         this.data = res;
+        this.end_time = res.order_info.end_time
       } else if (res.status == 0) {
         this.goAllOrdersPage();
       }
     })
+    /* this.totalprice.changes.subscribe(data => data._results.forEach(e => {
+      e.nativeElement.innerHTML = '1111'
+      console.log(e.nativeElement.innerText)
+    }));
+    this.totalprice.notifyOnChanges(); */
   }
   ngOnDestroy() {
     this.events.unsubscribe('ChangePayPasswordPage:editPaypwd');
   }
   ionViewCanLeave() {
+    let timer;
     return new Promise((resolve, reject) => {
       if (this.canLeave) {
         resolve(true);
       } else {
+        let et = this.end_time % (24 * 3600);
         var alert = this.alertCtrl.create({
           title: '确认要离开收银台？',
-          message: '您的订单在23小时59分钟内未支付将被取消，请尽快完成支付。',
+          message: `您的订单在${Math.floor(et / 3600)}小时${(Math.floor((et % 3600) / 60))}分钟内未支付将被取消，请尽快完成支付。`,
           buttons: [
             {
               text: '继续支付',
@@ -92,8 +113,16 @@ export class PaymentMethodPage {
             }
           ]
         })
-        alert.present();
+        alert.present().then((e) => {
+          /* let title = document.getElementsByClassName('alert-message')[0];
+          let et = this.end_time % (24 * 3600);
+          timer = setInterval(() => {
+            console.log(et)
+            title && (title.innerHTML = `您的订单在${Math.floor(et / 3600)}小时${(Math.floor((et % 3600) / 60))}分钟内未支付将被取消，请尽快完成支付。`);
+          }, 1000) */
+        });
         alert.onDidDismiss((a, b) => {
+          // clearInterval(timer);
           resolve(false);
         })
       }
@@ -102,19 +131,22 @@ export class PaymentMethodPage {
     });
   }
   goAllOrdersPage() {
-    setTimeout(() => {
-      this.events.publish('allOrders:update');
-      this.events.publish('my:update');
-      this.canLeave = true;
-      if (this.navCtrl.getPrevious().id == 'AllOrdersPage') {
-        this.navCtrl.pop();
-      } else {
-        var nav = this.navCtrl.last();
-        this.navCtrl.push('AllOrdersPage').then(() => {
-          this.navCtrl.removeView(nav, { animate: false });
-        });
-      }
-    }, 800);
+    this.events.publish('allOrders:update');
+    this.events.publish('my:update');
+    this.canLeave = true;
+    if (this.navCtrl.getPrevious() && this.navCtrl.getPrevious().id == 'AllOrdersPage') {
+      this.navCtrl.pop();
+    } else {
+      setTimeout(() => {
+        this.pushPage('AllOrdersPage');
+      }, 800);
+    }
+  }
+  pushPage(page) {
+    var nav = this.navCtrl.last();
+    this.navCtrl.push(page).then(() => {
+      this.navCtrl.removeView(nav, { animate: false });
+    });
   }
   getUserInfo() {
     this.httpService.userInfo().then((res) => {//检查是否有支付密码
@@ -124,12 +156,45 @@ export class PaymentMethodPage {
       }
     })
   }
-  dismiss(data?: any) {
-    this.viewCtrl.dismiss(data);
+  useYue() {
+    this.yE = !this.yE;
+    if (this.yE) {
+      this.bt = false;
+      if (!this.is_pay_pass) {
+        this.alertCtrl.create({
+          title: '提示',
+          subTitle: '还没有设置支付密码请前往设置',
+          message: '',
+          enableBackdropDismiss: false,
+          buttons: [
+            {
+              text: '确定',
+              handler: () => {
+                this.yE = false;
+                this.canLeave = true;
+                this.navCtrl.push('ChangePayPasswordPage');
+              }
+            }, {
+              text: '取消',
+              handler: () => {
+                this.yE = false;
+              }
+            }
+          ]
+        }).present();
+      }
+    }
+  }
+  useBt() {
+    this.bt = !this.bt;
+    if (this.bt) {
+      this.paymentType = null;
+      this.yE = false;
+    }
   }
   toPay() {
     // this.navCtrl.remove()
-    if (!this.yE && !this.paymentType) {
+    if (!this.yE && !this.paymentType && !this.bt) {
       this.native.showToast('请选择支付方式');
       return
     }
@@ -144,8 +209,26 @@ export class PaymentMethodPage {
           }
         }
       })
+    } else if (this.bt) {//使用白条
+      this.httpService.ximu_order({ order_id: this.order_id }).then((res) => {
+        if (res.status) {
+          if (!res.loan_status) {
+            this.canLeave = true;
+            this.pushPage('BtAuthorizationPage');
+          } else {
+            this.ximu.openXimu(res.data.url, (res) => {
+              if (res == 1) {
+                this.httpService.ximuIsPay({ order_id: this.order_id }).then((res) => {
+                  if (res.status) {
+                    this.goAllOrdersPage();
+                  }
+                })
+              }
+            });
+          }
+        }
+      })
     } else {//不使用余额
-
       this.noUserBalance(this.data[this.paymentType]);
     }
   }
@@ -182,32 +265,6 @@ export class PaymentMethodPage {
         this.openPingPayment(res);
       }
     })
-  }
-  userYue() {
-    this.yE = !this.yE;
-    if (this.yE && !this.is_pay_pass) {
-      this.alertCtrl.create({
-        title: '提示',
-        subTitle: '还没有设置支付密码请前往设置',
-        message: '',
-        enableBackdropDismiss: false,
-        buttons: [
-          {
-            text: '确定',
-            handler: () => {
-              this.yE = false;
-              this.canLeave = true;
-              this.navCtrl.push('ChangePayPasswordPage');
-            }
-          }, {
-            text: '取消',
-            handler: () => {
-              this.yE = false;
-            }
-          }
-        ]
-      }).present();
-    }
   }
   openPingPayment(data) {
     let that = this;

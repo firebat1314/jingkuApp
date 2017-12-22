@@ -35,6 +35,9 @@ export class AllOrdersPage {
     console.log('ionViewDidLoad AllOrdersPage');
   }
   ngAfterViewInit() {
+    
+  }
+  ngOnInit(){
     /* 回到顶部按钮 */
     this.fabButton.setElementClass('fab-button-out', true);
     this.content.ionScroll.subscribe((d) => {

@@ -126,9 +126,15 @@
                     </span>
                     <span class="txt">余额</span>
                 </a>
-                <a (click)="openXimu()"><!--  hideWhen="ios" -->
+                <!-- <a (click)="openXimu()" hideWhen="ios">
                     <span class="icon_num">
                         暂未开放
+                    </span>
+                    <span class="txt">镜库金融</span>
+                </a> -->
+                <a (click)="openXimu()"><!--  hideWhen="ios" -->
+                    <span class="icon_num">
+                        {{baitiao?.status?'已开通':'申请开通'}}
                     </span>
                     <span class="txt">镜库金融</span>
                 </a>

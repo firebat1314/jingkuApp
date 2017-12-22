@@ -9,13 +9,15 @@ import { Native } from "../../../../../providers/native";
   See http://ionicframework.com/docs/v2/components/#navigation for more info on
   Ionic pages and navigation.
 */
-@IonicPage()
+@IonicPage({
+  segment:"realname/:true_name"
+})
 @Component({
   selector: 'page-realname',
   templateUrl: 'realname.html'
 })
 export class RealnamePage {
-  placeholder = this.navParams.data
+  placeholder = this.navParams.get('true_name');
   username: any = this.placeholder;
   constructor(
     public navCtrl: NavController,

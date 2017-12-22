@@ -19,7 +19,7 @@ export class SignupThirdPage {
     public navParams: NavParams,
     private events: Events
   ) {
-   
+
   }
   ionViewDidLoad() {
     console.log('ionViewDidLoad SignupThirdPage');
@@ -41,7 +41,7 @@ export class SignupThirdPage {
     }
   }
   toLogin() {
-    this.navCtrl.goToRoot({animate:true});
+    this.navCtrl.setRoot('LoginPage', {}, { animate: true });
   }
   ngOnDestroy() {
     clearTimeout(this.timer);

@@ -6,6 +6,7 @@ import { UserData } from "../../providers/user-data";
 import { HttpService } from "../../providers/http-service";
 import { Native } from "../../providers/native";
 import { Storage } from '@ionic/storage';
+import { XimuProvider } from '../../providers/ximu/ximu';
 
 @IonicPage({
   segment: 'home',
@@ -24,6 +25,8 @@ export class HomePage {
   jingxuan_img3: string;
   jingxuan_img2: string;
   jingxuan_img1: string;
+
+  baitiao: any;//白条开通状态
 
   area: string = '请选择';
   areaList: any;
@@ -49,7 +52,8 @@ export class HomePage {
     private native: Native,
     private storage: Storage,
     public popoverCtrl: PopoverController,
-    public alertCtrl: AlertController
+    public alertCtrl: AlertController,
+    private ximu: XimuProvider,
   ) {
     //地址更新
     this.events.subscribe('home:update', () => {
@@ -60,7 +64,7 @@ export class HomePage {
     }) */
   }
   ngAfterViewInit() {
-    
+
   }
   ionViewDidLoad() {
     console.log('ionViewDidLoad HomePage');
@@ -98,6 +102,9 @@ export class HomePage {
         this.storage.set('fastbuyData', res);
       }
     });
+    this.httpService.loan_status().then((res) => {
+      this.baitiao = res;
+    })
     return this.httpService.indexs().then((res) => {
       if (res.status == 1) {
         this.data = res;
@@ -205,7 +212,15 @@ export class HomePage {
     this.navCtrl.push('BrandListPage', { brandId: id })
   }
   goWhitebarPage() {
-    this.native.showToast('敬请期待')
+    if (this.native.isAndroid()) {
+      if(this.baitiao.status){
+        this.ximu.openXimu(this.baitiao.data.url);
+      }else{
+        this.navCtrl.push('BtAuthorizationPage');
+      }
+    } else {
+      this.native.showToast('该功能现仅在安卓客户端开放');
+    }
   }
   goPresellPage() {
     this.navCtrl.push('PresellPage');
