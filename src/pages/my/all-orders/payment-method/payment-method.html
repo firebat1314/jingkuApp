@@ -21,9 +21,7 @@
 
         <ion-item mode="ios" class="e_p" no-lines>
             <div class="timeover">
-                <span>请您在</span>
-                <countdown [(endDate)]="end_time"></countdown>
-                <span>内完成支付</span>
+                <span>请您在</span><countdown [(endDate)]="end_time"></countdown><span>内完成支付</span>
             </div>
             <span item-right ion-text color="danger" style="font-size: 1.5rem;" #totalprice class="totalprice">{{data?.pay_amout||'0.00'}}元</span>
         </ion-item>
@@ -49,8 +47,7 @@
                     </div>
                     <ion-checkbox color="jingku1" [checked]="yE" style="pointer-events:none;"></ion-checkbox>
                 </div>
-                <div class="zf_x" (click)="paymentType=='alipay'?paymentType='':paymentType='alipay';bt=false" [class.selected]
-                    "paymentType=='alipay'" [class.disable]="bt">
+                <div class="zf_x" (click)="paymentType=='alipay'?paymentType='':paymentType='alipay';bt=false" [class.selected]="paymentType=='alipay'" [class.disable]="bt">
                     <img src="./assets/icon/close_ico5.png" alt="">
                     <div class="cont">
                         <div class="p1">支付宝支付</div>
@@ -58,8 +55,7 @@
                     </div>
                     <ion-checkbox color="jingku1" [checked]="paymentType=='alipay'" style="pointer-events:none;"></ion-checkbox>
                 </div>
-                <div class="zf_x" (click)="paymentType=='weixin'?paymentType='':paymentType='weixin';bt=false" [class.selected]="paymentType=='weixin'"
-                    [class.disable]="bt">
+                <div class="zf_x" (click)="paymentType=='weixin'?paymentType='':paymentType='weixin';bt=false" [class.selected]="paymentType=='weixin'" [class.disable]="bt">
                     <img src="./assets/icon/close_ico6.png" alt="">
                     <div class="cont">
                         <div class="p1">微信支付</div>
@@ -67,8 +63,7 @@
                     </div>
                     <ion-checkbox color="jingku1" [checked]="paymentType=='weixin'" style="pointer-events:none;"></ion-checkbox>
                 </div>
-                <div class="zf_x" (click)="paymentType=='upacp'?paymentType='':paymentType='upacp';bt=false" [class.selected]="paymentType=='upacp'"
-                    [class.disable]="bt">
+                <div class="zf_x" (click)="paymentType=='upacp'?paymentType='':paymentType='upacp';bt=false" [class.selected]="paymentType=='upacp'" [class.disable]="bt">
                     <img src="./assets/icon/close_ico7.png" alt="">
                     <div class="cont">
                         <div class="p1">中国银联支付</div>
