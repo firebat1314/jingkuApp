@@ -10,7 +10,7 @@
         <ion-title>发票管理</ion-title>
     </ion-navbar>
     <ion-toolbar class="segment-style">
-        <ion-segment mode="md" [(ngModel)]="receiptTool" (ionChange)="flag=true;getHttpData()">
+        <ion-segment mode="md" [(ngModel)]="receiptTool" (ionChange)="flag=true;getHttpData();myContent.scrollToTop(0)">
             <ion-segment-button value="receiptSskFor">
                 发票索取
             </ion-segment-button>
@@ -28,7 +28,7 @@
     <ion-refresher (ionRefresh)="doRefresh($event)" pullMax="60">
         <ion-refresher-content refreshingSpinner="1" pullingIcon="0"></ion-refresher-content>
     </ion-refresher>
-    <div class="receiptSskFor" *ngSwitchCase="'receiptSskFor'" [ngStyle]="{background:!suoquList?.data?.length?'url(./assets/images/images/invoice.png) no-repeat center 100px':null}">
+    <div class="receiptSskFor" *ngSwitchCase="'receiptSskFor'" [ngStyle]="{background:suoquList&&!suoquList?.data?.length?'url(./assets/images/images/invoice.png) no-repeat center 100px':'none'}">
         <ion-card *ngFor="let item of suoquList?.data">
             <div class="an-invoice">
                 <div class="main">
@@ -50,7 +50,7 @@
             </div>
         </ion-card>
     </div>
-    <div class="receiptList" *ngSwitchCase="'receiptList'" [ngStyle]="{background:!invoiceList?.data?.length?'url(./assets/images/images/invoice.png) no-repeat center 200px':null}">
+    <div class="receiptList" *ngSwitchCase="'receiptList'" [ngStyle]="{background:suoquList&&!invoiceList?.data?.length?'url(./assets/images/images/invoice.png) no-repeat center 200px':'none'}">
         <div class="head">
             <div class="reminder">
                 <div>
@@ -105,7 +105,7 @@
         </ng-container>
 
     </div>
-    <div class="receiptInfo" *ngSwitchCase="'receiptInfo'" [ngStyle]="{background:!invRoleList?.data?.length?'url(./assets/images/images/invoice.png) no-repeat center 100px':null}">
+    <div class="receiptInfo" *ngSwitchCase="'receiptInfo'" [ngStyle]="{background:suoquList&&!invRoleList?.data?.length?'url(./assets/images/images/invoice.png) no-repeat center 100px':'none'}">
         <div class="head">
             <button ion-button color="blueBtn" (click)="goInvoiceQualificationPage()">新增发票资质</button>发票资质审核通过后不可删除修改
         </div>
