@@ -37,11 +37,9 @@ export class AccountCollectStorePage {
     })
   }
   unfollowShop(suppliers_id, index) {
-    this.native.openAlertBox('是否取消关注改商铺', () => {
+    this.native.openAlertBox('取消关注', () => {
       this.httpService.delCollectionShop({ shop_ids: [suppliers_id] }).then((res) => {
-        // console.log(res);
         if (res.status == 1) {
-          this.native.showToast('已取消关注', null, false);
           this.doRefresh();
           this.events.publish('my:update');
         }

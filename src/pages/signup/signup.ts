@@ -30,6 +30,8 @@ export class SignupPage {
     private events: Events,
     public httpService: HttpService
   ) {
+  }
+  ngOnInit(){
     this.getSkey();
   }
   ionViewDidLoad() {

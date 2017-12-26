@@ -41,10 +41,15 @@ import { XimuProvider } from '../providers/ximu/ximu';
   imports: [
     IonicModule.forRoot(MyApp, {
       platforms: {
-        ios: {}
+        ios: {
+
+        },
+        android:{
+          backButtonIcon:'ios-arrow-back'
+        }
       },
       backButtonText: '',
-      mode: 'ios',
+      // mode: 'ios',
       tabsHideOnSubPages: true,
       tabsPlacement: 'bottom',
       swipeBackEnabled: false

@@ -23,13 +23,15 @@ export class HelperDetailsPage {
     public navParams: NavParams,
     public httpService: HttpService
   ) {
+    
+  }
+  ngOnInit(){
     this.httpService.helpInfo({id:this.article_id}).then((res)=>{
       if(res.status==1){
         this.data = res;
       }
     })
   }
-
   ionViewDidLoad() {
     console.log('ionViewDidLoad HelperDetailsPage');
   }

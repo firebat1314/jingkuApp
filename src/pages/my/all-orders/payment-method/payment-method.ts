@@ -212,7 +212,7 @@ export class PaymentMethodPage {
       })
     } else if (this.bt) {//使用白条
       this.httpService.loan_status().then((res) => {
-        if (!res.loan_status) {
+        if (!res.status) {
           this.canLeave = true;
           this.navCtrl.push('BtAuthorizationPage').then(()=>{
             this.canLeave = false;

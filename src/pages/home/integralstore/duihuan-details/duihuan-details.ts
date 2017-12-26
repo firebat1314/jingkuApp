@@ -32,7 +32,7 @@ export class DuihuanDetailsPage {
   ionViewDidLoad() {
     console.log('ionViewDidLoad DuihuanDetailsPage');
   }
-  ngAfterViewInit(){
+  ngOnInit(){
     this.getData();
   }
   getData() {

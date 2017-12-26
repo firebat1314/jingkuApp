@@ -8,7 +8,7 @@ import { Component, Input, OnDestroy, AfterViewInit, Output, EventEmitter } from
 */
 @Component({
   selector: 'countdown',
-  template: `${this.day ? '<span>' + this.day + '</span>天' : ''}<span>{{hour}}</span>时<span>{{minute}}</span>分<span>{{second}}</span>`
+  templateUrl: 'countdown.html'
 })
 
 export class CountdownComponent implements AfterViewInit, OnDestroy {
