@@ -169,7 +169,7 @@ export class HttpService {
     return this.http.get(IP + '/Flow/get_flow_goods', data)
   }
   changeNumCart(data?: Object) {//改变购物车数量
-    return this.http.get(IP + '/Flow/change_num_cart', data)
+    return this.http.get(IP + '/Flow/change_num_cart', data, { showLoading: true })
   }
   dropCartGoods(data?: Object) {//(3)删除购物车中单独选择的商品
     return this.http.get(IP + '/Flow/drop_cart_goods_select', data)

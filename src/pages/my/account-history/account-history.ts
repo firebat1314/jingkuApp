@@ -51,7 +51,7 @@ export class AccountHistoryPage {
   deleteOne(id) {
     let confirm = this.alertCtrl.create({
       cssClass: 'alert-style',
-      subTitle: '确认删除该浏览记录',
+      title: '确认删除该浏览记录',
       buttons: [
         {
           text: '确认',

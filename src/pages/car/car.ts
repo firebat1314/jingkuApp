@@ -86,9 +86,7 @@ export class CarPage {
    * @param item 单个商品
    */
   numberChangeI(event, item) {
-    this.native.showLoading();
     this.httpService.changeNumCart({ rec_id: item.rec_id, number: event }).then((res) => {
-      this.native.hideLoading();
       this.getFlowGoods().then(() => { });
     })
     // this.calculateTotal();

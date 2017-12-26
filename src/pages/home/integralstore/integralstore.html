@@ -38,8 +38,8 @@
     </div>
 
 
-    <ion-fab left bottom>
-        <button ion-fab color="jingku1" mini *ngIf="data?.pages">
+    <ion-fab left bottom *ngIf="data?.pages">
+        <button ion-fab color="jingku1" mini>
             {{data?.page}}/{{data?.pages}}
         </button>
     </ion-fab>

@@ -24,13 +24,13 @@ export class NewGlassesDesignPage {
     public navParams: NavParams,
     public httpService: HttpService,
   ) {
+  }
+  ngOnInit(){
     this.getGoodsList();
   }
-
   ionViewDidLoad() {
     console.log('ionViewDidLoad NewGlassesDesignPage');
   }
-
   getGoodsList() {
     this.httpService.categoryGoods({ cat_id: 421, page: 1 }).then((res) => {
       if (res.status == 1) {
