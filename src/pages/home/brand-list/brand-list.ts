@@ -104,7 +104,7 @@ export class BrandListPage {
 			this.httpService.categoryGoods(Object.assign(this.paramsData, { page: 1 })).then((res) => {
 				resolve()
 				if (res.status == 1) {
-					res.is_jingpian&&!this.listStyleLock ? this.listStyleflag = true : null;
+					res.is_jingpian && !this.listStyleLock ? this.listStyleflag = true : null;
 					this.data = res;
 					this.content.scrollToTop();
 					if (res.goods.length == 0) {
@@ -149,13 +149,16 @@ export class BrandListPage {
 		})
 	}
 	onInput(event) {
-		this.searchGoods()
+		if (event.keyCode == 13) {
+			this.searchGoods()
+		}
 	}
 	searchGoods() {
 		this.data.page = 1;
 		this.paramsData.page = 1;
 		this.paramsData.keywords = this.myHomeSearch;
 		this.getListData()
+
 	}
 	allStatus = true;
 	salesNumStatus = true;

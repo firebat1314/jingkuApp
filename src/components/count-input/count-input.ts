@@ -51,6 +51,8 @@ export class CountInputComponent {
 
 
   disabled: boolean = false;//禁用输入框手动输入
+  inputEle:HTMLInputElement;
+  
   constructor(
     private native: Native,
     private element: ElementRef,
@@ -60,25 +62,36 @@ export class CountInputComponent {
   ngOnInit() {
     if (this.rank !== 1 || this.maxValue <= 0) this.disabled = true;
   }
+  ngAfterViewInit(){
+    this.inputEle = this.element.nativeElement.getElementsByTagName('input')[0];
+  }
   reduce() {
-      this.valueChange.emit(this.value -= this.rank);
+    this.valueChange.emit(this.value -= this.rank);
   }
   increase() {
     /* if (this.maxValue && (this.maxValue - this.value) < this.rank) {
       this.native.showToast('最多选择' + this.maxValue + '件');
-      this.element.nativeElement.getElementsByTagName('input')[0].value = this.value;
+      this.inputEle.value = this.value;
       return;
     } */
     this.valueChange.emit(this.value += this.rank);
   }
   inputEvent() {
-    if (this.maxValue && (this.value >= this.maxValue)) {
+    /* if ((this.maxValue || this.maxValue==0) && (this.value >= this.maxValue)) {
       this.native.showToast('最多选择' + this.maxValue + '件');
-      this.element.nativeElement.getElementsByTagName('input')[0].value = this.maxValue;
+      this.inputEle.value = this.maxValue;
       this.value = this.maxValue;
-    } else if (!this.value) {
-      this.element.nativeElement.getElementsByTagName('input')[0].value = 0;
-    }
+    } else  */
+    /* if (!this.value) {
+      this.inputEle.value = 0;
+    } */
     this.valueChange.emit(this.value);
+  }
+  input(value){
+    if ((this.maxValue || this.maxValue==0) && (this.value >= this.maxValue)) {
+      this.inputEle.value = String(this.maxValue);
+    }else{
+      this.inputEle.value = String(Number(value));
+    }
   }
 }

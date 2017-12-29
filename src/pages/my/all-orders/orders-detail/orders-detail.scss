@@ -52,6 +52,7 @@ page-orders-detail {
                         .left {
                             color: #999;
                             font-size: 1.2rem;
+                            flex: 1;
                             h2 {
                                 @include ellipsis_2;
                             }
@@ -71,6 +72,7 @@ page-orders-detail {
                             .color {
                                 color: get-color('danger'); // color: #4c4c4c;
                                 font-weight: 600;
+                                white-space: nowrap;
                                 .old {
                                     color: #999;
                                     font-size: 1.2rem;

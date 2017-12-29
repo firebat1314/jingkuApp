@@ -25,8 +25,8 @@ export class GetImageDirective {
     // console.log(e)
     var reader = new FileReader();
     //获取文件
-    var file:File = e['target']['files'][0];
-    console.log(file)
+    var file: File = e.target.files[0];
+    // console.log(file)
     var imageType = /^image\//;
     //是否是图片
     if (!imageType.test(file.type)) {
@@ -36,10 +36,10 @@ export class GetImageDirective {
     //读取完成
     reader.onload = (e) => {
       // console.log('reader',e)
-      if(file.size>(5*1024*1024)){
-          this.native.showToast("图片超过限制");
-      }else{
-        console.log('压缩品质:',this.quality)
+      if (file.size > (6 * 1024 * 1024)) {
+        this.native.showToast("图片超过限制");
+      } else {
+        console.log('压缩品质:', this.quality);
         this.dealImage(e.target['result'], {
           quality: this.quality
         }, (base) => {
@@ -54,10 +54,9 @@ export class GetImageDirective {
     var img = new Image();
     img.src = path;
     img.onload = function () {
-      var that = this;
       // 默认按比例压缩
-      var w = that['width'],
-        h = that['height'],
+      var w = img.width,
+        h = img.height,
         scale = w / h;
       w = obj.width || w;
       h = obj.height || (w / scale);
@@ -67,9 +66,9 @@ export class GetImageDirective {
       var ctx = canvas.getContext('2d');
       // 创建属性节点
       var anw = document.createAttribute("width");
-      anw.nodeValue = w;
+      anw.nodeValue = String(w);
       var anh = document.createAttribute("height");
-      anh.nodeValue = h;
+      anh.nodeValue = String(h);
       canvas.setAttributeNode(anw);
       canvas.setAttributeNode(anh);
       ctx.drawImage(img, 0, 0, w, h);

@@ -25,7 +25,7 @@ export class SearchPage {
     private httpService: HttpService,
     private keyboard: Keyboard,
   ) { }
-  ngAfterViewInit() {
+  ngOnInit() {
     this.mySearchBar.animated = true;
     setTimeout(() => {
       this.mySearchBar.setFocus();
