@@ -22,7 +22,7 @@ page-signup-second {
         [item-content] {
             display: flex;
             align-items: center;
-            .add-zhizhao {
+            /* .add-zhizhao {
                 height: 7rem;
                 width: 7rem;
                 min-height: 7rem;
@@ -39,6 +39,36 @@ page-signup-second {
                 margin-right: 20px;
                 ion-icon {
                     font-size: 3rem;
+                }
+            } */
+            .camra {
+                border: 1px solid #e0e0e0;
+                height: 85px;
+                width: 85px;
+                position: relative;
+                margin: 10px 0;
+                border-radius: 8px;
+                margin-right: 10px;
+                overflow: hidden;
+                &:last-child {
+                    margin-right: 0;
+                }
+                img {
+                    position: absolute;
+                    top: 0;
+                    right: 0;
+                    left: 0;
+                    bottom: 0;
+                    margin: auto;
+                    width: 58%;
+                    max-height: 100%;
+                }
+                &.ui {
+                    img {
+                        width: auto;
+                        max-width: 100%;
+                        max-height: 100%;
+                    }
                 }
             }
         }
