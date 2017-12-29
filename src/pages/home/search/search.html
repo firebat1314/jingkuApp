@@ -9,7 +9,7 @@
     <ion-navbar>
         <form action="">
             <ion-searchbar [(ngModel)]="myHomeSearch" [ngModelOptions]="{standalone: true}" placeholder="搜索镜库商品" mode="ios" showCancelButton="true"
-                cancelButtonText="取消" debounce="500" type="search" (keypress)="searchbar($event)"></ion-searchbar>
+                cancelButtonText="取消" debounce="0" type="search" (keypress)="searchbar($event)"></ion-searchbar>
         </form>
     </ion-navbar>
 

@@ -11,7 +11,7 @@ import { Native } from '../providers/native';
 interface HttpOptions {
     showLoading?: boolean;
     timeout?: number;
-    showToast?:boolean;
+    showToast?: boolean;
 }
 
 @Injectable()
@@ -29,7 +29,7 @@ export class UserData {
         var op = Object.assign({
             showLoading: false,
             timeout: 10000,
-            showToast:true
+            showToast: true
         }, option);
         if (op.showLoading) {
             this.native.showLoading();
@@ -45,13 +45,11 @@ export class UserData {
                     var result = res.json();
                     if (op.showLoading) this.native.hideLoading();
                     if (result && result.status <= 0 && op.showToast) {
-                        if (result.info != "获取商品参数") {
-                            this.native.showToast(result.info);
-                        }
+                        this.native.showToast(result.info);
                     }
                     return result;
                 })
-                .catch(error => this.handleError(error, op.showLoading));
+                .catch(error => this.handleError(error, op));
         })
     }
     public post(url: string, paramObj: any, option?: HttpOptions) {
@@ -59,7 +57,7 @@ export class UserData {
         var op = Object.assign({
             showLoading: false,
             timeout: 10000,
-            showToast:true
+            showToast: true
         }, option);
 
         if (op.showLoading) {
@@ -76,20 +74,18 @@ export class UserData {
                     var result = res.json();
                     if (op.showLoading) this.native.hideLoading();
                     if (result && result.status <= 0 && op.showToast) {
-                        if (result.info != "获取商品参数") {
-                            this.native.showToast(result.info);
-                        }
+                        this.native.showToast(result.info);
                     }
                     return result;
                 })
-                .catch(error => this.handleError(error, op.showLoading));
+                .catch(error => this.handleError(error, op));
         })
     }
     public postBody(url: string, paramObj: any, option?: HttpOptions) {
         var op = Object.assign({
             showLoading: false,
             timeout: 10000,
-            showToast:true
+            showToast: true
         }, option);
         if (op.showLoading) {
             this.native.showLoading();
@@ -111,7 +107,7 @@ export class UserData {
                     }
                     return result;
                 })
-                .catch(error => this.handleError(error, op.showLoading));
+                .catch(error => this.handleError(error, op));
         })
     }
     /**
@@ -134,8 +130,8 @@ export class UserData {
      * @return {{success: boolean, msg: string}}
      */
     private showToastTime = true;
-    private handleError(error: Response | any, showLoading) {
-        if (showLoading) this.native.hideLoading();
+    private handleError(error: Response | any, op) {
+        if (op.showLoading) this.native.hideLoading();
         let msg: string = '参数错误';
         if (error.status == 401) {
             msg = '数据加载出错';
@@ -155,14 +151,14 @@ export class UserData {
                 }
             }
         }
-        if (error.status == 404) {
+        if (error.status == 404 && op.showToast) {
             this.native.showToast('链接地址错误');
         }
 
-        if (error.status == 0) {
+        if (error.status == 0 && op.showToast) {
             this.native.showToast('请检查网络连接');
         }
-        if (error.name == "TimeoutError") {
+        if (error.name == "TimeoutError" && op.showToast) {
             this.native.showToast('连接超时，请稍后再试');
         }
         console.log(error);

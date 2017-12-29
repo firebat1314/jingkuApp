@@ -5,9 +5,9 @@
   for more info on Angular 2 Components.
 -->
 <div class="btn" tappable (click)="reduce()" [class.disabled]="value <= minValue">
-        <img src="./assets/icon/minus.png" alt="">
+	<img src="./assets/icon/minus.png" alt="">
 </div>
-<input type="number" [(ngModel)]="value" (blur)="inputEvent()" [disabled]="disabled">
-<div class="btn" tappable (click)="increase()" [class.disabled]="maxValue && (maxValue - value) < rank">
-        <img src="./assets/icon/add.png" alt="">
+<input type="number" [(ngModel)]="value" (input)="input(value)" (blur)="inputEvent()" [ngStyle]="{'background':rank>1?'#e0e0e0':'none'}" [disabled]="disabled" tappable>
+<div class="btn" tappable (click)="increase()" [class.disabled]="(maxValue || maxValue==0) && (maxValue - value) < rank">
+	<img src="./assets/icon/add.png" alt="">
 </div>

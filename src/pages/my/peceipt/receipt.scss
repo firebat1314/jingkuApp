@@ -70,6 +70,8 @@ page-receipt {
                     display: flex;
                     align-items: center;
                     margin-bottom: 14px;
+                    flex-wrap: nowrap;
+                    white-space: nowrap;
                     &:last-child {
                         margin-bottom: 0;
                     }
@@ -87,7 +89,7 @@ page-receipt {
                             margin-right: 6px;
                         }
                         span {
-                            margin-right: 16px;
+                            margin-right: 10px;
                             color: #666666;
                         }
                     }
