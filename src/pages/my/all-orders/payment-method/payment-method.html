@@ -20,11 +20,12 @@
     <ng-container *ngIf="data">
 
         <ion-item mode="ios" class="e_p" no-lines>
-            <div class="timeover">
+            <div class="timeover" *ngIf="type!='mach'">
                 <span>请您在</span>
                 <countdown [(endDate)]="end_time"></countdown>
                 <span>内完成支付</span>
             </div>
+            <div class="timeover" *ngIf="type=='mach'">请支付</div>
             <span item-right ion-text color="danger" style="font-size: 1.5rem;" #totalprice class="totalprice">{{data?.pay_amout||'0.00'}}元</span>
         </ion-item>
         <section class="zffs" *ngIf="data?.order_info?.pay_id!=4">
@@ -39,7 +40,7 @@
                         <div class="p1">打白条</div>
                         <div class="p2"></div>
                     </div>
-                    <ion-checkbox color="jingku1" [checked]="bt" style="pointer-events:none;"></ion-checkbox>
+                    <ion-checkbox color="jingku1" mode="ios" [checked]="bt" style="pointer-events:none;"></ion-checkbox>
                 </div>
                 <div class="zf_x" tappable (click)="useYue()" [class.selected]="yE" [class.disable]="!user_money||bt" [style.pointerEvents]="!user_money?'none':'auto'">
                     <img src="./assets/icon/close_ico4.png" alt="">
@@ -47,7 +48,7 @@
                         <div class="p1">镜库余额</div>
                         <div class="p2">可用余额{{user_money||'0.00'}}元</div>
                     </div>
-                    <ion-checkbox color="jingku1" [checked]="yE" style="pointer-events:none;"></ion-checkbox>
+                    <ion-checkbox color="jingku1" mode="ios" [checked]="yE" style="pointer-events:none;"></ion-checkbox>
                 </div>
                 <div class="zf_x" (click)="paymentType=='alipay'?paymentType='':paymentType='alipay';bt=false" *ngIf="!isWeixin||isMobile"
                     [class.selected]="paymentType=='alipay'" [class.disable]="bt">
@@ -56,7 +57,7 @@
                         <div class="p1">支付宝支付</div>
                         <div class="p2">支付宝安全支付</div>
                     </div>
-                    <ion-checkbox color="jingku1" [checked]="paymentType=='alipay'" style="pointer-events:none;"></ion-checkbox>
+                    <ion-checkbox color="jingku1" mode="ios" [checked]="paymentType=='alipay'" style="pointer-events:none;"></ion-checkbox>
                 </div>
                 <div class="zf_x" (click)="paymentType=='weixin'?paymentType='':paymentType='weixin';bt=false" *ngIf="isWeixin||isMobile"
                     [class.selected]="paymentType=='weixin'" [class.disable]="bt">
@@ -65,7 +66,7 @@
                         <div class="p1">微信支付</div>
                         <div class="p2">微信安全支付</div>
                     </div>
-                    <ion-checkbox color="jingku1" [checked]="paymentType=='weixin'" style="pointer-events:none;"></ion-checkbox>
+                    <ion-checkbox color="jingku1" mode="ios" [checked]="paymentType=='weixin'" style="pointer-events:none;"></ion-checkbox>
                 </div>
                 <div class="zf_x" (click)="paymentType=='upacp'?paymentType='':paymentType='upacp';bt=false" *ngIf="!isWeixin||isMobile"
                     [class.selected]="paymentType=='upacp'" [class.disable]="bt">
@@ -74,7 +75,7 @@
                         <div class="p1">中国银联支付</div>
                         <div class="p2"></div>
                     </div>
-                    <ion-checkbox color="jingku1" [checked]="paymentType=='upacp'" style="pointer-events:none;"></ion-checkbox>
+                    <ion-checkbox color="jingku1" mode="ios" [checked]="paymentType=='upacp'" style="pointer-events:none;"></ion-checkbox>
                 </div>
             </div>
             <header class="zffs_h" *ngIf="yE" style="padding-bottom: 0;">

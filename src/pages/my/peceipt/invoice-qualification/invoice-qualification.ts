@@ -10,18 +10,20 @@ import { Native } from "../../../../providers/native";
   Ionic pages and navigation.
 */
 @IonicPage({
-  segment:"invoice-qualification/:ivid"
+  segment: "invoice-qualification/:ivid"
 })
 @Component({
   selector: 'page-invoice-qualification',
   templateUrl: 'invoice-qualification.html'
 })
 export class InvoiceQualificationPage {
+  data: any;
+  ivid = this.navParams.get('ivid');
   formData = {
-    ivid: this.navParams.get('ivid') || null,
-    type: '1',
+    ivid: this.ivid || null,
+    type: 1,
     payee: null,
-    inv_type: '1',
+    inv_type: 1,
     company: null,
     sw_sn: null,
     bank_name: null,
@@ -29,8 +31,6 @@ export class InvoiceQualificationPage {
     address: null,
     tel: null,
     yyzz: null,//执照复印件
-    // swdj: null,//税务登记复印件
-    // zgez: null//资格认证复印件
     taxpayer_num: null
   }
   constructor(
@@ -40,17 +40,21 @@ export class InvoiceQualificationPage {
     private native: Native,
     private events: Events
   ) {
-    if (this.navParams.get('ivid')) {
+
+  }
+
+  ngOnInit() {
+    if (this.ivid) {
       this.getFormData();
     }
   }
-
   ionViewDidLoad() {
     console.log('ionViewDidLoad InvoiceQualificationPage');
   }
   getFormData() {
-    this.httpService.updateInv({ ivid: this.navParams.get('ivid') }).then((res) => {
+    this.httpService.updateInv({ ivid: this.ivid }).then((res) => {
       if (res.status == 1) {
+        this.data = res;
         this.formData.type = res.data.type;
         this.formData.payee = res.data.payee;
         this.formData.inv_type = res.data.inv_type;
@@ -60,33 +64,37 @@ export class InvoiceQualificationPage {
         this.formData.bank_sn = res.data.bank_sn;
         this.formData.address = res.data.address;
         this.formData.tel = res.data.tel;
-        this.formData.yyzz = res.data.yyzz;
         this.formData.taxpayer_num = res.data.taxpayer_num;
-        // this.formData.swdj = res.data.swdj;
-        // this.formData.zgez = res.data.zgez;
       }
     })
   }
 
   add() {
-    this.httpService.updateInvPost(this.formData).then((res) => {
-      if (res.status == 1) {
-        this.native.showToast(res.info);
-        this.navCtrl.pop();
-        this.events.publish('receipt:update');
-      }
-    })
-  }
-
-  openFile(type) {
-    this.native.getPictureByPhotoLibrary().then((res) => {
-      if (type === 1) {
-        this.formData.yyzz = 'data:image/jpeg;base64,' + res;
-      } else if (type === 2) {
-        // this.formData.swdj = 'data:image/jpeg;base64,' + res;
-      } else if (type === 3) {
-        // this.formData.zgez = 'data:image/jpeg;base64,' + res;
-      }
-    })
+    if(!this.formData.yyzz && !this.ivid && this.formData.inv_type == 2){
+      this.native.showToast('请上传营业执照');
+      return false
+    }
+    if (this.formData.inv_type == 2) {
+      this.httpService.updateInvPost(this.formData).then((res) => {
+        if (res.status == 1) {
+          this.native.showToast(res.info);
+          this.navCtrl.pop();
+          this.events.publish('receipt:update');
+        }
+      })
+    } else {
+      this.httpService.updateInvPost({
+        ivid: this.ivid || null,
+        type: this.formData.type,
+        payee: this.formData.payee,
+        inv_type: this.formData.inv_type,
+      }).then((res) => {
+        if (res.status == 1) {
+          this.native.showToast(res.info);
+          this.navCtrl.pop();
+          this.events.publish('receipt:update');
+        }
+      })
+    }
   }
 }

@@ -21,7 +21,7 @@
 <ion-content>
     <div class="fore top">
         <div>您选择了<span class="count">{{data?.count_i}}</span>条单据开票发票</div>
-        <div>代开票金额:<span class="price">{{data?.float}}</span></div>
+        <div>代开票金额：<span class="price">{{data?.float}}</span></div>
     </div>
     <div class="background"></div>
     <div class="fore receipt-info" radio-group [(ngModel)]="formData.ivid">
@@ -33,7 +33,7 @@
                     <span>{{item.payee}}</span>
                     <span>{{item.inv_type==1?'普通发票':'增值专用发票'}}</span>
                 </ion-label>
-                <ion-radio mode="md" item-left [value]="item.ivid"></ion-radio>
+                <ion-radio mode="md" item-left color="jingku1" [value]="item.ivid"></ion-radio>
             </div>
         </div>
     </div>

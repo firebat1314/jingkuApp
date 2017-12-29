@@ -58,22 +58,19 @@ export class CountInputComponent {
     // console.log('Hello CountInput Component');
   }
   ngOnInit() {
-    if (this.rank !== 1) this.disabled = true;
+    if (this.rank !== 1 || this.maxValue <= 0) this.disabled = true;
+  }
+  reduce() {
+      this.valueChange.emit(this.value -= this.rank);
   }
   increase() {
-    if (this.maxValue != undefined && (this.maxValue - this.value) < this.rank) {
+    /* if (this.maxValue && (this.maxValue - this.value) < this.rank) {
       this.native.showToast('最多选择' + this.maxValue + '件');
       this.element.nativeElement.getElementsByTagName('input')[0].value = this.value;
       return;
-    }
+    } */
     this.valueChange.emit(this.value += this.rank);
   }
-  reduce() {
-    if (this.value > this.minValue) {
-      this.valueChange.emit(this.value -= this.rank);
-    }
-  }
-
   inputEvent() {
     if (this.maxValue && (this.value >= this.maxValue)) {
       this.native.showToast('最多选择' + this.maxValue + '件');

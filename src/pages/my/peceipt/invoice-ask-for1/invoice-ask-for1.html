@@ -20,28 +20,33 @@
 
 <ion-content #myContent>
     <div class="search" [ngClass]="{'active':showSearch}">
-        <div class="head">
-            <ion-item mode="ios" no-lines (click)="showSearch=!showSearch">
-                <ion-icon name="search" item-left></ion-icon>
-                条件筛选
-                <ion-icon color="colorsix" name="ios-arrow-down" item-right></ion-icon>
-            </ion-item>
+        <div class="head" (click)="showSearch=!showSearch">
+            <div class="ic">
+                <ion-icon name="search"></ion-icon>条件筛选
+            </div>
+            <ion-icon class="mo" color="colorsix" name="ios-arrow-down"></ion-icon>
         </div>
         <div class="body" [hidden]="showSearch" padding>
-            <div class="time" padding-left>
+            <div class="time">
                 发生时间：
                 <div class="text">
-                    <ion-datetime (ionCancel)="cancelDate()" (ionChange)="search()" cancelText="取消" doneText="确定" displayFormat="YYYY-MM-DD" min="2015" [max]="max_time" [(ngModel)]="time"></ion-datetime>
+                    <ion-datetime (ionCancel)="cancelDate()" (ionChange)="search()" cancelText="取消" doneText="确定" displayFormat="YYYY-MM-DD"
+                        min="2015" [max]="max_time" [(ngModel)]="time"></ion-datetime>
                     <div class="btn"></div>
                 </div>
             </div>
-            <div class="price" padding-left>
-                订单金额：<input type="number" [(ngModel)]="min_money">&nbsp;&nbsp;—&nbsp;&nbsp;<input type="number" [(ngModel)]="max_money">
+            <div class="price">
+                订单金额：
+                <input type="number" [(ngModel)]="min_money">&nbsp;&nbsp;—&nbsp;&nbsp;
+                <input type="number" [(ngModel)]="max_money">
                 <div class="btn" (click)="search()">搜索</div>
             </div>
-            <ion-note>温馨提示：</ion-note><br>
-            <ion-note>1.后付费月结算单的可开票金额为当月实际长得结算金额。</ion-note><br>
-            <ion-note>2.本月产生得后付费业务结算单在下月二号以后才可以索取发票。</ion-note><br>
+            <ion-note>温馨提示：</ion-note>
+            <br>
+            <ion-note>1.后付费月结算单的可开票金额为当月实际长得结算金额。</ion-note>
+            <br>
+            <ion-note>2.本月产生得后付费业务结算单在下月二号以后才可以索取发票。</ion-note>
+            <br>
             <ion-note>3.发票基于订单、月结算单开具（单个订单、月结算不可拆分开具）</ion-note>
         </div>
     </div>
@@ -58,19 +63,20 @@
             <div class="body2">
                 <div>产品名称：</div>
                 <div class="right">
-                    <div *ngFor="let goods of item?.goods"><span>{{goods.goods_name}}</span><span>X{{goods.goods_number}}</span></div>
+                    <div *ngFor="let goods of item?.goods">
+                        <span>{{goods.goods_name}}</span>
+                        <span>X{{goods.goods_number}}</span>
+                    </div>
                 </div>
             </div>
             <div class="bottom">可开具发票：{{item.money_format}}</div>
         </div>
     </div>
 
-    <ion-fab left bottom>
+    <ion-fab right bottom>
         <button ion-fab color="jingku1" mini>
             {{data?.page}}/{{data?.pages}}
         </button>
-    </ion-fab>
-    <ion-fab right bottom >
         <button ion-fab color="jingku1" mini goBackTop scroll-to-top></button>
     </ion-fab>
 
@@ -87,12 +93,14 @@
                 全选
             </div>
             <div class="right">
-                <div class="price">可开具总金额：<span color="danger" ion-text>¥{{data?.order_amount}}</span></div>
+                <div class="price">可开具总金额：
+                    <span color="danger" ion-text>¥{{data?.order_amount}}</span>
+                </div>
                 <div class="price">最少开具金额：¥{{data?.min_open}}</div>
             </div>
         </div>
     </ion-toolbar>
     <ion-toolbar no-padding>
-        <button no-margin color="jingku1" (click)="onsubmit()" ion-button large full style="height:56px;">索取发票</button>
+        <button no-margin color="jingku1" (click)="onsubmit()" ion-button large full>索取发票</button>
     </ion-toolbar>
 </ion-footer>

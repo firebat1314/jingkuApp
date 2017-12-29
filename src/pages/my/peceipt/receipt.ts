@@ -20,7 +20,7 @@ export class ReceiptPage {
   invoiceList: any;
   receiptTool: any = 'receiptSskFor';//or receiptSskFor or receiptList or receiptInfo
   myDate: any = null;
-  nowTime = new Date().getFullYear();
+  nowTime: string;
   // maxTime:any = '2017-3-17';
   @ViewChild(Content) content: Content
   @ViewChild(FabButton) fabButton: FabButton
@@ -30,12 +30,15 @@ export class ReceiptPage {
     public httpService: HttpService,
     public events: Events
   ) {
+  }
+  ngOnInit() {
     this.getHttpData();
     this.events.subscribe('receipt:update', () => {
       this.getHttpData();
     })
+    let d = new Date();
+    this.nowTime = d.getFullYear() + '-' + d.getMonth() + '-' + d.getDate();
   }
-
   ngAfterViewInit() {
     /* 回到顶部按钮 */
     this.fabButton.setElementClass('fab-button-out', true);
@@ -48,30 +51,30 @@ export class ReceiptPage {
   }
   getHttpData() {
     if (this.receiptTool == 'receiptSskFor') {
-      this.httpService.invoice({ page: 1, time: this.myDate }).then((res) => {
+      this.httpService.invoice({ page: 1}).then((res) => {
         if (res.status == 1) {
           this.suoquList = res;
         }
       })
     }
     if (this.receiptTool == 'receiptList') {
-      this.httpService.invList({ page: 1, time: this.myDate }).then((res) => {
+      this.httpService.invList({ page: 1, time: this.myDate, is_status: this.invListStatus }).then((res) => {
         if (res.status == 1) {
           this.invoiceList = res;
         }
       })
     }
     if (this.receiptTool == 'receiptInfo') {
-      this.httpService.invRole({ page: 1, time: this.myDate }).then((res) => {
+      this.httpService.invRole({ page: 1 }).then((res) => {
         if (res.status == 1) {
           this.invRoleList = res;
         }
       })
     }
   }
-
+  invListStatus:number = null;
   search() {
-    this.httpService.invList({ page: 1, time: this.myDate }).then((res) => {
+    this.httpService.invList({ page: 1, time: this.myDate, is_status: this.invListStatus }).then((res) => {
       if (res.status == 1) {
         this.invoiceList = res;
       }
