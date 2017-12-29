@@ -18,7 +18,8 @@
 
         <ion-list class="list-wrap">
             <ion-item>
-                <ion-label color="primary" fixed><span ion-text color="google">*</span>　姓名</ion-label>
+                <ion-label color="primary" fixed>
+                    <span ion-text color="google">*</span>　姓名</ion-label>
                 <ion-input required clearInput [(ngModel)]="formData.true_name" name="true_name" type="text" placeholder="请输入真实姓名"></ion-input>
             </ion-item>
             <ion-item>
@@ -26,7 +27,8 @@
                 <ion-input clearInput [(ngModel)]="formData.qq" name="qq" type="number" placeholder="请输入QQ号"></ion-input>
             </ion-item>
             <ion-item>
-                <ion-label color="primary" fixed><span ion-text color="google">*</span>　公司名称</ion-label>
+                <ion-label color="primary" fixed>
+                    <span ion-text color="google">*</span>　公司名称</ion-label>
                 <ion-input required clearInput [(ngModel)]="formData.company" name="company" type="text" placeholder="请输入公司名称"></ion-input>
             </ion-item>
             <ion-item class="select-wrapper">
@@ -47,15 +49,15 @@
                 </ion-select>
             </ion-item>
             <ion-item class="zhizhao">
-                <ion-label color="primary" fixed><span ion-text color="google">*</span>　营业执照</ion-label>
+                <ion-label color="primary" fixed>
+                    <span ion-text color="google">*</span>　营业执照</ion-label>
                 <div item-content>
-                    <div class="add-zhizhao" (click)="openFile()" item-center icon-top>
-                        <ion-icon name="md-add"></ion-icon>
-                        选择文件
+                    <div class="camra" tappable (click)="openFile()">
+                        <img img-lazy-load="./assets/icon/choosefile.png" alt="">
                     </div>
-                    <!--<input type="file" (change)="onFileChange($event)">-->
-                    <span color="danger" *ngIf="!formData.zhizhao" ion-text>请上传图片</span>
-                    <img style="margin:10px;max-height:150px;" src="{{formData.zhizhao}}" alt="">
+                    <div class="camra ui" tappable>
+                        <img img-lazy-load="{{formData.zhizhao || './assets/icon/choosefile_2.png'}}" alt="">
+                    </div>
                 </div>
 
             </ion-item>
