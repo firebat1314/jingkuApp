@@ -304,13 +304,13 @@ export class HttpService {
     return this.http.post(IP + '/User/insert_inv', data, { showLoading: true })
   }
   invoice(data?: Object) {//发票索取列表
-    return this.http.get(IP + '/User/invoice', data, { showLoading: true })
+    return this.http.get(IP + '/User/invoice', data)
   }
   invList(data?: Object) {//发票列表
-    return this.http.get(IP + '/User/inv_list', data, { showLoading: true })
+    return this.http.get(IP + '/User/inv_list', data)
   }
   invRole(data?: Object) {//发票信息管理
-    return this.http.get(IP + '/User/inv_role', data, { showLoading: true })
+    return this.http.get(IP + '/User/inv_role', data)
   }
   updateInv(data?: Object) {//编辑发票资质
     return this.http.get(IP + '/User/update_inv', data)

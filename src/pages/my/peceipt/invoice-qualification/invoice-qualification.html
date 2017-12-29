@@ -21,86 +21,99 @@
 <ion-content>
     <div radio-group class="fore item" padding-left [(ngModel)]="formData.type">
         <ion-label fixed>开具类型：</ion-label>
-        <label tappable><ion-radio mode="md" color="danger" [value]="1"></ion-radio><span>个人</span></label>
-        <label tappable><ion-radio mode="md" color="danger" [value]="2"></ion-radio><span>企业</span></label>
+        <label tappable>
+            <ion-radio mode="md" color="danger" [value]="1"></ion-radio>
+            <span>个人</span>
+        </label>
+        <label tappable>
+            <ion-radio mode="md" color="danger" [value]="2"></ion-radio>
+            <span>企业</span>
+        </label>
     </div>
-    <div class="fore item" padding-left>
+    <div class="fore item" padding-left *ngIf="formData.type!=1">
         <ion-label fixed>开票抬头：</ion-label>
         <input type="text" [(ngModel)]="formData.payee">
     </div>
-    <!-- <div class="fore item" padding-left *ngIf="formData.type==2">
-        <ion-label fixed>企业税号：</ion-label>
-        <input type="text" [(ngModel)]="formData.sw_sn">
-    </div> -->
     <div radio-group class="fore item" padding-left [(ngModel)]="formData.inv_type">
         <ion-label fixed>发票类型：</ion-label>
         <label tappable>
-            <ion-radio mode="md" color="danger" [value]="1" [checked]="true"></ion-radio><span>普通发票</span>
+            <ion-radio mode="md" color="danger" [value]="1" [checked]="true"></ion-radio>
+            <span>普通发票</span>
         </label>
         <label tappable>
-            <ion-radio mode="md" color="danger" [value]="2" [checked]="formData.type==2" *ngIf="formData.type==2"></ion-radio><span *ngIf="formData.type==2">增值税专用发票</span>
+            <ion-radio mode="md" color="danger" [value]="2" [checked]="formData.type==2" *ngIf="formData.type==2"></ion-radio>
+            <span *ngIf="formData.type==2">增值税专用发票</span>
         </label>
     </div>
     <div class="fore main" *ngIf="formData.inv_type==2&&formData.type==2">
         <div>
             <div class="name">纳税人识别号：</div>
-            <div class="input"><input type="text" [(ngModel)]="formData.taxpayer_num"></div>
+            <div class="input">
+                <input type="text" [(ngModel)]="formData.taxpayer_num">
+            </div>
         </div>
         <div>
             <div class="name">税务登记单位名称：</div>
-            <div class="input"><input type="text" [(ngModel)]="formData.company"></div>
+            <div class="input">
+                <input type="text" [(ngModel)]="formData.company">
+            </div>
         </div>
-        <!-- <div>
-            <div class="name">税务登记证号：</div>
-            <div class="input"><input type="text" [(ngModel)]="formData.sw_sn"></div>
-        </div> -->
         <div>
             <div class="name">基本户开户银行名称：</div>
-            <div class="input"><input type="text" [(ngModel)]="formData.bank_name"></div>
+            <div class="input">
+                <input type="text" [(ngModel)]="formData.bank_name">
+            </div>
         </div>
         <div>
             <div class="name">基本户开户账号：</div>
-            <div class="input"><input type="text" [(ngModel)]="formData.bank_sn"></div>
+            <div class="input">
+                <input type="text" [(ngModel)]="formData.bank_sn">
+            </div>
         </div>
         <div>
             <div class="name">注册场所地址：</div>
-            <div class="input"><input type="text" [(ngModel)]="formData.address"></div>
+            <div class="input">
+                <input type="text" [(ngModel)]="formData.address">
+            </div>
         </div>
         <div>
             <div class="name">注册固定电话：</div>
-            <div class="input"><input type="number" [(ngModel)]="formData.tel"></div>
+            <div class="input">
+                <input type="number" [(ngModel)]="formData.tel">
+            </div>
         </div>
         <div>
             <div class="name">营业执照复印件：</div>
             <div class="input">
-                <div class="fuyin" style="position: relative;">
-                    <ion-icon name="md-add"></ion-icon>
-                    选择文件
-                    <input type="file" style="width:100%;height:100%;position: absolute;opacity: 0;top: 0;left: 0;" (get-image)="formData.yyzz = $event">
+                <div class="camra fuyin" tappable>
+                    <img img-lazy-load="./assets/icon/choosefile.png" alt="">
+                    <input type="file" [quality]="0.7" (get-image)="formData.yyzz = $event" style="width:100%;height:100%;position: absolute;opacity: 0;top:0;">
+                </div>
+                <div class="camra ui" tappable>
+                    <img img-lazy-load="{{formData.yyzz || data?.data?.yyzz || './assets/icon/choosefile_2.png'}}" alt="">
                 </div>
             </div>
         </div>
-        <img class="fuyingjian" src="{{formData.yyzz}}" alt="">
         <!-- <div>
-            <div class="name">税务登记复印件：</div>
-            <div class="input">
-                <div class="fuyin" (click)="openFile(2)">
-                    <ion-icon name="md-add"></ion-icon>
-                    选择文件
+                    <div class="name">税务登记复印件：</div>
+                    <div class="input">
+                        <div class="fuyin" (click)="openFile(2)">
+                            <ion-icon name="md-add"></ion-icon>
+                            选择文件
+                        </div>
+                    </div>
                 </div>
-            </div>
-        </div>
-        <img class="fuyingjian" src="{{formData.swdj}}" alt="">
-        <div>
-            <div class="name">一般纳税人资格认证复印件：</div>
-            <div class="input">
-                <div class="fuyin" (click)="openFile(3)">
-                    <ion-icon name="md-add"></ion-icon>
-                    选择文件
+                <img class="fuyingjian" src="{{formData.swdj}}" alt="">
+                <div>
+                    <div class="name">一般纳税人资格认证复印件：</div>
+                    <div class="input">
+                        <div class="fuyin" (click)="openFile(3)">
+                            <ion-icon name="md-add"></ion-icon>
+                            选择文件
+                        </div>
+                    </div>
                 </div>
-            </div>
-        </div>
-        <img class="fuyingjian" src="{{formData.zgez}}" alt=""> -->
+                <img class="fuyingjian" src="{{formData.zgez}}" alt=""> -->
     </div>
 </ion-content>
 

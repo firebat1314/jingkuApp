@@ -41,7 +41,7 @@ export class ShippingAddressPage {
     })
   }
   deleteOne(id) {
-    this.native.openAlertBox('删除该收获地址？', () => {
+    this.native.openAlertBox('删除该收货地址？', () => {
       this.httpService.delAddress({ address_ids: [id] }).then((res) => {
         // console.log(res);
         if (res.status == 1) { this.getHttpData() }

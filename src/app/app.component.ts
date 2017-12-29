@@ -141,13 +141,16 @@ export class MyApp {
           this.jpushService.stopPush();
         }
       })
+      var timer;
       if (this.native.isWeixin()) {
-        this.app.viewDidLoad.subscribe((e) => {
-          // console.log(location.href)
-          this.wxService.config(location.href, {
-            title: '镜库科技', // 分享标题
-            link: location.href, // 分享链接，该链接域名或路径必须与当前页面对应的公众号JS安全域名一致
-          })
+        this.app.viewDidEnter.subscribe((e) => {
+          clearTimeout(timer)
+          timer = setTimeout(() => {
+            this.wxService.config(location.href, {
+              title: '镜库科技', // 分享标题
+              link: location.href, // 分享链接，该链接域名或路径必须与当前页面对应的公众号JS安全域名一致
+            })
+          }, 500);
         })
       }
     });

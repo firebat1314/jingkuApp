@@ -1,4 +1,5 @@
 page-receipt {
+    
     .receiptSskFor {
         min-height: 100%;
         .an-invoice {
@@ -6,29 +7,28 @@ page-receipt {
             background: #fff;
             border-radius: 3px;
             .main {
-                padding: 10px;
-                display: flex;
+                padding: 8px;
                 border-bottom: 1px solid #e0e0e0;
-                .type {
-                    margin-right: 10px;
-                    img {
-                        margin-bottom: 5px;
-                        width: 20px;
-                        min-width: 20px;
+                font-size: 1.2rem;
+                .d1 {
+                    display: flex;
+                    align-items: center;
+                    font-size: 1.6rem;
+                    .type {
+                        margin-left: 5px;
+                        width: 17px;
                     }
                 }
-                .right {
-                    >div:first-child {
-                        font-size: 1.6rem;
-                        span {
-                            color: #526bb5;
-                            font-size: 1.5rem;
-                        }
-                    }
-                    >div:last-child {
-                        margin: 6px 0;
-                        font-size: 1.5rem;
-                        color: #999;
+                .d2 {
+                    color: #999;
+                }
+                .d3 {
+                    color: #526bb5;
+                }
+                >div {
+                    margin-bottom: 5px;
+                    &:last-child {
+                        margin-bottom: 0;
                     }
                 }
             }
@@ -45,119 +45,156 @@ page-receipt {
     .receiptList {
         min-height: 100%;
         .head {
-            background: #fff;
             margin-bottom: 10px;
-        }
-        .reminder {
-            padding: 15px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            border-bottom: map-get($colors, border) 1px solid;
-            >div {
-                padding: 6px 26px;
-                color: #999;
-                border-radius: 30px;
-                background: #f7f7f7;
-                ion-icon {
-                    color: #526bb5;
-                }
-            }
-        }
-        .line.time {
-            display: flex;
-            align-items: center;
-            .name {
-                width: 8.6rem;
-                color: #333333;
-            }
-            .show {
+            .reminder {
+                padding: 12px;
                 display: flex;
-                .text {
-                    border: #999 1px solid;
-                    border-right: none;
-                    position: relative;
+                justify-content: center;
+                align-items: center;
+                font-size: 1.2rem;
+                >div {
+                    background: #ffffff;
+                    padding: 6px 26px;
+                    color: #999;
+                    border-radius: 30px;
+                    ion-icon {
+                        color: #526bb5;
+                    }
+                }
+            }
+            .sh {
+                background: #ffffff;
+                margin: 0 10px;
+                padding: 16px;
+                .line {
                     display: flex;
-                    justify-content: flex-start;
                     align-items: center;
-                    width: 140px;
-                    position: relative;
-                    margin-right: 10px;
-                    padding-left: 5px;
-                    font-size: 1.2rem;
-                    .btn {
-                        height: calc(100% + 2px);
-                        position: absolute;
-                        top: -1px;
-                        right: 0;
+                    margin-bottom: 14px;
+                    &:last-child {
+                        margin-bottom: 0;
                     }
-                    ion-datetime {
-                        padding: 0;
-                        z-index: 2;
+                    .name {
+                        margin-right: 10px
                     }
                 }
-                .btn {
-                    padding: 6px 11px;
-                    color: #fff;
-                    border-radius: 2px;
-                    background: #526bb5;
+                .line.status {
+                    .name {}
+                    .show {
+                        display: flex;
+                        align-items: center;
+                        flex-wrap: nowrap;
+                        .checkbox {
+                            margin-right: 6px;
+                        }
+                        span {
+                            margin-right: 16px;
+                            color: #666666;
+                        }
+                    }
+                }
+                .line.time {
+                    .show {
+                        flex: 1;
+                        display: flex;
+                        .text {
+                            border: #e0e0e0 1px solid;
+                            border-right: none;
+                            position: relative;
+                            display: flex;
+                            justify-content: flex-start;
+                            align-items: center;
+                            flex: 1;
+                            position: relative;
+                            margin-right: 10px;
+                            padding-left: 11px;
+                            font-size: 1.4rem;
+                            max-width: 200px;
+                            color: #666666;
+                            .btn {
+                                height: calc(100% + 2px);
+                                position: absolute;
+                                top: -1px;
+                                right: 0;
+                                background: #3f69a5 url(../assets/icon/images/user_cener_1_39_03.png) no-repeat center center/15px;
+                                width: 40px;
+                            }
+                            ion-datetime {
+                                padding: 0;
+                                z-index: 2;
+                            }
+                        }
+                        .btn {
+                            padding: 5px 11px;
+                            color: #fff;
+                            border-radius: 2px;
+                            background: #3f69a5;
+                        }
+                    }
                 }
             }
         }
-        ion-list {
+        .list {
             background: #fff;
-            margin-bottom: 10px;
-        }
-        .line {
-            padding: 18px 0 18px 30px;
-            font-size: 1.6rem;
-            border-bottom: map-get($colors, border) 1px solid;
-            display: flex;
-            &:last-child {
-                border: none;
-            }
-            .name {
-                display: inline-block;
-                width: 11rem;
-            }
-            .value {
-                @include ellipsis_1;
-                color: #999;
-                font-size: 1.4rem;
-                margin-bottom: 0;
+            margin: 10px;
+            .li {
+                border-bottom: #e0e0e0 1px solid;
+                padding: 12px;
+                &:last-child{
+                    border-bottom: 0;
+                }
+                >div {
+                    margin-bottom: 6px;
+                    &:last-child {
+                        margin-bottom: 0;
+                    }
+                }
+                .name{
+                    color: #4d4d4d;
+                    font-size: 1.6rem;
+                }
+                .txt{
+                    color: #999999;
+                    font-size: 1.2rem;
+                }
             }
         }
     }
     .receiptInfo {
         min-height: 100%;
         .head {
-            padding: 10px;
+            padding: 10px 0;
             margin-bottom: 10px;
             display: flex;
             background: #fff;
-            justify-content: center;
             align-items: center;
             color: #999;
+            font-size: 1.2rem;
             .button {
                 margin-right: 10px;
+                margin-left: 14px;
             }
         }
         .receiptInfo-invoice {
             background: #fff;
             margin-bottom: 10px;
             .list {
-                padding: 0 10px;
+                padding-left: 14px;
                 .row {
-                    padding: 18px 0 18px 30px;
-                    font-size: 1.6rem;
-                    border-bottom: map-get($colors, border) 1px solid;
+                    padding: 14px 0;
+                    font-size: 1.4rem;
+                    display: flex;
+                    border-bottom: 1px solid #e0e0e0;
+                    padding-right: 22px;
                     .name {
-                        display: inline-block;
-                        width: 12rem;
+                        padding-right: 20px;
                     }
                     .value {
                         color: #999;
                         font-size: 1.4rem;
+                        flex: 1;
+                    }
+                    &:last-child{
+                        border-bottom: 0px;
                     }
                 }
             }
@@ -165,6 +202,7 @@ page-receipt {
                 display: flex;
                 justify-content: flex-end;
                 padding: 5px 12px;
+                border-top: 1px solid #e0e0e0;
                 .button {
                     padding: 0 2em;
                 }

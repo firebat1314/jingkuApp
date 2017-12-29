@@ -4,19 +4,33 @@ page-invoice-ask-for1 {
         margin-bottom: 10px;
         color: #808080;
         overflow: hidden;
+        .icon {
+            min-height: initial;
+        }
         &.active {
-            .item ion-icon[item-right] {
+            .head  .mo {
                 transform: rotate(180deg);
             }
         }
         .head {
-            ion-icon {
-                &[item-left] {
-                    font-size: 2.5rem;
+            display: flex;
+            padding: 10px 16px;
+            align-items: center;
+            justify-content: space-between;
+            .icon {
+                font-size: 2.5rem;
+                color: #666;
+            }
+            .ic {
+                color: #333;
+                display: flex;
+                align-items: center;
+                .icon{
+                    margin-right: 5px;
                 }
-                &[item-right] {
-                    transition: all 300ms ease-in-out;
-                }
+            }
+            .mo {
+                transition: all 300ms ease-in-out;
             }
         }
         .body {
@@ -130,7 +144,7 @@ page-invoice-ask-for1 {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 10px 10px;
+            padding: 7px 5px 7px 0;
             background: #fff;
             .left {
                 display: flex;
@@ -138,8 +152,8 @@ page-invoice-ask-for1 {
                 align-items: center;
             }
             .right {
+                font-size: 1.2rem;
                 .price:last-child {
-                    font-size: 1.2rem;
                     color: #808080;
                     text-align: right;
                 }

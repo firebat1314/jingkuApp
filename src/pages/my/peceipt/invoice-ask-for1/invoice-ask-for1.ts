@@ -24,7 +24,7 @@ export class InvoiceAskFor1Page {
   InvoiceAskFor2Page = 'InvoiceAskFor2Page';
   suppliersId = this.navParams.get('suppliers_id');
 
-  max_time;
+  max_time: string;
   min_money: string;
   max_money: string;
   time: string;
@@ -36,10 +36,13 @@ export class InvoiceAskFor1Page {
     public httpService: HttpService,
     public native: Native
   ) {
-    this.max_time = new Date().getFullYear();
-    this.getHttpData();
   }
 
+  ngOnInit(){
+    this.getHttpData();
+    let d = new Date();
+    this.max_time = d.getFullYear()+'-'+d.getMonth()+'-'+d.getDate();
+  }
   ionViewDidLoad() {
     console.log('ionViewDidLoad InvoiceAskFor1Page');
   }

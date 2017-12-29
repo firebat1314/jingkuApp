@@ -140,7 +140,7 @@ export class PaymentMethodPage {
     } else {
       setTimeout(() => {
         this.pushPage('AllOrdersPage');
-      }, 800);
+      }, 100);
     }
   }
   pushPage(page) {

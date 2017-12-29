@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams, IonicPage, ToastController } from 'ionic-angular';
+import { NavController, NavParams, IonicPage, ToastController, AlertController } from 'ionic-angular';
 import { HttpService } from '../../providers/http-service';
 
 /**
@@ -19,13 +19,14 @@ export class LoginByPhonePage {
   loginInfo = {
     userphone: '',
     mobile_code: '',
-    type:'phone'
+    type: 'phone'
   }
   constructor(
     public navCtrl: NavController,
     public navParams: NavParams,
     public httpService: HttpService,
     public toastCtrl: ToastController,
+    private alertCtrl: AlertController,
   ) {
   }
 
@@ -85,6 +86,22 @@ export class LoginByPhonePage {
             toast.present();
           });
         }, 100);
+      } else if (data.status == -1) {
+        this.alertCtrl.create({
+          title: '镜库科技',
+          message: data.info,
+          buttons: [
+            {
+              text: '拨打电话',
+              handler: () => {
+                location.href = "tel:" + data.phone;
+              }
+            },
+            {
+              text: '确定',
+            }
+          ]
+        }).present();
       }
     })
   }

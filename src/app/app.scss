@@ -36,6 +36,9 @@ ion-app {
 }
 
 .back-button {
+    padding: 0;
+    margin: 0;
+    min-width: 32px;
     .icon {
         font-size: 3rem;
     }
@@ -416,6 +419,9 @@ button.swiper-pagination-bullet {
     border-bottom: 1px solid #e0e0e0;
     border-top: 1px solid #e0e0e0;
     display: flex;
+    .segment-button.segment-activated{
+        color: #3f69a5 !important;
+    }
     .segment-button {
         height: 1.9rem;
         line-height: 1.9rem;

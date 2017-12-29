@@ -43,9 +43,18 @@ export class QimoChatProvider {
       if (!this.readyState || this.readyState === "loaded" || this.readyState === "complete") {
         setTimeout(function () {
           qimoChatClick();
-        }, 600);
+        }, 1000);
         qimo.onload = qimo['onreadystatechange'] = null;
       }
     };
+    /* var timer = setInterval(() => {
+      if (qimoChatClick) {
+        that.native.hideLoading();
+        clearInterval(timer)
+        setTimeout(() => {
+          qimoChatClick();
+        }, 500);
+      }
+    }, 100) */
   }
 }

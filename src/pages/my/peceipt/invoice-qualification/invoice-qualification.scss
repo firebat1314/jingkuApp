@@ -1,8 +1,9 @@
 page-invoice-qualification {
     input {
         border: 1px solid #e0e0e0;
-        padding-left: 5px;
+        padding-left: 8px;
         height: 40px;
+        width: 180px;
         border-radius: 2px;
     }
     .fore {
@@ -35,27 +36,42 @@ page-invoice-qualification {
     .main {
         >div {
             display: flex;
-            padding: 10px 0;
+            padding: 7px 0;
+            align-items: center;
             .name {
                 width: 40%;
                 text-align: right;
-                color: #999;
+                color: #666666;
                 margin-right: 10px;
             }
             .input {
-                .fuyin {
-                    height: 7rem;
-                    width: 7rem;
-                    display: flex;
-                    font-size: 1.3rem;
-                    flex-direction: column;
-                    align-items: center;
-                    background: #e0e0e0;
-                    border-radius: 3px;
-                    color: #fff;
-                    justify-content: center;
-                    ion-icon {
-                        font-size: 5rem;
+                display: flex;
+                .camra {
+                    border: 1px solid #e0e0e0;
+                    height: 85px;
+                    width: 85px;
+                    border-radius: 5px;
+                    position: relative;
+                    margin-right: 10px;
+                    overflow: hidden;
+                    &:last-child {
+                        margin-right: 0;
+                    }
+                    img {
+                        position: absolute;
+                        top: 0;
+                        right: 0;
+                        left: 0;
+                        bottom: 0;
+                        margin: auto;
+                        width: 58%;
+                        max-height: 100%;
+                    }
+                    &.ui {
+                        img {
+                            width: 100%;
+                            max-height: 100%;
+                        }
                     }
                 }
             }

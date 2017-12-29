@@ -32,17 +32,12 @@
         <ion-card *ngFor="let item of suoquList?.data">
             <div class="an-invoice">
                 <div class="main">
-                    <div class="type" *ngIf="item.inv_type==1||item.inv_type==3">
-                        <img src="./assets/icon/images/user_cener_2_03.png" alt="">
+                    <div class="d1">{{item.name}}
+                        <img class="type" *ngIf="item.inv_type==1||item.inv_type==3" src="./assets/icon/images/user_cener_2_03.png" alt="">
+                        <img class="type" *ngIf="item.inv_type==2||item.inv_type==3" src="./assets/icon/images/user_cener_2_06.png" alt="">
                     </div>
-                    <div class="type" *ngIf="item.inv_type==2||item.inv_type==3">
-                        <img src="./assets/icon/images/user_cener_2_06.png" alt="">
-                    </div>
-                    <div class="right">
-                        <div>{{item.name}}&nbsp;<span>(最少可开票金额{{item.min_money}})</span></div>
-                        <div>可开票总金额：{{item.order_amount}}</div>
-                    </div>
-                    <!--<img src="./assets/icon/images/user_cener_2_06.png" alt="">-->
+                    <div class="d2">最少可开票金额：{{item.min_money}}</div>
+                    <div class="d3">可开票总金额：{{item.order_amount}}</div>
                 </div>
                 <div class="bottom">
                     <button ion-button color="jingku1" outline (click)="goInvoiceAskFor1Page(item.suppliers_id)">索取</button>
@@ -58,48 +53,40 @@
                     发票在申请后的3个工作日开具并寄出
                 </div>
             </div>
-            <div class="line time">
-                <span class="name">下单时间：</span>
-                <div class="show">
-                    <div class="text">
-                        <ion-datetime cancelText="取消" doneText="确定" displayFormat="YYYY-MM-DD" min="2015" [max]="nowTime" [(ngModel)]="myDate"></ion-datetime>
-                        <ion-icon *ngIf="myDate" tappable (click)="myDate=null;search()" style="font-size:2.5rem;position: absolute;right: 45px;top: 4px;width: 19px;text-align: center;z-index:1000;"
-                            name="ios-close"></ion-icon>
-                        <div class="btn">
-                            <!--<img src="./assets/icon/images/user_cener_1_39_03.png">-->
-                            <ion-icon style="font-size:2.5rem;" name="md-calendar"></ion-icon>
-                        </div>
+            <div class="sh">
+                <div class="line status">
+                    <span class="name">开具状态：</span>
+                    <div class="show">
+                        <ion-checkbox mode="ios" color="jingku1" [checked]="invListStatus==1" (click)="invListStatus==1?invListStatus=null:invListStatus=1;search()"></ion-checkbox>
+                        <span>待审核</span>
+                        <ion-checkbox mode="ios" color="jingku1" [checked]="invListStatus==2" (click)="invListStatus==2?invListStatus=null:invListStatus=2;search()"></ion-checkbox>
+                        <span>已审核</span>
+                        <ion-checkbox mode="ios" color="jingku1" [checked]="invListStatus==3" (click)="invListStatus==3?invListStatus=null:invListStatus=3;search()"></ion-checkbox>
+                        <span>拒绝</span>
                     </div>
-
-                    <div class="btn" (click)="search()">搜索</div>
+                </div>
+                <div class="line time">
+                    <span class="name">发生时间：</span>
+                    <div class="show">
+                        <div class="text">
+                            <ion-datetime cancelText="取消" doneText="确定" displayFormat="YYYY-MM-DD" min="2015" [max]="nowTime" [(ngModel)]="myDate"></ion-datetime>
+                            <ion-icon *ngIf="myDate" tappable (click)="myDate=null;search()" style="font-size:3rem;position: absolute;right: 45px;top: 0px;width: 19px;text-align: center;z-index:1000;"
+                                name="ios-close"></ion-icon>
+                            <div class="btn"></div>
+                        </div>
+                        <div class="btn" (click)="search()">搜索</div>
+                    </div>
                 </div>
             </div>
         </div>
         <ng-container *ngIf="invoiceList?.data?.length">
-            <ion-list no-margin *ngFor="let item of invoiceList?.data">
-                <div class="line">
-                    <span class="name">商家名称：</span>
-                    <span class="value">{{item.suppliers_name}}</span>
-                </div>
-                <div class="line">
-                    <span class="name">发票金额：</span>
-                    <span class="value">{{item.money}}</span>
-                </div>
-                <div class="line">
-                    <span class="name">申请时间：</span>
-                    <span class="value">{{item.addtime}}</span>
-                </div>
-                <div class="line">
-                    <span class="name">发票抬头：</span>
-                    <span class="value">{{item.payee}}</span>
-                </div>
-                <div class="line">
-                    <span class="name">收取方式：</span>
-                    <span class="value">快递</span>
-                </div>
-                <div class="line">
-                    <span class="name">状态</span>
-                    <span class="value" style="color: #526bb5;">{{item.status}}</span>
+            <ion-list no-margin>
+                <div class="li" *ngFor="let item of invoiceList?.data" tappable navPush="InvoiceInfoPage" [navParams]="{data:item}">
+                    <div class="name">{{item.suppliers_name}}</div>
+                    <div class="txt">发票金额：{{item.money}}&nbsp;&nbsp;|&nbsp;&nbsp;发生时间：{{item.addtime}}</div>
+                    <div class="txt">收取方式：{{'快递'}}&nbsp;&nbsp;|&nbsp;&nbsp;状态：
+                        <span [style.color]="item.is_status==1?'#2cb719':'#e60000'">{{item.status}}</span>
+                    </div>
                 </div>
             </ion-list>
         </ng-container>
@@ -118,7 +105,7 @@
                 </div>
                 <div class="row">
                     <span class="name">发票抬头：</span>
-                    <span class="value">{{item.payee}}</span>
+                    <span class="value">{{item.payee||'无'}}</span>
                 </div>
                 <div class="row">
                     <span class="name">发票类型：</span>
@@ -127,11 +114,12 @@
                 </div>
                 <div class="row">
                     <span class="name">资质审核：</span>
-                    <span class="value" *ngIf="item.if_check==1">已审核</span>
-                    <span class="value" *ngIf="item.if_check==0">待审核</span>
+
+                    <span class="value" *ngIf="item.if_check==1" style="color: #2cb719;">已审核</span>
+                    <span class="value" *ngIf="item.if_check==0" style="color: #e60000;">待审核</span>
                 </div>
             </ion-list>
-            <div class="bottom">
+            <div class="bottom" *ngIf="item.if_check==0">
                 <button ion-button color="jingku1" outline (click)="goInvoiceQualificationPage(item.ivid)">修改</button>
             </div>
         </div>

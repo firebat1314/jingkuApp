@@ -156,7 +156,7 @@ export class UserData {
             }
         }
         if (error.status == 404) {
-            this.native.showToast('数据找不到了');
+            this.native.showToast('链接地址错误');
         }
 
         if (error.status == 0) {
