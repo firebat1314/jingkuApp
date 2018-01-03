@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { NavController, NavParams, IonicPage } from 'ionic-angular';
 // import { TabsPage } from '../tabs/tabs';
 import { Storage } from '@ionic/storage';
-import { AndroidFullScreen } from "@ionic-native/android-full-screen";
+import { StatusBar } from '@ionic-native/status-bar';
 
 /*
   Generated class for the Welcome page.
@@ -21,18 +21,16 @@ export class WelcomePage {
     public navCtrl: NavController,
     public navParams: NavParams,
     public storage: Storage,
-    public androidFullScreen: AndroidFullScreen,
+    private statusBar: StatusBar,
   ) { }
-  ngOnInit() {
-    // this.androidFullScreen.isImmersiveModeSupported()
-    //   .then(() => this.androidFullScreen.immersiveMode())
-    //   .catch((error: any) => console.log(error));
-  }
-  ngOnDestroy() {
-    // this.androidFullScreen.showSystemUI();
-  }
   ionViewDidLoad() {
     console.log('ionViewDidLoad WelcomePage');
+  }
+  ionViewWillEnter(){
+    this.statusBar.hide();
+  }
+  ionViewWillLeave(){
+    this.statusBar.show();
   }
   goToHome() {
     this.navCtrl.setRoot('LoginPage',{},{animate:true,direction:'forward'});
