@@ -1,5 +1,6 @@
 import { Directive, HostListener, Output, EventEmitter, Input } from '@angular/core';
 import { Native } from "../../providers/native";
+import { ActionSheetController } from 'ionic-angular';
 
 /**
  * Generated class for the GetImageDirective directive.
@@ -13,7 +14,8 @@ import { Native } from "../../providers/native";
 export class GetImageDirective {
 
   constructor(
-    private native: Native
+    private native: Native,
+    public actionSheetCtrl: ActionSheetController,
   ) {
     console.log('Hello GetImageDirective Directive');
   }
@@ -22,25 +24,54 @@ export class GetImageDirective {
 
   @HostListener('change', ['$event']) onchange(e) {
     if (!e) { return; }
-    // console.log(e)
-    var reader = new FileReader();
-    //获取文件
-    var file: File = e.target.files[0];
-    // console.log(file)
-    var imageType = /^image\//;
-    //是否是图片
-    if (!imageType.test(file.type)) {
+    /* if(!this.native.isMobile()){
+      e.stopProPagation()
+      let actionSheet = this.actionSheetCtrl.create({
+        buttons: [
+          {
+            text: '拍照上传',
+            role: 'destructive',
+            handler: () => {
+              this.native.getPictureByCamera({}).then((data) => {
+                this.fileChecked.emit(data);
+              })
+            }
+          },
+          {
+            text: '本地上传',
+            handler: () => {
+              this.native.getPictureByPhotoLibrary({}).then((data) => {
+                this.fileChecked.emit(data);
+              })
+            }
+          },
+          {
+            text: '取消',
+            role: 'cancel',
+            handler: () => {}
+          }
+        ]
+      });
+      actionSheet.present();
+      
+    }else{
+
+    } */
+    let file = e.target.files[0];//获取文件
+    let imageType = /^image\//;
+    if (!imageType.test(file.type)) {//判断图片
       this.native.showToast("请选择图片！");
       return;
     }
-    //读取完成
-    reader.onload = (e) => {
-      // console.log('reader',e)
+    let reader = new FileReader();
+    reader.readAsDataURL(file);
+    reader.onload = (event) => {//读取完成
+      console.log(reader,event)
       if (file.size > (6 * 1024 * 1024)) {
         this.native.showToast("图片超过限制");
       } else {
         console.log('压缩品质:', this.quality);
-        this.dealImage(e.target['result'], {
+        this.dealImage(event.target['result'], {
           quality: this.quality
         }, (base) => {
           // console.log("压缩后：" + base.length / 1024 + " ");　
@@ -48,26 +79,26 @@ export class GetImageDirective {
         })
       }
     };
-    reader.readAsDataURL(file);
+    console.log(reader,reader.onload,reader.onloadend,reader.readAsDataURL)
   }
   dealImage(path: string, obj: { width?: number, height?: number, quality?: number }, callback) {
-    var img = new Image();
+    let img = new Image();
     img.src = path;
     img.onload = function () {
       // 默认按比例压缩
-      var w = img.width,
+      let w = img.width,
         h = img.height,
         scale = w / h;
       w = obj.width || w;
       h = obj.height || (w / scale);
-      var quality = 0.7;  // 默认图片质量为0.7
+      let quality = 0.7;  // 默认图片质量为0.7
       //生成canvas
-      var canvas = document.createElement('canvas');
-      var ctx = canvas.getContext('2d');
+      let canvas = document.createElement('canvas');
+      let ctx = canvas.getContext('2d');
       // 创建属性节点
-      var anw = document.createAttribute("width");
+      let anw = document.createAttribute("width");
       anw.nodeValue = String(w);
-      var anh = document.createAttribute("height");
+      let anh = document.createAttribute("height");
       anh.nodeValue = String(h);
       canvas.setAttributeNode(anw);
       canvas.setAttributeNode(anh);
@@ -77,7 +108,7 @@ export class GetImageDirective {
         quality = obj.quality;
       }
       // quality值越小，所绘制出的图像越模糊
-      var base64 = canvas.toDataURL('image/jpeg', quality);
+      let base64 = canvas.toDataURL('image/jpeg', quality);
       // 回调函数返回base64的值
       callback(base64);
     }

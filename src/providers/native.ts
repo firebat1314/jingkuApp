@@ -154,7 +154,7 @@ export class Native {
 	 * @param options
 	 * @return {Promise<T>}
 	 */
-	getPicture = (options) => {
+	getPicture = (options):Promise<any> => {
 		return new Promise((resolve, reject) => {
 			this.camera.getPicture(Object.assign({
 				sourceType: this.camera.PictureSourceType.CAMERA,//图片来源,CAMERA:拍照,PHOTOLIBRARY:相册
@@ -181,7 +181,7 @@ export class Native {
 	 * @param options
 	 * @return {Promise<T>}
 	 */
-	getPictureByCamera = (options = {}) => {
+	getPictureByCamera = (options = {}):Promise<any> => {
 		return new Promise((resolve) => {
 			this.getPicture(Object.assign({
 				sourceType: this.camera.PictureSourceType.CAMERA,
@@ -198,7 +198,7 @@ export class Native {
 	 * @param options
 	 * @return {Promise<T>}
 	 */
-	getPictureByPhotoLibrary = (options = {}) => {
+	getPictureByPhotoLibrary = (options = {}):Promise<any> => {
 		return new Promise((resolve) => {
 			this.getPicture(Object.assign({
 				sourceType: this.camera.PictureSourceType.PHOTOLIBRARY,
@@ -216,7 +216,7 @@ export class Native {
 	 * @param options
 	 * @return {Promise<T>}
 	 */
-	getMultiplePicture = (options = {}) => {
+	getMultiplePicture = (options = {}):Promise<any> => {
 		// let that = this;
 		// let destinationType = options['outputType'] || 0;//0:base64字符串,1:图片url
 		return new Promise((resolve, reject) => {
