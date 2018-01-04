@@ -19,13 +19,12 @@ export class GetImageDirective {
   ) {
     console.log('Hello GetImageDirective Directive');
   }
-  @Output('get-image') fileChecked: EventEmitter<number> = new EventEmitter<number>();
+  @Output('get-image') fileChecked: EventEmitter<string> = new EventEmitter<string>();
   @Input() quality: number;
 
-  @HostListener('change', ['$event']) onchange(e) {
-    if (!e) { return; }
-    /* if(!this.native.isMobile()){
-      e.stopProPagation()
+  @HostListener('click', ['$event']) onclick(e) {
+    if (this.native.isMobile()) {
+      e.preventDefault()
       let actionSheet = this.actionSheetCtrl.create({
         buttons: [
           {
@@ -33,7 +32,7 @@ export class GetImageDirective {
             role: 'destructive',
             handler: () => {
               this.native.getPictureByCamera({}).then((data) => {
-                this.fileChecked.emit(data);
+                this.fileChecked.emit('data:image/jpg;base64,' + data);
               })
             }
           },
@@ -41,22 +40,22 @@ export class GetImageDirective {
             text: '本地上传',
             handler: () => {
               this.native.getPictureByPhotoLibrary({}).then((data) => {
-                this.fileChecked.emit(data);
+                this.fileChecked.emit('data:image/jpg;base64,' + data);
               })
             }
           },
           {
             text: '取消',
             role: 'cancel',
-            handler: () => {}
+            handler: () => { }
           }
         ]
       });
       actionSheet.present();
-      
-    }else{
-
-    } */
+    }
+  }
+  @HostListener('change', ['$event']) onchange(e) {
+    if (!e) { return; }
     let file = e.target.files[0];//获取文件
     let imageType = /^image\//;
     if (!imageType.test(file.type)) {//判断图片
@@ -66,7 +65,7 @@ export class GetImageDirective {
     let reader = new FileReader();
     reader.readAsDataURL(file);
     reader.onload = (event) => {//读取完成
-      console.log(reader,event)
+      console.log(reader, event)
       if (file.size > (6 * 1024 * 1024)) {
         this.native.showToast("图片超过限制");
       } else {
@@ -79,7 +78,7 @@ export class GetImageDirective {
         })
       }
     };
-    console.log(reader,reader.onload,reader.onloadend,reader.readAsDataURL)
+    console.log(reader, reader.onload, reader.onloadend, reader.readAsDataURL)
   }
   dealImage(path: string, obj: { width?: number, height?: number, quality?: number }, callback) {
     let img = new Image();
