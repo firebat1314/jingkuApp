@@ -50,12 +50,12 @@ export class RepairReturnPage {
     this.events.unsubscribe('repair-return:update');
   }
   checkList() {
+    this.myContent.resize();
     if (this.infiniteScroll) this.infiniteScroll.enable(true);
     if (this.applyTabs == 'apply') {
       return this.httpService.orderRepair(this.options).then((res) => {
         if (res.status == 1) {
           this.order = res;
-          this.myContent.resize();
         }
       })
     } else if (this.applyTabs == 'applyLog') {

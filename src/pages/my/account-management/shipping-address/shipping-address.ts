@@ -23,14 +23,14 @@ export class ShippingAddressPage {
     public httpService: HttpService,
     public native: Native,
     public events: Events
-
   ) {
+  }
+  ngOnInit(){
     this.getHttpData();
     this.events.subscribe('updateAddress', (res) => {
       this.getHttpData()
     })
   }
-
   ionViewDidLoad() {
     console.log('ionViewDidLoad ShippingAddressPage');
   }

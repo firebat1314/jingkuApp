@@ -42,28 +42,30 @@ page-invoice-ask-for1 {
                 align-items: center;
                 margin-bottom: 10px;
                 .text {
-                    border: 1px solid #e0e0e0;
+                    border: #e0e0e0 1px solid;
                     border-right: none;
-                    border-bottom-left-radius: 4px;
-                    border-top-left-radius: 4px;
                     position: relative;
                     display: flex;
                     justify-content: flex-start;
-                    width: 200px;
-                    padding-left: 5px;
-                    height: 36px;
-                    overflow: hidden;
+                    align-items: center;
+                    flex: 1;
+                    position: relative;
+                    margin-right: 10px;
+                    padding-left: 11px;
+                    font-size: 1.4rem;
+                    max-width: 200px;
+                    color: #666666;
+                    height: 30px;
                     .btn {
-                        position: absolute;
-                        background: #526bb5 url(../assets/icon/images/user_cener_1_39_03.png) center center/18px 18px no-repeat;
-                        top: -1px;
-                        right: -1px;
-                        width: 36px;
-                        color: #fff;
                         height: calc(100% + 2px);
+                        position: absolute;
+                        top: -1px;
+                        right: 0;
+                        background: #3f69a5 url(../assets/icon/images/user_cener_1_39_03.png) no-repeat center center/15px;
+                        width: 40px;
                     }
                     ion-datetime {
-                        padding: 10px 8px 10px 16px;
+                        padding: 0;
                         z-index: 2;
                     }
                 }
@@ -73,18 +75,17 @@ page-invoice-ask-for1 {
                 align-items: center;
                 margin-bottom: 10px;
                 input {
-                    height: 34px;
+                    height: 30px;
                     border: 1px solid #e0e0e0;
-                    border-radius: 3px;
                     width: 70px;
                     padding: 0 10px;
+                    border-radius: 0px;
                 }
                 .btn {
                     color: #fff;
-                    border-radius: 2px;
-                    background: #526bb5;
-                    height: 34px;
-                    line-height: 40px;
+                    background: #3f69a5;
+                    height: 30px;
+                    line-height: 34px;
                     padding: 0 10px;
                     margin-left: 10px;
                 }
