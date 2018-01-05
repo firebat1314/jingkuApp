@@ -21,7 +21,6 @@ export class ReceiptPage {
   receiptTool: any = 'receiptSskFor';//or receiptSskFor or receiptList or receiptInfo
   myDate: any = null;
   nowTime: string;
-  // maxTime:any = '2017-3-17';
   @ViewChild(Content) content: Content
   @ViewChild(FabButton) fabButton: FabButton
   constructor(
@@ -81,6 +80,7 @@ export class ReceiptPage {
     })
   }
   doRefresh(refresher) {
+    this.flag = true;
     this.getHttpData();
     setTimeout(() => {
       refresher.complete();

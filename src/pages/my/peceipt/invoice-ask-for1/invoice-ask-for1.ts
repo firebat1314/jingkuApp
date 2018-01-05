@@ -39,9 +39,9 @@ export class InvoiceAskFor1Page {
   }
 
   ngOnInit(){
-    this.getHttpData();
     let d = new Date();
-    this.max_time = d.getFullYear()+'-'+d.getMonth()+'-'+d.getDate();
+    this.max_time = d.getFullYear()+'-'+(d.getMonth()+1)+'-'+d.getDate();
+    this.getHttpData();
   }
   ionViewDidLoad() {
     console.log('ionViewDidLoad InvoiceAskFor1Page');

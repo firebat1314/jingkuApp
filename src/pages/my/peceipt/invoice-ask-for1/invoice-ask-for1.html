@@ -30,8 +30,11 @@
             <div class="time">
                 发生时间：
                 <div class="text">
-                    <ion-datetime (ionCancel)="cancelDate()" (ionChange)="search()" cancelText="取消" doneText="确定" displayFormat="YYYY-MM-DD"
-                        min="2015" [max]="max_time" [(ngModel)]="time"></ion-datetime>
+                    <ion-datetime (ionChange)="search()" cancelText="取消" doneText="确定" displayFormat="YYYY-MM-DD"
+                        min="2015" [(ngModel)]="time"></ion-datetime>
+                        
+                    <ion-icon *ngIf="time" tappable (click)="time=null;search()" style="font-size:3rem;position: absolute;right: 45px;top: 0px;width: 19px;text-align: center;z-index:1000;"
+                        name="ios-close"></ion-icon>
                     <div class="btn"></div>
                 </div>
             </div>
