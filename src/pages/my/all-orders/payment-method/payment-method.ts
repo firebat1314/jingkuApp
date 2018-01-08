@@ -62,7 +62,6 @@ export class PaymentMethodPage {
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad PaymentMethodPage');
-    // this.navCtrl.remove(this.navCtrl.indexOf(this.navCtrl.getPrevious(this.navCtrl.last())),1);
   }
   ngOnInit() {
     this.getUserInfo();
@@ -114,16 +113,8 @@ export class PaymentMethodPage {
             }
           ]
         })
-        alert.present().then((e) => {
-          /* let title = document.getElementsByClassName('alert-message')[0];
-          let et = this.end_time % (24 * 3600);
-          timer = setInterval(() => {
-            console.log(et)
-            title && (title.innerHTML = `您的订单在${Math.floor(et / 3600)}小时${(Math.floor((et % 3600) / 60))}分钟内未支付将被取消，请尽快完成支付。`);
-          }, 1000) */
-        });
+        alert.present();
         alert.onDidDismiss((a, b) => {
-          // clearInterval(timer);
           resolve(false);
         })
       }
@@ -138,15 +129,16 @@ export class PaymentMethodPage {
     if (this.navCtrl.getPrevious() && this.navCtrl.getPrevious().id == 'AllOrdersPage') {
       this.navCtrl.pop();
     } else {
-      setTimeout(() => {
-        this.pushPage('AllOrdersPage');
-      }, 100);
+      this.pushPage('AllOrdersPage');
     }
   }
-  pushPage(page) {
+  pushPage(page, params = {}) {
+    this.canLeave = true;
     var nav = this.navCtrl.last();
-    this.navCtrl.push(page).then(() => {
+    this.navCtrl.push(page, params).then(() => {
       this.navCtrl.removeView(nav, { animate: false });
+    }).then(() => {
+      this.canLeave = false;
     });
   }
   getUserInfo() {
@@ -214,7 +206,7 @@ export class PaymentMethodPage {
       this.httpService.loan_status().then((res) => {
         if (!res.status) {
           this.canLeave = true;
-          this.navCtrl.push('BtAuthorizationPage').then(()=>{
+          this.navCtrl.push('BtAuthorizationPage').then(() => {
             this.canLeave = false;
           });
         } else {
@@ -224,7 +216,7 @@ export class PaymentMethodPage {
                 if (res == 1) {
                   this.httpService.ximuIsPay({ order_id: this.order_id }).then((res) => {
                     if (res.status) {
-                      this.goAllOrdersPage();
+                      this.pushPage('OrderPayOverPage', { order_id: this.order_id, log_id: this.log_id, type: this.type });
                     }
                   })
                 }
@@ -247,9 +239,7 @@ export class PaymentMethodPage {
       if (res.status) {
         if (res.type == 'balance') {
           this.native.showToast(res.info);
-
-          this.goAllOrdersPage();
-
+          this.pushPage('OrderPayOverPage', { order_id: this.order_id, log_id: this.log_id, type: this.type });
         } else if (res.type == 'pay') {
           if (this.paymentType) {
             this.openPingPayment(res);
@@ -311,7 +301,7 @@ export class PaymentMethodPage {
         console.log('result' + result);
         console.log('error' + error);
         if (result == 'success') {
-          this.goAllOrdersPage();
+          this.pushPage('OrderPayOverPage', { order_id: this.order_id, log_id: this.log_id, type: this.type });
           that.native.showToast('支付成功');
         } else {
           that.native.showToast('支付失败');

@@ -583,4 +583,12 @@ export class HttpService {
   weixinfenx(data?: Object) {
     return this.http.post(IP + '/Login/weixinfenx', data, { showToast: false })
   }
+  orderPayOver(data: {
+    order_id: string | number
+    log_id: string | number
+    type: string | number
+  }) {
+    return this.http.post(IP + '/Flow/order_ok', data, { showToast: false })
+
+  }
 }

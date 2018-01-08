@@ -240,15 +240,14 @@ export class WriteOrdersPage {
     //   })
     // } else {
     this.done().then((res) => {
-      this.events.publish('car:update');
       if (res.status == 1) {
+        this.events.publish('car:update');
         this.events.publish('my:update');
         if (this.paymentMothdID == 6) {
           var view = this.viewCtrl;
           this.navCtrl.push('PaymentMethodPage', { order_id: res.order_id }).then(() => {
             this.navCtrl.removeView(view);
           });
-
         } else if (this.paymentMothdID == 4) {
           var view = this.viewCtrl;
           this.navCtrl.push('AllOrdersPage').then(() => {
