@@ -34,7 +34,7 @@
                 <span class="text" *ngIf="data?.balance===0">需组合支付</span>
             </header>
             <div class="main">
-                <div class="zf_x" (click)="useBt()" [class.selected]="bt" [class.disable]="paymentType||yE">
+                <div class="zf_x" showWhen="android" (click)="useBt()" [class.selected]="bt" [class.disable]="paymentType||yE">
                     <img src="./assets/icon/close_ico8.png" alt="">
                     <div class="cont">
                         <div class="p1">打白条</div>

@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, Events } from 'ionic-angular';
+import { HttpService } from '../../../../providers/http-service';
 
 /**
  * Generated class for the OrderPayOverPage page.
@@ -8,30 +9,76 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
  * Ionic pages and navigation.
  */
 
-@IonicPage()
+@IonicPage({
+  segment: 'order-pay-over/:order_id/:log_id/:type'
+})
 @Component({
   selector: 'page-order-pay-over',
   templateUrl: 'order-pay-over.html',
 })
 export class OrderPayOverPage {
+  data: any;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
-    console.log();
+  order_id = this.navParams.get('order_id');
+  log_id = this.navParams.get('log_id');
+  type = this.navParams.get('type');
+  constructor(
+    public navCtrl: NavController,
+    public navParams: NavParams,
+    public events: Events,
+    private httpService: HttpService,
+  ) {
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad OrderPayOverPage');
   }
-
-  finishBtn(){
-    if(this.navCtrl.getPrevious()){
+  ngOnInit() {
+    this.getData();
+  }
+  getData() {
+    this.httpService.orderPayOver({
+      order_id: this.order_id,
+      log_id: this.log_id,
+      type: this.type,
+    }).then((res) => {
+      if(res.status) this.data = res;
+    })
+  }
+  goAllorder() {
+    this.events.publish('allOrders:update');
+    this.events.publish('my:update');
+    if (this.navCtrl.getPrevious() && this.navCtrl.getPrevious().id == 'AllOrdersPage') {
       this.navCtrl.pop();
-    }else{
-
+    } else {
+      setTimeout(() => {
+        this.pushPage('AllOrdersPage');
+      }, 100);
     }
   }
-  goHome(){
-    
+  pushPage(page,params={}) {
+    var nav = this.navCtrl.last();
+    this.navCtrl.push(page,params).then(() => {
+      this.navCtrl.removeView(nav, { animate: false });
+    });
   }
-  goAllorder(){}
+  goHome() {
+    this.navCtrl.goToRoot({ animate: true });
+    this.navCtrl.parent.select(0);
+  }
+  collectStore(item) {
+    if (item.supp_select) {
+      this.httpService.CollectShop({ id: item.suppliers_id, type: 0 }).then((res) => {
+        if (res.status) {
+          item.supp_select = 0;
+        }
+      })
+    } else {
+      this.httpService.CollectShop({ id: item.suppliers_id, type: 1 }).then((res) => {
+        if (res.status) {
+          item.supp_select = 1;
+        }
+      })
+    }
+  }
 }

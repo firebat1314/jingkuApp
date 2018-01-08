@@ -33,11 +33,13 @@ export class OrdersDetailPage {
     public native: Native,
     public events: Events,
   ) {
-    this.getOrderInfo();
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad OrdersDetailPage');
+  }
+  ngOnInit(){
+    this.getOrderInfo();
   }
   clickAftermarket(evt) {
     evt.stopPropagation();
