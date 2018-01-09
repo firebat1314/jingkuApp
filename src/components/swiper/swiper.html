@@ -4,12 +4,12 @@
     <div class="swiper-wrapper">
         <div class="swiper-slide" *ngIf="!data">
             <ion-card>
-                <img img-lazy-load="" imageViewer alt="">
+                <img img-lazy-load="" alt="">
             </ion-card>
         </div>
-        <div class="swiper-slide" *ngFor="let item of data">
+        <div class="swiper-slide" *ngFor="let item of data;let i = index" (click)="viewImages(i)">
             <ion-card>
-                <img [img-lazy-load]="item.img_url" tappable imageViewer class="main-img">
+                <img [img-lazy-load]="item.img_url" tappable class="main-img">
             </ion-card>
         </div>
     </div>

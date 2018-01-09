@@ -5,7 +5,6 @@ import { HttpService } from "../../../providers/http-service";
 import { Native } from "../../../providers/native";
 import { WxServiceProvider } from '../../../providers/wx-service/wx-service';
 import { QimoChatProvider } from '../../../providers/qimo-chat/qimo-chat';
-
 declare let wx;
 @IonicPage({
   name: 'ParticularsPage',
@@ -37,7 +36,7 @@ export class ParticularsPage {
     private wxService: WxServiceProvider,
     private QimoChat: QimoChatProvider,
   ) {
-
+    
   }
   ngOnInit() {
     console.log("商品ID:", this.goodsId);
@@ -53,26 +52,6 @@ export class ParticularsPage {
   ionViewDidLoad() {
     console.log('ionViewDidLoad ParticularsPage');
   }
-  /* ionViewWillEnter(){
-      this.navCtrl.insertPages(0,[{page:'HomePage'}]);
-      console.log(this.navCtrl.getPrevious())
-  } */
-  /* ------------------------- */
-  /*   ionViewCanEnter() {
-     if(this.firstViewInit){
-       return true;
-     }
-     return this.getHttpDetails().then((res) => {
-       this.firstViewInit = true;
-       return true;
-     }, (res) => {
-       this.native.showToast(res);
-       return false;
-     }).catch((res) => {
-       this.native.showToast('未知参数错误');
-       return false;
-     });
-   }  */
   /**
    * 获取购物车数量
    */
@@ -228,32 +207,6 @@ export class ParticularsPage {
       });
     }
   }
-  /* addToShoppingCart() {
-    if (this.getGoodsAttribute.status == 1) {
-      if (this.getGoodsAttribute.goods_type == 'goods') {
-        this.http.getAttrList({ goods_id: this.goodsId }).then((res) => {
-          console.log("goods_type ☞'goods'", res);
-          this.http.addToCartSpec().then((res) => {
-            console.log('普通商品加入购物车：', res)
-            if (res.status == 1) {
-              this.native.showToast('已经加入购物车');
-              this.events.publish('car:update');
-            }
-          })
-        })
-      }
-      if (this.getGoodsAttribute.goods_type == 'goods_spectacles') {
-        console.log("goods_type ☞'goods_spectacles'");
-        this.http.addToCartSpecJp().then((res) => {
-          console.log('镜片商品加入购物车：', res)
-          if (res.status == 1) {
-            this.native.showToast('已经加入购物车')
-            this.events.publish('car:update');
-          }
-        })
-      }
-    }
-  } */
   goParticularsPage(id) {
     this.navCtrl.push(ParticularsPage, { goodsId: id })
   }

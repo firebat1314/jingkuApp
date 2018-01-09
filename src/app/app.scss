@@ -61,6 +61,22 @@ ion-app {
     }
 }
 
+ion-modal {
+    .content .scroll-content {
+        background: initial;
+    }
+    .gallery-modal{
+        fitted-image{
+            width: 100%;
+            height: 100%;
+            .fitted-image{
+                width: 100%;
+                height: 100%;
+            }
+        }
+    }
+}
+
 [goBackTop] {
     background: url(../assets/icon/scroll-to-top-icon.png) center/100% 100% no-repeat;
 }
@@ -418,7 +434,7 @@ button.swiper-pagination-bullet {
     border-bottom: 1px solid #e0e0e0;
     border-top: 1px solid #e0e0e0;
     display: flex;
-    .segment-button.segment-activated{
+    .segment-button.segment-activated {
         color: #3f69a5 !important;
     }
     .segment-button {
