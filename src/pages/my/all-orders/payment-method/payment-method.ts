@@ -12,7 +12,7 @@ import { XimuProvider } from '../../../../providers/ximu/ximu';
   Ionic pages and navigation.
 */
 declare var pingpp: any;
-// declare var Pingpp: any;
+declare var Pingpp: any;
 // declare var Wechat: any;
 // declare var navigator: any;
 

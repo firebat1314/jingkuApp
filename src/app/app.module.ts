@@ -28,12 +28,12 @@ import { InAppBrowser } from '@ionic-native/in-app-browser';
 import { MeunItemComponentModule } from "../components/meun-item/meun-item.module";
 import { CityPickerModule } from "ionic2-city-picker/dist/city-picker.module";
 import { IonicImageViewerModule } from 'ionic-img-viewer';
-import { IonicImageLoader } from 'ionic-image-loader';
 import { UpgradeProvider } from '../providers/upgrade/upgrade';
 import { WxServiceProvider } from '../providers/wx-service/wx-service';
 import { QimoChatProvider } from '../providers/qimo-chat/qimo-chat';
 import { XimuProvider } from '../providers/ximu/ximu';
-
+import * as ionicGalleryModal from 'ionic-gallery-modal';
+import { HAMMER_GESTURE_CONFIG } from '@angular/platform-browser';
 @NgModule({
   declarations: [
     MyApp,
@@ -53,15 +53,16 @@ import { XimuProvider } from '../providers/ximu/ximu';
       tabsHideOnSubPages: true,
       tabsPlacement: 'bottom',
       swipeBackEnabled: false,
+      
       // activator: "highlight",
     }),
     IonicStorageModule.forRoot(),
-    IonicImageLoader.forRoot(),
     HttpModule,
     BrowserModule,
     MeunItemComponentModule,
     IonicImageViewerModule,
     CityPickerModule,
+    ionicGalleryModal.GalleryModalModule,
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -89,7 +90,8 @@ import { XimuProvider } from '../providers/ximu/ximu';
     InAppBrowser,
     WxServiceProvider,
     QimoChatProvider,
-    XimuProvider
+    XimuProvider,
+    {provide: HAMMER_GESTURE_CONFIG,useClass: ionicGalleryModal.GalleryModalHammerConfig,}
   ]
 })
 export class AppModule { }

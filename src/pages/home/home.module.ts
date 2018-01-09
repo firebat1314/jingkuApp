@@ -4,7 +4,6 @@ import { HomePage } from "./home";
 import { AdsClickDirectiveModule } from "../../directives/ads-click/ads-click.module";
 import { SingleCardComponentModule } from "../../components/single-card/single-card.module";
 import { ImgLazyLoadDirectiveModule } from "../../directives/img-lazy-load/img-lazy-load.module";
-import { IonicImageLoader } from 'ionic-image-loader';
 import { ScrollToTopDirectiveModule } from '../../directives/scroll-to-top/scroll-to-top.module';
 
 @NgModule({
@@ -16,7 +15,6 @@ import { ScrollToTopDirectiveModule } from '../../directives/scroll-to-top/scrol
       IonicPageModule.forChild(HomePage),
       SingleCardComponentModule,
       ImgLazyLoadDirectiveModule,
-      IonicImageLoader,
       ScrollToTopDirectiveModule,
    ],
    exports: [

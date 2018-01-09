@@ -1,4 +1,6 @@
 import { Component, Input, ElementRef } from '@angular/core';
+import { ModalController } from 'ionic-angular';
+import { GalleryModal } from 'ionic-gallery-modal';
 
 /**
  * Generated class for the SwiperComponent component.
@@ -15,10 +17,12 @@ export class SwiperComponent {
 
   //存储swiper对象
   mySwiper: any = null;
-  @Input() data: any;
+  @Input() data: Array<any>;
   activeIndex = 0;
 
-  constructor(private element: ElementRef) { }
+  constructor(private element: ElementRef,
+    public modalCtrl: ModalController,
+  ) { }
 
   ngAfterViewInit() {
     var timer = setTimeout(() => {
@@ -56,5 +60,19 @@ export class SwiperComponent {
         })
       }
     }, 10)
+  }
+  
+  viewImages(index){
+    console.log(GalleryModal)
+    var arr = new Array();
+    if(this.data.length){
+      this.data.forEach(element => {
+        arr.push({url:element.img_url});
+      });
+    }
+    this.modalCtrl.create(GalleryModal,{
+      photos: arr,
+      initialSlide: index,
+    }).present();
   }
 }
