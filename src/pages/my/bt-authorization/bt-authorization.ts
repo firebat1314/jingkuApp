@@ -39,10 +39,18 @@ export class BtAuthorizationPage {
     this.getData();
   }
   getData() {
-    this.httpService.baitiao_b().then((res) => {
+    return this.httpService.baitiao_b().then((res) => {
       if (res.status) {
         this.baitiao = res;
       }
+    })
+  }
+  /*下拉刷新*/
+  doRefresh(refresher) {
+    this.getData().then(() => {
+      setTimeout(() => {
+        refresher.complete();
+      }, 500);
     })
   }
   jihuo() {

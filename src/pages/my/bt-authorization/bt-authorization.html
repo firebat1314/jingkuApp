@@ -14,55 +14,60 @@
 
 
 <ion-content>
-  <div class="item">
-    <div class="wrap">
-      <div class="inner">
-        <div class="img">
-          <img src="./assets/icon/bai-tiao/1.png" alt="">
+  <ion-refresher (ionRefresh)="doRefresh($event)" pullMax="60">
+    <ion-refresher-content refreshingSpinner="1" pullingIcon="0"></ion-refresher-content>
+  </ion-refresher>
+  <ng-container *ngIf="baitiao">
+    <div class="item" tappable navPush="CompanyInfoPage">
+      <div class="wrap">
+        <div class="inner">
+          <div class="img">
+            <img src="./assets/icon/bai-tiao/1.png" alt="">
+          </div>
+          <div class="txt">企业信息</div>
         </div>
-        <div class="txt">企业信息</div>
-      </div>
-      <div class="status">
-        <button ion-button round navPush="CompanyInfoPage" *ngIf="baitiao&&baitiao?.company==0">立即填写</button>
-        <button ion-button clear icon-left style="color:#3f69a5" *ngIf="baitiao&&baitiao?.company==1">
-          <img src="./assets/icon/bai-tiao/gg.png" width="17" style="margin-right: 5px;" alt="已认证">已完成</button>
+        <div class="status">
+          <button ion-button round *ngIf="baitiao&&baitiao?.company==0">立即填写</button>
+          <button ion-button clear icon-left style="color:#3f69a5" *ngIf="baitiao&&baitiao?.company==1">
+            <img src="./assets/icon/bai-tiao/gg.png" width="17" style="margin-right: 5px;" alt="已认证">已完成</button>
+        </div>
       </div>
     </div>
-  </div>
-  <div class="item">
-    <div class="wrap">
-      <div class="inner">
-        <div class="img">
-          <img src="./assets/icon/bai-tiao/2.png" alt="">
+    <div class="item">
+      <div class="wrap">
+        <div class="inner">
+          <div class="img">
+            <img src="./assets/icon/bai-tiao/2.png" alt="">
+          </div>
+          <div class="txt">企业信息审核</div>
         </div>
-        <div class="txt">企业信息审核</div>
-      </div>
-      <div class="status">
-        <button ion-button clear icon-left style="color:#e60000" *ngIf="baitiao&&baitiao?.checks==0">
-          <img src="./assets/icon/bai-tiao/xx.png" width="17" style="margin-right: 5px;" alt="待审核">待审核</button>
-        <button ion-button clear icon-left style="color:#3f69a5" *ngIf="baitiao&&baitiao?.checks==1">
-          <img src="./assets/icon/bai-tiao/gg.png" width="17" style="margin-right: 5px;" alt="已认证">已认证</button>
+        <div class="status">
+          <button ion-button clear icon-left style="color:#e60000" *ngIf="baitiao&&baitiao?.checks==0">
+            <img src="./assets/icon/bai-tiao/xx.png" width="17" style="margin-right: 5px;" alt="待审核">待审核</button>
+          <button ion-button clear icon-left style="color:#3f69a5" *ngIf="baitiao&&baitiao?.checks==1">
+            <img src="./assets/icon/bai-tiao/gg.png" width="17" style="margin-right: 5px;" alt="已认证">已认证</button>
+        </div>
       </div>
     </div>
-  </div>
-  <div class="item">
-    <div class="wrap">
-      <div class="inner">
-        <div class="img">
-          <img src="./assets/icon/bai-tiao/3.png" alt="">
+    <div class="item">
+      <div class="wrap">
+        <div class="inner">
+          <div class="img">
+            <img src="./assets/icon/bai-tiao/3.png" alt="">
+          </div>
+          <div class="txt">需支付五笔订单（{{baitiao?.count||0}}/5）</div>
         </div>
-        <div class="txt">需支付五笔订单（{{baitiao?.count||0}}/5）</div>
-      </div>
-      <div class="status">
-        <button ion-button clear icon-left style="color:#e60000" *ngIf="baitiao&&baitiao?.count<5">
-          <img src="./assets/icon/bai-tiao/xx.png" width="17" style="margin-right: 5px;" alt="待审核">未完成</button>
-        <button ion-button clear icon-left style="color:#3f69a5" *ngIf="baitiao&&baitiao?.count>=5">
-          <img src="./assets/icon/bai-tiao/gg.png" width="17" style="margin-right: 5px;" alt="已认证">已完成</button>
+        <div class="status">
+          <button ion-button clear icon-left style="color:#e60000" *ngIf="baitiao&&baitiao?.count<5">
+            <img src="./assets/icon/bai-tiao/xx.png" width="17" style="margin-right: 5px;" alt="待审核">未完成</button>
+          <button ion-button clear icon-left style="color:#3f69a5" *ngIf="baitiao&&baitiao?.count>=5">
+            <img src="./assets/icon/bai-tiao/gg.png" width="17" style="margin-right: 5px;" alt="已认证">已完成</button>
+        </div>
       </div>
     </div>
-  </div>
+  </ng-container>
 </ion-content>
-<ion-footer *ngIf="baitiao?.count>=5&&baitiao?.checks&&baitiao?.company">
+<ion-footer>
   <!--  *ngIf="baitiao?.count>=5&&baitiao?.checks&&baitiao?.company" -->
   <button ion-button full large block no-margin class="submit" (click)="jihuo()">立即激活</button>
 </ion-footer>

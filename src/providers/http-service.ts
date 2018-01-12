@@ -376,7 +376,7 @@ export class HttpService {
     return this.http.get(IP + '/User/cancel_order', data)
   }
   withdrawals(data?: Object) {//用户提现
-    return this.http.get(IP + '/User/withdrawals', data)
+    return this.http.get(IP + '/User/withdrawals', data, { showLoading: true })
   }
   goodsInfos(data?: Object) {//商品详情
     return this.http.get(IP + '/Goods/goods_infos', data)
@@ -505,7 +505,7 @@ export class HttpService {
   }
   /* 白条开通条件 */
   baitiao_b(data?: Object) {
-    return this.http.post(IP + '/User/baitiao', data)
+    return this.http.post(IP + '/User/baitiao', data, { showLoading: true })
   }
   /* 白条是否开通状态 */
   loan_status(data?: Object) {
@@ -530,12 +530,13 @@ export class HttpService {
     fr?: string | number;//法人姓名
     code_sn?: string | number;//身份证号
     mobile?: string | number;//手机号
+    medical?: string;//手机号
   }) {
     return this.http.post(IP + '/User/enterprise_info', data, { showLoading: true })
   }
   /* 企业信息管理 */
   get_enterprise_info(data?) {
-    return this.http.get(IP + '/User/enterprise_info', data)
+    return this.http.get(IP + '/User/enterprise_info', data, { showLoading: true })
   }
   /* 白条支付是否完成 */
   ximuIsPay(data: { order_id }) {

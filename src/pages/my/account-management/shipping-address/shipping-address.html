@@ -19,8 +19,8 @@
             <div class="address-wrap" *ngFor="let item of addressList?.data">
                 <div class="top">
                     <ion-item>
-                        <h2>{{item.consignee}}　<span>{{item.mobile|phonenumberfilter}}</span></h2>
-                        <p>{{item.region + item.address}}</p>
+                        <h2 style="font-size: 1.5rem;">{{item.consignee}}　<span>{{item.mobile|phonenumberfilter}}</span></h2>
+                        <p style="font-size: 1.2rem;">{{item.region + item.address}}</p>
                     </ion-item>
                 </div>
                 <div class="bottom">
@@ -33,7 +33,7 @@
                     </div>
                 </div>
             </div>
-            <div padding>
+            <div margin>
                 <button ion-button block large color="jingku1" [navPush]="AddShippingAddressPage">添加收获地址</button>
             </div>
         </div>
