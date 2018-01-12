@@ -34,10 +34,12 @@ export class AddShippingAddressPage {
     public native: Native,
     public events: Events
   ) {
+    
+  }
+  ngOnInit(){
     console.log('收货地址id==>', this.addressId);
     this.setCityPickerData();
   }
-
   ionViewDidLoad() {
     console.log('ionViewDidLoad AddShippingAddressPage');
   }
