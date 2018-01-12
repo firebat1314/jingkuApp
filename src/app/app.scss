@@ -534,9 +534,11 @@ ion-fab {
         }
         &.fab-button-fadein {
             opacity: 1 !important;
+            pointer-events: auto;
         }
         &.fab-button-fadeout {
             opacity: 0;
+            pointer-events: none;
         }
     }
 }

@@ -36,9 +36,7 @@ export class AccountWithdrawPage {
   }
 
   submit() {
-    this.native.showLoading();
     this.httpService.withdrawals(this.formData).then((res) => {
-      this.native.hideLoading();
       this.native.showToast(res.data);
       if (res.status == 1) {
         this.navCtrl.push('AccountWithdrawSucceedPage');

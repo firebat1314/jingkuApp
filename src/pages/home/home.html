@@ -31,7 +31,7 @@
         <!--———————————————————————————————— 轮播图 ————————————————————————————————-->
         <div class="banner-wrapper">
             
-            <img width="100%" *ngIf="!bannerImgs" img-lazy-load defaultSrc="./assets/images/images/640-360.jpg" alt="">
+            <img width="100%" *ngIf="!bannerImgs" src="./assets/images/images/640-360.jpg" alt="">
             
             <ion-slides #bannerSlide autoplay="4000" *ngIf="bannerImgs" pager (ionSlideAutoplayStop)="bannerSlide.startAutoplay()">
                 <!-- *ngIf="bannerImgs" loop-->

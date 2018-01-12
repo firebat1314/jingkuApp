@@ -21,7 +21,7 @@ export class CompanyInfoPage {
   cityName: string = '请选择';//默认城市名称
   checks: boolean;//审核状态
 
-  params = {
+  params:any; /* {
     company: null,//企业名称
     province: null,//省
     city: null,//市
@@ -36,7 +36,8 @@ export class CompanyInfoPage {
     zhizhao: null,//营业执照
     fsfz: null,//身份证正
     zsfz: null,//身份证反
-  }
+    medical:null
+  } */
 
   constructor(
     public navCtrl: NavController,
@@ -62,20 +63,21 @@ export class CompanyInfoPage {
         this.data = res;
         this.checks = res.data.checks == 1 ? true : false;
         this.params = {
-          company: res.data.company,
-          province: res.data.province,
-          city: res.data.city,
-          district: res.data.district,
-          address: res.data.address,
-          zctel: res.data.zctel,
-          xk: res.data.xk,
-          yyzzsn: res.data.yyzzsn,
-          fr: res.data.fr,
-          code_sn: res.data.code_sn,
-          mobile: res.data.mobile,
+          company: res.data.company,//企业名称
+          province: res.data.province,//省
+          city: res.data.city,//市
+          district: res.data.district,//区
+          address: res.data.address,//经营地址
+          zctel: res.data.zctel,//注册电话
+          xk: res.data.xk,//银行开户许可证
+          yyzzsn: res.data.yyzzsn,//营业执照编号
+          fr: res.data.fr,//法人姓名
+          code_sn: res.data.code_sn,//身份证号
+          mobile: res.data.mobile,//手机号
           zhizhao: null,//营业执照
           fsfz: null,//身份证正
           zsfz: null,//身份证反
+          medical:null
         }
         if (res.data.province != 0 || res.data.city != 0 || res.data.district != 0) {
           this.cityName = this.getCityName(res.data.province, res.data.city, res.data.district)
@@ -115,13 +117,11 @@ export class CompanyInfoPage {
     this.params.district = event.region.value;
   }
   submit() {
-    // this.native.openAlertBox('确认保存修改',()=>{
     this.httpService.enterprise_info(this.params).then((res) => {
       if (res.status) {
         this.native.showToast('提交成功，请等待审核');
         this.navCtrl.pop();
       }
     })
-    // })
   }
 }

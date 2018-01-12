@@ -60,7 +60,7 @@ export class CarPage {
     return this.httpService.getFlowGoods().then((res) => {
       if (res.status == 1) {
         this.carDetails = res;
-        // this.content.resize();
+        this.content.resize();
         // this.isEdit = false;
       }
     })

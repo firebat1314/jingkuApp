@@ -89,7 +89,7 @@ export class Native {
 			this.showToastTime = false;
 			setTimeout(() => {
 				this.showToastTime = true;
-			}, 1000);
+			}, 2000);
 		}
 		console.log(message);
 	};
@@ -102,9 +102,9 @@ export class Native {
 		this.loading = this.loadingCtrl.create({
 			content: content,
 			showBackdrop: showBackdrop,
-			enableBackdropDismiss: true,
+			enableBackdropDismiss: false,
 			cssClass: 'loading-style',
-			spinner: 'dots',
+			spinner: 'circles',
 			dismissOnPageChange: false
 		});
 		this.loading.present();

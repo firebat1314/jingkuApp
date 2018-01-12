@@ -78,7 +78,7 @@ export class GetImageDirective {
         })
       }
     };
-    console.log(reader, reader.onload, reader.onloadend, reader.readAsDataURL)
+    // console.log(reader, reader.onload, reader.onloadend, reader.readAsDataURL)
   }
   dealImage(path: string, obj: { width?: number, height?: number, quality?: number }, callback) {
     let img = new Image();
