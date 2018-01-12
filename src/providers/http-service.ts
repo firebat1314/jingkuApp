@@ -196,7 +196,7 @@ export class HttpService {
     return this.http.get(IP + '/Flow/suppliers_bouns', data, { showLoading: true })
   }
   checkout(data?: Object) {//购物车去结算
-    return this.http.get(IP + '/Flow/checkout', data)
+    return this.http.get(IP + '/Flow/checkout', data, { showLoading: true })
   }
   delNoShop(data?: Object) {//删除未选中的商品
     return this.http.post(IP + '/Flow/del_no_shop', data, { showLoading: true })
@@ -256,7 +256,7 @@ export class HttpService {
     return this.http.post(IP + '/User/del_address', data)
   }
   AddressDetail(data?: Object) {//（11）收货地址详情
-    return this.http.get(IP + '/User/edit_address', data)
+    return this.http.get(IP + '/User/edit_address', data, { showLoading: true })
   }
   editAddress(data?: Object) {//（12）编辑收货地址
     return this.http.post(IP + '/User/edit_address', data, { showLoading: true })

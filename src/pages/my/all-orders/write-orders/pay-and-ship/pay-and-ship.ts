@@ -33,31 +33,17 @@ export class PayAndShipPage {
       this.data = res;
     })
   }
-  selectPayment(item, items) {
+  selectPayment(item,data) {
     this.httpService.selectPayment({ pay_id: item.pay_id }).then((res) => {
       if (res.status == 1) {
-        for (let i = 0; i < items.length; i++) {
-          const element = items[i].selected = false;
-        }
-        item.selected = true;
-        this.events.publish('writeOrder:refresh');
-        /* this.getData().then(() => {
-        this.events.publish('writeOrder:refresh');
-      }); */
+        data.mySelect = item.pay_id
       }
     })
   }
-  selectShippinSuppliers(suppliers_id, item, items) {
-    this.httpService.selectShippinSuppliers({ suppliers_id: suppliers_id, shipping: item.shipping_id }).then((res) => {
+  selectShippinSuppliers(ship, item) {
+    this.httpService.selectShippinSuppliers({ suppliers_id: item.suppliers_id, shipping: ship.shipping_id }).then((res) => {
       if (res.status == 1) {
-        for (let i = 0; i < items.length; i++) {
-          const element = items[i].selected = false;
-        }
-        item.selected = true;
-        this.events.publish('writeOrder:refresh');
-        /*  this.getData().then(() => {
-        this.events.publish('writeOrder:refresh');
-      }); */
+        item.mySelect = ship.shipping_id
       }
     })
   }

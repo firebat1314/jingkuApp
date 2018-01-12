@@ -25,14 +25,17 @@ export class OrderModalShippingPage {
     private events: Events,
     private native: Native
   ) {
+    
+  }
+  ionViewDidLoad() {
+    console.log('ionViewDidLoad OrderModalShippingPage');
+  }
+  ngOnInit(){
     this.getHttpData();
     this.events.subscribe('updateAddress', () => {
       this.getHttpData();
       this.events.publish('writeOrder:refresh');
     });
-  }
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad OrderModalShippingPage');
   }
   ngOnDestroy() {
     this.events.unsubscribe('updateAddress');
