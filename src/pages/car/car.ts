@@ -45,23 +45,21 @@ export class CarPage {
     
   }
   ionViewDidLeave() {
-    // this.events.unsubscribe('car:update');
   }
   ngOnInit() {
     this.events.subscribe('car:update', () => {
       this.getFlowGoods();
     }) 
-    this.getFlowGoods();
+    this.getFlowGoods().then(()=>{
+      this.content.resize();
+    });
   }
   ngOnDestroy() {
-    // this.events.unsubscribe('car:update');
   }
   getFlowGoods() {
     return this.httpService.getFlowGoods().then((res) => {
       if (res.status == 1) {
         this.carDetails = res;
-        this.content.resize();
-        // this.isEdit = false;
       }
     })
   }
@@ -70,15 +68,15 @@ export class CarPage {
    * @param refresher 
    */
   doRefresh(refresher) {
-    /* this.getFlowGoods().then(() => {
+    this.getFlowGoods().then(() => {
       setTimeout(() => {
         refresher.complete();
       }, 500);
-    }) */
-    setTimeout(() => {
+    })
+    /* setTimeout(() => {
       refresher.complete();
     }, 500);
-    this.events.publish('car:update');
+    this.events.publish('car:update'); */
   }
   /**
    * 加减数量

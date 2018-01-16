@@ -10,7 +10,7 @@
             
         </ion-title>
         <form action="">
-            <ion-searchbar [(ngModel)]="myHomeSearch" [ngModelOptions]="{standalone: true}" (keypress)="onInput($event)" placeholder="搜索商品" animated="false" spellcheck="true" type="search" debounce="500"  mode="ios" showCancelButton cancelButtonText="取消"></ion-searchbar>
+            <ion-searchbar [(ngModel)]="paramsData.keywords" [ngModelOptions]="{standalone: true}" (keypress)="onInput($event)" placeholder="搜索商品" animated="false" spellcheck="true" type="search" debounce="500"  mode="ios" showCancelButton cancelButtonText="取消"></ion-searchbar>
         </form>
         <ion-buttons end>
             <button ion-button clear icon-only icon-left (click)="listStyleflag=!listStyleflag;listStyleLock=true">

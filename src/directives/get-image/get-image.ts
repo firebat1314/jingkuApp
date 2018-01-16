@@ -21,6 +21,7 @@ export class GetImageDirective {
   }
   @Output('get-image') fileChecked: EventEmitter<string> = new EventEmitter<string>();
   @Input() quality: number;
+  @Input() CameraOptions: any;
 
   @HostListener('click', ['$event']) onclick(e) {
     if (this.native.isMobile()) {
@@ -31,7 +32,7 @@ export class GetImageDirective {
             text: '拍照上传',
             role: 'destructive',
             handler: () => {
-              this.native.getPictureByCamera({}).then((data) => {
+              this.native.getPictureByCamera(this.CameraOptions).then((data) => {
                 this.fileChecked.emit('data:image/jpg;base64,' + data);
               })
             }
@@ -39,7 +40,7 @@ export class GetImageDirective {
           {
             text: '本地上传',
             handler: () => {
-              this.native.getPictureByPhotoLibrary({}).then((data) => {
+              this.native.getPictureByPhotoLibrary(this.CameraOptions).then((data) => {
                 this.fileChecked.emit('data:image/jpg;base64,' + data);
               })
             }

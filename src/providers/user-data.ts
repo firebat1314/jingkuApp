@@ -152,7 +152,7 @@ export class UserData {
             }
         }
         if (error.status == 404 && op.showToast) {
-            this.native.showToast('链接地址错误');
+            this.native.showToast('连接出错，请稍后再试');
         }
 
         if (error.status == 0 && op.showToast) {

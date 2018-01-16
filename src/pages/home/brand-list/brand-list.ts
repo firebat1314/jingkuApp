@@ -9,7 +9,7 @@ import { Native } from "../../../providers/native";
   Ionic pages and navigation.
 */
 @IonicPage({
-	segment: 'brand-list/:listId'
+	segment: 'brand-list/:listId/:keyword/:brandId/:supplierId/:type'
 })
 @Component({
 	selector: 'page-brand-list',
@@ -20,7 +20,6 @@ export class BrandListPage {
 	infiniteScroll: InfiniteScroll;
 	data: any;
 	goodsCount: any;//购物车商品数量
-	myHomeSearch = null;
 	listStyleflag: Boolean;//列表样式切换
 	listStyleLock: Boolean;//列表样式 锁定
 	mytool = 'all';//当前筛选
@@ -32,7 +31,7 @@ export class BrandListPage {
 		cat_id: this.navParams.get('listId'),
 		order: null,
 		stort: 'DESC',
-		keywords: this.myHomeSearch,
+		keywords: null,
 		supplier_id: null,
 		type: null
 	}
@@ -52,12 +51,11 @@ export class BrandListPage {
 		console.log('ionViewDidLoad BrandListPage');
 	}
 	ngOnInit() {
-		this.paramsData.cat_id = this.navParams.get('listId') || null;
-		this.paramsData.brand_id = this.navParams.get('brandId') || null;
-		this.paramsData.supplier_id = this.navParams.get('supplierId') || null;
-		this.paramsData.keywords = this.navParams.get('keyword') || null;
-		this.paramsData.type = this.navParams.get('type') || null;
-		this.myHomeSearch = this.paramsData.keywords;
+		this.paramsData.cat_id = this.navParams.get('listId') == ':listId' ? null : this.navParams.get('listId');
+		this.paramsData.brand_id = this.navParams.get('brandId') == ':brandId' ? null : this.navParams.get('brandId');
+		this.paramsData.supplier_id = this.navParams.get('supplierId') == ':supplierId' ? null : this.navParams.get('supplierId');
+		this.paramsData.keywords = this.navParams.get('keyword') == ':keyword' ? null : this.navParams.get('keyword');
+		this.paramsData.type = this.navParams.get('type') == ':type' ? null : this.navParams.get('type');
 		console.log('cat_id:', this.paramsData.cat_id);
 		console.log('brand_id:', this.paramsData.brand_id);
 		console.log('supplier_id:', this.paramsData.supplier_id);
@@ -107,9 +105,9 @@ export class BrandListPage {
 					res.is_jingpian && !this.listStyleLock ? this.listStyleflag = true : null;
 					this.data = res;
 					this.content.scrollToTop();
-					if (res.goods.length == 0) {
+					/* if (res.goods.length == 0) {
 						this.native.showToast('抱歉！没有查询到相关商品', null, false);
-					}
+					} */
 					this.events.publish('user:listFilter', res);
 				}
 			}).catch(() => {
@@ -156,9 +154,7 @@ export class BrandListPage {
 	searchGoods() {
 		this.data.page = 1;
 		this.paramsData.page = 1;
-		this.paramsData.keywords = this.myHomeSearch;
 		this.getListData()
-
 	}
 	allStatus = true;
 	salesNumStatus = true;
