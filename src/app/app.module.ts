@@ -27,7 +27,6 @@ import { InAppBrowser } from '@ionic-native/in-app-browser';
 /*———————————————————————————————— 插件 ————————————————————————————————*/
 import { MeunItemComponentModule } from "../components/meun-item/meun-item.module";
 import { CityPickerModule } from "ionic2-city-picker/dist/city-picker.module";
-import { IonicImageViewerModule } from 'ionic-img-viewer';
 import { UpgradeProvider } from '../providers/upgrade/upgrade';
 import { WxServiceProvider } from '../providers/wx-service/wx-service';
 import { QimoChatProvider } from '../providers/qimo-chat/qimo-chat';
@@ -59,7 +58,6 @@ import { HAMMER_GESTURE_CONFIG } from '@angular/platform-browser';
     HttpModule,
     BrowserModule,
     MeunItemComponentModule,
-    IonicImageViewerModule,
     CityPickerModule,
     ionicGalleryModal.GalleryModalModule,
   ],

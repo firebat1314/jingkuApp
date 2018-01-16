@@ -75,7 +75,7 @@
                     </div>
                     <span>充值</span>
                 </div>
-                <div tappable (click)="goWhitebarPage()" showWhen="android">
+                <div tappable (click)="goWhitebarPage()" *ngIf="native.isAndroid()">
                     <div class="img">
                         <img img-lazy-load="./assets/icon/home/home_ico4.png" alt="">
                     </div>

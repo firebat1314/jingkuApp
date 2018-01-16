@@ -14,6 +14,7 @@ import { Native } from "../../../providers/native";
   templateUrl: 'account-management.html'
 })
 export class AccountManagementPage {
+  isAndroid = this.native.isAndroid();
 
   avatar: any;
   username: any;

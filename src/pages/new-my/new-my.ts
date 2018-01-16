@@ -16,6 +16,9 @@ export class NewMyPage {
   usercount: any;
   userInfo: any;
   baitiao: any;
+
+  isAndroid = this.native.isAndroid();
+
   constructor(
     public viewCtrl: ViewController,
     public navCtrl: NavController,
@@ -28,6 +31,7 @@ export class NewMyPage {
     private QimoChat: QimoChatProvider,
     private ximu: XimuProvider,
   ) {
+    console.log(this.isAndroid)
     /* this.httpService.getStorage('username').then((username) => {
       this.httpService.getStorage(username).then((userInfo) => {
         this.userInfo = userInfo;
