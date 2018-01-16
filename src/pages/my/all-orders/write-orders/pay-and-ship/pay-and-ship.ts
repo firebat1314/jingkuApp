@@ -33,17 +33,23 @@ export class PayAndShipPage {
       this.data = res;
     })
   }
-  selectPayment(item,data) {
-    this.httpService.selectPayment({ pay_id: item.pay_id }).then((res) => {
+  selectPayment(payment,list) {
+    this.httpService.selectPayment({ pay_id: payment.pay_id }).then((res) => {
       if (res.status == 1) {
-        data.mySelect = item.pay_id
+        list.forEach(term => {
+          term.selected = 0;
+        });
+        payment.selected = 1;
       }
     })
   }
-  selectShippinSuppliers(ship, item) {
-    this.httpService.selectShippinSuppliers({ suppliers_id: item.suppliers_id, shipping: ship.shipping_id }).then((res) => {
+  selectShippinSuppliers(ship,list,suppliers_id) {
+    this.httpService.selectShippinSuppliers({ suppliers_id: suppliers_id, shipping: ship.shipping_id }).then((res) => {
       if (res.status == 1) {
-        item.mySelect = ship.shipping_id
+        list.forEach(term => {
+          term.selected = 0;
+        });
+        ship.selected = 1;
       }
     })
   }

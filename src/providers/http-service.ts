@@ -139,7 +139,7 @@ export class HttpService {
     return this.http.get(IP + '/Category/get_children_category', data)
   }
   categoryGoods(data?: Object) {//商品分类列表页(筛选)
-    return this.http.get(IP + '/Category/category_goods', data)
+    return this.http.get(IP + '/Category/category_goods', data, { showLoading: true })
   }
   getGoodsAttribute(data?: Object) {//获取初始商品属性
     return this.http.get(IP + '/Goods/get_goods_attribute', data, { showLoading: true })
@@ -184,10 +184,10 @@ export class HttpService {
     return this.http.get(IP + '/Flow/change_consignee', data)
   }
   selectPayment(data?: Object) {//选择支付方式
-    return this.http.get(IP + '/Flow/select_payment', data, )
+    return this.http.get(IP + '/Flow/select_payment', data, { showLoading: true })
   }
   selectShippinSuppliers(data?: Object) {//选择配送方式
-    return this.http.get(IP + '/Flow/select_shippin_suppliers', data, )
+    return this.http.get(IP + '/Flow/select_shippin_suppliers', data, { showLoading: true })
   }
   newSelectShippinSuppliers(data?: Object) {//改版 选择配送方式
     return this.http.get(IP + '/Flow/new_select_shippin_suppliers', data)

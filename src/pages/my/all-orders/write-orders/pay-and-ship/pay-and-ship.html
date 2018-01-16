@@ -21,7 +21,7 @@
             </div>
             <div class="pay-body">
                 <div class="options">
-                    <button ion-button outline [color]="data.mySelect==item.pay_id?'danger':'gray'" *ngFor="let item of data?.payment_list" (click)="selectPayment(item,data)">{{item.pay_name}}</button>
+                    <button ion-button outline [color]="payment.selected?'danger':'gray'" *ngFor="let payment of data?.payment_list" (click)="selectPayment(payment,data?.payment_list)">{{payment.pay_name}}</button>
                 </div>
             </div>
         </div>
@@ -37,7 +37,7 @@
                         </div>
                     </div>
                     <div class="options">
-                        <button ion-button [disabled]="ship.disabled" outline [color]="item.mySelect==ship.shipping_id?'danger':'gray'" *ngFor="let ship of item.shipping" (click)="selectShippinSuppliers(ship,item);">{{ship.shipping_name + '  ' + ship.shipping_free}}</button>
+                        <button ion-button [disabled]="ship.disabled" [style.pointerEvents]="ship.selected?'none':'auto'" outline [color]="ship.selected?'danger':'gray'" *ngFor="let ship of item.shipping" (click)="selectShippinSuppliers(ship,item.shipping,item.suppliers_id);">{{ship.shipping_name + '  ' + ship.shipping_free}}</button>
                     </div>
                 </div>
             </div>

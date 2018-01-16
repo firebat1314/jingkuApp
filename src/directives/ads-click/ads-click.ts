@@ -25,11 +25,11 @@ export class AdsClickDirective {
     if (this.link_type.type_name == 'category') {
       this.goBrandListPage({listId:this.link_type.type_value});
     } else if (this.link_type.type_name == 'goods') {
-      this.goParticularsPage({goodsId: this.link_type.type_value})
+      this.goParticularsPage({goodsId: this.link_type.type_value});
     } else if (this.link_type.type_name == "brand") {
       this.goBrandListPage({brandId:this.link_type.type_value});
     } else if (this.link_type.type_name == "search") {
-      this.navCtrl.push('BrandListPage',{myHomeSearch:this.link_type.type_value})
+      this.goBrandListPage({keyword:this.link_type.type_value});
     }
   }
   goClassPage(value) {
