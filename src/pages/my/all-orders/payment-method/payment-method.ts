@@ -41,6 +41,7 @@ export class PaymentMethodPage {
   end_time: any;//订单支付剩余时间
 
   // canBt: boolean;//能否白条支付
+  isAndroid = this.native.isAndroid();
 
   isWeixin: boolean = this.native.isWeixin();
   isMobile: boolean = this.native.isMobile();
