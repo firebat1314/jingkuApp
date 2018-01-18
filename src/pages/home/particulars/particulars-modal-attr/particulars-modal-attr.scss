@@ -41,10 +41,11 @@ page-particulars-modal-attr {
             display: flex;
             padding: 5px 0;
             overflow: scroll;
+            flex-shrink: 0;
             .main-attr {
                 border: #333 1px solid;
                 border-radius: 4px;
-                padding: 5px 10px;
+                padding: 5px 16px;
                 margin: 6px;
             }
         }
@@ -100,6 +101,7 @@ page-particulars-modal-attr {
                             justify-content: center;
                             align-items: center;
                             flex: 1;
+                            white-space: nowrap;
                             &:first-child {
                                 min-width: 114px;
                             }

@@ -8,6 +8,7 @@ import { CityPickerModule } from "ionic2-city-picker/dist/city-picker.module";
 import { OpenMoreDirectiveModule } from "../../../directives/open-more/open-more.module";
 import { ScrollToTopDirectiveModule } from '../../../directives/scroll-to-top/scroll-to-top.module';
 import { ParallaxHeaderModule } from '../../../directives/parallax-header/parallax-header.module';
+import { BypassSecurityTrustHtmlPipeModule } from '../../../pipes/bypass-security-trust-html/bypass-security-trust-html.module';
 
 @NgModule({
    declarations: [
@@ -22,6 +23,7 @@ import { ParallaxHeaderModule } from '../../../directives/parallax-header/parall
       OpenMoreDirectiveModule,
       ScrollToTopDirectiveModule,
       ParallaxHeaderModule,
+      BypassSecurityTrustHtmlPipeModule
    ]
 })
 
