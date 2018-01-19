@@ -274,7 +274,7 @@ export class HttpService {
     return this.http.get(IP + '/User/help', data)
   }
   regionApply(data?: Object) {//（15）地区申请页
-    return this.http.get(IP + '/User/region_apply', data)
+    return this.http.get(IP + '/User/region_apply', data, { showLoading: true })
   }
   postRegionApply(data?: Object) {//（16）地区申请页提交
     return this.http.post(IP + '/User/region_apply', data)

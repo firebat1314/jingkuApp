@@ -43,11 +43,7 @@
             <div class="add-zhizhao show" *ngIf="formData.zhizhao">
                 <img style="height: 80%;" [src]="formData.zhizhao" alt="">
             </div>
-            <!--<input type="file" (change)="onFileChange($event)">-->
             <span color="danger" *ngIf="!formData.zhizhao" ion-text>请上传图片</span>
-            <!-- <div>
-                <img src="{{formData.zhizhao}}" alt="">
-            </div> -->
         </div>
     </form>
 </ion-content>

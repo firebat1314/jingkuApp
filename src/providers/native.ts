@@ -75,13 +75,13 @@ export class Native {
 	showToast = (message: string, duration?: number, useNative?: boolean) => {
 		if (this.showToastTime) {
 			if (useNative === true && this.isMobile()) {
-				this.toast.show(message, '800', 'center').subscribe((toast) => {
+				this.toast.show(message, '1500', 'center').subscribe((toast) => {
 					console.log(toast);
 				});
 			} else {
 				this.toastCtrl.create({
 					message: message,
-					duration: duration || 800,
+					duration: duration || 1500,
 					position: 'top',
 					showCloseButton: false
 				}).present();
