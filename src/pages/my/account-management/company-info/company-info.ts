@@ -77,7 +77,8 @@ export class CompanyInfoPage {
           zhizhao: null,//营业执照
           fsfz: null,//身份证正
           zsfz: null,//身份证反
-          medical:null
+          medical:null,
+          brank_permit:null
         }
         if (res.data.province != 0 || res.data.city != 0 || res.data.district != 0) {
           this.cityName = this.getCityName(res.data.province, res.data.city, res.data.district)
