@@ -5,10 +5,10 @@ import { GetImageDirectiveModule } from '../../../../directives/get-image/get-im
 @NgModule({
    declarations: [
       DredgeMoreCityPage,
-      GetImageDirectiveModule
    ],
    imports: [
       IonicPageModule.forChild(DredgeMoreCityPage),
+      GetImageDirectiveModule
    ]
 })
 

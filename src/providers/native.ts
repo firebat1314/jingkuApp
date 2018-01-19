@@ -392,7 +392,7 @@ export class Native {
 	 * @name 二维码扫描
 	 */
 	openBarcodeScanner() {
-		/* return new Promise((resolve, reject) => {
+		return new Promise((resolve, reject) => {
 			this.barcodeScanner.scan().then((barcodeData) => {
 				// Success! Barcode data is here
 				resolve(barcodeData);
@@ -400,8 +400,8 @@ export class Native {
 				// An error occurred
 				reject()
 			});
-		}) */
-		return new Promise((resolve, reject) => {
+		})
+		/* return new Promise((resolve, reject) => {
 			cordova.plugins.barcodeScanner.scan(
 				(result) => {
 					console.log("We got a barcode\n" +
@@ -415,7 +415,7 @@ export class Native {
 					reject(error);
 				}
 			);
-		})
+		}) */
 	}
 
 
