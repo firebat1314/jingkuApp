@@ -36,6 +36,7 @@ export class PayAndShipPage {
   selectPayment(payment,list) {
     this.httpService.selectPayment({ pay_id: payment.pay_id }).then((res) => {
       if (res.status == 1) {
+        this.events.publish('writeOrder:refresh');
         list.forEach(term => {
           term.selected = 0;
         });
@@ -46,6 +47,7 @@ export class PayAndShipPage {
   selectShippinSuppliers(ship,list,suppliers_id) {
     this.httpService.selectShippinSuppliers({ suppliers_id: suppliers_id, shipping: ship.shipping_id }).then((res) => {
       if (res.status == 1) {
+        this.events.publish('writeOrder:refresh');
         list.forEach(term => {
           term.selected = 0;
         });
@@ -54,4 +56,7 @@ export class PayAndShipPage {
     })
   }
 
+  onsubmit(){
+    this.events.publish('writeOrder:refresh');this.navCtrl.pop();
+  }
 }

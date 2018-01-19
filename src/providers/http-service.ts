@@ -184,10 +184,10 @@ export class HttpService {
     return this.http.get(IP + '/Flow/change_consignee', data)
   }
   selectPayment(data?: Object) {//选择支付方式
-    return this.http.get(IP + '/Flow/select_payment', data, { showLoading: true })
+    return this.http.get(IP + '/Flow/select_payment', data, { showLoading: false })
   }
   selectShippinSuppliers(data?: Object) {//选择配送方式
-    return this.http.get(IP + '/Flow/select_shippin_suppliers', data, { showLoading: true })
+    return this.http.get(IP + '/Flow/select_shippin_suppliers', data, { showLoading: false })
   }
   newSelectShippinSuppliers(data?: Object) {//改版 选择配送方式
     return this.http.get(IP + '/Flow/new_select_shippin_suppliers', data)
@@ -196,7 +196,7 @@ export class HttpService {
     return this.http.get(IP + '/Flow/suppliers_bouns', data, { showLoading: true })
   }
   checkout(data?: Object) {//购物车去结算
-    return this.http.get(IP + '/Flow/checkout', data, { showLoading: true })
+    return this.http.get(IP + '/Flow/checkout', data, { showLoading: false })
   }
   delNoShop(data?: Object) {//删除未选中的商品
     return this.http.post(IP + '/Flow/del_no_shop', data, { showLoading: true })
