@@ -11,7 +11,7 @@
 	<meta http-equiv="Pragma" content="no-cache">
 	<meta http-equiv="Cache-control" content="no-cache, no-store, must-revalidate">
     <meta http-equiv="Cache" content="no-cache"> -->
-    
+
     <link rel="icon" type="image/x-icon" href="assets/icon/jingku.ico">
     <link rel="manifest" href="manifest.json">
     <meta name="theme-color" content="#4e8ef7">
@@ -21,14 +21,14 @@
 
     <!--un-comment this code to enable service worker-->
     <script>
-        /* if ('serviceWorker' in navigator) {
+        if ('serviceWorker' in navigator) {
             navigator.serviceWorker.register('service-worker.js')
                 .then(() => console.log('service worker installed'))
                 .catch(err => console.log('Error', err));
-        } */
+        }
     </script>
 
-    <link rel="stylesheet" href="build/main.css?t=201701161">
+    <link rel="stylesheet" href="build/main.css">
 
 </head>
 
@@ -37,25 +37,25 @@
     <!-- Ionic's root component and where the app will load -->
     <ion-app></ion-app>
 
-    <script src="./assets/plugin/jweixin-1.2.0.js?t=201701161"></script>
-    
+    <script src="./assets/plugin/jweixin-1.2.0.js"></script>
+
     <!-- The polyfills js is generated during the build process -->
-    <script src="build/polyfills.js?t=201701161"></script>
+    <script src="build/polyfills.js"></script>
     <!-- The vendor js is generated during the build process
        and includes all files in the node_modules directory -->
-    <script src="build/vendor.js?t=201701161"></script>
+    <script src="build/vendor.js"></script>
 
     <!-- The bundle js is generated during the build process -->
 
-    <script src="build/main.js?t=201701161"></script>
-    <script src="./assets/plugin/swiper-3.4.2.min.js?t=201701161"></script>
-    <script src="./assets/plugin/wow.js?t=201701161"></script>
-    <script src="./assets/plugin/TouchSlide.1.1.js?t=201701161"></script>
+    <script src="build/main.js"></script>
+    <script src="./assets/plugin/swiper-3.4.2.min.js"></script>
+    <script src="./assets/plugin/wow.js"></script>
+    <script src="./assets/plugin/TouchSlide.1.1.js"></script>
     <!-- <script src="./assets/plugin/zepto.js"></script> -->
-    <script src="./assets/plugin/jquery-3.2.1.min.js?t=201701161"></script>
-    <script src="./assets/plugin/pingpp.js?t=201701161"></script>
-    <!-- <script src="./assets/plugin/geete.js?t=201701161"></script> -->
-    
+    <script src="./assets/plugin/jquery-3.2.1.min.js"></script>
+    <script src="./assets/plugin/pingpp.js"></script>
+    <!-- <script src="./assets/plugin/geete.js"></script> -->
+
     <!--网站图标 -->
     <script>
         setTimeout(function() {

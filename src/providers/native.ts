@@ -75,13 +75,13 @@ export class Native {
 	showToast = (message: string, duration?: number, useNative?: boolean) => {
 		if (this.showToastTime) {
 			if (useNative === true && this.isMobile()) {
-				this.toast.show(message, '800', 'center').subscribe((toast) => {
+				this.toast.show(message, '1500', 'center').subscribe((toast) => {
 					console.log(toast);
 				});
 			} else {
 				this.toastCtrl.create({
 					message: message,
-					duration: duration || 800,
+					duration: duration || 1500,
 					position: 'top',
 					showCloseButton: false
 				}).present();
@@ -160,7 +160,7 @@ export class Native {
 				sourceType: this.camera.PictureSourceType.CAMERA,//图片来源,CAMERA:拍照,PHOTOLIBRARY:相册
 				destinationType: this.camera.DestinationType.DATA_URL,
 				//默认返回base64字符串,DATA_URL:base64   FILE_URI:图片路径
-				quality: 90,//图像质量，范围为0 - 100
+				quality: 70,//图像质量，范围为0 - 100
 				allowEdit: false,//选择图片前是否允许编辑
 				encodingType: this.camera.EncodingType.JPEG,
 				targetWidth: 800,//缩放图像的宽度（像素）
@@ -188,7 +188,7 @@ export class Native {
 			}, options)).then(imgData => {
 				resolve(imgData);
 			}).catch(err => {
-				String(err).indexOf('cancel') != -1 ? this.showToast('取消拍照', 1500) : this.showToast('获取照片失败');
+				String(err).indexOf('No Image Selected') != -1 ? this.showToast('取消拍照', 1500) : this.showToast('获取照片失败');
 			});
 		});
 	};
@@ -205,7 +205,7 @@ export class Native {
 			}, options)).then(imgData => {
 				resolve(imgData);
 			}).catch(err => {
-				String(err).indexOf('cancel') != -1 ? this.showToast('取消选择图片', 1500) : this.showToast('获取照片失败');
+				String(err).indexOf('No Image Selected') != -1 ? this.showToast('取消选择图片', 1500) : this.showToast('获取照片失败');
 			});
 		});
 	};
