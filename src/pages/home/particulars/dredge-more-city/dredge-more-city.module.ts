@@ -9,7 +9,6 @@ import { GetImageDirectiveModule } from '../../../../directives/get-image/get-im
    ],
    imports: [
       IonicPageModule.forChild(DredgeMoreCityPage),
-      GetImageDirectiveModule
    ]
 })
 
