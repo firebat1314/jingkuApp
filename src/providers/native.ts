@@ -160,7 +160,7 @@ export class Native {
 				sourceType: this.camera.PictureSourceType.CAMERA,//图片来源,CAMERA:拍照,PHOTOLIBRARY:相册
 				destinationType: this.camera.DestinationType.DATA_URL,
 				//默认返回base64字符串,DATA_URL:base64   FILE_URI:图片路径
-				quality: 90,//图像质量，范围为0 - 100
+				quality: 70,//图像质量，范围为0 - 100
 				allowEdit: false,//选择图片前是否允许编辑
 				encodingType: this.camera.EncodingType.JPEG,
 				targetWidth: 800,//缩放图像的宽度（像素）
