@@ -13,7 +13,7 @@ import { ParallaxHeaderModule } from '../../../directives/parallax-header/parall
     CountdownComponentModule,
     ImgLazyLoadDirectiveModule,
     NoGoodsComponentModule,
-    ParallaxHeaderModule,
+    // ParallaxHeaderModule,
   ]
 })
 

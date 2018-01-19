@@ -36,8 +36,9 @@
         <ion-textarea class="textarea" type="number" required [(ngModel)]="formData.phone" name="phone"></ion-textarea>
         <div class="idcard">
             <span class="dredge-more-city-tit">营业执照：</span>
-            <div class="add-zhizhao click" tappable (click)="opanNative()" item-center icon-top>
+            <div class="add-zhizhao click" style="position: relative;" item-center icon-top>
                 <img style="height: 27px;margin-bottom: 10px;" src="./assets/icon/images/camra.png" alt=""> 选择文件
+                <input type="file" style="width:100%;height:100%;position: absolute;opacity: 0;top:0;left: 0;" (get-image)="formData.zhizhao = $event">
             </div>
             <div class="add-zhizhao show" *ngIf="formData.zhizhao">
                 <img style="height: 80%;" [src]="formData.zhizhao" alt="">
