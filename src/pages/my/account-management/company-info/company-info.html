@@ -68,7 +68,21 @@
 				</div>
 				<ion-input class="inp" *ngIf="checks&&!data?.data?.medical" [disabled]="checks" type="text" value="无"></ion-input>
 				<div class="camra ui" tappable *ngIf="!(checks&&!data?.data?.medical)">
-					<img img-lazy-load="{{params.medical || data?.data?.medical || './assets/icon/choosefile_2.png'}}" alt="">
+					<img img-lazy-load="{{params.medical || data?.data?.medical || './assets/icon/xkz_yl.jpg'}}" alt="">
+					<div *ngIf="!(params.medical || data?.data?.medical)" class="sli-fdj " style="    position: absolute;
+					top: 0;
+					left: 0;
+					width: 100%;
+					height: 100%;
+					text-align: center;
+					background: rgba(0, 0, 0, 0.5);
+					padding-top: 19px;
+					color: #ece0e0;
+					font-size: 12px;"><span style="    display: block;
+					width: 21px;
+					height: 30px;
+					margin: 0 auto;
+					background: url(./assets/icon/dsearch.png) no-repeat center/100%;"></span>示例</div>
 				</div>
 			</div>
 			<div class="li">
@@ -79,7 +93,21 @@
 				</div>
 				<ion-input class="inp" *ngIf="checks&&!data?.data?.brank_permit" [disabled]="checks" type="text" value="无"></ion-input>
 				<div class="camra ui" tappable *ngIf="!(checks&&!data?.data?.brank_permit)">
-					<img img-lazy-load="{{params.brank_permit || data?.data?.brank_permit || './assets/icon/choosefile_2.png'}}" alt="">
+					<img img-lazy-load="{{params.brank_permit || data?.data?.brank_permit || './assets/icon/xkz_yh.jpg'}}" alt="">
+					<div *ngIf="!(params.brank_permit || data?.data?.brank_permit)" class="sli-fdj " style="    position: absolute;
+					top: 0;
+					left: 0;
+					width: 100%;
+					height: 100%;
+					text-align: center;
+					background: rgba(0, 0, 0, 0.5);
+					padding-top: 19px;
+					color: #ece0e0;
+					font-size: 12px;"><span style="    display: block;
+					width: 21px;
+					height: 30px;
+					margin: 0 auto;
+					background: url(./assets/icon/dsearch.png) no-repeat center/100%;"></span>示例</div>
 				</div>
 			</div>
 		</div>
