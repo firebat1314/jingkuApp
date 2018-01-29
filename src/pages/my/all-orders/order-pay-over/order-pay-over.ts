@@ -17,6 +17,7 @@ import { HttpService } from '../../../../providers/http-service';
   templateUrl: 'order-pay-over.html',
 })
 export class OrderPayOverPage {
+  is_machining_order: boolean;
   data: any;
 
   order_id = this.navParams.get('order_id');
@@ -35,6 +36,12 @@ export class OrderPayOverPage {
   }
   ngOnInit() {
     this.getData();
+    this.updateEvents();
+  }
+  updateEvents() {//支付完成后更新个人中心订单等信息
+    this.events.publish('allOrders:update');
+    this.events.publish('AccountProcessPage');
+    this.events.publish('my:update');
   }
   getData() {
     this.httpService.orderPayOver({
@@ -42,23 +49,34 @@ export class OrderPayOverPage {
       log_id: this.log_id,
       type: this.type,
     }).then((res) => {
-      if(res.status) this.data = res;
+      if (res.status) this.data = res;
+    });
+    this.httpService.is_machining_order({ order_id: this.order_id }).then((res) => {
+      if (res.status || res.info == '成功') {
+        this.is_machining_order = true;
+      }
     })
   }
   goAllorder() {
-    this.events.publish('allOrders:update');
-    this.events.publish('my:update');
     if (this.navCtrl.getPrevious() && this.navCtrl.getPrevious().id == 'AllOrdersPage') {
       this.navCtrl.pop();
     } else {
-      setTimeout(() => {
-        this.pushPage('AllOrdersPage');
-      }, 100);
+      this.pushPage('AllOrdersPage');
     }
   }
-  pushPage(page,params={}) {
+  goAddProcessPage() {
+    this.pushPage('AddProcessPage', { order_parent: this.order_id });
+  }
+  goAccountProcessPage() {
+    if (this.navCtrl.getPrevious() && this.navCtrl.getPrevious().id == 'AccountProcessPage') {
+      this.navCtrl.pop();
+    } else {
+      this.pushPage('AccountProcessPage');
+    }
+  }
+  pushPage(page, params = {}) {
     var nav = this.navCtrl.last();
-    this.navCtrl.push(page,params).then(() => {
+    this.navCtrl.push(page, params).then(() => {
       this.navCtrl.removeView(nav, { animate: false });
     });
   }

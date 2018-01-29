@@ -40,6 +40,8 @@ export class SignupSecondPage {
   ) { }
   ionViewDidLoad() {
     console.log('ionViewDidLoad SignupSecondPage');
+  }
+  ngOnInit(){
     this.formData.user_name = this.navParams.get("user_name");
     this.httpService.changeRegion({ type: 1, parent_id: 1 }).then((res) => {
       // console.log(res);

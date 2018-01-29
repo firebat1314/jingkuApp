@@ -15,12 +15,16 @@ page-watch {
                 border: 0;
             }
             span {
-                color: #808080;
-                max-width: 153px;
-                text-align: right;
-                &:first-child {
+                &.name {
                     color: #4d4d4d;
                     white-space: nowrap;
+                    flex-shrink: 0;
+                    margin-right: 10px;
+                }
+                &.value {
+                    color: #808080;
+                    text-align: right;
+                    flex: 1;
                 }
             }
         }

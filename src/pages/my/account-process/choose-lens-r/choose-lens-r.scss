@@ -1,0 +1,48 @@
+.ios page-choose-lens-r {
+    .item-wrap {
+        border-bottom: 0.55px solid #dedede;
+    }
+}
+
+page-choose-lens-r {
+    .item-wrap {
+        display: flex;
+        align-items: center;
+        border-bottom: 1px solid #dedede;
+        background: #fff;
+        .item {
+            margin-bottom: 0;
+            .item-inner {
+                border-bottom: none;
+            }
+            h2 {
+                color: #666;
+                white-space: pre-wrap;
+                font-size: 1.4rem;
+                text-overflow: -o-ellipsis-lastline;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                display: -webkit-box;
+                -webkit-line-clamp: 2;
+                -webkit-box-orient: vertical;
+            }
+            .right-bottom {
+                color: #999999;
+                margin-top: 10px;
+                font-size: 1rem;
+                white-space: initial;
+                padding-right: 24px;
+                >span{
+                    margin-right: 10px;
+                }
+                >em{
+                    position: absolute;
+                    right: 16px;
+                    color: #666;
+                    font-size: 14px;
+                    bottom: 13px
+                }
+            }
+        }
+    }
+}

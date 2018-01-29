@@ -35,7 +35,7 @@ ion-app {
     background: #ffffff !important;
 }
 
-.back-button {
+.bar-button-md {
     padding: 0;
     margin: 0;
     min-width: 32px;
@@ -518,7 +518,15 @@ button.swiper-pagination-bullet {
 
 // Fab Button Settings Animation
 ion-fab {
-    z-index: 3;
+    transition: all 300ms !important;
+    &.fab-button-fadein {
+        opacity: 1 !important;
+        pointer-events: auto;
+    }
+    &.fab-button-fadeout {
+        opacity: 0;
+        pointer-events: none;
+    }
     .fab {
         transition: all 300ms !important;
         bottom: 0px;

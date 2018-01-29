@@ -33,6 +33,18 @@ export class OrderWuliuPage {
   ionViewDidLoad() {
     console.log('ionViewDidLoad OrderWuliuPage');
   }
+  
+  ionViewCanEnter(){
+    return this.httpService.getWuLiu({order_id:this.orderId}).then((res)=>{
+      if (res.status) {
+        this.data = res;
+        if(res.data[0].state==0){
+          this.native.showToast(res.data[0].msg);
+          return false;
+        }
+      }
+  })
+  }
   getWuLiu() {
     this.httpService.getWuLiu({order_id:this.orderId}).then((res)=>{
         if (res.status) {

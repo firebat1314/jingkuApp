@@ -18,19 +18,22 @@ import { HttpService } from '../../../../providers/http-service';
 })
 export class WatchPage {
   data: any;
+  mid = this.navParams.get('mid');
 
   constructor(
     public navCtrl: NavController,
     public navParams: NavParams,
     public httpService: HttpService,
   ) {
-    this.httpService.machiningInfo({ mid: this.navParams.get('mid') }).then((res) => {
+    
+  }
+  ngOnInit(){
+    this.httpService.machiningInfo({ mid: this.mid }).then((res) => {
       if (res.status) {
         this.data = res;
       }
     })
   }
-
   ionViewDidLoad() {
     console.log('ionViewDidLoad WatchPage');
   }

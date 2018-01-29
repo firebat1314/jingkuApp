@@ -124,8 +124,6 @@ export class PaymentMethodPage {
     });
   }
   goAllOrdersPage() {
-    this.events.publish('allOrders:update');
-    this.events.publish('my:update');
     this.canLeave = true;
     if (this.navCtrl.getPrevious() && this.navCtrl.getPrevious().id == 'AllOrdersPage') {
       this.navCtrl.pop();

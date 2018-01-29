@@ -51,7 +51,7 @@ import { HAMMER_GESTURE_CONFIG } from '@angular/platform-browser';
       // mode: 'ios',
       tabsHideOnSubPages: true,
       tabsPlacement: 'bottom',
-      swipeBackEnabled: false,
+      swipeBackEnabled: true,
       
       // activator: "highlight",
     }),

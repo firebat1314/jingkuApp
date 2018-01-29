@@ -134,7 +134,7 @@ export class ParticularsModalAttrPage {
 	totalPrices = 0;
 	totalNumber = 0;
 	jingpianNumberChange($event, it) {
-		console.log(it)
+		// console.log(it)
 		it.number = $event;
 		it.subtotal = (Number($event) * (Number(it.price * 10000))) / 10000;
 		this.totalPrices = 0;
@@ -183,7 +183,7 @@ export class ParticularsModalAttrPage {
 			item: item.qiujing,
 			goods_id: this.goodsId
 		}).then((res) => {
-			console.log('镜柱属性：', res)
+			// console.log('镜柱属性：', res)
 			if (res.status == 1) {
 				item.getZhujingList = res;
 			}

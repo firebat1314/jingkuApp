@@ -1,3 +1,24 @@
+.ios page-company-info {
+
+    input:disabled {
+        -webkit-text-fill-color: #999;
+        -webkit-opacity: 1;
+        color: #999;
+    }
+    .tit {
+        border-top: 0.55px solid #e0e0e0;
+        border-bottom: 0.55px solid #e0e0e0;
+    }
+    .list {
+        .li {
+            border-bottom: 0.55px solid #e0e0e0;
+        }
+    }
+    .camra {
+        border: 0.55px solid #e0e0e0;
+    }
+}
+
 page-company-info {
     .content {
         background: #ffffff;
@@ -42,6 +63,7 @@ page-company-info {
             .name {
                 white-space: nowrap;
                 color: #666666;
+                flex-shrink: 0;
                 flex-basis: 137px;
             }
             .inp {
