@@ -10,7 +10,7 @@ import { HttpService } from '../../../../providers/http-service';
  */
 
 @IonicPage({
-  segment: 'choose-frame/:order_id'
+  segment: 'choose-lens-r/:order_id'
 })
 @Component({
   selector: 'page-choose-lens-r',
