@@ -16,6 +16,11 @@ import { Native } from "../../../providers/native";
 export class AllOrdersPage {
   pageIndex: number = 0;
   orderData: any;
+  orderData_all: any;
+  orderData_unpay: any;
+  orderData_unget: any;
+  orderData_success: any;
+  orderData_cancel: any;
   @ViewChild('mytabs') mytabs;
   @ViewChild(Content) content: Content;
   @ViewChild(FabButton) fabButton: FabButton;
@@ -58,30 +63,35 @@ export class AllOrdersPage {
     if (this.pageIndex == 0) {
       return this.httpService.order({ page: 1 }).then((res) => {
         if (res.status == 1) {
+          // this.orderData_all = res;
           this.orderData = res;
         }
       })
     } else if (this.pageIndex == 1) {
       return this.httpService.order({ page: 1, type: 'unpay' }).then((res) => {
         if (res.status == 1) {
+          // this.orderData_unpay= res;
           this.orderData = res;
         }
       })
     } else if (this.pageIndex == 2) {
       return this.httpService.order({ page: 1, type: 'collect' }).then((res) => {
         if (res.status == 1) {
+          // this.orderData_unget = res;
           this.orderData = res;
         }
       })
     } else if (this.pageIndex == 3) {
       return this.httpService.order({ page: 1, type: 'ok' }).then((res) => {
         if (res.status == 1) {
+          // this.orderData_success = res;
           this.orderData = res;
         }
       })
     } else if (this.pageIndex == 4) {
       return this.httpService.order({ page: 1, type: 'cancel' }).then((res) => {
         if (res.status == 1) {
+          // this.orderData_cancel = res;
           this.orderData = res;
         }
       })
@@ -176,8 +186,8 @@ export class AllOrdersPage {
     this.navCtrl.push('ParticularsHomePage', { suppliersId: id })
   }
   goAddProcess(order_parent){
-    // this.navCtrl.push('AddProcessPage', { order_parent: order_parent })
-    this.native.showToast('暂未开放',null,false);
+    this.navCtrl.push('AddProcessPage', { order_parent: order_parent })
+    // this.native.showToast('暂未开放',null,false);
   }
   buyAgain(order_id){
     this.httpService.alignBuy({order_id:order_id}).then((res)=>{

@@ -26,7 +26,7 @@
 				</div>
 				<div class="text_wrap">
 					<span>支付方式：
-						<span>{{data?.pay_name}}</span>
+						<span>{{data?.pay_name||'在线支付'}}</span>
 					</span>
 					<span>订单金额：
 						<span>{{data?.amout}}</span>
@@ -34,7 +34,9 @@
 				</div>
 			</div>
 			<button ion-button large block outline color="gray" (click)="goHome()">返回首页</button>
-			<button ion-button large block color="jingku1" (click)="goAllorder()">查看订单</button>
+			<button ion-button large block color="jingku1" *ngIf="is_machining_order" (click)="goAddProcessPage()">来镜加工</button>
+			<button ion-button large block color="jingku1" *ngIf="type!='mach'" (click)="goAllorder()">查看订单</button>
+			<button ion-button large block color="jingku1" *ngIf="type=='mach'" (click)="goAccountProcessPage()">查看加工订单</button>
 			<p class="careful">注意：镜库平台及销售商不会以订单异常、系统升级为由要求您点击任何 网站链接进行退款操作。</p>
 		</section>
 		<section class="fore fore2">

@@ -464,7 +464,7 @@ export class HttpService {
    * @param 
    */
   glassMachining(data?: Object) {
-    return this.http.post(IP + '/Machining/glass_machining', data)
+    return this.http.post(IP + '/Machining/glass_machining', data, { showLoading: true })
   }
   /**
    * 闪购
@@ -547,6 +547,58 @@ export class HttpService {
    */
   machiningInfo(data?: Object) {
     return this.http.post(IP + '/Machining/machining_info', data)
+  }
+  //点击选择镜片
+  machining_goods(data: {
+    order_id: any;//订单id
+    type: string;//镜片类型   you （右眼）  zuo（左眼）
+    goods_type: string;//商品类型  pian（镜片） jia（镜架）
+    rec_ids?: Array<string>;
+    rec_id?: Array<string>;
+    pian_rec?: Array<string>;
+  }) {
+    return this.http.post(IP + '/Machining/machining_goods', data, { showLoading: true })
+  }
+  //确定选择镜片
+  select_goods_type(data: {
+    goods_rec?: any;//商品rec_id
+    type: string;//商品类型   1 （镜片）  2（镜架）
+    str_type: string;//镜片类型  you（右眼） zuo（左眼）
+    mach_type?: string;//加工类型 0全框 1半框 2切边 3打孔
+    pinpai?: string;//镜架品牌
+    xinghao?: string;//镜架型号
+    beizhu?:string;//镜架备注
+  }) {
+    return this.http.post(IP + '/Machining/select_goods_type', data, { showLoading: true })
+  }
+  //3)	判断还可以来镜加工单
+  is_machining_goods(data: {
+    order_id: string;
+    rec_ids: Array<string>;
+  }) {
+    return this.http.post(IP + '/Machining/is_machining_goods', data, { showLoading: true })
+  }
+  //4)	生成来镜加工单缓存
+  cache_machining(data?: Object) {
+    return this.http.post(IP + '/Machining/cache_machining', data, { showLoading: true })
+  }
+  //缓存信息
+  machining_cache_info(data: {
+    order_id: string;
+  }) {
+    return this.http.post(IP + '/Machining/machining_cache_info', data, { showLoading: true })
+  }
+  //5)	生成来镜加工单
+  insert_machining(data: {
+    order_id: string;
+  }) {
+    return this.http.post(IP + '/Machining/insert_machining', data, { showLoading: true })
+  }
+  //订单是否支持来镜加工
+  is_machining_order(data: {
+    order_id: string;
+  }) {
+    return this.http.post(IP + '/User/is_machining_goods', data)
   }
   /**
    * 申请售后

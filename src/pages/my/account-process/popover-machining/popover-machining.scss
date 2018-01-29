@@ -1,8 +1,74 @@
-page-popover-machining {
-
+.ios page-popover-machining {
+    .t_labels {
+        .lab {
+            border: 1px solid #e0e0e0;
+        }
+    }
 }
-.popover-machining {
-   .popover-content {
-       width: 85%;
-   }
+page-popover-machining {
+    .scroll-content{
+        background: #fff !important;
+    }
+    .eye {
+        padding: 10px 13px;
+        background: #fff;
+        border-bottom: 1px solid #e0e0e0;
+        padding-bottom: 0;
+        .h_title {
+            color: #3f69a5;
+            margin-bottom: 10px;
+            font-size: 1.4rem;
+        }
+        .t_labels {
+            display: flex;
+            flex-wrap: wrap;
+            margin-top: 10px;
+            .lab {
+                border: 1px solid #e0e0e0;
+                text-align: center;
+                color: #666666;
+                font-size: 1.3rem;
+                padding: 5px 10px;
+                margin: 0 10px 10px 0;
+                flex-shrink: 0;
+                &.on {
+                    border-color: #3f69a5;
+                    color: #3f69a5;
+                }
+            }
+        }
+        .m_list {
+            .li {
+                font-size: 1.3rem;
+                padding-left: 14px;
+                display: flex;
+                border-top: 1px solid #e0e0e0;
+                padding-right: 22px;
+                align-items: center;
+                &:first-child {
+                    border-bottom-width: 0;
+                }
+                &.has_lab {
+                    padding-right: 0;
+                }
+                .name {
+                    white-space: nowrap;
+                    color: #666666;
+                    flex-basis: 110px;
+                    flex-shrink: 0;
+                }
+                .inp {
+                    flex: 1;
+                    color: #666666;
+                    border: none;
+                    input {
+                        margin: 16px 0;
+                    }
+                }
+                .labels {
+                    @extend .t_labels;
+                }
+            }
+        }
+    }
 }

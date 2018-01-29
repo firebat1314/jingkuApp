@@ -69,8 +69,8 @@
             <div class="result">
                 <span class="count">共{{item.count}}件商品</span>&nbsp;&nbsp;<span class="price">合计: <span>{{item.amount}}</span></span>
             </div>
-            <div class="btn" *ngIf="item.is_pay==0">
-                <!-- <button color="gray" outline ion-button (click)="goWatchPage(item.mid)" *ngIf="item.is_pay=='1'">查看</button> -->
+            <div class="btn">
+                <button color="gray" outline ion-button (click)="goWatchPage(item.mid)">查看</button><!--  *ngIf="item.is_pay=='1'" -->
                 <button color="jingku1" ion-button outline (click)="toPay(item.log_id)" *ngIf="item.is_pay=='0'">去支付</button>
             </div>
         </div>

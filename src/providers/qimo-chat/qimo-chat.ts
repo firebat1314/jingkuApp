@@ -21,9 +21,9 @@ export class QimoChatProvider {
   qimoChatClick(options?:{
     access_id?:string,
   }) {
-    let _options = Object.assign({
+    /* let _options = Object.assign({
       access_id:'b441f710-80d9-11e7-8ddd-b18e4f0e2471'
-    },options)
+    },options) */
     
     this.native.showLoading();
     var old = document.getElementsByClassName('qimo')[0]
@@ -33,7 +33,7 @@ export class QimoChatProvider {
     }
     let qimo: HTMLScriptElement = document.createElement('script');
     qimo.type = 'text/javascript';
-    qimo.src = 'https://webchat.7moor.com/javascripts/7moorInit.js?accessId=' + (_options.access_id) + '&autoShow=false';
+    qimo.src = 'https://webchat.7moor.com/javascripts/7moorInit.js?accessId=' + (options.access_id||'b441f710-80d9-11e7-8ddd-b18e4f0e2471') + '&autoShow=false';
     console.log(qimo.src)
     qimo.className = 'qimo';
     document.getElementsByTagName('body')[0].appendChild(qimo);

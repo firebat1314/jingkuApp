@@ -20,8 +20,10 @@ export class ScrollToTopDirective {
   ngAfterViewInit() {
     this.renderer.setElementClass(this.element.nativeElement, 'fab-button-fadeout', true);
     this.content.ionScroll.subscribe((d) => {
-      this.renderer.setElementClass(this.element.nativeElement, "fab-button-fadein", d.scrollTop >= d.contentHeight);
-      this.renderer.setElementClass(this.element.nativeElement, "fab-button-fadeout", d.scrollTop < d.contentHeight);
+      if (d) {
+        this.renderer.setElementClass(this.element.nativeElement, "fab-button-fadein", d.scrollTop >= d.contentHeight);
+        this.renderer.setElementClass(this.element.nativeElement, "fab-button-fadeout", d.scrollTop < d.contentHeight);
+      }
     });
   }
 

@@ -1,1 +1,16 @@
-page-account-management {}
+page-account-management {
+    ion-avatar {
+        width: 75px;
+        height: 75px;
+        border-radius: 50%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        overflow: hidden;
+        img {
+            width: initial !important;
+            height: initial !important;
+            border-radius: initial !important;
+        }
+    }
+}

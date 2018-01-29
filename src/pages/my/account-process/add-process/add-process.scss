@@ -1,7 +1,31 @@
-page-add-process {
-    [margin] {
-        background: #fff;
+.ios page-add-process {
+    .main_cfd {
+        border-top: 0.55px solid #e0e0e0;
+        section {
+            .choose {
+                border-bottom: 0.55px solid #e0e0e0;
+            }
+            .pro_main {
+                .eye {
+                    border-bottom: 0.55px solid #e0e0e0;
+                    .h_title {
+                    }
+                    .t_labels {
+                        .lab {
+                            border: 0.55px solid #3f69a5;
+                        }
+                    }
+                    .m_list {
+                        .li {
+                            border-top: 0.55px solid #e0e0e0;
+                        }
+                    }
+                }
+            }
+        }
     }
+}
+page-add-process {
     .add_btn {
         display: flex;
         align-items: center;
@@ -9,32 +33,37 @@ page-add-process {
         color: #e60000;
         padding: 10px 0;
         font-weight: 500;
+        background-color: #fff;
+        margin: 12px;
         .icon {
-            font-weight: 600;
-            margin-right: 10px;
+            font-weight: 500;
+            margin-right: 7px;
         }
     }
     .main_cfd {
+        margin-top: 10px;
+        border-top: 1px solid #e0e0e0;
+        margin-bottom: 10px;
         header {
+            background-color: #fff;
             position: relative;
             display: flex;
             align-items: center;
             justify-content: center;
             flex-direction: column;
-            padding: 13px 0;
+            padding: 15px 0;
             .head_title {
-                color: #4d4d4d;
-                margin-bottom: 5px;
+                color: #4d4d4d; // margin-bottom: 5px;
                 .icon-tool {
                     position: absolute;
                     right: 15px;
-                    top: 9px;
+                    top: 15px;
                     .icon {
                         color: #b8b8b8;
-                        font-size: 20px;
+                        font-size: 22px;
                     }
-                    .icon:first-child {
-                        margin-right: 10px;
+                    .icon:last-child {
+                        margin-left: 10px;
                     }
                 }
             }
@@ -44,22 +73,97 @@ page-add-process {
             }
         }
         section {
-            .item {
-                color: #808080;
+            .choose {
+                display: flex;
+                justify-content: space-around;
+                padding: 0px 13px;
+                background-color: #fff;
+                padding-bottom: 10px;
+                border-bottom: 1px solid #e0e0e0;
+                >div {
+                    width: 31%;
+                    background: #f7f7f7;
+                    display: flex;
+                    flex-direction: column;
+                    align-items: center;
+                    padding: 18px 0;
+                    &:last-child {}
+                    .icon {
+                        font-size: 3rem;
+                        height: 47px;
+                        color: #cccccc;
+                        margin-bottom: 6px;
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                        img{
+                            height: 100%;
+                        }
+                    }
+                    .img {}
+                    .txt {
+                        color: #666666;
+                        font-size: 12px;
+                    }
+                }
             }
-            .item:first-child {
-                border-top: $border;
-            }
-            .dian1,
-            .dian2 {
-                width: 7px;
-                height: 7px;
-                border-radius: 50%;
-                background: #37baa1;
-                background: #37baa1;
-            }
-            .dian2 {
-                background: #fd9e67;
+            .pro_main {
+                .eye {
+                    padding: 10px 13px;
+                    background: #fff;
+                    border-bottom: 1px solid #e0e0e0;
+                    padding-bottom: 0;
+                    .h_title {
+                        color: #3f69a5;
+                        margin-bottom: 10px;
+                        font-size: 1.4rem;
+                    }
+                    .t_labels {
+                        display: flex;
+                        flex-wrap: wrap;
+                        margin-top: 10px;
+                        .lab {
+                            border: 1px solid #3f69a5;
+                            color: #3f69a5;
+                            font-size: 1.3rem;
+                            padding: 5px 10px;
+                            margin: 0 10px 10px 0;
+                        }
+                    }
+                    .m_list {
+                        .li {
+                            font-size: 1.3rem;
+                            padding-left: 14px;
+                            display: flex;
+                            border-top: 1px solid #e0e0e0;
+                            padding-right: 22px;
+                            align-items: center;
+                            /* &:first-child {
+                                border-top-width: 0 !important;
+                            } */
+                            &.has_lab {
+                                padding-right: 0;
+                            }
+                            .name {
+                                white-space: nowrap;
+                                color: #666666;
+                                flex-basis: 110px;
+                                flex-shrink: 0;
+                            }
+                            .inp {
+                                flex: 1;
+                                color: #666666;
+                                border: none;
+                                input {
+                                    margin: 16px 0;
+                                }
+                            }
+                            .labels {
+                                @extend .t_labels;
+                            }
+                        }
+                    }
+                }
             }
         }
     }

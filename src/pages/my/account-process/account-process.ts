@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams, IonicPage } from 'ionic-angular';
+import { NavController, NavParams, IonicPage, Events } from 'ionic-angular';
 import { HttpService } from '../../../providers/http-service';
 
 /*
@@ -27,13 +27,20 @@ export class AccountProcessPage {
     public navCtrl: NavController,
     public navParams: NavParams,
     public httpService: HttpService,
+    public events: Events,
   ) { }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad AccountProcessPage');
   }
   ngOnInit() {
+    this.events.subscribe('AccountProcessPage', () => {
+      this.checkList();
+    })
     this.checkList();
+  }
+  ngOnDestroy(){
+    this.events.unsubscribe('AccountProcessPage');
   }
   checkList() {
     if (this.infiniteScroll) this.infiniteScroll.enable(true);

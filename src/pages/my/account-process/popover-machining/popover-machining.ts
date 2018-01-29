@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams, IonicPage, ViewController } from 'ionic-angular';
+import { HttpService } from '../../../../providers/http-service';
 
 /**
  * Generated class for the PopoverMachiningPage page.
@@ -14,19 +15,43 @@ import { NavController, NavParams, IonicPage, ViewController } from 'ionic-angul
   templateUrl: 'popover-machining.html',
 })
 export class PopoverMachiningPage {
+  rec_id = this.navParams.get('rec_id');
+  mach_type: any = this.navParams.get('mach_type');
+  pinpai: any = this.navParams.get('pinpai');
+  xinghao: any = this.navParams.get('xinghao');
+  beizhu: any = this.navParams.get('beizhu');
 
   constructor(
     public navCtrl: NavController,
-     public navParams: NavParams,
-     public viewCtrl: ViewController
-    ) {
+    public navParams: NavParams,
+    public viewCtrl: ViewController,
+    public httpService: HttpService
+  ) {
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad PopoverMachiningPage');
   }
-  dismiss(){
+  dismiss() {
     this.viewCtrl.dismiss();
   }
-
+  submit() {
+    if (this.rec_id) {
+      this.httpService.select_goods_type({
+        goods_rec: this.rec_id,//用户自备镜架
+        type: '0',
+        str_type: '',
+        mach_type: this.mach_type,
+        pinpai: this.pinpai,
+        xinghao: this.xinghao,
+        beizhu: this.beizhu
+      }).then((res) => {
+        if (res.status) {
+          this.viewCtrl.dismiss(res.data,'submit');
+        }
+      })
+    } else {
+      this.viewCtrl.dismiss(null, 'submit');
+    }
+  }
 }

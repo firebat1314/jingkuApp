@@ -6,14 +6,49 @@
 -->
 <ion-header>
 
-  <ion-navbar>
-    <button ion-button  (click)="dismiss()">关闭</button>
-    <ion-title>选择镜架规格</ion-title>
-  </ion-navbar>
+	<ion-navbar>
+		<ion-buttons left>
+			<button ion-button icon-only (click)="dismiss()">
+				<ion-icon name="ios-arrow-back"></ion-icon>
+			</button>
+		</ion-buttons>
+		<ion-title>选择加工类型</ion-title>
+	</ion-navbar>
 
 </ion-header>
 
 
-<ion-content padding>
-
+<ion-content>
+	<div class="eye">
+		<div class="h_title">加工类型</div>
+		<div class="t_labels">
+			<div class="lab" (click)="mach_type = 0" [ngClass]="{'on':mach_type == 0}">全框</div>
+			<div class="lab" (click)="mach_type = 1" [ngClass]="{'on':mach_type == 1}">半框</div>
+			<div class="lab" (click)="mach_type = 2" [ngClass]="{'on':mach_type == 2}">无框切边</div>
+			<div class="lab" (click)="mach_type = 3" [ngClass]="{'on':mach_type == 3}">无框打孔</div>
+		</div>
+		<div class="m_list">
+			<div class="li">
+				<div class="name">
+					<span style="color: #e60000;">*</span>&nbsp;镜架品牌</div>
+				<ion-input class="inp" [(ngModel)]="pinpai" placeholder="请填写" type="text" value=""></ion-input>
+			</div>
+			<div class="li">
+				<div class="name">
+					<span style="color: #e60000;">*</span>&nbsp;镜架型号</div>
+				<ion-input class="inp" [(ngModel)]="xinghao" placeholder="请填写" type="text" value=""></ion-input>
+			</div>
+			<div class="li">
+				<div class="name">
+					<span style="color: #e60000;">&nbsp;</span>&nbsp;镜架备注</div>
+				<ion-input class="inp" [(ngModel)]="beizhu" placeholder="请填写" type="text" value=""></ion-input>
+			</div>
+		</div>
+	</div>
 </ion-content>
+
+<ion-footer>
+	<ion-toolbar no-padding mode="ios">
+		<button (click)="submit()" ion-button large full color="jingku1" no-margin>确定</button>
+	</ion-toolbar>
+</ion-footer>

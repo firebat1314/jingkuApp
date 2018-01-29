@@ -6,44 +6,158 @@
 -->
 <ion-header>
 
-  <ion-navbar>
-    <ion-title>来镜加工</ion-title>
-  </ion-navbar>
+	<ion-navbar>
+		<ion-title>{{edit?'来镜加工':'确认信息'}}</ion-title>
+		<ion-buttons right>
+			<button *ngIf="edit" ion-button tappble (click)="addOrder()">添加工单</button>
+		</ion-buttons>
+	</ion-navbar>
 
 </ion-header>
 
 
 <ion-content>
-  <div margin class="add_btn" tappble (click)="addOrder()">
-    <ion-icon name="ios-add-circle-outline"></ion-icon>
-    添加工单
-  </div>
-  <div margin class="main_cfd" *ngFor="let item of list;let i = index;">
-    <header>
-      <div class="head_title">
-        加工处方单{{i+1}}
-        <div class="icon-tool">
-          <ion-icon [name]="item.showBody?'ios-arrow-up':'ios-arrow-down'" tappable (click)="item.showBody = !item.showBody"></ion-icon>
-          <ion-icon tappable (click)="removeOrder(i)" name="ios-trash-outline"></ion-icon>
-        </div>
-      </div>
-      <div class="head_msg">
+	<!-- <div class="add_btn" tappble (click)="addOrder()">
+		<ion-icon name="ios-add-circle-outline"></ion-icon>
+		添加工单
+	</div> -->
+	<div class="main_cfd" *ngFor="let item of list;let i = index;">
+		<header tappable (click)="item.showBody = !item.showBody">
+			<div class="head_title">
+				加工处方单{{i+1}}
+				<div class="icon-tool">
+					<ion-icon *ngIf="item?.R||item?.L||item?.J" [name]="item.showBody?'ios-arrow-up':'ios-arrow-down'"></ion-icon>
+					<ion-icon tappable (click)="removeOrder($event,i)" *ngIf="edit&&list.length>1" name="ios-trash-outline"></ion-icon>
+				</div>
+			</div>
+			<!-- <div class="head_msg">
         加工费：15元每副（全自动进口磨边机切割）
-      </div>
-    </header>
-    <section *ngIf="item.showBody">
-      <button ion-item detail-none tappable (click)="checkOrder()">
-          <span class="dian1" item-start></span>
-          选择镜架
-        </button>
-      <button ion-item no-lines detail-none tappable (click)="checkOrder()">
-          <span class="dian2" item-start></span>
-          选择镜架
-        </button>
-    </section>
-  </div>
-  <div margin class="submit">
-    <button ion-button full large color="jingku1">提交订单</button>
-  </div>
+      </div> -->
+		</header>
+		<section>
+			<div class="choose">
+				<div tappable (click)="edit?goChooseLensRPage(item):item.showBody = !item.showBody">
+					<div class="icon">
+						<span *ngIf="!item?.R">R</span>
+						<img *ngIf="item?.R" [img-lazy-load]="item?.R?.goods_thumb" alt="">
+					</div>
+					<div class="txt">眼镜片-右眼(R)</div>
+				</div>
+				<div tappable (click)="edit?goChooseLensLPage(item):item.showBody = !item.showBody">
+					<div class="icon">
+						<span *ngIf="!item?.L">L</span>
+						<img *ngIf="item?.L" [img-lazy-load]="item?.L?.goods_thumb" alt="">
+					</div>
+					<div class="txt">眼镜片-左眼(L)</div>
+				</div>
+				<div tappable (click)="edit?goChooseFramePage(item):item.showBody = !item.showBody">
+					<div class="icon">
+						<span *ngIf="!item?.J">
+							<img img-lazy-load="./assets/icon/add_cccccc.png" width="30px" alt="">
+						</span>
+						<img *ngIf="item?.J" [img-lazy-load]="(item?.J?.rec_id)?(item?.J?.goods_thumb):'./assets/icon/avatar_default.jpg'" alt="">
+					</div>
+					<div class="txt">镜架</div>
+				</div>
+			</div>
+			<div class="pro_main" *ngIf="item.showBody">
+				<div *ngIf="item?.R" class="eye right_eye">
+					<div class="h_title">右眼</div>
+					<div class="t_labels">
+						<div class="lab" *ngIf="item?.R?.qiujing">球镜：{{item?.R?.qiujing}}</div>
+						<div class="lab" *ngIf="item?.R?.zhujing">柱镜：{{item?.R?.zhujing}}</div>
+					</div>
+					<div class="m_list">
+						<!-- <div class="li has_lab">
+							<div class="name">光度</div>
+							<div class="labels">
+								<div class="lab" *ngIf="item?.R?.qiujing">球镜：{{item?.R?.qiujing}}</div>
+								<div class="lab" *ngIf="item?.R?.zhujing">柱镜：{{item?.R?.zhujing}}</div>
+							</div>
+						</div> -->
+						<div class="li" [style.display]="!edit&&!item.rzhouxiang?'none':'flex'">
+							<div class="name">轴位</div>
+							<ion-input [readonly]="!edit" class="inp" [(ngModel)]="item.rzhouxiang" placeholder="请填写" type="text" value=""></ion-input>
+						</div>
+						<div class="li" [style.display]="!edit&&!item.radd?'none':'flex'">
+							<div class="name">ADD</div>
+							<ion-input [readonly]="!edit" class="inp" [(ngModel)]="item.radd" placeholder="请填写" type="text" value=""></ion-input>
+						</div>
+						<div class="li" [style.display]="!edit&&!item.rjytj?'none':'flex'">
+							<div class="name">近用瞳距</div>
+							<ion-input [readonly]="!edit" class="inp" [(ngModel)]="item.rjytj" placeholder="请填写" type="text" value=""></ion-input>
+						</div>
+						<div class="li" [style.display]="!edit&&!item.rtongju?'none':'flex'">
+							<div class="name">瞳距</div>
+							<ion-input [readonly]="!edit" class="inp" [(ngModel)]="item.rtongju" placeholder="请填写" type="text" value=""></ion-input>
+						</div>
+						<div class="li" [style.display]="!edit&&!item.rtonggao?'none':'flex'">
+							<div class="name">瞳高</div>
+							<ion-input [readonly]="!edit" class="inp" [(ngModel)]="item.rtonggao" placeholder="请填写" type="text" value=""></ion-input>
+						</div>
+					</div>
+				</div>
+				<div *ngIf="item?.L" class="eye left_eye">
+					<div class="h_title">左眼</div>
+					<div class="t_labels">
+						<div class="lab" *ngIf="item?.L?.qiujing">球镜：{{item?.L?.qiujing}}</div>
+						<div class="lab" *ngIf="item?.L?.zhujing">柱镜：{{item?.L?.zhujing}}</div>
+					</div>
+					<div class="m_list">
+						<!-- <div class="li has_lab">
+							<div class="name">光度</div>
+							<div class="labels">
+								<div class="lab" *ngIf="item?.L?.qiujing">球镜：{{item?.L?.qiujing}}</div>
+								<div class="lab" *ngIf="item?.L?.zhujing">柱镜：{{item?.L?.zhujing}}</div>
+							</div>
+						</div> -->
+						<div class="li" [style.display]="!edit&&!item.lzhouxiang?'none':'flex'">
+							<div class="name">轴位</div>
+							<ion-input [readonly]="!edit" class="inp" [(ngModel)]="item.lzhouxiang" placeholder="请填写" type="text" value=""></ion-input>
+						</div>
+						<div class="li" [style.display]="!edit&&!item.ladd?'none':'flex'">
+							<div class="name">ADD</div>
+							<ion-input [readonly]="!edit" class="inp" [(ngModel)]="item.ladd" placeholder="请填写" type="text" value=""></ion-input>
+						</div>
+						<div class="li" [style.display]="!edit&&!item.ljytj?'none':'flex'">
+							<div class="name">近用瞳距</div>
+							<ion-input [readonly]="!edit" class="inp" [(ngModel)]="item.ljytj" placeholder="请填写" type="text" value=""></ion-input>
+						</div>
+						<div class="li" [style.display]="!edit&&!item.ltongju?'none':'flex'">
+							<div class="name">瞳距</div>
+							<ion-input [readonly]="!edit" class="inp" [(ngModel)]="item.ltongju" placeholder="请填写" type="text" value=""></ion-input>
+						</div>
+						<div class="li" [style.display]="!edit&&!item.ltonggao?'none':'flex'">
+							<div class="name">瞳高</div>
+							<ion-input [readonly]="!edit" class="inp" [(ngModel)]="item.ltonggao" placeholder="请填写" type="text" value=""></ion-input>
+						</div>
+					</div>
+				</div>
+				<div *ngIf="item?.J" class="eye frame">
+					<div class="h_title">镜架</div>
+					<div class="t_labels">
+						<div class="lab">镜架来源：{{item?.J?.rec_id?'订单选择':'客户自备'}}</div>
+						<div class="lab">镜架品牌：{{item?.J?.pinpai||'无'}}</div>
+						<div class="lab">镜架型号：{{item?.J?.xinghao||'无'}}</div>
+						<div class="lab">加工类型：{{item?.J?.mach_type_name||'无'}}</div>
+						<div class="lab">镜架备注：{{item?.J?.beizhu||'无'}}</div>
+					</div>
+				</div>
+			</div>
+		</section>
 
+	</div>
+	<ion-fab bottom right class="addBtn">
+		<!-- <button ion-fab mini color="jingku1" (click)="addOrder()">
+			<ion-icon name="ios-add"></ion-icon>
+		</button> -->
+		<button ion-fab mini color="jingku1" goBackTop scroll-to-top></button>
+	</ion-fab>
 </ion-content>
+
+<ion-footer>
+	<ion-toolbar mode="ios" no-padding>
+		<button *ngIf="edit" ion-button large full (click)="confirm()" color="jingku1" no-margin>确认信息</button>
+		<button *ngIf="!edit" ion-button large full (click)="submit()" color="jingku1" no-margin>提交</button>
+	</ion-toolbar>
+</ion-footer>
