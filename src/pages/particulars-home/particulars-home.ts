@@ -201,11 +201,11 @@ export class ParticularsHomePage {
       let that = this;
       setTimeout(function () {
         let cuXiaoTabs = that.el.nativeElement.getElementsByClassName('cuXiao-tabs-item');
-        for (var x = 0; x < cuXiaoTabs.length; x++) {
+        for (let x = 0; x < cuXiaoTabs.length; x++) {
           cuXiaoTabs[x].index = x;
           cuXiaoTabs[0].className = 'cuXiao-tabs-item actived';
           cuXiaoTabs[x].onclick = function () {
-            for (var y = 0; y < cuXiaoTabs.length; y++) {
+            for (let y = 0; y < cuXiaoTabs.length; y++) {
               cuXiaoTabs[y].className = 'cuXiao-tabs-item';
             }
             this.className = 'cuXiao-tabs-item actived';
@@ -236,7 +236,7 @@ export class ParticularsHomePage {
   }
   doInfinite(infiniteScroll) {
     if (this.classShop == "allGoods") {
-      var page = this.alldata.page;
+      let page = this.alldata.page;
       if (page < this.alldata.pages) {
         this.httpService.suppliersCategoryGoods(Object.assign(this.paramsData, { page: ++this.alldata.page, suppliers_id: this.suppliers_id })).then((res) => {
           if (res.status == 1) {
@@ -253,7 +253,7 @@ export class ParticularsHomePage {
       }
     }
     else if (this.classShop == "goNew") {
-      var page = this.newdata.page;
+      let page = this.newdata.page;
       if (page < this.newdata.pages) {
         this.httpService.suppliersCategoryGoods({ suppliers_id: this.suppliers_id, new: 1, page: ++page }).then((res) => {
           if (res.status == 1) {
@@ -270,7 +270,7 @@ export class ParticularsHomePage {
       }
     }
     else if (this.typeNumber == 0) {
-      var page = this.cxdata.page;
+      let page = this.cxdata.page;
       if (page < this.cxdata.pages) {
         this.httpService.suppliersCategoryGoods(Object.assign(this.paramsData, { page: ++this.cxdata.page, type: 0, suppliers_id: this.suppliers_id })).then((res) => {
           if (res.status == 1) {
@@ -288,7 +288,7 @@ export class ParticularsHomePage {
       }
     }
     else if (this.typeNumber == 1) {
-      var page = this.cxdata.page;
+      let page = this.cxdata.page;
       if (page < this.cxdata.pages) {
         this.httpService.suppliersCategoryGoods(Object.assign(this.paramsData, { page: ++this.cxdata.page, type: 1, suppliers_id: this.suppliers_id })).then((res) => {
           if (res.status == 1) {
@@ -305,7 +305,7 @@ export class ParticularsHomePage {
       }
     }
     else if (this.typeNumber == 2) {
-      var page = this.cxdata.page;
+      let page = this.cxdata.page;
       if (page < this.cxdata.pages) {
         this.httpService.suppliersCategoryGoods(Object.assign(this.paramsData, { page: ++this.cxdata.page, type: 2, suppliers_id: this.suppliers_id })).then((res) => {
           if (res.status == 1) {
@@ -322,7 +322,7 @@ export class ParticularsHomePage {
       }
     }
     else if (this.typeNumber == 3) {
-      var page = this.cxdata.page;
+      let page = this.cxdata.page;
       if (page < this.cxdata.pages) {
         this.httpService.suppliersCategoryGoods(Object.assign(this.paramsData, { page: ++this.cxdata.page, type: 3, suppliers_id: this.suppliers_id })).then((res) => {
           if (res.status == 1) {
