@@ -223,7 +223,7 @@ export class HttpService {
     return this.http.get(IP + '/User/usercount', data)
   }
   order(data?: Object) {//用户订单
-    return this.http.get(IP + '/User/order', data)
+    return this.http.get(IP + '/User/order', data, { showLoading: true })
   }
   orderInfo(data?: Object) {//订单详情
     return this.http.get(IP + '/User/order_info', data)
@@ -343,10 +343,10 @@ export class HttpService {
     return this.http.get(IP + '/User/getWuLiuTidings', data)
   }
   exchange(data?: Object) {//积分商城
-    return this.http.get(IP + '/Index/exchange', data)
+    return this.http.get(IP + '/Index/exchange', data, { showLoading: true })
   }
   accountLog(data?: Object) {//用户历史记录 默认user_money user_money 余额记录pay_points 积分记录
-    return this.http.get(IP + '/User/accountLog', data)
+    return this.http.get(IP + '/User/accountLog', data, { showLoading: true })
   }
   presell(data?: Object) {//预售促销商品列表
     return this.http.get(IP + '/Index/presell', data)
@@ -364,7 +364,7 @@ export class HttpService {
     return this.http.get(IP + '/User/shipping_log', data)
   }
   exchangeGoods(data?: Object) {//积分兑换列表
-    return this.http.get(IP + '/User/exchangeGoods', data)
+    return this.http.get(IP + '/User/exchangeGoods', data, { showLoading: true })
   }
   exchangeGoodsInfo(data?: Object) {//积分兑换详情
     return this.http.get(IP + '/User/exchangeGoodsInfo', data)
@@ -567,7 +567,7 @@ export class HttpService {
     mach_type?: string;//加工类型 0全框 1半框 2切边 3打孔
     pinpai?: string;//镜架品牌
     xinghao?: string;//镜架型号
-    beizhu?:string;//镜架备注
+    beizhu?: string;//镜架备注
   }) {
     return this.http.post(IP + '/Machining/select_goods_type', data, { showLoading: true })
   }
@@ -576,7 +576,7 @@ export class HttpService {
     order_id: string;
     rec_ids: Array<string>;
   }) {
-    return this.http.post(IP + '/Machining/is_machining_goods', data, { showLoading: true })
+    return this.http.post(IP + '/Machining/is_machining_goods', data, { showLoading: true, showToast: false })
   }
   //4)	生成来镜加工单缓存
   cache_machining(data?: Object) {

@@ -1,5 +1,4 @@
 import { Component, Input, Output, EventEmitter, ElementRef } from '@angular/core';
-import { Native } from "../../providers/native";
 
 /*
   Generated class for the CountInput component.
@@ -54,7 +53,6 @@ export class CountInputComponent {
   inputEle:HTMLInputElement;
   
   constructor(
-    private native: Native,
     private element: ElementRef,
   ) {
     // console.log('Hello CountInput Component');
