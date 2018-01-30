@@ -1,3 +1,12 @@
+.ios single-foods-card{
+    .card{
+        .card-wrap {
+            .img {
+                border-bottom-width: 0.55px;
+            }
+        }
+    }
+}
 single-foods-card {
     @-webkit-keyframes fade {
         from {
@@ -37,6 +46,29 @@ single-foods-card {
                 align-items: center;
                 border-bottom: solid 1px #e0e0e0;
                 flex: 1;
+                position: relative;
+                .chips {
+                    position: absolute;
+                    top: 10px;
+                    right: -1px;
+                    z-index: 100;
+                    >div {
+                        background: #b11515;
+                        color: #fff;
+                        text-align: center;
+                        padding: 3px 5px;
+                        margin-right: 5px;
+                        font-size: 1rem;
+                        border-top-left-radius: 10px;
+                        border-bottom-left-radius: 10px;
+                    }
+                    .hot {
+                        background: #ffac5b;
+                    }
+                    .new {
+                        background: #7986cb;
+                    }
+                }
                 img {
                     width: auto;
                 }
@@ -45,10 +77,8 @@ single-foods-card {
                 padding: 8px 10px;
                 font-size: 1.2rem;
                 .text {
+                    @include ellipsis_2;
                     color: #808080;
-                    white-space: nowrap;
-                    text-overflow: ellipsis;
-                    overflow: hidden;
                     margin-bottom: 5px;
                 }
                 .price {

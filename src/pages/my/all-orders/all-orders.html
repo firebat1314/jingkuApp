@@ -36,7 +36,6 @@
             <ion-icon *ngIf="item.suppliers_name" item-left name="shop"></ion-icon>
             <div class="shop-title" tappable (click)="goParticularsHomePage(item.suppliers_id)">
                 {{item.suppliers_name}}&nbsp;
-                <ion-icon *ngIf="item.suppliers_name" name="ios-arrow-forward"></ion-icon>
             </div>
             <button item-right ion-button clear color="danger" icon-right>
                 {{item.status}}

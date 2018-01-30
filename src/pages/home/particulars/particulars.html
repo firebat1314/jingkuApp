@@ -18,7 +18,7 @@
 </ion-header>
 
 
-<ion-content  #myContent>
+<ion-content #myContent>
     <ion-refresher (ionRefresh)="doRefresh($event)" pullMax="60">
         <ion-refresher-content refreshingSpinner="1" pullingIcon="0"></ion-refresher-content>
     </ion-refresher>
@@ -29,7 +29,8 @@
         <div class="main-content">
             <div class="price_time" *ngIf="getGoodsInfo?.data?.is_pre==1 && getGoodsInfo?.data?.down_time>0">
                 <div class="left">
-                    <p><span class="number">{{getGoodsInfo?.data?.shop_price_formated}}</span>每人限购：{{getGoodsInfo?.data?.pre_number}}副</p>
+                    <p>
+                        <span class="number">{{getGoodsInfo?.data?.shop_price_formated}}</span>每人限购：{{getGoodsInfo?.data?.pre_number}}副</p>
                     <p>商品总量：{{getGoodsInfo?.data?.goods_number}}件</p>
                 </div>
                 <div class="right" [ngSwitch]="getGoodsInfo?.data?.type">
@@ -57,18 +58,21 @@
             <div class="fore info">
                 <div class="title">
                     {{getGoodsInfo?.data?.goods_name}}
+                    <div class="goods_brief" style="color: #e60000;font-size: 1.2rem;margin-top: 6px;">{{getGoodsInfo?.data?.goods_brief}}</div>
                 </div>
                 <div class="body">
                     批发价：
                     <span class="now-price">
-                    <span first-letter class="number">{{getGoodsInfo?.data?.shop_price_formated}}</span>
+                        <span first-letter class="number">{{getGoodsInfo?.data?.shop_price_formated}}</span>
                     </span>
                     <span first-letter class="old-price">{{getGoodsInfo?.data?.old_shop_price}}</span>&nbsp;
                     <span class="rush-icon" *ngIf="getGoodsInfo?.data?.is_pre==1 && getGoodsInfo?.data?.down_time>0">预售</span>
                     <span class="rush-icon" *ngIf="getGoodsInfo?.promotion?.type_name">{{getGoodsInfo?.promotion?.type_name}}</span>
                 </div>
                 <div class="bottom" *ngIf="getGoodsInfo?.data?.market_price!=0">
-                    <div>建议零售价：<span class="offer-price" first-letter>¥{{getGoodsInfo?.data?.market_price}}</span></div>
+                    <div>建议零售价：
+                        <span class="offer-price" first-letter>¥{{getGoodsInfo?.data?.market_price}}</span>
+                    </div>
                     <!-- <div>商品编号&nbsp;：{{getGoodsInfo?.data?.goods_sn}}</div> -->
                 </div>
             </div>
@@ -94,7 +98,10 @@
                     (click)="presentModal('促销')">
                     <span style="color: #808080;">促销&nbsp;</span>
                     <div>
-                        <p class="list-show" *ngFor="let item of getGoodsInfo?.promotion"><span class="title">{{item.promotion_name}}</span><span [innerHtml]="item.title"></span></p>
+                        <p class="list-show" *ngFor="let item of getGoodsInfo?.promotion">
+                            <span class="title">{{item.promotion_name}}</span>
+                            <span [innerHtml]="item.title"></span>
+                        </p>
                     </div>
                     <ion-note *ngIf="!getGoodsInfo?.promotion?.length" item-right>无促销</ion-note>
                 </button>
@@ -112,7 +119,8 @@
             </div> -->
             <div class="fore will-address">
                 <button ion-item no-lines (click)="presentModal('配送地址')">
-                    <span style="color: #808080;">送至&nbsp;&nbsp;</span>{{region_name||'选择地址'}}<span class="nogoods"></span>
+                    <span style="color: #808080;">送至&nbsp;&nbsp;</span>{{region_name||'选择地址'}}
+                    <span class="nogoods"></span>
                 </button>
                 <div class="bottom" *ngIf="getGoodsInfo?.data?.additional?.is_true||getGoodsInfo?.data?.additional?.is_hdfk||getGoodsInfo?.data?.additional?.is_inv"
                     tappable (click)="presentModal('商品服务保障')">
@@ -290,7 +298,9 @@
                         <div padding *ngIf="!getGoodsInfo?.parameter">该商品暂无参数</div>
                         <div class="wrapper" *ngIf="getGoodsInfo?.parameter">
                             <div class="attr" *ngFor="let item of getGoodsInfo?.parameter">
-                                <div class="name">{{item.name}}：<span>{{item.value}}</span></div>
+                                <div class="name">{{item.name}}：
+                                    <span>{{item.value}}</span>
+                                </div>
                             </div>
                         </div>
                     </div>

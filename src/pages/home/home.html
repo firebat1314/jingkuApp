@@ -23,7 +23,7 @@
         </ion-buttons>
     </ion-navbar>
 </ion-header>
-<ion-content (ionScroll)="onscroll()" #myContent>
+<ion-content #myContent>
     <ion-refresher (ionRefresh)="doRefresh($event)" pullMax="60">
         <ion-refresher-content refreshingSpinner="1" pullingIcon="0"></ion-refresher-content>
     </ion-refresher>
@@ -111,7 +111,7 @@
                         </div>
                         <div class="txt">
                             <div class="price">{{item.promote_price}}</div>
-                            <div class="old_price">{{item.shop_price}}</div>
+                            <div class="old_price">¥{{item.shop_price}}</div>
                         </div>
                     </div>
                 </div>

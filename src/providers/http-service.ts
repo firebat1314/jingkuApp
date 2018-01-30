@@ -34,7 +34,7 @@ export class HttpService {
   }
 
   setStorage(key, value) {
-    this.storage.set(key, value);
+    return this.storage.set(key, value);
   }
 
   getStorage(key) {
@@ -43,6 +43,18 @@ export class HttpService {
 
   removeStorage(key) {
     this.storage.remove(key)
+  }
+
+  setByName(key, value) {
+    this.getStorage('username').then((res) => {
+      if (res) return this.setStorage(res + '_' + key, value);
+    })
+  }
+
+  getByName(key) {
+    return this.getStorage('username').then((res) => {
+      if (res) return this.getStorage(res + '_' + key)
+    })
   }
 
   clear(callBack) {
@@ -91,10 +103,10 @@ export class HttpService {
     return this.http.get(IP + '/Goods/get_price_section', data)
   }
   getGoodsInfo(data?: Object) {//商品详情信息
-    return this.http.get(IP + '/Goods/goods_info', data)
+    return this.http.get(IP + '/Goods/goods_info', data, { showLoading: true })
   }
   getGoodsParameter(data?: Object) {//获取商品参数
-    return this.http.get(IP + '/Goods/get_goods_parameter', data)
+    return this.http.get(IP + '/Goods/get_goods_parameter', data, { showToast: false })
   }
   getGoodsSaleCity(data?: Object) {//获取商品的销售区域
     return this.http.get(IP + '/Goods/get_goods_sale_city', data)
@@ -244,7 +256,7 @@ export class HttpService {
     return this.http.post(IP + '/User/logout', data)
   }
   watch(data?: Object) {//（7）个人中心浏览记录
-    return this.http.get(IP + '/User/watch', data)
+    return this.http.get(IP + '/User/watch', data, { showLoading: true })
   }
   delWatch(data?: Object) {//（8）删除浏览记录
     return this.http.post(IP + '/User/del_watch', data)
@@ -271,7 +283,7 @@ export class HttpService {
     return this.http.get(IP + '/Login/change_region', data)
   }
   help(data?: Object) {//（14）帮助中心
-    return this.http.get(IP + '/User/help', data)
+    return this.http.get(IP + '/User/help', data, { showLoading: true })
   }
   regionApply(data?: Object) {//（15）地区申请页
     return this.http.get(IP + '/User/region_apply', data, { showLoading: true })
@@ -280,13 +292,13 @@ export class HttpService {
     return this.http.post(IP + '/User/region_apply', data)
   }
   collectionList(data?: Object) {//（17）收藏的商品列表
-    return this.http.post(IP + '/User/collection_list', data)
+    return this.http.post(IP + '/User/collection_list', data, { showLoading: true })
   }
   delCollectionGoods(data?: Object) {//（18）取消收藏商品
     return this.http.post(IP + '/User/del_collection_goods', data)
   }
   collectionShop(data?: Object) {//（19）收藏店铺列表
-    return this.http.post(IP + '/User/collection_shop', data)
+    return this.http.post(IP + '/User/collection_shop', data, { showLoading: true })
   }
   delCollectionShop(data?: Object) {//（20）取消收藏店铺
     return this.http.post(IP + '/User/del_collection_shop', data)
@@ -352,7 +364,7 @@ export class HttpService {
     return this.http.get(IP + '/Index/presell', data)
   }
   helpInfo(data?: Object) {//帮助中心
-    return this.http.get(IP + '/User/helpInfo', data)
+    return this.http.get(IP + '/User/helpInfo', data, { showLoading: true })
   }
   userRank(data?: Object) {//用户等级
     return this.http.get(IP + '/User/UserRank', data)
@@ -367,7 +379,7 @@ export class HttpService {
     return this.http.get(IP + '/User/exchangeGoods', data, { showLoading: true })
   }
   exchangeGoodsInfo(data?: Object) {//积分兑换详情
-    return this.http.get(IP + '/User/exchangeGoodsInfo', data)
+    return this.http.get(IP + '/User/exchangeGoodsInfo', data, { showLoading: true })
   }
   exchangebuy(data?: Object) {//兑换积分商品
     return this.http.get(IP + '/Flow/exchangebuy', data)
@@ -379,7 +391,7 @@ export class HttpService {
     return this.http.get(IP + '/User/withdrawals', data, { showLoading: true })
   }
   goodsInfos(data?: Object) {//商品详情
-    return this.http.get(IP + '/Goods/goods_infos', data)
+    return this.http.get(IP + '/Goods/goods_infos', data, { showLoading: true })
   }
   forgotPwd(data?: Object) {//忘记密码
     return this.http.post(IP + '/Login/forgotPwd', data, { showLoading: true })
@@ -485,7 +497,7 @@ export class HttpService {
    * @param 
    */
   alignBuy(data?: Object) {
-    return this.http.post(IP + '/User/align_buy', data)
+    return this.http.post(IP + '/User/align_buy', data, { showLoading: true })
   }
   /**
    * 极验验证
@@ -598,7 +610,7 @@ export class HttpService {
   is_machining_order(data: {
     order_id: string;
   }) {
-    return this.http.post(IP + '/User/is_machining_goods', data)
+    return this.http.post(IP + '/User/is_machining_goods', data, { showToast: false })
   }
   /**
    * 申请售后

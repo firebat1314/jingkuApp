@@ -25,15 +25,17 @@ export class SearchPage {
     private httpService: HttpService,
     private keyboard: Keyboard,
   ) { }
+  
   ngOnInit() {
-    this.mySearchBar.animated = true;
+    this.getHotSearch();
+  }
+  ngAfterViewInit(){
     setTimeout(() => {
       this.mySearchBar.setFocus();
     }, 800);
   }
   ionViewDidLoad() {
     console.log('ionViewDidLoad SearchPage');
-    this.getHotSearch();
   }
   searchbar(e) {
     if (e.keyCode == 13) {
