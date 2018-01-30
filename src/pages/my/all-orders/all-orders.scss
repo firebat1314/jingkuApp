@@ -1,3 +1,14 @@
+.ios page-all-orders {
+    .single-shop {
+        .item {
+            border-bottom: 0.55px solid #e0e0e0;
+        }
+        .result {
+            border-bottom: 0.55px solid #e0e0e0;
+        }
+    }
+}
+
 page-all-orders {
     .content {
         background: #f7f7f7;
@@ -15,7 +26,8 @@ page-all-orders {
             border: 0;
         }
         .item-divider {
-            >.icon:first-child{
+            color: #666;
+            >.icon:first-child {
                 font-size: 2rem;
                 display: flex;
                 align-items: center;
@@ -39,7 +51,7 @@ page-all-orders {
                         color: #4d4d4d;
                         font-size: 1.6rem;
                         @include ellipsis_1();
-                        &+div{
+                        &+div {
                             @include ellipsis_2();
                             color: inherit;
                             font-size: 1.2rem;
@@ -48,8 +60,7 @@ page-all-orders {
                 }
                 .right {
                     color: #000;
-                    text-align: right;
-                    // min-width: 80px;
+                    text-align: right; // min-width: 80px;
                     .count {
                         margin-top: 10px;
                         color: #999;

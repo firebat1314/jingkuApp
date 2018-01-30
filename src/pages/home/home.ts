@@ -5,7 +5,6 @@ import { NavController, Events, Slides, Content, FabButton, PopoverController, I
 import { UserData } from "../../providers/user-data";
 import { HttpService } from "../../providers/http-service";
 import { Native } from "../../providers/native";
-import { Storage } from '@ionic/storage';
 import { XimuProvider } from '../../providers/ximu/ximu';
 
 @IonicPage({
@@ -50,7 +49,6 @@ export class HomePage {
     private httpService: HttpService,
     // private formBuilder: FormBuilder,
     private native: Native,
-    private storage: Storage,
     public popoverCtrl: PopoverController,
     public alertCtrl: AlertController,
     private ximu: XimuProvider,
@@ -59,9 +57,6 @@ export class HomePage {
     this.events.subscribe('home:update', () => {
       this.getHomeData()
     })
-    /* this.storage.get('sss').then((res) => {
-      alert(res)
-    }) */
   }
   ngAfterViewInit() {
 
@@ -72,44 +67,39 @@ export class HomePage {
   ngOnDestroy() {
     this.events.unsubscribe('home:update');
   }
-  /*getBanner() {
-      this.httpService.getHomebanner({ int_pos_id: 53, size: 10,is_app:1 }).then((res) => {
-        if (res.status == 1) { this.bannerImgs = res.data; }
-      })
-    } */
   ngOnInit() {
-    this.storage.get('fastbuyData').then((res) => {
-      if (res) {
-        this.fastbuyData = res;
-      }
+    this.httpService.getStorage('fastbuyData').then((res) => {
+      if (res) this.fastbuyData = res;
     })
-    this.storage.get('homeData').then((res) => {
+    this.httpService.getStorage('homeData').then((res) => {
       if (res) {
         this.data = res;
         this.assignData(res);
       }
-      this.getHomeData().then(() => {
-        console.log('首页加载完成');
-      }).catch((res) => {
-        this.native.showToast('首页加载失败');
-      })
     })
+    this.getHomeData().then(() => {
+      console.log('首页加载完成');
+    }).catch((res) => {
+      this.native.showToast('首页加载失败');
+    })
+
   }
   getHomeData() {
     this.httpService.presell({ type: 'is_promote', cat_id: 0 }).then((res) => {
       if (res.status == 1) {
         this.fastbuyData = res;
-        this.storage.set('fastbuyData', res);
+        this.httpService.setStorage('fastbuyData', res);
       }
     });
     this.httpService.loan_status().then((res) => {
       this.baitiao = res;
+      this.httpService.setByName('userBaitiao', res);
     })
     return this.httpService.indexs().then((res) => {
       if (res.status == 1) {
         this.data = res;
         this.assignData(res);
-        this.storage.set('homeData', res);
+        this.httpService.setStorage('homeData', res);
       }
     })
   }
@@ -143,13 +133,6 @@ export class HomePage {
     this.jingxuan_img4 = res.data.ads_hdtj;
     //热门商品
     this.indexHotGoods = res.data.index_hot_goods;
-  }
-  onscroll() {
-    // if (this.content.scrollTop > 400) {
-    //   this.showBackTopBtn = true;
-    // } else if (this.content.scrollTop <= 400) {
-    //   this.showBackTopBtn = false;
-    // }
   }
   /*下拉刷新*/
   doRefresh(refresher) {
@@ -193,11 +176,6 @@ export class HomePage {
   }
   goBrandPage() {
     this.navCtrl.push('BrandPage')
-    /*this.navCtrl.popToRoot();
-    this.navCtrl.parent.select(1);
-    setTimeout(() => {
-      this.events.publish('classify:selectSegment', value)
-    }, 300); */
   }
   goClassPage() {
     this.navCtrl.parent.select(1);
@@ -213,13 +191,13 @@ export class HomePage {
   }
   goWhitebarPage() {
     // if (this.native.isAndroid()) {
-      if(this.baitiao.status){
-        this.ximu.openXimu(this.baitiao.data.url);
-      }else{
-        this.navCtrl.push('BtAuthorizationPage');
-      }
+    if (this.baitiao.status) {
+      this.ximu.openXimu(this.baitiao.data.url);
+    } else {
+      this.navCtrl.push('BtAuthorizationPage');
+    }
     // } else {
-      // this.native.showToast('该功能现仅在安卓客户端开放');
+    // this.native.showToast('该功能现仅在安卓客户端开放');
     // }
   }
   goPresellPage() {

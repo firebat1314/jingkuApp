@@ -40,7 +40,7 @@
 
   <div class="list2">
     <div class="list2_item" *ngFor="let item of childrenCaCtegory">
-      <div class="list2_header">
+      <div class="list2_header" tappable (click)="goBrandList(item.cat_id)">
         {{item.cat_name}}
       </div>
       <div class="list3">

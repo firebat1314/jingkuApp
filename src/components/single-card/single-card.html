@@ -8,6 +8,11 @@
     <div class="card-wrap" tappable (click)="$event.stopPropagation();" [ngClass]="animateClass" [navPush]="ParticularsPage" [navParams]="{goodsId:item.id}">
         <div class="img">
             <img img-lazy-load="{{item?.goods_img}}" alt="">
+            <div class="chips">
+                <div class="sale" *ngIf="item.is_promote==1">SALE</div>
+                <div class="hot" *ngIf="item.is_hot==1">HOT</div>
+                <div class="new" *ngIf="item.is_new==1">NEW</div>
+            </div>
         </div>
         <div class="info">
             <div class="text">{{item.short_name}}</div>
