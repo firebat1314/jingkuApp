@@ -95,10 +95,7 @@ export class ParticularsHomePage {
     this.events.unsubscribe('particulars-home-details:update-collect');//防止多次订阅事件
   }
   ngAfterViewInit() {
-    this.fabButton.setElementClass('fab-button-out', true);
-    this.content.ionScroll.subscribe((d) => {
-      this.fabButton.setElementClass("fab-button-in", d.scrollTop >= d.contentHeight);
-    });
+   
   }
   getHomeData() {
     this.httpService.suppliersIndex({ suppliers_id: this.suppliers_id }).then((res) => {

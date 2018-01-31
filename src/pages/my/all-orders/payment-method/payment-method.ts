@@ -96,9 +96,10 @@ export class PaymentMethodPage {
         resolve(true);
       } else {
         let et = this.end_time % (24 * 3600);
+        let str = this.type != 'mach'?`您的订单在${Math.floor(et / 3600)}小时${(Math.floor((et % 3600) / 60))}分钟内未支付将被取消，请尽快完成支付。`:'请尽快完成支付。'
         var alert = this.alertCtrl.create({
           title: '确认要离开收银台？',
-          message: `您的订单在${Math.floor(et / 3600)}小时${(Math.floor((et % 3600) / 60))}分钟内未支付将被取消，请尽快完成支付。`,
+          message: str,
           buttons: [
             {
               text: '继续支付',

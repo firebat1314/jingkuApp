@@ -12,26 +12,31 @@
 // To declare rules for a specific mode, create a child rule
 // for the .md, .ios, or .wp mode classes. The mode class is
 // automatically applied to the <body> element in the app.
+
+/* @font-face {
+    font-family: sunshanshan;
+    src: url('../assets/myFont/helvetica/HELVETI1.ttf'),
+} */
+
 @import "../theme/reset";
 html {
-    // font-family: -apple-system, BlinkMacSystemFont, Helvetica Neue, Helvetica, Roboto, Arial, PingFang SC, Hiragino Sans GB, Microsoft Yahei, Microsoft Jhenghei, sans-serif !important;
-    // -webkit-overflow-scrolling: auto;
     body {
         position: absolute !important;
     }
 }
-
+/* 
 ion-app {
-    font-family: Helvetica !important;
-}
+    font-family: Helvetica, sunshanshan, -apple-system, "Helvetica Neue", "Roboto", sans-serif !important;
+} */
 
 .tabs .tabbar {
     background: #fff;
 }
 
-.ios .badge{
+.ios .badge {
     border-width: 0.5px;
 }
+
 .badge {
     border: 1px solid #416aa6 !important;
     color: #416aa6 !important;
@@ -68,11 +73,11 @@ ion-modal {
     .content .scroll-content {
         background: initial;
     }
-    .gallery-modal{
-        fitted-image{
+    .gallery-modal {
+        fitted-image {
             width: 100%;
             height: 100%;
-            .fitted-image{
+            .fitted-image {
                 width: 100%;
                 height: 100%;
             }
@@ -84,9 +89,10 @@ ion-modal {
     background: url(../assets/icon/scroll-to-top-icon.png) center/100% 100% no-repeat;
 }
 
-.ios [border-f0]{
+.ios [border-f0] {
     border-width: 0.5px;
 }
+
 [border-f0] {
     border: 1px solid #f0f0f0;
 }
@@ -125,7 +131,7 @@ ion-thumbnail {
 //ParallaxHeader 指令样式
 .header-image {
     img {
-        display: block; 
+        display: block;
         width: 100%;
     }
 }
@@ -183,6 +189,7 @@ ion-thumbnail {
 .ios .toolbar:nth-child(2) {
     border-width: 0.5px;
 }
+
 .toolbar:nth-child(2) {
     border-top: 1px solid #e0e0e0;
 }
@@ -217,10 +224,12 @@ ion-thumbnail {
 
 /*————————————————————————————————————搜索框图标————————————————————————————————————*/
 
-
-/* .searchbar-ios .searchbar-search-icon {
-    top: 12px;
-} */
+.searchbar-ios {
+    min-height: initial;
+    /* .searchbar-search-icon {
+        top: 12px;
+    } */
+}
 
 
 /*————————————————————————————————————下拉刷新CSS————————————————————————————————————*/
@@ -309,9 +318,10 @@ ion-refresher-content[state=ready] .refresher-pulling-icon {
 
 /*————————————————————————————————————轮播图按钮style————————————————————————————————————*/
 
-.ios button.swiper-pagination-bullet{
+.ios button.swiper-pagination-bullet {
     border-width: 0.5px;
 }
+
 button.swiper-pagination-bullet {
     border: 1px solid get-color(jingku1);
 }
@@ -360,7 +370,8 @@ button.swiper-pagination-bullet {
 
 
 /*————————————————————————————————————alterCSS————————————————————————————————————*/
-.ios .alert-md{
+
+.ios .alert-md {
     .alert-button-group {
         .alert-button {
             border-top-width: 0.5px;
@@ -370,6 +381,7 @@ button.swiper-pagination-bullet {
         }
     }
 }
+
 .alert-ios,
 .alert-md,
 {
@@ -405,14 +417,15 @@ button.swiper-pagination-bullet {
 
 
 /*————————————————————————————————————segment-style————————————————————————————————————*/
-.ios 
-.segment-style {
+
+.ios .segment-style {
     border-bottom: 0.5px solid #e0e0e0;
     border-top: 0.5px solid #e0e0e0;
     .segment-md .segment-button {
         border-right: 0.5px solid #e0e0e0;
     }
 }
+
 .segment-style {
     min-height: 46px;
     border-bottom: 1px solid #e0e0e0;
