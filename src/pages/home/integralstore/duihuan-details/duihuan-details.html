@@ -18,7 +18,7 @@
         <div class="header-image">
             <swiper [data]="getGoodsGallery"></swiper>
         </div>
-        <div class="main-content">
+        <div class="main-content" *ngIf="getGoodsInfo">
             <div class="info">
                 <div class="title">
                     {{getGoodsInfo?.goods_name}}

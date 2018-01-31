@@ -36,7 +36,7 @@
 
         <no-goods title="暂无订单" *ngIf="!data?.list?.length"></no-goods>
         <div class="single-shop" *ngFor="let item of data?.list">
-            <ion-item-divider>
+            <ion-item-divider tappable (click)="goWatchPage(item.mid)">
                 <ion-icon *ngIf="1" item-left>
                     <img width="25" height="25" src="./assets/icon/order_num.png" alt="">
                 </ion-icon>

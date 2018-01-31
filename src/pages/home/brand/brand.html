@@ -10,7 +10,7 @@
     <ion-title>品牌</ion-title>
   </ion-navbar>
   <ion-toolbar *ngIf="classSelect!='care'" class="mysearchbar">
-    <form action="">
+    <form action="#">
       <ion-searchbar [(ngModel)]="searchkey" [ngModelOptions]="{standalone: true}" placeholder="搜索品牌、分类或者关注" mode="ios" debounce="500"
         animated (keypress)="searchbar($event)" type="search"></ion-searchbar>
     </form>

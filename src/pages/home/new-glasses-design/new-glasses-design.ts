@@ -38,18 +38,19 @@ export class NewGlassesDesignPage {
       }
     })
   }
-  next() {
-    console.log(this.goodsList.page)
+  next(mycontent,goodsssssss) {
     this.httpService.categoryGoods({ cat_id: 421, page: ++this.goodsList.page }).then((res) => {
       if (res.status == 1) {
         this.goodsList = res;
+        mycontent.scrollTo(0,goodsssssss.offsetTop)
       }
     })
   }
-  preview() {
+  preview(mycontent,goodsssssss) {
     this.httpService.categoryGoods({ cat_id: 421, page: --this.goodsList.page }).then((res) => {
       if (res.status == 1) {
         this.goodsList = res;
+        mycontent.scrollTo(0,goodsssssss.offsetTop)
       }
     })
   }

@@ -238,7 +238,7 @@ export class HttpService {
     return this.http.get(IP + '/User/order', data, { showLoading: true })
   }
   orderInfo(data?: Object) {//订单详情
-    return this.http.get(IP + '/User/order_info', data)
+    return this.http.get(IP + '/User/order_info', data, { showLoading: true })
   }
   userInfo(data?: Object) {//（2）获取用户资料
     return this.http.get(IP + '/User/user_info', data)
@@ -361,7 +361,7 @@ export class HttpService {
     return this.http.get(IP + '/User/accountLog', data, { showLoading: true })
   }
   presell(data?: Object) {//预售促销商品列表
-    return this.http.get(IP + '/Index/presell', data)
+    return this.http.get(IP + '/Index/presell', data, { showLoading: true })
   }
   helpInfo(data?: Object) {//帮助中心
     return this.http.get(IP + '/User/helpInfo', data, { showLoading: true })
@@ -469,7 +469,7 @@ export class HttpService {
    * 来镜加工 User/machining
    */
   machining(data?: Object) {
-    return this.http.get(IP + '/User/machining', data)
+    return this.http.get(IP + '/User/machining', data, { showLoading: true })
   }
   /**
    * 申请加工
@@ -558,7 +558,7 @@ export class HttpService {
    * 来镜加工详情
    */
   machiningInfo(data?: Object) {
-    return this.http.post(IP + '/Machining/machining_info', data)
+    return this.http.post(IP + '/Machining/machining_info', data, { showLoading: true })
   }
   //点击选择镜片
   machining_goods(data: {
@@ -588,7 +588,7 @@ export class HttpService {
     order_id: string;
     rec_ids: Array<string>;
   }) {
-    return this.http.post(IP + '/Machining/is_machining_goods', data, { showLoading: true, showToast: false })
+    return this.http.post(IP + '/Machining/is_machining_goods', data, { showLoading: true })
   }
   //4)	生成来镜加工单缓存
   cache_machining(data?: Object) {
