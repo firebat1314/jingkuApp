@@ -15,27 +15,27 @@
 
 <ion-content>
   <ng-container *ngFor="let box of data?.data">
-    <div class="new-order-track">
-      <span>物流编号：{{box.invoice_no}}</span>
-      <!-- <span class="new-txt-rd2">状态：{{box.msg}}</span> -->
-    </div>
-    <div id="changeContent1" style="padding: 10px 20px;background: #fff;">
-
-      <div class="new-order-flow new-p-re">
-        <span class="new-order-arr"></span>
-        <ul class="new-of-storey">
-          <ng-container *ngFor="let item of box?.list | reverse;let i = index">
-            <li class="time">{{item.time}}</li>
-            <li *ngFor="let wuliu of item.data | reverse;let j = index">
-              <span class="icon" [class.on]="i==0&&j==0"></span>
-              <span>{{wuliu.context}}</span>
-              <span>{{wuliu.time}}</span>
-            </li>
-          </ng-container>
-        </ul>
+    <div *ngIf="box.state">
+      <div class="new-order-track">
+        <span>物流编号：{{box.invoice_no || '无'}}</span>
+        <!-- <span class="new-txt-rd2">状态：{{box.msg}}</span> -->
       </div>
-    </div>
-    <div id="changeContent2" class="new-order-map" style="display:none">
+      <div id="changeContent1" style="padding: 10px 20px;background: #fff;" *ngIf="box?.list">
+        <div class="new-order-flow new-p-re">
+          <span class="new-order-arr"></span>
+          <ul class="new-of-storey">
+            <ng-container *ngFor="let item of box?.list | reverse;let i = index">
+              <li class="time">{{item?.time}}</li>
+              <li *ngFor="let wuliu of item?.data | reverse;let j = index">
+                <span class="icon" [class.on]="i==0&&j==0"></span>
+                <span>{{wuliu?.context}}</span>
+                <span>{{wuliu?.time}}</span>
+              </li>
+            </ng-container>
+          </ul>
+        </div>
+      </div>
+      <div id="changeContent2" class="new-order-map" style="display:none"></div>
     </div>
   </ng-container>
 

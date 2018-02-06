@@ -373,7 +373,7 @@ export class HttpService {
     return this.http.post(IP + '/User/affirm_received', data, { showLoading: false })
   }
   getWuLiu(data?: Object) {//订单物流
-    return this.http.get(IP + '/User/shipping_log', data, { showLoading: false })
+    return this.http.get(IP + '/User/shipping_log', data, { showLoading: true })
   }
   exchangeGoods(data?: Object) {//积分兑换列表
     return this.http.get(IP + '/User/exchangeGoods', data, { showLoading: true })
