@@ -14,47 +14,49 @@
 
 
 <ion-content parallax-header>
-    <div class="top_img header-image">
-        <img img-lazy-load="./assets/images/shangou.jpg" defaultSrc="./assets/images/images/640-320.jpg" width="100%" alt="">
-    </div>
-    <div class="main-content">
-
-        <div class="quick_buy">
-            <ul class="top_menu">
-                <li class="menu_ico" tappable (click)="getData(0)" [ngClass]="{'meon':selected==0}">
-                    <input type="button" class="menu_ip0" />
-                    <p>全部</p>
-                </li>
-                <ng-container *ngFor="let item of category?.data">
-                    <li class="menu_ico" tappable (click)="getData(item.cat_id)" [ngClass]="{'meon':selected==item.cat_id}">
-                        <input type="button" class="menu_ip{{item.cat_id}}" />
-                        <p>{{item.cat_name}}</p>
-                    </li>
-                </ng-container>
-            </ul>
+    <div *ngIf="data" fadeIn>
+        <div class="top_img header-image">
+            <img img-lazy-load="./assets/images/shangou.jpg" defaultSrc="./assets/images/images/640-320.jpg" width="100%" alt="">
         </div>
+        <div class="main-content">
 
-        <!--下方商品-->
-        <div class="goods_box">
-            <no-goods *ngIf="data&&!data?.data?.length"></no-goods>
-            <ul class="goods_box_ul">
-                <li *ngFor="let item of data?.data" tappable (click)="goParticularsPage(item.id)">
-                    <div class="time_d">
-                        <countdown endDate="{{item.promote_end_date}}"></countdown>
-                    </div>
-                    <div class="box_ul_d">
-                        <div class="box_ul_dtop">
-                            <img img-lazy-load="{{item.goods_img}}" />
+            <div class="quick_buy">
+                <ul class="top_menu">
+                    <li class="menu_ico" tappable (click)="getData(0)" [ngClass]="{'meon':selected==0}">
+                        <input type="button" class="menu_ip0" />
+                        <p>全部</p>
+                    </li>
+                    <ng-container *ngFor="let item of category?.data">
+                        <li class="menu_ico" tappable (click)="getData(item.cat_id)" [ngClass]="{'meon':selected==item.cat_id}">
+                            <input type="button" class="menu_ip{{item.cat_id}}" />
+                            <p>{{item.cat_name}}</p>
+                        </li>
+                    </ng-container>
+                </ul>
+            </div>
+
+            <!--下方商品-->
+            <div class="goods_box">
+                <no-goods *ngIf="data&&!data?.data?.length"></no-goods>
+                <ul class="goods_box_ul">
+                    <li *ngFor="let item of data?.data" tappable (click)="goParticularsPage(item.id)">
+                        <div class="time_d">
+                            <countdown endDate="{{item.promote_end_date}}"></countdown>
                         </div>
-                        <div class="box_ul_dbt">
-                            <p>{{item.name}}</p>
-                            <div class="price_zs">{{item.promote_price }}
-                                <span class="price_cx">促销价</span>
+                        <div class="box_ul_d">
+                            <div class="box_ul_dtop">
+                                <img img-lazy-load="{{item.goods_img}}" />
+                            </div>
+                            <div class="box_ul_dbt">
+                                <p>{{item.name}}</p>
+                                <div class="price_zs">{{item.promote_price }}
+                                    <span class="price_cx">促销价</span>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                </li>
-            </ul>
+                    </li>
+                </ul>
+            </div>
         </div>
     </div>
     <!--<ion-fab left bottom>

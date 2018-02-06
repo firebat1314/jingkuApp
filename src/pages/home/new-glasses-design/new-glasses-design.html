@@ -15,7 +15,7 @@
 
 <ion-content #mycontent>
   <div class="fore1" *ngIf="banner">
-    <ion-slides #bannerSlide autoplay="2500" [loop]="false" >
+    <ion-slides #bannerSlide autoplay="2500" [loop]="false">
       <ion-slide *ngFor="let item of banner">
         <img img-lazy-load="{{item.ad_img}}" defaultSrc="./assets/images/images/640-320.jpg" tappable />
       </ion-slide>
@@ -75,7 +75,7 @@
   <div class="fore4 fore" #goodsssssss>
     <div class="sj_title">热门商品</div>
     <div class="main">
-      <div class="item"  tappable navPush="ParticularsPage" [navParams]="{goodsId:item.id}" *ngFor="let item of goodsList?.goods">
+      <div class="item" tappable navPush="ParticularsPage" [navParams]="{goodsId:item.id}" *ngFor="let item of goodsList?.goods">
         <div class="img">
           <img img-lazy-load="{{item.goods_img}}" alt="">
         </div>
@@ -87,7 +87,11 @@
     </div>
   </div>
   <div class="pager" *ngIf="goodsList?.pages>0">
-      <div [ngClass]="{'disable':goodsList?.page<=1}" (click)="preview(mycontent,goodsssssss);"><ion-icon name="arrow-back"></ion-icon></div>
-      <div [ngClass]="{'disable':goodsList?.page>=goodsList?.pages}" (click)="next(mycontent,goodsssssss);"><ion-icon name="arrow-forward"></ion-icon></div>
+    <div [ngClass]="{'disable':goodsList?.page<=1}" (click)="preview(mycontent,goodsssssss);">
+      <ion-icon name="ios-arrow-back"></ion-icon>
     </div>
+    <div [ngClass]="{'disable':goodsList?.page>=goodsList?.pages}" (click)="next(mycontent,goodsssssss);">
+      <ion-icon name="ios-arrow-forward"></ion-icon>
+    </div>
+  </div>
 </ion-content>

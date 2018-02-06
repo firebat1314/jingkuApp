@@ -60,7 +60,7 @@ export class AccountManagementPage {
       this.httpService.logout().then((res) => {
         this.httpService.removeStorage('hasLoggedIn');
         this.httpService.removeStorage("token");
-        this.httpService.removeStorage("username");
+        // this.httpService.removeStorage("username");
         this.httpService.removeStorage("login_info");
         
         if (this.native.isMobile()) {

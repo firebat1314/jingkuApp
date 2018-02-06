@@ -18,23 +18,18 @@ export class QimoChatProvider {
   ) {
     console.log('Hello QimoChatProvider Provider');
   }
-  qimoChatClick(options?:{
-    access_id?:string,
-  }) {
+  qimoChatClick(options?: any) {
     /* let _options = Object.assign({
       access_id:'b441f710-80d9-11e7-8ddd-b18e4f0e2471'
     },options) */
-    
     this.native.showLoading();
+    if (old) old.parentNode.removeChild(old);
     var old = document.getElementsByClassName('qimo')[0]
     //console.log(old);
-    if (old) {
-      old.parentNode.removeChild(old);
-    }
     let qimo: HTMLScriptElement = document.createElement('script');
     qimo.type = 'text/javascript';
-    qimo.src = 'https://webchat.7moor.com/javascripts/7moorInit.js?accessId=' + (options.access_id||'b441f710-80d9-11e7-8ddd-b18e4f0e2471') + '&autoShow=false';
-    console.log(qimo.src)
+    qimo.src = 'https://webchat.7moor.com/javascripts/7moorInit.js?accessId=' + (options&&options.access_id || 'b441f710-80d9-11e7-8ddd-b18e4f0e2471') + '&autoShow=false';
+    console.log(options&&options.access_id,qimo.src)
     qimo.className = 'qimo';
     document.getElementsByTagName('body')[0].appendChild(qimo);
     let that = this;

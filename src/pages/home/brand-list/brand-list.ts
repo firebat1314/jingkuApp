@@ -16,6 +16,7 @@ import { Native } from "../../../providers/native";
 	templateUrl: 'brand-list.html',
 })
 export class BrandListPage {
+	goodsList: any;
 	timer: any;
 	infiniteScroll: InfiniteScroll;
 	data: any;
@@ -67,7 +68,6 @@ export class BrandListPage {
 		this.events.subscribe('user:filterParams', (res) => {
 			this.paramsData = Object.assign(this.paramsData, res);
 			console.log(this.paramsData)
-			this.data.page = 1;
 			this.getListData();
 		});
 		this.events.subscribe('car:update', () => {
@@ -76,9 +76,16 @@ export class BrandListPage {
 	}
 	ngAfterViewInit() {
 		var pagebtn = this.element.nativeElement.querySelector('#pagebtn');
-
+		// var cardbox = this.element.nativeElement.querySelector('single-foods-card');
 		this.content.ionScroll.subscribe((d) => {
 			clearTimeout(this.timer);
+			/* for (let i = 0; i < this.data.page; i++) {
+				const element = this.element.nativeElement.querySelectorAll('.card')[i * 30];
+				console.log(element.offsetTop,d.scrollTop,d.scrollTop + d.contentHeight)
+				if (element.offsetTop <= d.scrollTop + d.contentHeight) {
+					this.onpage = i + 1;
+				}
+			} */
 			this.renderer.setElementClass(pagebtn, 'fab-button-fadein', true);
 		});
 		this.content.ionScrollEnd.subscribe((d) => {
@@ -86,10 +93,11 @@ export class BrandListPage {
 				this.renderer.setElementClass(pagebtn, 'fab-button-fadein', false)
 			}, 500);
 		});
-	}
+	}/* 
 	ngAfterViewChecked() {
+		console.log(111)
 		this.content.resize();
-	}
+	} */
 	ngOnDestroy() {
 		console.log('user:filterParams')
 		//退出页面取消事件订阅
@@ -98,21 +106,15 @@ export class BrandListPage {
 	getListData() {
 		this.getCarNumver();
 		this.infiniteScroll ? this.infiniteScroll.enable(true) : null;
-		return new Promise((resolve, reject) => {
-			this.httpService.categoryGoods(Object.assign(this.paramsData, { page: 1 })).then((res) => {
-				resolve()
-				if (res.status == 1) {
-					res.is_jingpian && !this.listStyleLock ? this.listStyleflag = true : null;
-					this.data = res;
-					this.content.scrollToTop();
-					/* if (res.goods.length == 0) {
-						this.native.showToast('抱歉！没有查询到相关商品', null, false);
-					} */
-					this.events.publish('user:listFilter', res);
-				}
-			}).catch(() => {
-				reject()
-			})
+		return this.httpService.categoryGoods(Object.assign(this.paramsData, { page: 1 }), { showLoading: true }).then((res) => {
+			if (res.status == 1) {
+				res.is_jingpian && !this.listStyleLock ? this.listStyleflag = true : null;
+				this.data = res;
+				this.goodsList = res.goods;
+				this.content.resize();
+				this.content.scrollToTop(0);
+				this.events.publish('user:listFilter', res);
+			}
 		})
 	}
 	doRefresh(refresher) {
@@ -126,10 +128,13 @@ export class BrandListPage {
 		this.infiniteScroll = infiniteScroll;
 		var page = this.data.page
 		if (this.data.page < this.data.pages) {
-			let pagingParam = Object.assign(this.paramsData, { page: ++this.data.page });
-			this.httpService.categoryGoods(pagingParam).then((res) => {
+			var p = this.data.page;
+			let pagingParam = Object.assign(this.paramsData, { page: ++p });
+			this.httpService.categoryGoods(pagingParam, { showLoading: false }).then((res) => {
 				if (res.status == 1) {
-					this.data.goods = this.data.goods.concat(res.goods);
+					this.data = res;
+					this.content.resize();
+					this.goodsList = this.goodsList.concat(res.goods);
 				}
 				setTimeout(() => {
 					this.infiniteScroll.complete();
@@ -146,20 +151,24 @@ export class BrandListPage {
 			}
 		})
 	}
-	onInput(event) {
+	onKeypress(event) {
 		if (event.keyCode == 13) {
 			this.searchGoods()
 		}
 	}
 	searchGoods() {
-		this.data.page = 1;
-		this.paramsData.page = 1;
-		this.getListData()
+		this.paramsData.cat_id = null;
+		this.getListData();
+	}
+	ionClear() {
+		this.paramsData.keywords = null;
+		this.getListData();
 	}
 	allStatus = true;
 	salesNumStatus = true;
 	shopPriceStatus = true;
 	mytoolChange() {//——_——|||.....
+		this.infiniteScroll ? this.infiniteScroll.enable(true) : null;
 		if (this.mytool == 'all') {
 
 			this.paramsData.order = '';

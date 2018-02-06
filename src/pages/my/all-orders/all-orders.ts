@@ -14,6 +14,8 @@ import { Native } from "../../../providers/native";
   templateUrl: 'all-orders.html'
 })
 export class AllOrdersPage {
+  infiniteScroll: any;
+  orderList: any;
   pageIndex: number = 0;
   orderData: any;
   orderData_all: any;
@@ -30,9 +32,9 @@ export class AllOrdersPage {
     public navParams: NavParams,
     public httpService: HttpService,
     public native: Native,
-    public events:Events,
+    public events: Events,
   ) {
-    this.events.subscribe('allOrders:update',()=>{
+    this.events.subscribe('allOrders:update', () => {
       this.getByPageIndex();
     })
   }
@@ -40,9 +42,9 @@ export class AllOrdersPage {
     console.log('ionViewDidLoad AllOrdersPage');
   }
   ngAfterViewInit() {
-    
+
   }
-  ngOnInit(){
+  ngOnInit() {
     /* 回到顶部按钮 */
     this.fabButton.setElementClass('fab-button-out', true);
     this.content.ionScroll.subscribe((d) => {
@@ -60,39 +62,45 @@ export class AllOrdersPage {
     }
   }
   getByPageIndex() {
+    this.infiniteScroll ? this.infiniteScroll.enable(true) : null;
     if (this.pageIndex == 0) {
-      return this.httpService.order({ page: 1 }).then((res) => {
+      return this.httpService.order({ page: 1 }, { showLoading: true }).then((res) => {
         if (res.status == 1) {
           // this.orderData_all = res;
           this.orderData = res;
+          this.orderList = res.list;
         }
       })
     } else if (this.pageIndex == 1) {
-      return this.httpService.order({ page: 1, type: 'unpay' }).then((res) => {
+      return this.httpService.order({ page: 1, type: 'unpay' }, { showLoading: true }).then((res) => {
         if (res.status == 1) {
           // this.orderData_unpay= res;
           this.orderData = res;
+          this.orderList = res.list;
         }
       })
     } else if (this.pageIndex == 2) {
-      return this.httpService.order({ page: 1, type: 'collect' }).then((res) => {
+      return this.httpService.order({ page: 1, type: 'collect' }, { showLoading: true }).then((res) => {
         if (res.status == 1) {
           // this.orderData_unget = res;
           this.orderData = res;
+          this.orderList = res.list;
         }
       })
     } else if (this.pageIndex == 3) {
-      return this.httpService.order({ page: 1, type: 'ok' }).then((res) => {
+      return this.httpService.order({ page: 1, type: 'ok' }, { showLoading: true }).then((res) => {
         if (res.status == 1) {
           // this.orderData_success = res;
           this.orderData = res;
+          this.orderList = res.list;
         }
       })
     } else if (this.pageIndex == 4) {
-      return this.httpService.order({ page: 1, type: 'cancel' }).then((res) => {
+      return this.httpService.order({ page: 1, type: 'cancel' }, { showLoading: true }).then((res) => {
         if (res.status == 1) {
           // this.orderData_cancel = res;
           this.orderData = res;
+          this.orderList = res.list;
         }
       })
     }
@@ -106,7 +114,7 @@ export class AllOrdersPage {
     })
   }
   checkTab($event) {
-    this.flag = true;
+    this.infiniteScroll ? this.infiniteScroll.enable(true) : null;
     this.pageIndex = $event;
     this.content.scrollToTop(0);
     this.getByPageIndex();
@@ -117,8 +125,6 @@ export class AllOrdersPage {
   goParticularsPage(id) {
     this.navCtrl.push('ParticularsPage', { goodsId: id });
   }
-
-  flag: boolean = true;
   doInfinite(infiniteScroll) {
     if (this.pageIndex == 0) {
       this.infiniteScrollq(infiniteScroll, '')
@@ -133,17 +139,20 @@ export class AllOrdersPage {
     }
   }
   infiniteScrollq(infiniteScroll, type) {
+    this.infiniteScroll = infiniteScroll;
     if (this.orderData.page < this.orderData.pages) {
-      this.httpService.order({ page: ++this.orderData.page, type: type }).then((res) => {
+      var p = this.orderData.page;
+      this.httpService.order({ page: ++p, type: type }, { showLoading: false }).then((res) => {
         if (res.status == 1) {
-          Array.prototype.push.apply(this.orderData.list, res.list);
+          this.orderData = res;
+          this.orderList = this.orderList.concat(res.list);
         }
         setTimeout(() => {
-          infiniteScroll.complete();
+          this.infiniteScroll.complete();
         }, 500);
       })
     } else {
-      this.flag = false;
+      this.infiniteScroll.enable(false);
     }
   }
   toPay(id) {
@@ -172,12 +181,12 @@ export class AllOrdersPage {
       })
     })
   }
-  deleteOrder(id) {
+  deleteOrder(id, index) {
     this.native.openAlertBox('删除订单', () => {
       this.httpService.delOrder({ order_id: id }).then((res) => {
         if (res.status == 1) {
+          this.orderList.splice(index, 1);
           this.native.showToast(res.data);
-          this.getByPageIndex();
         }
       })
     })
@@ -185,13 +194,13 @@ export class AllOrdersPage {
   goParticularsHomePage(id) {
     this.navCtrl.push('ParticularsHomePage', { suppliersId: id })
   }
-  goAddProcess(order_parent){
+  goAddProcess(order_parent) {
     this.navCtrl.push('AddProcessPage', { order_parent: order_parent })
     // this.native.showToast('暂未开放',null,false);
   }
-  buyAgain(order_id){
-    this.httpService.alignBuy({order_id:order_id}).then((res)=>{
-      if(res.status){
+  buyAgain(order_id) {
+    this.httpService.alignBuy({ order_id: order_id }).then((res) => {
+      if (res.status) {
         this.navCtrl.push('CarPage');
       }
     })

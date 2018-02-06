@@ -24,18 +24,18 @@
         <ion-refresher-content refreshingSpinner="1" pullingIcon="0"></ion-refresher-content>
     </ion-refresher>
     <div class="background"></div>
-    <div class="no-log" *ngIf="orderData&&!orderData?.list?.length">
+    <div class="no-log" *ngIf="orderData&&!orderList?.length">
         <div class="img">
             <img src="./assets/icon/no-log.png" alt="">
         </div>
         <div class="message">您还没有相关订单</div>
     </div>
     
-    <div class="single-shop" *ngFor="let item of orderData?.list;">
+    <div class="single-shop" *ngFor="let item of orderList;let index = index;">
         <ion-item-divider>
             <ion-icon *ngIf="item.suppliers_name" item-left name="shop"></ion-icon>
             <div class="shop-title" tappable (click)="goParticularsHomePage(item.suppliers_id)">
-                {{item.suppliers_name}}&nbsp;
+                {{item.suppliers_name}}&nbsp;<ion-icon color="colorsix" name="ios-arrow-forward"></ion-icon>
             </div>
             <button item-right ion-button clear color="danger" icon-right>
                 {{item.status}}
@@ -77,7 +77,7 @@
                                 (item.order_status == '5' && item.shipping_status=='1')||
                                 item.is_glassMachining > 0">
             <button ion-button outline color="gray2" style="border-color: #d9d9d9;" (click)="cancelOrder(item.order_id)" *ngIf="item.order_status == 0">取消订单</button>
-            <button ion-button outline color="gray2" style="border-color: #d9d9d9;" (click)="deleteOrder(item.order_id)" *ngIf="item.order_status == 2">删除订单</button>
+            <button ion-button outline color="gray2" style="border-color: #d9d9d9;" (click)="deleteOrder(item.order_id,index)" *ngIf="item.order_status == 2">删除订单</button>
             <!-- <button ion-button outline navPush="OrderWuliuPage" [navParams]="{orderId:item.order_id}" *ngIf="(item.order_status==1&&item.pay_status==2)||(item.order_status==5&&item.pay_status==2&&item.shipping_status==1)||(item.order_status==5&&item.pay_status==2&&item.shipping_status==2)">物流跟踪</button> -->
             <button ion-button outline color="jingku1" (click)="buyAgain(item.order_id)" *ngIf="(item.order_status==5 && item.pay_status==2 && item.shipping_status==2)||(item.order_status==2 && item.pay_status==0 && item.shipping_status==0)">再次购买</button>
             <button ion-button outline color="jingku1" (click)="toPay(item.order_id)" *ngIf="item.pay_status == 0 && item.order_status!=4 && item.order_status!=2 && item.order_status!=3 && item.order_status!=7 && item.order_status!=8 ">去支付</button>
@@ -89,7 +89,7 @@
     <ion-fab right bottom (click)="myContent.scrollToTop()">
         <button ion-fab color="jingku1" mini goBackTop></button>
     </ion-fab>
-    <ion-infinite-scroll (ionInfinite)="doInfinite($event)" *ngIf="flag">
+    <ion-infinite-scroll threshold="250%" (ionInfinite)="doInfinite($event)">
         <ion-infinite-scroll-content></ion-infinite-scroll-content>
     </ion-infinite-scroll>
 </ion-content>

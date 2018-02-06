@@ -8,7 +8,7 @@ import './rxjs-operators';
 
 import { Native } from '../providers/native';
 
-interface HttpOptions {
+export interface HttpOptions {
     showLoading?: boolean;
     timeout?: number;
     showToast?: boolean;
@@ -31,9 +31,7 @@ export class UserData {
             timeout: 10000,
             showToast: true
         }, option);
-        if (op.showLoading) {
-            this.native.showLoading();
-        }
+        if (op.showLoading) this.native.showLoading();
         return this.storage.get('token').then((res) => {
             var headers = new Headers();
             headers.append('Authorization', 'Basic ' + btoa(res + ':'));
@@ -53,16 +51,13 @@ export class UserData {
         })
     }
     public post(url: string, paramObj: any, option?: HttpOptions) {
-        // this.native.showLoading();
         var op = Object.assign({
             showLoading: false,
             timeout: 10000,
             showToast: true
         }, option);
 
-        if (op.showLoading) {
-            this.native.showLoading();
-        }
+        if (op.showLoading) this.native.showLoading();
         return this.storage.get('token').then((res) => {
             let headers = new Headers();
             headers.append('Authorization', 'Basic ' + btoa(res + ':'));
@@ -87,9 +82,7 @@ export class UserData {
             timeout: 10000,
             showToast: true
         }, option);
-        if (op.showLoading) {
-            this.native.showLoading();
-        }
+        if (op.showLoading) this.native.showLoading();
         return this.storage.get('token').then((res) => {
             let headers = new Headers();
             headers.append('Authorization', 'Basic ' + btoa(res + ':'));
@@ -115,15 +108,15 @@ export class UserData {
      * @param result
      * @return {any}
      */
-    private handleSuccess(result, showLoading) {
-        if (showLoading) this.native.hideLoading();
+    /* private handleSuccess(result, showLoading) {
+        if (!showLoading) this.native.hideLoading();
         if (result && !result.status || result.status == -1) {
             if (result.info != "获取商品参数") {
                 this.native.showToast(result.info);
             }
         }
         return result;
-    }
+    } */
     /**
      * 请求失败处理函数
      * @param error

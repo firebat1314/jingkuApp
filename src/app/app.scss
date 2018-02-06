@@ -227,6 +227,9 @@ ion-thumbnail {
 
 .searchbar-ios {
     min-height: initial;
+    .searchbar-ios-cancel{
+        margin: 0;
+    }
     /* .searchbar-search-icon {
         top: 12px;
     } */
@@ -318,9 +321,9 @@ ion-refresher-content[state=ready] .refresher-pulling-icon {
 
 /*————————————————————————————————————轮播图按钮style————————————————————————————————————*/
 
-.ios button.swiper-pagination-bullet {
+/* .ios button.swiper-pagination-bullet {
     border-width: 0.5px;
-}
+} */
 
 button.swiper-pagination-bullet {
     border: 1px solid get-color(jingku1);

@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import 'rxjs/add/operator/map';
 
-import { UserData } from "../providers/user-data";
+import { UserData, HttpOptions } from "../providers/user-data";
 import { Storage } from '@ionic/storage';
 import { IP } from './constants';
 
@@ -65,42 +65,42 @@ export class HttpService {
     return this.http.post(IP + '/Login/index', data, { showLoading: true })
   }
   signupFirst(data?: Object) {//注册
-    return this.http.post(IP + '/Login/register', data)
+    return this.http.post(IP + '/Login/register', data, { showLoading: true })
   }
   signupTwo(data?: Object) {//注册2
     return this.http.post(IP + '/Login/register', data, { timeout: 20000, showLoading: true })
   }
   getVerificationImg(data?: Object) {//图片验证码
-    return this.http.post(IP + '/Login/verify', data)
+    return this.http.post(IP + '/Login/verify', data, { showLoading: false })
   }
   getMobileCode(data?: Object) {//短信验证码
     return this.http.post(IP + '/Login/getMobileCode', data, { showLoading: true })
   }
   /*首页*/
   getHomebanner(data?: Object) {//轮播图
-    return this.http.get(IP + '/Index/ads', data)
+    return this.http.get(IP + '/Index/ads', data, { showLoading: false })
   }
   getCategoryAd(data?: Object) {//热门品类下的广告
-    return this.http.get(IP + '/Index/ads', data)
+    return this.http.get(IP + '/Index/ads', data, { showLoading: false })
   }
   getCategoryRecommendGoods(data?: Object) {//新品
-    return this.http.get(IP + '/Index/get_category_recommend_goods/type/new', data)
+    return this.http.get(IP + '/Index/get_category_recommend_goods/type/new', data, { showLoading: false })
   }
   getCategoryRecommendGoodsBest(data?: Object) {//精品商品
-    return this.http.get(IP + '/Index/get_category_recommend_goods/type/best', data)
+    return this.http.get(IP + '/Index/get_category_recommend_goods/type/best', data, { showLoading: false })
   }
   getCategoryRecommendGoodsHot(data?: Object) {//精选专题下的热门商品列表
-    return this.http.get(IP + '/Index/get_category_recommend_goods/type/hot', data)
+    return this.http.get(IP + '/Index/get_category_recommend_goods/type/hot', data, { showLoading: false })
   }
   getBrands(data?: Object) {//热门品牌下的品牌列表
-    return this.http.get(IP + '/Index/get_brands', data)
+    return this.http.get(IP + '/Index/get_brands', data, { showLoading: false })
   }
   /*商品详情页*/
   getGoodsGallery(data?: Object) {//商品详情的相册图片轮播
-    return this.http.get(IP + '/Goods/get_goods_gallery', data)
+    return this.http.get(IP + '/Goods/get_goods_gallery', data, { showLoading: false })
   }
   getPriceSection(data?: Object) {//商品价格优惠区间
-    return this.http.get(IP + '/Goods/get_price_section', data)
+    return this.http.get(IP + '/Goods/get_price_section', data, { showLoading: false })
   }
   getGoodsInfo(data?: Object) {//商品详情信息
     return this.http.get(IP + '/Goods/goods_info', data, { showLoading: true })
@@ -109,91 +109,91 @@ export class HttpService {
     return this.http.get(IP + '/Goods/get_goods_parameter', data, { showToast: false })
   }
   getGoodsSaleCity(data?: Object) {//获取商品的销售区域
-    return this.http.get(IP + '/Goods/get_goods_sale_city', data)
+    return this.http.get(IP + '/Goods/get_goods_sale_city', data, { showLoading: false })
   }
   setArea(data?: Object) {//商品切换销售区域
-    return this.http.get(IP + '/Goods/set_area', data)
+    return this.http.get(IP + '/Goods/set_area', data, { showLoading: false })
   }
   getSupplierInfo(data?: Object) {//获取供应商信息
-    return this.http.get(IP + '/Goods/get_supplier_info', data)
+    return this.http.get(IP + '/Goods/get_supplier_info', data, { showLoading: false })
   }
   getGoodsCollect(data?: Object) {//商品关注
-    return this.http.post(IP + '/Goods/get_goods_collect', data)
+    return this.http.post(IP + '/Goods/get_goods_collect', data, { showLoading: false })
   }
   CollectShop(data?: Object) {//店铺关注
-    return this.http.post(IP + '/Goods/CollectShop', data)
+    return this.http.post(IP + '/Goods/CollectShop', data, { showLoading: false })
   }
   collectDel(data?: Object) {//取消商品关注
-    return this.http.get(IP + '/Goods/collect_del', data)
+    return this.http.get(IP + '/Goods/collect_del', data, { showLoading: false })
   }
   getBonus(data?: Object) {//优惠券列表
-    return this.http.get(IP + '/Goods/get_bonus', data)
+    return this.http.get(IP + '/Goods/get_bonus', data, { showLoading: false })
   }
   sendByUser(data?: Object) {//领取优惠券
-    return this.http.get(IP + '/Goods/send_by_user', data)
+    return this.http.get(IP + '/Goods/send_by_user', data, { showLoading: false })
   }
   getGoodsFittings(data?: Object) {//组合商品
-    return this.http.get(IP + '/Goods/get_goods_fittings', data)
+    return this.http.get(IP + '/Goods/get_goods_fittings', data, { showLoading: false })
   }
   getLinkedGoods(data?: Object) {//关联商品
-    return this.http.get(IP + '/Goods/get_linked_goods', data)
+    return this.http.get(IP + '/Goods/get_linked_goods', data, { showLoading: false })
   }
   searchGoods(data?: Object) {//商品搜索列表页
-    return this.http.post(IP + '/Search/search_goods', data)
+    return this.http.post(IP + '/Search/search_goods', data, { showLoading: false })
   }
   /**
    * 商品分类列表页
    */
   getCategorys(data?: Object) {//获取九大分类
-    return this.http.get(IP + '/Category/get_categorys', data)
+    return this.http.get(IP + '/Category/get_categorys', data, { showLoading: false })
   }
   getChildrenCaCtegory(data?: Object) {//获取九大分类下的子分类
-    return this.http.get(IP + '/Category/get_children_category', data)
+    return this.http.get(IP + '/Category/get_children_category', data, { showLoading: true })
   }
-  categoryGoods(data?: Object) {//商品分类列表页(筛选)
-    return this.http.get(IP + '/Category/category_goods', data, { showLoading: true })
+  categoryGoods(data?: Object, options?: HttpOptions) {//商品分类列表页(筛选)
+    return this.http.post(IP + '/Category/category_goods', data, options)
   }
   getGoodsAttribute(data?: Object) {//获取初始商品属性
     return this.http.get(IP + '/Goods/get_goods_attribute', data, { showLoading: true })
   }
-  getZhujing(data?: Object) {//如果返回的(good_type) 商品类型是goods_spectacles 根据所选球镜，获取柱镜列表
-    return this.http.get(IP + '/Goods/get_zhujing', data)
+  getZhujing(data?: Object) {//如果返回的(good_type)  商品类型是goods_spectacles 根据所选球镜，获取柱镜列表
+    return this.http.get(IP + '/Goods/get_zhujing', data, { showLoading: false })
   }
   getAttrList(data?: Object) {//如果返回的(good_type) 商品类型是goods再调用接口如下
-    return this.http.get(IP + '/Goods/get_attr_list', data)
+    return this.http.get(IP + '/Goods/get_attr_list', data, { showLoading: false })
   }
   addToCartSpecJp(data?: Object) {//镜片商品加入购物车
-    return this.http.post(IP + '/Goods/add_to_cart_spec_jp', data)
+    return this.http.post(IP + '/Goods/add_to_cart_spec_jp', data, { showLoading: false })
   }
   addToCartSpec(data?: Object) {//普通商品加入购物车
     return this.http.post(IP + '/Goods/add_to_cart_spec', data, { showLoading: true })
   }
   changeGoodsNumber(data?: Object) {//改变商品数量 获取价格
-    return this.http.post(IP + '/Goods/change_goods_number', data)
+    return this.http.post(IP + '/Goods/change_goods_number', data, { showLoading: false })
   }
   brandList(data?: Object) {//品牌列表
-    return this.http.get(IP + '/Brand/brand_list', data)
+    return this.http.get(IP + '/Brand/brand_list', data, { showLoading: false })
   }
   /**
    * 购物车
    */
   getFlowGoods(data?: Object) {//购物车商品
-    return this.http.get(IP + '/Flow/get_flow_goods', data)
+    return this.http.get(IP + '/Flow/get_flow_goods', data, { showLoading: false })
   }
   changeNumCart(data?: Object) {//改变购物车数量
     return this.http.get(IP + '/Flow/change_num_cart', data, { showLoading: true })
   }
   dropCartGoods(data?: Object) {//(3)删除购物车中单独选择的商品
-    return this.http.get(IP + '/Flow/drop_cart_goods_select', data)
+    return this.http.get(IP + '/Flow/drop_cart_goods_select', data, { showLoading: false })
   }
   dropCartGoodsSelect(data?: Object) {//删除购物车中全选的商品
-    return this.http.post(IP + '/Flow/drop_cart_goods_select', data)
+    return this.http.post(IP + '/Flow/drop_cart_goods_select', data, { showLoading: false })
   }
   selectChangePrice(data?: Object) {//选中改变价格
-    return this.http.post(IP + '/Flow/select_change_price', data)
+    return this.http.post(IP + '/Flow/select_change_price', data, { showLoading: true })
   }
   changeConsignee(data?: Object) {//选择收货人信息
-    return this.http.get(IP + '/Flow/change_consignee', data)
+    return this.http.get(IP + '/Flow/change_consignee', data, { showLoading: false })
   }
   selectPayment(data?: Object) {//选择支付方式
     return this.http.get(IP + '/Flow/select_payment', data, { showLoading: false })
@@ -202,7 +202,7 @@ export class HttpService {
     return this.http.get(IP + '/Flow/select_shippin_suppliers', data, { showLoading: false })
   }
   newSelectShippinSuppliers(data?: Object) {//改版 选择配送方式
-    return this.http.get(IP + '/Flow/new_select_shippin_suppliers', data)
+    return this.http.get(IP + '/Flow/new_select_shippin_suppliers', data, { showLoading: false })
   }
   suppliersBouns(data?: Object) {//使用优惠券
     return this.http.get(IP + '/Flow/suppliers_bouns', data, { showLoading: true })
@@ -229,43 +229,43 @@ export class HttpService {
    * 个人中心页
    */
   FileJsonRegion(data?: Object) {
-    return this.http.get(IP + '/Public/FileJsonRegion', data)
+    return this.http.get(IP + '/Public/FileJsonRegion', data, { showLoading: false })
   }
   userCount(data?: Object) {//（1）个人中心获取用户统计
-    return this.http.get(IP + '/User/usercount', data)
+    return this.http.get(IP + '/User/usercount', data, { showLoading: false })
   }
-  order(data?: Object) {//用户订单
-    return this.http.get(IP + '/User/order', data, { showLoading: true })
+  order(data?: Object, options?: HttpOptions) {//用户订单
+    return this.http.get(IP + '/User/order', data, options)
   }
   orderInfo(data?: Object) {//订单详情
     return this.http.get(IP + '/User/order_info', data, { showLoading: true })
   }
   userInfo(data?: Object) {//（2）获取用户资料
-    return this.http.get(IP + '/User/user_info', data)
+    return this.http.get(IP + '/User/user_info', data, { showLoading: false })
   }
   getUserBonus(data?: Object) {//（3）个人中心优惠券
     return this.http.get(IP + '/User/get_user_bonus', data, { showLoading: true })
   }
   editPwd(data?: Object) {//（4）修改密码
-    return this.http.post(IP + '/User/edit_pwd', data)
+    return this.http.post(IP + '/User/edit_pwd', data, { showLoading: false })
   }
   editMobile(data?: Object) {//（5）修改手机号
     return this.http.post(IP + '/User/edit_mobile', data, { showLoading: true })
   }
   logout(data?: Object) {//（6）退出登录
-    return this.http.post(IP + '/User/logout', data)
+    return this.http.post(IP + '/User/logout', data, { showLoading: false })
   }
   watch(data?: Object) {//（7）个人中心浏览记录
     return this.http.get(IP + '/User/watch', data, { showLoading: true })
   }
   delWatch(data?: Object) {//（8）删除浏览记录
-    return this.http.post(IP + '/User/del_watch', data)
+    return this.http.post(IP + '/User/del_watch', data, { showLoading: false })
   }
   addressList(data?: Object) {//（9）收货地址管理
-    return this.http.get(IP + '/User/address_list', data)
+    return this.http.get(IP + '/User/address_list', data, { showLoading: false })
   }
   delAddress(data?: Object) {//（10）删除收货地址
-    return this.http.post(IP + '/User/del_address', data)
+    return this.http.post(IP + '/User/del_address', data, { showLoading: false })
   }
   AddressDetail(data?: Object) {//（11）收货地址详情
     return this.http.get(IP + '/User/edit_address', data, { showLoading: true })
@@ -277,10 +277,10 @@ export class HttpService {
     return this.http.post(IP + '/User/add_address', data, { showLoading: true })
   }
   defaultAddress(data?: Object) {//（12.2）设置默认收货地址address_id
-    return this.http.get(IP + '/User/default_address', data)
+    return this.http.get(IP + '/User/default_address', data, { showLoading: false })
   }
   changeRegion(data?: Object) {//（13）改变城市联动
-    return this.http.get(IP + '/Login/change_region', data)
+    return this.http.get(IP + '/Login/change_region', data, { showLoading: false })
   }
   help(data?: Object) {//（14）帮助中心
     return this.http.get(IP + '/User/help', data, { showLoading: true })
@@ -289,22 +289,22 @@ export class HttpService {
     return this.http.get(IP + '/User/region_apply', data, { showLoading: true })
   }
   postRegionApply(data?: Object) {//（16）地区申请页提交
-    return this.http.post(IP + '/User/region_apply', data)
+    return this.http.post(IP + '/User/region_apply', data, { showLoading: false })
   }
   collectionList(data?: Object) {//（17）收藏的商品列表
     return this.http.post(IP + '/User/collection_list', data, { showLoading: true })
   }
   delCollectionGoods(data?: Object) {//（18）取消收藏商品
-    return this.http.post(IP + '/User/del_collection_goods', data)
+    return this.http.post(IP + '/User/del_collection_goods', data, { showLoading: false })
   }
   collectionShop(data?: Object) {//（19）收藏店铺列表
     return this.http.post(IP + '/User/collection_shop', data, { showLoading: true })
   }
   delCollectionShop(data?: Object) {//（20）取消收藏店铺
-    return this.http.post(IP + '/User/del_collection_shop', data)
+    return this.http.post(IP + '/User/del_collection_shop', data, { showLoading: false })
   }
   batchGoodsCollect(data?: Object) {//批量关注
-    return this.http.post(IP + '/Flow/batch_goods_collect', data)
+    return this.http.post(IP + '/Flow/batch_goods_collect', data, { showLoading: false })
   }
   addinv(data?: Object) {//选择供货商后选择订单开票
     return this.http.get(IP + '/User/addinv', data, { showLoading: true })
@@ -316,16 +316,16 @@ export class HttpService {
     return this.http.post(IP + '/User/insert_inv', data, { showLoading: true })
   }
   invoice(data?: Object) {//发票索取列表
-    return this.http.get(IP + '/User/invoice', data)
+    return this.http.get(IP + '/User/invoice', data, { showLoading: false })
   }
   invList(data?: Object) {//发票列表
-    return this.http.get(IP + '/User/inv_list', data)
+    return this.http.get(IP + '/User/inv_list', data, { showLoading: false })
   }
   invRole(data?: Object) {//发票信息管理
-    return this.http.get(IP + '/User/inv_role', data)
+    return this.http.get(IP + '/User/inv_role', data, { showLoading: false })
   }
   updateInv(data?: Object) {//编辑发票资质
-    return this.http.get(IP + '/User/update_inv', data)
+    return this.http.get(IP + '/User/update_inv', data, { showLoading: false })
   }
   updateInvPost(data?: Object) {//添加或编辑发票资质提交
     return this.http.post(IP + '/User/update_inv', data, { showLoading: true })
@@ -340,19 +340,19 @@ export class HttpService {
    * 后加接口
   */
   getHotSearch(data?: Object) {//热门搜索接口
-    return this.http.post(IP + '/Public/getHotSearch', data)
+    return this.http.post(IP + '/Public/getHotSearch', data, { showLoading: false })
   }
   getAreaList(data?: Object) {//城市列表
-    return this.http.post(IP + '/Public/getAreaList', data)
+    return this.http.post(IP + '/Public/getAreaList', data, { showLoading: false })
   }
   editArea(data?: Object) {//切换城市
-    return this.http.post(IP + '/Index/EditArea', data)
+    return this.http.post(IP + '/Index/EditArea', data, { showLoading: false })
   }
   getTidings(data?: Object) {//用户消息
-    return this.http.post(IP + '/User/getTidings', data)
+    return this.http.post(IP + '/User/getTidings', data, { showLoading: false })
   }
   getWuLiuTidings(data?: Object) {//用户物流消息
-    return this.http.get(IP + '/User/getWuLiuTidings', data)
+    return this.http.get(IP + '/User/getWuLiuTidings', data, { showLoading: false })
   }
   exchange(data?: Object) {//积分商城
     return this.http.get(IP + '/Index/exchange', data, { showLoading: true })
@@ -367,13 +367,13 @@ export class HttpService {
     return this.http.get(IP + '/User/helpInfo', data, { showLoading: true })
   }
   userRank(data?: Object) {//用户等级
-    return this.http.get(IP + '/User/UserRank', data)
+    return this.http.get(IP + '/User/UserRank', data, { showLoading: false })
   }
   affirmReceived(data?: Object) {//确认收货
-    return this.http.post(IP + '/User/affirm_received', data)
+    return this.http.post(IP + '/User/affirm_received', data, { showLoading: false })
   }
   getWuLiu(data?: Object) {//订单物流
-    return this.http.get(IP + '/User/shipping_log', data)
+    return this.http.get(IP + '/User/shipping_log', data, { showLoading: false })
   }
   exchangeGoods(data?: Object) {//积分兑换列表
     return this.http.get(IP + '/User/exchangeGoods', data, { showLoading: true })
@@ -382,10 +382,10 @@ export class HttpService {
     return this.http.get(IP + '/User/exchangeGoodsInfo', data, { showLoading: true })
   }
   exchangebuy(data?: Object) {//兑换积分商品
-    return this.http.get(IP + '/Flow/exchangebuy', data)
+    return this.http.get(IP + '/Flow/exchangebuy', data, { showLoading: false })
   }
   cancelOrder(data?: Object) {//取消订单
-    return this.http.get(IP + '/User/cancel_order', data)
+    return this.http.get(IP + '/User/cancel_order', data, { showLoading: false })
   }
   withdrawals(data?: Object) {//用户提现
     return this.http.get(IP + '/User/withdrawals', data, { showLoading: true })
@@ -400,70 +400,70 @@ export class HttpService {
     return this.http.get(IP + '/Index/coupon', data, { showLoading: true })
   }
   delOrder(data?: Object) {//删除订单
-    return this.http.get(IP + '/User/del_order', data)
+    return this.http.get(IP + '/User/del_order', data, { showLoading: true })
   }
   addAccount(data?: Object) {//充值
-    return this.http.post(IP + '/User/addAccount', data)
+    return this.http.post(IP + '/User/addAccount', data, { showLoading: false })
   }
   getAccountPayList(data?: Object) {//充值新增转账付款方式
-    return this.http.get(IP + '/User/getAccountPayList', data)
+    return this.http.get(IP + '/User/getAccountPayList', data, { showLoading: false })
   }
   indexs(data?: Object) {//首页统一
-    return this.http.get(IP + '/Index/indexs', data)
+    return this.http.get(IP + '/Index/indexs', data, { showLoading: false })
   }
   suppliersIndex(data?: Object) {//店铺首页
-    return this.http.post(IP + '/Category/suppliers_index', data)
+    return this.http.post(IP + '/Category/suppliers_index', data, { showLoading: true })
   }
   suppliersPromote(data?: Object) {//店铺促销
-    return this.http.post(IP + '/Category/suppliers_promote_goods', data)
+    return this.http.post(IP + '/Category/suppliers_promote_goods', data, { showLoading: false })
   }
   suppliersCategoryGoods(data?: Object) {//店铺促销
-    return this.http.post(IP + '/Category/suppliers_category_goods', data)
+    return this.http.post(IP + '/Category/suppliers_category_goods', data, { showLoading: false })
   }
   orderRepair(data?: Object) {//售后申请列表
-    return this.http.post(IP + '/User/order_repair', data)
+    return this.http.post(IP + '/User/order_repair', data, { showLoading: false })
   }
   repairApply(data?: Object) {//点击申请售后
-    return this.http.post(IP + '/User/repair_apply', data)
+    return this.http.post(IP + '/User/repair_apply', data, { showLoading: false })
   }
   submitRepair(data?: Object) {//3）提交返修退换货
     return this.http.post(IP + '/User/submit_repair', data, { showLoading: true })
   }
   fuwudan(data?: Object) {//4）填写快递单
-    return this.http.post(IP + '/User/fuwudan', data)
+    return this.http.post(IP + '/User/fuwudan', data, { showLoading: false })
   }
   repairList(data?: Object) {//5）返修单记录
-    return this.http.post(IP + '/User/repair_list', data)
+    return this.http.post(IP + '/User/repair_list', data, { showLoading: false })
   }
   cancelReturn(data?: Object) {//6）取消售后
-    return this.http.post(IP + '/User/cancel_return', data)
+    return this.http.post(IP + '/User/cancel_return', data, { showLoading: false })
   }
   repairInfo(data?: Object) {//7）服务单详情
-    return this.http.post(IP + '/User/repair_info', data)
+    return this.http.post(IP + '/User/repair_info', data, { showLoading: false })
   }
   CatrgorySupplierInfo(data?: Object) {//7）服务单详情
-    return this.http.post(IP + '/Category/get_supplier_info', data)
+    return this.http.post(IP + '/Category/get_supplier_info', data, { showLoading: false })
   }
   changeSurplus(data?: Object) {//切换余额支付
     return this.http.post(IP + '/Flow/change_surplus', data, { showLoading: true })
   }
   clearFlowOrder(data?: Object) {//去结算使用余额
-    return this.http.get(IP + '/Flow/clear_flow_order', data)
+    return this.http.get(IP + '/Flow/clear_flow_order', data, { showLoading: false })
   }
   versionInfo(data?: Object) {//版本更新
-    return this.http.get(IP + '/Login/version_info', data)
+    return this.http.get(IP + '/Login/version_info', data, { showLoading: false })
   }
   doublePayment(data?: Object) {//余额改版
     return this.http.get(IP + '/Flow/double_payment', data, { showLoading: true })
   }
   checkPayPass(data?: Object) {//支付密码
-    return this.http.post(IP + '/Flow/check_pay_pass', data)
+    return this.http.post(IP + '/Flow/check_pay_pass', data, { showLoading: true })
   }
   editPaypwd(data?: Object) {//修改密码
-    return this.http.post(IP + '/User/edit_paypwd', data)
+    return this.http.post(IP + '/User/edit_paypwd', data, { showLoading: true })
   }
   rechargeMoney(data?: Object) {//新充值
-    return this.http.post(IP + '/User/recharge_money', data)
+    return this.http.post(IP + '/User/recharge_money', data, { showLoading: true })
   }
   /**
    * 来镜加工 User/machining
@@ -483,14 +483,14 @@ export class HttpService {
    * @param 
    */
   getCategoryPromote(data?: Object) {
-    return this.http.post(IP + '/Index/getCategoryPromote', data)
+    return this.http.post(IP + '/Index/getCategoryPromote', data, { showLoading: false })
   }
   /**
    * 预售
    * @param 
    */
   getCategoryPre(data?: Object) {
-    return this.http.post(IP + '/Index/getCategoryPre', data)
+    return this.http.post(IP + '/Index/getCategoryPre', data, { showLoading: false })
   }
   /**
    * 再次购买加入购物车
@@ -503,13 +503,13 @@ export class HttpService {
    * 极验验证
    */
   geeTestinit(data?: Object) {
-    return this.http.get(IP + '/Login/geeTestinit', data)
+    return this.http.get(IP + '/Login/geeTestinit', data, { showLoading: false })
   }
   /**
    * 金融
    */
   Ximu(data?: Object) {
-    return this.http.post(IP + '/Ximu', data)
+    return this.http.post(IP + '/Ximu', data, { showLoading: false })
   }
   /* 白条激活 */
   XimuUserapply(data?: Object) {
@@ -521,7 +521,7 @@ export class HttpService {
   }
   /* 白条是否开通状态 */
   loan_status(data?: Object) {
-    return this.http.post(IP + '/User/loan_status', data, { showToast: false, showLoading: true })
+    return this.http.post(IP + '/User/loan_status', data, { showToast: false, showLoading: false })
   }
   /* 白条支付 */
   ximu_order(data?: {
@@ -552,7 +552,7 @@ export class HttpService {
   }
   /* 白条支付是否完成 */
   ximuIsPay(data: { order_id }) {
-    return this.http.post(IP + '/User/is_pay', data)
+    return this.http.post(IP + '/User/is_pay', data, { showLoading: false })
   }
   /**
    * 来镜加工详情
@@ -616,31 +616,31 @@ export class HttpService {
    * 申请售后
    */
   isGoodsRepair(data?: Object) {
-    return this.http.post(IP + '/User/is_goods_repair', data)
+    return this.http.post(IP + '/User/is_goods_repair', data, { showLoading: false })
   }
   /**
    * 退换返修
    */
   moreGoodsRepair(data?: Object) {
-    return this.http.post(IP + '/User/more_goods_repair', data)
+    return this.http.post(IP + '/User/more_goods_repair', data, { showLoading: false })
   }
   /**
    * 镜片属性价格
    */
   changeprice(data?: Object) {
-    return this.http.post(IP + '/Goods/changeprice', data)
+    return this.http.post(IP + '/Goods/changeprice', data, { showLoading: false })
   }
   /**
    * 购物车商品属性
    */
   changeProductNum(data?: Object) {
-    return this.http.post(IP + '/Flow/change_product_num', data)
+    return this.http.post(IP + '/Flow/change_product_num', data, { showLoading: false })
   }
   /**
    * 购物车商品属性
    */
   get_flow_goods_number(data?: Object) {
-    return this.http.post(IP + '/Flow/get_flow_goods_number', data)
+    return this.http.post(IP + '/Flow/get_flow_goods_number', data, { showLoading: false })
   }
   /**
    * 微信分享
