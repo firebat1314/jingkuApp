@@ -70,16 +70,21 @@ export class PaymentMethodPage {
       this.yE = true;
       this.getUserInfo();
     });
-  }
-  ngAfterViewInit() {
     this.httpService.pay({ order_id: this.order_id, log_id: this.log_id, type: this.type }).then((res) => {
       if (res.status == 1) {
-        this.data = res;
-        this.end_time = res.order_info.end_time
-      } else if (res.status == 0) {
+        if (res.pay_amout <= 0) {
+          this.native.showToast('订单支付金额为0');
+          this.goAllOrdersPage();
+        }else{
+          this.data = res;
+          this.end_time = res.order_info.end_time;
+        }
+      } else {
         this.goAllOrdersPage();
       }
     })
+  }
+  ngAfterViewInit() {
     /* this.totalprice.changes.subscribe(data => data._results.forEach(e => {
       e.nativeElement.innerHTML = '1111'
       console.log(e.nativeElement.innerText)
@@ -96,7 +101,7 @@ export class PaymentMethodPage {
         resolve(true);
       } else {
         let et = this.end_time % (24 * 3600);
-        let str = this.type != 'mach'?`您的订单在${Math.floor(et / 3600)}小时${(Math.floor((et % 3600) / 60))}分钟内未支付将被取消，请尽快完成支付。`:'请尽快完成支付。'
+        let str = this.type != 'mach' ? `您的订单在${Math.floor(et / 3600)}小时${(Math.floor((et % 3600) / 60))}分钟内未支付将被取消，请尽快完成支付。` : '请尽快完成支付。'
         var alert = this.alertCtrl.create({
           title: '确认要离开收银台？',
           message: str,

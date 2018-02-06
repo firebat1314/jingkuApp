@@ -291,22 +291,25 @@ export class AddProcessPage {
 	submit() {
 		this.httpService.insert_machining({ order_id: this.order_id }).then((res) => {
 			if (res.status) {
-				/* this.navCtrl.popToRoot({animate: false,});
-				this.navCtrl.parent.select(3, { animate: false, direction: 'forward' });
-				this.navCtrl.setPages(
-					[{ page: 'NewMyPage' },
-					{ page: 'AccountProcessPage' },
-					{ page: 'PaymentMethodPage', params: { log_id: res.log_id, type: 'mach' } }],
-					{ animate: true, direction: 'forward' }
-				); */
 				this.native.showToast('提交成功');
-				this.navCtrl.push('PaymentMethodPage', { log_id: res.log_id, type: 'mach' }).then((res)=>{
-					this.navCtrl.getViews().forEach(element => {
-						if(element.id=='AddProcessPage'){
-							this.navCtrl.removeView(element);
-						}
-					});
-				})
+				if(res.paid==1){
+					this.navCtrl.push('AccountProcessPage', { log_id: res.log_id, type: 'mach' }).then((res)=>{
+						this.navCtrl.getViews().forEach(element => {
+							if(element.id=='AddProcessPage'){
+								this.navCtrl.removeView(element);
+							}
+						});
+					})
+				}else{
+					this.navCtrl.push('PaymentMethodPage', { log_id: res.log_id, type: 'mach' }).then((res)=>{
+						this.navCtrl.getViews().forEach(element => {
+							if(element.id=='AddProcessPage'){
+								this.navCtrl.removeView(element);
+							}
+						});
+					})
+				}
+				
 			}
 		})
 	}
