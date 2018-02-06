@@ -10,10 +10,10 @@
             
         </ion-title>
         <form action="">
-            <ion-searchbar [(ngModel)]="paramsData.keywords" [ngModelOptions]="{standalone: true}" (keypress)="onInput($event)" placeholder="搜索商品" animated="false" spellcheck="true" type="search" debounce="500"  mode="ios" showCancelButton cancelButtonText="取消"></ion-searchbar>
+            <ion-searchbar (ionClear)="ionClear($event)" [(ngModel)]="paramsData.keywords" [ngModelOptions]="{standalone: true}" (keypress)="onKeypress($event)" placeholder="搜索商品" animated="false" spellcheck="true" type="search" debounce="500"  mode="ios" showCancelButton cancelButtonText="取消"></ion-searchbar>
         </form>
-        <ion-buttons end>
-            <button ion-button clear icon-only icon-left (click)="listStyleflag=!listStyleflag;listStyleLock=true">
+        <ion-buttons right>
+            <button ion-button clear (click)="listStyleflag=!listStyleflag;listStyleLock=true">
                 <img src="./assets/icon/images/list_01.png" width="22" *ngIf="!listStyleflag" alt="">
                 <img src="./assets/icon/images/list_02.png" width="22" *ngIf="listStyleflag" alt="">
             </button>
@@ -73,9 +73,9 @@
         <ion-refresher-content refreshingSpinner="1" pullingIcon="0"></ion-refresher-content>
     </ion-refresher>
 
-    <no-goods *ngIf="data&&!data?.goods?.length"></no-goods>
-    <single-foods-card [data]="data?.goods" [class.yanjingjia]="data?.is_jingjia" *ngIf="!listStyleflag"></single-foods-card>
-    <single-foods-item [data]="data?.goods" *ngIf="listStyleflag"></single-foods-item>
+    <no-goods *ngIf="goodsList&&!goodsList?.length"></no-goods>
+    <single-foods-card [data]="goodsList" [class.yanjingjia]="data?.is_jingjia" *ngIf="!listStyleflag"></single-foods-card>
+    <single-foods-item [data]="goodsList" *ngIf="listStyleflag"></single-foods-item>
 
     <div class="dixian" *ngIf="data?.count>6&&(data?.page>=data?.pages)">
         <div>没有更多了~</div>
@@ -96,7 +96,7 @@
         </button>
     </ion-fab>
 
-    <ion-infinite-scroll threshold="40%" (ionInfinite)="doInfinite($event)">
+    <ion-infinite-scroll threshold="300%" (ionInfinite)="doInfinite($event)">
         <ion-infinite-scroll-content></ion-infinite-scroll-content>
     </ion-infinite-scroll>
 </ion-content>

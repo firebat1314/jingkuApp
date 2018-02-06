@@ -18,6 +18,7 @@
             <div class="hot" *ngIf="item.is_hot==1">HOT</div>
             <div class="new" *ngIf="item.is_new==1">NEW</div>
         </div>
+        <button ion-button small color="jingku1" mode="md" (click)="presentModalAttr($event,item.id)" outline class="choose_attr">选规格</button>
         <div class="background" tappable (click)="close(item,$event)" *ngIf="item.showBtn"></div>
         <ion-fab middle center #fab *ngIf="item.showBtn" (click)="$event.stopPropagation();">
             <button color="light" ion-fab (click)="goParticularsPage(item.id)">购物车</button>

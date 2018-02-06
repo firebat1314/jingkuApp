@@ -113,7 +113,7 @@ export class Native {
 	 * 关闭loading
 	 */
 	hideLoading = () => {
-		this.loading.dismissAll();
+		this.loading?this.loading.dismissAll():null;
 	};
 	/**
 	 * 手机拨号

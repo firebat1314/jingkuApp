@@ -11,9 +11,10 @@ page-brand-list {
                 justify-content: space-between;
                 padding: 13px 10px;
                 .text {
-                    width: 80%;
+                    width: 65%;
                     color: #333333;
                     margin: 0;
+                    padding-right: 10px;
                 }
                 .price {
                     font-size: 1.4rem;
@@ -21,6 +22,9 @@ page-brand-list {
                     &:first-letter {
                         font-size: 1.2rem;
                         margin-right: 2px;
+                    }
+                    .button{
+                        margin-left: 8px;
                     }
                 }
             }
@@ -105,6 +109,7 @@ page-brand-list {
         .fab {
             height: 20px;
             border-radius: 10px;
+            padding: 0 5px;
             background: rgba(0, 0, 0, 0.6);
         }
     }

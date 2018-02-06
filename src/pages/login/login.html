@@ -26,17 +26,17 @@
                 </div>
             </ion-item>
             <div class="forgot-password">
-                <div ion-button clear small [navPush]="ForgotPage">忘记密码？</div>
+                <div ion-button clear small tappable navPush="ForgotPage">忘记密码？</div>
             </div>
             <div class="btn-wrap">
-                <button ion-button color="jingku1" [disabled]="!loginForm.form.valid" (click)="goToHome(loginForm)" type="submit" large block>登录</button>
+                <button ion-button color="jingku1" (click)="goToHome(loginForm)" large block>登录</button>
             </div>
             <div class="and_line">
                 <div class="txt">或</div>
             </div>
             <button ion-button navPush="LoginByPhonePage" outline color="jingku1" style="margin: 0 auto;display: block;" class="phone-login">手机号快捷登录</button>
         </form>
-        <button ion-button class="register_bth" (click)="goSignup()" style="  
+        <button ion-button class="register_bth" navPush="SignupPage" style="  
         margin: 0 auto 12px;
         display: block;
         color: #999999;

@@ -177,6 +177,20 @@ export class ParticularsModalAttrPage {
 	removeJP() {
 		this.goods.splice(-1);
 	}
+	removeJPByIndex(e, index) {
+		e.stopPropagation();
+		if (!this.goods[index].qiujing && !this.goods[index].zhujing) {
+			this.goods.splice(index, 1);
+		} else {
+			if (this.goods.length > 1) {
+				this.native.openAlertBox('确认删除', () => {
+					this.goods.splice(index, 1);
+				});
+			} else {
+				this.native.showToast('请保留至少一个商品');
+			}
+		}
+	}
 	/*根据球镜选择柱镜*/
 	qiujingChange(item) {
 		this.httpService.getZhujing({
@@ -226,7 +240,7 @@ export class ParticularsModalAttrPage {
 				return;
 			} */
 			if (this.attrNumber.length == 0) {
-				this.native.showToast('请选择商品数量', null, false)
+				this.native.showToast('请添加商品数量', null, false)
 				return;
 			}
 			this.httpService.addToCartSpec({
@@ -252,7 +266,7 @@ export class ParticularsModalAttrPage {
 			this.getGoodsParamsArrs();
 			for (let i = 0; i < this.memberArr.length; i++) {
 				if (!(this.memberArr[i] > 0)) {
-					this.native.showToast('请选择商品数量', null, false)
+					this.native.showToast('请添加商品数量', null, false)
 					return;
 				}
 			}

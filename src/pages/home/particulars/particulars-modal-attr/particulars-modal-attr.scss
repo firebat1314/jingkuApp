@@ -1,5 +1,4 @@
 .ios page-particulars-modal-attr {
-
     .goods_main {
         .main-attr-wrap {
             .main-attr {
@@ -16,7 +15,6 @@
         }
     }
     .goods_spectacles_main {
-     
         .fore {
             .top {
                 border-bottom: 0.55px solid #e0e0e0;
@@ -173,17 +171,18 @@ page-particulars-modal-attr {
             .top {
                 overflow: hidden;
                 border-bottom: 1px solid #e0e0e0;
-                padding: 10px 0;
+                padding: 10px 1.5% 0px;
                 .select,
                 .input {
-                    width: 45%;
-                    border-radius: 8%;
+                    width: 47%;
+                    border-radius: 4px;
                     float: left;
                     border: 1px solid #e0e0e0;
                     position: relative;
-                    margin: 0 2.5% 10px;
+                    margin: 0 1.5% 10px;
                     padding: 10px;
                     height: 40px;
+                    max-width: 47%;
                 }
                 .input {
                     padding: 9px;
@@ -199,11 +198,20 @@ page-particulars-modal-attr {
                 align-items: center;
                 padding: 10px;
                 font-size: 1.6rem;
-                div:first-child {
+                div:nth-of-type(1) {
                     color: #e60000;
                     .youhui {
                         color: #666;
                         font-size: 1.4rem;
+                    }
+                }
+                div:nth-of-type(2) {
+                    display: flex;
+                    align-items: center;
+                    .icon {
+                        color: #999999;
+                        margin-right: 15px;
+                        font-size: 23px;
                     }
                 }
             }
@@ -212,12 +220,14 @@ page-particulars-modal-attr {
             background: #fff;
             display: flex;
             justify-content: space-around;
-            padding: 5px 0;
+            padding: 5px 1.5%;
             margin-bottom: 20px;
             >button {
                 border: 1px solid #e0e0e0;
-                width: 45%;
+                width: 47%;
                 color: #333;
+                margin-left: 1.5%;
+                margin-right: 1.5%;
             }
         }
     }

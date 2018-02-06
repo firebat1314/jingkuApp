@@ -38,7 +38,7 @@
                 </div>
             </div>
             <ion-list>
-                <div class="nomore" *ngIf="data?.data?.length<=0">该分类下暂无商品</div>
+                <div class="nomore" *ngIf="data&&data?.data?.length<=0">该分类下暂无商品</div>
                 <div class="fore singleton" *ngFor="let item of data?.data">
                     <div class="left" tappable (click)="goParticularsPage(item.id)">
                         <div class="img-wrap">

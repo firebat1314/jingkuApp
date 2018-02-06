@@ -68,9 +68,11 @@
     </ion-refresher>
     <div fadeIn>
         <div class="fore fore1">
-            <div class="title">
-                <span>我的订单</span>
-                <span class="lookall" tappable navPush="AllOrdersPage" [navParams]="{index:0}">查看全部</span>
+            <div class="title" tappable navPush="AllOrdersPage" [navParams]="{index:0}">
+                <div>
+                    <span>我的订单</span>
+                    <span class="lookall">查看全部</span>
+                </div>
             </div>
             <div class="main">
                 <a navPush="AllOrdersPage" [navParams]="{index:1}">
@@ -105,7 +107,9 @@
         </div>
         <div class="fore fore2">
             <div class="title">
-                <span>镜库资产</span>
+                <div>
+                    <span>镜库资产</span>
+                </div>
             </div>
             <div class="main">
                 <a navPush="CouponPage">
@@ -132,7 +136,8 @@
                     </span>
                     <span class="txt">镜库金融</span>
                 </a> -->
-                <a (click)="openXimu()" *ngIf="isAndroid"><!--  hideWhen="ios" -->
+                <a (click)="openXimu()" *ngIf="isAndroid">
+                    <!--  hideWhen="ios" -->
                     <span class="icon_num">
                         {{baitiao?.status?'已开通':'申请开通'}}
                     </span>
@@ -142,7 +147,9 @@
         </div>
         <div class="fore fore3">
             <div class="title">
-                <span>必备工具</span>
+                <div>
+                    <span>必备工具</span>
+                </div>
             </div>
             <div class="main">
                 <a (click)="goMySalesmanPage()" *ngIf="userInfo&&userInfo?.data?.ywy?.is_ywy===2">

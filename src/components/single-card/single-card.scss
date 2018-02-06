@@ -57,10 +57,10 @@ single-foods-card {
                         color: #fff;
                         text-align: center;
                         padding: 3px 5px;
-                        margin-right: 5px;
                         font-size: 1rem;
                         border-top-left-radius: 10px;
                         border-bottom-left-radius: 10px;
+                        margin-bottom: 6px;
                     }
                     .hot {
                         background: #ffac5b;
@@ -84,6 +84,9 @@ single-foods-card {
                 .price {
                     color: #e60000;
                     font-weight: 600;
+                    display: flex;
+                    align-items: center;
+                    justify-content: space-between;
                 }
             }
         }
