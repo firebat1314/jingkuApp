@@ -41,8 +41,10 @@ export class AllOrdersPage {
   ionViewDidLoad() {
     console.log('ionViewDidLoad AllOrdersPage');
   }
+  ionViewDidLeave(){
+    this.infiniteScroll = null;
+  }
   ngAfterViewInit() {
-
   }
   ngOnInit() {
     /* 回到顶部按钮 */
@@ -62,7 +64,7 @@ export class AllOrdersPage {
     }
   }
   getByPageIndex() {
-    this.infiniteScroll ? this.infiniteScroll.enable(true) : null;
+    if(this.infiniteScroll) this.infiniteScroll.enable(true);
     if (this.pageIndex == 0) {
       return this.httpService.order({ page: 1 }, { showLoading: true }).then((res) => {
         if (res.status == 1) {
