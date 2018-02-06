@@ -28,7 +28,7 @@ export class RepairReturnPage {
   };
 
   @ViewChild('myContent') myContent: Content;
-  
+
   // rec_ids: Array<string>;
   // order_ids: Array<string>;
   constructor(
@@ -50,18 +50,19 @@ export class RepairReturnPage {
     this.events.unsubscribe('repair-return:update');
   }
   checkList() {
-    this.myContent.resize();
     if (this.infiniteScroll) this.infiniteScroll.enable(true);
     if (this.applyTabs == 'apply') {
       return this.httpService.orderRepair(this.options).then((res) => {
         if (res.status == 1) {
           this.order = res;
+          this.myContent.resize();
         }
       })
     } else if (this.applyTabs == 'applyLog') {
       return this.httpService.repairList(this.options).then((res) => {
         if (res.status == 1) {
           this.repair = res;
+          this.myContent.resize();
         }
       })
     }
@@ -123,19 +124,19 @@ export class RepairReturnPage {
    * @param subitem 订单项
    */
   order_ids: Array<any> = [];
-  PL:boolean;
+  PL: boolean;
   checkbox(subitem) {
-/*     var index = this.order_ids.indexOf(subitem.order_id)
-    if (index > -1) {
-      this.order_ids.splice(index, 1)
-    } else {
-      this.order_ids.push(subitem.order_id);
-    }
-    if(this.order_ids.length>0){
-      this.PL = true;
-    }else{
-      this.PL = false;
-    } */
+    /*     var index = this.order_ids.indexOf(subitem.order_id)
+        if (index > -1) {
+          this.order_ids.splice(index, 1)
+        } else {
+          this.order_ids.push(subitem.order_id);
+        }
+        if(this.order_ids.length>0){
+          this.PL = true;
+        }else{
+          this.PL = false;
+        } */
   }
   checkall(item) {
 
@@ -153,7 +154,7 @@ export class RepairReturnPage {
         rec_ids.push(this.order.list[i].rec_id);
       }
     }
-    if(!order_ids.length||!rec_ids.length){
+    if (!order_ids.length || !rec_ids.length) {
       this.native.showToast('请选择订单');
       return;
     }

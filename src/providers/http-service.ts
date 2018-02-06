@@ -634,7 +634,7 @@ export class HttpService {
    * 购物车商品属性
    */
   changeProductNum(data?: Object) {
-    return this.http.post(IP + '/Flow/change_product_num', data, { showLoading: false })
+    return this.http.post(IP + '/Flow/change_product_num', data, { showLoading: true })
   }
   /**
    * 购物车商品属性

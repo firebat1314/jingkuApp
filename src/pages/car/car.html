@@ -109,7 +109,7 @@
             <div *ngIf="!isEdit" class="price">
                 <div class="total">合计：¥{{carDetails?.total?.goods_amount | tofixed}}</div>
                 <div class="subtotal" *ngIf="carDetails?.total?.reduce_price!=0">
-                    总额：¥{{carDetails?.total?.old_price_amount| tofixed}} 立减：¥{{carDetails?.total?.reduce_price| tofixed}}
+                    总额：¥{{carDetails?.total?.old_price_amount | tofixed}} 立减：¥{{carDetails?.total?.reduce_price | tofixed}}
                 </div>
             </div>
         </div>
