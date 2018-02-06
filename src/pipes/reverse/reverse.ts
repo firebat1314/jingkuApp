@@ -14,6 +14,6 @@ export class ReversePipe implements PipeTransform {
    * Takes a value and makes it lowercase.
    */
   transform(value: Array<any>, ...args) {
-    return value.reverse();
+    return value && value.reverse();
   }
 }

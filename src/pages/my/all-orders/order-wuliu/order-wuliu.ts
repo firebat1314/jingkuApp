@@ -11,7 +11,7 @@ import { Native } from '../../../../providers/native';
  */
 
 @IonicPage({
-  segment:'order-wuliu/:orderId'
+  segment: 'order-wuliu/:orderId'
 })
 @Component({
   selector: 'page-order-wuliu',
@@ -26,34 +26,25 @@ export class OrderWuliuPage {
     public navParams: NavParams,
     public httpService: HttpService,
     public native: Native,
-  ) {
-    this.getWuLiu();
-  }
+  ) {}
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad OrderWuliuPage');
   }
-  
-  ionViewCanEnter(){
-    return this.httpService.getWuLiu({order_id:this.orderId}).then((res)=>{
+
+  ionViewCanEnter() {
+    return this.httpService.getWuLiu({ order_id: this.orderId }).then((res) => {
       if (res.status) {
         this.data = res;
-        if(res.data[0].state==0){
-          this.native.showToast(res.data[0].msg);
-          return false;
-        }
-      }
-  })
-  }
-  getWuLiu() {
-    this.httpService.getWuLiu({order_id:this.orderId}).then((res)=>{
-        if (res.status) {
-          this.data = res;
-          if(res.data[0].state==0){
-            this.native.showToast(res.data[0].msg);
-            this.navCtrl.pop();
+        /* for (let i = 0; i < res.length; i++) {
+          const element = res[i];
+          if(element.state){
+            
           }
-        }
+        } */
+      }else{
+        return false;
+      }
     })
   }
 }
