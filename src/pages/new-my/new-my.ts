@@ -61,6 +61,7 @@ export class NewMyPage {
 			if (res.status) {
 				this.userInfo = res;
 				this.httpService.setByName('userInfo', res);
+				if (!res.data.wx_openid && !this.native.isMobile()) this.httpService.weixingetOauthRedirect({}, { showToast: false }).then((res) => { });
 			}
 		})
 		return this.httpService.userCount().then((res) => {

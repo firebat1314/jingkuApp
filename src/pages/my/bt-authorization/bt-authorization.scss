@@ -37,7 +37,7 @@ page-bt-authorization {
                 }
             }
             .status {
-               margin-right: 10px;
+                margin-right: 10px;
                 .button[round] {
                     /* 一些不支持背景渐变的浏览器 */
                     background: -moz-linear-gradient(top, #6f99d6, #3f69a5);
@@ -46,8 +46,18 @@ page-bt-authorization {
             }
         }
     }
-    .submit{
-      background: -moz-linear-gradient(top, #6f99d6, #3f69a5);
-      background: -webkit-gradient(linear, 0 0, 0 bottom, from(#6f99d6), to(#3f69a5));
+    .hezuo {
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        padding: 6px;
+        img {
+            width: 10%;
+            max-width: 61px;
+        }
+    }
+    .submit {
+        background: -moz-linear-gradient(top, #6f99d6, #3f69a5);
+        background: -webkit-gradient(linear, 0 0, 0 bottom, from(#6f99d6), to(#3f69a5));
     }
 }
