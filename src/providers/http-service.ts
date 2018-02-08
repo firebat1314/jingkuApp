@@ -234,6 +234,9 @@ export class HttpService {
   userCount(data?: Object) {//（1）个人中心获取用户统计
     return this.http.get(IP + '/User/usercount', data, { showLoading: false })
   }
+  weixingetOauthRedirect(data?: Object, options?: HttpOptions) {//用户订单
+    return this.http.post(IP + '/Weixin/weixingetOauthRedirect', data, options)
+  }
   order(data?: Object, options?: HttpOptions) {//用户订单
     return this.http.get(IP + '/User/order', data, options)
   }
