@@ -61,6 +61,7 @@ export class NewMyPage {
 			if (res.status) {
 				this.userInfo = res;
 				this.httpService.setByName('userInfo', res);
+				//获取微信openid
 				if (!res.data.wx_openid && !this.native.isMobile()) this.httpService.weixingetOauthRedirect({}, { showToast: false }).then((res) => { });
 			}
 		})
