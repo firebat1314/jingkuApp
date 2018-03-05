@@ -182,6 +182,8 @@ export class ParticularsPage {
       if (data) {
         if (data == 'CarPage') {
           this.navCtrl.push(data);
+        }else if(data == 'AccountInfoPage'){
+          this.navCtrl.push(data);
         }
       }
     });

@@ -163,7 +163,7 @@ export class HttpService {
     return this.http.get(IP + '/Goods/get_attr_list', data, { showLoading: false })
   }
   addToCartSpecJp(data?: Object) {//镜片商品加入购物车
-    return this.http.post(IP + '/Goods/add_to_cart_spec_jp', data, { showLoading: false })
+    return this.http.post(IP + '/Goods/add_to_cart_spec_jp', data, { showLoading: false, showToast: false })
   }
   addToCartSpec(data?: Object) {//普通商品加入购物车
     return this.http.post(IP + '/Goods/add_to_cart_spec', data, { showLoading: true })
@@ -657,6 +657,10 @@ export class HttpService {
     type: string | number
   }) {
     return this.http.post(IP + '/Flow/order_ok', data, { showToast: false })
-
+  }
+  editMedical(data?: Object){
+    {
+      return this.http.post(IP + '/user/edit_medical', data)
+    }
   }
 }
