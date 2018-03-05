@@ -1,8 +1,9 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams, ViewController, Events, IonicPage } from 'ionic-angular';
+import { NavController, NavParams, ViewController, Events, IonicPage, AlertController } from 'ionic-angular';
 import { HttpService } from "../../../../providers/http-service";
 import { Native } from "../../../../providers/native";
 import { TofixedPipe } from "../../../../pipes/tofixed/tofixed";
+import { phone_nember } from '../../../../providers/constants';
 
 export class goodsSpectaclesParams {
 	number = 1;//所填写的商品的数量
@@ -55,7 +56,8 @@ export class ParticularsModalAttrPage {
 		public viewCtrl: ViewController,
 		public httpService: HttpService,
 		public native: Native,
-		private events: Events
+		private events: Events,
+		private alertCtrl: AlertController,
 	) { }
 	ionViewDidLoad() {
 		console.log('ionViewDidLoad ParticularsModalAttrPage');
@@ -251,6 +253,22 @@ export class ParticularsModalAttrPage {
 					this.native.showToast('添加成功')
 					this.events.publish('car:update');//更新购物车
 					this.viewCtrl.dismiss(goCart);
+				}else if(res.status==-2){
+					this.alertCtrl.create({
+						title: '镜库科技',
+						message: '购买需上传医疗器械许可证，是否上传',
+						buttons: [
+						  {
+							 text: '确定',
+							 handler: () => {
+								this.viewCtrl.dismiss('AccountInfoPage');
+							}
+						  },
+						  {
+							 text: '取消',
+						  }
+						]
+					 }).present();
 				}
 			}).catch((res) => {
 				console.log(res)
@@ -285,6 +303,22 @@ export class ParticularsModalAttrPage {
 					this.native.showToast('添加成功')
 					this.events.publish('car:update');//更新购物车
 					this.viewCtrl.dismiss(goCart);
+				}else if(res.status==-2){
+					this.alertCtrl.create({
+						title: '镜库科技',
+						message: '购买需上传医疗器械许可证，是否上传',
+						buttons: [
+						  {
+							 text: '确定',
+							 handler: () => {
+								this.viewCtrl.dismiss('AccountInfoPage');
+							}
+						  },
+						  {
+							 text: '取消',
+						  }
+						]
+					 }).present();
 				}
 			}).catch((res) => {
 				console.log(res)

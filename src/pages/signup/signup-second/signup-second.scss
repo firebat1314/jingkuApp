@@ -18,7 +18,11 @@ page-signup-second {
             }
         }
     }
-    .zhizhao {
+    .zhizhao,.medical {
+        
+        ion-label[fixed]{
+            flex-basis: 135px !important;
+        }
         [item-content] {
             display: flex;
             align-items: center;
@@ -71,6 +75,11 @@ page-signup-second {
                     }
                 }
             }
+        }
+    }
+    .medical{
+        .item-inner{
+            padding-bottom: 38px;
         }
     }
     .tool {

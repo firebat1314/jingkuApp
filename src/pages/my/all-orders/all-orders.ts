@@ -1,7 +1,8 @@
 import { Component, ViewChild } from '@angular/core';
-import { NavController, NavParams, Content, IonicPage, FabButton, Events } from 'ionic-angular';
+import { NavController, NavParams, Content, IonicPage, FabButton, Events, AlertController } from 'ionic-angular';
 import { HttpService } from "../../../providers/http-service";
 import { Native } from "../../../providers/native";
+import { phone_nember } from '../../../providers/constants';
 /*
   Generated class for the AllOrders page.
 
@@ -33,6 +34,7 @@ export class AllOrdersPage {
     public httpService: HttpService,
     public native: Native,
     public events: Events,
+		private alertCtrl: AlertController,
   ) {
     this.events.subscribe('allOrders:update', () => {
       this.getByPageIndex();
@@ -204,6 +206,22 @@ export class AllOrdersPage {
     this.httpService.alignBuy({ order_id: order_id }).then((res) => {
       if (res.status) {
         this.navCtrl.push('CarPage');
+      }else if(res.status==-2){
+        this.alertCtrl.create({
+          title: '镜库科技',
+          message: '购买需上传医疗器械许可证，是否上传',
+          buttons: [
+            {
+             text: '确定',
+             handler: () => {
+              this.navCtrl.push('CompanyInfoPage');
+            }
+            },
+            {
+             text: '取消',
+            }
+          ]
+         }).present();
       }
     })
   }
