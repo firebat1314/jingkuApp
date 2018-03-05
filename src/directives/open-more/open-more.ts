@@ -1,4 +1,4 @@
-import { Directive, HostListener, Input } from '@angular/core';
+import { Directive, HostListener, Input, HostBinding } from '@angular/core';
 import { PopoverController, NavController } from "ionic-angular";
 import { menuItem } from "./menu";
 
@@ -9,7 +9,10 @@ import { menuItem } from "./menu";
  * for more info on Angular Directives.
  */
 @Directive({
-  selector: '[open-more]' // Attribute selector
+  selector: '[open-more]', // Attribute selector
+  host:{
+    '[style.fontSize.px]':'20'
+  }
 })
 export class OpenMoreDirective {
 
@@ -28,7 +31,6 @@ export class OpenMoreDirective {
   ) {
     console.log('Hello OpenMoreDirective Directive');
   }
-
   @Input('open-more') set popoverPage(name: string) {
     this.defaultPopoverPage = name || this.defaultPopoverPage
   }

@@ -20,7 +20,7 @@
                 <div style="color: #4c4c4c;font-size: 1.6rem;">{{defaultShipping.consignee}}
                     <span class="phone">{{defaultShipping.mobile | phonenumberfilter}}</span>
                 </div>
-                <div>{{defaultShipping.address}}</div>
+                <div>{{defaultShipping.region+defaultShipping.address}}</div>
             </div>
         </div>
         <div class="fore fore1" tappable (click)="openOrderModalShippingPage()" *ngIf="!defaultShipping">
