@@ -36,9 +36,9 @@
                 </ion-item>
             </div>
             <!-- ——————————————————————— 商品 ——————————————————————— -->
-            <div class="single-shop-goods" [class.disable]="!item2.in_area_id" *ngFor="let item2 of item1.goods_list ">
+            <div class="single-shop-goods" [class.disable]="!item2.in_area_id||item2.is_on_sale=='0'" *ngFor="let item2 of item1.goods_list ">
                 <div class="single-shop-goods-head">
-                    <div margin-left *ngIf="item2.in_area_id||isEdit">
+                    <div margin-left *ngIf="(item2.in_area_id&&item2.is_on_sale!='0')||isEdit">
                         <ion-checkbox *ngIf="!isEdit" tappable (click)="checkGoods(item2.goods_id,0,item2.is_select==1?0:1)" [checked]="item2?.is_select==1"
                             color="jingku1" mode="ios"></ion-checkbox>
                         <ion-checkbox *ngIf="isEdit" tappable color="jingku1" (click)="check2(item2,item1)" [(ngModel)]="item2.selected" mode="ios"></ion-checkbox>
@@ -50,12 +50,13 @@
                         <h2 tappable (click)="goParticularPage(item2.goods_id)">{{item2.goods_name}}</h2>
                         <span tappable (click)="goParticularPage(item2.goods_id)" class="type" *ngIf="item2?.gift_list">{{item2?.gift_list?.title}}</span>
                         <span tappable class="type" *ngIf="!item2.in_area_id">不在本地区销售</span>
+                        <span tappable class="type" *ngIf="item2.is_on_sale=='0'">此商品已下架</span>
                     </ion-item>
                 </div>
                 <!-- ——————————————————————— 商品属性 ——————————————————————— -->
                 <div class="single-shop-goods-body">
                     <div class="item-wrap" *ngFor="let item3 of item2.attrs;">
-                        <div margin-left *ngIf="item2.in_area_id||isEdit">
+                        <div margin-left *ngIf="(item2.in_area_id&&item2.is_on_sale!='0')||isEdit">
                             <ion-checkbox *ngIf="!isEdit" [(ngModel)]="item3.is_select" [checked]="item3.is_select" tappable color="jingku1" (click)="checkGoodsAttr(item3.rec_id,item3.is_select==1?1:0)"
                                 mode="ios"></ion-checkbox>
                             <ion-checkbox *ngIf="isEdit" [(ngModel)]="item3.selected" (click)="check3(item3,item2,item1)" tappable color="jingku1" mode="ios"></ion-checkbox>
