@@ -659,8 +659,12 @@ export class HttpService {
     return this.http.post(IP + '/Flow/order_ok', data, { showToast: false })
   }
   editMedical(data?: Object){
-    {
       return this.http.post(IP + '/user/edit_medical', data)
-    }
+  }
+  brank_number(data?: Object){
+      return this.http.post(IP + '/User/brank_number', data)
+  }
+  withdrawal(data?: Object){
+      return this.http.post(IP + '/User/withdrawal', data)
   }
 }
