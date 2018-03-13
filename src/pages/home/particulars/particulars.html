@@ -324,7 +324,7 @@
     </div>
     <div class="main">
         <div class="left" [ngSwitch]="getGoodsInfo?.data?.is_collect">
-            <div tappable (click)="goAccountServicePage(getGoodsInfo?.supplier_info?.access_id)">
+            <div tappable (click)="goAccountServicePage()">
                 <ion-icon name="mess"></ion-icon>
                 <span>客服</span>
             </div>

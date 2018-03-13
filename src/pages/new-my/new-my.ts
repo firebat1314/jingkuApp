@@ -18,6 +18,7 @@ export class NewMyPage {
 	baitiao: any;
 
 	isAndroid = this.native.isAndroid();
+	isMobile = this.native.isMobile();
 
 	constructor(
 		public viewCtrl: ViewController,
@@ -96,7 +97,7 @@ export class NewMyPage {
 		this.navCtrl.push('AccountProcessPage');
 	}
 	goAccountServicePage() {
-		this.QimoChat.qimoChatClick();
+		this.QimoChat.qimoChatSDK();
 	}
 	goMySalesmanPage() {
 		this.navCtrl.push('MySalesmanPage', { salesman: this.userInfo.data.ywy })
