@@ -215,8 +215,8 @@ export class ParticularsPage {
   openCallNumber() {
     this.native.openCallNumber(this.getGoodsInfo.supplier_info.mobile, false);
   }
-  goAccountServicePage(access_id) {
-    this.QimoChat.qimoChatClick({ access_id: access_id });
+  goAccountServicePage() {
+    this.QimoChat.qimoChatSDK(this.getGoodsInfo.supplier_info.access_id,this.getGoodsInfo.supplier_info.name,this.getGoodsInfo.supplier_info.logo,);
   }
   goParticularsHome() {
     this.navCtrl.push('ParticularsHomePage', { suppliersId: this.getGoodsInfo.supplier_info.id });

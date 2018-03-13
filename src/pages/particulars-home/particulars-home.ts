@@ -430,7 +430,7 @@ export class ParticularsHomePage {
   goParticularsHomeDetails() {
     this.navCtrl.push('ParticularsHomeDetailsPage', { suppliersId: this.suppliers_id });
   }
-  goAccountServicePage(access_id) {
-    this.QimoChat.qimoChatClick({access_id:access_id});
+  goAccountServicePage() {
+    this.QimoChat.qimoChatSDK(this.shopdata.data.access_id,this.shopdata.data.name,this.shopdata.data.logo);
   }
 }

@@ -29,7 +29,7 @@ export class XimuProvider {
         "CallActivityPlugin",
         "call", [url])
     } else {
-      this.native.showToast('请在安卓客户端操作')
+      this.native.showToast('请在手机客户端操作')
     }
   }
 }
