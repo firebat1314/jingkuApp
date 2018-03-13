@@ -16,12 +16,18 @@ import { Native } from "../../../providers/native";
 })
 export class AccountWithdrawPage {
 
+  brankList: any;
+  open_bank:any = {
+    name:'',
+    code:''
+  };
   formData = {
-    note: '',
-    bank: '',
-    bank_number: '',
-    account_holder: '',
-    amount: ''
+    pay: 'allinpay',
+    brank_code: '',
+    open_bank: '',
+    name: '',
+    amount: '',
+    desc:''
   }
 
   constructor(
@@ -34,7 +40,13 @@ export class AccountWithdrawPage {
   ionViewDidLoad() {
     console.log('ionViewDidLoad AccountWithdrawPage');
   }
-
+  ngOnInit() {
+    this.httpService.brank_number().then(res => {
+      if(res.status){
+        this.brankList = res.recharge_list;
+      }
+    })
+  }
   submit() {
     this.httpService.withdrawals(this.formData).then((res) => {
       this.native.showToast(res.data);

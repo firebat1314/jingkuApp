@@ -17,28 +17,41 @@
     <form #withdrawForm="ngForm" novalidate>
         <ion-list>
             <ion-item>
-                <ion-label color="primary" fixed><span ion-text color="google">*</span>　提现金额</ion-label>
-                <ion-input required clearInput type="number" placeholder="请填写提现金额" [(ngModel)]="formData.amount" name="amount"></ion-input>
+                <ion-label color="primary" fixed>
+                    <span ion-text color="google">*</span>
+                    <span>收款人姓名：</span>
+                </ion-label>
+                <ion-input required clearInput type="number" placeholder="请填写收款人姓名" [(ngModel)]="formData.name" name="amount"></ion-input>
             </ion-item>
             <ion-item>
-                <ion-label color="primary" fixed><span ion-text color="google">*</span>　提现银行</ion-label>
-                <ion-input required clearInputx type="text" placeholder="请填写提现银行" [(ngModel)]="formData.bank" name="bank"></ion-input>
+                <ion-label color="primary" fixed>
+                    <span ion-text color="google">*</span>
+                    <span>提现金额：</span>
+                </ion-label>
+                <ion-input required clearInputx type="text" placeholder="请填写提现金额" [(ngModel)]="formData.amount" name="bank"></ion-input>
             </ion-item>
             <ion-item>
-                <ion-label color="primary" fixed><span ion-text color="google">*</span>　银行账户名</ion-label>
-                <ion-input required clearInput type="text" placeholder="请填写银行账户名" [(ngModel)]="formData.account_holder" name="bank_holder"></ion-input>
+                <ion-label color="primary" fixed>
+                    <span ion-text color="google">*</span>
+                    <span>提现银行：</span>
+                </ion-label>
+                <ion-input readonly required clearInput type="text" placeholder="请填写提现银行" [(ngModel)]="open_bank.name" name="bank_holder" (click)="openbank.open()"></ion-input>
+                <ion-select #openbank [ngModelOptions]="{standalone: true}" style="display: none;" [(ngModel)]="open_bank" (ionChange)="formData.open_bank=open_bank.code" okText="确定" cancelText="取消" [selectOptions]="{title: '选择银行'}" multiple="false">
+                    <ion-option *ngFor="let item of brankList" [value]="item">{{item.name}}</ion-option>
+                </ion-select>
             </ion-item>
             <ion-item>
-                <ion-label color="primary" fixed><span ion-text color="google">*</span>　开户行</ion-label>
-                <ion-input required clearInput type="text" placeholder="请填写开户行"></ion-input>
+                <ion-label color="primary" fixed>
+                    <span ion-text color="google">*</span>
+                    <span>银行卡号：</span>
+                </ion-label>
+                <ion-input required clearInput type="text" placeholder="请填写银行卡号" [(ngModel)]="formData.brank_code" name="brank_code"></ion-input>
             </ion-item>
             <ion-item>
-                <ion-label color="primary" fixed><span ion-text color="google">*</span>　银行卡号</ion-label>
-                <ion-input required clearInput type="text" placeholder="请填写银行卡号" [(ngModel)]="formData.bank_number" name="bank_number"></ion-input>
-            </ion-item>
-            <ion-item>
-                <ion-label color="primary" fixed>　 备注</ion-label>
-                <ion-input clearInput type="text" placeholder="请填写备注信息" [(ngModel)]="formData.note" name="note"></ion-input>
+                <ion-label color="primary" fixed>
+                    <span>备注：</span>
+                </ion-label>
+                <ion-input clearInput type="text" placeholder="请填写备注信息" [(ngModel)]="formData.desc" name="note"></ion-input>
             </ion-item>
         </ion-list>
         <div padding>
