@@ -43,15 +43,15 @@
                     <div class="left" tappable (click)="goParticularsPage(item.id)">
                         <div class="img-wrap">
                             <img img-lazy-load="http://img.jing-ku.com/{{item.goods_img}}" alt="">
-                            <div class="time">
+                            <!-- <div class="time">
                                 <ion-icon name="ios-time-outline"></ion-icon>
                                 <countdown endDate="{{item.pre_end_date}}"></countdown>
-                            </div>
+                            </div> -->
                         </div>
                     </div>
                     <div class="right">
                         <div class="title">{{item.name}}</div>
-                        <div class="strip">
+                        <!-- <div class="strip">
                             <div class="wrap">
                                 <div [ngStyle]="{'width.%':item.sales_num/item.goods_number*100}"></div>
                             </div>
@@ -59,7 +59,7 @@
                                 <span>已抢购{{item.sales_num+item.unit}}</span>
                                 <span>仅剩{{item.goods_number+item.unit}}</span>
                             </div>
-                        </div>
+                        </div> -->
                         <div class="price">
                             <div class="red">{{item.shop_price}}</div>
                             <!-- <div class="old-price">{{item.promote_price}}</div> -->
