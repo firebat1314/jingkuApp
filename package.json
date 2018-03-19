@@ -1,9 +1,12 @@
 {
   "name": "jingku",
-  "version": "1.1.1",
+  "version": "1.1.9",
   "author": "jingku team",
   "homepage": "",
-  "private": false,
+  "private": true,
+  "main": "index.js",
+  "repository": "https://github.com/firebat1314/jingkuApp.git",
+  "license": "MIT",
   "scripts": {
     "clean": "ionic-app-scripts clean",
     "build": "ionic-app-scripts build",
@@ -36,16 +39,22 @@
     "@ionic-native/status-bar": "3.12.1",
     "@ionic-native/toast": "^3.4.4",
     "@ionic-native/transfer": "^3.5.0",
-    "@ionic/app-scripts": "2.0.2",
     "@ionic/storage": "^2.0.1",
     "cordova-android": "^6.2.3",
     "cordova-ios": "~4.3.1",
+    "cordova-plugin-app-version": "~0.1.9",
+    "cordova-plugin-badge": "~0.8.1",
     "cordova-plugin-camera": "~2.4.0",
     "cordova-plugin-compat": "^1.0.0",
-    "cordova-plugin-console": "1.0.5",
+    "cordova-plugin-console": "^1.0.5",
     "cordova-plugin-device": "1.1.4",
     "cordova-plugin-file": "~4.3.1",
+    "cordova-plugin-file-transfer": "^1.7.1",
+    "cordova-plugin-fullscreen": "~1.1.0",
     "cordova-plugin-http": "^1.2.0",
+    "cordova-plugin-inappbrowser": "~1.7.1",
+    "cordova-plugin-ionic-webview": "~1.1.15",
+    "cordova-plugin-pingpp": "https://github.com/firebat1314/pingpp-cordova.git",
     "cordova-plugin-screen-orientation": "~2.0.1",
     "cordova-plugin-splashscreen": "~4.0.3",
     "cordova-plugin-statusbar": "https://github.com/apache/cordova-plugin-statusbar.git",
@@ -58,24 +67,16 @@
     "ionic2-city-picker": "0.0.11",
     "ionic2-super-tabs": "^4.1.5",
     "ionicons": "3.0.0",
-    "phonegap-plugin-barcodescanner": "^6.0.6",
+    "mx.ferreyra.callnumber": "~0.0.2",
+    "phonegap-plugin-barcodescanner": "^6.0.8",
     "rxjs": "5.4.0",
     "sw-toolbox": "3.6.0",
-    "zone.js": "0.8.12",
-    "cordova-plugin-fullscreen": "~1.1.0",
-    "mx.ferreyra.callnumber": "~0.0.2",
-    "cordova-plugin-badge": "~0.8.1",
-    "cordova-plugin-file-transfer": "~1.6.3",
-    "cordova-plugin-inappbrowser": "~1.7.1",
-    "cordova-plugin-app-version": "~0.1.9",
-    "cordova-plugin-ionic-webview": "~1.1.15",
-    "cordova-plugin-pingpp": "https://github.com/firebat1314/pingpp-cordova.git",
-    "com.phonegap.plugins.barcodescanner": "~2.0.0"
+    "zone.js": "0.8.12"
   },
   "devDependencies": {
     "@ionic/app-scripts": "2.0.2",
-    "ionic": "3.20.0",
     "typescript": "2.2.1"
+    
   },
   "cordovaPlugins": [
     "cordova-plugin-whitelist",
@@ -136,13 +137,11 @@
       "cordova-plugin-fullscreen": {},
       "mx.ferreyra.callnumber": {},
       "cordova-plugin-badge": {},
-      "cordova-plugin-file-transfer": {},
       "cordova-plugin-inappbrowser": {},
       "cordova-plugin-app-version": {},
       "cordova-plugin-ionic-webview": {},
       "cordova-plugin-statusbar": {},
-      "cordova-plugin-pingpp": {},
-      "com.phonegap.plugins.barcodescanner": {}
+      "cordova-plugin-pingpp": {}
     }
   }
 }
