@@ -118,4 +118,7 @@
     <plugin name="phonegap-plugin-barcodescanner" spec="~7.0.2">
         <variable name="CAMERA_USAGE_DESCRIPTION" value="使用相机" />
     </plugin>
+    <plugin name="jpush-phonegap-plugin" spec="^3.4.1">
+        <variable name="APP_KEY" value="e889e9b93cf3bfac71e966ec" />
+    </plugin>
 </widget>

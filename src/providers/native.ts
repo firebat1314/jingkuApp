@@ -12,7 +12,6 @@ import { File } from '@ionic-native/file';
 
 declare var LocationPlugin;
 declare var AMapNavigation;
-declare var cordova;
 
 @Injectable()
 export class Native {
