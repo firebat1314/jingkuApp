@@ -24,6 +24,7 @@ import { Toast } from '@ionic-native/toast';
 import { Transfer } from "@ionic-native/transfer";
 import { File } from '@ionic-native/file';
 import { InAppBrowser } from '@ionic-native/in-app-browser';
+import { JPush } from '@jiguang-ionic/jpush';
 /*———————————————————————————————— 插件 ————————————————————————————————*/
 import { MeunItemComponentModule } from "../components/meun-item/meun-item.module";
 import { CityPickerModule } from "ionic2-city-picker/dist/city-picker.module";
@@ -84,6 +85,7 @@ import { HAMMER_GESTURE_CONFIG } from '@angular/platform-browser';
     Badge,
     Transfer,
     File,
+    JPush,
     InAppBrowser,
     WxServiceProvider,
     QimoChatProvider,

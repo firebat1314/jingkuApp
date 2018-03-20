@@ -10,6 +10,8 @@ import { JpushService } from "../providers/jpush-service";
 import { WxServiceProvider } from '../providers/wx-service/wx-service';
 import { UpgradeProvider } from '../providers/upgrade/upgrade';
 
+import { JPush } from '@jiguang-ionic/jpush';
+
 @Component({
   templateUrl: 'app.html'
 })
@@ -33,6 +35,7 @@ export class MyApp {
     private upgradeProvider: UpgradeProvider,
     private app: App,
     private wxService: WxServiceProvider,
+    private jpush: JPush,
   ) {
     //———————————————————————— app更新 ————————————————————————
     this.upgradeProvider.detectionUpgrade();
@@ -86,7 +89,7 @@ export class MyApp {
       }
       // Okay, so the platform is ready and our plugins are available.
       // Here you can do any higher level native things you might need.
-      this.native.isAndroid()?this.statusBar.styleLightContent():this.statusBar.styleDefault();
+      this.native.isAndroid() ? this.statusBar.styleLightContent() : this.statusBar.styleDefault();
       this.splashScreen.hide();
 
       //———————————————————————— 注册返回按键事件 ————————————————————————
@@ -118,17 +121,16 @@ export class MyApp {
       //————————————————————————————————————————————————————————————————————————
       // 初始化极光推送
       if (this.native.isMobile()) {
-        this.jpushService.initJpush();//初始化极光推送
-        this.jpushService.getRegistrationID();
-        this.jpushService.setTags();
+        this.jpush.init();
+        this.jpush.setDebugMode(true);
       }
-      this.storage.get('JPUSH_FLAG').then((res) => {
+      /* this.storage.get('JPUSH_FLAG').then((res) => {
         if (res === 1) {
           this.jpushService.resumePush();
         } else if (res === 0) {
           this.jpushService.stopPush();
         }
-      })
+      }) */
       var timer;
       if (this.native.isWeixin()) {
         this.app.viewDidEnter.subscribe((e) => {
