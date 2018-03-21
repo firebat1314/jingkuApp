@@ -68,7 +68,7 @@
                     </div>
                     <ion-checkbox color="jingku1" mode="ios" [checked]="paymentType=='weixin'" style="pointer-events:none;"></ion-checkbox>
                 </div>
-                <div class="zf_x" (click)="paymentType=='upacp'?paymentType='':paymentType='upacp';bt=false" *ngIf="!isWeixin||isMobile"
+                <!-- <div class="zf_x" (click)="paymentType=='upacp'?paymentType='':paymentType='upacp';bt=false" *ngIf="!isWeixin||isMobile"
                     [class.selected]="paymentType=='upacp'" [class.disable]="bt">
                     <img src="./assets/icon/close_ico7.png" alt="">
                     <div class="cont">
@@ -76,7 +76,7 @@
                         <div class="p2"></div>
                     </div>
                     <ion-checkbox color="jingku1" mode="ios" [checked]="paymentType=='upacp'" style="pointer-events:none;"></ion-checkbox>
-                </div>
+                </div> -->
             </div>
             <header class="zffs_h" *ngIf="yE" style="padding-bottom: 0;">
                 支付密码

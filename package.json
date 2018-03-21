@@ -76,7 +76,6 @@
   "devDependencies": {
     "@ionic/app-scripts": "2.0.2",
     "typescript": "2.2.1"
-    
   },
   "cordovaPlugins": [
     "cordova-plugin-whitelist",
