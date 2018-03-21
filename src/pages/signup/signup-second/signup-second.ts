@@ -31,7 +31,8 @@ export class SignupSecondPage {
     district: '',
     zhizhao: '',
     medical:'',
-    parent_id:''
+    parent_id:'',
+    zz_number:''
   }
   constructor(
     public navCtrl: NavController,
@@ -83,7 +84,6 @@ export class SignupSecondPage {
     })
   }
   onSubmit() {
-    console.log(this.formData)
     this.httpService.signupTwo(this.formData).then((res) => {
       if (res.status == 1) {
         this.native.showToast(res.info);
