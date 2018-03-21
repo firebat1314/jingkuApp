@@ -16,6 +16,7 @@ import { XimuProvider } from '../../providers/ximu/ximu';
   templateUrl: 'home.html'
 })
 export class HomePage {
+  userInfo: any;
   data: any;
   fastbuyData: any;
   indexHotGoods: any;
@@ -68,6 +69,12 @@ export class HomePage {
     this.events.unsubscribe('home:update');
   }
   ngOnInit() {
+    this.httpService.userInfo().then((res) => {
+			if (res.status) {
+				this.userInfo = res;
+				this.httpService.setByName('userInfo', res);
+			}
+		})
     this.httpService.getStorage('fastbuyData').then((res) => {
       if (res) this.fastbuyData = res;
     })
