@@ -54,10 +54,6 @@ export class MyApp {
   }
   initializeApp() {
     this.platform.ready().then(() => {
-      /* window.addEventListener('statusTap', function() {
-        console.log(111)
-          // scroll-up with document.body.scrollTop = 0; or do whatever you want
-      }); */
       //———————————————————————— 初次进入app引导页面 ————————————————————————
       if (this.native.isMobile()) {
         this.storage.get('has_entered').then((result) => {

@@ -2,7 +2,7 @@ page-home {
     [home-padding] {
         // padding: 0 10px;
     }
-    img{
+    img {
         width: 100%;
     }
     .home-content {
@@ -54,10 +54,10 @@ page-home {
     }
     .banner-wrapper {
         background: #fff;
-        button.swiper-pagination-bullet{
+        button.swiper-pagination-bullet {
             border-radius: 50%;
             border-color: transparent;
-            background:#666;
+            background: #666;
             opacity: .5;
         }
         ion-slide {
@@ -73,20 +73,20 @@ page-home {
     .btn-tool {
         background-color: #fff;
         margin-bottom: 10px;
-        padding: 15px 10px;
-    }
-    .btn-tool .top,
-    .btn-tool .bottom {
+        padding: 15px 10px 5px;
         display: flex;
         justify-content: flex-start;
         align-items: center;
         margin-bottom: 10px;
+        flex-wrap: wrap;
         >div {
             display: flex;
             flex-direction: column;
             align-items: center;
-            width: 25%;
+            min-width: 25%;
+            flex-basis: 25%;
             color: #666;
+            margin-bottom: 10px;
             .img {
                 width: 43px;
                 height: 43px;
@@ -99,6 +99,8 @@ page-home {
             }
         }
     }
+    .btn-tool .top,
+    .btn-tool .bottom {}
     .btn-tool .bottom {
         margin-bottom: 0px;
     }

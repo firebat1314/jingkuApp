@@ -30,9 +30,9 @@
     <div fadeIn>
         <!--———————————————————————————————— 轮播图 ————————————————————————————————-->
         <div class="banner-wrapper">
-            
+
             <img width="100%" *ngIf="!bannerImgs" src="./assets/images/images/640-360.jpg" alt="">
-            
+
             <ion-slides #bannerSlide autoplay="4000" *ngIf="bannerImgs" pager (ionSlideAutoplayStop)="bannerSlide.startAutoplay()">
                 <!-- *ngIf="bannerImgs" loop-->
                 <ion-slide *ngFor="let item of bannerImgs" tappable [ads-click]="item.link_type">
@@ -42,18 +42,15 @@
         </div>
         <!--———————————————————————————————— 功能按钮 ————————————————————————————————-->
         <div class="btn-tool" home-padding>
-            <div class="top">
-                <div tappable (click)="goDiscountCouponPage();">
-                    <div class="img">
-                        <img img-lazy-load="./assets/icon/home/home_ico10.png" alt="">
-                    </div>
-                    <span>优惠券</span>
+            <div tappable (click)="goDiscountCouponPage();">
+                <div class="img">
+                    <img img-lazy-load="./assets/icon/home/home_ico10.png" alt="">
                 </div>
-                <div tappable (click)="goFastbuyPage()">
-                    <div class="img">
-                        <img img-lazy-load="./assets/icon/home/home_ico11.png" alt="">
-                    </div>
-                    <span>闪购</span>
+                <span>优惠券</span>
+            </div>
+            <div tappable (click)="goFastbuyPage()">
+                <div class="img">
+                    <img img-lazy-load="./assets/icon/home/home_ico11.png" alt="">
                 </div>
                 <div tappable (click)="goPresellPage()"><!-- (click)="goPresellPage()"navPush="JpushtestPage" -->
                     <div class="img">
@@ -61,42 +58,41 @@
                     </div>
                     <span>新品</span>
                 </div>
-                <!-- <div tappable (click)="goBrandPage()">
-                    <div class="img">
-                        <img img-lazy-load="./assets/icon/home/home_ico2.png" alt="">
-                    </div>
-                    <span>品牌</span>
-                </div> -->
-                <div tappable (click)="goRechargePage()">
-                    <div class="img">
-                        <img img-lazy-load="./assets/icon/home/home_ico3.png" alt="">
-                    </div>
-                    <span>充值</span>
-                </div>
+                <span>新品</span>
             </div>
-            <div class="bottom">
-                <div tappable (click)="goWhitebarPage()" *ngIf="native.isMobile()">
-                    <div class="img">
-                        <img img-lazy-load="./assets/icon/home/home_ico4.png" alt="">
-                    </div>
-                    <span>镜库金融</span>
+            <div tappable *ngIf="userInfo&&userInfo?.data?.user_info?.is_test!=1" (click)="goBrandPage()">
+                <div class="img">
+                    <img img-lazy-load="./assets/icon/home/home_ico2.png" alt="">
                 </div>
-                <div tappable (click)="goIntegralstorePage();">
-                    <div class="img">
-                        <img img-lazy-load="./assets/icon/home/home_ico5.png" alt="">
-                    </div>
-                    <span>积分商城</span>
+                <span>品牌</span>
+            </div>
+            <div tappable (click)="goRechargePage()">
+                <div class="img">
+                    <img img-lazy-load="./assets/icon/home/home_ico3.png" alt="">
                 </div>
-                <div tappable (click)="goGlassesDesignPage()">
-                    <div class="img">
-                        <img img-lazy-load="./assets/icon/home/home_ico6.png" alt="">
-                    </div>
-                    <span>镜库设计</span>
+                <span>充值</span>
+            </div>
+            <div tappable (click)="goWhitebarPage()" *ngIf="native.isMobile()">
+                <div class="img">
+                    <img img-lazy-load="./assets/icon/home/home_ico4.png" alt="">
                 </div>
+                <span>镜库金融</span>
+            </div>
+            <div tappable (click)="goIntegralstorePage();">
+                <div class="img">
+                    <img img-lazy-load="./assets/icon/home/home_ico5.png" alt="">
+                </div>
+                <span>积分商城</span>
+            </div>
+            <div tappable (click)="goGlassesDesignPage()">
+                <div class="img">
+                    <img img-lazy-load="./assets/icon/home/home_ico6.png" alt="">
+                </div>
+                <span>镜库设计</span>
             </div>
         </div>
         <!--—————————————————————————————————————————— 镜库闪购 ——————————————————————————————————————————-->
-        <div class="shan_gou home-content">
+        <div *ngIf="userInfo&&userInfo?.data?.user_info?.is_test!=1" class="shan_gou home-content">
             <div class="title">
                 <span class="txt">镜库闪购</span>
                 <span class="more" tappable (click)="goFastbuyPage()">查看更多
@@ -118,7 +114,7 @@
             </div>
         </div>
         <!--—————————————————————————————————————————— 广告位 ——————————————————————————————————————————-->
-        <div class="ad_wrap">
+        <div *ngIf="userInfo&&userInfo?.data?.user_info?.is_test!=1" class="ad_wrap">
             <div class="line1">
                 <div>
                     <img img-lazy-load="{{hotBrand_img?.ad_img}}" [ads-click]="hotBrand_img?.link_type" alt="">
@@ -172,7 +168,7 @@
             </div>
         </div> -->
         <!--——————————————————————————————————————————精选专题——————————————————————————————————————————-->
-        <div class="handpick home-content" home-padding>
+        <div *ngIf="userInfo&&userInfo?.data?.user_info?.is_test!=1" class="handpick home-content" home-padding>
             <div class="title">
                 <span class="txt">精选专题</span>
             </div>
