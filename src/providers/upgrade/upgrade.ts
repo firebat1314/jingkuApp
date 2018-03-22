@@ -57,6 +57,7 @@ export class UpgradeProvider {
                       setTimeout(() => {
                         this.platform.exitApp();
                       }, 400);
+                      return false;
                     }
                   }
                 ]
@@ -72,6 +73,7 @@ export class UpgradeProvider {
                   text: '确定',
                   handler: () => {
                     this.iab.create(res.ios.url, '_system');
+                    return false;
                   }
                 }
                 ]
@@ -92,7 +94,9 @@ export class UpgradeProvider {
                   {
                     text: '确定',
                     handler: () => {
-                      this.downloadApp(res.android.url);
+                      this.iab.create(res.url, '_system');
+                      // this.downloadApp(res.android.url);
+                      return false;
                     }
                   }
                 ]
@@ -107,7 +111,9 @@ export class UpgradeProvider {
                 {
                   text: '确定',
                   handler: () => {
-                    this.downloadApp(res.android.url);
+                    this.iab.create(res.url, '_system');
+                    // this.downloadApp(res.android.url);
+                    return false;
                   }
                 }
                 ]
