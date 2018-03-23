@@ -9,15 +9,9 @@ import { Native } from '../../providers/native';
   templateUrl: 'jpushtest.html',
 })
 export class JpushtestPage {
-
   public registrationId: string;
-
   sequence: number = 0;
-
- 
   constructor(public navCtrl: NavController, public jpush: JPush, public nativeService: Native) {
-
-
     document.addEventListener('jpush.receiveNotification', (event: any) => {
       var content;
       if (this.nativeService.isAndroid()) {
@@ -27,7 +21,6 @@ export class JpushtestPage {
       }
       alert('Receive notification: ' + JSON.stringify(event));
     }, false);
-
     document.addEventListener('jpush.openNotification', (event: any) => {
       var content;
       if (this.nativeService.isAndroid()) {
@@ -41,7 +34,6 @@ export class JpushtestPage {
       } 
       alert('open notification: ' + JSON.stringify(event));
     }, false);
-
     document.addEventListener('jpush.receiveLocalNotification', (event: any) => {
       // iOS(*,9) Only , iOS(10,*) 将在 jpush.openNotification 和 jpush.receiveNotification 中触发。
       var content;

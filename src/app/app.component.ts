@@ -51,9 +51,6 @@ export class MyApp {
   }
   initializeApp() {
     this.platform.ready().then(() => {
-      // 初始化极光推送
-      this.jpush.init().then(res=>console.log(res));
-      this.jpush.setDebugMode(true).then(res=>console.log(res));
       //———————————————————————— 初次进入app引导页面 ————————————————————————
       if (this.native.isMobile()) {
         this.storage.get('has_entered').then((result) => {
@@ -115,7 +112,12 @@ export class MyApp {
         return activeNav.canGoBack() ? activeNav.pop() : this.showExit()
       }, 1);
       //————————————————————————————————————————————————————————————————————————
-
+      // 初始化极光推送
+      if (this.native.isMobile()) {
+        console.log(this.jpush)
+        this.jpush.init().then(res=>console.log(res));
+        this.jpush.setDebugMode(true).then(res=>console.log(res));
+      }
       var timer;
       if (this.native.isWeixin()) {
         this.app.viewDidEnter.subscribe((e) => {
