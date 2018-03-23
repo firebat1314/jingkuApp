@@ -1,7 +1,6 @@
 import { Component, ViewChild } from '@angular/core';
 import { NavController, NavParams, App, Toggle, IonicPage } from 'ionic-angular';
 import { HttpService } from "../../../providers/http-service";
-import { JpushService } from "../../../providers/jpush-service";
 import { Native } from "../../../providers/native";
 import { JPush } from '@jiguang-ionic/jpush';
 
@@ -23,7 +22,6 @@ export class SettingPage {
     public navCtrl: NavController,
     public navParams: NavParams,
     public app: App,
-    public jpushService: JpushService,
     public native: Native,
     public httpService: HttpService,
     public jPush: JPush
@@ -48,9 +46,9 @@ export class SettingPage {
   }
   toggle(push) {
     if (push.value) {
-      this.jpushService.stopPush();
+      this.jPush.stopPush();
     } else {
-      this.jpushService.resumePush();
+      this.jPush.resumePush();
     }
   }
   clearCathe() {

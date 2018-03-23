@@ -6,9 +6,9 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 
 import { TabsPage } from '../pages/tabs/tabs';
 import { Native } from "../providers/native";
-import { JpushService } from "../providers/jpush-service";
 import { WxServiceProvider } from '../providers/wx-service/wx-service';
 import { UpgradeProvider } from '../providers/upgrade/upgrade';
+import { JPush } from '@jiguang-ionic/jpush';
 
 @Component({
   templateUrl: 'app.html'
@@ -25,7 +25,6 @@ export class MyApp {
     private storage: Storage,
     private ionicApp: IonicApp,
     private events: Events,
-    private jpushSrv: JpushService,
     private statusBar: StatusBar,
     private splashScreen: SplashScreen,
     private keyboard: Keyboard,
@@ -33,6 +32,7 @@ export class MyApp {
     private upgradeProvider: UpgradeProvider,
     private app: App,
     private wxService: WxServiceProvider,
+    private jpush: JPush,
   ) {
     //———————————————————————— app更新 ————————————————————————
     this.upgradeProvider.detectionUpgrade();
@@ -51,6 +51,9 @@ export class MyApp {
   }
   initializeApp() {
     this.platform.ready().then(() => {
+      // 初始化极光推送
+      this.jpush.init().then(res=>console.log(res));
+      this.jpush.setDebugMode(true).then(res=>console.log(res));
       //———————————————————————— 初次进入app引导页面 ————————————————————————
       if (this.native.isMobile()) {
         this.storage.get('has_entered').then((result) => {
@@ -112,17 +115,7 @@ export class MyApp {
         return activeNav.canGoBack() ? activeNav.pop() : this.showExit()
       }, 1);
       //————————————————————————————————————————————————————————————————————————
-      // 初始化极光推送
-      if (this.native.isMobile()) {
-        this.jpushSrv.init(true);
-      }
-      /* this.storage.get('JPUSH_FLAG').then((res) => {
-        if (res === 1) {
-          this.jpushService.resumePush();
-        } else if (res === 0) {
-          this.jpushService.stopPush();
-        }
-      }) */
+
       var timer;
       if (this.native.isWeixin()) {
         this.app.viewDidEnter.subscribe((e) => {
