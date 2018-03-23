@@ -667,4 +667,7 @@ export class HttpService {
   withdrawal(data?: Object){
       return this.http.post(IP + '/User/withdrawal', data)
   }
+  newArea(data?: Object){//新新品专区
+    return this.http.post(IP + '/index/newArea', data)
+  }
 }

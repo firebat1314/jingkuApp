@@ -42,19 +42,19 @@
         </div>
         <!--———————————————————————————————— 功能按钮 ————————————————————————————————-->
         <div class="btn-tool" home-padding>
-            <div tappable (click)="goDiscountCouponPage();">
+            <div tappable *ngIf="userInfo&&userInfo?.data?.user_info?.is_test!=1" (click)="goDiscountCouponPage();">
                 <div class="img">
                     <img img-lazy-load="./assets/icon/home/home_ico10.png" alt="">
                 </div>
                 <span>优惠券</span>
             </div>
-            <div tappable (click)="goFastbuyPage()">
+            <div tappable *ngIf="userInfo&&userInfo?.data?.user_info?.is_test!=1" (click)="goFastbuyPage()">
                 <div class="img">
                     <img img-lazy-load="./assets/icon/home/home_ico11.png" alt="">
                 </div>
                 <span>闪购</span>
             </div>
-            <div tappable navPush="PresellPage">
+            <div tappable *ngIf="userInfo&&userInfo?.data?.user_info?.is_test!=1" navPush="PresellPage">
                 <div class="img">
                     <img img-lazy-load="./assets/icon/home/home_ico1.png" alt="">
                 </div>
@@ -76,7 +76,7 @@
                 <div class="img">
                     <img img-lazy-load="./assets/icon/home/home_ico4.png" alt="">
                 </div>
-                <span>镜库金融</span>
+                <span>镜库白条</span>
             </div>
             <div tappable (click)="goIntegralstorePage();">
                 <div class="img">

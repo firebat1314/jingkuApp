@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { NavController, NavParams, IonicPage } from 'ionic-angular';
+import { HttpService } from '../../../providers/http-service';
 
 /**
  * Generated class for the NewProductPage page.
@@ -15,11 +16,22 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 })
 export class NewProductPage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  data: any;
+  constructor(
+    public navCtrl: NavController,
+     public navParams: NavParams,
+     public httpSrv: HttpService
+    ) {
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad NewProductPage');
   }
-
+  ngOnInit(){
+    this.httpSrv.newArea().then(res=>{
+      if(res.status){
+        this.data = res.status;
+      }
+    })
+  }
 }
