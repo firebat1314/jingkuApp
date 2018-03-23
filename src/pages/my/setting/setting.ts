@@ -30,7 +30,6 @@ export class SettingPage {
   ) { }
   ngAfterViewInit() {
     this.jPush.isPushStopped().then(res=>{
-      alert(res)
       if (res) {
         this.myToggle.value = true;
       } else {
