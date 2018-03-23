@@ -14,7 +14,38 @@
 
 
 <ion-content>
-  <div class="banner">
-    <img src="" alt="">
+  <div class="fore1 banner">
+    <ng-container *ngFor="let item of data?.banner">
+        <img [img-lazy-load]="item.ad_img" [ads-click]="item.link_type" alt=""> 
+    </ng-container>
+  </div>
+  <div class="fore2">
+    <div class="left">
+        <ng-container *ngFor="let item of data?.new_goods">
+            <img [img-lazy-load]="item.ad_img" [ads-click]="item.link_type" alt="">
+        </ng-container>
+    </div>
+    <div class="right">
+        <ng-container *ngFor="let item of data?.banner_dan">
+            <img [img-lazy-load]="item.ad_img" [ads-click]="item.link_type" alt="">
+        <div class="title"><em>TOP榜单</em> / {{item.ad_name}}</div>
+      </ng-container>
+      </div>
+  </div>
+  <div class="fore3">
+    <div class="container">
+      <div class="head">
+        <p>季度新品TOP推荐</p>
+        <span>最新品牌</span><span>劲爆来袭</span><span>每周上新</span>
+      </div>
+      <div class="imgs">
+          <ng-container *ngFor="let item of data?.banner_tui">
+              <img [img-lazy-load]="item.ad_img" [ads-click]="item.link_type" alt="">
+          </ng-container>
+      </div>
+    </div>
+  </div>
+  <div class="fore4">
+
   </div>
 </ion-content>
