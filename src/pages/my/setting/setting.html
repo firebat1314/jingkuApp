@@ -16,7 +16,7 @@
 <ion-content>
 
 
-    <ion-item padding-left no-lines>
+    <ion-item *ngIf="native.isMobile()" padding-left no-lines>
         <ion-label> 接收通知</ion-label>
         <ion-note item-right ion-text color="danger" *ngIf="!push.value" style="font-size: 1rem;">您可能错过重要通知，建议点击开启</ion-note>
         <ion-toggle mode="ios" color="favorite" #push (ionChange)="toggle(push)" checked="true"></ion-toggle>

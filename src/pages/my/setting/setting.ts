@@ -28,6 +28,7 @@ export class SettingPage {
     public httpService: HttpService,
     public jPush: JPush
   ) { }
+
   ngAfterViewInit() {
     this.jPush.isPushStopped().then(res=>{
       if (res) {
@@ -35,6 +36,8 @@ export class SettingPage {
       } else {
         this.myToggle.value = false;
       }
+    }).catch((res)=>{
+      console.log(res)
     })
   }
   ionViewDidLoad() {
