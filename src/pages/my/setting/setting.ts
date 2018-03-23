@@ -3,6 +3,7 @@ import { NavController, NavParams, App, Toggle, IonicPage } from 'ionic-angular'
 import { HttpService } from "../../../providers/http-service";
 import { JpushService } from "../../../providers/jpush-service";
 import { Native } from "../../../providers/native";
+import { JPush } from '@jiguang-ionic/jpush';
 
 /*
   Generated class for the Setting page.
@@ -24,14 +25,16 @@ export class SettingPage {
     public app: App,
     public jpushService: JpushService,
     public native: Native,
-    public httpService: HttpService
+    public httpService: HttpService,
+    public jPush: JPush
   ) { }
   ngAfterViewInit() {
-    this.httpService.getStorage('JPUSH_FLAG').then((res) => {
+    this.jPush.isPushStopped().then(res=>{
+      alert(res)
       if (res) {
         this.myToggle.value = true;
       } else {
-        this.myToggle.value = true;
+        this.myToggle.value = false;
       }
     })
   }
@@ -43,15 +46,10 @@ export class SettingPage {
   }
   toggle(push) {
     if (push.value) {
-      this.jpushService.resumePush();
-      this.httpService.setStorage('JPUSH_FLAG', true);
-    } else {
       this.jpushService.stopPush();
-      this.httpService.setStorage('JPUSH_FLAG', false);
+    } else {
+      this.jpushService.resumePush();
     }
-    this.jpushService.isPushStopped((res) => {
-      console.log(res)
-    })
   }
   clearCathe() {
     this.native.openAlertBox('清除本地缓存？', () => {

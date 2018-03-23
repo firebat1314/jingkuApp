@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Native } from "./native";
 import { Storage } from '@ionic/storage';
+import { JPush } from '@jiguang-ionic/jpush';
 
 /*
   Generated class for the JpushService provider.
@@ -10,100 +11,148 @@ import { Storage } from '@ionic/storage';
 */
 @Injectable()
 export class JpushService {
+  public registrationId: string;
 
-  constructor(
-    public nativeService: Native,
-    public storage: Storage
-  ) {
-    console.log('Hello JpushService Provider');
+  sequence: number = 0;
+  
+  constructor(public storage: Storage, public jpush: JPush, public nativeService: Native) {
+
+
+    document.addEventListener('jpush.receiveNotification', (event: any) => {
+      var content;
+      if (this.nativeService.isAndroid()) {
+        content = event.alert;
+      } else {
+        content = event.aps.alert;
+      }
+      alert('Receive notification: ' + JSON.stringify(event));
+    }, false);
+
+    document.addEventListener('jpush.openNotification', (event: any) => {
+      var content;
+      if (this.nativeService.isAndroid()) {
+        content = event.alert;
+      } else {  // iOS
+        if (event.aps == undefined) { // 本地通知
+          content = event.content;
+        } else {  // APNS
+          content = event.aps.alert;
+        }
+      }
+      alert('open notification: ' + JSON.stringify(event));
+    }, false);
+
+    document.addEventListener('jpush.receiveLocalNotification', (event: any) => {
+      // iOS(*,9) Only , iOS(10,*) 将在 jpush.openNotification 和 jpush.receiveNotification 中触发。
+      var content;
+      if (this.nativeService.isAndroid()) {
+      } else {
+        content = event.content;
+      }
+      alert('receive local notification: ' + JSON.stringify(event));
+    }, false);
   }
-
-  initJpush() {
-    if (!this.nativeService.isMobile()) {
-      return;
-    }
-    window['plugins'].jPushPlugin.init();
-    if (this.nativeService.isIos()) {
-      window['plugins'].jPushPlugin.setDebugModeFromIos();
-      window['plugins'].jPushPlugin.setApplicationIconBadgeNumber(0);
-    } else {
-      window['plugins'].jPushPlugin.setDebugMode(true);
-      window['plugins'].jPushPlugin.setStatisticsOpen(true);
-    }
-    this.jPushAddEventListener();
+  init(isDebug:boolean,successCallback?){
+    this.jpush.init().then(successCallback);
+    this.jpush.setDebugMode(isDebug);
+  }
+  isPushStopped(successCallback?){
+    this.jpush.isPushStopped().then(successCallback);
+  }
+  stopPush(successCallback?) {
+    this.jpush.stopPush().then(successCallback);
+  }
+  resumePush(successCallback?){
+    this.jpush.resumePush().then(successCallback);
   }
   getRegistrationID() {
-    window['plugins'].jPushPlugin.getRegistrationID((res) => {
-      console.log('getRegistrationID', res);
-    });
+    this.jpush.getRegistrationID()
+      .then(rId => {
+        this.registrationId = rId;
+      });
   }
-  isPushStopped(successCallback){
-    window['plugins'].jPushPlugin.isPushStopped(successCallback);
-  }
-  stopPush() {
-    window['plugins'].jPushPlugin.stopPush();
-  }
-  resumePush(){
-    window['plugins'].jPushPlugin.resumePush();
-  }
-  private jPushAddEventListener() {
-    //判断系统设置中是否允许当前应用推送
-    window['plugins'].jPushPlugin.getUserNotificationSettings(result => {
-      if (result == 0) {
-        console.log('系统设置中已关闭应用推送');
-      } else if (result > 0) {
-        console.log('系统设置中打开了应用推送');
-      }
-    });
+  tagResultHandler = function (result) {
+    var sequence: number = result.sequence;
+    var tags: Array<string> = result.tags == null ? [] : result.tags;
+    alert('Success!' + '\nSequence: ' + sequence + '\nTags: ' + tags.toString());
+  };
 
-    //点击通知进入应用程序时会触发的事件
-    document.addEventListener("jpush.openNotification", event => {
-      let content = this.nativeService.isIos() ? event['aps'].alert : event['alert'];
-      console.log("jpush.openNotification" + content);
-    }, false);
+  aliasResultHandler = function (result) {
+    var sequence: number = result.sequence;
+    var alias: string = result.alias;
+    alert('Success!' + '\nSequence: ' + sequence + '\nAlias: ' + alias);
+  };
 
-    //收到通知时会触发该事件
-    document.addEventListener("jpush.receiveNotification", event => {
-      let content = this.nativeService.isIos() ? event['aps'].alert : event['alert'];
-      console.log("jpush.receiveNotification" + content);
-    }, false);
+  errorHandler = function (err) {
+    var sequence: number = err.sequence;
+    var code = err.code;
+    alert('Error!' + '\nSequence: ' + sequence + '\nCode: ' + code);
+  };
 
-    //收到自定义消息时触发这个事件
-    document.addEventListener("jpush.receiveMessage", event => {
-      let message = this.nativeService.isIos() ? event['content'] : event['message'];
-      console.log("jpush.receiveMessage" + message);
-    }, false);
-
-
-    //设置标签/别名回调函数
-    document.addEventListener("jpush.setTagsWithAlias", event => {
-      console.log("onTagsWithAlias");
-      let result = "result code:" + event['resultCode'] + " ";
-      result += "tags:" + event['tags'] + " ";
-      result += "alias:" + event['alias'] + " ";
-      console.log(result);
-    }, false);
-
+  setTags() {
+    this.jpush.setTags({ sequence: this.sequence++, tags: ['Tag1', 'Tag2'] })
+      .then(this.tagResultHandler)
+      .catch(this.errorHandler);
   }
 
-  //设置标签
-  public setTags() {
-    if (!this.nativeService.isMobile()) {
-      return;
+  addTags() {
+    this.jpush.addTags({ sequence: this.sequence++, tags: ['Tag3', 'Tag4'] })
+      .then(this.tagResultHandler)
+      .catch(this.errorHandler);
+  }
+
+  checkTagBindState() {
+    this.jpush.checkTagBindState({ sequence: this.sequence++, tag: 'Tag1' })
+      .then(result => {
+        var sequence = result.sequence;
+        var tag = result.tag;
+        var isBind = result.isBind;
+        alert('Sequence: ' + sequence + '\nTag: ' + tag + '\nIsBind: ' + isBind);
+      }).catch(this.errorHandler);
+  }
+
+  deleteTags() {
+    this.jpush.deleteTags({ sequence: this.sequence++, tags: ['Tag4'] })
+      .then(this.tagResultHandler)
+      .catch(this.errorHandler);
+  }
+
+  getAllTags() {
+    this.jpush.getAllTags({ sequence: this.sequence++ })
+      .then(this.tagResultHandler)
+      .catch(this.errorHandler);
+  }
+
+  cleanTags() {
+    this.jpush.cleanTags({ sequence: this.sequence++ })
+      .then(this.tagResultHandler)
+      .catch(this.errorHandler);
+  }
+
+  setAlias() {
+    this.jpush.setAlias({ sequence: this.sequence++, alias: 'TestAlias' })
+      .then(this.aliasResultHandler)
+      .catch(this.errorHandler);
+  }
+
+  getAlias() {
+    this.jpush.getAlias({ sequence: this.sequence++ })
+      .then(this.aliasResultHandler)
+      .catch(this.errorHandler);
+  }
+
+  deleteAlias() {
+    this.jpush.deleteAlias({ sequence: this.sequence++ })
+      .then(this.aliasResultHandler)
+      .catch(this.errorHandler);
+  }
+
+  addLocalNotification() {
+    if (this.nativeService.isAndroid()) {
+      this.jpush.addLocalNotification(0, 'Hello JPush', 'JPush', 1, 5000);
+    } else {
+      this.jpush.addLocalNotificationForIOS(5, 'Hello JPush', 1, 'localNoti1');
     }
-    let tags = this.nativeService.isAndroid() ? ['android'] : ['ios'];
-    console.log('设置setTags:' + tags);
-    window['plugins'].jPushPlugin.setTags(tags);
-  }
-
-  //设置别名,一个用户只有一个别名
-  public setAlias(userId) {
-    if (!this.nativeService.isMobile()) {
-      return;
-    }
-    console.log('设置setAlias:' + userId);
-    //ios设置setAlias有bug,值必须为string类型,不能是number类型
-    window['plugins'].jPushPlugin.setAlias('' + userId);
   }
 
 }

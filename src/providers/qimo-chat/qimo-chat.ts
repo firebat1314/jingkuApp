@@ -43,7 +43,7 @@ export class QimoChatProvider {
 		};
 	}
 	qimoChatSDK(access_id?, supplier_name?, supplier_avatar?, successCallback?) {
-		if (typeof cordova != "undefined" && this.native.isAndroid()) {
+		if (typeof cordova != "undefined") {
 			this.httpService.getByName('userInfo').then((userInfo) => {
 				cordova.exec(
 					(response) => {
