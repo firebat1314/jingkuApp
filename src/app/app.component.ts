@@ -114,7 +114,6 @@ export class MyApp {
       //————————————————————————————————————————————————————————————————————————
       // 初始化极光推送
       if (this.native.isMobile()) {
-        console.log(this.jpush)
         this.jpush.init().then(res=>console.log(res));
         this.jpush.setDebugMode(true).then(res=>console.log(res));
       }

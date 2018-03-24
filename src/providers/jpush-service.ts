@@ -14,9 +14,8 @@ export class JpushService {
   public registrationId: string;
 
   sequence: number = 0;
-  
-  constructor(public storage: Storage, public jpush: JPush, public nativeService: Native) {
 
+  constructor(public storage: Storage, public jpush: JPush, public nativeService: Native) {
 
     document.addEventListener('jpush.receiveNotification', (event: any) => {
       var content;
@@ -52,17 +51,17 @@ export class JpushService {
       alert('receive local notification: ' + JSON.stringify(event));
     }, false);
   }
-  init(isDebug:boolean,successCallback?){
+  init(isDebug: boolean, successCallback?) {
     this.jpush.init().then(successCallback);
     this.jpush.setDebugMode(isDebug);
   }
-  isPushStopped(successCallback?){
+  isPushStopped(successCallback?) {
     this.jpush.isPushStopped().then(successCallback);
   }
   stopPush(successCallback?) {
     this.jpush.stopPush().then(successCallback);
   }
-  resumePush(successCallback?){
+  resumePush(successCallback?) {
     this.jpush.resumePush().then(successCallback);
   }
   getRegistrationID() {
@@ -89,20 +88,20 @@ export class JpushService {
     alert('Error!' + '\nSequence: ' + sequence + '\nCode: ' + code);
   };
 
-  setTags() {
-    this.jpush.setTags({ sequence: this.sequence++, tags: ['Tag1', 'Tag2'] })
+  setTags(tags?: Array<string>) {
+    this.jpush.setTags({ sequence: this.sequence++, tags: [...tags] })
       .then(this.tagResultHandler)
       .catch(this.errorHandler);
   }
 
-  addTags() {
-    this.jpush.addTags({ sequence: this.sequence++, tags: ['Tag3', 'Tag4'] })
+  addTags(tags?: Array<string>) {
+    this.jpush.addTags({ sequence: this.sequence++, tags: [...tags] })
       .then(this.tagResultHandler)
       .catch(this.errorHandler);
   }
 
-  checkTagBindState() {
-    this.jpush.checkTagBindState({ sequence: this.sequence++, tag: 'Tag1' })
+  checkTagBindState(tags: string = '') {
+    this.jpush.checkTagBindState({ sequence: this.sequence++, tag: tags })
       .then(result => {
         var sequence = result.sequence;
         var tag = result.tag;
@@ -111,8 +110,8 @@ export class JpushService {
       }).catch(this.errorHandler);
   }
 
-  deleteTags() {
-    this.jpush.deleteTags({ sequence: this.sequence++, tags: ['Tag4'] })
+  deleteTags(tags?: Array<string>) {
+    this.jpush.deleteTags({ sequence: this.sequence++, tags: [...tags] })
       .then(this.tagResultHandler)
       .catch(this.errorHandler);
   }
