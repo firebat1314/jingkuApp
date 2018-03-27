@@ -43,12 +43,12 @@
                             color="jingku1" mode="ios"></ion-checkbox>
                         <ion-checkbox *ngIf="isEdit" tappable color="jingku1" (click)="check2(item2,item1)" [(ngModel)]="item2.selected" mode="ios"></ion-checkbox>
                     </div>
-                    <ion-item margin-left no-lines>
-                        <ion-thumbnail item-left tappable (click)="goParticularPage(item2.goods_id)">
+                    <ion-item margin-left no-lines (click)="item2?.cutting_id>0?null:goParticularPage(item2.goods_id)">
+                        <ion-thumbnail item-left tappable>
                             <img img-lazy-load="{{item2.goods_thumb}}">
                         </ion-thumbnail>
-                        <h2 tappable (click)="goParticularPage(item2.goods_id)">{{item2.goods_name}}</h2>
-                        <span tappable (click)="goParticularPage(item2.goods_id)" class="type" *ngIf="item2?.gift_list">{{item2?.gift_list?.title}}</span>
+                        <h2 tappable>{{item2.cutting_id>0?item2.cutting_name:item2.goods_name}}</h2>
+                        <span tappable class="type" *ngIf="item2?.gift_list">{{item2?.gift_list?.title}}</span>
                         <span tappable class="type" *ngIf="!item2.in_area_id">不在本地区销售</span>
                         <span tappable class="type" *ngIf="item2.is_on_sale=='0'">此商品已下架</span>
                     </ion-item>
@@ -65,11 +65,16 @@
                             <ion-item-sliding>
                                 <ion-item no-lines>
                                     <div class="goodsinfo">
-                                        <div class="attr">
+                                        <div class="attr" *ngIf="item2?.cutting_id==0">
                                             <span *ngIf="item3.qiujing">球镜：{{item3.qiujing}}</span>
                                             <span *ngIf="item3.zhujing">柱镜：{{item3.zhujing}}</span>
                                             <span *ngIf="item3.zhouwei">轴位：{{item3.zhouwei}}</span>
-                                            <span *ngFor="let item4 of item3?.arr_attr;">{{item4}}</span>
+                                            <span *ngFor="let item4 of (item3?.arr_attr);">{{item4}}</span>
+                                        </div>
+                                        <div class="attr" *ngIf="item2?.cutting_id>0">
+                                            <span *ngFor="let item4 of item2.cutting_attr;">
+                                                <span *ngFor="let item5 of item4;">{{item5}}</span>
+                                            </span>
                                         </div>
                                         <div class="bottom">
                                             <div class="price" *ngIf="item3?.cha_price">{{item3?.shop_goods_price}}
