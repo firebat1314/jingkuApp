@@ -21,9 +21,6 @@ export class JpushtestPage {
     public nativeService: Native,
     private JpushServ: JpushService,
   ) {
-    this.jpush.init().then(res => { console.log(res) });
-    this.jpush.setDebugMode(true).then(res => { console.log(res) });
-
     document.addEventListener('jpush.receiveNotification', (event: any) => {
       var content;
       if (this.nativeService.isAndroid()) {
@@ -31,7 +28,7 @@ export class JpushtestPage {
       } else {
         content = event.aps.alert;
       }
-      alert('Receive notification: ' + JSON.stringify(event));
+      console.log('Receive notification: ' + JSON.stringify(event));
     }, false);
 
     document.addEventListener('jpush.openNotification', (event: any) => {
@@ -45,7 +42,7 @@ export class JpushtestPage {
           content = event.aps.alert;
         }
       }
-      alert('open notification: ' + JSON.stringify(event));
+      console.log('open notification: ' + JSON.stringify(event));
     }, false);
     
     document.addEventListener('jpush.receiveLocalNotification', (event: any) => {
@@ -55,7 +52,7 @@ export class JpushtestPage {
       } else {
         content = event.content;
       }
-      alert('receive local notification: ' + JSON.stringify(event));
+      console.log('receive local notification: ' + JSON.stringify(event));
     }, false);
   }
 
@@ -68,19 +65,19 @@ export class JpushtestPage {
   tagResultHandler = function (result) {
     var sequence: number = result.sequence;
     var tags: Array<string> = result.tags == null ? [] : result.tags;
-    alert('Success!' + '\nSequence: ' + sequence + '\nTags: ' + tags.toString());
+    console.log('Success!' + '\nSequence: ' + sequence + '\nTags: ' + tags.toString());
   };
 
   aliasResultHandler = function (result) {
     var sequence: number = result.sequence;
     var alias: string = result.alias;
-    alert('Success!' + '\nSequence: ' + sequence + '\nAlias: ' + alias);
+    console.log('Success!' + '\nSequence: ' + sequence + '\nAlias: ' + alias);
   };
 
   errorHandler = function (err) {
     var sequence: number = err.sequence;
     var code = err.code;
-    alert('Error!' + '\nSequence: ' + sequence + '\nCode: ' + code);
+    console.log('Error!' + '\nSequence: ' + sequence + '\nCode: ' + code);
   };
 
   setTags() {
@@ -101,7 +98,7 @@ export class JpushtestPage {
         var sequence = result.sequence;
         var tag = result.tag;
         var isBind = result.isBind;
-        alert('Sequence: ' + sequence + '\nTag: ' + tag + '\nIsBind: ' + isBind);
+        console.log('Sequence: ' + sequence + '\nTag: ' + tag + '\nIsBind: ' + isBind);
       }).catch(this.errorHandler);
   }
 

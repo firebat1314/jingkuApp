@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='utf-8'?>
-<widget id="com.jingku.jingkuapp" version="1.1.7" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+<widget id="com.jingku.jingkuapp" version="1.2.1" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
     <name>镜库</name>
     <description>jingku app</description>
     <author email="hi@ionicframework" href="">Iwchina Team</author>
@@ -111,12 +111,12 @@
     <plugin name="cordova-plugin-app-version" spec="~0.1.9" />
     <plugin name="cordova-plugin-ionic-webview" spec="~1.1.15" />
     <plugin name="cordova-plugin-statusbar" spec="https://github.com/apache/cordova-plugin-statusbar.git" />
-    <plugin name="cordova-plugin-pingpp" spec="https://github.com/firebat1314/pingpp-cordova.git" />
     <plugin name="cordova-plugin-camera" spec="~4.0.1" />
     <plugin name="phonegap-plugin-barcodescanner" spec="~7.0.2">
         <variable name="CAMERA_USAGE_DESCRIPTION" value="使用相机" />
     </plugin>
-    <plugin name="jpush-phonegap-plugin" spec="^3.4.1">
+    <plugin name="cordova-plugin-pingpp" spec="git+https://git.coding.net/pingplusplus/pingpp-cordova.git" />
+    <plugin name="jpush-phonegap-plugin" spec="https://github.com/jpush/jpush-phonegap-plugin.git">
         <variable name="APP_KEY" value="e889e9b93cf3bfac71e966ec" />
     </plugin>
     <engine name="ios" spec="4.5.4" />

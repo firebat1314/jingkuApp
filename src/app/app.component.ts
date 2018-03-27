@@ -114,8 +114,42 @@ export class MyApp {
       //————————————————————————————————————————————————————————————————————————
       // 初始化极光推送
       if (this.native.isMobile()) {
-        this.jpush.init().then(res=>console.log(res));
-        this.jpush.setDebugMode(true).then(res=>console.log(res));
+        console.log(window['jpush'],window['jpush'].init,window['jpush'].getRegistrationID())
+        window['jpush'].init();  // 初始化
+        window['jpush'].setDebugMode(true);
+        document.addEventListener('jpush.receiveNotification', (event: any) => {
+          var content;
+          if (this.native.isAndroid()) {
+            content = event.alert;
+          } else {
+            content = event.aps.alert;
+          }
+          console.log('Receive notification: ' + JSON.stringify(event));
+        }, false);
+    
+        document.addEventListener('jpush.openNotification', (event: any) => {
+          var content;
+          if (this.native.isAndroid()) {
+            content = event.alert;
+          } else {  // iOS
+            if (event.aps == undefined) { // 本地通知
+              content = event.content;
+            } else {  // APNS
+              content = event.aps.alert;
+            }
+          }
+          console.log('open notification: ' + JSON.stringify(event));
+        }, false);
+    
+        document.addEventListener('jpush.receiveLocalNotification', (event: any) => {
+          // iOS(*,9) Only , iOS(10,*) 将在 jpush.openNotification 和 jpush.receiveNotification 中触发。
+          var content;
+          if (this.native.isAndroid()) {
+          } else {
+            content = event.content;
+          }
+          console.log('receive local notification: ' + JSON.stringify(event));
+        }, false);
       }
       var timer;
       if (this.native.isWeixin()) {
