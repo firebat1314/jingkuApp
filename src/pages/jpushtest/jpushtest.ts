@@ -28,7 +28,7 @@ export class JpushtestPage {
       } else {
         content = event.aps.alert;
       }
-      console.log('Receive notification: ' + JSON.stringify(event));
+      alert('Receive notification: ' + JSON.stringify(event));
     }, false);
 
     document.addEventListener('jpush.openNotification', (event: any) => {
@@ -42,7 +42,7 @@ export class JpushtestPage {
           content = event.aps.alert;
         }
       }
-      console.log('open notification: ' + JSON.stringify(event));
+      alert('open notification: ' + JSON.stringify(event));
     }, false);
     
     document.addEventListener('jpush.receiveLocalNotification', (event: any) => {
@@ -52,7 +52,7 @@ export class JpushtestPage {
       } else {
         content = event.content;
       }
-      console.log('receive local notification: ' + JSON.stringify(event));
+      alert('receive local notification: ' + JSON.stringify(event));
     }, false);
   }
 
@@ -65,19 +65,19 @@ export class JpushtestPage {
   tagResultHandler = function (result) {
     var sequence: number = result.sequence;
     var tags: Array<string> = result.tags == null ? [] : result.tags;
-    console.log('Success!' + '\nSequence: ' + sequence + '\nTags: ' + tags.toString());
+    alert('Success!' + '\nSequence: ' + sequence + '\nTags: ' + tags.toString());
   };
 
   aliasResultHandler = function (result) {
     var sequence: number = result.sequence;
     var alias: string = result.alias;
-    console.log('Success!' + '\nSequence: ' + sequence + '\nAlias: ' + alias);
+    alert('Success!' + '\nSequence: ' + sequence + '\nAlias: ' + alias);
   };
 
   errorHandler = function (err) {
     var sequence: number = err.sequence;
     var code = err.code;
-    console.log('Error!' + '\nSequence: ' + sequence + '\nCode: ' + code);
+    alert('Error!' + '\nSequence: ' + sequence + '\nCode: ' + code);
   };
 
   setTags() {
@@ -98,7 +98,7 @@ export class JpushtestPage {
         var sequence = result.sequence;
         var tag = result.tag;
         var isBind = result.isBind;
-        console.log('Sequence: ' + sequence + '\nTag: ' + tag + '\nIsBind: ' + isBind);
+        alert('Sequence: ' + sequence + '\nTag: ' + tag + '\nIsBind: ' + isBind);
       }).catch(this.errorHandler);
   }
 
