@@ -5,7 +5,7 @@
   Ionic pages and navigation.
 -->
 
-<div class="main">
-  <img src="./assets/images/advertising_1.png" alt="">
+<div class="main"><!-- [lazy-load]="ads_img" -->
+  <img src="{{ads_img}}" alt=""><!--  [ads-click]="data?.data[0]?.link_type" -->
   <button ion-button round color="cancelBtn" small (click)="jumpOver()">跳过 {{timeDown}}s</button>
 </div>

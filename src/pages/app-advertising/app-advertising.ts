@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams, IonicPage } from 'ionic-angular';
 import { Storage } from '@ionic/storage';
+import { HttpService } from '../../providers/http-service';
+import { GetImageDirective } from '../../directives/get-image/get-image';
 
 /**
  * Generated class for the AppAdvertisingPage page.
@@ -13,8 +15,11 @@ import { Storage } from '@ionic/storage';
 @Component({
   selector: 'page-app-advertising',
   templateUrl: 'app-advertising.html',
+  providers: [GetImageDirective]
 })
 export class AppAdvertisingPage {
+  data: any;
+  ads_img: any;
   timer: any;
   timeDown: number = 3;
 
@@ -22,14 +27,33 @@ export class AppAdvertisingPage {
     public navCtrl: NavController,
     public navParams: NavParams,
     public storage: Storage,
+    public httpServ: HttpService,
+    public getImageDir: GetImageDirective,
   ) { }
 
   ngOnInit() {
+
+    this.httpServ.ads({ int_pos_id: '78', size: '1', is_app: '1' }).then(res => {
+      if (res.status) {
+        this.data = res;
+        this.ads_img = res.data[0].ad_img;
+        /* let img = new Image();
+        img.src = res.data[0].ad_img;
+        img.onload = () => {
+          this.ads_img = img.src;
+        } */
+        /* this.getImageDir.dealImage(res.data[0].ad_img,(base)=>{
+          console.log(base)
+          // this.storage.set('ads_img',base);
+          this.ads_img = base;
+        }) */
+      }
+    })
     this.timer = setInterval((e) => {
       if (this.timeDown === 1) {
-        this.jumpOver();
+        this.jumpOver()
       } else {
-        this.timeDown--
+        --this.timeDown
       }
     }, 1000);
   }
