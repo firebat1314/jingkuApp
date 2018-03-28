@@ -33,6 +33,7 @@ import { QimoChatProvider } from '../providers/qimo-chat/qimo-chat';
 import { XimuProvider } from '../providers/ximu/ximu';
 import * as ionicGalleryModal from 'ionic-gallery-modal';
 import { HAMMER_GESTURE_CONFIG } from '@angular/platform-browser';
+import { ImgcacheProvider } from '../providers/imgcache/imgcache';
 @NgModule({
   declarations: [
     MyApp,
@@ -89,7 +90,8 @@ import { HAMMER_GESTURE_CONFIG } from '@angular/platform-browser';
     WxServiceProvider,
     QimoChatProvider,
     XimuProvider,
-    {provide: HAMMER_GESTURE_CONFIG,useClass: ionicGalleryModal.GalleryModalHammerConfig,}
+    {provide: HAMMER_GESTURE_CONFIG,useClass: ionicGalleryModal.GalleryModalHammerConfig,},
+    ImgcacheProvider
   ]
 })
 export class AppModule { }

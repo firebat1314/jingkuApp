@@ -9,6 +9,7 @@ import { Native } from "../providers/native";
 import { JpushService } from "../providers/jpush-service";
 import { WxServiceProvider } from '../providers/wx-service/wx-service';
 import { UpgradeProvider } from '../providers/upgrade/upgrade';
+import { ImgcacheProvider } from '../providers/imgcache/imgcache';
 
 @Component({
   templateUrl: 'app.html'
@@ -33,6 +34,7 @@ export class MyApp {
     private upgradeProvider: UpgradeProvider,
     private app: App,
     private wxService: WxServiceProvider,
+    private imgcacheServ: ImgcacheProvider,
   ) {
     //———————————————————————— app更新 ————————————————————————
     this.upgradeProvider.detectionUpgrade();
@@ -52,6 +54,13 @@ export class MyApp {
   }
   initializeApp() {
     this.platform.ready().then(() => {
+      // Okay, so the platform is ready and our plugins are available.
+      // Here you can do any higher level native things you might need.
+      this.native.isAndroid() ? this.statusBar.styleLightContent() : this.statusBar.styleDefault();
+      this.splashScreen.hide();
+      
+      this.imgcacheServ.initImgCache().then(() => {
+      });
       //———————————————————————— 初次进入app引导页面 ————————————————————————
       if (this.native.isMobile()) {
         this.storage.get('has_entered').then((result) => {
@@ -69,7 +78,7 @@ export class MyApp {
         // this.rootPage = 'WellcomeNewmPage';
         this.storage.get('hasLoggedIn').then((result) => {
           if (result) {
-            this.rootPage = 'TabsPage';//TabsPage//WellcomeNewmPage
+            this.rootPage = 'AppAdvertisingPage';//TabsPage//WellcomeNewmPage
             // this.nav.setRoot('TabsPage', {}, { animate: true, direction: 'forward' });
           } else {
             if (location.href.indexOf('signup') > -1) {
@@ -81,10 +90,6 @@ export class MyApp {
           }
         });
       }
-      // Okay, so the platform is ready and our plugins are available.
-      // Here you can do any higher level native things you might need.
-      this.native.isAndroid()?this.statusBar.styleLightContent():this.statusBar.styleDefault();
-      this.splashScreen.hide();
 
       //———————————————————————— 注册返回按键事件 ————————————————————————
       this.platform.registerBackButtonAction((): any => {

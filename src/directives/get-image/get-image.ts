@@ -71,18 +71,19 @@ export class GetImageDirective {
         this.native.showToast("图片超过限制");
       } else {
         console.log('压缩品质:', this.quality);
-        this.dealImage(event.target['result'], {
-          quality: this.quality
-        }, (base) => {
+        this.dealImage(event.target['result'], (base) => {
           // console.log("压缩后：" + base.length / 1024 + " ");　
           this.fileChecked.emit(base);
+        }, {
+          quality: this.quality
         })
       }
     };
     // console.log(reader, reader.onload, reader.onloadend, reader.readAsDataURL)
   }
-  dealImage(path: string, obj: { width?: number, height?: number, quality?: number }, callback) {
+  dealImage(path: string, callback, obj: { width?: number, height?: number, quality?: number }={}) {
     let img = new Image();
+    img.setAttribute('crossOrigin', 'anonymous');
     img.src = path;
     img.onload = function () {
       // 默认按比例压缩

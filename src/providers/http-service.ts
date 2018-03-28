@@ -670,4 +670,7 @@ export class HttpService {
   newArea(data?: Object){//新新品专区
     return this.http.post(IP + '/index/newArea', data)
   }
+  ads(data?: Object){//index/ads     int_pos_id  广告位id  size 个数   is_app 1 
+    return this.http.post(IP + '/index/ads', data)
+  }
 }
