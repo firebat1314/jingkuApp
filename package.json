@@ -71,7 +71,7 @@
     "ionicons": "3.0.0",
     "jpush-phonegap-plugin": "git+https://github.com/jpush/jpush-phonegap-plugin.git",
     "mx.ferreyra.callnumber": "~0.0.2",
-    "phonegap-plugin-barcodescanner": "~7.0.2",
+    "phonegap-plugin-barcodescanner": "^7.0.4",
     "rxjs": "5.4.0",
     "sw-toolbox": "3.6.0",
     "zone.js": "0.8.12"
@@ -145,7 +145,8 @@
       "cordova-plugin-statusbar": {},
       "cordova-plugin-camera": {},
       "phonegap-plugin-barcodescanner": {
-        "CAMERA_USAGE_DESCRIPTION": "使用相机"
+        "CAMERA_USAGE_DESCRIPTION": "使用相机",
+        "ANDROID_SUPPORT_V4_VERSION": "27.+"
       },
       "jpush-phonegap-plugin": {
         "APP_KEY": "e889e9b93cf3bfac71e966ec"
