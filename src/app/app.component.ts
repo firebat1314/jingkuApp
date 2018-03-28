@@ -114,7 +114,6 @@ export class MyApp {
       //————————————————————————————————————————————————————————————————————————
       // 初始化极光推送
       if (this.native.isMobile()) {
-        alert(this.jpush.getRegistrationID())
         this.jpush.init();  // 初始化
         this.jpush.setDebugMode(true);
         document.addEventListener('jpush.receiveNotification', (event: any) => {

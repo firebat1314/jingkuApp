@@ -118,8 +118,8 @@
         <variable name="CAMERA_USAGE_DESCRIPTION" value="使用相机" />
         <variable name="ANDROID_SUPPORT_V4_VERSION" value="27.+" />
     </plugin>
-    <plugin name="jpush-phonegap-plugin" spec="git+https://github.com/jpush/jpush-phonegap-plugin.git">
+    <plugin name="cordova-plugin-pingpp" spec="git+https://git.coding.net/pingplusplus/pingpp-cordova.git" />
+    <plugin name="jpush-phonegap-plugin" spec="^3.4.1">
         <variable name="APP_KEY" value="e889e9b93cf3bfac71e966ec" />
     </plugin>
-    <plugin name="cordova-plugin-pingpp" spec="git+https://git.coding.net/pingplusplus/pingpp-cordova.git" />
 </widget>
