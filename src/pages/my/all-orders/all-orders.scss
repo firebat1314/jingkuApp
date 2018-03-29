@@ -54,12 +54,14 @@ page-all-orders {
                     color: #999;
                     font-size: 1.2rem;
                     width: 70%;
+                    overflow: hidden;
+                    text-overflow: ellipsis;
                     h2 {
                         color: #4d4d4d;
                         font-size: 1.6rem;
                         @include ellipsis_1();
                         &+div {
-                            @include ellipsis_2();
+                            // @include ellipsis_2();
                             color: inherit;
                             font-size: 1.2rem;
                         }

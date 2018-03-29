@@ -44,13 +44,21 @@
                     <img img-lazy-load="{{item.thumb}}">
                 </ion-thumbnail>
                 <div class="my-content">
-                    <div class="left">
+                    <div class="left" *ngIf="!(item.cutting_id>0)">
                         <h2>{{item.goods_name}}</h2>
                         <div>
                             <span *ngIf="item.qiujing">球镜：{{item.qiujing}}&nbsp;</span>
                             <span *ngIf="item.zhujing">柱镜：{{item.zhujing}}&nbsp;</span>
                             <span *ngIf="item.zhouwei">轴位：{{item.zhouwei}}&nbsp;</span>
                             <div [innerHtml]="item.goods_attr"></div>
+                        </div>
+                    </div>
+                    <div class="left" *ngIf="item?.cutting_id>0">
+                        <h2>{{item?.cutting_name}}</h2>
+                        <div>
+                            <p *ngFor="let cut_attrs of item?.cutting_attr">
+                                <span *ngFor="let cut_attr of cut_attrs">{{cut_attr}}</span>
+                            </p>
                         </div>
                     </div>
                     <div class="right">
