@@ -1,5 +1,6 @@
 import { Directive, HostListener, Input } from '@angular/core';
 import { NavController, Events } from "ionic-angular";
+import { Storage } from '@ionic/storage';
 
 /**
  * Generated class for the AdsClickDirective directive.
@@ -15,6 +16,7 @@ export class AdsClickDirective {
   constructor(
     private navCtrl: NavController,
     private events: Events,
+    private storage: Storage,
   ) {
     // console.log('Hello AdsClickDirective Directive');
   }
@@ -22,25 +24,31 @@ export class AdsClickDirective {
 
   @HostListener('click') onClick() {
     console.log(this.link_type);
-    if (this.link_type.type_name == 'category') {
-      this.goBrandListPage({listId:this.link_type.type_value});
-    } else if (this.link_type.type_name == 'goods') {
-      this.goParticularsPage({goodsId: this.link_type.type_value});
-    } else if (this.link_type.type_name == "brand") {
-      this.goBrandListPage({brandId:this.link_type.type_value});
-    } else if (this.link_type.type_name == "search") {
-      this.goBrandListPage({keyword:this.link_type.type_value});
-    }
+    this.storage.get('hasLoggedIn').then(res => {
+      if (res) {
+        if (this.link_type.type_name == 'category') {
+          this.goBrandListPage({ listId: this.link_type.type_value });
+        } else if (this.link_type.type_name == 'goods') {
+          this.goParticularsPage({ goodsId: this.link_type.type_value });
+        } else if (this.link_type.type_name == "brand") {
+          this.goBrandListPage({ brandId: this.link_type.type_value });
+        } else if (this.link_type.type_name == "search") {
+          this.goBrandListPage({ keyword: this.link_type.type_value });
+        }
+      } /* else {
+        this.navCtrl.setRoot('LoginPage', {}, { animate: true, animation: 'md-transition', direction: 'forward' });
+      } */
+    })
   }
   goClassPage(value) {
     this.navCtrl.popToRoot();
     this.navCtrl.parent.select(1);
     this.events.publish('classify:selectSegment', value);
   }
-  goBrandListPage(data){
-    this.navCtrl.push('BrandListPage',data)
+  goBrandListPage(data) {
+    this.navCtrl.push('BrandListPage', data)
   }
-  goParticularsPage(data){
+  goParticularsPage(data) {
     this.navCtrl.push('ParticularsPage', data)
   }
 }

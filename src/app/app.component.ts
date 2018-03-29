@@ -77,7 +77,7 @@ export class MyApp {
         // this.rootPage = 'WellcomeNewmPage';//TabsPage//WellcomeNewmPage
         this.storage.get('hasLoggedIn').then((result) => {
           if (result) {
-            this.rootPage = 'AppAdvertisingPage';//TabsPage//WellcomeNewmPage
+            this.rootPage = 'TabsPage';//TabsPage//WellcomeNewmPage
             // this.nav.setRoot('TabsPage', {}, { animate: true, direction: 'forward' });
           } else {
             if (location.href.indexOf('signup') > -1) {
