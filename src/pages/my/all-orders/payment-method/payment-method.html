@@ -50,7 +50,7 @@
                     </div>
                     <ion-checkbox color="jingku1" mode="ios" [checked]="yE" style="pointer-events:none;"></ion-checkbox>
                 </div>
-                <div class="zf_x" (click)="paymentType=='alipay'?paymentType='':paymentType='alipay';bt=false" *ngIf="!isWeixin||isMobile"
+                <div class="zf_x" (click)="paymentType=='alipay'?paymentType='':paymentType='alipay';bt=false" *ngIf="!native.isWeixin()||isMobile"
                     [class.selected]="paymentType=='alipay'" [class.disable]="bt">
                     <img src="./assets/icon/close_ico5.png" alt="">
                     <div class="cont">
@@ -59,7 +59,7 @@
                     </div>
                     <ion-checkbox color="jingku1" mode="ios" [checked]="paymentType=='alipay'" style="pointer-events:none;"></ion-checkbox>
                 </div>
-                <div class="zf_x" (click)="paymentType=='weixin'?paymentType='':paymentType='weixin';bt=false" *ngIf="isWeixin||isMobile"
+                <div class="zf_x" (click)="paymentType=='weixin'?paymentType='':paymentType='weixin';bt=false" *ngIf="(native.isWeixin()&&!native.isMiniprogram())||isMobile"
                     [class.selected]="paymentType=='weixin'" [class.disable]="bt">
                     <img src="./assets/icon/close_ico6.png" alt="">
                     <div class="cont">
