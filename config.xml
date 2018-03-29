@@ -122,4 +122,5 @@
     <plugin name="jpush-phonegap-plugin" spec="^3.4.1">
         <variable name="APP_KEY" value="e889e9b93cf3bfac71e966ec" />
     </plugin>
+    <plugin name="cordova-open-native-settings" spec="^1.5.0" />
 </widget>
