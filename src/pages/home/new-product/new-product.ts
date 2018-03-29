@@ -19,19 +19,17 @@ export class NewProductPage {
   data: any;
   constructor(
     public navCtrl: NavController,
-     public navParams: NavParams,
-     public httpSrv: HttpService
-    ) {
+    public navParams: NavParams,
+    public httpSrv: HttpService
+  ) {
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad NewProductPage');
   }
-  ngOnInit(){
-    this.httpSrv.newArea().then(res=>{
-      if(res.status){
-        this.data = res.status;
-      }
+  ngOnInit() {
+    this.httpSrv.newArea().then(res => {
+      this.data = res;
     })
   }
 }

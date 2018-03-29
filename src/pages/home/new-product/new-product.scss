@@ -1,3 +1,132 @@
 page-new-product {
-
+    img {
+        display: block;
+    }
+    .banenr {
+        img {
+            width: 100%;
+            display: block;
+        }
+    }
+    .fore2 {
+        padding: 8px;
+        display: flex;
+        background: #ffffff;
+        .goods_tit {
+            font-size: 16px;
+            text-align: left;
+            margin: 10px 0;
+            height: 47px;
+            color: #999;
+            em {
+                color: #3f69a5;
+            }
+            .goodsname {
+                color: #999;
+                font-size: 14px;
+            }
+        }
+        .left {
+            width: 50%;
+            margin-right: 8px;
+        }
+        .right {
+            width: 50%;
+        }
+    }
+    %head {
+        .head {
+            text-align: center;
+            padding: 16px 0;
+            .theme_name {
+                font-size: 18px;
+                font-weight: 500;
+            }
+            .line {
+                border-top: #999 1px solid;
+                margin: 8px auto;
+                width: 80%;
+            }
+            .theme_dec {
+                color: #999;
+                em {
+                    margin: 0 8px;
+                    display: inline-block;
+                }
+            }
+        }
+    }
+    .fore3 {
+        background: #ffffff url(../assets/images/images/newproduct_02.jpg) no-repeat center/100% 100%;
+        padding: 14px;
+        .container {
+            background: #ffffff;
+        }
+        @extend %head;
+        .imgs {
+            display: flex;
+            padding: 0 8px 10px;
+            >div {
+                width: 50%;
+                .img {
+                    max-width: 100%;
+                }
+                &:nth-child(2n+1) {
+                    margin-right: 8px;
+                }
+            }
+        }
+    }
+    %goods {
+        .goods {
+            display: flex;
+            flex-wrap: wrap;
+            padding: 0 8px 8px;
+            .item {
+                width: 49%;
+                padding-top: 5px;
+                margin-top: -5px;
+                &:nth-child(2n+1) {
+                    margin-right: 2%;
+                }
+                .img {
+                    border: #e0e0e0 1px solid;
+                    position: relative;
+                }
+                .new {
+                    background: #e60000;
+                    color: #fff;
+                    padding: 3px;
+                    position: absolute;
+                    right: 5px;
+                    top: -2px;
+                }
+                .name {
+                    @include ellipsis_1();
+                    color: #999999;
+                    margin: 8px 0;
+                }
+                .price {
+                    color: #e60000;
+                    margin: 8px 0;
+                    font-size: 16px;
+                }
+            }
+        }
+    }
+    .fore4 {
+        background: #ffffff;
+        @extend %head;
+        @extend %goods;
+    }
+    .fore5 {
+        background: #ffffff;
+        @extend %head;
+        @extend %goods;
+    }
+    .fore6 {
+        background: #ffffff;
+        @extend %head;
+        @extend %goods;
+    }
 }
