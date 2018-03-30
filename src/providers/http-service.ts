@@ -668,7 +668,7 @@ export class HttpService {
       return this.http.post(IP + '/User/withdrawal', data)
   }
   newArea(data?: Object){//新新品专区
-    return this.http.post(IP + '/index/newArea', data)
+    return this.http.post(IP + '/index/newArea', data, { showLoading: true })
   }
   ads(data?: Object){//index/ads     int_pos_id  广告位id  size 个数   is_app 1 
     return this.http.post(IP + '/index/ads', data)
