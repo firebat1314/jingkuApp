@@ -32,7 +32,6 @@ export class NewMyPage {
 		private QimoChat: QimoChatProvider,
 		private ximu: XimuProvider,
 	) {
-		console.log(this.isAndroid)
 		this.events.subscribe('my:update', () => {
 			this.httpResult();
 		})
