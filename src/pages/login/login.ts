@@ -35,7 +35,7 @@ export class LoginPage {
     console.log('ionViewDidLoad LoginPage')
   }
   goToHome(form) {
-    this.httpService.login({ username: this.ele.nativeElement.querySelector('input[name=username]').value, password: this.ele.nativeElement.querySelector('input[name=password]').value }).then(data => {
+    this.httpService.login({ username: this.ele.nativeElement.querySelector('input[name=username]').value, password: this.ele.nativeElement.querySelector('input[name=loginpassword]').value }).then(data => {
       // console.log(data)
       if (data.status == 1) {
 

@@ -17,6 +17,9 @@ export class JpushService {
 
   constructor(public storage: Storage, public jpush: JPush, public nativeService: Native) {
 
+    document.addEventListener('jpush.receiveRegistrationId',  (event:any) => {
+      alert(event.registrationId)
+    }, false)
     document.addEventListener('jpush.receiveNotification', (event: any) => {
       var content;
       if (this.nativeService.isAndroid()) {
@@ -26,7 +29,6 @@ export class JpushService {
       }
       alert('Receive notification: ' + JSON.stringify(event));
     }, false);
-
     document.addEventListener('jpush.openNotification', (event: any) => {
       var content;
       if (this.nativeService.isAndroid()) {
@@ -52,46 +54,28 @@ export class JpushService {
     }, false);
   }
   init() {
-    return this.jpush.init().catch(err=>console.log(err));
+    return this.jpush.init().then(res=>console.log('init',res)).catch(err=>console.log('initError',err))
   }
   setDebugMode(isDebug: boolean){
-    return this.jpush.setDebugMode(isDebug).catch(err=>console.log(err));
+    return this.jpush.setDebugMode(isDebug).then(res=>console.log('result',res)).catch(err=>console.log('error',err))
   }
-  isPushStopped(successCallback?) {
-    return this.jpush.isPushStopped().catch(err=>console.log(err));
+  isPushStopped() {
+    return this.jpush.isPushStopped().then(res=>{console.log('result',res); return res}).catch(err=>console.log('error',err))
   }
-  stopPush(successCallback?) {
-    return this.jpush.stopPush().catch(err=>console.log(err));
+  stopPush() {
+    return this.jpush.stopPush().then(res=>console.log('result',res)).catch(err=>console.log('error',err))
   }
-  resumePush(successCallback?) {
-    return this.jpush.resumePush().catch(err=>console.log(err));
+  resumePush() {
+    return this.jpush.resumePush().then(res=>console.log('result',res)).catch(err=>console.log('error',err))
   }
   getRegistrationID() {
     return this.jpush.getRegistrationID()
       .then(rId => {
         this.registrationId = rId;
-      }).catch(err=>console.log(err));
+      }).catch(err=>console.log('error',err))
   }
-  tagResultHandler = function (result) {
-    var sequence: number = result.sequence;
-    var tags: Array<string> = result.tags == null ? [] : result.tags;
-    alert('Success!' + '\nSequence: ' + sequence + '\nTags: ' + tags.toString());
-  };
-
-  aliasResultHandler = function (result) {
-    var sequence: number = result.sequence;
-    var alias: string = result.alias;
-    alert('Success!' + '\nSequence: ' + sequence + '\nAlias: ' + alias);
-  };
-
-  errorHandler = function (err) {
-    var sequence: number = err.sequence;
-    var code = err.code;
-    alert('Error!' + '\nSequence: ' + sequence + '\nCode: ' + code);
-  };
-
   setTags(tags?: Array<string>) {
-    this.jpush.setTags({ sequence: this.sequence++, tags: [...tags] })
+    return this.jpush.setTags({ sequence: this.sequence++, tags: [...tags] })
       .then(this.tagResultHandler)
       .catch(this.errorHandler);
   }
@@ -156,4 +140,21 @@ export class JpushService {
     }
   }
 
+  tagResultHandler = function (result) {
+    var sequence: number = result.sequence;
+    var tags: Array<string> = result.tags == null ? [] : result.tags;
+    alert('Success!' + '\nSequence: ' + sequence + '\nTags: ' + tags.toString());
+  };
+
+  aliasResultHandler = function (result) {
+    var sequence: number = result.sequence;
+    var alias: string = result.alias;
+    alert('Success!' + '\nSequence: ' + sequence + '\nAlias: ' + alias);
+  };
+
+  errorHandler = function (err) {
+    var sequence: number = err.sequence;
+    var code = err.code;
+    alert('Error!' + '\nSequence: ' + sequence + '\nCode: ' + code);
+  };
 }

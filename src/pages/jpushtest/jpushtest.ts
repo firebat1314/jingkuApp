@@ -18,7 +18,8 @@ export class JpushtestPage {
     public navCtrl: NavController,
     public jpush: JPush,
     public nativeService: Native,
-  ) {}
+  ) {
+  }
   getRegistrationID() {
     this.jpush.getRegistrationID()
       .then(rId => {
@@ -107,9 +108,9 @@ export class JpushtestPage {
 
   addLocalNotification() {
     if (this.nativeService.isAndroid()) {
-      this.jpush.addLocalNotification(0, 'Hello JPush', 'JPush', 1, 0);
+      this.jpush.addLocalNotification(0, 'Hello JPush', 'JPush', 1, 1000);
     } else {
-      this.jpush.addLocalNotificationForIOS(0, 'Hello JPush', 1, 'localNoti1');
+      this.jpush.addLocalNotificationForIOS(1, 'Hello JPush', 1, 'localNoti1');
     }
   }
 }

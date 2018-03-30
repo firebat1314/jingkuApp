@@ -9,6 +9,7 @@ import { Native } from "../providers/native";
 import { WxServiceProvider } from '../providers/wx-service/wx-service';
 import { UpgradeProvider } from '../providers/upgrade/upgrade';
 import { JpushService } from '../providers/jpush-service';
+import { JPush } from '@jiguang-ionic/jpush';
 
 @Component({
   templateUrl: 'app.html'
@@ -84,7 +85,11 @@ export class MyApp {
       // Here you can do any higher level native things you might need.
       this.native.isAndroid() ? this.statusBar.styleLightContent() : this.statusBar.styleDefault();
       this.splashScreen.hide();
-
+      // 初始化极光推送
+      if (this.native.isMobile()) {
+        this.jpushServ.init();
+        this.jpushServ.setDebugMode(true);  
+      }
       //———————————————————————— 注册返回按键事件 ————————————————————————
       this.platform.registerBackButtonAction((): any => {
         if (this.keyboard.isOpen()) {
@@ -112,15 +117,6 @@ export class MyApp {
         return activeNav.canGoBack() ? activeNav.pop() : this.showExit()
       }, 1);
       //————————————————————————————————————————————————————————————————————————
-      // 初始化极光推送
-      if (this.native.isMobile()) {
-        this.jpushServ.init().then(res=>{
-          console.log(res)
-        });  // 初始化
-        this.jpushServ.setDebugMode(true).then(res=>{
-          console.log(res)
-        });  // 初始化
-      }
       var timer;
       if (this.native.isWeixin()) {
         this.app.viewDidEnter.subscribe((e) => {
