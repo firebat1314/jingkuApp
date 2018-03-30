@@ -3,7 +3,6 @@ import { Component } from '@angular/core';
 import { NavController, IonicPage } from 'ionic-angular';
 import { JPush } from '@jiguang-ionic/jpush';
 import { Native } from '../../providers/native';
-import { JpushService } from '../../providers/jpush-service';
 @IonicPage()
 @Component({
   selector: 'page-jpushtest',
@@ -12,54 +11,22 @@ import { JpushService } from '../../providers/jpush-service';
 export class JpushtestPage {
 
   public registrationId: string;
-  
+
   sequence: number = 0;
 
   constructor(
     public navCtrl: NavController,
     public jpush: JPush,
     public nativeService: Native,
-    private JpushServ: JpushService,
-  ) {
-    document.addEventListener('jpush.receiveNotification', (event: any) => {
-      var content;
-      if (this.nativeService.isAndroid()) {
-        content = event.alert;
-      } else {
-        content = event.aps.alert;
-      }
-      alert('Receive notification: ' + JSON.stringify(event));
-    }, false);
-
-    document.addEventListener('jpush.openNotification', (event: any) => {
-      var content;
-      if (this.nativeService.isAndroid()) {
-        content = event.alert;
-      } else {  // iOS
-        if (event.aps == undefined) { // 本地通知
-          content = event.content;
-        } else {  // APNS
-          content = event.aps.alert;
-        }
-      }
-      alert('open notification: ' + JSON.stringify(event));
-    }, false);
-    
-    document.addEventListener('jpush.receiveLocalNotification', (event: any) => {
-      // iOS(*,9) Only , iOS(10,*) 将在 jpush.openNotification 和 jpush.receiveNotification 中触发。
-      var content;
-      if (this.nativeService.isAndroid()) {
-      } else {
-        content = event.content;
-      }
-      alert('receive local notification: ' + JSON.stringify(event));
-    }, false);
-  }
-
+  ) {}
   getRegistrationID() {
     this.jpush.getRegistrationID()
       .then(rId => {
         this.registrationId = rId;
+        alert(rId)
+      })
+      .catch(res => {
+        alert(res)
       });
   }
   tagResultHandler = function (result) {
@@ -140,9 +107,9 @@ export class JpushtestPage {
 
   addLocalNotification() {
     if (this.nativeService.isAndroid()) {
-      this.jpush.addLocalNotification(0, 'Hello JPush', 'JPush', 1, 5000);
+      this.jpush.addLocalNotification(0, 'Hello JPush', 'JPush', 1, 0);
     } else {
-      this.jpush.addLocalNotificationForIOS(5, 'Hello JPush', 1, 'localNoti1');
+      this.jpush.addLocalNotificationForIOS(0, 'Hello JPush', 1, 'localNoti1');
     }
   }
 }

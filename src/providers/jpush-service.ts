@@ -51,24 +51,26 @@ export class JpushService {
       alert('receive local notification: ' + JSON.stringify(event));
     }, false);
   }
-  init(isDebug: boolean, successCallback?) {
-    this.jpush.init().then(successCallback);
-    this.jpush.setDebugMode(isDebug);
+  init() {
+    return this.jpush.init().catch(err=>console.log(err));
+  }
+  setDebugMode(isDebug: boolean){
+    return this.jpush.setDebugMode(isDebug).catch(err=>console.log(err));
   }
   isPushStopped(successCallback?) {
-    this.jpush.isPushStopped().then(successCallback);
+    return this.jpush.isPushStopped().catch(err=>console.log(err));
   }
   stopPush(successCallback?) {
-    this.jpush.stopPush().then(successCallback);
+    return this.jpush.stopPush().catch(err=>console.log(err));
   }
   resumePush(successCallback?) {
-    this.jpush.resumePush().then(successCallback);
+    return this.jpush.resumePush().catch(err=>console.log(err));
   }
   getRegistrationID() {
-    this.jpush.getRegistrationID()
+    return this.jpush.getRegistrationID()
       .then(rId => {
         this.registrationId = rId;
-      });
+      }).catch(err=>console.log(err));
   }
   tagResultHandler = function (result) {
     var sequence: number = result.sequence;
@@ -95,13 +97,13 @@ export class JpushService {
   }
 
   addTags(tags?: Array<string>) {
-    this.jpush.addTags({ sequence: this.sequence++, tags: [...tags] })
+    return this.jpush.addTags({ sequence: this.sequence++, tags: [...tags] })
       .then(this.tagResultHandler)
       .catch(this.errorHandler);
   }
 
   checkTagBindState(tags: string = '') {
-    this.jpush.checkTagBindState({ sequence: this.sequence++, tag: tags })
+    return this.jpush.checkTagBindState({ sequence: this.sequence++, tag: tags })
       .then(result => {
         var sequence = result.sequence;
         var tag = result.tag;
@@ -111,13 +113,13 @@ export class JpushService {
   }
 
   deleteTags(tags?: Array<string>) {
-    this.jpush.deleteTags({ sequence: this.sequence++, tags: [...tags] })
+    return this.jpush.deleteTags({ sequence: this.sequence++, tags: [...tags] })
       .then(this.tagResultHandler)
       .catch(this.errorHandler);
   }
 
   getAllTags() {
-    this.jpush.getAllTags({ sequence: this.sequence++ })
+    return this.jpush.getAllTags({ sequence: this.sequence++ })
       .then(this.tagResultHandler)
       .catch(this.errorHandler);
   }
@@ -129,28 +131,28 @@ export class JpushService {
   }
 
   setAlias() {
-    this.jpush.setAlias({ sequence: this.sequence++, alias: 'TestAlias' })
+    return this.jpush.setAlias({ sequence: this.sequence++, alias: 'TestAlias' })
       .then(this.aliasResultHandler)
       .catch(this.errorHandler);
   }
 
   getAlias() {
-    this.jpush.getAlias({ sequence: this.sequence++ })
+    return this.jpush.getAlias({ sequence: this.sequence++ })
       .then(this.aliasResultHandler)
       .catch(this.errorHandler);
   }
 
   deleteAlias() {
-    this.jpush.deleteAlias({ sequence: this.sequence++ })
+    return this.jpush.deleteAlias({ sequence: this.sequence++ })
       .then(this.aliasResultHandler)
       .catch(this.errorHandler);
   }
 
   addLocalNotification() {
     if (this.nativeService.isAndroid()) {
-      this.jpush.addLocalNotification(0, 'Hello JPush', 'JPush', 1, 5000);
+      return this.jpush.addLocalNotification(0, 'Hello JPush', 'JPush', 1, 5000);
     } else {
-      this.jpush.addLocalNotificationForIOS(5, 'Hello JPush', 1, 'localNoti1');
+      return this.jpush.addLocalNotificationForIOS(5, 'Hello JPush', 1, 'localNoti1');
     }
   }
 

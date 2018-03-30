@@ -8,7 +8,7 @@ import { TabsPage } from '../pages/tabs/tabs';
 import { Native } from "../providers/native";
 import { WxServiceProvider } from '../providers/wx-service/wx-service';
 import { UpgradeProvider } from '../providers/upgrade/upgrade';
-import { JPush } from '@jiguang-ionic/jpush';
+import { JpushService } from '../providers/jpush-service';
 
 @Component({
   templateUrl: 'app.html'
@@ -32,7 +32,7 @@ export class MyApp {
     private upgradeProvider: UpgradeProvider,
     private app: App,
     private wxService: WxServiceProvider,
-    private jpush: JPush,
+    private jpushServ: JpushService,
   ) {
     //———————————————————————— app更新 ————————————————————————
     this.upgradeProvider.detectionUpgrade();
@@ -114,42 +114,12 @@ export class MyApp {
       //————————————————————————————————————————————————————————————————————————
       // 初始化极光推送
       if (this.native.isMobile()) {
-        alert(this.jpush.getRegistrationID())
-        this.jpush.init();  // 初始化
-        this.jpush.setDebugMode(true);
-        document.addEventListener('jpush.receiveNotification', (event: any) => {
-          var content;
-          if (this.native.isAndroid()) {
-            content = event.alert;
-          } else {
-            content = event.aps.alert;
-          }
-          console.log('Receive notification: ' + JSON.stringify(event));
-        }, false);
-    
-        document.addEventListener('jpush.openNotification', (event: any) => {
-          var content;
-          if (this.native.isAndroid()) {
-            content = event.alert;
-          } else {  // iOS
-            if (event.aps == undefined) { // 本地通知
-              content = event.content;
-            } else {  // APNS
-              content = event.aps.alert;
-            }
-          }
-          console.log('open notification: ' + JSON.stringify(event));
-        }, false);
-    
-        document.addEventListener('jpush.receiveLocalNotification', (event: any) => {
-          // iOS(*,9) Only , iOS(10,*) 将在 jpush.openNotification 和 jpush.receiveNotification 中触发。
-          var content;
-          if (this.native.isAndroid()) {
-          } else {
-            content = event.content;
-          }
-          console.log('receive local notification: ' + JSON.stringify(event));
-        }, false);
+        this.jpushServ.init().then(res=>{
+          console.log(res)
+        });  // 初始化
+        this.jpushServ.setDebugMode(true).then(res=>{
+          console.log(res)
+        });  // 初始化
       }
       var timer;
       if (this.native.isWeixin()) {
