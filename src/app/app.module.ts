@@ -67,7 +67,7 @@ import { HAMMER_GESTURE_CONFIG } from '@angular/platform-browser';
     MyApp
   ],
   providers: [
-    { provide: ErrorHandler, useClass: IonicErrorHandler },
+    JPush,
     UserData,
     Native,
     HttpService,
@@ -85,11 +85,11 @@ import { HAMMER_GESTURE_CONFIG } from '@angular/platform-browser';
     Badge,
     Transfer,
     File,
-    JPush,
     InAppBrowser,
     WxServiceProvider,
     QimoChatProvider,
     XimuProvider,
+    { provide: ErrorHandler, useClass: IonicErrorHandler },
     {provide: HAMMER_GESTURE_CONFIG,useClass: ionicGalleryModal.GalleryModalHammerConfig,}
   ]
 })

@@ -43,6 +43,7 @@
     "@jiguang-ionic/jpush": "^1.0.2",
     "cordova-android": "6.2.3",
     "cordova-ios": "4.5.4",
+    "cordova-open-native-settings": "^1.5.0",
     "cordova-plugin-app-version": "~0.1.9",
     "cordova-plugin-badge": "~0.8.1",
     "cordova-plugin-camera": "~4.0.1",
@@ -67,9 +68,8 @@
     "ionic-gallery-modal": "^0.2.7",
     "ionic-plugin-keyboard": "~2.2.1",
     "ionic2-city-picker": "0.0.11",
-    "ionic2-super-tabs": "^4.1.5",
     "ionicons": "3.0.0",
-    "jpush-phonegap-plugin": "git+https://github.com/jpush/jpush-phonegap-plugin.git",
+    "jpush-phonegap-plugin": "^3.4.1",
     "mx.ferreyra.callnumber": "~0.0.2",
     "phonegap-plugin-barcodescanner": "^7.0.4",
     "rxjs": "5.4.0",
@@ -148,10 +148,11 @@
         "CAMERA_USAGE_DESCRIPTION": "使用相机",
         "ANDROID_SUPPORT_V4_VERSION": "27.+"
       },
+      "cordova-plugin-pingpp": {},
       "jpush-phonegap-plugin": {
         "APP_KEY": "e889e9b93cf3bfac71e966ec"
       },
-      "cordova-plugin-pingpp": {}
+      "cordova-open-native-settings": {}
     }
   }
 }
