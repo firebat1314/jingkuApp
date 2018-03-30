@@ -14,10 +14,12 @@ export class JpushService {
   public registrationId: string;
 
   sequence: number = 0;
-  
+
   constructor(public storage: Storage, public jpush: JPush, public nativeService: Native) {
 
-
+    document.addEventListener('jpush.receiveRegistrationId',  (event:any) => {
+      alert(event.registrationId)
+    }, false)
     document.addEventListener('jpush.receiveNotification', (event: any) => {
       var content;
       if (this.nativeService.isAndroid()) {
@@ -27,7 +29,6 @@ export class JpushService {
       }
       alert('Receive notification: ' + JSON.stringify(event));
     }, false);
-
     document.addEventListener('jpush.openNotification', (event: any) => {
       var content;
       if (this.nativeService.isAndroid()) {
@@ -52,25 +53,93 @@ export class JpushService {
       alert('receive local notification: ' + JSON.stringify(event));
     }, false);
   }
-  init(isDebug:boolean,successCallback?){
-    this.jpush.init().then(successCallback);
-    this.jpush.setDebugMode(isDebug);
+  init() {
+    return this.jpush.init().then(res=>console.log('init',res)).catch(err=>console.log('initError',err))
   }
-  isPushStopped(successCallback?){
-    this.jpush.isPushStopped().then(successCallback);
+  setDebugMode(isDebug: boolean){
+    return this.jpush.setDebugMode(isDebug).then(res=>console.log('result',res)).catch(err=>console.log('error',err))
   }
-  stopPush(successCallback?) {
-    this.jpush.stopPush().then(successCallback);
+  isPushStopped() {
+    return this.jpush.isPushStopped().then(res=>{console.log('result',res); return res}).catch(err=>console.log('error',err))
   }
-  resumePush(successCallback?){
-    this.jpush.resumePush().then(successCallback);
+  stopPush() {
+    return this.jpush.stopPush().then(res=>console.log('result',res)).catch(err=>console.log('error',err))
+  }
+  resumePush() {
+    return this.jpush.resumePush().then(res=>console.log('result',res)).catch(err=>console.log('error',err))
   }
   getRegistrationID() {
-    this.jpush.getRegistrationID()
+    return this.jpush.getRegistrationID()
       .then(rId => {
         this.registrationId = rId;
-      });
+      }).catch(err=>console.log('error',err))
   }
+  setTags(tags?: Array<string>) {
+    return this.jpush.setTags({ sequence: this.sequence++, tags: [...tags] })
+      .then(this.tagResultHandler)
+      .catch(this.errorHandler);
+  }
+
+  addTags(tags?: Array<string>) {
+    return this.jpush.addTags({ sequence: this.sequence++, tags: [...tags] })
+      .then(this.tagResultHandler)
+      .catch(this.errorHandler);
+  }
+
+  checkTagBindState(tags: string = '') {
+    return this.jpush.checkTagBindState({ sequence: this.sequence++, tag: tags })
+      .then(result => {
+        var sequence = result.sequence;
+        var tag = result.tag;
+        var isBind = result.isBind;
+        alert('Sequence: ' + sequence + '\nTag: ' + tag + '\nIsBind: ' + isBind);
+      }).catch(this.errorHandler);
+  }
+
+  deleteTags(tags?: Array<string>) {
+    return this.jpush.deleteTags({ sequence: this.sequence++, tags: [...tags] })
+      .then(this.tagResultHandler)
+      .catch(this.errorHandler);
+  }
+
+  getAllTags() {
+    return this.jpush.getAllTags({ sequence: this.sequence++ })
+      .then(this.tagResultHandler)
+      .catch(this.errorHandler);
+  }
+
+  cleanTags() {
+    this.jpush.cleanTags({ sequence: this.sequence++ })
+      .then(this.tagResultHandler)
+      .catch(this.errorHandler);
+  }
+
+  setAlias() {
+    return this.jpush.setAlias({ sequence: this.sequence++, alias: 'TestAlias' })
+      .then(this.aliasResultHandler)
+      .catch(this.errorHandler);
+  }
+
+  getAlias() {
+    return this.jpush.getAlias({ sequence: this.sequence++ })
+      .then(this.aliasResultHandler)
+      .catch(this.errorHandler);
+  }
+
+  deleteAlias() {
+    return this.jpush.deleteAlias({ sequence: this.sequence++ })
+      .then(this.aliasResultHandler)
+      .catch(this.errorHandler);
+  }
+
+  addLocalNotification() {
+    if (this.nativeService.isAndroid()) {
+      return this.jpush.addLocalNotification(0, 'Hello JPush', 'JPush', 1, 5000);
+    } else {
+      return this.jpush.addLocalNotificationForIOS(5, 'Hello JPush', 1, 'localNoti1');
+    }
+  }
+
   tagResultHandler = function (result) {
     var sequence: number = result.sequence;
     var tags: Array<string> = result.tags == null ? [] : result.tags;
@@ -88,71 +157,4 @@ export class JpushService {
     var code = err.code;
     alert('Error!' + '\nSequence: ' + sequence + '\nCode: ' + code);
   };
-
-  setTags() {
-    this.jpush.setTags({ sequence: this.sequence++, tags: ['Tag1', 'Tag2'] })
-      .then(this.tagResultHandler)
-      .catch(this.errorHandler);
-  }
-
-  addTags() {
-    this.jpush.addTags({ sequence: this.sequence++, tags: ['Tag3', 'Tag4'] })
-      .then(this.tagResultHandler)
-      .catch(this.errorHandler);
-  }
-
-  checkTagBindState() {
-    this.jpush.checkTagBindState({ sequence: this.sequence++, tag: 'Tag1' })
-      .then(result => {
-        var sequence = result.sequence;
-        var tag = result.tag;
-        var isBind = result.isBind;
-        alert('Sequence: ' + sequence + '\nTag: ' + tag + '\nIsBind: ' + isBind);
-      }).catch(this.errorHandler);
-  }
-
-  deleteTags() {
-    this.jpush.deleteTags({ sequence: this.sequence++, tags: ['Tag4'] })
-      .then(this.tagResultHandler)
-      .catch(this.errorHandler);
-  }
-
-  getAllTags() {
-    this.jpush.getAllTags({ sequence: this.sequence++ })
-      .then(this.tagResultHandler)
-      .catch(this.errorHandler);
-  }
-
-  cleanTags() {
-    this.jpush.cleanTags({ sequence: this.sequence++ })
-      .then(this.tagResultHandler)
-      .catch(this.errorHandler);
-  }
-
-  setAlias() {
-    this.jpush.setAlias({ sequence: this.sequence++, alias: 'TestAlias' })
-      .then(this.aliasResultHandler)
-      .catch(this.errorHandler);
-  }
-
-  getAlias() {
-    this.jpush.getAlias({ sequence: this.sequence++ })
-      .then(this.aliasResultHandler)
-      .catch(this.errorHandler);
-  }
-
-  deleteAlias() {
-    this.jpush.deleteAlias({ sequence: this.sequence++ })
-      .then(this.aliasResultHandler)
-      .catch(this.errorHandler);
-  }
-
-  addLocalNotification() {
-    if (this.nativeService.isAndroid()) {
-      this.jpush.addLocalNotification(0, 'Hello JPush', 'JPush', 1, 5000);
-    } else {
-      this.jpush.addLocalNotificationForIOS(5, 'Hello JPush', 1, 'localNoti1');
-    }
-  }
-
 }

@@ -1,9 +1,12 @@
 {
   "name": "jingku",
-  "version": "1.1.8",
+  "version": "1.2.1",
   "author": "jingku team",
   "homepage": "http://m.jingku.cn",
   "private": true,
+  "main": "index.js",
+  "repository": "https://github.com/firebat1314/jingkuApp.git",
+  "license": "MIT",
   "scripts": {
     "clean": "ionic-app-scripts clean",
     "build": "ionic-app-scripts build",
@@ -38,8 +41,9 @@
     "@ionic-native/transfer": "^3.5.0",
     "@ionic/storage": "^2.0.1",
     "@jiguang-ionic/jpush": "^1.0.2",
-    "cordova-android": "6.3.0",
+    "cordova-android": "6.2.3",
     "cordova-ios": "4.5.4",
+    "cordova-open-native-settings": "^1.5.0",
     "cordova-plugin-app-version": "~0.1.9",
     "cordova-plugin-badge": "~0.8.1",
     "cordova-plugin-camera": "~4.0.1",
@@ -47,13 +51,13 @@
     "cordova-plugin-console": "1.0.5",
     "cordova-plugin-device": "1.1.4",
     "cordova-plugin-file": "~4.3.1",
-    "cordova-plugin-file-transfer": "~1.6.3",
+    "cordova-plugin-file-transfer": "^1.7.1",
     "cordova-plugin-fullscreen": "~1.1.0",
     "cordova-plugin-http": "^1.2.0",
     "cordova-plugin-inappbrowser": "~1.7.1",
     "cordova-plugin-ionic-webview": "~1.1.15",
     "cordova-plugin-jcore": "^1.2.0",
-    "cordova-plugin-pingpp": "https://github.com/firebat1314/pingpp-cordova.git",
+    "cordova-plugin-pingpp": "git+https://git.coding.net/pingplusplus/pingpp-cordova.git",
     "cordova-plugin-screen-orientation": "~2.0.1",
     "cordova-plugin-splashscreen": "~4.0.3",
     "cordova-plugin-statusbar": "https://github.com/apache/cordova-plugin-statusbar.git",
@@ -65,11 +69,10 @@
     "ionic-gallery-modal": "^0.2.7",
     "ionic-plugin-keyboard": "~2.2.1",
     "ionic2-city-picker": "0.0.11",
-    "ionic2-super-tabs": "^4.1.5",
     "ionicons": "3.0.0",
     "jpush-phonegap-plugin": "^3.4.1",
     "mx.ferreyra.callnumber": "~0.0.2",
-    "phonegap-plugin-barcodescanner": "~7.0.2",
+    "phonegap-plugin-barcodescanner": "^7.0.4",
     "rxjs": "5.4.0",
     "sw-toolbox": "3.6.0",
     "zone.js": "0.8.12"
@@ -90,8 +93,8 @@
   "description": "jingku project",
   "cordova": {
     "platforms": [
-      "ios",
-      "android"
+      "android",
+      "ios"
     ],
     "cordovaPlatforms": [],
     "description": "jingku project",
@@ -141,17 +144,16 @@
       "cordova-plugin-app-version": {},
       "cordova-plugin-ionic-webview": {},
       "cordova-plugin-statusbar": {},
-      "cordova-plugin-pingpp": {},
       "cordova-plugin-camera": {},
       "phonegap-plugin-barcodescanner": {
-        "CAMERA_USAGE_DESCRIPTION": "使用相机"
+        "CAMERA_USAGE_DESCRIPTION": "使用相机",
+        "ANDROID_SUPPORT_V4_VERSION": "27.+"
       },
+      "cordova-plugin-pingpp": {},
       "jpush-phonegap-plugin": {
         "APP_KEY": "e889e9b93cf3bfac71e966ec"
-      }
+      },
+      "cordova-open-native-settings": {}
     }
-  },
-  "main": "index.js",
-  "repository": "https://github.com/firebat1314/jingkuApp.git",
-  "license": "MIT"
+  }
 }

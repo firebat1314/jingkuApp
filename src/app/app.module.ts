@@ -68,7 +68,7 @@ import { ImgcacheProvider } from '../providers/imgcache/imgcache';
     MyApp
   ],
   providers: [
-    { provide: ErrorHandler, useClass: IonicErrorHandler },
+    JPush,
     UserData,
     Native,
     HttpService,
@@ -86,13 +86,13 @@ import { ImgcacheProvider } from '../providers/imgcache/imgcache';
     Badge,
     Transfer,
     File,
-    JPush,
     InAppBrowser,
     WxServiceProvider,
     QimoChatProvider,
     XimuProvider,
+    ImgcacheProvider,
     {provide: HAMMER_GESTURE_CONFIG,useClass: ionicGalleryModal.GalleryModalHammerConfig,},
-    ImgcacheProvider
+    { provide: ErrorHandler, useClass: IonicErrorHandler }
   ]
 })
 export class AppModule { }

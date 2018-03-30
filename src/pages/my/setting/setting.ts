@@ -1,8 +1,8 @@
 import { Component, ViewChild } from '@angular/core';
 import { NavController, NavParams, App, Toggle, IonicPage } from 'ionic-angular';
 import { HttpService } from "../../../providers/http-service";
-import { JpushService } from "../../../providers/jpush-service";
 import { Native } from "../../../providers/native";
+import { JpushService } from '../../../providers/jpush-service';
 import { JPush } from '@jiguang-ionic/jpush';
 
 /*
@@ -23,18 +23,18 @@ export class SettingPage {
     public navCtrl: NavController,
     public navParams: NavParams,
     public app: App,
-    public jpushService: JpushService,
     public native: Native,
     public httpService: HttpService,
-    public jPush: JPush
+    public jPushServ: JpushService
   ) { }
 
   ngAfterViewInit() {
-    this.jPush.isPushStopped().then(res=>{
+    this.jPushServ.isPushStopped().then(res=>{
+      alert('isPushStopped:'+res)
       if (res) {
-        this.myToggle.value = true;
-      } else {
         this.myToggle.value = false;
+      } else {
+        this.myToggle.value = true;
       }
     }).catch((res)=>{
       console.log(res)
@@ -48,9 +48,9 @@ export class SettingPage {
   }
   toggle(push) {
     if (push.value) {
-      this.jpushService.stopPush();
+      this.jPushServ.resumePush();
     } else {
-      this.jpushService.resumePush();
+      this.jPushServ.stopPush();
     }
   }
   clearCathe() {
