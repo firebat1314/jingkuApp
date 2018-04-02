@@ -42,7 +42,15 @@ export class JpushService {
       if (this.nativeService.isAndroid()) {
         content = event.alert;
         let activeNav: NavControllerBase = this.appCtrl.getActiveNav();
-        activeNav.push('ParticularsPage', { goodsId: event.extras.goodsId });
+        if(event.extras.goods){
+          activeNav.push('ParticularsPage', { goodsId: event.extras.goodsId });
+        }else if(event.extras.list){
+          activeNav.push('BrandListPage', { listId: event.extras.list });
+        }else if(event.extras.order){
+          activeNav.push('OrdersDetailPage', { order_id: event.extras.order });
+        }else if(event.extras.page){
+          activeNav.push(event.extras.page);
+        }
       } else {  // iOS
         if (event.aps == undefined) { // 本地通知
           content = event.content;
