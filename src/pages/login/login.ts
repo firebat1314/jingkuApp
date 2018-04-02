@@ -3,6 +3,7 @@ import { Component, ElementRef } from '@angular/core';
 import { NavController, NavParams, Events, ToastController, IonicPage, AlertController } from 'ionic-angular';
 
 import { HttpService } from "../../providers/http-service";
+import { JpushService } from '../../providers/jpush-service';
 
 /*
   Generated class for the Login page.
@@ -27,6 +28,7 @@ export class LoginPage {
     private toastCtrl: ToastController,
     private httpService: HttpService,
     private ele: ElementRef,
+    private jpushServ: JpushService,
   ) {
     this.signedName = navParams.get('username');
     this.httpService.getUsername().then((data) => { this.loginInfo.username = this.signedName || data || '' })
@@ -43,6 +45,8 @@ export class LoginPage {
         this.httpService.setStorage('hasLoggedIn', true);
         this.httpService.setStorage('username', data.data.user_name);
         this.httpService.setStorage('login_info', data);
+
+        this.jpushServ.setAlias(data.data.user_name);
 
         let toast = this.toastCtrl.create({
           message: "欢迎回来，" + data.data.user_name || this.loginInfo.username,
