@@ -86,10 +86,8 @@ export class MyApp {
       this.native.isAndroid() ? this.statusBar.styleLightContent() : this.statusBar.styleDefault();
       this.splashScreen.hide();
       // 初始化极光推送
-      if (this.native.isMobile()) {
-        this.jpushServ.init();
-        this.jpushServ.setDebugMode(true);  
-      }
+      this.jpushServ.init();
+      this.jpushServ.setDebugMode(true);
       //———————————————————————— 注册返回按键事件 ————————————————————————
       this.platform.registerBackButtonAction((): any => {
         if (this.keyboard.isOpen()) {
