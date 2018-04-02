@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { Native } from "./native";
 import { Storage } from '@ionic/storage';
 import { JPush } from '@jiguang-ionic/jpush';
+import { NavController, App, NavControllerBase } from 'ionic-angular';
 
 /*
   Generated class for the JpushService provider.
@@ -15,11 +16,17 @@ export class JpushService {
 
   sequence: number = 0;
 
-  constructor(public storage: Storage, public jpush: JPush, public nativeService: Native) {
+  constructor(
+    public storage: Storage,
+    public jpush: JPush,
+    public nativeService: Native,
+    public appCtrl: App,
+  ) {
 
-    document.addEventListener('jpush.receiveRegistrationId',  (event:any) => {
-      alert(event.registrationId)
+    document.addEventListener('jpush.receiveRegistrationId', (event: any) => {
+      console.log('jpush.receiveRegistrationId:', event.registrationId)
     }, false)
+
     document.addEventListener('jpush.receiveNotification', (event: any) => {
       var content;
       if (this.nativeService.isAndroid()) {
@@ -27,12 +34,15 @@ export class JpushService {
       } else {
         content = event.aps.alert;
       }
-      alert('Receive notification: ' + JSON.stringify(event));
+      console.log('Receive notification: ', event);
     }, false);
+
     document.addEventListener('jpush.openNotification', (event: any) => {
       var content;
       if (this.nativeService.isAndroid()) {
         content = event.alert;
+        let activeNav: NavControllerBase = this.appCtrl.getActiveNav();
+        activeNav.push('ParticularsPage', { goodsId: event.extras.goodsId });
       } else {  // iOS
         if (event.aps == undefined) { // 本地通知
           content = event.content;
@@ -40,7 +50,7 @@ export class JpushService {
           content = event.aps.alert;
         }
       }
-      alert('open notification: ' + JSON.stringify(event));
+      console.log('open notification: ', event);
     }, false);
 
     document.addEventListener('jpush.receiveLocalNotification', (event: any) => {
@@ -50,29 +60,29 @@ export class JpushService {
       } else {
         content = event.content;
       }
-      alert('receive local notification: ' + JSON.stringify(event));
+      console.log('receive local notification: ', event);
     }, false);
   }
   init() {
-    return this.jpush.init().then(res=>console.log('init',res)).catch(err=>console.log('initError',err))
+    return this.jpush.init().then(res => console.log('init', res)).catch(err => console.log('initError', err))
   }
-  setDebugMode(isDebug: boolean){
-    return this.jpush.setDebugMode(isDebug).then(res=>console.log('result',res)).catch(err=>console.log('error',err))
+  setDebugMode(isDebug: boolean) {
+    return this.jpush.setDebugMode(isDebug).then(res => console.log('result', res)).catch(err => console.log('error', err))
   }
   isPushStopped() {
-    return this.jpush.isPushStopped().then(res=>{console.log('result',res); return res}).catch(err=>console.log('error',err))
+    return this.jpush.isPushStopped().then(res => { console.log('result', res); return res }).catch(err => console.log('error', err))
   }
   stopPush() {
-    return this.jpush.stopPush().then(res=>console.log('result',res)).catch(err=>console.log('error',err))
+    return this.jpush.stopPush().then(res => console.log('result', res)).catch(err => console.log('error', err))
   }
   resumePush() {
-    return this.jpush.resumePush().then(res=>console.log('result',res)).catch(err=>console.log('error',err))
+    return this.jpush.resumePush().then(res => console.log('result', res)).catch(err => console.log('error', err))
   }
   getRegistrationID() {
     return this.jpush.getRegistrationID()
       .then(rId => {
         this.registrationId = rId;
-      }).catch(err=>console.log('error',err))
+      }).catch(err => console.log('error', err))
   }
   setTags(tags?: Array<string>) {
     return this.jpush.setTags({ sequence: this.sequence++, tags: [...tags] })
@@ -92,7 +102,7 @@ export class JpushService {
         var sequence = result.sequence;
         var tag = result.tag;
         var isBind = result.isBind;
-        alert('Sequence: ' + sequence + '\nTag: ' + tag + '\nIsBind: ' + isBind);
+        console.log('Sequence: ' + sequence + '\nTag: ' + tag + '\nIsBind: ' + isBind);
       }).catch(this.errorHandler);
   }
 
@@ -114,8 +124,8 @@ export class JpushService {
       .catch(this.errorHandler);
   }
 
-  setAlias() {
-    return this.jpush.setAlias({ sequence: this.sequence++, alias: 'TestAlias' })
+  setAlias(alias: string = '') {
+    return this.jpush.setAlias({ sequence: this.sequence++, alias: alias })
       .then(this.aliasResultHandler)
       .catch(this.errorHandler);
   }
@@ -133,12 +143,12 @@ export class JpushService {
   }
 
   getUserNotificationSettings() {
-    return this.jpush.getUserNotificationSettings().then((result)=>{
-        if(result == 0) {
-          // 系统设置中已关闭应用推送。
-        } else if(result > 0) {
-          // 系统设置中打开了应用推送。
-        }
+    return this.jpush.getUserNotificationSettings().then((result) => {
+      if (result == 0) {
+        // 系统设置中已关闭应用推送。
+      } else if (result > 0) {
+        // 系统设置中打开了应用推送。
+      }
     })
   }
 
@@ -153,18 +163,21 @@ export class JpushService {
   tagResultHandler = function (result) {
     var sequence: number = result.sequence;
     var tags: Array<string> = result.tags == null ? [] : result.tags;
-    alert('Success!' + '\nSequence: ' + sequence + '\nTags: ' + tags.toString());
+    console.log('Success!' + '\nSequence: ' + sequence + '\nTags: ' + tags.toString());
+    return result;
   };
 
   aliasResultHandler = function (result) {
     var sequence: number = result.sequence;
     var alias: string = result.alias;
-    alert('Success!' + '\nSequence: ' + sequence + '\nAlias: ' + alias);
+    console.log('Success!' + '\nSequence: ' + sequence + '\nAlias: ' + alias);
+    return result;
   };
 
   errorHandler = function (err) {
     var sequence: number = err.sequence;
     var code = err.code;
-    alert('Error!' + '\nSequence: ' + sequence + '\nCode: ' + code);
+    console.log('Error!' + '\nSequence: ' + sequence + '\nCode: ' + code);
+    return err;
   };
 }

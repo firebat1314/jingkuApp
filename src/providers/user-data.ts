@@ -137,10 +137,12 @@ export class UserData {
                 this.storage.remove("login_info");
 
                 if (this.showToastTime) {
-                    this.myAlert(msg, () => {
+                    this.events.publish('signOut');
+                    this.showToastTime = true;
+                    /* this.myAlert(msg, () => {
                         this.events.publish('signOut');
                         this.showToastTime = true;
-                    });
+                    }); */
                 }
             }
         }
