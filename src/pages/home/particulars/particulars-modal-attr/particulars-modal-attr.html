@@ -10,11 +10,11 @@
     </div>
     <ion-item no-lines class="head">
         <ion-thumbnail item-left>
-            <img img-lazy-load="{{data?.goods_info?.goods_thumb}}">
+            <img img-lazy-load="{{headData?.goods_thumb}}">
         </ion-thumbnail>
-        <h2 margin-right>{{data?.goods_info?.goods_name}}</h2>
-        <p>商品编号：{{data?.goods_info?.goods_sn}}</p>
-        <p>¥{{data?.goods_info?.shop_price}}</p>
+        <h2 margin-right>{{headData?.goods_name}}</h2>
+        <p>商品编号：{{headData?.goods_sn}}</p>
+        <p>¥{{headData?.shop_price}}</p>
     </ion-item>
     <div *ngIf="type=='goods'" class="main goods_main">
         <!-- is_subsidy 是否显示促销价 -->
@@ -78,41 +78,77 @@
             </div>
         </div>
     </div>
-    <div *ngIf="type=='goods_spectacles'" class="main goods_spectacles_main">
+    <div *ngIf="type=='goods_spectacles'&&!cutId" class="main goods_spectacles_main">
         <!-- <div class="title">请选择蔡司1.56非球面镜片信息</div> -->
-        <div class="fore" *ngFor="let it of goods;let i=index">
-            <div class="top">
-                <ion-select placeholder="选择球镜" [(ngModel)]="it.qiujing" (ionChange)="qiujingChange(it);attrChange(it)" [selectOptions]="{title: '选择球镜'}"
-                    okText="确定" cancelText="取消">
-                    <ion-option *ngFor="let item of data.spectacles_properties.list">{{item}}</ion-option>
-                </ion-select>
-                <ion-select [disabled]="!it.getZhujingList" [(ngModel)]="it.zhujing" (ionChange)="attrChange(it)" placeholder="选择柱镜" [selectOptions]="{title: '选择柱镜'}"
-                    okText="确定" cancelText="取消">
-                    <ion-option *ngFor="let item of it.getZhujingList?.data">{{item}}</ion-option>
-                </ion-select>
-                <div class="input" *ngIf="data?.goods_info?.zhouwei==1">
-                    <input type="text" [(ngModel)]="it.zhouwei" placeholder="轴位">
+        <ng-container *ngIf="goods_attribute">
+            <div class="fore" *ngFor="let it of goods;let i=index">
+                <div class="top">
+                    <ion-select placeholder="选择球镜" [(ngModel)]="it.qiujing" (ionChange)="qiujingChange(it);" [selectOptions]="{title: '选择球镜'}"
+                        okText="确定" cancelText="取消">
+                        <ion-option *ngFor="let item of goods_attribute.spectacles_properties.list">{{item}}</ion-option>
+                    </ion-select>
+                    <ion-select [disabled]="!it.getZhujingList" [(ngModel)]="it.zhujing" (ionChange)="attrChange(it)" placeholder="选择柱镜" [selectOptions]="{title: '选择柱镜'}"
+                        okText="确定" cancelText="取消">
+                        <ion-option *ngFor="let item of it.getZhujingList?.data">{{item}}</ion-option>
+                    </ion-select>
+                    <div class="input" *ngIf="headData?.zhouwei==1">
+                        <input type="text" [(ngModel)]="it.zhouwei" placeholder="轴位">
+                    </div>
+                    <ion-select *ngFor="let item of goods_attribute.specification;let i=index" (ionChange)="attrChange(it)" [(ngModel)]="it[item.name]"
+                        placeholder="{{item.name}}" [selectOptions]="{title: item.name}" okText="确定" cancelText="取消">
+                        <ion-option *ngFor="let item1 of item?.values" value="{{item1.id}}">{{item1.label}}</ion-option>
+                    </ion-select>
                 </div>
-                <ion-select *ngFor="let item of data.specification;let i=index" (ionChange)="attrChange(it)" [(ngModel)]="it[item.name]"
-                    placeholder="{{item.name}}" [selectOptions]="{title: item.name}" okText="确定" cancelText="取消">
-                    <ion-option *ngFor="let item1 of item?.values" value="{{item1.id}}">{{item1.label}}</ion-option>
-                </ion-select>
+                <div class="bottom">
+                    <div>¥{{it.price||'0.00'}}&nbsp;&nbsp;&nbsp;
+                        <span class="youhui" *ngIf="it.youhui>0">优惠：¥{{it.youhui}}</span>
+                    </div>
+                    <div>
+                        <ion-icon tappable (click)="removeJPByIndex($event,i)" *ngIf="goods&&goods.length>1" name="ios-trash-outline"></ion-icon>
+                        <count-input [(value)]="it.number" (valueChange)="jingpianNumberChange(it)"></count-input>
+                    </div>
+                </div>
             </div>
-            <div class="bottom">
-                <div>¥{{it.price||'0.00'}}&nbsp;&nbsp;&nbsp;
-                    <span class="youhui" *ngIf="it.youhui>0">优惠：¥{{it.youhui}}</span>
-                </div>
-                <div>
-                    <ion-icon tappable (click)="removeJPByIndex($event,i)" *ngIf="goods&&goods.length>1" name="ios-trash-outline"></ion-icon>
-                    <count-input [(value)]="it.number" (valueChange)="jingpianNumberChange($event,it)"></count-input>
-                </div>
-            </div>
-        </div>
-
+        </ng-container>
         <div class="handle">
             <button ion-button color="light" (click)="increasedJP()">点击新增一行 ＋</button>
             <button ion-button [disabled]="goods?.length<=1" color="light" (click)="removeJP()">点击删除一行 －</button>
         </div>
+    </div>
+
+    <div *ngIf="cutId" class="cut-main">
+        <div class="cut-main-tap">
+            <div small color="jingku1" ion-button tappable [outline]="checkCutGoodsId!=goodsId" (click)="checkCutGoodsId=goodsId">样品</div>
+            <div ion-button color="jingku1" [outline]="item.goods_id!=checkCutGoodsId" class="main-attr" small *ngFor="let item of cutting_info?.cutting_list"
+                tappable (click)="checkCutGoodsId=item.goods_id;getGoodsAttribute(item.goods_id)">{{item.goods_name}}</div>
+        </div>
+        <ng-container *ngIf="goods_attribute">
+            <div class="fore" *ngFor="let it of goods;let i=index">
+                <div class="top">
+                    <ion-select placeholder="选择球镜" [(ngModel)]="it.qiujing" (ionChange)="qiujingChange(it);" [selectOptions]="{title: '选择球镜'}"
+                        okText="确定" cancelText="取消">
+                        <ion-option *ngFor="let item of goods_attribute.spectacles_properties.list">{{item}}</ion-option>
+                    </ion-select>
+                    <ion-select [disabled]="!it.getZhujingList" [(ngModel)]="it.zhujing" (ionChange)="attrChange(it)" placeholder="选择柱镜" [selectOptions]="{title: '选择柱镜'}"
+                        okText="确定" cancelText="取消">
+                        <ion-option *ngFor="let item of it.getZhujingList?.data">{{item}}</ion-option>
+                    </ion-select>
+                    <div class="input" *ngIf="headData?.zhouwei==1">
+                        <input type="text" [(ngModel)]="it.zhouwei" placeholder="轴位">
+                    </div>
+                    <ion-select [disabled]="item.disable" *ngFor="let item of goods_attribute.specification;let i=index" (ionChange)="attrChange(it)"
+                        [(ngModel)]="it[item.name]" placeholder="{{item.name}}" [selectOptions]="{title: item.name}" okText="确定"
+                        cancelText="取消">
+                        <ion-option *ngFor="let item1 of item?.values" value="{{item1.id}}">{{item1.label}}</ion-option>
+                    </ion-select>
+                </div>
+                <div class="bottom">
+                    <div>¥{{it.price||'0.00'}}&nbsp;&nbsp;&nbsp;
+                        <span class="youhui" *ngIf="it.youhui>0">优惠：¥{{it.youhui}}</span>
+                    </div>
+                </div>
+            </div>
+        </ng-container>
     </div>
 </ion-content>
 <ion-footer>
@@ -131,11 +167,11 @@
         <ion-grid>
             <ion-row align-items-center class="table-head">
                 <ion-col>价格</ion-col>
-                <ion-col *ngFor="let item of data.data[0].goods_attr">{{item.attr_name}}</ion-col>
+                <ion-col *ngFor="let item of goods_attribute.data[0].goods_attr">{{item.attr_name}}</ion-col>
                 <ion-col>库存</ion-col>
                 <ion-col style="min-width: 150px;" col-2>数量</ion-col>
             </ion-row>
-            <ion-row align-items-center *ngFor="let item of data.data">
+            <ion-row align-items-center *ngFor="let item of goods_attribute.data">
                 <ion-col class="price">{{item.price}}</ion-col>
                 <ion-col *ngFor="let group of item.goods_attr">{{group.attr_val}}</ion-col>
                 <ion-col>{{item.product_number}}</ion-col>
