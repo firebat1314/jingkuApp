@@ -57,42 +57,16 @@ export class SingleCardComponent {
     })
   }
   /**
- * 除商品属性 弹窗
- */
-  presentModalAttr(e, goodsId) {
-    e.stopPropagation();
-    this.httpService.getGoodsAttribute({ goods_id: goodsId }).then((res) => {
-      // console.log("商品初始属性", res);
-      if (res.status == 1) {
-        if (res.goods_type == 'goods_spectacles') {
-          // console.log("goods_type ☞'goods_spectacles'", res);
-          if (typeof res.spectacles_properties.list == 'object') {
-            let arr = new Array();
-            for (let item in res.spectacles_properties.list) {
-              arr.push(res.spectacles_properties.list[item]);
-            }
-            res.spectacles_properties.list = arr;
-          }
-          this.openAttrModal(res, goodsId, 'goods_spectacles');
-        }
-        if (res.goods_type == 'goods') {
-          // console.log("goods_type ☞'goods'", res);
-          this.openAttrModal(res, goodsId, 'goods');
-        }
-      }
-    })
-  }
-  /**
    * 
    * @param res 商品属性列表
    * @param type 商品类型（镜片、镜架）
    */
-  openAttrModal(res, goodsId, type) {
+  openAttrModal(e, item) {
+    e.stopPropagation();
     let modal = this.modalCtrl.create('ParticularsModalAttrPage', {
-      data: res,
-      type: type,
-      headData: null,
-      id: goodsId
+      headData: item,
+      id: item.id,
+      cutId: item.cutting_id
     }, { cssClass: 'my-modal-style' });
     modal.onDidDismiss(data => {
       if (data && data == 'CarPage') {

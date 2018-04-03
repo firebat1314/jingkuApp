@@ -673,4 +673,16 @@ export class HttpService {
   ads(data?: Object){//index/ads     int_pos_id  广告位id  size 个数   is_app 1 
     return this.http.post(IP + '/index/ads', data)
   }
+  cutting_info(data?: Object){//切边商品详情
+    return this.http.post(IP + '/Cutting/cutting_info', data)
+  }
+  cutting_list(data?: Object){//切边列表
+    return this.http.post(IP + '/Cutting/cutting_list', data)
+  }
+  get_goods_attribute(data?: Object){//切边列表
+    return this.http.post(IP + '/Cutting/get_goods_attribute', data, { showLoading: true })
+  }
+  add_to_cart_spec_cutting(data?: Object){//切边列表
+    return this.http.post(IP + '/Cutting/add_to_cart_spec_cutting', data)
+  }
 }

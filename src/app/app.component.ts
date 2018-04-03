@@ -42,6 +42,10 @@ export class MyApp {
     this.initializeApp();
     //用户失效事件
     this.events.subscribe('signOut', () => {
+      this.storage.remove('hasLoggedIn');
+      this.storage.remove("token");
+      this.storage.remove("username");
+      this.storage.remove("login_info");
       if (this.native.isMobile()) {
         this.nav.setRoot('LoginPage', {}, { animate: true, });
       } else {

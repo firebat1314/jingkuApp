@@ -39,12 +39,12 @@
     </div>
     <div class="onemore" *ngIf="title=='促销'">
         <ion-list>
-            <button ion-item text-wrap *ngFor="let item of promotion">
+            <ion-item  text-wrap *ngFor="let item of promotion">
                 <div item-left>
                    <div class="title">{{item.promotion_name}}</div>
                 </div>
                 <span [innerHtml]="item.title"></span>
-            </button>
+            </ion-item>
         </ion-list>
     </div>
     <div *ngIf="title=='商品服务保障'">
