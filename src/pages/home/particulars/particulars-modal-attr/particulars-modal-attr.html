@@ -78,7 +78,7 @@
             </div>
         </div>
     </div>
-    <div *ngIf="type=='goods_spectacles'&&!cutId" class="main goods_spectacles_main">
+    <div *ngIf="type=='goods_spectacles'&&!cutId>0" class="main goods_spectacles_main">
         <!-- <div class="title">请选择蔡司1.56非球面镜片信息</div> -->
         <ng-container *ngIf="goods_attribute">
             <div class="fore" *ngFor="let it of goods;let i=index">
@@ -116,7 +116,7 @@
         </div>
     </div>
 
-    <div *ngIf="cutId" class="cut-main">
+    <div *ngIf="cutId>0" class="cut-main">
         <div class="cut-main-tap">
             <div small color="jingku1" ion-button tappable [outline]="checkCutGoodsId!=goodsId" (click)="checkCutGoodsId=goodsId">样品</div>
             <div ion-button color="jingku1" [outline]="item.goods_id!=checkCutGoodsId" class="main-attr" small *ngFor="let item of cutting_info?.cutting_list"

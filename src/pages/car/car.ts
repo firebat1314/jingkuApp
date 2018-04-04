@@ -303,8 +303,9 @@ export class CarPage {
     })
   }
   /* 转跳商品详情 */
-  goParticularPage(id) {
-    this.navCtrl.push('ParticularsPage', { goodsId: id })
+  goParticularPage(item2) {
+    console.log(item2)
+    this.navCtrl.push('ParticularsPage',{goodsId:item2.goods_id,cutId:item2.cutting_id>0?item2.cutting_id:0})
   }
   /*————————————————————————————— 购物车总价格计算 —————————————————————————————————————*/
   /*  calculateTotal() {

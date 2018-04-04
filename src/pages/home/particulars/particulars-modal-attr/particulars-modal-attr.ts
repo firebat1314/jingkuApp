@@ -12,7 +12,7 @@ export class goodsSpectaclesParams {
 	zhujing = '';//所选的柱镜
 	zhouwei = '';//所填写的轴位
 	price = '0.00';
-	subtotal:'0.00';
+	subtotal: '0.00';
 }
 
 @IonicPage()
@@ -67,7 +67,7 @@ export class ParticularsModalAttrPage {
 		console.log('ionViewDidLoad ParticularsModalAttrPage');
 	}
 	ngOnInit() {
-		if (this.cutId) {
+		if (this.cutId > 0) {
 			this.checkCutGoodsId = this.goodsId;
 			this.httpServ.cutting_info({ id: this.cutId }).then(res => {
 				if (res.status) {
@@ -81,7 +81,7 @@ export class ParticularsModalAttrPage {
 	}
 	/* 获取镜片球镜属性 */
 	getGoodsAttribute(goods_id) {
-		if (this.cutId) {
+		if (this.cutId > 0) {
 			this.httpServ.get_goods_attribute({ goods_id: goods_id }).then((res) => {
 				if (res.status == 1) {
 					this.type = res.goods_type;
@@ -93,7 +93,7 @@ export class ParticularsModalAttrPage {
 						zhujing: '',
 						zhouwei: '',
 						price: '0.00',
-						subtotal:'0.00',
+						subtotal: '0.00',
 					}, {
 						number: 1,
 						spc: [],
@@ -101,7 +101,7 @@ export class ParticularsModalAttrPage {
 						zhujing: '',
 						zhouwei: '',
 						price: '0.00',
-						subtotal:'0.00',
+						subtotal: '0.00',
 					}]
 					for (let i = 0; i < res.specification.length; i++) {
 						const attr = res.specification[i];
@@ -350,7 +350,7 @@ export class ParticularsModalAttrPage {
 				}
 			}
 			const joinCar = (callback) => {
-				if (this.cutId) {
+				if (this.cutId > 0) {
 					var parmas = this.goodsId == this.checkCutGoodsId ? { member: [1] } : {
 						arr_goods: [
 							{ member: [1] },

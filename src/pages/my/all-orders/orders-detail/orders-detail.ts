@@ -38,7 +38,7 @@ export class OrdersDetailPage {
   ionViewDidLoad() {
     console.log('ionViewDidLoad OrdersDetailPage');
   }
-  ngOnInit(){
+  ngOnInit() {
     this.getOrderInfo();
   }
   clickAftermarket(evt) {
@@ -64,8 +64,8 @@ export class OrdersDetailPage {
       this.shippingBtn = true;
     }
   }*/
-  goParticularsPage(id) {
-    this.navCtrl.push('ParticularsPage', { goodsId: id });
+  goParticularsPage(id, cutId) {
+    this.navCtrl.push('ParticularsPage', { goodsId: id, cutId: cutId });
   }
   toPay(id) {
     this.navCtrl.push('PaymentMethodPage', { order_id: id })
