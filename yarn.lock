@@ -1260,6 +1260,10 @@ cordova-ios@4.5.4:
     xcode "^0.9.0"
     xml-escape "^1.1.0"
 
+cordova-open-native-settings@^1.5.0:
+  version "1.5.0"
+  resolved "https://registry.yarnpkg.com/cordova-open-native-settings/-/cordova-open-native-settings-1.5.0.tgz#4fe2a99c05ea9f754d91f353b65bc04c2031a187"
+
 cordova-plugin-app-version@~0.1.9:
   version "0.1.9"
   resolved "https://registry.yarnpkg.com/cordova-plugin-app-version/-/cordova-plugin-app-version-0.1.9.tgz#9db0607863337a710489302e5f50a904f1449bdb"
@@ -2307,6 +2311,10 @@ ieee754@^1.1.4:
   version "1.1.11"
   resolved "https://registry.yarnpkg.com/ieee754/-/ieee754-1.1.11.tgz#c16384ffe00f5b7835824e67b6f2bd44a5229455"
 
+imgcache.js@^1.1.1:
+  version "1.1.1"
+  resolved "https://registry.yarnpkg.com/imgcache.js/-/imgcache.js-1.1.1.tgz#8ae818e7cd0c3408c05d1d0f93025a77b3cbcca0"
+
 immediate@~3.0.5:
   version "3.0.6"
   resolved "https://registry.yarnpkg.com/immediate/-/immediate-3.0.6.tgz#9db1dbd0faf8de6fbe0f5dd5e56bb606280de69b"
@@ -2380,10 +2388,6 @@ ionic-plugin-keyboard@~2.2.1:
 ionic2-city-picker@0.0.11:
   version "0.0.11"
   resolved "https://registry.yarnpkg.com/ionic2-city-picker/-/ionic2-city-picker-0.0.11.tgz#0f18fa342653b3b746656f75c30b13470f3b08e4"
-
-ionic2-super-tabs@^4.1.5:
-  version "4.2.2"
-  resolved "https://registry.yarnpkg.com/ionic2-super-tabs/-/ionic2-super-tabs-4.2.2.tgz#d59fdbb0183513011c68cc2df74684e275916b08"
 
 ionicons@3.0.0:
   version "3.0.0"
@@ -2610,9 +2614,9 @@ isstream@~0.1.2:
   version "0.1.2"
   resolved "https://registry.yarnpkg.com/isstream/-/isstream-0.1.2.tgz#47e63f7af55afa6f92e1500e690eb8b8529c099a"
 
-"jpush-phonegap-plugin@git+https://github.com/jpush/jpush-phonegap-plugin.git":
+jpush-phonegap-plugin@^3.4.1:
   version "3.4.1"
-  resolved "git+https://github.com/jpush/jpush-phonegap-plugin.git#6c80b47bad5a2c910a5da3eba5b5b88e3b433ca6"
+  resolved "https://registry.yarnpkg.com/jpush-phonegap-plugin/-/jpush-phonegap-plugin-3.4.1.tgz#e7cbe37e4893368087cd119fc09499ce06811adb"
 
 js-base64@^2.1.8, js-base64@^2.1.9:
   version "2.4.3"

@@ -61,7 +61,7 @@ export class MyApp {
       // 初始化极光推送
       if (this.native.isMobile()) {
         this.jpushServ.init();
-        this.jpushServ.setDebugMode(true);  
+        this.jpushServ.setDebugMode(false);  
       }
       this.imgcacheServ.initImgCache().then(() => {
       });
