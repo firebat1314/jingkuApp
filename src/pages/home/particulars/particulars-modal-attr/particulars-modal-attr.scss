@@ -127,12 +127,9 @@ page-particulars-modal-attr {
                         display: flex;
                         align-items: center;
                         .td {
-                            min-width: 74px;
+                            min-width: 80px;
                             padding: 0 10px;
                             text-align: center;
-                            display: flex;
-                            justify-content: center;
-                            align-items: center;
                             flex: 1;
                             &:first-child {
                                 min-width: 114px;
@@ -228,6 +225,54 @@ page-particulars-modal-attr {
                 color: #333;
                 margin-left: 1.5%;
                 margin-right: 1.5%;
+            }
+        }
+    }
+    .cut-main {
+        .cut-main-tap {
+            display: flex;
+            flex-shrink: 0;
+            align-items: flex-start;
+            flex-wrap: wrap;
+            padding: 8px;
+            background: #fff;
+            margin: 10px 0;
+        }
+        .top {
+            overflow: hidden;
+            padding: 10px 1.5% 0px;
+            .select,
+            .input {
+                width: 47%;
+                border-radius: 4px;
+                float: left;
+                border: 1px solid #e0e0e0;
+                position: relative;
+                margin: 0 1.5% 10px;
+                padding: 10px;
+                height: 40px;
+                max-width: 47%;
+            }
+            .input {
+                padding: 9px;
+                overflow: hidden;
+                input {
+                    border: 0;
+                }
+            }
+        }
+        .bottom {
+            display: flex;
+            justify-content: flex-end;
+            align-items: center;
+            padding: 0 10px 10px;
+            font-size: 1.6rem;
+            div:nth-of-type(1) {
+                color: #e60000;
+                .youhui {
+                    color: #666;
+                    font-size: 1.4rem;
+                }
             }
         }
     }

@@ -42,8 +42,13 @@ export class MyApp {
     this.initializeApp();
     //用户失效事件
     this.events.subscribe('signOut', () => {
+      this.storage.remove('hasLoggedIn');
+      this.storage.remove("token");
+      this.storage.remove("username");
+      this.storage.remove("login_info");
       if (this.native.isMobile()) {
         this.nav.setRoot('LoginPage', {}, { animate: true, });
+        this.jpushServ.deleteAlias();
       } else {
         this.nav.setRoot('WellcomeNewmPage', {}, { animate: true, });
       }
@@ -58,13 +63,6 @@ export class MyApp {
       // Here you can do any higher level native things you might need.
       this.native.isAndroid() ? this.statusBar.styleLightContent() : this.statusBar.styleDefault();
       this.splashScreen.hide();
-      // 初始化极光推送
-      if (this.native.isMobile()) {
-        this.jpushServ.init();
-        this.jpushServ.setDebugMode(false);  
-      }
-      this.imgcacheServ.initImgCache().then(() => {
-      });
       //———————————————————————— 初次进入app引导页面 ————————————————————————
       if (this.native.isMobile()) {
         this.storage.get('has_entered').then((result) => {
@@ -94,6 +92,14 @@ export class MyApp {
           }
         });
       }
+      // 初始化极光推送
+      this.jpushServ.init();
+      this.jpushServ.setDebugMode(true);
+      this.storage.get('username').then(res=>{
+        this.jpushServ.setAlias(res).then(res=>{
+          console.log('setAlias',res)
+        });
+      });
       //———————————————————————— 注册返回按键事件 ————————————————————————
       this.platform.registerBackButtonAction((): any => {
         if (this.keyboard.isOpen()) {

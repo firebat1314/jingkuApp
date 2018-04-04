@@ -1280,10 +1280,6 @@ cordova-plugin-compat@^1.0.0:
   version "1.2.0"
   resolved "https://registry.yarnpkg.com/cordova-plugin-compat/-/cordova-plugin-compat-1.2.0.tgz#0bc65757276ebd920c012ce920e274177576373e"
 
-cordova-plugin-console@1.0.5:
-  version "1.0.5"
-  resolved "https://registry.yarnpkg.com/cordova-plugin-console/-/cordova-plugin-console-1.0.5.tgz#f0e29aee9c03cab9e9d883b01d19f22ddd5c8570"
-
 cordova-plugin-device@1.1.4:
   version "1.1.4"
   resolved "https://registry.yarnpkg.com/cordova-plugin-device/-/cordova-plugin-device-1.1.4.tgz#d5fe74712069d03f6d386ef0bd321b3abd0d38dc"
@@ -1309,10 +1305,10 @@ cordova-plugin-inappbrowser@~1.7.1:
   resolved "https://registry.yarnpkg.com/cordova-plugin-inappbrowser/-/cordova-plugin-inappbrowser-1.7.2.tgz#64763495be87eb2e7adb1a08f0209b96ea5ceee0"
 
 cordova-plugin-ionic-webview@~1.1.15:
-  version "1.1.16"
-  resolved "https://registry.yarnpkg.com/cordova-plugin-ionic-webview/-/cordova-plugin-ionic-webview-1.1.16.tgz#92d5f2e4a5a829f91b487b1761848765a31c9f1e"
+  version "1.1.19"
+  resolved "https://registry.yarnpkg.com/cordova-plugin-ionic-webview/-/cordova-plugin-ionic-webview-1.1.19.tgz#7f18d30291153c4066f529399a8d8226aa4fb28e"
 
-cordova-plugin-jcore@^1.2.0:
+cordova-plugin-jcore@^1.1.12:
   version "1.2.0"
   resolved "https://registry.yarnpkg.com/cordova-plugin-jcore/-/cordova-plugin-jcore-1.2.0.tgz#cd7e1f8f4843215de8656e9fb5ae08539a4d485d"
 
@@ -2614,7 +2610,7 @@ isstream@~0.1.2:
   version "0.1.2"
   resolved "https://registry.yarnpkg.com/isstream/-/isstream-0.1.2.tgz#47e63f7af55afa6f92e1500e690eb8b8529c099a"
 
-jpush-phonegap-plugin@^3.4.1:
+jpush-phonegap-plugin@^3.3.2:
   version "3.4.1"
   resolved "https://registry.yarnpkg.com/jpush-phonegap-plugin/-/jpush-phonegap-plugin-3.4.1.tgz#e7cbe37e4893368087cd119fc09499ce06811adb"
 
@@ -2853,8 +2849,8 @@ localforage-cordovasqlitedriver@~1.5.0:
     localforage ">=1.4.0"
 
 localforage@>=1.4.0:
-  version "1.6.0"
-  resolved "https://registry.yarnpkg.com/localforage/-/localforage-1.6.0.tgz#8b0059beeb3875c48124286ca7fdbf23d52b8c97"
+  version "1.7.1"
+  resolved "https://registry.yarnpkg.com/localforage/-/localforage-1.7.1.tgz#e4927e042302b864db30f3211f13b5c6f0de965d"
   dependencies:
     lie "3.1.1"
 
@@ -3477,10 +3473,6 @@ performance-now@^0.2.0:
 performance-now@^2.1.0:
   version "2.1.0"
   resolved "https://registry.yarnpkg.com/performance-now/-/performance-now-2.1.0.tgz#6309f4e0e5fa913ec1c69307ae364b4b377c9e7b"
-
-phonegap-plugin-barcodescanner@^7.0.4:
-  version "7.1.0"
-  resolved "https://registry.yarnpkg.com/phonegap-plugin-barcodescanner/-/phonegap-plugin-barcodescanner-7.1.0.tgz#6a52d13feb5c5197a7ab55ca18562b022e5f7d98"
 
 pify@^2.0.0:
   version "2.3.0"
@@ -4305,8 +4297,8 @@ string_decoder@0.10, string_decoder@~0.10.x:
   resolved "https://registry.yarnpkg.com/string_decoder/-/string_decoder-0.10.31.tgz#62e203bc41766c6c28c9fc84301dab1c5310fa94"
 
 string_decoder@^1.0.0:
-  version "1.1.0"
-  resolved "https://registry.yarnpkg.com/string_decoder/-/string_decoder-1.1.0.tgz#384f322ee8a848e500effde99901bba849c5d403"
+  version "1.1.1"
+  resolved "https://registry.yarnpkg.com/string_decoder/-/string_decoder-1.1.1.tgz#9cf1611ba62685d7030ae9e4ba34149c3af03fc8"
   dependencies:
     safe-buffer "~5.1.0"
 
@@ -4513,8 +4505,8 @@ tsutils@^1.4.0:
   resolved "https://registry.yarnpkg.com/tsutils/-/tsutils-1.9.1.tgz#b9f9ab44e55af9681831d5f28d0aeeaf5c750cb0"
 
 tsutils@^2.12.1:
-  version "2.25.0"
-  resolved "https://registry.yarnpkg.com/tsutils/-/tsutils-2.25.0.tgz#14d616ef59224a3c9fb7eb483e1c182b6665ae5e"
+  version "2.25.1"
+  resolved "https://registry.yarnpkg.com/tsutils/-/tsutils-2.25.1.tgz#24a46342ab8b174a3fbde632e60dcd11b64982f9"
   dependencies:
     tslib "^1.8.1"
 
@@ -4561,8 +4553,8 @@ uglify-js@^2.8.29:
     uglify-to-browserify "~1.0.0"
 
 uglify-js@^3.0.23:
-  version "3.3.16"
-  resolved "https://registry.yarnpkg.com/uglify-js/-/uglify-js-3.3.16.tgz#23ba13efa27aa00885be7417819e8a9787f94028"
+  version "3.3.18"
+  resolved "https://registry.yarnpkg.com/uglify-js/-/uglify-js-3.3.18.tgz#e16df66d71638df3c9bc61cce827e46f24bdac02"
   dependencies:
     commander "~2.15.0"
     source-map "~0.6.1"

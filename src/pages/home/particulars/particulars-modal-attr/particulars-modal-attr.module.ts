@@ -4,6 +4,7 @@ import { ParticularsModalAttrPage } from "./particulars-modal-attr";
 import { ImgLazyLoadDirectiveModule } from "../../../../directives/img-lazy-load/img-lazy-load.module";
 import { CountInputComponentModule } from "../../../../components/count-input/count-input.module";
 import { TofixedPipeModule } from "../../../../pipes/tofixed/tofixed.module";
+import { PrefixPipeModule } from '../../../../pipes/prefix/prefix.module';
 
 @NgModule({
    declarations: [
@@ -13,7 +14,8 @@ import { TofixedPipeModule } from "../../../../pipes/tofixed/tofixed.module";
       IonicPageModule.forChild(ParticularsModalAttrPage),
       ImgLazyLoadDirectiveModule,
       CountInputComponentModule,
-      TofixedPipeModule
+      TofixedPipeModule,
+      PrefixPipeModule
    ]
 })
 

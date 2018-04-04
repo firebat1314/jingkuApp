@@ -9,13 +9,14 @@ import { Native } from "../../../providers/native";
   Ionic pages and navigation.
 */
 @IonicPage({
-	segment: 'brand-list/:listId/:keyword/:brandId/:supplierId/:type'
+	segment: 'brand-list/:listId/:keyword/:brandId/:supplierId/:type/:cut'
 })
 @Component({
 	selector: 'page-brand-list',
 	templateUrl: 'brand-list.html',
 })
 export class BrandListPage {
+	is_jingjia_style: any;
 	goodsList: any;
 	timer: any;
 	infiniteScroll: InfiniteScroll;
@@ -24,6 +25,8 @@ export class BrandListPage {
 	listStyleflag: Boolean;//列表样式切换
 	listStyleLock: Boolean;//列表样式 锁定
 	mytool = 'all';//当前筛选
+
+	isCut;
 
 	paramsData = {
 		size: 30,
@@ -57,6 +60,7 @@ export class BrandListPage {
 		this.paramsData.supplier_id = this.navParams.get('supplierId') == ':supplierId' ? null : this.navParams.get('supplierId');
 		this.paramsData.keywords = this.navParams.get('keyword') == ':keyword' ? null : this.navParams.get('keyword');
 		this.paramsData.type = this.navParams.get('type') == ':type' ? null : this.navParams.get('type');
+		this.isCut = this.navParams.get('type') == ':cut' ? null : this.navParams.get('cut');
 		console.log('cat_id:', this.paramsData.cat_id);
 		console.log('brand_id:', this.paramsData.brand_id);
 		console.log('supplier_id:', this.paramsData.supplier_id);
@@ -93,11 +97,7 @@ export class BrandListPage {
 				this.renderer.setElementClass(pagebtn, 'fab-button-fadein', false)
 			}, 500);
 		});
-	}/* 
-	ngAfterViewChecked() {
-		console.log(111)
-		this.content.resize();
-	} */
+	}
 	ngOnDestroy() {
 		console.log('user:filterParams')
 		//退出页面取消事件订阅
@@ -106,16 +106,30 @@ export class BrandListPage {
 	getListData() {
 		this.getCarNumver();
 		this.infiniteScroll ? this.infiniteScroll.enable(true) : null;
-		return this.httpService.categoryGoods(Object.assign(this.paramsData, { page: 1 }), { showLoading: true }).then((res) => {
-			if (res.status == 1) {
-				res.is_jingpian && !this.listStyleLock ? this.listStyleflag = true : null;
-				this.data = res;
-				this.goodsList = res.goods;
-				this.content.resize();
-				this.content.scrollToTop(0);
-				this.events.publish('user:listFilter', res);
-			}
-		})
+		if(this.isCut==1){//切边镜片
+			return this.httpService.cutting_list(Object.assign(this.paramsData, { page: 1 })).then((res) => {
+				if (res.status == 1) {
+					this.data = res;
+					this.is_jingjia_style = true;
+					this.goodsList = res.goods;
+					this.content.resize();
+					this.content.scrollToTop(0);
+					// this.events.publish('user:listFilter', res);
+				}
+			})
+		}else{
+			return this.httpService.categoryGoods(Object.assign(this.paramsData, { page: 1 }), { showLoading: true }).then((res) => {
+				if (res.status == 1) {
+					res.is_jingpian && !this.listStyleLock ? this.listStyleflag = true : null;
+					this.data = res;
+					this.is_jingjia_style = res.is_jingjia;
+					this.goodsList = res.goods;
+					this.content.resize();
+					this.content.scrollToTop(0);
+					this.events.publish('user:listFilter', res);
+				}
+			})
+		}
 	}
 	doRefresh(refresher) {
 		this.getListData().then(() => {
@@ -222,17 +236,6 @@ export class BrandListPage {
 		e.stopPropagation();
 		this.menuCtrl.toggle();
 	}
-	/* 
-	previousPage() {
-		if (this.data.page > 1) {
-			this.getListData({ page: --this.data.page })
-		}
-	}
-	nextPage() {
-		if (this.data.page < this.data.pages) {
-			this.getListData({ page: ++this.data.page })
-		}
-	} */
 	goCarPage() {
 		this.navCtrl.push('CarPage');
 	}
