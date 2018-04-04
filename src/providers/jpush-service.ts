@@ -43,7 +43,7 @@ export class JpushService {
         content = event.alert;
         let activeNav: NavControllerBase = this.appCtrl.getActiveNav();
         if(event.extras.goods){
-          activeNav.push('ParticularsPage', { goodsId: event.extras.goodsId });
+          activeNav.push('ParticularsPage', { goodsId: event.extras.goods });
         }else if(event.extras.list){
           activeNav.push('BrandListPage', { listId: event.extras.list });
         }else if(event.extras.order){
