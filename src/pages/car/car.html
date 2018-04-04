@@ -43,7 +43,7 @@
                             color="jingku1" mode="ios"></ion-checkbox>
                         <ion-checkbox margin-left *ngIf="isEdit" tappable color="jingku1" (click)="check2(item2,item1)" [(ngModel)]="item2.selected" mode="ios"></ion-checkbox>
                     </div>
-                    <ion-item margin-left no-lines (click)="item2?.cutting_id>0?null:goParticularPage(item2.goods_id)">
+                    <ion-item margin-left no-lines (click)="goParticularPage(item2)">
                         <ion-thumbnail item-left tappable>
                             <img img-lazy-load="{{item2.goods_thumb}}">
                         </ion-thumbnail>
