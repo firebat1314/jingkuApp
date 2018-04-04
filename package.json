@@ -143,8 +143,5 @@
       "cordova-plugin-statusbar": {},
       "cordova-plugin-pingpp": {}
     }
-  },
-  "main": "index.js",
-  "repository": "https://github.com/firebat1314/jingkuApp.git",
-  "license": "MIT"
+  }
 }

@@ -351,19 +351,23 @@ export class ParticularsModalAttrPage {
 			}
 			const joinCar = (callback) => {
 				if (this.cutId > 0) {
-					var parmas = this.goodsId == this.checkCutGoodsId ? { member: [1] } : {
-						arr_goods: [
-							{ member: [1] },
-							{
-								member: this.memberArr,//所填写的商品的数量
-								spc: this.spcArr,//商品选择的属性
-								qiujing: this.qiujingArr,//所选的球镜
-								zhujing: this.zhujingArr,//所选的柱镜
-								zhouwei: this.zhouweiArr//所填写的轴位
-							}],
-						arr_goods_id: [this.goodsId, this.checkCutGoodsId],
+					var parmas = this.goodsId == this.checkCutGoodsId ? {
+						arr_goods: [{ member: [1] }],
+						arr_goods_id: [this.goodsId],
 						cutting_id: this.cutId
-					};
+					} : {
+							arr_goods: [
+								{ member: [1] },
+								{
+									member: this.memberArr,//所填写的商品的数量
+									spc: this.spcArr,//商品选择的属性
+									qiujing: this.qiujingArr,//所选的球镜
+									zhujing: this.zhujingArr,//所选的柱镜
+									zhouwei: this.zhouweiArr//所填写的轴位
+								}],
+							arr_goods_id: [this.goodsId, this.checkCutGoodsId],
+							cutting_id: this.cutId
+						};
 					this.httpServ.add_to_cart_spec_cutting(parmas).then((res) => {
 						callback(res)
 					}).catch((res) => {
