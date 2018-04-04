@@ -14,7 +14,7 @@
         </ion-thumbnail>
         <h2 margin-right>{{headData?.goods_name}}</h2>
         <p>商品编号：{{headData?.goods_sn}}</p>
-        <p>¥{{headData?.shop_price}}</p>
+        <p>{{headData?.shop_price | prefix}}</p>
     </ion-item>
     <div *ngIf="type=='goods'" class="main goods_main">
         <!-- is_subsidy 是否显示促销价 -->
