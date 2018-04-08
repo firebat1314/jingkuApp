@@ -148,7 +148,8 @@
       "cordova-plugin-jcore": {},
       "jpush-phonegap-plugin": {
         "APP_KEY": "e889e9b93cf3bfac71e966ec"
-      }
+      },
+      "call-number": {}
     }
   }
 }

@@ -39,9 +39,9 @@ export class JpushService {
 
     document.addEventListener('jpush.openNotification', (event: any) => {
       var content;
-      if (this.nativeService.isAndroid()) {
-        content = event.alert;
         let activeNav: NavControllerBase = this.appCtrl.getActiveNav();
+        if (this.nativeService.isAndroid()) {
+        content = event.alert;
         if(event.extras.goods){
           activeNav.push('ParticularsPage', { goodsId: event.extras.goods });
         }else if(event.extras.list){
@@ -56,6 +56,15 @@ export class JpushService {
           content = event.content;
         } else {  // APNS
           content = event.aps.alert;
+          if(event.goods){
+            activeNav.push('ParticularsPage', { goodsId: event.goods });
+          }else if(event.list){
+            activeNav.push('BrandListPage', { listId: event.list });
+          }else if(event.order){
+            activeNav.push('OrdersDetailPage', { order_id: event.order });
+          }else if(event.page){
+            activeNav.push(event.page);
+          }
         }
       }
       console.log('open notification: ', event);

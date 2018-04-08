@@ -120,4 +120,5 @@
     <plugin name="jpush-phonegap-plugin" spec="^3.3.2">
         <variable name="APP_KEY" value="e889e9b93cf3bfac71e966ec" />
     </plugin>
+    <plugin name="call-number" />
 </widget>
