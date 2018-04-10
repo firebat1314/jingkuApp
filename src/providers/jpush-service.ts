@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Native } from "./native";
 import { Storage } from '@ionic/storage';
 import { JPush } from '@jiguang-ionic/jpush';
-import { NavController, App, NavControllerBase } from 'ionic-angular';
+import { NavController, App, NavControllerBase, AlertController } from 'ionic-angular';
 
 /*
   Generated class for the JpushService provider.
@@ -20,6 +20,7 @@ export class JpushService {
     public storage: Storage,
     public jpush: JPush,
     public nativeService: Native,
+    private alertCtrl: AlertController,
     public appCtrl: App,
   ) {
 
@@ -39,16 +40,16 @@ export class JpushService {
 
     document.addEventListener('jpush.openNotification', (event: any) => {
       var content;
-        let activeNav: NavControllerBase = this.appCtrl.getActiveNav();
-        if (this.nativeService.isAndroid()) {
+      let activeNav: NavControllerBase = this.appCtrl.getActiveNav();
+      if (this.nativeService.isAndroid()) {
         content = event.alert;
-        if(event.extras.goods){
+        if (event.extras.goods) {
           activeNav.push('ParticularsPage', { goodsId: event.extras.goods });
-        }else if(event.extras.list){
+        } else if (event.extras.list) {
           activeNav.push('BrandListPage', { listId: event.extras.list });
-        }else if(event.extras.order){
+        } else if (event.extras.order) {
           activeNav.push('OrdersDetailPage', { order_id: event.extras.order });
-        }else if(event.extras.page){
+        } else if (event.extras.page) {
           activeNav.push(event.extras.page);
         }
       } else {  // iOS
@@ -56,13 +57,13 @@ export class JpushService {
           content = event.content;
         } else {  // APNS
           content = event.aps.alert;
-          if(event.goods){
+          if (event.goods) {
             activeNav.push('ParticularsPage', { goodsId: event.goods });
-          }else if(event.list){
+          } else if (event.list) {
             activeNav.push('BrandListPage', { listId: event.list });
-          }else if(event.order){
+          } else if (event.order) {
             activeNav.push('OrdersDetailPage', { order_id: event.order });
-          }else if(event.page){
+          } else if (event.page) {
             activeNav.push(event.page);
           }
         }
@@ -163,10 +164,49 @@ export class JpushService {
     return this.jpush.getUserNotificationSettings().then((result) => {
       if (result == 0) {
         // 系统设置中已关闭应用推送。
+        if (this.nativeService.isIos()) {
+          this.alertCtrl.create({
+            subTitle: 'ios系统设置[通知]中镜库项未打开，无法收到推送，请先去设置。',
+            message: '',
+            enableBackdropDismiss: false,
+            buttons: [
+              {
+                text: '暂时不要',
+                handler: () => {
+                }
+              }, {
+                text: '去设置',
+                handler: () => {
+                  // this.openNativeSeting.open('notification_id');
+                }
+              }
+            ]
+          }).present();
+        } else if (this.nativeService.isAndroid()) {
+          this.alertCtrl.create({
+            subTitle: 'android系统设置[应用]中镜库项未打开通知，无法收到推送，请先去设置。',
+            message: '',
+            enableBackdropDismiss: false,
+            buttons: [
+              {
+                text: '暂时不要',
+                handler: () => {
+                }
+              }, {
+                text: '去设置',
+                handler: () => {
+                  // this.openNativeSeting.open('application');
+                }
+              }
+            ]
+          }).present();
+        }
+        return false;
       } else if (result > 0) {
         // 系统设置中打开了应用推送。
+        return true;
       }
-    })
+    }).catch(res => { console.log(res); return false })
   }
 
   addLocalNotification() {
