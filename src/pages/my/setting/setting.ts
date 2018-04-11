@@ -18,7 +18,7 @@ import { JPush } from '@jiguang-ionic/jpush';
 })
 export class SettingPage {
   @ViewChild(Toggle) myToggle: Toggle
-  
+
   constructor(
     public navCtrl: NavController,
     public navParams: NavParams,
@@ -29,14 +29,14 @@ export class SettingPage {
   ) { }
 
   ngAfterViewInit() {
-    this.jPushServ.isPushStopped().then(res=>{
+    this.jPushServ.isPushStopped().then(res => {
       if (res) {
         this.myToggle.value = false;
       } else {
         this.myToggle.value = true;
       }
-    }).catch((res)=>{
-      console.log(res)
+    }).catch((res) => {
+      // console.log(res)
     })
   }
   ionViewDidLoad() {
@@ -47,7 +47,7 @@ export class SettingPage {
   }
   toggle(push) {
     if (push.value) {
-      this.jPushServ.resumePush();
+      this.jPushServ.resumePush(); 
     } else {
       this.jPushServ.stopPush();
     }
