@@ -77,8 +77,12 @@ export class ClassifyNewPage {
       }
     })
   }
-  clickItem(cat_id) {
-    this.selectedId = cat_id;
+  clickItem(item) {
+    if(item.is_cutting>0){
+      this.navCtrl.push('BrandListPage',{cut:1})
+    }else{
+      this.selectedId = item.cat_id;
+    }
     this.getChildrenCaCtegory().then((res) => {
     })
   }
