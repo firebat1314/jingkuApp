@@ -14,6 +14,6 @@ export class PrefixPipe implements PipeTransform {
    * Takes a value and makes it lowercase.
    */
   transform(value: string, ...args) {
-    return (value[0] == '￥'||'¥') ? value : '¥' + value;
+    return (value[0] == '￥' || value[0] == '¥') ? value : '¥' + value;
   }
 }
