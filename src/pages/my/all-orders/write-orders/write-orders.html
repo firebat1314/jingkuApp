@@ -44,17 +44,22 @@
                         <ion-thumbnail item-left tappable navPush="ParticularsPage" [navParams]="{goodsId:goods.goods_id}">
                             <img img-lazy-load="{{goods.goods_img}}">
                         </ion-thumbnail>
-                        <h2>{{goods.goods_name}}</h2>
+                        <h2>{{goods.cutting_id>0?goods.cutting_name:goods.goods_name}}</h2>
                         <span class="type" *ngIf="goods?.gift_list">{{goods?.gift_list?.title}}</span>
                     </ion-item>
                     <div class="attr-wrap">
                         <div class="one" *ngFor="let attr of goods?.attrs;">
                             <div class="left">
-                                <div class="top">
+                                <div class="top" *ngIf="!(attr?.cutting_id>0)">
                                     <div *ngIf="attr.qiujing">球镜：{{attr.qiujing}}</div>
                                     <div *ngIf="attr.zhujing">柱镜：{{attr.zhujing}}</div>
                                     <div *ngIf="attr.zhouwei">轴位：{{attr.zhouwei}}</div>
                                     <div *ngFor="let attr2 of attr?.attrs;">{{attr2}}</div>
+                                </div>
+                                <div class="top" *ngIf="(attr?.cutting_id>0)">
+                                    <div *ngFor="let _attr of attr?.cutting_attr;">
+                                        <span style="white-space: initial;" *ngFor="let __attr of _attr;">{{__attr}}</span>
+                                    </div>
                                 </div>
                                 <div class="bottom">
                                     <!-- <div>总价：{{attr.formated_subtotal}}</div> -->
