@@ -122,7 +122,7 @@
             <div ion-button color="jingku1" [outline]="item.goods_id!=checkCutGoodsId" class="main-attr" small *ngFor="let item of cutting_info?.cutting_list"
                 tappable (click)="checkCutGoodsId=item.goods_id;getGoodsAttribute(item.goods_id)">{{item.goods_name}}</div>
         </div>
-        <ng-container *ngIf="goods_attribute">
+        <ng-container *ngIf="goods_attribute&&checkCutGoodsId!=goodsId">
             <div class="fore" *ngFor="let it of goods;let i=index">
                 <div class="top">
                     <ion-select placeholder="选择球镜" [(ngModel)]="it.qiujing" (ionChange)="qiujingChange(it);" [selectOptions]="{title: '选择球镜'}"

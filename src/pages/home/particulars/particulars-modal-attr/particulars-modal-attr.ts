@@ -295,6 +295,10 @@ export class ParticularsModalAttrPage {
 		this.zhouweiArr = [];
 		this.spcArr = [];
 		for (let i = 0; i < this.goods.length; i++) {
+			if (!this.goods[i].zhujing) {
+				this.native.showToast('球镜与柱镜不能为空', null, false);
+				return
+			}
 			this.memberArr.push(this.goods[i].number);
 			this.qiujingArr.push(this.goods[i].qiujing);
 			this.zhujingArr.push(this.goods[i].zhujing);
@@ -305,6 +309,12 @@ export class ParticularsModalAttrPage {
 				if (attr) {
 					this.spcArr[i].push(this.goods[i][this.goods_attribute.specification[j].name])
 				}
+			}
+		}
+		for (let i = 0; i < this.memberArr.length; i++) {
+			if (!(this.memberArr[i] > 0)) {
+				this.native.showToast('请添加商品数量', null, false)
+				return;
 			}
 		}
 	}
@@ -351,22 +361,7 @@ export class ParticularsModalAttrPage {
 		}
 		/*镜片商品添加到购物车*/
 		if (this.type == 'goods_spectacles') {
-			console.log(111)
 			// this.viewCtrl.dismiss();
-			for (let i = 0; i < this.goods.length; i++) {
-				const element = this.goods[i].zhujing;
-				if (!element) {
-					this.native.showToast('球镜与柱镜不能为空', null, false);
-					return
-				}
-			}
-			this.getGoodsParamsArrs();
-			for (let i = 0; i < this.memberArr.length; i++) {
-				if (!(this.memberArr[i] > 0)) {
-					this.native.showToast('请添加商品数量', null, false)
-					return;
-				}
-			}
 			const joinCar = (callback) => {
 				if (this.cutId > 0) {
 					let parmas: any;
@@ -377,6 +372,7 @@ export class ParticularsModalAttrPage {
 							cutting_id: this.cutId
 						}
 					} else {
+						this.getGoodsParamsArrs();
 						if (this.isLjdz) {
 							parmas = {
 								arr_goods: [
@@ -406,7 +402,6 @@ export class ParticularsModalAttrPage {
 							}
 						}
 					}
-					console.log(parmas)
 					this.httpServ.add_to_cart_spec_cutting(parmas).then((res) => {
 						callback(res)
 					}).catch((res) => {
