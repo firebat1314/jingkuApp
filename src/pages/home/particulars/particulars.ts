@@ -44,7 +44,16 @@ export class ParticularsPage {
 		this.events.subscribe('car:update', () => {
 			this.getCarCount();
 		})
-		this.getHttpDetails();
+		if(this.cutId>0){
+			this.http.cutting_info({ id: this.cutId }).then(res => {
+				if (res.status) {
+					this.goodsId = res.cutting_info.goods_id;
+					this.getHttpDetails();
+				}
+			})
+		}else{
+			this.getHttpDetails();
+		}
 		this.getCarCount();
 	}
 	ngAfterViewInit() {
