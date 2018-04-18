@@ -153,7 +153,7 @@
                 </div>
             </div>
         </div>
-        <ng-container *ngIf="goods_attribute">
+        <ng-container *ngIf="goods_attribute&&checkCutGoodsId!=goodsId">
             <div class="fore" *ngFor="let it of goods;let i=index">
                 <div class="top">
                     <ion-select placeholder="选择球镜" [(ngModel)]="it.qiujing" (ionChange)="qiujingChange(it);" [selectOptions]="{title: '选择球镜'}"
