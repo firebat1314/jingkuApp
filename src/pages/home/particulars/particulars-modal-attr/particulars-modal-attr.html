@@ -116,11 +116,42 @@
         </div>
     </div>
 
-    <div *ngIf="cutId>0" class="cut-main">
+    <div *ngIf="cutId>0" class="cut-main goods_main">
         <div class="cut-main-tap">
-            <div small color="jingku1" ion-button tappable [outline]="checkCutGoodsId!=goodsId" (click)="checkCutGoodsId=goodsId">样品</div>
+            <div small color="jingku1" ion-button tappable [outline]="checkCutGoodsId!=goodsId" (click)="checkCutGoodsId=goodsId;clearJp()">样品</div>
             <div ion-button color="jingku1" [outline]="item.goods_id!=checkCutGoodsId" class="main-attr" small *ngFor="let item of cutting_info?.cutting_list"
-                tappable (click)="checkCutGoodsId=item.goods_id;getGoodsAttribute(item.goods_id)">{{item.goods_name}}</div>
+                tappable (click)="checkCutGoodsId=item.goods_id;clearJp();getGoodsAttribute(item.goods_id)">{{item.goods_name}}</div>
+        </div>
+        <div class="tabelbox" *ngIf="attrsList&&checkCutGoodsId==goodsId">
+            <div class="table">
+                <div class="tr">
+                    <div class="td-wrap">
+                        <div class="td">数量</div>
+                        <div class="td" *ngIf="attrsList?.data[0]?.is_subsidy">促销价</div>
+                        <div class="td" *ngIf="attrsList?.data[0]?.is_subsidy">原价</div>
+                        <div class="td" *ngIf="!attrsList?.data[0]?.is_subsidy">价格</div>
+                        <div class="td" *ngFor="let item of attrsList?.data[0]?.goods_attr">{{item.attr_name}}</div>
+                        <div class="td">库存</div>
+                    </div>
+                </div>
+                <div class="tr" *ngFor="let item of attrsList?.data">
+                    <div class="td-wrap">
+                        <div class="td count-input-box">
+                            <count-input [maxValue]="item.product_number" [rank]="checkMainAttrNum" [(value)]="item.goods_attr_number" (valueChange)="numberIChange(item)"></count-input>
+                        </div>
+                        <div class="td" *ngIf="item.is_subsidy">{{item.price}}</div>
+                        <div class="td" *ngIf="item.is_subsidy">{{item.old_price}}</div>
+                        <div class="td" *ngIf="!item.is_subsidy">{{item.price}}</div>
+                        <div class="td" *ngFor="let group of item.goods_attr">{{group.attr_val}}</div>
+                        <div class="td">{{item.product_number}}</div>
+                    </div>
+                    <div class="other-attr" *ngIf="item.alone_attr?.length">
+                        <span *ngFor="let group of item.alone_attr">
+                            {{group.attr_name+'：'+group.attr_val}}&nbsp;
+                        </span>
+                    </div>
+                </div>
+            </div>
         </div>
         <ng-container *ngIf="goods_attribute">
             <div class="fore" *ngFor="let it of goods;let i=index">
@@ -154,8 +185,8 @@
 <ion-footer>
     <ion-toolbar>
         <div class="result">
-            <span>共{{numberChangeData?.number||totalNumber||0}}件</span>
-            <span>合计：¥{{numberChangeData?.goods_total||totalPrices||0 | tofixed}}</span>
+            <span>共{{totalNumber||0}}件</span>
+            <span>合计：¥{{totalPrices||0 | tofixed}}</span>
         </div>
     </ion-toolbar>
     <div class="btns">
