@@ -21,7 +21,7 @@
         <div class="main-attr-wrap" *ngIf="mainAttrs">
             <div ion-button [outline]="item.id!=checkMainAttrId" class="main-attr" small *ngFor="let item of mainAttrs.values" tappable
                 (click)="checkMainAttrId=item.id;checkMainAttrNum=item.number||1;checkMainAttr()">{{item.label}}</div>
-        </div>
+        </div><!--git测试代码 -->
         <!-- <table>
             <tr>
                 <th>数量</th>
