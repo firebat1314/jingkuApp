@@ -444,13 +444,9 @@ export class ParticularsModalAttrPage {
 							cutting_id: this.cutId
 						}
 					} else {
-						if (!this.attrNumbers.length) {
-							this.native.showToast('请添加样品商品数量')
-							return
-						}
 						parmas = {
 							arr_goods: [
-								{ member: this.attrNumbers, spec: this.attrIds },
+								{ member: [1] },/* member: this.attrNumbers */
 								{
 									member: this.memberArr,//所填写的商品的数量
 									spc: this.spcArr,//商品选择的属性
