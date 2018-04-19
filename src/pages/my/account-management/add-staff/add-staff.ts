@@ -8,7 +8,9 @@ import { NavController, NavParams, IonicPage, ActionSheetController, AlertContro
  * on Ionic pages and navigation.
  */
 
-@IonicPage()
+@IonicPage({
+	segment:'add-staff/:userId'
+})
 @Component({
 	selector: 'page-add-staff',
 	templateUrl: 'add-staff.html',
@@ -18,6 +20,7 @@ export class AddStaffPage {
 	accessLabel: string;
 	access: any;
 	post: any = 'web前端';
+	userId = this.navParams.get('userId');
 	constructor(public navCtrl: NavController, public navParams: NavParams, public actionSheetCtrl: ActionSheetController, public alertCtrl: AlertController) {
 	}
 
@@ -26,13 +29,18 @@ export class AddStaffPage {
 	}
 
 	ionViewCanEnter() {
+		if(this.userId>0){
+			return true
+		}
 		return this.choosePost().then((data) => {
 			return true
 		}).catch(data => {
 			return false
 		})
 	}
-
+	save(){
+		this.navCtrl.pop();
+	}
 	choosePost() {
 		let actionSheet = this.actionSheetCtrl.create({
 			buttons: [
