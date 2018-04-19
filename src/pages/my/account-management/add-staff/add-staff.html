@@ -13,6 +13,40 @@
 </ion-header>
 
 
-<ion-content padding>
-
+<ion-content>
+  <ion-list>
+    <ion-item>
+      <ion-label fixed color="primary">姓名</ion-label>
+      <ion-input placeholder="请输入员工姓名"></ion-input>
+    </ion-item>
+    <ion-item detail-push tappable (click)="choosePost()">
+      <ion-label fixed color="primary">职务</ion-label>
+      <div item-end>{{post}}</div>
+    </ion-item>
+    <ion-item>
+      <ion-label fixed color="primary">用户名</ion-label>
+      <ion-input placeholder="请输入用户名"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label fixed color="primary">验证码</ion-label>
+      <ion-input placeholder="请输入验证码"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label fixed color="primary">短信验证</ion-label>
+      <ion-input placeholder="请输入短信验证码"></ion-input>
+      <button ion-button round small outline item-end color="jingku1">发送验证码</button>
+    </ion-item>
+    <ion-item>
+      <ion-label fixed color="primary">密码</ion-label>
+      <ion-input placeholder="1-20位字母数字组成"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label fixed color="primary">确认密码</ion-label>
+      <ion-input placeholder="请确认密码"></ion-input>
+    </ion-item>
+    <ion-item detail-push tappable (click)="chooseAccess()">
+      <ion-label fixed color="primary">权限管理</ion-label>
+      <div item-end>{{accessLabel}}</div>
+    </ion-item>
+  </ion-list>
 </ion-content>
