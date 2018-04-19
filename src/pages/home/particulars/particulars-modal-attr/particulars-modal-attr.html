@@ -118,7 +118,7 @@
 
     <div *ngIf="cutId>0" class="cut-main goods_main">
         <div class="cut-main-tap">
-            <div small color="jingku1" ion-button tappable [outline]="checkCutGoodsId!=goodsId" (click)="checkCutGoodsId=goodsId;clearJp()">样品</div>
+            <div small color="jingku1" ion-button tappable [outline]="checkCutGoodsId!=goodsId" (click)="checkCutGoodsId=goodsId;clear();getAttrList()">样品</div>
             <div ion-button color="jingku1" [outline]="item.goods_id!=checkCutGoodsId" class="main-attr" small *ngFor="let item of cutting_info?.cutting_list"
                 tappable (click)="checkCutGoodsId=item.goods_id;clearJp();getGoodsAttribute(item.goods_id)">{{item.goods_name}}</div>
         </div>

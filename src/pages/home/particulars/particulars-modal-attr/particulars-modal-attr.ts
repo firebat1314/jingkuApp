@@ -157,10 +157,12 @@ export class ParticularsModalAttrPage {
 		this.numberIChange()
 	}
 	clearJp() {
-		if (this.numberChangeData) {
-			this.totalNumber = this.numberChangeData.number;
-			this.totalPrices = this.numberChangeData.goods_total;
-		}
+		// if (this.numberChangeData) {
+		// 	this.totalNumber = this.numberChangeData.number;
+		// 	this.totalPrices = this.numberChangeData.goods_total;
+		// }
+		this.totalNumber = 0;
+		this.totalPrices = 0;
 	}
 	/*关闭modal弹出*/
 	dismiss(data?: any) {
@@ -279,56 +281,56 @@ export class ParticularsModalAttrPage {
 		it.subtotal = (Number(it.number) * (Number(it.price) * 10000)) / 10000;
 		this.totalPrices = 0;
 		this.totalNumber = 0;
-		if (this.numberChangeData) {
-			let number = 0;
-			let price = 0;
-			for (var i = 0; i < this.goods.length; i++) {
-				number += Number(this.goods[i].number);
-				price += Number(this.goods[i].subtotal);
-			}
-			this.totalNumber = number + Number(this.numberChangeData.number);
-			this.totalPrices = price + Number(this.numberChangeData.goods_total.substr(1));
-		} else {
-			for (var i = 0; i < this.goods.length; i++) {
-				this.totalNumber += Number(this.goods[i].number);
-				this.totalPrices += Number(this.goods[i].subtotal);
-			}
+		// if (this.numberChangeData) {
+		// 	let number = 0;
+		// 	let price = 0;
+		// 	for (var i = 0; i < this.goods.length; i++) {
+		// 		number += Number(this.goods[i].number);
+		// 		price += Number(this.goods[i].subtotal);
+		// 	}
+		// 	this.totalNumber = number + Number(this.numberChangeData.number);
+		// 	this.totalPrices = price + Number(this.numberChangeData.goods_total.substr(1));
+		// } else {
+		for (var i = 0; i < this.goods.length; i++) {
+			this.totalNumber += Number(this.goods[i].number);
+			this.totalPrices += Number(this.goods[i].subtotal);
 		}
+		// }
 	}
 	/*镜片商品参数*/
 	getGoodsParamsArrs() {
-			this.memberArr = [];
-			this.qiujingArr = [];
-			this.zhujingArr = [];
-			this.zhouweiArr = [];
-			this.spcArr = [];
-			for (let i = 0; i < this.goods.length; i++) {
-				this.memberArr.push(this.goods[i].number);
-				this.qiujingArr.push(this.goods[i].qiujing);
-				this.zhujingArr.push(this.goods[i].zhujing);
-				this.zhouweiArr.push(this.goods[i].zhouwei);
-				this.spcArr.push([]);
-				for (var j = 0; j < this.goods_attribute.specification.length; j++) {
-					var attr = this.goods[i][this.goods_attribute.specification[j].name];
-					if (attr) {
-						this.spcArr[i].push(this.goods[i][this.goods_attribute.specification[j].name])
-					}
+		this.memberArr = [];
+		this.qiujingArr = [];
+		this.zhujingArr = [];
+		this.zhouweiArr = [];
+		this.spcArr = [];
+		for (let i = 0; i < this.goods.length; i++) {
+			this.memberArr.push(this.goods[i].number);
+			this.qiujingArr.push(this.goods[i].qiujing);
+			this.zhujingArr.push(this.goods[i].zhujing);
+			this.zhouweiArr.push(this.goods[i].zhouwei);
+			this.spcArr.push([]);
+			for (var j = 0; j < this.goods_attribute.specification.length; j++) {
+				var attr = this.goods[i][this.goods_attribute.specification[j].name];
+				if (attr) {
+					this.spcArr[i].push(this.goods[i][this.goods_attribute.specification[j].name])
 				}
 			}
-			for (let i = 0; i < this.goods.length; i++) {
-				if (!this.goods[i].zhujing) {
-					this.native.showToast('球镜与柱镜不能为空', null, false);
-					return false
-				}
+		}
+		for (let i = 0; i < this.goods.length; i++) {
+			if (!this.goods[i].zhujing) {
+				this.native.showToast('球镜与柱镜不能为空', null, false);
+				return false
 			}
+		}
 
-			for (let i = 0; i < this.memberArr.length; i++) {
-				if (!(this.memberArr[i] > 0)) {
-					this.native.showToast('请添加商品数量', null, false)
-					return false
-				}
+		for (let i = 0; i < this.memberArr.length; i++) {
+			if (!(this.memberArr[i] > 0)) {
+				this.native.showToast('请添加商品数量', null, false)
+				return false
 			}
-			return true
+		}
+		return true
 	}
 	/*添加到购物车*/
 	addToCart(goCart) {
@@ -374,7 +376,7 @@ export class ParticularsModalAttrPage {
 		/*镜片商品添加到购物车*/
 		if (this.type == 'goods_spectacles' && !(this.cutId > 0)) {
 			// this.viewCtrl.dismiss();
-			if(this.getGoodsParamsArrs()){
+			if (this.getGoodsParamsArrs()) {
 				const joinCar = (callback) => {
 					this.httpServ.addToCartSpecJp({
 						goods_id: this.goodsId,
@@ -429,7 +431,7 @@ export class ParticularsModalAttrPage {
 					cutting_id: this.cutId
 				}
 			} else {
-				if(this.getGoodsParamsArrs()){
+				if (this.getGoodsParamsArrs()) {
 					if (this.isLjdz) {
 						parmas = {
 							arr_goods: [
@@ -458,7 +460,7 @@ export class ParticularsModalAttrPage {
 							cutting_id: this.cutId
 						}
 					}
-				}else{
+				} else {
 					return false
 				}
 			}
