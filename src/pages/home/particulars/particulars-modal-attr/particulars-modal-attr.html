@@ -21,7 +21,8 @@
         <div class="main-attr-wrap" *ngIf="mainAttrs">
             <div ion-button [outline]="item.id!=checkMainAttrId" class="main-attr" small *ngFor="let item of mainAttrs.values" tappable
                 (click)="checkMainAttrId=item.id;checkMainAttrNum=item.number||1;checkMainAttr()">{{item.label}}</div>
-        </div><!--git测试代码 -->
+        </div>
+        <!--git测试代码 -->
         <!-- <table>
             <tr>
                 <th>数量</th>
@@ -100,8 +101,8 @@
                     </ion-select>
                 </div>
                 <div class="bottom">
-                    <div>¥{{it.price||'0.00'}}&nbsp;&nbsp;&nbsp;
-                        <span class="youhui" *ngIf="it.youhui>0">优惠：¥{{it.youhui}}</span>
+                    <div>{{it.price||'0.00' | prefix}}&nbsp;&nbsp;&nbsp;
+                        <span class="youhui" *ngIf="it.youhui>0">优惠：{{it.youhui | prefix}}</span>
                     </div>
                     <div>
                         <ion-icon tappable (click)="removeJPByIndex($event,i)" *ngIf="goods&&goods.length>1" name="ios-trash-outline"></ion-icon>
@@ -122,7 +123,9 @@
             <div ion-button color="jingku1" [outline]="item.goods_id!=checkCutGoodsId" class="main-attr" small *ngFor="let item of cutting_info?.cutting_list"
                 tappable (click)="checkCutGoodsId=item.goods_id;clearJp();getGoodsAttribute(item.goods_id)">{{item.goods_name}}</div>
         </div>
-        <div style="text-align: center;" *ngIf="!attrsList"><ion-spinner name="crescent"></ion-spinner></div>
+        <div style="text-align: center;" *ngIf="!attrsList">
+            <ion-spinner name="crescent"></ion-spinner>
+        </div>
         <div class="tabelbox" *ngIf="attrsList&&checkCutGoodsId==goodsId">
             <div class="table">
                 <div class="tr">
@@ -175,8 +178,8 @@
                     </ion-select>
                 </div>
                 <div class="bottom">
-                    <div>¥{{it.price||'0.00'}}&nbsp;&nbsp;&nbsp;
-                        <span class="youhui" *ngIf="it.youhui>0">优惠：¥{{it.youhui}}</span>
+                    <div>{{it.price||'0.00' | prefix}}&nbsp;&nbsp;&nbsp;
+                        <span class="youhui" *ngIf="it.youhui>0">优惠：{{it.youhui | prefix}}</span>
                     </div>
                 </div>
             </div>
@@ -187,7 +190,7 @@
     <ion-toolbar>
         <div class="result">
             <span>共{{totalNumber||0}}件</span>
-            <span>合计：¥{{totalPrices||0 | tofixed}}</span>
+            <span *ngIf="!(attrsList?.is_users_child==1||goods_attribute?.is_users_child==1)">合计：{{totalPrices||0 | tofixed | prefix}}</span>
         </div>
     </ion-toolbar>
     <div class="btns">

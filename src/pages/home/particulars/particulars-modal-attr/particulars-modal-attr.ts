@@ -263,19 +263,23 @@ export class ParticularsModalAttrPage {
 			zhujing: item.zhujing
 		}).then((res) => {
 			if (res.status) {
-				if (res.data.promotion_id > 0) {
-					item.price = res.data.promotion_price.substr(1);
-					item.youhui = (res.data.price - (res.data.promotion_price.substr(1))).toFixed(2);
+				if (res.data.is_users_child === 1) {//隐藏价格
+					item.price = '¥--';
 				} else {
-					item.price = res.data.price.toFixed(2);
+					if (res.data.promotion_id > 0) {
+						item.price = res.data.promotion_price.substr(1);
+						item.youhui = (res.data.price - (res.data.promotion_price.substr(1))).toFixed(2);
+					} else {
+						item.price = res.data.price.toFixed(2);
+					}
+					this.jingpianNumberChange(item);
 				}
-				this.jingpianNumberChange(item);
 			}
 		})
 	}
 	/* 价格数量计算 */
-	totalPrices = 0;
-	totalNumber = 0;
+	totalPrices: any = 0;
+	totalNumber: any = 0;
 	jingpianNumberChange(it) {
 		// console.log(it)
 		it.subtotal = (Number(it.number) * (Number(it.price) * 10000)) / 10000;
