@@ -46,7 +46,7 @@ export class LoginPage {
         this.httpService.setStorage('username', data.data.user_name);
         this.httpService.setStorage('login_info', data);
 
-        this.jpushServ.setAlias(data.data.user_name);
+        // this.jpushServ.setAlias(data.data.user_name);
 
         let toast = this.toastCtrl.create({
           message: "欢迎回来，" + data.data.user_name || this.loginInfo.username,

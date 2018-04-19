@@ -94,12 +94,12 @@ export class MyApp {
       }
       // 初始化极光推送
       this.jpushServ.init();
-      this.jpushServ.setDebugMode(true);
-      this.storage.get('username').then(res=>{
-        this.jpushServ.setAlias(res).then(res=>{
-          console.log('setAlias',res)
-        });
-      });
+      this.jpushServ.setDebugMode(false);
+      // this.storage.get('username').then(res=>{
+      //   this.jpushServ.setAlias(res).then(res=>{
+      //     console.log('setAlias',res)
+      //   });
+      // });
       //———————————————————————— 注册返回按键事件 ————————————————————————
       this.platform.registerBackButtonAction((): any => {
         if (this.keyboard.isOpen()) {
