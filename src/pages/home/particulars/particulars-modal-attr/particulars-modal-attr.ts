@@ -245,16 +245,6 @@ export class ParticularsModalAttrPage {
 			}
 			var attr = item[items[j].name];
 			if (attr) spcArr.push(item[items[j].name]);
-			for (let i = 0; i < items[j].values.length; i++) {
-				const element = items[j].values[i];
-				if (element.id == attr) {
-					if (element.vid == '678' || element.label == '来架定制送样品') {
-						this.isLjdz = true;
-					} else {
-						this.isLjdz = false;
-					}
-				}
-			}
 		}
 		this.httpServ.changeprice({
 			goods_id: this.checkCutGoodsId || this.goodsId,
@@ -436,32 +426,39 @@ export class ParticularsModalAttrPage {
 				}
 			} else {
 				if (this.getGoodsParamsArrs()) {
-					if (this.isLjdz) {
-						parmas = {
-							arr_goods: [
-								{
-									member: this.memberArr,//所填写的商品的数量
-									spc: this.spcArr,//商品选择的属性
-									qiujing: this.qiujingArr,//所选的球镜
-									zhujing: this.zhujingArr,//所选的柱镜
-									zhouwei: this.zhouweiArr//所填写的轴位
-								}],
-							arr_goods_id: [this.checkCutGoodsId],
-							cutting_id: this.cutId
-						}
-					} else {
-						parmas = {
-							arr_goods: [
-								{ member: [1] },/* member: this.attrNumbers */
-								{
-									member: this.memberArr,//所填写的商品的数量
-									spc: this.spcArr,//商品选择的属性
-									qiujing: this.qiujingArr,//所选的球镜
-									zhujing: this.zhujingArr,//所选的柱镜
-									zhouwei: this.zhouweiArr//所填写的轴位
-								}],
-							arr_goods_id: [this.goodsId, this.checkCutGoodsId],
-							cutting_id: this.cutId
+					for (let j = 0, items = this.goods_attribute.specification; j < items.length; j++) {
+						if (items[j].name.indexOf('定制类型') > -1) {//左右眼镜片定制类型同步设置
+							for (let i = 0; i < items[j].values.length; i++) {
+								const element = items[j].values[i];
+								if(this.goods[0]['定制类型']==element.id&&element.vid==678){
+									parmas = {
+										arr_goods: [
+											{
+												member: this.memberArr,//所填写的商品的数量
+												spc: this.spcArr,//商品选择的属性
+												qiujing: this.qiujingArr,//所选的球镜
+												zhujing: this.zhujingArr,//所选的柱镜
+												zhouwei: this.zhouweiArr//所填写的轴位
+											}],
+										arr_goods_id: [this.checkCutGoodsId],
+										cutting_id: this.cutId
+									}
+								}else{
+									parmas = {
+										arr_goods: [
+											{ member: [1] },/* member: this.attrNumbers */
+											{
+												member: this.memberArr,//所填写的商品的数量
+												spc: this.spcArr,//商品选择的属性
+												qiujing: this.qiujingArr,//所选的球镜
+												zhujing: this.zhujingArr,//所选的柱镜
+												zhouwei: this.zhouweiArr//所填写的轴位
+											}],
+										arr_goods_id: [this.goodsId, this.checkCutGoodsId],
+										cutting_id: this.cutId
+									}
+								}
+							}
 						}
 					}
 				} else {
