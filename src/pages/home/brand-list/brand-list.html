@@ -73,9 +73,9 @@
         <ion-refresher-content refreshingSpinner="1" pullingIcon="0"></ion-refresher-content>
     </ion-refresher>
 
-    <no-goods *ngIf="data?.goods&&!data?.goods?.length"></no-goods>
-    <single-foods-card [data]="data?.goods" [class.yanjingjia]="is_jingjia_style" *ngIf="!listStyleflag"></single-foods-card>
-    <single-foods-item [data]="data?.goods" *ngIf="listStyleflag"></single-foods-item>
+    <no-goods *ngIf="goodsList&&!goodsList?.length"></no-goods>
+    <single-foods-card [data]="goodsList" [class.yanjingjia]="is_jingjia_style" *ngIf="!listStyleflag"></single-foods-card>
+    <single-foods-item [data]="goodsList" *ngIf="listStyleflag"></single-foods-item>
 
     <div class="dixian" *ngIf="data?.count>6&&(data?.page>=data?.pages)">
         <div>没有更多了~</div>
@@ -96,7 +96,7 @@
         </button>
     </ion-fab>
 
-    <ion-infinite-scroll threshold="300%" (ionInfinite)="doInfinite($event)">
+    <ion-infinite-scroll threshold="100%" (ionInfinite)="doInfinite($event)">
         <ion-infinite-scroll-content></ion-infinite-scroll-content>
     </ion-infinite-scroll>
 </ion-content>

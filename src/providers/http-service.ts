@@ -658,31 +658,31 @@ export class HttpService {
   }) {
     return this.http.post(IP + '/Flow/order_ok', data, { showToast: false })
   }
-  editMedical(data?: Object){
-      return this.http.post(IP + '/user/edit_medical', data)
+  editMedical(data?: Object) {
+    return this.http.post(IP + '/user/edit_medical', data)
   }
-  brank_number(data?: Object){
-      return this.http.post(IP + '/User/brank_number', data)
+  brank_number(data?: Object) {
+    return this.http.post(IP + '/User/brank_number', data)
   }
-  withdrawal(data?: Object){
-      return this.http.post(IP + '/User/withdrawal', data)
+  withdrawal(data?: Object) {
+    return this.http.post(IP + '/User/withdrawal', data)
   }
-  newArea(data?: Object){//新新品专区
+  newArea(data?: Object) {//新新品专区
     return this.http.post(IP + '/index/newArea', data, { showLoading: true })
   }
-  ads(data?: Object){//index/ads     int_pos_id  广告位id  size 个数   is_app 1 
+  ads(data?: Object) {//index/ads     int_pos_id  广告位id  size 个数   is_app 1 
     return this.http.post(IP + '/index/ads', data)
   }
-  cutting_info(data?: Object){//切边商品详情
+  cutting_info(data?: Object) {//切边商品详情
     return this.http.post(IP + '/Cutting/cutting_info', data)
   }
-  cutting_list(data?: Object){//切边列表
-    return this.http.post(IP + '/Cutting/cutting_list', data)
+  cutting_list(data?: Object, options?: HttpOptions) {//切边列表
+    return this.http.post(IP + '/Cutting/cutting_list', data, options)
   }
-  get_goods_attribute(data?: Object){//切边列表
+  get_goods_attribute(data?: Object) {//切边列表
     return this.http.post(IP + '/Cutting/get_goods_attribute', data, { showLoading: true })
   }
-  add_to_cart_spec_cutting(data?: Object){//切边列表
+  add_to_cart_spec_cutting(data?: Object) {//切边列表
     return this.http.post(IP + '/Cutting/add_to_cart_spec_cutting', data)
   }
 }
