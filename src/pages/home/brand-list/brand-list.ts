@@ -106,7 +106,7 @@ export class BrandListPage {
 	getListData() {
 		this.getCarNumver();
 		this.infiniteScroll ? this.infiniteScroll.enable(true) : null;
-		if(this.isCut==1){//切边镜片
+		if (this.isCut > 0) {//切边镜片
 			return this.httpService.cutting_list(Object.assign(this.paramsData, { page: 1 })).then((res) => {
 				if (res.status == 1) {
 					this.data = res;
@@ -117,7 +117,7 @@ export class BrandListPage {
 					// this.events.publish('user:listFilter', res);
 				}
 			})
-		}else{
+		} else {
 			return this.httpService.categoryGoods(Object.assign(this.paramsData, { page: 1 }), { showLoading: true }).then((res) => {
 				if (res.status == 1) {
 					res.is_jingpian && !this.listStyleLock ? this.listStyleflag = true : null;
@@ -140,20 +140,33 @@ export class BrandListPage {
 	}
 	doInfinite(infiniteScroll) {
 		this.infiniteScroll = infiniteScroll;
-		var page = this.data.page
+		let page = this.data.page
 		if (this.data.page < this.data.pages) {
-			var p = this.data.page;
+			let p = this.data.page;
 			let pagingParam = Object.assign(this.paramsData, { page: ++p });
-			this.httpService.categoryGoods(pagingParam, { showLoading: false }).then((res) => {
-				if (res.status == 1) {
-					this.data = res;
-					this.content.resize();
-					this.goodsList = this.goodsList.concat(res.goods);
-				}
-				setTimeout(() => {
-					this.infiniteScroll.complete();
-				}, 500);
-			})
+			if (this.isCut > 0) {//切边镜片
+				this.httpService.cutting_list(pagingParam, { showLoading: false }).then((res) => {
+					if (res.status == 1) {
+						this.data = res;
+						this.content.resize();
+						this.goodsList = [...this.goodsList,...res.goods]
+					}
+					setTimeout(() => {
+						this.infiniteScroll.complete();
+					}, 500);
+				})
+			} else {
+				this.httpService.categoryGoods(pagingParam, { showLoading: false }).then((res) => {
+					if (res.status == 1) {
+						this.data = res;
+						this.content.resize();
+						this.goodsList = [...this.goodsList,...res.goods]
+					}
+					setTimeout(() => {
+						this.infiniteScroll.complete();
+					}, 500);
+				})
+			}
 		} else {
 			this.infiniteScroll.enable(false);
 		}

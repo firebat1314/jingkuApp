@@ -676,8 +676,8 @@ export class HttpService {
   cutting_info(data?: Object) {//切边商品详情
     return this.http.post(IP + '/Cutting/cutting_info', data)
   }
-  cutting_list(data?: Object) {//切边列表
-    return this.http.post(IP + '/Cutting/cutting_list', data)
+  cutting_list(data?: Object, options?: HttpOptions) {//切边列表
+    return this.http.post(IP + '/Cutting/cutting_list', data, options)
   }
   get_goods_attribute(data?: Object) {//切边列表
     return this.http.post(IP + '/Cutting/get_goods_attribute', data, { showLoading: true })
