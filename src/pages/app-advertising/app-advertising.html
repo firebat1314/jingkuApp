@@ -6,6 +6,6 @@
 -->
 
 <div class="main"><!-- [lazy-load]="ads_img" -->
-  <img src="{{ads_img}}" alt=""><!--  [ads-click]="data?.data[0]?.link_type" -->
+  <img src="{{ads_img}}" (click)="clickAds()" alt=""><!--  [ads-click]="data?.data[0]?.link_type" -->
   <button ion-button round color="cancelBtn" small (click)="jumpOver()">跳过 {{timeDown}}s</button>
 </div>

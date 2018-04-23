@@ -61,7 +61,7 @@
                                 mode="ios"></ion-checkbox>
                             <ion-checkbox margin-right *ngIf="isEdit&&!(item3.cutting_id>0)" [(ngModel)]="item3.selected" (click)="check3(item3,item2,item1)" tappable color="jingku1" mode="ios"></ion-checkbox>
                         </div>
-                        <div class="sliding-item-box">
+                        <div class="sliding-item-box" [style.marginLeft]="item3.cutting_id>0?'36px':'0'">
                             <ion-item-sliding>
                                 <ion-item no-lines>
                                     <div class="goodsinfo">
