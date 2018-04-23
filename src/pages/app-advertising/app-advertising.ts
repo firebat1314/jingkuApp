@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { NavController, NavParams, IonicPage } from 'ionic-angular';
 import { Storage } from '@ionic/storage';
 import { HttpService } from '../../providers/http-service';
-import { GetImageDirective } from '../../directives/get-image/get-image';
+import { AdsClickDirective } from '../../directives/ads-click/ads-click';
 
 /**
  * Generated class for the AppAdvertisingPage page.
@@ -15,7 +15,7 @@ import { GetImageDirective } from '../../directives/get-image/get-image';
 @Component({
   selector: 'page-app-advertising',
   templateUrl: 'app-advertising.html',
-  providers: [GetImageDirective]
+  providers: [AdsClickDirective]
 })
 export class AppAdvertisingPage {
   data: any;
@@ -28,7 +28,7 @@ export class AppAdvertisingPage {
     public navParams: NavParams,
     public storage: Storage,
     public httpServ: HttpService,
-    public getImageDir: GetImageDirective,
+    public adsClick: AdsClickDirective,
   ) { }
 
   ngOnInit() {
@@ -75,5 +75,19 @@ export class AppAdvertisingPage {
       }
     });
   }
+  clickAds() {
+    clearInterval(this.timer);
+    if(!this.data.data[0].link_type) return;
+    this.storage.get('hasLoggedIn').then((result) => {
+      if (result) {
+        this.navCtrl.setRoot('TabsPage', {}, { animate: true, animation: 'md-transition', direction: 'forward' },()=>{
+          this.adsClick.link_type = this.data.data[0].link_type;
+          this.adsClick.onClick()
+        });
+      } else {
+        this.navCtrl.setRoot('LoginPage', {}, { animate: true, animation: 'md-transition', direction: 'forward' });
+      }
+    });
+  };
 
 }

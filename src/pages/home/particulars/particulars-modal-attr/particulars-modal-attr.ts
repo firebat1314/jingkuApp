@@ -43,7 +43,7 @@ export class ParticularsModalAttrPage {
 
 	qiujing: string;
 	/*自定义镜片信息(添加、删除)*/
-	goods: Array<any> = new Array(goodsSpectaclesParams);
+	goods: Array<any> = new Array(new goodsSpectaclesParams);
 
 	/* 护理液主属性 */
 	mainAttrs: any;
@@ -55,6 +55,10 @@ export class ParticularsModalAttrPage {
 	attrsList: any;
 	/* 默认选中切边 */
 	checkCutGoodsId;
+	
+	/* 价格数量计算 */
+	totalPrices: any = 0;
+	totalNumber: any = 0;
 	constructor(
 		public navCtrl: NavController,
 		public navParams: NavParams,
@@ -80,6 +84,9 @@ export class ParticularsModalAttrPage {
 		} else {
 			this.getGoodsAttribute(this.goodsId)
 		}
+	}
+	ngOnDestroy(){
+
 	}
 	/* 获取镜片球镜属性 */
 	getGoodsAttribute(goods_id) {
@@ -267,9 +274,6 @@ export class ParticularsModalAttrPage {
 			}
 		})
 	}
-	/* 价格数量计算 */
-	totalPrices: any = 0;
-	totalNumber: any = 0;
 	jingpianNumberChange(it) {
 		// console.log(it)
 		it.subtotal = (Number(it.number) * (Number(it.price) * 10000)) / 10000;
