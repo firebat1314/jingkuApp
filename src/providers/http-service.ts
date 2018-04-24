@@ -61,6 +61,9 @@ export class HttpService {
     this.storage.clear().then(callBack);
   }
 
+  loginCompany(data?: Object) {//登录
+    return this.http.post(IP + '/Login/loginCompany', data, { showLoading: true })
+  }
   login(data?: Object) {//登录
     return this.http.post(IP + '/Login/index', data, { showLoading: true })
   }
