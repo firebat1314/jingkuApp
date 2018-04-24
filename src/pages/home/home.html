@@ -92,7 +92,7 @@
             </div>
         </div>
         <!--—————————————————————————————————————————— 镜库闪购 ——————————————————————————————————————————-->
-        <div *ngIf="userInfo&&userInfo?.data?.user_info?.is_test!=1" class="shan_gou home-content">
+        <div *ngIf="userInfo&&userInfo?.data?.user_info?.is_test!=1&&fastbuyData?.data?.length" class="shan_gou home-content">
             <div class="title">
                 <span class="txt">镜库闪购</span>
                 <span class="more" tappable (click)="goFastbuyPage()">查看更多
