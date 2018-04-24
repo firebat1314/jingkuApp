@@ -41,7 +41,7 @@
 		</section>
 		<section class="fore fore2">
 			<div class="supplier" *ngFor="let item of data?.order_list">
-				<div class="logo" tappable (click)="pushPage('ParticularsHomePage',{suppliers_id:item.suppliers_id})">
+				<div class="logo" tappable (click)="pushPage('ParticularsHomePage',{suppliersId:item.suppliers_id})">
 					<img src="{{item.logo}}" alt="">
 				</div>
 				<div class="main">
