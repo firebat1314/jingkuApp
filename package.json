@@ -71,7 +71,8 @@
     "mx.ferreyra.callnumber": "0.0.2",
     "rxjs": "5.4.0",
     "sw-toolbox": "3.6.0",
-    "zone.js": "0.8.12"
+    "zone.js": "0.8.12",
+    "cordova-ios": "~4.5.4"
   },
   "devDependencies": {
     "@ionic/app-scripts": "2.0.2",
