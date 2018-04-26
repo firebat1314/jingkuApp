@@ -64,6 +64,9 @@ export class HttpService {
   loginCompany(data?: Object) {//登录
     return this.http.post(IP + '/Login/loginCompany', data, { showLoading: true })
   }
+  fastLogin(data?: Object) {//登录
+    return this.http.post(IP + '/Login/fastLogin', data, { showLoading: true })
+  }
   login(data?: Object) {//登录
     return this.http.post(IP + '/Login/index', data, { showLoading: true })
   }
