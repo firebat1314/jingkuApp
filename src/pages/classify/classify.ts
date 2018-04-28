@@ -149,7 +149,7 @@ export class ClassifyPage {
   //分类页后退按钮
   pop() {
     if (this.myNav.canGoBack()) {
-      this.myNav.pop();
+      this.myNav.pop().catch(res => { history.back() });
     }
   }
   /*when care page*/

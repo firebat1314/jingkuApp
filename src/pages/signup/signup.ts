@@ -115,7 +115,7 @@ export class SignupPage {
     })
   }
   toLoginPage() {
-    this.navCtrl.pop();
+    this.navCtrl.pop().catch(res => { history.back() });
   }
   registerBtn() {
     this.httpService.signupFirst(this.signupInfo).then(

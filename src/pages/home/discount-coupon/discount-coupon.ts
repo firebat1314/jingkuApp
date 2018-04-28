@@ -66,7 +66,7 @@ export class DiscountCouponPage {
       this.navCtrl.push('ParticularsHomePage',{suppliersId:suppliers_id})
   }
   goClassPage(value) {
-    this.navCtrl.pop();
+    this.navCtrl.pop().catch(res => { history.back() });
     this.navCtrl.parent.select(1);
     this.events.publish('classify:selectSegment', value);
   }

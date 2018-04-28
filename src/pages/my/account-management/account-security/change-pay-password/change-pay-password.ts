@@ -117,7 +117,7 @@ export class ChangePayPasswordPage {
           position: 'top',
           showCloseButton: false
         }).present().then(() => {
-          this.navCtrl.pop();
+          this.navCtrl.pop().catch(res => { history.back() });
           this.events.publish('ChangePayPasswordPage:editPaypwd');
         });
       }

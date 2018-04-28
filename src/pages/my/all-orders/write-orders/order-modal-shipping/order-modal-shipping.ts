@@ -49,7 +49,7 @@ export class OrderModalShippingPage {
           this.native.openAlertBox('是否添加收货地址？', () => {
             this.navCtrl.push('AddShippingAddressPage');
           }, () => {
-            this.navCtrl.pop();
+            this.navCtrl.pop().catch(res => { history.back() });
           })
         }
       }
@@ -70,7 +70,7 @@ export class OrderModalShippingPage {
         this.native.showToast('已切换收货地址')
         this.viewCtrl.dismiss(data);
         this.callBack(data).then((res) => {
-          // this.navCtrl.pop();
+          // this.navCtrl.pop().catch(res => { history.back() });
           this.events.publish('writeOrder:refresh');
           // console.log(res)
         }, (err) => {

@@ -64,7 +64,7 @@
 			<ion-label fixed color="primary">职务</ion-label>
 			<div item-end>{{formData.position}}</div>
 		</ion-item>
-		<ion-item *ngIf="(userId>0||type=='yet')&&userInfo || type=='new'" detail-push tappable (click)="chooseAccess()">
+		<ion-item *ngIf="(userId>0||type=='yet')&&userInfo || type=='new'" detail-push tappable navPush="StaffAccessPage" [navParams]="{authority:formData.authority||[]}">
 			<ion-label fixed color="primary">权限管理</ion-label>
 			<!-- <div item-end style="white-space: pre-wrap;text-align: right;">{{accessLabels}}</div> -->
 		</ion-item>

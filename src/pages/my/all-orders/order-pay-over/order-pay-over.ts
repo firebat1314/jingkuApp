@@ -59,7 +59,7 @@ export class OrderPayOverPage {
   }
   goAllorder() {
     if (this.navCtrl.getPrevious() && this.navCtrl.getPrevious().id == 'AllOrdersPage') {
-      this.navCtrl.pop();
+      this.navCtrl.pop().catch(res => { history.back() });
     } else {
       this.pushPage('AllOrdersPage');
     }
@@ -69,7 +69,7 @@ export class OrderPayOverPage {
   }
   goAccountProcessPage() {
     if (this.navCtrl.getPrevious() && this.navCtrl.getPrevious().id == 'AccountProcessPage') {
-      this.navCtrl.pop();
+      this.navCtrl.pop().catch(res => { history.back() });
     } else {
       this.pushPage('AccountProcessPage');
     }

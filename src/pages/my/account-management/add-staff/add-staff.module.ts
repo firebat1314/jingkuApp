@@ -19,4 +19,4 @@ import { PhoneVerifyComponentModule } from '../../../../components/phone-verify/
       AddStaffPage
    ]
 })
-export class NewMyPageModule { }
+export class AddStaffPageModule { }

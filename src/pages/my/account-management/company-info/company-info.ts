@@ -121,7 +121,7 @@ export class CompanyInfoPage {
     this.httpService.enterprise_info(this.params).then((res) => {
       if (res.status) {
         this.native.showToast('提交成功，请等待审核');
-        this.navCtrl.pop();
+        this.navCtrl.pop().catch(res => { history.back() });
       }
     })
   }

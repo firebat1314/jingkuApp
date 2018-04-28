@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams, IonicPage, AlertController, ToastController } from 'ionic-angular';
+import { NavController, NavParams, IonicPage, AlertController, ToastController, Events } from 'ionic-angular';
 import { HttpService } from '../../../../providers/http-service';
 
 /**
@@ -22,9 +22,10 @@ export class StaffManagementPage {
   constructor(
     public navCtrl: NavController,
     public navParams: NavParams,
-    private httpServ: HttpService, 
+    private httpServ: HttpService,
     private alertCtrl: AlertController,
     private toastCtrl: ToastController,
+    public events: Events,
   ) {
   }
 
@@ -33,6 +34,14 @@ export class StaffManagementPage {
   }
 
   ngOnInit() {
+    this.events.subscribe('staff:save', this.getData.bind(this))
+    this.getData()
+  }
+
+  ngOnDestroy() {
+    this.events.unsubscribe('staff:save')
+  }
+  getData() {
     this.httpServ.staffIndex({ page: 1 }, { showLoading: true }).then(res => {
       if (res.status) {
         this.data = res;
@@ -61,12 +70,13 @@ export class StaffManagementPage {
           text: '确认',
           handler: () => {
             this.httpServ.staffDelUser({ user_id: user_id }).then(res => {
-              if(res.status==1){
+              if (res.status == 1) {
                 this.toastCtrl.create({
                   message: '删除成功',
                   duration: 2000,
                   position: 'top',
-                  showCloseButton: true
+                  showCloseButton: false,
+                  closeButtonText:'X'
                 }).present();
               }
             })

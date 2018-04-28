@@ -75,7 +75,7 @@ export class OrdersDetailPage {
       this.httpService.affirmReceived({ order_id: order_id }).then((res) => {
         if (res.status == 1) {
           this.native.showToast(res.data);
-          this.navCtrl.pop();
+          this.navCtrl.pop().catch(res => { history.back() });
           this.events.publish('allOrders:update');
           this.events.publish('my:update');
         }
@@ -90,7 +90,7 @@ export class OrdersDetailPage {
       this.httpService.cancelOrder({ order_id: order_id }).then((res) => {
         if (res.status == 1) {
           this.native.showToast(res.data);
-          this.navCtrl.pop();
+          this.navCtrl.pop().catch(res => { history.back() });
           this.events.publish('allOrders:update');
           this.events.publish('my:update');
         }
@@ -102,7 +102,7 @@ export class OrdersDetailPage {
       this.httpService.delOrder({ order_id: order_id }).then((res) => {
         if (res.status == 1) {
           this.native.showToast(res.data);
-          this.navCtrl.pop();
+          this.navCtrl.pop().catch(res => { history.back() });
           this.events.publish('allOrders:update');
           this.events.publish('my:update');
         }

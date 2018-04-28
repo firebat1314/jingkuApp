@@ -74,7 +74,7 @@ export class RechargePage {
   //                   text: '个人中心',
   //                   handler: () => {
   //                     this.navCtrl.parent.select(3);
-  //                     this.navCtrl.pop();
+  //                     this.navCtrl.pop().catch(res => { history.back() });
   //                   }
   //                 }, */ {
   //                     text: '确认'

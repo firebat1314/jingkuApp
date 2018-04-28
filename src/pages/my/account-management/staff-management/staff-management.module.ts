@@ -13,4 +13,4 @@ import { StaffManagementPage } from './staff-management';
       StaffManagementPage
    ]
 })
-export class NewMyPageModule { }
+export class StaffManagementPageModule { }

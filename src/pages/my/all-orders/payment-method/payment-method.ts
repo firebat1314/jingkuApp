@@ -132,7 +132,7 @@ export class PaymentMethodPage {
   goAllOrdersPage() {
     this.canLeave = true;
     if (this.navCtrl.getPrevious() && this.navCtrl.getPrevious().id == 'AllOrdersPage') {
-      this.navCtrl.pop();
+      this.navCtrl.pop().catch(res => { history.back() });
     } else {
       this.pushPage('AllOrdersPage');
     }

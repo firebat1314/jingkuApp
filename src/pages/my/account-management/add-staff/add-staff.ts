@@ -1,5 +1,5 @@
 import { Component, ViewChild } from '@angular/core';
-import { NavController, NavParams, IonicPage, ActionSheetController, AlertController } from 'ionic-angular';
+import { NavController, NavParams, IonicPage, ActionSheetController, AlertController, ToastController, Events } from 'ionic-angular';
 import { StrVerifyComponent } from '../../../../components/str-verify/str-verify';
 import { HttpService } from '../../../../providers/http-service';
 
@@ -42,7 +42,9 @@ export class AddStaffPage {
 		public navParams: NavParams,
 		public actionSheetCtrl: ActionSheetController,
 		public alertCtrl: AlertController,
-		public httpServ: HttpService
+		public httpServ: HttpService,
+		public toastCtrl: ToastController,
+		public events: Events,
 	) {
 	}
 
@@ -69,10 +71,18 @@ export class AddStaffPage {
 					this.formData.position = res.data.position;
 					this.formData.true_name = res.data.true_name;
 					this.formData.user_name = res.data.user_name;
-					this.formData.authority = res.data.auth || [];
+					this.formData.authority = res.data.authority || [];
+					
+					this.events.subscribe('staff:access', (data) => {
+						this.formData.authority = data;
+					})
+
 				}
 			})
 		}
+	}
+	ngOnDestroy() {
+		this.events.unsubscribe('staff:access')
 	}
 	save() {
 		if (this.userId > 0) {
@@ -84,13 +94,38 @@ export class AddStaffPage {
 				user_name: this.formData.user_name,
 				authority: this.formData.authority,
 			}).then(res => {
+				if (res.status) {
+					this.navCtrl.pop()
+						.then(res => {
+							this.toastCtrl.create({
+								message: '保存成功',
+								duration: 2000,
+								position: 'top',
+								showCloseButton: false,
+								closeButtonText: 'X'
+							}).present().then(res => {
+								this.events.publish('staff:save')
+							});
+						})
+						.catch(res => { history.back() });
+				}
 			})
 		}
 		else if (this.type == 'new') {
 			this.httpServ.staffAddUser(this.formData).then(res => {
 				if (res.status) {
 					this.navCtrl.pop()
-						.then(res => { })
+						.then(res => {
+							this.toastCtrl.create({
+								message: '保存成功',
+								duration: 2000,
+								position: 'top',
+								showCloseButton: false,
+								closeButtonText: 'X'
+							}).present().then(res => {
+								this.events.publish('staff:save')
+							});
+						})
 						.catch(res => { history.back() });
 				}
 			})
@@ -109,7 +144,17 @@ export class AddStaffPage {
 			}).then(res => {
 				if (res.status) {
 					this.navCtrl.pop()
-						.then(res => { })
+						.then(res => {
+							this.toastCtrl.create({
+								message: '保存成功',
+								duration: 2000,
+								position: 'top',
+								showCloseButton: false,
+								closeButtonText: 'X'
+							}).present().then(res => {
+								this.events.publish('staff:save')
+							});
+						})
 						.catch(res => { history.back() });
 				}
 			})

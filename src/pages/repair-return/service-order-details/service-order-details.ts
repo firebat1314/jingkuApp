@@ -48,7 +48,7 @@ export class ServiceOrderDetailsPage {
       this.httpService.cancelReturn({ id: id }).then((res) => {
         if (res.status == 1) {
           this.native.showToast('取消成功');
-          this.navCtrl.pop();
+          this.navCtrl.pop().catch(res => { history.back() });
           this.events.publish('repair-return:update');
         }
       })

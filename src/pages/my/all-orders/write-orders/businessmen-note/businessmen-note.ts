@@ -128,7 +128,7 @@ export class BusinessmenNotePage {
   }
   pagePop(){
     this.writeNotes().then(() => {
-      this.navCtrl.pop();
+      this.navCtrl.pop().catch(res => { history.back() });
     }, () => {
       
     })
