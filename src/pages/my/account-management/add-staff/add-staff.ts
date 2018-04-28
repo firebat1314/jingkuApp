@@ -1,5 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import { NavController, NavParams, IonicPage, ActionSheetController, AlertController } from 'ionic-angular';
+import { StrVerifyComponent } from '../../../../components/str-verify/str-verify';
+import { HttpService } from '../../../../providers/http-service';
 
 /**
  * Generated class for the AddStaffPage page.
@@ -9,7 +11,7 @@ import { NavController, NavParams, IonicPage, ActionSheetController, AlertContro
  */
 
 @IonicPage({
-	segment:'add-staff/:userId'
+	segment: 'add-staff/:userId'
 })
 @Component({
 	selector: 'page-add-staff',
@@ -17,11 +19,31 @@ import { NavController, NavParams, IonicPage, ActionSheetController, AlertContro
 })
 export class AddStaffPage {
 
-	accessLabel: string;
-	access: any;
-	post: any = 'web前端';
-	userId = this.navParams.get('userId');
-	constructor(public navCtrl: NavController, public navParams: NavParams, public actionSheetCtrl: ActionSheetController, public alertCtrl: AlertController) {
+	mobile_phone: any;
+	accessLabels: any;
+	userInfo: any;
+	type: any;//注册新账号||添加已有账号，立即验证
+	userId = this.navParams.get('userId');//y员工id
+
+	formData = {
+		true_name: '',
+		position: '',
+		user_name: '',
+		mobile_phone: '',
+		str_verify: '',
+		phone_code: '',
+		password: '',
+		cpassword: '',
+		authority: []
+	}
+
+	constructor(
+		public navCtrl: NavController,
+		public navParams: NavParams,
+		public actionSheetCtrl: ActionSheetController,
+		public alertCtrl: AlertController,
+		public httpServ: HttpService
+	) {
 	}
 
 	ionViewDidLoad() {
@@ -29,17 +51,108 @@ export class AddStaffPage {
 	}
 
 	ionViewCanEnter() {
-		if(this.userId>0){
+		if (this.userId > 0) {
 			return true
 		}
-		return this.choosePost().then((data) => {
+		return this.getType().then((data) => {
 			return true
 		}).catch(data => {
 			return false
 		})
 	}
-	save(){
-		this.navCtrl.pop();
+	ngOnInit() {
+		if (this.userId > 0) {
+			this.httpServ.staffEditUser_get({ user_id: this.userId }).then(res => {
+				if (res.status) {
+					this.userInfo = res;
+					this.formData.mobile_phone = res.data.mobile_phone;
+					this.formData.position = res.data.position;
+					this.formData.true_name = res.data.true_name;
+					this.formData.user_name = res.data.user_name;
+					this.formData.authority = res.data.auth || [];
+				}
+			})
+		}
+	}
+	save() {
+		if (this.userId > 0) {
+			this.httpServ.staffEditUser({
+				user_id: this.userId,
+				mobile_phone: this.formData.mobile_phone,
+				position: this.formData.position,
+				true_name: this.formData.true_name,
+				user_name: this.formData.user_name,
+				authority: this.formData.authority,
+			}).then(res => {
+			})
+		}
+		else if (this.type == 'new') {
+			this.httpServ.staffAddUser(this.formData).then(res => {
+				if (res.status) {
+					this.navCtrl.pop()
+						.then(res => { })
+						.catch(res => { history.back() });
+				}
+			})
+		}
+		else if (this.type == 'yet') {
+			this.httpServ.staffAddNow({
+				user_id: this.userInfo.data.user_id,
+				step: 'two',
+				mobile_phone: this.formData.mobile_phone,
+				position: this.formData.position,
+				true_name: this.formData.true_name,
+				user_name: this.formData.user_name,
+				authority: this.formData.authority,
+				str_verify: this.formData.str_verify,
+				phone_code: this.formData.phone_code,
+			}).then(res => {
+				if (res.status) {
+					this.navCtrl.pop()
+						.then(res => { })
+						.catch(res => { history.back() });
+				}
+			})
+		}
+	}
+	next() {//当添加已有员工时显示下一步，通过用户名搜索用户信息
+		this.httpServ.staffAddNow({ step: 'one', user_name: this.formData.user_name }).then(res => {
+			if (res.status) {
+				this.userInfo = res;
+				// this.mobile_phone = res.data.mobile_phone?res.data.mobile_phone.substring(0,3)+"****"+res.data.mobile_phone.substring(7,11):'无';
+				this.formData.mobile_phone = res.data.mobile_phone;
+				this.formData.true_name = res.data.true_name;
+				this.formData.user_name = res.data.user_name;
+			}
+		});
+	}
+	getType() {
+		let actionSheet = this.actionSheetCtrl.create({
+			buttons: [
+				{
+					text: '注册新账号',
+					role: 'new'
+				}, {
+					text: '添加已有账号，立即验证',
+					role: 'yet'
+				},
+				{
+					text: '取消',
+					role: 'cancel'
+				}
+			]
+		});
+		actionSheet.present();
+		return new Promise((resolve, reject) => {
+			actionSheet.onDidDismiss((data, role) => {
+				if (role == 'cancel') {
+					reject(role)
+				} else {
+					this.type = role;
+					resolve(role)
+				}
+			});
+		})
 	}
 	choosePost() {
 		let actionSheet = this.actionSheetCtrl.create({
@@ -106,10 +219,14 @@ export class AddStaffPage {
 				if (role == 'cancel') {
 					reject(data)
 				} else {
-					this.post = data;
+					this.formData.position = data;
 					resolve(data)
 				}
 			});
+		}).then(res => {
+			return res
+		}).catch(res => {
+			return res
 		})
 	}
 	showPrompt(): Promise<any> {
@@ -158,25 +275,36 @@ export class AddStaffPage {
 		for (let i = 0; i < arr.length; i++) {
 			const item = arr[i];
 			alert.addInput({
-				type: 'radio',
+				type: 'checkbox',
 				label: item.label,
 				value: item.value,
-				checked: this.access == item.value
+				checked: this.hasValue(item.value)
 			});
 		}
 		alert.addButton('取消');
 		alert.addButton({
 			text: '确定',
 			handler: data => {
-				this.access = data;
+				this.formData.authority = data;
+				this.accessLabels = [];
 				for (let i = 0; i < arr.length; i++) {
-					const item = arr[i];
-					if (arr[i].value == data) {
-						this.accessLabel = arr[i].label
+					for (let j = 0; j < this.formData.authority.length; j++) {
+						const ele = this.formData.authority[j];
+						if (arr[i].value == ele) {
+							this.accessLabels.push(arr[i].label)
+						}
 					}
 				}
+				this.accessLabels = this.accessLabels.join('\n')
 			}
 		});
 		alert.present();
+	}
+	hasValue(value) {
+		for (let i = 0; i < this.formData.authority.length; i++) {
+			if (this.formData.authority[i] == value)
+				return true;
+		}
+		return false;
 	}
 }

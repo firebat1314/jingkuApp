@@ -6,53 +6,71 @@
 -->
 <ion-header>
 
-  <ion-navbar>
-    <ion-title>添加员工</ion-title>
+	<ion-navbar>
+		<ion-title>{{this.userId>0?'编辑账号':'添加账号'}}</ion-title>
 		<ion-buttons end>
-      <button ion-button icon-only (click)="save()">
-        <span style="color: #0070c9;">保存</span>
-      </button>
-    </ion-buttons>
-    
-  </ion-navbar>
+			<button ion-button icon-only *ngIf="!(type=='yet'&&!userInfo)" (click)="save()">
+				<span style="color: #0070c9;">保存</span>
+			</button>
+		</ion-buttons>
+
+	</ion-navbar>
 
 </ion-header>
 
 
 <ion-content>
-  <ion-list>
-    <ion-item>
-      <ion-label fixed color="primary">姓名</ion-label>
-      <ion-input placeholder="请输入员工姓名"></ion-input>
-    </ion-item>
-    <ion-item detail-push tappable (click)="choosePost()">
-      <ion-label fixed color="primary">职务</ion-label>
-      <div item-end>{{post}}</div>
-    </ion-item>
-    <ion-item>
-      <ion-label fixed color="primary">用户名</ion-label>
-      <ion-input placeholder="请输入用户名"></ion-input>
-    </ion-item>
-    <ion-item>
-      <ion-label fixed color="primary">验证码</ion-label>
-      <ion-input placeholder="请输入验证码"></ion-input>
-    </ion-item>
-    <ion-item>
-      <ion-label fixed color="primary">短信验证</ion-label>
-      <ion-input placeholder="请输入短信验证码"></ion-input>
-      <button ion-button round small outline item-end color="jingku1">发送验证码</button>
-    </ion-item>
-    <ion-item>
-      <ion-label fixed color="primary">密码</ion-label>
-      <ion-input placeholder="1-20位字母数字组成"></ion-input>
-    </ion-item>
-    <ion-item>
-      <ion-label fixed color="primary">确认密码</ion-label>
-      <ion-input placeholder="请确认密码"></ion-input>
-    </ion-item>
-    <ion-item detail-push tappable (click)="chooseAccess()">
-      <ion-label fixed color="primary">权限管理</ion-label>
-      <div item-end>{{accessLabel}}</div>
-    </ion-item>
-  </ion-list>
+	<ion-list>
+		<ion-item *ngIf="(userId>0||type=='yet')&&userInfo || type=='new'">
+			<ion-label fixed color="primary">姓名</ion-label>
+			<ion-input required type="text" [disabled]="(userId>0||type=='yet')&&userInfo" clearInput [(ngModel)]="formData.true_name"
+			 name="true_name" placeholder="请输入员工姓名"></ion-input>
+		</ion-item>
+		<ion-item>
+			<ion-label fixed color="primary">用户名</ion-label>
+			<ion-input required type="text" [disabled]="(userId>0||type=='yet')&&userInfo" clearInput [(ngModel)]="formData.user_name"
+			 name="user_name" placeholder="请输入用户名"></ion-input>
+		</ion-item>
+		<ion-item *ngIf="(userId>0||type=='yet')&&userInfo || type=='new'">
+			<ion-label fixed color="primary">手机号</ion-label>
+			<ion-input required type="text" [disabled]="(userId>0||type=='yet')&&userInfo" clearInput [(ngModel)]="formData.mobile_phone"
+			 name="mobile_phone" placeholder="请输入手机号"></ion-input>
+		</ion-item>
+		<ng-container *ngIf="!(userId>0)&&userInfo || type=='new'">
+			<ion-item>
+				<ion-label mode="ios" fixed>验证码</ion-label>
+				<ion-input required type="text" clearInput [(ngModel)]="formData.str_verify" name="str_verify" placeholder="验证码"></ion-input>
+				<div class="certified-img" item-right>
+					<str-verify #verifyImg></str-verify>
+				</div>
+			</ion-item>
+			<ion-item>
+				<ion-label fixed color="primary">短信验证</ion-label>
+				<ion-input required type="text" clearInput [(ngModel)]="formData.phone_code" name="phone_code" placeholder="请输入短信验证码"></ion-input>
+				<ng-container item-end>
+					<phone-verify type="mind" [mobile]="formData.mobile_phone" [skey]="verifyImg.skey" [verify]="formData.str_verify" (verifyStatus)="!$event?verifyImg.getImg():null"></phone-verify>
+				</ng-container>
+			</ion-item>
+		</ng-container>
+		<ion-item *ngIf="!(type=='yet'||userId>0)">
+			<ion-label fixed color="primary">密码</ion-label>
+			<ion-input required type="password" clearInput [(ngModel)]="formData.password" name="password" placeholder="1-20位字母数字组成"></ion-input>
+		</ion-item>
+		<ion-item *ngIf="!(type=='yet'||userId>0)">
+			<ion-label fixed color="primary">确认密码</ion-label>
+			<ion-input required type="password" clearInput [(ngModel)]="formData.cpassword" name="cpassword" placeholder="请确认密码"></ion-input>
+		</ion-item>
+		<ion-item *ngIf="(userId>0||type=='yet')&&userInfo || type=='new'" detail-push tappable (click)="choosePost()">
+			<ion-label fixed color="primary">职务</ion-label>
+			<div item-end>{{formData.position}}</div>
+		</ion-item>
+		<ion-item *ngIf="(userId>0||type=='yet')&&userInfo || type=='new'" detail-push tappable (click)="chooseAccess()">
+			<ion-label fixed color="primary">权限管理</ion-label>
+			<!-- <div item-end style="white-space: pre-wrap;text-align: right;">{{accessLabels}}</div> -->
+		</ion-item>
+	</ion-list>
 </ion-content>
+
+<ion-footer *ngIf="type=='yet'&&!userInfo" [attr.slideInUp]="type=='yet'&&!userInfo">
+	<button (click)="next()" large no-margin block full ion-button color="jingku1">下一步</button>
+</ion-footer>

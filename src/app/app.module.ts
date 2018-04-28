@@ -36,7 +36,7 @@ import { HAMMER_GESTURE_CONFIG } from '@angular/platform-browser';
 import { ImgcacheProvider } from '../providers/imgcache/imgcache';
 @NgModule({
   declarations: [
-    MyApp,
+    MyApp
   ],
   imports: [
     IonicModule.forRoot(MyApp, {

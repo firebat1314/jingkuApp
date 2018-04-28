@@ -20,12 +20,29 @@
 
 
 <ion-content>
+	<ion-refresher (ionRefresh)="doRefresh($event)" pullMax="60">
+			<ion-refresher-content refreshingSpinner="1" pullingIcon="0"></ion-refresher-content>
+	</ion-refresher>
+	<div *ngIf="data&&!data?.list" style="font-size: 16px;color: #333;text-align: center;margin-top: 76px;">没有账号，请添加</div>
 	<ion-list>
-		<button ion-item navPush="AddStaffPage" [navParams]="{userId:12}">
-			<ion-icon name="ios-contact-outline"></ion-icon> 员工管理</button>
-		<button ion-item navPush="AddStaffPage" [navParams]="{userId:12}">员工管理</button>
-		<button ion-item navPush="AddStaffPage" [navParams]="{userId:12}">员工管理</button>
-		<button ion-item navPush="AddStaffPage" [navParams]="{userId:12}">员工管理</button>
-		<button ion-item navPush="AddStaffPage" [navParams]="{userId:12}">员工管理</button>
+		<ion-item-sliding *ngFor="let item of data?.list">
+			<button ion-item navPush="AddStaffPage" [navParams]="{userId:item.user_id}">
+				<span style="display: flex">
+					<span style="font-size: 20px;color: #999;">
+						<ion-icon name="ios-contact-outline"></ion-icon>
+					</span>
+					<span>　{{item.user_name}}</span>
+				</span>
+			</button>
+			<ion-item-options side="right">
+				<button color="danger" (click)="deleteItem(item.user_id)" ion-button expandable>
+					删除
+				</button>
+			</ion-item-options>
+		</ion-item-sliding>
 	</ion-list>
+
+	<ion-infinite-scroll threshold="200%" (ionInfinite)="doInfinite($event)">
+			<ion-infinite-scroll-content></ion-infinite-scroll-content>
+	  </ion-infinite-scroll>
 </ion-content>
