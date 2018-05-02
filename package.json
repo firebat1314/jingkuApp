@@ -35,13 +35,16 @@
     "@ionic-native/file-transfer": "^4.1.0",
     "@ionic-native/image-picker": "^3.14.0",
     "@ionic-native/in-app-browser": "^4.2.1",
-    "@ionic-native/splash-screen": "3.12.1",
-    "@ionic-native/status-bar": "3.12.1",
-    "@ionic-native/toast": "^3.4.4",
+    "@ionic-native/open-native-settings": "^4.7.0",
+    "@ionic-native/splash-screen": "4.5.3",
+    "@ionic-native/status-bar": "4.5.3",
+    "@ionic-native/toast": "^4.5.2",
     "@ionic-native/transfer": "^3.5.0",
     "@ionic/storage": "^2.0.1",
-    "cordova-android": "^6.2.3",
-    "cordova-ios": "~4.3.1",
+    "@jiguang-ionic/jpush": "^1.0.2",
+    "call-number": "~0.0.2",
+    "cordova-android": "6.2.3",
+    "cordova-ios": "~4.5.4",
     "cordova-plugin-app-version": "~0.1.9",
     "cordova-plugin-badge": "~0.8.1",
     "cordova-plugin-camera": "~2.4.0",
@@ -72,7 +75,8 @@
     "phonegap-plugin-barcodescanner": "^6.0.8",
     "rxjs": "5.4.0",
     "sw-toolbox": "3.6.0",
-    "zone.js": "0.8.12"
+    "zone.js": "0.8.12",
+    "cordova-open-native-settings": "~1.4.1"
   },
   "devDependencies": {
     "@ionic/app-scripts": "2.0.2",
@@ -141,7 +145,13 @@
       "cordova-plugin-app-version": {},
       "cordova-plugin-ionic-webview": {},
       "cordova-plugin-statusbar": {},
-      "cordova-plugin-pingpp": {}
+      "cordova-plugin-pingpp": {},
+      "call-number": {},
+      "cordova-plugin-jcore": {},
+      "jpush-phonegap-plugin": {
+        "APP_KEY": "e889e9b93cf3bfac71e966ec"
+      },
+      "cordova-open-native-settings": {}
     }
   }
 }

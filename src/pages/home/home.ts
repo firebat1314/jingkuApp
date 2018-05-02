@@ -6,6 +6,7 @@ import { UserData } from "../../providers/user-data";
 import { HttpService } from "../../providers/http-service";
 import { Native } from "../../providers/native";
 import { XimuProvider } from '../../providers/ximu/ximu';
+import { MineProvider } from '../../providers/mine/mine';
 
 @IonicPage({
   segment: 'home',
@@ -53,6 +54,7 @@ export class HomePage {
     public popoverCtrl: PopoverController,
     public alertCtrl: AlertController,
     private ximu: XimuProvider,
+    private mine: MineProvider,
   ) {
     //地址更新
     this.events.subscribe('home:update', () => {
@@ -69,12 +71,12 @@ export class HomePage {
     this.events.unsubscribe('home:update');
   }
   ngOnInit() {
-    this.httpService.userInfo().then((res) => {
-			if (res.status) {
-				this.userInfo = res;
-				this.httpService.setByName('userInfo', res);
-			}
-		})
+    this.mine.currentUser.subscribe(data => {
+      this.userInfo = data;
+      this.httpService.setByName('userInfo', data);
+    })
+    this.mine.getUser();
+
     this.httpService.getStorage('fastbuyData').then((res) => {
       if (res) this.fastbuyData = res;
     })

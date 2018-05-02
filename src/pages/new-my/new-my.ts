@@ -6,6 +6,7 @@ import { Native } from "../../providers/native";
 import { InAppBrowser } from '@ionic-native/in-app-browser';
 import { QimoChatProvider } from '../../providers/qimo-chat/qimo-chat';
 import { XimuProvider } from '../../providers/ximu/ximu';
+import { MineProvider } from '../../providers/mine/mine';
 
 @IonicPage()
 @Component({
@@ -31,6 +32,7 @@ export class NewMyPage {
 		private iab: InAppBrowser,
 		private QimoChat: QimoChatProvider,
 		private ximu: XimuProvider,
+		private mine: MineProvider,
 	) {
 		this.events.subscribe('my:update', () => {
 			this.httpResult();
@@ -49,7 +51,11 @@ export class NewMyPage {
 		this.httpService.getByName('userBaitiao').then((res) => {
 			if (res) this.baitiao = res;
 		});
-
+		this.mine.currentUser.subscribe(data=>{
+			this.userInfo = data;
+			this.httpService.setByName('userInfo', data);
+			if (!data.data.wx_openid && !this.native.isMobile()) this.httpService.weixingetOauthRedirect();
+		})
 		this.httpResult();
 	}
 	httpResult() {
@@ -57,14 +63,9 @@ export class NewMyPage {
 			this.baitiao = res;
 			this.httpService.setByName('userBaitiao', res);
 		})
-		this.httpService.userInfo().then((res) => {
-			if (res.status) {
-				this.userInfo = res;
-				this.httpService.setByName('userInfo', res);
-				//获取微信openid
-				if (!res.data.wx_openid && !this.native.isMobile()) this.httpService.weixingetOauthRedirect({}, { showToast: false }).then((res) => { });
-			}
-		})
+
+		this.mine.getUser();
+
 		return this.httpService.userCount().then((res) => {
 			if (res.status) {
 				this.usercount = res;
@@ -104,7 +105,7 @@ export class NewMyPage {
 	goAccountManagementPage(event) {
 		event.stopPropagation();
 		this.navCtrl.push('AccountManagementPage');
-	}
+	}/* 
 	signOut() {
 		this.native.openAlertBox('确定退出登陆？', () => {
 			this.httpService.logout().then((res) => {
@@ -113,7 +114,7 @@ export class NewMyPage {
 				this.httpService.removeStorage("token");
 			})
 		})
-	}
+	} */
 	openXimu() {
 		// if (this.native.isAndroid()) {
 		if (this.baitiao.status) {

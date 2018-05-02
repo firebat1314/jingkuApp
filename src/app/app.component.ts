@@ -6,7 +6,6 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 
 import { TabsPage } from '../pages/tabs/tabs';
 import { Native } from "../providers/native";
-import { JpushService } from "../providers/jpush-service";
 import { WxServiceProvider } from '../providers/wx-service/wx-service';
 import { UpgradeProvider } from '../providers/upgrade/upgrade';
 import { ImgcacheProvider } from '../providers/imgcache/imgcache';
@@ -26,7 +25,6 @@ export class MyApp {
     private storage: Storage,
     private ionicApp: IonicApp,
     private events: Events,
-    private jpushService: JpushService,
     private statusBar: StatusBar,
     private splashScreen: SplashScreen,
     private keyboard: Keyboard,
@@ -44,7 +42,6 @@ export class MyApp {
     this.events.subscribe('signOut', () => {
       this.storage.remove('hasLoggedIn');
       this.storage.remove("token");
-      this.storage.remove("username");
       this.storage.remove("login_info");
       if (this.native.isMobile()) {
         this.nav.setRoot('LoginPage', {}, { animate: true, });
@@ -94,7 +91,6 @@ export class MyApp {
           }
         });
       }
-
       //———————————————————————— 注册返回按键事件 ————————————————————————
       this.platform.registerBackButtonAction((): any => {
         if (this.keyboard.isOpen()) {
@@ -122,19 +118,7 @@ export class MyApp {
         return activeNav.canGoBack() ? activeNav.pop() : this.showExit()
       }, 1);
       //————————————————————————————————————————————————————————————————————————
-      // 初始化极光推送
-      if (this.native.isMobile()) {
-        this.jpushService.initJpush();//初始化极光推送
-        this.jpushService.getRegistrationID();
-        this.jpushService.setTags();
-      }
-      this.storage.get('JPUSH_FLAG').then((res) => {
-        if (res === 1) {
-          this.jpushService.resumePush();
-        } else if (res === 0) {
-          this.jpushService.stopPush();
-        }
-      })
+
       var timer;
       if (this.native.isWeixin()) {
         this.app.viewDidEnter.subscribe((e) => {

@@ -241,7 +241,7 @@ export class HttpService {
     return this.http.get(IP + '/User/usercount', data, { showLoading: false })
   }
   weixingetOauthRedirect(data?: Object, options?: HttpOptions) {//用户订单
-    return this.http.post(IP + '/Weixin/weixingetOauthRedirect', data, options)
+    return this.http.post(IP + '/Weixin/weixingetOauthRedirect', data, { showLoading: false })
   }
   order(data?: Object, options?: HttpOptions) {//用户订单
     return this.http.get(IP + '/User/order', data, options)

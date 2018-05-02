@@ -9,7 +9,6 @@ import { MyApp } from './app.component';
 import { UserData } from "../providers/user-data";
 import { Native } from "../providers/native";
 import { HttpService } from "../providers/http-service";
-import { JpushService } from "../providers/jpush-service";
 /*———————————————————————————————— ionic-native ————————————————————————————————*/
 import { AppVersion } from '@ionic-native/app-version';
 import { AndroidFullScreen } from "@ionic-native/android-full-screen";
@@ -35,6 +34,8 @@ import * as ionicGalleryModal from 'ionic-gallery-modal';
 import { HAMMER_GESTURE_CONFIG } from '@angular/platform-browser';
 import { ImgcacheProvider } from '../providers/imgcache/imgcache';
 import { AppStartProvider } from '../providers/app-start/app-start';
+import { OpenNativeSettings } from '@ionic-native/open-native-settings';
+import { MineProvider } from '../providers/mine/mine';
 @NgModule({
   declarations: [
     MyApp
@@ -73,7 +74,6 @@ import { AppStartProvider } from '../providers/app-start/app-start';
     UserData,
     Native,
     HttpService,
-    JpushService,
     UpgradeProvider,
     Camera,
     ImagePicker,
@@ -93,7 +93,9 @@ import { AppStartProvider } from '../providers/app-start/app-start';
     XimuProvider,
     {provide: HAMMER_GESTURE_CONFIG,useClass: ionicGalleryModal.GalleryModalHammerConfig,},
     ImgcacheProvider,
-    AppStartProvider
+    AppStartProvider,
+    OpenNativeSettings,
+    MineProvider
   ]
 })
 export class AppModule { }

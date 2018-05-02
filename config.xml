@@ -110,6 +110,14 @@
     <plugin name="cordova-plugin-inappbrowser" spec="~1.7.1" />
     <plugin name="cordova-plugin-app-version" spec="~0.1.9" />
     <plugin name="cordova-plugin-ionic-webview" spec="~1.1.15" />
-    <plugin name="cordova-plugin-statusbar" spec="https://github.com/apache/cordova-plugin-statusbar.git" />
-    <plugin name="cordova-plugin-pingpp" spec="https://github.com/firebat1314/pingpp-cordova.git" />
+    <plugin name="cordova-plugin-statusbar" spec="git+https://github.com/apache/cordova-plugin-statusbar.git" />
+    <plugin name="cordova-plugin-camera" spec="~4.0.1" />
+    <plugin name="cordova-plugin-pingpp" spec="git+https://git.coding.net/pingplusplus/pingpp-cordova.git" />
+    <plugin name="call-number" spec="~0.0.2" />
+    <plugin name="cordova-plugin-file" spec="^6.0.1" />
+    <plugin name="cordova-plugin-jcore" spec="^1.1.12" />
+    <plugin name="jpush-phonegap-plugin" spec="^3.3.2">
+        <variable name="APP_KEY" value="e889e9b93cf3bfac71e966ec" />
+    </plugin>
+    <plugin name="cordova-open-native-settings" spec="~1.4.1" />
 </widget>
