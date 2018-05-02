@@ -120,7 +120,7 @@
     <div *ngIf="cutId>0" class="cut-main goods_main">
         <div class="cut-main-tap">
             <div small color="jingku1" ion-button tappable [outline]="checkCutGoodsId!=goodsId" (click)="checkCutGoodsId=goodsId;clear();getAttrList()">样品</div>
-            <div ion-button color="jingku1" [outline]="item.goods_id!=checkCutGoodsId" class="main-attr" small *ngFor="let item of cutting_info?.cutting_list"
+            <div ion-button color="jingku1" [outline]="item.goods_id!=checkCutGoodsId" class="main-attr" small *ngFor="let item of cutting_info?.cutting_list;let cut_index = index;"
                 tappable (click)="checkCutGoodsId=item.goods_id;clearJp();getGoodsAttribute(item.goods_id)">{{item.goods_name}}</div>
         </div>
         <div style="text-align: center;" *ngIf="!attrsList">
@@ -168,7 +168,7 @@
                         okText="确定" cancelText="取消">
                         <ion-option *ngFor="let item of it.getZhujingList?.data">{{item}}</ion-option>
                     </ion-select>
-                    <div class="input" *ngIf="headData?.zhouwei==1">
+                    <div class="input" *ngIf="goods_attribute?.zhouwei=='1'">
                         <input type="text" [(ngModel)]="it.zhouwei" placeholder="轴位">
                     </div>
                     <ion-select [disabled]="item.disable" *ngFor="let item of goods_attribute.specification;let i=index" (ionChange)="attrChange(it)"

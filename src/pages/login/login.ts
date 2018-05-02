@@ -72,6 +72,16 @@ export class LoginPage {
             }
           ]
         }).present();
+      } else if (data.status == -2) {
+        this.alertCtrl.create({
+          title: '请绑定企业信息',
+          message: data.info,
+          buttons: [
+            {
+              text: '取消',
+            }
+          ]
+        }).present();
       }
     })
   }
