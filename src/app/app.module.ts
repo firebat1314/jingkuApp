@@ -36,6 +36,8 @@ import * as ionicGalleryModal from 'ionic-gallery-modal';
 import { HAMMER_GESTURE_CONFIG } from '@angular/platform-browser';
 import { ImgcacheProvider } from '../providers/imgcache/imgcache';
 import { AppStartProvider } from '../providers/app-start/app-start';
+import { OpenNativeSettings } from '@ionic-native/open-native-settings';
+import { MineProvider } from '../providers/mine/mine';
 @NgModule({
   declarations: [
     MyApp,
@@ -94,7 +96,9 @@ import { AppStartProvider } from '../providers/app-start/app-start';
     ImgcacheProvider,
     {provide: HAMMER_GESTURE_CONFIG,useClass: ionicGalleryModal.GalleryModalHammerConfig,},
     { provide: ErrorHandler, useClass: IonicErrorHandler },
-    AppStartProvider
+    AppStartProvider,
+    OpenNativeSettings,
+    MineProvider
   ]
 })
 export class AppModule { }

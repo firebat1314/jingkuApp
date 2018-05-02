@@ -6,6 +6,8 @@ import { UserData } from "../../providers/user-data";
 import { HttpService } from "../../providers/http-service";
 import { Native } from "../../providers/native";
 import { XimuProvider } from '../../providers/ximu/ximu';
+import { MineProvider } from '../../providers/mine/mine';
+import { JpushService } from '../../providers/jpush-service';
 
 @IonicPage({
   segment: 'home',
@@ -53,6 +55,8 @@ export class HomePage {
     public popoverCtrl: PopoverController,
     public alertCtrl: AlertController,
     private ximu: XimuProvider,
+    private mine: MineProvider,
+    private jpushServ: JpushService,
   ) {
     //地址更新
     this.events.subscribe('home:update', () => {
@@ -69,12 +73,17 @@ export class HomePage {
     this.events.unsubscribe('home:update');
   }
   ngOnInit() {
-    this.httpService.userInfo().then((res) => {
-			if (res.status) {
-				this.userInfo = res;
-				this.httpService.setByName('userInfo', res);
-			}
-		})
+    this.mine.currentUser.subscribe(data => {
+      this.userInfo = data;
+      this.httpService.setByName('userInfo', data);
+
+      this.jpushServ.setAlias(data.data.user_info.user_name).then(res => {
+        console.log('setAlias', data.data.user_info.user_name)
+      });
+      this.jpushServ.addTags([data.data.user_info.mobile_phone])
+    })
+    this.mine.getUser();
+
     this.httpService.getStorage('fastbuyData').then((res) => {
       if (res) this.fastbuyData = res;
     })

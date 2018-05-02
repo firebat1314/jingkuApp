@@ -3,7 +3,7 @@ import { Native } from "./native";
 import { Storage } from '@ionic/storage';
 import { JPush } from '@jiguang-ionic/jpush';
 import { NavController, App, NavControllerBase, AlertController } from 'ionic-angular';
-
+import { OpenNativeSettings } from '@ionic-native/open-native-settings';
 /*
   Generated class for the JpushService provider.
 
@@ -22,6 +22,7 @@ export class JpushService {
     public nativeService: Native,
     private alertCtrl: AlertController,
     public appCtrl: App,
+    private openNativeSettings: OpenNativeSettings
   ) {
 
     document.addEventListener('jpush.receiveRegistrationId', (event: any) => {
@@ -100,7 +101,8 @@ export class JpushService {
     return this.jpush.getRegistrationID()
       .then(rId => {
         this.registrationId = rId;
-      }).catch(err => console.log('error', err))
+        return rId
+      }).catch(err => {console.log('error', err);return err})
   }
   setTags(tags?: Array<string>) {
     return this.jpush.setTags({ sequence: this.sequence++, tags: [...tags] })
@@ -166,7 +168,7 @@ export class JpushService {
         // 系统设置中已关闭应用推送。
         if (this.nativeService.isIos()) {
           this.alertCtrl.create({
-            subTitle: 'ios系统设置[通知]中镜库项未打开，无法收到推送，请先去设置。',
+            subTitle: 'ios系统设置[通知]中镜库项未打开，无法收到推送，请先去设置。',
             message: '',
             enableBackdropDismiss: false,
             buttons: [
@@ -177,14 +179,18 @@ export class JpushService {
               }, {
                 text: '去设置',
                 handler: () => {
-                  // this.openNativeSeting.open('notification_id');
+                  this.openNativeSettings.open('notification_id').then(res=>{
+                    console.log(res)
+                  }).catch(()=>{
+                    this.nativeService.showToast('打开设置失败，请手动设置')
+                  });
                 }
               }
             ]
           }).present();
         } else if (this.nativeService.isAndroid()) {
           this.alertCtrl.create({
-            subTitle: 'android系统设置[应用]中镜库项未打开通知，无法收到推送，请先去设置。',
+            subTitle: 'android系统设置[应用]中镜库项未打开通知，无法收到推送，请先去设置。',
             message: '',
             enableBackdropDismiss: false,
             buttons: [
@@ -195,7 +201,11 @@ export class JpushService {
               }, {
                 text: '去设置',
                 handler: () => {
-                  // this.openNativeSeting.open('application');
+                  this.openNativeSettings.open('manage_applications').then(res=>{
+                    console.log(res)
+                  }).catch(()=>{
+                    this.nativeService.showToast('打开设置失败，请手动设置')
+                  });
                 }
               }
             ]

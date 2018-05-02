@@ -44,11 +44,11 @@ export class MyApp {
     this.events.subscribe('signOut', () => {
       this.storage.remove('hasLoggedIn');
       this.storage.remove("token");
-      this.storage.remove("username");
       this.storage.remove("login_info");
+      this.jpushServ.deleteAlias();//删除推送别名
+      this.jpushServ.deleteTags();//删除推送标签
       if (this.native.isMobile()) {
         this.nav.setRoot('LoginPage', {}, { animate: true, });
-        this.jpushServ.deleteAlias();
       } else {
         this.nav.setRoot('WellcomeNewmPage', {}, { animate: true, });
       }
@@ -95,11 +95,9 @@ export class MyApp {
       // 初始化极光推送
       this.jpushServ.init();
       this.jpushServ.setDebugMode(false);
-      // this.storage.get('username').then(res=>{
-      //   this.jpushServ.setAlias(res).then(res=>{
-      //     console.log('setAlias',res)
-      //   });
-      // });
+      this.jpushServ.getRegistrationID().then(res => {
+        this.jpushServ.setTags([res]);
+      })
       //———————————————————————— 注册返回按键事件 ————————————————————————
       this.platform.registerBackButtonAction((): any => {
         if (this.keyboard.isOpen()) {

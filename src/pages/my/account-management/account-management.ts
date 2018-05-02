@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { NavController, NavParams, Events, IonicPage, App } from 'ionic-angular';
 import { HttpService } from "../../../providers/http-service";
 import { Native } from "../../../providers/native";
+import { JpushService } from '../../../providers/jpush-service';
 /*
   Generated class for the AccountManagement page.
 
@@ -25,6 +26,7 @@ export class AccountManagementPage {
     public httpService: HttpService,
     public app: App,
     public native: Native,
+    private jpushServ: JpushService,
   ) {
     this.events.subscribe('my:update', res => {
       this.avatar = res;
@@ -33,17 +35,17 @@ export class AccountManagementPage {
   /* ngOnDestroy() {
     this.events.unsubscribe('my:update');
   } */
-  ngOnInit(){
+  ngOnInit() {
     this.httpService.getStorage('username').then((res) => {
       if (res) {
-        this.httpService.getStorage(res+'_userInfo').then((res) => {
+        this.httpService.getStorage(res + '_userInfo').then((res) => {
           if (res) {
             this.avatar = res.data.avatar;
             this.username = res.data.username;
           }
         })
       }
-    }).then(()=>{
+    }).then(() => {
       this.httpService.userInfo().then((res) => {
         if (res.status == 1) {
           this.avatar = res.data.avatar;
@@ -62,7 +64,8 @@ export class AccountManagementPage {
         this.httpService.removeStorage("token");
         // this.httpService.removeStorage("username");
         this.httpService.removeStorage("login_info");
-        
+        this.jpushServ.deleteAlias();//删除推送别名
+        this.jpushServ.deleteTags();//删除推送标签
         if (this.native.isMobile()) {
           this.app.getRootNav().setRoot('LoginPage', {}, { animate: true });
         } else {
