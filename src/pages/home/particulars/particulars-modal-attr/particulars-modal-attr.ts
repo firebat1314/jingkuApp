@@ -436,14 +436,13 @@ export class ParticularsModalAttrPage {
 								const element = items[j].values[i];
 								if(this.goods[0]['定制类型']==element.id&&element.vid==678){
 									parmas = {
-										arr_goods: [
-											{
-												member: this.memberArr,//所填写的商品的数量
-												spc: this.spcArr,//商品选择的属性
-												qiujing: this.qiujingArr,//所选的球镜
-												zhujing: this.zhujingArr,//所选的柱镜
-												zhouwei: this.zhouweiArr//所填写的轴位
-											}],
+										arr_goods: [{
+											member: this.memberArr,//所填写的商品的数量
+											spc: this.spcArr,//商品选择的属性
+											qiujing: this.qiujingArr,//所选的球镜
+											zhujing: this.zhujingArr,//所选的柱镜
+											zhouwei: this.zhouweiArr//所填写的轴位
+										}],
 										arr_goods_id: [this.checkCutGoodsId],
 										cutting_id: this.cutId
 									}
@@ -463,6 +462,8 @@ export class ParticularsModalAttrPage {
 									}
 								}
 							}
+						}else{
+							// this.native.showToast('请添加样品商品数量')
 						}
 					}
 				} else {
