@@ -32,13 +32,14 @@
         <div class="banner-wrapper">
 
             <img width="100%" *ngIf="!bannerImgs" src="./assets/images/images/640-360.jpg" alt="">
-
-            <ion-slides #bannerSlide autoplay="4000" *ngIf="bannerImgs" pager (ionSlideAutoplayStop)="bannerSlide.startAutoplay()">
-                <!-- *ngIf="bannerImgs" loop-->
-                <ion-slide *ngFor="let item of bannerImgs" tappable [ads-click]="item.link_type">
-                    <img [img-lazy-load]="item.ad_img" defaultSrc="./assets/images/images/640-360.jpg" alt="">
-                </ion-slide>
-            </ion-slides>
+            <ng-container *ngIf="bannerImgs?.length">
+                <ion-slides #bannerSlide autoplay="4000" pager (ionSlideAutoplayStop)="bannerSlide.startAutoplay()">
+                    <!-- *ngIf="bannerImgs" loop-->
+                    <ion-slide *ngFor="let item of bannerImgs" tappable [ads-click]="item.link_type">
+                        <img [img-lazy-load]="item.ad_img" defaultSrc="./assets/images/images/640-360.jpg" alt="">
+                    </ion-slide>
+                </ion-slides>
+            </ng-container>
         </div>
         <!--———————————————————————————————— 功能按钮 ————————————————————————————————-->
         <div class="btn-tool" home-padding>

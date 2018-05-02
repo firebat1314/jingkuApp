@@ -11,7 +11,7 @@ import { HttpService } from '../../../../providers/http-service';
  */
 
 @IonicPage({
-	segment: 'add-staff/:userId'
+	segment: 'add-staff/:userId/:role'
 })
 @Component({
 	selector: 'page-add-staff',
@@ -22,7 +22,7 @@ export class AddStaffPage {
 	mobile_phone: any;
 	accessLabels: any;
 	userInfo: any;
-	type: any;//注册新账号||添加已有账号，立即验证
+	type: any = this.navParams.get('role');//注册新账号||添加已有账号，立即验证
 	userId = this.navParams.get('userId');//y员工id
 
 	formData = {
@@ -52,7 +52,7 @@ export class AddStaffPage {
 		console.log('ionViewDidLoad AddStaffPage');
 	}
 
-	ionViewCanEnter() {
+	/* ionViewCanEnter() {
 		if (this.userId > 0) {
 			return true
 		}
@@ -61,8 +61,12 @@ export class AddStaffPage {
 		}).catch(data => {
 			return false
 		})
-	}
+	} */
 	ngOnInit() {
+		this.events.subscribe('staff:access', (data) => {
+			console.log(data)
+			this.formData.authority = data;
+		})
 		if (this.userId > 0) {
 			this.httpServ.staffEditUser_get({ user_id: this.userId }).then(res => {
 				if (res.status) {
@@ -72,11 +76,6 @@ export class AddStaffPage {
 					this.formData.true_name = res.data.true_name;
 					this.formData.user_name = res.data.user_name;
 					this.formData.authority = res.data.authority || [];
-					
-					this.events.subscribe('staff:access', (data) => {
-						this.formData.authority = data;
-					})
-
 				}
 			})
 		}
@@ -170,34 +169,6 @@ export class AddStaffPage {
 				this.formData.user_name = res.data.user_name;
 			}
 		});
-	}
-	getType() {
-		let actionSheet = this.actionSheetCtrl.create({
-			buttons: [
-				{
-					text: '注册新账号',
-					role: 'new'
-				}, {
-					text: '添加已有账号，立即验证',
-					role: 'yet'
-				},
-				{
-					text: '取消',
-					role: 'cancel'
-				}
-			]
-		});
-		actionSheet.present();
-		return new Promise((resolve, reject) => {
-			actionSheet.onDidDismiss((data, role) => {
-				if (role == 'cancel') {
-					reject(role)
-				} else {
-					this.type = role;
-					resolve(role)
-				}
-			});
-		})
 	}
 	choosePost() {
 		let actionSheet = this.actionSheetCtrl.create({

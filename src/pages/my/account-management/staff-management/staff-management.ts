@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams, IonicPage, AlertController, ToastController, Events } from 'ionic-angular';
+import { NavController, NavParams, IonicPage, AlertController, ToastController, Events, ActionSheetController } from 'ionic-angular';
 import { HttpService } from '../../../../providers/http-service';
 
 /**
@@ -26,6 +26,7 @@ export class StaffManagementPage {
     private alertCtrl: AlertController,
     private toastCtrl: ToastController,
     public events: Events,
+    public actionSheetCtrl: ActionSheetController,
   ) {
   }
 
@@ -48,6 +49,34 @@ export class StaffManagementPage {
         this.list = res.list;
       }
     })
+  }
+  getType() {
+    let actionSheet = this.actionSheetCtrl.create({
+      buttons: [
+        {
+          text: '注册新账号',
+          role: 'new'
+        }, {
+          text: '添加已有账号，立即验证',
+          role: 'yet'
+        },
+        {
+          text: '取消',
+          role: 'cancel'
+        }
+      ]
+    });
+    actionSheet.present();
+    return new Promise((resolve, reject) => {
+      actionSheet.onDidDismiss((data, role) => {
+        if (role == 'cancel') {
+          reject(role)
+        } else {
+          this.navCtrl.push('AddStaffPage', { role: role });
+          resolve(role)
+        }
+      });
+    }).catch(res => { return res })
   }
   doRefresh(refresher) {
     this.infiniteScroll ? this.infiniteScroll.enable(true) : null;
@@ -76,7 +105,7 @@ export class StaffManagementPage {
                   duration: 2000,
                   position: 'top',
                   showCloseButton: false,
-                  closeButtonText:'X'
+                  closeButtonText: 'X'
                 }).present();
               }
             })
