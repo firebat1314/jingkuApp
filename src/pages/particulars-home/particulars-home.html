@@ -104,8 +104,8 @@
             <div class="new-arrival-goods-box" *ngIf="listStyleflag||data?.new_list?.length">
                 <div class="new-arrival-goods" *ngFor="let item of data?.new_list">
                     <img img-lazy-load="{{item.goods_img}}" tappable (click)="goParticularsPage(item.id)" alt="">
-                    <div class="price">
-                        <span>{{item.shop_price}}</span>
+                    <div class="price" style="min-height: 37px;">
+                        <span *ngIf="mine?.showPrice">{{item.shop_price}}</span>
                         <button (click)="goParticularsPage(item.id)">立即抢购</button>
                     </div>
                 </div>
@@ -219,7 +219,7 @@
                         </div>
                         <div class="right">
                             <p title="{{item.goods_name}}">{{item.goods_name}}</p>
-                            <span>{{item.promote_price}}</span>
+                            <span *ngIf="mine?.showPrice">{{item.promote_price}}</span>
                             <!-- <div class="button">限购</div> -->
                         </div>
                     </div>

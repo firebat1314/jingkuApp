@@ -7,6 +7,7 @@ import { HttpService } from "../../providers/http-service";
 import { Native } from "../../providers/native";
 import { XimuProvider } from '../../providers/ximu/ximu';
 import { MineProvider } from '../../providers/mine/mine';
+import { Subscription } from 'rxjs/Subscription';
 
 @IonicPage({
   segment: 'home',
@@ -17,7 +18,10 @@ import { MineProvider } from '../../providers/mine/mine';
   templateUrl: 'home.html'
 })
 export class HomePage {
+  showPrice: boolean;
   userInfo: any;
+  currentUser: Subscription;
+  
   data: any;
   fastbuyData: any;
   indexHotGoods: any;
@@ -67,16 +71,7 @@ export class HomePage {
   ionViewDidLoad() {
     console.log('ionViewDidLoad HomePage');
   }
-  ngOnDestroy() {
-    this.events.unsubscribe('home:update');
-  }
   ngOnInit() {
-    this.mine.currentUser.subscribe(data => {
-      this.userInfo = data;
-      this.httpService.setByName('userInfo', data);
-    })
-    this.mine.getUser();
-
     this.httpService.getStorage('fastbuyData').then((res) => {
       if (res) this.fastbuyData = res;
     })
@@ -86,15 +81,24 @@ export class HomePage {
         this.assignData(res);
       }
     })
+    this.currentUser = this.mine.currentUser.subscribe(data => {
+      console.log(1111)
+      this.userInfo = data;
+      this.showPrice = data.data.authority.indexOf('1') > -1;
+    })
+    this.mine.getUser();
     this.getHomeData().then(() => {
       console.log('首页加载完成');
     }).catch((res) => {
       this.native.showToast('首页加载失败');
     })
-
+  }
+  ngOnDestroy() {
+    this.events.unsubscribe('home:update');
+    this.currentUser.unsubscribe();
   }
   getHomeData() {
-    this.httpService.presell({ type: 'is_promote', cat_id: 0 }).then((res) => {
+    this.httpService.presell({ type: 'is_promote', cat_id: 0 }, { showLoading: false, showToast: false }).then((res) => {
       if (res.status == 1) {
         this.fastbuyData = res;
         this.httpService.setStorage('fastbuyData', res);

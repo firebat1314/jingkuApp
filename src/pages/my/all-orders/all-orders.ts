@@ -3,6 +3,7 @@ import { NavController, NavParams, Content, IonicPage, FabButton, Events, AlertC
 import { HttpService } from "../../../providers/http-service";
 import { Native } from "../../../providers/native";
 import { phone_nember } from '../../../providers/constants';
+import { MineProvider } from '../../../providers/mine/mine';
 /*
   Generated class for the AllOrders page.
 
@@ -34,7 +35,8 @@ export class AllOrdersPage {
     public httpService: HttpService,
     public native: Native,
     public events: Events,
-		private alertCtrl: AlertController,
+    private alertCtrl: AlertController,
+    private mine: MineProvider,
   ) {
     this.events.subscribe('allOrders:update', () => {
       this.getByPageIndex();

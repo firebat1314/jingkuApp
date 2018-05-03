@@ -384,7 +384,7 @@ page-particulars {
                         overflow: hidden;
                         margin: 1rem 0;
                         font-size: 1.4rem;
-                        &:last-child {
+                        &.shop_price {
                             color: #e50000;
                             font-weight: 500;
                         }

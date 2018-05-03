@@ -1,6 +1,7 @@
 import { Component, ViewChild } from '@angular/core';
 import { NavController, NavParams, Content, IonicPage, FabButton } from 'ionic-angular';
 import { HttpService } from "../../../providers/http-service";
+import { MineProvider } from '../../../providers/mine/mine';
 
 @IonicPage()
 @Component({
@@ -17,7 +18,8 @@ export class PresellPage {
   constructor(
     public navCtrl: NavController,
     public navParams: NavParams,
-    private httpService: HttpService
+    private httpService: HttpService,
+    private mine: MineProvider,
   ) {}
   
   ngOnInit() {

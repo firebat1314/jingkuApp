@@ -32,7 +32,7 @@
                         <img img-lazy-load="{{item.goods_thumb}}">
                     </ion-thumbnail>
                     <h2>{{item.goods_name}}</h2>
-                    <p class="right-bottom">
+                    <p class="right-bottom" *ngIf="mine?.showPrice">
                         <span class="price">{{item.shop_price}}</span>
                     </p>
                 </button>

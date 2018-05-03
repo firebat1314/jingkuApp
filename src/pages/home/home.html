@@ -100,7 +100,7 @@
                         <div class="img" border-f0>
                             <img [img-lazy-load]="item.goods_img" alt="">
                         </div>
-                        <div class="txt">
+                        <div class="txt" *ngIf="mine?.showPrice">
                             <div class="price">{{item.promote_price}}</div>
                             <div class="old_price">¥{{item.shop_price}}</div>
                         </div>
@@ -178,7 +178,7 @@
                                 <img border-f0 img-lazy-load="{{slide?.goods_img}}">
                                 <div class="info">
                                     <!-- <div class="name">{{slide?.name}}</div> -->
-                                    <div class="price">{{slide?.shop_price}}</div>
+                                    <div class="price" *ngIf="mine?.showPrice">{{slide?.shop_price}}</div>
                                 </div>
                             </div>
                         </ion-slide>
@@ -203,7 +203,7 @@
                                     <img border-f0 img-lazy-load="{{slide?.goods_img}}">
                                     <div class="info">
                                         <!-- <div class="name">{{slide?.name}}</div> -->
-                                        <div class="price">{{slide?.shop_price}}</div>
+                                        <div class="price" *ngIf="mine?.showPrice">{{slide?.shop_price}}</div>
                                     </div>
                                 </div>
                             </div>
@@ -231,7 +231,7 @@
                                     <img border-f0 img-lazy-load="{{slide?.goods_img}}">
                                     <div class="info">
                                         <!-- <div class="name">{{slide?.name}}</div> -->
-                                        <div class="price">{{slide?.shop_price}}</div>
+                                        <div class="price" *ngIf="mine?.showPrice">{{slide?.shop_price}}</div>
                                     </div>
                                 </div>
                             </div>

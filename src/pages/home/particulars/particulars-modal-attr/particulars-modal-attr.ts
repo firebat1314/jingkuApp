@@ -4,6 +4,7 @@ import { HttpService } from "../../../../providers/http-service";
 import { Native } from "../../../../providers/native";
 import { TofixedPipe } from "../../../../pipes/tofixed/tofixed";
 import { phone_nember } from '../../../../providers/constants';
+import { MineProvider } from '../../../../providers/mine/mine';
 
 export class goodsSpectaclesParams {
 	number = 1;//所填写的商品的数量
@@ -55,7 +56,7 @@ export class ParticularsModalAttrPage {
 	attrsList: any;
 	/* 默认选中切边 */
 	checkCutGoodsId;
-	
+
 	/* 价格数量计算 */
 	totalPrices: any = 0;
 	totalNumber: any = 0;
@@ -67,6 +68,7 @@ export class ParticularsModalAttrPage {
 		public native: Native,
 		private events: Events,
 		private alertCtrl: AlertController,
+		private mine: MineProvider,
 	) { }
 	ionViewDidLoad() {
 		console.log('ionViewDidLoad ParticularsModalAttrPage');
@@ -85,7 +87,7 @@ export class ParticularsModalAttrPage {
 			this.getGoodsAttribute(this.goodsId)
 		}
 	}
-	ngOnDestroy(){
+	ngOnDestroy() {
 
 	}
 	/* 获取镜片球镜属性 */
@@ -385,7 +387,7 @@ export class ParticularsModalAttrPage {
 							zhujing: this.zhujingArr,//所选的柱镜
 							zhouwei: this.zhouweiArr//所填写的轴位
 						}
-					}).then((res) => {
+					},{showLoading: true, showToast: true }).then((res) => {
 						callback(res)
 					}).catch((res) => {
 						console.log(res)
@@ -434,7 +436,7 @@ export class ParticularsModalAttrPage {
 						if (items[j].name.indexOf('定制类型') > -1) {//左右眼镜片定制类型同步设置
 							for (let i = 0; i < items[j].values.length; i++) {
 								const element = items[j].values[i];
-								if(this.goods[0]['定制类型']==element.id&&element.vid==678){
+								if (this.goods[0]['定制类型'] == element.id && element.vid == 678) {
 									parmas = {
 										arr_goods: [{
 											member: this.memberArr,//所填写的商品的数量
@@ -446,7 +448,7 @@ export class ParticularsModalAttrPage {
 										arr_goods_id: [this.checkCutGoodsId],
 										cutting_id: this.cutId
 									}
-								}else{
+								} else {
 									parmas = {
 										arr_goods: [
 											{ member: [1] },/* member: this.attrNumbers */
@@ -462,7 +464,7 @@ export class ParticularsModalAttrPage {
 									}
 								}
 							}
-						}else{
+						} else {
 							// this.native.showToast('请添加样品商品数量')
 						}
 					}

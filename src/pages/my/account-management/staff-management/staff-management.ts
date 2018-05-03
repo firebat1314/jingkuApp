@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams, IonicPage, AlertController, ToastController, Events, ActionSheetController } from 'ionic-angular';
 import { HttpService } from '../../../../providers/http-service';
+import { MineProvider } from '../../../../providers/mine/mine';
 
 /**
  * Generated class for the StaffManagementPage page.
@@ -16,6 +17,7 @@ import { HttpService } from '../../../../providers/http-service';
 })
 export class StaffManagementPage {
 
+  userInfo: any;
   list: any;
   infiniteScroll: any;
   data: any;
@@ -27,6 +29,7 @@ export class StaffManagementPage {
     private toastCtrl: ToastController,
     public events: Events,
     public actionSheetCtrl: ActionSheetController,
+    public mine: MineProvider,
   ) {
   }
 
@@ -35,7 +38,10 @@ export class StaffManagementPage {
   }
 
   ngOnInit() {
-    this.events.subscribe('staff:save', this.getData.bind(this))
+    this.events.subscribe('staff:save', ()=>{
+      this.getData.call(this);
+      this.mine.changeUser();//改变用户信息观察者对象
+    })
     this.getData()
   }
 

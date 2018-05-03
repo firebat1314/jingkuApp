@@ -1,6 +1,7 @@
 import { Component, ViewChild, ElementRef } from '@angular/core';
 import { NavController, NavParams, Content, IonicPage, FabButton } from 'ionic-angular';
 import { HttpService } from "../../../providers/http-service";
+import { MineProvider } from '../../../providers/mine/mine';
 
 /*
   Generated class for the Fastbuy page.
@@ -26,8 +27,9 @@ export class FastbuyPage {
   constructor(
     public navCtrl: NavController,
     public navParams: NavParams,
-    public httpService: HttpService,
-    public elementRef: ElementRef
+    private httpService: HttpService,
+    private elementRef: ElementRef,
+    private mine: MineProvider,
   ) {}
   ngOnInit(){
     this.httpService.getCategoryPromote().then((data) => {

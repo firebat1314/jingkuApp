@@ -2,6 +2,7 @@ import { Component, ViewChild } from '@angular/core';
 import { NavController, NavParams, Content, IonicPage, Events } from 'ionic-angular';
 import { HttpService } from "../../../providers/http-service";
 import { Native } from "../../../providers/native";
+import { MineProvider } from '../../../providers/mine/mine';
 
 @IonicPage()
 @Component({
@@ -19,6 +20,7 @@ export class AccountCollectGoodsPage {
     public httpService: HttpService,
     public native: Native,
     public events: Events,
+    public mine: MineProvider,
   ) {}
 
   ionViewDidLoad() {

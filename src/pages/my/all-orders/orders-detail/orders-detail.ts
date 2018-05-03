@@ -2,6 +2,7 @@ import { Component, ViewChild } from '@angular/core';
 import { NavController, NavParams, Content, IonicPage, Events } from 'ionic-angular';
 import { HttpService } from "../../../../providers/http-service";
 import { Native } from "../../../../providers/native";
+import { MineProvider } from '../../../../providers/mine/mine';
 
 /*
   Generated class for the OrdersDetail page.
@@ -32,6 +33,7 @@ export class OrdersDetailPage {
     public httpService: HttpService,
     public native: Native,
     public events: Events,
+    private mine: MineProvider,
   ) {
   }
 

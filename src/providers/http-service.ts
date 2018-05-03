@@ -168,8 +168,8 @@ export class HttpService {
   getAttrList(data?: Object) {//如果返回的(good_type) 商品类型是goods再调用接口如下
     return this.http.get(IP + '/Goods/get_attr_list', data, { showLoading: false })
   }
-  addToCartSpecJp(data?: Object) {//镜片商品加入购物车
-    return this.http.post(IP + '/Goods/add_to_cart_spec_jp', data, { showLoading: false, showToast: false })
+  addToCartSpecJp(data?: Object, options: HttpOptions = { showLoading: false, showToast: false }) {//镜片商品加入购物车
+    return this.http.post(IP + '/Goods/add_to_cart_spec_jp', data, options)
   }
   addToCartSpec(data?: Object) {//普通商品加入购物车
     return this.http.post(IP + '/Goods/add_to_cart_spec', data, { showLoading: true })
@@ -241,7 +241,7 @@ export class HttpService {
     return this.http.get(IP + '/User/usercount', data, { showLoading: false })
   }
   weixingetOauthRedirect(data?: Object, options?: HttpOptions) {//用户订单
-    return this.http.post(IP + '/Weixin/weixingetOauthRedirect', data, { showLoading: false })
+    return this.http.post(IP + '/Weixin/weixingetOauthRedirect', data, { showLoading: false, showToast: false })
   }
   order(data?: Object, options?: HttpOptions) {//用户订单
     return this.http.get(IP + '/User/order', data, options)
@@ -369,8 +369,8 @@ export class HttpService {
   accountLog(data?: Object) {//用户历史记录 默认user_money user_money 余额记录pay_points 积分记录
     return this.http.get(IP + '/User/accountLog', data, { showLoading: true })
   }
-  presell(data?: Object) {//预售促销商品列表
-    return this.http.get(IP + '/Index/presell', data, { showLoading: true })
+  presell(data?: Object, options: HttpOptions = { showLoading: true }) {//预售促销商品列表
+    return this.http.get(IP + '/Index/presell', data, options)
   }
   helpInfo(data?: Object) {//帮助中心
     return this.http.get(IP + '/User/helpInfo', data, { showLoading: true })

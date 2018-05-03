@@ -3,6 +3,7 @@ import { Component, Input } from '@angular/core';
 import { HttpService } from "../../providers/http-service";
 import { Native } from "../../providers/native";
 import { NavController, ModalController } from 'ionic-angular';
+import { MineProvider } from '../../providers/mine/mine';
 
 /*
   Generated class for the SingleFoodsItem component.
@@ -16,11 +17,13 @@ import { NavController, ModalController } from 'ionic-angular';
 })
 export class SingleFoodsItemComponent {
 
+  showPrice: boolean;
   constructor(
     public httpService: HttpService,
     public native: Native,
     public navCtrl: NavController,
-    public modalCtrl: ModalController
+    public modalCtrl: ModalController,
+    public mine: MineProvider
   ) {
     console.log('Hello SingleFoodsItem Component');
     this.animateClass = { 'fade-in-item': true };
@@ -33,6 +36,12 @@ export class SingleFoodsItemComponent {
   animateClass: any;
   ParticularsPage: any = 'ParticularsPage';
 
+  ngOnInit() {
+  }
+  
+  ngOnDestroy() {
+    this.clearBtn()
+  }
   onEvent(event: string, item: any, e: any) {
     if (e) {
       e.stopPropagation();
@@ -78,9 +87,6 @@ export class SingleFoodsItemComponent {
   }
   goParticularsPage(id) {
     this.navCtrl.push('ParticularsPage', { goodsId: id });
-  }
-  ngOnDestroy() {
-    this.clearBtn()
   }
   /**
    * 

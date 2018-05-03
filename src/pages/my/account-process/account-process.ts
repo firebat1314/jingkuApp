@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams, IonicPage, Events } from 'ionic-angular';
 import { HttpService } from '../../../providers/http-service';
+import { MineProvider } from '../../../providers/mine/mine';
 
 /*
   Generated class for the AccountProcess page.
@@ -28,6 +29,7 @@ export class AccountProcessPage {
     public navParams: NavParams,
     public httpService: HttpService,
     public events: Events,
+    public mine: MineProvider,
   ) { }
 
   ionViewDidLoad() {

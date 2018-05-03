@@ -35,7 +35,7 @@ export class MyApp {
     private imgcacheServ: ImgcacheProvider,
   ) {
     //———————————————————————— app更新 ————————————————————————
-    this.upgradeProvider.detectionUpgrade();
+    upgradeProvider.detectionUpgrade();
 
     this.initializeApp();
     //用户失效事件
@@ -48,7 +48,7 @@ export class MyApp {
       } else {
         this.nav.setRoot('WellcomeNewmPage', {}, { animate: true, });
       }
-    })
+    }) 
   }
   ngOnDestroy() {
     this.events.unsubscribe("signOut");

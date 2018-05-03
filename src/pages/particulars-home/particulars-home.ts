@@ -3,6 +3,7 @@ import { IonicPage, NavController, NavParams, Events, PopoverController, Content
 import { HttpService } from "../../providers/http-service";
 import { Native } from "../../providers/native";
 import { QimoChatProvider } from '../../providers/qimo-chat/qimo-chat';
+import { MineProvider } from '../../providers/mine/mine';
 
 /**
  * Generated class for the ParticularsHomePage page.
@@ -57,6 +58,7 @@ export class ParticularsHomePage {
     private httpService: HttpService,
     public popoverCtrl: PopoverController,
     private QimoChat: QimoChatProvider,
+    private mine: MineProvider,
   ) { }
   ngOnInit() {
     if (this.defaultSelect) {

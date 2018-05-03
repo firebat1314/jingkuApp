@@ -1,6 +1,7 @@
 import { Component, ViewChild } from '@angular/core';
 import { NavController, NavParams, Content, Events, IonicPage } from 'ionic-angular';
 import { HttpService } from "../../../providers/http-service";
+import { MineProvider } from '../../../providers/mine/mine';
 
 /*
   Generated class for the GlassesDesign page.
@@ -23,7 +24,8 @@ export class GlassesDesignPage {
     public navCtrl: NavController,
     public navParams: NavParams,
     public events: Events,
-    public httpService: HttpService
+    public httpService: HttpService,
+    private mine: MineProvider,
   ) { }
 
   ionViewDidLoad() {

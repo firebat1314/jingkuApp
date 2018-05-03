@@ -2,6 +2,7 @@ import { Component, ViewChild } from '@angular/core';
 import { NavController, NavParams, AlertController, Events, Content, IonicPage } from 'ionic-angular';
 import { Native } from "../../providers/native";
 import { HttpService } from "../../providers/http-service";
+import { MineProvider } from '../../providers/mine/mine';
 
 /*
   Generated class for the Car page.
@@ -35,6 +36,7 @@ export class CarPage {
     public alertCtrl: AlertController,
     public httpService: HttpService,
     public events: Events,
+    public mine: MineProvider,
   ) {
 
   }

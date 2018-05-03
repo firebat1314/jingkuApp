@@ -5,6 +5,8 @@ import { HttpService } from "../../../providers/http-service";
 import { Native } from "../../../providers/native";
 import { WxServiceProvider } from '../../../providers/wx-service/wx-service';
 import { QimoChatProvider } from '../../../providers/qimo-chat/qimo-chat';
+import { MineProvider } from '../../../providers/mine/mine';
+import { Subscription } from 'rxjs/Subscription';
 declare let wx;
 @IonicPage({
 	name: 'ParticularsPage',
@@ -16,6 +18,8 @@ declare let wx;
 	templateUrl: 'particulars.html'
 })
 export class ParticularsPage {
+	currentUser: Subscription;
+	showPrice: boolean;
 	region_name: any;//用户选中的收货地址
 	getCategoryRecommendGoodsHot: any;//为你推荐
 	getGoodsInfo: any;//商品总信息
@@ -36,6 +40,7 @@ export class ParticularsPage {
 		private events: Events,
 		private wxService: WxServiceProvider,
 		private QimoChat: QimoChatProvider,
+		private mine: MineProvider,
 	) {
 
 	}
@@ -55,7 +60,16 @@ export class ParticularsPage {
 			this.getHttpDetails();
 		}
 		this.getCarCount();
+		
+		this.currentUser = this.mine.currentUser.subscribe(data => {
+			this.showPrice = data.data.authority.indexOf('1') > -1;
+		 })
+		this.mine.getUser();
 	}
+	 
+	 ngOnDestroy() {
+		this.currentUser.unsubscribe()
+	 }
 	ngAfterViewInit() {
 
 	}

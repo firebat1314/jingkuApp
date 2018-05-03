@@ -60,7 +60,7 @@
                     {{getGoodsInfo?.data?.goods_name}}
                     <div class="goods_brief" style="color: #e60000;font-size: 1.2rem;margin-top: 6px;">{{getGoodsInfo?.data?.goods_brief}}</div>
                 </div>
-                <div class="body">
+                <div class="body" *ngIf="mine?.showPrice">
                     批发价：
                     <span class="now-price">
                         <span first-letter class="number">{{getGoodsInfo?.data?.shop_price_formated}}</span>
@@ -69,7 +69,7 @@
                     <span class="rush-icon" *ngIf="getGoodsInfo?.data?.is_pre==1 && getGoodsInfo?.data?.down_time>0">预售</span>
                     <span class="rush-icon" *ngIf="getGoodsInfo?.promotion?.type_name">{{getGoodsInfo?.promotion?.type_name}}</span>
                 </div>
-                <div class="bottom" *ngIf="getGoodsInfo?.data?.market_price!=0">
+                <div class="bottom" *ngIf="getGoodsInfo?.data?.market_price!=0&&mine?.showPrice">
                     <div>建议零售价：
                         <span class="offer-price" first-letter>¥{{getGoodsInfo?.data?.market_price}}</span>
                     </div>
@@ -81,7 +81,7 @@
                     <div class="info-item" *ngFor="let item of getGoodsInfo?.price_section">
                         <span *ngIf="item.max_num">{{item.number+'-'}}{{item.max_num}}</span>
                         <span *ngIf="!item.max_num">大于{{item.number}}</span>
-                        <span>{{item.format_price}}</span>
+                        <span *ngIf="mine?.showPrice">{{item.format_price}}</span>
                     </div>
                 </div>
                 <div class="right">
@@ -250,7 +250,7 @@
                                     </div>
                                     <div class="bottom">
                                         <h6>{{item.short_name}}</h6>
-                                        <h6>{{item.fittings_price}}</h6>
+                                        <h6 *ngIf="mine?.showPrice">{{item.fittings_price}}</h6>
                                     </div>
                                 </div>
                             </ion-slide>
@@ -267,7 +267,7 @@
                                     </div>
                                     <div class="bottom">
                                         <h6>{{item.short_name}}</h6>
-                                        <h6>{{item.shop_price}}</h6>
+                                        <h6 class="shop_price" *ngIf="mine?.showPrice">{{item.shop_price}}</h6>
                                     </div>
                                 </div>
                             </ion-slide>

@@ -36,7 +36,7 @@
         </div>
         <div class="right">
             <div class="title">{{item.name}}</div>
-            <div class="price">{{item.shop_price}}</div>
+            <div class="price" *ngIf="mine?.showPrice">{{item.shop_price}}</div>
             <div class="purchase" tappable>立即购买&nbsp;<img src="./assets/icon/images/APP_sheji_07.png" alt=""></div>
         </div>
     </div>
