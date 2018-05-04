@@ -14,7 +14,7 @@ import { XimuProvider } from '../../../../providers/ximu/ximu';
 declare var pingpp: any;
 declare var Pingpp: any;
 // declare var Wechat: any;
-declare var navigator: any;
+// declare var navigator: any;
 
 @IonicPage({
   segment: 'payment-method/:order_id/:log_id/:type'
@@ -132,7 +132,7 @@ export class PaymentMethodPage {
   goAllOrdersPage() {
     this.canLeave = true;
     if (this.navCtrl.getPrevious() && this.navCtrl.getPrevious().id == 'AllOrdersPage') {
-      this.navCtrl.pop();
+      this.navCtrl.pop().catch(res => { history.back() });
     } else {
       this.pushPage('AllOrdersPage');
     }
@@ -261,7 +261,6 @@ export class PaymentMethodPage {
    */
   noUserBalance(data) {
     this.httpService.payCode({ code: data }).then((res) => {
-      console.log(res);
       if ((res.status == 1)) {
         // this.wechatPay(res.pingxx)
         this.openPingPayment(res);
@@ -269,37 +268,6 @@ export class PaymentMethodPage {
     })
   }
   openPingPayment(data) {
-    /* let that = this;
-    (<any>window).navigator.pingpp.requestPayment(data, (result, err) => {
-      // this.navCtrl.popToRoot();
-      this.navCtrl.parent.select(3);
-      this.navCtrl.setPages([{ page: 'NewMyPage' }])
-      if (result == 'success') {
-        that.native.showToast("支付成功");
-      } else if (result == 'cancel') {
-        that.native.showToast("取消支付");
-      }
-      console.log('success', result, err)
-      return;
-    }, (result, err) => {
-      // this.navCtrl.popToRoot();
-      this.navCtrl.parent.select(3);
-      this.navCtrl.setPages([{ page: 'NewMyPage' }])
-      if (result == 'cancel') {
-        that.native.showToast("取消支付");
-      } else if (result == 'fail') {
-        that.native.showToast("支付失败");
-      } else if (result == 'invalid') {
-      }
-      console.log('fail', result, err)
-    }); */
-    /*——————————————————————————————————————————————————————————————————————————*/
-    // pingpp.createPayment(data, (result) => {
-    //   console.log('success',result);
-    // }, function (err) {
-    //   console.log(err);
-    // });
-    /*——————————————————————————————————————————————————————————————————————————*/
     let that = this;
     if (this.native.isMobile()) {
       (<any>window).Pingpp.createPayment(data.pingxx, (result, error) => {//scheme 为iOS返回应用
@@ -332,6 +300,29 @@ export class PaymentMethodPage {
       }
     }
   }
+  /*——————————————————————————————————————————————————————————————————————————*/
+  // pingpp.createPayment(data, (result) => {
+  //   console.log('success',result);
+  // }, function (err) {
+  //   console.log(err);
+  // });
+  /*——————————————————————————————————————————————————————————————————————————*/
+  // let that = this;
+  // Pingpp.createPayment(data, (result, error) => {//scheme 为iOS返回应用
+  //   console.log(result);
+  //   console.log(error);
+  //   alert('result' + result);
+  //   alert('error' + error);
+  //   that.navCtrl.push(AllOrdersPage);
+  //   if (result == 'success') {
+  //     that.native.showToast('支付成功');
+  //   }
+  // })
+  // Pingpp.setDebugMode(true)
+  // Pingpp.getVersion(function (version) {
+  //   alert("当前SDK版本号是:" + version);
+  // });
+  // }
 
   // alipayPay(alipayOrder) {
   //   // Should get from server side with sign.

@@ -65,46 +65,15 @@ export class AccountInfoPage {
   ngOnDestroy() {
     this.events.unsubscribe('userInfo:editOk');
   }
-  editAvatar() {
-    let actionSheet = this.actionSheetCtrl.create({
-      buttons: [
-        {
-          text: '拍照上传',
-          role: 'destructive',
-          handler: () => {
-            this.native.getPictureByCamera({
-              allowEdit:true
-            }).then((data) => {
-              this.uploadAvatar(data);
-            })
-          }
-        },
-        {
-          text: '本地上传',
-          handler: () => {
-            this.native.getPictureByPhotoLibrary({
-              allowEdit:true
-            }).then((data) => {
-              this.uploadAvatar(data);
-            })
-          }
-        },
-        {
-          text: '取消',
-          role: 'cancel',
-          handler: () => {}
-        }
-      ]
-    });
-    actionSheet.present();
-  }
-  uploadAvatar(data) {
-    this.httpService.editAvatar({ avatar: 'data:image/jpeg;base64,' + data }).then((res) => {
+  editAvatar(data) {
+    this.httpService.editAvatar({ avatar: data }).then((res) => {
       if (res.status == 1) {
         this.native.showToast('头像已更新');
         this.getUserData();
-        this.events.publish('my:update','data:image/jpeg;base64,' + data);
+        this.events.publish('my:update',data);
       }
+    }).catch(() => {
+      this.native.showToast('上传失败，请重试')
     })
   }
   editMedical(data){

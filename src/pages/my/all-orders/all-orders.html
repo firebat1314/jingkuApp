@@ -71,8 +71,8 @@
 						</div>
 					</div>
 					<div class="right">
-						<div class="price color" *ngIf="!(goods.pro_id>0)">{{goods.format_goods_price}}</div>
-						<div class="price color" *ngIf="goods.pro_id>0">{{goods.reduce_price}}
+						<div class="price color" *ngIf="!(goods.pro_id>0)&&mine?.showPrice">{{goods.format_goods_price}}</div>
+						<div class="price color" *ngIf="goods.pro_id>0&&mine?.showPrice">{{goods.reduce_price}}
 							<p class="old">{{goods.format_goods_price}}</p>
 						</div>
 						<div class="count">x{{goods.goods_number}}</div>
@@ -88,7 +88,7 @@
 		</ion-item>
 		<div class="result">
 			<span class="count">共{{item.goods_number}}件商品</span>&nbsp;&nbsp;
-			<span class="price">合计:
+			<span class="price" *ngIf="mine?.showPrice">合计:
 				<span>￥{{item.total_fee}}</span>
 			</span>
 		</div>

@@ -1,8 +1,8 @@
 import { NgModule } from '@angular/core';
 import { IonicPageModule } from 'ionic-angular';
-import { NewProductPage } from './new-product';
-import { AdsClickDirectiveModule } from '../../../directives/ads-click/ads-click.module';
 import { ImgLazyLoadDirectiveModule } from '../../../directives/img-lazy-load/img-lazy-load.module';
+import { AdsClickDirectiveModule } from '../../../directives/ads-click/ads-click.module';
+import { NewProductPage } from './new-product';
 
 @NgModule({
   declarations: [

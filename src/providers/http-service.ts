@@ -61,6 +61,12 @@ export class HttpService {
     this.storage.clear().then(callBack);
   }
 
+  loginCompany(data?: Object) {//登录
+    return this.http.post(IP + '/Login/loginCompany', data, { showLoading: true })
+  }
+  fastLogin(data?: Object) {//登录
+    return this.http.post(IP + '/Login/fastLogin', data, { showLoading: true })
+  }
   login(data?: Object) {//登录
     return this.http.post(IP + '/Login/index', data, { showLoading: true })
   }
@@ -162,8 +168,8 @@ export class HttpService {
   getAttrList(data?: Object) {//如果返回的(good_type) 商品类型是goods再调用接口如下
     return this.http.get(IP + '/Goods/get_attr_list', data, { showLoading: false })
   }
-  addToCartSpecJp(data?: Object) {//镜片商品加入购物车
-    return this.http.post(IP + '/Goods/add_to_cart_spec_jp', data, { showLoading: false, showToast: false })
+  addToCartSpecJp(data?: Object, options: HttpOptions = { showLoading: false, showToast: false }) {//镜片商品加入购物车
+    return this.http.post(IP + '/Goods/add_to_cart_spec_jp', data, options)
   }
   addToCartSpec(data?: Object) {//普通商品加入购物车
     return this.http.post(IP + '/Goods/add_to_cart_spec', data, { showLoading: true })
@@ -234,8 +240,8 @@ export class HttpService {
   userCount(data?: Object) {//（1）个人中心获取用户统计
     return this.http.get(IP + '/User/usercount', data, { showLoading: false })
   }
-  weixingetOauthRedirect(data?: Object, options?: HttpOptions) {//用户订单
-    return this.http.post(IP + '/Weixin/weixingetOauthRedirect', data, { showLoading: false })
+  weixingetOauthRedirect(data?: Object, options: HttpOptions = { showLoading: false, showToast: false }) {//用户订单
+    return this.http.post(IP + '/Weixin/weixingetOauthRedirect', data, options)
   }
   order(data?: Object, options?: HttpOptions) {//用户订单
     return this.http.get(IP + '/User/order', data, options)
@@ -363,8 +369,8 @@ export class HttpService {
   accountLog(data?: Object) {//用户历史记录 默认user_money user_money 余额记录pay_points 积分记录
     return this.http.get(IP + '/User/accountLog', data, { showLoading: true })
   }
-  presell(data?: Object) {//预售促销商品列表
-    return this.http.get(IP + '/Index/presell', data, { showLoading: true })
+  presell(data?: Object, options: HttpOptions = { showLoading: true }) {//预售促销商品列表
+    return this.http.get(IP + '/Index/presell', data, options)
   }
   helpInfo(data?: Object) {//帮助中心
     return this.http.get(IP + '/User/helpInfo', data, { showLoading: true })
@@ -684,5 +690,23 @@ export class HttpService {
   }
   add_to_cart_spec_cutting(data?: Object) {//切边列表
     return this.http.post(IP + '/Cutting/add_to_cart_spec_cutting', data)
+  }
+  staffIndex(data?: Object, options = {}) {//员工列表
+    return this.http.post(IP + '/Staff/index', data, options)
+  }
+  staffAddUser(data?: Object) {//添加新员工
+    return this.http.post(IP + '/Staff/add_user', data, { showLoading: true })
+  }
+  staffAddNow(data?: Object) {//选择现有成员
+    return this.http.post(IP + '/Staff/add_now', data, { showLoading: true })
+  }
+  staffEditUser(data?: Object) {//选择现有成员
+    return this.http.post(IP + '/Staff/edit_user', data, { showLoading: true })
+  }
+  staffEditUser_get(data?: Object) {//选择现有成员
+    return this.http.get(IP + '/Staff/edit_user', data, { showLoading: true })
+  }
+  staffDelUser(data?: Object) {//选择现有成员
+    return this.http.post(IP + '/Staff/del_user', data, { showLoading: true })
   }
 }

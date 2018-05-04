@@ -35,7 +35,7 @@ export class RealnamePage {
       // console.log(res);
       if (res.status == 1) {
         this.native.showToast('修改成功');
-        this.navCtrl.pop();
+        this.navCtrl.pop().catch(res => { history.back() });
         this.events.publish('userInfo:editOk');
       }
     })

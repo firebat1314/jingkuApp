@@ -5,10 +5,9 @@ import { HttpService } from '../../../providers/http-service';
 /**
  * Generated class for the NewProductPage page.
  *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
+ * See http://ionicframework.com/docs/components/#navigation for more info
+ * on Ionic pages and navigation.
  */
-
 @IonicPage()
 @Component({
   selector: 'page-new-product',

@@ -3,6 +3,7 @@ import { HttpService } from "../../providers/http-service";
 import { Native } from "../../providers/native";
 import { ModalController } from 'ionic-angular';
 import { NavController } from 'ionic-angular/navigation/nav-controller';
+import { MineProvider } from '../../providers/mine/mine';
 
 /*
   Generated class for the SingleCard component.
@@ -16,11 +17,13 @@ import { NavController } from 'ionic-angular/navigation/nav-controller';
 })
 export class SingleCardComponent {
 
+  showPrice: boolean;
   constructor(
     public httpService: HttpService,
     public native: Native,
     public navCtrl: NavController,
-    public modalCtrl: ModalController
+    public modalCtrl: ModalController,
+    public mine: MineProvider
   ) {
     console.log('Hello SingleCard Component');
   }
@@ -31,9 +34,10 @@ export class SingleCardComponent {
   animateClass: any = { 'fade-in-item': true };
   animateItems = [];
   ParticularsPage: any = 'ParticularsPage';
-
+  ngOnInit() {
+  }
   ngOnDestroy() {
-    this.clearBtn()
+    this.clearBtn();
   }
   ngOnChanges() {
     this.animateItems = this.data || [];

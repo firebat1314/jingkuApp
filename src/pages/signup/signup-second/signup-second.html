@@ -37,17 +37,20 @@
                 <ion-input required clearInput [(ngModel)]="formData.zz_number" name="zz_number" type="text" placeholder="请输入营业执照"></ion-input>
             </ion-item>
             <ion-item class="select-wrapper">
-                <ion-select mode="ios" required [(ngModel)]="formData.province" name="province" placeholder="选择省" cancelText="取消" okText="确定" [selectOptions]="{title:'省'}" (ionChange)="provinceChange(formData.province)">
+                <ion-select mode="ios" required [(ngModel)]="formData.province" name="province" placeholder="选择省" cancelText="取消" okText="确定"
+                    [selectOptions]="{title:'省'}" (ionChange)="provinceChange(formData.province)">
                     <ion-option *ngFor="let item of provinceList" value="{{item.region_id}}">
                         {{item.region_name}}
                     </ion-option>
                 </ion-select>
-                <ion-select mode="ios" required [(ngModel)]="formData.city" [disabled]="!cityList" name="city" placeholder="选择市" cancelText="取消" okText="确定" [selectOptions]="{title:'市'}" (ionChange)="cityChange(formData.city)">
+                <ion-select mode="ios" required [(ngModel)]="formData.city" [disabled]="!cityList" name="city" placeholder="选择市" cancelText="取消"
+                    okText="确定" [selectOptions]="{title:'市'}" (ionChange)="cityChange(formData.city)">
                     <ion-option value="{{item.region_id}}" *ngFor="let item of cityList">
                         {{item.region_name}}
                     </ion-option>
                 </ion-select>
-                <ion-select mode="ios" required [(ngModel)]="formData.district" [disabled]="!districtList" name="district" placeholder="选择区" cancelText="取消" okText="确定" [selectOptions]="{title:'区'}">
+                <ion-select mode="ios" required [(ngModel)]="formData.district" [disabled]="!districtList" name="district" placeholder="选择区"
+                    cancelText="取消" okText="确定" [selectOptions]="{title:'区'}">
                     <ion-option value="{{item.region_id}}" *ngFor="let item of districtList">
                         {{item.region_name}}
                     </ion-option>

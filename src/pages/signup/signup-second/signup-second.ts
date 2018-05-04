@@ -79,9 +79,10 @@ export class SignupSecondPage {
     this.navCtrl.push('LoginPage')
   }
   openFile() {
-    this.native.getPictureByPhotoLibrary().then((res) => {
-      this.formData.zhizhao = 'data:image/jpeg;base64,' + res;
-    })
+    // this.native.getPictureByPhotoLibrary().then((res) => {
+    //   this.formData.zhizhao = 'data:image/jpeg;base64,' + res;
+    // })
+
   }
   onSubmit() {
     this.httpService.signupTwo(this.formData).then((res) => {

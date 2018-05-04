@@ -12,11 +12,14 @@
             <img img-lazy-load="{{item?.goods_img}}" alt="{{item?.short_name}}">
         </ion-thumbnail>
         <h2>{{item.short_name}}</h2>
-        <h3>{{item.shop_price}}</h3>
-        <div class="chips">
-            <div class="sale" *ngIf="item.is_promote==1">SALE</div>
-            <div class="hot" *ngIf="item.is_hot==1">HOT</div>
-            <div class="new" *ngIf="item.is_new==1">NEW</div>
+        <h3 *ngIf="mine?.showPrice">{{item.shop_price}}</h3>
+        <div class="btns">
+            <div class="chips">
+                <div class="sale" *ngIf="item.is_promote==1">SALE</div>
+                <div class="hot" *ngIf="item.is_hot==1">HOT</div>
+                <div class="new" *ngIf="item.is_new==1">NEW</div>
+            </div>
+            <button ion-button small color="jingku1" mode="md" (click)="openAttrModal($event,item)" outline class="choose_attr">选规格</button>
         </div>
         <button ion-button small color="jingku1" mode="md" (click)="openAttrModal($event,item)" outline class="choose_attr">选规格</button>
         <div class="background" tappable (click)="close(item,$event)" *ngIf="item.showBtn"></div>

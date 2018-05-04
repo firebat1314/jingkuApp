@@ -57,6 +57,6 @@ export class PayAndShipPage {
   }
 
   onsubmit(){
-    this.events.publish('writeOrder:refresh');this.navCtrl.pop();
+    this.events.publish('writeOrder:refresh');this.navCtrl.pop().catch(res => { history.back() });
   }
 }

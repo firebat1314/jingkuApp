@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams,Content } from 'ionic-angular';
 import { HttpService } from '../../../providers/http-service';
+import { MineProvider } from '../../../providers/mine/mine';
 
 /**
  * Generated class for the NewGlassesDesignPage page.
@@ -23,6 +24,7 @@ export class NewGlassesDesignPage {
     public navCtrl: NavController,
     public navParams: NavParams,
     public httpService: HttpService,
+    private mine: MineProvider,
   ) {
   }
   ngOnInit(){

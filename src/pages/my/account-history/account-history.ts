@@ -1,6 +1,7 @@
 import { Component, ViewChild } from '@angular/core';
 import { NavController, NavParams, Content, AlertController, IonicPage, Events } from 'ionic-angular';
 import { HttpService } from "../../../providers/http-service";
+import { MineProvider } from '../../../providers/mine/mine';
 
 /*
   Generated class for the AccountHistory page.
@@ -22,7 +23,8 @@ export class AccountHistoryPage {
     public navParams: NavParams,
     public httpService: HttpService,
     public alertCtrl: AlertController,
-    public events: Events
+    public events: Events,
+    public mine: MineProvider,
   ) {
     this.getHttpData()
   }

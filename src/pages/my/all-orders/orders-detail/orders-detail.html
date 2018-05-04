@@ -62,8 +62,10 @@
                         </div>
                     </div>
                     <div class="right">
-                        <div class="price color" *ngIf="!(item?.pro_id>0)">¥{{item.goods_price}}</div>
-                        <div class="price color" *ngIf="item?.pro_id>0">{{item.reduce_price}}<p class="old">{{item.goods_price}}</p></div>
+                        <div class="price color" *ngIf="!(item?.pro_id>0)&&mine?.showPrice">¥{{item.goods_price}}</div>
+                        <div class="price color" *ngIf="item?.pro_id>0&&mine?.showPrice">{{item.reduce_price}}
+                            <p class="old">{{item.goods_price}}</p>
+                        </div>
                         <div class="count">x{{item.goods_number}}</div>
                         <!--<div ion-button small (click)="clickAftermarket($event)">申请售后</div>-->
                     </div>
@@ -95,7 +97,7 @@
         </div>
         <div class="background"></div>
         <div class="fore5">
-            <div class="top">
+            <div class="top" *ngIf="mine?.showPrice">
                 <div class="">
                     <span>购物金额小计：</span>
                     <span class="price">¥{{data?.order?.formated_goods_amount}}</span>
@@ -126,7 +128,7 @@
                 </div>-->
             </div>
             <div class="bottom">
-                <div>实付款：
+                <div *ngIf="mine?.showPrice">实付款：
                     <span class="price">¥{{data?.order?.formated_money_paid}}</span>
                 </div>
                 <div class="date">下单时间：{{data?.order?.formated_add_time}}</div>
@@ -138,7 +140,7 @@
 <ion-footer *ngIf="data">
     <div class="result">
         <span class="count">共{{data?.order?.count}}件</span>
-        <span class="price">合计：¥{{data?.order?.formated_total_fee}}</span>
+        <span class="price" *ngIf="mine?.showPrice">合计：¥{{data?.order?.formated_total_fee}}</span>
     </div>
     <div class="foot-button" style="border-top: 1px solid #dedede;">
         <button ion-button large full no-margin color="cancelBtn" (click)="cancelOrder(data?.order?.order_id)" *ngIf="data?.order?.order_status == 0">取消订单</button>

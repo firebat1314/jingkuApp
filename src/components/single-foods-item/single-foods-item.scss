@@ -13,7 +13,7 @@ single-foods-item {
         position: relative;
         ion-thumbnail {
             border: 0;
-            img{
+            img {
                 width: 85px;
                 height: 85px;
             }
@@ -27,8 +27,12 @@ single-foods-item {
             margin: 10px 0px;
             font-size: 1.4rem;
         }
+        .btns {
+            display: flex;
+            justify-content: space-between;
             .chips {
                 display: flex;
+                align-items: center;
                 >div {
                     border-radius: 10px;
                     background: #b11515;
@@ -45,10 +49,8 @@ single-foods-item {
                     background: #7986cb;
                 }
             }
-        .choose_attr{
-            position: absolute;
-            right: 18px;
-            bottom: 12px;
+            .choose_attr {
+            }
         }
         .background {
             width: 100%;

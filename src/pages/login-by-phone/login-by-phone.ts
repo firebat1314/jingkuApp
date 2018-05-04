@@ -16,6 +16,7 @@ import { HttpService } from '../../providers/http-service';
 })
 export class LoginByPhonePage {
 
+  access: any;
   loginInfo = {
     userphone: '',
     mobile_code: '',
@@ -69,39 +70,70 @@ export class LoginByPhonePage {
     })
   }
   login() {
-    this.httpService.login(this.loginInfo).then(data => {
-      if (data.status == 1) {
-        this.httpService.setStorage('token', data.data.token);
-        this.httpService.setStorage('hasLoggedIn', true);
-        this.httpService.setStorage('username', data.data.user_name);
-        this.httpService.setStorage('login_info', data);
-
-        let toast = this.toastCtrl.create({
-          message: "欢迎回来，" + data.data.user_name || this.loginInfo.userphone,
-          duration: 2000,
-          position: "top"
-        });
-        setTimeout(() => {
-          this.navCtrl.setRoot('TabsPage', {}, { animate: true, direction: 'forward' }).then(() => {
-            toast.present();
+    this.httpService.loginCompany(this.loginInfo).then(res => {
+      if (res.status == 1) {
+        let alert = this.alertCtrl.create();
+        alert.setTitle('请选择公司');
+        let arr = res.company;
+        for (let i = 0; i < arr.length; i++) {
+          const item = arr[i];
+          alert.addInput({
+            type: 'radio',
+            label: item.cname,
+            value: item.cid,
+            checked: this.access == item.cid
           });
-        }, 100);
-      } else if (data.status == -1) {
-        this.alertCtrl.create({
-          title: '镜库科技',
-          message: data.info,
-          buttons: [
-            {
-              text: '拨打电话',
-              handler: () => {
-                location.href = "tel:" + data.phone;
+        }
+        alert.addButton('取消');
+        alert.addButton({
+          text: '确定',
+          handler: cid => {
+            this.access = cid;
+            this.httpService.login(Object.assign({ cid: cid }, this.loginInfo)).then(data => {
+              if (data.status == 1) {
+                this.httpService.setStorage('hasLoggedIn', true);
+                this.httpService.setStorage('username', data.data.user_name);
+                this.httpService.setStorage('login_info', data);
+                this.httpService.setStorage('token', data.data.token).then(res => {
+                  this.navCtrl.setRoot('TabsPage', {}, { animate: true, direction: 'forward' }).then(() => {
+                    this.toastCtrl.create({
+                      message: "欢迎回来，" + data.data.user_name || this.loginInfo.userphone,
+                      duration: 2000,
+                      position: "top"
+                    }).present();
+                  });
+                });
+              } else if (data.status == -1) {
+                this.alertCtrl.create({
+                  title: '镜库科技',
+                  message: data.info,
+                  buttons: [
+                    {
+                      text: '拨打电话',
+                      handler: () => {
+                        location.href = "tel:" + data.phone;
+                      }
+                    },
+                    {
+                      text: '确定',
+                    }
+                  ]
+                }).present();
+              } else if (data.status == -2) {
+                this.alertCtrl.create({
+                  title: '请绑定企业信息',
+                  message: data.info,
+                  buttons: [
+                    {
+                      text: '取消',
+                    }
+                  ]
+                }).present();
               }
-            },
-            {
-              text: '确定',
-            }
-          ]
-        }).present();
+            })
+          }
+        });
+        alert.present();
       }
     })
   }

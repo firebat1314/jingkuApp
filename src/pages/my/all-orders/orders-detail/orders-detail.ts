@@ -2,6 +2,7 @@ import { Component, ViewChild } from '@angular/core';
 import { NavController, NavParams, Content, IonicPage, Events } from 'ionic-angular';
 import { HttpService } from "../../../../providers/http-service";
 import { Native } from "../../../../providers/native";
+import { MineProvider } from '../../../../providers/mine/mine';
 
 /*
   Generated class for the OrdersDetail page.
@@ -32,6 +33,7 @@ export class OrdersDetailPage {
     public httpService: HttpService,
     public native: Native,
     public events: Events,
+    private mine: MineProvider,
   ) {
   }
 
@@ -75,7 +77,7 @@ export class OrdersDetailPage {
       this.httpService.affirmReceived({ order_id: order_id }).then((res) => {
         if (res.status == 1) {
           this.native.showToast(res.data);
-          this.navCtrl.pop();
+          this.navCtrl.pop().catch(res => { history.back() });
           this.events.publish('allOrders:update');
           this.events.publish('my:update');
         }
@@ -90,7 +92,7 @@ export class OrdersDetailPage {
       this.httpService.cancelOrder({ order_id: order_id }).then((res) => {
         if (res.status == 1) {
           this.native.showToast(res.data);
-          this.navCtrl.pop();
+          this.navCtrl.pop().catch(res => { history.back() });
           this.events.publish('allOrders:update');
           this.events.publish('my:update');
         }
@@ -102,7 +104,7 @@ export class OrdersDetailPage {
       this.httpService.delOrder({ order_id: order_id }).then((res) => {
         if (res.status == 1) {
           this.native.showToast(res.data);
-          this.navCtrl.pop();
+          this.navCtrl.pop().catch(res => { history.back() });
           this.events.publish('allOrders:update');
           this.events.publish('my:update');
         }

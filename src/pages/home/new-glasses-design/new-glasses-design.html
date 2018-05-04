@@ -81,7 +81,7 @@
         </div>
         <div class="info">
           <div class="name">{{item.name}}</div>
-          <div class="price">{{item.shop_price}}</div>
+          <div class="price" *ngIf="mine?.showPrice">{{item.shop_price}}</div>
         </div>
       </div>
     </div>

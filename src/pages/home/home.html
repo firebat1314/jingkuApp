@@ -26,13 +26,14 @@
         <div class="banner-wrapper">
 
             <img width="100%" *ngIf="!bannerImgs" src="./assets/images/images/640-360.jpg" alt="">
-
-            <ion-slides #bannerSlide autoplay="4000" *ngIf="bannerImgs" pager (ionSlideAutoplayStop)="bannerSlide.startAutoplay()">
-                <!-- *ngIf="bannerImgs" loop-->
-                <ion-slide *ngFor="let item of bannerImgs" tappable [ads-click]="item.link_type">
-                    <img [img-lazy-load]="item.ad_img" defaultSrc="./assets/images/images/640-360.jpg" alt="">
-                </ion-slide>
-            </ion-slides>
+            <ng-container *ngIf="bannerImgs?.length">
+                <ion-slides #bannerSlide autoplay="4000" pager (ionSlideAutoplayStop)="bannerSlide.startAutoplay()">
+                    <!-- *ngIf="bannerImgs" loop-->
+                    <ion-slide *ngFor="let item of bannerImgs" tappable [ads-click]="item.link_type">
+                        <img [img-lazy-load]="item.ad_img" defaultSrc="./assets/images/images/640-360.jpg" alt="">
+                    </ion-slide>
+                </ion-slides>
+            </ng-container>
         </div>
         <!--———————————————————————————————— 功能按钮 ————————————————————————————————-->
         <div class="btn-tool" home-padding>
@@ -99,7 +100,7 @@
                         <div class="img" border-f0>
                             <img [img-lazy-load]="item.goods_img" alt="">
                         </div>
-                        <div class="txt">
+                        <div class="txt" *ngIf="mine?.showPrice">
                             <div class="price">{{item.promote_price}}</div>
                             <div class="old_price">¥{{item.shop_price}}</div>
                         </div>
@@ -119,7 +120,8 @@
             </div>
             <div class="line2">
                 <div>
-                    <img img-lazy-load="{{getBrands?.ad_img}}" [ads-click]="getBrands?.link_type" defaultSrc="./assets/images/images/640-360.jpg" alt="">
+                    <img img-lazy-load="{{getBrands?.ad_img}}" [ads-click]="getBrands?.link_type" defaultSrc="./assets/images/images/640-360.jpg"
+                        alt="">
                 </div>
             </div>
         </div>
@@ -128,7 +130,7 @@
         <!-- <div class="hot-group home-content" home-padding>
             <div class="title">
                 <span class="txt">热门品类</span>
-                <span class="more" tappable (click)="goBrandPage()">更多&gt;</span>
+                <span class="more" tappable (click)="goClassPage()">更多&gt;</span>
             </div>
             <div class="main">
                 <div class="banner">
@@ -147,7 +149,7 @@
         <!-- <div class="hot-brand home-content" home-padding>
             <div class="title">
                 <span class="txt">热门品牌</span>
-                <span class="more" tappable (click)="goClassPage()">更多&gt;</span>
+                <span class="more" tappable (click)="goBrandPage()">更多&gt;</span>
             </div>
             <div class="main" *ngIf="getBrands?.length">
                 <div class="brand-list">
@@ -176,7 +178,7 @@
                                 <img border-f0 img-lazy-load="{{slide?.goods_img}}">
                                 <div class="info">
                                     <!-- <div class="name">{{slide?.name}}</div> -->
-                                    <div class="price">{{slide?.shop_price}}</div>
+                                    <div class="price" *ngIf="mine?.showPrice">{{slide?.shop_price}}</div>
                                 </div>
                             </div>
                         </ion-slide>
@@ -201,7 +203,7 @@
                                     <img border-f0 img-lazy-load="{{slide?.goods_img}}">
                                     <div class="info">
                                         <!-- <div class="name">{{slide?.name}}</div> -->
-                                        <div class="price">{{slide?.shop_price}}</div>
+                                        <div class="price" *ngIf="mine?.showPrice">{{slide?.shop_price}}</div>
                                     </div>
                                 </div>
                             </div>
@@ -229,7 +231,7 @@
                                     <img border-f0 img-lazy-load="{{slide?.goods_img}}">
                                     <div class="info">
                                         <!-- <div class="name">{{slide?.name}}</div> -->
-                                        <div class="price">{{slide?.shop_price}}</div>
+                                        <div class="price" *ngIf="mine?.showPrice">{{slide?.shop_price}}</div>
                                     </div>
                                 </div>
                             </div>

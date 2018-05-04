@@ -78,7 +78,7 @@ export class InvoiceQualificationPage {
       this.httpService.updateInvPost(this.formData).then((res) => {
         if (res.status == 1) {
           this.native.showToast(res.info);
-          this.navCtrl.pop();
+          this.navCtrl.pop().catch(res => { history.back() });
           this.events.publish('receipt:update');
         }
       })
@@ -91,7 +91,7 @@ export class InvoiceQualificationPage {
       }).then((res) => {
         if (res.status == 1) {
           this.native.showToast(res.info);
-          this.navCtrl.pop();
+          this.navCtrl.pop().catch(res => { history.back() });
           this.events.publish('receipt:update');
         }
       })

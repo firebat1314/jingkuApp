@@ -98,7 +98,7 @@ export class AddShippingAddressPage {
       this.httpService.delAddress({ address_ids: [this.addressId] }).then((res) => {
         if (res.status == 1) {
           this.events.publish('updateAddress');
-          this.navCtrl.pop();
+          this.navCtrl.pop().catch(res => { history.back() });
         }
       })
     })
@@ -109,14 +109,14 @@ export class AddShippingAddressPage {
         if (res.status == 1) {
           this.native.showToast(res.info)
           this.events.publish('updateAddress');
-          this.navCtrl.pop();
+          this.navCtrl.pop().catch(res => { history.back() });
         }
       })
     } else {
       this.httpService.addAddress(Object.assign(this.formData, { default: this.default?1 : 0 })).then((res) => {
         if (res.status == 1) {
           this.events.publish('updateAddress');
-          this.navCtrl.pop();
+          this.navCtrl.pop().catch(res => { history.back() });
         }
       })
     }

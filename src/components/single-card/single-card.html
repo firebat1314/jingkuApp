@@ -16,7 +16,11 @@
         </div>
         <div class="info">
             <div class="text">{{item.short_name}}</div>
-            <div class="price">{{item.shop_price}}<button ion-button small color="jingku1" mode="md" (click)="openAttrModal($event,item)" outline>选规格</button></div>
+            <div class="price">
+                <span *ngIf="mine?.showPrice">{{item.shop_price}}</span>&nbsp;
+                <button ion-button small color="jingku1" mode="md" (click)="openAttrModal($event,item)"
+                    outline>选规格</button>
+            </div>
         </div>
     </div>
     <div class="background" tappable (click)="item.showBtn=false;$event.stopPropagation()" *ngIf="item.showBtn"></div>

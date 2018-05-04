@@ -142,7 +142,9 @@ export class UserData {
         if (error.status == 404 && op.showToast) {
             this.native.showToast('连接出错，请稍后再试');
         }
-
+        if (error.status == 500 && op.showToast) {
+            this.native.showToast('500');
+        }
         if (error.status == 0 && op.showToast) {
             this.native.showToast('请检查网络连接');
         }

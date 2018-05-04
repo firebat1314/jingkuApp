@@ -30,7 +30,7 @@
                     </ion-thumbnail>
                     <h2 tappable (click)="joinCar(item.goods_id)">{{item.goods_name}}</h2>
                     <p class="right-bottom">
-                        <span class="price">{{item.shop_price}}</span>
+                        <span class="price" *ngIf="mine?.showPrice">{{item.shop_price}}</span>&nbsp;
                         <button ion-button color="jingku1" outline (click)="joinCar(item.goods_id)">加入购物车</button>
                     </p>
                 </ion-item>

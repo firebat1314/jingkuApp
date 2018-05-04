@@ -1,6 +1,7 @@
 import { Component, ViewChild, ElementRef } from '@angular/core';
 import { NavController, NavParams, Content, IonicPage, FabButton } from 'ionic-angular';
 import { HttpService } from "../../../providers/http-service";
+import { MineProvider } from '../../../providers/mine/mine';
 
 /*
   Generated class for the Fastbuy page.
@@ -26,10 +27,11 @@ export class FastbuyPage {
   constructor(
     public navCtrl: NavController,
     public navParams: NavParams,
-    public httpService: HttpService,
-    public elementRef: ElementRef
-  ) {}
-  ngOnInit(){
+    private httpService: HttpService,
+    private elementRef: ElementRef,
+    private mine: MineProvider,
+  ) { }
+  ngOnInit() {
     this.httpService.getCategoryPromote().then((data) => {
       if (data.status) {
         this.category = data;
@@ -53,7 +55,7 @@ export class FastbuyPage {
     this.selected = id;
     this.infiniteScroll ? this.infiniteScroll.enable(true) : null;
 
-    this.httpService.presell({ page:this.page,num: this.size, type: 'is_promote', cat_id: id }).then((res) => {
+    this.httpService.presell({ page: this.page, num: this.size, type: 'is_promote', cat_id: id }).then((res) => {
       if (res.status == 1) { this.data = res; }
     })
   }
@@ -65,7 +67,7 @@ export class FastbuyPage {
   }
   doInfinite(infiniteScroll) {
     this.infiniteScroll = infiniteScroll;
-    this.httpService.presell({ num: this.size, page: ++this.page, type: 'is_promote', cat_id: this.selected }).then((res) => {
+    this.httpService.presell({ num: this.size, page: ++this.page, type: 'is_promote', cat_id: this.selected }, { showLoading: false }).then((res) => {
       if (res.status == 1) {
         if (!res.data.length) {
           this.infiniteScroll.enable(false);

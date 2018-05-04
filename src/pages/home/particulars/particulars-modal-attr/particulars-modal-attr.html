@@ -13,8 +13,8 @@
             <img img-lazy-load="{{headData?.goods_thumb}}">
         </ion-thumbnail>
         <h2 margin-right>{{headData?.goods_name}}</h2>
-        <p>商品编号：{{headData?.goods_sn}}</p>
-        <p>{{headData?.shop_price | prefix}}</p>
+        <p class="goods_sn">商品编号：{{headData?.goods_sn}}</p>
+        <p class="shop_price" *ngIf="mine.showPrice">{{headData?.shop_price | prefix}}</p>
     </ion-item>
     <div *ngIf="type=='goods'" class="main goods_main">
         <!-- is_subsidy 是否显示促销价 -->
@@ -52,9 +52,9 @@
                 <div class="tr">
                     <div class="td-wrap">
                         <div class="td">数量</div>
-                        <div class="td" *ngIf="attrsList?.data[0]?.is_subsidy">促销价</div>
-                        <div class="td" *ngIf="attrsList?.data[0]?.is_subsidy">原价</div>
-                        <div class="td" *ngIf="!attrsList?.data[0]?.is_subsidy">价格</div>
+                        <div class="td" *ngIf="attrsList?.data[0]?.is_subsidy&&mine.showPrice">促销价</div>
+                        <div class="td" *ngIf="attrsList?.data[0]?.is_subsidy&&mine.showPrice">原价</div>
+                        <div class="td" *ngIf="!attrsList?.data[0]?.is_subsidy&&mine.showPrice">价格</div>
                         <div class="td" *ngFor="let item of attrsList?.data[0]?.goods_attr">{{item.attr_name}}</div>
                         <div class="td">库存</div>
                     </div>
@@ -64,9 +64,9 @@
                         <div class="td count-input-box">
                             <count-input [maxValue]="item.product_number" [rank]="checkMainAttrNum" [(value)]="item.goods_attr_number" (valueChange)="numberIChange(item)"></count-input>
                         </div>
-                        <div class="td" *ngIf="item.is_subsidy">{{item.price}}</div>
-                        <div class="td" *ngIf="item.is_subsidy">{{item.old_price}}</div>
-                        <div class="td" *ngIf="!item.is_subsidy">{{item.price}}</div>
+                        <div class="td" *ngIf="item.is_subsidy&&mine.showPrice">{{item.price}}</div>
+                        <div class="td" *ngIf="item.is_subsidy&&mine.showPrice">{{item.old_price}}</div>
+                        <div class="td" *ngIf="!item.is_subsidy&&mine.showPrice">{{item.price}}</div>
                         <div class="td" *ngFor="let group of item.goods_attr">{{group.attr_val}}</div>
                         <div class="td">{{item.product_number}}</div>
                     </div>
@@ -101,10 +101,10 @@
                     </ion-select>
                 </div>
                 <div class="bottom">
-                    <div>{{it.price||'0.00' | prefix}}&nbsp;&nbsp;&nbsp;
+                    <div class="price" *ngIf="mine?.showPrice">{{it.price||'0.00' | prefix}}&nbsp;&nbsp;
                         <span class="youhui" *ngIf="it.youhui>0">优惠：{{it.youhui | prefix}}</span>
-                    </div>
-                    <div>
+                    </div>&nbsp;
+                    <div class="tool">
                         <ion-icon tappable (click)="removeJPByIndex($event,i)" *ngIf="goods&&goods.length>1" name="ios-trash-outline"></ion-icon>
                         <count-input [(value)]="it.number" (valueChange)="jingpianNumberChange(it)"></count-input>
                     </div>
@@ -131,9 +131,9 @@
                 <div class="tr">
                     <div class="td-wrap">
                         <div class="td">数量</div>
-                        <div class="td" *ngIf="attrsList?.data[0]?.is_subsidy">促销价</div>
-                        <div class="td" *ngIf="attrsList?.data[0]?.is_subsidy">原价</div>
-                        <div class="td" *ngIf="!attrsList?.data[0]?.is_subsidy">价格</div>
+                        <div class="td" *ngIf="attrsList?.data[0]?.is_subsidy&&mine.showPrice">促销价</div>
+                        <div class="td" *ngIf="attrsList?.data[0]?.is_subsidy&&mine.showPrice">原价</div>
+                        <div class="td" *ngIf="!attrsList?.data[0]?.is_subsidy&&mine.showPrice">价格</div>
                         <div class="td" *ngFor="let item of attrsList?.data[0]?.goods_attr">{{item.attr_name}}</div>
                         <div class="td">库存</div>
                     </div>
@@ -143,9 +143,9 @@
                         <div class="td count-input-box">
                             <count-input [maxValue]="item.product_number" [rank]="checkMainAttrNum" [(value)]="item.goods_attr_number" (valueChange)="numberIChange(item)"></count-input>
                         </div>
-                        <div class="td" *ngIf="item.is_subsidy">{{item.price}}</div>
-                        <div class="td" *ngIf="item.is_subsidy">{{item.old_price}}</div>
-                        <div class="td" *ngIf="!item.is_subsidy">{{item.price}}</div>
+                        <div class="td" *ngIf="item.is_subsidy&&mine.showPrice">{{item.price}}</div>
+                        <div class="td" *ngIf="item.is_subsidy&&mine.showPrice">{{item.old_price}}</div>
+                        <div class="td" *ngIf="!item.is_subsidy&&mine.showPrice">{{item.price}}</div>
                         <div class="td" *ngFor="let group of item.goods_attr">{{group.attr_val}}</div>
                         <div class="td">{{item.product_number}}</div>
                     </div>
@@ -177,8 +177,8 @@
                         <ion-option *ngFor="let item1 of item?.values" value="{{item1.id}}">{{item1.label}}</ion-option>
                     </ion-select>
                 </div>
-                <div class="bottom">
-                    <div>{{it.price||'0.00' | prefix}}&nbsp;&nbsp;&nbsp;
+                <div class="bottom" *ngIf="mine.showPrice">
+                    <div class="price">{{it.price||'0.00' | prefix}}&nbsp;&nbsp;&nbsp;
                         <span class="youhui" *ngIf="it.youhui>0">优惠：{{it.youhui | prefix}}</span>
                     </div>
                 </div>
@@ -190,7 +190,8 @@
     <ion-toolbar>
         <div class="result">
             <span>共{{totalNumber||0}}件</span>
-            <span *ngIf="!(attrsList?.is_users_child==1||goods_attribute?.is_users_child==1)">合计：{{totalPrices||0 | tofixed | prefix}}</span>
+            <span *ngIf="mine?.showPrice">合计：{{totalPrices||0 | tofixed | prefix}}</span>
+            <!-- &&!(attrsList?.is_users_child==1||goods_attribute?.is_users_child==1) -->
         </div>
     </ion-toolbar>
     <div class="btns">

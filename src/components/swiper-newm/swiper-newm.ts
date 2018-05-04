@@ -1,5 +1,5 @@
 import { Component, Input, ElementRef, Renderer } from '@angular/core';
-import { NavController } from 'ionic-angular';
+import { NavController, Platform } from 'ionic-angular';
 import { Storage } from '@ionic/storage';
 
 /**
@@ -23,6 +23,7 @@ export class SwiperNewmComponent {
     private render: Renderer,
     private navCtrl: NavController,
     private storage: Storage,
+    private platform: Platform,
   ) {
     console.log('Hello SwiperNewmComponent Component');
   }
@@ -41,7 +42,6 @@ export class SwiperNewmComponent {
     });
   }
   goToHome() {
-    
     this.storage.get('hasLoggedIn').then((result) => {
       if (result) {
         this.navCtrl.setRoot('TabsPage', {}, { animate: true, direction: 'forward' });
@@ -50,5 +50,8 @@ export class SwiperNewmComponent {
         this.navCtrl.push('LoginPage');
       }
     });
+  }
+  download(){
+    if(this.platform.is('ios') || this.platform.is('ipad') || this.platform.is('iphone')){}
   }
 }

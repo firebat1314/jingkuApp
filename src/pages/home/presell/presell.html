@@ -61,7 +61,7 @@
                             </div>
                         </div> -->
                         <div class="price">
-                            <div class="red">{{item.shop_price}}</div>
+                            <div class="red" *ngIf="mine?.showPrice">{{item.shop_price}}</div>&nbsp;
                             <!-- <div class="old-price">{{item.promote_price}}</div> -->
                             <div ion-button color="jingku1" no-margin tappable (click)="goParticularsPage(item.id)">立即购买</div>
                         </div>

@@ -43,6 +43,9 @@ export class Native {
 	isMobileweb() {
 		return this.platform.is('mobileweb');
 	}
+	isMiniprogram() {
+		return window && window['__wxjs_environment'] == 'miniprogram'
+	}
 	/**
 	 * 是否android真机环境
 	 * @return {boolean}
@@ -52,7 +55,7 @@ export class Native {
 	}
 	isWeixin() {
 		var ua = navigator.userAgent.toLowerCase();
-		if(ua.match(/MicroMessenger/i)){
+		if (ua.match(/MicroMessenger/i)) {
 			return ua.match(/MicroMessenger/i)[0] == "micromessenger";
 		}
 	}
@@ -112,7 +115,7 @@ export class Native {
 	 * 关闭loading
 	 */
 	hideLoading = () => {
-		this.loading?this.loading.dismissAll():null;
+		this.loading ? this.loading.dismissAll() : null;
 	};
 	/**
 	 * 手机拨号
@@ -153,7 +156,7 @@ export class Native {
 	 * @param options
 	 * @return {Promise<T>}
 	 */
-	getPicture = (options):Promise<any> => {
+	getPicture = (options): Promise<any> => {
 		return new Promise((resolve, reject) => {
 			this.camera.getPicture(Object.assign({
 				sourceType: this.camera.PictureSourceType.CAMERA,//图片来源,CAMERA:拍照,PHOTOLIBRARY:相册
@@ -180,7 +183,7 @@ export class Native {
 	 * @param options
 	 * @return {Promise<T>}
 	 */
-	getPictureByCamera = (options = {}):Promise<any> => {
+	getPictureByCamera = (options = {}): Promise<any> => {
 		return new Promise((resolve) => {
 			this.getPicture(Object.assign({
 				sourceType: this.camera.PictureSourceType.CAMERA,
@@ -197,7 +200,7 @@ export class Native {
 	 * @param options
 	 * @return {Promise<T>}
 	 */
-	getPictureByPhotoLibrary = (options = {}):Promise<any> => {
+	getPictureByPhotoLibrary = (options = {}): Promise<any> => {
 		return new Promise((resolve) => {
 			this.getPicture(Object.assign({
 				sourceType: this.camera.PictureSourceType.PHOTOLIBRARY,
@@ -215,7 +218,7 @@ export class Native {
 	 * @param options
 	 * @return {Promise<T>}
 	 */
-	getMultiplePicture = (options = {}):Promise<any> => {
+	getMultiplePicture = (options = {}): Promise<any> => {
 		// let that = this;
 		// let destinationType = options['outputType'] || 0;//0:base64字符串,1:图片url
 		return new Promise((resolve, reject) => {

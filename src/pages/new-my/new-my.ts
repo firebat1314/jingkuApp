@@ -37,6 +37,11 @@ export class NewMyPage {
 		this.events.subscribe('my:update', () => {
 			this.httpResult();
 		})
+		this.mine.currentUser.subscribe(data => {
+			this.userInfo = data;
+			if (!data.data.wx_openid && !this.native.isWeixin()) this.httpService.weixingetOauthRedirect({ user_id: data.data.user_info.user_id });
+		})
+		this.mine.getUser();
 	}
 	ionViewDidLoad() {
 		console.log('ionViewDidLoad NewMyPage');
@@ -51,11 +56,6 @@ export class NewMyPage {
 		this.httpService.getByName('userBaitiao').then((res) => {
 			if (res) this.baitiao = res;
 		});
-		this.mine.currentUser.subscribe(data=>{
-			this.userInfo = data;
-			this.httpService.setByName('userInfo', data);
-			if (!data.data.wx_openid && !this.native.isMobile()) this.httpService.weixingetOauthRedirect();
-		})
 		this.httpResult();
 	}
 	httpResult() {
@@ -63,9 +63,6 @@ export class NewMyPage {
 			this.baitiao = res;
 			this.httpService.setByName('userBaitiao', res);
 		})
-
-		this.mine.getUser();
-
 		return this.httpService.userCount().then((res) => {
 			if (res.status) {
 				this.usercount = res;
@@ -75,6 +72,7 @@ export class NewMyPage {
 	}
 	/*下拉刷新*/
 	doRefresh(refresher) {
+		this.mine.changeUser();
 		this.httpResult().then(() => {
 			setTimeout(() => {
 				refresher.complete();

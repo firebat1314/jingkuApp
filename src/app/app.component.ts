@@ -117,7 +117,7 @@ export class MyApp {
           if (!this.nav.canGoBack()) {
             return this.showExit();
           }
-          return this.nav.pop();
+          return this.nav.pop().catch(res => { history.back() });
         }
         let tabs = page.tabs;
         let activeNav = tabs.getSelected();

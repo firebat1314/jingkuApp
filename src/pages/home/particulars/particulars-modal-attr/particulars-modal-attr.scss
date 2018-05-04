@@ -43,7 +43,7 @@ page-particulars-modal-attr {
         }
         p {
             font-size: font-size-text('h5');
-            &:last-child {
+            &.shop_price {
                 font-size: font-size-text('h3');
                 color: red;
             }
@@ -195,14 +195,14 @@ page-particulars-modal-attr {
                 align-items: center;
                 padding: 10px;
                 font-size: 1.6rem;
-                div:nth-of-type(1) {
+                div.price {
                     color: #e60000;
                     .youhui {
                         color: #666;
                         font-size: 1.4rem;
                     }
                 }
-                div:nth-of-type(2) {
+                div.tool {
                     display: flex;
                     align-items: center;
                     .icon {
@@ -267,7 +267,7 @@ page-particulars-modal-attr {
             align-items: center;
             padding: 0 10px 10px;
             font-size: 1.6rem;
-            div:nth-of-type(1) {
+            div.price {
                 color: #e60000;
                 .youhui {
                     color: #666;
