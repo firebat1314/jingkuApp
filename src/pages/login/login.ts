@@ -60,21 +60,18 @@ export class LoginPage {
 						this.httpService.login({ username: this.ele.nativeElement.querySelector('input[name=username]').value, password: this.ele.nativeElement.querySelector('input[name=loginpassword]').value, cid: cid }).then(data => {
 							// console.log(data)
 							if (data.status == 1) {
-								this.httpService.setStorage('token', data.data.token);
 								this.httpService.setStorage('hasLoggedIn', true);
 								this.httpService.setStorage('username', data.data.user_name);
 								this.httpService.setStorage('login_info', data);
-
-								let toast = this.toastCtrl.create({
-									message: "欢迎回来，" + data.data.user_name || this.loginInfo.username,
-									duration: 2000,
-									position: "top"
-								});
-								setTimeout(() => {
+								this.httpService.setStorage('token', data.data.token).then(res => {
 									this.navCtrl.setRoot('TabsPage', {}, { animate: true, direction: 'forward' }).then(() => {
-										toast.present();
+										this.toastCtrl.create({
+											message: "欢迎回来，" + data.data.user_name || this.loginInfo.username,
+											duration: 2000,
+											position: "top"
+										}).present();
 									});
-								}, 100);
+								});
 							} else if (data.status == -1) {
 								this.alertCtrl.create({
 									title: '镜库科技',
@@ -91,7 +88,7 @@ export class LoginPage {
 										}
 									]
 								}).present();
-							}else if(data.status == -2){
+							} else if (data.status == -2) {
 								this.alertCtrl.create({
 									title: '请绑定企业信息',
 									message: data.info,
