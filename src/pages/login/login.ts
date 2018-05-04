@@ -56,7 +56,6 @@ export class LoginPage {
 					text: '确定',
 					handler: cid => {
 						this.access = cid;
-						console.log(cid)
 						this.httpService.login({ username: this.ele.nativeElement.querySelector('input[name=username]').value, password: this.ele.nativeElement.querySelector('input[name=loginpassword]').value, cid: cid }).then(data => {
 							// console.log(data)
 							if (data.status == 1) {
