@@ -9,7 +9,7 @@ import { NavController, NavParams, IonicPage, Events } from 'ionic-angular';
  */
 
 @IonicPage({
-  segment:"staff-access/:authority"
+  segment:"staff-access/:authority/:is_myself"
 })
 @Component({
   selector: 'page-staff-access',
@@ -23,6 +23,7 @@ export class StaffAccessPage {
     { 'label': '允许查看员工信息', 'value': '4', checked: false },
   ]
   authority = this.navParams.get('authority');
+  is_myself = this.navParams.get('is_myself');
   constructor(
     public navCtrl: NavController,
     public navParams: NavParams,

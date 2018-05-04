@@ -82,11 +82,10 @@ export class HomePage {
       }
     })
     this.currentUser = this.mine.currentUser.subscribe(data => {
-      console.log(1111)
       this.userInfo = data;
       this.showPrice = data.data.authority.indexOf('1') > -1;
     })
-    this.mine.getUser();
+    this.mine.changeUser();
     this.getHomeData().then(() => {
       console.log('首页加载完成');
     }).catch((res) => {

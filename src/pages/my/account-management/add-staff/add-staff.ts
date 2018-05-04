@@ -171,6 +171,14 @@ export class AddStaffPage {
 		});
 	}
 	choosePost() {
+		if(this.userId>0&&this.userInfo.data.is_myself==1){
+			return this.toastCtrl.create({
+				message: '不能编辑自己的职务',
+				duration: 2000,
+				position: 'top',
+				showCloseButton: false,
+			}).present();
+		}
 		let actionSheet = this.actionSheetCtrl.create({
 			buttons: [
 				{

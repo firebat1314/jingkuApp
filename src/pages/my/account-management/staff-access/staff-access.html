@@ -18,7 +18,7 @@
 
     <ion-item *ngFor="let item of arr">
       <ion-label>{{item.label}}</ion-label>
-      <ion-checkbox color="jingku1" [(ngModel)]="item.checked"></ion-checkbox>
+      <ion-checkbox color="jingku1" [disabled]="is_myself==1" [(ngModel)]="item.checked"></ion-checkbox>
     </ion-item>
 
   </ion-list>
