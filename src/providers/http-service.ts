@@ -71,10 +71,10 @@ export class HttpService {
     return this.http.post(IP + '/Login/index', data, { showLoading: true })
   }
   signupFirst(data?: Object) {//注册
-    return this.http.post(IP + '/Login/register', data, { showLoading: true })
+    return this.http.post(IP + '/Login/new_register', data, { showLoading: true })
   }
   signupTwo(data?: Object) {//注册2
-    return this.http.post(IP + '/Login/register', data, { timeout: 20000, showLoading: true })
+    return this.http.post(IP + '/Login/new_register', data, { timeout: 20000, showLoading: true })
   }
   getVerificationImg(data?: Object) {//图片验证码
     return this.http.post(IP + '/Login/verify', data, { showLoading: false })

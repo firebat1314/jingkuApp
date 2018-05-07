@@ -85,7 +85,7 @@ export class HomePage {
       this.userInfo = data;
       this.showPrice = data.data.authority.indexOf('1') > -1;
     })
-    this.mine.changeUser();
+    this.mine.getUser();
     this.getHomeData().then(() => {
       console.log('首页加载完成');
     }).catch((res) => {

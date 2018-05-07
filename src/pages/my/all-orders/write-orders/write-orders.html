@@ -20,7 +20,7 @@
                 <div style="color: #4c4c4c;font-size: 1.6rem;">{{defaultShipping.consignee}}
                     <span class="phone">{{defaultShipping.mobile | phonenumberfilter}}</span>
                 </div>
-                <div>{{defaultShipping.address}}</div>
+                <div>{{defaultShipping.region+defaultShipping.address}}</div>
             </div>
         </div>
         <div class="fore fore1" tappable (click)="openOrderModalShippingPage()" *ngIf="!defaultShipping">
@@ -203,7 +203,8 @@
     <div class="pagefoot">
         <div class="left">
             <span class="price" style="white-space: nowrap;font-size: 1.4rem;">实付款: ¥{{data?.total?.amount_formated||'0.00'}}</span>
-            <span *ngIf="goodsType=='integral'">&nbsp;积分:<span class="price">{{data?.total?.integral}}</span>
+            <span *ngIf="goodsType=='integral'">&nbsp;积分:
+                <span class="price">{{data?.total?.integral}}</span>
             </span>
         </div>
         <div class="right">

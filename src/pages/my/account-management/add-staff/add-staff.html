@@ -48,7 +48,7 @@
 				<ion-label fixed color="primary">短信验证</ion-label>
 				<ion-input required type="text" clearInput [(ngModel)]="formData.phone_code" name="phone_code" placeholder="请输入短信验证码"></ion-input>
 				<ng-container item-end>
-					<phone-verify type="mind" [mobile]="formData.mobile_phone" [skey]="verifyImg.skey" [verify]="formData.str_verify" (verifyStatus)="!$event?verifyImg.getImg():null"></phone-verify>
+					<phone-verify [type]="type=='yet'?'member':'changeM'" [mobile]="formData.mobile_phone" [skey]="verifyImg.skey" [verify]="formData.str_verify" (verifyStatus)="!$event?verifyImg.getImg():null"></phone-verify>
 				</ng-container>
 			</ion-item>
 		</ng-container>
@@ -67,6 +67,10 @@
 		<ion-item *ngIf="(userId>0||type=='yet')&&userInfo || type=='new'" detail-push tappable navPush="StaffAccessPage" [navParams]="{authority:formData.authority||[],is_myself:userInfo?.data?.is_myself}">
 			<ion-label fixed color="primary">权限管理</ion-label>
 			<!-- <div item-end style="white-space: pre-wrap;text-align: right;">{{accessLabels}}</div> -->
+		</ion-item>
+		<ion-item *ngIf="(userId>0||type=='yet')&&userInfo || type=='new'">
+			<ion-label fixed color="primary">账号状态</ion-label>
+			<ion-toggle mode="ios" color="jingku1" [disabled]="userId>0&&userInfo?.data?.is_myself==1" [(ngModel)]="formData.staff_status"></ion-toggle>
 		</ion-item>
 	</ion-list>
 </ion-content>

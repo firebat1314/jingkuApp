@@ -7,6 +7,7 @@ import { InAppBrowser } from '@ionic-native/in-app-browser';
 import { QimoChatProvider } from '../../providers/qimo-chat/qimo-chat';
 import { XimuProvider } from '../../providers/ximu/ximu';
 import { MineProvider } from '../../providers/mine/mine';
+import { Subscription } from 'rxjs/Subscription';
 
 @IonicPage()
 @Component({
@@ -14,6 +15,7 @@ import { MineProvider } from '../../providers/mine/mine';
 	templateUrl: 'new-my.html'
 })
 export class NewMyPage {
+	currentUser: Subscription;
 	usercount: any;
 	userInfo: any;
 	baitiao: any;
@@ -37,7 +39,7 @@ export class NewMyPage {
 		this.events.subscribe('my:update', () => {
 			this.httpResult();
 		})
-		this.mine.currentUser.subscribe(data => {
+		this.currentUser = this.mine.currentUser.subscribe(data => {
 			this.userInfo = data;
 			if (!data.data.wx_openid && !this.native.isWeixin()) this.httpService.weixingetOauthRedirect({ user_id: data.data.user_info.user_id });
 		})
@@ -57,6 +59,9 @@ export class NewMyPage {
 			if (res) this.baitiao = res;
 		});
 		this.httpResult();
+	}
+	ngOnDestroy() {
+	  this.currentUser.unsubscribe();
 	}
 	httpResult() {
 		this.httpService.loan_status().then((res) => {

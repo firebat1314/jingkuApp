@@ -87,21 +87,27 @@ export class LoginPage {
 										}
 									]
 								}).present();
-							} else if (data.status == -2) {
-								this.alertCtrl.create({
-									title: '请绑定企业信息',
-									message: data.info,
-									buttons: [
-										{
-											text: '取消',
-										}
-									]
-								}).present();
 							}
 						})
 					}
 				});
 				alert.present();
+			} else if (res.status == -2) {
+				this.alertCtrl.create({
+					title: '请绑定企业信息',
+					message: res.info,
+					buttons: [
+						{
+							text: '绑定',
+							handler: () => {
+								this.navCtrl.push('SignupSecondPage', { user_id: res.user_id })
+							}
+						},
+						{
+							text: '取消',
+						}
+					]
+				}).present();
 			}
 		})
 	}

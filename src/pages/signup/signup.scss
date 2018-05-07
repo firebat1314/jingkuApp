@@ -8,19 +8,22 @@ page-signup {
             }
         }
     }
-    .login {
-        float: right;
-        margin-bottom: 20px;
-        margin-right: 20px;
+    .tool {
+        display: flex;
+        justify-content: space-between;
         white-space: nowrap;
-        .text {
-            display: inline-block;
-            vertical-align: -webkit-baseline-middle;
-            color: #999;
+        .agree {
+            display: flex;
+            align-items: center;
         }
-    }
-    .btn-register {
-        width: 90%;
-        margin: 0 auto;
+        .login {
+            float: right;
+            white-space: nowrap;
+            .text {
+                display: inline-block;
+                vertical-align: -webkit-baseline-middle;
+                color: #999;
+            }
+        }
     }
 }

@@ -44,7 +44,7 @@ export class QimoChatProvider {
 	}
 	qimoChatSDK(access_id?, supplier_name?, supplier_avatar?, successCallback?) {
 		if (typeof cordova != "undefined") {
-			this.httpService.getByName('userInfo').then(function (userInfo) {
+			this.httpService.getByName('userInfo').then((userInfo) => {
 				cordova.exec(
 					(response) => {
 						if (typeof response !== 'object') { response = JSON.parse(response); }

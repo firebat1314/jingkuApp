@@ -26,15 +26,16 @@ export class AddStaffPage {
 	userId = this.navParams.get('userId');//y员工id
 
 	formData = {
-		true_name: '',
-		position: '',
-		user_name: '',
-		mobile_phone: '',
-		str_verify: '',
-		phone_code: '',
-		password: '',
-		cpassword: '',
-		authority: []
+		true_name: null,
+		position: null,
+		user_name: null,
+		mobile_phone: null,
+		str_verify: null,
+		phone_code: null,
+		password: null,
+		cpassword: null,
+		authority: [],
+		staff_status: false
 	}
 
 	constructor(
@@ -76,6 +77,7 @@ export class AddStaffPage {
 					this.formData.true_name = res.data.true_name;
 					this.formData.user_name = res.data.user_name;
 					this.formData.authority = res.data.authority || [];
+					this.formData.staff_status = res.data.is_checks==1?true:false;
 				}
 			})
 		}
@@ -92,6 +94,7 @@ export class AddStaffPage {
 				true_name: this.formData.true_name,
 				user_name: this.formData.user_name,
 				authority: this.formData.authority,
+				staff_status: this.formData.staff_status
 			}).then(res => {
 				if (res.status) {
 					this.navCtrl.pop()
@@ -140,6 +143,7 @@ export class AddStaffPage {
 				authority: this.formData.authority,
 				str_verify: this.formData.str_verify,
 				phone_code: this.formData.phone_code,
+				staff_status: this.formData.staff_status
 			}).then(res => {
 				if (res.status) {
 					this.navCtrl.pop()
@@ -171,7 +175,7 @@ export class AddStaffPage {
 		});
 	}
 	choosePost() {
-		if(this.userId>0&&this.userInfo.data.is_myself==1){
+		if (this.userId > 0 && this.userInfo.data.is_myself == 1) {
 			return this.toastCtrl.create({
 				message: '不能编辑自己的职务',
 				duration: 2000,
