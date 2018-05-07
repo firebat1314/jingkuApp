@@ -91,7 +91,7 @@ export class HomePage {
       });
       this.jpushServ.addTags([data.data.user_info.mobile_phone])
     })
-    this.mine.changeUser();
+    this.mine.getUser();
     this.getHomeData().then(() => {
       console.log('首页加载完成');
     }).catch((res) => {

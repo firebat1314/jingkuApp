@@ -49,7 +49,7 @@ export class PhoneVerifyComponent {
   
 	getMobileCode() {
 		this.httpServ.getMobileCode({
-			type: this.type||'mind',
+			type: this.type,
 			mobile: this.mobile,
 			verify: this.verify,
 			skey: this.skey

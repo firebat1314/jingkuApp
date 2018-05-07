@@ -9,7 +9,9 @@ import { Native } from "../../../providers/native";
   See http://ionicframework.com/docs/v2/components/#navigation for more info on
   Ionic pages and navigation.
 */
-@IonicPage()
+@IonicPage({
+  segment:'signup-second/:user_id'
+})
 @Component({
   selector: 'page-signup-second',
   templateUrl: 'signup-second.html'
@@ -22,9 +24,6 @@ export class SignupSecondPage {
 
   formData = {
     step: 'two',
-    user_name: '',
-    true_name: '',
-    qq: '',
     company: '',
     province: '',
     city: '',
@@ -32,7 +31,8 @@ export class SignupSecondPage {
     zhizhao: '',
     medical:'',
     parent_id:'',
-    zz_number:''
+    zz_number:'',
+    user_id:this.navParams.get('user_id')
   }
   constructor(
     public navCtrl: NavController,
@@ -44,7 +44,6 @@ export class SignupSecondPage {
     console.log('ionViewDidLoad SignupSecondPage');
   }
   ngOnInit(){
-    this.formData.user_name = this.navParams.get("user_name");
     this.httpService.changeRegion({ type: 1, parent_id: 1 }).then((res) => {
       // console.log(res);
       this.provinceList = res.data;

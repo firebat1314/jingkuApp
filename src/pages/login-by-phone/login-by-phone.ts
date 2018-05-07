@@ -60,7 +60,7 @@ export class LoginByPhonePage {
   getMobileCode() {
     this.httpService.getMobileCode({
       mobile: this.loginInfo.userphone,
-      type: 'mind',
+      type: 'member',
       is_verify: 1,
     }).then(data => {
       // console.log(data)
@@ -119,21 +119,27 @@ export class LoginByPhonePage {
                     }
                   ]
                 }).present();
-              } else if (data.status == -2) {
-                this.alertCtrl.create({
-                  title: '请绑定企业信息',
-                  message: data.info,
-                  buttons: [
-                    {
-                      text: '取消',
-                    }
-                  ]
-                }).present();
               }
             })
           }
         });
         alert.present();
+      } else if (res.status == -2) {
+        this.alertCtrl.create({
+          title: '请绑定企业信息',
+          message: res.info,
+          buttons: [
+            {
+              text: '绑定',
+              handler: () => {
+                this.navCtrl.push('SignupSecondPage')
+              }
+            },
+            {
+              text: '取消',
+            }
+          ]
+        }).present();
       }
     })
   }

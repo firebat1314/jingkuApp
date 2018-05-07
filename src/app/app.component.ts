@@ -84,7 +84,7 @@ export class MyApp {
             // this.nav.setRoot('TabsPage', {}, { animate: true, direction: 'forward' });
           } else {
             if (location.href.indexOf('signup') > -1) {
-              this.rootPage = 'SignupPage';
+              // this.rootPage = 'SignupPage';
             } else {
               this.rootPage = 'WellcomeNewmPage';
             }

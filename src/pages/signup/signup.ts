@@ -9,14 +9,16 @@ import { HttpService } from "../../providers/http-service";
   See http://ionicframework.com/docs/v2/components/#navigation for more info on
   Ionic pages and navigation.
 */
-@IonicPage({segment:'signup'})
+@IonicPage({ segment: 'signup' })
 @Component({
   selector: 'page-signup',
   templateUrl: 'signup.html'
 })
 export class SignupPage {
   private signupInfo = {
+    true_name: '',
     user_name: '',
+    qq: '',
     step: 'one',
     mobile_phone: '',
     password: '',
@@ -31,7 +33,7 @@ export class SignupPage {
     public httpService: HttpService
   ) {
   }
-  ngOnInit(){
+  ngOnInit() {
     this.getSkey();
   }
   ionViewDidLoad() {
@@ -75,7 +77,7 @@ export class SignupPage {
       error => {
         // console.log(error);
       }
-      );
+    );
   }
   private wait: number = 60;
   private disabled: Boolean = false;
@@ -117,19 +119,21 @@ export class SignupPage {
   toLoginPage() {
     this.navCtrl.pop().catch(res => { history.back() });
   }
+  goHelperDetailsPage() {
+    this.navCtrl.push('HelperDetailsPage',{article_id:35})
+  }
   registerBtn() {
     this.httpService.signupFirst(this.signupInfo).then(
       data => {
         if (data.status == 1) {
-          this.navCtrl.push('SignupSecondPage',{user_name:data.data.user_name});
-          this.events.publish("user:signupFirst", this.signupInfo.user_name);
+          this.navCtrl.push('SignupThirdPage');
+          // this.navCtrl.push('SignupSecondPage',{user_name:data.data.user_name});
           this.httpService.setUsername(this.signupInfo.user_name)
-          this.httpService.setToken(data.data.token);
+          // this.httpService.setToken(data.data.token);
         }
       },
       error => {
         console.log('注册出错')
-        this.events.publish("user:signupFirst:error");
       }
     );
   }

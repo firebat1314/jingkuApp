@@ -35,7 +35,7 @@ export class TabsPage {
     /* this.mine.currentUser.subscribe(data => {
       this.httpService.setByName('userInfo', data);
     }) */
-    this.mine.getUser();
+    this.mine.changeUser();
   }
   getCarCount() {
     this.httpService.get_flow_goods_number().then((res) => {//获取购物车数量
