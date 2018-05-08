@@ -83,7 +83,6 @@ export class HomePage {
     })
     this.currentUser = this.mine.currentUser.subscribe(data => {
       this.userInfo = data;
-      this.showPrice = data.data.authority.indexOf('1') > -1;
     })
     this.mine.getUser();
     this.getHomeData().then(() => {
