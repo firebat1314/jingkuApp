@@ -44,7 +44,9 @@ export class TabsPage {
       }
     })
   }
-  
+  ngOnDestroy() {
+    this.events.unsubscribe('car:update');
+  }
   ionViewDidLoad() {
     // console.log(this.tabs);
   }

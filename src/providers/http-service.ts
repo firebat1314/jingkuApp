@@ -709,4 +709,10 @@ export class HttpService {
   staffDelUser(data?: Object) {//选择现有成员
     return this.http.post(IP + '/Staff/del_user', data, { showLoading: true })
   }
+  getCompanyList(data?: Object) {//选择现有成员
+    return this.http.post(IP + '/Index/CompanyList', data, { showLoading: true })
+  }
+  SwitchCompany(data?: Object) {//选择现有成员
+    return this.http.post(IP + '/Index/SwitchCompany', data, { showLoading: true })
+  }
 }

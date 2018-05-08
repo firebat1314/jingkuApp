@@ -12,6 +12,7 @@ import { Native } from '../native';
 */
 @Injectable()
 export class MineProvider {
+  canCheckout: boolean;
   public showPrice: boolean;
   public userInfo: any;
   public subject: Subject<any> = new Subject<any>();
@@ -37,7 +38,8 @@ export class MineProvider {
           // this.showPrice = !this.showPrice;
           // },3000)
           this.httpServ.setByName('userInfo', res);
-          this.showPrice = res.data.authority?res.data.authority.indexOf('1') > -1:false;
+          this.showPrice = res.data.authority.indexOf('1') > -1;
+          this.canCheckout = res.data.authority.indexOf('2') > -1;
         }
       })
     } else {

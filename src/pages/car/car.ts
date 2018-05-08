@@ -44,15 +44,15 @@ export class CarPage {
     console.log('ionViewDidLoad CarPage');
   }
   ionViewDidEnter() {
-    
+
   }
   ionViewDidLeave() {
   }
   ngOnInit() {
     this.events.subscribe('car:update', () => {
       this.getFlowGoods();
-    }) 
-    this.getFlowGoods().then(()=>{
+    })
+    this.getFlowGoods().then(() => {
       this.content.resize();
     });
   }
@@ -287,6 +287,8 @@ export class CarPage {
   }
   /* 去结算 */
   goAccounts() {
+    if (!this.mine.canCheckout) { this.native.showToast('无结算权限，请联系企业管理员'); return false }
+
     var arr = []
     for (let i = 0, item = this.carDetails.suppliers_goods_list; i < item.length; i++) {
       for (let k = 0; k < item[i].goods_list.length; k++) {
@@ -307,7 +309,7 @@ export class CarPage {
   /* 转跳商品详情 */
   goParticularPage(item2) {
     console.log(item2)
-    this.navCtrl.push('ParticularsPage',{goodsId:item2.goods_id,cutId:item2.cutting_id>0?item2.cutting_id:0})
+    this.navCtrl.push('ParticularsPage', { goodsId: item2.goods_id, cutId: item2.cutting_id > 0 ? item2.cutting_id : 0 })
   }
   /*————————————————————————————— 购物车总价格计算 —————————————————————————————————————*/
   /*  calculateTotal() {
