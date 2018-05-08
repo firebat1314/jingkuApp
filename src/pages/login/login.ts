@@ -60,7 +60,7 @@ export class LoginPage {
 							// console.log(data)
 							if (data.status == 1) {
 								this.httpService.setStorage('hasLoggedIn', true);
-								this.httpService.setStorage('username', data.data.user_name);
+								this.httpService.setStorage('username', this.loginInfo.username);
 								this.httpService.setStorage('login_info', data);
 								this.httpService.setStorage('token', data.data.token).then(res => {
 									this.navCtrl.setRoot('TabsPage', {}, { animate: true, direction: 'forward' }).then(() => {

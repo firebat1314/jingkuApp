@@ -62,6 +62,7 @@ export class NewMyPage {
 	}
 	ngOnDestroy() {
 	  this.currentUser.unsubscribe();
+	  this.events.unsubscribe('my:update');
 	}
 	httpResult() {
 		this.httpService.loan_status().then((res) => {
