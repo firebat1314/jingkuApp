@@ -162,6 +162,8 @@ export class AllOrdersPage {
     }
   }
   toPay(id) {
+    if (!this.mine.canCheckout) { this.native.showToast('暂无结算权限，请联系企业管理员'); return false }
+    
     this.navCtrl.push('PaymentMethodPage', { order_id: id })
   }
   confirmReceipt(order_id) {

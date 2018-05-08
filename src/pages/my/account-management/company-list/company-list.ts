@@ -48,6 +48,12 @@ export class CompanyListPage {
         this.httpServ.setStorage('token', data.data.token).then(res => {
           this.app.getRootNav().setRoot('TabsPage', {}, { animate: true, direction: 'back' });
         });
+      }else{
+        this.httpServ.getCompanyList().then(res => {
+          if (res.status == 1) {
+            this.companyList = res;
+          }
+        })
       }
     })
   }
