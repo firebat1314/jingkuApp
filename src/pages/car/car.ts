@@ -287,7 +287,7 @@ export class CarPage {
   }
   /* 去结算 */
   goAccounts() {
-    if (!this.mine.canCheckout) { this.native.showToast('无结算权限，请联系企业管理员'); return false }
+    if (!this.mine.canCheckout) { this.native.showToast('暂无结算权限，请联系企业管理员'); return false }
 
     var arr = []
     for (let i = 0, item = this.carDetails.suppliers_goods_list; i < item.length; i++) {

@@ -18,7 +18,7 @@
   
     <ion-item *ngFor="let item of companyList?.data">
       <ion-label>{{item.cname}}</ion-label>
-      <ion-radio color="jingku1" [value]="item.cid" (click)="clickItem(item.cid)"></ion-radio>
+      <ion-radio color="jingku1" [value]="item.cid" [checked]="item.checked==1" [ngStyle]="{'pointer-events':item.checked==1?'none':'auto'}" (click)="clickItem(item.cid)"></ion-radio>
     </ion-item>
   
   </ion-list>

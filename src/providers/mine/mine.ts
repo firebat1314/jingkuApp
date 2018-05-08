@@ -54,7 +54,8 @@ export class MineProvider {
       if (res.status) {
         this.userInfo = res;
         this.httpServ.setByName('userInfo', res);
-          this.showPrice = res.data.authority?res.data.authority.indexOf('1') > -1:false;
+        this.showPrice = res.data.authority.indexOf('1') > -1;
+        this.canCheckout = res.data.authority.indexOf('2') > -1;
         this.subject.next(res);
       }
     })
