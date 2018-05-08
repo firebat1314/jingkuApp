@@ -85,7 +85,6 @@ export class HomePage {
     })
     this.currentUser = this.mine.currentUser.subscribe(data => {
       this.userInfo = data;
-      this.showPrice = data.data.authority.indexOf('1') > -1;
       this.jpushServ.setAlias(data.data.user_info.user_name).then(res => {
         console.log('setAlias', data.data.user_info.user_name)
       });

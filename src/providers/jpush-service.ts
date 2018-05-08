@@ -127,7 +127,7 @@ export class JpushService {
   }
 
   deleteTags(tags?: Array<string>) {
-    return this.jpush.deleteTags({ sequence: this.sequence++, tags: [...tags] })
+    return this.nativeService.isMobile()&&this.jpush.deleteTags({ sequence: this.sequence++, tags: [...tags] })
       .then(this.tagResultHandler)
       .catch(this.errorHandler);
   }
