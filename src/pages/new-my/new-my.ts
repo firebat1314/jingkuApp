@@ -43,7 +43,6 @@ export class NewMyPage {
 			this.userInfo = data;
 			if (!data.data.wx_openid && !this.native.isWeixin()) this.httpService.weixingetOauthRedirect({ user_id: data.data.user_info.user_id });
 		})
-		this.mine.getUser();
 	}
 	ionViewDidLoad() {
 		console.log('ionViewDidLoad NewMyPage');
@@ -69,6 +68,7 @@ export class NewMyPage {
 			this.baitiao = res;
 			this.httpService.setByName('userBaitiao', res);
 		})
+		this.mine.changeUser();
 		return this.httpService.userCount().then((res) => {
 			if (res.status) {
 				this.usercount = res;
