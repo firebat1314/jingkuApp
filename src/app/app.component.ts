@@ -46,7 +46,7 @@ export class MyApp {
       this.storage.remove("token");
       this.storage.remove("login_info");
       this.jpushServ.deleteAlias();//删除推送别名
-      this.jpushServ.deleteTags();//删除推送标签
+      this.jpushServ.cleanTags();//删除推送标签
       if (this.native.isMobile()) {
         this.nav.setRoot('LoginPage', {}, { animate: true, });
       } else {

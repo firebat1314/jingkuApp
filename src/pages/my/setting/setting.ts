@@ -29,8 +29,8 @@ export class SettingPage {
   ) { }
 
   ngAfterViewInit() {
-    this.jPushServ.getUserNotificationSettings().then(res => {
-      if (res) {//设备已开启推送功能
+    // this.jPushServ.getUserNotificationSettings().then(res => {
+      // if (res) {//设备已开启推送功能
         this.jPushServ.isPushStopped().then(res => {
           if (res) {
             this.myToggle.value = false;
@@ -40,8 +40,8 @@ export class SettingPage {
         }).catch((res) => {
           this.myToggle.value = true;
         })
-      }
-    })
+      // }
+    // })
   }
   ionViewDidLoad() {
     console.log('ionViewDidLoad SettingPage');
@@ -51,13 +51,13 @@ export class SettingPage {
   }
   toggle(push) {
     if (push.value) {
-      this.jPushServ.getUserNotificationSettings().then(res => {
-        if (res) {
+      // this.jPushServ.getUserNotificationSettings().then(res => {
+        // if (res) {
           this.jPushServ.resumePush();
-        }else{
-          this.myToggle.value = false;
-        }
-      })
+        // }else{
+          // this.myToggle.value = false;
+        // }
+      // })
     } else {
       this.jPushServ.stopPush();
     }

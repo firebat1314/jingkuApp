@@ -65,7 +65,7 @@ export class AccountManagementPage {
         // this.httpService.removeStorage("username");
         this.httpService.removeStorage("login_info");
         this.jpushServ.deleteAlias();//删除推送别名
-        this.jpushServ.deleteTags();//删除推送标签
+        this.jpushServ.cleanTags();//删除推送标签
         if (this.native.isMobile()) {
           this.app.getRootNav().setRoot('LoginPage', {}, { animate: true });
         } else {
