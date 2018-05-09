@@ -15,11 +15,12 @@
 
 <ion-content>
   <ng-container *ngFor="let box of data?.data">
-    <div *ngIf="box.state">
+    <div>
       <div class="new-order-track">
-        <span>物流编号：{{box.invoice_no || '无'}}</span>
-        <!-- <span class="new-txt-rd2">状态：{{box.msg}}</span> -->
+        <span style="margin-bottom: 6px;">物流单号：{{box.invoice_no || '无'}}</span>
+        <span>物流公司：{{box.shipping_name}}</span>
       </div>
+      <div *ngIf="!box?.list" style="padding: 10px;color: #666;">{{box.msg}}</div>
       <div id="changeContent1" style="padding: 10px 20px;background: #fff;" *ngIf="box?.list">
         <div class="new-order-flow new-p-re">
           <span class="new-order-arr"></span>

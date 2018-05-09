@@ -93,7 +93,7 @@
     </ng-container>
 </ion-content>
 
-<ion-footer *ngIf="data?.order_info?.pay_id!=4">
+<ion-footer *ngIf="data?.order_info?.pay_id!=4" slideInUp>
     <button color="jingku1" no-margin ion-button large full class="modal-button" (click)="toPay()">
         <span *ngIf="paymentType&&yE&&!bt">组合支付</span>
         <span *ngIf="!(paymentType&&yE)&&!bt">支付</span>
