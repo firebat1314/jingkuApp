@@ -137,7 +137,7 @@
     </ng-container>
 </ion-content>
 
-<ion-footer *ngIf="data">
+<ion-footer *ngIf="data" slideInUp>
     <div class="result">
         <span class="count">共{{data?.order?.count}}件</span>
         <span class="price" *ngIf="mine?.showPrice">合计：¥{{data?.order?.formated_total_fee}}</span>
