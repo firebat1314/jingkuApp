@@ -21,7 +21,7 @@ export class AccountMoneyDetailPage {
   constructor(public navCtrl: NavController, public navParams: NavParams, public httpService: HttpService) {
   }
 
-  ngOnInit(){
+  ngOnInit() {
     this.getData();
   }
   ionViewDidLoad() {
@@ -29,8 +29,8 @@ export class AccountMoneyDetailPage {
   }
 
   getData() {
-    this.httpService.accountLog({ page: 1 }).then((res) => {
-      if(res.status){
+    this.httpService.accountLog({ page: 1, size: 30 }).then((res) => {
+      if (res.status) {
         this.data = res;
       }
     })
@@ -39,9 +39,9 @@ export class AccountMoneyDetailPage {
   flag: boolean = true;
   doInfinite(infiniteScroll) {
     if (this.data.has_more) {
-      this.httpService.accountLog({ page: ++this.data.page }).then((res) => {
+      this.httpService.accountLog({ page: ++this.data.page, size: 30 }, { showLoading: false }).then((res) => {
         if (res.status == 1) {
-          Array.prototype.push.apply(this.data.list, res.list);
+          this.data.list = [...this.data.list, ...res.list];
         }
         setTimeout(() => {
           infiniteScroll.complete();

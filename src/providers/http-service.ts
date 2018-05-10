@@ -366,8 +366,8 @@ export class HttpService {
   exchange(data?: Object) {//积分商城
     return this.http.get(IP + '/Index/exchange', data, { showLoading: true })
   }
-  accountLog(data?: Object) {//用户历史记录 默认user_money user_money 余额记录pay_points 积分记录
-    return this.http.get(IP + '/User/accountLog', data, { showLoading: true })
+  accountLog(data?: Object, options: HttpOptions = { showLoading: true }) {//用户历史记录 默认user_money user_money 余额记录pay_points 积分记录
+    return this.http.get(IP + '/User/accountLog', data)
   }
   presell(data?: Object, options: HttpOptions = { showLoading: true }) {//预售促销商品列表
     return this.http.get(IP + '/Index/presell', data, options)
