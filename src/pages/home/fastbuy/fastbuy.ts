@@ -16,7 +16,7 @@ import { MineProvider } from '../../../providers/mine/mine';
 })
 export class FastbuyPage {
   infiniteScroll: any;
-  size: any = 4;
+  size: any = 10;
 
   category: any;
   data: any;

@@ -63,6 +63,9 @@ export class MyApp {
       // Here you can do any higher level native things you might need.
       this.native.isAndroid() ? this.statusBar.styleLightContent() : this.statusBar.styleDefault();
       this.splashScreen.hide();
+      
+      this.imgcacheServ.initImgCache().then(() => {
+      }).catch(res=>{});
       //———————————————————————— 初次进入app引导页面 ————————————————————————
       if (this.native.isMobile()) {
         this.storage.get('has_entered').then((result) => {
