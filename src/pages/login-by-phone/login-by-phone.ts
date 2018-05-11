@@ -89,6 +89,14 @@ export class LoginByPhonePage {
           text: '确定',
           handler: cid => {
             this.access = cid;
+						if (!cid) {
+							this.toastCtrl.create({
+								message: '请选择公司',
+								duration: 2000,
+								position: "top"
+							}).present();
+							return false;
+						}
             this.httpService.login(Object.assign({ cid: cid }, this.loginInfo)).then(data => {
               if (data.status == 1) {
                 this.httpService.setStorage('hasLoggedIn', true);

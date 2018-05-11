@@ -56,6 +56,14 @@ export class LoginPage {
 					text: '确定',
 					handler: cid => {
 						this.access = cid;
+						if (!cid) {
+							this.toastCtrl.create({
+								message: '请选择公司',
+								duration: 2000,
+								position: "top"
+							}).present();
+							return false;
+						}
 						this.httpService.login({ username: this.ele.nativeElement.querySelector('input[name=username]').value, password: this.ele.nativeElement.querySelector('input[name=loginpassword]').value, cid: cid }).then(data => {
 							// console.log(data)
 							if (data.status == 1) {
