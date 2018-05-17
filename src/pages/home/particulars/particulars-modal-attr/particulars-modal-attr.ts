@@ -25,9 +25,11 @@ export class goodsSpectaclesParams {
 export class ParticularsModalAttrPage {
 	numberChangeData: any;
 	isLjdz: any;//来镜定制
-	cutting_info: any;
 	goodsId: any = this.navParams.get('id');
-	cutId: any = this.navParams.get('cutId');;
+	cutId: any = this.navParams.get('cutId');
+	cutting_info: any;
+	dId: any = this.navParams.get('dId');
+	distributionInfo: any;
 	goods_attribute: any;
 	headData: any = this.navParams.get('headData');
 	type: any;//goods_spectacles||goods
@@ -83,6 +85,13 @@ export class ParticularsModalAttrPage {
 					this.getAttrList();
 				}
 			})
+		} else if (this.dId > 0) {
+			this.httpServ.info_d({ id: this.dId }).then(res => {
+				if (res.status) {
+					this.distributionInfo = res;
+					this.getGoodsAttribute(this.goodsId)
+				}
+			})
 		} else {
 			this.getGoodsAttribute(this.goodsId)
 		}
@@ -129,6 +138,24 @@ export class ParticularsModalAttrPage {
 					}
 				}
 			})
+		} else if (this.dId > 0) {
+			this.httpServ.get_goods_attribute_d({ goods_id: goods_id, id: this.dId }).then((res) => {
+				if (res.status == 1) {
+					this.type = res.goods_type;
+					this.goods_attribute = res;
+					if (this.goods_attribute.goods_type == 'goods') {
+						for (var i in this.goods_attribute.data) {
+							if (this.goods_attribute.data[i].is_main == 1) {
+								this.mainAttrs = this.goods_attribute.data[i];
+								console.log(this.mainAttrs)
+								this.checkMainAttrId = this.goods_attribute.data[i].values[0].id || null;
+								this.checkMainAttrNum = this.goods_attribute.data[i].values[0].number || 1;
+							}
+						}
+						this.getAttrList();
+					}
+				}
+			})
 		} else {
 			this.httpServ.getGoodsAttribute({ goods_id: goods_id }).then((res) => {
 				if (res.status == 1) {
@@ -152,9 +179,15 @@ export class ParticularsModalAttrPage {
 	/* 获取普通商品属性 */
 	getAttrList() {
 		//默认选中商品主属性的属性值
-		this.httpServ.getAttrList({ goods_id: this.goodsId, attr: this.checkMainAttrId }).then((res) => {
-			this.attrsList = res;
-		})
+		if (this.dId > 0) {
+			this.httpServ.get_attr_list_d({ goods_id: this.goodsId, attr: this.checkMainAttrId, id: this.dId }).then((res) => {
+				this.attrsList = res;
+			})
+		} else {
+			this.httpServ.getAttrList({ goods_id: this.goodsId, attr: this.checkMainAttrId }).then((res) => {
+				this.attrsList = res;
+			})
+		}
 	}
 	checkMainAttr() {
 		this.clear();
@@ -213,9 +246,6 @@ export class ParticularsModalAttrPage {
 		} else {
 			this.goods.push(new goodsSpectaclesParams);
 		}
-	}
-	removeJP() {
-		this.goods.splice(-1);
 	}
 	removeJPByIndex(e, index) {
 		e.stopPropagation();
@@ -360,7 +390,9 @@ export class ParticularsModalAttrPage {
 							{
 								text: '确定',
 								handler: () => {
-									this.viewCtrl.dismiss('AccountInfoPage');
+									this.viewCtrl.dismiss((navCtrl) => {
+										navCtrl.push('AccountInfoPage', { dId: this.dId })
+									});
 								}
 							},
 							{
@@ -387,7 +419,7 @@ export class ParticularsModalAttrPage {
 							zhujing: this.zhujingArr,//所选的柱镜
 							zhouwei: this.zhouweiArr//所填写的轴位
 						}
-					},{showLoading: true, showToast: true }).then((res) => {
+					}, { showLoading: true, showToast: true }).then((res) => {
 						callback(res)
 					}).catch((res) => {
 						console.log(res)
@@ -406,7 +438,9 @@ export class ParticularsModalAttrPage {
 								{
 									text: '确定',
 									handler: () => {
-										this.viewCtrl.dismiss('AccountInfoPage');
+										this.viewCtrl.dismiss((navCtrl) => {
+											navCtrl.push('AccountInfoPage', { dId: this.dId })
+										});
 									}
 								},
 								{
@@ -481,17 +515,16 @@ export class ParticularsModalAttrPage {
 					this.alertCtrl.create({
 						title: '镜库科技',
 						message: '购买需上传医疗器械许可证，是否上传',
-						buttons: [
-							{
-								text: '确定',
-								handler: () => {
-									this.viewCtrl.dismiss('AccountInfoPage');
-								}
-							},
-							{
-								text: '取消',
+						buttons: [{
+							text: '确定',
+							handler: () => {
+								this.viewCtrl.dismiss((navCtrl) => {
+									navCtrl.push('AccountInfoPage', { dId: this.dId })
+								});
 							}
-						]
+						}, {
+							text: '取消',
+						}]
 					}).present();
 				}
 			}).catch((res) => {
@@ -501,7 +534,13 @@ export class ParticularsModalAttrPage {
 		}
 	}
 	goCarPage() {
-		this.addToCart('CarPage');
+		this.addToCart((navCtrl) => {
+			navCtrl.push('CarPage', { dId: this.dId })
+		});
 	}
-
+	goWriteOrdersDPage() {
+		this.viewCtrl.dismiss((navCtrl) => {
+			navCtrl.push('WriteOrdersDPage', { dId: this.dId })
+		});
+	}
 }

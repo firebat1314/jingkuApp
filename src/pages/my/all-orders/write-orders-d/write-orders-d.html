@@ -1,0 +1,127 @@
+<!--
+  Generated template for the WriteOrders page.
+
+  See http://ionicframework.com/docs/v2/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>填写铺货订单</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content>
+  <ng-container *ngIf="data">
+    <div class="fore fore1" tappable (click)="openOrderModalShippingPage()" *ngIf="defaultShipping">
+      <div class="wrap">
+        <div style="color: #4c4c4c;font-size: 1.6rem;">{{defaultShipping.consignee}}
+          <span class="phone">{{defaultShipping.mobile | phonenumberfilter}}</span>
+        </div>
+        <div>{{defaultShipping.region+'&nbsp;'+defaultShipping.address}}</div>
+      </div>
+    </div>
+    <div class="fore fore1" tappable (click)="openOrderModalShippingPage()" *ngIf="!defaultShipping">
+      <div class="wrap">
+        选择收货地址
+      </div>
+    </div>
+    <ng-container *ngIf="data?.goods_list?.length==1">
+      <ion-list class="fore fore2">
+        <div class="goods-list" *ngFor="let goods of data?.goods_list;">
+          <ion-item no-lines>
+            <ion-thumbnail item-left tappable navPush="ParticularsPage" [navParams]="{goodsId:goods.goods_id,dId:goods.distribution_id}">
+              <img img-lazy-load="{{goods.goods_img}}">
+            </ion-thumbnail>
+            <h2>{{goods.cutting_id>0?goods.cutting_name:goods.goods_name}}</h2>
+            <span class="type" *ngIf="goods?.gift_list">{{goods?.gift_list?.title}}</span>
+          </ion-item>
+          <div class="attr-wrap">
+            <div class="one" *ngFor="let attr of goods?.attrs;">
+              <div class="left">
+                <div class="top" *ngIf="!(attr?.cutting_id>0)">
+                  <div *ngIf="attr.qiujing">球镜：{{attr.qiujing}}</div>
+                  <div *ngIf="attr.zhujing">柱镜：{{attr.zhujing}}</div>
+                  <div *ngIf="attr.zhouwei">轴位：{{attr.zhouwei}}</div>
+                  <div *ngFor="let attr2 of attr?.attrs;">{{attr2}}</div>
+                </div>
+                <div class="top" *ngIf="(attr?.cutting_id>0)">
+                  <div *ngFor="let _attr of attr?.cutting_attr;">
+                    <span style="white-space: initial;" *ngFor="let __attr of _attr;">{{__attr}}</span>
+                  </div>
+                </div>
+                <div class="bottom">
+                  <!-- <div>总价：{{attr.formated_subtotal}}</div> -->
+                </div>
+              </div>
+              <div class="right">
+                <div class="price color" *ngIf="!(attr?.pro_id>0)">{{attr.price}}</div>
+                <div class="price color" *ngIf="attr?.pro_id>0">{{attr.goodsPrice}}
+                  <p class="old">{{attr.price}}</p>
+                </div>
+                <div class="count">x{{attr.number}}</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </ion-list>
+    </ng-container>
+    <ng-container *ngIf="data?.goods_list?.length>1">
+      <div class="fore more-goods">
+        <ion-item mode="ios" detail-push no-lines tappable navPush="GoodslistPage">
+          <ng-container *ngFor="let goods of data?.goods_list;let i=index">
+            <ion-thumbnail item-left>
+              <img img-lazy-load="{{goods.goods_img}}">
+            </ion-thumbnail>
+          </ng-container>
+          <ion-note item-end>
+            <span style="font-weight: 700;" *ngIf="data?.goods_list?.length>3">···</span>&nbsp;共{{data?.goods_list?.length||'0'}}件</ion-note>
+        </ion-item>
+      </div>
+    </ng-container>
+    <ion-list class="fore fore4">
+      <ion-item mode="ios" detail-push tappable (click)="goPayAndShipPage()" style="border-top:none;">
+        支付配送
+        <ion-note item-end text-end class="payment-note">
+          <div>{{paymentMothdName}}</div>
+          <div>{{selectedShip}}</div>
+          <div *ngIf="(!selectedShip&&!paymentMothdName)">请选择</div>
+        </ion-note>
+      </ion-item>
+      <ion-item mode="ios" detail-push tappable (click)="goBusinessmenNotePage()" style="border-bottom:none;">
+        商家备注
+        <ion-note item-end *ngIf="!noteStatus">填写备注信息</ion-note>
+        <ion-note item-end *ngIf="noteStatus">已填写备注，点击查看</ion-note>
+      </ion-item>
+    </ion-list>
+    <div class="fore fore3">
+      <div>
+        <span>铺货总金额：</span>
+        <span class="price">{{data?.total?.subtotal}}</span>
+      </div>
+      <div>
+        <span>配送费用：</span>
+        <span class="price">{{data?.DistributionInfo?.shipping_fee}}</span>
+      </div>
+      <div *ngIf="data?.total?.formated_subsidy_price!=0">
+        <span>+押金：</span>
+        <span class="price">{{data?.DistributionInfo?.deposit}}</span>
+      </div>
+    </div>
+  </ng-container>
+
+</ion-content>
+
+<ion-footer>
+  <div class="pagefoot">
+    <div class="left">
+      <span class="price" style="white-space: nowrap;font-size: 1.4rem;">实付款：{{data?.total?.subtotals||'0.00'}}
+      </span>
+    </div>
+    <div class="right">
+      <div ion-button no-margin full large color="jingku1" tappable (click)="onsubmit()">提交订单</div>
+    </div>
+  </div>
+</ion-footer>

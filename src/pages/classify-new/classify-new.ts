@@ -19,7 +19,7 @@ export class ClassifyNewPage {
   childrenCaCtegory: any;
   getCategorys: any;
   selectedId: number = 0;
-  searchkey;
+  searchkey = '';
   fore4: any;
   fore3: any;
   fore2: any;

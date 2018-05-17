@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams, IonicPage } from 'ionic-angular';
+import { NavController, NavParams, IonicPage, ViewController } from 'ionic-angular';
 import { HttpService } from "../../../providers/http-service";
 import { Native } from "../../../providers/native";
 
@@ -17,9 +17,9 @@ import { Native } from "../../../providers/native";
 export class AccountWithdrawPage {
 
   brankList: any;
-  open_bank:any = {
-    name:'',
-    code:''
+  open_bank: any = {
+    name: '',
+    code: ''
   };
   formData = {
     pay: 'allinpay',
@@ -27,14 +27,15 @@ export class AccountWithdrawPage {
     open_bank: '',
     name: '',
     amount: '',
-    desc:''
+    desc: ''
   }
 
   constructor(
     public navCtrl: NavController,
     public navParams: NavParams,
-    public httpService: HttpService,
-    public native: Native
+    private httpService: HttpService,
+    private native: Native,
+    private viewCtrl: ViewController
   ) { }
 
   ionViewDidLoad() {
@@ -42,7 +43,7 @@ export class AccountWithdrawPage {
   }
   ngOnInit() {
     this.httpService.brank_number().then(res => {
-      if(res.status){
+      if (res.status) {
         this.brankList = res.recharge_list;
       }
     })
@@ -51,7 +52,10 @@ export class AccountWithdrawPage {
     this.httpService.withdrawals(this.formData).then((res) => {
       this.native.showToast(res.data);
       if (res.status == 1) {
-        this.navCtrl.push('AccountWithdrawSucceedPage');
+        var view = this.viewCtrl;
+        this.navCtrl.push('AccountWithdrawSucceedPage').then(() => {
+          this.navCtrl.removeView(view);
+        });;
       }
     })
   }

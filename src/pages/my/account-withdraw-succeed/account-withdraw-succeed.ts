@@ -38,7 +38,7 @@ export class AccountWithdrawSucceedPage {
     }
   }
   goAccountBalancePage() {
-    this.navCtrl.popTo(this.navCtrl.getByIndex(1))
+    this.navCtrl.pop().catch(() => { history.back() })
   }
   ngOnDestroy() {
     clearTimeout(this.timeout);//删除定时器

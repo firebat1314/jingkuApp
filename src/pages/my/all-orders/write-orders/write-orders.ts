@@ -10,7 +10,7 @@ import { Native } from "../../../../providers/native";
   Ionic pages and navigation.
 */
 @IonicPage({
-	segment: 'write-orders/:type'
+	segment: 'write-orders/:type/:dId'
 })
 @Component({
 	selector: 'page-write-orders',
@@ -24,6 +24,7 @@ export class WriteOrdersPage {
 	paymentMothdDesc: any;
 	data: any;
 	goodsType: string = this.navParams.get('type');
+	dId: number = this.navParams.get('dId');
 	//选中地址
 	defaultShipping: any;
 	//选中的快递
@@ -61,11 +62,67 @@ export class WriteOrdersPage {
 		})
 	}
 	getHttpData() {
+		if (this.dId > 0) {
+			this.httpService.checkout_d({ id: this.dId }).then(res => {
+				if (res.status == 1) {
+					this.data = res;
+					//选中地址
+					if (this.data.consignee_list.length == 0) {
+						this.defaultShipping = null;
+					} else {
+						for (let i = 0; i < this.data.consignee_list.length; i++) {
+							if (this.data.consignee_list[i].selected == 1) {
+								this.defaultShipping = this.data.consignee_list[i]
+							}
+						}
+					}
+					//选中支付方式
+					for (let i = 0; i < this.data.payment_list.length; i++) {
+						if (this.data.payment_list[i].selected == 1) {
+							this.paymentMothdName = this.data.payment_list[i].pay_name;
+							this.paymentMothdID = this.data.payment_list[i].pay_id;
+							this.paymentMothdDesc = this.data.payment_list[i].pay_desc;
+						}
+					}
+					//选中的快递方式
+					/* var aShip = new Array();
+					for (let i = 0, store = this.data.cart_goods_list; i < store.length; i++) {
+						for (let j = 0, ship = store[i].shipping; j < ship.length; j++) {
+							if (ship[j].selected == 1) {
+								if (aShip.indexOf(ship[j].shipping_name) == -1) {
+									aShip.push(ship[j].shipping_name)
+								}
+							}
+						}
+					} 
+					this.selectedShip = aShip.join('+');
+					aShip = null;*/
+
+					//note 是否填写
+					this.noteStatus = false;
+					for (var note in this.data.suppliers_notes) {
+						if (this.data.suppliers_notes.hasOwnProperty(note)) {
+							var item = this.data.suppliers_notes[note];
+							if (item) {
+								this.noteStatus = true;
+								console.log(item);
+								break;
+							}
+						}
+					}
+					for (let j = 0, order_label = this.data.order_label; j < order_label.length; j++) {
+						if (order_label[j].selected) {
+							this.noteStatus = true;
+							break;
+						}
+					}
+				} else {
+					this.navCtrl.pop({ animate: true }).catch(() => { history.back() });
+				}
+			})
+			return
+		}
 		return this.httpService.checkout().then((res) => {
-			if (res.status == 0) {
-				this.navCtrl.goToRoot({ animate: true });
-				this.navCtrl.parent.select(2);
-			}
 			if (res.status == 1) {
 				this.data = res;
 				//选中地址
@@ -129,6 +186,8 @@ export class WriteOrdersPage {
 						}
 					}
 				}
+			} else {
+				this.navCtrl.pop({ animate: true }).catch(() => { history.back() });
 			}
 		})
 	}
@@ -136,7 +195,7 @@ export class WriteOrdersPage {
 		this.navCtrl.push('ShippingAddressPage')
 	}
 	openOrderModalShippingPage() {//收货地址
-		this.navCtrl.push('OrderModalShippingPage', { callBack: this.callBack });
+		this.navCtrl.push('OrderModalShippingPage', { callBack: this.callBack, dId: this.dId });
 	}
 	callBack(params) {
 		return new Promise((resolve, reject) => {
@@ -165,7 +224,7 @@ export class WriteOrdersPage {
 			this.native.showToast('请选择收货地址')
 			return
 		}
-		this.navCtrl.push('PayAndShipPage')
+		this.navCtrl.push('PayAndShipPage', { dId: this.dId })
 	}
 	goUsecouponPage() {
 		if (!this.defaultShipping) {
@@ -179,7 +238,7 @@ export class WriteOrdersPage {
 			this.native.showToast('请选择收货地址')
 			return
 		}
-		this.navCtrl.push('BusinessmenNotePage')
+		this.navCtrl.push('BusinessmenNotePage', { dId: this.dId })
 	}
 	done(): Promise<any> {
 		let commentArr = [];
@@ -211,8 +270,7 @@ export class WriteOrdersPage {
 					this.openOrderModalShippingPage();
 					return
 				} else if (res.info == '购物车中没有商品') {
-					this.navCtrl.goToRoot({ animate: true });
-					this.navCtrl.parent.select(2);
+          		this.navCtrl.pop().catch(res => { history.back() });
 				} else if (res.info == '请选择支付方式') {
 					this.goPayAndShipPage();
 				}

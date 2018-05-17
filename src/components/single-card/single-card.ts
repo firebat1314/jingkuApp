@@ -30,6 +30,7 @@ export class SingleCardComponent {
   @Input() data: any;
   @Input() events: any;
   @Input() toTop: any = true;
+  @Input() isDistribution: any = false;
 
   animateClass: any = { 'fade-in-item': true };
   animateItems = [];
@@ -69,13 +70,13 @@ export class SingleCardComponent {
     e.stopPropagation();
     let modal = this.modalCtrl.create('ParticularsModalAttrPage', {
       headData: item,
-      id: item.id,
-      cutId: item.cutting_id
+      id: this.isDistribution ? item.goods_id : item.id,
+      cutId: item.cutting_id,
+      dId: this.isDistribution ? item.id : 0
     }, { cssClass: 'my-modal-style' });
     modal.onDidDismiss(data => {
-      if (data && data == 'CarPage') {
-        this.navCtrl.push(data);
-      }
+      if (!data) return;
+      data(this.navCtrl);
     });
     modal.present();
   }

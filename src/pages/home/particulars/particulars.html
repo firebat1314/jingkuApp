@@ -347,7 +347,8 @@
         <div class="right">
             <!--<button color="cancelBtn" no-margin ion-button large full>暂不支持手机下单</button>-->
             <div class="btns">
-                <button color="jingku1" *ngIf="!is_dingzhi" no-margin ion-button large full tappable (click)="presentModalAttr()">加入购物车</button>
+                <button color="jingku1" *ngIf="!is_dingzhi&&!(dId>0)" no-margin ion-button large full tappable (click)="presentModalAttr()">加入购物车</button>
+                <button color="jingku1" *ngIf="(dId>0)" no-margin ion-button large full tappable (click)="presentModalAttr()">立即铺货</button>
                 <button color="cancelBtn" disabled *ngIf="is_dingzhi" no-margin ion-button large full>暂不支持手机下单</button>
                 <!-- <button color="jingku2" no-margin ion-button large full tappable (click)="presentModalAttr()">立即购买</button> -->
             </div>

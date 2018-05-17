@@ -52,7 +52,7 @@ export class MeunItemComponent {
 				this.filterParams.min_price = null;
 				this.filterParams.max_price = null;
 			}
-			if (!this.data.goods_attr_arr[3].data.length) {
+			if (!this.data.goods_attr_arr[3]) {
 				this.filterParams.filter = null;
 			}
 		});
@@ -90,7 +90,7 @@ export class MeunItemComponent {
 	confirm() {
 		var filter = [];
 		this.filterParams.filter = '';
-		var data = this.data.goods_attr_arr[3].data
+		var data = this.data.goods_attr_arr[3]?this.data.goods_attr_arr[3].data:[];
 		for (let i = 0; i < data.length; i++) {
 			if (data[i].selectedid) {
 				filter.push(data[i].selectedid);

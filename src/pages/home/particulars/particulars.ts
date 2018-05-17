@@ -9,7 +9,7 @@ import { MineProvider } from '../../../providers/mine/mine';
 declare let wx;
 @IonicPage({
 	name: 'ParticularsPage',
-	segment: 'particulars/:goodsId/:cutId',
+	segment: 'particulars/:goodsId/:cutId/:dId',
 	defaultHistory: ['classify']
 })
 @Component({
@@ -28,6 +28,7 @@ export class ParticularsPage {
 	is_dingzhi: boolean = false;//定制商品
 
 	cutId = this.navParams.get('cutId');//切边镜架商品id
+	dId = this.navParams.get('dId');//切边镜架商品id
 	constructor(
 		public navCtrl: NavController,
 		public navParams: NavParams,
@@ -46,18 +47,24 @@ export class ParticularsPage {
 		this.events.subscribe('car:update', () => {
 			this.getCarCount();
 		})
-		if(this.cutId>0){
+		this.getCarCount();
+		if (this.cutId > 0) {
 			this.http.cutting_info({ id: this.cutId }).then(res => {
 				if (res.status) {
 					this.goodsId = res.cutting_info.goods_id;
 					this.getHttpDetails();
 				}
 			})
-		}else{
+		} else if (this.dId > 0) {
+			this.http.info_d({ id: this.dId }).then(res => {
+				if (res.status) {
+					this.goodsId = res.info.goods_id;
+					this.getHttpDetails();
+				}
+			})
+		} else {
 			this.getHttpDetails();
 		}
-		this.getCarCount();
-		
 	}
 	ngAfterViewInit() {
 
@@ -188,16 +195,12 @@ export class ParticularsPage {
 		let modal = this.modalCtrl.create('ParticularsModalAttrPage', {
 			headData: this.getGoodsInfo.data,
 			id: this.goodsId,
-			cutId:this.cutId
+			cutId: this.cutId,
+			dId:this.dId
 		}, { cssClass: 'my-modal-style' });
 		modal.onDidDismiss(data => {
-			if (data) {
-				if (data == 'CarPage') {
-					this.navCtrl.push(data);
-				} else if (data == 'AccountInfoPage') {
-					this.navCtrl.push(data);
-				}
-			}
+			if(!data) return;
+			data(this.navCtrl);
 		});
 		modal.present();
 	}

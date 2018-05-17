@@ -7,7 +7,7 @@
 
 <ion-list>
 
-    <ion-item [ngClass]="animateClass" tappable [navPush]="ParticularsPage" [navParams]="{goodsId:item.id,cutId:item.cutting_id>0?item.cutting_id:0}" *ngFor="let item of animateItems; let i = index;">
+    <ion-item [ngClass]="animateClass" tappable [navPush]="ParticularsPage" [navParams]="{goodsId:item.id,cutId:item.cutting_id>0?item.cutting_id:0,dId:isDistribution ? item.id : 0}" *ngFor="let item of animateItems; let i = index;">
         <ion-thumbnail border-none item-left>
             <img img-lazy-load="{{item?.goods_img}}" alt="{{item?.short_name}}">
         </ion-thumbnail>
@@ -19,7 +19,7 @@
                 <div class="hot" *ngIf="item.is_hot==1">HOT</div>
                 <div class="new" *ngIf="item.is_new==1">NEW</div>
             </div>
-            <button ion-button small color="jingku1" mode="md" (click)="openAttrModal($event,item)" outline class="choose_attr">选规格</button>
+            <button ion-button small color="jingku1" mode="md" (click)="openAttrModal($event,item)" outline class="choose_attr">{{isDistribution?'立即预约':'选规格'}}</button>
         </div>
         <div class="background" tappable (click)="close(item,$event)" *ngIf="item.showBtn"></div>
         <ion-fab middle center #fab *ngIf="item.showBtn" (click)="$event.stopPropagation();">

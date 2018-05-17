@@ -9,7 +9,7 @@ import { Native } from "../../../providers/native";
   Ionic pages and navigation.
 */
 @IonicPage({
-	segment: 'brand-list/:listId/:keyword/:brandId/:supplierId/:type/:cut'
+	segment: 'brand-list/:listId/:keyword/:brandId/:supplierId/:type/:cut/:isDistribution'
 })
 @Component({
 	selector: 'page-brand-list',
@@ -26,7 +26,8 @@ export class BrandListPage {
 	listStyleLock: Boolean;//列表样式 锁定
 	mytool = 'all';//当前筛选
 
-	isCut;
+	isCut;//切边商品列表
+	isDistribution;//铺货列表
 
 	paramsData = {
 		size: 30,
@@ -35,7 +36,7 @@ export class BrandListPage {
 		cat_id: this.navParams.get('listId'),
 		order: null,
 		stort: 'DESC',
-		keywords: null,
+		keywords: '',
 		supplier_id: null,
 		type: null
 	}
@@ -58,14 +59,10 @@ export class BrandListPage {
 		this.paramsData.cat_id = this.navParams.get('listId') == ':listId' ? null : this.navParams.get('listId');
 		this.paramsData.brand_id = this.navParams.get('brandId') == ':brandId' ? null : this.navParams.get('brandId');
 		this.paramsData.supplier_id = this.navParams.get('supplierId') == ':supplierId' ? null : this.navParams.get('supplierId');
-		this.paramsData.keywords = this.navParams.get('keyword') == ':keyword' ? null : this.navParams.get('keyword');
+		this.paramsData.keywords = this.navParams.get('keyword') == ':keyword' ? '' : this.navParams.get('keyword');
 		this.paramsData.type = this.navParams.get('type') == ':type' ? null : this.navParams.get('type');
-		this.isCut = this.navParams.get('type') == ':cut' ? null : this.navParams.get('cut');
-		console.log('cat_id:', this.paramsData.cat_id);
-		console.log('brand_id:', this.paramsData.brand_id);
-		console.log('supplier_id:', this.paramsData.supplier_id);
-		console.log('keywords:', this.paramsData.keywords);
-		console.log('type:', this.paramsData.type);
+		this.isCut = this.navParams.get('cut') == ':cut' ? null : this.navParams.get('cut');
+		this.isDistribution = this.navParams.get('isDistribution') == ':isDistribution' ? null : this.navParams.get('isDistribution');
 
 		this.getListData();
 		this.getCarNumver();
@@ -107,14 +104,24 @@ export class BrandListPage {
 		this.getCarNumver();
 		this.infiniteScroll ? this.infiniteScroll.enable(true) : null;
 		if (this.isCut > 0) {//切边镜片
-			return this.httpService.cutting_list(Object.assign(this.paramsData, { page: 1 })).then((res) => {
+			return this.httpService.cutting_list(Object.assign(this.paramsData, { page: 1,size:10 })).then((res) => {
 				if (res.status == 1) {
 					this.data = res;
 					this.is_jingjia_style = true;
 					this.goodsList = res.goods;
 					this.content.resize();
 					this.content.scrollToTop(0);
-					// this.events.publish('user:listFilter', res);
+					this.events.publish('user:listFilter', res);
+				}
+			})
+		} else if (this.isDistribution > 0) {
+			return this.httpService.category_goods_d(Object.assign(this.paramsData, { page: 1 })).then((res) => {
+				if (res.status == 1) {
+					this.data = res;
+					this.goodsList = res.goods;
+					this.content.resize();
+					this.content.scrollToTop(0);
+					this.events.publish('user:listFilter', res);
 				}
 			})
 		} else {
@@ -125,6 +132,7 @@ export class BrandListPage {
 					this.is_jingjia_style = res.is_jingjia;
 					this.goodsList = res.goods;
 					this.content.resize();
+					console.log(this.content)
 					this.content.scrollToTop(0);
 					this.events.publish('user:listFilter', res);
 				}
@@ -149,7 +157,7 @@ export class BrandListPage {
 					if (res.status == 1) {
 						this.data = res;
 						this.content.resize();
-						this.goodsList = [...this.goodsList,...res.goods]
+						this.goodsList = [...this.goodsList, ...res.goods]
 					}
 					setTimeout(() => {
 						this.infiniteScroll.complete();
@@ -160,7 +168,7 @@ export class BrandListPage {
 					if (res.status == 1) {
 						this.data = res;
 						this.content.resize();
-						this.goodsList = [...this.goodsList,...res.goods]
+						this.goodsList = [...this.goodsList, ...res.goods]
 					}
 					setTimeout(() => {
 						this.infiniteScroll.complete();

@@ -42,7 +42,7 @@ export class UserData {
                 .then(res => {
                     var result = res.json();
                     if (op.showLoading) this.native.hideLoading();
-                    if (result && result.status <= 0 && op.showToast) {
+                    if (result && result.status == 0 && op.showToast) {
                         this.native.showToast(result.info);
                     }
                     return result;
@@ -68,7 +68,7 @@ export class UserData {
                 .then(res => {
                     var result = res.json();
                     if (op.showLoading) this.native.hideLoading();
-                    if (result && result.status <= 0 && op.showToast) {
+                    if (result && result.status == 0 && op.showToast) {
                         this.native.showToast(result.info);
                     }
                     return result;
@@ -93,7 +93,7 @@ export class UserData {
                 .then(res => {
                     var result = res.json();
                     if (op.showLoading) this.native.hideLoading();
-                    if (result && result.status <= 0 && op.showToast) {
+                    if (result && result.status == 0 && op.showToast) {
                         if (result.info != "获取商品参数") {
                             this.native.showToast(result.info);
                         }

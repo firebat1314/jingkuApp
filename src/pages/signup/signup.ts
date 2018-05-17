@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams, Events, IonicPage } from 'ionic-angular';
+import { NavController, NavParams, Events, IonicPage, AlertController } from 'ionic-angular';
 
 import { HttpService } from "../../providers/http-service";
 
@@ -30,6 +30,7 @@ export class SignupPage {
     public navCtrl: NavController,
     public navParams: NavParams,
     private events: Events,
+    private alertCtrl: AlertController,
     public httpService: HttpService
   ) {
   }
@@ -60,6 +61,7 @@ export class SignupPage {
       })
   }
   private getImg() {
+    this.signupInfo.str_verify = '';//清空验证码数字
     this.httpService.getVerificationImg({
       fontSize: 14,
       length: 4,
@@ -120,15 +122,32 @@ export class SignupPage {
     this.navCtrl.pop().catch(res => { history.back() });
   }
   goHelperDetailsPage() {
-    this.navCtrl.push('HelperDetailsPage',{article_id:35})
+    this.navCtrl.push('HelperDetailsPage', { article_id: 35 })
   }
   registerBtn() {
     this.httpService.signupFirst(this.signupInfo).then(
       data => {
         if (data.status == 1) {
-          this.navCtrl.push('SignupThirdPage');
-          // this.navCtrl.push('SignupSecondPage',{user_name:data.data.user_name});
           this.httpService.setUsername(this.signupInfo.user_name)
+          this.alertCtrl.create({
+            title: '提示',
+            message: data.info,
+            enableBackdropDismiss:false,
+            buttons: [
+              {
+                text: '立即认证',
+                handler: () => {
+                  this.navCtrl.push('SignupSecondPage', { user_id: data.data.user_id })
+                }
+              },
+              {
+                text: '取消',
+                handler: () => {
+                  this.navCtrl.push('SignupThirdPage');
+                }
+              }
+            ]
+          }).present();
           // this.httpService.setToken(data.data.token);
         }
       },
