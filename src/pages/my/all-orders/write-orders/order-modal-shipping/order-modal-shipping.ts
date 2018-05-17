@@ -9,14 +9,17 @@ import { Native } from "../../../../../providers/native";
   See http://ionicframework.com/docs/v2/components/#navigation for more info on
   Ionic pages and navigation.
 */
-@IonicPage()
+@IonicPage({
+  segment:'order-modal-shipping/:dId'
+})
 @Component({
   selector: 'page-order-modal-shipping',
   templateUrl: 'order-modal-shipping.html'
 })
 export class OrderModalShippingPage {
   data: any;
-  callBack: any = this.navParams.get('callBack')
+  callBack: any = this.navParams.get('callBack');
+  dId: any = this.navParams.get('dId');
   constructor(
     public navCtrl: NavController,
     public navParams: NavParams,
@@ -25,12 +28,12 @@ export class OrderModalShippingPage {
     private events: Events,
     private native: Native
   ) {
-    
+
   }
   ionViewDidLoad() {
     console.log('ionViewDidLoad OrderModalShippingPage');
   }
-  ngOnInit(){
+  ngOnInit() {
     this.getHttpData();
     this.events.subscribe('updateAddress', () => {
       this.getHttpData();
@@ -41,19 +44,35 @@ export class OrderModalShippingPage {
     this.events.unsubscribe('updateAddress');
   }
   getHttpData() {
-    this.httpService.checkout().then((res) => {
-      // console.log(res);
-      if (res && res.status == 1) {
-        this.data = res.consignee_list;
-        if (!res.consignee_list.length) {
-          this.native.openAlertBox('是否添加收货地址？', () => {
-            this.navCtrl.push('AddShippingAddressPage');
-          }, () => {
-            this.navCtrl.pop().catch(res => { history.back() });
-          })
+    if(this.dId>0){
+      this.httpService.checkout_d({id:this.dId}).then((res) => {
+        // console.log(res);
+        if (res && res.status == 1) {
+          this.data = res.consignee_list;
+          if (!res.consignee_list.length) {
+            this.native.openAlertBox('是否添加收货地址？', () => {
+              this.navCtrl.push('AddShippingAddressPage');
+            }, () => {
+              this.navCtrl.pop().catch(res => { history.back() });
+            })
+          }
         }
-      }
-    })
+      })
+    }else{
+      this.httpService.checkout().then((res) => {
+        // console.log(res);
+        if (res && res.status == 1) {
+          this.data = res.consignee_list;
+          if (!res.consignee_list.length) {
+            this.native.openAlertBox('是否添加收货地址？', () => {
+              this.navCtrl.push('AddShippingAddressPage');
+            }, () => {
+              this.navCtrl.pop().catch(res => { history.back() });
+            })
+          }
+        }
+      })
+    }
   }
   dismiss(data?: any) {
     if (data.is_show == 0) {
@@ -64,20 +83,33 @@ export class OrderModalShippingPage {
       })
       return;
     }
-    this.httpService.changeConsignee({ address_id: data.address_id }).then((res) => {
-      // console.log(res);
-      if (res.status == 1) {
-        this.native.showToast('已切换收货地址')
-        this.viewCtrl.dismiss(data);
-        this.callBack(data).then((res) => {
-          // this.navCtrl.pop().catch(res => { history.back() });
-          this.events.publish('writeOrder:refresh');
-          // console.log(res)
-        }, (err) => {
-          // console.log(err)
-        })
-      }
-    })
+    if (this.dId > 0) {
+      this.httpService.change_consignee_d({ address_id: data.address_id, id: this.dId }).then((res) => {
+        if (res.status == 1) {
+          this.native.showToast('已切换收货地址')
+          this.viewCtrl.dismiss(data);
+          this.callBack(data).then((res) => {
+            this.events.publish('writeOrder:refresh');
+          }, (err) => {
+          })
+        }
+      })
+    }else{
+      this.httpService.changeConsignee({ address_id: data.address_id }).then((res) => {
+        // console.log(res);
+        if (res.status == 1) {
+          this.native.showToast('已切换收货地址')
+          this.viewCtrl.dismiss(data);
+          this.callBack(data).then((res) => {
+            // this.navCtrl.pop().catch(res => { history.back() });
+            this.events.publish('writeOrder:refresh');
+            // console.log(res)
+          }, (err) => {
+            // console.log(err)
+          })
+        }
+      })
+    }
   }
   goEditAddress(addId) {
     this.navCtrl.push('AddShippingAddressPage', { addId: addId })

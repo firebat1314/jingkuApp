@@ -72,6 +72,10 @@ export class LoginByPhonePage {
   login() {
     this.httpService.loginCompany(this.loginInfo).then(res => {
       if (res.status == 1) {
+        if(res.company&&res.company.length==1){
+					this.loginByCid(res.company[0].cid);
+					return false;
+				}
         let alert = this.alertCtrl.create();
         alert.setTitle('请选择公司');
         let arr = res.company;
@@ -94,41 +98,10 @@ export class LoginByPhonePage {
 								message: '请选择公司',
 								duration: 2000,
 								position: "top"
-							}).present();
+              }).present();
 							return false;
-						}
-            this.httpService.login(Object.assign({ cid: cid }, this.loginInfo)).then(data => {
-              if (data.status == 1) {
-                this.httpService.setStorage('hasLoggedIn', true);
-                this.httpService.setStorage('username', data.data.user_name);
-                this.httpService.setStorage('login_info', data);
-                this.httpService.setStorage('token', data.data.token).then(res => {
-                  this.navCtrl.setRoot('TabsPage', {}, { animate: true, direction: 'forward' }).then(() => {
-                    this.toastCtrl.create({
-                      message: "欢迎回来，" + data.data.user_name || this.loginInfo.userphone,
-                      duration: 2000,
-                      position: "top"
-                    }).present();
-                  });
-                });
-              } else if (data.status == -1) {
-                this.alertCtrl.create({
-                  title: '镜库科技',
-                  message: data.info,
-                  buttons: [
-                    {
-                      text: '拨打电话',
-                      handler: () => {
-                        location.href = "tel:" + data.phone;
-                      }
-                    },
-                    {
-                      text: '确定',
-                    }
-                  ]
-                }).present();
-              }
-            })
+            }
+            this.loginByCid(cid);
           }
         });
         alert.present();
@@ -145,6 +118,40 @@ export class LoginByPhonePage {
             },
             {
               text: '取消',
+            }
+          ]
+        }).present();
+      }
+    })
+  }
+  loginByCid(cid){
+    this.httpService.login(Object.assign({ cid: cid }, this.loginInfo)).then(data => {
+      if (data.status == 1) {
+        this.httpService.setStorage('hasLoggedIn', true);
+        this.httpService.setStorage('username', data.data.user_name);
+        this.httpService.setStorage('login_info', data);
+        this.httpService.setStorage('token', data.data.token).then(res => {
+          this.navCtrl.setRoot('TabsPage', {}, { animate: true, direction: 'forward' }).then(() => {
+            this.toastCtrl.create({
+              message: "欢迎回来，" + data.data.user_name || this.loginInfo.userphone,
+              duration: 2000,
+              position: "top"
+            }).present();
+          });
+        });
+      } else if (data.status == -1) {
+        this.alertCtrl.create({
+          title: '镜库科技',
+          message: data.info,
+          buttons: [
+            {
+              text: '拨打电话',
+              handler: () => {
+                location.href = "tel:" + data.phone;
+              }
+            },
+            {
+              text: '确定',
             }
           ]
         }).present();

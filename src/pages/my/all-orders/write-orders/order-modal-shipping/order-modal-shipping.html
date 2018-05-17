@@ -19,7 +19,7 @@
                 <ion-radio mode="md" item-left color="secondary" [checked]="item.selected==1" (ionSelect)="dismiss(item)" [disabled]="item.is_show==0"> </ion-radio>
                 <ion-label>
                     <h2><span class="name">{{item.consignee}}</span>{{item.mobile|phonenumberfilter}}</h2>
-                    <p><span class="moren" *ngIf="item.is_default==1">默认</span>{{item.region+item.address}}</p>
+                    <p><span class="moren" *ngIf="item.is_default==1">默认</span>{{item.region+'&nbsp;'+item.address}}</p>
                 </ion-label>
                 <ion-icon item-right name="ios-create-outline" tappable (click)="goEditAddress(item.address_id)"></ion-icon>
             </ion-item>

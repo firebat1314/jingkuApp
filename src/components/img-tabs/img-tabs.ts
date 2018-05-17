@@ -5,14 +5,13 @@ import { Component , Input, Output, EventEmitter} from '@angular/core';
   templateUrl:'img-tabs.html'
 })
 export class ImgTabs {
-  @Input("slides") slides: string[] = [];  
-  @Input("pageNumber") pageNumber: number = 5;  
-  @Output("slideClick") slideClick = new EventEmitter<number>();  
+  @Input() slides: string[] = [];  
+  @Input() slidesPerView: number = 5;  
+  @Input() selectedIndex: number = 0;  
+  @Output() slideClick = new EventEmitter<number>();  
   constructor() {
     console.log('Hello ImgTabs Component');
   }
-
-  selectedIndex: number = 0;  
 
   ngOnInit() {  
     

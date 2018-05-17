@@ -31,6 +31,7 @@ export class SingleFoodsItemComponent {
   @Input() data: any;
   @Input() events: any;
   @Input() toTop: any = true;
+  @Input() isDistribution: any = false;
 
   animateItems = [];
   animateClass: any;
@@ -38,7 +39,7 @@ export class SingleFoodsItemComponent {
 
   ngOnInit() {
   }
-  
+
   ngOnDestroy() {
     this.clearBtn()
   }
@@ -97,13 +98,13 @@ export class SingleFoodsItemComponent {
     e.stopPropagation();
     let modal = this.modalCtrl.create('ParticularsModalAttrPage', {
       headData: item,
-      id: item.id,
-      cutId: item.cutting_id
+      id: this.isDistribution ? item.goods_id : item.id,
+      cutId: item.cutting_id,
+      dId: this.isDistribution ? item.id : 0
     }, { cssClass: 'my-modal-style' });
     modal.onDidDismiss(data => {
-      if (data && data == 'CarPage') {
-        this.navCtrl.push(data);
-      }
+      if (!data) return;
+      data(this.navCtrl);
     });
     modal.present();
   }

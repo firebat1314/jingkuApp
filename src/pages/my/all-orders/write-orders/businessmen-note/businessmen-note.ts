@@ -8,7 +8,9 @@ import { HttpService } from "../../../../../providers/http-service";
  * See http://ionicframework.com/docs/components/#navigation for more info
  * on Ionic pages and navigation.
  */
-@IonicPage()
+@IonicPage({
+  segment: 'businessmen-note/:dId'
+})
 @Component({
   selector: 'page-businessmen-note',
   templateUrl: 'businessmen-note.html',
@@ -18,6 +20,7 @@ export class BusinessmenNotePage {
   data: any;
   callback: any;
   badgeStr: Array<string> = [];
+  dId: any = this.navParams.get('dId');
   constructor(
     public navCtrl: NavController,
     public navParams: NavParams,
@@ -68,9 +71,15 @@ export class BusinessmenNotePage {
     })
   }  */
   getData() {
-    return this.httpService.checkout().then((res) => {
-      this.data = res;
-    })
+    if (this.dId > 0) {
+      return this.httpService.checkout_d({ id: this.dId }).then((res) => {
+        this.data = res;
+      })
+    } else {
+      return this.httpService.checkout().then((res) => {
+        this.data = res;
+      })
+    }
   }
   checkBadge(i, suppliers_id) {
     let arr: Array<any> = this.data.suppliers_label[suppliers_id];
@@ -91,46 +100,73 @@ export class BusinessmenNotePage {
     }
   }
   writeNotes() {
-    let commentArr = [];
-    let suppliers = [];
-    let label = [];
-    
-    for (var i in this.data.suppliers_notes) {
-      commentArr.push(this.data.suppliers_notes[i])
-    }
-    for (let i = 0; i < this.data.cart_goods_list.length; i++) {
+    if (this.dId > 0) {
+      let commentArr = this.data.suppliers_notes;
       var sArr = []
-      suppliers.push(this.data.cart_goods_list[i].suppliers_id);
-      for (var j = 0; j < this.data.cart_goods_list[i].order_label.length; j++) {
-        if (this.data.cart_goods_list[i].order_label[j].selected) {
-          sArr.push(j);
+      for (var j = 0; j < this.data.order_label.length; j++) {
+        if (this.data.order_label[j].selected) {
+          sArr.push(j)
         }
       }
-      label.push(sArr);
-    }
-    return new Promise((resolve, reject) => {
-      this.httpService.writeNotes({
-        notes: {
-          note: commentArr,
-          suppliers: suppliers,
-          label: label
-        }
-      }).then((res) => {
-        if (res.status == 1) {
-          this.events.publish('writeOrder:refresh');
-          resolve();
-        } else {
-          this.events.publish('writeOrder:refresh');
-          reject();
-        }
+      return new Promise((resolve, reject) => {
+        this.httpService.write_notes_d({
+          notes: {
+            note: commentArr,
+            label: sArr
+          },
+          id: this.dId
+        }).then((res) => {
+          if (res.status == 1) {
+            this.events.publish('writeOrder:refresh');
+            resolve();
+          } else {
+            this.events.publish('writeOrder:refresh');
+            reject();
+          }
+        })
       })
-    })
+    } else {
+      let commentArr = [];
+      let suppliers = [];
+      let label = [];
+
+      for (var i in this.data.suppliers_notes) {
+        commentArr.push(this.data.suppliers_notes[i])
+      }
+      for (let i = 0; i < this.data.cart_goods_list.length; i++) {
+        var sArr = []
+        suppliers.push(this.data.cart_goods_list[i].suppliers_id);
+        for (var j = 0; j < this.data.cart_goods_list[i].order_label.length; j++) {
+          if (this.data.cart_goods_list[i].order_label[j].selected) {
+            sArr.push(j)
+          }
+        }
+        label.push(sArr)
+      }
+      return new Promise((resolve, reject) => {
+        this.httpService.writeNotes({
+          notes: {
+            note: commentArr,
+            suppliers: suppliers,
+            label: label
+          }
+        }).then((res) => {
+          if (res.status == 1) {
+            this.events.publish('writeOrder:refresh');
+            resolve();
+          } else {
+            this.events.publish('writeOrder:refresh');
+            reject();
+          }
+        })
+      })
+    }
   }
-  pagePop(){
+  pagePop() {
     this.writeNotes().then(() => {
       this.navCtrl.pop().catch(res => { history.back() });
     }, () => {
-      
+
     })
   }
 }

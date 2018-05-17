@@ -19,7 +19,7 @@
             </button>
         </ion-buttons>
     </ion-navbar>
-    <ion-toolbar class="segment-style" *ngIf="isCut!=1">
+    <ion-toolbar class="segment-style">
         <!--<my-toolbar></my-toolbar>-->
         <ion-segment mode="md" [(ngModel)]="mytool" (click)="mytoolChange()" color="primary">
             <ion-segment-button value="all">
@@ -74,8 +74,8 @@
     </ion-refresher>
 
     <no-goods *ngIf="goodsList&&!goodsList?.length"></no-goods>
-    <single-foods-card [data]="goodsList" [class.yanjingjia]="is_jingjia_style" *ngIf="!listStyleflag"></single-foods-card>
-    <single-foods-item [data]="goodsList" *ngIf="listStyleflag"></single-foods-item>
+    <single-foods-card [data]="goodsList" [isDistribution]="isDistribution>0" [class.yanjingjia]="is_jingjia_style" *ngIf="!listStyleflag"></single-foods-card>
+    <single-foods-item [data]="goodsList" [isDistribution]="isDistribution>0" *ngIf="listStyleflag"></single-foods-item>
 
     <div class="dixian" *ngIf="data?.count>6&&(data?.page>=data?.pages)">
         <div>没有更多了~</div>

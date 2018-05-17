@@ -1,10 +1,5 @@
 .ios page-particulars-modal-attr {
     .goods_main {
-        .main-attr-wrap {
-            .main-attr {
-                border: #333 0.55px solid;
-            }
-        }
         .tabelbox {
             .table {
                 flex: 1;
@@ -76,7 +71,6 @@ page-particulars-modal-attr {
             overflow: scroll;
             flex-shrink: 0;
             .main-attr {
-                border: #333 1px solid;
                 border-radius: 4px;
                 padding: 5px 16px;
                 margin: 6px;

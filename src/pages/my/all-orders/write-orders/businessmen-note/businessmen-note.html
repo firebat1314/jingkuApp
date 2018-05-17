@@ -14,7 +14,7 @@
 
 
 <ion-content>
-    <ng-container *ngIf="data">
+    <ng-container *ngIf="data&&!(dId>0)">
         <div class="store" *ngFor="let item of data.cart_goods_list;">
             <div class="imgbox">
                 <div class="img" *ngFor="let img of item.goods_list">
@@ -27,6 +27,25 @@
             </div>
             <div class="writein">
                 <textarea [(ngModel)]="data?.suppliers_notes[item.suppliers_id]" placeholder="填写备注"></textarea>
+            </div>
+        </div>
+        <div padding>
+            <button ion-button large full color="jingku1" (click)="pagePop()">确定</button>
+        </div>
+    </ng-container>
+    <ng-container *ngIf="data&&dId>0">
+        <div class="store">
+            <div class="imgbox">
+                <div class="img" *ngFor="let img of data.goods_list">
+                    <img img-lazy-load="{{img.goods_img}}" alt="">
+                </div>
+            </div>
+            <div class="badge-box" margin>
+                <button ion-button small color="jingku1" *ngFor="let label of data?.order_label;let i = index" [outline]="!label.selected"
+                    (click)="label.selected = !label.selected;">{{label.value}}</button>
+            </div>
+            <div class="writein">
+                <textarea [(ngModel)]="data.suppliers_notes" placeholder="填写备注"></textarea>
             </div>
         </div>
         <div padding>

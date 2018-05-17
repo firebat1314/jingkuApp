@@ -715,4 +715,34 @@ export class HttpService {
   SwitchCompany(data?: Object) {//选择现有成员
     return this.http.post(IP + '/Index/SwitchCompany', data, { showLoading: true })
   }
+  category_goods_d(data?: Object, options: HttpOptions = { showLoading: true }) {//选择现有成员
+    return this.http.post(IP + '/Distribution/category_goods', data, options)
+  }
+  info_d(data?: Object, options?: HttpOptions) {//选择现有成员
+    return this.http.post(IP + '/Distribution/info', data, options)
+  }
+  get_goods_attribute_d(data?: Object, options?: HttpOptions) {//选择现有成员
+    return this.http.post(IP + '/Distribution/get_goods_attribute', data, options)
+  }
+  checkout_d(data?: Object, options: HttpOptions = { showLoading: false }) {//选择现有成员
+    return this.http.post(IP + '/Distribution/checkout', data, options)
+  }
+  change_consignee_d(data?: Object, options: HttpOptions = { showLoading: false }) {//选择现有成员
+    return this.http.post(IP + '/Distribution/change_consignee', data, options)
+  }
+  select_payment_d(data?: Object, options: HttpOptions = { showLoading: false }) {//选择现有成员
+    return this.http.post(IP + '/Distribution/select_payment', data, options)
+  }
+  write_notes_d(data?: Object, options: HttpOptions = { showLoading: true }) {//选择现有成员
+    return this.http.post(IP + '/Distribution/write_notes', data, options)
+  }
+  get_attr_list_d(data?: Object, options: HttpOptions = { showLoading: false }) {//选择现有成员
+    return this.http.post(IP + '/Distribution/get_attr_list', data, options)
+  }
+  done_d(data?: Object, options: HttpOptions = { showLoading: false }) {//选择现有成员
+    return this.http.post(IP + '/Distribution/done', data, options)
+  }
+  order_d(data?: Object, options: HttpOptions = { showLoading: false }) {//选择现有成员
+    return this.http.get(IP + '/Distribution/orders', data, options)
+  }
 }

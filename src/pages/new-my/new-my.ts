@@ -78,7 +78,6 @@ export class NewMyPage {
 	}
 	/*下拉刷新*/
 	doRefresh(refresher) {
-		this.mine.changeUser();
 		this.httpResult().then(() => {
 			setTimeout(() => {
 				refresher.complete();

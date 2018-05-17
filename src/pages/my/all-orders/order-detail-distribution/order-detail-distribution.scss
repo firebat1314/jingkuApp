@@ -1,0 +1,169 @@
+.ios page-order-detail-distribution{
+   .fore3{
+       .item{
+           border-bottom: 0.55px solid #e0e0e0 !important;
+       }
+   }
+   .fore4 .top,.fore5 .top{
+       border-bottom: 0.55px solid #e0e0e0 !important;
+   }
+}
+page-order-detail-distribution {
+   .content {
+       background: #f7f7f7;
+       .fore1 {
+           display: flex;
+           justify-content: space-between;
+           background: #fff;
+           div:first-child {
+               color: #666;
+           }
+           div:last-child {
+               color: #e60000;
+           }
+       }
+       .fore2 {
+           margin: 0 0 10px 0;
+           background: url(../assets/images/images/allorders_1_03.png) 10px top repeat-x, url(../assets/images/images/allorders_1_03.png) 10px bottom repeat-x;
+           background-color: #fff;
+           color: #666;
+           padding: 20px 16px;
+           background-size: 61px;
+           .user {
+               margin-bottom: 10px;
+               display: flex;
+               justify-content: space-between;
+               .phone {
+                   color: #333;
+               }
+           }
+           .address {
+               font-size: 1.2rem;
+           }
+       }
+       .fore3 {
+           padding: 0 10px;
+           background: #fff;
+           .item-divider{
+               color: #666666;
+           }
+           .item {
+               border-bottom: 1px solid #e0e0e0;
+               padding-left: 5px;
+               ion-thumbnail {
+                   margin-right: 10px;
+               }
+               &:last-child {
+                   border: none !important;
+               }
+               ion-label {
+                   white-space: normal;
+                   .my-content {
+                       display: flex;
+                       color: #4d4d4d;
+                       justify-content: space-between;
+                       .left {
+                           color: #999;
+                           font-size: 1.2rem;
+                           flex: 1;
+                           h2 {
+                               @include ellipsis_2;
+                           }
+                       }
+                       .right {
+                           color: #000;
+                           text-align: right;
+                           margin-left: 14px;
+                           .count {
+                               margin-top: 10px;
+                               color: #999;
+                           }
+                           .button {
+                               background: #e6e6e6;
+                               color: #333;
+                           }
+                           .color {
+                               color: get-color('danger'); // color: #4c4c4c;
+                               font-weight: 600;
+                               white-space: nowrap;
+                               .old {
+                                   color: #999;
+                                   font-size: 1.2rem;
+                                   margin-left: 5px;
+                                   text-decoration: line-through;
+                               }
+                           }
+                       }
+                   }
+               }
+           }
+       }
+       .fore4 {
+           background: #fff;
+           padding: 0 10px;
+           color: #808080;
+           line-height: 2.3rem;
+           >div:last-child{
+              border: 0 !important;
+           }
+           .top {
+               display: flex;
+               justify-content: space-between;
+               padding: 10px 0;
+               border-bottom: 1px solid #e0e0e0;
+           }
+           .bottom {
+               padding: 10px 0;
+               div:first-child {
+                   display: flex;
+                   justify-content: space-between;
+               }
+           }
+       }
+       .fore5 {
+           padding: 10px;
+           color: #808080;
+           background: #fff;
+           line-height: 2.3rem;
+           margin-bottom: 10px;
+           .top {
+               border-bottom: 1px solid #e0e0e0;
+               padding-bottom: 8px;
+               margin-bottom: 8px;
+               >div {
+                   display: flex;
+                   justify-content: space-between;
+                   .price {
+                       color: #e60000;
+                   }
+               }
+           }
+           .bottom {
+               text-align: right;
+               .price {
+                   color: #e60000;
+                   font-size: 1.6rem;
+                   font-weight: 500;
+               }
+           }
+       }
+   }
+   ion-footer {
+       .result {
+           text-align: right;
+           color: #808080;
+           background: #fff;
+           padding: 10px;
+           border-top: 1px solid #e0e0e0;
+           .price {
+               color: #e60000;
+               font-size: 1.46rem;
+               margin-left: 10px;
+               font-weight: 500;
+           }
+       }
+       .foot-button {
+           display: flex;
+       }
+   }
+}

@@ -16,7 +16,7 @@ import { HttpService } from "../../../providers/http-service";
 export class SearchPage {
   page: any = 1;
   data: any;
-  myHomeSearch: String = null;
+  myHomeSearch: String = '';
   @ViewChild(Searchbar) mySearchBar: Searchbar;
 
   constructor(

@@ -20,7 +20,7 @@
                 <div style="color: #4c4c4c;font-size: 1.6rem;">{{defaultShipping.consignee}}
                     <span class="phone">{{defaultShipping.mobile | phonenumberfilter}}</span>
                 </div>
-                <div>{{defaultShipping.region+defaultShipping.address}}</div>
+                <div>{{defaultShipping.region+'&nbsp;'+defaultShipping.address}}</div>
             </div>
         </div>
         <div class="fore fore1" tappable (click)="openOrderModalShippingPage()" *ngIf="!defaultShipping">
@@ -102,7 +102,7 @@
                     <div *ngIf="(!selectedShip&&!paymentMothdName)">请选择</div>
                 </ion-note>
             </ion-item>
-            <ion-item mode="ios" tappable (click)="goUsecouponPage()" detail-push class="coupon" *ngIf="goodsType!='integral'">
+            <ion-item mode="ios" tappable (click)="goUsecouponPage()" detail-push class="coupon" *ngIf="goodsType!='integral'&&!(dId>0)">
                 优惠券选择
                 <span class="count" *ngIf="selectedBonus.length">已选{{selectedBonus.length||0}}张</span>
                 <span class="count" *ngIf="data?.yes_bonus&&!selectedBonus.length">{{data?.yes_bonus||0}}张可用</span>
@@ -121,45 +121,8 @@
                 <ion-note item-end *ngIf="!noteStatus">填写备注信息</ion-note>
                 <ion-note item-end *ngIf="noteStatus">已填写备注，点击查看</ion-note>
             </ion-item>
-            <!-- <ion-item mode="ios">
-                <ion-label>可用余额</ion-label>
-                <ion-note item-end style="color: #aeacb4;font-size: 1.4rem;">¥{{user_money}}</ion-note>
-                <ion-toggle color="jingku1" mode="ios" [disabled]="user_money==0" [(ngModel)]="data.is_surplus" (ionChange)="changeSurplus(data.is_surplus)"></ion-toggle>
-            </ion-item> -->
         </ion-list>
-        <!--<ion-item mode="ios" no-lines margin-right detail-push>
-            来镜加工
-        </ion-item>-->
-        <!-- <div class="fore option">
-            <ion-item mode="ios" detail-push *ngIf="item?.shipping?.length!=0" tappable (click)="openOrderModalDistributionPage(item)">
-                配送方式
-                <ion-note item-right style="margin:0;" *ngFor="let mtd of item.shipping">
-                    <span *ngIf="mtd.selected==1">{{mtd.shipping_name}}</span>
-                </ion-note>
-            </ion-item>
-            <ion-item mode="ios" detail-push *ngIf="item?.shipping?.length==0">
-                配送方式
-                <ion-note style="margin:0;" item-right>
-                    <span>无配送方式</span>
-                </ion-note>
-            </ion-item>
-            <ion-item mode="ios" detail-push *ngIf="item.use_bonus?.length!=0&&goodsType!='integral'" tappable (click)="openOrderModalCouponPage(item)">
-                优惠券选择
-                <ion-note style="margin:0;" item-right>
-                    可使用{{item.use_bonus?.length}}个优惠券
-                </ion-note>
-            </ion-item>
-            <ion-item mode="ios" detail-push *ngIf="item.use_bonus?.length==0&&goodsType!='integral'">
-                优惠券选择
-                <ion-note style="margin:0;" item-right>
-                    无可用优惠券
-                </ion-note>
-            </ion-item>
-            <div class="input">
-                <input type="text" [(ngModel)]="item.beizhu" placeholder="商家备注">
-            </div>
-        </div> -->
-        <div class="fore fore3" *ngIf="goodsType!='integral'">
+        <div class="fore fore3" *ngIf="goodsType!='integral'&&!(dId>0)">
             <div>
                 <span>商品金额：</span>
                 <span class="price">¥{{data?.total?.formated_goods_price}}</span>
@@ -185,6 +148,20 @@
                 <span class="price">{{data?.total?.will_get_integral}}</span>
             </div>
         </div>
+        <div class="fore fore3" *ngIf="dId>0">
+            <div>
+                <span>铺货总金额：</span>
+                <span class="price">{{data?.total?.subtotal}}</span>
+            </div>
+            <div>
+                <span>配送费用：</span>
+                <span class="price">{{data?.DistributionInfo?.shipping_fee}}</span>
+            </div>
+            <div *ngIf="data?.total?.formated_subsidy_price!=0">
+                <span>+押金：</span>
+                <span class="price">{{data?.DistributionInfo?.deposit}}</span>
+            </div>
+        </div>
         <div class="fore fore3" *ngIf="goodsType=='integral'">
             <!-- <div>
                 <span>购物积分：</span>
@@ -202,9 +179,9 @@
 <ion-footer>
     <div class="pagefoot">
         <div class="left">
-            <span class="price" style="white-space: nowrap;font-size: 1.4rem;">实付款: ¥{{data?.total?.amount_formated||'0.00'}}</span>
-            <span *ngIf="goodsType=='integral'">&nbsp;积分:
-                <span class="price">{{data?.total?.integral}}</span>
+            <span class="price" *ngIf="!(dId>0)" style="white-space: nowrap;font-size: 1.4rem;">实付款：¥{{data?.total?.amount_formated||'0.00'}}</span>
+            <span class="price" *ngIf="dId>0" style="white-space: nowrap;font-size: 1.4rem;">实付款：{{data?.total?.subtotals||'0.00'}}</span>
+            <span *ngIf="goodsType=='integral'">&nbsp;积分：<span class="price">{{data?.total?.integral}}</span>
             </span>
         </div>
         <div class="right">
