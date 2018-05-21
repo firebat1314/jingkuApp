@@ -748,7 +748,7 @@ export class HttpService {
   get_children_category_cutting(data?: Object, options: HttpOptions = { showLoading: true }) {//选择现有成员
     return this.http.get(IP + '/Category/get_children_category_cutting', data, options)
   }
-  infoUrl_d(data?: Object, options: HttpOptions = { showLoading: false }) {//选择现有成员
+  infoUrl_d(data?: Object, options: HttpOptions = { showLoading: true }) {//选择现有成员
     return this.http.get(IP + '/Distribution/infoUrl', data, options)
   }
 }

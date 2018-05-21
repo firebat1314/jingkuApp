@@ -187,13 +187,13 @@ export class OrderListDistributionPage {
 	viewerContract(order_id) {
 		this.httpService.infoUrl_d({ order_id: order_id }).then(res => {
 			if (res.status) {
-				this.iab.create(res.url);
+				this.navCtrl.push('ViewerContractPage',{url:res.url});
 			}
 		})
 	}
 	downloadContract(order_id) {
 		this.httpService.getToken().then(res => {
-			this.iab.create(IP + '/Distribution/downloadPdf?order_id=' + order_id + '&token=' + res);
+			location.href = IP + '/Distribution/downloadPdf?order_id=' + order_id + '&token=' + res;
 		})
 	}
 }
