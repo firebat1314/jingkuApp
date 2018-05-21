@@ -3,6 +3,8 @@ import { NavController, NavParams, Content, IonicPage, FabButton, Events, AlertC
 import { MineProvider } from '../../../../providers/mine/mine';
 import { Native } from '../../../../providers/native';
 import { HttpService } from '../../../../providers/http-service';
+import { InAppBrowser } from '@ionic-native/in-app-browser';
+import { IP } from '../../../../providers/constants';
 /*
   Generated class for the AllOrders page.
 
@@ -11,11 +13,11 @@ import { HttpService } from '../../../../providers/http-service';
 */
 @IonicPage()
 @Component({
-  selector: 'page-order-list-distribution',
-  templateUrl: 'order-list-distribution.html',
+	selector: 'page-order-list-distribution',
+	templateUrl: 'order-list-distribution.html',
 })
 export class OrderListDistributionPage {
-  infiniteScroll: any;
+	infiniteScroll: any;
 	orderList: any;
 	pageIndex: number = this.navParams.get('index') || 0;
 	orderData: any;
@@ -30,9 +32,10 @@ export class OrderListDistributionPage {
 		public events: Events,
 		private alertCtrl: AlertController,
 		private mine: MineProvider,
+		private iab: InAppBrowser,
 	) {
 		this.events.subscribe('allOrders:update', () => {
-			this.getByPageIndex();
+			this.getByPageIndex(false);
 		})
 	}
 	ionViewDidLoad() {
@@ -46,7 +49,7 @@ export class OrderListDistributionPage {
 	ngOnInit() {
 		this.getByPageIndex();
 	}
-	getByPageIndex() {
+	getByPageIndex(showLoading = true) {
 		if (this.infiniteScroll) this.infiniteScroll.enable(true);
 		let type: string;
 		switch (this.pageIndex) {
@@ -58,7 +61,7 @@ export class OrderListDistributionPage {
 			case 5: type = 'ok'; break;
 			default: type = ''; break;
 		}
-		return this.httpService.order_d({ page: 1, type: type }, { showLoading: true }).then((res) => {
+		return this.httpService.order_d({ page: 1, type: type }, { showLoading: showLoading }).then((res) => {
 			if (res.status == 1) {
 				// this.orderData_all = res;
 				this.orderData = res;
@@ -68,7 +71,7 @@ export class OrderListDistributionPage {
 	}
 	/*下拉刷新*/
 	doRefresh(refresher) {
-		this.getByPageIndex().then(() => {
+		this.getByPageIndex(false).then(() => {
 			setTimeout(() => {
 				refresher.complete();
 			}, 500);
@@ -81,7 +84,7 @@ export class OrderListDistributionPage {
 		this.getByPageIndex();
 	}
 	goOrdersDetailPage(orderId) {
-		this.navCtrl.push('OrdersDetailPage', { order_id: orderId });
+		this.navCtrl.push('OrderDetailDistributionPage', { order_id: orderId });
 	}
 	goParticularsPage(id) {
 		this.navCtrl.push('ParticularsPage', { goodsId: id });
@@ -179,6 +182,18 @@ export class OrderListDistributionPage {
 					]
 				}).present();
 			}
+		})
+	}
+	viewerContract(order_id) {
+		this.httpService.infoUrl_d({ order_id: order_id }).then(res => {
+			if (res.status) {
+				this.iab.create(res.url);
+			}
+		})
+	}
+	downloadContract(order_id) {
+		this.httpService.getToken().then(res => {
+			this.iab.create(IP + '/Distribution/downloadPdf?order_id=' + order_id + '&token=' + res);
 		})
 	}
 }

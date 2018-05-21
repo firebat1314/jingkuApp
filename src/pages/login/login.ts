@@ -74,11 +74,11 @@ export class LoginPage {
 				alert.present();
 			} else if (res.status == -2) {
 				this.alertCtrl.create({
-					title: '请绑定企业信息',
+					title: '请认证企业信息',
 					message: res.info,
 					buttons: [
 						{
-							text: '绑定',
+							text: '认证',
 							handler: () => {
 								this.navCtrl.push('SignupSecondPage', { user_id: res.user_id })
 							}

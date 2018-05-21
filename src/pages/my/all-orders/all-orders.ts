@@ -33,7 +33,7 @@ export class AllOrdersPage {
 		private mine: MineProvider,
 	) {
 		this.events.subscribe('allOrders:update', () => {
-			this.getByPageIndex();
+			this.getByPageIndex(false);
 		})
 	}
 	ionViewDidLoad() {
@@ -47,7 +47,7 @@ export class AllOrdersPage {
 	ngOnInit() {
 		this.getByPageIndex();
 	}
-	getByPageIndex() {
+	getByPageIndex(showLoading = true) {
 		if (this.infiniteScroll) this.infiniteScroll.enable(true);
 		let type: string;
 		switch (this.pageIndex) {
@@ -59,7 +59,7 @@ export class AllOrdersPage {
 			case 5: type = 'cancel'; break;
 			default: type = ''; break;
 		}
-		return this.httpService.order({ page: 1, type: type }, { showLoading: true }).then((res) => {
+		return this.httpService.order({ page: 1, type: type }, { showLoading: showLoading }).then((res) => {
 			if (res.status == 1) {
 				// this.orderData_all = res;
 				this.orderData = res;
@@ -69,7 +69,7 @@ export class AllOrdersPage {
 	}
 	/*下拉刷新*/
 	doRefresh(refresher) {
-		this.getByPageIndex().then(() => {
+		this.getByPageIndex(false).then(() => {
 			setTimeout(() => {
 				refresher.complete();
 			}, 500);

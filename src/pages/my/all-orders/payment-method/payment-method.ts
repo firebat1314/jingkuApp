@@ -131,9 +131,9 @@ export class PaymentMethodPage {
   }
   goAllOrdersPage() {
     this.canLeave = true;
-    if (this.navCtrl.getPrevious() && this.navCtrl.getPrevious().id == 'AllOrdersPage') {
-      this.navCtrl.pop().catch(res => { history.back() });
-    } else {
+    if(this.data.order_info.extension_code == 'distribution'){
+      this.pushPage('OrderListDistributionPage');
+    }else{
       this.pushPage('AllOrdersPage');
     }
   }

@@ -23,7 +23,7 @@
     <ion-toolbar class="mysearchbar">
         <form action="">
             <ion-searchbar mode="ios" [ngModelOptions]="{standalone: true}" [(ngModel)]="options.order_sn" (keypress)="searchOrder($event)"
-                placeholder="请输入订单号或者商品编号" animated="true" showCancelButton cancelButtonText="取消"></ion-searchbar>
+                placeholder="请输入订单号或者商品编号" animated="true" showCancelButton cancelButtonText="取消" (ionCancel)="options.order_sn=null;checkList()"></ion-searchbar>
         </form>
     </ion-toolbar>
 </ion-header>

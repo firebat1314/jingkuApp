@@ -34,7 +34,7 @@
 	<div class="single-shop" *ngFor="let item of orderList;let index = index;">
 		<ion-item-divider>
 			<ion-icon *ngIf="item.suppliers_name" item-left name="shop"></ion-icon>
-			<div class="shop-title" tappable (click)="goParticularsHomePage(item.suppliers_id)">
+			<div *ngIf="item.suppliers_name" class="shop-title" tappable (click)="goParticularsHomePage(item.suppliers_id)">
 				{{item.suppliers_name}}&nbsp;
 				<ion-icon color="colorsix" name="ios-arrow-forward"></ion-icon>
 			</div>
