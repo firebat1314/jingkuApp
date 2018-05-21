@@ -32,7 +32,7 @@
             <div class="address">{{data?.order?.region + data?.order?.address}}</div>
         </div>
         <div class="fore3">
-            <ion-item-divider>
+            <ion-item-divider *ngIf="data?.order?.suppliers_name">
                 <ion-icon item-start name="shop"></ion-icon>
                 <div tappable navPush="ParticularsHomePage" [navParams]="{suppliersId:data?.order?.suppliers_id}">
                     {{data?.order?.suppliers_name}}&nbsp;

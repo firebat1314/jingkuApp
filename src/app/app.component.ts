@@ -38,7 +38,6 @@ export class MyApp {
     private jpushServ: JpushService,
   ) {
     //———————————————————————— app更新 ————————————————————————
-    this.upgradeProvider.detectionUpgrade();
     this.initializeApp();
     //用户失效事件
     this.events.subscribe('signOut', () => {
@@ -63,11 +62,12 @@ export class MyApp {
       // Here you can do any higher level native things you might need.
       this.native.isAndroid() ? this.statusBar.styleLightContent() : this.statusBar.styleDefault();
       this.splashScreen.hide();
-      
+
       this.imgcacheServ.initImgCache().then(() => {
-      }).catch(res=>{});
+      }).catch(res => { });
       //———————————————————————— 初次进入app引导页面 ————————————————————————
       if (this.native.isMobile()) {
+        this.upgradeProvider.detectionUpgrade();
         this.storage.get('has_entered').then((result) => {
           if (!result) {
             this.rootPage = 'WelcomePage';

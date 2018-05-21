@@ -9,7 +9,7 @@
     <ion-navbar>
         <ion-title>镜库收银台</ion-title>
         <ion-buttons right>
-            <button ion-button clear *ngIf="navCtrl.getPrevious()?.id!='AllOrdersPage'" (click)="goAllOrdersPage()">订单中心</button>
+            <button ion-button clear *ngIf="navCtrl.getPrevious()?.id!='AllOrdersPage'||navCtrl.getPrevious()?.id!='OrderListDistributionPage'" (click)="goAllOrdersPage()">订单中心</button>
         </ion-buttons>
     </ion-navbar>
 

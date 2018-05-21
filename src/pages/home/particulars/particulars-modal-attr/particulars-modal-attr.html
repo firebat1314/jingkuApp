@@ -60,7 +60,40 @@
             </div>
         </div>
     </div>
-    <div *ngIf="type=='goods_spectacles'&&!cutId>0" class="main goods_spectacles_main">
+    <div *ngIf="type=='goods_spectacles'&&dId>0&&distributionInfo" class="main goods_main">
+        <!-- <div style="text-align: center;" *ngIf="!distributionInfo">
+            <ion-spinner name="crescent"></ion-spinner>
+        </div> -->
+        <div style="text-align: center;" *ngIf="!distributionInfo">属性查询失败</div>
+        <div class="tabelbox" *ngIf="distributionInfo?.list">
+            <div class="table">
+                <div class="tr">
+                    <div class="td-wrap">
+                        <div class="td">球镜</div>
+                        <div class="td">柱镜</div>
+                        <div class="td" *ngFor="let item of distributionInfo?.list[0]?.goods_attr">{{item.attr_name}}</div>
+                        <div class="td" *ngIf="mine.showPrice">铺货单价</div>
+                        <div class="td">铺货数量</div>
+                    </div>
+                </div>
+                <div class="tr" *ngFor="let item of distributionInfo?.list">
+                    <div class="td-wrap">
+                        <div class="td" *ngIf="mine.showPrice">{{item.qiujing}}</div>
+                        <div class="td" *ngIf="mine.showPrice">{{item.zhujing}}</div>
+                        <div class="td" *ngFor="let group of item.goods_attr">{{group.attr_val}}</div>
+                        <div class="td" *ngIf="mine.showPrice">{{item.price}}</div>
+                        <div class="td">{{item.number}}</div>
+                    </div>
+                    <div class="other-attr" *ngIf="item?.alone_attr?.length">
+                        <span *ngFor="let group of item.alone_attr">
+                            {{group.attr_name+'：'+group.attr_val}}&nbsp;
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div *ngIf="type=='goods_spectacles'&&!(cutId>0)&&!(dId>0)" class="main goods_spectacles_main">
         <!-- <div class="title">请选择蔡司1.56非球面镜片信息</div> -->
         <ng-container *ngIf="goods_attribute">
             <div class="fore" *ngFor="let it of goods;let i=index">
@@ -98,7 +131,7 @@
         </div>
     </div>
 
-    <div *ngIf="cutId>0" class="cut-main goods_main">
+    <div *ngIf="(cutId>0)" class="cut-main goods_main">
         <div class="cut-main-tap">
             <div small color="jingku1" ion-button tappable [outline]="checkCutGoodsId!=goodsId" (click)="checkCutGoodsId=goodsId;clear();getAttrList()">样品</div>
             <div ion-button color="jingku1" [outline]="item.goods_id!=checkCutGoodsId" class="main-attr" small *ngFor="let item of cutting_info?.cutting_list;let cut_index = index;"
