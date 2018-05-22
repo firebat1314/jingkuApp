@@ -751,4 +751,7 @@ export class HttpService {
   infoUrl_d(data?: Object, options: HttpOptions = { showLoading: true }) {//选择现有成员
     return this.http.get(IP + '/Distribution/infoUrl', data, options)
   }
+  sealIndex(data?: Object, options: HttpOptions = { showLoading: true }) {//选择现有成员
+    return this.http.get(IP + '/Seal/index', data, options)
+  }
 }
