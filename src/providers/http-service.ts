@@ -226,7 +226,7 @@ export class HttpService {
     return this.http.post(IP + '/Flow/done', data, { showLoading: true })
   }
   pay(data: Object) {//支付方式
-    return this.http.get(IP + '/Flow/pay', data, { showLoading: true })
+    return this.http.get(IP + '/Flow/pay', data, { showLoading: true,showToast:false })
   }
   payCode(data: Object) {//去支付
     return this.http.get(IP + '/Flow/pay_code', data, { showLoading: true })

@@ -200,14 +200,15 @@ export class OrderListDistributionPage {
 	}
 	downloadContract(order_id) {
 		this.httpService.getToken().then(res => {
-			location.href = IP + '/Distribution/downloadPdf?order_id=' + order_id + '&token=' + res;
+			this.iab.create(IP + '/Distribution/downloadPdf?order_id=' + order_id + '&token=' + res, '_system')
 		})
 	}
 	sealContract(order_id) {
 		this.httpService.sealIndex({ order_id: order_id }).then(res => {
 			if (res.status == 1) {
-        location.href = res.url;
-		//   this.navCtrl.push('ViewerContractPage', { url: res.url });
+				// location.href = res.url;
+				this.iab.create(res.url, '_system')
+				//   this.navCtrl.push('ViewerContractPage', { url: res.url });
 			}
 		})
 	}

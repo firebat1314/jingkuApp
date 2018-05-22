@@ -3,6 +3,7 @@ import { IonicPage, NavController, NavParams, Events, Content } from 'ionic-angu
 import { MineProvider } from '../../../../providers/mine/mine';
 import { HttpService } from '../../../../providers/http-service';
 import { Native } from '../../../../providers/native';
+import { InAppBrowser } from '@ionic-native/in-app-browser';
 
 /**
  * Generated class for the OrderDetailDistributionPage page.
@@ -36,6 +37,7 @@ export class OrderDetailDistributionPage {
     public native: Native,
     public events: Events,
     private mine: MineProvider,
+		private iab: InAppBrowser,
   ) {
   }
 
@@ -124,7 +126,7 @@ export class OrderDetailDistributionPage {
 	sealContract(order_id) {
 		this.httpService.sealIndex({ order_id: order_id }).then(res => {
 			if (res.status == 1) {
-        location.href = res.url;
+				this.iab.create(res.url, '_system')
 				// this.navCtrl.push('ViewerContractPage', { url: res.url });
 			}
 		})
