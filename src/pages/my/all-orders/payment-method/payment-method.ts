@@ -71,12 +71,12 @@ export class PaymentMethodPage {
       this.getUserInfo();
     });
     this.httpService.pay({ order_id: this.order_id, log_id: this.log_id, type: this.type }).then((res) => {
+      this.data = res;
       if (res.status == 1) {
         if (res.pay_amout <= 0) {
           this.native.showToast('订单支付金额为0');
           this.goAllOrdersPage();
-        }else{
-          this.data = res;
+        } else {
           this.end_time = res.order_info.end_time;
         }
       } else {
@@ -131,9 +131,9 @@ export class PaymentMethodPage {
   }
   goAllOrdersPage() {
     this.canLeave = true;
-    if(this.data.order_info.extension_code == 'distribution'){
+    if (this.data.order_info.extension_code == 'distribution') {
       this.pushPage('OrderListDistributionPage');
-    }else{
+    } else {
       this.pushPage('AllOrdersPage');
     }
   }
