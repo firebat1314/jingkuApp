@@ -20,12 +20,12 @@
     <ng-container *ngIf="data?.status==1">
 
         <ion-item mode="ios" class="e_p" no-lines>
-            <div class="timeover" *ngIf="type!='mach'">
+            <div class="timeover" *ngIf="type!='mach'&&!isDistribution">
                 <span>请您在</span>
                 <countdown [(endDate)]="end_time"></countdown>
                 <span>内完成支付</span>
             </div>
-            <div class="timeover" *ngIf="type=='mach'">请支付</div>
+            <div class="timeover" *ngIf="type=='mach'||isDistribution">请支付</div>
             <span item-right ion-text color="danger" style="font-size: 1.5rem;" #totalprice class="totalprice">{{data?.pay_amout||'0.00'}}元</span>
         </ion-item>
         <section class="zffs" *ngIf="data?.order_info?.pay_id!=4">

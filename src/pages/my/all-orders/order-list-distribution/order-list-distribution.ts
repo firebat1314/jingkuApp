@@ -37,6 +37,9 @@ export class OrderListDistributionPage {
 		this.events.subscribe('allOrders:update', () => {
 			this.getByPageIndex(false);
 		})
+		this.events.subscribe('ViewerContractPage', () => {
+			this.getByPageIndex(false);
+		})
 	}
 	ionViewDidLoad() {
 		console.log('ionViewDidLoad AllOrdersPage');
@@ -48,6 +51,10 @@ export class OrderListDistributionPage {
 	}
 	ngOnInit() {
 		this.getByPageIndex();
+	}
+	ngOnDestroy() {
+		this.events.unsubscribe('ViewerContractPage');
+		this.events.unsubscribe('allOrders:update');
 	}
 	getByPageIndex(showLoading = true) {
 		if (this.infiniteScroll) this.infiniteScroll.enable(true);
@@ -119,7 +126,7 @@ export class OrderListDistributionPage {
 	toPay(id) {
 		if (!this.mine.canCheckout) { this.native.showToast('暂无结算权限，请联系企业管理员'); return false }
 
-		this.navCtrl.push('PaymentMethodPage', { order_id: id })
+		this.navCtrl.push('PaymentMethodPage', { order_id: id, isDistribution: 1 })
 	}
 	confirmReceipt(order_id) {
 		this.native.openAlertBox('确认收货', () => {
@@ -187,13 +194,21 @@ export class OrderListDistributionPage {
 	viewerContract(order_id) {
 		this.httpService.infoUrl_d({ order_id: order_id }).then(res => {
 			if (res.status) {
-				this.navCtrl.push('ViewerContractPage',{url:res.url});
+				this.navCtrl.push('ViewerContractPage', { url: res.url });
 			}
 		})
 	}
 	downloadContract(order_id) {
 		this.httpService.getToken().then(res => {
 			location.href = IP + '/Distribution/downloadPdf?order_id=' + order_id + '&token=' + res;
+		})
+	}
+	sealContract(order_id) {
+		this.httpService.sealIndex({ order_id: order_id }).then(res => {
+			if (res.status == 1) {
+        location.href = res.url;
+		//   this.navCtrl.push('ViewerContractPage', { url: res.url });
+			}
 		})
 	}
 }

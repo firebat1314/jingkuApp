@@ -73,7 +73,7 @@ export class OrderDetailDistributionPage {
   }
   toPay(id) {
     if (!this.mine.canCheckout) { this.native.showToast('暂无结算权限，请联系企业管理员'); return false }
-    this.navCtrl.push('PaymentMethodPage', { order_id: id })
+    this.navCtrl.push('PaymentMethodPage', { order_id: id,isDistribution:1 })
   }
   confirmReceipt(order_id) {
     this.native.openAlertBox('确认收货', () => {
@@ -118,6 +118,14 @@ export class OrderDetailDistributionPage {
 		this.httpService.infoUrl_d({ order_id: order_id }).then(res => {
 			if (res.status) {
 				this.navCtrl.push('ViewerContractPage',{url:res.url});
+			}
+		})
+  }
+	sealContract(order_id) {
+		this.httpService.sealIndex({ order_id: order_id }).then(res => {
+			if (res.status == 1) {
+        location.href = res.url;
+				// this.navCtrl.push('ViewerContractPage', { url: res.url });
 			}
 		})
 	}

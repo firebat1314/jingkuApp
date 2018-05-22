@@ -17,7 +17,7 @@ declare var Pingpp: any;
 // declare var navigator: any;
 
 @IonicPage({
-  segment: 'payment-method/:order_id/:log_id/:type'
+  segment: 'payment-method/:order_id/:log_id/:type/:isDistribution'
 })
 @Component({
   selector: 'page-payment-method',
@@ -45,7 +45,7 @@ export class PaymentMethodPage {
 
   isWeixin: boolean = this.native.isWeixin();
   isMobile: boolean = this.native.isMobile();
-
+  isDistribution: boolean = this.navParams.get('isDistribution') > 0
   @ViewChildren('totalprice') totalprice: QueryList<ElementRef>;
 
   constructor(
@@ -101,7 +101,12 @@ export class PaymentMethodPage {
         resolve(true);
       } else {
         let et = this.end_time % (24 * 3600);
-        let str = this.type != 'mach' ? `您的订单在${Math.floor(et / 3600)}小时${(Math.floor((et % 3600) / 60))}分钟内未支付将被取消，请尽快完成支付。` : '请尽快完成支付。'
+        let str
+        if(this.type != 'mach'&&!this.isDistribution){
+          str = `您的订单在${Math.floor(et / 3600)}小时${(Math.floor((et % 3600) / 60))}分钟内未支付将被取消，请尽快完成支付。`;
+        }else{
+          str = '请尽快完成支付。';
+        }
         var alert = this.alertCtrl.create({
           title: '确认要离开收银台？',
           message: str,
@@ -131,7 +136,7 @@ export class PaymentMethodPage {
   }
   goAllOrdersPage() {
     this.canLeave = true;
-    if (this.data.order_info.extension_code == 'distribution') {
+    if (this.isDistribution) {
       this.pushPage('OrderListDistributionPage');
     } else {
       this.pushPage('AllOrdersPage');
