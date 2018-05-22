@@ -80,7 +80,20 @@ export class PaymentMethodPage {
           this.end_time = res.order_info.end_time;
         }
       } else {
-        this.goAllOrdersPage();
+        var alert = this.alertCtrl.create({
+          title: '提示',
+          message: res.info,
+          enableBackdropDismiss: false,
+          buttons: [
+            {
+              text: '确定',
+              handler: () => {
+                this.goAllOrdersPage();
+              }
+            }
+          ]
+        })
+        alert.present();
       }
     })
   }
@@ -102,9 +115,9 @@ export class PaymentMethodPage {
       } else {
         let et = this.end_time % (24 * 3600);
         let str
-        if(this.type != 'mach'&&!this.isDistribution){
+        if (this.type != 'mach' && !this.isDistribution) {
           str = `您的订单在${Math.floor(et / 3600)}小时${(Math.floor((et % 3600) / 60))}分钟内未支付将被取消，请尽快完成支付。`;
-        }else{
+        } else {
           str = '请尽快完成支付。';
         }
         var alert = this.alertCtrl.create({
