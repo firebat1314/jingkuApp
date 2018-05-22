@@ -17,7 +17,7 @@
 
 
 <ion-content #content>
-    <ng-container *ngIf="data">
+    <ng-container *ngIf="data?.status==1">
 
         <ion-item mode="ios" class="e_p" no-lines>
             <div class="timeover" *ngIf="type!='mach'">
@@ -50,8 +50,7 @@
                     </div>
                     <ion-checkbox color="jingku1" mode="ios" [checked]="yE" style="pointer-events:none;"></ion-checkbox>
                 </div>
-                <div class="zf_x" (click)="paymentType=='alipay'?paymentType='':paymentType='alipay';bt=false" *ngIf="!isWeixin||isMobile"
-                    [class.selected]="paymentType=='alipay'" [class.disable]="bt">
+                <div class="zf_x" (click)="paymentType=='alipay'?paymentType='':paymentType='alipay';bt=false" *ngIf="!isWeixin||isMobile" [class.selected]="paymentType=='alipay'" [class.disable]="bt">
                     <img src="./assets/icon/close_ico5.png" alt="">
                     <div class="cont">
                         <div class="p1">支付宝支付</div>
@@ -59,8 +58,7 @@
                     </div>
                     <ion-checkbox color="jingku1" mode="ios" [checked]="paymentType=='alipay'" style="pointer-events:none;"></ion-checkbox>
                 </div>
-                <div class="zf_x" (click)="paymentType=='weixin'?paymentType='':paymentType='weixin';bt=false" *ngIf="isWeixin||isMobile"
-                    [class.selected]="paymentType=='weixin'" [class.disable]="bt">
+                <div class="zf_x" (click)="paymentType=='weixin'?paymentType='':paymentType='weixin';bt=false" *ngIf="isWeixin||isMobile" [class.selected]="paymentType=='weixin'" [class.disable]="bt">
                     <img src="./assets/icon/close_ico6.png" alt="">
                     <div class="cont">
                         <div class="p1">微信支付</div>

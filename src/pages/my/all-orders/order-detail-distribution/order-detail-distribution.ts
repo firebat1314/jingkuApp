@@ -114,5 +114,11 @@ export class OrderDetailDistributionPage {
       })
     })
   }
-
+  viewerContract(order_id) {
+		this.httpService.infoUrl_d({ order_id: order_id }).then(res => {
+			if (res.status) {
+				this.navCtrl.push('ViewerContractPage',{url:res.url});
+			}
+		})
+	}
 }
