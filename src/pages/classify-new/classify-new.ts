@@ -80,32 +80,40 @@ export class ClassifyNewPage {
   }
   clickItem(item) {
     this.is_cutting = item.is_cutting;
-    if (item.is_cutting > 0) {
-      this.selectedId = item.cat_id;
+    this.selectedId = item.cat_id;
+    if (this.is_cutting > 0) {
       this.httpService.get_children_category_cutting().then(res => {
         if (res.status == 1) {
           this.childrenCaCtegory = res.data;
-          if (this.selectedId == 1) {
-            this.httpService.setStorage('childrenCaCtegory', res)
-          }
         }
       })
       // this.navCtrl.push('BrandListPage',{cut:1})
     } else {
-      this.selectedId = item.cat_id;
       this.getChildrenCaCtegory().then((res) => { })
     }
   }
   doRefresh(refresher) {
-    this.httpService.getCategorys().then((res) => {
+    this.httpService.getCategorys(null, { showLoading: false }).then((res) => {
       if (res.status == 1) {
         this.getCategorys = res.data;
         this.httpService.setStorage('getCategorys', res);
-        this.getChildrenCaCtegory().then((res) => {
-          setTimeout(function () {
-            refresher.complete();
-          }, 500);
-        });
+
+        if (this.is_cutting > 0) {
+          this.httpService.get_children_category_cutting(null, { showLoading: false }).then(res => {
+            if (res.status == 1) {
+              this.childrenCaCtegory = res.data;
+              setTimeout(function () {
+                refresher.complete();
+              }, 500);
+            }
+          })
+        } else {
+          this.getChildrenCaCtegory().then((res) => {
+            setTimeout(function () {
+              refresher.complete();
+            }, 500);
+          });
+        }
       }
     })
   }
@@ -114,7 +122,7 @@ export class ClassifyNewPage {
     this.navCtrl.push('MoreBrandPage', { data: data })
   }
   goBrandList(item) {
-    if (this.is_cutting>0) {
+    if (this.is_cutting > 0) {
       this.navCtrl.push('BrandListPage', { brandId: item.brand_id, cut: 1 })
     } else {
       this.navCtrl.push('BrandListPage', { listId: item.cat_id })

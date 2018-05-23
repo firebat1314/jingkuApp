@@ -37,9 +37,10 @@ export class LoginPage {
 		console.log('ionViewDidLoad LoginPage')
 	}
 	goToHome(form) {
-		this.httpService.loginCompany({ username: this.ele.nativeElement.querySelector('input[name=username]').value, password: this.ele.nativeElement.querySelector('input[name=loginpassword]').value }).then(res => {
+		/* username: this.ele.nativeElement.querySelector('input[name=username]').value, password: this.ele.nativeElement.querySelector('input[name=loginpassword]').value */
+		this.httpService.loginCompany({ username: this.loginInfo.username, password: this.loginInfo.password }).then(res => {
 			if (res.status == 1) {
-				if(res.company&&res.company.length==1){
+				if (res.company && res.company.length == 1) {
 					this.login(res.company[0].cid);
 					return false;
 				}
@@ -91,8 +92,8 @@ export class LoginPage {
 			}
 		})
 	}
-	login(cid){
-		this.httpService.login({ username: this.ele.nativeElement.querySelector('input[name=username]').value, password: this.ele.nativeElement.querySelector('input[name=loginpassword]').value, cid: cid }).then(data => {
+	login(cid) {
+		this.httpService.login({ username: this.loginInfo.username, password: this.loginInfo.password, cid: cid }).then(data => {
 			// console.log(data)
 			if (data.status == 1) {
 				this.httpService.setStorage('hasLoggedIn', true);

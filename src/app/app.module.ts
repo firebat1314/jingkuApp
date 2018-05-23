@@ -38,6 +38,7 @@ import { ImgcacheProvider } from '../providers/imgcache/imgcache';
 import { AppStartProvider } from '../providers/app-start/app-start';
 import { OpenNativeSettings } from '@ionic-native/open-native-settings';
 import { MineProvider } from '../providers/mine/mine';
+import { preApplyParams } from '../pages/BT/preApplyParams';
 @NgModule({
   declarations: [
     MyApp,
@@ -98,7 +99,8 @@ import { MineProvider } from '../providers/mine/mine';
     { provide: ErrorHandler, useClass: IonicErrorHandler },
     AppStartProvider,
     OpenNativeSettings,
-    MineProvider
+    MineProvider,
+    preApplyParams
   ]
 })
 export class AppModule { }

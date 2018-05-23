@@ -17,6 +17,7 @@ import { IP } from '../../../../providers/constants';
 	templateUrl: 'order-list-distribution.html',
 })
 export class OrderListDistributionPage {
+	showLoading: boolean;
 	infiniteScroll: any;
 	orderList: any;
 	pageIndex: number = this.navParams.get('index') || 0;
@@ -56,7 +57,8 @@ export class OrderListDistributionPage {
 		this.events.unsubscribe('ViewerContractPage');
 		this.events.unsubscribe('allOrders:update');
 	}
-	getByPageIndex(showLoading = true) {
+	getByPageIndex(showLoading = false) {
+		this.showLoading = true;
 		if (this.infiniteScroll) this.infiniteScroll.enable(true);
 		let type: string;
 		switch (this.pageIndex) {
@@ -64,11 +66,12 @@ export class OrderListDistributionPage {
 			case 1: type = 'examine'; break;
 			case 2: type = 'send'; break;
 			case 3: type = 'collect'; break;
-			case 4: type = 'effect'; break;
-			case 5: type = 'ok'; break;
+			case 4: type = 'ok'; break;
+			case 5: type = 'effect'; break;
 			default: type = ''; break;
 		}
 		return this.httpService.order_d({ page: 1, type: type }, { showLoading: showLoading }).then((res) => {
+			this.showLoading = false;
 			if (res.status == 1) {
 				// this.orderData_all = res;
 				this.orderData = res;
@@ -103,8 +106,8 @@ export class OrderListDistributionPage {
 			case 1: type = 'examine'; break;
 			case 2: type = 'send'; break;
 			case 3: type = 'collect'; break;
-			case 4: type = 'effect'; break;
-			case 5: type = 'ok'; break;
+			case 4: type = 'ok'; break;
+			case 5: type = 'effect'; break;
 			default: type = ''; break;
 		}
 		this.infiniteScroll = infiniteScroll;
@@ -198,17 +201,10 @@ export class OrderListDistributionPage {
 			}
 		})
 	}
-	downloadContract(order_id) {
-		this.httpService.getToken().then(res => {
-			this.iab.create(IP + '/Distribution/downloadPdf?order_id=' + order_id + '&token=' + res, '_system')
-		})
-	}
 	sealContract(order_id) {
 		this.httpService.sealIndex({ order_id: order_id }).then(res => {
 			if (res.status == 1) {
-				// location.href = res.url;
-				this.iab.create(res.url, '_system')
-				//   this.navCtrl.push('ViewerContractPage', { url: res.url });
+				this.iab.create(res.url, this.native.isMobile() ? '_system' : '_self');
 			}
 		})
 	}

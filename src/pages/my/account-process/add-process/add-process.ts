@@ -38,7 +38,6 @@ export class AddProcessPage {
 		public native: Native,
 		public modalCtrl: ModalController,
 	) {
-		console.log(this.edit)
 	}
 
 	ionViewDidLoad() {
@@ -100,7 +99,7 @@ export class AddProcessPage {
 		for (let index = 0; index < this.list.length; index++) {
 			const element = this.list[index];
 			if (!element.R || !element.L || !element.J) {
-				this.native.showToast('请完善加工单'+(index+1)+'信息');
+				this.native.showToast('请完善加工单' + (index + 1) + '信息');
 				return;
 			}
 		}
@@ -177,6 +176,10 @@ export class AddProcessPage {
 		let pian_rec = new Array();
 		item.R ? pian_rec.push(item.R.rec_id) : null;
 		item.L ? pian_rec.push(item.L.rec_id) : null;
+		if (pian_rec.length <= 1) {
+			this.native.showToast('请选择镜片');
+			return
+		}
 		let rec_id = null
 		let mach_type = null
 		let pinpai = null
@@ -189,7 +192,16 @@ export class AddProcessPage {
 			xinghao = item.J.xinghao;//镜架型号
 			beizhu = item.J.beizhu;//镜架型号
 		}
-		let modal = this.modalCtrl.create('ChooseFramePage', { order_id: this.order_id, rec_id: rec_id, rec_ids: this.rec_ids, pian_rec: pian_rec, mach_type: mach_type, pinpai: pinpai, xinghao: xinghao, beizhu: beizhu }, { cssClass: '' });
+		let modal = this.modalCtrl.create('ChooseFramePage', {
+			order_id: this.order_id,
+			rec_id: rec_id,
+			rec_ids: this.rec_ids,
+			pian_rec: pian_rec,
+			mach_type: mach_type,
+			pinpai: pinpai,
+			xinghao: xinghao,
+			beizhu: beizhu
+		}, { cssClass: '' });
 		modal.onDidDismiss((data, role) => {
 			if (role == 'submit') {
 				item.J = data;
@@ -242,7 +254,7 @@ export class AddProcessPage {
 		for (let index = 0; index < this.list.length; index++) {
 			const element = this.list[index];
 			if (!element.R || !element.L || !element.J) {
-				this.native.showToast('请完善加工单'+(index+1)+'信息');
+				this.native.showToast('请完善加工单' + (index + 1) + '信息');
 				return;
 			}
 		}
@@ -292,24 +304,24 @@ export class AddProcessPage {
 		this.httpService.insert_machining({ order_id: this.order_id }).then((res) => {
 			if (res.status) {
 				this.native.showToast('提交成功');
-				if(res.paid==1){
-					this.navCtrl.push('AccountProcessPage', { log_id: res.log_id, type: 'mach' }).then((res)=>{
+				if (res.paid == 1) {
+					this.navCtrl.push('AccountProcessPage', { log_id: res.log_id, type: 'mach' }).then((res) => {
 						this.navCtrl.getViews().forEach(element => {
-							if(element.id=='AddProcessPage'){
+							if (element.id == 'AddProcessPage') {
 								this.navCtrl.removeView(element);
 							}
 						});
 					})
-				}else{
-					this.navCtrl.push('PaymentMethodPage', { log_id: res.log_id, type: 'mach' }).then((res)=>{
+				} else {
+					this.navCtrl.push('PaymentMethodPage', { log_id: res.log_id, type: 'mach' }).then((res) => {
 						this.navCtrl.getViews().forEach(element => {
-							if(element.id=='AddProcessPage'){
+							if (element.id == 'AddProcessPage') {
 								this.navCtrl.removeView(element);
 							}
 						});
 					})
 				}
-				
+
 			}
 		})
 	}

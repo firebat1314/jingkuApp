@@ -42,7 +42,7 @@ export class ViewerContractPage {
       this.showLoad = false;
     }
   }
-  ionViewWillLeave(){
+  /* ionViewWillLeave(){
     this.events.publish('ViewerContractPage');
-  }
+  } */
 }

@@ -58,7 +58,6 @@ export class OrderPayOverPage {
     })
   }
   goAllorder() {
-    
     if (this.navCtrl.getPrevious() && (this.navCtrl.getPrevious().id == 'AllOrdersPage'||this.navCtrl.getPrevious().id == 'OrderListDistributionPage')) {
       this.navCtrl.pop().catch(res => { history.back() });
     } else {

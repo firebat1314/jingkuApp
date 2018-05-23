@@ -20,12 +20,12 @@
             <ion-item>
                 <ion-label color="primary" fixed>
                     <span ion-text color="google">*</span>　公司名称</ion-label>
-                <ion-input required clearInput [(ngModel)]="formData.company" name="company" type="text" placeholder="请输入公司名称"></ion-input>
+                <ion-input autocomplete="off" autocorrect="off" required clearInput [(ngModel)]="formData.company" name="company" type="text" placeholder="请输入公司名称"></ion-input>
             </ion-item>
             <ion-item>
                 <ion-label color="primary" fixed>
                     <span ion-text color="google">*</span>　营业执照号</ion-label>
-                <ion-input required clearInput [(ngModel)]="formData.zz_number" name="zz_number" type="text" placeholder="请输入营业执照"></ion-input>
+                <ion-input autocomplete="off" autocorrect="off" required clearInput [(ngModel)]="formData.zz_number" name="zz_number" type="text" placeholder="请输入营业执照"></ion-input>
             </ion-item>
             <ion-item class="select-wrapper">
                 <ion-select mode="ios" required [(ngModel)]="formData.province" name="province" placeholder="选择省" cancelText="取消" okText="确定"
@@ -96,14 +96,14 @@
             </ion-item>
             <ion-item>
                 <ion-label color="primary" fixed>　 区域编号</ion-label>
-                <ion-input clearInput type="text" [(ngModel)]="formData.parent_id" name="parent_id" placeholder="请填写区域编号"></ion-input>
+                <ion-input autocomplete="off" autocorrect="off" clearInput type="text" [(ngModel)]="formData.parent_id" name="parent_id" placeholder="请填写区域编号"></ion-input>
             </ion-item>
         </ion-list>
         <div class="tool" padding-horizontal>
             <label tappable class="agree">
                 <ion-checkbox required id="agree" [(ngModel)]="agree" name="agree" mode="ios" color="danger"></ion-checkbox>
                 &nbsp;&nbsp;我已同意并阅读
-                <span ion-text color="google" (click)="goHelperDetailsPage();">《用户协议》</span>
+                <span ion-text color="google" tappable (click)="goHelperDetailsPage();">《用户协议》</span>
             </label>
             <div class="login">
                 <span class="text">已有账号？</span>

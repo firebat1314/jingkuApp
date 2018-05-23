@@ -15,6 +15,7 @@ import { Subscription } from 'rxjs/Subscription';
 	templateUrl: 'new-my.html'
 })
 export class NewMyPage {
+	FmCreditindex: any;
 	currentUser: Subscription;
 	usercount: any;
 	userInfo: any;
@@ -60,13 +61,18 @@ export class NewMyPage {
 		this.httpResult();
 	}
 	ngOnDestroy() {
-	  this.currentUser.unsubscribe();
-	  this.events.unsubscribe('my:update');
+		this.currentUser.unsubscribe();
+		this.events.unsubscribe('my:update');
 	}
 	httpResult() {
 		this.httpService.loan_status().then((res) => {
 			this.baitiao = res;
 			this.httpService.setByName('userBaitiao', res);
+		})
+		this.httpService.FmCreditindex().then(res => {
+			if (res.status == 1) {
+				this.FmCreditindex = res;
+			}
 		})
 		this.mine.changeUser();
 		return this.httpService.userCount().then((res) => {
@@ -128,5 +134,24 @@ export class NewMyPage {
 		// } else {
 		// this.native.showToast('该功能现仅在安卓客户端开放', null, true);
 		// }
+	}
+	openFmCredit() {
+		// if (this.native.isMobile()) {
+		this.httpService.FmCreditGate().then(res => {
+			this.iab.create('http://newpc.jingkoo.net/openFmCredit.html?data=' + encodeURIComponent(res.data) + '&url=' + encodeURIComponent(res.api_url), this.native.isMobile() ? '_system' : '_self');
+		})
+		// } else {
+		// 	var tempwindow = window.open(); // 先打开页面
+		// 	this.httpService.FmCreditGate().then(res => {
+		// 		tempwindow.location.href = 'http://newpc.jingkoo.net/openFmCredit.html?data=' + encodeURIComponent(res.data) + '&url=' + encodeURIComponent(res.api_url); // 后更改页面地址
+		// 	})
+		// }
+	}
+	openSHD() {
+		this.httpService.Shd_add_user().then(res => {
+			if (res.status == 1) {
+				this.navCtrl.push('BTIndexPage');
+			}
+		})
 	}
 }

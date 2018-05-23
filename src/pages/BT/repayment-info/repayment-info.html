@@ -1,0 +1,45 @@
+<!--
+  Generated template for the RepaymentInfoPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>需求收集</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content>
+  <ion-item>
+    <ion-label>需求金额</ion-label>
+    <ion-input autocomplete="off" autocorrect="off" placeholder="请输入" [(ngModel)]="preApplyParams.params.app_amt" clearInput></ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-label>使用时间</ion-label>
+    <ion-select placeholder="请选择" [(ngModel)]="preApplyParams.params.app_term" interface="action-sheet" cancelText="取消" okText="确定">
+      <ion-option value="1">一个月</ion-option>
+      <ion-option value="3">三个月</ion-option>
+    </ion-select>
+  </ion-item>
+  <ion-item no-lines>
+    <ion-label>借款用途</ion-label>
+    <ion-select placeholder="请选择" [(ngModel)]="preApplyParams.params.loan_use" interface="action-sheet" cancelText="取消" okText="确定">
+      <ion-option value="1">采购货物</ion-option>
+      <ion-option value="2">扩大业务</ion-option>
+      <ion-option value="3">资金周转</ion-option>
+      <ion-option value="4">技术改造</ion-option>
+      <ion-option value="5">经营场所租金</ion-option>
+      <ion-option value="6">经营场所装修</ion-option>
+      <ion-option value="7">其他</ion-option>
+    </ion-select>
+  </ion-item>
+</ion-content>
+<ion-footer>
+  <div padding>
+    <button class="btn" ion-button block large (click)="submit()">下一步</button>
+  </div>
+</ion-footer>

@@ -3,6 +3,7 @@ import { NavController, NavParams, ViewController, IonicPage, AlertController, E
 import { HttpService } from "../../../../providers/http-service";
 import { Native } from "../../../../providers/native";
 import { XimuProvider } from '../../../../providers/ximu/ximu';
+import { InAppBrowser } from '@ionic-native/in-app-browser';
 // import { AllOrdersPage } from "../all-orders";
 
 /*
@@ -45,6 +46,7 @@ export class PaymentMethodPage {
 
   isWeixin: boolean = this.native.isWeixin();
   isMobile: boolean = this.native.isMobile();
+  isMiniprogram: boolean = this.native.isMiniprogram();
   isDistribution: boolean = this.navParams.get('isDistribution') > 0
   @ViewChildren('totalprice') totalprice: QueryList<ElementRef>;
 
@@ -59,6 +61,7 @@ export class PaymentMethodPage {
     public ximu: XimuProvider,
     private renderer: Renderer,
     private el: ElementRef,
+    private iab: InAppBrowser,
   ) { }
 
   ionViewDidLoad() {
@@ -71,8 +74,8 @@ export class PaymentMethodPage {
       this.getUserInfo();
     });
     this.httpService.pay({ order_id: this.order_id, log_id: this.log_id, type: this.type }).then((res) => {
-      this.data = res;
       if (res.status == 1) {
+        this.data = res;
         if (res.pay_amout <= 0) {
           this.native.showToast('订单支付金额为0');
           this.goAllOrdersPage();
@@ -149,10 +152,14 @@ export class PaymentMethodPage {
   }
   goAllOrdersPage() {
     this.canLeave = true;
-    if (this.isDistribution) {
-      this.pushPage('OrderListDistributionPage');
+    if (this.navCtrl.getPrevious() && (this.navCtrl.getPrevious().id == 'AllOrdersPage' || this.navCtrl.getPrevious().id == 'OrderListDistributionPage')) {
+      this.navCtrl.pop().catch(res => { history.back() });
     } else {
-      this.pushPage('AllOrdersPage');
+      if (this.isDistribution) {
+        this.pushPage('OrderListDistributionPage');
+      } else {
+        this.pushPage('AllOrdersPage');
+      }
     }
   }
   pushPage(page, params = {}) {
@@ -226,7 +233,7 @@ export class PaymentMethodPage {
         }
       })
     } else if (this.bt) {//使用白条
-      this.httpService.loan_status().then((res) => {
+      /* this.httpService.loan_status().then((res) => {
         if (!res.status) {
           this.canLeave = true;
           this.navCtrl.push('BtAuthorizationPage').then(() => {
@@ -247,8 +254,13 @@ export class PaymentMethodPage {
             }
           })
         }
+      }) */
+      this.httpService.FmCreditgate_order({ order_id: this.order_id }).then(res => {
+        if (res.status) {
+          window.open('http://newpc.jingkoo.net/openFmCredit.html?data=' + encodeURIComponent(res.data) + '&url=' + encodeURIComponent(res.api_url))
+          this.goAllOrdersPage();
+        }
       })
-
     } else {//不使用余额
       this.noUserBalance(this.data[this.paymentType]);
     }

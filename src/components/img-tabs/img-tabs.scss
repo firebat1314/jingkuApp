@@ -1,13 +1,8 @@
 img-tabs {
-    $slide-height-small: 40px;
+    $slide-height-small: 41px;
     $slide-height-large: 50px;
     .slides {
-        // border-top: 1px solid #e0e0e0;
-        background: #fff;
-    }
-    .slide-title {
         width: 100%;
-        height: $slide-height-small;
         color: #666666;
         padding: 0;
     }
@@ -22,7 +17,7 @@ img-tabs {
         margin: 0 auto;
     }
     .slide-title-active {
-        color: map_get($colors, primary);
-        border-bottom: 2px solid map_get($colors, danger);
+        color: #3f69a5;
+        border-bottom: 2px solid #3f69a5;
     }
 }

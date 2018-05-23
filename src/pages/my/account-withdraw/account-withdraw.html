@@ -21,21 +21,21 @@
                     <span ion-text color="google">*</span>
                     <span>收款人姓名：</span>
                 </ion-label>
-                <ion-input required clearInput type="text" placeholder="请填写收款人姓名" [(ngModel)]="formData.name" name="amount"></ion-input>
+                <ion-input autocomplete="off" autocorrect="off" required clearInput type="text" placeholder="请填写收款人姓名" [(ngModel)]="formData.name" name="amount"></ion-input>
             </ion-item>
             <ion-item>
                 <ion-label color="primary" fixed>
                     <span ion-text color="google">*</span>
                     <span>提现金额：</span>
                 </ion-label>
-                <ion-input required clearInput type="text" placeholder="请填写提现金额" [(ngModel)]="formData.amount" name="bank"></ion-input>
+                <ion-input autocomplete="off" autocorrect="off" required clearInput type="text" placeholder="请填写提现金额" [(ngModel)]="formData.amount" name="bank"></ion-input>
             </ion-item>
             <ion-item>
                 <ion-label color="primary" fixed>
                     <span ion-text color="google">*</span>
                     <span>提现银行：</span>
                 </ion-label>
-                <ion-input disabled required type="text" placeholder="请填写提现银行" [(ngModel)]="open_bank.name" name="bank_holder" (click)="openbank.open()"></ion-input>
+                <ion-input autocomplete="off" autocorrect="off" disabled required type="text" placeholder="请填写提现银行" [(ngModel)]="open_bank.name" name="bank_holder" (click)="openbank.open()"></ion-input>
                 <ion-select #openbank [ngModelOptions]="{standalone: true}" style="display: none;" [(ngModel)]="open_bank" (ionChange)="formData.open_bank=open_bank.code" okText="确定" cancelText="取消" [selectOptions]="{title: '选择银行'}" multiple="false">
                     <ion-option *ngFor="let item of brankList" [value]="item">{{item.name}}</ion-option>
                 </ion-select>
@@ -45,13 +45,13 @@
                     <span ion-text color="google">*</span>
                     <span>银行卡号：</span>
                 </ion-label>
-                <ion-input required clearInput type="text" placeholder="请填写银行卡号" [(ngModel)]="formData.brank_code" name="brank_code"></ion-input>
+                <ion-input autocomplete="off" autocorrect="off" required clearInput type="text" placeholder="请填写银行卡号" [(ngModel)]="formData.brank_code" name="brank_code"></ion-input>
             </ion-item>
             <ion-item>
                 <ion-label color="primary" fixed>
                     <span>备注：</span>
                 </ion-label>
-                <ion-input clearInput type="text" placeholder="请填写备注信息" [(ngModel)]="formData.desc" name="note"></ion-input>
+                <ion-input autocomplete="off" autocorrect="off" clearInput type="text" placeholder="请填写备注信息" [(ngModel)]="formData.desc" name="note"></ion-input>
             </ion-item>
         </ion-list>
         <div padding>

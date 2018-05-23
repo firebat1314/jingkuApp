@@ -1,0 +1,105 @@
+<!--
+  Generated template for the RepaymentPersonInfoPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+	<ion-navbar>
+		<ion-title>还款人信息</ion-title>
+	</ion-navbar>
+
+</ion-header>
+
+<ion-content>
+	<ng-container>
+		<div class="tit">基本信息</div>
+		<ion-item>
+			<ion-label>学历</ion-label>
+			<ion-select class="detail-push" placeholder="请选择" [(ngModel)]="preApplyParams.params.education" interface="action-sheet" cancelText="取消"
+			 okText="确定">
+				<ion-option value="0">高中及以下</ion-option>
+				<ion-option value="1">专科</ion-option>
+				<ion-option value="2">本科</ion-option>
+				<ion-option value="3">硕士及以上</ion-option>
+			</ion-select>
+		</ion-item>
+		<ion-item>
+			<ion-label>婚姻状况</ion-label>
+			<ion-select class="detail-push" placeholder="请选择" [(ngModel)]="preApplyParams.params.marital_status" interface="action-sheet" cancelText="取消"
+			 okText="确定">
+				<ion-option value="1">已婚</ion-option>
+				<ion-option value="2">未婚</ion-option>
+				<ion-option value="3">离异</ion-option>
+				<ion-option value="4">丧偶</ion-option>
+				<ion-option value="0">其他</ion-option>
+			</ion-select>
+		</ion-item>
+		<ion-item no-lines>
+			<ion-label>子女状况</ion-label>
+			<ion-select class="detail-push" placeholder="请选择" [(ngModel)]="preApplyParams.params.child_status" interface="action-sheet" cancelText="取消"
+			 okText="确定">
+				<ion-option value="1">有</ion-option>
+				<ion-option value="2">无</ion-option>
+			</ion-select>
+		</ion-item>
+		<div class="tit">家庭住址</div>
+		<ion-item>
+			<ion-label>所在地区</ion-label>
+			<city-picker class="detail-push" style="height: 20px;" tappable required item-content cancelText="取消" doneText="完成" separator="-"
+			 name="cityName" placeholder="请选择" [citiesData]="cityData" [(ngModel)]="preApplyParams.params.residential_area" [disabled]="checks" (ionChange)="cityChange($event)"></city-picker>
+		</ion-item>
+		<ion-item>
+			<ion-label>详细地址</ion-label>
+			<ion-input autocomplete="off" autocorrect="off" placeholder="请输入" [(ngModel)]="preApplyParams.params.residential_address" clearInput></ion-input>
+		</ion-item>
+		<ion-item no-lines>
+			<ion-label>居住地址类型</ion-label>
+			<ion-select class="detail-push" placeholder="请选择" [(ngModel)]="preApplyParams.params.house_type" interface="action-sheet" cancelText="取消"
+			 okText="确定">
+				<ion-option value="0">自有全款</ion-option>
+				<ion-option value="1">自有有按揭</ion-option>
+				<ion-option value="2">租赁</ion-option>
+			</ion-select>
+		</ion-item>
+		<ng-container *ngFor="let item of preApplyParams.params.contact_info;let i=index;">
+			<div class="tit">
+				<div>紧急联系({{i+1}})</div>
+					<ion-icon name="add-circle-outline" style="color:#1475f7;font-size: 24px;position: absolute;right: 46px;top: 13px;cursor: pointer;" (click)="addContact(i)"></ion-icon>
+					<ion-icon name="ios-remove-circle-outline" style="color:#1475f7;font-size: 24px;position: absolute;right: 16px;top: 13px;cursor: pointer;" (click)="rmContact(i)"></ion-icon>
+			</div><!-- ios-trash-outline -->
+			<ion-item>
+				<ion-label>联系人姓名</ion-label>
+				<ion-input autocomplete="off" autocorrect="off" placeholder="请输入" [(ngModel)]="item.contact_name" clearInput></ion-input>
+			</ion-item>
+			<ion-item>
+				<ion-label>手机号</ion-label>
+				<ion-input autocomplete="off" autocorrect="off" placeholder="请输入" [(ngModel)]="item.contact_mobile" clearInput></ion-input>
+			</ion-item>
+			<ion-item no-lines>
+				<ion-label>与本人关系</ion-label>
+				<ion-select placeholder="请选择" [(ngModel)]="item.contact_relation" interface="action-sheet" cancelText="取消" okText="确定" class="detail-push">
+					<ion-option value="C">配偶</ion-option>
+					<ion-option value="D">父母</ion-option>
+					<ion-option value="H">子女</ion-option>
+					<ion-option value="X">兄弟姐妹</ion-option>
+					<ion-option value="L">亲属</ion-option>
+					<ion-option value="W">同事</ion-option>
+					<ion-option value="T">同学</ion-option>
+					<ion-option value="Y">朋友</ion-option>
+					<ion-option value="O">其他</ion-option>
+				</ion-select>
+			</ion-item>
+		</ng-container>
+		<div class="tit">邮箱</div>
+		<ion-item no-lines>
+			<ion-label>邮箱地址</ion-label>
+			<ion-input autocomplete="off" autocorrect="off" placeholder="请输入" [(ngModel)]="preApplyParams.params.email" clearInput></ion-input>
+		</ion-item>
+
+		<div padding *ngIf="!0">
+			<button class="btn" ion-button block color="jingku1" (click)="submit()" large>下一步</button>
+		</div>
+	</ng-container>
+</ion-content>

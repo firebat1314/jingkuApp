@@ -22,11 +22,11 @@
     <div radio-group class="fore item" padding-left [(ngModel)]="formData.type">
         <ion-label fixed>开具类型：</ion-label>
         <label tappable>
-            <ion-radio mode="md" color="danger" [value]="1"></ion-radio>
+            <ion-radio mode="md" color="jingku1" [value]="1"></ion-radio>
             <span>个人</span>
         </label>
         <label tappable>
-            <ion-radio mode="md" color="danger" [value]="2"></ion-radio>
+            <ion-radio mode="md" color="jingku1" [value]="2"></ion-radio>
             <span>企业</span>
         </label>
     </div>
@@ -37,21 +37,20 @@
     <div radio-group class="fore item" padding-left [(ngModel)]="formData.inv_type">
         <ion-label fixed>发票类型：</ion-label>
         <label tappable>
-            <ion-radio mode="md" color="danger" [value]="1" [checked]="true"></ion-radio>
+            <ion-radio mode="md" color="jingku1" [value]="1" [checked]="true"></ion-radio>
             <span>普通发票</span>
         </label>
         <label tappable>
-            <ion-radio mode="md" color="danger" [value]="2" [checked]="formData.type==2" *ngIf="formData.type==2"></ion-radio>
+            <ion-radio mode="md" color="jingku1" [value]="2" [checked]="formData.type==2" *ngIf="formData.type==2"></ion-radio>
             <span *ngIf="formData.type==2">增值税专用发票</span>
         </label>
     </div>
+    <div class="fore item" padding-left *ngIf="formData.type==2">
+        <ion-label fixed>纳税人识别号：</ion-label>
+        <input type="text" [(ngModel)]="formData.taxpayer_num">
+    </div>
     <div class="fore main" *ngIf="formData.inv_type==2&&formData.type==2">
-        <div>
-            <div class="name">纳税人识别号：</div>
-            <div class="input">
-                <input type="text" [(ngModel)]="formData.taxpayer_num">
-            </div>
-        </div>
+        
         <div>
             <div class="name">税务登记单位名称：</div>
             <div class="input">

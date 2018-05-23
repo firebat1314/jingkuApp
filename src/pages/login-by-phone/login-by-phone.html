@@ -19,12 +19,12 @@
       
       <ion-item style="border-bottom: 1px solid #e6e6e6;">
         <ion-label fixed>手机号</ion-label>
-        <ion-input [(ngModel)]="loginInfo.userphone" name="userphone" clearInput="true" type="number" placeholder="" required></ion-input>
+        <ion-input autocomplete="off" autocorrect="off" [(ngModel)]="loginInfo.userphone" name="userphone" clearInput="true" type="number" placeholder="" required></ion-input>
       </ion-item>
       <div class="yzm" style="">
           <ion-item>
               <ion-label fixed>验证码</ion-label>
-              <ion-input [(ngModel)]="loginInfo.mobile_code" name="mobile_code" clearInput="true" type="number" placeholder="" required></ion-input>
+              <ion-input autocomplete="off" autocorrect="off" [(ngModel)]="loginInfo.mobile_code" name="mobile_code" clearInput="true" type="number" placeholder="" required></ion-input>
             </ion-item>
             <div class="get_yzm" style="">
               <button (click)="getMobileCode()" [disabled]="disabled" ion-button clear color="jingku1">{{value}}</button>

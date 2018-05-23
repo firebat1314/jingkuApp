@@ -303,7 +303,7 @@ export class WriteOrdersPage {
 				this.events.publish('my:update');
 				if (this.paymentMothdID == 6) {
 					var view = this.viewCtrl;
-					this.navCtrl.push('PaymentMethodPage', { order_id: res.order_id,isDistribution:1 }).then(() => {
+					this.navCtrl.push('PaymentMethodPage', { order_id: res.order_id,isDistribution:0 }).then(() => {
 						this.navCtrl.removeView(view);
 					});
 				} else if (this.paymentMothdID == 4) {

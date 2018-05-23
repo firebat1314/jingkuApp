@@ -24,14 +24,14 @@
                 <ion-checkbox color="jingku1" mode="ios" [(ngModel)]="item.selected"></ion-checkbox>
             </div>
             <ion-item-sliding>
-                <ion-item>
+                <ion-item tappable (click)="joinCar($event, item.goods_id)">
                     <ion-thumbnail item-left>
                         <img img-lazy-load="{{item.img||'./assets/icon/images/brand_1_10.jpg'}}">
                     </ion-thumbnail>
-                    <h2 tappable (click)="joinCar(item.goods_id)">{{item.goods_name}}</h2>
+                    <h2>{{item.goods_name}}</h2>
                     <p class="right-bottom">
                         <span class="price" *ngIf="mine?.showPrice">{{item.shop_price}}</span>&nbsp;
-                        <button ion-button color="jingku1" outline (click)="joinCar(item.goods_id)">加入购物车</button>
+                        <button ion-button color="jingku1" outline (click)="joinCar($event, item.goods_id)">加入购物车</button>
                     </p>
                 </ion-item>
                 <ion-item-options side="right">

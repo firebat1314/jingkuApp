@@ -1,0 +1,42 @@
+<!--
+  Generated template for the BorrowingRecordPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>借款记录</ion-title>
+  </ion-navbar>
+  <ion-toolbar class="segment-style">
+      <ion-segment mode="md" [(ngModel)]="couponSelect" (ionChange)="segmentChange()">
+          <ion-segment-button value="">
+              全部
+          </ion-segment-button>
+          <ion-segment-button value="over_time">
+              还款中
+          </ion-segment-button>
+          <ion-segment-button value="use">
+              已还清
+          </ion-segment-button>
+      </ion-segment>
+  </ion-toolbar>
+</ion-header>
+
+
+<ion-content>
+    <div class="item detail-push" tappable navPush="BTBorrowingDetailsPage">
+        <div class="l">
+          <div class="p1">协议还款</div>
+          <div class="p2">2018年03月33日</div>
+        </div>
+        <div class="l">
+          <div class="p1">10000</div>
+          <div class="p2">
+            <span style="color: #1ccf2c;">已完成</span>
+            <span style="color: #ef0101;">未完成</span>
+          </div>
+        </div>
+      </div>
+</ion-content>

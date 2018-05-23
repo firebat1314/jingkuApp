@@ -19,26 +19,26 @@
             <ion-item>
                 <ion-label color="primary" fixed>
                     <span ion-text color="google">*</span>　账户名</ion-label>
-                <ion-input required clearInput [(ngModel)]="signupInfo.user_name" name="user_name" type="text" placeholder="请输入账户名"></ion-input>
+                <ion-input autocomplete="off" autocorrect="off" required clearInput [(ngModel)]="signupInfo.user_name" name="user_name" type="text" placeholder="请输入账户名"></ion-input>
             </ion-item>
             <ion-item>
                 <ion-label color="primary" fixed>
                     <span ion-text color="google">*</span>　姓名</ion-label>
-                <ion-input required clearInput [(ngModel)]="signupInfo.true_name" name="true_name" type="text" placeholder="请输入真实姓名"></ion-input>
+                <ion-input autocomplete="off" autocorrect="off" required clearInput [(ngModel)]="signupInfo.true_name" name="true_name" type="text" placeholder="请输入真实姓名"></ion-input>
             </ion-item>
             <ion-item>
                 <ion-label color="primary" fixed>　 QQ</ion-label>
-                <ion-input clearInput [(ngModel)]="signupInfo.qq" name="qq" type="number" placeholder="请输入QQ号"></ion-input>
+                <ion-input autocomplete="off" autocorrect="off" clearInput [(ngModel)]="signupInfo.qq" name="qq" type="number" placeholder="请输入QQ号"></ion-input>
             </ion-item>
             <ion-item>
                 <ion-label color="primary" fixed>
                     <span ion-text color="google">*</span>　手机号</ion-label>
-                <ion-input required clearInput [(ngModel)]="signupInfo.mobile_phone" name="mobile_phone" type="tel" placeholder="请输入手机号"></ion-input>
+                <ion-input autocomplete="off" autocorrect="off" required clearInput [(ngModel)]="signupInfo.mobile_phone" name="mobile_phone" type="tel" placeholder="请输入手机号"></ion-input>
             </ion-item>
             <ion-item class="certified-img-box">
                 <ion-label color="primary" fixed>
                     <span ion-text color="google">*</span>　验证码</ion-label>
-                <ion-input required clearInput [(ngModel)]="signupInfo.str_verify" name="str_verify" type="number" placeholder="验证码"></ion-input>
+                <ion-input autocomplete="off" autocorrect="off" required clearInput [(ngModel)]="signupInfo.str_verify" name="str_verify" type="number" placeholder="验证码"></ion-input>
                 <div class="certified-img" item-right>
                     <img [img-lazy-load]="verifyImg" alt="" tappable (click)="getImg()">
                     <!--<ion-icon tappable (click)="getImg()" ios="ios-refresh" md="md-refresh"></ion-icon>-->
@@ -47,33 +47,36 @@
             <ion-item>
                 <ion-label color="primary" fixed>
                     <span ion-text color="google">*</span>　短信验证</ion-label>
-                <ion-input required clearInput [(ngModel)]="signupInfo.phone_code" name="Phone_code" type="number" placeholder="短信验证码"></ion-input>
+                <ion-input autocomplete="off" autocorrect="off" required clearInput [(ngModel)]="signupInfo.phone_code" name="Phone_code" type="number" placeholder="短信验证码"></ion-input>
                 <button ion-button outline round color="jingku1" item-right (click)="getMobileCode()" [disabled]="disabled">{{value}}</button>
             </ion-item>
             <ion-item>
-                <ion-label color="primary" fixed><span ion-text color="google">*</span>　密码</ion-label>
-                <ion-input required clearInput [(ngModel)]="signupInfo.password" name="signpassword" type="password" placeholder="6-2位字母、数字组成"></ion-input>
+                <ion-label color="primary" fixed>
+                    <span ion-text color="google">*</span>　密码</ion-label>
+                <ion-input autocomplete="off" autocorrect="off" required clearInput [(ngModel)]="signupInfo.password" name="password" type="password" placeholder="6-2位字母、数字组成"></ion-input>
             </ion-item>
             <ion-item>
                 <ion-label color="primary" fixed>
                     <span ion-text color="google">*</span>　确认密码</ion-label>
-                <ion-input required clearInput [(ngModel)]="signupInfo.cpassword" name="cpassword" type="password" placeholder="请确认密码"></ion-input>
+                <ion-input autocomplete="off" autocorrect="off" required clearInput [(ngModel)]="signupInfo.cpassword" name="cpassword" type="password" placeholder="请确认密码"></ion-input>
             </ion-item>
         </ion-list>
         <div class="tool" padding-horizontal>
-            <label tappable class="agree">
-                <ion-checkbox required id="agree" [(ngModel)]="agree" name="agree" mode="ios" color="danger"></ion-checkbox>
-                &nbsp;&nbsp;我已同意并阅读
-                <span ion-text color="google" (click)="goHelperDetailsPage();">《用户协议》</span>
-            </label>
+            <div class="agree">
+                <label tappable>
+                    <ion-checkbox style="vertical-align: middle;display: inline-block;" required id="agree" [(ngModel)]="agree" name="agree"
+                        mode="ios" color="danger"></ion-checkbox>
+                    <span style="vertical-align: middle;display: inline-block;color: #666666;">&nbsp;&nbsp;我已阅读并同意</span>
+                </label>
+                <span ion-text color="google" tappable (click)="goHelperDetailsPage($event);">《用户协议》</span>
+            </div>
             <div class="login">
                 <span class="text">已有账号？</span>
                 <div ion-button outline small color="jingku1" tappable (click)="toLoginPage()">登录</div>
             </div>
         </div>
         <div padding>
-            <button ion-button block color="jingku1" large class="btn-register" (click)="registerBtn()" [disabled]="!signupForm.form.valid"
-                [disabled]="!(signupForm.form.valid&&agree)">注册</button>
+            <button ion-button block color="jingku1" large class="btn-register" (click)="registerBtn()" [disabled]="!(signupForm.form.valid&&agree)">注册</button>
         </div>
     </form>
 

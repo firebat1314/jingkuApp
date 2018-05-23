@@ -1,0 +1,41 @@
+<!--
+  Generated template for the OpenSealPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+	<ion-navbar>
+		<ion-title>开通电子签章</ion-title>
+	</ion-navbar>
+
+</ion-header>
+
+
+<ion-content>
+	<form #openSealForm="ngForm" (ngSubmit)="openSeal()" novalidate>
+
+		<div class="fore1">
+			<img img-lazy-load="123" defaultSrc="./assets/images/images/640-360.jpg" alt="">
+		</div>
+		<ion-item no-lines>
+			<ion-label>验证码</ion-label>
+			<ion-input autocomplete="off" autocorrect="off" required placeholder="请输入手机验证码" [(ngModel)]="code" name="code" clearInput></ion-input>
+			<button item-end ion-button outline small color="jingku1" type="button" (click)="getMobileCode()" [disabled]="downtime">
+				<span *ngIf="downtime">({{downtime}})</span>
+				<span>获取验证码</span>
+			</button>
+		</ion-item>
+		<div padding>
+			<!-- <div class="agree">
+				<label tappable>
+					<ion-checkbox style="vertical-align: middle;display: inline-block;" required id="agree" [(ngModel)]="agree" name="agree" mode="ios"></ion-checkbox>
+					<span style="vertical-align: middle;display: inline-block;color: #666666;">&nbsp;&nbsp;我已阅读并同意</span>
+				</label>
+				<span style="color:#1475f7;" tappable (click)="goHelperDetailsPage($event);">《电子签章协议》</span>
+			</div> -->
+			<button class="btn" ion-button block large type="submit" [disabled]="!(openSealForm.form.valid)">下一步</button>
+		</div>
+	</form>
+</ion-content>

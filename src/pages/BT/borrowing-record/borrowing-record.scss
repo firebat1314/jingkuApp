@@ -1,0 +1,31 @@
+page-borrowing-record {
+   .item {
+      box-shadow: 0 1px 5px 0 rgba(0, 0, 0, 0.12);
+      background-color: #fff;
+      margin: 16px;
+      padding: 12px 32px 12px 12px;
+      display: flex;
+      border-radius: 5px;
+      overflow: hidden;
+      &.activated{
+       background-color: rgba(0, 0, 0, 0.05);
+       opacity: 0.8;
+      }
+      >div {
+          &:first-child {
+              flex: 1;
+          }
+          &:last-child {
+              text-align: right;
+          }
+          .p1 {
+              font-size: 1.6rem;
+              margin-bottom: 10px
+          }
+          .p2 {
+              color: #999;
+              font-size: 1.2rem;
+          }
+      }
+  }
+}
