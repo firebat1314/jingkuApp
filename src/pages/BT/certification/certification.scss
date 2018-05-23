@@ -1,0 +1,13 @@
+page-certification {
+    .label {
+        color: #b3b3b3 !important;
+        min-width: 100px !important;
+    }
+    .btn {
+        box-shadow: 0 1px 6px 0 rgba(0, 0, 0, 0.52);
+        &.activated {
+            opacity: .8;
+        }
+        background: #1475f7 !important;
+    }
+}

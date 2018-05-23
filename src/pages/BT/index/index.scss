@@ -1,0 +1,108 @@
+page-index {
+    .card {
+        box-shadow: 0 1px 5px 0 rgba(0, 0, 0, 0.12);
+    }
+    .label {}
+    .top-card {
+        background: linear-gradient(230deg, rgb(23, 125, 248) 0%, rgb(49, 187, 252) 100%);
+        min-height: 200px;
+        border-radius: 5px;
+        margin: 16px;
+        padding: 33px;
+        color: #ffffff;
+        position: relative;
+        overflow: hidden;
+        .p1 {
+            margin-bottom: 16px;
+        }
+        .p2 {
+            margin-bottom: 16px;
+            .s1 {
+                font-size: 2.6rem;
+                margin-right: 10px
+            }
+            .s2 {
+                font-size: 1rem;
+            }
+        }
+        .p3 {
+            margin-bottom: 16px;
+        }
+        .p4 {
+            background: rgba(0, 0, 0, 0.32);
+            text-align: center;
+            padding: 10px 0;
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            font-size: 1rem;
+        }
+    }
+    .item1,
+    .item2,
+    .item3 {
+        display: flex;
+        margin: 16px;
+        background-color: #fff;
+        flex-direction: column;
+        border-radius: 5px;
+        overflow: hidden;
+        .hd {
+            padding: 0 8px;
+            color: #333;
+            &.activated {
+                background-color: #d9d9d9;
+            }
+            .hd-inner {
+                padding: 12px 8px;
+                border-bottom: 1px #fafafa solid;
+                display: flex;
+                align-items: center;
+                .img {
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    width: 22px;
+                    height: 22px;
+                    margin-right: 8px;
+                    img {
+                        max-width: 100%;
+                        max-height: 100%;
+                    }
+                }
+                .text {
+                    color: #666666 !important;
+                }
+            }
+        }
+        .cot {
+            padding: 16px;
+            .p1 {
+                font-size: 2.6rem;
+                margin-bottom: 10px;
+                color: #666666;
+            }
+            .p2 {
+                color: #999;
+                margin-bottom: 8px;
+            }
+        }
+    }
+    .item2,
+    .item3 {
+        .hd {
+            .hd-inner {
+                border: 0;
+                padding: 16px 8px;
+            }
+        }
+    }
+    .btn {
+        box-shadow: 0 1px 5px 0 rgba(0, 0, 0, 0.12);
+        &.activated {
+            opacity: .8;
+        }
+        background: #1475f7 !important;
+    }
+}

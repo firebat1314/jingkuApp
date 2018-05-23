@@ -100,11 +100,11 @@ export class BrandListPage {
 		//退出页面取消事件订阅
 		this.events.unsubscribe('user:filterParams');
 	}
-	getListData() {
+	getListData(showLoading = true) {
 		this.getCarNumver();
 		this.infiniteScroll ? this.infiniteScroll.enable(true) : null;
 		if (this.isCut > 0) {//切边镜片
-			return this.httpService.cutting_list(Object.assign(this.paramsData, { page: 1,size:10 })).then((res) => {
+			return this.httpService.cutting_list(Object.assign(this.paramsData, { page: 1, size: 10 }), { showLoading: showLoading }).then((res) => {
 				if (res.status == 1) {
 					this.data = res;
 					this.is_jingjia_style = true;
@@ -115,7 +115,7 @@ export class BrandListPage {
 				}
 			})
 		} else if (this.isDistribution > 0) {
-			return this.httpService.category_goods_d(Object.assign(this.paramsData, { page: 1 })).then((res) => {
+			return this.httpService.category_goods_d(Object.assign(this.paramsData, { page: 1 }), { showLoading: showLoading }).then((res) => {
 				if (res.status == 1) {
 					this.data = res;
 					this.goodsList = res.goods;
@@ -125,14 +125,13 @@ export class BrandListPage {
 				}
 			})
 		} else {
-			return this.httpService.categoryGoods(Object.assign(this.paramsData, { page: 1 }), { showLoading: true }).then((res) => {
+			return this.httpService.categoryGoods(Object.assign(this.paramsData, { page: 1 }), { showLoading: showLoading }).then((res) => {
 				if (res.status == 1) {
 					res.is_jingpian && !this.listStyleLock ? this.listStyleflag = true : null;
 					this.data = res;
 					this.is_jingjia_style = res.is_jingjia;
 					this.goodsList = res.goods;
 					this.content.resize();
-					console.log(this.content)
 					this.content.scrollToTop(0);
 					this.events.publish('user:listFilter', res);
 				}
@@ -140,7 +139,7 @@ export class BrandListPage {
 		}
 	}
 	doRefresh(refresher) {
-		this.getListData().then(() => {
+		this.getListData(false).then(() => {
 			setTimeout(() => {
 				refresher.complete();
 			}, 500);
@@ -154,6 +153,17 @@ export class BrandListPage {
 			let pagingParam = Object.assign(this.paramsData, { page: ++p });
 			if (this.isCut > 0) {//切边镜片
 				this.httpService.cutting_list(pagingParam, { showLoading: false }).then((res) => {
+					if (res.status == 1) {
+						this.data = res;
+						this.content.resize();
+						this.goodsList = [...this.goodsList, ...res.goods]
+					}
+					setTimeout(() => {
+						this.infiniteScroll.complete();
+					}, 500);
+				})
+			} else if (this.isDistribution > 0) {
+				return this.httpService.category_goods_d(Object.assign(this.paramsData, { page: 1 }), { showLoading: false }).then((res) => {
 					if (res.status == 1) {
 						this.data = res;
 						this.content.resize();

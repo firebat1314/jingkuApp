@@ -19,21 +19,36 @@
 
 
 <ion-content>
+
     <ng-container *ngIf="data">
-        <div class="fore1" padding>
-            <div>订单号：{{data?.order?.order_sn}}</div>
-            <div>{{data?.order?.status}}</div>
-        </div>
-        <div class="fore2" padding>
-            <div class="user">
-                <div class="name">收货人：{{data?.order?.consignee}}</div>
-                <div class="phone">{{data?.order?.mobile | phonenumberfilter}}</div>
+        <div class="item1">
+            <!-- <div class="alert">
+                <ion-icon name="ios-alert-outline"></ion-icon>
+                <span>完成</span>
+            </div> -->
+            <div class="time">
+                <div>
+                    <!-- <ion-icon style="vertical-align: middle;font-size: 2.2rem;margin-right: 10px;color: #f5f9fd;" name="ios-time-outline"></ion-icon> -->
+                    <span style="font-size: 1.6rem;">{{data?.order?.status}}</span>
+                </div>
+                <!-- <div style="text-align: right;">
+                    <p style="margin-bottom: 5px;">剩余：12小时07分钟</p>
+                    <p style="font-size: 1.2rem;">需付款：{{data?.order?.formated_money_paid}}</p>
+                </div> -->
             </div>
-            <div class="address">{{data?.order?.region + data?.order?.address}}</div>
+            <!-- <div class="circle">
+                <ion-icon name="ios-checkmark-circle-outline"></ion-icon>
+                <span>已取消</span>
+            </div> -->
         </div>
-        <div class="fore3">
+        <div class="item2">
+            <!-- <p style="color: #262626;background: url(./assets/icon/order-4.png) no-repeat 6px center/16px">取消/退款进度：{{data?.order?.status}}</p> -->
+            <!-- <p style="color: #262626;background: url(./assets/icon/order-2.png) no-repeat 6px center/16px">感谢您在镜库购物，欢迎再次光临！</p> -->
+            <p style="color: #262626;background: url(./assets/icon/order-1.png) no-repeat 6px center/16px; margin-bottom: 10px;">{{data?.order?.consignee}}&nbsp;&nbsp;&nbsp;&nbsp;{{data?.order?.mobile | phonenumberfilter}}</p>
+            <p style="color: #808080;margin-bottom: 0;font-size: 1.2rem;">地址：{{data?.order?.region + data?.order?.address}}</p>
+        </div>
+        <div class="item3">
             <ion-item-divider *ngIf="data?.order?.suppliers_name">
-                <ion-icon item-start name="shop"></ion-icon>
                 <div tappable navPush="ParticularsHomePage" [navParams]="{suppliersId:data?.order?.suppliers_id}">
                     {{data?.order?.suppliers_name}}&nbsp;
                     <ion-icon name="ios-arrow-forward"></ion-icon>
@@ -47,6 +62,7 @@
                     <div class="left" *ngIf="!(item.cutting_id>0)">
                         <h2>{{item.goods_name}}</h2>
                         <div>
+                            <!-- <span *ngIf="item.goods_number">数量：{{item.goods_number}}</span> -->
                             <span *ngIf="item.qiujing">球镜：{{item.qiujing}}&nbsp;</span>
                             <span *ngIf="item.zhujing">柱镜：{{item.zhujing}}&nbsp;</span>
                             <span *ngIf="item.zhouwei">轴位：{{item.zhouwei}}&nbsp;</span>
@@ -71,33 +87,47 @@
                     </div>
                 </div>
             </ion-item>
-        </div>
-        <div class="background"></div>
-        <div class="fore4" padding>
-            <div class="top">
-                <div>支付方式</div>
-                <div>{{data?.order?.pay_name}}</div>
+            <div class="service" tappable (click)="goAccountServicePage()">
+                <img src="./assets/icon/order-3.png" alt="">联系客服
             </div>
-            <div class="bottom">
+        </div>
+        <div class="item4">
+            <div>
                 <div>
-                    <div>配送方式</div>
-                    <div>{{data?.order?.shipping_name}}</div>
+                    <span class="name">订单编号：</span>
+                    <span class="value">
+                        <span>{{data?.order?.order_sn}}</span>
+                        <span tappable (click)="copyText(data?.order?.order_sn)" class="copy">复制</span>
+                    </span>
                 </div>
-                <div>由商家选择合作快递为您配送</div>
+                <div *ngIf="data?.order?.postscript">
+                    <span class="name">订单备注：</span>
+                    <span class="value">{{data?.order?.postscript}}</span>
+                </div>
+                <div>
+                    <span class="name">下单时间：</span>
+                    <span class="value">{{data?.order?.formated_add_time}}</span>
+                </div>
+            </div>
+            <div>
+                <div>
+                    <span class="name">支付方式：</span>
+                    <span class="value">{{data?.order?.pay_name}}</span>
+                </div>
+                <div *ngIf="data?.order?.pay_time">
+                    <span class="name">支付时间：</span>
+                    <span class="value">{{data?.order?.pay_time}}</span>
+                </div>
+            </div>
+            <div>
+                <div>
+                    <span class="name">配送方式：</span>
+                    <span class="value">{{data?.order?.shipping_name}}</span>
+                </div>
             </div>
         </div>
-        <div class="background"></div>
-        <div class="fore4" padding *ngIf="data?.order?.postscript">
+        <div class="item5" *ngIf="mine?.showPrice">
             <div class="top">
-                <div>订单备注</div>
-            </div>
-            <div class="bottom">
-                <div>{{data?.order?.postscript}}</div>
-            </div>
-        </div>
-        <div class="background"></div>
-        <div class="fore5">
-            <div class="top" *ngIf="mine?.showPrice">
                 <div class="">
                     <span>购物金额小计：</span>
                     <span class="price">¥{{data?.order?.formated_goods_amount}}</span>
@@ -128,26 +158,30 @@
                 </div>-->
             </div>
             <div class="bottom">
-                <div *ngIf="mine?.showPrice">实付款：
+                <div>实付款：
                     <span class="price">¥{{data?.order?.formated_money_paid}}</span>
                 </div>
-                <div class="date">下单时间：{{data?.order?.formated_add_time}}</div>
             </div>
         </div>
     </ng-container>
 </ion-content>
 
 <ion-footer *ngIf="data" slideInUp>
-    <div class="result">
+    <!-- <div class="result">
         <span class="count">共{{data?.order?.count}}件</span>
         <span class="price" *ngIf="mine?.showPrice">合计：¥{{data?.order?.formated_total_fee}}</span>
-    </div>
-    <div class="foot-button" style="border-top: 1px solid #dedede;">
-        <button ion-button large full no-margin color="cancelBtn" (click)="cancelOrder(data?.order?.order_id)" *ngIf="data?.order?.order_status == 0">取消订单</button>
-        <button ion-button large full no-margin color="cancelBtn" (click)="deleteOrder(data?.order?.order_id)" *ngIf="data?.order?.order_status == 2">删除订单</button>
-        <button ion-button large full no-margin color="jingku1" navPush="OrderWuliuPage" [navParams]="{orderId:data?.order?.order_id}"
-            *ngIf="(data?.order?.order_status==1&&data?.order?.pay_status==2)||(data?.order?.order_status==5&&data?.order?.pay_status==2&&data?.order?.shipping_status==1)||(data?.order?.order_status==5&&data?.order?.pay_status==2&&data?.order?.shipping_status==2)&&data?.order?.invoice_no">物流跟踪</button>
-        <button ion-button large full no-margin color="jingku1" (click)="toPay(data?.order?.order_id)" *ngIf="data?.order?.pay_status == 0 && data?.order?.order_status!=4 && data?.order?.order_status!=2 && data?.order?.order_status!=3 && data?.order?.order_status!=7 && data?.order?.order_status!=8 ">去支付</button>
-        <button ion-button large full no-margin color="jingku2" (click)="confirmReceipt(data?.order?.order_id)" *ngIf="data?.order?.order_status == '5' && data?.order?.shipping_status=='1'">确认收货</button>
-    </div>
+    </div> -->
+    <ion-toolbar>
+        <div class="foot-button">
+            <button class="btn-del" ion-button clear round small outline color="gray2" (click)="deleteOrder(data?.order?.order_id)" *ngIf="data?.order?.order_status == 2">删除订单</button>
+            <div class="right">
+                <button ion-button round small outline color="gray2" (click)="cancelOrder(data?.order?.order_id)" *ngIf="data?.order?.order_status == 0">取消订单</button>
+                <button ion-button round small outline color="gray2" navPush="OrderWuliuPage" [navParams]="{orderId:data?.order?.order_id}"
+                    *ngIf="(data?.order?.order_status==1&&data?.order?.pay_status==2)||(data?.order?.order_status==5&&data?.order?.pay_status==2&&data?.order?.shipping_status==1)||(data?.order?.order_status==5&&data?.order?.pay_status==2&&data?.order?.shipping_status==2)">物流跟踪</button>
+                <button ion-button round small color="jingku1" (click)="toPay(data?.order?.order_id)" *ngIf="data?.order?.pay_status == 0 && data?.order?.order_status!=4 && data?.order?.order_status!=2 && data?.order?.order_status!=3 && data?.order?.order_status!=7 && data?.order?.order_status!=8 ">去支付</button>
+                <button ion-button round small color="jingku1" (click)="confirmReceipt(data?.order?.order_id)" *ngIf="data?.order?.order_status == '5' && data?.order?.shipping_status=='1'">确认收货</button>
+                <button ion-button round small color="jingku1" (click)="buyAgain(data?.order?.order_id)" *ngIf="(data?.order?.order_status==5 && data?.order?.pay_status==2 && data?.order?.shipping_status==2)||(data?.order?.order_status==2 && data?.order?.pay_status==0 && data?.order?.shipping_status==0)">再次购买</button>
+            </div>
+        </div>
+    </ion-toolbar>
 </ion-footer>

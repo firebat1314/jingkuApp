@@ -1,0 +1,72 @@
+<!--
+  Generated template for the IndexPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+	<ion-navbar>
+		<ion-title>商户贷</ion-title>
+	</ion-navbar>
+
+</ion-header>
+
+
+<ion-content>
+	<ng-container>
+		<!--  *ngIf="data?.list[0]" -->
+		<div class="card top-card">
+			<p class="p1">预计额度（元）</p>
+			<p class="p2">
+				<span class="s1">{{data?.list[0]?.quotaRange2}}</span>
+				<span class="s2">月费率{{data?.list[0]?.rateRange1*100}}%起</span>
+			</p>
+			<p class="p3" tappable navPush="BTProductDetailsPage">查看产品详情></p>
+			<p class="p4">&nbsp;123<!-- 1000元接一天，利息最低111.11元，具体以实际展示为准 --></p>
+		</div>
+		<!-- <div class="card item1 ">
+			<div class="hd detail-push" tappable (click)="1">
+				<div class="hd-inner">
+					<div class="img">
+						<img src="./assets/icon/BT/BT_03.png" alt="">
+					</div>
+					<div class="text">还款提醒</div>
+				</div>
+			</div>
+			<div class="cot">
+				<p class="p1">1000.00</p>
+				<p class="p2">30天内代还款金额（元）</p>
+			</div>
+		</div>
+		<div class="card item2">
+			<div class="hd detail-push" tappable navPush="BTBorrowingRecordPage">
+				<div class="hd-inner">
+					<div class="img">
+						<img src="./assets/icon/BT/BT_07.png" alt="">
+					</div>
+					<div class="text">借款记录</div>
+				</div>
+			</div>
+		</div>
+		<div class="card item3">
+			<div class="hd detail-push" tappable navPush="BTRepaymentHistoryPage">
+				<div class="hd-inner">
+					<div class="img">
+						<img src="./assets/icon/BT/BT_11.png" alt="">
+					</div>
+					<div class="text">还款记录</div>
+				</div>
+			</div>
+		</div> -->
+	</ng-container>
+</ion-content>
+
+<ion-footer>
+	<div padding *ngIf="shd_info?.list?.is_shenqing==1">
+		<button class="btn" ion-button block large [navPush]="shd_info?.list?.is_bang==1?'BTRepaymentInfoPage':'BTCertificationPage'">获取额度</button>
+	</div>
+	<div padding *ngIf="shd_info?.list?.is_jie==1">
+		<button class="btn" ion-button block large navPush="BTOpenSealPage">立即借款</button>
+	</div>
+</ion-footer>

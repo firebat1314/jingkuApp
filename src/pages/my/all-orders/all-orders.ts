@@ -16,6 +16,7 @@ import { MineProvider } from '../../../providers/mine/mine';
 	templateUrl: 'all-orders.html'
 })
 export class AllOrdersPage {
+	showLoading: boolean;
 	infiniteScroll: any;
 	orderList: any;
 	pageIndex: number = this.navParams.get('index') || 0;
@@ -47,7 +48,8 @@ export class AllOrdersPage {
 	ngOnInit() {
 		this.getByPageIndex();
 	}
-	getByPageIndex(showLoading = true) {
+	getByPageIndex(showLoading = false) {
+		this.showLoading = true;
 		if (this.infiniteScroll) this.infiniteScroll.enable(true);
 		let type: string;
 		switch (this.pageIndex) {
@@ -60,6 +62,7 @@ export class AllOrdersPage {
 			default: type = ''; break;
 		}
 		return this.httpService.order({ page: 1, type: type }, { showLoading: showLoading }).then((res) => {
+			this.showLoading = false;
 			if (res.status == 1) {
 				// this.orderData_all = res;
 				this.orderData = res;

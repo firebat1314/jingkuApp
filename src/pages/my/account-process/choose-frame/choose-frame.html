@@ -56,26 +56,26 @@
 	<div class="eye" *ngIf="selectorbar=='byself'">
 		<div class="h_title">加工类型</div>
 		<div class="t_labels">
-			<div class="lab" (click)="mach_type = 1" [ngClass]="{'on':mach_type == 1}">全框</div>
-			<div class="lab" (click)="mach_type = 2" [ngClass]="{'on':mach_type == 2}">半框</div>
-			<div class="lab" (click)="mach_type = 3" [ngClass]="{'on':mach_type == 3}">无框切边</div>
-			<div class="lab" (click)="mach_type = 4" [ngClass]="{'on':mach_type == 4}">无框打孔</div>
+			<div class="lab" (click)="mach_type = 1" *ngIf="data?.settings?.is_full==1" [ngClass]="{'on':mach_type == 1}">全框</div>
+			<div class="lab" (click)="mach_type = 2" *ngIf="data?.settings?.is_half==1" [ngClass]="{'on':mach_type == 2}">半框</div>
+			<div class="lab" (click)="mach_type = 3" *ngIf="data?.settings?.is_cut==1" [ngClass]="{'on':mach_type == 3}">无框切边</div>
+			<div class="lab" (click)="mach_type = 4" *ngIf="data?.settings?.is_punch==1" [ngClass]="{'on':mach_type == 4}">无框打孔</div>
 		</div>
 		<div class="m_list">
 			<div class="li">
 				<div class="name">
 					<span style="color: #e60000;">*</span>&nbsp;镜架品牌</div>
-				<ion-input class="inp" [(ngModel)]="pinpai" placeholder="请填写" type="text" value=""></ion-input>
+				<ion-input autocomplete="off" autocorrect="off" class="inp" [(ngModel)]="pinpai" placeholder="请填写" type="text" value=""></ion-input>
 			</div>
 			<div class="li">
 				<div class="name">
 					<span style="color: #e60000;">*</span>&nbsp;镜架型号</div>
-				<ion-input class="inp" [(ngModel)]="xinghao" placeholder="请填写" type="text" value=""></ion-input>
+				<ion-input autocomplete="off" autocorrect="off" class="inp" [(ngModel)]="xinghao" placeholder="请填写" type="text" value=""></ion-input>
 			</div>
 			<div class="li">
 				<div class="name">
 					<span style="color: #e60000;">&nbsp;</span>&nbsp;镜架备注</div>
-				<ion-input class="inp" [(ngModel)]="beizhu" placeholder="请填写" type="text" value=""></ion-input>
+				<ion-input autocomplete="off" autocorrect="off" class="inp" [(ngModel)]="beizhu" placeholder="请填写" type="text" value=""></ion-input>
 			</div>
 		</div>
 	</div>

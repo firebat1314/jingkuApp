@@ -1,9 +1,10 @@
 import { Component, ViewChild } from '@angular/core';
-import { IonicPage, NavController, NavParams, Events, Content } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, Events, Content, AlertController } from 'ionic-angular';
 import { MineProvider } from '../../../../providers/mine/mine';
 import { HttpService } from '../../../../providers/http-service';
 import { Native } from '../../../../providers/native';
 import { InAppBrowser } from '@ionic-native/in-app-browser';
+import { QimoChatProvider } from '../../../../providers/qimo-chat/qimo-chat';
 
 /**
  * Generated class for the OrderDetailDistributionPage page.
@@ -13,7 +14,7 @@ import { InAppBrowser } from '@ionic-native/in-app-browser';
  */
 
 @IonicPage({
-  segment:'order-detail-distribution/:order_id'
+  segment: 'order-detail-distribution/:order_id'
 })
 @Component({
   selector: 'page-order-detail-distribution',
@@ -37,7 +38,9 @@ export class OrderDetailDistributionPage {
     public native: Native,
     public events: Events,
     private mine: MineProvider,
-		private iab: InAppBrowser,
+    private iab: InAppBrowser,
+    private alertCtrl: AlertController,
+    private QimoChat: QimoChatProvider,
   ) {
   }
 
@@ -75,7 +78,7 @@ export class OrderDetailDistributionPage {
   }
   toPay(id) {
     if (!this.mine.canCheckout) { this.native.showToast('暂无结算权限，请联系企业管理员'); return false }
-    this.navCtrl.push('PaymentMethodPage', { order_id: id,isDistribution:1 })
+    this.navCtrl.push('PaymentMethodPage', { order_id: id, isDistribution: 1 })
   }
   confirmReceipt(order_id) {
     this.native.openAlertBox('确认收货', () => {
@@ -117,18 +120,68 @@ export class OrderDetailDistributionPage {
     })
   }
   viewerContract(order_id) {
-		this.httpService.infoUrl_d({ order_id: order_id }).then(res => {
-			if (res.status) {
-				this.navCtrl.push('ViewerContractPage',{url:res.url});
-			}
-		})
+    this.httpService.infoUrl_d({ order_id: order_id }).then(res => {
+      if (res.status) {
+        this.navCtrl.push('ViewerContractPage', { url: res.url });
+      }
+    })
   }
-	sealContract(order_id) {
-		this.httpService.sealIndex({ order_id: order_id }).then(res => {
-			if (res.status == 1) {
-				this.iab.create(res.url, '_system')
-				// this.navCtrl.push('ViewerContractPage', { url: res.url });
-			}
-		})
-	}
+  sealContract(order_id) {
+    this.httpService.sealIndex({ order_id: order_id }).then(res => {
+      if (res.status == 1) {
+        this.iab.create(res.url, this.native.isMobile() ? '_system' : '_self');
+      }
+    })
+  }
+
+  copyText(value) {
+    return new Promise((resolve, reject) => {
+      var /** @type {?} */ copyTextArea = /** @type {?} */ (null);
+      try {
+        copyTextArea = document.createElement('textarea');
+        copyTextArea.style.height = '0px';
+        copyTextArea.style.opacity = '0';
+        copyTextArea.style.width = '0px';
+        document.body.appendChild(copyTextArea);
+        copyTextArea.value = value;
+        copyTextArea.select();
+        document.execCommand('copy');
+        this.native.showToast('已复制', 500);
+        resolve(value);
+      }
+      finally {
+        if (copyTextArea && copyTextArea.parentNode) {
+          copyTextArea.parentNode.removeChild(copyTextArea);
+        }
+      }
+    });
+  }
+
+  goAccountServicePage() {
+    this.QimoChat.qimoChatSDK(this.data.order.access_id, this.data.order.suppliers_name, this.data.order.suppliers_logo, );
+  }
+
+  buyAgain(order_id) {
+    this.httpService.alignBuy({ order_id: order_id }).then((res) => {
+      if (res.status) {
+        this.navCtrl.push('CarPage');
+      } else if (res.status == -2) {
+        this.alertCtrl.create({
+          title: '镜库科技',
+          message: '购买需上传医疗器械许可证，是否上传',
+          buttons: [
+            {
+              text: '确定',
+              handler: () => {
+                this.navCtrl.push('CompanyInfoPage');
+              }
+            },
+            {
+              text: '取消',
+            }
+          ]
+        }).present();
+      }
+    })
+  }
 }

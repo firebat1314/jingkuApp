@@ -23,13 +23,15 @@ export class AdsClickDirective {
   @HostListener('click') onClick() {
     console.log(this.link_type);
     if (this.link_type.type_name == 'category') {
-      this.goBrandListPage({listId:this.link_type.type_value});
+      this.goBrandListPage({ listId: this.link_type.type_value });
     } else if (this.link_type.type_name == 'goods') {
-      this.goParticularsPage({goodsId: this.link_type.type_value});
+      this.goParticularsPage({ goodsId: this.link_type.type_value });
     } else if (this.link_type.type_name == "brand") {
-      this.goBrandListPage({brandId:this.link_type.type_value});
+      this.goBrandListPage({ brandId: this.link_type.type_value });
     } else if (this.link_type.type_name == "search") {
-      this.goBrandListPage({keyword:this.link_type.type_value});
+      this.goBrandListPage({ keyword: this.link_type.type_value });
+    } else if (this.link_type.type_name == "page") {
+      eval(this.link_type.type_value);
     }
   }
   goClassPage(value) {
@@ -37,10 +39,10 @@ export class AdsClickDirective {
     this.navCtrl.parent.select(1);
     this.events.publish('classify:selectSegment', value);
   }
-  goBrandListPage(data){
-    this.navCtrl.push('BrandListPage',data)
+  goBrandListPage(data) {
+    this.navCtrl.push('BrandListPage', data)
   }
-  goParticularsPage(data){
+  goParticularsPage(data) {
     this.navCtrl.push('ParticularsPage', data)
   }
 }

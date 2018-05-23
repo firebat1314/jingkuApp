@@ -22,6 +22,7 @@
     <ion-refresher (ionRefresh)="doRefresh($event)" pullMax="60">
         <ion-refresher-content refreshingSpinner="1" pullingIcon="0"></ion-refresher-content>
     </ion-refresher>
+	<ion-spinner *ngIf="showLoading" style="z-index: 1000;position: fixed;top: 0;left: 0;right: 0;bottom: 0;margin: auto;" name="circles"></ion-spinner>
     <ng-container *ngIf="getGoodsInfo?.data">
         <div class="imgs header-image">
             <swiper [data]="getGoodsInfo?.gallery"></swiper>

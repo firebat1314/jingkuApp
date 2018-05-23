@@ -23,6 +23,7 @@ export class ChooseFramePage {
 	order_id = this.navParams.get('order_id');
 	rec_id: any = this.navParams.get('rec_id');
 	rec_ids: any = this.navParams.get('rec_ids');
+	pian_rec: any = this.navParams.get('pian_rec');
 
 	mach_type: any = this.navParams.get('mach_type');
 	pinpai: any = this.navParams.get('pinpai');
@@ -44,13 +45,22 @@ export class ChooseFramePage {
 	}
 
 	ngOnInit() {
-		this.httpService.machining_goods({ order_id: this.order_id, type: 'zuo', goods_type: 'jia', rec_ids: this.rec_ids, rec_id: this.rec_id }).then((res) => {
-			this.data = res;
-			if (!res.data.length) {
-				this.selectorbar = 'byself';
-			}/*  else {
-				this.selectorbar = 'byorder';
-			} */
+		this.httpService.machining_goods({
+			order_id: this.order_id,
+			type: 'zuo',
+			goods_type: 'jia',
+			rec_ids: this.rec_ids,
+			rec_id: this.rec_id,
+			pian_rec: this.pian_rec
+		}).then((res) => {
+			if (res.status == 1) {
+				this.data = res;
+				if (!res.data.length) {
+					this.selectorbar = 'byself';
+				}
+			} else {
+				this.viewCtrl.dismiss();
+			}
 		})
 	}
 
@@ -87,7 +97,8 @@ export class ChooseFramePage {
 			mach_type: this.mach_type,
 			pinpai: this.pinpai,
 			xinghao: this.xinghao,
-			beizhu: this.beizhu
+			beizhu: this.beizhu,
+			pian_rec: this.pian_rec
 		}).then((res) => {
 			if (res.status) {
 				this.viewCtrl.dismiss(res.data, 'submit');

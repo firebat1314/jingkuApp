@@ -21,23 +21,23 @@ export class AccountCollectGoodsPage {
     public native: Native,
     public events: Events,
     public mine: MineProvider,
-  ) {}
+  ) { }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad AccountCollectGoodsPage');
   }
-  ngOnInit(){
+  ngOnInit() {
     this.getData();
   }
-  getData(){
-    return this.httpService.collectionList({ size: 10, page: 1 }).then((res) => {
+  getData(showLoading = true) {
+    return this.httpService.collectionList({ size: 10, page: 1 }, { showLoading: showLoading }).then((res) => {
       if (res.status == 1) { this.collectionList = res; }
     })
   }
   /*下拉刷新*/
   doRefresh(refresher) {
-    if(this.infiniteScroll) this.infiniteScroll.enable(true);
-    this.getData().then(()=>{
+    if (this.infiniteScroll) this.infiniteScroll.enable(true);
+    this.getData(false).then(() => {
       setTimeout(() => {
         refresher.complete();
       }, 500);
@@ -54,7 +54,8 @@ export class AccountCollectGoodsPage {
       })
     })
   }
-  joinCar(goods_id) {
+  joinCar(e, goods_id) {
+    e.stopPropagation();
     this.navCtrl.push('ParticularsPage', { goodsId: goods_id });
   }
 
@@ -62,7 +63,7 @@ export class AccountCollectGoodsPage {
     this.infiniteScroll = infiniteScroll;
     var page = this.collectionList.page;
     if (page < this.collectionList.pages) {
-      this.httpService.collectionList({ size: 10, page: ++page }).then((res) => {
+      this.httpService.collectionList({ size: 10, page: ++page }, { showLoading: false }).then((res) => {
         if (res.status == 1) {
           this.collectionList.page = res.page;
           Array.prototype.push.apply(this.collectionList.data, res.data);

@@ -1,115 +1,110 @@
 .ios page-order-list-distribution {
-   .single-shop {
-       .item {
-           border-bottom: 0.55px solid #e0e0e0;
-       }
-       .result {
-           border-bottom: 0.55px solid #e0e0e0;
-       }
-   }
+
 }
 
 page-order-list-distribution {
-   .content {
-       background: #f7f7f7;
-   }
-   ion-toolbar {
-       min-height: 41px !important;
-   }
-   .no-log {
-       @include reminderBlankPage();
-   }
-   .single-shop {
-       margin-bottom: 10px;
-       background: #fff;
-       >div:last-child {
-           border: 0;
-       }
-       .item-divider {
-           color: #666;
-           >.icon:first-child {
-               font-size: 2rem;
-               display: flex;
-               align-items: center;
-               margin-right: 6px;
-           }
-           .item-inner {
-               margin-left: 0;
-           }
-           .shop-title{
-               display: flex;
-               align-items: center;
-               .icon{
-                   margin-top: 2px;
-               }
-           }
-       }
-       .item {
-           border-bottom: 1px solid #e0e0e0;
-           .my-content {
-               display: flex;
-               color: #4d4d4d;
-               justify-content: space-between;
-               .left {
-                   color: #999;
-                   font-size: 1.2rem;
-                   width: 70%;
-                   overflow: hidden;
-                   text-overflow: ellipsis;
-                   h2 {
-                       color: #4d4d4d;
-                       font-size: 1.6rem;
-                       @include ellipsis_1();
-                       &+div {
-                           // @include ellipsis_2();
-                           color: inherit;
-                           font-size: 1.2rem;
-                       }
-                   }
-               }
-               .right {
-                   color: #000;
-                   text-align: right; // min-width: 80px;
-                   .count {
-                       margin-top: 10px;
-                       color: #999;
-                   }
-                   .color {
-                       color: get-color('danger'); // color: #4c4c4c;
-                       font-weight: 600;
-                       .old {
-                           color: #999;
-                           font-size: 1.2rem;
-                           margin-left: 5px;
-                           text-decoration: line-through;
-                       }
-                   }
-               }
-           }
-       }
-       .result {
-           text-align: right;
-           padding: 10px;
-           border-bottom: 1px solid #e0e0e0;
-           .count {
-               color: #4d4d4d;
-           }
-           .price {
-               font-size: 1.5rem;
-               span {
-                   font-weight: 600;
-               }
-           }
-       }
-       .btn {
-           text-align: right;
-           padding: 5px;
-           .button {
-               width: 90px;
-               /* &:first-child {
-                   border-color: #b6b6b6;
-               } */
-           }
-       }
-   }
+    ion-toolbar {
+        min-height: 41px !important;
+    }
+    .no-log {
+        @include reminderBlankPage();
+    }
+    .single-shop {
+        margin-bottom: 10px;
+        background: #fff;
+        position: relative;
+        >div:last-child {
+            border: 0;
+        }
+        .item-divider {
+            color: #666;
+            >.icon:first-child {
+                font-size: 2rem;
+                display: flex;
+                align-items: center;
+                margin-right: 6px;
+            }
+            .item-inner {
+                margin-left: 0;
+            }
+            .shop-title {
+                display: flex;
+                align-items: center;
+                .icon {
+                    margin-top: 2px;
+                }
+            }
+        }
+        .item {
+            &.activated {
+                background-color: #d9d9d9 !important;
+            }
+            .my-content {
+                display: flex;
+                color: #4d4d4d;
+                justify-content: space-between;
+                .left {
+                    color: #999;
+                    font-size: 1.2rem;
+                    overflow: hidden;
+                    text-overflow: ellipsis;
+                    flex: 1;
+                    padding-right: 13px;
+                    h2 {
+                        color: #4d4d4d;
+                        font-size: 1.6rem;
+                        @include ellipsis_1();
+                        &+div {
+                            // @include ellipsis_2();
+                            color: inherit;
+                            font-size: 1.2rem;
+                        }
+                    }
+                }
+                .right {
+                    color: #000;
+                    text-align: right; // min-width: 80px;
+                    white-space: nowrap;
+                    .count {
+                        margin-top: 10px;
+                        color: #999;
+                    }
+                    .color {
+                        color: get-color('danger'); // color: #4c4c4c;
+                        font-weight: 600;
+                        .old {
+                            color: #999;
+                            font-size: 1.2rem;
+                            margin-left: 5px;
+                            text-decoration: line-through;
+                        }
+                    }
+                }
+            }
+        }
+        .result {
+            text-align: right;
+            padding: 10px;
+            border-bottom: 1px solid #fafafa;
+            font-size: 1.2rem;
+            .count {
+                color: #4d4d4d;
+            }
+            .price {
+                font-size: 1.5rem;
+                span {
+                    font-weight: 600;
+                }
+            }
+        }
+        .btn {
+            text-align: right;
+            padding: 5px;
+            .button {
+                /* &:first-child {
+                    border-color: #b6b6b6;
+                } */
+            }
+        }
+    }
 }

@@ -72,6 +72,7 @@ export class MyApp {
 					}
 				})
 			} else {
+				// if ((!this.native.isMobileweb())&&(!this.native.isWeixin())) {
 				if (!this.native.isMobileweb()) {
 					location.href = 'https://www.jingku.cn/default.html';
 					return;

@@ -18,11 +18,11 @@
         <ion-list>
             <ion-item>
                 <ion-label mode="ios" fixed>手机号</ion-label>
-                <ion-input required clearInput type="number" [(ngModel)]="formData.mobile" name="mobile" placeholder="请填写新手机号"></ion-input>
+                <ion-input autocomplete="off" autocorrect="off" required clearInput type="number" [(ngModel)]="formData.mobile" name="mobile" placeholder="请填写新手机号"></ion-input>
             </ion-item>
             <ion-item>
                 <ion-label mode="ios" fixed>验证码</ion-label>
-                <ion-input required type="number" clearInput [(ngModel)]="formData.str_verify" name="str_verify" placeholder="验证码"></ion-input>
+                <ion-input autocomplete="off" autocorrect="off" required type="number" clearInput [(ngModel)]="formData.str_verify" name="str_verify" placeholder="验证码"></ion-input>
                 <div class="certified-img" item-right>
                     <img [img-lazy-load]="verifyImg" alt="验证码" tappable (click)="getImg()">
                     <!--<ion-icon name="refresh" (click)="getImg()"></ion-icon>-->
@@ -30,7 +30,7 @@
             </ion-item>
             <ion-item>
                 <ion-label mode="ios" fixed>短信验证</ion-label>
-                <ion-input required clearInput type="number" [(ngModel)]="formData.mobile_verify" name="mobile_verify" placeholder="请输入验证码"></ion-input>
+                <ion-input autocomplete="off" autocorrect="off" required clearInput type="number" [(ngModel)]="formData.mobile_verify" name="mobile_verify" placeholder="请输入验证码"></ion-input>
                 <button ion-button outline round color="jingku1" item-right (click)="getMobileCode()" [disabled]="disabled">{{value}}</button>
             </ion-item>
         </ion-list>

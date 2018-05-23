@@ -37,7 +37,11 @@ export class ChooseLensRPage {
 
   ngOnInit() {
     this.httpService.machining_goods({ order_id: this.order_id, type: 'you', goods_type: 'pian', rec_ids: this.rec_ids, rec_id: this.rec_id, pian_rec: this.pian_rec }).then((res) => {
-      this.data = res;
+      if (res.status == 1) {
+        this.data = res;
+      } else {
+        this.viewCtrl.dismiss();
+      }
     })
   }
 
@@ -49,11 +53,11 @@ export class ChooseLensRPage {
         str_type: 'you',
       }).then((res) => {
         if (res.status) {
-          this.viewCtrl.dismiss(res.data,'submit');
+          this.viewCtrl.dismiss(res.data, 'submit');
         }
       })
     } else {
-      this.viewCtrl.dismiss(null,'submit');
+      this.viewCtrl.dismiss(null, 'submit');
     }
   }
 }

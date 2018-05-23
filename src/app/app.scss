@@ -52,7 +52,13 @@ ion-app {
     }
 }
 
-
+.detail-push {
+    background-image: url("data:image/svg+xml;charset=utf-8,<svg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2012%2020'><path%20d='M2,20l-2-2l8-8L0,2l2-2l10,10L2,20z'%20fill='%23c8c7cc'/></svg>");
+    padding-right: 32px;
+    background-position: right 14px center;
+    background-repeat: no-repeat;
+    background-size: 14px 14px;
+}
 /*———————————————————————————————————— 隐藏滚动条 ————————————————————————————————————*/
 
 ::-webkit-scrollbar {
@@ -115,10 +121,10 @@ ion-modal {
 [slideOutDown] {
     animation: slideOutDown 500ms;
 }
-
+/* 
 ion-thumbnail {
     border: $border-img;
-}
+} */
 
 .item-ios {
     color: #333;
@@ -185,14 +191,14 @@ ion-thumbnail {
 
 
 /*————————————————————————————————————工具栏————————————————————————————————————*/
-
+/* 
 .ios .toolbar:nth-child(2) {
     border-width: 0.5px;
 }
 
 .toolbar:nth-child(2) {
     border-top: 1px solid #e0e0e0;
-}
+} */
 
 .toolbar-md {
     padding: 0 4px;
@@ -374,7 +380,7 @@ button.swiper-pagination-bullet {
 
 /*————————————————————————————————————alterCSS————————————————————————————————————*/
 
-.ios .alert-md {
+/* .ios .alert-md {
     .alert-button-group {
         .alert-button {
             border-top-width: 0.5px;
@@ -383,7 +389,7 @@ button.swiper-pagination-bullet {
             }
         }
     }
-}
+} */
 
 .alert-ios,
 .alert-md,
@@ -393,11 +399,11 @@ button.swiper-pagination-bullet {
             color: get-color(primary);
             font-size: 16px;
         }
-        .alert-sub-title {
+        /* .alert-sub-title {
             margin-top: 14px;
-        }
+        } */
     }
-    .alert-message:empty {
+/*     .alert-message:empty {
         padding: 0;
     }
     .alert-button-group {
@@ -415,15 +421,15 @@ button.swiper-pagination-bullet {
                 justify-content: center;
             }
         }
-    }
+    } */
 }
 
 
 /*————————————————————————————————————segment-style————————————————————————————————————*/
 
 .ios .segment-style {
-    border-bottom: 0.5px solid #e0e0e0;
-    border-top: 0.5px solid #e0e0e0;
+    // border-bottom: 0.5px solid #e0e0e0;
+    // border-top: 0.5px solid #e0e0e0;
     .segment-md .segment-button {
         border-right: 0.5px solid #e0e0e0;
     }
@@ -431,8 +437,8 @@ button.swiper-pagination-bullet {
 
 .segment-style {
     min-height: 46px;
-    border-bottom: 1px solid #e0e0e0;
-    border-top: 1px solid #e0e0e0;
+    // border-bottom: 1px solid #e0e0e0;
+    // border-top: 1px solid #e0e0e0;
     display: flex;
     .segment-button.segment-activated {
         color: #3f69a5 !important;

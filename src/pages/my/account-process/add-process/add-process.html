@@ -77,23 +77,23 @@
 						</div> -->
 						<div class="li" [style.display]="!edit&&!item.rzhouxiang?'none':'flex'">
 							<div class="name">轴位</div>
-							<ion-input [readonly]="!edit" class="inp" [(ngModel)]="item.rzhouxiang" placeholder="请填写" type="text" value=""></ion-input>
+							<ion-input autocomplete="off" autocorrect="off" [readonly]="!edit" class="inp" [(ngModel)]="item.rzhouxiang" placeholder="请填写" type="text" value=""></ion-input>
 						</div>
 						<div class="li" [style.display]="!edit&&!item.radd?'none':'flex'">
 							<div class="name">ADD</div>
-							<ion-input [readonly]="!edit" class="inp" [(ngModel)]="item.radd" placeholder="请填写" type="text" value=""></ion-input>
+							<ion-input autocomplete="off" autocorrect="off" [readonly]="!edit" class="inp" [(ngModel)]="item.radd" placeholder="请填写" type="text" value=""></ion-input>
 						</div>
 						<div class="li" [style.display]="!edit&&!item.rjytj?'none':'flex'">
 							<div class="name">近用瞳距</div>
-							<ion-input [readonly]="!edit" class="inp" [(ngModel)]="item.rjytj" placeholder="请填写" type="text" value=""></ion-input>
+							<ion-input autocomplete="off" autocorrect="off" [readonly]="!edit" class="inp" [(ngModel)]="item.rjytj" placeholder="请填写" type="text" value=""></ion-input>
 						</div>
 						<div class="li" [style.display]="!edit&&!item.rtongju?'none':'flex'">
 							<div class="name">瞳距</div>
-							<ion-input [readonly]="!edit" class="inp" [(ngModel)]="item.rtongju" placeholder="请填写" type="text" value=""></ion-input>
+							<ion-input autocomplete="off" autocorrect="off" [readonly]="!edit" class="inp" [(ngModel)]="item.rtongju" placeholder="请填写" type="text" value=""></ion-input>
 						</div>
 						<div class="li" [style.display]="!edit&&!item.rtonggao?'none':'flex'">
 							<div class="name">瞳高</div>
-							<ion-input [readonly]="!edit" class="inp" [(ngModel)]="item.rtonggao" placeholder="请填写" type="text" value=""></ion-input>
+							<ion-input autocomplete="off" autocorrect="off" [readonly]="!edit" class="inp" [(ngModel)]="item.rtonggao" placeholder="请填写" type="text" value=""></ion-input>
 						</div>
 					</div>
 				</div>
@@ -113,23 +113,23 @@
 						</div> -->
 						<div class="li" [style.display]="!edit&&!item.lzhouxiang?'none':'flex'">
 							<div class="name">轴位</div>
-							<ion-input [readonly]="!edit" class="inp" [(ngModel)]="item.lzhouxiang" placeholder="请填写" type="text" value=""></ion-input>
+							<ion-input autocomplete="off" autocorrect="off" [readonly]="!edit" class="inp" [(ngModel)]="item.lzhouxiang" placeholder="请填写" type="text" value=""></ion-input>
 						</div>
 						<div class="li" [style.display]="!edit&&!item.ladd?'none':'flex'">
 							<div class="name">ADD</div>
-							<ion-input [readonly]="!edit" class="inp" [(ngModel)]="item.ladd" placeholder="请填写" type="text" value=""></ion-input>
+							<ion-input autocomplete="off" autocorrect="off" [readonly]="!edit" class="inp" [(ngModel)]="item.ladd" placeholder="请填写" type="text" value=""></ion-input>
 						</div>
 						<div class="li" [style.display]="!edit&&!item.ljytj?'none':'flex'">
 							<div class="name">近用瞳距</div>
-							<ion-input [readonly]="!edit" class="inp" [(ngModel)]="item.ljytj" placeholder="请填写" type="text" value=""></ion-input>
+							<ion-input autocomplete="off" autocorrect="off" [readonly]="!edit" class="inp" [(ngModel)]="item.ljytj" placeholder="请填写" type="text" value=""></ion-input>
 						</div>
 						<div class="li" [style.display]="!edit&&!item.ltongju?'none':'flex'">
 							<div class="name">瞳距</div>
-							<ion-input [readonly]="!edit" class="inp" [(ngModel)]="item.ltongju" placeholder="请填写" type="text" value=""></ion-input>
+							<ion-input autocomplete="off" autocorrect="off" [readonly]="!edit" class="inp" [(ngModel)]="item.ltongju" placeholder="请填写" type="text" value=""></ion-input>
 						</div>
 						<div class="li" [style.display]="!edit&&!item.ltonggao?'none':'flex'">
 							<div class="name">瞳高</div>
-							<ion-input [readonly]="!edit" class="inp" [(ngModel)]="item.ltonggao" placeholder="请填写" type="text" value=""></ion-input>
+							<ion-input autocomplete="off" autocorrect="off" [readonly]="!edit" class="inp" [(ngModel)]="item.ltonggao" placeholder="请填写" type="text" value=""></ion-input>
 						</div>
 					</div>
 				</div>
@@ -157,7 +157,9 @@
 
 <ion-footer>
 	<!-- <ion-toolbar mode="ios" no-padding> -->
+	<div slideInUp>
 		<button *ngIf="edit" ion-button large full (click)="confirm()" color="jingku1" no-margin>确认信息</button>
 		<button *ngIf="!edit" ion-button large full (click)="submit()" color="jingku1" no-margin>提交</button>
+	</div>
 	<!-- </ion-toolbar> -->
 </ion-footer>

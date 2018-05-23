@@ -23,11 +23,11 @@
         <ion-list>
             <ion-item>
                 <ion-label mode="ios" fixed>收货人姓名</ion-label>
-                <ion-input tappable required clearInput type="text" placeholder="请填写" [(ngModel)]="formData.consignee" name="consignee"></ion-input>
+                <ion-input autocomplete="off" autocorrect="off" tappable required clearInput type="text" placeholder="请填写" [(ngModel)]="formData.consignee" name="consignee"></ion-input>
             </ion-item>
             <ion-item>
                 <ion-label mode="ios" fixed>手机号码</ion-label>
-                <ion-input tappable required clearInput type="number" placeholder="手机号码" [(ngModel)]="formData.mobile" name="mobile"></ion-input>
+                <ion-input autocomplete="off" autocorrect="off" tappable required clearInput type="number" placeholder="手机号码" [(ngModel)]="formData.mobile" name="mobile"></ion-input>
             </ion-item>
             <ion-item mode="ios" detail-push>
                 <ion-label mode="ios" fixed>所在地区</ion-label>

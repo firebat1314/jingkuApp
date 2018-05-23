@@ -17,6 +17,7 @@ declare let wx;
 	templateUrl: 'particulars.html'
 })
 export class ParticularsPage {
+	showLoading: boolean;
 	region_name: any;//用户选中的收货地址
 	getCategoryRecommendGoodsHot: any;//为你推荐
 	getGoodsInfo: any;//商品总信息
@@ -81,11 +82,11 @@ export class ParticularsPage {
 		})
 	}
 	getHttpDetails() {
-
+		this.showLoading = true;
 		return this.http.goodsInfos({ goods_id: this.goodsId }).then((res) => {
 			// console.log("商品详情信息", res);
+			this.showLoading = false;
 			if (res.status == 1) {
-
 				if (this.native.isWeixin()) {
 					this.wxService.config(location.href, {
 						title: '镜库科技', // 分享标题
@@ -94,7 +95,6 @@ export class ParticularsPage {
 						imgUrl: res.data.goods_thumb, // 分享图标
 					})
 				}
-
 				this.getGoodsInfo = res;
 				this.getRegionName(res);
 				this.is_dingzhi = res.data.isdingzhi == 1 ? true : false;//定制商品
@@ -196,10 +196,10 @@ export class ParticularsPage {
 			headData: this.getGoodsInfo.data,
 			id: this.goodsId,
 			cutId: this.cutId,
-			dId:this.dId
+			dId: this.dId
 		}, { cssClass: 'my-modal-style' });
 		modal.onDidDismiss(data => {
-			if(!data) return;
+			if (!data) return;
 			data(this.navCtrl);
 		});
 		modal.present();

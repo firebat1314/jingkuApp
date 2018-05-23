@@ -6,20 +6,32 @@
 -->
 <ion-header>
 
-  <ion-navbar>
-    <ion-title>切换公司</ion-title>
-  </ion-navbar>
+	<ion-navbar>
+		<ion-title>切换公司</ion-title>
+	</ion-navbar>
 
 </ion-header>
 
 
 <ion-content>
-  <ion-list radio-group>
-  
-    <ion-item *ngFor="let item of companyList?.data">
-      <ion-label>{{item.cname}}</ion-label>
-      <ion-radio color="jingku1" [value]="item.cid" [checked]="item.checked==1" [ngStyle]="{'pointer-events':item.checked==1?'none':'auto'}" (click)="clickItem(item.cid)"></ion-radio>
-    </ion-item>
-  
-  </ion-list>
+	<ion-list>
+		<ion-item-group>
+			<ion-item-divider style="color: #808080;background-color: #fafafa;" mode="ios">你已经加入一下企业，选择进入</ion-item-divider>
+			<ng-container *ngFor="let item of companyList?.data">
+				<ion-item *ngIf="item.checked==1">
+					<ion-label style="font-size: 1.6rem;">{{item.cname}}</ion-label>
+					<span item-end style="color: #3f69a5;">当前企业</span>
+				</ion-item>
+			</ng-container>
+			<ng-container *ngFor="let item of companyList?.data">
+				<ion-item tappable *ngIf="item.checked!=1" (click)="clickItem(item.cid)">
+					<ion-label style="font-size: 1.6rem;">{{item.cname}}</ion-label>
+					<span item-end style="font-size: 15px;">
+						<ion-icon name="ios-arrow-forward-outline"></ion-icon>
+					</span>
+				</ion-item>
+			</ng-container>
+
+		</ion-item-group>
+	</ion-list>
 </ion-content>

@@ -9,7 +9,8 @@
     <ion-navbar>
         <ion-title>镜库收银台</ion-title>
         <ion-buttons right>
-            <button ion-button clear *ngIf="navCtrl.getPrevious()?.id!='AllOrdersPage'||navCtrl.getPrevious()?.id!='OrderListDistributionPage'" (click)="goAllOrdersPage()">订单中心</button>
+            <button ion-button clear *ngIf="navCtrl.getPrevious()?.id!='AllOrdersPage'||navCtrl.getPrevious()?.id!='OrderListDistributionPage'"
+                (click)="goAllOrdersPage()">订单中心</button>
         </ion-buttons>
     </ion-navbar>
 
@@ -34,11 +35,19 @@
                 <span class="text" *ngIf="data?.balance===0">需组合支付</span>
             </header>
             <div class="main">
-                <div class="zf_x" *ngIf="native.isMobile()" (click)="useBt()" [class.selected]="bt" [class.disable]="paymentType||yE">
+                <!-- <div class="zf_x" *ngIf="native.isMobile()" (click)="useBt()" [class.selected]="bt" [class.disable]="paymentType||yE">
                     <img src="./assets/icon/close_ico8.png" alt="">
                     <div class="cont">
                         <div class="p1">打白条</div>
                         <div class="p2"></div>
+                    </div>
+                    <ion-checkbox color="jingku1" mode="ios" [checked]="bt" style="pointer-events:none;"></ion-checkbox>
+                </div> -->
+                <div class="zf_x" *ngIf="data?.fm_info?.enabled==1" (click)="useBt()" [class.selected]="bt" [class.disable]="paymentType||yE">
+                    <img src="./assets/icon/close_ico8.png" alt="">
+                    <div class="cont">
+                        <div class="p1">{{data?.fm_info?.pay_name}}</div>
+                        <div class="p2">{{data?.fm_info?.pay_desc}}</div>
                     </div>
                     <ion-checkbox color="jingku1" mode="ios" [checked]="bt" style="pointer-events:none;"></ion-checkbox>
                 </div>
@@ -50,7 +59,7 @@
                     </div>
                     <ion-checkbox color="jingku1" mode="ios" [checked]="yE" style="pointer-events:none;"></ion-checkbox>
                 </div>
-                <div class="zf_x" (click)="paymentType=='alipay'?paymentType='':paymentType='alipay';bt=false" *ngIf="!native.isWeixin()||isMobile"
+                <div class="zf_x" (click)="paymentType=paymentType=='alipay'?'':'alipay';bt=false" *ngIf="!native.isWeixin()||isMobile"
                     [class.selected]="paymentType=='alipay'" [class.disable]="bt">
                     <img src="./assets/icon/close_ico5.png" alt="">
                     <div class="cont">
@@ -59,7 +68,7 @@
                     </div>
                     <ion-checkbox color="jingku1" mode="ios" [checked]="paymentType=='alipay'" style="pointer-events:none;"></ion-checkbox>
                 </div>
-                <div class="zf_x" (click)="paymentType=='weixin'?paymentType='':paymentType='weixin';bt=false" *ngIf="(native.isWeixin()&&!native.isMiniprogram())||isMobile"
+                <div class="zf_x" (click)="paymentType=paymentType=='weixin'?'':'weixin';bt=false" *ngIf="(isWeixin&&!isMiniprogram)||isMobile"
                     [class.selected]="paymentType=='weixin'" [class.disable]="bt">
                     <img src="./assets/icon/close_ico6.png" alt="">
                     <div class="cont">

@@ -1,0 +1,27 @@
+page-borrowing-details {
+    .label {
+        color: #999999;
+    }
+    .snode{
+       color: #999999;
+    }
+    .head {
+        background: linear-gradient(230deg, rgb(20, 117, 248) 0%, rgb(51, 191, 253) 100%);
+        padding: 33px;
+        color: #ffffff;
+        position: relative;
+        overflow: hidden;
+        text-align: center;
+        margin-bottom: 10px;
+        .p1,
+        .p2 {
+            margin-bottom: 16px;
+        }
+        .p2 {
+            font-size: 2.6rem;
+        }
+        .p3{
+           font-size: 1.2rem;
+        }
+    }
+}

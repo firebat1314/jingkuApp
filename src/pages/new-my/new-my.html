@@ -78,35 +78,35 @@
                 <a navPush="AllOrdersPage" [navParams]="{index:1}">
                     <span class="icon_num">
                         <img src="./assets/icon/new_center/7.png" alt="">
-                        <ion-badge>{{usercount?.data?.unpay||'--'}}</ion-badge>
+                        <ion-badge *ngIf="usercount?.data?.unpay>0>0">{{usercount?.data?.unpay}}</ion-badge>
                     </span>
                     <span class="txt">待付款</span>
                 </a>
                 <a navPush="AllOrdersPage" [navParams]="{index:2}">
                     <span class="icon_num">
                         <img src="./assets/icon/new_center/13.png" alt="">
-                        <ion-badge>{{usercount?.data?.send||'--'}}</ion-badge>
+                        <ion-badge *ngIf="usercount?.data?.send>0">{{usercount?.data?.send}}</ion-badge>
                     </span>
                     <span class="txt">待发货</span>
                 </a>
                 <a navPush="AllOrdersPage" [navParams]="{index:3}">
                     <span class="icon_num">
                         <img src="./assets/icon/new_center/9.png" alt="">
-                        <ion-badge>{{usercount?.data?.collect||'--'}}</ion-badge>
+                        <ion-badge *ngIf="usercount?.data?.collect>0">{{usercount?.data?.collect}}</ion-badge>
                     </span>
                     <span class="txt">待收货</span>
                 </a>
                 <a navPush="AllOrdersPage" [navParams]="{index:4}">
                     <span class="icon_num">
                         <img src="./assets/icon/new_center/8.png" alt="">
-                        <ion-badge>{{usercount?.data?.ok||'--'}}</ion-badge>
+                        <ion-badge *ngIf="usercount?.data?.ok>0">{{usercount?.data?.ok}}</ion-badge>
                     </span>
                     <span class="txt">已完成</span>
                 </a>
                 <a (click)="goRepairReturnPage()">
                     <span class="icon_num">
                         <img src="./assets/icon/new_center/11.png" alt="">
-                        <!-- <ion-badge>{{usercount?.data?.return||'--'}}</ion-badge> -->
+                        <!-- <ion-badge *ngIf="">{{usercount?.data?.return||'--'}}</ion-badge> -->
                     </span>
                     <span class="txt">退换货</span>
                 </a>
@@ -123,37 +123,37 @@
                 <a navPush="OrderListDistributionPage" [navParams]="{index:1}">
                     <span class="icon_num">
                         <img src="./assets/icon/new_center/14.png" alt="">
-                        <ion-badge>{{usercount?.distribution?.examine||'--'}}</ion-badge>
+                        <ion-badge *ngIf="usercount?.distribution?.examine>0">{{usercount?.distribution?.examine}}</ion-badge>
                     </span>
                     <span class="txt">待审核</span>
                 </a>
                 <a navPush="OrderListDistributionPage" [navParams]="{index:2}">
                     <span class="icon_num">
                         <img src="./assets/icon/new_center/13.png" alt="">
-                        <ion-badge>{{usercount?.distribution?.send||'--'}}</ion-badge>
+                        <ion-badge *ngIf="usercount?.distribution?.send>0">{{usercount?.distribution?.send}}</ion-badge>
                     </span>
                     <span class="txt">待发货</span>
                 </a>
                 <a navPush="OrderListDistributionPage" [navParams]="{index:3}">
                     <span class="icon_num">
                         <img src="./assets/icon/new_center/15.png" alt="">
-                        <ion-badge>{{usercount?.distribution?.collect||'--'}}</ion-badge>
+                        <ion-badge *ngIf="usercount?.distribution?.collect>0">{{usercount?.distribution?.collect}}</ion-badge>
                     </span>
                     <span class="txt">待收货</span>
                 </a>
                 <a navPush="OrderListDistributionPage" [navParams]="{index:4}">
                     <span class="icon_num">
-                        <img src="./assets/icon/new_center/16.png" alt="">
-                        <ion-badge>{{usercount?.distribution?.effect||'--'}}</ion-badge>
+                        <img src="./assets/icon/new_center/17.png" alt="">
+                        <ion-badge *ngIf="usercount?.distribution?.ok>0">{{usercount?.distribution?.ok}}</ion-badge>
                     </span>
-                    <span class="txt">生效中</span>
+                    <span class="txt">已完成</span>
                 </a>
                 <a navPush="OrderListDistributionPage" [navParams]="{index:5}">
                     <span class="icon_num">
-                        <img src="./assets/icon/new_center/17.png" alt="">
-                        <ion-badge>{{usercount?.distribution?.ok||'--'}}</ion-badge>
+                        <img src="./assets/icon/new_center/16.png" alt="">
+                        <ion-badge *ngIf="usercount?.distribution?.effect>0">{{usercount?.distribution?.effect}}</ion-badge>
                     </span>
-                    <span class="txt">已完成</span>
+                    <span class="txt">生效中</span>
                 </a>
             </div>
         </div>
@@ -188,10 +188,30 @@
                     </span>
                     <span class="txt">镜库白条</span>
                 </a> -->
-                <a (click)="openXimu()" *ngIf="isMobile">
-                    <!--  hideWhen="ios" -->
+                <!-- <a (click)="openXimu()" *ngIf="isMobile">
                     <span class="icon_num">
                         {{baitiao?.status?'已开通':'申请开通'}}
+                    </span>
+                    <span class="txt">镜库白条</span>
+                </a> -->
+            </div>
+        </div>
+        <div class="fore fore2">
+            <div class="title">
+                <div>
+                    <span>客户贷款</span>
+                </div>
+            </div>
+            <div class="main">
+                <a (click)="openSHD()">
+                    <span class="icon_num">
+                        商户贷
+                    </span>
+                    <span class="txt">镜库贷款</span>
+                </a>
+                <a (click)="openFmCredit()">
+                    <span class="icon_num">
+                        {{FmCreditindex?.data?.available_amount ? FmCreditindex?.data?.available_amount : FmCreditindex?.data?.status_name? 'FmCreditindex?.data?.status_name' : '立即申请'}}
                     </span>
                     <span class="txt">镜库白条</span>
                 </a>

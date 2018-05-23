@@ -1,0 +1,36 @@
+page-open-seal {
+    .fore1 {
+        border-radius: 5px;
+        box-shadow: 0 1px 5px 0 rgba(0, 0, 0, 0.12);
+        padding: 10px;
+        margin: 16px;
+        background: #fff;
+        min-height: 200px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        img{
+            max-width: 100%;
+            min-height: 100%;
+        }
+    }
+    .checkbox-checked{
+      background-color: #1475f7 !important;
+      border-color: #1475f7 !important;
+    }
+    .label {
+        color: #999;
+    }
+    .agree {
+        display: flex;
+        align-items: center;
+        margin-bottom: 16px
+    }
+    .btn {
+        box-shadow: 0 1px 5px 0 rgba(0, 0, 0, 0.12);
+        &.activated {
+            opacity: .8;
+        }
+        background: #1475f7 !important;
+    }
+}

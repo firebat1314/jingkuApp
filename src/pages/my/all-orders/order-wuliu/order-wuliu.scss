@@ -1,25 +1,31 @@
 page-order-wuliu {
-   ul,li{
-      margin: 0;
-      padding: 0;
-      list-style: none;
-   }
+    ul,
+    li {
+        margin: 0;
+        padding: 0;
+        list-style: none;
+    }
+    .track-wrap {
+        margin-top: 10px;
+        &:first-child {
+            margin-top: 0;
+        }
+    }
     .new-order-track {
         background: #fff;
-        margin-top: 10px;
         padding: 10px 10px;
         border-bottom: 1px solid #e0e0e0;
     }
     .new-order-track span {
         display: block;
         font-size: 14px;
-        color: #6e6e6e;
+        color: #333;
     }
     .new-order-track .new-txt-rd2 {
         color: #e4393c;
     }
     .new-order-flow {
-        padding: 5px 10px 30px;
+        padding: 5px 10px 0;
         border-left: 1px solid #ccc;
     }
     .new-order-arr {
@@ -34,6 +40,15 @@ page-order-wuliu {
         position: relative;
         padding: 15px 10px;
         border-bottom: 1px dotted #e8e5e5;
+        margin-bottom: -1px;
+        .li-inner {}
+        .line-l {
+            position: absolute;
+            top: 0;
+            left: -4px;
+            width: 1px;
+            height: 100%; // border-left: 1px solid #ccc;
+        }
     }
     .new-of-storey li span {
         display: block;
@@ -42,11 +57,11 @@ page-order-wuliu {
     }
     .new-of-storey li .icon {
         position: absolute;
-        top: 42%;
-        left: -15px;
-        width: 9px;
-        height: 9px;
-        border-radius: 5px;
+        top: 26%;
+        left: -16px;
+        width: 11px;
+        height: 11px;
+        border-radius: 50%;
         background-color: #ccc;
     }
     .new-of-storey li.time {
@@ -57,9 +72,28 @@ page-order-wuliu {
         text-align: center;
     }
     .new-of-storey li .icon.on {
-        background-color: #e4393c;
-        &+span{
-           color: #333;
+        background-color: #c4d6ef;
+        top: 20%;
+        left: -20px;
+        width: 20px;
+        height: 20px;
+        display: block;
+        span {
+            display: block;
+            background-color: #3d7cca;
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            right: 0px;
+            left: 0;
+            margin: auto;
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            box-shadow: 0px 0px 5px #3d7cca;
+        }
+        &+span {
+            color: #333;
         }
     }
     .new-order-map {

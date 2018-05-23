@@ -14,53 +14,49 @@ import { IP } from './constants';
 @Injectable()
 export class HttpService {
 
-  constructor(public http: UserData, private storage: Storage) {
+  constructor(private http: UserData, private storage: Storage) {
     console.log('Hello HttpService Provider');
   }
 
   setToken(token) {
     this.storage.set("token", token);
   }
-
   getToken() {
     return this.storage.get("token");
   }
   setUsername(username) {
     this.storage.set("username", username);
   }
-
   getUsername() {
     return this.storage.get("username");
   }
-
   setStorage(key, value) {
     return this.storage.set(key, value);
   }
-
   getStorage(key) {
     return this.storage.get(key);
   }
-
   removeStorage(key) {
     this.storage.remove(key)
   }
-
   setByName(key, value) {
     this.getStorage('username').then((res) => {
       if (res) return this.setStorage(res + '_' + key, value);
     })
   }
-
   getByName(key) {
     return this.getStorage('username').then((res) => {
       if (res) return this.getStorage(res + '_' + key)
     })
   }
-
+  rmByName(key) {
+    return this.getStorage('username').then((res) => {
+      if (res) return this.storage.remove(res + '_' + key)
+    })
+  }
   clear(callBack) {
     this.storage.clear().then(callBack);
   }
-
   loginCompany(data?: Object) {//登录
     return this.http.post(IP + '/Login/loginCompany', data, { showLoading: true })
   }
@@ -150,11 +146,11 @@ export class HttpService {
   /**
    * 商品分类列表页
    */
-  getCategorys(data?: Object) {//获取九大分类
-    return this.http.get(IP + '/Category/get_categorys', data, { showLoading: false })
+  getCategorys(data?: Object, options: HttpOptions = { showLoading: true }) {//获取九大分类
+    return this.http.get(IP + '/Category/get_categorys', data, options)
   }
   getChildrenCaCtegory(data?: Object) {//获取九大分类下的子分类
-    return this.http.get(IP + '/Category/get_children_category', data, { showLoading: true })
+    return this.http.get(IP + '/Category/get_children_category', data, { showLoading: false })
   }
   categoryGoods(data?: Object, options?: HttpOptions) {//商品分类列表页(筛选)
     return this.http.post(IP + '/Category/category_goods', data, options)
@@ -226,7 +222,7 @@ export class HttpService {
     return this.http.post(IP + '/Flow/done', data, { showLoading: true })
   }
   pay(data: Object) {//支付方式
-    return this.http.get(IP + '/Flow/pay', data, { showLoading: true,showToast:false })
+    return this.http.get(IP + '/Flow/pay', data, { showLoading: true, showToast: false })
   }
   payCode(data: Object) {//去支付
     return this.http.get(IP + '/Flow/pay_code', data, { showLoading: true })
@@ -300,8 +296,8 @@ export class HttpService {
   postRegionApply(data?: Object) {//（16）地区申请页提交
     return this.http.post(IP + '/User/region_apply', data, { showLoading: false })
   }
-  collectionList(data?: Object) {//（17）收藏的商品列表
-    return this.http.post(IP + '/User/collection_list', data, { showLoading: true })
+  collectionList(data?: Object, options:HttpOptions = { showLoading: true }) {//（17）收藏的商品列表
+    return this.http.post(IP + '/User/collection_list', data, options)
   }
   delCollectionGoods(data?: Object) {//（18）取消收藏商品
     return this.http.post(IP + '/User/del_collection_goods', data, { showLoading: false })
@@ -400,7 +396,7 @@ export class HttpService {
     return this.http.get(IP + '/User/withdrawals', data, { showLoading: true })
   }
   goodsInfos(data?: Object) {//商品详情
-    return this.http.get(IP + '/Goods/goods_infos', data, { showLoading: true })
+    return this.http.get(IP + '/Goods/goods_infos', data, { showLoading: false })
   }
   forgotPwd(data?: Object) {//忘记密码
     return this.http.post(IP + '/Login/forgotPwd', data, { showLoading: true })
@@ -589,6 +585,7 @@ export class HttpService {
     pinpai?: string;//镜架品牌
     xinghao?: string;//镜架型号
     beizhu?: string;//镜架备注
+    pian_rec?: any;
   }) {
     return this.http.post(IP + '/Machining/select_goods_type', data, { showLoading: true })
   }
@@ -739,13 +736,13 @@ export class HttpService {
   get_attr_list_d(data?: Object, options: HttpOptions = { showLoading: false }) {//选择现有成员
     return this.http.post(IP + '/Distribution/get_attr_list', data, options)
   }
-  done_d(data?: Object, options: HttpOptions = { showLoading: false }) {//选择现有成员
+  done_d(data?: Object, options: HttpOptions = { showLoading: true }) {//选择现有成员
     return this.http.post(IP + '/Distribution/done', data, options)
   }
   order_d(data?: Object, options: HttpOptions = { showLoading: false }) {//选择现有成员
     return this.http.get(IP + '/Distribution/orders', data, options)
   }
-  get_children_category_cutting(data?: Object, options: HttpOptions = { showLoading: true }) {//选择现有成员
+  get_children_category_cutting(data?: Object, options: HttpOptions = { showLoading: false }) {//选择现有成员
     return this.http.get(IP + '/Category/get_children_category_cutting', data, options)
   }
   infoUrl_d(data?: Object, options: HttpOptions = { showLoading: true }) {//选择现有成员
@@ -753,5 +750,41 @@ export class HttpService {
   }
   sealIndex(data?: Object, options: HttpOptions = { showLoading: true }) {//选择现有成员
     return this.http.get(IP + '/Seal/index', data, options)
+  }
+  FmCreditGate(data?: Object, options: HttpOptions = { showLoading: true }) {//选择现有成员
+    return this.http.get(IP + '/FmCredit/gate', data, options)
+  }
+  FmCreditgate_order(data?: Object, options: HttpOptions = { showLoading: true }) {//选择现有成员
+    return this.http.get(IP + '/FmCredit/gate_order', data, options)
+  }
+  FmCreditindex(data?: Object, options: HttpOptions = { showLoading: false, showToast: false }) {//选择现有成员
+    return this.http.get(IP + '/FmCredit/index', data, options)
+  }
+  Shd_product_list(data?: Object, options: HttpOptions = { showLoading: true }) {//选择现有成员
+    return this.http.get(IP + '/App/Shd/product_list', data, options)
+  }
+  Shd_detail(data?: Object, options: HttpOptions = { showLoading: true }) {//选择现有成员
+    return this.http.get(IP + '/App/Shd/detail', data, options)
+  }
+  Shd_bindCard(data?: Object, options: HttpOptions = { showLoading: true }) {//选择现有成员
+    return this.http.post(IP + '/App/Shd/bindCard', data, options)
+  }
+  Shd_bankConfirm(data?: Object, options: HttpOptions = { showLoading: true }) {//选择现有成员
+    return this.http.post(IP + '/App/Shd/bankConfirm', data, options)
+  }
+  Shd_preApply(data?: Object, options: HttpOptions = { showLoading: true }) {//选择现有成员
+    return this.http.post(IP + '/App/Shd/preApply', data, options)
+  }
+  Shd_sendSignCheckCode(data?: Object, options: HttpOptions = { showLoading: false }) {//选择现有成员
+    return this.http.post(IP + '/App/Shd/sendSignCheckCode', data, options)
+  }
+  Shd_loanSetup(data?: Object, options: HttpOptions = { showLoading: true }) {//选择现有成员
+    return this.http.post(IP + '/App/Shd/loanSetup', data, options)
+  }
+  Shd_get_shd_info(data?: Object, options: HttpOptions = { showLoading: true }) {//选择现有成员
+    return this.http.post(IP + '/App/Shd/get_shd_info', data, options)
+  }
+  Shd_add_user(data?: Object, options: HttpOptions = { showLoading: true }) {//选择现有成员
+    return this.http.post(IP + '/App/Shd/add_user', data, options)
   }
 }
