@@ -46,7 +46,7 @@ export class CompanyListPage {
         this.httpServ.setStorage('username', data.data.user_name);
         this.httpServ.setStorage('login_info', data);
         this.httpServ.setStorage('token', data.data.token).then(res => {
-          this.app.getRootNav().setRoot('TabsPage', {}, { animate: true, direction: 'back' });
+          this.app.getRootNav().setRoot('TabsPage', {}, { animate: true, direction: 'forward' });
         });
       }else{
         this.httpServ.getCompanyList().then(res => {

@@ -33,7 +33,7 @@
 	</div>
 
 	<div class="single-shop" *ngFor="let item of orderList;let index = index;">
-		<img *ngIf="item?.order_status==5&&item?.pay_status==2&&item?.shipping_status==2" style="position: absolute;top: 0;right: 18px;width: 57px;z-index: 101;pointer-events: none;" src="./assets/icon/order-ok.png" alt="">
+		<img *ngIf="item?.order_status==5&&item?.pay_status==2&&item?.shipping_status==2" style="position: absolute;top: 0;right: 18px;width: 57px;z-index: 101;pointer-events: none;opacity: 0.5;" src="./assets/icon/order-ok.png" alt="">
 		<ion-item-divider>
 			<ion-icon *ngIf="item.suppliers_name" item-left name="shop"></ion-icon>
 			<div *ngIf="item.suppliers_name" class="shop-title" tappable (click)="goParticularsHomePage(item.suppliers_id)">

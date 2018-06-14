@@ -21,6 +21,7 @@ export class IndexPage {
 
   data: any;
   shd_info: any;
+  timer: number;
   constructor(
     public navCtrl: NavController,
     public navParams: NavParams,
@@ -31,17 +32,27 @@ export class IndexPage {
   ionViewDidLoad() {
     console.log('ionViewDidLoad IndexPage');
   }
-  ngOnInit(){
+  ngOnInit() {
     this.getData();
+    this.timer = setInterval(() => {
+      this.httpServ.Shd_get_shd_info(null, { showLoading: false }).then(res => {
+        if (res.status == 1) {
+          this.shd_info = res;
+        }
+      })
+    }, 1000)
+  }
+  ionViewDidLeave() {
+    clearInterval(this.timer)
   }
   getData() {
     this.httpServ.Shd_product_list().then(res => {
-      if(res.status==1){
+      if (res.status == 1) {
         this.data = res;
       }
     })
-    this.httpServ.Shd_get_shd_info(null,{showLoading:false}).then(res => {
-      if(res.status==1){
+    this.httpServ.Shd_get_shd_info(null, { showLoading: false }).then(res => {
+      if (res.status == 1) {
         this.shd_info = res;
       }
     })
