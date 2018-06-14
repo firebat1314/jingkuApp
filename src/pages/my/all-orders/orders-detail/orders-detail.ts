@@ -1,10 +1,11 @@
-import { Component, ViewChild } from '@angular/core';
+import { Component, ViewChild, ElementRef } from '@angular/core';
 import { NavController, NavParams, Content, IonicPage, Events, AlertController } from 'ionic-angular';
 import { HttpService } from "../../../../providers/http-service";
 import { Native } from "../../../../providers/native";
 import { MineProvider } from '../../../../providers/mine/mine';
 import { QimoChatProvider } from '../../../../providers/qimo-chat/qimo-chat';
 
+declare var ClipboardJS: any;
 /*
   Generated class for the OrdersDetail page.
 
@@ -37,6 +38,7 @@ export class OrdersDetailPage {
 		private mine: MineProvider,
 		private alertCtrl: AlertController,
 		private QimoChat: QimoChatProvider,
+		private ele: ElementRef,
 	) {
 	}
 
@@ -47,8 +49,22 @@ export class OrdersDetailPage {
 		this.getOrderInfo();
 	}
 	copyText(value) {
-		return new Promise((resolve, reject) => {
-			var /** @type {?} */ copyTextArea = /** @type {?} */ (null);
+		console.log(this.ele.nativeElement.querySelector('.order_sn_copy'))
+		let myClipboard = new ClipboardJS('.order_sn_copy', {
+			// 通过target指定要复印的节点
+			text: function () {
+				return value;
+			}
+		});
+		myClipboard.on('success', (e) => {
+			alert('复制成功');
+		});
+
+		myClipboard.on('error', (e) => {
+			alert('复制失败');
+		});
+		/* return new Promise((resolve, reject) => {
+			var copyTextArea = (null);
 			try {
 				copyTextArea = document.createElement('textarea');
 				copyTextArea.style.height = '0px';
@@ -57,8 +73,8 @@ export class OrdersDetailPage {
 				document.body.appendChild(copyTextArea);
 				copyTextArea.value = value;
 				copyTextArea.select();
-				document.execCommand('copy');
-				this.native.showToast('已复制',500);
+				const msg = document.execCommand('copy') ? '复制成功' : '复制失败'
+				this.native.showToast(msg,500);
 				resolve(value);
 			}
 			finally {
@@ -66,7 +82,7 @@ export class OrdersDetailPage {
 					copyTextArea.parentNode.removeChild(copyTextArea);
 				}
 			}
-		});
+		}); */
 	}
 	clickAftermarket(evt) {
 		evt.stopPropagation();

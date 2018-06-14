@@ -31,11 +31,11 @@
 		<ion-label color="primary" fixed> 银行预留手机号</ion-label>
 		<ion-input autocomplete="off" autocorrect="off" clearInput placeholder="请输入" [(ngModel)]="params.cards_phone"></ion-input>
 	</ion-item>
-	<ion-item>
+	<ion-item no-lines>
 		<ion-label color="primary" fixed> 用户手机号</ion-label>
 		<ion-input autocomplete="off" autocorrect="off" clearInput placeholder="请输入" [(ngModel)]="params.user_phone"></ion-input>
 	</ion-item>
-	<ion-item class="certified-img-box">
+	<!-- <ion-item class="certified-img-box">
 		<ion-label color="primary" fixed> 验证码</ion-label>
 		<ion-input autocomplete="off" autocorrect="off" clearInput placeholder="请输入" [(ngModel)]="params.str_verify"></ion-input>
 		<str-verify item-end #strVerify></str-verify>
@@ -44,7 +44,7 @@
 		<ion-label color="primary" fixed> 短信验证码</ion-label>
 		<ion-input autocomplete="off" autocorrect="off" clearInput placeholder="请输入" [(ngModel)]="params.phone_code"></ion-input>
 		<phone-verify item-end [skey]="strVerify.skey" [type]="'member'" (verifyStatus)="$event?null:params.str_verify='';$event?null:strVerify.getImg();" [verify]="params.str_verify" [mobile]="params.user_phone"></phone-verify>
-	</ion-item>
+	</ion-item> -->
 </ion-content>
 <ion-footer>
 	<div padding>
