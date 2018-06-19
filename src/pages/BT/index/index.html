@@ -19,7 +19,7 @@
 		<div class="card top-card">
 			<p class="p1">{{shd_info?.list?.is_jie==1?'可用':'预计'}}额度（元）</p>
 			<p class="p2">
-				<span class="s1">{{data?.list[0]?.quotaRange2}}</span>
+				<span class="s1">{{data?.list[0]?.quotaRange2||'0'}}</span>
 				<span class="s2">月费率{{data?.list[0]?.rateRange1*100}}%起</span>
 			</p>
 			<p class="p3" tappable navPush="BTProductDetailsPage">查看产品详情></p>

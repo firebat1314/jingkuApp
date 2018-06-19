@@ -12,6 +12,7 @@ import { QimoChatProvider } from '../../../../providers/qimo-chat/qimo-chat';
  * See https://ionicframework.com/docs/components/#navigation for more info on
  * Ionic pages and navigation.
  */
+declare var ClipboardJS: any;
 
 @IonicPage({
   segment: 'order-detail-distribution/:order_id'
@@ -122,21 +123,48 @@ export class OrderDetailDistributionPage {
   viewerContract(order_id) {
     this.httpService.infoUrl_d({ order_id: order_id }).then(res => {
       if (res.status) {
-        this.navCtrl.push('ViewerContractPage', { url: res.url });
+         this.navCtrl.push('IframeBrowserPage', {
+            browser: {
+               title: '合同详情',
+               url: res.url
+            }
+         })
+      //   this.navCtrl.push('ViewerContractPage', { url: res.url });
       }
     })
   }
   sealContract(order_id) {
     this.httpService.sealIndex({ order_id: order_id }).then(res => {
       if (res.status == 1) {
-        this.iab.create(res.url, this.native.isMobile() ? '_system' : '_self');
+         this.navCtrl.push('IframeBrowserPage', {
+            browser: {
+               title: '合同详情',
+               url: res.url
+            }
+         })
+      //   this.iab.create(res.url, this.native.isMobile() ? '_system' : '_self');
       }
     })
   }
 
   copyText(value) {
-    return new Promise((resolve, reject) => {
-      var /** @type {?} */ copyTextArea = /** @type {?} */ (null);
+    let myClipboard = new ClipboardJS('.order_sn_copy', {
+			// 通过target指定要复印的节点
+			text: function () {
+				return value;
+			}
+		});
+		myClipboard.on('success', (e) => {
+      this.native.showToast('复制成功');
+      myClipboard = null;
+		});
+
+		myClipboard.on('error', (e) => {
+			this.native.showToast('复制失败');
+      myClipboard = null;
+		});
+    /* return new Promise((resolve, reject) => {
+      var copyTextArea = (null);
       try {
         copyTextArea = document.createElement('textarea');
         copyTextArea.style.height = '0px';
@@ -154,7 +182,7 @@ export class OrderDetailDistributionPage {
           copyTextArea.parentNode.removeChild(copyTextArea);
         }
       }
-    });
+    }); */
   }
 
   goAccountServicePage() {

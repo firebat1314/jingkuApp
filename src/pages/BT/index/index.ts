@@ -40,7 +40,7 @@ export class IndexPage {
           this.shd_info = res;
         }
       })
-    }, 1000)
+    }, 3000)
   }
   ionViewDidLeave() {
     clearInterval(this.timer)
