@@ -49,7 +49,6 @@ export class OrdersDetailPage {
 		this.getOrderInfo();
 	}
 	copyText(value) {
-		console.log(this.ele.nativeElement.querySelector('.order_sn_copy'))
 		let myClipboard = new ClipboardJS('.order_sn_copy', {
 			// 通过target指定要复印的节点
 			text: function () {
@@ -57,11 +56,11 @@ export class OrdersDetailPage {
 			}
 		});
 		myClipboard.on('success', (e) => {
-			alert('复制成功');
+			this.native.showToast('复制成功');
 		});
 
 		myClipboard.on('error', (e) => {
-			alert('复制失败');
+			this.native.showToast('复制失败');
 		});
 		/* return new Promise((resolve, reject) => {
 			var copyTextArea = (null);

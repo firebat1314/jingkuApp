@@ -97,7 +97,7 @@
                     <span class="name">订单编号：</span>
                     <span class="value">
                         <span>{{data?.order?.order_sn}}</span>
-                        <span tappable (click)="copyText(data?.order?.order_sn)" class="copy">复制</span>
+                        <span tappable (click)="copyText(data?.order?.order_sn)" class="copy order_sn_copy">复制</span>
                     </span>
                 </div>
                 <div *ngIf="data?.order?.postscript">

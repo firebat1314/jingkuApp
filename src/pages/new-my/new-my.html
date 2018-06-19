@@ -197,13 +197,13 @@
             </div>
         </div>
         <div class="fore fore2">
-            <div class="title" *ngIf="userInfo?.data?.is_zhu">
+            <div class="title">
                 <div>
-                    <span>客户贷款</span>
+                    <span>镜库金融</span>
                 </div>
             </div>
             <div class="main">
-                <a (click)="openSHD()">
+                <a (click)="openSHD()" *ngIf="userInfo?.data?.is_zhu">
                     <span class="icon_num">
                         商户贷
                     </span>
@@ -211,7 +211,7 @@
                 </a>
                 <a (click)="openFmCredit()">
                     <span class="icon_num">
-                        {{FmCreditindex?.data?.available_amount ? FmCreditindex?.data?.available_amount : FmCreditindex?.data?.status_name? 'FmCreditindex?.data?.status_name' : '立即申请'}}
+                        {{FmCreditindex?.data?.available_amount ? FmCreditindex?.data?.available_amount : FmCreditindex?.data?.status_name? FmCreditindex?.data?.status_name : '立即申请'}}
                     </span>
                     <span class="txt">镜库白条</span>
                 </a>
