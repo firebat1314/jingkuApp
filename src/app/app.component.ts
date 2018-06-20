@@ -8,7 +8,6 @@ import { TabsPage } from '../pages/tabs/tabs';
 import { Native } from "../providers/native";
 import { WxServiceProvider } from '../providers/wx-service/wx-service';
 import { UpgradeProvider } from '../providers/upgrade/upgrade';
-import { ImgcacheProvider } from '../providers/imgcache/imgcache';
 
 @Component({
 	templateUrl: 'app.html'
@@ -32,7 +31,6 @@ export class MyApp {
 		private upgradeProvider: UpgradeProvider,
 		private app: App,
 		private wxService: WxServiceProvider,
-		private imgcacheServ: ImgcacheProvider,
 	) {
 
 		this.initializeApp();
@@ -58,8 +56,6 @@ export class MyApp {
 			this.native.isAndroid() ? this.statusBar.styleLightContent() : this.statusBar.styleDefault();
 			this.splashScreen.hide();
 
-			this.imgcacheServ.initImgCache().then(() => {
-			}).catch(res => { });
 			//———————————————————————— 初次进入app引导页面 ————————————————————————
 			if (this.native.isMobile()) {
 				//———————————————————————— app更新 ————————————————————————

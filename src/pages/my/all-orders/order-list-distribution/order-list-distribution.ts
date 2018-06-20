@@ -197,14 +197,26 @@ export class OrderListDistributionPage {
 	viewerContract(order_id) {
 		this.httpService.infoUrl_d({ order_id: order_id }).then(res => {
 			if (res.status) {
-				this.navCtrl.push('ViewerContractPage', { url: res.url });
+            this.navCtrl.push('IframeBrowserPage', {
+               browser: {
+                  title: '合同详情',
+                  url: res.url
+               }
+            })
+				// this.navCtrl.push('ViewerContractPage', { url: res.url });
 			}
 		})
 	}
 	sealContract(order_id) {
 		this.httpService.sealIndex({ order_id: order_id }).then(res => {
 			if (res.status == 1) {
-				this.iab.create(res.url, this.native.isMobile() ? '_system' : '_self');
+            this.navCtrl.push('IframeBrowserPage', {
+               browser: {
+                  title: '合同详情',
+                  url: res.url
+               }
+            })
+				// this.iab.create(res.url, this.native.isMobile() ? '_system' : '_self');
 			}
 		})
 	}

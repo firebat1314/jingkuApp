@@ -1,7 +1,6 @@
-import { Component } from '@angular/core';
-import { NavController, NavParams, IonicPage, PopoverController } from 'ionic-angular';
-import { DomSanitizer } from '@angular/platform-browser';
-import { ViewController } from 'ionic-angular/navigation/view-controller';
+import { Component, ViewChild, ElementRef, Renderer } from '@angular/core';
+import { NavController, NavParams, IonicPage } from 'ionic-angular';
+// import { DomSanitizer } from '@angular/platform-browser';
 /**
  * Generated class for the IframeBrowserPage page.
  *
@@ -22,7 +21,7 @@ export class IframeBrowserPage {
       proObj: null, // 进度条对象
       progress: 0, // 网页访问的进度条
       secUrl: '', // 安全链接
-      title: '加载中',
+      title: '加载中…',
       url: '',
       share: null // 是否具有分享功能（传递一个分享对象ShareModel过来）
    };
@@ -30,41 +29,48 @@ export class IframeBrowserPage {
    shareConfig: any = {
       isShow: false
    }; // 分享控制的配置
+   @ViewChild('iframe') myIframe: ElementRef
+   listenGlobalFun: Function;
 
    constructor(
       public navCtrl: NavController,
       private params: NavParams,
-      private sanitizer: DomSanitizer,
-      private popoverCtrl: PopoverController,
+      private renderer: Renderer,
    ) {
-      let browser = this.params.get('browser');
-      if (browser) {
-         this.browser.title = browser.title;
-         this.browser.url = browser.url;
-         this.browser.secUrl = this.sanitizer.bypassSecurityTrustResourceUrl(browser.url);
-         if (browser.share) {
-            this.browser.share = browser.share;
+      this.listenGlobalFun = this.renderer.listen('window', 'message', (res) => {
+         console.log(res)
+         if (res.data.type == 'function') {
+           return eval(res.data.value);
          }
-      } else {
-         this.browser.secUrl = this.sanitizer.bypassSecurityTrustResourceUrl(this.browser.url);
-      }
-      this.reload();
+         this.removePage();
+      })
    }
-
+   ngOnInit() {
+      let browser = this.params.get('browser');
+      setTimeout(() => {
+         if (browser) {
+            this.browser.secUrl = browser.url;
+         } else {
+            this.browser.secUrl = this.browser.url;
+         }
+      }, 500);
+   }
    ionViewDidLoad() {
       if (!this.browser.proObj) {
          this.browser.proObj = document.getElementById('progress');
       }
       this.onprogress();
    }
+   ngOnDestroy() {
+      this.listenGlobalFun();
+   }
    back() {
       history.back();
-      // this.navCtrl.pop().catch(()=>{
-      // })
    }
    removePage() {
-      // this.viewCtrl.dismiss();
-      this.navCtrl.setPages([{ page: 'NewMyPage' }], { direction: "forward", animate: false, isNavRoot: true })
+      this.navCtrl.pop({ direction: "forward", animate: false }).then(() => { }).catch(() => {
+         this.navCtrl.setPages([{ page: 'NewMyPage' }], { direction: "forward", animate: false, isNavRoot: true });
+      })
    }
    // 生成随机数
    private random(min: number, max: number): number {
@@ -98,7 +104,15 @@ export class IframeBrowserPage {
 
    // 如果iframe页面加载成功后
    loaded() {
-      this.browser.isLoaded = true;
+      setTimeout(() => {
+         this.browser.isLoaded = true;
+         let browser = this.params.get('browser');
+         this.browser.title = browser.title;
+         this.browser.url = browser.url;
+         if (browser.share) {
+            this.browser.share = browser.share;
+         }
+      }, 800);
    }
 
    // 显示Popver选项
@@ -131,8 +145,8 @@ export class IframeBrowserPage {
    reload() {
       let title = this.browser.title;
       let url = this.browser.secUrl;
-      this.browser.title = '加载中';
-      this.browser.secUrl = this.sanitizer.bypassSecurityTrustResourceUrl('');
+      this.browser.title = '加载中…';
+      this.browser.secUrl = '';
 
       setTimeout(() => {
          this.browser.isLoaded = false;
