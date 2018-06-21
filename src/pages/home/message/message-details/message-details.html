@@ -35,8 +35,8 @@
                 </ion-thumbnail>
                 <h5>{{item.msg}}</h5>
                 <h5>¥{{item.total_fee}}</h5>
-                <p>订单编号：{{item.order_sn}}</p>
-                <p *ngIf="item.invoice_no!=''">物流单号：{{item.invoice_no}}</p>
+                <p style="font-size: 1.2rem;">订单编号：{{item.order_sn}}</p>
+                <p style="font-size: 1.2rem;" *ngIf="item.invoice_no!=''">物流单号：{{item.invoice_no}}</p>
             </ion-item>
         </ion-card>
     </div>

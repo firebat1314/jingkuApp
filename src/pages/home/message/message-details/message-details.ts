@@ -8,7 +8,9 @@ import { HttpService } from "../../../../providers/http-service";
   See http://ionicframework.com/docs/v2/components/#navigation for more info on
   Ionic pages and navigation.
 */
-@IonicPage()
+@IonicPage({
+   segment:'message-details/:msgType'
+})
 @Component({
   selector: 'page-message-details',
   templateUrl: 'message-details.html'
