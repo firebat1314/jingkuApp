@@ -137,13 +137,15 @@ export class NewMyPage {
    }
    openFmCredit() {
       this.httpService.FmCreditGate().then(res => {
-         this.navCtrl.push('IframeBrowserPage', {
-            browser: {
-               title: '镜库金融',
-               url: 'http://newpc.jingkoo.net/openFmCredit.html?data=' + encodeURIComponent(res.data) + '&url=' + encodeURIComponent(res.api_url),
-
-            }
-         })
+         if(res.status==1){
+            this.navCtrl.push('IframeBrowserPage', {
+               browser: {
+                  title: '镜库金融',
+                  url: 'http://newpc.jingkoo.net/openFmCredit.html?data=' + encodeURIComponent(res.data) + '&url=' + encodeURIComponent(res.api_url),
+   
+               }
+            })
+         }
          // this.navCtrl.push('ViewerContractPage',{url:'http://newpc.jingkoo.net/openFmCredit.html?data=' + encodeURIComponent(res.data) + '&url=' + encodeURIComponent(res.api_url)});
          // if (this.native.isMobile()) {
          // this.iab.create('http://newpc.jingkoo.net/openFmCredit.html?data=' + encodeURIComponent(res.data) + '&url=' + encodeURIComponent(res.api_url), this.native.isMobile() ? '_system' : '_self');
