@@ -141,7 +141,7 @@ export class NewMyPage {
             this.navCtrl.push('IframeBrowserPage', {
                browser: {
                   title: '镜库金融',
-                  url: 'http://newpc.jingkoo.net/openFmCredit.html?data=' + encodeURIComponent(res.data) + '&url=' + encodeURIComponent(res.api_url),
+                  url: 'https://www.jingku.cn/openFmCredit.html?data=' + encodeURIComponent(res.data) + '&url=' + encodeURIComponent(res.api_url),
    
                }
             })

@@ -5,14 +5,15 @@
   Ionic pages and navigation.
 -->
 <ion-header>
-    <ion-navbar>
-        <ion-title>
-            
+    <ion-navbar style="background: #fff;">
+        <ion-title hidden>
+            商品列表
         </ion-title>
-        <form action="">
-            <ion-searchbar (ionClear)="ionClear($event)" [(ngModel)]="paramsData.keywords" [ngModelOptions]="{standalone: true}" (keypress)="onKeypress($event)" placeholder="搜索商品" animated="false" spellcheck="true" type="search" debounce="500"  mode="ios" showCancelButton cancelButtonText="取消"></ion-searchbar>
+        <form (ngSubmit)="searchGoods()" (click)="goSearchPage()">
+            <ion-searchbar style="pointer-events: none;" (ionClear)="ionClear($event)" [(ngModel)]="paramsData.keywords" name="keywords" placeholder="搜索商品" animated="false" mode="ios"></ion-searchbar>
         </form>
-        <ion-buttons right>
+        <ion-buttons end>
+            <!-- <button ion-button clear (click)="ionClear()">取消</button> -->
             <button ion-button clear (click)="listStyleflag=!listStyleflag;listStyleLock=true">
                 <img src="./assets/icon/images/list_01.png" width="22" *ngIf="!listStyleflag" alt="">
                 <img src="./assets/icon/images/list_02.png" width="22" *ngIf="listStyleflag" alt="">
@@ -80,7 +81,7 @@
     <div class="dixian" *ngIf="data?.count>6&&(data?.page>=data?.pages)">
         <div>没有更多了~</div>
     </div>
-    
+
     <ion-fab class="brand-list-car-btn" left bottom>
         <button class="car" ion-fab mini icon-only (click)="goCarPage()">
             <ion-icon name="ios-cart-outline" color="light"></ion-icon>

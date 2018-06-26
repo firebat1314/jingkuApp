@@ -7,10 +7,10 @@
 <ion-header no-shadow>
   <ion-toolbar>
     <ion-buttons start>
-         <button ion-button icon-only (click)="back()" style="font-size: 18px;margin-left: 4px;margin-right: 6px;">
+         <button ion-button icon-only (click)="back()" style="font-size: 16px;margin-left: 4px;margin-right: 6px;">
            <ion-icon name="ios-arrow-back-outline"></ion-icon>
          </button>
-         <button ion-button clear (click)="removePage()">
+         <button *ngIf="browser.isLoaded" ion-button clear (click)="removePage()">
            关闭
          </button>
     </ion-buttons>

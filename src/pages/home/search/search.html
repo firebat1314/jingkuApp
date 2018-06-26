@@ -6,13 +6,29 @@
 -->
 <ion-header>
 
-    <ion-navbar>
-        <form action="">
-            <ion-searchbar [(ngModel)]="myHomeSearch" [ngModelOptions]="{standalone: true}" placeholder="搜索镜库商品" mode="ios" showCancelButton="true"
-                cancelButtonText="取消" debounce="0" type="search" (keypress)="searchbar($event)"></ion-searchbar>
+    <ion-toolbar style="background: #ffffff;">
+        <form action="" (ngSubmit)="searchbar($event)">
+            <ion-searchbar [(ngModel)]="myHomeSearch" name="myHomeSearch" placeholder="搜索镜库商品" mode="ios" debounce="0" type="search"></ion-searchbar>
         </form>
-    </ion-navbar>
-
+        <ion-buttons end>
+            <button ion-button clear (click)="ionCancel()">
+               取消
+            </button>
+        </ion-buttons>
+    </ion-toolbar>
+    <ion-toolbar mode="md" no-padding>
+        <ion-segment mode="md" color="jingku1" [(ngModel)]="goodsTypeSelect" (ionChange)="goodsTypeChange()">
+            <ion-segment-button value="1">
+                普通商品
+            </ion-segment-button>
+            <ion-segment-button value="2">
+                切边眼镜
+            </ion-segment-button>
+            <ion-segment-button value="3">
+                铺货商品
+            </ion-segment-button>
+        </ion-segment>
+    </ion-toolbar>
 </ion-header>
 
 
@@ -22,7 +38,6 @@
         <div tappable (click)="getNewBatch()" *ngIf="data?.pagers>1">换一换</div>
     </div>
     <div class="btns">
-        <button ion-button [outline]="1" [color]="nowIndex==i?'jingku1':'cancelBtn'" *ngFor="let item of data?.data;let i=index"
-            tappable (click)="nowIndex=i;myHomeSearch=item.title;clickBtn()">{{item.title}}</button>
+        <button ion-button small [outline]="1" [color]="nowIndex==i?'jingku1':'cancelBtn'" *ngFor="let item of data?.data;let i=index" tappable (click)="nowIndex=i;myHomeSearch=item.title;searchbar()">{{item.title}}</button>
     </div>
 </ion-content>

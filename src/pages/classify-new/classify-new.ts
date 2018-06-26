@@ -12,123 +12,127 @@ import { Native } from '../../providers/native';
 
 @IonicPage()
 @Component({
-  selector: 'page-classify-new',
-  templateUrl: 'classify-new.html',
+   selector: 'page-classify-new',
+   templateUrl: 'classify-new.html',
 })
 export class ClassifyNewPage {
-  is_cutting: any;
-  childrenCaCtegory: any;
-  getCategorys: any;
-  selectedId: number = 0;
-  searchkey = '';
-  fore4: any;
-  fore3: any;
-  fore2: any;
-  timer: any;
-  brandList: any;
+   is_cutting: any;
+   childrenCaCtegory: any;
+   getCategorys: any;
+   selectedId: number = 0;
+   searchkey = '';
+   fore4: any;
+   fore3: any;
+   fore2: any;
+   timer: any;
+   brandList: any;
 
-  constructor(
-    public navCtrl: NavController,
-    public navParams: NavParams,
-    public httpService: HttpService,
-    public native: Native,
-    private events: Events
-  ) { }
+   constructor(
+      public navCtrl: NavController,
+      public navParams: NavParams,
+      public httpService: HttpService,
+      public native: Native,
+      private events: Events
+   ) { }
 
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad ClassifyNewPage');
-  }
+   ionViewDidLoad() {
+      console.log('ionViewDidLoad ClassifyNewPage');
+   }
 
-  /* 商品搜索 */
-  searchbar(e) {
-    if (e.keyCode == 13) {
-      this.navCtrl.push('BrandListPage', { keyword: this.searchkey })
-    }
-  }
-  ngOnInit() {
-    this.getHttpData();
-  }
-  getHttpData() {
-    this.httpService.getStorage('getCategorys').then((res) => {
-      if (res) {
-        this.getCategorys = res.data;
+   /* 商品搜索 */
+   searchbar(e) {
+      if (e.keyCode == 13) {
+         this.navCtrl.push('BrandListPage', { keyword: this.searchkey })
       }
-    })
-    this.httpService.getStorage('childrenCaCtegory').then((res) => {
-      if (res) {
-        this.childrenCaCtegory = res.data;
-      }
-    })
-    this.httpService.getCategorys().then((res) => {
-      if (res.status == 1) {
-        this.getCategorys = res.data;
-        this.selectedId = res.data[0].cat_id
-        this.httpService.setStorage('getCategorys', res)
-        this.getChildrenCaCtegory();
-      }
-    })
-  }
-  getChildrenCaCtegory() {
-    return this.httpService.getChildrenCaCtegory({ cat_id: this.selectedId }).then((res) => {
-      if (res.status == 1) {
-        this.childrenCaCtegory = res.data;
-        if (this.selectedId == 1) {
-          this.httpService.setStorage('childrenCaCtegory', res)
-        }
-      }
-    })
-  }
-  clickItem(item) {
-    this.is_cutting = item.is_cutting;
-    this.selectedId = item.cat_id;
-    if (this.is_cutting > 0) {
-      this.httpService.get_children_category_cutting().then(res => {
-        if (res.status == 1) {
-          this.childrenCaCtegory = res.data;
-        }
+   }
+   ngOnInit() {
+      this.getHttpData();
+   }
+   getHttpData() {
+      this.httpService.getStorage('getCategorys').then((res) => {
+         if (res) {
+            this.getCategorys = res.data;
+         }
       })
-      // this.navCtrl.push('BrandListPage',{cut:1})
-    } else {
-      this.getChildrenCaCtegory().then((res) => { })
-    }
-  }
-  doRefresh(refresher) {
-    this.httpService.getCategorys(null, { showLoading: false }).then((res) => {
-      if (res.status == 1) {
-        this.getCategorys = res.data;
-        this.httpService.setStorage('getCategorys', res);
-
-        if (this.is_cutting > 0) {
-          this.httpService.get_children_category_cutting(null, { showLoading: false }).then(res => {
-            if (res.status == 1) {
-              this.childrenCaCtegory = res.data;
-              setTimeout(function () {
-                refresher.complete();
-              }, 500);
+      this.httpService.getStorage('childrenCaCtegory').then((res) => {
+         if (res) {
+            this.childrenCaCtegory = res.data;
+         }
+      })
+      this.httpService.getCategorys().then((res) => {
+         if (res.status == 1) {
+            this.getCategorys = res.data;
+            this.selectedId = res.data[0].cat_id
+            this.httpService.setStorage('getCategorys', res)
+            this.getChildrenCaCtegory();
+         }
+      })
+   }
+   goSearchPage() {
+      // this.modalCtrl.create('SearchPage', '', { enterAnimation: '' }).present();
+      this.navCtrl.push('SearchPage', {}, { animate: false, animation: 'md-transition' })
+   }
+   getChildrenCaCtegory() {
+      return this.httpService.getChildrenCaCtegory({ cat_id: this.selectedId }).then((res) => {
+         if (res.status == 1) {
+            this.childrenCaCtegory = res.data;
+            if (this.selectedId == 1) {
+               this.httpService.setStorage('childrenCaCtegory', res)
             }
-          })
-        } else {
-          this.getChildrenCaCtegory().then((res) => {
-            setTimeout(function () {
-              refresher.complete();
-            }, 500);
-          });
-        }
+         }
+      })
+   }
+   clickItem(item) {
+      this.is_cutting = item.is_cutting;
+      this.selectedId = item.cat_id;
+      if (this.is_cutting > 0) {
+         this.httpService.get_children_category_cutting().then(res => {
+            if (res.status == 1) {
+               this.childrenCaCtegory = res.data;
+            }
+         })
+         // this.navCtrl.push('BrandListPage',{cut:1})
+      } else {
+         this.getChildrenCaCtegory().then((res) => { })
       }
-    })
-  }
-  //转跳品牌列表页
-  goMoreBrand(data) {
-    this.navCtrl.push('MoreBrandPage', { data: data })
-  }
-  goBrandList(item) {
-    if (this.is_cutting > 0) {
-      this.navCtrl.push('BrandListPage', { brandId: item.brand_id, cut: 1 })
-    } else {
-      this.navCtrl.push('BrandListPage', { listId: item.cat_id })
-    }
-  }
-  goParticularsPage(goods_id) {
-    this.navCtrl.push('ParticularsPage', { goodsId: goods_id });
-  }
+   }
+   doRefresh(refresher) {
+      this.httpService.getCategorys(null, { showLoading: false }).then((res) => {
+         if (res.status == 1) {
+            this.getCategorys = res.data;
+            this.httpService.setStorage('getCategorys', res);
+
+            if (this.is_cutting > 0) {
+               this.httpService.get_children_category_cutting(null, { showLoading: false }).then(res => {
+                  if (res.status == 1) {
+                     this.childrenCaCtegory = res.data;
+                     setTimeout(function () {
+                        refresher.complete();
+                     }, 500);
+                  }
+               })
+            } else {
+               this.getChildrenCaCtegory().then((res) => {
+                  setTimeout(function () {
+                     refresher.complete();
+                  }, 500);
+               });
+            }
+         }
+      })
+   }
+   //转跳品牌列表页
+   goMoreBrand(data) {
+      this.navCtrl.push('MoreBrandPage', { data: data })
+   }
+   goBrandList(item) {
+      if (this.is_cutting > 0) {
+         this.navCtrl.push('BrandListPage', { brandId: item.brand_id, cut: 1 })
+      } else {
+         this.navCtrl.push('BrandListPage', { listId: item.cat_id })
+      }
+   }
+   goParticularsPage(goods_id) {
+      this.navCtrl.push('ParticularsPage', { goodsId: goods_id });
+   }
 }

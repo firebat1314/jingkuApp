@@ -12,6 +12,7 @@ import { ImgcacheProvider } from '../providers/imgcache/imgcache';
 import { JpushService } from '../providers/jpush-service';
 import { JPush } from '@jiguang-ionic/jpush';
 
+declare var _hmt;
 @Component({
   templateUrl: 'app.html'
 })
@@ -124,19 +125,6 @@ export class MyApp {
         //当前页面为tab栏，退出APP,当前页面为tab栏的子页面，正常返回
         return activeNav.canGoBack() ? activeNav.pop() : this.showExit()
       }, 1);
-      //————————————————————————————————————————————————————————————————————————
-      var timer;
-      if (this.native.isWeixin()) {
-        this.app.viewDidEnter.subscribe((e) => {
-          clearTimeout(timer)
-          timer = setTimeout(() => {
-            this.wxService.config(location.href, {
-              title: '镜库科技', // 分享标题
-              link: location.href, // 分享链接，该链接域名或路径必须与当前页面对应的公众号JS安全域名一致
-            })
-          }, 500);
-        })
-      }
     });
   }
   //双击退出提示框

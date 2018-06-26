@@ -6,22 +6,48 @@
 -->
 <ion-header>
 
-    <ion-navbar>
-        <ion-title>收货地址</ion-title>
+    <ion-navbar style="background: #fff;">
+        <ion-title [hidden]="!(dId>0)">收货地址</ion-title>
+        <ion-segment *ngIf="!(dId>0)" mode="ios" color="jingku1" [(ngModel)]="areaTypeSelect" (ionChange)="areaTypeChange()">
+            <ion-segment-button [value]="0">
+                常用地址
+            </ion-segment-button>
+            <ion-segment-button [value]="1">
+                临时地址
+            </ion-segment-button>
+        </ion-segment>
     </ion-navbar>
-
 </ion-header>
 
-<ion-content>
-    <ion-list radio-group>
-        <ion-item-sliding *ngFor="let item of data">
+<ion-content [ngSwitch]="areaTypeSelect">
+    <ion-list radio-group *ngSwitchCase="0" FadeIn>
+        <ion-item-sliding *ngFor="let item of data?.consignee_list">
+            <ion-item mode="md">
+                <ion-radio mode="md" item-left color="secondary" [checked]="item.selected==1" (ionSelect)="dismiss(item)"> </ion-radio>
+                <ion-label>
+                    <h2><span class="name">{{item.consignee}}</span><span class="phone">{{item.mobile|phonenumberfilter}}</span></h2>
+                    <p style="font-size: 1.2rem;margin-top: 8px;"><span class="moren" *ngIf="item.is_default==1">默认</span>{{item.region+'&nbsp;'+item.address}}</p>
+                </ion-label>
+                <div class="edit" item-right tappable (click)="goEditAddress(item.address_id)">
+                  <ion-icon name="ios-create-outline"></ion-icon>
+                </div>
+            </ion-item>
+            <ion-item-options side="right">
+                <button ion-button color="danger" (click)="delete(item.address_id)">删除</button>
+            </ion-item-options>
+        </ion-item-sliding>
+    </ion-list>
+    <ion-list radio-group *ngSwitchCase="1" FadeIn>
+        <ion-item-sliding *ngFor="let item of data?.interim_consignee_list">
             <ion-item mode="md">
                 <ion-radio mode="md" item-left color="secondary" [checked]="item.selected==1" (ionSelect)="dismiss(item)" [disabled]="item.is_show==0"> </ion-radio>
                 <ion-label>
                     <h2><span class="name">{{item.consignee}}</span>{{item.mobile|phonenumberfilter}}</h2>
-                    <p><span class="moren" *ngIf="item.is_default==1">默认</span>{{item.region+'&nbsp;'+item.address}}</p>
+                    <p style="font-size: 1.2rem;margin-top: 8px;"><span class="moren" *ngIf="item.is_default==1">默认</span>{{item.region+'&nbsp;'+item.address}}</p>
                 </ion-label>
-                <ion-icon item-right name="ios-create-outline" tappable (click)="goEditAddress(item.address_id)"></ion-icon>
+                <div class="edit" item-right tappable (click)="goEditAddress(item.address_id)">
+                  <ion-icon name="ios-create-outline"></ion-icon>
+                </div>
             </ion-item>
             <ion-item-options side="right">
                 <button ion-button color="danger" (click)="delete(item.address_id)">删除</button>
@@ -31,5 +57,5 @@
 </ion-content>
 
 <ion-footer slideInUp>
-    <div ion-button full large no-margin color="jingku1" (click)="goAddShippingAddressPage()">+添加收货地址</div>
+    <div ion-button full large no-margin color="jingku1" (click)="goAddShippingAddressPage()">+添加{{dId>0?'收货地址':areaTypeSelect?'临时地址':'常用地址'}}</div>
 </ion-footer>

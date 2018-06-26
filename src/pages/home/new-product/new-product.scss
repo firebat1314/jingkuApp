@@ -1,6 +1,7 @@
 page-new-product {
     img {
         display: block;
+        margin: auto;
     }
     .banenr {
         img {
@@ -16,7 +17,7 @@ page-new-product {
             font-size: 16px;
             text-align: left;
             margin: 10px 0;
-            height: 47px;
+            height: 40px;
             color: #999;
             em {
                 color: #3f69a5;
@@ -29,6 +30,11 @@ page-new-product {
         .left {
             width: 50%;
             margin-right: 8px;
+            display: flex;
+            flex-direction: column;
+            img {
+                flex: 1;
+            }
         }
         .right {
             width: 50%;
@@ -43,12 +49,13 @@ page-new-product {
                 font-weight: 500;
             }
             .line {
-                border-top: #999 1px solid;
-                margin: 8px auto;
+                border-top: #fafafa 1px solid;
+                margin: 4px auto;
                 width: 80%;
             }
             .theme_dec {
                 color: #999;
+                font-size: 1.2rem;
                 em {
                     margin: 0 8px;
                     display: inline-block;
@@ -84,31 +91,40 @@ page-new-product {
             padding: 0 8px 8px;
             .item {
                 width: 49%;
-                padding-top: 5px;
-                margin-top: -5px;
+                padding-top: 7px;
+                margin-top: -7px;
+                margin-bottom: 5px;
+                display: flex;
+                flex-direction: column;
+                position: relative;
                 &:nth-child(2n+1) {
                     margin-right: 2%;
                 }
+                >div {
+                    margin-bottom: 8px;
+                }
                 .img {
-                    border: #e0e0e0 1px solid;
+                    border: #fafafa 1px solid;
                     position: relative;
+                    flex: 1;
                 }
                 .new {
                     background: #e60000;
                     color: #fff;
                     padding: 3px;
                     position: absolute;
+                    font-size: 1.2rem;
+                    border-radius: 2px;
                     right: 5px;
-                    top: -2px;
+                    top: 0px;
                 }
                 .name {
                     @include ellipsis_1();
                     color: #666666;
-                    margin: 8px 0;
+                    margin-bottom: 4px;
                 }
                 .price {
                     color: #e60000;
-                    margin: 8px 0;
                     font-size: 16px;
                 }
             }
