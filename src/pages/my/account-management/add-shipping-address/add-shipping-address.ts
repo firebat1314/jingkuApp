@@ -4,7 +4,7 @@ import { HttpService } from "../../../../providers/http-service";
 import { Native } from "../../../../providers/native";
 
 @IonicPage({
-  segment:'add-shipping-address/:addId'
+  segment:'add-shipping-address/:addId/:is_interim'
 })
 @Component({
   selector: 'page-add-shipping-address',
@@ -17,7 +17,8 @@ export class AddShippingAddressPage {
   code: string; //城市编码
 
   addressId = this.navParams.get('addId');
-
+  is_interim = this.navParams.get('is_interim');//是否为临时地址
+  
   formData = {
     address_id: '',
     consignee: '',
@@ -105,7 +106,7 @@ export class AddShippingAddressPage {
   }
   onsubmit() {
     if (this.addressId != undefined) {
-      this.httpService.editAddress(Object.assign(this.formData, { default: this.default?1 : 0 })).then((res) => {
+      this.httpService.editAddress(Object.assign(this.formData, { default: this.default?1 : 0,is_interim:this.is_interim>0?1:0 })).then((res) => {
         if (res.status == 1) {
           this.native.showToast(res.info)
           this.events.publish('updateAddress');
@@ -113,7 +114,7 @@ export class AddShippingAddressPage {
         }
       })
     } else {
-      this.httpService.addAddress(Object.assign(this.formData, { default: this.default?1 : 0 })).then((res) => {
+      this.httpService.addAddress(Object.assign(this.formData, { default: this.default?1 : 0 ,is_interim:this.is_interim>0?1:0})).then((res) => {
         if (res.status == 1) {
           this.events.publish('updateAddress');
           this.navCtrl.pop().catch(res => { history.back() });

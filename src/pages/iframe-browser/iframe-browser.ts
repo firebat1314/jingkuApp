@@ -40,9 +40,15 @@ export class IframeBrowserPage {
       this.listenGlobalFun = this.renderer.listen('window', 'message', (res) => {
          console.log(res)
          if (res.data.type == 'function') {
-           return eval(res.data.value);
+            return eval(res.data.value);
          }
          this.removePage();
+      })
+   }
+   pushPage(page, params = {}) {
+      var nav = this.navCtrl.last();
+      this.navCtrl.push(page, params, { animate: false }).then(res => {
+         this.navCtrl.removeView(nav, { animate: false });
       })
    }
    ngOnInit() {

@@ -2,22 +2,30 @@ page-order-modal-shipping {
     .item-wrapper {
         .item {
             [item-left] {
-                margin-right: 22px;
+                margin-right: 18px;
             }
-            .ion-ios-create-outline {
+            .edit {
                 padding-left: 10px;
                 border-left: 1px solid #e0e0e0;
                 z-index: 100;
+                font-size: 22px;
+                color: #666;
             }
             .label {
                 color: inherit;
-                margin: 19px 8px 19px 0;
+                margin: 14px 8px 14px 0;
                 .name {
                     width: 9rem;
                     display: inline-block;
                     margin-right: 10px;
                     overflow: hidden;
                     text-overflow: ellipsis;
+                    vertical-align: middle;
+                }
+                .phone {
+                    font-size: 1.4rem;
+                    display: inline-block;
+                    vertical-align: middle;
                 }
                 .moren {
                     color: #fff;

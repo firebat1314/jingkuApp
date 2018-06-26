@@ -31,14 +31,14 @@
             </ion-item>
             <ion-item mode="ios" detail-push>
                 <ion-label mode="ios" fixed>所在地区</ion-label>
-                    <city-picker tappable required item-content margin-left cancelText="取消" doneText="完成" separator="-" [citiesData]="cityData" [(ngModel)]="cityName" name="cityName" (ionChange)="cityChange($event)" placeholder="请选择" style="    position: relative;flex: 1;line-height: 36px;"></city-picker>
+                <city-picker tappable required item-content margin-left cancelText="取消" doneText="完成" separator="-" [citiesData]="cityData" [(ngModel)]="cityName" name="cityName" (ionChange)="cityChange($event)" placeholder="请选择" style="    position: relative;flex: 1;line-height: 36px;"></city-picker>
             </ion-item>
             <ion-item>
                 <ion-label mode="ios" fixed>详细地址</ion-label>
                 <ion-textarea tappable type="text" required clearInput placeholder="请填写" [(ngModel)]="formData.address" name="address"></ion-textarea>
             </ion-item>
         </ion-list>
-        <div class="setDefault">
+        <div class="setDefault" *ngIf="!(is_interim>0)">
             <label tappable>
                 <ion-checkbox tappable color="jingku1" mode="ios" [(ngModel)]="default" name="default" margin-horizontal></ion-checkbox>设置默认
             </label>

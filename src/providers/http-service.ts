@@ -146,7 +146,7 @@ export class HttpService {
   /**
    * 商品分类列表页
    */
-  getCategorys(data?: Object, options: HttpOptions = { showLoading: true }) {//获取九大分类
+  getCategorys(data?: Object, options: HttpOptions = { showLoading: false }) {//获取九大分类
     return this.http.get(IP + '/Category/get_categorys', data, options)
   }
   getChildrenCaCtegory(data?: Object) {//获取九大分类下的子分类
@@ -671,7 +671,7 @@ export class HttpService {
     return this.http.post(IP + '/User/withdrawal', data)
   }
   newArea(data?: Object) {//新新品专区
-    return this.http.post(IP + '/index/newArea', data, { showLoading: true })
+    return this.http.post(IP + '/index/newArea', data, { showLoading: false })
   }
   ads(data?: Object) {//index/ads     int_pos_id  广告位id  size 个数   is_app 1 
     return this.http.post(IP + '/index/ads', data)
@@ -683,7 +683,7 @@ export class HttpService {
     return this.http.post(IP + '/Cutting/cutting_list', data, options)
   }
   get_goods_attribute(data?: Object) {//切边列表
-    return this.http.post(IP + '/Cutting/get_goods_attribute', data, { showLoading: true })
+    return this.http.post(IP + '/Cutting/get_goods_attribute', data, { showLoading: false })
   }
   add_to_cart_spec_cutting(data?: Object) {//切边列表
     return this.http.post(IP + '/Cutting/add_to_cart_spec_cutting', data)

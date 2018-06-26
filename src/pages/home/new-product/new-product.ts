@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams, IonicPage } from 'ionic-angular';
 import { HttpService } from '../../../providers/http-service';
+import { MineProvider } from '../../../providers/mine/mine';
 
 /**
  * Generated class for the NewProductPage page.
@@ -19,7 +20,8 @@ export class NewProductPage {
   constructor(
     public navCtrl: NavController,
     public navParams: NavParams,
-    public httpSrv: HttpService
+    private httpSrv: HttpService,
+    private mine: MineProvider,
   ) {
   }
 
