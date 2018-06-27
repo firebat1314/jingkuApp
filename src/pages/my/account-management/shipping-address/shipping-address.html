@@ -6,8 +6,16 @@
 -->
 <ion-header>
 
-    <ion-navbar>
-        <ion-title>收货地址</ion-title>
+    <ion-navbar style="background: #fff;">
+        <ion-title hidden>收货地址</ion-title>
+        <ion-segment *ngIf="!(dId>0)" mode="ios" color="jingku1" [(ngModel)]="areaTypeSelect" (ionChange)="areaTypeChange()">
+         <ion-segment-button [value]="0">
+             常用地址
+         </ion-segment-button>
+         <ion-segment-button [value]="1">
+             临时地址
+         </ion-segment-button>
+     </ion-segment>
     </ion-navbar>
 
 </ion-header>
@@ -25,16 +33,16 @@
                 </div>
                 <div class="bottom">
                     <label tappable class="checkbox" [style.pointerEvents]="item.selected?'none':'auto'">
-                    <ion-checkbox color="jingku1" [checked]="item.selected==1" (ionChange)="setDefaultAddress(item.address_id)" mode="ios"></ion-checkbox>默认地址
-                </label>
+                       <ng-container *ngIf="item.is_interim==0">
+                        <ion-checkbox color="jingku1" [checked]="item.selected==1" (ionChange)="setDefaultAddress(item.address_id)" mode="ios"></ion-checkbox>默认地址
+                       </ng-container>
+                     </label>
                     <div class="btns">
-                        <button ion-button outline color="jingku1" (click)="deleteOne(item.address_id)">删除</button>
-                        <button ion-button color="jingku1" [navPush]="AddShippingAddressPage" [navParams]="{addId:item.address_id}">编辑</button>
+                        <button ion-button small outline color="jingku1" (click)="deleteOne(item.address_id)">删除</button>
+                        <button ion-button small color="jingku1" [hidden]="areaTypeSelect==1&&item.show==0" navPush="AddShippingAddressPage" [navParams]="{addId:item.address_id,is_interim:areaTypeSelect}">编辑</button>
+                        <button ion-button small color="jingku1" disabled *ngIf="areaTypeSelect==1&&item.show==0">失效</button>
                     </div>
                 </div>
-            </div>
-            <div margin>
-                <button ion-button block large color="jingku1" [navPush]="AddShippingAddressPage">添加收获地址</button>
             </div>
         </div>
         <div class="no-add" *ngIf="addressList?.data?.length==0">
@@ -42,7 +50,11 @@
                 <img src="./assets/images/images/address_1_03.png" alt="">
             </div>
             <div class="title">暂无收货地址</div>
-            <p><button ion-button outline tappable [navPush]="AddShippingAddressPage">+添加收货地址</button></p>
+            <p><button ion-button outline tappable navPush="AddShippingAddressPage" [navParams]="{is_interim:areaTypeSelect}">+添加收货地址</button></p>
         </div>
     </ng-container>
 </ion-content>
+
+<ion-footer slideInUp>
+   <div ion-button full large no-margin color="jingku1" navPush="AddShippingAddressPage" [navParams]="{is_interim:areaTypeSelect}">+添加{{areaTypeSelect?'临时地址':'常用地址'}}</div>
+</ion-footer>
