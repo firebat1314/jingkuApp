@@ -59,25 +59,6 @@
     <script src="build/main.js?t=201806261"></script>
     <!--网站图标 -->
     <script>
-        (function () {
-            let hmbaidu = document.getElementsByClassName("hmbaidu")[0];
-            if(hmbaidu) hmbaidu.parentNode.removeChild(hmbaidu);
-
-            let hm = document.createElement("script");
-            hm.className = 'hmbaidu';
-            hm.src = "https://hm.baidu.com/hm.js?132db54c145d04b9c27a03e2cd28200c";
-            let s = document.getElementsByTagName("script")[0];
-            s.parentNode.insertBefore(hm, s);
-         })();
-        if (window.__wxjs_environment !== 'miniprogram') {
-            var n = document.createElement("script");
-            var i = "./assets/plugin/pingpp.js?t=201806261"
-            n.setAttribute("type", "text/javascript");
-            n.setAttribute("src", i); document.body.appendChild(n);
-            document.head.appendChild(n);
-        }
-    </script>
-    <script>
         setTimeout(function () {
             var links = document.getElementsByTagName('link');
             var linksLength = links.length;

@@ -71,6 +71,9 @@
         <splash height="480" src="resources/ios/splash/Default~iphone.png" width="320" />
         <icon height="1024" src="resources/ios/icon/icon-1024.png" width="1024" />
         <splash height="2732" src="resources/ios/splash/Default@2x~universal~anyany.png" width="2732" />
+        <!-- set platform :ios, defaults to 7.0 -->
+         <preference name="pods_ios_min_version" value="8.0"/>
+         <pod id="BaiduMobStat" />
     </platform>
     <preference name="webviewbounce" value="false" />
     <preference name="UIWebViewBounce" value="false" />
@@ -112,7 +115,7 @@
     <plugin name="cordova-plugin-app-version" spec="~0.1.9" />
     <plugin name="cordova-plugin-ionic-webview" spec="~1.1.15" />
     <plugin name="cordova-plugin-statusbar" spec="git+https://github.com/apache/cordova-plugin-statusbar.git" />
-    <plugin name="cordova-plugin-camera" spec="~4.0.1" />
+    <plugin name="cordova-plugin-camera" spec="~2.4.0" />
     <plugin name="cordova-plugin-pingpp" spec="git+https://git.coding.net/pingplusplus/pingpp-cordova.git" />
     <plugin name="call-number" spec="~0.0.2" />
     <plugin name="cordova-plugin-file" spec="^6.0.1" />
@@ -124,4 +127,14 @@
     <plugin name="phonegap-plugin-barcodescanner" spec="^6.0.8">
         <variable name="URL_SCHEME" value="jingku" />
     </plugin>
+    <plugin name="cordova-plugin-customurlscheme" spec="^4.3.0">
+        <variable name="URL_SCHEME" value="jingku" />
+        <variable name="ANDROID_SCHEME" value=" " />
+        <variable name="ANDROID_HOST" value=" " />
+        <variable name="ANDROID_PATHPREFIX" value="/" />
+    </plugin>
+    <plugin name="cordova-plugin-baidumobstat" spec="^1.2.3">
+        <variable name="APP_KEY" value="2a3f65d569" />
+    </plugin>
+    <plugin name="cordova-plugin-cocoapod-support" spec="^1.5.0" />
 </widget>

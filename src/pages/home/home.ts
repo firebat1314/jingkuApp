@@ -48,6 +48,7 @@ export class HomePage {
    getCategoryRecommendGoodsBest;
    getCategoryRecommendGoodsHot;
    getBrands;
+   schemeUrl: string;
 
    constructor(
       public navCtrl: NavController,
@@ -60,13 +61,16 @@ export class HomePage {
       public alertCtrl: AlertController,
       private ximu: XimuProvider,
       private mine: MineProvider,
-      private modalCtrl: ModalController,
       private jpushServ: JpushService,
    ) {
       //地址更新
       this.events.subscribe('home:update', () => {
          this.getHomeData()
-      })
+      });
+      (window as any).handleOpenURL = (url: string) => {
+         console.log(url)
+         this.schemeUrl = url;
+      };
    }
    ngAfterViewInit() {
 
