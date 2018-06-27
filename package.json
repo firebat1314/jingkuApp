@@ -46,11 +46,13 @@
     "clipboard": "^2.0.1",
     "cordova-android": "6.2.3",
     "cordova-ios": "~4.5.4",
+    "cordova-open-native-settings": "~1.4.1",
     "cordova-plugin-app-version": "~0.1.9",
     "cordova-plugin-badge": "~0.8.1",
     "cordova-plugin-camera": "~2.4.0",
     "cordova-plugin-compat": "^1.0.0",
     "cordova-plugin-console": "^1.0.5",
+    "cordova-plugin-customurlscheme": "^4.3.0",
     "cordova-plugin-device": "1.1.4",
     "cordova-plugin-file": "~4.3.1",
     "cordova-plugin-file-transfer": "^1.7.1",
@@ -76,8 +78,7 @@
     "phonegap-plugin-barcodescanner": "^6.0.8",
     "rxjs": "5.4.0",
     "sw-toolbox": "3.6.0",
-    "zone.js": "0.8.12",
-    "cordova-open-native-settings": "~1.4.1"
+    "zone.js": "0.8.12"
   },
   "devDependencies": {
     "@ionic/app-scripts": "2.0.2",
@@ -152,7 +153,10 @@
       "jpush-phonegap-plugin": {
         "APP_KEY": "e889e9b93cf3bfac71e966ec"
       },
-      "cordova-open-native-settings": {}
+      "cordova-open-native-settings": {},
+      "phonegap-plugin-barcodescanner": {
+        "URL_SCHEME": "jingku"
+      }
     }
   }
 }

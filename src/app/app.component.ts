@@ -46,10 +46,10 @@ export class MyApp {
             this.nav.setRoot('WellcomeNewmPage', {}, { animate: true, });
          }
       })
-      if(this.native.isMobileweb()){
+      if (this.native.isMobileweb()) {
          (function () {
             let hmbaidu = document.getElementsByClassName("hmbaidu")[0];
-            if(hmbaidu) hmbaidu.parentNode.removeChild(hmbaidu);
+            if (hmbaidu) hmbaidu.parentNode.removeChild(hmbaidu);
 
             let hm = document.createElement("script");
             hm.className = 'hmbaidu';
@@ -58,17 +58,19 @@ export class MyApp {
             s.parentNode.insertBefore(hm, s);
          })();
       }
-      let timer;
       this.app.viewDidEnter.subscribe((e) => {
-         if (this.native.isMobileweb()) _hmt.push(['_trackPageview', location.href]);
-         if (this.native.isWeixin()) {
-            clearTimeout(timer)
-            timer = setTimeout(() => {
-               this.wxService.config(location.href, {
-                  title: '镜库科技', // 分享标题
-                  link: location.href, // 分享链接，该链接域名或路径必须与当前页面对应的公众号JS安全域名一致
-               })
-            }, 800);
+         if (e._cssClass == 'ion-page') {
+            setTimeout(() => {
+               if (this.native.isMobileweb()) {
+                  _hmt.push(['_trackPageview', '/#' + location.href.split('#')[1]]);
+               }
+               if (this.native.isWeixin()) {
+                  this.wxService.config(location.href, {
+                     title: '镜库科技', // 分享标题
+                     link: location.href, // 分享链接，该链接域名或路径必须与当前页面对应的公众号JS安全域名一致
+                  })
+               }
+            }, 300);
          }
       })
    }
