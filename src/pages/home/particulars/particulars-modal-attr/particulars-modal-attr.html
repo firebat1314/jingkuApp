@@ -1,12 +1,6 @@
 <ion-content>
-    <div style="position: absolute;
-                top: 2px;
-                right: 10px;
-                font-size: 3rem;
-                z-index: 11;
-                padding: 0 10px;
-                color: #666;" (click)="dismiss()">
-        <ion-icon name="ios-close-outline"></ion-icon>
+    <div style="position: absolute;top: 9px;right: 14px;font-size: 18px;z-index: 11;color: #666;" (click)="dismiss()">
+        <ion-icon name="ios-close-circle-outline"></ion-icon>
     </div>
     <ion-item no-lines class="head">
         <ion-thumbnail item-left>
@@ -18,14 +12,25 @@
     </ion-item>
     <div *ngIf="type=='goods'" class="main goods_main">
         <!-- is_subsidy 是否显示促销价 -->
-        <div class="main-attr-wrap" *ngIf="mainAttrs">
-            <div ion-button color="jingku1" [outline]="item.id!=checkMainAttrId" class="main-attr" small *ngFor="let item of mainAttrs.values" tappable (click)="checkMainAttr(item)">{{item.label}}</div>
+        <div class="main-attr" *ngIf="mainAttrs&&goods_attribute?.goods_info?.goods_type!=8">
+            <div class="main-attr-wrap">
+            <a class="attr" [class.on]="item.id==checkMainAttrId" *ngFor="let item of mainAttrs?.values" (click)="checkMainAttr(item)">{{item.label}}</a>
+            </div>
         </div>
+      <div class="main-attr"  *ngIf="goods_attribute?.goods_info?.goods_type==8&&goodsInfo?.linked_goods?.length>0">
+         <!-- 当护理液没有主属性且商品goods_type=8 -->
+         <div class="main-attr-tit">
+            <span>关联商品</span>
+         </div>
+         <div class="main-attr-wrap">
+            <a class="attr" *ngFor="let item of goodsInfo?.linked_goods" (click)="checklinkedGoods(item)">{{item.title||item.goods_name}}</a>
+         </div>
+      </div>
         <div style="text-align: center;" *ngIf="!attrsList">
             <ion-spinner name="crescent"></ion-spinner>
         </div>
         <div style="text-align: center;" *ngIf="attrsList&&!attrsList.status">属性获取失败</div>
-        <div class="tabelbox" *ngIf="attrsList">
+        <div class="tabelbox" *ngIf="attrsList&&attrsList?.status">
             <div class="table">
                 <div class="tr">
                     <div class="td-wrap">
@@ -44,9 +49,9 @@
                         <div *ngIf="!(dId>0)" class="td count-input-box">
                             <count-input style="margin: auto;" [maxValue]="item.product_number" [rank]="checkMainAttrNum" [(value)]="item.goods_attr_number" (valueChange)="numberIChange(item)"></count-input>
                         </div>
-                        <div class="td" *ngIf="item.is_subsidy&&mine.showPrice">{{item.price}}</div>
+                        <div class="td" style="color: #ff6a00;" *ngIf="item.is_subsidy&&mine.showPrice">{{item.price}}</div>
                         <div class="td" *ngIf="item.is_subsidy&&mine.showPrice">{{item.old_price}}</div>
-                        <div class="td" *ngIf="!item.is_subsidy&&mine.showPrice">{{item.price}}</div>
+                        <div class="td" style="color: #ff6a00;" *ngIf="!item.is_subsidy&&mine.showPrice">{{item.price}}</div>
                         <div class="td" *ngIf="goods_attribute?.goods_info?.goods_type=='8'&&mainAttrs"><span>{{item.mods>1?item.mods+'瓶/'+checkMainAttrLabel:item.mods+'瓶'}}</span></div>
                         <div class="td" *ngFor="let group of item.goods_attr">{{group.attr_val}}</div>
                         <div class="td" *ngIf="!(dId>0)">{{item.product_number}}</div>
@@ -124,16 +129,19 @@
             </div>
         </ng-container>
         <div class="handle">
-            <button ion-button color="light" (click)="increasedJP()">点击新增一行 ＋</button>
-            <button ion-button [disabled]="goods?.length<=1" color="light" (click)="removeJPByIndex($event,goods.length-1)">点击删除一行 －</button>
+            <button ion-button color="light" (click)="increasedJP()">新增一行 ＋</button>
+            <button ion-button [disabled]="goods?.length<=1" color="light" (click)="removeJPByIndex($event,goods.length-1)">删除一行 －</button>
         </div>
     </div>
 
     <div *ngIf="(cutId>0)" class="cut-main goods_main">
-        <div class="cut-main-tap">
-            <div small color="jingku1" ion-button tappable [outline]="checkCutGoodsId!=goodsId" (click)="checkCutGoodsId=goodsId;clear();getAttrList()">样品</div>
-            <div ion-button color="jingku1" [outline]="item.goods_id!=checkCutGoodsId" class="main-attr" small *ngFor="let item of cutting_info?.cutting_list;let cut_index = index;" tappable (click)="checkCutGoodsId=item.goods_id;clearJp();getGoodsAttribute(item.goods_id)">{{item.goods_name}}</div>
-        </div>
+      <div class="main-attr">
+            <div class="main-attr-wrap" style="overflow: initial;flex-wrap: wrap">
+               <a class="attr" [class.on]="checkCutGoodsId==goodsId" (click)="checkCutGoodsId=goodsId;clear();getAttrList()">样品</a>
+               <a class="attr" [class.on]="item.goods_id==checkCutGoodsId" *ngFor="let item of cutting_info?.cutting_list;let cut_index = index;" (click)="checkCutGoodsId=item.goods_id;clearJp();getGoodsAttribute(item.goods_id)">{{item.goods_name}}</a>
+            </div>
+         </div>
+
         <div style="text-align: center;" *ngIf="!attrsList">
             <ion-spinner name="crescent"></ion-spinner>
         </div>
@@ -154,9 +162,9 @@
                         <div class="td count-input-box">
                             <count-input [maxValue]="item.product_number" [rank]="checkMainAttrNum" [(value)]="item.goods_attr_number" (valueChange)="numberIChange(item)"></count-input>
                         </div>
-                        <div class="td" *ngIf="item.is_subsidy&&mine.showPrice">{{item.price}}</div>
+                        <div class="td" style="color: #ff6a00;" *ngIf="item.is_subsidy&&mine.showPrice">{{item.price}}</div>
                         <div class="td" *ngIf="item.is_subsidy&&mine.showPrice">{{item.old_price}}</div>
-                        <div class="td" *ngIf="!item.is_subsidy&&mine.showPrice">{{item.price}}</div>
+                        <div class="td" style="color: #ff6a00;" *ngIf="!item.is_subsidy&&mine.showPrice">{{item.price}}</div>
                         <div class="td" *ngFor="let group of item.goods_attr">{{group.attr_val}}</div>
                         <div class="td">{{item.product_number}}</div>
                     </div>

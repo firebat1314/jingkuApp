@@ -9,6 +9,7 @@ import { Native } from "../providers/native";
 import { WxServiceProvider } from '../providers/wx-service/wx-service';
 import { UpgradeProvider } from '../providers/upgrade/upgrade';
 import { IP } from '../providers/constants';
+import { HttpService } from '../providers/http-service';
 
 declare var _hmt;
 @Component({
@@ -33,6 +34,7 @@ export class MyApp {
       private upgradeProvider: UpgradeProvider,
       private app: App,
       private wxService: WxServiceProvider,
+      private httpServ: HttpService,
    ) {
 
       this.initializeApp();
@@ -58,19 +60,29 @@ export class MyApp {
          hm.src = "https://hm.baidu.com/hm.js?817930cdefe1732f6a0cfff75e3ca4ae";//newm.jingkoo.net
          s = document.getElementsByTagName("script")[0];
          s.parentNode.insertBefore(hm, s);
-         
-      }else{
-          //百度账号 15733128449
-          let hm = document.createElement("script");
-          hm.src = "https://hm.baidu.com/hm.js?2d2e5da3c0f5c5cd693f193b8dfab54e";//m.jingku.cn
-          let s = document.getElementsByTagName("script")[0];
-          s.parentNode.insertBefore(hm, s);
-          //百度账号 镜库科技
-          hm = document.createElement("script");
-          hm.src = "https://hm.baidu.com/hm.js?e46d288858f5b97ae7ecc8924d67d3f0";//m.jingku.cn
-          s = document.getElementsByTagName("script")[0];
-          s.parentNode.insertBefore(hm, s);
+
+      } else {
+         //百度账号 15733128449
+         let hm = document.createElement("script");
+         hm.src = "https://hm.baidu.com/hm.js?2d2e5da3c0f5c5cd693f193b8dfab54e";//m.jingku.cn
+         let s = document.getElementsByTagName("script")[0];
+         s.parentNode.insertBefore(hm, s);
+         //百度账号 镜库科技
+         hm = document.createElement("script");
+         hm.src = "https://hm.baidu.com/hm.js?e46d288858f5b97ae7ecc8924d67d3f0";//m.jingku.cn
+         s = document.getElementsByTagName("script")[0];
+         s.parentNode.insertBefore(hm, s);
       }
+      this.app.viewWillEnter.subscribe((e) => {
+         if (e._cssClass == 'ion-page') {
+            if(e.id=="ParticularsPage"){
+               this.httpServ.click_census({ type: 'goods', url: '/' + location.hash, id: e.data.goodsId });//用户点击统计
+            }
+            if(e.id=="HelperDetailsPage"){
+               this.httpServ.click_census({ type: 'article', url: '/' + location.hash, id: e.data.article_id });//用户点击统计
+            }
+         }
+      })
       this.app.viewDidEnter.subscribe((e) => {
          if (e._cssClass == 'ion-page') {
             setTimeout(() => {

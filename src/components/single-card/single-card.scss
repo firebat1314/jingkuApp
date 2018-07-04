@@ -1,12 +1,3 @@
-.ios single-foods-card{
-    .card{
-        .card-wrap {
-            .img {
-                border-bottom-width: 0.55px;
-            }
-        }
-    }
-}
 single-foods-card {
     @-webkit-keyframes fade {
         from {
@@ -44,7 +35,7 @@ single-foods-card {
                 display: flex;
                 justify-content: center;
                 align-items: center;
-                border-bottom: solid 1px #e0e0e0;
+                border-bottom: solid 1px #fafafa;
                 flex: 1;
                 position: relative;
                 .chips {

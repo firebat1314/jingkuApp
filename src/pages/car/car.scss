@@ -1,11 +1,3 @@
-.ios page-car{
-    .single-shop-head{
-        border-bottom-width: 0.55px !important; 
-    }
-    .single-shop-little-result{
-        border-top-width: 0.55px !important; 
-    }
-}
 page-car {
     .list {
         margin: 0;
@@ -24,7 +16,7 @@ page-car {
         .single-shop-head {
             display: flex;
             align-items: center;
-            border-bottom: #e0e0e0 1px solid;
+            border-bottom: #fafafa 1px solid;
             .item {
                 .item-inner {
                     font-size: 1.5rem;
@@ -136,7 +128,7 @@ page-car {
         .single-shop-little-result {
             padding: 10px;
             color: #4d4d4d;
-            border-top: 1px solid #e0e0e0;
+            border-top: 1px solid #fafafa;
             display: flex;
             justify-content: flex-end;
             align-items: center;

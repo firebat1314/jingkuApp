@@ -182,6 +182,13 @@
                     </span>
                     <span class="txt">余额</span>
                 </a>
+                
+                <a navPush="JingkuFinancePage">
+                  <span class="icon_num">
+                       立即进入
+                  </span>
+                  <span class="txt">镜库金融</span>
+              </a>
                 <!-- <a (click)="openXimu()" hideWhen="ios">
                     <span class="icon_num">
                         暂未开放
@@ -194,27 +201,6 @@
                     </span>
                     <span class="txt">镜库白条</span>
                 </a> -->
-            </div>
-        </div>
-        <div class="fore fore2">
-            <div class="title">
-                <div>
-                    <span>镜库金融</span>
-                </div>
-            </div>
-            <div class="main">
-                <a (click)="openSHD()" *ngIf="userInfo?.data?.is_zhu">
-                    <span class="icon_num">
-                        商户贷
-                    </span>
-                    <span class="txt">镜库贷款</span>
-                </a>
-                <a (click)="openFmCredit()">
-                    <span class="icon_num">
-                        {{FmCreditindex?.data?.available_amount ? FmCreditindex?.data?.available_amount : FmCreditindex?.data?.status_name? FmCreditindex?.data?.status_name : '立即申请'}}
-                    </span>
-                    <span class="txt">镜库白条</span>
-                </a>
             </div>
         </div>
         <div class="fore fore3">
@@ -253,6 +239,12 @@
                         <img src="./assets/icon/new_center/5.png" alt="">
                     </span>
                     <span class="txt">镜库客服</span>
+                </a>
+                <a (click)="bindWeixin()">
+                    <span class="icon_num">
+                        <img src="./assets/icon/weichat.png" alt="">
+                    </span>
+                    <span class="txt">绑定微信</span>
                 </a>
             </div>
         </div>

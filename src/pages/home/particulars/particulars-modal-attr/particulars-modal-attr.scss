@@ -1,40 +1,11 @@
-.ios page-particulars-modal-attr {
-    .goods_main {
-        .tabelbox {
-            .table {
-                flex: 1;
-                .tr {
-                    border-bottom-width: 0.55px;
-                }
-            }
-        }
-    }
-    .goods_spectacles_main {
-        .fore {
-            .top {
-                border-bottom: 0.55px solid #e0e0e0;
-                .select,
-                .input {
-                    border: 0.55px solid #e0e0e0;
-                }
-            }
-        }
-        .handle {
-            >button {
-                border: 0.55px solid #e0e0e0;
-            }
-        }
-    }
-    ion-row {
-        border-bottom: 0.55px solid #e0e0e0;
-    }
-}
 
 page-particulars-modal-attr {
     .head {
+       border-bottom: 1px solid #fafafa;
         h2 {
             color: #666;
             @include ellipsis_2;
+            margin-right: 26px !important;
         }
         p {
             font-size: font-size-text('h5');
@@ -54,7 +25,7 @@ page-particulars-modal-attr {
             flex-shrink: 0;
         }
         .main {
-            margin-top: 10px;
+                border-top: 1px solid #fafafa;
             overflow-x: scroll;
         }
     }
@@ -63,18 +34,32 @@ page-particulars-modal-attr {
         font-size: font-size-text('h4');
         display: flex;
         flex-direction: column;
-        .main-attr-wrap {
-            margin-bottom: 10px;
-            background: #fff;
+        .main-attr{
+         background: #fff;
+         padding: 5px 0;
+            border-bottom: 1px solid #fafafa;
+            .main-attr-tit{
+               line-height: 23px;
+               padding-left: 12px;
+            }
+            .main-attr-wrap {
             display: flex;
-            padding: 5px 0;
             overflow: scroll;
             flex-shrink: 0;
-            .main-attr {
+            padding: 0 6px;
+            .attr {
                 border-radius: 4px;
                 padding: 5px 16px;
                 margin: 6px;
+                background: #f5f5f5;
+                  border-radius: 34px;
+                  white-space: nowrap;
+                  &.on{
+                  color: #fff;
+                  background: #3f69a5;
+                }
             }
+        }
         }
         /* —————————————————————————————————————————————————— */
         table {
@@ -82,7 +67,7 @@ page-particulars-modal-attr {
             background: #fff;
             tr {
                 height: 40px;
-                border-bottom: $border;
+                border-bottom: 1px solid #fafafa;
                 td.count-input-box {
                     padding-left: 10px;
                     padding-right: 10px;
@@ -114,7 +99,7 @@ page-particulars-modal-attr {
             .table {
                 flex: 1;
                 .tr {
-                    border-bottom: $border;
+                    border-bottom: 1px solid #fafafa;
                     color: #808080;
                     padding: 10px 0;
                     .td-wrap {
@@ -122,15 +107,13 @@ page-particulars-modal-attr {
                         align-items: center;
                         .td {
                             min-width: 80px;
-                            padding: 0 10px;
                             text-align: center;
                             flex: 1;
+                            font-size: 12px;
                             &:first-child {
                                 min-width: 114px;
                             }
-                            .td.count-input-box {
-                                padding-left: 10px;
-                                padding-right: 10px;
+                            &.count-input-box {
                                 count-input {
                                     margin: 0 auto;
                                 }
@@ -161,14 +144,14 @@ page-particulars-modal-attr {
             margin-bottom: 10px;
             .top {
                 overflow: hidden;
-                border-bottom: 1px solid #e0e0e0;
+                border-bottom: 1px solid #fafafa;
                 padding: 10px 1.5% 0px;
                 .select,
                 .input {
                     width: 47%;
                     border-radius: 4px;
                     float: left;
-                    border: 1px solid #e0e0e0;
+                    border: 1px solid #fafafa;
                     position: relative;
                     margin: 0 1.5% 10px;
                     padding: 10px;
@@ -214,7 +197,7 @@ page-particulars-modal-attr {
             padding: 5px 1.5%;
             margin-bottom: 20px;
             >button {
-                border: 1px solid #e0e0e0;
+                border: 1px solid #fafafa;
                 width: 47%;
                 color: #333;
                 margin-left: 1.5%;
@@ -240,7 +223,7 @@ page-particulars-modal-attr {
                 width: 47%;
                 border-radius: 4px;
                 float: left;
-                border: 1px solid #e0e0e0;
+                border: 1px solid #fafafa;
                 position: relative;
                 margin: 0 1.5% 10px;
                 padding: 10px;
@@ -271,7 +254,7 @@ page-particulars-modal-attr {
         }
     }
     ion-row {
-        border-bottom: 1px solid #e0e0e0;
+        border-bottom: 1px solid #fafafa;
         color: #808080;
         font-size: 1.6rem;
         ion-col {

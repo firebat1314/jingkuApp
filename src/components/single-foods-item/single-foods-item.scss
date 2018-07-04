@@ -1,16 +1,9 @@
-.ios single-foods-item {
-    ion-item.item {
-        border-bottom-width: 0.55px;
-        border-bottom-color: #e0e0e0;
-    }
-}
-
 single-foods-item {
     .item-inner {
         margin-bottom: -1px;
     }
     ion-item.item {
-        border-bottom: 1px solid #e6e6e6;
+        border-bottom: 1px solid #fafafa;
         position: relative;
         ion-thumbnail {
             border: 0;

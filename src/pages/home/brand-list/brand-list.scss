@@ -32,9 +32,7 @@ page-brand-list {
     }
     /* ———————————————————————————— */
     @include deteleShadow;
-    .header-ios .toolbar-ios:last-child .toolbar-background-ios {
-        border: 0;
-    }
+
     .toolbar {
         .title {
             padding: 0 32px 1px;

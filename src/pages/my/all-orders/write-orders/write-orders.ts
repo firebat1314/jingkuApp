@@ -3,6 +3,7 @@ import { NavController, NavParams, ModalController, Events, ViewController, Aler
 import { HttpService } from "../../../../providers/http-service";
 import { Native } from "../../../../providers/native";
 
+declare var _hmt;
 /*
   Generated class for the WriteOrders page.
 
@@ -298,6 +299,26 @@ export class WriteOrdersPage {
       // } else {
       this.done().then((res) => {
          if (res.status == 1) {
+            var item = [];
+            for (var i = 0, item1 = this.data.cart_goods_list; i < item1.length; i++) {
+               for (var m = 0, item2 = item1[i].goods_list; m < item2.length; m++) {
+                  for (var s = 0, item3 = item2[m].attrs; s < item3.length; s++) {
+                     item.push({
+                        "skuId": item3[s].goods_id,
+                        "skuName": item3[s].goods_name,
+                        "category": item3[s].rec_id || '000000',
+                        "Price": item3[s].goods_price.indexOf('¥') > -1 ? item3[s].goods_price.replace('¥', '') : item3[s].goods_price,
+                        "Quantity": item3[s].goods_number
+                     })
+                  }
+               }
+            }
+            _hmt&&_hmt.push(['_trackOrder', {
+               "orderId": res.order_id,
+               "orderTotal": this.data.total.amount_formated,
+               "item": item
+            }]);
+
             this.events.publish('car:update');
             this.events.publish('my:update');
             if (this.paymentMothdID == 6) {
