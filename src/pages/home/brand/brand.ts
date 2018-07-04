@@ -50,6 +50,10 @@ export class BrandPage {
       })
     })
   }
+  goSearchPage() {
+     // this.modalCtrl.create('SearchPage', '', { enterAnimation: '' }).present();
+     this.navCtrl.push('SearchPage', {}, { animate:false,animation: 'md-transition' })
+  }
   /* 下拉刷新 */
   doRefresh(refresher) {
     this.getData().then(() => {

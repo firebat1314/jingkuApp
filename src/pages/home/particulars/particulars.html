@@ -100,7 +100,7 @@
                     <div>
                         <p class="list-show" *ngFor="let item of getGoodsInfo?.promotion">
                             <span class="title">{{item.promotion_name}}</span>
-                            <span [innerHtml]="item.title"></span>
+                            <span [innerHtml]="item.title" style="white-space: pre-wrap;font-size: 12px;"></span>
                         </p>
                     </div>
                     <ion-note *ngIf="!getGoodsInfo?.promotion?.length" item-right>无促销</ion-note>
@@ -226,7 +226,7 @@
                 </div> -->
             </div>
             <!--————————————————————————套餐组合————————————————————————-->
-            <div class="fore group-and-recommend" *ngIf="!(getCategoryRecommendGoodsHot?.length&&getGoodsInfo?.fittings?.length)">
+            <div class="fore group-and-recommend" *ngIf="(getCategoryRecommendGoodsHot?.length>0||getGoodsInfo?.fittings?.length>0)">
                 <div class="segment-style">
                     <ion-segment color="jingku1" [(ngModel)]="selectGroupRecommend" mode="md">
                         <ion-segment-button value="group" *ngIf="getGoodsInfo?.fittings?.length">
@@ -284,7 +284,7 @@
                         商品参数
                     </ion-segment-button>
                 </ion-segment>
-                <div [ngSwitch]="selectPicArguments">
+                <div class="details" [ngSwitch]="selectPicArguments">
                     <div class="pic" *ngSwitchCase="'pic'">
                         <!--<ion-item class="check" detail-push>
                         <ion-icon name="ios-arrow-down"></ion-icon>

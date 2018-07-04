@@ -20,24 +20,24 @@ export class goodsSpectaclesParams {
 @Component({
    selector: 'page-particulars-modal-attr',
    templateUrl: 'particulars-modal-attr.html',
-
 })
 export class ParticularsModalAttrPage {
-   numberChangeData: any;
-   isLjdz: any;//来镜定制
+   // isLjdz: any;//来镜定制
    goodsId: any = this.navParams.get('id');
    cutId: any = this.navParams.get('cutId');
-   cutting_info: any;
    dId: any = this.navParams.get('dId');
-   distributionInfo: any;
-   goods_attribute: any;
    headData: any = this.navParams.get('headData');
-   type: any;//goods_spectacles||goods
+   callback: any = this.navParams.get('callback');
 
-   /*goods*/
+   distributionInfo: any;
+   cutting_info: any;
+   goods_attribute: any;
+   type: any;//goods_spectacles||goods||cut
+
+   /*goods 普通商品参数*/
    attrIds: Array<any> = [];
    attrNumbers: Array<any> = [];
-   /*goods_spectacles*/
+   /*goods_spectacles 镜片商品参数*/
    memberArr: Array<any> = [];
    spcArr: Array<any> = [];
    qiujingArr: Array<any> = [];
@@ -64,6 +64,7 @@ export class ParticularsModalAttrPage {
    /* 价格数量计算 */
    totalPrices: any = 0;
    totalNumber: any = 0;
+   goodsInfo: any;
    constructor(
       public navCtrl: NavController,
       public navParams: NavParams,
@@ -84,6 +85,8 @@ export class ParticularsModalAttrPage {
             if (res.status) {
                this.type = 'cut';
                this.cutting_info = res;
+               this.goodsId = res.cutting_info.goods_id;
+               this.getGoodInfo();
                this.getAttrList();
             }
          })
@@ -91,18 +94,26 @@ export class ParticularsModalAttrPage {
          this.httpServ.info_d({ id: this.dId }).then(res => {
             if (res.status) {
                this.distributionInfo = res;
-               this.getGoodsAttribute(this.goodsId)
+               this.goodsId = res.info.goods_id;
+               this.getGoodInfo();
+               this.getGoodsAttribute(this.goodsId);
             }
          })
       } else {
-         this.getGoodsAttribute(this.goodsId)
+         this.getGoodInfo();
+         this.getGoodsAttribute(this.goodsId);
       }
    }
-   ngOnDestroy() {
-
+   getGoodInfo() {
+      this.httpServ.goodsInfos({ goods_id: this.goodsId }).then((res) => {
+         if (res.status == 1) {
+            this.goodsInfo = res;
+         }
+      })
    }
    /* 获取镜片球镜属性 */
    getGoodsAttribute(goods_id) {
+      this.goods_attribute = null;
       if (this.cutId > 0) {
          this.httpServ.get_goods_attribute({ goods_id: goods_id }).then((res) => {
             if (res.status == 1) {
@@ -141,7 +152,7 @@ export class ParticularsModalAttrPage {
             }
          })
       } else if (this.dId > 0) {
-         this.httpServ.get_goods_attribute_d({ goods_id: goods_id, id: this.dId }).then((res) => {
+         this.httpServ.get_goods_attribute_d({ goods_id: goods_id, id: this.dId }, { showLoading: false }).then((res) => {
             if (res.status == 1) {
                this.type = res.goods_type;
                this.goods_attribute = res;
@@ -201,16 +212,16 @@ export class ParticularsModalAttrPage {
       this.clear();
       this.getAttrList();
    }
+   checklinkedGoods(goods) {
+      // this.callback.navCtrl.push('ParticularsPage',{goodsId:goods.goods_id});
+      this.navCtrl.push('ParticularsPage', { goodsId: goods.goods_id });
+   }
    clear() {
       this.attrIds = [];
       this.attrNumbers = [];
       this.numberIChange()
    }
    clearJp() {
-      // if (this.numberChangeData) {
-      // 	this.totalNumber = this.numberChangeData.number;
-      // 	this.totalPrices = this.numberChangeData.goods_total;
-      // }
       this.totalNumber = 0;
       this.totalPrices = 0;
    }
@@ -240,7 +251,6 @@ export class ParticularsModalAttrPage {
          }
       }).then((res) => {
          if (res.status == 1) {
-            this.numberChangeData = res;
             this.totalNumber = res.number;
             this.totalPrices = res.goods_total;
          }
@@ -319,21 +329,10 @@ export class ParticularsModalAttrPage {
       it.subtotal = (Number(it.number) * (Number(it.price) * 10000)) / 10000;
       this.totalPrices = 0;
       this.totalNumber = 0;
-      // if (this.numberChangeData) {
-      // 	let number = 0;
-      // 	let price = 0;
-      // 	for (var i = 0; i < this.goods.length; i++) {
-      // 		number += Number(this.goods[i].number);
-      // 		price += Number(this.goods[i].subtotal);
-      // 	}
-      // 	this.totalNumber = number + Number(this.numberChangeData.number);
-      // 	this.totalPrices = price + Number(this.numberChangeData.goods_total.substr(1));
-      // } else {
       for (var i = 0; i < this.goods.length; i++) {
          this.totalNumber += Number(this.goods[i].number);
          this.totalPrices += Number(this.goods[i].subtotal);
       }
-      // }
    }
    /*镜片商品参数*/
    getGoodsParamsArrs() {

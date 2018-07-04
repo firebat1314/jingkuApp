@@ -156,7 +156,7 @@ export class HttpService {
     return this.http.post(IP + '/Category/category_goods', data, options)
   }
   getGoodsAttribute(data?: Object) {//获取初始商品属性
-    return this.http.get(IP + '/Goods/get_goods_attribute', data, { showLoading: true })
+    return this.http.get(IP + '/Goods/get_goods_attribute', data, { showLoading: false })
   }
   getZhujing(data?: Object) {//如果返回的(good_type)  商品类型是goods_spectacles 根据所选球镜，获取柱镜列表
     return this.http.get(IP + '/Goods/get_zhujing', data, { showLoading: false })
@@ -236,7 +236,7 @@ export class HttpService {
   userCount(data?: Object) {//（1）个人中心获取用户统计
     return this.http.get(IP + '/User/usercount', data, { showLoading: false })
   }
-  weixingetOauthRedirect(data?: Object, options: HttpOptions = { showLoading: false, showToast: false }) {//用户订单
+  weixingetOauthRedirect(data?: Object, options?: HttpOptions) {//用户订单
     return this.http.post(IP + '/Weixin/weixingetOauthRedirect', data, options)
   }
   order(data?: Object, options?: HttpOptions) {//用户订单
@@ -786,5 +786,17 @@ export class HttpService {
   }
   Shd_add_user(data?: Object, options: HttpOptions = { showLoading: true }) {//选择现有成员
     return this.http.post(IP + '/App/Shd/add_user', data, options)
+  }
+  jingku_finance(data?: Object, options: HttpOptions = { showLoading: false }) {//选择现有成员
+    return this.http.post(IP + '/App/Index/jingku_finance', data, options)
+  }
+  search_census(data?: Object, options: HttpOptions = { showLoading: false }) {//选择现有成员
+    return this.http.post(IP + '/Public/search_census ', data, options)
+  }
+  recommendGoods(data?: Object, options: HttpOptions = { showLoading: false }) {//选择现有成员
+    return this.http.post(IP + '/Index/recommendGoods ', data, options)
+  }
+  click_census(data?: Object, options: HttpOptions = { showLoading: false }) {//选择现有成员
+    return this.http.post(IP + '/Public/click_census ', data, options)
   }
 }

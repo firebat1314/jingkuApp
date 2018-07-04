@@ -1,0 +1,42 @@
+page-jingku-finance {
+  .jingku-finance-container {
+    width: 100%;
+    perspective: 1000px;
+    height: 88%;
+    .swiper-wrapper {
+      align-items: center;
+      .swiper-slide {
+        width: 100%;
+        transform-style: preserve-3d;
+        flex-shrink: 0;
+        .card {
+          width: calc(100% - 44px) !important;
+        }
+        .main-img {
+          margin: 0 auto;
+          width: 100%;
+          display: block;
+        }
+      }
+    }
+    .swiper-slide,
+    .swiper-wrapper {
+      height: 100%;
+      position: relative;
+      transform-style: preserve-3d;
+      width: 100%;
+    }
+    .swiper-slide{
+       align-items: flex-start;
+    }
+  }
+  .button {
+    width: calc(100% - 44px);
+    margin: auto;
+    box-shadow: 0 1px 5px 0 rgba(0, 0, 0, 0.12);
+    background: #1475f7 !important;
+    &.activated {
+      opacity: .8;
+    }
+  }
+}

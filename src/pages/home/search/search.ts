@@ -50,15 +50,19 @@ export class SearchPage {
       }
       switch (this.goodsTypeSelect) {
          case '1': this.navCtrl.push('BrandListPage', { keyword: this.myHomeSearch }, { animate: false }).then(() => {
+            this.httpService.search_census({type:'goods',search_name:this.myHomeSearch});
             this.viewCtrl.dismiss({}, '', { animate: false })
          }); break;
          case '2': this.navCtrl.push('BrandListPage', { keyword: this.myHomeSearch, cut: 1 }, { animate: false }).then(() => {
+            this.httpService.search_census({type:'cutting',search_name:this.myHomeSearch});
             this.viewCtrl.dismiss({}, '', { animate: false })
          }); break;
          case '3': this.navCtrl.push('BrandListPage', { keyword: this.myHomeSearch, isDistribution: 1 }, { animate: false }).then(() => {
+            this.httpService.search_census({type:'distribution',search_name:this.myHomeSearch});
             this.viewCtrl.dismiss({}, '', { animate: false })
          }); break;
          default: this.navCtrl.push('BrandListPage', { keyword: this.myHomeSearch }, { animate: false }).then(() => {
+            this.httpService.search_census({type:'goods',search_name:this.myHomeSearch});
             this.viewCtrl.dismiss({}, '', { animate: false })
          }); break;
       }

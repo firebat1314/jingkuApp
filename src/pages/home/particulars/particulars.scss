@@ -71,7 +71,6 @@
     }
 }
 
-
 /* ——————————————————————————————— ——————————————————————————————— */
 
 page-particulars {
@@ -394,34 +393,36 @@ page-particulars {
         }
     }
     .pic-and-arguments {
-        .pic {
-            .check {
-                margin-top: 10px;
-                text-align: center;
+        .details {
+            .pic {
+                .check {
+                    margin-top: 10px;
+                    text-align: center;
+                }
+                .desc {
+                    img {
+                        display: block;
+                        margin: 0 auto;
+                    }
+                    video {
+                        background: #000;
+                    }
+                    p {
+                        margin: 0;
+                    }
+                }
             }
-            .desc {
-                img {
-                    display: block;
-                    margin: 0 auto;
-                }
-                video {
-                    background: #000;
-                }
-                p {
-                    margin: 0;
-                }
-            }
-        }
-        .arguments {
-            .wrapper {
-                padding: 10px 20px;
-                display: flex;
-                flex-wrap: wrap;
-                justify-content: space-between;
-                .attr {
-                    border-bottom: #000 1px dashed;
-                    width: 45%;
-                    padding: 10px;
+            .arguments {
+                .wrapper {
+                    padding: 10px 20px 40px;
+                    display: flex;
+                    flex-wrap: wrap;
+                    justify-content: space-between;
+                    .attr {
+                        border-bottom: #000 1px dashed;
+                        width: 45%;
+                        padding: 10px;
+                    }
                 }
             }
         }

@@ -3,6 +3,7 @@ import { NavController, NavParams, ModalController, Events, ViewController, Aler
 import { HttpService } from "../../../../providers/http-service";
 import { Native } from "../../../../providers/native";
 
+declare var _hmt;
 /*
   Generated class for the WriteOrders page.
 
@@ -257,73 +258,93 @@ export class WriteOrdersPage {
          label.push(sArr);
       }
 
-		return new Promise((resolve) => {
-			this.httpService.submitOrder({
-				notes: {
-					note: commentArr,
-					suppliers: suppliers,
-					label: label
-				}
-			}).then((res) => {
-				if (res.info == '请先完善收货信息') {
-					this.openOrderModalShippingPage();
-					return
-				} else if (res.info == '购物车中没有商品') {
-					this.navCtrl.pop().catch(res => { history.back() });
-				} else if (res.info == '请选择支付方式') {
-					this.goPayAndShipPage();
-				}
-				resolve(res)
-			})
-		});
-	}
-	onsubmit() {
-		// if (this.data.is_surplus) {//是否使用余额支付按钮
-		//   this.native.openAlertBox('使用余额支付', () => {
-		//     this.done().then((res) => {
-		//       if (res.status == 1) {
-		//         if (res.is_pay) {
-		//           this.navCtrl.push('AllOrdersPage');
-		//           this.native.showToast('支付成功');
-		//         } else {
-		//           this.native.showToast('需要组合支付');
-		//           this.navCtrl.push('PaymentMethodPage', { order_id: res.order_id });
-		//         }
-		//         this.events.publish('my:update');
-		//         this.events.publish('car:update');
-		//         // this.viewCtrl.dismiss();
-		//       }
-		//     })
-		//   })
-		// } else {
-		this.done().then((res) => {
-			if (res.status == 1) {
-				this.events.publish('car:update');
-				this.events.publish('my:update');
-				if (this.paymentMothdID == 6) {
-					var view = this.viewCtrl;
-					this.navCtrl.push('PaymentMethodPage', { order_id: res.order_id,isDistribution:0 }).then(() => {
-						this.navCtrl.removeView(view);
-					});
-				} else if (this.paymentMothdID == 4) {
-					var view = this.viewCtrl;
-					this.navCtrl.push('AllOrdersPage').then(() => {
-						this.navCtrl.removeView(view);
-					});;
-					this.alertCtrl.create({
-						title: '汇款须知',
-						subTitle: this.paymentMothdDesc,
-						buttons: [{
-							text: '确认'
-						}],
-						cssClass: 'recharge-alert'
-					}).present();
-				}
-				// this.viewCtrl.dismiss();
-			} else if (res.status == -1) {
+      return new Promise((resolve) => {
+         this.httpService.submitOrder({
+            notes: {
+               note: commentArr,
+               suppliers: suppliers,
+               label: label
+            }
+         }).then((res) => {
+            if (res.info == '请先完善收货信息') {
+               this.openOrderModalShippingPage();
+               return
+            } else if (res.info == '购物车中没有商品') {
+               this.navCtrl.pop().catch(res => { history.back() });
+            } else if (res.info == '请选择支付方式') {
+               this.goPayAndShipPage();
+            }
+            resolve(res)
+         })
+      });
+   }
+   onsubmit() {
+      // if (this.data.is_surplus) {//是否使用余额支付按钮
+      //   this.native.openAlertBox('使用余额支付', () => {
+      //     this.done().then((res) => {
+      //       if (res.status == 1) {
+      //         if (res.is_pay) {
+      //           this.navCtrl.push('AllOrdersPage');
+      //           this.native.showToast('支付成功');
+      //         } else {
+      //           this.native.showToast('需要组合支付');
+      //           this.navCtrl.push('PaymentMethodPage', { order_id: res.order_id });
+      //         }
+      //         this.events.publish('my:update');
+      //         this.events.publish('car:update');
+      //         // this.viewCtrl.dismiss();
+      //       }
+      //     })
+      //   })
+      // } else {
+      this.done().then((res) => {
+         if (res.status == 1) {
+            var item = [];
+            for (var i = 0, item1 = this.data.cart_goods_list; i < item1.length; i++) {
+               for (var m = 0, item2 = item1[i].goods_list; m < item2.length; m++) {
+                  for (var s = 0, item3 = item2[m].attrs; s < item3.length; s++) {
+                     item.push({
+                        "skuId": item3[s].goods_id,
+                        "skuName": item3[s].goods_name,
+                        "category": item3[s].rec_id || '000000',
+                        "Price": item3[s].goods_price.indexOf('¥') > -1 ? item3[s].goods_price.replace('¥', '') : item3[s].goods_price,
+                        "Quantity": item3[s].goods_number
+                     })
+                  }
+               }
+            }
+            _hmt&&_hmt.push(['_trackOrder', {
+               "orderId": res.order_id,
+               "orderTotal": this.data.total.amount_formated,
+               "item": item
+            }]);
+
+            this.events.publish('car:update');
+            this.events.publish('my:update');
+            if (this.paymentMothdID == 6) {
+               var view = this.viewCtrl;
+               this.navCtrl.push('PaymentMethodPage', { order_id: res.order_id, isDistribution: 0 }).then(() => {
+                  this.navCtrl.removeView(view);
+               });
+            } else if (this.paymentMothdID == 4) {
+               var view = this.viewCtrl;
+               this.navCtrl.push('AllOrdersPage').then(() => {
+                  this.navCtrl.removeView(view);
+               });;
+               this.alertCtrl.create({
+                  title: '汇款须知',
+                  subTitle: this.paymentMothdDesc,
+                  buttons: [{
+                     text: '确认'
+                  }],
+                  cssClass: 'recharge-alert'
+               }).present();
+            }
+            // this.viewCtrl.dismiss();
+         } else if (res.status == -1) {
 				this.navCtrl.popToRoot();
 			}
-		})
-		// }
-	}
+      })
+      // }
+   }
 }

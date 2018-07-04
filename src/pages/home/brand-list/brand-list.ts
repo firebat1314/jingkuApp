@@ -212,11 +212,22 @@ export class BrandListPage {
          callback: {
             search: (key, type) => {
                this.paramsData.keywords = key;
-               this.isCut = false;
-               this.isDistribution = false;
                switch (type) {
-                  case '2': this.isCut = true; break;
-                  case '3': this.isDistribution = true; break;
+                  case '2': {
+                     this.httpService.search_census({ type: 'cutting', search_name: key });//搜索统计接口
+                     this.isCut = 1;
+                     this.isDistribution = 0;
+                  }; break;
+                  case '3': {
+                     this.httpService.search_census({ type: 'distribution', search_name: key });//搜索统计接口
+                     this.isCut = 0;
+                     this.isDistribution = 1;
+                  }; break;
+                  default: {
+                     this.httpService.search_census({ type: 'goods', search_name: key });//搜索统计接口
+                     this.isCut = 0;
+                     this.isDistribution = 0;
+                  }; break;
                }
                this.getListData();
             }

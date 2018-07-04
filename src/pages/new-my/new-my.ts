@@ -15,7 +15,6 @@ import { Subscription } from 'rxjs/Subscription';
    templateUrl: 'new-my.html'
 })
 export class NewMyPage {
-   FmCreditindex: any;
    currentUser: Subscription;
    usercount: any;
    userInfo: any;
@@ -42,7 +41,6 @@ export class NewMyPage {
       })
       this.currentUser = this.mine.currentUser.subscribe(data => {
          this.userInfo = data;
-         if (!data.data.wx_openid && !this.native.isWeixin()) this.httpService.weixingetOauthRedirect({ user_id: data.data.user_info.user_id });
       })
    }
    ionViewDidLoad() {
@@ -69,11 +67,6 @@ export class NewMyPage {
          this.baitiao = res;
          this.httpService.setByName('userBaitiao', res);
       })
-      this.httpService.FmCreditindex().then(res => {
-         if (res.status == 1) {
-            this.FmCreditindex = res;
-         }
-      })
       this.mine.changeUser();
       return this.httpService.userCount().then((res) => {
          if (res.status) {
@@ -81,6 +74,9 @@ export class NewMyPage {
             this.httpService.setByName('usercount', res);
          }
       })
+   }
+   bindWeixin() {
+      if (!this.userInfo.data.wx_openid && !this.native.isWeixin()) this.httpService.weixingetOauthRedirect({ user_id: this.userInfo.data.user_info.user_id });
    }
    /*下拉刷新*/
    doRefresh(refresher) {
@@ -134,34 +130,5 @@ export class NewMyPage {
       // } else {
       // this.native.showToast('该功能现仅在安卓客户端开放', null, true);
       // }
-   }
-   openFmCredit() {
-      this.httpService.FmCreditGate().then(res => {
-         if(res.status==1){
-            this.navCtrl.push('IframeBrowserPage', {
-               browser: {
-                  title: '镜库金融',
-                  url: 'https://www.jingku.cn/openFmCredit.html?data=' + encodeURIComponent(res.data) + '&url=' + encodeURIComponent(res.api_url),
-   
-               }
-            })
-         }
-         // this.navCtrl.push('ViewerContractPage',{url:'http://newpc.jingkoo.net/openFmCredit.html?data=' + encodeURIComponent(res.data) + '&url=' + encodeURIComponent(res.api_url)});
-         // if (this.native.isMobile()) {
-         // this.iab.create('http://newpc.jingkoo.net/openFmCredit.html?data=' + encodeURIComponent(res.data) + '&url=' + encodeURIComponent(res.api_url), this.native.isMobile() ? '_system' : '_self');
-      })
-      // } else {
-      // 	var tempwindow = window.open(); // 先打开页面
-      // 	this.httpService.FmCreditGate().then(res => {
-      // 		tempwindow.location.href = 'http://newpc.jingkoo.net/openFmCredit.html?data=' + encodeURIComponent(res.data) + '&url=' + encodeURIComponent(res.api_url); // 后更改页面地址
-      // 	})
-      // }
-   }
-   openSHD() {
-      this.httpService.Shd_add_user().then(res => {
-         if (res.status == 1) {
-            this.navCtrl.push('BTIndexPage');
-         }
-      })
    }
 }

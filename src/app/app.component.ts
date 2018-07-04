@@ -7,7 +7,12 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 import { TabsPage } from '../pages/tabs/tabs';
 import { Native } from "../providers/native";
 import { UpgradeProvider } from '../providers/upgrade/upgrade';
+<<<<<<< HEAD
 import { JpushService } from '../providers/jpush-service';
+=======
+import { IP } from '../providers/constants';
+import { HttpService } from '../providers/http-service';
+>>>>>>> fe8e156... 金融板块，属性修改
 
 declare var BaiduMobStat: any;
 @Component({
@@ -32,6 +37,8 @@ export class MyApp {
       private upgradeProvider: UpgradeProvider,
       private jpushServ: JpushService,
       private app: App,
+      private wxService: WxServiceProvider,
+      private httpServ: HttpService,
    ) {
       //———————————————————————— app更新 ————————————————————————
       this.initializeApp();
@@ -60,6 +67,18 @@ export class MyApp {
             BaiduMobStat.onPageEnd(e.id);
          }
       })
+      
+      this.app.viewWillEnter.subscribe((e) => {//网站点击统计
+         if (e._cssClass == 'ion-page') {
+            if(e.id=="ParticularsPage"){
+               this.httpServ.click_census({ type: 'goods', url: '/' + location.hash, id: e.data.goodsId });//用户点击统计
+            }
+            if(e.id=="HelperDetailsPage"){
+               this.httpServ.click_census({ type: 'article', url: '/' + location.hash, id: e.data.article_id });//用户点击统计
+            }
+         }
+      })
+
    }
    ngOnDestroy() {
       this.events.unsubscribe("signOut");

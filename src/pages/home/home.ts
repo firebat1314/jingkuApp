@@ -117,6 +117,26 @@ export class HomePage {
          this.baitiao = res;
          this.httpService.setByName('userBaitiao', res);
       })
+      this.httpService.recommendGoods({ id: 3 }).then((res) => {
+         if (res.status == 1) {
+            this.getCategoryRecommendGoodsHot = res.list;
+         }
+      })
+      this.httpService.recommendGoods({ id: 4 }).then((res) => {
+         if (res.status == 1) {
+            this.getCategoryRecommendGoods = res.list;
+         }
+      })
+      this.httpService.recommendGoods({ id: 5 }).then((res) => {
+         if (res.status == 1) {
+            this.getCategoryRecommendGoodsBest = res.list;
+         }
+      })
+      this.httpService.recommendGoods({ id: 6 }).then((res) => {
+         if (res.status == 1) {
+            this.indexHotGoods = res.list;//热门商品
+         }
+      })
       return this.httpService.indexs().then((res) => {
          if (res.status == 1) {
             this.data = res;
@@ -148,17 +168,12 @@ export class HomePage {
       this.getBrands = res.data.ads_sgx[0];
       //精选专题 大图1
       this.jingxuan_img1 = res.data.ads_jxzt[0];
-      this.getCategoryRecommendGoodsHot = res.data.hot_recommend_goods;
       //精选专题 大图2
       this.jingxuan_img2 = res.data.ads_jxzttwo[0];
-      this.getCategoryRecommendGoods = res.data.new_recommend_goods;
       //精选专题 大图3
       this.jingxuan_img3 = res.data.ads_jxztThree[0];
-      this.getCategoryRecommendGoodsBest = res.data.best_recommend_goods;
       //好店推荐
       this.jingxuan_img4 = res.data.ads_hdtj;
-      //热门商品
-      this.indexHotGoods = res.data.index_hot_goods;
    }
    /*下拉刷新*/
    doRefresh(refresher) {

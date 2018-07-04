@@ -197,7 +197,14 @@ export class ParticularsPage {
 			headData: this.getGoodsInfo.data,
 			id: this.goodsId,
 			cutId: this.cutId,
-			dId: this.dId
+         dId: this.dId,
+         callback:{
+            navCtrl:this.navCtrl,
+            refresher:(id)=>{
+               this.goodsId = id;
+               return this.getHttpDetails();
+            }
+         }
 		}, { cssClass: 'my-modal-style' });
 		modal.onDidDismiss(data => {
 			if (!data) return;
