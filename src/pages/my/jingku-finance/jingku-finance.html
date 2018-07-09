@@ -50,8 +50,8 @@
     </div>
     <button ion-button block large margin-top *ngIf="activeIndex==0" (click)="openFmCredit()">{{FmCreditindex?.data?.available_amount ? '¥'+FmCreditindex?.data?.available_amount : FmCreditindex?.data?.status_name? FmCreditindex?.data?.status_name : '立即申请'}}</button>
     <button ion-button block large margin-top *ngIf="activeIndex==1" (click)="openSHD()">快速激活</button>
-    <button ion-button block large margin-top *ngIf="activeIndex==2" [ads-click]="data?.pos[0]?.link_type">立即申请信用卡</button>
-    <button ion-button block large margin-top *ngIf="activeIndex==3" [ads-click]="data?.xinyong[0]?.link_type">立即开通POS机</button>
+    <button ion-button block large margin-top *ngIf="activeIndex==2" [ads-click]="data?.pos[0]">立即申请信用卡</button>
+    <button ion-button block large margin-top *ngIf="activeIndex==3" [ads-click]="data?.xinyong[0]">立即开通POS机</button>
    </div>
 </ion-content>
 =======

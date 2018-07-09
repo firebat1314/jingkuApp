@@ -76,10 +76,10 @@ export class NewMyPage {
       })
    }
    bindWeixin() {
-      this.httpService.weixingetOauthRedirect({ user_id: this.userInfo.data.user_info.user_id }).then((res)=>{
-          if(res.status==1){
-              location.href = res.url;
-          }
+      this.httpService.weixingetOauthRedirect({ user_id: this.userInfo.data.user_info.user_id }).then((res) => {
+         if (res.status == 1) {
+            location.href = res.url;
+         }
       });
    }
    /*下拉刷新*/

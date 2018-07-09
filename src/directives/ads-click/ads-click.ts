@@ -12,6 +12,7 @@ import { HttpService } from '../../providers/http-service';
    selector: '[ads-click]' // Attribute selector
 })
 export class AdsClickDirective {
+   link_type: any;
 
    constructor(
       private navCtrl: NavController,
@@ -20,11 +21,12 @@ export class AdsClickDirective {
    ) {
       // console.log('Hello AdsClickDirective Directive');
    }
-   @Input('ads-click') link_type: any;
+   @Input('ads-click') data: any;
 
    @HostListener('click') onClick() {
+      this.link_type = this.data.link_type || {};
       console.log(this.link_type);
-      this.httpServ.click_census({ type: 'ad', url: '/' + location.href, id: this.link_type.type_value });//用户点击统计
+      this.httpServ.click_census({ type: 'ad', url: '/' + location.href, id: this.data.ad_id });//用户点击统计
       
       if (this.link_type.type_name == 'category') {
          this.goBrandListPage({ listId: this.link_type.type_value });
