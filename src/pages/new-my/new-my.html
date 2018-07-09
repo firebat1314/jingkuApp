@@ -240,7 +240,7 @@
                     </span>
                     <span class="txt">镜库客服</span>
                 </a>
-                <a (click)="bindWeixin()">
+                <a (click)="bindWeixin()" *ngIf="native.isWeixin()">
                     <span class="icon_num">
                         <img src="./assets/icon/weichat.png" alt="">
                     </span>

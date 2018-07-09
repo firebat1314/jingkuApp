@@ -1,222 +1,236 @@
 <ion-content>
-    <div style="position: absolute;top: 9px;right: 14px;font-size: 18px;z-index: 11;color: #666;" (click)="dismiss()">
-        <ion-icon name="ios-close-circle-outline"></ion-icon>
-    </div>
-    <ion-item no-lines class="head">
-        <ion-thumbnail item-left>
-            <img img-lazy-load="{{headData?.goods_thumb}}">
-        </ion-thumbnail>
-        <h2 margin-right>{{headData?.goods_name}}</h2>
-        <p class="goods_sn">商品编号：{{headData?.goods_sn}}</p>
-        <p class="shop_price" *ngIf="mine.showPrice">{{headData?.shop_price | prefix}}</p>
-    </ion-item>
-    <div *ngIf="type=='goods'" class="main goods_main">
-        <!-- is_subsidy 是否显示促销价 -->
-        <div class="main-attr" *ngIf="mainAttrs&&goods_attribute?.goods_info?.goods_type!=8">
-            <div class="main-attr-wrap">
-            <a class="attr" [class.on]="item.id==checkMainAttrId" *ngFor="let item of mainAttrs?.values" (click)="checkMainAttr(item)">{{item.label}}</a>
-            </div>
-        </div>
-      <div class="main-attr"  *ngIf="goods_attribute?.goods_info?.goods_type==8&&goodsInfo?.linked_goods?.length>0">
-         <!-- 当护理液没有主属性且商品goods_type=8 -->
-         <div class="main-attr-tit">
-            <span>关联商品</span>
-         </div>
-         <div class="main-attr-wrap">
-            <a class="attr" *ngFor="let item of goodsInfo?.linked_goods" (click)="checklinkedGoods(item)">{{item.title||item.goods_name}}</a>
-         </div>
+  <div style="position: absolute;top: 9px;right: 14px;font-size: 18px;z-index: 11;color: #666;" (click)="dismiss()">
+    <ion-icon name="ios-close-circle-outline"></ion-icon>
+  </div>
+  <ion-item no-lines class="head">
+    <ion-thumbnail item-left>
+      <img img-lazy-load="{{headData?.goods_thumb}}">
+    </ion-thumbnail>
+    <h2 margin-right>{{headData?.goods_name}}</h2>
+    <p class="goods_sn">商品编号：{{headData?.goods_sn}}</p>
+    <p class="shop_price" *ngIf="mine.showPrice">{{headData?.shop_price | prefix}}</p>
+  </ion-item>
+  <div *ngIf="type=='goods'" class="main goods_main">
+    <!-- is_subsidy 是否显示促销价 -->
+    <div class="main-attr" *ngIf="mainAttrs&&goods_attribute?.goods_info?.goods_type!=8">
+      <div class="main-attr-wrap">
+        <a class="attr" [class.on]="item.id==checkMainAttrId" *ngFor="let item of mainAttrs?.values" (click)="checkMainAttr(item)">{{item.label}}</a>
       </div>
-        <div style="text-align: center;" *ngIf="!attrsList">
-            <ion-spinner name="crescent"></ion-spinner>
-        </div>
-        <div style="text-align: center;" *ngIf="attrsList&&!attrsList.status">属性获取失败</div>
-        <div class="tabelbox" *ngIf="attrsList&&attrsList?.status">
-            <div class="table">
-                <div class="tr">
-                    <div class="td-wrap">
-                        <div *ngIf="!(dId>0)" class="td">数量</div>
-                        <div class="td" *ngIf="attrsList?.data[0]?.is_subsidy&&mine.showPrice">促销价</div>
-                        <div class="td" *ngIf="attrsList?.data[0]?.is_subsidy&&mine.showPrice">原价</div>
-                        <div class="td" *ngIf="!attrsList?.data[0]?.is_subsidy&&mine.showPrice">价格</div>
-                        <div class="td" *ngIf="goods_attribute?.goods_info?.goods_type=='8'&&mainAttrs">箱规</div>
-                        <div class="td" *ngFor="let item of attrsList?.data[0]?.goods_attr">{{item.attr_name}}</div>
-                        <div class="td" *ngIf="!(dId>0)">库存</div>
-                        <div class="td" *ngIf="(dId>0)">铺货数量</div>
-                    </div>
-                </div>
-                <div class="tr" *ngFor="let item of attrsList?.data">
-                    <div class="td-wrap">
-                        <div *ngIf="!(dId>0)" class="td count-input-box">
-                            <count-input style="margin: auto;" [maxValue]="item.product_number" [rank]="checkMainAttrNum" [(value)]="item.goods_attr_number" (valueChange)="numberIChange(item)"></count-input>
-                        </div>
-                        <div class="td" style="color: #ff6a00;" *ngIf="item.is_subsidy&&mine.showPrice">{{item.price}}</div>
-                        <div class="td" *ngIf="item.is_subsidy&&mine.showPrice">{{item.old_price}}</div>
-                        <div class="td" style="color: #ff6a00;" *ngIf="!item.is_subsidy&&mine.showPrice">{{item.price}}</div>
-                        <div class="td" *ngIf="goods_attribute?.goods_info?.goods_type=='8'&&mainAttrs"><span>{{item.mods>1?item.mods+'瓶/'+checkMainAttrLabel:item.mods+'瓶'}}</span></div>
-                        <div class="td" *ngFor="let group of item.goods_attr">{{group.attr_val}}</div>
-                        <div class="td" *ngIf="!(dId>0)">{{item.product_number}}</div>
-                        <div class="td" *ngIf="(dId>0)">{{item.number}}</div>
-                    </div>
-                    <div class="other-attr" *ngIf="item.alone_attr?.length">
-                        <span *ngFor="let group of item.alone_attr">
-                            {{group.attr_name+'：'+group.attr_val}}&nbsp;
-                        </span>
-                    </div>
-                </div>
-            </div>
-        </div>
     </div>
-    <div *ngIf="type=='goods_spectacles'&&dId>0&&distributionInfo" class="main goods_main">
-        <!-- <div style="text-align: center;" *ngIf="!distributionInfo">
-            <ion-spinner name="crescent"></ion-spinner>
-        </div> -->
-        <div style="text-align: center;" *ngIf="!distributionInfo">属性查询失败</div>
-        <div class="tabelbox" *ngIf="distributionInfo?.list">
-            <div class="table">
-                <div class="tr">
-                    <div class="td-wrap">
-                        <div class="td">球镜</div>
-                        <div class="td">柱镜</div>
-                        <div class="td" *ngFor="let item of distributionInfo?.list[0]?.goods_attr">{{item.attr_name}}</div>
-                        <div class="td" *ngIf="mine.showPrice">铺货单价</div>
-                        <div class="td">铺货数量</div>
-                    </div>
-                </div>
-                <div class="tr" *ngFor="let item of distributionInfo?.list">
-                    <div class="td-wrap">
-                        <div class="td" *ngIf="mine.showPrice">{{item.qiujing}}</div>
-                        <div class="td" *ngIf="mine.showPrice">{{item.zhujing}}</div>
-                        <div class="td" *ngFor="let group of item.goods_attr">{{group.attr_val}}</div>
-                        <div class="td" *ngIf="mine.showPrice">{{item.price}}</div>
-                        <div class="td">{{item.number}}</div>
-                    </div>
-                    <div class="other-attr" *ngIf="item?.alone_attr?.length">
-                        <span *ngFor="let group of item.alone_attr">
-                            {{group.attr_name+'：'+group.attr_val}}&nbsp;
-                        </span>
-                    </div>
-                </div>
-            </div>
-        </div>
+    <div class="main-attr" *ngIf="goods_attribute?.goods_info?.goods_type==8&&goodsInfo?.linked_goods?.length>0">
+      <!-- 当护理液没有主属性且商品goods_type=8 -->
+      <div class="main-attr-tit">
+        <span>关联商品</span>
+      </div>
+      <div class="main-attr-wrap">
+        <a class="attr" *ngFor="let item of goodsInfo?.linked_goods" (click)="checklinkedGoods(item)">{{item.title||item.goods_name}}</a>
+      </div>
     </div>
-    <div *ngIf="type=='goods_spectacles'&&!(cutId>0)&&!(dId>0)" class="main goods_spectacles_main">
-        <!-- <div class="title">请选择蔡司1.56非球面镜片信息</div> -->
-        <ng-container *ngIf="goods_attribute">
-            <div class="fore" *ngFor="let it of goods;let i=index">
-                <div class="top">
-                    <ion-select placeholder="选择球镜" [(ngModel)]="it.qiujing" (ionChange)="qiujingChange(it);" [selectOptions]="{title: '选择球镜'}" okText="确定" cancelText="取消">
-                        <ion-option *ngFor="let item of goods_attribute.spectacles_properties.list">{{item}}</ion-option>
-                    </ion-select>
-                    <ion-select [disabled]="!it.getZhujingList" [(ngModel)]="it.zhujing" (ionChange)="attrChange(it)" placeholder="选择柱镜" [selectOptions]="{title: '选择柱镜'}" okText="确定" cancelText="取消">
-                        <ion-option *ngFor="let item of it.getZhujingList?.data">{{item}}</ion-option>
-                    </ion-select>
-                    <div class="input" *ngIf="headData?.zhouwei==1">
-                        <input type="text" [(ngModel)]="it.zhouwei" placeholder="轴位">
-                    </div>
-                    <ion-select *ngFor="let item of goods_attribute.specification;let i=index" (ionChange)="attrChange(it)" [(ngModel)]="it[item.name]" placeholder="{{item.name}}" [selectOptions]="{title: item.name}" okText="确定" cancelText="取消">
-                        <ion-option *ngFor="let item1 of item?.values" value="{{item1.id}}">{{item1.label}}</ion-option>
-                    </ion-select>
-                </div>
-                <div class="bottom">
-                    <div class="price" *ngIf="mine?.showPrice">{{it.price||'0.00' | prefix}}&nbsp;&nbsp;
-                        <span class="youhui" *ngIf="it.youhui>0">优惠：{{it.youhui | prefix}}</span>
-                    </div>&nbsp;
-                    <div class="tool">
-                        <ion-icon tappable (click)="removeJPByIndex($event,i)" *ngIf="goods&&goods.length>1" name="ios-trash-outline"></ion-icon>
-                        <count-input [(value)]="it.number" (valueChange)="jingpianNumberChange(it)"></count-input>
-                    </div>
-                </div>
-            </div>
-        </ng-container>
-        <div class="handle">
-            <button ion-button color="light" (click)="increasedJP()">新增一行 ＋</button>
-            <button ion-button [disabled]="goods?.length<=1" color="light" (click)="removeJPByIndex($event,goods.length-1)">删除一行 －</button>
-        </div>
+    <div style="text-align: center;" *ngIf="!attrsList">
+      <ion-spinner name="crescent"></ion-spinner>
     </div>
-
-    <div *ngIf="(cutId>0)" class="cut-main goods_main">
-      <div class="main-attr">
-            <div class="main-attr-wrap" style="overflow: initial;flex-wrap: wrap">
-               <a class="attr" [class.on]="checkCutGoodsId==goodsId" (click)="checkCutGoodsId=goodsId;clear();getAttrList()">样品</a>
-               <a class="attr" [class.on]="item.goods_id==checkCutGoodsId" *ngFor="let item of cutting_info?.cutting_list;let cut_index = index;" (click)="checkCutGoodsId=item.goods_id;clearJp();getGoodsAttribute(item.goods_id)">{{item.goods_name}}</a>
-            </div>
-         </div>
-
-        <div style="text-align: center;" *ngIf="!attrsList">
-            <ion-spinner name="crescent"></ion-spinner>
+    <div style="text-align: center;" *ngIf="attrsList&&!attrsList.status">属性获取失败</div>
+    <div class="tabelbox" *ngIf="attrsList&&attrsList?.status">
+      <div class="table">
+        <div class="tr">
+          <div class="td-wrap">
+            <div *ngIf="!(dId>0)" class="td">数量</div>
+            <div class="td" *ngIf="attrsList?.data[0]?.is_subsidy&&mine.showPrice">促销价</div>
+            <div class="td" *ngIf="attrsList?.data[0]?.is_subsidy&&mine.showPrice">原价</div>
+            <div class="td" *ngIf="!attrsList?.data[0]?.is_subsidy&&mine.showPrice">价格</div>
+            <!-- <div class="td" *ngIf="goods_attribute?.goods_info?.goods_type=='8'&&mainAttrs">箱规</div> -->
+            <div class="td" *ngFor="let item of attrsList?.data[0]?.goods_attr">{{item.attr_name}}</div>
+            <div class="td" *ngIf="!(dId>0)">库存</div>
+            <div class="td" *ngIf="(dId>0)">铺货数量</div>
+          </div>
         </div>
-        <div class="tabelbox" *ngIf="attrsList&&checkCutGoodsId==goodsId">
-            <div class="table">
-                <div class="tr">
-                    <div class="td-wrap">
-                        <div class="td">数量</div>
-                        <div class="td" *ngIf="attrsList?.data[0]?.is_subsidy&&mine.showPrice">促销价</div>
-                        <div class="td" *ngIf="attrsList?.data[0]?.is_subsidy&&mine.showPrice">原价</div>
-                        <div class="td" *ngIf="!attrsList?.data[0]?.is_subsidy&&mine.showPrice">价格</div>
-                        <div class="td" *ngFor="let item of attrsList?.data[0]?.goods_attr">{{item.attr_name}}</div>
-                        <div class="td">库存</div>
-                    </div>
-                </div>
-                <div class="tr" *ngFor="let item of attrsList?.data">
-                    <div class="td-wrap">
-                        <div class="td count-input-box">
-                            <count-input [maxValue]="item.product_number" [rank]="checkMainAttrNum" [(value)]="item.goods_attr_number" (valueChange)="numberIChange(item)"></count-input>
-                        </div>
-                        <div class="td" style="color: #ff6a00;" *ngIf="item.is_subsidy&&mine.showPrice">{{item.price}}</div>
-                        <div class="td" *ngIf="item.is_subsidy&&mine.showPrice">{{item.old_price}}</div>
-                        <div class="td" style="color: #ff6a00;" *ngIf="!item.is_subsidy&&mine.showPrice">{{item.price}}</div>
-                        <div class="td" *ngFor="let group of item.goods_attr">{{group.attr_val}}</div>
-                        <div class="td">{{item.product_number}}</div>
-                    </div>
-                    <div class="other-attr" *ngIf="item.alone_attr?.length">
-                        <span *ngFor="let group of item.alone_attr">
-                            {{group.attr_name+'：'+group.attr_val}}&nbsp;
-                        </span>
-                    </div>
-                </div>
+        <div class="tr" *ngFor="let item of attrsList?.data">
+          <div class="td-wrap">
+            <div *ngIf="!(dId>0)" class="td count-input-box">
+              <count-input style="margin: auto;" [maxValue]="item.product_number" [rank]="checkMainAttrNum" [(value)]="item.goods_attr_number"
+                (valueChange)="numberIChange(item)"></count-input>
             </div>
+            <div class="td" style="color: #ff6a00;" *ngIf="item.is_subsidy&&mine.showPrice">{{item.price}}
+              <span style="color: #666666;">{{item?.hly_attr?.attr_val?'/'+item?.hly_attr?.attr_val:''}}</span>
+            </div>
+            <div class="td" *ngIf="item.is_subsidy&&mine.showPrice">{{item.old_price}}
+              <span style="color: #666666;">{{item?.hly_attr?.attr_val?'/'+item?.hly_attr?.attr_val:''}}</span>
+            </div>
+            <div class="td" style="color: #ff6a00;" *ngIf="!item.is_subsidy&&mine.showPrice">{{item.price}}
+              <span style="color: #666666;">{{item?.hly_attr?.attr_val?'/'+item?.hly_attr?.attr_val:''}}</span>
+            </div>
+            <!-- <div class="td" *ngIf="goods_attribute?.goods_info?.goods_type=='8'&&mainAttrs"><span>{{item.mods>1?item.mods+'瓶/'+checkMainAttrLabel:item.mods+'瓶'}}</span></div> -->
+            <div class="td" *ngFor="let group of item.goods_attr">{{group.attr_val}}</div>
+            <div class="td" *ngIf="!(dId>0)">{{item.product_number}}</div>
+            <div class="td" *ngIf="(dId>0)">{{item.number}}</div>
+          </div>
+          <div class="other-attr" *ngIf="item.alone_attr?.length">
+            <span *ngFor="let group of item.alone_attr">
+              {{group.attr_name+'：'+group.attr_val}}&nbsp;
+            </span>
+          </div>
         </div>
-        <!-- <div style="text-align: center;" *ngIf="!goods_attribute&&checkCutGoodsId!=goodsId">
+      </div>
+    </div>
+  </div>
+  <div *ngIf="type=='goods_spectacles'&&dId>0&&distributionInfo" class="main goods_main">
+    <!-- <div style="text-align: center;" *ngIf="!distributionInfo">
             <ion-spinner name="crescent"></ion-spinner>
         </div> -->
-        <ng-container *ngIf="goods_attribute&&checkCutGoodsId!=goodsId">
-            <div class="fore" *ngFor="let it of goods;let i=index">
-                <div class="top">
-                    <ion-select placeholder="选择球镜" [(ngModel)]="it.qiujing" (ionChange)="qiujingChange(it);" [selectOptions]="{title: '选择球镜'}" okText="确定" cancelText="取消">
-                        <ion-option *ngFor="let item of goods_attribute.spectacles_properties.list">{{item}}</ion-option>
-                    </ion-select>
-                    <ion-select [disabled]="!it.getZhujingList" [(ngModel)]="it.zhujing" (ionChange)="attrChange(it)" placeholder="选择柱镜" [selectOptions]="{title: '选择柱镜'}" okText="确定" cancelText="取消">
-                        <ion-option *ngFor="let item of it.getZhujingList?.data">{{item}}</ion-option>
-                    </ion-select>
-                    <div class="input" *ngIf="goods_attribute?.zhouwei=='1'">
-                        <input type="text" [(ngModel)]="it.zhouwei" placeholder="轴位">
-                    </div>
-                    <ion-select [disabled]="item.disable" *ngFor="let item of goods_attribute.specification;let i=index" (ionChange)="attrChange(it)" [(ngModel)]="it[item.name]" placeholder="{{item.name}}" [selectOptions]="{title: item.name}" okText="确定" cancelText="取消">
-                        <ion-option *ngFor="let item1 of item?.values" value="{{item1.id}}">{{item1.label}}</ion-option>
-                    </ion-select>
-                </div>
-                <div class="bottom" *ngIf="mine.showPrice">
-                    <div class="price">{{it.price||'0.00' | prefix}}&nbsp;&nbsp;&nbsp;
-                        <span class="youhui" *ngIf="it.youhui>0">优惠：{{it.youhui | prefix}}</span>
-                    </div>
-                </div>
-            </div>
-        </ng-container>
+    <div style="text-align: center;" *ngIf="!distributionInfo">属性查询失败</div>
+    <div class="tabelbox" *ngIf="distributionInfo?.list">
+      <div class="table">
+        <div class="tr">
+          <div class="td-wrap">
+            <div class="td">球镜</div>
+            <div class="td">柱镜</div>
+            <div class="td" *ngFor="let item of distributionInfo?.list[0]?.goods_attr">{{item.attr_name}}</div>
+            <div class="td" *ngIf="mine.showPrice">铺货单价</div>
+            <div class="td">铺货数量</div>
+          </div>
+        </div>
+        <div class="tr" *ngFor="let item of distributionInfo?.list">
+          <div class="td-wrap">
+            <div class="td" *ngIf="mine.showPrice">{{item.qiujing}}</div>
+            <div class="td" *ngIf="mine.showPrice">{{item.zhujing}}</div>
+            <div class="td" *ngFor="let group of item.goods_attr">{{group.attr_val}}</div>
+            <div class="td" *ngIf="mine.showPrice">{{item.price}}</div>
+            <div class="td">{{item.number}}</div>
+          </div>
+          <div class="other-attr" *ngIf="item?.alone_attr?.length">
+            <span *ngFor="let group of item.alone_attr">
+              {{group.attr_name+'：'+group.attr_val}}&nbsp;
+            </span>
+          </div>
+        </div>
+      </div>
     </div>
+  </div>
+  <div *ngIf="type=='goods_spectacles'&&!(cutId>0)&&!(dId>0)" class="main goods_spectacles_main">
+    <!-- <div class="title">请选择蔡司1.56非球面镜片信息</div> -->
+    <ng-container *ngIf="goods_attribute">
+      <div class="fore" *ngFor="let it of goods;let i=index">
+        <div class="top">
+          <ion-select placeholder="选择球镜" [(ngModel)]="it.qiujing" (ionChange)="qiujingChange(it);" [selectOptions]="{title: '选择球镜'}"
+            okText="确定" cancelText="取消">
+            <ion-option *ngFor="let item of goods_attribute.spectacles_properties.list">{{item}}</ion-option>
+          </ion-select>
+          <ion-select [disabled]="!it.getZhujingList" [(ngModel)]="it.zhujing" (ionChange)="attrChange(it)" placeholder="选择柱镜" [selectOptions]="{title: '选择柱镜'}"
+            okText="确定" cancelText="取消">
+            <ion-option *ngFor="let item of it.getZhujingList?.data">{{item}}</ion-option>
+          </ion-select>
+          <div class="input" *ngIf="headData?.zhouwei==1">
+            <input type="text" [(ngModel)]="it.zhouwei" placeholder="轴位">
+          </div>
+          <ion-select *ngFor="let item of goods_attribute.specification;let i=index" (ionChange)="attrChange(it)" [(ngModel)]="it[item.name]"
+            placeholder="{{item.name}}" [selectOptions]="{title: item.name}" okText="确定" cancelText="取消">
+            <ion-option *ngFor="let item1 of item?.values" value="{{item1.id}}">{{item1.label}}</ion-option>
+          </ion-select>
+        </div>
+        <div class="bottom">
+          <div class="price" *ngIf="mine?.showPrice">{{it.price||'0.00' | prefix}}&nbsp;&nbsp;
+            <span class="youhui" *ngIf="it.youhui>0">优惠：{{it.youhui | prefix}}</span>
+          </div>&nbsp;
+          <div class="tool">
+            <ion-icon tappable (click)="removeJPByIndex($event,i)" *ngIf="goods&&goods.length>1" name="ios-trash-outline"></ion-icon>
+            <count-input [(value)]="it.number" (valueChange)="jingpianNumberChange(it)"></count-input>
+          </div>
+        </div>
+      </div>
+    </ng-container>
+    <div class="handle">
+      <button ion-button color="light" (click)="increasedJP()">新增一行 ＋</button>
+      <button ion-button [disabled]="goods?.length<=1" color="light" (click)="removeJPByIndex($event,goods.length-1)">删除一行 －</button>
+    </div>
+  </div>
+
+  <div *ngIf="(cutId>0)" class="cut-main goods_main">
+    <div class="main-attr">
+      <div class="main-attr-wrap" style="overflow: initial;flex-wrap: wrap">
+        <a class="attr" [class.on]="checkCutGoodsId==goodsId" (click)="checkCutGoodsId=goodsId;clear();getAttrList()">样品</a>
+        <a class="attr" [class.on]="item.goods_id==checkCutGoodsId" *ngFor="let item of cutting_info?.cutting_list;let cut_index = index;"
+          (click)="checkCutGoodsId=item.goods_id;clearJp();getGoodsAttribute(item.goods_id)">{{item.goods_name}}</a>
+      </div>
+    </div>
+
+    <div style="text-align: center;" *ngIf="!attrsList">
+      <ion-spinner name="crescent"></ion-spinner>
+    </div>
+    <div class="tabelbox" *ngIf="attrsList&&checkCutGoodsId==goodsId">
+      <div class="table">
+        <div class="tr">
+          <div class="td-wrap">
+            <div class="td">数量</div>
+            <div class="td" *ngIf="attrsList?.data[0]?.is_subsidy&&mine.showPrice">促销价</div>
+            <div class="td" *ngIf="attrsList?.data[0]?.is_subsidy&&mine.showPrice">原价</div>
+            <div class="td" *ngIf="!attrsList?.data[0]?.is_subsidy&&mine.showPrice">价格</div>
+            <div class="td" *ngFor="let item of attrsList?.data[0]?.goods_attr">{{item.attr_name}}</div>
+            <div class="td">库存</div>
+          </div>
+        </div>
+        <div class="tr" *ngFor="let item of attrsList?.data">
+          <div class="td-wrap">
+            <div class="td count-input-box">
+              <count-input [maxValue]="item.product_number" [rank]="checkMainAttrNum" [(value)]="item.goods_attr_number" (valueChange)="numberIChange(item)"></count-input>
+            </div>
+            <div class="td" style="color: #ff6a00;" *ngIf="item.is_subsidy&&mine.showPrice">{{item.price}}</div>
+            <div class="td" *ngIf="item.is_subsidy&&mine.showPrice">{{item.old_price}}</div>
+            <div class="td" style="color: #ff6a00;" *ngIf="!item.is_subsidy&&mine.showPrice">{{item.price}}</div>
+            <div class="td" *ngFor="let group of item.goods_attr">{{group.attr_val}}</div>
+            <div class="td">{{item.product_number}}</div>
+          </div>
+          <div class="other-attr" *ngIf="item.alone_attr?.length">
+            <span *ngFor="let group of item.alone_attr">
+              {{group.attr_name+'：'+group.attr_val}}&nbsp;
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- <div style="text-align: center;" *ngIf="!goods_attribute&&checkCutGoodsId!=goodsId">
+            <ion-spinner name="crescent"></ion-spinner>
+        </div> -->
+    <ng-container *ngIf="goods_attribute&&checkCutGoodsId!=goodsId">
+      <div class="fore" *ngFor="let it of goods;let i=index">
+        <div class="top">
+          <ion-select placeholder="选择球镜" [(ngModel)]="it.qiujing" (ionChange)="qiujingChange(it);" [selectOptions]="{title: '选择球镜'}"
+            okText="确定" cancelText="取消">
+            <ion-option *ngFor="let item of goods_attribute.spectacles_properties.list">{{item}}</ion-option>
+          </ion-select>
+          <ion-select [disabled]="!it.getZhujingList" [(ngModel)]="it.zhujing" (ionChange)="attrChange(it)" placeholder="选择柱镜" [selectOptions]="{title: '选择柱镜'}"
+            okText="确定" cancelText="取消">
+            <ion-option *ngFor="let item of it.getZhujingList?.data">{{item}}</ion-option>
+          </ion-select>
+          <div class="input" *ngIf="goods_attribute?.zhouwei=='1'">
+            <input type="text" [(ngModel)]="it.zhouwei" placeholder="轴位">
+          </div>
+          <ion-select [disabled]="item.disable" *ngFor="let item of goods_attribute.specification;let i=index" (ionChange)="attrChange(it)"
+            [(ngModel)]="it[item.name]" placeholder="{{item.name}}" [selectOptions]="{title: item.name}" okText="确定" cancelText="取消">
+            <ion-option *ngFor="let item1 of item?.values" value="{{item1.id}}">{{item1.label}}</ion-option>
+          </ion-select>
+        </div>
+        <div class="bottom" *ngIf="mine.showPrice">
+          <div class="price">{{it.price||'0.00' | prefix}}&nbsp;&nbsp;&nbsp;
+            <span class="youhui" *ngIf="it.youhui>0">优惠：{{it.youhui | prefix}}</span>
+          </div>
+        </div>
+      </div>
+    </ng-container>
+  </div>
 </ion-content>
 <ion-footer>
-    <ion-toolbar *ngIf="!(dId>0)">
-        <div class="result">
-            <span>共{{totalNumber||0}}件</span>
-            <span *ngIf="mine?.showPrice">合计：{{totalPrices||0 | tofixed | prefix}}</span>
-            <!-- &&!(attrsList?.is_users_child==1||goods_attribute?.is_users_child==1) -->
-        </div>
-    </ion-toolbar>
-    <div class="btns">
-        <button *ngIf="!(dId>0)" color="jingku1" no-margin ion-button large full class="modal-button" (click)="addToCart()">加入购物车</button>
-        <button *ngIf="!(dId>0)" color="jingku2" no-margin ion-button large full class="modal-button" (click)="goCarPage() ">立即购买</button>
-        <button *ngIf="(dId>0)" style="width: 100%;" color="jingku1" no-margin ion-button large full class="modal-button" (click)="goWriteOrdersDPage() ">立即铺货</button>
+  <ion-toolbar *ngIf="!(dId>0)">
+    <div class="result">
+      <span>共{{totalNumber||0}}件</span>
+      <span *ngIf="mine?.showPrice">合计：{{totalPrices||0 | tofixed | prefix}}</span>
+      <!-- &&!(attrsList?.is_users_child==1||goods_attribute?.is_users_child==1) -->
     </div>
+  </ion-toolbar>
+  <div class="btns">
+    <button *ngIf="!(dId>0)" color="jingku1" no-margin ion-button large full class="modal-button" (click)="addToCart()">加入购物车</button>
+    <button *ngIf="!(dId>0)" color="jingku2" no-margin ion-button large full class="modal-button" (click)="goCarPage() ">立即购买</button>
+    <button *ngIf="(dId>0)" style="width: 100%;" color="jingku1" no-margin ion-button large full class="modal-button" (click)="goWriteOrdersDPage() ">立即铺货</button>
+  </div>
 </ion-footer>
 <!--    <div class="main">
         <ion-grid>

@@ -17,13 +17,13 @@
     <div *ngIf="data" FadeIn>
         <div class="fore1 banner">
             <ng-container *ngFor="let item of data?.banner">
-                <img [img-lazy-load]="item.ad_img" [ads-click]="item.link_type" alt="">
+                <img [img-lazy-load]="item.ad_img" [ads-click]="item" alt="">
             </ng-container>
         </div>
         <div class="fore2" *ngIf="data?.new_goods?.length>0||data?.banner_dan?.length>0">
             <div class="left">
                 <ng-container *ngFor="let item of data?.new_goods">
-                    <img [img-lazy-load]="item.ad_img" [ads-click]="item.link_type" alt="">
+                    <img [img-lazy-load]="item.ad_img" [ads-click]="item" alt="">
                     <div class="goods_tit">
                         <em>{{item.ad_name}}</em>
                     </div>
@@ -31,7 +31,7 @@
             </div>
             <div class="right">
                 <ng-container *ngFor="let item of data?.banner_dan">
-                    <img [img-lazy-load]="item.ad_img" [ads-click]="item.link_type" alt="">
+                    <img [img-lazy-load]="item.ad_img" [ads-click]="item" alt="">
                     <div class="goods_tit">
                         <em>TOP榜单</em>
                         <span class="goodsname"> / {{item.ad_name}}</span>
@@ -55,7 +55,7 @@
                 <div class="imgs">
                     <ng-container *ngFor="let item of data?.banner_tui">
                         <div>
-                            <img [img-lazy-load]="item.ad_img" [ads-click]="item.link_type" alt="">
+                            <img [img-lazy-load]="item.ad_img" [ads-click]="item" alt="">
                         </div>
                     </ng-container>
                 </div>
@@ -91,7 +91,7 @@
         <div class="fore5 jian" *ngIf="data?.banner_jiang?.length>0">
             <ng-container *ngFor="let item of data?.banner_jiang">
                 <div>
-                    <img width="100%" [img-lazy-load]="item.ad_img" [ads-click]="item.link_type" alt="">
+                    <img width="100%" [img-lazy-load]="item.ad_img" [ads-click]="item" alt="">
                 </div>
             </ng-container>
         </div>

@@ -28,7 +28,7 @@
             <ng-container *ngIf="bannerImgs?.length">
                 <ion-slides #bannerSlide autoplay="4000" pager (ionSlideAutoplayStop)="bannerSlide.startAutoplay()">
                     <!-- *ngIf="bannerImgs" loop-->
-                    <ion-slide *ngFor="let item of bannerImgs" tappable [ads-click]="item.link_type">
+                    <ion-slide *ngFor="let item of bannerImgs" tappable [ads-click]="item">
                         <img [img-lazy-load]="item.ad_img" defaultSrc="./assets/images/images/640-360.jpg" alt="">
                     </ion-slide>
                 </ion-slides>
@@ -119,15 +119,15 @@
         <div *ngIf="userInfo&&userInfo?.data?.user_info?.is_test!=1" class="ad_wrap">
             <div class="line1">
                 <div>
-                    <img img-lazy-load="{{hotBrand_img?.ad_img}}" [ads-click]="hotBrand_img?.link_type" alt="">
+                    <img img-lazy-load="{{hotBrand_img?.ad_img}}" [ads-click]="hotBrand_img" alt="">
                 </div>
                 <div>
-                    <img img-lazy-load="{{categoryAddetatils?.ad_img}}" [ads-click]="categoryAddetatils?.link_type" alt="">
+                    <img img-lazy-load="{{categoryAddetatils?.ad_img}}" [ads-click]="categoryAddetatils" alt="">
                 </div>
             </div>
             <div class="line2">
                 <div>
-                    <img img-lazy-load="{{getBrands?.ad_img}}" [ads-click]="getBrands?.link_type" defaultSrc="./assets/images/images/640-360.jpg" alt="">
+                    <img img-lazy-load="{{getBrands?.ad_img}}" [ads-click]="getBrands" defaultSrc="./assets/images/images/640-360.jpg" alt="">
                 </div>
             </div>
         </div>
@@ -140,11 +140,11 @@
             </div>
             <div class="main">
                 <div class="banner">
-                    <img img-lazy-load="{{hotBrand_img?.ad_img}}" tappable [ads-click]="hotBrand_img?.link_type" defaultSrc="./assets/images/images/640-320.jpg">
+                    <img img-lazy-load="{{hotBrand_img?.ad_img}}" tappable [ads-click]="hotBrand_img" defaultSrc="./assets/images/images/640-320.jpg">
                 </div>
                 <ion-grid>
                     <ion-row wrap>
-                        <ion-col *ngFor="let item of categoryAddetatils" tappable [ads-click]="item?.link_type" width-33 col-4>
+                        <ion-col *ngFor="let item of categoryAddetatils" tappable [ads-click]="item" width-33 col-4>
                             <img img-lazy-load="{{item.ad_img}}">
                         </ion-col>
                     </ion-row>
@@ -160,7 +160,7 @@
             <div class="main" *ngIf="getBrands?.length">
                 <div class="brand-list">
                     <div *ngFor="let item of getBrands">
-                        <img img-lazy-load="{{item.ad_img}}" tappable [ads-click]="item?.link_type">
+                        <img img-lazy-load="{{item.ad_img}}" tappable [ads-click]="item">
                     </div>
                     <div>
                         <img img-lazy-load="./assets/icon/homepage_53.jpg" alt="" tappable (click)="goClassPage('brand')">
@@ -175,7 +175,7 @@
             </div>
             <div class="main">
                 <div class="show">
-                    <img img-lazy-load="{{jingxuan_img1?.ad_img}}" defaultSrc="./assets/images/images/640-320.jpg" tappable [ads-click]="jingxuan_img1?.link_type">
+                    <img img-lazy-load="{{jingxuan_img1?.ad_img}}" defaultSrc="./assets/images/images/640-320.jpg" tappable [ads-click]="jingxuan_img1">
                 </div>
                 <div class="pick">
                     <ion-slides class="slide-title" slidesPerView="3">
@@ -199,7 +199,7 @@
                     </ion-slides>
                 </div>
                 <div class="show">
-                    <img img-lazy-load="{{jingxuan_img2?.ad_img}}" defaultSrc="./assets/images/images/640-320.jpg" tappable [ads-click]="jingxuan_img2?.link_type">
+                    <img img-lazy-load="{{jingxuan_img2?.ad_img}}" defaultSrc="./assets/images/images/640-320.jpg" tappable [ads-click]="jingxuan_img2">
                 </div>
                 <div class="pick">
                     <ion-slides class="slide-title" slidesPerView="3">
@@ -227,7 +227,7 @@
                     </ion-slides>
                 </div>
                 <div class="show">
-                    <img img-lazy-load="{{jingxuan_img3?.ad_img}}" defaultSrc="./assets/images/images/640-320.jpg" tappable [ads-click]="jingxuan_img3?.link_type">
+                    <img img-lazy-load="{{jingxuan_img3?.ad_img}}" defaultSrc="./assets/images/images/640-320.jpg" tappable [ads-click]="jingxuan_img3">
                 </div>
                 <div class="pick">
                     <ion-slides class="slide-title" slidesPerView="3">
@@ -275,7 +275,7 @@
             <ion-slides loop="false" parallax="true" pager>
                 <ion-slide *ngFor="let item of jingxuan_img4">
                     <ion-card>
-                        <img img-lazy-load="{{item?.ad_img}}" defaultSrc="./assets/images/images/640-320.jpg" [ads-click]="item.link_type">
+                        <img img-lazy-load="{{item?.ad_img}}" defaultSrc="./assets/images/images/640-320.jpg" [ads-click]="item">
                         <div class="collect">
                             <div class="left">
                                 <ion-icon name="md-heart-outline"></ion-icon>
