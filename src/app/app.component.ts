@@ -7,12 +7,8 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 import { TabsPage } from '../pages/tabs/tabs';
 import { Native } from "../providers/native";
 import { UpgradeProvider } from '../providers/upgrade/upgrade';
-<<<<<<< HEAD
 import { JpushService } from '../providers/jpush-service';
-=======
-import { IP } from '../providers/constants';
 import { HttpService } from '../providers/http-service';
->>>>>>> fe8e156... 金融板块，属性修改
 
 declare var BaiduMobStat: any;
 @Component({
@@ -37,7 +33,6 @@ export class MyApp {
       private upgradeProvider: UpgradeProvider,
       private jpushServ: JpushService,
       private app: App,
-      private wxService: WxServiceProvider,
       private httpServ: HttpService,
    ) {
       //———————————————————————— app更新 ————————————————————————
@@ -58,13 +53,13 @@ export class MyApp {
 
       app.viewDidEnter.subscribe((e) => {
          if (e.id && e.id.indexOf('Page') > -1) {
-            BaiduMobStat.onPageStart(e.id);
-            BaiduMobStat.onEventWithAttributes('hash', '链接', { "hash": '/' + location.hash })
+            if(typeof BaiduMobStat != 'undefined')BaiduMobStat.onPageStart(e.id);
+            if(typeof BaiduMobStat != 'undefined')BaiduMobStat.onEventWithAttributes('hash', '链接', { "hash": '/' + location.hash })
          }
       })
       app.viewDidLeave.subscribe((e) => {
          if (e.id && e.id.indexOf('Page') > -1) {
-            BaiduMobStat.onPageEnd(e.id);
+            if(typeof BaiduMobStat != 'undefined')BaiduMobStat.onPageEnd(e.id);
          }
       })
       

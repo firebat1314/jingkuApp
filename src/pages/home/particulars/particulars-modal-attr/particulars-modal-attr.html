@@ -38,7 +38,7 @@
                         <div class="td" *ngIf="attrsList?.data[0]?.is_subsidy&&mine.showPrice">促销价</div>
                         <div class="td" *ngIf="attrsList?.data[0]?.is_subsidy&&mine.showPrice">原价</div>
                         <div class="td" *ngIf="!attrsList?.data[0]?.is_subsidy&&mine.showPrice">价格</div>
-                        <div class="td" *ngIf="goods_attribute?.goods_info?.goods_type=='8'&&mainAttrs">箱规</div>
+                        <!-- <div class="td" *ngIf="goods_attribute?.goods_info?.goods_type=='8'&&mainAttrs">箱规</div> -->
                         <div class="td" *ngFor="let item of attrsList?.data[0]?.goods_attr">{{item.attr_name}}</div>
                         <div class="td" *ngIf="!(dId>0)">库存</div>
                         <div class="td" *ngIf="(dId>0)">铺货数量</div>
@@ -49,10 +49,10 @@
                         <div *ngIf="!(dId>0)" class="td count-input-box">
                             <count-input style="margin: auto;" [maxValue]="item.product_number" [rank]="checkMainAttrNum" [(value)]="item.goods_attr_number" (valueChange)="numberIChange(item)"></count-input>
                         </div>
-                        <div class="td" style="color: #ff6a00;" *ngIf="item.is_subsidy&&mine.showPrice">{{item.price}}</div>
-                        <div class="td" *ngIf="item.is_subsidy&&mine.showPrice">{{item.old_price}}</div>
-                        <div class="td" style="color: #ff6a00;" *ngIf="!item.is_subsidy&&mine.showPrice">{{item.price}}</div>
-                        <div class="td" *ngIf="goods_attribute?.goods_info?.goods_type=='8'&&mainAttrs"><span>{{item.mods>1?item.mods+'瓶/'+checkMainAttrLabel:item.mods+'瓶'}}</span></div>
+                        <div class="td" style="color: #ff6a00;" *ngIf="item.is_subsidy&&mine.showPrice">{{item.price}}<span style="color: #666666;">{{item?.hly_attr?.attr_val?'/'+item?.hly_attr?.attr_val:''}}</span></div>
+                        <div class="td" *ngIf="item.is_subsidy&&mine.showPrice">{{item.old_price}}<span style="color: #666666;">{{item?.hly_attr?.attr_val?'/'+item?.hly_attr?.attr_val:''}}</span></div>
+                        <div class="td" style="color: #ff6a00;" *ngIf="!item.is_subsidy&&mine.showPrice">{{item.price}}<span style="color: #666666;">{{item?.hly_attr?.attr_val?'/'+item?.hly_attr?.attr_val:''}}</span></div>
+                        <!-- <div class="td" *ngIf="goods_attribute?.goods_info?.goods_type=='8'&&mainAttrs"><span>{{item.mods>1?item.mods+'瓶/'+checkMainAttrLabel:item.mods+'瓶'}}</span></div> -->
                         <div class="td" *ngFor="let group of item.goods_attr">{{group.attr_val}}</div>
                         <div class="td" *ngIf="!(dId>0)">{{item.product_number}}</div>
                         <div class="td" *ngIf="(dId>0)">{{item.number}}</div>

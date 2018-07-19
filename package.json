@@ -75,6 +75,7 @@
     "ionic-gallery-modal": "^0.2.7",
     "ionic-plugin-keyboard": "~2.2.1",
     "ionic2-city-picker": "0.0.11",
+    "ionic2-rating": "^1.2.2",
     "ionicons": "3.0.0",
     "jpush-phonegap-plugin": "^3.3.2",
     "mx.ferreyra.callnumber": "0.0.2",
