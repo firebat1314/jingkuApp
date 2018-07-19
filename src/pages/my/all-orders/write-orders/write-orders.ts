@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { NavController, NavParams, ModalController, Events, ViewController, AlertController, IonicPage } from 'ionic-angular';
 import { HttpService } from "../../../../providers/http-service";
 import { Native } from "../../../../providers/native";
+declare var _hmt;
 
 declare var _hmt;
 /*
@@ -306,7 +307,7 @@ export class WriteOrdersPage {
                      item.push({
                         "skuId": item3[s].goods_id,
                         "skuName": item3[s].goods_name,
-                        "category": item3[s].rec_id || '000000',
+                        "category": item3[s].rec_id || '123123',
                         "Price": item3[s].goods_price.indexOf('¥') > -1 ? item3[s].goods_price.replace('¥', '') : item3[s].goods_price,
                         "Quantity": item3[s].goods_number
                      })

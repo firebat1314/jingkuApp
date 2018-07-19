@@ -32,7 +32,6 @@ import { QimoChatProvider } from '../providers/qimo-chat/qimo-chat';
 import { XimuProvider } from '../providers/ximu/ximu';
 import * as ionicGalleryModal from 'ionic-gallery-modal';
 import { HAMMER_GESTURE_CONFIG } from '@angular/platform-browser';
-import { AppStartProvider } from '../providers/app-start/app-start';
 import { OpenNativeSettings } from '@ionic-native/open-native-settings';
 import { MineProvider } from '../providers/mine/mine';
 import { preApplyParams } from '../pages/BT/preApplyParams';
@@ -92,7 +91,6 @@ import { preApplyParams } from '../pages/BT/preApplyParams';
     QimoChatProvider,
     XimuProvider,
     {provide: HAMMER_GESTURE_CONFIG,useClass: ionicGalleryModal.GalleryModalHammerConfig,},
-    AppStartProvider,
     OpenNativeSettings,
     MineProvider,
     preApplyParams

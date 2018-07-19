@@ -9,7 +9,9 @@ import { OpenMoreDirectiveModule } from "../../../directives/open-more/open-more
 import { ScrollToTopDirectiveModule } from '../../../directives/scroll-to-top/scroll-to-top.module';
 import { ParallaxHeaderModule } from '../../../directives/parallax-header/parallax-header.module';
 import { BypassSecurityTrustHtmlPipeModule } from '../../../pipes/bypass-security-trust-html/bypass-security-trust-html.module';
-
+import { PipesModule } from '../../../pipes/pipes.module';
+import { ComponentsModule } from '../../../components/components.module';
+import { Ionic2RatingModule } from 'ionic2-rating';
 @NgModule({
    declarations: [
       ParticularsPage,
@@ -23,7 +25,10 @@ import { BypassSecurityTrustHtmlPipeModule } from '../../../pipes/bypass-securit
       OpenMoreDirectiveModule,
       ScrollToTopDirectiveModule,
       ParallaxHeaderModule,
-      BypassSecurityTrustHtmlPipeModule
+      BypassSecurityTrustHtmlPipeModule,
+      PipesModule,
+      ComponentsModule,
+      Ionic2RatingModule
    ]
 })
 

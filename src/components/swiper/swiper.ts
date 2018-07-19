@@ -1,4 +1,4 @@
-import { Component, Input, ElementRef } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { ModalController } from 'ionic-angular';
 import { GalleryModal } from 'ionic-gallery-modal';
 
@@ -20,12 +20,12 @@ export class SwiperComponent {
   @Input() data: Array<any>;
   activeIndex = 0;
 
-  constructor(private element: ElementRef,
+  constructor(
     public modalCtrl: ModalController,
   ) { }
 
   ngAfterViewInit() {
-    var timer = setTimeout(() => {
+    setTimeout(() => {
       if (this.data.length) {
         this.mySwiper = new Swiper(".myswiper-container", {
           // loop: true,

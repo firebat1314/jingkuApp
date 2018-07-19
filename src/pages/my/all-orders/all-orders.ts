@@ -48,6 +48,9 @@ export class AllOrdersPage {
 	ngOnInit() {
 		this.getByPageIndex();
 	}
+   ngOnDestroy(){
+      this.events.unsubscribe('allOrders:update');
+   }
 	getByPageIndex(showLoading = false) {
 		this.showLoading = true;
 		if (this.infiniteScroll) this.infiniteScroll.enable(true);
@@ -55,10 +58,9 @@ export class AllOrdersPage {
 		switch (this.pageIndex) {
 			case 0: type = ''; break;
 			case 1: type = 'unpay'; break;
-			case 2: type = 'send'; break;
-			case 3: type = 'collect'; break;
-			case 4: type = 'ok'; break;
-			case 5: type = 'cancel'; break;
+			case 2: type = 'collect'; break;
+			case 3: type = 'ok'; break;
+			case 4: type = 'cancel'; break;
 			default: type = ''; break;
 		}
 		return this.httpService.order({ page: 1, type: type }, { showLoading: showLoading }).then((res) => {
@@ -95,10 +97,9 @@ export class AllOrdersPage {
 		switch (this.pageIndex) {
 			case 0: type = ''; break;
 			case 1: type = 'unpay'; break;
-			case 2: type = 'send'; break;
-			case 3: type = 'collect'; break;
-			case 4: type = 'ok'; break;
-			case 5: type = 'cancel'; break;
+			case 2: type = 'collect'; break;
+			case 3: type = 'ok'; break;
+			case 4: type = 'cancel'; break;
 			default: type = ''; break;
 		}
 		this.infiniteScroll = infiniteScroll;
