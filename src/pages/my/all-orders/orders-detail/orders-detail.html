@@ -104,6 +104,10 @@
                     <span class="name">订单备注：</span>
                     <span class="value">{{data?.order?.postscript}}</span>
                 </div>
+                <div *ngIf="data?.order?.to_buyer">
+                    <span class="name">商家留言：</span>
+                    <span class="value">{{data?.order?.to_buyer}}</span>
+                </div>
                 <div>
                     <span class="name">下单时间：</span>
                     <span class="value">{{data?.order?.formated_add_time}}</span>

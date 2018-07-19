@@ -6,247 +6,249 @@
 -->
 <ion-header>
 
-    <div class="my-head">
-        <div class="t_btn">
-            <button color="light" ion-button clear icon-only (click)="goSettingPage()">
+   <div class="my-head">
+      <div class="t_btn">
+         <button color="light" ion-button clear icon-only (click)="goSettingPage()">
                 <ion-icon name="ios-settings-outline"></ion-icon>
             </button>
-            <button color="light" ion-button clear icon-only (click)="goMessagePage()">
+         <button color="light" ion-button clear icon-only (click)="goMessagePage()">
                 <ion-icon name="mess"></ion-icon>
             </button>
-        </div>
-        <div class="h-body">
-            <div class="user_logo" tappable (click)="goAccountManagementPage($event)">
-                <img img-lazy-load="{{userInfo?.data?.avatar}}" alt="">
+      </div>
+      <div class="h-body">
+         <div class="user_logo" tappable (click)="goAccountManagementPage($event)">
+            <img img-lazy-load="{{userInfo?.data?.avatar}}" alt="">
+         </div>
+         <div class="r_wrap">
+            <div class="user_info">
+               <div class="name">{{userInfo?.data?.username}}</div>
+               <div class="vip" tappable navPush="MemberCenterPage" (click)="$event.stopPropagation()">
+                  <div class="vip_logo">
+                     <img img-lazy-load="{{userInfo?.data?.user_info?.rank_icon}}" alt="">
+                  </div>
+                  <div class="vip_name">{{userInfo?.data?.user_info?.rank_name||'暂无等级'}}</div>
+               </div>
             </div>
-            <div class="r_wrap">
-                <div class="user_info">
-                    <div class="name">{{userInfo?.data?.username}}</div>
-                    <div class="vip" tappable navPush="MemberCenterPage" (click)="$event.stopPropagation()">
-                        <div class="vip_logo">
-                            <img img-lazy-load="{{userInfo?.data?.user_info?.rank_icon}}" alt="">
-                        </div>
-                        <div class="vip_name">{{userInfo?.data?.user_info?.rank_name||'暂无等级'}}</div>
-                    </div>
-                </div>
-                <!-- <div tappable small (click)="goAccountManagementPage($event)" color="light" ion-button round outline icon-left item-right>
+            <!-- <div tappable small (click)="goAccountManagementPage($event)" color="light" ion-button round outline icon-left item-right>
                     <ion-icon>
                         <img style="width:1.3rem;" src="./assets/icon/images/user_cener_1_11.png" alt="">
                     </ion-icon>
                     账号管理
                 </div> -->
-                <div class="gl_btn" tappable (click)="goAccountManagementPage($event)">
-                    <img src="./assets/icon/new_center/10.png" alt=""> 账号管理
-                </div>
+            <div class="gl_btn" tappable (click)="goAccountManagementPage($event)">
+               <img src="./assets/icon/new_center/10.png" alt=""> 账号管理
             </div>
-        </div>
-        <div class="h_bottom">
-            <div tappable navPush="AccountCollectGoodsPage">
-                <span class="icon_num">{{usercount?.data?.collect_goods_num||'--'}}</span>
-                <span class="txt">收藏商品</span>
-            </div>
-            <div tappable navPush="AccountCollectStorePage">
-                <span class="icon_num">{{usercount?.data?.collect_shop_num||'--'}}</span>
-                <span class="txt">收藏店铺</span>
-            </div>
-            <div tappable navPush="AccountHistoryPage">
-                <span class="icon_num">{{usercount?.data?.history_num||'--'}}</span>
-                <span class="txt">浏览记录</span>
-            </div>
-            <div tappable (click)="goAccountProcessPage()">
-                <span class="icon_num">{{usercount?.data?.process_num||'--'}}</span>
-                <span class="txt">来镜加工</span>
-            </div>
-        </div>
-    </div>
+         </div>
+      </div>
+      <div class="h_bottom">
+         <div tappable navPush="AccountCollectGoodsPage">
+            <span class="icon_num">{{usercount?.data?.collect_goods_num||'--'}}</span>
+            <span class="txt">收藏商品</span>
+         </div>
+         <div tappable navPush="AccountCollectStorePage">
+            <span class="icon_num">{{usercount?.data?.collect_shop_num||'--'}}</span>
+            <span class="txt">收藏店铺</span>
+         </div>
+         <div tappable navPush="AccountHistoryPage">
+            <span class="icon_num">{{usercount?.data?.history_num||'--'}}</span>
+            <span class="txt">浏览记录</span>
+         </div>
+         <div tappable (click)="goAccountProcessPage()">
+            <span class="icon_num">{{usercount?.data?.process_num||'--'}}</span>
+            <span class="txt">来镜加工</span>
+         </div>
+      </div>
+   </div>
 </ion-header>
 
 
 <ion-content>
-    <ion-refresher (ionRefresh)="doRefresh($event)" pullMax="60">
-        <ion-refresher-content refreshingSpinner="1" pullingIcon="0"></ion-refresher-content>
-    </ion-refresher>
-    <ng-container fadeIn>
-        <div class="fore fore1">
-            <div class="title" tappable navPush="AllOrdersPage" [navParams]="{index:0}">
-                <div>
-                    <span>我的订单</span>
-                    <span class="lookall">查看全部</span>
-                </div>
+   <ion-refresher (ionRefresh)="doRefresh($event)" pullMax="60">
+      <ion-refresher-content refreshingSpinner="1" pullingIcon="0"></ion-refresher-content>
+   </ion-refresher>
+   <ng-container fadeIn>
+      <div class="fore fore1">
+         <div class="title" tappable navPush="AllOrdersPage" [navParams]="{index:0}">
+            <div>
+               <span>我的订单</span>
+               <span class="lookall">查看全部</span>
             </div>
-            <div class="main">
-                <a navPush="AllOrdersPage" [navParams]="{index:1}">
-                    <span class="icon_num">
-                        <img src="./assets/icon/new_center/7.png" alt="">
-                        <ion-badge *ngIf="usercount?.data?.unpay>0>0">{{usercount?.data?.unpay}}</ion-badge>
-                    </span>
-                    <span class="txt">待付款</span>
-                </a>
-                <a navPush="AllOrdersPage" [navParams]="{index:2}">
-                    <span class="icon_num">
-                        <img src="./assets/icon/new_center/13.png" alt="">
-                        <ion-badge *ngIf="usercount?.data?.send>0">{{usercount?.data?.send}}</ion-badge>
-                    </span>
-                    <span class="txt">待发货</span>
-                </a>
-                <a navPush="AllOrdersPage" [navParams]="{index:3}">
-                    <span class="icon_num">
-                        <img src="./assets/icon/new_center/9.png" alt="">
-                        <ion-badge *ngIf="usercount?.data?.collect>0">{{usercount?.data?.collect}}</ion-badge>
-                    </span>
-                    <span class="txt">待收货</span>
-                </a>
-                <a navPush="AllOrdersPage" [navParams]="{index:4}">
-                    <span class="icon_num">
-                        <img src="./assets/icon/new_center/8.png" alt="">
-                        <ion-badge *ngIf="usercount?.data?.ok>0">{{usercount?.data?.ok}}</ion-badge>
-                    </span>
-                    <span class="txt">已完成</span>
-                </a>
-                <a (click)="goRepairReturnPage()">
-                    <span class="icon_num">
-                        <img src="./assets/icon/new_center/11.png" alt="">
-                        <!-- <ion-badge *ngIf="">{{usercount?.data?.return||'--'}}</ion-badge> -->
-                    </span>
-                    <span class="txt">退换货</span>
-                </a>
+         </div>
+         <div class="main">
+            <a navPush="AllOrdersPage" [navParams]="{index:1}">
+               <span class="icon_num">
+                  <img src="./assets/icon/new_center/7.png" alt="">
+                  <ion-badge *ngIf="usercount?.data?.unpay!=''">{{usercount?.data?.unpay}}</ion-badge>
+               </span>
+               <span class="txt">待付款</span>
+            </a>
+            <a navPush="AllOrdersPage" [navParams]="{index:2}">
+               <span class="icon_num">
+                  <img src="./assets/icon/new_center/9.png" alt="">
+                  <ion-badge *ngIf="usercount?.data?.collect!=''">{{usercount?.data?.collect}}</ion-badge>
+               </span>
+               <span class="txt">待收货</span>
+            </a>
+
+            <a navPush="EvaluationListPage">
+               <span class="icon_num">
+                  <img src="./assets/icon/new_center/comment.png" alt="">
+                  <ion-badge *ngIf="usercount?.data?.comment!=''">{{usercount?.data?.comment}}</ion-badge>
+               </span>
+               <span class="txt">待评价</span>
+            </a>
+            <a navPush="AllOrdersPage" [navParams]="{index:3}">
+               <span class="icon_num">
+                  <img src="./assets/icon/new_center/8.png" alt="">
+                  <ion-badge *ngIf="usercount?.data?.ok!=''">{{usercount?.data?.ok}}</ion-badge>
+               </span>
+               <span class="txt">已完成</span>
+            </a>
+            <a (click)="goRepairReturnPage()">
+               <span class="icon_num">
+                  <img src="./assets/icon/new_center/11.png" alt="">
+                  <!-- <ion-badge *ngIf="">{{usercount?.data?.return||'--'}}</ion-badge> -->
+               </span>
+               <span class="txt">退换货</span>
+            </a>
+         </div>
+      </div>
+      <div class="fore fore1">
+         <div class="title" tappable navPush="OrderListDistributionPage" [navParams]="{index:0}">
+            <div>
+               <span>铺货订单</span>
+               <span class="lookall">查看全部</span>
             </div>
-        </div>
-        <div class="fore fore1">
-            <div class="title" tappable navPush="OrderListDistributionPage" [navParams]="{index:0}">
-                <div>
-                    <span>铺货订单</span>
-                    <span class="lookall">查看全部</span>
-                </div>
-            </div>
-            <div class="main">
-                <a navPush="OrderListDistributionPage" [navParams]="{index:1}">
+         </div>
+         <div class="main">
+            <a navPush="OrderListDistributionPage" [navParams]="{index:1}">
                     <span class="icon_num">
                         <img src="./assets/icon/new_center/14.png" alt="">
                         <ion-badge *ngIf="usercount?.distribution?.examine>0">{{usercount?.distribution?.examine}}</ion-badge>
                     </span>
                     <span class="txt">待审核</span>
                 </a>
-                <a navPush="OrderListDistributionPage" [navParams]="{index:2}">
+            <a navPush="OrderListDistributionPage" [navParams]="{index:2}">
                     <span class="icon_num">
                         <img src="./assets/icon/new_center/13.png" alt="">
                         <ion-badge *ngIf="usercount?.distribution?.send>0">{{usercount?.distribution?.send}}</ion-badge>
                     </span>
                     <span class="txt">待发货</span>
                 </a>
-                <a navPush="OrderListDistributionPage" [navParams]="{index:3}">
+            <a navPush="OrderListDistributionPage" [navParams]="{index:3}">
                     <span class="icon_num">
                         <img src="./assets/icon/new_center/15.png" alt="">
                         <ion-badge *ngIf="usercount?.distribution?.collect>0">{{usercount?.distribution?.collect}}</ion-badge>
                     </span>
                     <span class="txt">待收货</span>
                 </a>
-                <a navPush="OrderListDistributionPage" [navParams]="{index:4}">
+            <a navPush="OrderListDistributionPage" [navParams]="{index:4}">
                     <span class="icon_num">
                         <img src="./assets/icon/new_center/17.png" alt="">
                         <ion-badge *ngIf="usercount?.distribution?.ok>0">{{usercount?.distribution?.ok}}</ion-badge>
                     </span>
                     <span class="txt">已完成</span>
                 </a>
-                <a navPush="OrderListDistributionPage" [navParams]="{index:5}">
+            <a navPush="OrderListDistributionPage" [navParams]="{index:5}">
                     <span class="icon_num">
                         <img src="./assets/icon/new_center/16.png" alt="">
                         <ion-badge *ngIf="usercount?.distribution?.effect>0">{{usercount?.distribution?.effect}}</ion-badge>
                     </span>
                     <span class="txt">生效中</span>
                 </a>
+         </div>
+      </div>
+      <div class="fore fore2">
+         <div class="title">
+            <div>
+               <span>镜库资产</span>
             </div>
-        </div>
-        <div class="fore fore2">
-            <div class="title">
-                <div>
-                    <span>镜库资产</span>
-                </div>
-            </div>
-            <div class="main">
-                <a navPush="CouponPage">
+         </div>
+         <div class="main">
+            <a navPush="CouponPage">
                     <span class="icon_num">
                         {{usercount?.data?.bonus_count||'--'}}
                     </span>
                     <span class="txt">优惠券</span>
                 </a>
-                <a navPush="AccountJifenPage">
+            <a navPush="AccountJifenPage">
                     <span class="icon_num">
                         {{userInfo?.data?.integral||'--'}}
                     </span>
                     <span class="txt">积分</span>
                 </a>
-                <a navPush="AccountBalancePage">
+            <a navPush="AccountBalancePage">
                     <span class="icon_num">
                         {{userInfo?.data?.user_money||'0.00'}}
                     </span>
                     <span class="txt">余额</span>
                 </a>
-                
-                <a navPush="JingkuFinancePage">
+
+            <a navPush="JingkuFinancePage">
                   <span class="icon_num">
                        立即进入
                   </span>
                   <span class="txt">镜库金融</span>
               </a>
-                <!-- <a (click)="openXimu()" hideWhen="ios">
+            <!-- <a (click)="openXimu()" hideWhen="ios">
                     <span class="icon_num">
                         暂未开放
                     </span>
                     <span class="txt">镜库白条</span>
                 </a> -->
-                <!-- <a (click)="openXimu()" *ngIf="isMobile">
+            <!-- <a (click)="openXimu()" *ngIf="isMobile">
                     <span class="icon_num">
                         {{baitiao?.status?'已开通':'申请开通'}}
                     </span>
                     <span class="txt">镜库白条</span>
                 </a> -->
+         </div>
+      </div>
+      <div class="fore fore3">
+         <div class="title">
+            <div>
+               <span>必备工具</span>
             </div>
-        </div>
-        <div class="fore fore3">
-            <div class="title">
-                <div>
-                    <span>必备工具</span>
-                </div>
-            </div>
-            <div class="main">
-                <a (click)="goMySalesmanPage()" *ngIf="userInfo&&userInfo?.data?.ywy?.is_ywy===2">
-                    <span class="icon_num">
-                        <img src="./assets/icon/new_center/2.png" alt="">
-                    </span>
-                    <span class="txt">业务员</span>
-                </a>
-                <a navPush="ReceiptPage">
-                    <span class="icon_num">
-                        <img src="./assets/icon/new_center/1.png" alt="">
-                    </span>
-                    <span class="txt">发票管理</span>
-                </a>
-                <a navPush="DredgeMoreCityPage">
-                    <span class="icon_num">
-                        <img src="./assets/icon/new_center/3.png" alt="">
-                    </span>
-                    <span class="txt">地区申请</span>
-                </a>
-                <a navPush="AccountHelperPage">
-                    <span class="icon_num">
-                        <img src="./assets/icon/new_center/4.png" alt="">
-                    </span>
-                    <span class="txt">帮助中心</span>
-                </a>
-                <a (click)="goAccountServicePage()">
-                    <span class="icon_num">
-                        <img src="./assets/icon/new_center/5.png" alt="">
-                    </span>
-                    <span class="txt">镜库客服</span>
-                </a>
-                <a (click)="bindWeixin()" *ngIf="native.isWeixin()">
-                    <span class="icon_num">
-                        <img src="./assets/icon/weichat.png" alt="">
-                    </span>
-                    <span class="txt">绑定微信</span>
-                </a>
-            </div>
-        </div>
-    </ng-container>
+         </div>
+         <div class="main">
+            <a (click)="goMySalesmanPage()" *ngIf="userInfo&&userInfo?.data?.ywy?.is_ywy===2">
+               <span class="icon_num">
+                  <img src="./assets/icon/new_center/2.png" alt="">
+               </span>
+               <span class="txt">业务员</span>
+            </a>
+            <a navPush="ReceiptPage">
+               <span class="icon_num">
+                  <img src="./assets/icon/new_center/1.png" alt="">
+               </span>
+               <span class="txt">发票管理</span>
+            </a>
+            <a navPush="DredgeMoreCityPage">
+               <span class="icon_num">
+                  <img src="./assets/icon/new_center/3.png" alt="">
+               </span>
+               <span class="txt">地区申请</span>
+            </a>
+            <a navPush="AccountHelperPage">
+               <span class="icon_num">
+                  <img src="./assets/icon/new_center/4.png" alt="">
+               </span>
+               <span class="txt">帮助中心</span>
+            </a>
+            <a (click)="goAccountServicePage()">
+               <span class="icon_num">
+                  <img src="./assets/icon/new_center/5.png" alt="">
+               </span>
+               <span class="txt">镜库客服</span>
+            </a>
+            <a (click)="bindWeixin()" *ngIf="native.isWeixin()">
+               <span class="icon_num">
+                  <img src="./assets/icon/weichat.png" alt="">
+               </span>
+               <span class="txt">绑定微信</span>
+            </a>
+         </div>
+      </div>
+   </ng-container>
+   <!-- git 测试 -->
 </ion-content>

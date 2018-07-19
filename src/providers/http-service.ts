@@ -697,106 +697,124 @@ export class HttpService {
   staffAddNow(data?: Object) {//选择现有成员
     return this.http.post(IP + '/Staff/add_now', data, { showLoading: true })
   }
-  staffEditUser(data?: Object) {//选择现有成员
+  staffEditUser(data?: Object) {
     return this.http.post(IP + '/Staff/edit_user', data, { showLoading: true })
   }
-  staffEditUser_get(data?: Object) {//选择现有成员
+  staffEditUser_get(data?: Object) {
     return this.http.get(IP + '/Staff/edit_user', data, { showLoading: true })
   }
-  staffDelUser(data?: Object) {//选择现有成员
+  staffDelUser(data?: Object) {
     return this.http.post(IP + '/Staff/del_user', data, { showLoading: true })
   }
-  getCompanyList(data?: Object) {//选择现有成员
+  getCompanyList(data?: Object) {
     return this.http.post(IP + '/Index/CompanyList', data, { showLoading: true })
   }
-  SwitchCompany(data?: Object) {//选择现有成员
+  SwitchCompany(data?: Object) {
     return this.http.post(IP + '/Index/SwitchCompany', data, { showLoading: true })
   }
-  category_goods_d(data?: Object, options: HttpOptions = { showLoading: true }) {//选择现有成员
+  category_goods_d(data?: Object, options: HttpOptions = { showLoading: true }) {
     return this.http.post(IP + '/Distribution/category_goods', data, options)
   }
-  info_d(data?: Object, options?: HttpOptions) {//选择现有成员
+  info_d(data?: Object, options?: HttpOptions) {
     return this.http.post(IP + '/Distribution/info', data, options)
   }
-  get_goods_attribute_d(data?: Object, options?: HttpOptions) {//选择现有成员
+  get_goods_attribute_d(data?: Object, options?: HttpOptions) {
     return this.http.post(IP + '/Distribution/get_goods_attribute', data, options)
   }
-  checkout_d(data?: Object, options: HttpOptions = { showLoading: false }) {//选择现有成员
+  checkout_d(data?: Object, options: HttpOptions = { showLoading: false }) {
     return this.http.post(IP + '/Distribution/checkout', data, options)
   }
-  change_consignee_d(data?: Object, options: HttpOptions = { showLoading: false }) {//选择现有成员
+  change_consignee_d(data?: Object, options: HttpOptions = { showLoading: false }) {
     return this.http.post(IP + '/Distribution/change_consignee', data, options)
   }
-  select_payment_d(data?: Object, options: HttpOptions = { showLoading: false }) {//选择现有成员
+  select_payment_d(data?: Object, options: HttpOptions = { showLoading: false }) {
     return this.http.post(IP + '/Distribution/select_payment', data, options)
   }
-  write_notes_d(data?: Object, options: HttpOptions = { showLoading: true }) {//选择现有成员
+  write_notes_d(data?: Object, options: HttpOptions = { showLoading: true }) {
     return this.http.post(IP + '/Distribution/write_notes', data, options)
   }
-  get_attr_list_d(data?: Object, options: HttpOptions = { showLoading: false }) {//选择现有成员
+  get_attr_list_d(data?: Object, options: HttpOptions = { showLoading: false }) {
     return this.http.post(IP + '/Distribution/get_attr_list', data, options)
   }
-  done_d(data?: Object, options: HttpOptions = { showLoading: true }) {//选择现有成员
+  done_d(data?: Object, options: HttpOptions = { showLoading: true }) {
     return this.http.post(IP + '/Distribution/done', data, options)
   }
-  order_d(data?: Object, options: HttpOptions = { showLoading: false }) {//选择现有成员
+  order_d(data?: Object, options: HttpOptions = { showLoading: false }) {
     return this.http.get(IP + '/Distribution/orders', data, options)
   }
-  get_children_category_cutting(data?: Object, options: HttpOptions = { showLoading: false }) {//选择现有成员
+  get_children_category_cutting(data?: Object, options: HttpOptions = { showLoading: false }) {
     return this.http.get(IP + '/Category/get_children_category_cutting', data, options)
   }
-  infoUrl_d(data?: Object, options: HttpOptions = { showLoading: true }) {//选择现有成员
+  infoUrl_d(data?: Object, options: HttpOptions = { showLoading: true }) {
     return this.http.get(IP + '/Distribution/infoUrl', data, options)
   }
-  sealIndex(data?: Object, options: HttpOptions = { showLoading: true }) {//选择现有成员
+  sealIndex(data?: Object, options: HttpOptions = { showLoading: true }) {
     return this.http.get(IP + '/Seal/index', data, options)
   }
-  FmCreditGate(data?: Object, options: HttpOptions = { showLoading: true }) {//选择现有成员
+  FmCreditGate(data?: Object, options: HttpOptions = { showLoading: true }) {
     return this.http.get(IP + '/FmCredit/gate', data, options)
   }
-  FmCreditgate_order(data?: Object, options: HttpOptions = { showLoading: true }) {//选择现有成员
+  FmCreditgate_order(data?: Object, options: HttpOptions = { showLoading: true }) {
     return this.http.get(IP + '/FmCredit/gate_order', data, options)
   }
-  FmCreditindex(data?: Object, options: HttpOptions = { showLoading: false, showToast: false }) {//选择现有成员
+  FmCreditindex(data?: Object, options: HttpOptions = { showLoading: false, showToast: false }) {
     return this.http.get(IP + '/FmCredit/index', data, options)
   }
-  Shd_product_list(data?: Object, options: HttpOptions = { showLoading: true }) {//选择现有成员
+  Shd_product_list(data?: Object, options: HttpOptions = { showLoading: true }) {
     return this.http.get(IP + '/App/Shd/product_list', data, options)
   }
-  Shd_detail(data?: Object, options: HttpOptions = { showLoading: true }) {//选择现有成员
+  Shd_detail(data?: Object, options: HttpOptions = { showLoading: true }) {
     return this.http.get(IP + '/App/Shd/detail', data, options)
   }
-  Shd_bindCard(data?: Object, options: HttpOptions = { showLoading: true }) {//选择现有成员
+  Shd_bindCard(data?: Object, options: HttpOptions = { showLoading: true }) {
     return this.http.post(IP + '/App/Shd/bindCard', data, options)
   }
-  Shd_bankConfirm(data?: Object, options: HttpOptions = { showLoading: true }) {//选择现有成员
+  Shd_bankConfirm(data?: Object, options: HttpOptions = { showLoading: true }) {
     return this.http.post(IP + '/App/Shd/bankConfirm', data, options)
   }
-  Shd_preApply(data?: Object, options: HttpOptions = { showLoading: true }) {//选择现有成员
+  Shd_preApply(data?: Object, options: HttpOptions = { showLoading: true }) {
     return this.http.post(IP + '/App/Shd/preApply', data, options)
   }
-  Shd_sendSignCheckCode(data?: Object, options: HttpOptions = { showLoading: false }) {//选择现有成员
+  Shd_sendSignCheckCode(data?: Object, options: HttpOptions = { showLoading: false }) {
     return this.http.post(IP + '/App/Shd/sendSignCheckCode', data, options)
   }
-  Shd_loanSetup(data?: Object, options: HttpOptions = { showLoading: true }) {//选择现有成员
+  Shd_loanSetup(data?: Object, options: HttpOptions = { showLoading: true }) {
     return this.http.post(IP + '/App/Shd/loanSetup', data, options)
   }
-  Shd_get_shd_info(data?: Object, options: HttpOptions = { showLoading: true }) {//选择现有成员
+  Shd_get_shd_info(data?: Object, options: HttpOptions = { showLoading: true }) {
     return this.http.post(IP + '/App/Shd/get_shd_info', data, options)
   }
-  Shd_add_user(data?: Object, options: HttpOptions = { showLoading: true }) {//选择现有成员
+  Shd_add_user(data?: Object, options: HttpOptions = { showLoading: true }) {
     return this.http.post(IP + '/App/Shd/add_user', data, options)
   }
-  jingku_finance(data?: Object, options: HttpOptions = { showLoading: false }) {//选择现有成员
+  jingku_finance(data?: Object, options: HttpOptions = { showLoading: false }) {
     return this.http.post(IP + '/App/Index/jingku_finance', data, options)
   }
-  search_census(data?: Object, options: HttpOptions = { showLoading: false }) {//选择现有成员
+  search_census(data?: Object, options: HttpOptions = { showLoading: false }) {
     return this.http.post(IP + '/Public/search_census ', data, options)
   }
-  recommendGoods(data?: Object, options: HttpOptions = { showLoading: false }) {//选择现有成员
+  recommendGoods(data?: Object, options: HttpOptions = { showLoading: false }) {
     return this.http.post(IP + '/Index/recommendGoods ', data, options)
   }
   click_census(data?: Object, options: HttpOptions = { showLoading: false }) {//选择现有成员
     return this.http.post(IP + '/Public/click_census ', data, options)
+  }
+  commentIndex(data?: Object, options: HttpOptions = { showLoading: false }) {
+    return this.http.post(IP + '/Comment/index ', data, options)
+  }
+  commentCommentLaud(data?: Object, options: HttpOptions = { showLoading: false }) {
+    return this.http.post(IP + '/Comment/CommentLaud ', data, options)
+  }
+  commentCommentReckon(data?: Object, options: HttpOptions = { showLoading: false }) {
+    return this.http.post(IP + '/Comment/CommentReckon ', data, options)
+  }
+  commentIsComment(data?: Object, options: HttpOptions = { showLoading: false }) {
+    return this.http.post(IP + '/Comment/is_comment ', data, options)
+  }
+  commentInsertComment(data?: Object, options: HttpOptions = { showLoading: true }) {
+    return this.http.post(IP + '/Comment/insert_comment ', data, options)
+  }
+  commentNoComment(data?: Object, options: HttpOptions = { showLoading: true }) {
+    return this.http.post(IP + '/Comment/NoComment ', data, options)
   }
 }

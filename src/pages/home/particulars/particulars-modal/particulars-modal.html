@@ -8,8 +8,8 @@
 
 <ion-header>
     <ion-toolbar>
-        
-       <div class="tit" style="text-align: center;margin-left: 30px;">{{title}}</div>
+
+        <div class="tit" style="text-align: center;margin-left: 30px;">{{title}}</div>
         <ion-buttons end>
             <button ion-button (click)="dismiss()"><ion-icon style="font-size: 18px;" name="ios-close-circle-outline" ></ion-icon></button>
         </ion-buttons>
@@ -38,9 +38,9 @@
     </div>
     <div class="onemore" *ngIf="title=='促销'">
         <ion-list>
-            <ion-item  text-wrap *ngFor="let item of promotion">
+            <ion-item text-wrap *ngFor="let item of promotion">
                 <div item-left>
-                   <div class="title">{{item.promotion_name}}</div>
+                    <div class="title">{{item.promotion_name}}</div>
                 </div>
                 <span [innerHtml]="item.title"></span>
             </ion-item>
@@ -64,9 +64,12 @@
     </div>
     <div class="sendto" *ngIf="title=='配送地址'">
         <ion-list radio-group>
-            <ion-item mode="ios" *ngFor="let item of sendto"><!--  [style.opacity]="item.is_show?'1':'0.3'" -->
+            <ion-item mode="ios" *ngFor="let item of sendto">
+                <!--  [style.opacity]="item.is_show?'1':'0.3'" -->
                 <ion-label>{{item.region+'-'+item.address}}</ion-label>
-                <ion-icon color="danger" name="ios-pin-outline" item-left></ion-icon>
+                <div item-start>
+                    <ion-icon style="font-size: 22px;" color="danger" name="ios-pin-outline"></ion-icon>
+                </div>
                 <ion-radio mode="ios" [disabled]="!item.is_goods_city" [checked]="item.selected==1" (click)="!item.selected?setArea(item):return" color="danger" [value]="item"></ion-radio>
             </ion-item>
         </ion-list>

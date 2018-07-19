@@ -1,0 +1,14 @@
+rating-stars {
+   display: flex;
+   font-size: 14px;
+   color: #e5e5e5;
+   i{
+      margin-right: 4px;
+      &:last-child{
+         margin-right: 0;
+      }
+   }
+   .on {
+      color: #d6a916;
+   }
+}

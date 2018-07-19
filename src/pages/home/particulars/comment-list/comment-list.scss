@@ -1,0 +1,170 @@
+page-comment-list {
+	.scroll-content {
+		background: #f7fafe !important;
+	}
+	.see_current {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		border-bottom: 1px solid #fafafa;
+		padding: 10px 14px;
+		background-color: #ffffff;
+		font-size: 1rem;
+		>label {
+			display: flex;
+			align-items: center;
+		}
+		.checkbox {
+			margin-right: 10px;
+		}
+	}
+	.labels {
+		display: flex;
+		background-color: #ffffff;
+		flex-wrap: wrap;
+		padding: 8px;
+		.label {
+			padding: 4px 12px;
+			border-radius: 30px;
+			background-color: #e3edfa;
+			border: 1px solid transparent;
+			color: #4d4d4d;
+			font-size: 1rem;
+			transition: background-color 400ms;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			overflow: hidden;
+			text-align: center;
+			margin: 3px;
+			&.selected {
+				// background: #ccc url(../assets/images/images/toggle-mune_03_03.png) right bottom no-repeat;
+				color: #3f69a5;
+				border-color: #3f69a5;
+				em {
+					display: block;
+					border-left: 1px solid #3f69a5;
+					width: 10px;
+					height: 6px;
+					border-bottom: 1px solid #3f69a5;
+					transform: rotateZ(-45deg);
+					display: block;
+					margin-top: -2px;
+					margin-right: 4px;
+				}
+			}
+		}
+	}
+	.more_labels {
+		text-align: center;
+		font-size: 20px;
+		color: #666;
+		cursor: pointer;
+	}
+	.comment_list {
+		padding: 12px 12px 0;
+		background: #f7fafe;
+		.comment_li {
+			box-shadow: 0 0px 13px rgba(0, 0, 0, 0.05);
+			padding: 0 10px;
+			background: #ffffff;
+			margin-bottom: 10px;
+			border-radius: 3px;
+			.c-head {
+				display: flex;
+				justify-content: space-between;
+				padding: 10px 0;
+				.user {
+					display: flex;
+					align-items: center;
+					.avatar {
+						width: 30px;
+						height: 30px;
+						border-radius: 50%;
+						background: #cccccc;
+						margin-right: 8px;
+						overflow: hidden;
+                  display: flex;
+                  align-items: center;
+                  justify-content: center;
+						img {
+                     max-width: 100%;
+                     max-height: 100%;
+						}
+					}
+					.name {
+						color: #4d4d4d;
+						font-size: 12px;
+					}
+					.vip {
+						max-width: 50px;
+						margin-left: 15px;
+					}
+				}
+				.star {
+					display: flex;
+					font-size: 16px;
+					color: #e5e5e5;
+					.on {
+						color: #d6a916;
+					}
+				}
+				rating {
+					font-size: 14px;
+					li {
+						padding: 0px 1px !important;
+						color: #e5e5e5;
+						.ion-ios-star {
+							color: #d6a916;
+						}
+					}
+				}
+			}
+			.c-body {
+				.text {
+					color: #4d4d4d;
+				}
+				.imgs {
+					display: flex;
+					align-items: center;
+					overflow: auto;
+					img {
+						max-width: 64px;
+						margin: 8px 8px 8px 0;
+					}
+				}
+				.xinghao {
+					font-size: 1.2rem;
+					color: #999999;
+				}
+			}
+			.c-foot {
+				display: flex;
+				justify-content: space-between;
+				padding: 10px 0;
+				font-size: 1.2rem;
+				.time {
+					color: #999999;
+				}
+				.praise {
+					display: flex;
+					align-items: center;
+					color: #666666;
+					.on {
+						color: #d6a916;
+					}
+				}
+			}
+		}
+	}
+	.child_comment {
+		color: #ff561c;
+		padding: 10px 0px;
+		border-top: 1px solid #f0f0f0;
+		line-height: 16px;
+		font-size: 12px;
+		.time {
+			color: #999999;
+		}
+	}
+}

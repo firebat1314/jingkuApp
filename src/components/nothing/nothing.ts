@@ -14,7 +14,7 @@ import { NavController,Tabs } from "ionic-angular";
 export class NothingComponent {
   @Input() title: string = '暂无商品';
   @Input() text: string = '去挑选你喜欢的商品吧~';
-  @Input() backgroundImg: string = ''
+  @Input() backgroundImg: string = 'url(./assets/images/images/list.png)'
 
   constructor(public navCtrl: NavController) {
     console.log('Hello Nothing Component');

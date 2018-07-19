@@ -10,6 +10,7 @@ nothing {
         padding-bottom: 63px;
         .mar{
             margin-top: 5px;
+            color: #666666;
         }
         .img {
             width: $default-size;
@@ -17,7 +18,7 @@ nothing {
             height: $default-size;
             min-height: $default-size;
             border-radius: 50%;
-            border: 1px solid #cbced0;
+            border: 1px solid #e0e0e0;
             background-position: center center;
             background-size: 50%;
             background-repeat: no-repeat;

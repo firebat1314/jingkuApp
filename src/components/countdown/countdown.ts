@@ -1,4 +1,4 @@
-import { Component, Input, OnDestroy, AfterViewInit, Output, EventEmitter } from '@angular/core';
+import { Component, Input, Output, EventEmitter } from '@angular/core';
 
 /*
   Generated class for the Countdown component.
@@ -11,7 +11,7 @@ import { Component, Input, OnDestroy, AfterViewInit, Output, EventEmitter } from
   templateUrl: 'countdown.html'
 })
 
-export class CountdownComponent implements AfterViewInit, OnDestroy {
+export class CountdownComponent {
   // 父组件传递截止日期
   @Input() endDate: number;
   @Output() endDateChange: EventEmitter<any> = new EventEmitter<any>();

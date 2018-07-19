@@ -65,7 +65,18 @@ ion-app {
 ::-webkit-scrollbar {
     display: none !important;
 }
+/*———————————————————————————————————— 隐藏滚动条 ————————————————————————————————————*/
 
+rating {
+   font-size: 14px !important;
+   li{
+     padding: 0px 1px !important;
+     color: #e5e5e5 !important;
+     .ion-ios-star{
+       color: #d6a916 !important;
+     }
+  }
+}
 
 /*————————————————————————————————————  ————————————————————————————————————*/
 
@@ -92,7 +103,7 @@ ion-modal {
     }
 }
 
-[goBackTop] {
+[goBackTop],[scroll-to-top] {
     background: url(../assets/icon/scroll-to-top-icon.png) center/100% 100% no-repeat;
 }
 /* 
