@@ -75,10 +75,10 @@ export class MyApp {
       }
       this.app.viewWillEnter.subscribe((e) => {
          if (e._cssClass == 'ion-page') {
-            if(e.id=="ParticularsPage"){
+            if (e.id == "ParticularsPage") {
                this.httpServ.click_census({ type: 'goods', url: '/' + location.hash, id: e.data.goodsId });//用户点击统计
             }
-            if(e.id=="HelperDetailsPage"){
+            if (e.id == "HelperDetailsPage") {
                this.httpServ.click_census({ type: 'article', url: '/' + location.hash, id: e.data.article_id });//用户点击统计
             }
          }
@@ -183,7 +183,6 @@ export class MyApp {
             return activeNav.canGoBack() ? activeNav.pop() : this.showExit()
          }, 1);
          //————————————————————————————————————————————————————————————————————————
-
       });
    }
    //双击退出提示框
