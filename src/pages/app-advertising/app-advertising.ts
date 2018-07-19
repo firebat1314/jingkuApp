@@ -77,11 +77,11 @@ export class AppAdvertisingPage {
   }
   clickAds() {
     clearInterval(this.timer);
-    if(!this.data.data[0].link_type) return;
+    if(!this.data.data[0]) return;
     this.storage.get('hasLoggedIn').then((result) => {
       if (result) {
         this.navCtrl.setRoot('TabsPage', {}, { animate: true, animation: 'md-transition', direction: 'forward' },()=>{
-          this.adsClick.link_type = this.data.data[0].link_type;
+          this.adsClick.data = this.data.data[0];
           this.adsClick.onClick()
         });
       } else {

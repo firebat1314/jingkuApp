@@ -24,37 +24,6 @@
             <img [img-lazy-load]="data?.baitiao[0]?.ad_img" (click)="openFmCredit()" tappable class="main-img">
           </div>
         </div>
-<<<<<<< HEAD
-      </div>
-      <div class="swiper-slide">
-        <div style="margin: 22px;width: calc(100% - 44px)">
-          <div class="img">
-            <img [img-lazy-load]="data?.congqiandai[0]?.ad_img" tappable class="main-img">
-          </div>
-        </div>
-      </div>
-      <div class="swiper-slide">
-        <div style="margin: 22px;width: calc(100% - 44px)">
-          <div class="img">
-            <img [img-lazy-load]="data?.pos[0]?.ad_img" tappable class="main-img">
-          </div>
-        </div>
-      </div>
-      <div class="swiper-slide">
-        <div style="margin: 22px;width: calc(100% - 44px)">
-          <div class="img">
-            <img [img-lazy-load]="data?.xinyong[0]?.ad_img" tappable class="main-img">
-          </div>
-        </div>
-      </div>
-    </div>
-    <button ion-button block large margin-top *ngIf="activeIndex==0" (click)="openFmCredit()">{{FmCreditindex?.data?.available_amount ? '¥'+FmCreditindex?.data?.available_amount : FmCreditindex?.data?.status_name? FmCreditindex?.data?.status_name : '立即申请'}}</button>
-    <button ion-button block large margin-top *ngIf="activeIndex==1" (click)="openSHD()">快速激活</button>
-    <button ion-button block large margin-top *ngIf="activeIndex==2" [ads-click]="data?.pos[0]">立即申请信用卡</button>
-    <button ion-button block large margin-top *ngIf="activeIndex==3" [ads-click]="data?.xinyong[0]">立即开通POS机</button>
-   </div>
-</ion-content>
-=======
       </div> -->
 			<div class="swiper-slide">
 				<div style="margin: 22px;width: calc(100% - 44px)">
@@ -66,22 +35,21 @@
 			<div class="swiper-slide">
 				<div style="margin: 22px;width: calc(100% - 44px)">
 					<div class="img">
-						<img [img-lazy-load]="data?.pos[0]?.ad_img" [ads-click]="data?.pos[0]?.link_type" tappable class="main-img">
+						<img [img-lazy-load]="data?.pos[0]?.ad_img" [ads-click]="data?.pos[0]" tappable class="main-img">
 					</div>
 				</div>
 			</div>
 			<div class="swiper-slide">
 				<div style="margin: 22px;width: calc(100% - 44px)">
 					<div class="img">
-						<img [img-lazy-load]="data?.xinyong[0]?.ad_img" [ads-click]="data?.xinyong[0]?.link_type" tappable class="main-img">
+						<img [img-lazy-load]="data?.xinyong[0]?.ad_img" [ads-click]="data?.xinyong[0]" tappable class="main-img">
 					</div>
 				</div>
 			</div>
 		</div>
 		<!-- <button ion-button block large margin-top *ngIf="activeIndex==0" (click)="openFmCredit()">{{FmCreditindex?.data?.available_amount ? '¥'+FmCreditindex?.data?.available_amount : FmCreditindex?.data?.status_name? FmCreditindex?.data?.status_name : '立即申请'}}</button> -->
 		<button ion-button block large margin-top *ngIf="activeIndex==0" (click)="openSHD()">快速激活</button>
-		<button ion-button block large margin-top *ngIf="activeIndex==1" [ads-click]="data?.pos[0]?.link_type">立即申请信用卡</button>
-		<button ion-button block large margin-top *ngIf="activeIndex==2" [ads-click]="data?.xinyong[0]?.link_type">立即开通POS机</button>
+		<button ion-button block large margin-top *ngIf="activeIndex==1" [ads-click]="data?.pos[0]">立即申请信用卡</button>
+		<button ion-button block large margin-top *ngIf="activeIndex==2" [ads-click]="data?.xinyong[0]">立即开通POS机</button>
 	</div>
 </ion-content>
->>>>>>> 评价功能
