@@ -11,7 +11,7 @@ import { GalleryModal } from 'ionic-gallery-modal';
 declare let wx;
 @IonicPage({
    name: 'ParticularsPage',
-   segment: 'particulars/:goodsId/:cutId/:dId',
+   segment: 'particulars/:goodsId/:cutId/:dId/:isActivity',
    defaultHistory: ['classify']
 })
 @Component({
@@ -32,6 +32,7 @@ export class ParticularsPage {
 
    cutId = this.navParams.get('cutId');//切边镜架商品id
    dId = this.navParams.get('dId');//切边镜架商品id
+   isActivity = this.navParams.get('isActivity') == 1 ? 1 : 0;//是否为活动商品
 
    @ViewChild('myContent') myContent: Content;
    commentType: any = 0;
@@ -259,6 +260,7 @@ export class ParticularsPage {
          id: this.goodsId,
          cutId: this.cutId,
          dId: this.dId,
+         isActivity: this.isActivity,
          callback: {
             navCtrl: this.navCtrl,
             refresher: (id) => {

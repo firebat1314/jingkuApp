@@ -28,6 +28,7 @@ export class ParticularsModalAttrPage {
    dId: any = this.navParams.get('dId');
    headData: any = this.navParams.get('headData');
    callback: any = this.navParams.get('callback');
+   isActivity = this.navParams.get('isActivity');//是否为活动商品
 
    distributionInfo: any;
    cutting_info: any;
@@ -199,7 +200,7 @@ export class ParticularsModalAttrPage {
             this.attrsList = res;
          })
       } else {
-         this.httpServ.getAttrList({ goods_id: this.goodsId, attr: this.checkMainAttrId }).then((res) => {
+         this.httpServ.getAttrList({ goods_id: this.goodsId, attr: this.checkMainAttrId, isActivity: this.isActivity }).then((res) => {
             this.attrsList = res;
          })
       }
