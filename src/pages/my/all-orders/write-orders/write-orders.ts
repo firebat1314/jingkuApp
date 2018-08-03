@@ -27,6 +27,7 @@ export class WriteOrdersPage {
    data: any;
    goodsType: string = this.navParams.get('type');
    dId: number = this.navParams.get('dId');
+   scanner: number = this.navParams.get('scanner');
    //选中地址
    defaultShipping: any;
    //选中的快递
@@ -123,7 +124,7 @@ export class WriteOrdersPage {
             }
          })
       }
-      return this.httpService.checkout().then((res) => {
+      return this.httpService.checkout({type:this.scanner>0?1:null}).then((res) => {
          if (res.status == 1) {
             this.data = res;
             //选中地址
@@ -272,7 +273,7 @@ export class WriteOrdersPage {
                return
             } else if (res.info == '购物车中没有商品') {
                this.navCtrl.pop().catch(res => { history.back() });
-            } else if (res.info == '请选择支付方式') {
+            } else if (res.info == '请选择支付方式'||res.info == '请先选择配送方式') {
                this.goPayAndShipPage();
             }
             resolve(res)

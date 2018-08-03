@@ -1,346 +1,363 @@
 page-home {
-    [home-padding] {
-        // padding: 0 10px;
-    }
-    img {
-        width: 100%;
-    }
-    .home-content {
-        background: #fff;
-        margin-bottom: 10px;
-        &:last-child {
-            margin: 0;
-        }
-        .title {
+   [home-padding] {
+      // padding: 0 10px;
+   }
+   img {
+      width: 100%;
+   }
+   .searchform {
+      position: relative;
+      .scannericon {
+         position: absolute;
+         width: 35px;
+         height: 30px;
+         display: flex;
+         align-items: center;
+         justify-content: center;
+         font-size: 18px;
+         font-weight: 600;
+         color: #999;
+         top: 50%;
+         margin-top: -15px;
+         right: 8px;
+      }
+   }
+   .home-content {
+      background: #fff;
+      margin-bottom: 10px;
+      &:last-child {
+         margin: 0;
+      }
+      .title {
+         display: flex;
+         justify-content: space-between;
+         align-items: center;
+         background: #fff;
+         padding: 17px 10px;
+         .txt {
+            border-left: 5px solid get-color(jingku1);
+            font-weight: 500;
+            font-size: 1.5rem;
+            padding-left: 10px;
+            line-height: 1;
+         }
+         .more {
+            color: #999;
+            font-size: 12px;
             display: flex;
-            justify-content: space-between;
             align-items: center;
-            background: #fff;
-            padding: 17px 10px;
-            .txt {
-                border-left: 5px solid get-color(jingku1);
-                font-weight: 500;
-                font-size: 1.5rem;
-                padding-left: 10px;
-                line-height: 1;
+            ion-icon {
+               color: get-color(jingku1);
+               font-size: 19px;
+               margin-left: 5px;
             }
-            .more {
-                color: #999;
-                font-size: 12px;
-                display: flex;
-                align-items: center;
-                ion-icon {
-                    color: get-color(jingku1);
-                    font-size: 19px;
-                    margin-left: 5px;
-                }
-            }
-        }
-        .main {
-            padding: 0 10px 10px;
-        }
-    }
-    .mark-searchbar {
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-    }
-    .add_icon {
-        margin-right: 5px;
-        height: 18px;
-        margin-top: -4px;
-    }
-    .banner-wrapper {
-        background: #fff;
-        button.swiper-pagination-bullet {
+         }
+      }
+      .main {
+         padding: 0 10px 10px;
+      }
+   }
+   .mark-searchbar {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+   }
+   .add_icon {
+      margin-right: 5px;
+      height: 18px;
+      margin-top: -4px;
+   }
+   .banner-wrapper {
+      background: #fff;
+      button.swiper-pagination-bullet {
+         border-radius: 50%;
+         border-color: transparent;
+         background: #666;
+         opacity: .5;
+      }
+      ion-slide {
+         img {
+            max-width: 100%;
+            margin: 0 auto;
+            display: block;
+            min-height: 100px;
+            width: 100%;
+         }
+      }
+   }
+   .btn-tool {
+      background-color: #fff;
+      margin-bottom: 10px;
+      padding: 15px 10px 5px;
+      display: flex;
+      justify-content: flex-start;
+      align-items: center;
+      margin-bottom: 10px;
+      flex-wrap: wrap;
+      >div {
+         display: flex;
+         flex-direction: column;
+         align-items: center;
+         min-width: 25%;
+         flex-basis: 25%;
+         color: #666;
+         margin-bottom: 10px;
+         .img {
+            width: 43px;
+            height: 43px;
+            margin-bottom: 7px; // border: 1px solid #666;
             border-radius: 50%;
-            border-color: transparent;
-            background: #666;
-            opacity: .5;
-        }
-        ion-slide {
-            img {
-                max-width: 100%;
-                margin: 0 auto;
-                display: block;
-                min-height: 100px;
-                width: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            box-shadow: 0px 0 20px #f5f5f5;
+         }
+      }
+   }
+   .btn-tool .top,
+   .btn-tool .bottom {}
+   .btn-tool .bottom {
+      margin-bottom: 0px;
+   }
+   /*———————————————————————————————— 闪购商品 ————————————————————————————————*/
+   .shan_gou {
+      .title {
+         background: url(../assets/icon/home/home_ico7.png) no-repeat 10px center/22px;
+         padding: 15px 11px 13px 30px;
+         .txt {
+            border: none;
+            color: get-color(jingku1);
+         }
+      }
+      .main {
+         .scroll_wrap {
+            overflow-y: scroll;
+            display: flex;
+            .item {
+               text-align: center;
+               margin-right: 10px;
+               min-width: 100px;
+               &:last-child {
+                  margin-right: 0;
+               }
+               .img {
+                  width: 100px;
+                  height: 100px;
+                  display: flex;
+                  align-items: center;
+               }
+               .txt {
+                  padding: 8px 0;
+                  .price {
+                     color: #e60000;
+                     font-size: 1.3rem;
+                     &:first-letter {
+                        font-size: 1.2rem;
+                     }
+                  }
+                  .old_price {
+                     font-size: 1.2rem;
+                     text-decoration: line-through;
+                     color: #999;
+                     &:first-letter {
+                        font-size: 1.1rem;
+                     }
+                  }
+               }
             }
-        }
-    }
-    .btn-tool {
-        background-color: #fff;
-        margin-bottom: 10px;
-        padding: 15px 10px 5px;
-        display: flex;
-        justify-content: flex-start;
-        align-items: center;
-        margin-bottom: 10px;
-        flex-wrap: wrap;
-        >div {
+         }
+      }
+   }
+   /*———————————————————————————————— 广告位 ————————————————————————————————*/
+   .ad_wrap {
+      $width: 10px;
+      padding: $width;
+      background: #fff;
+      margin-bottom: 10px;
+      img {
+         display: block;
+      }
+      .line1 {
+         display: flex;
+         >div {
+            margin-right: $width;
+            width: calc(50% - 5px);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            &:last-child {
+               margin: 0;
+            }
+         }
+      }
+      .line2 {
+         img {
+            margin-top: $width;
+         }
+      }
+   }
+   /*————————————————————————————————热门品类————————————————————————————————*/
+   .hot-group {
+      margin-bottom: 10px;
+      .main {
+         .banner img {
+            width: 100%;
+            display: block;
+         }
+      }
+      ion-grid {
+         padding: 0;
+         border-left: 1px #e0e0e0 solid;
+         border-top: 1px #e0e0e0 solid;
+         ion-col[width-33] {
             display: flex;
             flex-direction: column;
             align-items: center;
-            min-width: 25%;
-            flex-basis: 25%;
-            color: #666;
-            margin-bottom: 10px;
-            .img {
-                width: 43px;
-                height: 43px;
-                margin-bottom: 7px; // border: 1px solid #666;
-                border-radius: 50%;
-                display: flex;
-                justify-content: center;
-                align-items: center;
-                box-shadow: 0px 0 20px #f5f5f5;
+            justify-content: space-around;
+            color: #454545;
+            padding: 7px;
+            border-right: 1px #e0e0e0 solid;
+            border-bottom: 1px #e0e0e0 solid;
+            min-height: 6rem;
+            img {
+               width: 100%;
             }
-        }
-    }
-    .btn-tool .top,
-    .btn-tool .bottom {}
-    .btn-tool .bottom {
-        margin-bottom: 0px;
-    }
-    /*———————————————————————————————— 闪购商品 ————————————————————————————————*/
-    .shan_gou {
-        .title {
-            background: url(../assets/icon/home/home_ico7.png) no-repeat 10px center/22px;
-            padding: 15px 11px 13px 30px;
-            .txt {
-                border: none;
-                color: get-color(jingku1);
-            }
-        }
-        .main {
-            .scroll_wrap {
-                overflow-y: scroll;
-                display: flex;
-                .item {
-                    text-align: center;
-                    margin-right: 10px;
-                    min-width: 100px;
-                    &:last-child {
-                        margin-right: 0;
-                    }
-                    .img {
-                        width: 100px;
-                        height: 100px;
-                        display: flex;
-                        align-items: center;
-                    }
-                    .txt {
-                        padding: 8px 0;
-                        .price {
-                            color: #e60000;
-                            font-size: 1.3rem;
-                            &:first-letter {
-                                font-size: 1.2rem;
-                            }
-                        }
-                        .old_price {
-                            font-size: 1.2rem;
-                            text-decoration: line-through;
-                            color: #999;
-                            &:first-letter {
-                                font-size: 1.1rem;
-                            }
-                        }
-                    }
-                }
-            }
-        }
-    }
-    /*———————————————————————————————— 广告位 ————————————————————————————————*/
-    .ad_wrap {
-        $width: 10px;
-        padding: $width;
-        background: #fff;
-        margin-bottom: 10px;
-        img {
-            display: block;
-        }
-        .line1 {
+         }
+      }
+   }
+   /*————————————————————————————————热门品牌————————————————————————————————*/
+   .hot-brand {
+      .main {
+         .brand-list {
             display: flex;
+            flex-wrap: wrap;
+            border-top: 1px solid #e0e0e0;
+            border-left: 1px solid #e0e0e0;
             >div {
-                margin-right: $width;
-                width: calc(50% - 5px);
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                &:last-child {
-                    margin: 0;
-                }
+               width: 25%;
+               border-right: 1px solid #e0e0e0;
+               border-bottom: 1px solid #e0e0e0;
+               overflow: hidden;
+               display: flex;
+               min-height: 80px;
+               align-items: center;
+               img {
+                  display: block;
+                  width: 100%;
+               }
+               &:last-child {
+                  width: 50%;
+               }
             }
-        }
-        .line2 {
-            img {
-                margin-top: $width;
-            }
-        }
-    }
-    /*————————————————————————————————热门品类————————————————————————————————*/
-    .hot-group {
-        margin-bottom: 10px;
-        .main {
-            .banner img {
-                width: 100%;
-                display: block;
-            }
-        }
-        ion-grid {
+         }
+      }
+   }
+   /*————————————————————————————————精选专题————————————————————————————————*/
+   .handpick {
+      .show {
+         &:first-child {
+            margin-top: 0;
+         }
+         margin: 1rem auto;
+         min-height: 150px;
+         img {
+            display: block;
+            margin: 0 auto; // border-radius: 5px;
+         }
+      }
+      .pick {
+         .slide-title {
+            width: 100%;
             padding: 0;
-            border-left: 1px #e0e0e0 solid;
-            border-top: 1px #e0e0e0 solid;
-            ion-col[width-33] {
-                display: flex;
-                flex-direction: column;
-                align-items: center;
-                justify-content: space-around;
-                color: #454545;
-                padding: 7px;
-                border-right: 1px #e0e0e0 solid;
-                border-bottom: 1px #e0e0e0 solid;
-                min-height: 6rem;
-                img {
-                    width: 100%;
-                }
+            .slide-title-unit {
+               padding: 5px;
+               .img {
+                  font-size: 1.3rem;
+                  min-height: 100px;
+                  display: flex;
+                  align-items: center;
+                  img {
+                     display: block;
+                     margin: 0 auto;
+                  }
+               }
+               .info {
+                  .name {
+                     padding: 3px 1px;
+                     width: 100%;
+                     overflow: hidden;
+                     text-overflow: ellipsis;
+                     white-space: nowrap;
+                     font-size: 1.2rem;
+                     color: #666;
+                  }
+                  .price {
+                     color: map_get($colors, danger);
+                     font-size: 1.3rem; // margin-top: 10px;
+                  }
+               }
+               .watch-more {
+                  background-color: #f5f5f5;
+                  overflow: hidden;
+                  color: #666;
+                  height: 100px;
+                  border-radius: 4px;
+                  display: flex;
+                  align-items: center;
+                  justify-content: center;
+                  flex-direction: column;
+                  p {
+                     margin: 5px 0;
+                  }
+               }
             }
-        }
-    }
-    /*————————————————————————————————热门品牌————————————————————————————————*/
-    .hot-brand {
-        .main {
-            .brand-list {
-                display: flex;
-                flex-wrap: wrap;
-                border-top: 1px solid #e0e0e0;
-                border-left: 1px solid #e0e0e0;
-                >div {
-                    width: 25%;
-                    border-right: 1px solid #e0e0e0;
-                    border-bottom: 1px solid #e0e0e0;
-                    overflow: hidden;
-                    display: flex;
-                    min-height: 80px;
-                    align-items: center;
-                    img {
-                        display: block;
-                        width: 100%;
-                    }
-                    &:last-child {
-                        width: 50%;
-                    }
-                }
+         }
+      }
+   }
+   /*————————————————————————————————好店推荐————————————————————————————————*/
+   .good-shop {
+      .main {
+         ion-slides {
+            .swiper-slide {
+               padding: 0 20px 20px;
+               margin-bottom: 10px;
+               .card {
+                  position: relative;
+                  img {
+                     width: 100%;
+                  }
+                  .collect {
+                     width: 100%;
+                     position: absolute;
+                     top: 0;
+                     left: 0;
+                     display: flex;
+                     justify-content: space-between;
+                     color: #fff;
+                     padding: 10px;
+                     font-size: 1.5rem;
+                  }
+               }
             }
-        }
-    }
-    /*————————————————————————————————精选专题————————————————————————————————*/
-    .handpick {
-        .show {
-            &:first-child {
-                margin-top: 0;
+            .swiper-pagination-bullet {
+               width: 10px;
+               height: 10px;
             }
-            margin: 1rem auto;
-            min-height: 150px;
-            img {
-                display: block;
-                margin: 0 auto; // border-radius: 5px;
-            }
-        }
-        .pick {
-            .slide-title {
-                width: 100%;
-                padding: 0;
-                .slide-title-unit {
-                    padding: 5px;
-                    .img {
-                        font-size: 1.3rem;
-                        min-height: 100px;
-                        display: flex;
-                        align-items: center;
-                        img {
-                            display: block;
-                            margin: 0 auto;
-                        }
-                    }
-                    .info {
-                        .name {
-                            padding: 3px 1px;
-                            width: 100%;
-                            overflow: hidden;
-                            text-overflow: ellipsis;
-                            white-space: nowrap;
-                            font-size: 1.2rem;
-                            color: #666;
-                        }
-                        .price {
-                            color: map_get($colors, danger);
-                            font-size: 1.3rem; // margin-top: 10px;
-                        }
-                    }
-                    .watch-more {
-                        background-color: #f5f5f5;
-                        overflow: hidden;
-                        color: #666;
-                        height: 100px;
-                        border-radius: 4px;
-                        display: flex;
-                        align-items: center;
-                        justify-content: center;
-                        flex-direction: column;
-                        p {
-                            margin: 5px 0;
-                        }
-                    }
-                }
-            }
-        }
-    }
-    /*————————————————————————————————好店推荐————————————————————————————————*/
-    .good-shop {
-        .main {
-            ion-slides {
-                .swiper-slide {
-                    padding: 0 20px 20px;
-                    margin-bottom: 10px;
-                    .card {
-                        position: relative;
-                        img {
-                            width: 100%;
-                        }
-                        .collect {
-                            width: 100%;
-                            position: absolute;
-                            top: 0;
-                            left: 0;
-                            display: flex;
-                            justify-content: space-between;
-                            color: #fff;
-                            padding: 10px;
-                            font-size: 1.5rem;
-                        }
-                    }
-                }
-                .swiper-pagination-bullet {
-                    width: 10px;
-                    height: 10px;
-                }
-            }
-        }
-    }
-    /*————————————————————————————————热门单品————————————————————————————————*/
-    .hot-other {
-        background: initial;
-        .title {
-            background: #fff;
-            padding: 17px 10px;
-            margin-bottom: 0;
-        }
-        .main {
-            padding: 0;
-        }
-    }
+         }
+      }
+   }
+   /*————————————————————————————————热门单品————————————————————————————————*/
+   .hot-other {
+      background: initial;
+      .title {
+         background: #fff;
+         padding: 17px 10px;
+         margin-bottom: 0;
+      }
+      .main {
+         padding: 0;
+      }
+   }
 }

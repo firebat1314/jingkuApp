@@ -28,7 +28,11 @@ export class ChooseFramePage {
 	mach_type: any = this.navParams.get('mach_type');
 	pinpai: any = this.navParams.get('pinpai');
 	xinghao: any = this.navParams.get('xinghao');
-	beizhu: any = this.navParams.get('beizhu');
+   beizhu: any = this.navParams.get('beizhu');
+   
+	scannerData: any = this.navParams.get('scannerData');
+	settings: any = this.navParams.get('settings');
+
 
 	constructor(
 		public navCtrl: NavController,
@@ -45,23 +49,25 @@ export class ChooseFramePage {
 	}
 
 	ngOnInit() {
-		this.httpService.machining_goods({
-			order_id: this.order_id,
-			type: 'zuo',
-			goods_type: 'jia',
-			rec_ids: this.rec_ids,
-			rec_id: this.rec_id,
-			pian_rec: this.pian_rec
-		}).then((res) => {
-			if (res.status == 1) {
-				this.data = res;
-				if (!res.data.length) {
-					this.selectorbar = 'byself';
-				}
-			} else {
-				this.viewCtrl.dismiss();
-			}
-		})
+      if(!this.scannerData){
+         this.httpService.machining_goods({
+            order_id: this.order_id,
+            type: 'zuo',
+            goods_type: 'jia',
+            rec_ids: this.rec_ids,
+            rec_id: this.rec_id,
+            pian_rec: this.pian_rec
+         }).then((res) => {
+            if (res.status == 1) {
+               this.data = res;
+               if (!res.data.length) {
+                  this.selectorbar = 'byself';
+               }
+            } else {
+               this.viewCtrl.dismiss();
+            }
+         })
+      }
 	}
 
 	next() {
@@ -90,20 +96,37 @@ export class ChooseFramePage {
 		/* this.httpService.select_goods_type({ goods_rec: this.rec_id, type: '1', str_type: 'zuo' }).then((res)=>{
   
 		}) */
-		this.httpService.select_goods_type({
-			goods_rec: null,//用户自备镜架
-			type: '0',
-			str_type: '',
-			mach_type: this.mach_type,
-			pinpai: this.pinpai,
-			xinghao: this.xinghao,
-			beizhu: this.beizhu,
-			pian_rec: this.pian_rec
-		}).then((res) => {
-			if (res.status) {
-				this.viewCtrl.dismiss(res.data, 'submit');
-			}
-		})
+		if(this.scannerData){
+         this.httpService.SpecialMachiningselect_goods_type({
+            goods_rec: null,//用户自备镜架
+            type: '0',
+            str_type: '',
+            mach_type: this.mach_type,
+            pinpai: this.pinpai,
+            xinghao: this.xinghao,
+            beizhu: this.beizhu,
+            pian_rec: this.pian_rec
+         }).then((res) => {
+            if (res.status) {
+               this.viewCtrl.dismiss(Object.assign(this.scannerData,res.data), 'submit');
+            }
+         })
+      }else{
+         this.httpService.select_goods_type({
+            goods_rec: null,//用户自备镜架
+            type: '0',
+            str_type: '',
+            mach_type: this.mach_type,
+            pinpai: this.pinpai,
+            xinghao: this.xinghao,
+            beizhu: this.beizhu,
+            pian_rec: this.pian_rec
+         }).then((res) => {
+            if (res.status) {
+               this.viewCtrl.dismiss(res.data, 'submit');
+            }
+         })
+      }
 	}
 
 }

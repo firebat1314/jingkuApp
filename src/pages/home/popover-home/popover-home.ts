@@ -10,33 +10,31 @@ import { Native } from "../../../providers/native";
  */
 @IonicPage()
 @Component({
-  selector: 'page-popover-home',
-  templateUrl: 'popover-home.html',
+   selector: 'page-popover-home',
+   templateUrl: 'popover-home.html',
 })
 export class PopoverHomePage {
 
-  constructor(
-    public viewCtrl: ViewController,
-    public navCtrl: NavController,
-    public navParams: NavParams,
-    public native: Native
-  ) { }
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad PopoverHomePage');
-  }
-  goMessagePage() {
-    this.viewCtrl.dismiss('MessagePage');
-  }
-  openScanner() {
-    this.native.openBarcodeScanner().then((result) => {
-      // console.log(result)
-      this.native.openAlertBox(result['text'], () => {
-        console.log(result['format'])
+   constructor(
+      public viewCtrl: ViewController,
+      public navCtrl: NavController,
+      public navParams: NavParams,
+      public native: Native
+   ) { }
+   ionViewDidLoad() {
+      console.log('ionViewDidLoad PopoverHomePage');
+   }
+   goMessagePage() {
+      this.viewCtrl.dismiss('MessagePage');
+   }
+   openScanner() {
+      this.native.openBarcodeScanner().then((result) => {
+         console.log(result)
+         this.viewCtrl.dismiss();
+         
+      }).catch(() => {
+         console.log('openBarcodeScanner error')
       })
-    }).catch(() => {
-      console.log('openBarcodeScanner error')
-    }).then(() => {
-      this.viewCtrl.dismiss();
-    })
-  }
+      return false;
+   }
 }
