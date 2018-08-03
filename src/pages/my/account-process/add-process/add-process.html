@@ -9,7 +9,7 @@
 	<ion-navbar>
 		<ion-title>{{edit?'来镜加工':'确认信息'}}</ion-title>
 		<ion-buttons right>
-			<button *ngIf="edit" ion-button tappble (click)="addOrder()">添加工单</button>
+			<button *ngIf="edit&&!is_scanner" ion-button tappble (click)="addOrder()">添加工单</button>
 		</ion-buttons>
 	</ion-navbar>
 
@@ -136,7 +136,7 @@
 				<div *ngIf="item?.J" class="eye frame">
 					<div class="h_title">镜架</div>
 					<div class="t_labels">
-						<div class="lab">镜架来源：{{item?.J?.rec_id?'订单选择':'客户自备'}}</div>
+						<div class="lab" *ngIf="!is_scanner">镜架来源：{{item?.J?.rec_id?'订单选择':'客户自备'}}</div>
 						<div class="lab">镜架品牌：{{item?.J?.pinpai||'无'}}</div>
 						<div class="lab">镜架型号：{{item?.J?.xinghao||'无'}}</div>
 						<div class="lab">加工类型：{{item?.J?.mach_type_name||'无'}}</div>

@@ -4,7 +4,7 @@
   See https://angular.io/docs/ts/latest/api/core/index/ComponentMetadata-class.html
   for more info on Angular 2 Components.
 -->
-<div class="btn" tappable (click)="reduce()" [class.disabled]="value <= minValue">
+<div class="btn" tappable (click)="reduce()" [class.disabled]="(value <= minValue) || (rank> 1&&(value <= rank))">
 	<img src="./assets/icon/minus.png" alt="">
 </div>
 <input type="number" [(ngModel)]="value" (input)="input(value)" (blur)="inputEvent()" [ngStyle]="{'background':rank>1?'#e0e0e0':'#f5f5f5'}" [disabled]="disabled" tappable>

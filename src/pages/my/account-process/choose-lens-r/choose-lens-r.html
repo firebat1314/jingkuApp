@@ -6,44 +6,61 @@
 -->
 <ion-header>
 
-	<ion-navbar>
-		<ion-buttons left>
-			<button ion-button icon-only (click)="viewCtrl.dismiss()">
+   <ion-navbar>
+      <ion-buttons left>
+         <button ion-button icon-only (click)="viewCtrl.dismiss()">
 				<ion-icon name="ios-arrow-back"></ion-icon>
 			</button>
-		</ion-buttons>
-		<ion-title>选择镜片-右眼</ion-title>
-	</ion-navbar>
+      </ion-buttons>
+      <ion-title>选择镜片-右眼</ion-title>
+   </ion-navbar>
 
 </ion-header>
 
 
 <ion-content>
-		<div *ngIf="data&&!data?.data?.length" style="text-align: center;margin-top: 12px;color: #999999;">没有可选镜片</div>
-		<ion-list style="margin-top: 0;">
-			<div class="item-wrap" *ngFor="let item of data?.data" tappable (click)="rec_id==item.rec_id?rec_id=null:rec_id=item.rec_id">
-				<div margin-left>
-					<ion-checkbox color="jingku1" style="pointer-events: none;" [checked]="rec_id==item.rec_id" mode="ios"></ion-checkbox>
-				</div>
-				<div ion-item>
-					<ion-thumbnail item-left>
-						<img [img-lazy-load]="item.original_img">
-					</ion-thumbnail>
-					<h2>{{item.goods_name}}</h2>
-					<p class="right-bottom">
-						<span class="attr" *ngIf="item.qiujing">球镜：{{item.qiujing}}</span>
-						<span class="attr" *ngIf="item.zhujing">球镜：{{item.zhujing}}</span>
-						<span class="attr" *ngIf="item.zhouwei">球镜：{{item.zhouwei}}</span>
-						<span class="attr" *ngFor="let attr of item.goods_attrs">{{attr}}</span>
-						<em>x{{item.goods_number}}</em>
-					</p>
-				</div>
-			</div>
-		</ion-list>
+   <div *ngIf="data&&!data?.data?.length" style="text-align: center;margin-top: 12px;color: #999999;">没有可选镜片</div>
+   <ion-list style="margin-top: 0;" *ngIf="!scannerData">
+      <div class="item-wrap" *ngFor="let item of data?.data" tappable (click)="rec_id==item.rec_id?rec_id=null:rec_id=item.rec_id">
+         <div margin-left>
+            <ion-checkbox color="jingku1" style="pointer-events: none;" [checked]="rec_id==item.rec_id" mode="ios"></ion-checkbox>
+         </div>
+         <div ion-item>
+            <ion-thumbnail item-left>
+               <img [img-lazy-load]="item.original_img">
+            </ion-thumbnail>
+            <h2>{{item.goods_name}}</h2>
+            <p class="right-bottom">
+               <span class="attr" *ngIf="item.qiujing">球镜：{{item.qiujing}}</span>
+               <span class="attr" *ngIf="item.zhujing">球镜：{{item.zhujing}}</span>
+               <span class="attr" *ngIf="item.zhouwei">球镜：{{item.zhouwei}}</span>
+               <span class="attr" *ngFor="let attr of item.goods_attrs">{{attr}}</span>
+               <em>x{{item.goods_number}}</em>
+            </p>
+         </div>
+      </div>
+   </ion-list>
+   <ion-list style="margin-top: 0;" *ngIf="scannerData">
+      <div class="item-wrap">
+         <div ion-item>
+            <ion-thumbnail item-left>
+               <img [img-lazy-load]="scannerData.goods_thumb">
+            </ion-thumbnail>
+            <h2>{{scannerData.goods_name}}</h2>
+            <p class="right-bottom">
+               <span class="attr" *ngIf="scannerData.qiujing">球镜：{{scannerData.qiujing}}</span>
+               <span class="attr" *ngIf="scannerData.zhujing">球镜：{{scannerData.zhujing}}</span>
+               <span class="attr" *ngIf="scannerData.zhouwei">球镜：{{scannerData.zhouwei}}</span>
+               <span class="attr" *ngFor="let attr of scannerData.goods_attrs">{{attr}}</span>
+               <em>x{{scannerData.goods_number}}</em>
+            </p>
+         </div>
+      </div>
+   </ion-list>
 </ion-content>
 
 <ion-footer>
-	<!-- <ion-toolbar no-padding mode="ios"> -->
-		<button ion-button large full color="jingku1" no-margin (click)="submit()">确定</button>
-	<!-- </ion-toolbar> -->
+   <!-- <ion-toolbar no-padding mode="ios"> -->
+   <button ion-button large full color="jingku1" *ngIf="!scannerData" no-margin (click)="submit()">确定</button>
+   <!-- </ion-toolbar> -->
 </ion-footer>

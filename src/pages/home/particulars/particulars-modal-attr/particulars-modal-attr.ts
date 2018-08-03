@@ -30,6 +30,9 @@ export class ParticularsModalAttrPage {
    callback: any = this.navParams.get('callback');
    isActivity = this.navParams.get('isActivity');//是否为活动商品
 
+   scannerId = this.navParams.get('scannerId');//二维码扫描id
+   scannerData: any;
+
    distributionInfo: any;
    cutting_info: any;
    goods_attribute: any;
@@ -66,6 +69,9 @@ export class ParticularsModalAttrPage {
    totalPrices: any = 0;
    totalNumber: any = 0;
    goodsInfo: any;
+
+   /* 扫描选择镜架商品 */
+   scanner_select
    constructor(
       public navCtrl: NavController,
       public navParams: NavParams,
@@ -75,18 +81,31 @@ export class ParticularsModalAttrPage {
       private events: Events,
       private alertCtrl: AlertController,
       private mine: MineProvider,
-   ) { }
+   ) {
+   }
    ionViewDidLoad() {
       console.log('ionViewDidLoad ParticularsModalAttrPage');
    }
    ngOnInit() {
-      if (this.cutId > 0) {
+      if (this.scannerId) {
+         this.httpServ.SpecialMachiningGoodsInfo({ id: this.scannerId }).then(res => {
+            this.goodsId = res.info.goods_id;
+            this.type = 'cut';
+            this.scannerData = res;
+            this.getGoodInfo();
+            if (res.is_jingjia > 0) {
+               this.getAttrList();
+            } else {
+               this.getGoodsAttribute(this.goodsId);
+            }
+         })
+      } else if (this.cutId > 0) {
          this.checkCutGoodsId = this.goodsId;
          this.httpServ.cutting_info({ id: this.cutId }).then(res => {
             if (res.status) {
                this.type = 'cut';
                this.cutting_info = res;
-               this.goodsId = res.cutting_info.goods_id;
+               // this.goodsId = res.cutting_info.goods_id;
                this.getGoodInfo();
                this.getAttrList();
             }
@@ -109,6 +128,7 @@ export class ParticularsModalAttrPage {
       this.httpServ.goodsInfos({ goods_id: this.goodsId }).then((res) => {
          if (res.status == 1) {
             this.goodsInfo = res;
+            this.headData = res.data;
          }
       })
    }
@@ -373,7 +393,7 @@ export class ParticularsModalAttrPage {
    /*添加到购物车*/
    addToCart(goCart) {
       /*普通商品添加到购物车*/
-      if (this.type == 'goods') {
+      if (this.type == 'goods') {//除镜片商品
 			/* if(this.attrNumbers.length==1&&this.attrNumbers[0]==0){
 				this.native.showToast('请至少选择一件商品',null,false)
 				return;
@@ -475,10 +495,10 @@ export class ParticularsModalAttrPage {
          } else {
             if (this.getGoodsParamsArrs()) {
                for (let j = 0, items = this.goods_attribute.specification; j < items.length; j++) {
-                  if (items[j].name.indexOf('定制类型') > -1) {//左右眼镜片定制类型同步设置
+                  if (items[j].name.indexOf('定制类型') > -1) {//
                      for (let i = 0; i < items[j].values.length; i++) {
                         const element = items[j].values[i];
-                        if (this.goods[0]['定制类型'] == element.id && element.vid == 678) {
+                        if (this.goods[0]['定制类型'] == element.id && element.vid == 678) {//定制类型是否为来架定制
                            parmas = {
                               arr_goods: [{
                                  member: this.memberArr,//所填写的商品的数量
@@ -538,7 +558,6 @@ export class ParticularsModalAttrPage {
          }).catch((res) => {
             console.log(res)
          })
-
       }
    }
    goCarPage() {
@@ -550,5 +569,81 @@ export class ParticularsModalAttrPage {
       this.viewCtrl.dismiss((navCtrl) => {
          navCtrl.push('WriteOrdersDPage', { dId: this.dId })
       });
+   }
+   scannerAddCart() {
+      let parmas: any;
+      if (this.scannerData.is_jingjia > 0) {
+         if (!this.scanner_select) {
+            this.native.showToast('请选择商品')
+            return
+         }
+         parmas = {
+            arr_goods: [{ member: [1], spec: [this.scanner_select.goods_attr_id] }],
+            arr_goods_id: [this.goodsId],
+            goods_id: this.goodsId,
+         }
+      } else if (this.scannerData.is_jingpian > 0) {
+         if (this.getGoodsParamsArrs()) {
+            parmas = {
+               arr_goods: [{
+                  member: this.memberArr,//所填写的商品的数量
+                  spc: this.spcArr,//商品选择的属性
+                  qiujing: this.qiujingArr,//所选的球镜
+                  zhujing: this.zhujingArr,//所选的柱镜
+                  zhouwei: this.zhouweiArr//所填写的轴位
+               }],
+               arr_goods_id: [this.goodsId],
+               goods_id: this.goodsId,
+            }
+         }
+      }
+
+      this.httpServ.SpecialMachiningadd_to_cart_spec_jp(parmas).then((res) => {
+         if (res.status == 1) {
+            this.native.showToast(res.info);
+            if (res.is_true) {//是否前往来镜加工
+               this.viewCtrl.dismiss((navCtrl) => {
+                  navCtrl.push('AddProcessPage', { is_scanner: 1 })
+               });
+            } else {
+               this.native.openBarcodeScanner().then((result) => {
+                  this.scannerId = result['text'];
+                  this.ngOnInit();
+               }).catch((e) => {
+               })
+            }
+         } else if (res.status == -1) {
+            this.native.openAlertBox(
+               res.info,
+               () => {/* 确定替换 */
+                  this.httpServ.SpecialMachiningadd_to_cart_spec_jp(Object.assign({ replace: 1 }, parmas)).then(res => {
+                     if (res.status == 1) {
+                        this.native.showToast(res.info);
+                        if (res.is_true) {//是否前往来镜加工
+                           this.viewCtrl.dismiss((navCtrl) => {
+                              navCtrl.push('AddProcessPage', { is_scanner: 1 })
+                           });
+                        } else {
+                           this.native.openBarcodeScanner().then((result) => {
+                              this.scannerId = result['text'];
+                              this.ngOnInit()
+                           }).catch((e) => {
+                           })
+                        }
+                     }
+                  })
+               },
+               () => {/* 不替换 */
+                  this.native.openBarcodeScanner().then((result) => {
+                     this.scannerId = result['text'];
+                     this.ngOnInit()
+                  }).catch((e) => {
+                  })
+               }
+            )
+         }
+      }).catch((res) => {
+         console.log(res)
+      })
    }
 }

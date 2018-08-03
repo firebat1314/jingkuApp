@@ -44,9 +44,9 @@ page-particulars-modal-attr {
          .main-attr-wrap {
             display: flex;
             flex-wrap: wrap;
-            max-height: 200px;
-            overflow-y: scroll;
             flex-shrink: 0;
+            max-height: 164px;
+            overflow-y: scroll;
             padding: 0 6px;
             .attr {
                border-radius: 4px;
@@ -103,6 +103,7 @@ page-particulars-modal-attr {
                border-bottom: 1px solid #fafafa;
                color: #808080;
                padding: 10px 0;
+               background: #fff;
                .td-wrap {
                   display: flex;
                   align-items: center;
@@ -111,10 +112,8 @@ page-particulars-modal-attr {
                      text-align: center;
                      flex: 1;
                      font-size: 12px;
-                     &:first-child {
-                        min-width: 114px;
-                     }
                      &.count-input-box {
+                        min-width: 114px;
                         count-input {
                            margin: 0 auto;
                         }

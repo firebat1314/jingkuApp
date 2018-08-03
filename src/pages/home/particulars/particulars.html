@@ -73,27 +73,27 @@
             <ion-icon name="ios-arrow-forward"></ion-icon>
          </div>
       </div>
-      <div class="fore coupon">
+      <div class="fore coupon" *ngIf="dId!=1">
          <button ion-item *ngIf="getGoodsInfo?.bonus?.length" [disabled]="!getGoodsInfo?.bonus?.length" class="button-coupon" (click)="presentModal('优惠券')">
-                    <span style="color: #808080;">领券</span>
-                    <span *ngFor="let item of getGoodsInfo?.bonus" class="coupon-show">{{"满"+item.min_goods_amount.slice(1)+'减'+item.int_type_money}}</span>
-                    <ion-note item-right>{{(!getGoodsInfo?.bonus?.length)?'无优惠券':'点击领取'}}</ion-note>
-                </button>
+            <span style="color: #808080;">领券</span>
+            <span *ngFor="let item of getGoodsInfo?.bonus" class="coupon-show">{{"满"+item.min_goods_amount.slice(1)+'减'+item.int_type_money}}</span>
+            <ion-note item-right>{{(!getGoodsInfo?.bonus?.length)?'无优惠券':'点击领取'}}</ion-note>
+         </button>
          <button ion-item no-lines class="button-chuxiao" *ngIf="getGoodsInfo?.promotion?.length" [disabled]="!getGoodsInfo?.promotion?.length" (click)="presentModal('促销')">
-                    <span style="color: #808080;">促销&nbsp;</span>
-                    <div>
-                        <p class="list-show" *ngFor="let item of getGoodsInfo?.promotion">
-                            <span class="title">{{item.promotion_name}}</span>
-                            <span [innerHtml]="item.title" style="white-space: pre-wrap;font-size: 12px;"></span>
-                        </p>
-                    </div>
-                    <ion-note *ngIf="!getGoodsInfo?.promotion?.length" item-right>无促销</ion-note>
-                </button>
+            <span style="color: #808080;">促销&nbsp;</span>
+            <div>
+               <p class="list-show" *ngFor="let item of getGoodsInfo?.promotion">
+                  <span class="title">{{item.promotion_name}}</span>
+                  <span [innerHtml]="item.title" style="white-space: pre-wrap;font-size: 12px;"></span>
+               </p>
+            </div>
+            <ion-note *ngIf="!getGoodsInfo?.promotion?.length" item-right>无促销</ion-note>
+         </button>
       </div>
       <div class="fore attribute">
          <button ion-item [disabled]="is_dingzhi" (click)="presentModalAttr()" no-lines>
-                    <span style="color: #808080;">选择&nbsp;&nbsp;</span>规格 光度等
-                </button>
+            <span style="color: #808080;">选择&nbsp;&nbsp;</span>规格 光度等
+         </button>
       </div>
       <!-- <div class="fore">
                 <ion-item no-lines>
@@ -103,9 +103,9 @@
             </div> -->
       <div class="fore will-address">
          <button ion-item no-lines (click)="presentModal('配送地址')">
-                    <span style="color: #808080;">送至&nbsp;&nbsp;</span>{{region_name||'选择地址'}}
-                    <span class="nogoods"></span>
-                </button>
+            <span style="color: #808080;">送至&nbsp;&nbsp;</span>{{region_name||'选择地址'}}
+            <span class="nogoods"></span>
+         </button>
          <div class="bottom" *ngIf="getGoodsInfo?.data?.additional?.is_true||getGoodsInfo?.data?.additional?.is_hdfk||getGoodsInfo?.data?.additional?.is_inv" tappable (click)="presentModal('商品服务保障')">
             <ion-note *ngIf="getGoodsInfo?.data?.additional?.is_true">
                <img src="./assets/icon/images/particulars_05_03.png" alt=""> 正品保障
@@ -125,8 +125,8 @@
       <div class="comment" *ngIf="commentData?.list?.length">
          <div class="see_current" tappable navPush="CommentListPage" [navParams]="{goods_id:goodsId}">
             <label class="left">
-                      <span>评论（{{commentData?.zong_count}}）</span>
-                </label>
+               <span>评论（{{commentData?.zong_count}}）</span>
+            </label>
             <div class="right">
                <span style="color: #808080;">好评度</span>
                <span style="color: #3f69a5;" class="baifen">{{commentData?.hao_baif||100}}%</span>

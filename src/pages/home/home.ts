@@ -187,32 +187,50 @@ export class HomePage {
          }, 500);
       })
    }
-   /* updataArea() {
-     this.httpService.getAreaList().then((res) => {
-       if (res && res.status == 1) {
-         this.areaList = res.data;
-         for (let i = 0; i < res.data.length; i++) {
-           if (res.data[i].selected == 1) {
-             this.area = res.data[i].region_name;
-           }
-         }
-       }else if(res.status==0){
-         
-       }
-     })
-   } */
    goMessagePage() {
       this.navCtrl.push('MessagePage')
    }
-   presentPopover(myEvent) {
-      let popover = this.popoverCtrl.create('PopoverHomePage', {}, { cssClass: '' });
-      popover.present({
-         ev: myEvent
-      });
-      popover.onDidDismiss(data => {
-         if (data) {
-            this.navCtrl.push(data);
-         }
+   openScanner(e) {
+      e.stopPropagation();
+      this.native.openBarcodeScanner().then((result) => {
+         this.httpService.SpecialMachiningGoodsInfo({ id: result['text'] }).then(res => {
+            if (res.status == 1) {
+               if (res.is_true) {
+                  this.native.openAlertBox(
+                     '已存在加工单，是否前往加工',
+                     () => {
+                        this.navCtrl.push('AddProcessPage', { is_scanner: 1 });
+                     },
+                     () => {
+                        let modal = this.modalCtrl.create('ParticularsModalAttrPage', {
+                           headData: res.info,
+                           scannerId: result['text'],
+                           cutId: result['text']//这里为任意值
+                        }, { cssClass: 'my-modal-style' });
+                        modal.onDidDismiss(data => {
+                           if (!data) return;
+                           data(this.navCtrl);
+                        });
+                        modal.present();
+                     })
+               } else {
+                  let modal = this.modalCtrl.create('ParticularsModalAttrPage', {
+                     headData: res.info,
+                     scannerId: result['text'],
+                     cutId: result['text']//这里为任意值
+                  }, { cssClass: 'my-modal-style' });
+                  modal.onDidDismiss(data => {
+                     if (!data) return;
+                     data(this.navCtrl);
+                  });
+                  modal.present();
+               }
+            } else {
+               this.native.showToast(res.info);
+            }
+         })
+      }).catch((e) => {
+         
       })
    }
    goBrandPage() {
@@ -224,8 +242,8 @@ export class HomePage {
    goCityPage() {
       this.navCtrl.push('CityPage', { areaList: this.areaList })
    }
-   goParticularsPage(id) {
-      this.navCtrl.push('ParticularsPage', { goodsId: id })
+   goParticularsPage(id, isActivity) {
+      this.navCtrl.push('ParticularsPage', { goodsId: id, isActivity: isActivity == 1 ? 1 : 0 })
    }
    goBrandListPage(id) {
       this.navCtrl.push('BrandListPage', { brandId: id })

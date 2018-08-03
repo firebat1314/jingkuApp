@@ -837,4 +837,24 @@ export class HttpService {
    delAllSearch(data?: Object, options: HttpOptions = { showLoading: false }) {
       return this.http.post(IP + '/Index/DelAllSearch ', data, options)
    }
+   /* 二维码扫描 */
+   SpecialMachiningGoodsInfo(data?: Object, options: HttpOptions = { showLoading: true }) {
+      return this.http.post(IP + '/SpecialMachining/GoodsInfo ', data, options)
+   }
+   /* 二维码扫描加入加工单 */
+   SpecialMachiningadd_to_cart_spec_jp(data?: Object, options: HttpOptions = { showLoading: true }) {
+      return this.http.post(IP + '/SpecialMachining/add_to_cart_spec_jp ', data, options)
+   }
+   SpecialMachiningmachining_info(data?: Object, options: HttpOptions = { showLoading: true }) {
+      return this.http.post(IP + '/SpecialMachining/machining_info ', data, options)
+   }
+   SpecialMachiningcache_machining(data?: Object, options: HttpOptions = { showLoading: true }) {
+      return this.http.post(IP + '/SpecialMachining/cache_machining ', data, options)
+   }
+   SpecialMachiningselect_goods_type(data?: Object, options: HttpOptions = { showLoading: true }) {
+      return this.http.post(IP + '/SpecialMachining/select_goods_type ', data, options)
+   }
+   SpecialMachiningMachiningAddToCart(data?: Object, options: HttpOptions = { showLoading: true }) {
+      return this.http.post(IP + '/SpecialMachining/MachiningAddToCart ', data, options)
+   }
 }
