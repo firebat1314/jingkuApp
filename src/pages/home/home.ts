@@ -62,6 +62,7 @@ export class HomePage {
       private ximu: XimuProvider,
       private mine: MineProvider,
       private jpushServ: JpushService,
+      private modalCtrl: ModalController,
    ) {
       //地址更新
       this.events.subscribe('home:update', () => {
