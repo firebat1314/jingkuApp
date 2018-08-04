@@ -132,8 +132,5 @@
         <variable name="ANDROID_HOST" value=" " />
         <variable name="ANDROID_PATHPREFIX" value="/" />
     </plugin>
-    <plugin name="cordova-plugin-baidumobstat" spec="^1.2.3">
-        <variable name="APP_KEY" value="2a3f65d569" />
-    </plugin>
     <plugin name="cordova-plugin-cocoapod-support" spec="^1.5.0" />
 </widget>
