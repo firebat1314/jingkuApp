@@ -79,7 +79,7 @@
                                             </div>
                                             <div class="price" *ngIf="!item3?.cha_price&&mine?.showPrice">¥{{item3?.goods_price}}</div>&nbsp;
                                             <div class="number">
-                                                <count-input [minValue]="item3?.goods_properties?.number||1" [maxValue]="item3?.product_number=='-1'?item2?.g_goods_number:item3?.product_number" [rank]="item3?.goods_properties?.number" (valueChange)="numberChangeI($event,item3)" [value]="item3?.goods_number"></count-input>
+                                                <count-input [minValue]="item3?.goods_properties?.number||1" [maxValue]="item3?.product_number=='-1'?item2?.g_goods_number:item3?.product_number" [rank]="item3?.goods_properties?.number" (valueChange)="numberChangeI($event,item3)" [value]="item3?.goods_number" [hasBorder]="true"></count-input>
                                             </div>
                                         </div>
                                     </div>
