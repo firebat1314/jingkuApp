@@ -133,4 +133,5 @@
         <variable name="ANDROID_PATHPREFIX" value="/" />
     </plugin>
     <plugin name="cordova-plugin-cocoapod-support" spec="^1.5.0" />
+    <plugin name="cordova-plugin-qrscanner" spec="^2.6.0" />
 </widget>

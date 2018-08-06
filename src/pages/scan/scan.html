@@ -1,0 +1,18 @@
+<ion-header >
+  <ion-navbar >
+      <ion-title>二维码/条码</ion-title>
+  </ion-navbar>
+</ion-header>
+<ion-content no-scroll [ngClass]="{'qrscanner':isShow}">
+  <div [ngClass]="{'qrscanner-area':isShow}">
+  </div>
+  <div [ngClass]="{'through-line':isShow}"></div>
+  <div class="button-bottom">
+    <button (click)="toggleLight()" ion-fab class="icon-camera" margin-right>
+      <ion-icon name="flash"></ion-icon>
+    </button>
+    <button (click)="toggleCamera()" ion-fab class="icon-camera">
+      <ion-icon name="reverse-camera"></ion-icon>
+    </button>
+  </div>
+</ion-content>

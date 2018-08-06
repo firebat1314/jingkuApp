@@ -25,6 +25,7 @@ import { Transfer } from "@ionic-native/transfer";
 import { File } from '@ionic-native/file';
 import { InAppBrowser } from '@ionic-native/in-app-browser';
 import { JPush } from '@jiguang-ionic/jpush';
+import { QRScanner } from '@ionic-native/qr-scanner';
 /*———————————————————————————————— 插件 ————————————————————————————————*/
 import { MeunItemComponentModule } from "../components/meun-item/meun-item.module";
 import { CityPickerModule } from "ionic2-city-picker/dist/city-picker.module";
@@ -77,6 +78,7 @@ import { preApplyParams } from '../pages/BT/preApplyParams';
     JpushService,
     UpgradeProvider,
     Camera,
+    QRScanner,
     ImagePicker,
     AppVersion,
     Toast,

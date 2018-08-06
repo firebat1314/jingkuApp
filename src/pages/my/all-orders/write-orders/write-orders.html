@@ -127,6 +127,10 @@
                 <span>商品金额：</span>
                 <span class="price">¥{{data?.total?.formated_goods_price}}</span>
             </div>
+            <div *ngIf="data?.total?.machining_amount_formated">
+                <span>加工费用：</span>
+                <span class="price">¥{{data?.total?.machining_amount_formated}}</span>
+            </div>
             <div>
                 <span>运费：</span>
                 <span class="price">+ {{data?.total?.suppliers_shipping_fee_formated}}</span>
