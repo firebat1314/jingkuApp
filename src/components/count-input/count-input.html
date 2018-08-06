@@ -7,7 +7,7 @@
 <div class="btn" tappable (click)="reduce()" [class.disabled]="(value <= minValue) || (rank> 1&&(value <= rank))">
 	<img src="./assets/icon/minus.png" alt="">
 </div>
-<input type="number" [(ngModel)]="value" (input)="input(value)" (blur)="inputEvent()" [ngStyle]="{'background':rank>1?'#e0e0e0':'#f5f5f5'}" [disabled]="disabled" tappable>
+<input type="number" [(ngModel)]="value" (input)="input(value)" (blur)="inputEvent()" [ngStyle]="{'background':rank>1?'#e0e0e0':'null'}" [disabled]="disabled" tappable>
 <div class="btn" tappable (click)="increase()" [class.disabled]="(maxValue || maxValue==0) && (maxValue - value) < rank">
 	<img src="./assets/icon/add.png" alt="">
 </div>

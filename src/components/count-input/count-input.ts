@@ -8,7 +8,10 @@ import { Component, Input, Output, EventEmitter, ElementRef } from '@angular/cor
 */
 @Component({
    selector: 'count-input',
-   templateUrl: 'count-input.html'
+   templateUrl: 'count-input.html',
+   host: {
+      '[class.has_border]': 'hasBorder',
+   }
 })
 export class CountInputComponent {
 
@@ -52,6 +55,8 @@ export class CountInputComponent {
       return this._rank
    }
 
+   @Input() hasBorder = false;
+
 
    disabled: boolean = false;//禁用输入框手动输入
    inputEle: HTMLInputElement;
@@ -63,9 +68,6 @@ export class CountInputComponent {
    }
    ngOnInit() {
       if (this.rank !== 1 || this.maxValue <= 0 || this.maxValue == this.minValue) this.disabled = true;
-   }
-   ngAfterViewInit() {
-      this.inputEle = this.element.nativeElement.getElementsByTagName('input')[0];
    }
    reduce() {
       this.valueChange.emit(this.value -= this.rank);
