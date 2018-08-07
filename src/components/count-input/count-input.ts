@@ -30,7 +30,6 @@ export class CountInputComponent {
 
    _value: number = 0;
    @Input() set value(value: number) {
-      if (!value) { return };
       this._value = !isNaN(value) ? +value : this.minValue;
    };
    get value(): number {
@@ -73,22 +72,9 @@ export class CountInputComponent {
       this.valueChange.emit(this.value -= this.rank);
    }
    increase() {
-      /* if (this.maxValue && (this.maxValue - this.value) < this.rank) {
-        this.native.showToast('最多选择' + this.maxValue + '件');
-        this.inputEle.value = this.value;
-        return;
-      } */
       this.valueChange.emit(this.value += this.rank);
    }
    inputEvent() {
-      /* if ((this.maxValue || this.maxValue==0) && (this.value >= this.maxValue)) {
-        this.native.showToast('最多选择' + this.maxValue + '件');
-        this.inputEle.value = this.maxValue;
-        this.value = this.maxValue;
-      } else  */
-      /* if (!this.value) {
-        this.inputEle.value = 0;
-      } */
       this.valueChange.emit(this.value);
    }
    input(value) {

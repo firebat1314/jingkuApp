@@ -95,7 +95,7 @@ page-particulars-modal-attr {
       /* —————————————————————————————————————————————————— */
       .tabelbox {
          display: flex;
-         overflow: scroll;
+         overflow-y: scroll;
          background: #fff;
          .table {
             flex: 1;

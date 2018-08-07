@@ -8,7 +8,7 @@
       </ion-buttons>
       <form class="searchform" (click)="goSearchPage()">
          <ion-searchbar style="pointer-events: none;" placeholder="搜索镜库商品" mode="ios"></ion-searchbar>
-         <ion-icon *ngIf="!native.isMobile()" class="scannericon" name="ios-qr-scanner" (click)="openScanner($event)"></ion-icon>
+         <ion-icon *ngIf="native.isMobile()" class="scannericon" name="ios-qr-scanner" (click)="openScanner($event)"></ion-icon>
       </form>
       <ion-buttons end>
          <button ion-button clear icon-only icon-left right (click)="goMessagePage()">
@@ -48,18 +48,18 @@
             </div>
             <span>优惠券</span>
          </div>
-         <div tappable *ngIf="userInfo&&userInfo?.data?.user_info?.is_test!=1" (click)="goFastbuyPage()">
-            <div class="img">
-               <img img-lazy-load="./assets/icon/home/home_ico11.png" alt="">
-            </div>
-            <span>闪购</span>
-         </div>
          <div tappable *ngIf="userInfo&&userInfo?.data?.user_info?.is_test!=1" navPush="NewProductPage">
             <!-- NewProductPage -->
             <div class="img">
                <img img-lazy-load="./assets/icon/home/home_ico1.png" alt="">
             </div>
             <span>新品</span>
+         </div>
+         <div tappable *ngIf="userInfo&&userInfo?.data?.user_info?.is_test!=1" (click)="goFastbuyPage()">
+            <div class="img">
+               <img img-lazy-load="./assets/icon/home/home_ico11.png" alt="">
+            </div>
+            <span>闪购</span>
          </div>
          <div tappable *ngIf="userInfo&&userInfo?.data?.user_info?.is_test!=1" (click)="goBrandPage()">
             <div class="img">
