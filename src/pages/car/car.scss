@@ -91,7 +91,7 @@ page-car {
                     .label {
                         .goodsinfo {
                             background: #f7f7f7;
-                            padding: 10px;
+                            padding: 8px 4px 4px 8px;
                             .attr {
                                 display: flex;
                                 flex-wrap: wrap;
@@ -112,6 +112,7 @@ page-car {
                                 align-items: center;
                                 .price {
                                     color: #e60000;
+                                    font-size: 1.3rem;
                                     .old {
                                         text-decoration: line-through;
                                         color: #999;

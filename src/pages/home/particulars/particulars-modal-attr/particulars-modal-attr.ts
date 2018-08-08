@@ -192,7 +192,7 @@ export class ParticularsModalAttrPage {
             }
          })
       } else {
-         this.httpServ.getGoodsAttribute({ goods_id: goods_id }).then((res) => {
+         this.httpServ.getGoodsAttribute({ goods_id: goods_id, isActivity: this.isActivity }).then((res) => {
             if (res.status == 1) {
                this.type = res.goods_type;
                this.goods_attribute = res;

@@ -88,6 +88,7 @@
                                     <button ion-button color="danger" tappable (click)="deleteItem(item3)">删除</button>
                                 </ion-item-options>
                             </ion-item-sliding>
+                            <div style="margin-top: 5px;font-size: 1rem;color: #e60000;" *ngIf="item3?.gift_list?.title">{{item3?.gift_list?.title}}</div>
                         </div>
                     </div>
                 </div>
