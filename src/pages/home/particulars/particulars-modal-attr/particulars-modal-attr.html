@@ -157,28 +157,28 @@
          <div class="table">
             <div class="tr">
                <div class="td-wrap">
+                  <div class="td" *ngIf="scannerId>0">选择</div>
+                  <div class="td count-input-box" *ngIf="!(scannerId>0)">数量</div>
                   <div class="td" *ngIf="attrsList?.data[0]?.is_subsidy&&mine.showPrice">促销价</div>
                   <div class="td" *ngIf="attrsList?.data[0]?.is_subsidy&&mine.showPrice">原价</div>
                   <div class="td" *ngIf="!attrsList?.data[0]?.is_subsidy&&mine.showPrice">价格</div>
                   <div class="td" *ngFor="let item of attrsList?.data[0]?.goods_attr">{{item.attr_name}}</div>
                   <div class="td">库存</div>
-                  <div class="td" *ngIf="scannerId>0">选择</div>
-                  <div class="td count-input-box" *ngIf="!(scannerId>0)">数量</div>
                </div>
             </div>
             <div class="tr" *ngFor="let item of attrsList?.data">
                <div class="td-wrap">
-                  <div class="td" style="color: #ff6a00;" *ngIf="item.is_subsidy&&mine.showPrice">{{item.price}}</div>
-                  <div class="td" *ngIf="item.is_subsidy&&mine.showPrice">{{item.old_price}}</div>
-                  <div class="td" style="color: #ff6a00;" *ngIf="!item.is_subsidy&&mine.showPrice">{{item.price}}</div>
-                  <div class="td" *ngFor="let group of item.goods_attr">{{group.attr_val}}</div>
-                  <div class="td">{{item.product_number}}</div>
-                  <div class="td" *ngIf="scannerId" (click)="scanner_select=item">
+                  <div class="td" *ngIf="scannerId" (click)="scannerSelectChange(item)">
                      <ion-checkbox color="jingku1" style="pointer-events: none;" [checked]="scanner_select==item" mode="ios"></ion-checkbox>
                   </div>
                   <div class="td count-input-box" *ngIf="!scannerId">
                      <count-input [maxValue]="scannerId>0?1:item.product_number" [rank]="checkMainAttrNum" [(value)]="item.goods_attr_number" (valueChange)="numberIChange(item)"></count-input>
                   </div>
+                  <div class="td" style="color: #ff6a00;" *ngIf="item.is_subsidy&&mine.showPrice">{{item.price}}</div>
+                  <div class="td" *ngIf="item.is_subsidy&&mine.showPrice">{{item.old_price}}</div>
+                  <div class="td" style="color: #ff6a00;" *ngIf="!item.is_subsidy&&mine.showPrice">{{item.price}}</div>
+                  <div class="td" *ngFor="let group of item.goods_attr">{{group.attr_val}}</div>
+                  <div class="td">{{item.product_number}}</div>
                </div>
                <div class="other-attr" *ngIf="item.alone_attr?.length">
                   <span *ngFor="let group of item.alone_attr">{{group.attr_name+'：'+group.attr_val}}&nbsp;</span>

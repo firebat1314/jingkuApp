@@ -5,6 +5,7 @@ import { Native } from "../../../../providers/native";
 import { TofixedPipe } from "../../../../pipes/tofixed/tofixed";
 import { phone_nember } from '../../../../providers/constants';
 import { MineProvider } from '../../../../providers/mine/mine';
+import { QRScanner } from '@ionic-native/qr-scanner';
 
 export class goodsSpectaclesParams {
   number = 1;//所填写的商品的数量
@@ -30,8 +31,11 @@ export class ParticularsModalAttrPage {
   callback: any = this.navParams.get('callback');
   isActivity = this.navParams.get('isActivity');//是否为活动商品
 
+  /* 扫描选择镜架商品 */
   scannerId = this.navParams.get('scannerId');//二维码扫描id
   scannerData: any;
+  scanner_select
+  sn: any = this.navParams.get('sn');
 
   distributionInfo: any;
   cutting_info: any;
@@ -70,9 +74,6 @@ export class ParticularsModalAttrPage {
   totalNumber: any = 0;
   goodsInfo: any;
 
-  /* 扫描选择镜架商品 */
-  scanner_select
-  sn: any;
   constructor(
     public navCtrl: NavController,
     public navParams: NavParams,
@@ -82,6 +83,7 @@ export class ParticularsModalAttrPage {
     private events: Events,
     private alertCtrl: AlertController,
     private mine: MineProvider,
+    private qrScanner: QRScanner,
   ) {
   }
   ionViewDidLoad() {
@@ -193,7 +195,7 @@ export class ParticularsModalAttrPage {
         }
       })
     } else {
-      this.httpServ.getGoodsAttribute({ goods_id: goods_id }).then((res) => {
+      this.httpServ.getGoodsAttribute({ goods_id: goods_id, isActivity: this.isActivity }).then((res) => {
         if (res.status == 1) {
           this.type = res.goods_type;
           this.goods_attribute = res;
@@ -223,9 +225,10 @@ export class ParticularsModalAttrPage {
     } else {
       this.httpServ.getAttrList({ goods_id: this.goodsId, attr: this.checkMainAttrId, isActivity: this.isActivity, sn: this.scannerId > 0 ? this.sn : null }).then((res) => {
         this.attrsList = res;
-        try{
-         this.scanner_select = res.data[0];
-        }catch(e){}
+        try {
+          this.scanner_select = res.data[0];
+          this.scannerSelectChange(this.scanner_select);
+        } catch (e) { }
       })
     }
   }
@@ -273,6 +276,21 @@ export class ParticularsModalAttrPage {
       goods: {
         spec: this.attrIds,
         member: this.attrNumbers
+      }
+    }).then((res) => {
+      if (res.status == 1) {
+        this.totalNumber = res.number;
+        this.totalPrices = res.goods_total;
+      }
+    })
+  }
+  scannerSelectChange(item) {
+    this.scanner_select = item;
+    this.httpServ.changeGoodsNumber({
+      goods_id: this.goodsId,
+      goods: {
+        spec: [item.goods_attr_id],
+        member: [1]
       }
     }).then((res) => {
       if (res.status == 1) {
@@ -640,19 +658,34 @@ export class ParticularsModalAttrPage {
   }
 
   private openScanner() {
-    this.native.openBarcodeScanner().then((res) => {
-      let result;
-      try {
-        result = JSON.parse(res['text']);
-      }
-      catch (e) {
-        return;
-      }
-      if (result.machine) {
-        this.scannerId = result.machine;
-        this.sn = result.machine;
-        this.ngOnInit();
-      }
-    });
+    this.viewCtrl.dismiss('openScanner');
+    /* this.navCtrl.push('ScanPage').then(() => {
+      let scanSub = this.qrScanner.scan().subscribe((text) => {
+        this.qrScanner.hide(); // hide camera preview
+        scanSub.unsubscribe(); // stop scanning
+        // show camera preview
+        let json = JSON.parse(text);
+        if (json.machine) {
+          this.scannerId = json.machine;
+          this.sn = json.machine;
+          this.ngOnInit();
+        }
+      })
+    }); */
+    /* 
+        this.native.openBarcodeScanner().then((res) => {
+          let result;
+          try {
+            result = JSON.parse(res['text']);
+          }
+          catch (e) {
+            return;
+          }
+          if (result.machine) {
+            this.scannerId = result.machine;
+            this.sn = result.machine;
+            this.ngOnInit();
+          }
+        }); */
   }
 }

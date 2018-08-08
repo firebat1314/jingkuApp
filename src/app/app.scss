@@ -29,16 +29,30 @@ html {
 ion-app {
     font-family: Helvetica, sunshanshan, -apple-system, "Helvetica Neue", "Roboto", sans-serif !important;
 } */
+.cameraView,
 
-ion-app.cameraView,
-ion-app.cameraView ion-content,
-ion-app.cameraView .scroll-content,
-ion-app.cameraView .nav-decor {
-  transition: all .3s;
-  background: transparent none !important;
-  .tabbar.show-tabbar {
-    opacity: 0;
-  }
+.cameraView ion-app,
+
+.cameraView .app-root,
+
+.cameraView ion-nav,
+
+.cameraView .ion-page,
+
+.cameraView .nav-decor,
+
+.cameraView ion-content,
+
+.cameraView .viewscan,
+
+.cameraView .fixed-content,
+
+.cameraView .scroll-content {
+    transition: all .3s;
+    background: transparent none !important;
+    .tabbar.show-tabbar {
+      opacity: 0;
+    }
 }
 
 .tabs .tabbar {

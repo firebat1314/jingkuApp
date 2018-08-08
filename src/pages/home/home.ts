@@ -9,6 +9,7 @@ import { XimuProvider } from '../../providers/ximu/ximu';
 import { MineProvider } from '../../providers/mine/mine';
 import { JpushService } from '../../providers/jpush-service';
 import { Subscription } from 'rxjs/Subscription';
+import { QRScanner, QRScannerStatus } from '@ionic-native/qr-scanner';
 
 @IonicPage({
 	segment: 'home',
@@ -63,6 +64,7 @@ export class HomePage {
 		private mine: MineProvider,
 		private jpushServ: JpushService,
 		private modalCtrl: ModalController,
+		private qrScanner: QRScanner,
 	) {
 		//地址更新
 		this.events.subscribe('home:update', () => {
@@ -191,12 +193,63 @@ export class HomePage {
 	goMessagePage() {
 		this.navCtrl.push('MessagePage')
 	}
-	openScanner(e) {
-		e.stopPropagation();
+	openScanner(e?) {
+		e && e.stopPropagation();
+		this.navCtrl.push('ScanPage').then(() => {
+			this.events.subscribe('qrScanner', (text) => {
+				this.events.unsubscribe('qrScanner');
+				let json = JSON.parse(text);
+				if (json.machine) {
+					this.httpService.SpecialMachiningGoodsInfo({ id: json['machine'] }).then(res => {
+						if (res.status == 1) {
+							if (res.is_true) {
+								this.native.openAlertBox(
+									'已存在加工单，是否前往加工',
+									() => {
+										this.navCtrl.push('AddProcessPage', { is_scanner: 1 });
+									},
+									() => {
+										setTimeout(() => {
+											let modal = this.modalCtrl.create('ParticularsModalAttrPage', {
+												headData: res.info,
+												scannerId: json['machine'],
+												sn: json['sn'],
+												cutId: json['machine']//这里为任意值
+											}, { cssClass: 'my-modal-style' });
+											modal.onDidDismiss(data => {
+												if (data == 'openScanner') {
+													this.openScanner();
+												};
+											});
+											modal.present();
+										}, 500);
+									})
+							} else {
+								setTimeout(() => {
+									let modal = this.modalCtrl.create('ParticularsModalAttrPage', {
+										headData: res.info,
+										scannerId: json['machine'],
+										sn: json['sn'],
+										cutId: json['machine']//这里为任意值
+									}, { cssClass: 'my-modal-style' });
+									modal.onDidDismiss(data => {
+										if (data == 'openScanner') {
+											this.openScanner();
+										};
+									});
+									modal.present();
+								}, 500);
+							}
+						} else {
+							this.native.showToast(res.info);
+						}
+					})
+				}
+			})
+		})
 
-		// this.navCtrl.push('ScanPage');
 
-		this.native.openBarcodeScanner().then((res) => {
+		/* this.native.openBarcodeScanner().then((res) => {
 			let result;
 			try {
 				result = JSON.parse(res['text']);
@@ -243,9 +296,9 @@ export class HomePage {
 					}
 				})
 			}else{
-				
+
 			}
-		})
+		}) */
 	}
 	goBrandPage() {
 		this.navCtrl.push('BrandPage')

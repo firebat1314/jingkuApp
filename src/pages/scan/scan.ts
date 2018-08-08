@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams, ViewController, IonicPage, ModalController } from 'ionic-angular';
+import { NavController, NavParams, ViewController, IonicPage, ModalController, Events } from 'ionic-angular';
 import { QRScanner, QRScannerStatus } from '@ionic-native/qr-scanner';
 import { Native } from '../../providers/native';
 import { HttpService } from '../../providers/http-service';
@@ -26,6 +26,7 @@ export class ScanPage {
     private native: Native,
     private httpService: HttpService,
     private modalCtrl: ModalController,
+    private events: Events,
 
   ) {
     this.light = false;
@@ -34,58 +35,20 @@ export class ScanPage {
   }
 
   ionViewDidEnter() {
-    (window.document.querySelector('ion-app') as HTMLElement).classList.add('cameraView');
     // Optionally request the permission early
-    return this.qrScanner.prepare()
+    this.qrScanner.prepare()
       .then((status: QRScannerStatus) => {
         if (status.authorized) {
+          this.qrScanner.show().then(()=>{
+            (window.document.querySelector('ion-app') as HTMLElement).classList.add('cameraView');
+          });
           // camera permission was granted
           // start scanning
-          this.qrScanner.show();
           let scanSub = this.qrScanner.scan().subscribe((text) => {
+            this.events.publish('qrScanner',text);
             this.qrScanner.hide(); // hide camera preview
+            this.navCtrl.pop();
             scanSub.unsubscribe(); // stop scanning
-            // show camera preview
-            let json = JSON.parse(text);
-            
-            if (json.machine) {
-              this.httpService.SpecialMachiningGoodsInfo({ id: json['machine'] }).then(res => {
-                if (res.status == 1) {
-                  if (res.is_true) {
-                    this.native.openAlertBox(
-                      '已存在加工单，是否前往加工',
-                      () => {
-                        this.navCtrl.push('AddProcessPage', { is_scanner: 1 });
-                      },
-                      () => {
-                        let modal = this.modalCtrl.create('ParticularsModalAttrPage', {
-                          headData: res.info,
-                          scannerId: json['machine'],
-                          cutId: json['machine']//这里为任意值
-                        }, { cssClass: 'my-modal-style' });
-                        modal.onDidDismiss(data => {
-                          if (!data) return;
-                          data(this.navCtrl);
-                        });
-                        modal.present();
-                      })
-                  } else {
-                    let modal = this.modalCtrl.create('ParticularsModalAttrPage', {
-                      headData: res.info,
-                      scannerId: json['machine'],
-                      cutId: json['machine']//这里为任意值
-                    }, { cssClass: 'my-modal-style' });
-                    modal.onDidDismiss(data => {
-                      if (!data) return;
-                      data(this.navCtrl);
-                    });
-                    modal.present();
-                  }
-                } else {
-                  this.native.showToast(res.info);
-                }
-              })
-            }
           })
 
 
@@ -100,9 +63,10 @@ export class ScanPage {
       })
       .catch((e: any) => console.log('Error is', e));
   }
-  ngOnDestroy() {
+  ionViewCanLeave() {
     (window.document.querySelector('ion-app') as HTMLElement).classList.remove('cameraView');
     this.qrScanner.hide();//需要关闭扫描，否则相机一直开着
+    return true;
   }
   /**
    * 闪光灯控制，默认关闭
