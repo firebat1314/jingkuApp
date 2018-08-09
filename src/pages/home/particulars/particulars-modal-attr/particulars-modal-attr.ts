@@ -235,7 +235,9 @@ export class ParticularsModalAttrPage {
    }
    checklinkedGoods(goods) {
       // this.callback.navCtrl.push('ParticularsPage',{goodsId:goods.goods_id});
-      this.navCtrl.push('ParticularsPage', { goodsId: goods.goods_id });
+      this.viewCtrl.dismiss((navCtrl) => {
+         navCtrl.push('ParticularsPage', { goodsId: goods.goods_id });
+      });
    }
    clear() {
       this.attrIds = [];

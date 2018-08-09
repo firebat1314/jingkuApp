@@ -132,7 +132,7 @@
                 <span class="price">+ {{data?.total?.suppliers_shipping_fee_formated}}</span>
             </div>
             <div *ngIf="data?.total?.formated_subsidy_price!=0">
-                <span>优惠：</span>
+                <span>镜库补贴：</span>
                 <span class="price">- ¥{{data?.total?.formated_subsidy_price}}</span>
             </div>
             <div *ngIf="data?.total?.formated_shipping_subsidy.slice(1)!=0">
