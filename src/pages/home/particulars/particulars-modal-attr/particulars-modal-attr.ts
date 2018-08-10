@@ -73,6 +73,7 @@ export class ParticularsModalAttrPage {
   totalPrices: any = 0;
   totalNumber: any = 0;
   goodsInfo: any;
+  hasZuoyou: any;
 
   constructor(
     public navCtrl: NavController,
@@ -151,7 +152,8 @@ export class ParticularsModalAttrPage {
             zhouwei: '',
             price: '0.00',
             subtotal: '0.00',
-            '定制类型': ''
+            '定制类型': '',
+            label:"右眼"
           }, {
             number: 1,
             spc: [],
@@ -160,13 +162,15 @@ export class ParticularsModalAttrPage {
             zhouwei: '',
             price: '0.00',
             subtotal: '0.00',
-            '定制类型': ''
-          }]
+            '定制类型': '',
+            label:"左眼"
+          }] 
 
           for (let i = 0; i < res.specification.length; i++) {//禁用左右下拉
             const attr = res.specification[i];
             if (attr.name.indexOf('左/右') > -1) {
               attr.disable = true;
+              this.hasZuoyou = true;
               for (let i = 0; i < attr.values.length; i++) {
                 const id = attr.values[i].id;
                 this.goods[i]['左/右'] = id;
@@ -242,7 +246,9 @@ export class ParticularsModalAttrPage {
   }
   checklinkedGoods(goods) {
     // this.callback.navCtrl.push('ParticularsPage',{goodsId:goods.goods_id});
-    this.navCtrl.push('ParticularsPage', { goodsId: goods.goods_id });
+    this.viewCtrl.dismiss((navCtrl)=>{
+      navCtrl.push('ParticularsPage', { goodsId: goods.goods_id });
+    });
   }
   clear() {
     this.attrIds = [];

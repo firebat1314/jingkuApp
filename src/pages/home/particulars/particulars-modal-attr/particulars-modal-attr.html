@@ -190,7 +190,8 @@
             <ion-spinner name="crescent"></ion-spinner>
         </div> -->
       <ng-container *ngIf="goods_attribute&&(!scannerId&&checkCutGoodsId!=goodsId || scannerId&&scannerData?.is_jingpian)">
-         <div class="fore" *ngFor="let it of goods;let i=index">
+         <div class="fore" style="margin: 10px 0 0 0; " *ngFor="let it of goods;let i=index">
+             <div *ngIf="!hasZuoyou" style="padding: 10px 0 0 14px;font-size: 1rem;">{{it.label}}</div>
             <div class="top">
                <ion-select placeholder="选择球镜" [(ngModel)]="it.qiujing" (ionChange)="qiujingChange(it);" [selectOptions]="{title: '选择球镜'}" okText="确定" cancelText="取消">
                   <ion-option *ngFor="let item of goods_attribute.spectacles_properties.list">{{item}}</ion-option>

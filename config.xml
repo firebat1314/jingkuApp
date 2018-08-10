@@ -131,5 +131,4 @@
     </plugin>
     <plugin name="cordova-plugin-cocoapod-support" spec="^1.5.0" />
     <plugin name="cordova-plugin-qrscanner" spec="^2.6.0" />
-    <plugin name="phonegap-plugin-barcodescanner" spec="^8.0.0" />
 </widget>

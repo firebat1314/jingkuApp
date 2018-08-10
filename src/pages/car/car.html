@@ -78,17 +78,17 @@
                                                 <span class="old">¥{{item3?.goods_price}}</span>
                                             </div>
                                             <div class="price" *ngIf="!item3?.cha_price&&mine?.showPrice">¥{{item3?.goods_price}}</div>&nbsp;
-                                            <div class="number">
-                                                <count-input [minValue]="item3?.goods_properties?.number||1" [maxValue]="item3?.product_number=='-1'?item2?.g_goods_number:item3?.product_number" [rank]="item3?.goods_properties?.number" (valueChange)="numberChangeI($event,item3)" [value]="item3?.goods_number" [hasBorder]="true"></count-input>
+                                                <div class="number">
+                                                    <count-input [minValue]="item3?.goods_properties?.number||1" [maxValue]="item3?.product_number=='-1'?item2?.g_goods_number:item3?.product_number" [rank]="item3?.goods_properties?.number" (valueChange)="numberChangeI($event,item3)" [value]="item3?.goods_number" [hasBorder]="true"></count-input>
+                                                </div>
                                             </div>
+                                            <div style="font-size: 1rem;color: #e60000;" *ngIf="item3?.gift_list?.title">{{item3?.gift_list?.title}}</div>
                                         </div>
-                                    </div>
                                 </ion-item>
                                 <ion-item-options side="right">
                                     <button ion-button color="danger" tappable (click)="deleteItem(item3)">删除</button>
                                 </ion-item-options>
                             </ion-item-sliding>
-                            <div style="margin-top: 5px;font-size: 1rem;color: #e60000;" *ngIf="item3?.gift_list?.title">{{item3?.gift_list?.title}}</div>
                         </div>
                     </div>
                 </div>
