@@ -11,7 +11,7 @@
          <ion-icon *ngIf="native.isMobile()" class="scannericon" name="ios-qr-scanner" (click)="openScanner($event)"></ion-icon>
       </form>
       <ion-buttons end>
-         <button ion-button clear icon-only icon-left right (click)="goMessagePage()">
+         <button ion-button clear icon-only icon-left right navPush="MessagePage">
                <ion-icon style="font-size: 2.2rem;" name="mess"></ion-icon>
          </button>
       </ion-buttons>
@@ -29,7 +29,6 @@
    <div fadeIn>
       <!--———————————————————————————————— 轮播图 ————————————————————————————————-->
       <div class="banner-wrapper">
-
          <img width="100%" *ngIf="!bannerImgs" src="./assets/images/images/640-360.jpg" alt="">
          <ng-container *ngIf="bannerImgs?.length">
             <ion-slides #bannerSlide autoplay="4000" pager (ionSlideAutoplayStop)="bannerSlide.startAutoplay()">
@@ -42,70 +41,96 @@
       </div>
       <!--———————————————————————————————— 功能按钮 ————————————————————————————————-->
       <div class="btn-tool" home-padding>
-         <div tappable *ngIf="userInfo&&userInfo?.data?.user_info?.is_test!=1" (click)="goDiscountCouponPage();">
+         <div tappable (click)="tuangou()">
             <div class="img">
-               <img img-lazy-load="./assets/icon/home/home_ico10.png" alt="">
+               <img img-lazy-load="./assets/icon/home/home_icon1.png" alt="">
             </div>
-            <span>优惠券</span>
+            <span>团购</span>
          </div>
          <div tappable *ngIf="userInfo&&userInfo?.data?.user_info?.is_test!=1" navPush="NewProductPage">
             <!-- NewProductPage -->
             <div class="img">
-               <img img-lazy-load="./assets/icon/home/home_ico1.png" alt="">
+               <img img-lazy-load="./assets/icon/home/home_icon2.png" alt="">
             </div>
             <span>新品</span>
          </div>
          <div tappable *ngIf="userInfo&&userInfo?.data?.user_info?.is_test!=1" (click)="goFastbuyPage()">
             <div class="img">
-               <img img-lazy-load="./assets/icon/home/home_ico11.png" alt="">
+               <img img-lazy-load="./assets/icon/home/home_icon9.png" alt="">
             </div>
             <span>闪购</span>
          </div>
+         <div tappable *ngIf="userInfo&&userInfo?.data?.user_info?.is_test!=1" (click)="goDiscountCouponPage();">
+            <div class="img">
+               <img img-lazy-load="./assets/icon/home/home_icon3.png" alt="">
+            </div>
+            <span>优惠券</span>
+         </div>
          <div tappable *ngIf="userInfo&&userInfo?.data?.user_info?.is_test!=1" (click)="goBrandPage()">
             <div class="img">
-               <img img-lazy-load="./assets/icon/home/home_ico2.png" alt="">
+               <img img-lazy-load="./assets/icon/home/home_icon7.png" alt="">
             </div>
             <span>品牌</span>
          </div>
+         <div tappable navPush="BrandListPage" [navParams]="{isDistribution:1}">
+            <div class="img">
+               <img img-lazy-load="./assets/icon/home/home_icon8.png" alt="">
+            </div>
+            <span>铺货</span>
+         </div>
+         <div tappable>
+            <div class="img">
+               <img img-lazy-load="./assets/icon/home/home_icon6.png" alt="">
+            </div>
+            <span>整镜加工</span>
+         </div>
          <div tappable (click)="goRechargePage()" *ngIf="!native.isMiniprogram()">
             <div class="img">
-               <img img-lazy-load="./assets/icon/home/home_ico3.png" alt="">
+               <img img-lazy-load="./assets/icon/home/home_icon4.png" alt="">
             </div>
             <span>充值</span>
          </div>
-         <div tappable navPush="BrandListPage" [navParams]="{isDistribution:1}">
+         <div tappable (click)="goIntegralstorePage();">
             <div class="img">
-               <img img-lazy-load="./assets/icon/home/home_ico12.png" alt="">
+               <img img-lazy-load="./assets/icon/home/home_icon5.png" alt="">
             </div>
-            <span>铺货</span>
+            <span>积分商城</span>
          </div>
          <!-- 
             <div tappable (click)="goWhitebarPage()" *ngIf="native.isMobile()">
                 <div class="img">
-                    <img img-lazy-load="./assets/icon/home/home_ico4.png" alt="">
+                    <img img-lazy-load="./assets/icon/home/home_icon4.png" alt="">
                 </div>
                 <span>镜库白条</span>
             </div> -->
-         <div tappable (click)="goIntegralstorePage();">
-            <div class="img">
-               <img img-lazy-load="./assets/icon/home/home_ico5.png" alt="">
-            </div>
-            <span>积分商城</span>
-         </div>
          <div tappable (click)="goGlassesDesignPage()">
             <div class="img">
-               <img img-lazy-load="./assets/icon/home/home_ico6.png" alt="">
+               <img img-lazy-load="./assets/icon/home/home_icon10.png" alt="">
             </div>
             <span>镜库设计</span>
          </div>
       </div>
+      <!--—————————————————————————————————————————— 广告位 ——————————————————————————————————————————-->
+      <div fadeIn *ngIf="userInfo&&userInfo?.data?.user_info?.is_test!=1" class="ad_wrap">
+         <div class="line1">
+            <img img-lazy-load="{{getBrands?.ad_img}}" [ads-click]="getBrands" defaultSrc="./assets/images/images/640-360.jpg" alt="">
+         </div>
+         <div class="line2">
+            <div>
+               <img img-lazy-load="{{hotBrand_img?.ad_img}}" [ads-click]="hotBrand_img" alt="">
+            </div>
+            <div>
+               <img img-lazy-load="{{categoryAddetatils?.ad_img}}" [ads-click]="categoryAddetatils" alt="">
+            </div>
+         </div>
+      </div>
       <!--—————————————————————————————————————————— 镜库闪购 ——————————————————————————————————————————-->
-      <div *ngIf="userInfo&&userInfo?.data?.user_info?.is_test!=1&&fastbuyData?.data?.length" class="shan_gou home-content">
+      <div *ngIf="!fastbuyData" style="min-height: 200px;text-align: center;padding: 80px;">
+         <ion-spinner name="dots"></ion-spinner>
+      </div>
+      <div fadeIn *ngIf="userInfo&&userInfo?.data?.user_info?.is_test!=1&&fastbuyData?.data?.length" class="shan_gou home-content">
          <div class="title">
             <span class="txt">镜库闪购</span>
-            <span class="more" tappable (click)="goFastbuyPage()">查看更多
-                    <ion-icon name="ios-arrow-dropright"></ion-icon>
-                </span>
          </div>
          <div class="main">
             <div class="scroll_wrap">
@@ -120,196 +145,55 @@
                </div>
             </div>
          </div>
-      </div>
-      <!--—————————————————————————————————————————— 广告位 ——————————————————————————————————————————-->
-      <div *ngIf="userInfo&&userInfo?.data?.user_info?.is_test!=1" class="ad_wrap">
-         <div class="line1">
-            <div>
-               <img img-lazy-load="{{hotBrand_img?.ad_img}}" [ads-click]="hotBrand_img" alt="">
-            </div>
-            <div>
-               <img img-lazy-load="{{categoryAddetatils?.ad_img}}" [ads-click]="categoryAddetatils" alt="">
-            </div>
-         </div>
-         <div class="line2">
-            <div>
-               <img img-lazy-load="{{getBrands?.ad_img}}" [ads-click]="getBrands" defaultSrc="./assets/images/images/640-360.jpg" alt="">
-            </div>
+         <div class="see_more">
+            <span class="more" tappable (click)="goFastbuyPage()">查看更多</span><i style="font-family: consolas;">&nbsp;&gt;</i>
          </div>
       </div>
-
-      <!--—————————————————————————————————————————— 热门品类 ——————————————————————————————————————————-->
-      <!-- <div class="hot-group home-content" home-padding>
-            <div class="title">
-                <span class="txt">热门品类</span>
-                <span class="more" tappable (click)="goClassPage()">更多&gt;</span>
-            </div>
-            <div class="main">
-                <div class="banner">
-                    <img img-lazy-load="{{hotBrand_img?.ad_img}}" tappable [ads-click]="hotBrand_img" defaultSrc="./assets/images/images/640-320.jpg">
-                </div>
-                <ion-grid>
-                    <ion-row wrap>
-                        <ion-col *ngFor="let item of categoryAddetatils" tappable [ads-click]="item" width-33 col-4>
-                            <img img-lazy-load="{{item.ad_img}}">
-                        </ion-col>
-                    </ion-row>
-                </ion-grid>
-            </div>
-        </div> -->
-      <!--——————————————————————————————————————————热门品牌——————————————————————————————————————————-->
-      <!-- <div class="hot-brand home-content" home-padding>
-            <div class="title">
-                <span class="txt">热门品牌</span>
-                <span class="more" tappable (click)="goBrandPage()">更多&gt;</span>
-            </div>
-            <div class="main" *ngIf="getBrands?.length">
-                <div class="brand-list">
-                    <div *ngFor="let item of getBrands">
-                        <img img-lazy-load="{{item.ad_img}}" tappable [ads-click]="item">
-                    </div>
-                    <div>
-                        <img img-lazy-load="./assets/icon/homepage_53.jpg" alt="" tappable (click)="goClassPage('brand')">
-                    </div>
-                </div>
-            </div>
-        </div> -->
-      <!--——————————————————————————————————————————精选专题——————————————————————————————————————————-->
-      <div *ngIf="userInfo&&userInfo?.data?.user_info?.is_test!=1" class="handpick home-content" home-padding>
+      <!--—————————————————————————————————————————— 品牌街区 ——————————————————————————————————————————-->
+      <div *ngIf="!brand_street" style="min-height: 200px;text-align: center;padding: 80px;">
+         <ion-spinner name="dots"></ion-spinner>
+      </div>
+      <div class="brand_street home-content" fadeIn *ngIf="brand_street?.data?.length">
          <div class="title">
-            <span class="txt">精选专题</span>
+            <span class="txt" tappable (click)="goBrandPage()">品牌街区</span>&nbsp;
+            <ion-icon tappable (click)="goBrandPage()" name="ios-arrow-dropright"></ion-icon>
          </div>
          <div class="main">
-            <div class="show">
-               <img img-lazy-load="{{jingxuan_img1?.ad_img}}" defaultSrc="./assets/images/images/640-320.jpg" tappable [ads-click]="jingxuan_img1">
+            <div tappable [ads-click]="item" *ngFor="let item of brand_street?.data">
+               <img [img-lazy-load]="item.ad_img" defaultSrc="./assets/images/images/262-185.jpg" alt="">
+               <h3>{{item.ad_name}}</h3>
             </div>
-            <div class="pick">
-               <ion-slides class="slide-title" slidesPerView="3">
-                  <ion-slide *ngFor="let slide of getCategoryRecommendGoodsHot; let i = index;">
-                     <div class="slide-title-unit" tappable (click)="goParticularsPage(slide.id)">
-                        <img border-f0 img-lazy-load="{{slide?.goods_img}}">
-                        <div class="info">
-                           <!-- <div class="name">{{slide?.name}}</div> -->
-                           <div class="price" *ngIf="mine?.showPrice">{{slide?.shop_price}}</div>
-                        </div>
-                     </div>
-                  </ion-slide>
-                  <!--<ion-slide>
-                                <div class="slide-title-unit">
-                                    <div class="watch-more">
-                                        <p>查&nbsp;看</p>
-                                        <p>更&nbsp;多</p>
-                                    </div>
-                                </div>
-                            </ion-slide>-->
-               </ion-slides>
-            </div>
-            <div class="show">
-               <img img-lazy-load="{{jingxuan_img2?.ad_img}}" defaultSrc="./assets/images/images/640-320.jpg" tappable [ads-click]="jingxuan_img2">
-            </div>
-            <div class="pick">
-               <ion-slides class="slide-title" slidesPerView="3">
-                  <ion-slide *ngFor="let slide of getCategoryRecommendGoods; let i = index;">
-                     <div tappable (click)="goParticularsPage(slide.id)">
-                        <div class="slide-title-unit">
-                           <img border-f0 img-lazy-load="{{slide?.goods_img}}">
-                           <div class="info">
-                              <!-- <div class="name">{{slide?.name}}</div> -->
-                              <div class="price" *ngIf="mine?.showPrice">{{slide?.shop_price}}</div>
-                           </div>
-                        </div>
-                     </div>
-                  </ion-slide>
-                  <!--<ion-slide>
-                                <div>
-                                    <div class="slide-title-unit">
-                                        <div class="watch-more">
-                                            <p>查&nbsp;看</p>
-                                            <p>更&nbsp;多</p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </ion-slide>-->
-               </ion-slides>
-            </div>
-            <div class="show">
-               <img img-lazy-load="{{jingxuan_img3?.ad_img}}" defaultSrc="./assets/images/images/640-320.jpg" tappable [ads-click]="jingxuan_img3">
-            </div>
-            <div class="pick">
-               <ion-slides class="slide-title" slidesPerView="3">
-                  <ion-slide *ngFor="let slide of getCategoryRecommendGoodsBest; let i = index;">
-                     <div tappable (click)="goParticularsPage(slide.id)">
-                        <div class="slide-title-unit">
-                           <img border-f0 img-lazy-load="{{slide?.goods_img}}">
-                           <div class="info">
-                              <!-- <div class="name">{{slide?.name}}</div> -->
-                              <div class="price" *ngIf="mine?.showPrice">{{slide?.shop_price}}</div>
-                           </div>
-                        </div>
-                     </div>
-                  </ion-slide>
-                  <!--<ion-slide>
-                                <div>
-                                    <div class="slide-title-unit">
-                                        <div class="watch-more">
-                                            <p>查&nbsp;看</p>
-                                            <p>更&nbsp;多</p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </ion-slide>-->
-               </ion-slides>
-            </div>
-         </div>
-         <!--<div class="main" *ngIf="getCategoryRecommendGoodsHot">
-            <img-tabs2 (slideClick)="onSlideClick($event)" [slides]="getCategoryRecommendGoodsHot" [pageNumber]="3"></img-tabs2>
-        </div>
-        <div class="main" *ngIf="getCategoryRecommendGoods">
-            <img-tabs2 (slideClick)="onSlideClick($event)" [slides]="getCategoryRecommendGoods" [pageNumber]="3"></img-tabs2>
-        </div>
-        <div class="main" *ngIf="getCategoryRecommendGoodsBest">
-            <img-tabs2 (slideClick)="onSlideClick($event)" [slides]="getCategoryRecommendGoodsBest" [pageNumber]="3"></img-tabs2>
-        </div>-->
-      </div>
-      <!--——————————————————————————————————————————好店推荐——————————————————————————————————————————-->
-      <!--  <div class="good-shop home-content" home-padding>
-        <div class="title">
-            <span class="txt">好店推荐</span>
-            <span class="more">更多&gt;</span>
-        </div>
-        <div class="main">
-            <ion-slides loop="false" parallax="true" pager>
-                <ion-slide *ngFor="let item of jingxuan_img4">
-                    <ion-card>
-                        <img img-lazy-load="{{item?.ad_img}}" defaultSrc="./assets/images/images/640-320.jpg" [ads-click]="item">
-                        <div class="collect">
-                            <div class="left">
-                                <ion-icon name="md-heart-outline"></ion-icon>
-                                <ion-icon name="md-heart"></ion-icon>收藏
-                            </div>
-                            <div class="right">21212121人已收藏</div>
-                        </div>
-                    </ion-card>
-                </ion-slide>
-            </ion-slides>
-        </div>
-    </div> -->
-      <!--—————————————————————————————————————————— 热门商品 ——————————————————————————————————————————-->
-      <div class="hot-other home-content" *ngIf="indexHotGoods?.length>0">
-         <div class="title">
-            <span class="txt">热门商品</span>
-            <!-- navPush="BrandListPage" [navParams]="{type:'hot'}" -->
-            <span class="more" tappable navPush="BrandListPage" [navParams]="{type:'hot'}">查看更多
-                    <ion-icon name="ios-arrow-dropright"></ion-icon>
-                </span>
-         </div>
-         <div class="main">
-            <single-foods-card [data]="indexHotGoods"></single-foods-card>
          </div>
       </div>
+      <!--—————————————————————————————————————————— 分类 ——————————————————————————————————————————-->
+      <ng-container *ngFor="let item of category;let i = index">
+         <div class="subsection" *ngIf="!item.show" style="min-height: 300px;text-align: center;padding-top: 140px;">
+            <ion-spinner name="dots"></ion-spinner>
+         </div>
+         <div class="class_list" #class_list fadeIn *ngIf="item.show">
+            <div class="head">
+               <div class="title" tappable (click)="item.selectbrandid = 0;getRecommendGoods(item,0,class_list)">{{item?.data?.info?.name}}</div>
+               <div class="brand_list">
+                  <div class="brand" tappable [class.on]="item?.selectbrandid == brand.brand_id" (click)="item.selectbrandid = brand.brand_id; getRecommendGoods(item,brand.brand_id,class_list)" *ngFor="let brand of item?.data?.brand_list">{{brand.brand_name}}</div>
+               </div>
+            </div>
+            <ng-container *ngIf="item?.ads?.data?.length">
+               <ion-slides autoplay="4000" pager>
+                  <ion-slide *ngFor="let ads of item?.ads?.data" tappable [ads-click]="ads">
+                     <img style="display: block;" [img-lazy-load]="ads.ad_img" defaultSrc="./assets/images/images/640-360.jpg" alt="">
+                  </ion-slide>
+               </ion-slides>
+            </ng-container>
+            <single-foods-card [data]="item?.data?.list"></single-foods-card>
+         </div>
+      </ng-container>
    </div>
 
    <ion-fab right bottom tappable>
       <button ion-fab color="jingku1" mini goBackTop scroll-to-top></button>
    </ion-fab>
+   <!-- 
+   <ion-infinite-scroll threshold="10%" (ionInfinite)="doInfinite($event)">
+      <ion-infinite-scroll-content></ion-infinite-scroll-content>
+   </ion-infinite-scroll> -->
 </ion-content>

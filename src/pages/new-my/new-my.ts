@@ -43,6 +43,9 @@ export class NewMyPage {
          this.userInfo = data;
       })
    }
+   ionViewDidEnter(){
+      this.app.setTitle('个人中心');
+   }
    ionViewDidLoad() {
       console.log('ionViewDidLoad NewMyPage');
    }

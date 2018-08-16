@@ -11,19 +11,23 @@ import { Directive, ElementRef, Renderer, Input } from '@angular/core';
 })
 export class ImgLazyLoadDirective {
 
-  private _defaultSrc = './assets/images/images/800-800.jpg';
+   private _defaultSrc:string = './assets/images/images/800-800.jpg';
+
+   @Input() set defaultSrc(src: string) {
+     this._defaultSrc = src;
+   }
+   get defaultSrc() {
+    return this._defaultSrc;
+  }
+   @Input('img-lazy-load') src: string;
+ 
 
   constructor(public element: ElementRef, public renderer: Renderer) {
     // console.log('Hello ImgLazyLoadDirective Directive');
   }
 
-  @Input() set defaultSrc(src: string) {
-    this._defaultSrc = src || this._defaultSrc;
-  }
-  @Input('img-lazy-load') src: string;
-
   ngOnInit() {
-    this.setSrc(this._defaultSrc);
+    this.setSrc(this.defaultSrc);
   }
   ngOnChanges() {
     let img = new Image();
@@ -33,6 +37,9 @@ export class ImgLazyLoadDirective {
       // setTimeout(() => {
       this.setSrc(this.src);
       // }, 1000)
+    }
+    img.onerror = () => {
+      this.setSrc('./assets/images/images/800-800-err.jpg');
     }
   }
 
