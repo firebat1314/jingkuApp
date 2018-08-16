@@ -119,9 +119,16 @@ export class WriteOrdersPage {
                      break;
                   }
                }
+            } else if(res.status==-1){
+               this.native.openAlertBox(res.info,()=>{
+                  this.navCtrl.pop({ animate: true }).then(()=>{
+                     this.navCtrl.push('CompanyInfoPage');
+                  }).catch(() => { history.back() });
+               })
             } else {
                this.navCtrl.pop({ animate: true }).catch(() => { history.back() });
             }
+            alert(res.status)
          })
       }
       return this.httpService.checkout({type:this.scanner>0?1:null}).then((res) => {
@@ -210,13 +217,13 @@ export class WriteOrdersPage {
          }
       })
    }
-   changeSurplus(toggle) {
+   change_machining(toggle) {
       if (toggle) {
-         this.httpService.changeSurplus({ surplus: 1 }).then((res) => {
+         this.httpService.change_machining().then((res) => {
             this.getHttpData()
          });
       } else {
-         this.httpService.changeSurplus({ surplus: 0 }).then((res) => {
+         this.httpService.change_machining().then((res) => {
             this.getHttpData()
          });
       }

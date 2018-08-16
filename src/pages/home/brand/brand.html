@@ -29,14 +29,14 @@
         </div>
     </div>
     <div class="background"></div> -->
-  <div class="brand-content" *ngIf="fore2" style="animation:fadeIn 1s;">
+  <div class="brand-content" *ngIf="fore2?.length" fadeIn>
     <div class="fore1-jinxuan fore" >
       <div class="title">
         <span class="txt">精选品牌</span>
       </div>
       <div class="body">
-        <div tappable [ads-click]="item" defaultSrc="./assets/images/images/262-185.jpg" *ngFor="let item of fore2">
-          <img img-lazy-load="{{item.ad_img}}" alt="">
+        <div tappable [ads-click]="item" *ngFor="let item of fore2">
+          <img img-lazy-load="{{item.ad_img}}" defaultSrc="./assets/images/images/262-185.jpg" alt="">
           <h3>{{item.ad_name}}</h3>
           <span>{{item.link_man}}</span>
         </div>
@@ -52,7 +52,7 @@
               </div>
           </div>
       </div> -->
-    <div class="fore-remen fore" *ngIf="fore4" style="animation:fadeIn 1s;" >
+    <div class="fore-remen fore" *ngIf="fore4?.length" fadeIn>
       <div class="title">
         <span class="txt">热门品牌</span>
         <!--<span class="more" (click)="goToMoreBrand()">更多&gt;</span>-->
@@ -61,7 +61,7 @@
         <div tappable [ads-click]="item" *ngFor="let item of fore4"><img img-lazy-load="{{item.ad_img}}" alt=""></div>
       </div>
     </div>
-    <div class="fore-yinxing fore" style="animation:fadeIn 1s;" *ngFor="let item of brandList?.data;let i = index;">
+    <div class="fore-yinxing fore" fadeIn *ngFor="let item of brandList?.data;let i = index;">
       <div class="title">
         <span class="txt">{{item.cat_name}}</span>
         <span class="more" *ngIf="item.ads.length>9" tappable (click)="goToMoreBrand(item.ads)">更多&gt;</span>

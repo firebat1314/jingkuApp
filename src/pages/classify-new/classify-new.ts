@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams, IonicPage, Events } from 'ionic-angular';
+import { NavController, NavParams, IonicPage, Events, App } from 'ionic-angular';
 import { HttpService } from '../../providers/http-service';
 import { Native } from '../../providers/native';
 
@@ -32,9 +32,13 @@ export class ClassifyNewPage {
       public navParams: NavParams,
       public httpService: HttpService,
       public native: Native,
+      public app: App,
       private events: Events
    ) { }
 
+   ionViewDidEnter(){
+      this.app.setTitle('分类');
+   }
    ionViewDidLoad() {
       console.log('ionViewDidLoad ClassifyNewPage');
    }

@@ -568,9 +568,28 @@ export class ParticularsModalAttrPage {
       });
    }
    goWriteOrdersDPage() {
-      this.viewCtrl.dismiss((navCtrl) => {
-         navCtrl.push('WriteOrdersDPage', { dId: this.dId })
-      });
+      this.httpServ.checkout_d({ id: this.dId }).then(res => {
+         if (res.status == -1) {
+            this.alertCtrl.create({
+               cssClass: 'alert-style',
+               title: res.info,
+               buttons: [
+                  {
+                     text: '确认',
+                     handler: () => {
+                        this.viewCtrl.dismiss((navCtrl) => {
+                           navCtrl.push('DistributionQualificationPage');
+                        });
+                     }
+                  }
+               ],
+            }).present();
+         } else {
+            this.viewCtrl.dismiss((navCtrl) => {
+               navCtrl.push('WriteOrdersDPage', { dId: this.dId })
+            });
+         }
+      })
    }
    scannerAddCart() {
       let parmas: any;

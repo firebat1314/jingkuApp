@@ -551,6 +551,9 @@ export class HttpService {
    }) {
       return this.http.post(IP + '/User/enterprise_info', data, { showLoading: true })
    }
+   Distribution_info(data?) {
+      return this.http.post(IP + '/User/Distribution_info', data, { showLoading: true })
+   }
    /* 企业信息管理 */
    get_enterprise_info(data?) {
       return this.http.get(IP + '/User/enterprise_info', data, { showLoading: true })
@@ -856,5 +859,11 @@ export class HttpService {
    }
    SpecialMachiningMachiningAddToCart(data?: Object, options: HttpOptions = { showLoading: true }) {
       return this.http.post(IP + '/SpecialMachining/MachiningAddToCart ', data, options)
+   }
+   change_machining(data?: Object, options: HttpOptions = { showLoading: false }) {
+      return this.http.post(IP + '/Flow/change_machining ', data, options)
+   }
+   IndexData(data?: Object, options: HttpOptions = { showLoading: false }) {
+      return this.http.post(IP + '/index/IndexData ', data, options)
    }
 }

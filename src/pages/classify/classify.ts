@@ -1,5 +1,5 @@
 import { Component, ViewChild } from '@angular/core';
-import { NavController, NavParams, Content, Searchbar, Nav, Events, IonicPage, FabButton } from 'ionic-angular';
+import { NavController, NavParams, Content, Searchbar, Nav, Events, IonicPage, FabButton, App } from 'ionic-angular';
 
 import { HttpService } from "../../providers/http-service";
 import { Native } from "../../providers/native";
@@ -49,11 +49,15 @@ export class ClassifyPage {
     public navParams: NavParams,
     public httpService: HttpService,
     public native: Native,
+    public app: App,
     private events: Events
   ) {
     this.events.subscribe('classify:selectSegment', (res) => {
       this.classSelect = res;
     })
+  }
+  ionViewDidEnter(){
+     this.app.setTitle('分类');
   }
   ionViewDidLoad() {
     console.log('ionViewDidLoad ClassifyPage');

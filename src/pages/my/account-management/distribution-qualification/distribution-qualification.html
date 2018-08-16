@@ -1,0 +1,84 @@
+<ion-header>
+
+   <ion-navbar>
+      <ion-title>铺货资质</ion-title>
+      <ion-buttons right>
+         <button ion-button clear icon-only icon-left right open-more="MoreMenuPage">
+				 <ion-icon name="ios-more"></ion-icon>
+			</button>
+      </ion-buttons>
+   </ion-navbar>
+
+</ion-header>
+
+
+<ion-content>
+   <ng-container *ngIf="data">
+      <div class="list">
+         <div class="li">
+            <div class="name">营业执照编号：</div>
+            <ion-input autocomplete="off" autocorrect="off" class="inp" [disabled]="checks" [(ngModel)]="params.yyzzsn" placeholder="请填写" type="text" value=""></ion-input>
+         </div>
+         <div class="li">
+            <div class="name">营业执照：</div>
+            <div class="camra" tappable *ngIf="!checks">
+               <img img-lazy-load="./assets/icon/choosefile.png" alt="">
+               <input type="file" [quality]="0.5" (get-image)="params.zhizhao = $event" style="width:100%;height:100%;position: absolute;opacity: 0;top:0;">
+            </div>
+            <div class="camra ui" tappable>
+               <img img-lazy-load="{{params.zhizhao || data?.data?.zhizhao || './assets/icon/choosefile_2.png'}}" alt="">
+            </div>
+         </div>
+         <div class="li">
+            <div class="name">医疗器械许可证：</div>
+            <div class="camra" tappable *ngIf="!checks">
+               <img img-lazy-load="./assets/icon/choosefile.png" alt="">
+               <input type="file" [quality]="0.5" (get-image)="params.medical = $event" style="width:100%;height:100%;position: absolute;opacity: 0;top:0;">
+            </div>
+            <ion-input autocomplete="off" autocorrect="off" class="inp" *ngIf="checks&&!data?.data?.medical" [disabled]="checks" type="text" value="无"></ion-input>
+            <div class="camra ui" tappable *ngIf="!(checks&&!data?.data?.medical)">
+               <img img-lazy-load="{{params.medical || data?.data?.medical || './assets/icon/xkz_yl.jpg'}}" alt="">
+               <div *ngIf="!(params.medical || data?.data?.medical)" class="sli-fdj " style="    position: absolute;
+					top: 0;
+					left: 0;
+					width: 100%;
+					height: 100%;
+					text-align: center;
+					background: rgba(0, 0, 0, 0.5);
+					padding-top: 19px;
+					color: #ece0e0;
+					font-size: 12px;"><span style="    display: block;
+					width: 21px;
+					height: 30px;
+					margin: 0 auto;
+					background: url(./assets/icon/dsearch.png) no-repeat center/100%;"></span>示例</div>
+            </div>
+         </div>
+         <div class="li">
+            <div class="name">身份证正面照片：</div>
+            <div class="camra" tappable *ngIf="!checks">
+               <img img-lazy-load="./assets/icon/choosefile.png" alt="">
+               <input type="file" [quality]="0.5" (get-image)="params.zsfz = $event" style="width:100%;height:100%;position: absolute;opacity: 0;top:0;">
+            </div>
+            <div class="camra ui" tappable *ngIf="!(checks&&!data?.data?.zsfz)">
+               <img img-lazy-load="{{params.zsfz || data?.data?.zsfz || './assets/icon/choosefile_1.png'}}" alt="">
+            </div>
+            <ion-input autocomplete="off" autocorrect="off" class="inp" *ngIf="checks&&!data?.data?.zsfz" [disabled]="checks" type="text" value="无"></ion-input>
+         </div>
+         <div class="li">
+            <div class="name">身份证反面照片：</div>
+            <div class="camra" tappable *ngIf="!checks">
+               <img img-lazy-load="./assets/icon/choosefile.png" alt="">
+               <input type="file" [quality]="0.5" (get-image)="params.fsfz = $event" style="width:100%;height:100%;position: absolute;opacity: 0;top:0;">
+            </div>
+            <div class="camra ui" tappable *ngIf="!(checks&&!data?.data?.fsfz)">
+               <img img-lazy-load="{{params.fsfz || data?.data?.fsfz || './assets/icon/choosefile_3.png'}}" alt="">
+            </div>
+            <ion-input autocomplete="off" autocorrect="off" class="inp" *ngIf="checks&&!data?.data?.fsfz" [disabled]="checks" type="text" value="无"></ion-input>
+         </div>
+      </div>
+      <div class="submit" padding style="padding-top: 0;" *ngIf="!checks">
+         <button ion-button block color="jingku1" (click)="submit()" large>确认</button>
+      </div>
+   </ng-container>
+</ion-content>
