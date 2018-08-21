@@ -310,6 +310,7 @@ export class ParticularsModalAttrPage {
       }).then((res) => {
          // console.log('镜柱属性：', res)
          if (res.status == 1) {
+            item.zhujing = null;
             item.getZhujingList = res;
          }
          this.attrChange(item);
