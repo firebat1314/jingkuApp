@@ -78,13 +78,13 @@ export class HomePage {
             if (!div.myset) {
                if (d.scrollTop + d.contentHeight > div.offsetTop - 50) {
                   div.myset = true;
-                  this.httpService.recommendGoods({ id: this.category[index].id }).then((res) => {
+                  this.httpService.recommendGoods({ recommend_id: this.category[index].id }).then((res) => {
                      if (res.status == 1) {
                         this.category[index].data = res;
                         this.category[index].show = true;
                      }
                   })
-                  this.httpService.getCategoryAd({ id: this.category[index].ad_id }).then((res) => {
+                  this.httpService.getCategoryAd({ int_pos_id: this.category[index].ad_id,is_app:1 }).then((res) => {
                      if (res.status == 1) {
                         this.category[index].ads = res;
                         this.category[index].show = true;
@@ -209,8 +209,6 @@ export class HomePage {
          this.baitiao = res;
          this.httpService.setByName('userBaitiao', res);
       })
-
-      this.httpService.IndexData()
       return this.httpService.indexs().then((res) => {
          if (res.status == 1) {
             this.data = res;
