@@ -9,24 +9,24 @@ import { Subscription } from 'rxjs/Subscription';
 import { InAppBrowser } from '@ionic-native/in-app-browser';
 
 @IonicPage({
-	segment: 'home',
-	name: 'HomePage'
+   segment: 'home',
+   name: 'HomePage'
 })
 @Component({
-	selector: 'page-home',
-	templateUrl: 'home.html'
+   selector: 'page-home',
+   templateUrl: 'home.html'
 })
 export class HomePage {
-	showPrice: boolean;
-	userInfo: any;
-	currentUser: Subscription;
+   showPrice: boolean;
+   userInfo: any;
+   currentUser: Subscription;
 
    data: any;//indexs
    fastbuyData: any;//闪购商品
 
-	baitiao: any;//白条开通状态
+   baitiao: any;//白条开通状态
 
-   area: string = '请选择'; 
+   area: string = '请选择';
    areaList: any;//城市列表
 
 
@@ -38,19 +38,9 @@ export class HomePage {
    categoryData: any;//分类
    categoryAds: any;
 
-	schemeUrl: string;
-
-   category = [
-      { id: 16, ad_id: 99, show: false, data: null, ads: null },
-      { id: 17, ad_id: 100, show: false, data: null, ads: null },
-      { id: 18, ad_id: 101, show: false, data: null, ads: null },
-      { id: 19, ad_id: 102, show: false, data: null, ads: null },
-      { id: 20, ad_id: 103, show: false, data: null, ads: null },
-      { id: 21, ad_id: 104, show: false, data: null, ads: null },
-      { id: 22, ad_id: 105, show: false, data: null, ads: null },
-      { id: 23, ad_id: 106, show: false, data: null, ads: null },
-      { id: 24, ad_id: 107, show: false, data: null, ads: null },
-   ];
+   schemeUrl: string;
+   
+   category;
    categoryI = 0;
    @ViewChild(Content) content: Content;
 
@@ -64,36 +54,14 @@ export class HomePage {
       private ximu: XimuProvider,
       private mine: MineProvider,
       private modalCtrl: ModalController,
-		private jpushServ: JpushService,
+      private jpushServ: JpushService,
       private app: App,
       private ele: ElementRef,
-		private ib: InAppBrowser,
+      private ib: InAppBrowser,
    ) {
-    
+
    }
    ngAfterViewInit() {
-      var subsection = this.ele.nativeElement.querySelectorAll('.subsection');
-      this.content.ionScroll.subscribe((d) => {
-         subsection.forEach((div, index) => {
-            if (!div.myset) {
-               if (d.scrollTop + d.contentHeight > div.offsetTop - 50) {
-                  div.myset = true;
-                  this.httpService.recommendGoods({ recommend_id: this.category[index].id }).then((res) => {
-                     if (res.status == 1) {
-                        this.category[index].data = res;
-                        this.category[index].show = true;
-                     }
-                  })
-                  this.httpService.getCategoryAd({ int_pos_id: this.category[index].ad_id,is_app:1 }).then((res) => {
-                     if (res.status == 1) {
-                        this.category[index].ads = res;
-                        this.category[index].show = true;
-                     }
-                  })
-               }
-            }
-         });
-      });
    }
    ionViewDidEnter() {
       this.app.setTitle('首页');
@@ -103,70 +71,12 @@ export class HomePage {
    }
    ngOnInit() {
       this.events.subscribe('home:update', () => {
-			this.getHomeData()
-		});
-		(window as any).handleOpenURL = (url: string) => {
-			console.log(url)
-			this.schemeUrl = url;
-		};
-		this.events.subscribe('qrScanner', (text) => {
-			// this.events.unsubscribe('qrScanner');
-			try {
-				let json = JSON.parse(text);
-				if (json.machine) {
-					this.httpService.SpecialMachiningGoodsInfo({ id: json['machine'] }).then(res => {
-						if (res.status == 1) {
-							if (res.is_true) {
-								this.native.openAlertBox(
-									'已存在加工单，是否前往加工',
-									() => {
-										this.navCtrl.push('AddProcessPage', { is_scanner: 1 });
-									},
-									() => {
-										setTimeout(() => {
-											let modal = this.modalCtrl.create('ParticularsModalAttrPage', {
-												headData: res.info,
-												scannerId: json['machine'],
-												sn: json['sn'],
-												cutId: json['machine']//这里为任意值
-											}, { cssClass: 'my-modal-style' });
-											modal.onDidDismiss(data => {
-												if (data == 'openScanner') {
-													this.openScanner();
-												} else {
-													data(this.navCtrl)
-												};
-											});
-											modal.present();
-										}, 500);
-									})
-							} else {
-								setTimeout(() => {
-									let modal = this.modalCtrl.create('ParticularsModalAttrPage', {
-										headData: res.info,
-										scannerId: json['machine'],
-										sn: json['sn'],
-										cutId: json['machine']//这里为任意值
-									}, { cssClass: 'my-modal-style' });
-									modal.onDidDismiss(data => {
-										if (data == 'openScanner') {
-											this.openScanner();
-										} else {
-											data(this.navCtrl)
-										};
-									});
-									modal.present();
-								}, 500);
-							}
-						} else {
-							this.native.showToast(res.info);
-						}
-					})
-				}
-			} catch (error) {
-				this.ib.create(text, '_system');
-			}
-		})
+         this.getHomeData()
+      });
+      (window as any).handleOpenURL = (url: string) => {
+         console.log(url)
+         this.schemeUrl = url;
+      };
       this.httpService.getStorage('fastbuyData').then((res) => {
          if (res) this.fastbuyData = res;
       })
@@ -176,12 +86,16 @@ export class HomePage {
             this.assignData(res);
          }
       })
+      this.httpService.getStorage('category').then((res) => {
+         this.category = res;
+      })
+
       this.currentUser = this.mine.currentUser.subscribe(data => {
          this.userInfo = data;
          this.jpushServ.setAlias(data.data.user_info.user_name).then(res => {
-				console.log('setAlias', data.data.user_info.user_name)
-			});
-			this.jpushServ.addTags([data.data.user_info.mobile_phone])
+            console.log('setAlias', data.data.user_info.user_name)
+         });
+         this.jpushServ.addTags([data.data.user_info.mobile_phone])
       })
       this.mine.getUser();
       this.getHomeData().then(() => {
@@ -192,7 +106,6 @@ export class HomePage {
    }
    ngOnDestroy() {
       this.events.unsubscribe('home:update');
-		this.events.unsubscribe('qrScanner');
       this.currentUser.unsubscribe();
    }
    getHomeData() {
@@ -204,6 +117,24 @@ export class HomePage {
       });
       this.httpService.getHomebanner({ int_pos_id: 49, app: 1 }).then((res) => {
          if (res.status == 1) { this.brand_street = res; }
+      })
+      this.httpService.IndexData().then((res) => {
+         this.category = res;
+         this.httpService.setByName('category', res);
+
+         setTimeout(() => {
+            var subsection = this.ele.nativeElement.querySelectorAll('.subsection');
+            this.content.ionScroll.subscribe((d) => {
+               subsection.forEach((div, index) => {
+                  if (!div.myset) {
+                     if (d.scrollTop + d.contentHeight > div.offsetTop) {
+                        div.myset = true;
+                        this.category[index].show = true;
+                     }
+                  }
+               });
+            });
+         }, 300);
       })
       this.httpService.loan_status().then((res) => {
          this.baitiao = res;
@@ -252,18 +183,20 @@ export class HomePage {
       })
    }
    getRecommendGoods(item, brand_id?, dom?) {
-      this.httpService.recommendGoods({ id: item.id, brand_id: brand_id || null }).then((res) => {
+      this.httpService.recommendGoods({ id: item.Recommend_id, brand_id: brand_id || null }).then((res) => {
          if (res.status == 1) {
             this.content.scrollTo(0, dom.offsetTop);
-            item.data = res;
+            item.Recommend = res;
          }
       })
    }
    openScanner(e?) {
-		e && e.stopPropagation();
-      this.navCtrl.push('ScanPage').then(() => {
-
-		})
+      e && e.stopPropagation();
+      this.navCtrl.push('ScanPage', {
+         callback: (data) => {
+            this.ib.create(data, '_system');
+         }
+      })
    }
    tuangou() {
       this.native.showToast('功能还在开发中^_^');

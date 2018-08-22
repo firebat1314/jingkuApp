@@ -796,7 +796,7 @@ export class HttpService {
    search_census(data?: Object, options: HttpOptions = { showLoading: false }) {
       return this.http.post(IP + '/Public/search_census ', data, options)
    }
-   /*  */
+   /* 首页列表 */
    recommendGoods(data?: Object, options: HttpOptions = { showLoading: false }) {
       return this.http.post(IP + '/Index/recommendGoods ', data, options)
    }
@@ -848,22 +848,36 @@ export class HttpService {
    SpecialMachiningadd_to_cart_spec_jp(data?: Object, options: HttpOptions = { showLoading: true }) {
       return this.http.post(IP + '/SpecialMachining/add_to_cart_spec_jp ', data, options)
    }
+   /* 加工单列表信息 */
    SpecialMachiningmachining_info(data?: Object, options: HttpOptions = { showLoading: true }) {
       return this.http.post(IP + '/SpecialMachining/machining_info ', data, options)
    }
+   /* 保存扫描加工单 */
    SpecialMachiningcache_machining(data?: Object, options: HttpOptions = { showLoading: true }) {
       return this.http.post(IP + '/SpecialMachining/cache_machining ', data, options)
    }
+   /*  */
    SpecialMachiningselect_goods_type(data?: Object, options: HttpOptions = { showLoading: true }) {
       return this.http.post(IP + '/SpecialMachining/select_goods_type ', data, options)
    }
+   /* 扫码加工单加入购物车 */
    SpecialMachiningMachiningAddToCart(data?: Object, options: HttpOptions = { showLoading: true }) {
       return this.http.post(IP + '/SpecialMachining/MachiningAddToCart ', data, options)
    }
+   /* 结算页来镜加工按钮 */
    change_machining(data?: Object, options: HttpOptions = { showLoading: false }) {
       return this.http.post(IP + '/Flow/change_machining ', data, options)
    }
+   /* 首页广告模块列表 */
    IndexData(data?: Object, options: HttpOptions = { showLoading: false }) {
       return this.http.post(IP + '/index/IndexData ', data, options)
+   }
+   /* 删除已保存加工单 */
+   SpecialMachiningdel(data?: Object, options: HttpOptions = { showLoading: false }) {
+      return this.http.post(IP + '/SpecialMachining/del ', data, options)
+   }
+   /* 商品规格属性列表 */
+   get_goods_parameter(data?: { goods_id: any }, options: HttpOptions = { showLoading: false }) {
+      return this.http.post(IP + '/Goods/get_goods_parameter ', data, options)
    }
 }

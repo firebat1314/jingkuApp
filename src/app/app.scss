@@ -54,6 +54,25 @@ ion-app {
       opacity: 0;
     }
 }
+.cameraView ion-modal{
+  opacity: 0 !important;
+}
+
+.cameraView page-scan.show-page {
+  opacity: 1 !important;
+}
+
+.cameraView ng-component.show-page {
+  opacity: 1 !important;
+}
+.cameraView .show-page {
+  opacity: 0 !important;
+}
+
+.ios ion-header > .toolbar.statusbar-padding:first-child{
+  padding-top: calc(20px + 4px);
+  min-height: calc(44px + 20px);
+}
 
 .tabs .tabbar {
   background: #fff;

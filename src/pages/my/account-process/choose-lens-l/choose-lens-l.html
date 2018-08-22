@@ -9,10 +9,13 @@
    <ion-navbar>
       <ion-buttons left>
          <button ion-button icon-only (click)="viewCtrl.dismiss()">
-						<ion-icon name="ios-arrow-back"></ion-icon>
-					</button>
+            <ion-icon name="ios-arrow-back"></ion-icon>
+         </button>
       </ion-buttons>
       <ion-title>选择镜片-左眼</ion-title>
+      <ion-buttons right *ngIf="scannerData">
+         <button ion-button clear (click)="openScanner()">重新扫描</button>
+      </ion-buttons>
    </ion-navbar>
 
 </ion-header>
@@ -32,8 +35,8 @@
             <h2>{{item.goods_name}}</h2>
             <p class="right-bottom">
                <span class="attr" *ngIf="item.qiujing">球镜：{{item.qiujing}}</span>
-               <span class="attr" *ngIf="item.zhujing">球镜：{{item.zhujing}}</span>
-               <span class="attr" *ngIf="item.zhouwei">球镜：{{item.zhouwei}}</span>
+               <span class="attr" *ngIf="item.zhujing">柱镜：{{item.zhujing}}</span>
+               <span class="attr" *ngIf="item.zhouwei">轴位：{{item.zhouwei}}</span>
                <span class="attr" *ngFor="let attr of item.goods_attrs">{{attr}}</span>
                <em>x{{item.goods_number}}</em>
             </p>
@@ -49,8 +52,8 @@
             <h2>{{scannerData.goods_name}}</h2>
             <p class="right-bottom">
                <span class="attr" *ngIf="scannerData.qiujing">球镜：{{scannerData.qiujing}}</span>
-               <span class="attr" *ngIf="scannerData.zhujing">球镜：{{scannerData.zhujing}}</span>
-               <span class="attr" *ngIf="scannerData.zhouwei">球镜：{{scannerData.zhouwei}}</span>
+               <span class="attr" *ngIf="scannerData.zhujing">柱镜：{{scannerData.zhujing}}</span>
+               <span class="attr" *ngIf="scannerData.zhouwei">轴位：{{scannerData.zhouwei}}</span>
                <span class="attr" *ngFor="let attr of scannerData.goods_attrs">{{attr}}</span>
                <em>x{{scannerData.goods_number}}</em>
             </p>
@@ -60,6 +63,6 @@
 </ion-content>
 <ion-footer>
    <!-- <ion-toolbar no-padding mode="ios"> -->
-   <button ion-button large full color="jingku1" no-margin *ngIf="!scannerData" (click)="submit()">确定</button>
+   <button ion-button large full color="jingku1" no-margin (click)="submit()">确定</button>
    <!-- </ion-toolbar> -->
 </ion-footer>

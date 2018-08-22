@@ -13,6 +13,9 @@
 			</button>
       </ion-buttons>
       <ion-title>{{scannerData?'镜架':'选择镜架'}}</ion-title>
+      <ion-buttons right *ngIf="scannerData">
+         <button ion-button clear (click)="openScanner()">重新扫描</button>
+      </ion-buttons>
    </ion-navbar>
    <ion-toolbar mode="ios" no-padding *ngIf="!scannerData">
       <ion-segment mode="ios" [(ngModel)]="selectorbar" color="jingku1">
@@ -99,32 +102,6 @@
             </div>
          </div>
       </ion-list>
-      <div class="eye">
-         <div class="h_title">加工类型</div>
-         <div class="t_labels">
-            <div class="lab" (click)="mach_type = 1" *ngIf="settings?.is_full==1" [ngClass]="{'on':mach_type == 1}">全框</div>
-            <div class="lab" (click)="mach_type = 2" *ngIf="settings?.is_half==1" [ngClass]="{'on':mach_type == 2}">半框</div>
-            <div class="lab" (click)="mach_type = 3" *ngIf="settings?.is_cut==1" [ngClass]="{'on':mach_type == 3}">无框切边</div>
-            <div class="lab" (click)="mach_type = 4" *ngIf="settings?.is_punch==1" [ngClass]="{'on':mach_type == 4}">无框打孔</div>
-         </div>
-         <div class="m_list">
-            <div class="li">
-               <div class="name">
-                  <span style="color: #e60000;">*</span>&nbsp;镜架品牌</div>
-               <ion-input autocomplete="off" autocorrect="off" class="inp" [(ngModel)]="pinpai" placeholder="请填写" type="text" value=""></ion-input>
-            </div>
-            <div class="li">
-               <div class="name">
-                  <span style="color: #e60000;">*</span>&nbsp;镜架型号</div>
-               <ion-input autocomplete="off" autocorrect="off" class="inp" [(ngModel)]="xinghao" placeholder="请填写" type="text" value=""></ion-input>
-            </div>
-            <div class="li">
-               <div class="name">
-                  <span style="color: #e60000;">&nbsp;</span>&nbsp;镜架备注</div>
-               <ion-input autocomplete="off" autocorrect="off" class="inp" [(ngModel)]="beizhu" placeholder="请填写" type="text" value=""></ion-input>
-            </div>
-         </div>
-      </div>
    </ng-container>
 </ion-content>
 <ion-footer>

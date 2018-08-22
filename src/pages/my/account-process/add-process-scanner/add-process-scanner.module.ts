@@ -1,17 +1,18 @@
 import { NgModule } from '@angular/core';
 import { IonicPageModule } from 'ionic-angular';
-import { ChooseLensLPage } from './choose-lens-l';
+import { AddProcessScannerPage } from './add-process-scanner';
+import { ScrollToTopDirectiveModule } from '../../../../directives/scroll-to-top/scroll-to-top.module';
 import { ImgLazyLoadDirectiveModule } from '../../../../directives/img-lazy-load/img-lazy-load.module';
 import { AccountProcessProvider } from '../account-process-provider';
 
 @NgModule({
-   declarations: [
-      ChooseLensLPage,
-   ],
+   declarations: [AddProcessScannerPage],
    imports: [
-      IonicPageModule.forChild(ChooseLensLPage),
+      IonicPageModule.forChild(AddProcessScannerPage),
+      ScrollToTopDirectiveModule,
       ImgLazyLoadDirectiveModule
    ],
    providers: [AccountProcessProvider]
 })
-export class ChooseLensLPageModule { }
+
+export class AddProcessScannerPageModule { }

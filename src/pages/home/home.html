@@ -78,7 +78,7 @@
             </div>
             <span>铺货</span>
          </div>
-         <div tappable *ngIf="native.isMobile()">
+        <div tappable *ngIf="!native.isMobile()" navPush="AddProcessScannerPage">
             <div class="img">
                <img img-lazy-load="./assets/icon/home/home_icon6.png" alt="">
             </div>
@@ -172,19 +172,19 @@
          </div>
          <div class="class_list" #class_list fadeIn *ngIf="item.show">
             <div class="head">
-               <div class="title" tappable (click)="item.selectbrandid = 0;getRecommendGoods(item,0,class_list)">{{item?.data?.info?.name}}</div>
+               <div class="title" tappable (click)="item.selectbrandid = 0;getRecommendGoods(item,0,class_list)">{{item?.Recommend?.info?.name}}</div>
                <div class="brand_list">
-                  <div class="brand" tappable [class.on]="item?.selectbrandid == brand.brand_id" (click)="item.selectbrandid = brand.brand_id; getRecommendGoods(item,brand.brand_id,class_list)" *ngFor="let brand of item?.data?.brand_list">{{brand.brand_name}}</div>
+                  <div class="brand" tappable [class.on]="item?.selectbrandid == brand.brand_id" (click)="item.selectbrandid = brand.brand_id; getRecommendGoods(item,brand.brand_id,class_list)" *ngFor="let brand of item?.Recommend?.brand_list">{{brand.brand_name}}</div>
                </div>
             </div>
-            <ng-container *ngIf="item?.ads?.data?.length">
+            <ng-container *ngIf="item?.Ad?.length">
                <ion-slides autoplay="4000" pager>
-                  <ion-slide *ngFor="let ads of item?.ads?.data" tappable [ads-click]="ads">
+                  <ion-slide *ngFor="let ads of item?.Ad" tappable [ads-click]="ads">
                      <img style="display: block;" [img-lazy-load]="ads.ad_img" defaultSrc="./assets/images/images/640-360.jpg" alt="">
                   </ion-slide>
                </ion-slides>
             </ng-container>
-            <single-foods-card [data]="item?.data?.list"></single-foods-card>
+            <single-foods-card [data]="item?.Recommend?.list"></single-foods-card>
          </div>
       </ng-container>
    </div>
