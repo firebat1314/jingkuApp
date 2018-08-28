@@ -77,9 +77,9 @@ export class OrderDetailDistributionPage {
   goParticularsPage(id, cutId) {
     this.navCtrl.push('ParticularsPage', { goodsId: id, cutId: cutId });
   }
-  toPay(id) {
+  toPay(item) {
     if (!this.mine.canCheckout) { this.native.showToast('暂无结算权限，请联系企业管理员'); return false }
-    this.navCtrl.push('PaymentMethodPage', { order_id: id, isDistribution: 1 })
+    this.navCtrl.push('PaymentMethodPage', { order_id: item.order.order_id, log_id: item.order.log_id, isDistribution: 1 })
   }
   confirmReceipt(order_id) {
     this.native.openAlertBox('确认收货', () => {
