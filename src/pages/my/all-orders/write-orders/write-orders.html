@@ -116,6 +116,20 @@
                     - ¥{{data?.total?.bonus_formated}}
                 </ion-note>
             </ion-item>
+            <ion-item mode="ios" detail-push tappable (click)="goCouponShipPage()">
+                运费优惠券
+                <span class="count" *ngIf="selectedShipBonus.length">已选{{selectedShipBonus.length||0}}张</span>
+                <span class="count" *ngIf="shipBonus&&!selectedShipBonus.length">{{shipBonus}}张可用</span>
+                <ion-note *ngIf="!shipBonus&&!selectedShipBonus.length" item-end>
+                    暂无可用
+                </ion-note>
+                <ion-note *ngIf="shipBonus&&!selectedShipBonus.length" item-end>
+                    请选择
+                </ion-note>
+                <ion-note *ngIf="selectedShipBonus.length" item-end>
+                    - {{data?.total?.shipping_bonus_formated}}
+                </ion-note>
+            </ion-item>
             <ion-item mode="ios" detail-push tappable (click)="goBusinessmenNotePage()">
                 商家备注
                 <ion-note item-end *ngIf="!noteStatus">填写备注信息</ion-note>
@@ -134,6 +148,10 @@
             <div>
                 <span>运费：</span>
                 <span class="price">+ {{data?.total?.suppliers_shipping_fee_formated}}</span>
+            </div>
+            <div *ngIf="data?.total?.shipping_bonus_formated">
+                <span>运费优惠：</span>
+                <span class="price">- {{data?.total?.shipping_bonus_formated}}</span>
             </div>
             <div *ngIf="data?.total?.formated_subsidy_price!=0">
                 <span>镜库补贴：</span>

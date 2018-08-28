@@ -1,0 +1,43 @@
+<ion-header>
+
+   <ion-navbar>
+      <ion-title>运费优惠券</ion-title>
+   </ion-navbar>
+   
+</ion-header>
+
+<ion-content>
+   <ng-container *ngIf="data">
+         <div class="no-coupon" *ngIf="!shipBonus">
+            <div class="img">
+               <img src="./assets/images/images/coupon_4_03.png" alt="">
+            </div>
+            <div class="title">您还没有优惠券哦！</div>
+         </div>
+         <ng-container *ngFor="let item of data?.cart_goods_list">
+            <ng-container *ngIf="item?.use_shipping_bonus?.length">
+               <div style="margin: 10px;color: #666;">{{item.title}}</div>
+               <ng-container *ngFor="let bonus of item?.use_shipping_bonus">
+                  <div class="coupon" (click)="suppliersBouns(item.suppliers_id,bonus.bonus_id)">
+                     <div class="head">
+                        <div class="price">￥<span>{{bonus.type_money}}</span></div>
+                        <div class="canbe">满{{bonus.min_goods_amount}}元可用</div>
+                     </div>
+                     <div class="main">
+                        <div class="name"><span>{{bonus.type_name}}</span></div>
+                        <div>{{bonus.suppliers_name}}</div>
+                        <div class="time">{{bonus.use_end_date}}</div>
+                     </div>
+                     <div class="coupon-check">
+                        <ion-checkbox color="jingku1" [checked]="bonus.selected"></ion-checkbox>
+                     </div>
+                  </div>
+               </ng-container>
+            </ng-container>
+         </ng-container>
+      
+   </ng-container>
+</ion-content>
+<ion-footer slideInUp>
+   <div ion-button full large no-margin color="jingku1" navPop>确定</div>
+</ion-footer>

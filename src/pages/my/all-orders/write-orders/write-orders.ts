@@ -33,6 +33,8 @@ export class WriteOrdersPage {
    //选中的快递
    selectedShip: string;
    selectedBonus: Array<any> = [];
+   selectedShipBonus: any[];
+   shipBonus: any;
    constructor(
       public navCtrl: NavController,
       public navParams: NavParams,
@@ -119,9 +121,9 @@ export class WriteOrdersPage {
                      break;
                   }
                }
-            } else if(res.status==-1){
-               this.native.openAlertBox(res.info,()=>{
-                  this.navCtrl.pop({ animate: true }).then(()=>{
+            } else if (res.status == -1) {
+               this.native.openAlertBox(res.info, () => {
+                  this.navCtrl.pop({ animate: true }).then(() => {
                      this.navCtrl.push('CompanyInfoPage');
                   }).catch(() => { history.back() });
                })
@@ -131,7 +133,7 @@ export class WriteOrdersPage {
             alert(res.status)
          })
       }
-      return this.httpService.checkout({type:this.scanner>0?1:null}).then((res) => {
+      return this.httpService.checkout({ type: this.scanner > 0 ? 1 : null }).then((res) => {
          if (res.status == 1) {
             this.data = res;
             //选中地址
@@ -174,7 +176,18 @@ export class WriteOrdersPage {
                   }
                }
             }
-            // console.log(this.selectedBonus)
+            //已选择运费优惠券
+            this.selectedShipBonus = [];
+            for (let i = 0, item = this.data.cart_goods_list; i < item.length; i++) {
+               for (let j = 0, bonus = item[i].use_shipping_bonus || []; j < bonus.length; j++) {
+                  if (bonus[j].selected == 1) {
+                     this.selectedShipBonus.push(bonus[j])
+                  }
+               }
+            }
+            //可用运费优惠券
+            this.shipBonus = this.data.cart_goods_list.reduce((x,y)=>x+(y.use_shipping_bonus.length),0);
+           
             //note 是否填写
             this.noteStatus = false;
             for (var note in this.data.suppliers_notes) {
@@ -242,6 +255,12 @@ export class WriteOrdersPage {
       }
       this.navCtrl.push('UsecouponPage')
    }
+   goCouponShipPage(){
+      if (!this.selectedShip) {
+         return this.native.showToast('请选择配送方式')
+      }
+      this.navCtrl.push('CouponShipPage');
+   }
    goBusinessmenNotePage() {
       if (!this.defaultShipping) {
          this.native.showToast('请选择收货地址')
@@ -267,25 +286,22 @@ export class WriteOrdersPage {
          label.push(sArr);
       }
 
-      return new Promise((resolve) => {
-         this.httpService.submitOrder({
-            notes: {
-               note: commentArr,
-               suppliers: suppliers,
-               label: label
-            }
-         }).then((res) => {
-            if (res.info == '请先完善收货信息') {
-               this.openOrderModalShippingPage();
-               return
-            } else if (res.info == '购物车中没有商品') {
-               this.navCtrl.pop().catch(res => { history.back() });
-            } else if (res.info == '请选择支付方式'||res.info == '请先选择配送方式') {
-               this.goPayAndShipPage();
-            }
-            resolve(res)
-         })
-      });
+      return this.httpService.submitOrder({
+         notes: {
+            note: commentArr,
+            suppliers: suppliers,
+            label: label
+         }
+      }).then((res) => {
+         if (res.info == '请先完善收货信息') {
+            this.openOrderModalShippingPage();
+         } else if (res.info == '购物车中没有商品') {
+            this.navCtrl.pop().catch(res => { history.back() });
+         } else if (res.info == '请选择支付方式' || res.info == '请先选择配送方式') {
+            this.goPayAndShipPage();
+         }
+         return res;
+      })
    }
    onsubmit() {
       // if (this.data.is_surplus) {//是否使用余额支付按钮
@@ -307,6 +323,7 @@ export class WriteOrdersPage {
       //   })
       // } else {
       this.done().then((res) => {
+         console.log(res)
          if (res.status == 1) {
             var item = [];
             for (var i = 0, item1 = this.data.cart_goods_list; i < item1.length; i++) {
@@ -322,7 +339,7 @@ export class WriteOrdersPage {
                   }
                }
             }
-            _hmt&&_hmt.push(['_trackOrder', {
+            _hmt && _hmt.push(['_trackOrder', {
                "orderId": res.order_id,
                "orderTotal": this.data.total.amount_formated,
                "item": item
@@ -332,7 +349,7 @@ export class WriteOrdersPage {
             this.events.publish('my:update');
             if (this.paymentMothdID == 6) {
                var view = this.viewCtrl;
-               this.navCtrl.push('PaymentMethodPage', { order_id: res.order_id, isDistribution: 0 }).then(() => {
+               this.navCtrl.push('PaymentMethodPage', { order_id: res.order_id, log_id: res.log_id, isDistribution: 0 }).then(() => {
                   this.navCtrl.removeView(view);
                });
             } else if (this.paymentMothdID == 4) {
