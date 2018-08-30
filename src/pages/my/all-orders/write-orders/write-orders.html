@@ -135,10 +135,10 @@
                 <ion-note item-end *ngIf="!noteStatus">填写备注信息</ion-note>
                 <ion-note item-end *ngIf="noteStatus">已填写备注，点击查看</ion-note>
             </ion-item>
-            <ion-item *ngIf="data?.cart_machining==1" style="border-bottom:none;">
+            <!-- <ion-item *ngIf="data?.cart_machining==1" style="border-bottom:none;">
                <ion-label>来镜加工</ion-label>
                <ion-toggle mode="ios" color="jingku1" [(ngModel)]="data.jump_machining" (ionChange)="change_machining(data.jump_machining)"></ion-toggle>
-           </ion-item>
+           </ion-item> -->
         </ion-list>
         <div class="fore fore3" *ngIf="goodsType!='integral'&&!(dId>0)">
             <div>

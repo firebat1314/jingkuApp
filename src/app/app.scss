@@ -28,6 +28,50 @@ html {
 ion-app {
     font-family: Helvetica, sunshanshan, -apple-system, "Helvetica Neue", "Roboto", sans-serif !important;
 } */
+.cameraView,
+
+.cameraView ion-app,
+
+.cameraView .app-root,
+
+.cameraView ion-nav,
+
+.cameraView .ion-page,
+
+.cameraView .nav-decor,
+
+.cameraView ion-content,
+
+.cameraView .viewscan,
+
+.cameraView .fixed-content,
+
+.cameraView .scroll-content {
+    transition: all .3s;
+    background: transparent none !important;
+    .tabbar.show-tabbar {
+      opacity: 0;
+    }
+}
+.cameraView ion-modal{
+  opacity: 0 !important;
+}
+
+.cameraView page-scan.show-page {
+  opacity: 1 !important;
+}
+
+.cameraView ng-component.show-page {
+  opacity: 1 !important;
+}
+.cameraView .show-page {
+  opacity: 0 !important;
+}
+
+.ios ion-header > .toolbar.statusbar-padding:first-child{
+  padding-top: calc(20px + 4px);
+  min-height: calc(44px + 20px);
+}
 
 .tabs .tabbar {
     background: #fff;

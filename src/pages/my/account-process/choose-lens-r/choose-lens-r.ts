@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, ViewController } from 'ionic-angular';
 import { HttpService } from '../../../../providers/http-service';
+import { AccountProcessProvider } from '../account-process-provider';
 
 /**
  * Generated class for the ChooseLensRPage page.
@@ -24,11 +25,13 @@ export class ChooseLensRPage {
    pian_rec: any = this.navParams.get('pian_rec');
 
    scannerData: any = this.navParams.get('scannerData');
+   scannerIndex: any = this.navParams.get('scannerIndex');//扫码加工单下标
    constructor(
-      public navCtrl: NavController,
-      public navParams: NavParams,
-      public httpService: HttpService,
-      public viewCtrl: ViewController,
+      private navCtrl: NavController,
+      private navParams: NavParams,
+      private httpService: HttpService,
+      private viewCtrl: ViewController,
+      private thisProvider: AccountProcessProvider,
    ) {
    }
 
@@ -37,7 +40,7 @@ export class ChooseLensRPage {
    }
 
    ngOnInit() {
-      if(!this.scannerData){
+      if (!this.scannerData) {
          this.httpService.machining_goods({ order_id: this.order_id, type: 'you', goods_type: 'pian', rec_ids: this.rec_ids, rec_id: this.rec_id, pian_rec: this.pian_rec }).then((res) => {
             if (res.status == 1) {
                this.data = res;
@@ -47,9 +50,13 @@ export class ChooseLensRPage {
          })
       }
    }
-
+   openScanner() {
+      this.thisProvider.openScanner(this.scannerIndex, 1).then(data => {//扫码并加入加工单完成返回的商品信息
+         this.scannerData = data.attr.right_attr;
+      }).catch(() => { })
+   }
    submit() {
-      if (this.rec_id) {
+      if (this.rec_id && !this.scannerData) {
          this.httpService.select_goods_type({
             goods_rec: this.rec_id,
             type: '1',
@@ -60,7 +67,7 @@ export class ChooseLensRPage {
             }
          })
       } else {
-         this.viewCtrl.dismiss(null, 'submit');
+         this.viewCtrl.dismiss(this.scannerData, 'submit');
       }
    }
 }

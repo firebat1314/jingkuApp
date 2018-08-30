@@ -1,10 +1,9 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams, ViewController, Events, IonicPage, AlertController } from 'ionic-angular';
+import { NavController, NavParams, ViewController, Events, IonicPage, AlertController, ModalController } from 'ionic-angular';
 import { HttpService } from "../../../../providers/http-service";
 import { Native } from "../../../../providers/native";
-import { TofixedPipe } from "../../../../pipes/tofixed/tofixed";
-import { phone_nember } from '../../../../providers/constants';
 import { MineProvider } from '../../../../providers/mine/mine';
+import { QRScanner } from '@ionic-native/qr-scanner';
 
 export class goodsSpectaclesParams {
    number = 1;//所填写的商品的数量
@@ -30,8 +29,12 @@ export class ParticularsModalAttrPage {
    callback: any = this.navParams.get('callback');
    isActivity = this.navParams.get('isActivity');//是否为活动商品
 
+   /* 扫描选择镜架商品 */
    scannerId = this.navParams.get('scannerId');//二维码扫描id
+   scannerIndex = this.navParams.get('scannerIndex');//加工单下标
    scannerData: any;
+   scanner_select;
+   sn: any = this.navParams.get('sn');
 
    distributionInfo: any;
    cutting_info: any;
@@ -69,9 +72,8 @@ export class ParticularsModalAttrPage {
    totalPrices: any = 0;
    totalNumber: any = 0;
    goodsInfo: any;
+   hasZuoyou: any;//定制片是否包含左右属性没有则显示左右标题
 
-   /* 扫描选择镜架商品 */
-   scanner_select
    constructor(
       public navCtrl: NavController,
       public navParams: NavParams,
@@ -81,6 +83,7 @@ export class ParticularsModalAttrPage {
       private events: Events,
       private alertCtrl: AlertController,
       private mine: MineProvider,
+      private modalCtrl: ModalController,
    ) {
    }
    ionViewDidLoad() {
@@ -148,7 +151,8 @@ export class ParticularsModalAttrPage {
                   zhouwei: '',
                   price: '0.00',
                   subtotal: '0.00',
-                  '定制类型': ''
+                  '定制类型': '',
+                  label: "右眼"
                }, {
                   number: 1,
                   spc: [],
@@ -157,13 +161,15 @@ export class ParticularsModalAttrPage {
                   zhouwei: '',
                   price: '0.00',
                   subtotal: '0.00',
-                  '定制类型': ''
+                  '定制类型': '',
+                  label: "左眼"
                }]
 
                for (let i = 0; i < res.specification.length; i++) {//禁用左右下拉
                   const attr = res.specification[i];
                   if (attr.name.indexOf('左/右') > -1) {
                      attr.disable = true;
+                     this.hasZuoyou = true;
                      for (let i = 0; i < attr.values.length; i++) {
                         const id = attr.values[i].id;
                         this.goods[i]['左/右'] = id;
@@ -220,8 +226,12 @@ export class ParticularsModalAttrPage {
             this.attrsList = res;
          })
       } else {
-         this.httpServ.getAttrList({ goods_id: this.goodsId, attr: this.checkMainAttrId, isActivity: this.isActivity }).then((res) => {
+         this.httpServ.getAttrList({ goods_id: this.goodsId, attr: this.checkMainAttrId, isActivity: this.isActivity, sn: this.scannerId > 0 ? this.sn : null }).then((res) => {
             this.attrsList = res;
+            try {
+               this.scanner_select = res.data[0];
+               this.scannerSelectChange(this.scanner_select);
+            } catch (e) { }
          })
       }
    }
@@ -271,6 +281,21 @@ export class ParticularsModalAttrPage {
          goods: {
             spec: this.attrIds,
             member: this.attrNumbers
+         }
+      }).then((res) => {
+         if (res.status == 1) {
+            this.totalNumber = res.number;
+            this.totalPrices = res.goods_total;
+         }
+      })
+   }
+   scannerSelectChange(item) {
+      this.scanner_select = item;
+      this.httpServ.changeGoodsNumber({
+         goods_id: this.goodsId,
+         goods: {
+            spec: [item.goods_attr_id],
+            member: [1]
          }
       }).then((res) => {
          if (res.status == 1) {
@@ -596,13 +621,13 @@ export class ParticularsModalAttrPage {
       let parmas: any;
       if (this.scannerData.is_jingjia > 0) {
          if (!this.scanner_select) {
-            this.native.showToast('请选择商品')
-            return
+            return this.native.showToast('请选择商品');
          }
          parmas = {
-            arr_goods: [{ member: [1], spec: [this.scanner_select.goods_attr_id] }],
+            arr_goods: [{ member: [1], spc: [this.scanner_select.goods_attr_id] }],
             arr_goods_id: [this.goodsId],
             goods_id: this.goodsId,
+            marking: this.scannerIndex
          }
       } else if (this.scannerData.is_jingpian > 0) {
          if (this.getGoodsParamsArrs()) {
@@ -616,56 +641,15 @@ export class ParticularsModalAttrPage {
                }],
                arr_goods_id: [this.goodsId],
                goods_id: this.goodsId,
+               marking: this.scannerIndex
             }
          }
       }
-
       this.httpServ.SpecialMachiningadd_to_cart_spec_jp(parmas).then((res) => {
+         this.native.showToast(res.info);
          if (res.status == 1) {
-            this.native.showToast(res.info);
-            if (res.is_true) {//是否前往来镜加工
-               this.viewCtrl.dismiss((navCtrl) => {
-                  navCtrl.push('AddProcessPage', { is_scanner: 1 })
-               });
-            } else {
-               this.native.openBarcodeScanner().then((result) => {
-                  this.scannerId = result['text'];
-                  this.ngOnInit();
-               }).catch((e) => {
-               })
-            }
-         } else if (res.status == -1) {
-            this.native.openAlertBox(
-               res.info,
-               () => {/* 确定替换 */
-                  this.httpServ.SpecialMachiningadd_to_cart_spec_jp(Object.assign({ replace: 1 }, parmas)).then(res => {
-                     if (res.status == 1) {
-                        this.native.showToast(res.info);
-                        if (res.is_true) {//是否前往来镜加工
-                           this.viewCtrl.dismiss((navCtrl) => {
-                              navCtrl.push('AddProcessPage', { is_scanner: 1 })
-                           });
-                        } else {
-                           this.native.openBarcodeScanner().then((result) => {
-                              this.scannerId = result['text'];
-                              this.ngOnInit()
-                           }).catch((e) => {
-                           })
-                        }
-                     }
-                  })
-               },
-               () => {/* 不替换 */
-                  this.native.openBarcodeScanner().then((result) => {
-                     this.scannerId = result['text'];
-                     this.ngOnInit()
-                  }).catch((e) => {
-                  })
-               }
-            )
+            this.viewCtrl.dismiss(res, 'openScanner');
          }
-      }).catch((res) => {
-         console.log(res)
       })
    }
 }
