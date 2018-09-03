@@ -290,7 +290,8 @@ export class WriteOrdersPage {
             note: commentArr,
             suppliers: suppliers,
             label: label
-         }
+         },
+         type: this.scanner > 0 ? 1 : null
       }).then((res) => {
          if (res.info == '请先完善收货信息') {
             this.openOrderModalShippingPage();

@@ -57,12 +57,16 @@ export class AddProcessScannerPage {
     * @param index 加工单下标
     */
    getData(index?) {
-      this.httpService.SpecialMachiningmachining_info().then((res) => {//{is_ceshi:1}
+      this.httpService.SpecialMachiningmachining_info({}, { showLoading: false }).then((res) => {//{is_ceshi:1}
          if (res.status == 1 && res.machining.length) {
             this.data = res;
             var list = [];
             for (let i = 0; i < res.machining.length; i++) {
-               list[i] = (new orderParams(false));
+               if (res.machining.length > 1) {
+                  list[i] = (new orderParams(false));
+               } else {
+                  list[i] = (new orderParams(true));
+               }
                const element = res.machining[i];
 
                if (element.jia_attr) {
@@ -89,7 +93,14 @@ export class AddProcessScannerPage {
                   }
                }
             }
-            if (index != undefined) list[index].showBody = true;
+            if (index != undefined) {
+               list[index].showBody = true
+               if (index == list.length - 1) {
+                  setTimeout(() => {
+                     this.myContent.scrollToBottom();
+                  }, 1000);
+               }
+            };
             this.list = list;
             console.log(this.list)
          } else if (res.status == -2) {
@@ -125,7 +136,7 @@ export class AddProcessScannerPage {
          this.list.push(new orderParams(true));
          setTimeout(() => {
             this.myContent.scrollToBottom();
-         }, 300);
+         }, 800);
       })
 
    }
@@ -268,7 +279,7 @@ export class AddProcessScannerPage {
          for (let index = 0; index < this.list.length; index++) {
             const element = this.list[index];
             if (!element.R || !element.L || !element.J) {
-               this.native.showToast('请完善加工单' + (index + 1) + '信息');
+               return this.native.showToast('请完善加工单' + (index + 1) + '信息');
             }
          }
          this.list.forEach(element => {
@@ -308,7 +319,7 @@ export class AddProcessScannerPage {
    }
    confirm() {
       this.cache_machining().then((res) => {
-         this.navCtrl.push('AddProcessPage', { order_parent: this.order_id, edit: 0, is_scanner: 1 }).then(() => { })
+         this.navCtrl.push('AddProcessScannerPage', { order_parent: this.order_id, edit: 0, is_scanner: 1 }).then(() => { })
       })
    }
    pushPage(page, params = {}) {

@@ -91,7 +91,7 @@ export class ParticularsModalAttrPage {
    }
    ngOnInit() {
       if (this.scannerId) {
-         this.httpServ.SpecialMachiningGoodsInfo({ id: this.scannerId }).then(res => {
+         this.httpServ.SpecialMachiningGoodsInfo({ id: this.scannerId }, { showLoading: false }).then(res => {
             this.goodsId = res.info.goods_id;
             this.type = 'cut';
             this.scannerData = res;

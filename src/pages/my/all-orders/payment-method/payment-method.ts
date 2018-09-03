@@ -285,7 +285,7 @@ export class PaymentMethodPage {
          if (res.status) {
             if (res.type == 'balance') {
                this.native.showToast(res.info);
-               this.pushPage('OrderPayOverPage', { order_id: this.order_id, log_id: this.log_id, type: this.type });
+               this.pushPage('OrderPayOverPage', { order_id: this.order_id, log_id: this.data.pay_info.log_id, type: this.type });
             } else if (res.type == 'pay') {
                if (this.paymentType) {
                   this.openPingPayment(res);

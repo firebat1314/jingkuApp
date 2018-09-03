@@ -48,9 +48,6 @@
                </ion-thumbnail>
                <h2>{{item.goods_name}}</h2>
                <p class="right-bottom">
-                  <span class="attr" *ngIf="item.qiujing">球镜：{{item.qiujing}}</span>
-                  <span class="attr" *ngIf="item.zhujing">球镜：{{item.zhujing}}</span>
-                  <span class="attr" *ngIf="item.zhouwei">球镜：{{item.zhouwei}}</span>
                   <span class="attr" *ngFor="let attr of item.goods_attrs">{{attr}}</span>
                   <em>x{{item.goods_number}}</em>
                </p>
@@ -93,11 +90,8 @@
                </ion-thumbnail>
                <h2>{{scannerData.goods_name}}</h2>
                <p class="right-bottom">
-                  <span class="attr" *ngIf="scannerData.qiujing">球镜：{{scannerData.qiujing}}</span>
-                  <span class="attr" *ngIf="scannerData.zhujing">球镜：{{scannerData.zhujing}}</span>
-                  <span class="attr" *ngIf="scannerData.zhouwei">球镜：{{scannerData.zhouwei}}</span>
                   <span class="attr" *ngFor="let attr of scannerData.goods_attrs">{{attr}}</span>
-                  <em>x{{scannerData.goods_number}}</em>
+                  <em>x{{scannerData.goods_number || 1}}</em>
                </p>
             </div>
          </div>

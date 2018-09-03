@@ -84,7 +84,8 @@ export class ChooseFramePage {
          mach_type: this.mach_type,
          pinpai: this.pinpai,
          xinghao: this.xinghao,
-         beizhu: this.beizhu
+         beizhu: this.beizhu,
+         pian_rec: this.pian_rec
       }, { cssClass: '' });
       modal.onDidDismiss((data, role) => {
          if (data) {
