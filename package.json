@@ -46,13 +46,10 @@
     "call-number": "0.0.2",
     "clipboard": "^2.0.1",
     "cordova-android": "6.2.3",
-    "cordova-ios": "~4.5.4",
-    "cordova-open-native-settings": "~1.4.1",
     "cordova-plugin-add-swift-support": "^1.7.2",
     "cordova-plugin-app-version": "~0.1.9",
     "cordova-plugin-badge": "~0.8.1",
     "cordova-plugin-camera": "~2.4.0",
-    "cordova-plugin-cocoapod-support": "^1.5.0",
     "cordova-plugin-compat": "^1.0.0",
     "cordova-plugin-console": "^1.0.5",
     "cordova-plugin-customurlscheme": "^4.3.0",
@@ -84,7 +81,8 @@
     "mx.ferreyra.callnumber": "0.0.2",
     "rxjs": "5.4.0",
     "sw-toolbox": "3.6.0",
-    "zone.js": "0.8.12"
+    "zone.js": "0.8.12",
+    "cordova-ios": "~4.5.5"
   },
   "devDependencies": {
     "@ionic/app-scripts": "2.0.2",
@@ -158,14 +156,12 @@
       "jpush-phonegap-plugin": {
         "APP_KEY": "e889e9b93cf3bfac71e966ec"
       },
-      "cordova-open-native-settings": {},
       "cordova-plugin-customurlscheme": {
         "URL_SCHEME": "jingku",
         "ANDROID_SCHEME": " ",
         "ANDROID_HOST": " ",
         "ANDROID_PATHPREFIX": "/"
       },
-      "cordova-plugin-cocoapod-support": {},
       "cordova-plugin-qrscanner": {}
     }
   }

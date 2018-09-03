@@ -57,7 +57,7 @@ export class AddProcessScannerPage {
     * @param index 加工单下标
     */
    getData(index?) {
-      this.httpService.SpecialMachiningmachining_info({}, { showLoading: false }).then((res) => {//{is_ceshi:1}
+      this.httpService.SpecialMachiningmachining_info({},{showLoading:false}).then((res) => {//{is_ceshi:1}
          if (res.status == 1 && res.machining.length) {
             this.data = res;
             var list = [];

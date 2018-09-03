@@ -46,7 +46,7 @@ export class PopoverMachiningPage {
         pinpai: this.pinpai,
         xinghao: this.xinghao,
         beizhu: this.beizhu,
-        pian_rec: this.pian_rec
+        pian_rec:this.pian_rec
       }).then((res) => {
         if (res.status) {
           this.viewCtrl.dismiss(res.data,'submit');
