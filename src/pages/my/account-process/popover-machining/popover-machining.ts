@@ -20,6 +20,7 @@ export class PopoverMachiningPage {
   pinpai: any = this.navParams.get('pinpai');
   xinghao: any = this.navParams.get('xinghao');
   beizhu: any = this.navParams.get('beizhu');
+  pian_rec: any = this.navParams.get('pian_rec');
 
   constructor(
     public navCtrl: NavController,
@@ -44,7 +45,8 @@ export class PopoverMachiningPage {
         mach_type: this.mach_type,
         pinpai: this.pinpai,
         xinghao: this.xinghao,
-        beizhu: this.beizhu
+        beizhu: this.beizhu,
+        pian_rec: this.pian_rec
       }).then((res) => {
         if (res.status) {
           this.viewCtrl.dismiss(res.data,'submit');

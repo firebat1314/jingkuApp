@@ -12,7 +12,7 @@ declare var _hmt;
   Ionic pages and navigation.
 */
 @IonicPage({
-   segment: 'write-orders/:type/:dId'
+   segment: 'write-orders/:type/:dId/:scanner'
 })
 @Component({
    selector: 'page-write-orders',
@@ -291,7 +291,8 @@ export class WriteOrdersPage {
             note: commentArr,
             suppliers: suppliers,
             label: label
-         }
+         },
+         type: this.scanner > 0 ? 1 : null
       }).then((res) => {
          if (res.info == '请先完善收货信息') {
             this.openOrderModalShippingPage();

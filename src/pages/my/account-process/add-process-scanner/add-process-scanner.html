@@ -9,7 +9,7 @@
    <ion-navbar>
       <ion-title>{{edit?'来镜加工':'确认信息'}}</ion-title>
       <ion-buttons right>
-         <button ion-button tappble (click)="addOrder()">添加工单</button>
+         <button *ngIf="edit" ion-button tappble (click)="addOrder()">添加工单</button>
       </ion-buttons>
    </ion-navbar>
 

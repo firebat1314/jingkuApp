@@ -1,4 +1,4 @@
-page-add-process {
+page-add-process,page-add-process-scanner {
    .add_btn {
       display: flex;
       align-items: center;
@@ -22,22 +22,15 @@ page-add-process {
          position: relative;
          display: flex;
          align-items: center;
-         justify-content: center;
-         flex-direction: column;
-         padding: 15px 0;
+         justify-content: space-between;
+         padding: 12px 21px;
          .head_title {
             color: #4d4d4d; // margin-bottom: 5px;
-            .icon-tool {
-               position: absolute;
-               right: 15px;
-               top: 15px;
-               .icon {
-                  color: #b8b8b8;
-                  font-size: 22px;
-               }
-               .icon:last-child {
-                  margin-left: 10px;
-               }
+         }
+         .icon-tool {
+            .icon {
+               color: #b8b8b8;
+               font-size: 22px;
             }
          }
          .head_msg {
@@ -54,12 +47,13 @@ page-add-process {
             padding-bottom: 10px;
             border-bottom: 1px solid #fafafa;
             >div {
-               width: 31%;
                background: #f7f7f7;
                display: flex;
                flex-direction: column;
                align-items: center;
                padding: 18px 0;
+               margin: 0 2%;
+               flex: 1;
                &:last-child {}
                .icon {
                   font-size: 3rem;
@@ -81,11 +75,15 @@ page-add-process {
             }
          }
          .pro_main {
+            display: flex;
+            flex-wrap: wrap;
             .eye {
                padding: 10px 13px;
                background: #fff;
                border-bottom: 1px solid #fafafa;
                padding-bottom: 0;
+               flex-shrink: 0;
+               flex: 1;
                .h_title {
                   color: #3f69a5;
                   margin-bottom: 10px;
@@ -99,31 +97,29 @@ page-add-process {
                      border: 1px solid #3f69a5;
                      color: #3f69a5;
                      font-size: 1.3rem;
-                     padding: 5px 10px;
-                     margin: 0 10px 10px 0;
+                     padding: 4px 8px;
+                     margin: 0 6px 8px 0;
                      border-radius: 3px;
                      font-size: 1rem;
+                     &:last-child{
+                        margin-right: 0;
+                     }
                   }
                }
                .m_list {
                   .li {
                      font-size: 1.3rem;
-                     padding-left: 14px;
                      display: flex;
                      border-top: 1px solid #fafafa;
-                     padding-right: 22px;
                      align-items: center;
-                     /* &:first-child {
-                                border-top-width: 0 !important;
-                            } */
+                     padding-left: 3px;
                      &.has_lab {
                         padding-right: 0;
                      }
                      .name {
                         white-space: nowrap;
                         color: #666666;
-                        flex-basis: 110px;
-                        flex-shrink: 0;
+                        flex-basis: 64px;
                      }
                      .inp {
                         flex: 1;
@@ -137,6 +133,9 @@ page-add-process {
                         @extend .t_labels;
                      }
                   }
+               }
+               &.frame{
+                  min-width: 100%;
                }
             }
          }
