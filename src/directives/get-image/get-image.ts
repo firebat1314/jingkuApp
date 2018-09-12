@@ -91,7 +91,7 @@ export class GetImageDirective {
 				scale = w / h;
 			w = obj.width || w;
 			h = obj.height || (w / scale);
-			let quality = 0.7;  // 默认图片质量为0.7
+			let quality = 0.9;  // 默认图片质量为0.7
 			//生成canvas
 			let canvas = document.createElement('canvas');
 			let ctx = canvas.getContext('2d');
@@ -105,7 +105,7 @@ export class GetImageDirective {
 			ctx.drawImage(img, 0, 0, w, h);
 			// 图像质量
 			if (obj.quality && obj.quality <= 1 && obj.quality > 0) {
-				quality = obj.quality;
+				quality = 0.9;
 			}
 			// quality值越小，所绘制出的图像越模糊
 			let base64 = canvas.toDataURL('image/jpeg', quality);

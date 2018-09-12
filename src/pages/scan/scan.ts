@@ -2,7 +2,6 @@ import { Component } from '@angular/core';
 import { NavController, NavParams, ViewController, IonicPage, ModalController, Events } from 'ionic-angular';
 import { QRScanner, QRScannerStatus } from '@ionic-native/qr-scanner';
 import { Native } from '../../providers/native';
-import { HttpService } from '../../providers/http-service';
 /**
  * Generated class for the ScanPage page.
  *
@@ -21,14 +20,11 @@ export class ScanPage {
    isShow: boolean;
    callback: Function = this.navParams.get('callback');
 
-   constructor(public navCtrl: NavController, public navParams: NavParams,
+   constructor(
+      public navCtrl: NavController,
+      public navParams: NavParams,
       private qrScanner: QRScanner,
-      private viewCtrl: ViewController,
       private native: Native,
-      private httpService: HttpService,
-      private modalCtrl: ModalController,
-      private events: Events,
-
    ) {
       this.light = false;
       this.frontCamera = false;

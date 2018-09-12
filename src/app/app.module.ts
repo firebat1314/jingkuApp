@@ -11,9 +11,7 @@ import { Native } from "../providers/native";
 import { HttpService } from "../providers/http-service";
 /*———————————————————————————————— ionic-native ————————————————————————————————*/
 import { AppVersion } from '@ionic-native/app-version';
-import { AndroidFullScreen } from "@ionic-native/android-full-screen";
 import { Badge } from '@ionic-native/badge';
-import { BarcodeScanner } from "@ionic-native/barcode-scanner";
 import { ImagePicker } from "@ionic-native/image-picker";
 import { CallNumber } from '@ionic-native/call-number';
 import { Camera } from '@ionic-native/camera';
@@ -23,6 +21,8 @@ import { Toast } from '@ionic-native/toast';
 import { Transfer } from "@ionic-native/transfer";
 import { File } from '@ionic-native/file';
 import { InAppBrowser } from '@ionic-native/in-app-browser';
+import { QRScanner } from '@ionic-native/qr-scanner';
+
 /*———————————————————————————————— 插件 ————————————————————————————————*/
 import { MeunItemComponentModule } from "../components/meun-item/meun-item.module";
 import { CityPickerModule } from "ionic2-city-picker/dist/city-picker.module";
@@ -32,7 +32,6 @@ import { QimoChatProvider } from '../providers/qimo-chat/qimo-chat';
 import { XimuProvider } from '../providers/ximu/ximu';
 import * as ionicGalleryModal from 'ionic-gallery-modal';
 import { HAMMER_GESTURE_CONFIG } from '@angular/platform-browser';
-import { OpenNativeSettings } from '@ionic-native/open-native-settings';
 import { MineProvider } from '../providers/mine/mine';
 import { preApplyParams } from '../pages/BT/preApplyParams';
 @NgModule({
@@ -75,14 +74,13 @@ import { preApplyParams } from '../pages/BT/preApplyParams';
     HttpService,
     UpgradeProvider,
     Camera,
+    QRScanner,
     ImagePicker,
     AppVersion,
     Toast,
     CallNumber,
     StatusBar,
     SplashScreen,
-    BarcodeScanner,
-    AndroidFullScreen,
     Badge,
     Transfer,
     File,
@@ -91,7 +89,6 @@ import { preApplyParams } from '../pages/BT/preApplyParams';
     QimoChatProvider,
     XimuProvider,
     {provide: HAMMER_GESTURE_CONFIG,useClass: ionicGalleryModal.GalleryModalHammerConfig,},
-    OpenNativeSettings,
     MineProvider,
     preApplyParams
   ]

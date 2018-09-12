@@ -5,7 +5,6 @@ import { ImagePicker } from '@ionic-native/image-picker';
 import { CallNumber } from '@ionic-native/call-number';
 import { Toast } from '@ionic-native/toast';
 import { AppVersion } from '@ionic-native/app-version';
-import { BarcodeScanner } from '@ionic-native/barcode-scanner';
 
 import { Transfer, FileUploadOptions, TransferObject } from '@ionic-native/transfer';
 import { File } from '@ionic-native/file';
@@ -27,7 +26,6 @@ export class Native {
 		private callNumber: CallNumber,
 		private toast: Toast,
 		private appVersion: AppVersion,
-		private barcodeScanner: BarcodeScanner,
 		private transfer: Transfer,
 		private file: File,
 	) {
@@ -391,35 +389,6 @@ export class Native {
 	/**
 	 * @name 微信支付
 	 */
-	/**
-	 * @name 二维码扫描
-	 */
-	openBarcodeScanner() {
-		return new Promise((resolve, reject) => {
-			this.barcodeScanner.scan().then((barcodeData) => {
-				// Success! Barcode data is here
-				resolve(barcodeData);
-			}, (err) => {
-				// An error occurred
-				reject()
-			});
-		})
-		/* return new Promise((resolve, reject) => {
-			cordova.plugins.barcodeScanner.scan(
-				(result) => {
-					console.log("We got a barcode\n" +
-						"Result: " + result.text + "\n" +
-						"Format: " + result.format + "\n" +
-						"Cancelled: " + result.cancelled);
-					resolve(result);
-				},
-				(error) => {
-					console.log("Scanning failed: " + error);
-					reject(error);
-				}
-			);
-		}) */
-	}
 
 
 

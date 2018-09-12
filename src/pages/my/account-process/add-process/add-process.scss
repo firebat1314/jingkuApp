@@ -42,7 +42,7 @@ page-add-process,page-add-process-scanner {
          .choose {
             display: flex;
             justify-content: space-around;
-            padding: 0px 13px;
+            padding: 0px 1%;
             background-color: #fff;
             padding-bottom: 10px;
             border-bottom: 1px solid #fafafa;
@@ -52,7 +52,7 @@ page-add-process,page-add-process-scanner {
                flex-direction: column;
                align-items: center;
                padding: 18px 0;
-               margin: 0 2%;
+               margin: 0 1%;
                flex: 1;
                &:last-child {}
                .icon {
