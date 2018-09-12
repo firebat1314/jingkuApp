@@ -1,51 +1,108 @@
 <!--
-  Generated template for the Coupon page.
+  Generated template for the DiscountCoupon page.
 
   See http://ionicframework.com/docs/v2/components/#navigation for more info on
   Ionic pages and navigation.
 -->
 <ion-header>
 
-    <ion-navbar>
-        <ion-title>优惠券</ion-title>
-    </ion-navbar>
-    <ion-toolbar class="segment-style">
-        <ion-segment mode="md" [(ngModel)]="couponSelect" (ionChange)="segmentChange()">
-            <ion-segment-button value="">
-                未使用
-            </ion-segment-button>
-            <ion-segment-button value="over_time">
-                已过期
-            </ion-segment-button>
-            <ion-segment-button value="use">
-                已使用
-            </ion-segment-button>
-        </ion-segment>
-    </ion-toolbar>
+   <ion-navbar>
+      <ion-title>优惠券</ion-title>
+      <ion-buttons right>
+         <!-- <button ion-button clear (click)="isEdit = !isEdit">{{!isEdit?'管理':'取消'}}</button> -->
+         <button ion-button clear icon-only icon-left right open-more="MoreMenuPage">
+            <ion-icon name="ios-more"></ion-icon>
+         </button>
+      </ion-buttons>
+   </ion-navbar>
+   <ion-toolbar no-padding>
+      <div class="coupon-types">
+         <div class="left">
+            <div class="type" tappable [class.on]="couponSelect==0" (click)="segmentChange(0)">全部（{{data?.counts[-1]||0}}）</div>
+            <div class="type" tappable [class.on]="couponSelect==1" (click)="segmentChange(1)">商品券（{{data?.counts[0]||0}}）</div>
+            <div class="type" tappable [class.on]="couponSelect==2" (click)="segmentChange(2)">店铺券（{{data?.counts[2]||0}}）</div>
+            <div class="type" tappable [class.on]="couponSelect==3" (click)="segmentChange(3)">全平台券（{{data?.counts[3]||0}}）</div>
+            <div class="type" tappable [class.on]="couponSelect==4" (click)="segmentChange(4)">运费券（{{data?.counts[4]||0}}）</div>
+
+         </div>
+         <div class="right" (click)="showmark = !showmark">
+            <ion-icon name="ios-list"></ion-icon>
+         </div>
+
+      </div>
+   </ion-toolbar>
 </ion-header>
 
+<div class="mark" *ngIf="showmark" fadeIn tappable (click)="showmark=false">
+   <div class="type-wrap" (click)="$event.stopPropagation()">
+      <button ion-button small round tappable [class.on]="couponSelect==0" (click)="segmentChange(0);showmark=false;">全部（{{data?.counts[-1]||0}}）</button>
+      <button ion-button small round tappable [class.on]="couponSelect==1" (click)="segmentChange(1);showmark=false;">商品券（{{data?.counts[0]||0}}）</button>
+      <button ion-button small round tappable [class.on]="couponSelect==2" (click)="segmentChange(2);showmark=false;">店铺券（{{data?.counts[1]||0}}）</button>
+      <button ion-button small round tappable [class.on]="couponSelect==3" (click)="segmentChange(3);showmark=false;">全平台券（{{data?.counts[2]||0}}）</button>
+      <button ion-button small round tappable [class.on]="couponSelect==4" (click)="segmentChange(4);showmark=false;">运费券（{{data?.counts[3]||0}}）</button>
+   </div>
+</div>
 
-<ion-content [ngSwitch]="couponSelect">
-    <ion-refresher (ionRefresh)="doRefresh($event)" pullMax="60">
-        <ion-refresher-content refreshingSpinner="1" pullingIcon="0"></ion-refresher-content>
-    </ion-refresher>
-    <div [ngClass]="{unused:couponSelect=='',stale:couponSelect=='over_time',used:couponSelect=='use'}">
-        <div class="no-coupon" *ngIf="data?.data.length==0">
-            <div class="img">
-                <img src="./assets/images/images/coupon_4_03.png" alt="">
+<ion-content>
+   <div class="no-coupon" *ngIf="data?.data.length==0">
+      <div class="img">
+          <img src="./assets/images/images/coupon_4_03.png" alt="">
+      </div>
+      <div class="title">没有优惠券哦！</div>
+  </div>
+   <div class="supplier" *ngFor="let supp of data?.data">
+      <div class="head">
+         <div class="left">
+            <div class="logo">
+               <img [img-lazy-load]="supp?.supplier_info?.logo" alt="">
             </div>
-            <div class="title">您还没有优惠券哦！</div>
-        </div>
-        <div class="item" *ngFor="let item of data?.data">
-            <div class="head">
-                <div class="price">￥<span>{{item.type_money}}</span></div>
-                <div class="canbe">满{{item.min_goods_amount}}元可用</div>
+            <div class="name">{{supp?.supplier_info?.suppliers_name}}</div>
+         </div>
+         <div class="right">
+            <button navPush="ParticularsHomePage" [navParams]="{suppliersId:supp.suppliers_id}">进店</button>
+         </div>
+      </div>
+      <div class="coupon-wrap" *ngFor="let item of supp?.list">
+         <div class="check" *ngIf="isEdit">
+            <ion-checkbox tappable color="jingku1" [(ngModel)]="item.selected" mode="ios"></ion-checkbox>
+         </div>
+         <div class="coupon">
+            <div class="left">
+               <div class="img">
+                  <img [img-lazy-load]="supp?.supplier_info?.logo" alt="">
+               </div>
+               <div class="center">
+                  <div class="info">¥<span class="bigfont">{{item.type_money}}</span>&nbsp;&nbsp;满{{item.min_goods_amount}}可用</div>
+                  <div class="title">{{item.apply_type_name}}</div>
+                  <div class="time">{{item.use_end_date}}</div>
+               </div>
             </div>
-            <div class="main">
-                <div class="name"><span>{{item.type_name}}</span></div>
-                <div>{{item.suppliers_name}}</div>
-                <div class="time">{{item.use_end_date}}</div>
+            <div class="right">
+               <button ion-button small round block (click)="getPrivilege(item.suppliers_id)">去使用</button>
             </div>
-        </div>
-    </div>
+         </div>
+      </div>
+   </div>
+
+   <ion-fab right bottom>
+      <button ion-fab color="jingku1" mini goBackTop scroll-to-top></button>
+   </ion-fab>
+   <ion-infinite-scroll (ionInfinite)="doInfinite($event)" *ngIf="flag">
+      <ion-infinite-scroll-content></ion-infinite-scroll-content>
+   </ion-infinite-scroll>
 </ion-content>
+
+<ion-footer>
+   <ion-toolbar no-padding>
+      <ng-container *ngIf="!isEdit">
+         <button style="margin: 0;height: 44px;" ion-button full color="jingku1" navPush="DiscountCouponPage">领取更多优惠券</button>
+         <!-- <div class="footbtn">
+            <button ion-button round outline color="jingku1">查看优惠券记录</button>
+            <button ion-button round color="jingku1">领取更多优惠券</button>
+         </div> -->
+      </ng-container>
+      <ng-container *ngIf="isEdit">
+         <button style="margin: 0;height: 44px;" ion-button full color="jingku1">删除</button>
+      </ng-container>
+   </ion-toolbar>
+</ion-footer>

@@ -70,7 +70,7 @@ export class HttpService {
       return this.http.post(IP + '/Login/new_register', data, { showLoading: true })
    }
    signupTwo(data?: Object) {//注册2
-      return this.http.post(IP + '/Login/new_register', data, { timeout: 20000, showLoading: true })
+      return this.http.post(IP + '/Login/new_register', data, { timeout: 200000, showLoading: true })
    }
    getVerificationImg(data?: Object) {//图片验证码
       return this.http.post(IP + '/Login/verify', data, { showLoading: false })
@@ -146,8 +146,8 @@ export class HttpService {
    /**
     * 商品分类列表页
     */
-   getCategorys(data?: Object, options: HttpOptions = { showLoading: false }) {//获取九大分类
-      return this.http.get(IP + '/Category/get_categorys', data, options)
+   getCategorys(data?: Object, options?: HttpOptions) {//获取九大分类
+      return this.http.get(IP + '/Category/get_categorys', data, { showLoading: false, ...options })
    }
    getChildrenCaCtegory(data?: Object) {//获取九大分类下的子分类
       return this.http.get(IP + '/Category/get_children_category', data, { showLoading: false })
@@ -296,8 +296,8 @@ export class HttpService {
    postRegionApply(data?: Object) {//（16）地区申请页提交
       return this.http.post(IP + '/User/region_apply', data, { showLoading: false })
    }
-   collectionList(data?: Object, options: HttpOptions = { showLoading: true }) {//（17）收藏的商品列表
-      return this.http.post(IP + '/User/collection_list', data, options)
+   collectionList(data?: Object, options?: HttpOptions) {//（17）收藏的商品列表
+      return this.http.post(IP + '/User/collection_list', data, { showLoading: true, ...options })
    }
    delCollectionGoods(data?: Object) {//（18）取消收藏商品
       return this.http.post(IP + '/User/del_collection_goods', data, { showLoading: false })
@@ -362,11 +362,11 @@ export class HttpService {
    exchange(data?: Object) {//积分商城
       return this.http.get(IP + '/Index/exchange', data, { showLoading: true })
    }
-   accountLog(data?: Object, options: HttpOptions = { showLoading: true }) {//用户历史记录 默认user_money user_money 余额记录pay_points 积分记录
-      return this.http.get(IP + '/User/accountLog', data)
+   accountLog(data?: Object, options?: HttpOptions) {//用户历史记录 默认user_money user_money 余额记录pay_points 积分记录
+      return this.http.get(IP + '/User/accountLog', data, { showLoading: true, ...options })
    }
-   presell(data?: Object, options: HttpOptions = { showLoading: true }) {//预售促销商品列表
-      return this.http.get(IP + '/Index/presell', data, options)
+   presell(data?: Object, options?: HttpOptions) {//预售促销商品列表
+      return this.http.get(IP + '/Index/presell', data, { showLoading: true, ...options })
    }
    helpInfo(data?: Object) {//帮助中心
       return this.http.get(IP + '/User/helpInfo', data, { showLoading: true })
@@ -548,8 +548,8 @@ export class HttpService {
       code_sn?: string | number;//身份证号
       mobile?: string | number;//手机号
       medical?: string;//手机号
-   }) {
-      return this.http.post(IP + '/User/enterprise_info', data, { showLoading: true })
+   }, options?:HttpOptions) {
+      return this.http.post(IP + '/User/enterprise_info', data, { showLoading: true, ...options })
    }
    Distribution_info(data?) {
       return this.http.post(IP + '/User/Distribution_info', data, { showLoading: true })
@@ -715,8 +715,8 @@ export class HttpService {
    SwitchCompany(data?: Object) {
       return this.http.post(IP + '/Index/SwitchCompany', data, { showLoading: true })
    }
-   category_goods_d(data?: Object, options: HttpOptions = { showLoading: true }) {
-      return this.http.post(IP + '/Distribution/category_goods', data, options)
+   category_goods_d(data?: Object, options?: HttpOptions) {
+      return this.http.post(IP + '/Distribution/category_goods', data, { showLoading: true, ...options })
    }
    info_d(data?: Object, options?: HttpOptions) {
       return this.http.post(IP + '/Distribution/info', data, options)
@@ -724,160 +724,160 @@ export class HttpService {
    get_goods_attribute_d(data?: Object, options?: HttpOptions) {
       return this.http.post(IP + '/Distribution/get_goods_attribute', data, options)
    }
-   checkout_d(data?: Object, options: HttpOptions = { showLoading: false }) {
-      return this.http.post(IP + '/Distribution/checkout', data, options)
+   checkout_d(data?: Object, options?: HttpOptions) {
+      return this.http.post(IP + '/Distribution/checkout', data, { showLoading: false, ...options })
    }
-   change_consignee_d(data?: Object, options: HttpOptions = { showLoading: false }) {
-      return this.http.post(IP + '/Distribution/change_consignee', data, options)
+   change_consignee_d(data?: Object, options?: HttpOptions) {
+      return this.http.post(IP + '/Distribution/change_consignee', data, { showLoading: false, ...options })
    }
-   select_payment_d(data?: Object, options: HttpOptions = { showLoading: false }) {
-      return this.http.post(IP + '/Distribution/select_payment', data, options)
+   select_payment_d(data?: Object, options?: HttpOptions) {
+      return this.http.post(IP + '/Distribution/select_payment', data, { showLoading: false, ...options })
    }
-   write_notes_d(data?: Object, options: HttpOptions = { showLoading: true }) {
-      return this.http.post(IP + '/Distribution/write_notes', data, options)
+   write_notes_d(data?: Object, options?: HttpOptions) {
+      return this.http.post(IP + '/Distribution/write_notes', data, { showLoading: true, ...options })
    }
-   get_attr_list_d(data?: Object, options: HttpOptions = { showLoading: false }) {
-      return this.http.post(IP + '/Distribution/get_attr_list', data, options)
+   get_attr_list_d(data?: Object, options?: HttpOptions) {
+      return this.http.post(IP + '/Distribution/get_attr_list', data, { showLoading: false, ...options })
    }
-   done_d(data?: Object, options: HttpOptions = { showLoading: true }) {
-      return this.http.post(IP + '/Distribution/done', data, options)
+   done_d(data?: Object, options?: HttpOptions) {
+      return this.http.post(IP + '/Distribution/done', data, { showLoading: true, ...options })
    }
-   order_d(data?: Object, options: HttpOptions = { showLoading: false }) {
-      return this.http.get(IP + '/Distribution/orders', data, options)
+   order_d(data?: Object, options?: HttpOptions) {
+      return this.http.get(IP + '/Distribution/orders', data, { showLoading: false, ...options })
    }
-   get_children_category_cutting(data?: Object, options: HttpOptions = { showLoading: false }) {
-      return this.http.get(IP + '/Category/get_children_category_cutting', data, options)
+   get_children_category_cutting(data?: Object, options?: HttpOptions) {
+      return this.http.get(IP + '/Category/get_children_category_cutting', data, { showLoading: false, ...options })
    }
-   infoUrl_d(data?: Object, options: HttpOptions = { showLoading: true }) {
-      return this.http.get(IP + '/Distribution/infoUrl', data, options)
+   infoUrl_d(data?: Object, options?: HttpOptions) {
+      return this.http.get(IP + '/Distribution/infoUrl', data, { showLoading: true, ...options })
    }
-   sealIndex(data?: Object, options: HttpOptions = { showLoading: true }) {
-      return this.http.get(IP + '/Seal/index', data, options)
+   sealIndex(data?: Object, options?: HttpOptions) {
+      return this.http.get(IP + '/Seal/index', data, { showLoading: true, ...options })
    }
-   FmCreditGate(data?: Object, options: HttpOptions = { showLoading: true }) {
-      return this.http.get(IP + '/FmCredit/gate', data, options)
+   FmCreditGate(data?: Object, options?: HttpOptions) {
+      return this.http.get(IP + '/FmCredit/gate', data, { showLoading: true, ...options })
    }
-   FmCreditgate_order(data?: Object, options: HttpOptions = { showLoading: true }) {
-      return this.http.get(IP + '/FmCredit/gate_order', data, options)
+   FmCreditgate_order(data?: Object, options?: HttpOptions) {
+      return this.http.get(IP + '/FmCredit/gate_order', data, { showLoading: true, ...options })
    }
    FmCreditindex(data?: Object, options: HttpOptions = { showLoading: false, showToast: false }) {
       return this.http.get(IP + '/FmCredit/index', data, options)
    }
-   Shd_product_list(data?: Object, options: HttpOptions = { showLoading: true }) {
-      return this.http.get(IP + '/App/Shd/product_list', data, options)
+   Shd_product_list(data?: Object, options?: HttpOptions) {
+      return this.http.get(IP + '/App/Shd/product_list', data, { showLoading: true, ...options })
    }
-   Shd_detail(data?: Object, options: HttpOptions = { showLoading: true }) {
-      return this.http.get(IP + '/App/Shd/detail', data, options)
+   Shd_detail(data?: Object, options?: HttpOptions) {
+      return this.http.get(IP + '/App/Shd/detail', data, { showLoading: true, ...options })
    }
-   Shd_bindCard(data?: Object, options: HttpOptions = { showLoading: true }) {
-      return this.http.post(IP + '/App/Shd/bindCard', data, options)
+   Shd_bindCard(data?: Object, options?: HttpOptions) {
+      return this.http.post(IP + '/App/Shd/bindCard', data, { showLoading: true, ...options })
    }
-   Shd_bankConfirm(data?: Object, options: HttpOptions = { showLoading: true }) {
-      return this.http.post(IP + '/App/Shd/bankConfirm', data, options)
+   Shd_bankConfirm(data?: Object, options?: HttpOptions) {
+      return this.http.post(IP + '/App/Shd/bankConfirm', data, { showLoading: true, ...options })
    }
-   Shd_preApply(data?: Object, options: HttpOptions = { showLoading: true }) {
-      return this.http.post(IP + '/App/Shd/preApply', data, options)
+   Shd_preApply(data?: Object, options?: HttpOptions) {
+      return this.http.post(IP + '/App/Shd/preApply', data, { showLoading: true, ...options })
    }
-   Shd_sendSignCheckCode(data?: Object, options: HttpOptions = { showLoading: false }) {
-      return this.http.post(IP + '/App/Shd/sendSignCheckCode', data, options)
+   Shd_sendSignCheckCode(data?: Object, options?: HttpOptions) {
+      return this.http.post(IP + '/App/Shd/sendSignCheckCode', data, { showLoading: false, ...options })
    }
-   Shd_loanSetup(data?: Object, options: HttpOptions = { showLoading: true }) {
-      return this.http.post(IP + '/App/Shd/loanSetup', data, options)
+   Shd_loanSetup(data?: Object, options?: HttpOptions) {
+      return this.http.post(IP + '/App/Shd/loanSetup', data, { showLoading: true, ...options })
    }
-   Shd_get_shd_info(data?: Object, options: HttpOptions = { showLoading: true }) {
-      return this.http.post(IP + '/App/Shd/get_shd_info', data, options)
+   Shd_get_shd_info(data?: Object, options?: HttpOptions) {
+      return this.http.post(IP + '/App/Shd/get_shd_info', data, { showLoading: true, ...options })
    }
-   Shd_add_user(data?: Object, options: HttpOptions = { showLoading: true }) {
-      return this.http.post(IP + '/App/Shd/add_user', data, options)
+   Shd_add_user(data?: Object, options?: HttpOptions) {
+      return this.http.post(IP + '/App/Shd/add_user', data, { showLoading: true, ...options })
    }
-   jingku_finance(data?: Object, options: HttpOptions = { showLoading: false }) {
-      return this.http.post(IP + '/App/Index/jingku_finance', data, options)
+   jingku_finance(data?: Object, options?: HttpOptions) {
+      return this.http.post(IP + '/App/Index/jingku_finance', data, { showLoading: false, ...options })
    }
-   search_census(data?: Object, options: HttpOptions = { showLoading: false }) {
-      return this.http.post(IP + '/Public/search_census ', data, options)
+   search_census(data?: Object, options?: HttpOptions) {
+      return this.http.post(IP + '/Public/search_census ', data, { showLoading: false, ...options })
    }
    /* 首页列表 */
-   recommendGoods(data?: Object, options: HttpOptions = { showLoading: false }) {
-      return this.http.post(IP + '/Index/recommendGoods ', data, options)
+   recommendGoods(data?: Object, options?: HttpOptions) {
+      return this.http.post(IP + '/Index/recommendGoods ', data, { showLoading: false, ...options })
    }
    /* 用户点击统计 */
-   click_census(data?: Object, options: HttpOptions = { showLoading: false }) {//选择现有成员
-      return this.http.post(IP + '/Public/click_census ', data, options)
+   click_census(data?: Object, options?: HttpOptions) {//选择现有成员
+      return this.http.post(IP + '/Public/click_census ', data, { showLoading: false, ...options })
    }
    /* 评论列表 */
-   commentIndex(data?: Object, options: HttpOptions = { showLoading: false }) {
-      return this.http.post(IP + '/Comment/index ', data, options)
+   commentIndex(data?: Object, options?: HttpOptions) {
+      return this.http.post(IP + '/Comment/index ', data, { showLoading: false, ...options })
    }
    /* 评论点赞 */
-   commentCommentLaud(data?: Object, options: HttpOptions = { showLoading: false }) {
-      return this.http.post(IP + '/Comment/CommentLaud ', data, options)
+   commentCommentLaud(data?: Object, options?: HttpOptions) {
+      return this.http.post(IP + '/Comment/CommentLaud ', data, { showLoading: false, ...options })
    }
    /* 店铺评分统计 */
-   commentCommentReckon(data?: Object, options: HttpOptions = { showLoading: false }) {
-      return this.http.post(IP + '/Comment/CommentReckon ', data, options)
+   commentCommentReckon(data?: Object, options?: HttpOptions) {
+      return this.http.post(IP + '/Comment/CommentReckon ', data, { showLoading: false, ...options })
    }
    /* 是否已经评价 */
-   commentIsComment(data?: Object, options: HttpOptions = { showLoading: false }) {
-      return this.http.post(IP + '/Comment/is_comment ', data, options)
+   commentIsComment(data?: Object, options?: HttpOptions) {
+      return this.http.post(IP + '/Comment/is_comment ', data, { showLoading: false, ...options })
    }
    /* 提交评价 */
-   commentInsertComment(data?: Object, options: HttpOptions = { showLoading: true }) {
-      return this.http.post(IP + '/Comment/insert_comment ', data, options)
+   commentInsertComment(data?: Object, options?: HttpOptions) {
+      return this.http.post(IP + '/Comment/insert_comment ', data, { showLoading: true, ...options })
    }
    /* 未评价订单列表 */
-   commentNoComment(data?: Object, options: HttpOptions = { showLoading: true }) {
-      return this.http.post(IP + '/Comment/NoComment ', data, options)
+   commentNoComment(data?: Object, options?: HttpOptions) {
+      return this.http.post(IP + '/Comment/NoComment ', data, { showLoading: true, ...options })
    }
    /* 搜索历史 */
-   searchList(data?: Object, options: HttpOptions = { showLoading: false }) {
-      return this.http.post(IP + '/Index/SearchList ', data, options)
+   searchList(data?: Object, options?: HttpOptions) {
+      return this.http.post(IP + '/Index/SearchList ', data, { showLoading: false, ...options })
    }
    /* 删除搜索历史 */
-   delSearch(data?: Object, options: HttpOptions = { showLoading: false }) {
-      return this.http.post(IP + '/Index/DelSearch ', data, options)
+   delSearch(data?: Object, options?: HttpOptions) {
+      return this.http.post(IP + '/Index/DelSearch ', data, { showLoading: false, ...options })
    }
    /* 删除搜索历史 */
-   delAllSearch(data?: Object, options: HttpOptions = { showLoading: false }) {
-      return this.http.post(IP + '/Index/DelAllSearch ', data, options)
+   delAllSearch(data?: Object, options?: HttpOptions) {
+      return this.http.post(IP + '/Index/DelAllSearch ', data, { showLoading: false, ...options })
    }
    /* 二维码扫描 */
-   SpecialMachiningGoodsInfo(data?: Object, options: HttpOptions = { showLoading: true }) {
-      return this.http.post(IP + '/SpecialMachining/GoodsInfo ', data, options)
+   SpecialMachiningGoodsInfo(data?: Object, options?: HttpOptions) {
+      return this.http.post(IP + '/SpecialMachining/GoodsInfo ', data, { showLoading: true, ...options })
    }
    /* 二维码扫描加入加工单 */
-   SpecialMachiningadd_to_cart_spec_jp(data?: Object, options: HttpOptions = { showLoading: true }) {
-      return this.http.post(IP + '/SpecialMachining/add_to_cart_spec_jp ', data, options)
+   SpecialMachiningadd_to_cart_spec_jp(data?: Object, options?: HttpOptions) {
+      return this.http.post(IP + '/SpecialMachining/add_to_cart_spec_jp ', data, { showLoading: true, ...options })
    }
    /* 加工单列表信息 */
-   SpecialMachiningmachining_info(data?: Object, options: HttpOptions = { showLoading: true }) {
-      return this.http.post(IP + '/SpecialMachining/machining_info ', data, options)
+   SpecialMachiningmachining_info(data?: Object, options?: HttpOptions) {
+      return this.http.post(IP + '/SpecialMachining/machining_info ', data, { showLoading: true, ...options })
    }
    /* 保存扫描加工单 */
-   SpecialMachiningcache_machining(data?: Object, options: HttpOptions = { showLoading: true }) {
-      return this.http.post(IP + '/SpecialMachining/cache_machining ', data, options)
+   SpecialMachiningcache_machining(data?: Object, options?: HttpOptions) {
+      return this.http.post(IP + '/SpecialMachining/cache_machining ', data, { showLoading: true, ...options })
    }
    /*  */
-   SpecialMachiningselect_goods_type(data?: Object, options: HttpOptions = { showLoading: true }) {
-      return this.http.post(IP + '/SpecialMachining/select_goods_type ', data, options)
+   SpecialMachiningselect_goods_type(data?: Object, options?: HttpOptions) {
+      return this.http.post(IP + '/SpecialMachining/select_goods_type ', data, { showLoading: true, ...options })
    }
    /* 扫码加工单加入购物车 */
-   SpecialMachiningMachiningAddToCart(data?: Object, options: HttpOptions = { showLoading: true }) {
-      return this.http.post(IP + '/SpecialMachining/MachiningAddToCart ', data, options)
+   SpecialMachiningMachiningAddToCart(data?: Object, options?: HttpOptions) {
+      return this.http.post(IP + '/SpecialMachining/MachiningAddToCart ', data, { showLoading: true, ...options })
    }
    /* 结算页来镜加工按钮 */
-   change_machining(data?: Object, options: HttpOptions = { showLoading: false }) {
-      return this.http.post(IP + '/Flow/change_machining ', data, options)
+   change_machining(data?: Object, options?: HttpOptions) {
+      return this.http.post(IP + '/Flow/change_machining ', data, { showLoading: false, ...options })
    }
    /* 首页广告模块列表 */
-   IndexData(data?: Object, options: HttpOptions = { showLoading: false }) {
-      return this.http.post(IP + '/index/IndexData ', data, options)
+   IndexData(data?: Object, options?: HttpOptions) {
+      return this.http.post(IP + '/index/IndexData ', data, { showLoading: false, ...options })
    }
    /* 删除已保存加工单 */
-   SpecialMachiningdel(data?: Object, options: HttpOptions = { showLoading: false }) {
-      return this.http.post(IP + '/SpecialMachining/del ', data, options)
+   SpecialMachiningdel(data?: Object, options?: HttpOptions) {
+      return this.http.post(IP + '/SpecialMachining/del ', data, { showLoading: false, ...options })
    }
    /* 商品规格属性列表 */
-   get_goods_parameter(data?: { goods_id: any }, options: HttpOptions = { showLoading: false }) {
-      return this.http.post(IP + '/Goods/get_goods_parameter ', data, options)
+   get_goods_parameter(data?: { goods_id: any }, options?: HttpOptions) {
+      return this.http.post(IP + '/Goods/get_goods_parameter ', data, { showLoading: false, ...options })
    }
 }

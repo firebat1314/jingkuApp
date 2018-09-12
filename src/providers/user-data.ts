@@ -28,7 +28,7 @@ export class UserData {
     public get(url: string, paramObj?: any, option?: HttpOptions) {
         var op = Object.assign({
             showLoading: false,
-            timeout: 10000,
+            timeout: 15000,
             showToast: true
         }, option);
         if (op.showLoading) this.native.showLoading();
@@ -53,7 +53,7 @@ export class UserData {
     public post(url: string, paramObj: any, option?: HttpOptions) {
         var op = Object.assign({
             showLoading: false,
-            timeout: 10000,
+            timeout: 15000,
             showToast: true
         }, option);
 
@@ -79,7 +79,7 @@ export class UserData {
     public postBody(url: string, paramObj: any, option?: HttpOptions) {
         var op = Object.assign({
             showLoading: false,
-            timeout: 10000,
+            timeout: 15000,
             showToast: true
         }, option);
         if (op.showLoading) this.native.showLoading();

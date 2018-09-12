@@ -32,9 +32,9 @@ export class ParticularsModalAttrPage {
    /* 扫描选择镜架商品 */
    scannerId = this.navParams.get('scannerId');//二维码扫描id
    scannerIndex = this.navParams.get('scannerIndex');//加工单下标
+   sn: any = this.navParams.get('sn');
    scannerData: any;
    scanner_select;
-   sn: any = this.navParams.get('sn');
 
    distributionInfo: any;
    cutting_info: any;
@@ -228,10 +228,12 @@ export class ParticularsModalAttrPage {
       } else {
          this.httpServ.getAttrList({ goods_id: this.goodsId, attr: this.checkMainAttrId, isActivity: this.isActivity, sn: this.scannerId > 0 ? this.sn : null }).then((res) => {
             this.attrsList = res;
-            try {
-               this.scanner_select = res.data[0];
-               this.scannerSelectChange(this.scanner_select);
-            } catch (e) { }
+            if(this.scannerId>0){
+               try {
+                  this.scanner_select = res.data[0];
+                  this.scannerSelectChange(this.scanner_select);
+               } catch (e) { }
+            }
          })
       }
    }

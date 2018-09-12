@@ -3,7 +3,6 @@ import { Native } from "./native";
 import { Storage } from '@ionic/storage';
 import { JPush } from '@jiguang-ionic/jpush';
 import { NavController, App, NavControllerBase, AlertController } from 'ionic-angular';
-import { OpenNativeSettings } from '@ionic-native/open-native-settings';
 /*
   Generated class for the JpushService provider.
 
@@ -22,7 +21,6 @@ export class JpushService {
     public nativeService: Native,
     private alertCtrl: AlertController,
     public appCtrl: App,
-    private openNativeSettings: OpenNativeSettings
   ) {
 
     document.addEventListener('jpush.receiveRegistrationId', (event: any) => {
@@ -179,11 +177,7 @@ export class JpushService {
               }, {
                 text: '去设置',
                 handler: () => {
-                  this.openNativeSettings.open('notification_id').then(res=>{
-                    console.log(res)
-                  }).catch(()=>{
-                    this.nativeService.showToast('打开设置失败，请手动设置')
-                  });
+          
                 }
               }
             ]
@@ -201,11 +195,7 @@ export class JpushService {
               }, {
                 text: '去设置',
                 handler: () => {
-                  this.openNativeSettings.open('manage_applications').then(res=>{
-                    console.log(res)
-                  }).catch(()=>{
-                    this.nativeService.showToast('打开设置失败，请手动设置')
-                  });
+              
                 }
               }
             ]

@@ -10,6 +10,9 @@
       <p class="goods_sn">商品编号：{{headData?.goods_sn}}</p>
       <p class="shop_price" *ngIf="mine.showPrice">{{headData?.shop_price | prefix}}</p>
    </ion-item>
+   
+   <!-- ————————————————————————————————— 普通护理液镜架商品 ————————————————————————————————— -->
+
    <div *ngIf="type=='goods'" class="main goods_main">
       <!-- is_subsidy 是否显示促销价 -->
       <div class="main-attr" *ngIf="goods_attribute?.goods_info?.goods_type==8&&goodsInfo?.linked_goods?.length>0">
@@ -75,6 +78,9 @@
          </div>
       </div>
    </div>
+
+   <!-- ————————————————————————————————— 铺货商品 ————————————————————————————————— -->
+
    <div *ngIf="type=='goods_spectacles'&&dId>0&&distributionInfo" class="main goods_main">
       <!-- <div style="text-align: center;" *ngIf="!distributionInfo">
             <ion-spinner name="crescent"></ion-spinner>
@@ -106,6 +112,9 @@
          </div>
       </div>
    </div>
+
+   <!-- ————————————————————————————————— 普通镜片商品 ————————————————————————————————— -->
+
    <div *ngIf="type=='goods_spectacles'&&!(cutId>0)&&!(dId>0)" class="main goods_spectacles_main">
       <!-- <div class="title">请选择蔡司1.56非球面镜片信息</div> -->
       <ng-container *ngIf="goods_attribute">
@@ -140,6 +149,8 @@
          <button ion-button [disabled]="goods?.length<=1" color="light" (click)="removeJPByIndex($event,goods.length-1)">删除一行 －</button>
       </div>
    </div>
+
+   <!-- ————————————————————————————————— 普通切边商品和整镜加工 ————————————————————————————————— -->
 
    <div *ngIf="(cutId>0)" class="cut-main goods_main">
       <div class="main-attr" *ngIf="!scannerId">
