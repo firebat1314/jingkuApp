@@ -1,12 +1,13 @@
-import { Component, ViewChild, ElementRef } from '@angular/core';
-import { NavController, Events, PopoverController, IonicPage, AlertController, ModalController, App, InfiniteScroll, Content } from 'ionic-angular';
+import { Component, ViewChild } from '@angular/core';
+import { NavController, Events, Slides, Content, FabButton, PopoverController, IonicPage, AlertController, ModalController } from 'ionic-angular';
+// import { FormBuilder } from '@angular/forms';
+
+import { UserData } from "../../providers/user-data";
 import { HttpService } from "../../providers/http-service";
 import { Native } from "../../providers/native";
 import { XimuProvider } from '../../providers/ximu/ximu';
 import { MineProvider } from '../../providers/mine/mine';
-import { JpushService } from '../../providers/jpush-service';
 import { Subscription } from 'rxjs/Subscription';
-import { InAppBrowser } from '@ionic-native/in-app-browser';
 
 @IonicPage({
    segment: 'home',
@@ -21,62 +22,57 @@ export class HomePage {
    userInfo: any;
    currentUser: Subscription;
 
-   data: any;//indexs
-   fastbuyData: any;//闪购商品
+   data: any;
+   fastbuyData: any;
+   indexHotGoods: any;
+   jingxuan_img4: any;
+   hotBrand_img: string;
+   jingxuan_img3: string;
+   jingxuan_img2: string;
+   jingxuan_img1: string;
 
    baitiao: any;//白条开通状态
 
    area: string = '请选择';
-   areaList: any;//城市列表
+   areaList: any;
 
-
-   bannerImgs;//轮播图
-   categoryAddetatils;//右下广告
-   hotBrand_img: string;//右下广告
-   getBrands;//左边广告
-   brand_street: any;//广告街区
-   categoryData: any;//分类
-   categoryAds: any;
-
-   schemeUrl: string;
-   
-   category;
-   categoryI = 0;
+   @ViewChild('bannerSlide') slides: Slides;
    @ViewChild(Content) content: Content;
+   @ViewChild(FabButton) fabButton: FabButton;
+
+   bannerImgs;
+   categoryAddetatils;
+   mySlideOptions;
+   getCategoryRecommendGoods;
+   getCategoryRecommendGoodsBest;
+   getCategoryRecommendGoodsHot;
+   getBrands;
 
    constructor(
       public navCtrl: NavController,
+      private userData: UserData,
       private events: Events,
       private httpService: HttpService,
+      // private formBuilder: FormBuilder,
       private native: Native,
       public popoverCtrl: PopoverController,
       public alertCtrl: AlertController,
       private ximu: XimuProvider,
       private mine: MineProvider,
-      private modalCtrl: ModalController,
-      private jpushServ: JpushService,
-      private app: App,
-      private ele: ElementRef,
-      private ib: InAppBrowser,
+      private modalCtrl: ModalController
    ) {
-
+      //地址更新
+      this.events.subscribe('home:update', () => {
+         this.getHomeData()
+      })
    }
    ngAfterViewInit() {
-   }
-   ionViewDidEnter() {
-      this.app.setTitle('首页');
+
    }
    ionViewDidLoad() {
       console.log('ionViewDidLoad HomePage');
    }
    ngOnInit() {
-      this.events.subscribe('home:update', () => {
-         this.getHomeData()
-      });
-      (window as any).handleOpenURL = (url: string) => {
-         console.log(url)
-         this.schemeUrl = url;
-      };
       this.httpService.getStorage('fastbuyData').then((res) => {
          if (res) this.fastbuyData = res;
       })
@@ -86,16 +82,8 @@ export class HomePage {
             this.assignData(res);
          }
       })
-      this.httpService.getStorage('category').then((res) => {
-         this.category = res;
-      })
-
       this.currentUser = this.mine.currentUser.subscribe(data => {
          this.userInfo = data;
-         this.jpushServ.setAlias(data.data.user_info.user_name).then(res => {
-            console.log('setAlias', data.data.user_info.user_name)
-         });
-         this.jpushServ.addTags([data.data.user_info.mobile_phone])
       })
       this.mine.getUser();
       this.getHomeData().then(() => {
@@ -115,30 +103,29 @@ export class HomePage {
             this.httpService.setStorage('fastbuyData', res);
          }
       });
-      this.httpService.getHomebanner({ int_pos_id: 49, app: 1 }).then((res) => {
-         if (res.status == 1) { this.brand_street = res; }
-      })
-      this.httpService.IndexData().then((res) => {
-         this.category = res;
-         this.httpService.setByName('category', res);
-
-         setTimeout(() => {
-            var subsection = this.ele.nativeElement.querySelectorAll('.subsection');
-            this.content.ionScroll.subscribe((d) => {
-               subsection.forEach((div, index) => {
-                  if (!div.myset) {
-                     if (d.scrollTop + d.contentHeight > div.offsetTop) {
-                        div.myset = true;
-                        this.category[index].show = true;
-                     }
-                  }
-               });
-            });
-         }, 300);
-      })
       this.httpService.loan_status().then((res) => {
          this.baitiao = res;
          this.httpService.setByName('userBaitiao', res);
+      })
+      this.httpService.recommendGoods({ id: 3 }).then((res) => {
+         if (res.status == 1) {
+            this.getCategoryRecommendGoodsHot = res.list;
+         }
+      })
+      this.httpService.recommendGoods({ id: 4 }).then((res) => {
+         if (res.status == 1) {
+            this.getCategoryRecommendGoods = res.list;
+         }
+      })
+      this.httpService.recommendGoods({ id: 5 }).then((res) => {
+         if (res.status == 1) {
+            this.getCategoryRecommendGoodsBest = res.list;
+         }
+      })
+      this.httpService.recommendGoods({ id: 6 }).then((res) => {
+         if (res.status == 1) {
+            this.indexHotGoods = res.list;//热门商品
+         }
       })
       return this.httpService.indexs().then((res) => {
          if (res.status == 1) {
@@ -169,6 +156,14 @@ export class HomePage {
       this.categoryAddetatils = res.data.ads_sgy[0];
       //闪购 下
       this.getBrands = res.data.ads_sgx[0];
+      //精选专题 大图1
+      this.jingxuan_img1 = res.data.ads_jxzt[0];
+      //精选专题 大图2
+      this.jingxuan_img2 = res.data.ads_jxzttwo[0];
+      //精选专题 大图3
+      this.jingxuan_img3 = res.data.ads_jxztThree[0];
+      //好店推荐
+      this.jingxuan_img4 = res.data.ads_hdtj;
    }
    /*下拉刷新*/
    doRefresh(refresher) {
@@ -182,24 +177,12 @@ export class HomePage {
          }, 500);
       })
    }
-   getRecommendGoods(item, brand_id?, dom?) {
-      this.httpService.recommendGoods({ id: item.Recommend_id, brand_id: brand_id || null }).then((res) => {
-         if (res.status == 1) {
-            this.content.scrollTo(0, dom.offsetTop);
-            item.Recommend = res;
-         }
-      })
+   goMessagePage() {
+      this.navCtrl.push('MessagePage')
    }
-   openScanner(e?) {
-      e && e.stopPropagation();
-      this.navCtrl.push('ScanPage', {
-         callback: (data) => {
-            this.ib.create(data, '_system');
-         }
-      })
-   }
-   tuangou() {
-      this.native.showToast('功能还在开发中^_^');
+   
+   goAddProcessScannerPage() {
+      this.native.showToast('功能暂未开放^_^');
    }
    goBrandPage() {
       this.navCtrl.push('BrandPage')
@@ -226,6 +209,9 @@ export class HomePage {
       // } else {
       // this.native.showToast('该功能现仅在安卓客户端开放');
       // }
+   }
+   tuangou() {
+      this.native.showToast('功能还在开发中^_^');
    }
    goPresellPage() {
       this.navCtrl.push('PresellPage');
