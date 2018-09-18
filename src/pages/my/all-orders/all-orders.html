@@ -76,8 +76,8 @@
                   </div>
                </div>
                <div class="right">
-                  <div class="price color" *ngIf="!(goods.is_true>0)&&mine?.showPrice">{{goods.format_goods_price}}</div>
-                  <div class="price color" *ngIf="goods.is_true>0&&mine?.showPrice">{{goods.reduce_price}}
+                  <div class="price color" *ngIf="!(goods.is_price>0)&&mine?.showPrice">{{goods.format_goods_price}}</div>
+                  <div class="price color" *ngIf="goods.is_price>0&&mine?.showPrice">{{goods.reduce_price}}
                      <p class="old">{{goods.format_goods_price}}</p>
                   </div> 
                   <div class="count">x{{goods.goods_number}}</div>

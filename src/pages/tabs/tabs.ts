@@ -27,6 +27,9 @@ export class TabsPage {
   ) {
     
   }
+  ionViewCanEnter(){
+     
+  }
   ngOnInit(){
     this.getCarCount();
     this.events.subscribe('car:update', () => {

@@ -16,6 +16,9 @@ page-order-list-distribution {
         >div:last-child {
             border: 0;
         }
+        &:last-of-type {
+            margin-bottom: 50px;
+         }
         .item-divider {
             color: #666;
             >.icon:first-child {

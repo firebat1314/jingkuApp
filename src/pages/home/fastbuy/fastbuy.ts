@@ -52,11 +52,13 @@ export class FastbuyPage {
    getData(id) {
       this.page = 1;
 
-      this.selected = id;
       this.infiniteScroll ? this.infiniteScroll.enable(true) : null;
 
       this.httpService.presell({ page: this.page, num: this.size, type: 'is_promote', cat_id: id }).then((res) => {
-         if (res.status == 1) { this.data = res; }
+         if (res.status == 1) {
+            this.selected = id;
+            this.data = res;
+         }
       })
    }
    goParticularsPage(id) {
