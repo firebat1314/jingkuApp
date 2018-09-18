@@ -6,68 +6,64 @@
 -->
 <ion-header>
 
-    <ion-navbar>
-        <ion-title>闪购</ion-title>
-    </ion-navbar>
+   <ion-navbar>
+      <ion-title>闪购</ion-title>
+   </ion-navbar>
 
 </ion-header>
 
 
 <ion-content parallax-header>
-    <div *ngIf="data" fadeIn>
-        <div class="top_img header-image">
-            <img img-lazy-load="./assets/images/shangou.jpg" defaultSrc="./assets/images/images/640-320.jpg" width="100%" alt="">
-        </div>
-        <div class="main-content">
+   <div *ngIf="data" fadeIn>
+      <div class="top_img header-image">
+         <img img-lazy-load="./assets/images/shangou.jpg" defaultSrc="./assets/images/images/640-320.jpg" width="100%" alt="">
+      </div>
+      <div class="main-content">
 
-            <div class="quick_buy">
-                <ul class="top_menu">
-                    <li class="menu_ico" tappable (click)="getData(0)" [ngClass]="{'meon':selected==0}">
-                        <input type="button" class="menu_ip0" />
-                        <p>全部</p>
-                    </li>
-                    <ng-container *ngFor="let item of category?.data">
-                        <li class="menu_ico" tappable (click)="getData(item.cat_id)" [ngClass]="{'meon':selected==item.cat_id}">
-                            <input type="button" class="menu_ip{{item.cat_id}}" />
-                            <p>{{item.cat_name}}</p>
-                        </li>
-                    </ng-container>
-                </ul>
-            </div>
+         <div class="quick_buy">
+            <ul class="top_menu">
+               <li class="menu_ico" tappable (click)="getData(0)" [ngClass]="{'meon':selected==0}">全部</li>
+               <ng-container *ngFor="let item of category?.data">
+                  <li class="menu_ico" tappable (click)="getData(item.cat_id)" [ngClass]="{'meon':selected==item.cat_id}">{{item.cat_name}}</li>
+               </ng-container>
+            </ul>
+         </div>
 
-            <!--下方商品-->
-            <div class="goods_box">
-                <no-goods *ngIf="data&&!data?.data?.length"></no-goods>
-                <ul class="goods_box_ul">
-                    <li *ngFor="let item of data?.data" tappable (click)="goParticularsPage(item.id)">
-                        <div class="time_d">
-                            <countdown endDate="{{item.promote_end_date}}"></countdown>
-                        </div>
-                        <div class="box_ul_d">
-                            <div class="box_ul_dtop">
-                                <img img-lazy-load="{{item.goods_img}}" />
-                            </div>
-                            <div class="box_ul_dbt">
-                                <p>{{item.name}}</p>
-                                <div class="price_zs" *ngIf="mine?.showPrice">{{item.promote_price }}
-                                    <span class="price_cx">促销价</span>
-                                </div>
-                            </div>
-                        </div>
-                    </li>
-                </ul>
-            </div>
-        </div>
-    </div>
-    <!--<ion-fab left bottom>
+
+         <no-goods *ngIf="data&&!data?.data?.length"></no-goods>
+         <ul class="purchase-box">
+            <li class="wrp" *ngFor="let cleAll of data?.data" tappable (click)="goParticularsPage(cleAll.id)">
+               <div class="img">
+                  <img [img-lazy-load]="cleAll.goods_img" />
+                  <div class="time_d">
+                     <countdown [endDate]="cleAll.promote_end_date"></countdown>
+                  </div>
+               </div>
+               <div class="txt">
+                  <div class="tt-2">
+                     {{cleAll.name}}
+                  </div>
+                  <div class="tt-1" *ngIf="mine?.showPrice">
+                     <div class="cx"><span>促销价&nbsp;</span><em>{{cleAll.promote_price}}</em></div>
+                     <div class="suzi">&nbsp;原价<em>¥{{cleAll.shop_price}}</em></div>
+                  </div>
+                  <div class="tt-3">
+                     <button>立即抢购</button>
+                  </div>
+               </div>
+            </li>
+         </ul>
+      </div>
+   </div>
+   <!--<ion-fab left bottom>
         <button ion-fab color="jingku1" mini>
             {{data?.page}}/{{data?.pages}}
         </button>
     </ion-fab>-->
-    <ion-fab right bottom>
-        <button ion-fab color="jingku1" (click)="scrollToTop()" mini goBackTop></button>
-    </ion-fab>
-    <ion-infinite-scroll threshold="20%" (ionInfinite)="doInfinite($event)">
-        <ion-infinite-scroll-content></ion-infinite-scroll-content>
-    </ion-infinite-scroll>
+   <ion-fab right bottom>
+      <button ion-fab color="jingku1" (click)="scrollToTop()" mini goBackTop></button>
+   </ion-fab>
+   <ion-infinite-scroll threshold="20%" (ionInfinite)="doInfinite($event)">
+      <ion-infinite-scroll-content></ion-infinite-scroll-content>
+   </ion-infinite-scroll>
 </ion-content>

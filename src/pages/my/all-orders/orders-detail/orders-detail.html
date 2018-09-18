@@ -78,8 +78,8 @@
                         </div>
                     </div>
                     <div class="right">
-                        <div class="price color" *ngIf="!(item?.pro_id>0)&&mine?.showPrice">¥{{item.goods_price}}</div>
-                        <div class="price color" *ngIf="item?.pro_id>0&&mine?.showPrice">{{item.reduce_price}}
+                        <div class="price color" *ngIf="!(item?.is_price>0)&&mine?.showPrice">¥{{item.goods_price}}</div>
+                        <div class="price color" *ngIf="item?.is_price>0&&mine?.showPrice">{{item.reduce_price}}
                             <p class="old">{{item.goods_price}}</p>
                         </div>
                         <div class="count">x{{item.goods_number}}</div>
@@ -147,6 +147,10 @@
                 <div *ngIf="data?.order?.shipping_subsidy!=0">
                     <span>运费补贴：</span>
                     <span class="price">- ¥{{data?.order?.shipping_subsidy}}</span>
+                </div>
+                <div *ngIf="data?.total?.volume_amount">
+                    <span>满减金额：</span>
+                    <span class="price">- ¥{{data?.total?.volume_amount}}</span>
                 </div>
                 <div *ngIf="data?.order?.bonus!=0">
                     <span>优惠券：</span>

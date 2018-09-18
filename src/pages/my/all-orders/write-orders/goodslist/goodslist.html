@@ -50,8 +50,8 @@
                             </div>
                         </div>
                         <div class="right">
-                            <div class="price color" *ngIf="!(attr?.pro_id>0)">{{attr.goods_price}}</div>
-                            <div class="price color" *ngIf="attr?.pro_id>0">{{attr.goodsPrice}}<p class="old">{{attr.goods_price}}</p></div>
+                            <div class="price color" *ngIf="!(attr?.is_price>0)">{{attr.goods_price}}</div>
+                            <div class="price color" *ngIf="attr?.is_price>0">{{attr.goodsPrice}}<p class="old">{{attr.goods_price}}</p></div>
                             <div class="count">x{{attr.goods_number}}</div>
                         </div>
                     </div>

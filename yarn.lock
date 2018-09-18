@@ -48,10 +48,6 @@
   version "3.14.0"
   resolved "https://registry.yarnpkg.com/@ionic-native/alipay/-/alipay-3.14.0.tgz#7595b942c639cb95e83c6f6fad1352c7447beac1"
 
-"@ionic-native/android-full-screen@^4.0.0":
-  version "4.12.2"
-  resolved "https://registry.yarnpkg.com/@ionic-native/android-full-screen/-/android-full-screen-4.12.2.tgz#9f3b34995171bbc8c0d0c0cbe4fb95cad249f027"
-
 "@ionic-native/app-update@^4.2.1":
   version "4.12.2"
   resolved "https://registry.yarnpkg.com/@ionic-native/app-update/-/app-update-4.12.2.tgz#e73d6331f535b149dae1d883456267c249ed6e84"
@@ -60,9 +56,9 @@
   version "3.14.0"
   resolved "https://registry.yarnpkg.com/@ionic-native/app-version/-/app-version-3.14.0.tgz#2fefc933f193d23e793a4033e5dd1aa7eb2658ce"
 
-"@ionic-native/badge@^4.1.0":
-  version "4.12.2"
-  resolved "https://registry.yarnpkg.com/@ionic-native/badge/-/badge-4.12.2.tgz#c4cb2e8963e0f4937253b5e8733cd11d111145f8"
+"@ionic-native/badge@^3.14.0":
+  version "3.14.0"
+  resolved "https://registry.yarnpkg.com/@ionic-native/badge/-/badge-3.14.0.tgz#871a587d202fcd6864f353dbea55b0bd62065729"
 
 "@ionic-native/barcode-scanner@^3.14.0":
   version "3.14.0"
@@ -76,9 +72,9 @@
   version "3.14.0"
   resolved "https://registry.yarnpkg.com/@ionic-native/camera/-/camera-3.14.0.tgz#a3936dea959efc24e69c9cf4b7866e6f19026cc0"
 
-"@ionic-native/core@3.12.1":
-  version "3.12.1"
-  resolved "https://registry.yarnpkg.com/@ionic-native/core/-/core-3.12.1.tgz#5b7c7a4f5adfc8da0b9197e1843e5893acf66021"
+"@ionic-native/core@^4.12.2":
+  version "4.13.0"
+  resolved "https://registry.yarnpkg.com/@ionic-native/core/-/core-4.13.0.tgz#3659140d24d6692ffcb1660c572e429363adbc6a"
 
 "@ionic-native/file-transfer@^4.1.0":
   version "4.12.2"
@@ -92,17 +88,15 @@
   version "3.14.0"
   resolved "https://registry.yarnpkg.com/@ionic-native/image-picker/-/image-picker-3.14.0.tgz#5da14ac90dba6dba3234ed550fc6233f1722757a"
 
-"@ionic-native/in-app-browser@^4.2.1":
-  version "4.12.2"
-  resolved "https://registry.yarnpkg.com/@ionic-native/in-app-browser/-/in-app-browser-4.12.2.tgz#c8b006c78f45c8324c4ef74ea9f8a55aacc4b214"
+"@ionic-native/in-app-browser@^3.14.0":
+  version "3.14.0"
+  resolved "https://registry.yarnpkg.com/@ionic-native/in-app-browser/-/in-app-browser-3.14.0.tgz#915d09eba9e2b36a8edce831c238cc40b1771607"
 
-"@ionic-native/open-native-settings@^4.7.0":
-  version "4.12.2"
-  resolved "https://registry.yarnpkg.com/@ionic-native/open-native-settings/-/open-native-settings-4.12.2.tgz#2077988324a191ffb1c598f7c60cd7f16122fa9b"
-
-"@ionic-native/qr-scanner@^4.12.0":
-  version "4.12.2"
-  resolved "https://registry.yarnpkg.com/@ionic-native/qr-scanner/-/qr-scanner-4.12.2.tgz#39725adbeacfda436ddd19965bb604890aeaa3a7"
+"@ionic-native/open-native-settings@^5.0.0-beta.17":
+  version "5.0.0-beta.18"
+  resolved "https://registry.yarnpkg.com/@ionic-native/open-native-settings/-/open-native-settings-5.0.0-beta.18.tgz#6bdde88e4de7738687e5b96cfab6c24ee4f7914f"
+  dependencies:
+    "@types/cordova" latest
 
 "@ionic-native/splash-screen@4.5.3":
   version "4.5.3"
@@ -112,9 +106,9 @@
   version "4.5.3"
   resolved "https://registry.yarnpkg.com/@ionic-native/status-bar/-/status-bar-4.5.3.tgz#e48d7a638e52887f59c761adff5ed5cf6d8fdb58"
 
-"@ionic-native/toast@^4.5.2":
-  version "4.12.2"
-  resolved "https://registry.yarnpkg.com/@ionic-native/toast/-/toast-4.12.2.tgz#57dd6e5f21e45bfa4d095895776520b8b94eca23"
+"@ionic-native/toast@^3.14.0":
+  version "3.14.0"
+  resolved "https://registry.yarnpkg.com/@ionic-native/toast/-/toast-3.14.0.tgz#7a81abef46b19da65f9a13ee013497c904c532ba"
 
 "@ionic-native/transfer@^3.5.0":
   version "3.14.0"
@@ -166,6 +160,10 @@
 "@jiguang-ionic/jpush@^1.0.2":
   version "1.0.2"
   resolved "https://registry.yarnpkg.com/@jiguang-ionic/jpush/-/jpush-1.0.2.tgz#4e0f20604b0ccafc016691ee2786eb3729061809"
+
+"@types/cordova@latest":
+  version "0.0.34"
+  resolved "https://registry.yarnpkg.com/@types/cordova/-/cordova-0.0.34.tgz#ea7addf74ecec3d7629827a0c39e2c9addc73d04"
 
 abbrev@*, abbrev@1:
   version "1.1.1"
@@ -1214,7 +1212,7 @@ cordova-common@2.2.5, cordova-common@^2.0.1:
     underscore "^1.8.3"
     unorm "^1.3.3"
 
-cordova-ios@~4.5.4:
+cordova-ios@~4.5.5:
   version "4.5.5"
   resolved "https://registry.yarnpkg.com/cordova-ios/-/cordova-ios-4.5.5.tgz#af73dab0650ea8a38fff0e7863fde5fc7bad753c"
   dependencies:
@@ -1236,9 +1234,9 @@ cordova-ios@~4.5.4:
     xml-escape "1.1.0"
     xmlbuilder "8.2.2"
 
-cordova-open-native-settings@~1.4.1:
-  version "1.4.1"
-  resolved "https://registry.yarnpkg.com/cordova-open-native-settings/-/cordova-open-native-settings-1.4.1.tgz#5b7937f81f2b4c7eb9cd03132259d33fa77457c2"
+cordova-plugin-add-swift-support@^1.7.2:
+  version "1.7.2"
+  resolved "https://registry.yarnpkg.com/cordova-plugin-add-swift-support/-/cordova-plugin-add-swift-support-1.7.2.tgz#02ae655f3e123974f6b43da4340e7e8e1f316d48"
 
 cordova-plugin-app-version@~0.1.9:
   version "0.1.9"
@@ -1272,13 +1270,9 @@ cordova-plugin-file-transfer@^1.7.1:
   version "1.7.1"
   resolved "https://registry.yarnpkg.com/cordova-plugin-file-transfer/-/cordova-plugin-file-transfer-1.7.1.tgz#a75d8be2ebc3bb9b23c5b1bbd199214ec267586b"
 
-cordova-plugin-file@~4.3.1:
-  version "4.3.3"
-  resolved "https://registry.yarnpkg.com/cordova-plugin-file/-/cordova-plugin-file-4.3.3.tgz#012e97aa1afb91f84916e6341b548366d23de9b9"
-
-cordova-plugin-fullscreen@~1.1.0:
-  version "1.1.0"
-  resolved "https://registry.yarnpkg.com/cordova-plugin-fullscreen/-/cordova-plugin-fullscreen-1.1.0.tgz#fac725a3320040582d9a2b2a005e18aedd200b8e"
+cordova-plugin-file@^6.0.1:
+  version "6.0.1"
+  resolved "https://registry.yarnpkg.com/cordova-plugin-file/-/cordova-plugin-file-6.0.1.tgz#49606b8c15a5688d4728f92e4a7325a061de07f5"
 
 cordova-plugin-http@^1.2.0:
   version "1.2.0"
@@ -1292,9 +1286,20 @@ cordova-plugin-ionic-webview@~1.1.15:
   version "1.1.19"
   resolved "http://registry.npmjs.org/cordova-plugin-ionic-webview/-/cordova-plugin-ionic-webview-1.1.19.tgz#7f18d30291153c4066f529399a8d8226aa4fb28e"
 
-"cordova-plugin-pingpp@https://github.com/firebat1314/pingpp-cordova.git":
-  version "1.0.2"
-  resolved "https://github.com/firebat1314/pingpp-cordova.git#b2b13207e5306ab5f88ee4a330ec6743d56fc59e"
+cordova-plugin-jcore@^1.1.12:
+  version "1.2.3"
+  resolved "https://registry.yarnpkg.com/cordova-plugin-jcore/-/cordova-plugin-jcore-1.2.3.tgz#628fd9c22b238743b466c50fbd6a4109845cc53d"
+
+"cordova-plugin-pingpp@git+https://git.coding.net/pingplusplus/pingpp-cordova.git":
+  version "1.0.4"
+  resolved "git+https://git.coding.net/pingplusplus/pingpp-cordova.git#75e9934a5755ba99ecd8a16dd84607ecf255cf62"
+
+cordova-plugin-qrscanner@^2.6.0:
+  version "2.6.0"
+  resolved "https://registry.yarnpkg.com/cordova-plugin-qrscanner/-/cordova-plugin-qrscanner-2.6.0.tgz#e981be29d024cb37c11e28bbee87ba2544a29e2a"
+  dependencies:
+    qrcode-reader "^1.0.4"
+    webrtc-adapter "^3.1.4"
 
 cordova-plugin-screen-orientation@~2.0.1:
   version "2.0.2"
@@ -1304,13 +1309,13 @@ cordova-plugin-splashscreen@~4.0.3:
   version "4.0.3"
   resolved "https://registry.yarnpkg.com/cordova-plugin-splashscreen/-/cordova-plugin-splashscreen-4.0.3.tgz#773cd1363c1f3bacb9901663e9e3793dd3e0a19d"
 
-"cordova-plugin-statusbar@https://github.com/apache/cordova-plugin-statusbar.git":
+"cordova-plugin-statusbar@git+https://github.com/apache/cordova-plugin-statusbar.git":
   version "2.4.3-dev"
-  resolved "https://github.com/apache/cordova-plugin-statusbar.git#23944d11f6fbdaccf0434c15f52c726ceb993da0"
+  resolved "git+https://github.com/apache/cordova-plugin-statusbar.git#23944d11f6fbdaccf0434c15f52c726ceb993da0"
 
-cordova-plugin-whitelist@1.3.1:
-  version "1.3.1"
-  resolved "https://registry.yarnpkg.com/cordova-plugin-whitelist/-/cordova-plugin-whitelist-1.3.1.tgz#9fd1db7fd6c956951d34771cdcd97f66ced516df"
+cordova-plugin-whitelist@^1.3.3:
+  version "1.3.3"
+  resolved "https://registry.yarnpkg.com/cordova-plugin-whitelist/-/cordova-plugin-whitelist-1.3.3.tgz#b5e85ecdbbfe5aeded40a1bf4ee2372e67d96fb4"
 
 cordova-plugin-x-toast@~2.6.0:
   version "2.6.2"
@@ -2515,6 +2520,10 @@ isstream@~0.1.2:
   version "0.1.2"
   resolved "https://registry.yarnpkg.com/isstream/-/isstream-0.1.2.tgz#47e63f7af55afa6f92e1500e690eb8b8529c099a"
 
+jpush-phonegap-plugin@^3.3.2:
+  version "3.4.3"
+  resolved "https://registry.yarnpkg.com/jpush-phonegap-plugin/-/jpush-phonegap-plugin-3.4.3.tgz#1f4468314153c0ea9808802ae6218b2b00488ff9"
+
 js-base64@^2.1.8, js-base64@^2.1.9:
   version "2.4.9"
   resolved "https://registry.yarnpkg.com/js-base64/-/js-base64-2.4.9.tgz#748911fb04f48a60c4771b375cac45a80df11c03"
@@ -2981,7 +2990,7 @@ ms@2.0.0:
   version "2.0.0"
   resolved "https://registry.yarnpkg.com/ms/-/ms-2.0.0.tgz#5608aeadfc00be6c2901df5f9861788de0d597c8"
 
-mx.ferreyra.callnumber@~0.0.2:
+mx.ferreyra.callnumber@0.0.2:
   version "0.0.2"
   resolved "https://registry.yarnpkg.com/mx.ferreyra.callnumber/-/mx.ferreyra.callnumber-0.0.2.tgz#dda64ced1d5a19e801d5c64f17f02bcd0599cb63"
 
@@ -3376,10 +3385,6 @@ performance-now@^2.1.0:
   version "2.1.0"
   resolved "https://registry.yarnpkg.com/performance-now/-/performance-now-2.1.0.tgz#6309f4e0e5fa913ec1c69307ae364b4b377c9e7b"
 
-phonegap-plugin-barcodescanner@^6.0.8:
-  version "6.0.8"
-  resolved "https://registry.yarnpkg.com/phonegap-plugin-barcodescanner/-/phonegap-plugin-barcodescanner-6.0.8.tgz#d95c72b8aae1683f630fbc0c16dd51ede7ee44eb"
-
 pify@^2.0.0:
   version "2.3.0"
   resolved "https://registry.yarnpkg.com/pify/-/pify-2.3.0.tgz#ed141a6ac043a849ea588498e7dca8b15330e90c"
@@ -3507,6 +3512,10 @@ punycode@^1.2.4, punycode@^1.4.1:
 q@1.5.1, q@^1.4.1:
   version "1.5.1"
   resolved "https://registry.yarnpkg.com/q/-/q-1.5.1.tgz#7e32f75b41381291d04611f1bf14109ac00651d7"
+
+qrcode-reader@^1.0.4:
+  version "1.0.4"
+  resolved "https://registry.yarnpkg.com/qrcode-reader/-/qrcode-reader-1.0.4.tgz#95d9bb9e8130800361a96cb5a43124ad1d9e06b8"
 
 qs@6.4.0:
   version "6.4.0"
@@ -3858,6 +3867,10 @@ scss-tokenizer@^0.2.3:
   dependencies:
     js-base64 "^2.1.8"
     source-map "^0.4.2"
+
+sdp@^1.5.0:
+  version "1.5.4"
+  resolved "https://registry.yarnpkg.com/sdp/-/sdp-1.5.4.tgz#8e038f6ddb14bd765ae1f4b5216e12094511e0d0"
 
 select@^1.1.2:
   version "1.1.2"
@@ -4600,6 +4613,12 @@ webpack@3.2.0:
     watchpack "^1.3.1"
     webpack-sources "^1.0.1"
     yargs "^6.0.0"
+
+webrtc-adapter@^3.1.4:
+  version "3.4.3"
+  resolved "https://registry.yarnpkg.com/webrtc-adapter/-/webrtc-adapter-3.4.3.tgz#b636062eee9a6ef158acd0d8501b678434b56f16"
+  dependencies:
+    sdp "^1.5.0"
 
 websocket-driver@>=0.5.1:
   version "0.7.0"

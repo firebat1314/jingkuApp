@@ -61,12 +61,12 @@
 				<!-- <div>商品编号&nbsp;：{{getGoodsInfo?.data?.goods_sn}}</div> -->
 			</div>
 		</div>
-		<div class="fore price-info" *ngIf="getGoodsInfo?.price_section?.length!=0">
+		<div class="fore price-info" *ngIf="getGoodsInfo?.price_section?.length!=0&&mine?.showPrice">
 			<div class="main">
 				<div class="info-item" *ngFor="let item of getGoodsInfo?.price_section">
 					<span *ngIf="item.max_num">{{item.number+'-'}}{{item.max_num}}</span>
 					<span *ngIf="!item.max_num">大于{{item.number}}</span>
-					<span *ngIf="mine?.showPrice">{{item.format_price}}</span>
+					<span>{{item.format_price}}</span>
 				</div>
 			</div>
 			<div class="right">
