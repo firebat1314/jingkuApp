@@ -148,8 +148,8 @@
                     <span>运费补贴：</span>
                     <span class="price">- ¥{{data?.order?.shipping_subsidy}}</span>
                 </div>
-                <div *ngIf="data?.total?.volume_amount">
-                    <span>满减金额：</span>
+                <div *ngIf="data?.total?.volume_amount!=0">
+                    <span>满减优惠：</span>
                     <span class="price">- ¥{{data?.total?.volume_amount}}</span>
                 </div>
                 <div *ngIf="data?.order?.bonus!=0">

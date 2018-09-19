@@ -66,9 +66,9 @@ export class GetImageDirective {
         if (file.size > (10 * 1024 * 1024)) {
             this.native.showToast("图片超过限制");
         } else {
-            this.fileChecked.emit(file);
+            // this.fileChecked.emit(file);
 
-            /* let reader = new FileReader();
+            let reader = new FileReader();
             reader.readAsDataURL(file);
             reader.onload = (event) => {//读取完成
                 console.log('压缩品质:', this.quality);
@@ -78,27 +78,10 @@ export class GetImageDirective {
                 }, {
                         quality: this.quality
                     })
-            }; */
+            };
             // console.log(reader, reader.onload, reader.onloadend, reader.readAsDataURL)
         }
     }
-    //上传 
-    /* public submitUploadFile() {
-        if (this.fileList.length > 0) {
-            let file: File = this.fileList[0];
-            let formData = new FormData();
-            formData.append('file', file, file.name);
-            let headers = new Headers();
-            headers.append('Accept', 'application/json');
-            let options = new RequestOptions({ headers: headers });
-            this.http.post(url, formData, options)
-                .map(res => res.json())
-                .catch(error => Observable.throw(error))
-                .subscribe(
-
-                )
-        }
-    } */
     dealImage(path: string, callback, obj: { width?: number, height?: number, quality?: number } = {}) {
         let img = new Image();
         img.src = path;

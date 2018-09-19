@@ -21,7 +21,6 @@ import { Toast } from '@ionic-native/toast';
 import { Transfer } from "@ionic-native/transfer";
 import { File } from '@ionic-native/file';
 import { InAppBrowser } from '@ionic-native/in-app-browser';
-import { QRScanner } from '@ionic-native/qr-scanner';
 
 /*———————————————————————————————— 插件 ————————————————————————————————*/
 import { MeunItemComponentModule } from "../components/meun-item/meun-item.module";
@@ -74,7 +73,6 @@ import { preApplyParams } from '../pages/BT/preApplyParams';
     HttpService,
     UpgradeProvider,
     Camera,
-    QRScanner,
     ImagePicker,
     AppVersion,
     Toast,

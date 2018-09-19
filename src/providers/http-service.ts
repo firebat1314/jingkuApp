@@ -798,7 +798,7 @@ export class HttpService {
    }
    /* 首页列表 */
    recommendGoods(data?: Object, options?: HttpOptions) {
-      return this.http.post(IP + '/Index/recommendGoods ', data, { showLoading: false, ...options })
+      return this.http.post(IP + '/Index/andomGoods ', data, { showLoading: false, ...options })
    }
    /* 用户点击统计 */
    click_census(data?: Object, options?: HttpOptions) {//选择现有成员
