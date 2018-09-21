@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild, ElementRef } from '@angular/core';
 import { IonicPage, NavController, NavParams, Events } from 'ionic-angular';
 import { HttpService } from '../../../../providers/http-service';
 
@@ -19,11 +19,13 @@ import { HttpService } from '../../../../providers/http-service';
 export class EvaluationPage {
 
    orderId = this.navParams.get('order_id');
+   @ViewChild('evaluation') evaluationForm: ElementRef;
    constructor(
       public navCtrl: NavController,
       public navParams: NavParams,
       private httpServ: HttpService,
       public events: Events,
+      public ele: ElementRef,
    ) {
    }
 
@@ -81,12 +83,33 @@ export class EvaluationPage {
    deletePic(i, item) {
       item.img.splice(i, 1);
    }
-   submit() {
-      this.httpServ.commentInsertComment({
-         data: this.orderData
-      }).then((res) => {
+   submit(evaluation) {
+      let params = {
+         goods_list: [],
+         accord_rank: this.orderData.accord_rank,
+         service_rank: this.orderData.service_rank,
+         delivery_rank: this.orderData.delivery_rank,
+         is_anonymity: this.orderData.is_anonymity,
+      }
+      for (let i = 0; i < this.orderData.goods_list.length; i++) {
+         const goods = this.orderData.goods_list[i];
+         params.goods_list[i] = ({
+            comment_rank: goods.comment_rank,
+            content: goods.content,
+            goods_id: goods.goods_id,
+            rec_id: goods.rec_id,
+            img: []
+         })
+         if (goods.img) {
+            for (let j = 0; j < goods.img.length; j++) {
+               const img = goods.img[j];
+               params.goods_list[i].img[j] = img.img_url;
+            }
+         }
+      }
+      this.httpServ.commentInsertComment(params).then((res) => {
          if (res.status == 1) {
-            var nav = this.navCtrl.last();
+            let nav = this.navCtrl.last();
             this.navCtrl.push('EvaluationOverPage', { suppliers_id: res.suppliers_info.id }).then(() => {
                this.navCtrl.removeView(nav, { animate: false });
                this.events.publish('allOrders:update');

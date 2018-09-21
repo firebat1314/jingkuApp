@@ -38,6 +38,8 @@ export class CompanyInfoPage {
     zsfz: null,//身份证反
     medical:null
   } */
+   zhizhao_img: any;
+   medical_img: any;
 
    constructor(
       public navCtrl: NavController,

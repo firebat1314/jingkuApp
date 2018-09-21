@@ -23,22 +23,22 @@
             <div class="name">营业执照：</div>
             <div class="camra" tappable *ngIf="!checks">
                <img img-lazy-load="./assets/icon/choosefile.png" alt="">
-               <input type="file" [quality]="0.5" (get-image)="params.zhizhao = $event" style="width:100%;height:100%;position: absolute;opacity: 0;top:0;">
+               <input type="file" (get-image)="params.zhizhao = $event.img_url;zhizhao_img = $event.base64" style="width:100%;height:100%;position: absolute;opacity: 0;top:0;">
             </div>
             <div class="camra ui" tappable>
-               <img img-lazy-load="{{params.zhizhao || data?.data?.zhizhao || './assets/icon/choosefile_2.png'}}" alt="">
+               <img img-lazy-load="{{zhizhao_img || data?.data?.zhizhao || './assets/icon/choosefile_2.png'}}" alt="">
             </div>
          </div>
          <div class="li">
             <div class="name">医疗器械许可证：</div>
             <div class="camra" tappable *ngIf="!checks">
                <img img-lazy-load="./assets/icon/choosefile.png" alt="">
-               <input type="file" [quality]="0.5" (get-image)="params.medical = $event" style="width:100%;height:100%;position: absolute;opacity: 0;top:0;">
+               <input type="file" (get-image)="params.medical = $event.img_url;medical_img = $event.base64" style="width:100%;height:100%;position: absolute;opacity: 0;top:0;">
             </div>
             <ion-input autocomplete="off" autocorrect="off" class="inp" *ngIf="checks&&!data?.data?.medical" [disabled]="checks" type="text" value="无"></ion-input>
             <div class="camra ui" tappable *ngIf="!(checks&&!data?.data?.medical)">
-               <img img-lazy-load="{{params.medical || data?.data?.medical || './assets/icon/xkz_yl.jpg'}}" alt="">
-               <div *ngIf="!(params.medical || data?.data?.medical)" class="sli-fdj " style="    position: absolute;
+               <img img-lazy-load="{{medical_img || data?.data?.medical || './assets/icon/xkz_yl.jpg'}}" alt="">
+               <div *ngIf="!(medical_img || data?.data?.medical)" class="sli-fdj " style="    position: absolute;
 					top: 0;
 					left: 0;
 					width: 100%;
@@ -58,10 +58,10 @@
             <div class="name">身份证正面照片：</div>
             <div class="camra" tappable *ngIf="!checks">
                <img img-lazy-load="./assets/icon/choosefile.png" alt="">
-               <input type="file" [quality]="0.5" (get-image)="params.zsfz = $event" style="width:100%;height:100%;position: absolute;opacity: 0;top:0;">
+               <input type="file" (get-image)="params.zsfz = $event.img_url;zsfz_img = $event.base64" style="width:100%;height:100%;position: absolute;opacity: 0;top:0;">
             </div>
             <div class="camra ui" tappable *ngIf="!(checks&&!data?.data?.zsfz)">
-               <img img-lazy-load="{{params.zsfz || data?.data?.zsfz || './assets/icon/choosefile_1.png'}}" alt="">
+               <img img-lazy-load="{{zsfz_img || data?.data?.zsfz || './assets/icon/choosefile_1.png'}}" alt="">
             </div>
             <ion-input autocomplete="off" autocorrect="off" class="inp" *ngIf="checks&&!data?.data?.zsfz" [disabled]="checks" type="text" value="无"></ion-input>
          </div>
@@ -69,10 +69,10 @@
             <div class="name">身份证反面照片：</div>
             <div class="camra" tappable *ngIf="!checks">
                <img img-lazy-load="./assets/icon/choosefile.png" alt="">
-               <input type="file" [quality]="0.5" (get-image)="params.fsfz = $event" style="width:100%;height:100%;position: absolute;opacity: 0;top:0;">
+               <input type="file" (get-image)="params.fsfz = $event.img_url;fsfz_img = $event.base64" style="width:100%;height:100%;position: absolute;opacity: 0;top:0;">
             </div>
             <div class="camra ui" tappable *ngIf="!(checks&&!data?.data?.fsfz)">
-               <img img-lazy-load="{{params.fsfz || data?.data?.fsfz || './assets/icon/choosefile_3.png'}}" alt="">
+               <img img-lazy-load="{{fsfz_img || data?.data?.fsfz || './assets/icon/choosefile_3.png'}}" alt="">
             </div>
             <ion-input autocomplete="off" autocorrect="off" class="inp" *ngIf="checks&&!data?.data?.fsfz" [disabled]="checks" type="text" value="无"></ion-input>
          </div>

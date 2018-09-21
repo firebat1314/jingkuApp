@@ -31,6 +31,13 @@ export class MineProvider {
          this.httpServ.userInfo().then((res) => {
             if (res.status) {
                this.userInfo = res;
+
+               /* qimo全局配置 */
+               window['qimoClientId'] = {
+                  userId: res.data.user_info.user_id,
+                  nickName: res.data.user_info.user_name
+               }
+               
                this.subject.next(this.userInfo);
                this.httpServ.setByName('userInfo', res);
                this.showPrice = res.data.authority.indexOf('1') > -1;
@@ -48,6 +55,13 @@ export class MineProvider {
       this.httpServ.userInfo().then((res) => {
          if (res.status) {
             this.userInfo = res;
+
+            /* qimo全局配置 */
+            window['qimoClientId'] = {
+               userId: res.data.user_info.user_id,
+               nickName: res.data.user_info.user_name
+            }
+
             this.httpServ.setByName('userInfo', res);
             this.showPrice = res.data.authority.indexOf('1') > -1;
             this.canCheckout = res.data.authority.indexOf('2') > -1;
@@ -55,6 +69,6 @@ export class MineProvider {
          }
       })
    }
-   
+
 
 }

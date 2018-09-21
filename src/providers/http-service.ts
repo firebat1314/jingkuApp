@@ -548,7 +548,7 @@ export class HttpService {
       code_sn?: string | number;//身份证号
       mobile?: string | number;//手机号
       medical?: string;//手机号
-   }, options?:HttpOptions) {
+   }, options?: HttpOptions) {
       return this.http.post(IP + '/User/enterprise_info', data, { showLoading: true, ...options })
    }
    Distribution_info(data?) {
@@ -879,5 +879,13 @@ export class HttpService {
    /* 商品规格属性列表 */
    get_goods_parameter(data?: { goods_id: any }, options?: HttpOptions) {
       return this.http.post(IP + '/Goods/get_goods_parameter ', data, { showLoading: false, ...options })
+   }
+   /* 统一上传图片 base64 */
+   GetFileImg(data?: { img: any }, options?: HttpOptions) {
+      return this.http.post(IP + '/Public/GetFileImg ', data, { showLoading: false, ...options })
+   }
+   /* 统一上传图片  file*/
+   GetFileImgs(data?: FormData, options?: HttpOptions) {
+      return this.http.post(IP + '/Public/GetFileImgs', data, { showLoading: false, ...options })
    }
 }

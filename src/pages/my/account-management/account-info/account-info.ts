@@ -12,90 +12,90 @@ import { phone_nember } from '../../../../providers/constants';
 */
 @IonicPage()
 @Component({
-  selector: 'page-account-info',
-  templateUrl: 'account-info.html'
+   selector: 'page-account-info',
+   templateUrl: 'account-info.html'
 })
 export class AccountInfoPage {
-  medical: any;
-  userInfo: any;
-  RealnamePage = 'RealnamePage';
-  QqPage = 'QqPage';
-  CompanynamePage = 'CompanynamePage';
-  AddressPage = 'AddressPage';
-  constructor(
-    public navCtrl: NavController,
-    public navParams: NavParams,
-    public httpService: HttpService,
-    public events: Events,
-    public actionSheetCtrl: ActionSheetController,
-    private alertCtrl: AlertController,
-    public native: Native
-  ) {
+   medical: any;
+   userInfo: any;
+   RealnamePage = 'RealnamePage';
+   QqPage = 'QqPage';
+   CompanynamePage = 'CompanynamePage';
+   AddressPage = 'AddressPage';
+   constructor(
+      public navCtrl: NavController,
+      public navParams: NavParams,
+      public httpService: HttpService,
+      public events: Events,
+      public actionSheetCtrl: ActionSheetController,
+      private alertCtrl: AlertController,
+      public native: Native
+   ) {
 
-  }
-  ngOnInit(){
-    this.httpService.getStorage('username').then((res) => {
-      if (res) {
-        this.httpService.getStorage(res+'_userInfo').then((res) => {
-          if (res) {
-            this.userInfo = res;
-          }
-        })
-      }
-    })
-    this.getUserData();
-    this.events.subscribe('userInfo:editOk', () => {
-      this.getUserData();
-    })
-  }
-  getUserData() {
-    this.httpService.userInfo().then((res) => {
-      // console.log(res);
-      this.userInfo = res;
+   }
+   ngOnInit() {
       this.httpService.getStorage('username').then((res) => {
-        if (res) {
-          this.httpService.setStorage(res + '_userInfo', this.userInfo)
-        }
+         if (res) {
+            this.httpService.getStorage(res + '_userInfo').then((res) => {
+               if (res) {
+                  this.userInfo = res;
+               }
+            })
+         }
       })
-    })
-  }
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad AccountInfoPage');
-  }
-  ngOnDestroy() {
-    this.events.unsubscribe('userInfo:editOk');
-  }
-  editAvatar(data) {
-    this.httpService.editAvatar({ avatar: data }).then((res) => {
-      if (res.status == 1) {
-        this.native.showToast('头像已更新');
-        this.getUserData();
-        this.events.publish('my:update',data);
-      }
-    }).catch(() => {
-      this.native.showToast('上传失败，请重试')
-    })
-  }
-  editMedical(data){
-    this.httpService.editMedical({medical:data}).then(res => {
-      if(res.status){
-        this.medical = data;
-        this.alertCtrl.create({
-          title: '镜库科技',
-          message: res.info,
-          buttons: [
-            {
-              text: '拨打电话',
-              handler: () => {
-                location.href = "tel:" + phone_nember;
-              }
-            },
-            {
-              text: '确定',
+      this.getUserData();
+      this.events.subscribe('userInfo:editOk', () => {
+         this.getUserData();
+      })
+   }
+   getUserData() {
+      this.httpService.userInfo().then((res) => {
+         // console.log(res);
+         this.userInfo = res;
+         this.httpService.getStorage('username').then((res) => {
+            if (res) {
+               this.httpService.setStorage(res + '_userInfo', this.userInfo)
             }
-          ]
-        }).present();
-      }
-    })
-  }
+         })
+      })
+   }
+   ionViewDidLoad() {
+      console.log('ionViewDidLoad AccountInfoPage');
+   }
+   ngOnDestroy() {
+      this.events.unsubscribe('userInfo:editOk');
+   }
+   editAvatar(file) {
+      this.httpService.editAvatar({ avatar: file.img_url }).then((res) => {
+         if (res.status == 1) {
+            this.native.showToast('头像已更新');
+            this.getUserData();
+            this.events.publish('my:update', file.base64);
+         }
+      }).catch(() => {
+         this.native.showToast('上传失败，请重试')
+      })
+   }
+   editMedical(data) {
+      this.httpService.editMedical({ medical: data.img_url }).then(res => {
+         if (res.status) {
+            this.medical = data.base64;
+            this.alertCtrl.create({
+               title: '镜库科技',
+               message: res.info,
+               buttons: [
+                  {
+                     text: '拨打电话',
+                     handler: () => {
+                        location.href = "tel:" + phone_nember;
+                     }
+                  },
+                  {
+                     text: '确定',
+                  }
+               ]
+            }).present();
+         }
+      })
+   }
 }

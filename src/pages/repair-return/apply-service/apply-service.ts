@@ -33,6 +33,7 @@ export class ApplyServicePage {
   }
   type_note_txt: string = '';
   data;
+   return_imgs: Array<any>;
   constructor(
     public navCtrl: NavController,
     public navParams: NavParams,
@@ -61,25 +62,25 @@ export class ApplyServicePage {
     })
   }
   openCamra(event) {
-    if (this.params.return_img.length >= 5) {
+    if (this.return_imgs.length >= 5) {
       this.native.showToast('最多选择5张照片');
       return;
     }
-    this.params.return_img.push(event);
-    /* if (this.params.return_img.length >= 5) {
+    this.return_imgs.push(event);
+    /* if (this.return_imgs.length >= 5) {
       this.native.showToast('最多选择5张照片', null, false);
       return;
     }
     this.native.getMultiplePicture({
       outputType: 1,
-      maximumImagesCount: 5 - this.params.return_img.length
+      maximumImagesCount: 5 - this.return_imgs.length
     }).then((res) => {
       if (res instanceof Array) {
-        if (this.params.return_img.concat(res).length > 5) {
+        if (this.return_imgs.concat(res).length > 5) {
           this.native.showToast('最多选择5张照片');
-          this.params.return_img = this.params.return_img.concat(res).slice(0, 5);
+          this.return_imgs = this.return_imgs.concat(res).slice(0, 5);
         } else {
-          this.params.return_img.concat(res);
+          this.return_imgs.concat(res);
         }
       }
     }, (err) => {
@@ -87,7 +88,7 @@ export class ApplyServicePage {
     }) */
   }
   deletePic(i) {
-    this.params.return_img.splice(i, 1);
+    this.return_imgs.splice(i, 1);
   }
   openReasonModal() {
     var modal = this.modalCtrl.create('ReasonModalPage', {}, { cssClass: 'my-modal-style' });
@@ -113,6 +114,7 @@ export class ApplyServicePage {
       member:member,
       rec_id:rec_id
     }
+    this.params.return_img = this.return_imgs;
     // this.native.showToast('提交成功',800,false)
     this.httpService.submitRepair(this.params).then((res) => {
       if (res.status == 1) {

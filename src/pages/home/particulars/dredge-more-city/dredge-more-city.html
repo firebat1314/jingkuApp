@@ -38,12 +38,12 @@
             <span class="dredge-more-city-tit">营业执照：</span>
             <div class="add-zhizhao click" style="position: relative; " item-center icon-top>
                 <img style="height: 27px;margin-bottom: 10px;" src="./assets/icon/images/camra.png" alt=""> 选择文件
-                <input type="file" [quality]="0.5" (get-image)="formData.zhizhao = $event" style="width:100%;height:100%;position: absolute;opacity: 0;top:0;left: 0;">
+                <input type="file" (get-image)="formData.zhizhao = $event.img_url;zhizhao_img = $event.base64" style="width:100%;height:100%;position: absolute;opacity: 0;top:0;left: 0;">
             </div>
-            <div class="add-zhizhao show" *ngIf="formData.zhizhao">
-                <img style="height: 80%;" [src]="formData.zhizhao" alt="">
+            <div class="add-zhizhao show" *ngIf="zhizhao_img">
+                <img style="height: 80%;" [src]="zhizhao_img" alt="">
             </div>
-            <span color="danger" *ngIf="!formData.zhizhao" ion-text>请上传图片</span>
+            <span color="danger" *ngIf="!zhizhao_img" ion-text>请上传图片</span>
         </div>
     </form>
 </ion-content>

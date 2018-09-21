@@ -537,6 +537,20 @@ button.swiper-pagination-bullet {
     background-color: red
   }
 }
+.m-clip-box{
+   img{
+      max-width: initial !important;
+      max-height: initial !important;
+   }
+   a{
+      width: 35% !important;
+      bottom: 55px !important;
+      &:first-of-type{
+      background: #3f69a5 !important;
+      color: #ffffff;
+      }
+   }
+}
 
 /*———————————————————————————————————— ios-title-style ————————————————————————————————————*/
 

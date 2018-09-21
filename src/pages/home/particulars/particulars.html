@@ -49,34 +49,6 @@
             批发价：
             <span class="now-price">
                         <span first-letter class="number">{{getGoodsInfo?.data?.shop_price_formated}}</span>
-<<<<<<< HEAD
-            </span>
-            <span first-letter class="old-price">{{getGoodsInfo?.data?.old_shop_price}}</span>&nbsp;
-            <span class="rush-icon" *ngIf="getGoodsInfo?.data?.is_pre==1 && getGoodsInfo?.data?.down_time>0">预售</span>
-            <span class="rush-icon" *ngIf="getGoodsInfo?.promotion?.type_name">{{getGoodsInfo?.promotion?.type_name}}</span>
-         </div>
-         <div class="bottom" *ngIf="getGoodsInfo?.data?.market_price!=0&&mine?.showPrice">
-            <div>建议零售价：
-               <span class="offer-price" first-letter>¥{{getGoodsInfo?.data?.market_price}}</span>
-            </div>
-            <!-- <div>商品编号&nbsp;：{{getGoodsInfo?.data?.goods_sn}}</div> -->
-         </div>
-      </div>
-      <div class="fore price-info" *ngIf="getGoodsInfo?.price_section?.length!=0">
-         <div class="main">
-            <div class="info-item" *ngFor="let item of getGoodsInfo?.price_section">
-               <span *ngIf="item.max_num">{{item.number+'-'}}{{item.max_num}}</span>
-               <span *ngIf="!item.max_num">大于{{item.number}}</span>
-               <span *ngIf="mine?.showPrice">{{item.format_price}}</span>
-            </div>
-         </div>
-         <div class="right">
-            <ion-icon name="ios-arrow-forward"></ion-icon>
-         </div>
-      </div>
-      <div class="fore coupon" *ngIf="dId!=1">
-         <button ion-item *ngIf="getGoodsInfo?.bonus?.length" [disabled]="!getGoodsInfo?.bonus?.length" class="button-coupon" (click)="presentModal('优惠券')">
-=======
 				</span>
 				<span first-letter class="old-price">{{getGoodsInfo?.data?.old_shop_price}}</span>&nbsp;
 				<span class="rush-icon" *ngIf="getGoodsInfo?.data?.is_pre==1 && getGoodsInfo?.data?.down_time>0">预售</span>
@@ -103,7 +75,6 @@
 		</div>
 		<div class="fore coupon" *ngIf="dId!=1">
 			<button ion-item *ngIf="getGoodsInfo?.bonus?.length" [disabled]="!getGoodsInfo?.bonus?.length" class="button-coupon" (click)="presentModal('优惠券')">
->>>>>>> 57c0f717... 闪购改版
             <span style="color: #808080;">领券</span>
             <span *ngFor="let item of getGoodsInfo?.bonus" class="coupon-show">{{"满"+item.min_goods_amount.slice(1)+'减'+item.int_type_money}}</span>
             <ion-note item-right>{{(!getGoodsInfo?.bonus?.length)?'无优惠券':'点击领取'}}</ion-note>
