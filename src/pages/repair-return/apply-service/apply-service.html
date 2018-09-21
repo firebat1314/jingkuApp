@@ -64,9 +64,9 @@
                 <div class="text-wrap">为了帮助我们更好的解决问题，请上传照片。最多5张，每张不超过5M，支持JPG、BPM、PNG</div>
             </div>
         </section>
-        <section class="fore item4" #item4 *ngIf="params.return_img.length">
-            <div class="camra userpic" *ngFor="let item of params.return_img;let i = index;">
-                <img [src]="item" imageViewer alt="">
+        <section class="fore item4" #item4 *ngIf="return_imgs.length">
+            <div class="camra userpic" *ngFor="let item of return_imgs;let i = index;">
+                <img [src]="item.base64" imageViewer alt="">
                 <span class="delete-icon" tappable (click)="deletePic(i)"></span>
             </div>
         </section>

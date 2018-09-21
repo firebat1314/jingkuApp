@@ -34,6 +34,8 @@ export class SignupSecondPage {
     zz_number:'',
     user_id:this.navParams.get('user_id')
   }
+   medical_img: any;
+   zhizhao_img: any;
   constructor(
     public navCtrl: NavController,
     public navParams: NavParams,
@@ -76,12 +78,6 @@ export class SignupSecondPage {
   }
   toLoginPage() {
     this.navCtrl.push('LoginPage')
-  }
-  openFile() {
-    // this.native.getPictureByPhotoLibrary().then((res) => {
-    //   this.formData.zhizhao = 'data:image/jpeg;base64,' + res;
-    // })
-
   }
   onSubmit() {
     this.httpService.signupTwo(this.formData).then((res) => {

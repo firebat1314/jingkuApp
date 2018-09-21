@@ -53,10 +53,10 @@
                 <div item-content>
                     <div class="camra">
                         <img img-lazy-load="./assets/icon/choosefile.png" alt="">
-                        <input type="file" [quality]="0.5" (get-image)="formData.zhizhao = $event" style="width:100%;height:100%;position: absolute;opacity: 0;top:0;">
+                        <input type="file" (get-image)="formData.zhizhao = $event.img_url;zhizhao_img = $event.base64" style="width:100%;height:100%;position: absolute;opacity: 0;top:0;">
                     </div>
                     <div class="camra ui" tappable>
-                        <img img-lazy-load="{{formData.zhizhao || './assets/icon/choosefile_2.png'}}" alt="">
+                        <img img-lazy-load="{{zhizhao_img || './assets/icon/choosefile_2.png'}}" alt="">
                     </div>
                 </div>
             </ion-item>
@@ -66,11 +66,11 @@
                 <div item-content>
                     <div class="camra" tappable>
                         <img img-lazy-load="./assets/icon/choosefile.png" alt="">
-                        <input type="file" [quality]="0.5" (get-image)="formData.medical = $event" style="width:100%;height:100%;position: absolute;opacity: 0;top:0;">
+                        <input type="file" (get-image)="formData.medical = $event.img_url;medical_img = $event.base64" style="width:100%;height:100%;position: absolute;opacity: 0;top:0;">
                     </div>
                     <div class="camra ui" tappable>
-                        <img img-lazy-load="{{formData.medical || './assets/icon/xkz_yl.jpg'}}" alt="">
-					    <div *ngIf="!(formData.medical)" class="sli-fdj " style="    position: absolute;
+                        <img img-lazy-load="{{medical_img || './assets/icon/xkz_yl.jpg'}}" alt="">
+					    <div *ngIf="!(medical_img)" class="sli-fdj " style="    position: absolute;
                             top: 0;
                             left: 0;
                             width: 100%;

@@ -86,10 +86,10 @@
             <div class="input">
                 <div class="camra fuyin" tappable>
                     <img img-lazy-load="./assets/icon/choosefile.png" alt="">
-                    <input type="file" [quality]="0.5" (get-image)="formData.yyzz = $event" style="width:100%;height:100%;position: absolute;opacity: 0;top:0;">
+                    <input type="file" (get-image)="formData.yyzz = $event.img_url;yyzz_img = $event.base64" style="width:100%;height:100%;position: absolute;opacity: 0;top:0;">
                 </div>
                 <div class="camra ui" tappable>
-                    <img img-lazy-load="{{formData.yyzz || data?.data?.yyzz || './assets/icon/choosefile_2.png'}}" alt="">
+                    <img img-lazy-load="{{yyzz_img || data?.data?.yyzz || './assets/icon/choosefile_2.png'}}" alt="">
                 </div>
             </div>
         </div>

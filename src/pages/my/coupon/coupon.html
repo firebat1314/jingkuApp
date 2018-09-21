@@ -59,7 +59,7 @@
             <div class="name">{{supp?.supplier_info?.suppliers_name}}</div>
          </div>
          <div class="right">
-            <button navPush="ParticularsHomePage" [navParams]="{suppliersId:supp.suppliers_id}">进店</button>
+            <button *ngIf="supp.suppliers_id!=-1" (click)="getPrivilege(supp.suppliers_id)">进店</button>
          </div>
       </div>
       <div class="coupon-wrap" *ngFor="let item of supp?.list">
