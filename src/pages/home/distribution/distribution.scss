@@ -1,3 +1,157 @@
 page-distribution {
+   .quick_buy {
+      .top_menu {
+         overflow: hidden;
+         overflow-x: scroll;
+         // padding-bottom: 10px;
+         display: flex;
+         background: #ffffff;
+         flex-wrap: nowrap;
+         background: #5b92de;
 
+         li.menu_ico {
+            text-align: center;
+            color: #fff;
+            position: relative;
+            padding: 14px 32px;
+            white-space: nowrap;
+            background: #5b92de;
+
+            &.meon {
+               background: #3f69a5;
+
+               &:after {
+                  position: absolute;
+                  content: '';
+                  display: block;
+                  border: 6px solid transparent;
+                  border-top-color: #3f69a5;
+                  margin: auto;
+                  left: 0;
+                  bottom: -12px;
+                  right: 0;
+                  width: 0px;
+               }
+            }
+         }
+      }
+   }
+
+   .wrp {
+      background: #fff;
+      padding: 16px;
+      margin-bottom: 10px;
+      display: flex;
+
+      .img {
+         width: 146px;
+         height: 146px;
+         margin-right: 16px;
+         position: relative;
+         background: #fafafa;
+         display: flex;
+         justify-content: center;
+         align-items: center;
+         flex-shrink: 0;
+
+         .time_d {
+            color: #fff;
+            line-height: 30px;
+            font-size: 12px;
+            position: absolute;
+            padding-right: 8px;
+            top: 10px;
+            left: 0px;
+            background-color: rgba(0, 0, 0, .5);
+            border-radius: 0 17.5px 17.5px 0;
+
+            countdown {
+               display: inline-block;
+
+               span {
+                  margin: 0;
+                  background: initial;
+                  color: #fff;
+                  min-width: initial;
+               }
+            }
+
+            &:before {
+               content: "";
+               display: inline-block;
+               width: 17px;
+               height: 17px;
+               background: url(../assets/icon/sg/time_ico.png) center center no-repeat;
+               background-size: 100%;
+               margin-left: 5px;
+               position: relative;
+               top: 3px;
+            }
+         }
+
+      }
+
+      .txt {
+         display: flex;
+         flex-direction: column;
+         color: #666666;
+         flex: 1;
+         margin: 10px 0;
+
+         .tt-4 {
+            margin-bottom: 8px;
+
+            span {
+               background: #fdcb53;
+               color: #fff;
+               padding: 2px 4px;
+               border-radius: 3px;
+            }
+         }
+
+         .tt-2 {
+            font-size: 14px;
+            color: #4d4d4d;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            display: -webkit-box;
+            -webkit-box-orient: vertical;
+            -webkit-line-clamp: 2;
+            flex: 1;
+         }
+
+         .tt-1 {
+            display: flex;
+            font-size: 12px;
+            white-space: nowrap;
+            justify-content: space-between;
+
+            .cx {
+               color: #3f69a5;
+
+               em {
+                  font-size: 26px;
+                  display: inline-block;
+
+                  &:first-letter {
+                     font-size: 14px;
+                     margin-right: 2px;
+                  }
+               }
+            }
+
+            .suzi {
+               button {
+                  background: #f0f6ff;
+                  border: #3f69a5 solid 1px;
+                  border-radius: 5px;
+                  padding: 10px 24px;
+                  outline: none;
+                  color: #3f69a5;
+                  font-size: 14px;
+               }
+            }
+         }
+      }
+   }
 }

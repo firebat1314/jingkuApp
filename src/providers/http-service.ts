@@ -880,4 +880,8 @@ export class HttpService {
    get_goods_parameter(data?: { goods_id: any }, options?: HttpOptions) {
       return this.http.post(IP + '/Goods/get_goods_parameter ', data, { showLoading: false, ...options })
    }
+   /* 铺货分类 */
+   getCategoryDistribution(data?: { goods_id: any }, options?: HttpOptions) {
+      return this.http.post(IP + '/Distribution/getCategoryDistribution ', data, { showLoading: false, ...options })
+   }
 }

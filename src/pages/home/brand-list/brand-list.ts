@@ -164,7 +164,7 @@ export class BrandListPage {
                }, 500);
             })
          } else if (this.isDistribution > 0) {
-            return this.httpService.category_goods_d(Object.assign(this.paramsData, { page: 1 }), { showLoading: false }).then((res) => {
+            return this.httpService.category_goods_d(pagingParam, { showLoading: false }).then((res) => {
                if (res.status == 1) {
                   this.data = res;
                   this.content.resize();
