@@ -888,4 +888,8 @@ export class HttpService {
    GetFileImgs(data?: FormData, options?: HttpOptions) {
       return this.http.post(IP + '/Public/GetFileImgs', data, { showLoading: false, ...options })
    }
+   /* 铺货分类 */
+   getCategoryDistribution(data?: { goods_id: any }, options?: HttpOptions) {
+      return this.http.post(IP + '/Distribution/getCategoryDistribution ', data, { showLoading: false, ...options })
+   }
 }
