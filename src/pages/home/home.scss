@@ -1,7 +1,4 @@
 page-home {
-   [home-padding] {
-      // padding: 0 10px;
-   }
    img {
       width: 100%;
    }
@@ -25,49 +22,6 @@ page-home {
    .home-content {
       background: #fff;
       margin-bottom: 10px;
-      &:last-child {
-         margin: 0;
-      }
-      .title {
-         display: flex;
-         justify-content: space-between;
-         align-items: center;
-         background: #fff;
-         padding: 17px 10px;
-         .txt {
-            border-left: 5px solid get-color(jingku1);
-            font-weight: 500;
-            font-size: 1.5rem;
-            padding-left: 10px;
-            line-height: 1;
-         }
-         .more {
-            color: #999;
-            font-size: 12px;
-            display: flex;
-            align-items: center;
-            ion-icon {
-               color: get-color(jingku1);
-               font-size: 19px;
-               margin-left: 5px;
-            }
-         }
-      }
-      .main {
-         padding: 0 10px 10px;
-      }
-   }
-   .mark-searchbar {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-   }
-   .add_icon {
-      margin-right: 5px;
-      height: 18px;
-      margin-top: -4px;
    }
    .banner-wrapper {
       background: #fff;
@@ -90,7 +44,7 @@ page-home {
    .btn-tool {
       background-color: #fff;
       margin-bottom: 10px;
-      padding: 10px 10px 5px;
+      padding: 15px 10px 5px;
       display: flex;
       justify-content: flex-start;
       align-items: center;
@@ -107,31 +61,50 @@ page-home {
          .img {
             width: 55px;
             height: 55px;
-            margin-bottom: 7px; // border: 1px solid #666;
+            margin-bottom: 4px; // border: 1px solid #666;
             border-radius: 50%;
             display: flex;
             justify-content: center;
             align-items: center;
-            // box-shadow: 0px 0 20px #f5f5f5;
+            box-shadow: 0px 0 20px #f5f5f5;
          }
       }
    }
-   .btn-tool .top,
-   .btn-tool .bottom {}
-   .btn-tool .bottom {
-      margin-bottom: 0px;
+   /*———————————————————————————————— 广告位 ————————————————————————————————*/
+   .ad_wrap {
+      background: #fff;
+      margin-bottom: 10px;
+      display: flex;
+      img {
+         display: block;
+      }
+      .line1 {
+         margin-right: 4px;
+         display: flex;
+         flex-direction: column;
+         flex: 1;
+         img {
+            height: 100%;
+         }
+      }
+      .line2 {
+         flex: 1;
+         >div:first-child {
+            margin-bottom: 4px;
+         }
+      }
    }
    /*———————————————————————————————— 闪购商品 ————————————————————————————————*/
    .shan_gou {
       .title {
-         background: url(../assets/icon/home/home_ico7.png) no-repeat 10px center/22px;
-         padding: 15px 11px 13px 30px;
-         .txt {
-            border: none;
-            color: get-color(jingku1);
-         }
+         padding: 12px 0;
+         color: #444444;
+         display: flex;
+         align-items: center;
+         justify-content: center;
       }
       .main {
+         padding: 0 10px;
          .scroll_wrap {
             overflow-y: scroll;
             display: flex;
@@ -169,195 +142,75 @@ page-home {
             }
          }
       }
-   }
-   /*———————————————————————————————— 广告位 ————————————————————————————————*/
-   .ad_wrap {
-      $width: 10px;
-      padding: $width;
-      background: #fff;
-      margin-bottom: 10px;
-      img {
-         display: block;
-      }
-      .line1 {
+      .see_more {
+         color: #666;
+         font-size: 1.2rem;
+         padding: 8px 0 12px;
          display: flex;
-         >div {
-            margin-right: $width;
-            width: calc(50% - 5px);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            &:last-child {
-               margin: 0;
-            }
-         }
-      }
-      .line2 {
-         img {
-            margin-top: $width;
-         }
+         align-items: center;
+         justify-content: center;
       }
    }
-   /*————————————————————————————————热门品类————————————————————————————————*/
-   .hot-group {
-      margin-bottom: 10px;
-      .main {
-         .banner img {
-            width: 100%;
-            display: block;
-         }
-      }
-      ion-grid {
-         padding: 0;
-         border-left: 1px #e0e0e0 solid;
-         border-top: 1px #e0e0e0 solid;
-         ion-col[width-33] {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: space-around;
-            color: #454545;
-            padding: 7px;
-            border-right: 1px #e0e0e0 solid;
-            border-bottom: 1px #e0e0e0 solid;
-            min-height: 6rem;
-            img {
-               width: 100%;
-            }
-         }
-      }
-   }
-   /*————————————————————————————————热门品牌————————————————————————————————*/
-   .hot-brand {
-      .main {
-         .brand-list {
-            display: flex;
-            flex-wrap: wrap;
-            border-top: 1px solid #e0e0e0;
-            border-left: 1px solid #e0e0e0;
-            >div {
-               width: 25%;
-               border-right: 1px solid #e0e0e0;
-               border-bottom: 1px solid #e0e0e0;
-               overflow: hidden;
-               display: flex;
-               min-height: 80px;
-               align-items: center;
-               img {
-                  display: block;
-                  width: 100%;
-               }
-               &:last-child {
-                  width: 50%;
-               }
-            }
-         }
-      }
-   }
-   /*————————————————————————————————精选专题————————————————————————————————*/
-   .handpick {
-      .show {
-         &:first-child {
-            margin-top: 0;
-         }
-         margin: 1rem auto;
-         min-height: 150px;
-         img {
-            display: block;
-            margin: 0 auto; // border-radius: 5px;
-         }
-      }
-      .pick {
-         .slide-title {
-            width: 100%;
-            padding: 0;
-            .slide-title-unit {
-               padding: 5px;
-               .img {
-                  font-size: 1.3rem;
-                  min-height: 100px;
-                  display: flex;
-                  align-items: center;
-                  img {
-                     display: block;
-                     margin: 0 auto;
-                  }
-               }
-               .info {
-                  .name {
-                     padding: 3px 1px;
-                     width: 100%;
-                     overflow: hidden;
-                     text-overflow: ellipsis;
-                     white-space: nowrap;
-                     font-size: 1.2rem;
-                     color: #666;
-                  }
-                  .price {
-                     color: map_get($colors, danger);
-                     font-size: 1.3rem; // margin-top: 10px;
-                  }
-               }
-               .watch-more {
-                  background-color: #f5f5f5;
-                  overflow: hidden;
-                  color: #666;
-                  height: 100px;
-                  border-radius: 4px;
-                  display: flex;
-                  align-items: center;
-                  justify-content: center;
-                  flex-direction: column;
-                  p {
-                     margin: 5px 0;
-                  }
-               }
-            }
-         }
-      }
-   }
-   /*————————————————————————————————好店推荐————————————————————————————————*/
-   .good-shop {
-      .main {
-         ion-slides {
-            .swiper-slide {
-               padding: 0 20px 20px;
-               margin-bottom: 10px;
-               .card {
-                  position: relative;
-                  img {
-                     width: 100%;
-                  }
-                  .collect {
-                     width: 100%;
-                     position: absolute;
-                     top: 0;
-                     left: 0;
-                     display: flex;
-                     justify-content: space-between;
-                     color: #fff;
-                     padding: 10px;
-                     font-size: 1.5rem;
-                  }
-               }
-            }
-            .swiper-pagination-bullet {
-               width: 10px;
-               height: 10px;
-            }
-         }
-      }
-   }
-   /*————————————————————————————————热门单品————————————————————————————————*/
-   .hot-other {
-      background: initial;
+   /*———————————————————————————————— 品牌街区 ————————————————————————————————*/
+   .brand_street {
       .title {
-         background: #fff;
-         padding: 17px 10px;
-         margin-bottom: 0;
+         padding: 12px 0;
+         color: #444444;
+         display: flex;
+         align-items: center;
+         justify-content: center;
       }
       .main {
-         padding: 0;
+         display: flex;
+         overflow-x: scroll;
+         margin: 0 10px;
+         >div {
+            min-width: 241px;
+            margin-right: 1.6rem;
+            &:last-child {
+               margin-right: 0;
+            }
+            img {
+               max-height: 200px;
+               border-radius: 3px;
+            }
+            span {
+               color: #808080;
+            }
+            h3 {
+               color: #666;
+               font-size: 1.2rem;
+               margin-bottom: 1.2rem;
+               margin-top: 0.5rem;
+            }
+         }
+      }
+   }
+   /*———————————————————————————————— 分类 ————————————————————————————————*/
+   .class_list {
+      .head {
+         padding: 14px 10px;
+         display: flex;
+         background: #fff;
+         .title {
+            border-left: solid 5px #3f69a5;
+            padding-left: 6px;
+         }
+         .brand_list {
+            flex: 1;
+            display: flex;
+            overflow-x: scroll;
+            padding-left: 16px;
+            margin-left: 8px;
+            >.brand {
+               flex-shrink: 0;
+               padding-right: 16px;
+               color: #666666;
+               &.on {
+                  color: #3f69a5;
+               }
+            }
+         }
       }
    }
 }
