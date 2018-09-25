@@ -6,13 +6,60 @@
 -->
 <ion-header>
 
-  <ion-navbar>
-    <ion-title>铺货</ion-title>
-  </ion-navbar>
+   <ion-navbar>
+      <ion-title>铺货</ion-title>
+   </ion-navbar>
 
 </ion-header>
 
 
 <ion-content>
+   <div *ngIf="data" fadeIn>
+      <div class="top_img header-image">
+         <img img-lazy-load="./assets/images/shangou.jpg" defaultSrc="./assets/images/images/640-320.jpg" width="100%" alt="">
+      </div>
+      <div class="main-content">
 
+         <div class="quick_buy">
+            <ul class="top_menu">
+               <li class="menu_ico" tappable (click)="getData(0)" [ngClass]="{'meon':selected==0}">全部</li>
+               <ng-container *ngFor="let item of category?.data">
+                  <li class="menu_ico" tappable (click)="getData(item.cat_id)" [ngClass]="{'meon':selected==item.cat_id}">{{item.cat_name}}</li>
+               </ng-container>
+            </ul>
+         </div>
+
+         <no-goods *ngIf="data&&!data?.goods?.length"></no-goods>
+         <ul class="purchase-box">
+            <li class="wrp" *ngFor="let cleAll of data?.goods" tappable (click)="goParticularsPage(cleAll.id)">
+               <div class="img">
+                  <img [img-lazy-load]="cleAll.goods_img" />
+               </div>
+               <div class="txt">
+                  <div class="tt-4">
+                     <span>铺货</span>
+                  </div>
+                  <div class="tt-2">
+                     {{cleAll.name}}
+                  </div>
+                  <div class="tt-1">
+                     <div class="cx"><em *ngIf="mine?.showPrice">{{cleAll.shop_price}}</em></div>
+                     <div class="suzi"><button>立即铺货</button></div>
+                  </div>
+               </div>
+            </li>
+         </ul>
+      </div>
+   </div>
+   <!--<ion-fab left bottom>
+        <button ion-fab color="jingku1" mini>
+            {{data?.page}}/{{data?.pages}}
+        </button>
+    </ion-fab>-->
+   <ion-fab right bottom>
+      <button ion-fab color="jingku1" (click)="scrollToTop()" mini goBackTop></button>
+   </ion-fab>
+   <ion-infinite-scroll threshold="20%" (ionInfinite)="doInfinite($event)">
+      <ion-infinite-scroll-content></ion-infinite-scroll-content>
+   </ion-infinite-scroll>
 </ion-content>
