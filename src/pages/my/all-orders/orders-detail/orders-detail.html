@@ -140,30 +140,26 @@
                     <span>配送费用：</span>
                     <span class="price">+ ¥{{data?.order?.formated_shipping_fee}}</span>
                 </div>
-                <div *ngIf="data?.order?.formated_subsidy_amount!=0">
+                <div *ngIf="data?.order?.formated_subsidy_amount>0">
                     <span>优惠：</span>
                     <span class="price">- ¥{{data?.order?.formated_subsidy_amount}}</span>
                 </div>
-                <div *ngIf="data?.order?.shipping_subsidy!=0">
+                <div *ngIf="data?.order?.shipping_subsidy>0">
                     <span>运费补贴：</span>
                     <span class="price">- ¥{{data?.order?.shipping_subsidy}}</span>
                 </div>
-                <div *ngIf="data?.total?.volume_amount">
-                    <span>满减金额：</span>
-                    <span class="price">- ¥{{data?.total?.volume_amount}}</span>
+                <div *ngIf="data?.total?.volume_amount>0">
+                    <span>满减优惠：</span>
+                    <span class="price">- ¥{{data?.order?.volume_amount}}</span>
                 </div>
-                <div *ngIf="data?.order?.bonus!=0">
+                <div *ngIf="data?.order?.bonus>0">
                     <span>优惠券：</span>
                     <span class="price">- ¥{{data?.order?.bonus}}</span>
                 </div>
-                <div *ngIf="data?.order?.rank_points!=0">
-                    <span>消费积分：</span>
-                    <span class="price">{{data?.order?.rank_points}}</span>
+                <div *ngIf="data?.order?.rank_points>0">
+                    <span>获赠积分：</span>
+                    <span class="price">+{{data?.order?.rank_points}}</span>
                 </div>
-                <!--<div>
-                    <span>+获赠积分：</span>
-                    <span class="price">¥???</span>
-                </div>-->
             </div>
             <div class="bottom">
                 <div>实付款：
