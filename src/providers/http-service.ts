@@ -551,6 +551,7 @@ export class HttpService {
    }, options?: HttpOptions) {
       return this.http.post(IP + '/User/enterprise_info', data, { showLoading: true, ...options })
    }
+   /* 铺货资质 */
    Distribution_info(data?) {
       return this.http.post(IP + '/User/Distribution_info', data, { showLoading: true })
    }
