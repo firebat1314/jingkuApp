@@ -29,16 +29,16 @@ export class AccountProcessProvider {
     */
    openScanner(index, type) {
     return new Promise<any>((resolve, reject) => {
-      //  this.app.getActiveNav().push('ScanPage', {
-        //  callback: (data) => {
-            let data
+       this.app.getActiveNav().push('ScanPage', {
+         callback: (data) => {
+            /* let data
             if (this.flag) {
                this.flag = !this.flag
                data = '{"machine":"6978","sn":"201001231118900001"}';
             } else {
                this.flag = !this.flag
                data = '{"machine":"11103","sn":"501000711126500001"}';
-            }
+            } */
             try {
                let json = JSON.parse(data);
                if (json.machine) {
@@ -71,8 +71,8 @@ export class AccountProcessProvider {
             } catch (error) {
                this.native.showToast('格式错误');
             }
-        //  }
-      // })
+         }
+      })
     });
   }
 }

@@ -47,7 +47,6 @@
     "clipboard": "^2.0.1",
     "cordova-android": "6.2.3",
     "cordova-plugin-add-swift-support": "^1.7.2",
-    "cordova-plugin-app-version": "~0.1.9",
     "cordova-plugin-badge": "~0.8.1",
     "cordova-plugin-camera": "~2.4.0",
     "cordova-plugin-compat": "^1.0.0",
@@ -99,8 +98,8 @@
   "description": "jingku project",
   "cordova": {
     "platforms": [
-      "ios",
-      "android"
+      "android",
+      "ios"
     ],
     "cordovaPlatforms": [],
     "description": "jingku project",
@@ -144,7 +143,6 @@
       "cordova-plugin-badge": {},
       "cordova-plugin-file-transfer": {},
       "cordova-plugin-inappbrowser": {},
-      "cordova-plugin-app-version": {},
       "cordova-plugin-ionic-webview": {},
       "cordova-plugin-statusbar": {},
       "cordova-plugin-camera": {},

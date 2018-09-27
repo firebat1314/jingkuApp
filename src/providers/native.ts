@@ -4,7 +4,6 @@ import { Camera, CameraOptions } from '@ionic-native/camera';
 import { ImagePicker } from '@ionic-native/image-picker';
 import { CallNumber } from '@ionic-native/call-number';
 import { Toast } from '@ionic-native/toast';
-import { AppVersion } from '@ionic-native/app-version';
 
 import { Transfer, FileUploadOptions, TransferObject } from '@ionic-native/transfer';
 import { File } from '@ionic-native/file';
@@ -24,7 +23,6 @@ export class Native {
       private imagePicker: ImagePicker,
       private callNumber: CallNumber,
       private toast: Toast,
-      private appVersion: AppVersion,
       private transfer: Transfer,
       private file: File,
    ) {
@@ -337,38 +335,6 @@ export class Native {
       });
    }
 
-	/**
-	 *  @name 获取app版本信息demo
-	 */
-   showAppVersion() {
-      this.appVersion.getAppName().then(value => {
-         console.log(value);//ionic2_tabs
-      });
-      this.appVersion.getPackageName().then(value => {
-         console.log(value);//com.kit.platform
-      });
-      this.appVersion.getVersionCode().then(value => {
-         console.log(value);//1
-      });
-      this.appVersion.getVersionNumber().then(value => {
-         console.log(value);//0.0.1
-      });
-   }
-	/**
-	 * @name 获得app版本号,如0.01
-	 * @description 对应/config.xml中version的值
-	 * @returns {Promise<string>}
-	 */
-   getVersionNumber(): Promise<string> {
-      return new Promise((resolve) => {
-         this.appVersion.getVersionNumber().then((value) => {
-            console.log('Version', value)
-            resolve(value);
-         }).catch(err => {
-            console.log('getVersionNumber:' + err);
-         });
-      });
-   }
 	/**
 	 * @name 获取网络类型
 	 */

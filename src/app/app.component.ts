@@ -6,7 +6,7 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 
 import { TabsPage } from '../pages/tabs/tabs';
 import { Native } from "../providers/native";
-import { UpgradeProvider } from '../providers/upgrade/upgrade';
+// import { UpgradeProvider } from '../providers/upgrade/upgrade';
 import { JpushService } from '../providers/jpush-service';
 import { HttpService } from '../providers/http-service';
 
@@ -30,7 +30,7 @@ export class MyApp {
       private splashScreen: SplashScreen,
       private keyboard: Keyboard,
       private native: Native,
-      private upgradeProvider: UpgradeProvider,
+      // private upgradeProvider: UpgradeProvider,
       private jpushServ: JpushService,
       private app: App,
       private httpServ: HttpService,
@@ -87,7 +87,7 @@ export class MyApp {
 
          //———————————————————————— 初次进入app引导页面 ————————————————————————
          if (this.native.isMobile()) {
-            this.upgradeProvider.detectionUpgrade();
+            // this.upgradeProvider.detectionUpgrade();
             this.storage.get('has_entered').then((result) => {
                if (!result) {
                   this.rootPage = 'WelcomePage';

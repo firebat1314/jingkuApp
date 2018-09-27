@@ -28,21 +28,21 @@
 			<div class="swiper-slide">
 				<div style="margin: 22px;width: calc(100% - 44px)">
 					<div class="img">
-						<img [img-lazy-load]="data?.congqiandai[0]?.ad_img" (click)="openSHD()" tappable class="main-img">
+						<img *ngFor="let item of data?.congqiandai" [img-lazy-load]="item?.ad_img" (click)="openSHD()" tappable class="main-img">
 					</div>
 				</div>
 			</div>
 			<div class="swiper-slide">
 				<div style="margin: 22px;width: calc(100% - 44px)">
 					<div class="img">
-						<img [img-lazy-load]="data?.pos[0]?.ad_img" [ads-click]="data?.pos[0]" tappable class="main-img">
+						<img *ngFor="let item of data?.pos" [img-lazy-load]="item?.ad_img" [ads-click]="item" tappable class="main-img">
 					</div>
 				</div>
 			</div>
 			<div class="swiper-slide">
 				<div style="margin: 22px;width: calc(100% - 44px)">
 					<div class="img">
-						<img [img-lazy-load]="data?.xinyong[0]?.ad_img" [ads-click]="data?.xinyong[0]" tappable class="main-img">
+						<img *ngFor="let item of data?.xinyong" [img-lazy-load]="item?.ad_img" [ads-click]="item" tappable class="main-img">
 					</div>
 				</div>
 			</div>

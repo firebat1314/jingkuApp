@@ -11,7 +11,7 @@ import { Native } from "../providers/native";
 import { HttpService } from "../providers/http-service";
 import { JpushService } from "../providers/jpush-service";
 /*———————————————————————————————— ionic-native ————————————————————————————————*/
-import { AppVersion } from '@ionic-native/app-version';
+// import { AppVersion } from '@ionic-native/app-version';
 import { Badge } from '@ionic-native/badge';
 import { ImagePicker } from "@ionic-native/image-picker";
 import { CallNumber } from '@ionic-native/call-number';
@@ -77,7 +77,7 @@ import { preApplyParams } from '../pages/BT/preApplyParams';
     Camera,
     QRScanner,
     ImagePicker,
-    AppVersion,
+   //  AppVersion,
     Toast,
     CallNumber,
     StatusBar,
