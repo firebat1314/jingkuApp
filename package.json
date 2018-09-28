@@ -26,7 +26,6 @@
     "@ionic-native/app-update": "^4.2.1",
     "@ionic-native/app-version": "^3.14.0",
     "@ionic-native/badge": "^3.14.0",
-    "@ionic-native/barcode-scanner": "^3.14.0",
     "@ionic-native/call-number": "^3.4.4",
     "@ionic-native/camera": "^3.10.3",
     "@ionic-native/core": "^4.12.2",
