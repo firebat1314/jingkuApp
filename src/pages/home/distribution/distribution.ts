@@ -1,5 +1,5 @@
 import { Component, ViewChild, ElementRef } from '@angular/core';
-import { NavController, NavParams, Content, IonicPage, FabButton } from 'ionic-angular';
+import { NavController, NavParams, Content, IonicPage, FabButton, ModalController } from 'ionic-angular';
 import { HttpService } from "../../../providers/http-service";
 import { MineProvider } from '../../../providers/mine/mine';
 
@@ -30,6 +30,8 @@ export class DistributionPage {
       private httpService: HttpService,
       private elementRef: ElementRef,
       private mine: MineProvider,
+      private modalCtrl: ModalController,
+
    ) { }
    ngOnInit() {
       this.httpService.getCategoryDistribution().then((data) => {
@@ -60,7 +62,18 @@ export class DistributionPage {
       })
    }
    goParticularsPage(id) {
-      this.navCtrl.push('ParticularsPage', { goodsId: id, isActivity: 1 })
+      this.navCtrl.push('ParticularsPage', { dId: id })
+   }
+   openAttr(e, id) {
+      e.stopPropagation();
+      let modal = this.modalCtrl.create('ParticularsModalAttrPage', {
+         dId: id,
+      }, { cssClass: 'my-modal-style' });
+      modal.onDidDismiss(data => {
+         if (!data) return;
+         data(this.navCtrl);
+      });
+      modal.present();
    }
    scrollToTop() {
       this.content.scrollToTop();

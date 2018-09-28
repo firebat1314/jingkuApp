@@ -1,5 +1,6 @@
 page-distribution {
    .quick_buy {
+      margin-top: -1px;
       .top_menu {
          overflow: hidden;
          overflow-x: scroll;
@@ -44,8 +45,8 @@ page-distribution {
       display: flex;
 
       .img {
-         width: 146px;
-         height: 146px;
+         width: 135px;
+         height: 135px;
          margin-right: 16px;
          position: relative;
          background: #fafafa;
@@ -96,7 +97,6 @@ page-distribution {
          flex-direction: column;
          color: #666666;
          flex: 1;
-         margin: 10px 0;
 
          .tt-4 {
             margin-bottom: 8px;
@@ -125,7 +125,7 @@ page-distribution {
             font-size: 12px;
             white-space: nowrap;
             justify-content: space-between;
-
+            align-items: flex-end;
             .cx {
                color: #3f69a5;
 
@@ -145,7 +145,7 @@ page-distribution {
                   background: #f0f6ff;
                   border: #3f69a5 solid 1px;
                   border-radius: 5px;
-                  padding: 10px 24px;
+                  padding: 10px 18px;
                   outline: none;
                   color: #3f69a5;
                   font-size: 14px;
