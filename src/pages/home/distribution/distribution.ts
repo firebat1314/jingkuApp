@@ -17,14 +17,13 @@ import { MineProvider } from '../../../providers/mine/mine';
 })
 export class DistributionPage {
    infiniteScroll: any;
-   size: any = 10;
 
    category: any;
    data: any;
    selected = 0;
-   page = 1;
    @ViewChild(Content) content: Content;
    @ViewChild(FabButton) fabButton: FabButton;
+   goodsList: any = [];
    constructor(
       public navCtrl: NavController,
       public navParams: NavParams,
@@ -51,14 +50,12 @@ export class DistributionPage {
       });
    }
    getData(id) {
-      this.page = 1;
-
       this.infiniteScroll ? this.infiniteScroll.enable(true) : null;
-
-      this.httpService.category_goods_d({ page: this.page, num: this.size, cat_id: id }).then((res) => {
+      this.httpService.category_goods_d({ page: 1, num: 10, cat_id: id }).then((res) => {
          if (res.status == 1) {
             this.selected = id;
             this.data = res;
+            this.goodsList = res.goods;
          }
       })
    }
@@ -72,9 +69,13 @@ export class DistributionPage {
       this.infiniteScroll = infiniteScroll;
       if (this.data.page < this.data.pages) {
          let page = this.data.page
-         this.httpService.category_goods_d({ num: this.size, page: ++page, cat_id: this.selected }, { showLoading: false }).then((res) => {
+         this.httpService.category_goods_d({ num: 10, page: ++page, cat_id: this.selected }, { showLoading: false }).then((res) => {
+            setTimeout(() => {
+               this.infiniteScroll.complete();
+            }, 500);
             if (res.status == 1) {
-               this.data.data = this.data.data.concat(res.data);
+               this.data = res;
+               this.goodsList = [...this.goodsList, ...res.goods];
             }
          })
       } else {

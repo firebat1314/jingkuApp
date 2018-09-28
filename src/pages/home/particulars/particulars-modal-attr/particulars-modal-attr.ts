@@ -3,7 +3,6 @@ import { NavController, NavParams, ViewController, Events, IonicPage, AlertContr
 import { HttpService } from "../../../../providers/http-service";
 import { Native } from "../../../../providers/native";
 import { MineProvider } from '../../../../providers/mine/mine';
-import { QRScanner } from '@ionic-native/qr-scanner';
 
 export class goodsSpectaclesParams {
    number = 1;//所填写的商品的数量

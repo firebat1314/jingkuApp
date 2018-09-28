@@ -29,9 +29,9 @@
             </ul>
          </div>
 
-         <no-goods *ngIf="data&&!data?.goods?.length"></no-goods>
+         <no-goods *ngIf="data&&!goodsList?.length"></no-goods>
          <ul class="purchase-box">
-            <li class="wrp" *ngFor="let cleAll of data?.goods" tappable (click)="goParticularsPage(cleAll.id)">
+            <li class="wrp" *ngFor="let cleAll of goodsList" tappable (click)="goParticularsPage(cleAll.id)">
                <div class="img">
                   <img [img-lazy-load]="cleAll.goods_img" />
                </div>

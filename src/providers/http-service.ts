@@ -339,7 +339,7 @@ export class HttpService {
       return this.http.post(IP + '/User/profile', data, { showLoading: true })
    }
    editAvatar(data?: Object) {//修改头像
-      return this.http.post(IP + '/User/avatar', data, { showLoading: true })
+      return this.http.post(IP + '/User/avatar', data, { showLoading: false })
    }
    /**
     * 后加接口
@@ -883,11 +883,11 @@ export class HttpService {
    }
    /* 统一上传图片 base64 */
    GetFileImg(data?: { img: any }, options?: HttpOptions) {
-      return this.http.post(IP + '/Public/GetFileImg ', data, { showLoading: false, ...options })
+      return this.http.post(IP + '/Public/GetFileImg ', data, { showLoading: true, ...options })
    }
    /* 统一上传图片  file*/
    GetFileImgs(data?: FormData, options?: HttpOptions) {
-      return this.http.post(IP + '/Public/GetFileImgs', data, { showLoading: false, ...options })
+      return this.http.post(IP + '/Public/GetFileImgs', data, { showLoading: true, ...options })
    }
    /* 铺货分类 */
    getCategoryDistribution(data?: { goods_id: any }, options?: HttpOptions) {
