@@ -382,32 +382,21 @@ export class ParticularsHomePage {
       this.shop_PriceStatus = true;
       this.paramsData.stort = 'DESC';
 
-      /*if (this.all_Status) {
-        this.paramsData.stort = 'ASC';
-        this.all_Status = false;
-        this.getAllData();
-      } else {
-        this.all_Status = true;
-        this.paramsData.stort = 'DESC';
-        this.getAllData();
-      } */
       this.getAllData();
     }
+    
+    if(this.alltool == 'goods_sort'){
+      this.paramsData.order = 'goods_sort';
+      this.paramsData.stort = 'DESC';
+      this.getAllData();
+   }
     if (this.alltool == 'sales_num') {
       this.paramsData.order = 'sales_num';
       this.shop_PriceStatus = true;
       this.all_Status = true;
       this.paramsData.stort = 'DESC';
 
-      /* if (this.sales_NumStatus) {
-        this.paramsData.stort = 'ASC';
-        this.sales_NumStatus = false;
-        this.getAllData();
-      } else {
-        this.sales_NumStatus = true;
-        this.paramsData.stort = 'DESC';
-        this.getAllData();
-      } */
+
       this.getAllData();
     }
     if (this.alltool == 'shop_price') {
