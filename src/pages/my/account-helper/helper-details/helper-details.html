@@ -8,6 +8,9 @@
 
     <ion-navbar>
         <ion-title>{{data?.data?.title}}</ion-title>
+        <ion-buttons right>
+         <button ion-button clear *ngIf="is_modal" (click)="viewCtrl.dismiss()">关闭</button>
+     </ion-buttons>
     </ion-navbar>
 
 </ion-header>

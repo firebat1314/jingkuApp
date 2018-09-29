@@ -368,8 +368,8 @@ export class HttpService {
    presell(data?: Object, options?: HttpOptions) {//预售促销商品列表
       return this.http.get(IP + '/Index/presell', data, { showLoading: true, ...options })
    }
-   helpInfo(data?: Object) {//帮助中心
-      return this.http.get(IP + '/User/helpInfo', data, { showLoading: true })
+   helpInfo(data?: Object, options?: HttpOptions) {//帮助中心
+      return this.http.get(IP + '/User/helpInfo', data, { showLoading: true, ...options })
    }
    userRank(data?: Object) {//用户等级
       return this.http.get(IP + '/User/UserRank', data, { showLoading: false })

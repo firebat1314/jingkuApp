@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams, IonicPage } from 'ionic-angular';
+import { NavController, NavParams, IonicPage, ViewController } from 'ionic-angular';
 import { HttpService } from "../../../../providers/http-service";
 
 /*
@@ -18,10 +18,12 @@ import { HttpService } from "../../../../providers/http-service";
 export class HelperDetailsPage {
   data: any;
   article_id = this.navParams.get('article_id');
+  is_modal = this.navParams.get('is_modal');
   constructor(
-    public navCtrl: NavController,
-    public navParams: NavParams,
-    public httpService: HttpService
+    private navCtrl: NavController,
+    private navParams: NavParams,
+    private httpService: HttpService,
+    private viewCtrl: ViewController,
   ) {
     
   }

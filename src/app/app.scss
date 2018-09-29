@@ -472,7 +472,23 @@ button.swiper-pagination-bullet {
         }
     } */
 }
+/*———————————————————————————————————— 隐私政策弹窗 ————————————————————————————————————*/
 
+.privacy_policy{
+   .alert-message{
+      text-align: left;
+      max-height: initial;
+      white-space: pre-wrap;
+      .look_privacy_policy{
+         margin-top: 10px;
+         text-align: left;
+         color: #333333;
+         .privacy_policy_a{
+            color: #1da1f4;
+         }
+      }
+   }
+}
 /*————————————————————————————————————segment-style————————————————————————————————————*/
 
 .ios .segment-style {
