@@ -4,8 +4,8 @@
       <ion-title>铺货资质</ion-title>
       <ion-buttons right>
          <button ion-button clear icon-only icon-left right open-more="MoreMenuPage">
-				 <ion-icon name="ios-more"></ion-icon>
-			</button>
+            <ion-icon name="ios-more"></ion-icon>
+         </button>
       </ion-buttons>
    </ion-navbar>
 
@@ -17,7 +17,48 @@
       <div class="list">
          <div class="li">
             <div class="name">营业执照编号：</div>
-            <ion-input autocomplete="off" autocorrect="off" class="inp" [disabled]="checks" [(ngModel)]="params.yyzzsn" placeholder="请填写" type="text" value=""></ion-input>
+
+            <ng-container *ngIf="!checks">
+               <ion-input autocomplete="off" autocorrect="off" class="inp" [disabled]="checks" [(ngModel)]="params.yyzzsn" placeholder="请填写" type="text" value=""></ion-input>
+            </ng-container>
+            <ng-container *ngIf="checks">
+               无
+            </ng-container>
+         </div>
+         <div class="li">
+            <div class="name">身份证效期：</div>
+            <ng-container *ngIf="!checks">
+               <ion-datetime style="padding: 0;position: relative;" item-end cancelText="取消" doneText="确定" placeholder="请选择" displayFormat="YYYY-MM-DD" [(ngModel)]="params.code_validity_start"></ion-datetime>
+               <span>&nbsp;—&nbsp;</span>
+               <ion-datetime style="padding: 0;position: relative;" item-end cancelText="取消" doneText="确定" placeholder="请选择" displayFormat="YYYY-MM-DD" [(ngModel)]="params.code_validity_end"></ion-datetime>
+            </ng-container>
+            <ng-container *ngIf="checks">
+               无
+            </ng-container>
+         </div>
+         <div class="li">
+            <div class="name">营业执照效期：</div>
+            <ng-container *ngIf="!checks">
+               <ion-datetime style="padding: 0;position: relative;" item-end cancelText="取消" doneText="确定" placeholder="请选择" displayFormat="YYYY-MM-DD" [(ngModel)]="params.zz_validity_start"></ion-datetime>
+               <span>&nbsp;—&nbsp;</span>
+               <ion-datetime style="padding: 0;position: relative;" item-end cancelText="取消" doneText="确定" placeholder="请选择" displayFormat="YYYY-MM-DD" [(ngModel)]="params.zz_validity_end"></ion-datetime>
+            </ng-container>
+            <ng-container *ngIf="checks">
+               无
+            </ng-container>
+         </div>
+         <div class="li">
+            <div class="name">门头照：</div>
+            <div class="camra" tappable *ngIf="!checks">
+               <img img-lazy-load="./assets/icon/choosefile.png" alt="">
+               <input type="file" (get-image)="params.doorhead_img = $event.img_url;doorhead_img_img = $event.base64" style="width:100%;height:100%;position: absolute;opacity: 0;top:0;">
+            </div>
+            <div class="camra ui" tappable *ngIf="doorhead_img_img || data?.data?.doorhead_img">
+               <img img-lazy-load="{{doorhead_img_img || data?.data?.doorhead_img}}" alt="">
+            </div>
+            <div *ngIf="!(doorhead_img_img || data?.data?.doorhead_img)">
+               无
+            </div>
          </div>
          <div class="li">
             <div class="name">营业执照：</div>

@@ -261,6 +261,11 @@ export class BrandListPage {
 		} */
          this.getListData();
       }
+      if(this.mytool == 'goods_sort'){
+         this.paramsData.order = 'goods_sort';
+         this.paramsData.stort = 'DESC';
+         this.getListData();
+      }
       if (this.mytool == 'sales_num') {
 
          this.paramsData.order = 'sales_num';

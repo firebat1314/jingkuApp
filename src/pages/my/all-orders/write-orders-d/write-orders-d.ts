@@ -229,6 +229,21 @@ export class WriteOrdersDPage {
                cssClass: 'recharge-alert'
             }).present();
 
+         } else if (res.status == -1) {
+            this.alertCtrl.create({
+               cssClass: 'alert-style',
+               title: res.info,
+               buttons: [
+                  {
+                     text: '确认',
+                     handler: () => {
+                        this.viewCtrl.dismiss((navCtrl) => {
+                           navCtrl.push('DistributionQualificationPage');
+                        });
+                     }
+                  }
+               ],
+            }).present();
          }
       })
       // }
