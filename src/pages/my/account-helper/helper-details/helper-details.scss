@@ -1,7 +1,11 @@
 page-helper-details {
-    p {
-        &:first-child {
-            margin: 0;
-        }
-    }
+   pointer-events: initial !important;
+   -ms-touch-action: initial !important;
+   touch-action: initial !important;
+
+   p {
+      &:first-child {
+         margin: 0;
+      }
+   }
 }

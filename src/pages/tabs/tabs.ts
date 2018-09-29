@@ -27,7 +27,6 @@ export class TabsPage {
       private mine: MineProvider,
       private alertCtrl: AlertController,
       private native: Native,
-      private navCtrl: NavController,
       private modalCtrl: ModalController
    ) {
 
@@ -48,7 +47,7 @@ export class TabsPage {
       if (this.native.isMobile()) {
          this.httpService.getStorage('watched_privacy_policy').then(res => {
             if (!res) {
-               this.httpService.helpInfo({ id: 40 }, { showLoading: false }).then((res) => {
+               this.httpService.helpInfo({ id: 36 }, { showLoading: false }).then((res) => {
                   if (res.status == 1) {
                      this.alertCtrl.create({
                         cssClass: 'privacy_policy',
@@ -76,7 +75,7 @@ export class TabsPage {
                         let btn: any = document.querySelector('.privacy_policy_a');
                         btn.onclick = () => {
                            this.modalCtrl.create('HelperDetailsPage', {
-                              article_id: 40,
+                              article_id: 36,
                               is_modal: true
                            }).present();
                         }

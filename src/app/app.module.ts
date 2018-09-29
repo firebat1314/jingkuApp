@@ -43,7 +43,9 @@ import { preApplyParams } from '../pages/BT/preApplyParams';
     IonicModule.forRoot(MyApp, {
       platforms: {
         ios: {
-
+         scrollAssist:true,
+         autoFocusAssist:true,
+         scrollPadding:true
         },
         android:{
           backButtonIcon:'ios-arrow-back'

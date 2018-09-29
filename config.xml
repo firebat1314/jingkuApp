@@ -98,7 +98,6 @@
     <icon src="resources/android/icon/drawable-xhdpi-icon.png" />
     <engine name="android" spec="6.2.3" />
     <engine name="ios" spec="~4.5.5" />
-    <plugin name="ionic-plugin-keyboard" spec="~2.2.1" />
     <plugin name="cordova-plugin-whitelist" spec="1.3.1" />
     <plugin name="cordova-plugin-device" spec="1.1.4" />
     <plugin name="cordova-plugin-x-toast" spec="~2.6.0" />
@@ -108,7 +107,6 @@
     <plugin name="cordova-plugin-badge" spec="~0.8.1" />
     <plugin name="cordova-plugin-file-transfer" spec="^1.7.1" />
     <plugin name="cordova-plugin-inappbrowser" spec="~1.7.1" />
-    <plugin name="cordova-plugin-ionic-webview" spec="~1.1.15" />
     <plugin name="cordova-plugin-statusbar" spec="git+https://github.com/apache/cordova-plugin-statusbar.git" />
     <plugin name="cordova-plugin-camera" spec="~2.4.0" />
     <plugin name="cordova-plugin-pingpp" spec="git+https://git.coding.net/pingplusplus/pingpp-cordova.git" />
@@ -125,4 +123,6 @@
         <variable name="ANDROID_PATHPREFIX" value="/" />
     </plugin>
     <plugin name="cordova-plugin-qrscanner" spec="^2.6.0" />
+    <plugin name="cordova-plugin-ionic-webview" spec="^2.1.4" />
+    <plugin name="cordova-plugin-ionic-keyboard" spec="^2.1.3" />
 </widget>
