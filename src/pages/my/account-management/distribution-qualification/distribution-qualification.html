@@ -16,14 +16,16 @@
    <ng-container *ngIf="data">
       <div class="list">
          <div class="li">
-            <div class="name">营业执照编号：</div>
-
-            <ng-container *ngIf="!checks">
-               <ion-input autocomplete="off" autocorrect="off" class="inp" [disabled]="checks" [(ngModel)]="params.yyzzsn" placeholder="请填写" type="text" value=""></ion-input>
-            </ng-container>
-            <ng-container *ngIf="checks">
-               无
-            </ng-container>
+            <div class="name">法人姓名：</div>
+            <ion-input autocomplete="off" autocorrect="off" class="inp" [disabled]="checks" [(ngModel)]="params.fr" [placeholder]="checks?'无':'请填写'" type="text" value=""></ion-input>
+         </div>
+         <div class="li">
+            <div class="name">法人身份证号：</div>
+            <ion-input autocomplete="off" autocorrect="off" class="inp" [disabled]="checks" [(ngModel)]="params.code_sn" [placeholder]="checks?'无':'请填写'" type="text" value=""></ion-input>
+         </div>
+         <div class="li">
+            <div class="name">法人联系方式：</div>
+            <ion-input autocomplete="off" autocorrect="off" class="inp" [disabled]="checks" [(ngModel)]="params.mobile" [placeholder]="checks?'无':'请填写'" type="number" value=""></ion-input>
          </div>
          <div class="li">
             <div class="name">身份证效期：</div>
@@ -33,7 +35,14 @@
                <ion-datetime style="padding: 0;position: relative;" item-end cancelText="取消" doneText="确定" placeholder="请选择" displayFormat="YYYY-MM-DD" [(ngModel)]="params.code_validity_end"></ion-datetime>
             </ng-container>
             <ng-container *ngIf="checks">
-               无
+               <span style="color:#999;">无</span>
+            </ng-container>
+         </div>
+         <div class="li">
+            <div class="name">营业执照编号：</div>
+
+            <ng-container>
+               <ion-input autocomplete="off" autocorrect="off" class="inp" [disabled]="checks" [(ngModel)]="params.yyzzsn" [placeholder]="checks?'无':'请填写'" type="text" value=""></ion-input>
             </ng-container>
          </div>
          <div class="li">
@@ -44,7 +53,7 @@
                <ion-datetime style="padding: 0;position: relative;" item-end cancelText="取消" doneText="确定" placeholder="请选择" displayFormat="YYYY-MM-DD" [(ngModel)]="params.zz_validity_end"></ion-datetime>
             </ng-container>
             <ng-container *ngIf="checks">
-               无
+               <span style="color:#999;">无</span>
             </ng-container>
          </div>
          <div class="li">
@@ -57,7 +66,7 @@
                <img img-lazy-load="{{doorhead_img_img || data?.data?.doorhead_img}}" alt="">
             </div>
             <div *ngIf="!(doorhead_img_img || data?.data?.doorhead_img)">
-               无
+               <span style="color:#999;">无</span>
             </div>
          </div>
          <div class="li">

@@ -402,7 +402,7 @@ export class HttpService {
       return this.http.post(IP + '/Login/forgotPwd', data, { showLoading: true })
    }
    coupon(data?: Object) {//首页优惠券
-      return this.http.get(IP + '/Index/coupon', data, { showLoading: true })
+      return this.http.get(IP + '/Index/coupon', data, { showLoading: false })
    }
    delOrder(data?: Object) {//删除订单
       return this.http.get(IP + '/User/del_order', data, { showLoading: true })
@@ -892,5 +892,9 @@ export class HttpService {
    /* 铺货分类 */
    getCategoryDistribution(data?: { goods_id: any }, options?: HttpOptions) {
       return this.http.post(IP + '/Distribution/getCategoryDistribution ', data, { showLoading: false, ...options })
+   }
+   /* 优惠券分类 */
+   CatCoupon(data?, options?: HttpOptions) {
+      return this.http.post(IP + '/Index/CatCoupon ', data, { showLoading: true, ...options })
    }
 }

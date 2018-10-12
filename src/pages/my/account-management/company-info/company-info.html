@@ -25,7 +25,7 @@
 		<div class="list">
 			<div class="li">
 				<div class="name">企业名称：</div>
-				<ion-input autocomplete="off" autocorrect="off" class="inp" [disabled]="checks" [(ngModel)]="params.company" placeholder="请填写" type="text"></ion-input>
+				<ion-input autocomplete="off" autocorrect="off" class="inp" [disabled]="checks" [(ngModel)]="params.company" [placeholder]="checks?'无':'请填写'" type="text"></ion-input>
 			</div>
 			<div class="li">
 				<div class="name">经营所在地：</div>
@@ -36,19 +36,19 @@
 			</div>
 			<div class="li">
 				<div class="name">经营地址：</div>
-				<ion-input autocomplete="off" autocorrect="off" class="inp" [disabled]="checks" [(ngModel)]="params.address" placeholder="请填写" type="text" value=""></ion-input>
+				<ion-input autocomplete="off" autocorrect="off" class="inp" [disabled]="checks" [(ngModel)]="params.address" [placeholder]="checks?'无':'请填写'" type="text" value=""></ion-input>
 			</div>
 			<div class="li">
 				<div class="name">注册电话</div>
-				<ion-input autocomplete="off" autocorrect="off" class="inp" [disabled]="checks" [(ngModel)]="params.zctel" placeholder="请填写" type="text" value=""></ion-input>
+				<ion-input autocomplete="off" autocorrect="off" class="inp" [disabled]="checks" [(ngModel)]="params.zctel" [placeholder]="checks?'无':'请填写'" type="text" value=""></ion-input>
 			</div>
 			<div class="li">
 				<div class="name">银行开户可许证：</div>
-				<ion-input autocomplete="off" autocorrect="off" class="inp" [disabled]="checks" [(ngModel)]="params.xk" placeholder="请填写" type="text" value=""></ion-input>
+				<ion-input autocomplete="off" autocorrect="off" class="inp" [disabled]="checks" [(ngModel)]="params.xk" [placeholder]="checks?'无':'请填写'" type="text" value=""></ion-input>
 			</div>
 			<div class="li">
 				<div class="name">营业执照编号：</div>
-				<ion-input autocomplete="off" autocorrect="off" class="inp" [disabled]="checks" [(ngModel)]="params.yyzzsn" placeholder="请填写" type="text" value=""></ion-input>
+				<ion-input autocomplete="off" autocorrect="off" class="inp" [disabled]="checks" [(ngModel)]="params.yyzzsn" [placeholder]="checks?'无':'请填写'" type="text" value=""></ion-input>
 			</div>
 			<div class="li">
 				<div class="name">营业执照：</div>
@@ -115,15 +115,15 @@
 		<div class="list">
 			<div class="li">
 				<div class="name">法人姓名：</div>
-				<ion-input autocomplete="off" autocorrect="off" class="inp" [disabled]="checks" [(ngModel)]="params.fr" placeholder="请填写" type="text" value=""></ion-input>
+				<ion-input autocomplete="off" autocorrect="off" class="inp" [disabled]="checks" [(ngModel)]="params.fr" [placeholder]="checks?'无':'请填写'" type="text" value=""></ion-input>
 			</div>
 			<div class="li">
 				<div class="name">身份证号：</div>
-				<ion-input autocomplete="off" autocorrect="off" class="inp" [disabled]="checks" [(ngModel)]="params.code_sn" placeholder="请填写" type="text" value=""></ion-input>
+				<ion-input autocomplete="off" autocorrect="off" class="inp" [disabled]="checks" [(ngModel)]="params.code_sn" [placeholder]="checks?'无':'请填写'" type="text" value=""></ion-input>
 			</div>
 			<div class="li">
 				<div class="name">手机号码：</div>
-				<ion-input autocomplete="off" autocorrect="off" class="inp" [disabled]="checks" [(ngModel)]="params.mobile" placeholder="请填写" type="number" value=""></ion-input>
+				<ion-input autocomplete="off" autocorrect="off" class="inp" [disabled]="checks" [(ngModel)]="params.mobile" [placeholder]="checks?'无':'请填写'" type="number" value=""></ion-input>
 			</div>
 			<div class="li">
 				<div class="name">身份证正面照片：</div>
