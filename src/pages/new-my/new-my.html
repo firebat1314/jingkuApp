@@ -235,11 +235,11 @@
                </span>
                <span class="txt">帮助中心</span>
             </a>
-            <a>
-               <!-- <span class="icon_num">
+            <a (click)="goAccountServicePage()">
+               <span class="icon_num">
                   <img src="./assets/icon/new_center/5.png" alt="">
                </span>
-               <span class="txt">镜库客服</span> -->
+               <span class="txt">镜库客服</span>
             </a>
             <a (click)="bindWeixin()" *ngIf="native.isWeixin()">
                <span class="icon_num">

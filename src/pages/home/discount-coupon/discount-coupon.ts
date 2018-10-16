@@ -18,6 +18,9 @@ export class DiscountCouponPage {
    data: any;
    @ViewChild(Content) content: Content;
    @ViewChild(FabButton) fabButton: FabButton;
+   couponSelect: number = 0;
+   category: any;
+   showmark: boolean;
    constructor(
       public navCtrl: NavController,
       public navParams: NavParams,
@@ -30,7 +33,11 @@ export class DiscountCouponPage {
       console.log('ionViewDidLoad DiscountCouponPage');
    }
    ngOnInit() {
-      this.getCouponData();
+      this.getCategory();
+   }
+
+   ionViewWillLeave() {
+      this.showmark = false;
    }
    ngAfterViewInit() {
       /* 回到顶部按钮 */
@@ -39,8 +46,20 @@ export class DiscountCouponPage {
          this.fabButton.setElementClass("fab-button-in", d.scrollTop >= d.contentHeight);
       });
    }
-   getCouponData() {
-      this.httpService.coupon({ page: 1 }).then((res) => {
+   getCategory() {
+      this.httpService.CatCoupon().then(res => {
+         if (res.status == 1) {
+            this.category = res;
+            this.getCouponData();
+         }
+      });
+   }
+   getCouponData(id = 0) {
+      this.couponSelect = id;
+      this.httpService.coupon({
+         cat: id,
+         page: 1
+      }).then((res) => {
          if (res.status == 1) {
             this.data = res;
          }
@@ -55,7 +74,7 @@ export class DiscountCouponPage {
          } else {
             this.navCtrl.push('ParticularsHomePage', { suppliersId: suppliers_id })
          }
-      }else if (is_get == 0) {
+      } else if (is_get == 0) {
          this.native.openAlertBox('确认领取优惠券', () => {
             this.httpService.sendByUser({ type_id: type_id }).then((res) => {
                if (res.status == 1) {
@@ -91,6 +110,10 @@ export class DiscountCouponPage {
          this.flag = false;
       }
    }
+   segmentChange() {
+
+   }
+
    scrollToTop() {
       this.content.scrollToTop();
    }

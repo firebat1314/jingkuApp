@@ -185,8 +185,8 @@ export class WriteOrdersPage {
                }
             }
             //可用运费优惠券
-            this.shipBonus = this.data.cart_goods_list.reduce((x,y)=>x+(y.use_shipping_bonus.length),0);
-           
+            this.shipBonus = this.data.cart_goods_list.reduce((x, y) => x + (y.use_shipping_bonus.length), 0);
+
             //note 是否填写
             this.noteStatus = false;
             for (var note in this.data.suppliers_notes) {
@@ -229,16 +229,10 @@ export class WriteOrdersPage {
          }
       })
    }
-   changeSurplus(toggle) {
-      if (toggle) {
-         this.httpService.changeSurplus({ surplus: 1 }).then((res) => {
-            this.getHttpData()
-         });
-      } else {
-         this.httpService.changeSurplus({ surplus: 0 }).then((res) => {
-            this.getHttpData()
-         });
-      }
+   change_machining(toggle) {
+      this.httpService.change_machining().then((res) => {
+         this.getHttpData();
+      });
    }
    goPayAndShipPage() {
       if (!this.defaultShipping) {
@@ -254,7 +248,7 @@ export class WriteOrdersPage {
       }
       this.navCtrl.push('UsecouponPage')
    }
-   goCouponShipPage(){
+   goCouponShipPage() {
       if (!this.selectedShip) {
          return this.native.showToast('请选择配送方式')
       }

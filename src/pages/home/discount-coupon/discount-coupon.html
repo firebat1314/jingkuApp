@@ -6,60 +6,80 @@
 -->
 <ion-header>
 
-    <ion-navbar>
-        <ion-title>优惠券</ion-title>
-        <!-- <ion-buttons right>
+   <ion-navbar>
+      <ion-title>领券中心</ion-title>
+      <!-- <ion-buttons right>
             <button ion-button clear icon-only icon-left>
                 <ion-icon name="ios-share-alt-outline"></ion-icon>
+                
             </button>
         </ion-buttons> -->
-    </ion-navbar>
+   </ion-navbar>
+   <ion-toolbar no-padding>
+      <div class="coupon-types">
+         <div class="left">
+            <div class="type" tappable [class.on]="couponSelect==0" (click)="getCouponData(0)">全部</div>
+            <div class="type" *ngFor="let item of category?.list" tappable [class.on]="couponSelect==item.cat_id" (click)="getCouponData(item.cat_id)">{{item.cat_name}}</div>
+         </div>
+         <div class="right" (click)="showmark = !showmark">
+            <ion-icon name="ios-list"></ion-icon>
+         </div>
+
+      </div>
+   </ion-toolbar>
 
 </ion-header>
 
+<div class="mark" *ngIf="showmark" fadeIn tappable (click)="showmark=false">
+   <div class="title" *ngIf="category?.list?.length">- 全部{{category?.list?.length}}个分类 -</div>
+   <div class="type-wrap" (click)="$event.stopPropagation()">
+      <button ion-button small round tappable [class.on]="couponSelect==0" (click)="getCouponData(0);showmark=false;"><em></em>全部</button>
+      <button ion-button small round tappable *ngFor="let item of category?.list" [class.on]="couponSelect==item.cat_id" (click)="getCouponData(item.cat_id);showmark=false;"><em></em>{{item.cat_name}}</button>
+   </div>
+</div>
 
 <ion-content parallax-header>
-    <div class="header-image">
+   <!--  <div class="header-image">
         <img img-lazy-load="./assets/images/youhuiquan.jpg" defaultSrc="./assets/images/images/640-320.jpg" width="100%" alt="">
-    </div>
-    <div class="main-content">
-        <div class="no-coupon" *ngIf="data&&!data?.list?.length">
+    </div> -->
+   <div class="main-content">
+      <div class="no-coupon" *ngIf="data&&!data?.list?.length">
+         <div class="img">
+            <img img-lazy-load="./assets/icon/no-coupon.png" alt="">
+         </div>
+         <div class="message">
+            还没有优惠券哦
+         </div>
+      </div>
+      <div class="coupon" [class.get]="item.is_get==1" [class.sack]="item.is_get==2" *ngFor="let item of data?.list">
+         <div class="get">
+            <img *ngIf="item.is_get==1" src="./assets/images/images/coupon_center_1_03.png" alt="">
+            <img *ngIf="item.is_get==2" style="width: 4.7rem;" src="./assets/images/images/coupon_center_1_04.png" alt="">
+         </div>
+         <div class="left" tappable (click)="getPrivilege(1,item.type_id,item.suppliers_id)">
             <div class="img">
-                <img img-lazy-load="./assets/icon/no-coupon.png" alt="">
+               <img src="{{item.logo}}" alt="">
             </div>
-            <div class="message">
-                还没有优惠券哦
+            <div class="center">
+               <div class="title">{{item.suppliers_name}}</div>
+               <div class="info">¥<span class="bigfont">{{item.type_money}}</span><span class="mj">满{{item.min_goods_amount}}可用</span></div>
             </div>
-        </div>
-        <div class="coupon" [class.get]="item.is_get==1" *ngFor="let item of data?.list">
-            <div class="get">
-                <img  *ngIf="item.is_get==1" src="./assets/images/images/coupon_center_1_03.png" alt="">
-                <img  *ngIf="item.is_get==2" style="width: 4.7rem;" src="./assets/images/images/coupon_center_1_04.png" alt="">
+         </div>
+         <div class="right">
+            <div style="width: 60px;height: 60px;">
+               <my-canvas [baifen]="item.baifen.slice(0,-1)" *ngIf="item.is_get==0"></my-canvas>
             </div>
-            <div class="left" tappable (click)="getPrivilege(1,item.type_id,item.suppliers_id)">
-                <div class="img">
-                    <img src="{{item.logo}}" alt="">
-                </div>
-                <div class="center">
-                    <div class="title">{{item.suppliers_name}}</div>
-                    <div class="info"><span class="bigfont">{{item.type_money}}</span>满{{item.min_goods_amount}}可用</div>
-                </div>
-            </div>
-            <div class="right">
-                <div style="width: 60px;height: 60px;">
-                    <my-canvas [baifen]="item.baifen.slice(0,-1)" *ngIf="item.is_get==0"></my-canvas>
-                </div>
-                <div ion-button small round block class="click touse" *ngIf="item.is_get==0" (click)="getPrivilege(0,item.type_id,item.suppliers_id)">点击领劵</div>
-                <div ion-button small round block class="touse" *ngIf="item.is_get==1" (click)="getPrivilege(1,item.type_id,item.suppliers_id)">去使用</div>
-                <div ion-button small round block class="touse" *ngIf="item.is_get==2" (click)="getPrivilege(2,item.type_id,item.suppliers_id)">去看看</div>
-            </div>
-        </div>
-    </div>
-    <ion-fab right bottom (click)="scrollToTop()">
-        <button ion-fab color="jingku1" mini goBackTop></button>
-    </ion-fab>
+            <div ion-button small round block class="click touse" *ngIf="item.is_get==0" (click)="getPrivilege(0,item.type_id,item.suppliers_id)">点击领劵</div>
+            <div ion-button small round block class="touse" *ngIf="item.is_get==1" (click)="getPrivilege(1,item.type_id,item.suppliers_id)">去使用</div>
+            <div ion-button small round block class="touse" *ngIf="item.is_get==2" (click)="getPrivilege(2,item.type_id,item.suppliers_id)">进店看看</div>
+         </div>
+      </div>
+   </div>
+   <ion-fab right bottom (click)="scrollToTop()">
+      <button ion-fab color="jingku1" mini goBackTop></button>
+   </ion-fab>
 
-    <ion-infinite-scroll (ionInfinite)="doInfinite($event)" *ngIf="flag">
-        <ion-infinite-scroll-content></ion-infinite-scroll-content>
-    </ion-infinite-scroll>
+   <ion-infinite-scroll (ionInfinite)="doInfinite($event)" *ngIf="flag">
+      <ion-infinite-scroll-content></ion-infinite-scroll-content>
+   </ion-infinite-scroll>
 </ion-content>

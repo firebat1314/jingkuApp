@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import 'rxjs/add/operator/map';
 import { AlertController, Platform, App } from 'ionic-angular';
 import { InAppBrowser } from '@ionic-native/in-app-browser';
-// import { AppVersion } from '@ionic-native/app-version';
+import { AppVersion } from '@ionic-native/app-version';
 import { HttpService } from '../http-service';
 import { Native } from '../native';
 // import { IP, version, version_m } from "../constants";
@@ -22,7 +22,7 @@ export class UpgradeProvider {
     private httpService: HttpService,
     private iab: InAppBrowser,
     private platform: Platform,
-   //  private appVersion: AppVersion,
+    private appVersion: AppVersion,
   ) {
     console.log('Hello UpgradeProvider Provider');
   }
@@ -33,7 +33,7 @@ export class UpgradeProvider {
   detectionUpgrade() {
     //这里连接后台获取app最新版本号,然后与当前app版本号(this.getVersionNumber())对比
     //版本号不一样就需要申请,不需要升级就return
-    /* this.httpService.versionInfo().then((res) => {
+    this.httpService.versionInfo().then((res) => {
       this.appVersion.getVersionNumber().then((version) => {
         console.log(version);
         if (this.native.isIos()) {
@@ -79,7 +79,6 @@ export class UpgradeProvider {
       }).catch(err => {
          console.log('getVersionNumber:' + err);
        });
-    }) */
-
+    })
   }
 }

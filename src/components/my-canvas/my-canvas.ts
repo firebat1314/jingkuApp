@@ -32,14 +32,14 @@ export class MyCanvasComponent {
   circle(cxt, percent) {
     var p = (percent * 100).toFixed(0);
     //生成圆形（底圆）
-    cxt.fillStyle = "#b8bfe3";
+    cxt.fillStyle = "rgb(191,209,255)";
     cxt.beginPath();
     cxt.moveTo(30, 30);
     cxt.arc(30, 30, 30, 0, Math.PI * 2, false);
     cxt.closePath();
     cxt.fill();
     //生成扇形
-    cxt.fillStyle = "#ffffff";
+    cxt.fillStyle = "#799fff";
     cxt.beginPath();
     cxt.moveTo(30, 30);
     if (percent == 1) {
@@ -52,7 +52,7 @@ export class MyCanvasComponent {
     cxt.closePath();
     cxt.fill();
     //生成圆形（上层园）
-    cxt.fillStyle = "#7986cb";
+    cxt.fillStyle = "#ffffff";
     cxt.beginPath();
     cxt.moveTo(30, 30);
     cxt.arc(30, 30, 25, 0, Math.PI * 2, false);
@@ -60,7 +60,7 @@ export class MyCanvasComponent {
     cxt.fill();
     //生成中间百分比文字
     cxt.font = "13px arial";
-    cxt.fillStyle = "#fff";
+    cxt.fillStyle = "#799fff";
     cxt.textAlign = "center";
     cxt.fillText('已抢', 30, 27);
     cxt.fillText(p + "%", 30, 44);

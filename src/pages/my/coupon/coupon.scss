@@ -22,7 +22,7 @@ page-coupon {
       align-items: center;
       border-style: solid;
       border-color: #f0f0f0;
-      border-width: 0 1px 0;
+      border-width:1px 0px 1px;
       color: #808080;
 
       .left {
@@ -36,8 +36,8 @@ page-coupon {
             display: inline-block;
             line-height: 44px;
             white-space: nowrap;
-            padding-right: 16px;
-            font-size: 1.4rem;
+            padding-right: 12px;
+            font-size: 1.3rem;
 
             &.on {
                color: #e60000;
@@ -239,7 +239,6 @@ page-coupon {
                .button {
                   background: linear-gradient(180deg, #6696da 0%, #3f6aa6 100%);
                   color: #fff;
-                  padding: 16px 20px;
                   font-size: 12px;
                }
             }

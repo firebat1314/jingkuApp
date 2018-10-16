@@ -6,121 +6,74 @@
 -->
 <ion-header>
 
-    <ion-navbar>
-        <ion-title>新品专区</ion-title>
-    </ion-navbar>
+   <ion-navbar>
+      <ion-title>新品专区</ion-title>
+   </ion-navbar>
 
 </ion-header>
 
 
 <ion-content>
-    <div *ngIf="data" FadeIn>
-        <div class="fore1 banner">
-            <ng-container *ngFor="let item of data?.banner">
-                <img [img-lazy-load]="item.ad_img" [ads-click]="item" alt="">
-            </ng-container>
-        </div>
-        <div class="fore2" *ngIf="data?.new_goods?.length>0||data?.banner_dan?.length>0">
-            <div class="left">
-                <ng-container *ngFor="let item of data?.new_goods">
-                    <img [img-lazy-load]="item.ad_img" [ads-click]="item" alt="">
-                    <div class="goods_tit">
-                        <em>{{item.ad_name}}</em>
-                    </div>
-                </ng-container>
+   <div *ngIf="data" FadeIn>
+      <div class="fore1 banner">
+         <ng-container *ngFor="let item of data?.banner">
+            <img [img-lazy-load]="item.ad_img" [ads-click]="item" alt="">
+         </ng-container>
+      </div>
+      <div class="newbrandin">
+         <div class="title">
+            <div class="en">NEW BRAND</div>
+            <div class="ch">新品牌入驻</div>
+         </div>
+         <div class="brand_list">
+            <ul class="accordion">
+               <ng-container *ngFor="let item of data?.new_goods;let index = index;">
+                  <li [ads-click]="item">
+                     <a href="javascript:;"><img [img-lazy-load]="item.ad_img" alt=""></a>
+                  </li>
+               </ng-container>
+            </ul>
+         </div>
+      </div>
+      <div class="commodity" *ngIf="data?.top_tui?.list?.length">
+         <div class="title">
+            <div class="en">COMMODITY</div>
+            <div class="ch">精选商品</div>
+         </div>
+         <div class="goods-list">
+            <div class="goods" *ngFor="let item of data?.top_tui?.list">
+               <div class="img">
+                  <img [img-lazy-load]="item.original_img" alt="">
+               </div>
+               <div class="info">
+                  <div class="name">{{item.goods_name}}</div>
+                  <div class="bottom">
+                     <div class="price"><span *ngIf="mine?.showPrice">{{item.shop_price}}</span></div>
+                     <div class="buy"><img [img-lazy-load]="'./assets/icon/add_cart.png'"></div>
+                  </div>
+               </div>
             </div>
-            <div class="right">
-                <ng-container *ngFor="let item of data?.banner_dan">
-                    <img [img-lazy-load]="item.ad_img" [ads-click]="item" alt="">
-                    <div class="goods_tit">
-                        <em>TOP榜单</em>
-                        <span class="goodsname"> / {{item.ad_name}}</span>
-                    </div>
-                </ng-container>
+         </div>
+      </div>
+      <div class="new_product" *ngIf="data?.new_tui?.list?.length">
+         <div class="title">
+            <div class="en">NEW PRODUCT</div>
+            <div class="ch">新品上架</div>
+         </div>
+         <div class="goods-list ">
+            <div class="goods" *ngFor="let item of data?.new_tui?.list" navPush="ParticularsPage" [navParams]="{goodsId:item.goods_id}">
+               <div class="img">
+                  <img [img-lazy-load]=item.original_img alt="">
+               </div>
+               <div class="info">
+                  <div class="name">{{item.goods_name}}</div>
+                  <div class="bottom">
+                     <div class="price"><span *ngIf="mine?.showPrice">{{item.shop_price}}</span></div>
+                     <div class="buy"><img [img-lazy-load]="'./assets/icon/add_cart.png'"></div>
+                  </div>
+               </div>
             </div>
-        </div>
-        <div class="fore3" *ngIf="data?.banner_tui?.length>0">
-            <div class="container">
-                <div class="head">
-                    <p class="theme_name">热门品牌上新推荐</p>
-                    <p class="line"></p>
-                    <p class="theme_dec">
-                        <span>最新品牌</span>
-                        <em>|</em>
-                        <span>劲爆来袭</span>
-                        <em>|</em>
-                        <span>每周上新</span>
-                    </p>
-                </div>
-                <div class="imgs">
-                    <ng-container *ngFor="let item of data?.banner_tui">
-                        <div>
-                            <img [img-lazy-load]="item.ad_img" [ads-click]="item" alt="">
-                        </div>
-                    </ng-container>
-                </div>
-            </div>
-        </div>
-        <div class="fore4" *ngIf="data?.new_tui?.list?.length>0">
-            <div class="container">
-                <div class="head">
-                    <p class="theme_name">{{data?.new_tui?.info?.title}}</p>
-                    <p class="line"></p>
-                    <p class="theme_dec">
-                        <span>最新品牌</span>
-                        <em>|</em>
-                        <span>劲爆来袭</span>
-                        <em>|</em>
-                        <span>每周上新</span>
-                    </p>
-                </div>
-                <div class="goods">
-                    <ng-container *ngFor="let item of data?.new_tui?.list">
-                        <div class="item" tappable [navPush]="'ParticularsPage'" [navParams]="{goodsId:item.goods_id}">
-                            <div class="img">
-                                <img [img-lazy-load]="item.original_img">
-                            </div>
-                            <div class="new">NEW</div>
-                            <div class="name">{{item.goods_name}}</div>
-                            <div class="price" *ngIf="mine?.showPrice">¥{{item.shop_price||'0.00'}}</div>
-                        </div>
-                    </ng-container>
-                </div>
-            </div>
-        </div>
-        <div class="fore5 jian" *ngIf="data?.banner_jiang?.length>0">
-            <ng-container *ngFor="let item of data?.banner_jiang">
-                <div>
-                    <img width="100%" [img-lazy-load]="item.ad_img" [ads-click]="item" alt="">
-                </div>
-            </ng-container>
-        </div>
-        <div class="fore6" *ngIf="data?.top_tui?.list?.length>0">
-            <div class="container">
-                <div class="head">
-                    <p class="theme_name">{{data?.new_tui?.info?.title}}</p>
-                    <p class="line"></p>
-                    <p class="theme_dec">
-                        <span>最新品牌</span>
-                        <em>|</em>
-                        <span>劲爆来袭</span>
-                        <em>|</em>
-                        <span>每周上新</span>
-                    </p>
-                </div>
-                <div class="goods">
-                    <ng-container *ngFor="let item of data?.top_tui?.list">
-                        <div class="item" tappable [navPush]="'ParticularsPage'" [navParams]="{goodsId:item.goods_id}">
-                            <div class="img">
-                                <img [img-lazy-load]="item.original_img">
-                                <div class="new">NEW</div>
-                            </div>
-                            <div class="name">{{item.goods_name}}</div>
-                            <div class="price" *ngIf="mine?.showPrice">¥{{item.shop_price||'0.00'}}</div>
-                        </div>
-                    </ng-container>
-                </div>
-            </div>
-        </div>
-    </div>
+         </div>
+      </div>
+   </div>
 </ion-content>
