@@ -28,7 +28,7 @@
          <div class="brand_list">
             <ul class="accordion">
                <ng-container *ngFor="let item of data?.new_goods;let index = index;">
-                  <li [ads-click]="item">
+                  <li>
                      <a href="javascript:;"><img [img-lazy-load]="item.ad_img" alt=""></a>
                   </li>
                </ng-container>
@@ -41,7 +41,7 @@
             <div class="ch">精选商品</div>
          </div>
          <div class="goods-list">
-            <div class="goods" *ngFor="let item of data?.top_tui?.list">
+            <div class="goods" *ngFor="let item of data?.top_tui?.list" navPush="ParticularsPage" [navParams]="{goodsId:item.goods_id}">
                <div class="img">
                   <img [img-lazy-load]="item.original_img" alt="">
                </div>
