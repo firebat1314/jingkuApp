@@ -20,7 +20,7 @@
             <img [img-lazy-load]="item.ad_img" [ads-click]="item" alt="">
          </ng-container>
       </div>
-      <div class="newbrandin">
+      <div class="newbrandin" *ngIf="data?.new_goods?.length>0">
          <div class="title">
             <div class="en">NEW BRAND</div>
             <div class="ch">新品牌入驻</div>
@@ -43,7 +43,7 @@
          <div class="goods-list">
             <div class="goods" *ngFor="let item of data?.top_tui?.list" navPush="ParticularsPage" [navParams]="{goodsId:item.goods_id}">
                <div class="img">
-                  <img [img-lazy-load]="item.original_img" alt="">
+                  <img [img-lazy-load]="item.goods_img" alt="">
                </div>
                <div class="info">
                   <div class="name">{{item.goods_name}}</div>
@@ -63,7 +63,7 @@
          <div class="goods-list ">
             <div class="goods" *ngFor="let item of data?.new_tui?.list" navPush="ParticularsPage" [navParams]="{goodsId:item.goods_id}">
                <div class="img">
-                  <img [img-lazy-load]=item.original_img alt="">
+                  <img [img-lazy-load]=item.goods_img alt="">
                </div>
                <div class="info">
                   <div class="name">{{item.goods_name}}</div>

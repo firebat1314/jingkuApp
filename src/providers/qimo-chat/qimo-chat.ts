@@ -55,9 +55,9 @@ export class QimoChatProvider {
                },
                "ShowMessage",
                "mydream", [
-                  (userInfo.data.avatar || '出错'),
-                  (userInfo.data.user_info.user_id || '出错'),
-                  (userInfo.data.user_info.user_name || '出错'),
+                  (userInfo.data.avatar || 'error'),
+                  (userInfo.data.user_info.user_id || 'error'),
+                  (userInfo.data.user_info.user_name || 'error'),
                   (access_id || 'b441f710-80d9-11e7-8ddd-b18e4f0e2471'),
                   (supplier_name || '镜库网'),
                   (supplier_avatar || 'https://m.jingku.cn/assets/icon/avatar_default.jpg')])
