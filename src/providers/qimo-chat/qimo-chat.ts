@@ -42,8 +42,8 @@ export class QimoChatProvider {
       };
    }
    qimoChatSDK(access_id?, supplier_name?, supplier_avatar?, successCallback?) {
-      // this.native.showToast('该功能暂未开放');
-      if (typeof cordova != "undefined") {
+      this.native.showToast('该功能整改中^-^');
+      /* if (typeof cordova != "undefined") {
          this.httpService.getByName('userInfo').then((userInfo) => {
             cordova.exec(
                (response) => {
@@ -81,6 +81,6 @@ export class QimoChatProvider {
                qimo.onload = qimo['onreadystatechange'] = null;
             }
          };
-      }
+      } */
    }
 }

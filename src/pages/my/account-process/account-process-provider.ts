@@ -28,22 +28,23 @@ export class AccountProcessProvider {
     * @param type 镜架2或者镜片1
     */
    openScanner(index, type) {
-    return new Promise<any>((resolve, reject) => {
-       this.app.getActiveNav().push('ScanPage', {
-         callback: (data) => {
-            /* let data
-            if (this.flag) {
-               this.flag = !this.flag
-               data = '{"machine":"6978","sn":"201001231118900001"}';
-            } else {
-               this.flag = !this.flag
-               data = '{"machine":"11103","sn":"501000711126500001"}';
-            } */
-            try {
-               let json = JSON.parse(data);
-               if (json.machine) {
-                  
-                  this.httpService.SpecialMachiningGoodsInfo({ id: json['machine'] }).then(res => {
+      return new Promise<any>((resolve, reject) => {
+         this.app.getActiveNav().push('ScanPage', {
+            callback: (scandata) => {
+               /* 
+               var scandata ;
+               if (this.flag) {
+                  this.flag = !this.flag
+                  scandata = '{"machine":"6978","sn":"201001231118900001"}';
+               } else {
+                  this.flag = !this.flag
+                  scandata = '{"machine":"11103","sn":"501000711126500001"}';
+               } */
+               try {
+                  let json = JSON.parse(scandata);
+                  if (json.machine) {
+
+                     this.httpService.SpecialMachiningGoodsInfo({ id: json['machine'] }).then(res => {
                         if (res.status == 1) {
                            if (res.is_jingjia > 0 && type == 1) {
                               return this.native.showToast('请扫描镜片商品');
@@ -67,12 +68,12 @@ export class AccountProcessProvider {
                            this.native.showToast(res.info);
                         }
                      })
+                  }
+               } catch (error) {
+                  this.native.showToast('格式错误');
                }
-            } catch (error) {
-               this.native.showToast('格式错误');
             }
-         }
-      })
-    });
-  }
+         })
+      });
+   }
 }

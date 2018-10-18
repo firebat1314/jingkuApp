@@ -8,7 +8,7 @@
       </ion-thumbnail>
       <h2 margin-right>{{headData?.goods_name}}</h2>
       <p class="goods_sn">商品编号：{{headData?.goods_sn}}</p>
-      <p class="shop_price" *ngIf="mine.showPrice">{{headData?.shop_price | prefix}}</p>
+      <p class="shop_price" *ngIf="mine.showPrice">{{headData?.shop_price_formated | prefix}}</p>
    </ion-item>
    
    <!-- ————————————————————————————————— 普通护理液镜架商品 ————————————————————————————————— -->
@@ -205,7 +205,7 @@
              <div *ngIf="!hasZuoyou" style="padding: 10px 0 0 14px;font-size: 1rem;">{{it.label}}</div>
             <div class="top">
                <ion-select placeholder="选择球镜" [(ngModel)]="it.qiujing" (ionChange)="qiujingChange(it);" [selectOptions]="{title: '选择球镜'}" okText="确定" cancelText="取消">
-                  <ion-option *ngFor="let item of goods_attribute.spectacles_properties.list">{{item}}</ion-option>
+                  <ion-option *ngFor="let item of goods_attribute?.spectacles_properties?.list">{{item}}</ion-option>
                </ion-select>
                <ion-select [disabled]="!it.getZhujingList" [(ngModel)]="it.zhujing" (ionChange)="attrChange(it)" placeholder="选择柱镜" [selectOptions]="{title: '选择柱镜'}" okText="确定" cancelText="取消">
                   <ion-option *ngFor="let item of it.getZhujingList?.data">{{item}}</ion-option>
@@ -213,7 +213,7 @@
                <div class="input" *ngIf="goods_attribute?.zhouwei=='1'">
                   <input type="text" [(ngModel)]="it.zhouwei" placeholder="轴位">
                </div>
-               <ion-select [disabled]="item.disable" *ngFor="let item of goods_attribute.specification;let i=index" (ionChange)="attrChange(it)" [(ngModel)]="it[item.name]" placeholder="{{item.name}}" [selectOptions]="{title: item.name}" okText="确定" cancelText="取消">
+               <ion-select [disabled]="item.disable" *ngFor="let item of goods_attribute?.specification;let i=index" (ionChange)="attrChange(it)" [(ngModel)]="it[item.name]" placeholder="{{item.name}}" [selectOptions]="{title: item.name}" okText="确定" cancelText="取消">
                   <ion-option *ngFor="let item1 of item?.values" value="{{item1.id}}">{{item1.label}}</ion-option>
                </ion-select>
             </div>

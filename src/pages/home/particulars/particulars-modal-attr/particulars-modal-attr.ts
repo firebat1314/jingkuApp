@@ -90,8 +90,10 @@ export class ParticularsModalAttrPage {
    }
    ngOnInit() {
       if (this.scannerId) {
+         this.native.showLoading();
          this.httpServ.SpecialMachiningGoodsInfo({ id: this.scannerId },{showLoading:false}).then(res => {
-            this.goodsId = res.info.goods_id;
+         this.native.hideLoading();
+         this.goodsId = res.info.goods_id;
             this.type = 'cut';
             this.scannerData = res;
             this.getGoodInfo();
@@ -129,8 +131,8 @@ export class ParticularsModalAttrPage {
    getGoodInfo() {
       this.httpServ.goodsInfos({ goods_id: this.goodsId }).then((res) => {
          if (res.status == 1) {
-            this.goodsInfo = res;
             this.headData = res.data;
+            this.goodsInfo = res;
          }
       })
    }
