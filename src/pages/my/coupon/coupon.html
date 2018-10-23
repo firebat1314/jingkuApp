@@ -18,11 +18,11 @@
    <ion-toolbar no-padding>
       <div class="coupon-types">
          <div class="left">
-            <div class="type" tappable [class.on]="couponSelect==0" (click)="segmentChange(0);showmark=false;">全部类型({{data?.counts[-1]||0}})</div>
-            <div class="type" tappable [class.on]="couponSelect==1" (click)="segmentChange(1);showmark=false;">商品优惠券({{data?.counts[0]||0}})</div>
-            <div class="type" tappable [class.on]="couponSelect==2" (click)="segmentChange(2);showmark=false;">店铺优惠券({{data?.counts[2]||0}})</div>
-            <div class="type" tappable [class.on]="couponSelect==3" (click)="segmentChange(3);showmark=false;">全平台优惠券({{data?.counts[3]||0}})</div>
-            <div class="type" tappable [class.on]="couponSelect==4" (click)="segmentChange(4);showmark=false;">运费优惠券({{data?.counts[4]||0}})</div>
+            <div class="type" tappable [class.on]="couponSelect==0" (click)="segmentChange(0);showmark=false;">全部({{data?.counts[-1]||0}})</div>
+            <div class="type" tappable [class.on]="couponSelect==1" (click)="segmentChange(1);showmark=false;">商品券({{data?.counts[0]||0}})</div>
+            <div class="type" tappable [class.on]="couponSelect==2" (click)="segmentChange(2);showmark=false;">店铺券({{data?.counts[2]||0}})</div>
+            <div class="type" tappable [class.on]="couponSelect==3" (click)="segmentChange(3);showmark=false;">全平台券({{data?.counts[3]||0}})</div>
+            <div class="type" tappable [class.on]="couponSelect==4" (click)="segmentChange(4);showmark=false;">运费券({{data?.counts[4]||0}})</div>
 
          </div>
          <div class="right" (click)="showmark = !showmark">

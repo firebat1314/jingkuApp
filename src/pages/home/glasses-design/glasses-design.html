@@ -6,22 +6,22 @@
 -->
 <ion-header>
 
-    <ion-navbar>
-        <ion-title>镜库设计</ion-title>
-    </ion-navbar>
+   <ion-navbar>
+      <ion-title>镜库设计</ion-title>
+   </ion-navbar>
 
 </ion-header>
 
 
 <ion-content>
-    <div class="fore1 fore" *ngIf="banner">
-        <ion-slides #bannerSlide autoplay="4000" loop="false" pager>
-            <ion-slide *ngFor="let item of banner?.data">
-                <img img-lazy-load="{{item.ad_img}}" defaultSrc="./assets/images/images/640-320" tappable [ads-click]="item" />
-            </ion-slide>
-        </ion-slides>
-    </div>
-    <!-- <div class="fore2 fore">
+   <div class="fore1 fore" *ngIf="banner">
+      <ion-slides #bannerSlide autoplay="4000" loop="false" pager>
+         <ion-slide *ngFor="let ads of list?.bannerone">
+            <img [ads-click]="ads" [img-lazy-load]="ads?.ad_img" defaultSrc="./assets/images/images/640-320.jpg" width="100%" alt="">
+         </ion-slide>
+      </ion-slides>
+   </div>
+   <!-- <div class="fore2 fore">
         <div class="head"><img src="./assets/images/images/sheji_3_06.jpg" alt=""></div>
         <div class="body">
             <img img-lazy-load="{{item.ad_img}}" tappable [ads-click]="item" alt="" *ngFor="let item of class?.data">
@@ -30,24 +30,24 @@
     <div class="fore3 fore">
         <img *ngFor="let item of img?.data" img-lazy-load="{{item.ad_img}}" tappable [ads-click]="item" alt="">
     </div> -->
-    <div class="fore4 fore" padding tappable (click)="goParticularsPage(item.id)" *ngFor="let item of list?.goods">
-        <div class="left">
-            <img img-lazy-load="{{item.goods_img}}" alt="">
-        </div>
-        <div class="right">
-            <div class="title">{{item.name}}</div>
-            <div class="price" *ngIf="mine?.showPrice">{{item.shop_price}}</div>
-            <div class="purchase" tappable>立即购买&nbsp;<img src="./assets/icon/images/APP_sheji_07.png" alt=""></div>
-        </div>
-    </div>
+   <div class="fore4 fore" padding tappable (click)="goParticularsPage(item.id)" *ngFor="let item of list?.goods">
+      <div class="left">
+         <img img-lazy-load="{{item.goods_img}}" alt="">
+      </div>
+      <div class="right">
+         <div class="title">{{item.name}}</div>
+         <div class="price" *ngIf="mine?.showPrice">{{item.shop_price}}</div>
+         <div class="purchase" tappable>立即购买&nbsp;<img src="./assets/icon/images/APP_sheji_07.png" alt=""></div>
+      </div>
+   </div>
 
-    <ion-fab right bottom *ngIf="list">
-        <button ion-fab color="jingku1" mini (click)="scrollToTop()">
-            {{list?.page}}/{{list?.pages}}
-        </button>
-    </ion-fab>
+   <ion-fab right bottom *ngIf="list">
+      <button ion-fab color="jingku1" mini (click)="scrollToTop()">
+         {{list?.page}}/{{list?.pages}}
+      </button>
+   </ion-fab>
 
-    <ion-infinite-scroll *ngIf="list" (ionInfinite)="doInfinite($event)">
-        <ion-infinite-scroll-content loadingSpinner="bubbles" loadingText="加载更多..."></ion-infinite-scroll-content>
-    </ion-infinite-scroll>
+   <ion-infinite-scroll *ngIf="list" (ionInfinite)="doInfinite($event)">
+      <ion-infinite-scroll-content loadingSpinner="bubbles" loadingText="加载更多..."></ion-infinite-scroll-content>
+   </ion-infinite-scroll>
 </ion-content>
