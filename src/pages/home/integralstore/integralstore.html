@@ -15,7 +15,7 @@
 
 <ion-content parallax-header>
     <div class="header-image">
-        <img src="./assets/images/jifen.jpg" alt="">
+         <img [ads-click]="ads" *ngFor="let ads of data?.bannerone" [img-lazy-load]="ads?.ad_img" defaultSrc="./assets/images/images/640-320.jpg" width="100%" alt="">
     </div>
 
     <div class="main-content">

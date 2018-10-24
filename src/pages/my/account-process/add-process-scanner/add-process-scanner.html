@@ -31,20 +31,32 @@
       </header>
       <section>
          <div class="choose">
-            <div tappable (click)="edit?goChooseLensRPage(item,i,1):item.showBody = !item.showBody">
-               <div class="icon">
-                  <span *ngIf="!item?.R">R</span>
-                  <img *ngIf="item?.R" [img-lazy-load]="item?.R?.goods_thumb" alt="">
+            <ng-container *ngIf="item?.R||item?.L">
+               <div tappable (click)="edit?goChooseLensRPage(item,i,1):item.showBody = !item.showBody">
+                  <div class="icon">
+                     <span *ngIf="!item?.R">R</span>
+                     <img *ngIf="item?.R" [img-lazy-load]="item?.R?.goods_thumb" alt="">
+                  </div>
+                  <div class="txt">眼镜片-右眼(R)</div>
                </div>
-               <div class="txt">眼镜片-右眼(R)</div>
-            </div>
-            <div tappable (click)="edit?goChooseLensLPage(item,i,1):item.showBody = !item.showBody">
-               <div class="icon">
-                  <span *ngIf="!item?.L">L</span>
-                  <img *ngIf="item?.L" [img-lazy-load]="item?.L?.goods_thumb" alt="">
+               <div tappable (click)="edit?goChooseLensLPage(item,i,1):item.showBody = !item.showBody">
+                  <div class="icon">
+                     <span *ngIf="!item?.L">L</span>
+                     <img *ngIf="item?.L" [img-lazy-load]="item?.L?.goods_thumb" alt="">
+                  </div>
+                  <div class="txt">眼镜片-左眼(L)</div>
                </div>
-               <div class="txt">眼镜片-左眼(L)</div>
-            </div>
+            </ng-container>
+            <ng-container *ngIf="!(item?.R||item?.L)">
+               <div tappable (click)="goChooseFramePage(item,i,1)">
+                  <div class="icon">
+                     <span>
+                        <img img-lazy-load="./assets/icon/add_cccccc.png" width="30px" alt="">
+                     </span>
+                  </div>
+                  <div class="txt">眼镜片</div>
+               </div>
+            </ng-container>
             <div tappable (click)="edit?goChooseFramePage(item,i,2):item.showBody = !item.showBody">
                <div class="icon">
                   <span *ngIf="!item?.J">
