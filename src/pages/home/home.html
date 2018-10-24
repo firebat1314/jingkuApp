@@ -72,7 +72,7 @@
             </div>
             <span>品牌</span>
          </div>
-         <div tappable navPush="DistributionPage" *ngIf="userInfo&&userInfo?.data?.ywy?.is_ywy===2">
+         <div tappable navPush="DistributionPage" *ngIf="userInfo?.data?.ywy?.is_ywy===2||userInfo?.data?.ywy?.is_ywy===1">
             <div class="img">
                <img img-lazy-load="./assets/icon/home/home_icon8.png" alt="">
             </div>
