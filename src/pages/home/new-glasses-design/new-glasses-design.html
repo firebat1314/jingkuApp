@@ -14,10 +14,10 @@
 
 
 <ion-content #mycontent>
-  <div class="fore1" *ngIf="banner">
+  <div class="fore1" *ngIf="goodsList">
     <ion-slides #bannerSlide autoplay="2500" [loop]="false">
-      <ion-slide *ngFor="let item of banner">
-        <img img-lazy-load="{{item.ad_img}}" defaultSrc="./assets/images/images/640-320.jpg" tappable />
+      <ion-slide *ngFor="let ads of goodsList?.bannerone">
+         <img [ads-click]="ads" [img-lazy-load]="ads?.ad_img" defaultSrc="./assets/images/images/640-320.jpg" width="100%" alt="">
       </ion-slide>
     </ion-slides>
   </div>
