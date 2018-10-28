@@ -97,8 +97,8 @@ page-add-process,page-add-process-scanner {
                      border: 1px solid #3f69a5;
                      color: #3f69a5;
                      font-size: 1.3rem;
-                     padding: 4px 8px;
-                     margin: 0 6px 8px 0;
+                     padding: 4px 4px;
+                     margin: 0 4px 8px 0;
                      border-radius: 3px;
                      font-size: 1rem;
                      &:last-child{
@@ -133,6 +133,11 @@ page-add-process,page-add-process-scanner {
                         @extend .t_labels;
                      }
                   }
+               }
+               &.right_eye{
+               }
+               &.left_eye{
+
                }
                &.frame{
                   min-width: 100%;

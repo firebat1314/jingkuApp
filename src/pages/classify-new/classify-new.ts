@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams, IonicPage, Events, App } from 'ionic-angular';
+import { NavController, NavParams, IonicPage, Events, App, MenuController } from 'ionic-angular';
 import { HttpService } from '../../providers/http-service';
 import { Native } from '../../providers/native';
 
@@ -21,10 +21,6 @@ export class ClassifyNewPage {
    getCategorys: any;
    selectedId: number = 0;
    searchkey = '';
-   fore4: any;
-   fore3: any;
-   fore2: any;
-   timer: any;
    brandList: any;
 
    constructor(
@@ -33,10 +29,11 @@ export class ClassifyNewPage {
       public httpService: HttpService,
       public native: Native,
       public app: App,
-      private events: Events
+      private events: Events,
+      public menuCtrl: MenuController
    ) { }
 
-   ionViewDidEnter(){
+   ionViewDidEnter() {
       this.app.setTitle('分类');
    }
    ionViewDidLoad() {
@@ -128,6 +125,12 @@ export class ClassifyNewPage {
    //转跳品牌列表页
    goMoreBrand(data) {
       this.navCtrl.push('MoreBrandPage', { data: data })
+   }
+   openCategoryMeun(item) {
+      this.menuCtrl.enable(true, 'category');
+      this.events.publish('classifyNew:cateFilter', item);
+      this.menuCtrl.toggle();
+
    }
    goBrandList(item) {
       if (this.is_cutting > 0) {

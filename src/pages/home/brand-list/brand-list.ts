@@ -300,6 +300,8 @@ export class BrandListPage {
    }
    openMenu(e) {
       e.stopPropagation();
+      this.menuCtrl.enable(true,'list');
+
       this.menuCtrl.toggle();
    }
    goCarPage() {

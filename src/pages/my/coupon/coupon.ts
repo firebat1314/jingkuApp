@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams, IonicPage } from 'ionic-angular';
 import { HttpService } from "../../../providers/http-service";
+import Swiper from 'swiper';
 
 /*
   Generated class for the Coupon page.
@@ -17,6 +18,22 @@ export class CouponPage {
    data: any;
    couponSelect = 1;//'' or over_time or use
    showmark: boolean;
+   navSwiper: any;
+   pageSwiper: any;
+   activeIndex: any;
+   category: any = [
+      {
+         name: '全部'
+      }, {
+         name: '商品券'
+      }, {
+         name: '店铺券'
+      }, {
+         name: '全平台券'
+      }, {
+         name: '运费券'
+      }
+   ];
    constructor(
       public navCtrl: NavController,
       public navParams: NavParams,
@@ -27,6 +44,9 @@ export class CouponPage {
 
    ionViewDidLoad() {
       console.log('ionViewDidLoad CouponPage');
+   }
+   ngAfterViewInit() {
+     
    }
    ionViewWillLeave() {
       this.showmark = false;
@@ -43,7 +63,9 @@ export class CouponPage {
    segmentChange(couponSelect?) {
       this.couponSelect = couponSelect || 0;
       return this.httpService.getUserBonus({ bonus_type: this.couponSelect }).then((res) => {
-         if (res.status == 1) { this.data = res; }
+         if (res.status == 1) {
+            this.data = res;
+         }
       })
    }
    /*下拉刷新*/

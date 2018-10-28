@@ -9,7 +9,7 @@
    <ion-navbar>
       <ion-title>评论晒单</ion-title>
       <ion-buttons right>
-         <button ion-button clear right color="jingku1" *ngIf="orderData&&!is_true" (click)="submit(evaluation)">提交</button>
+         <button ion-button clear right color="jingku1" *ngIf="orderData&&is_true" (click)="submit(evaluation)">提交</button>
       </ion-buttons>
    </ion-navbar>
 

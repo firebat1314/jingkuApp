@@ -24,6 +24,7 @@ import { InAppBrowser } from '@ionic-native/in-app-browser';
 
 /*———————————————————————————————— 插件 ————————————————————————————————*/
 import { MeunItemComponentModule } from "../components/meun-item/meun-item.module";
+import { MeunCategoryComponentModule } from '../components/meun-category/meun-category.module';
 import { CityPickerModule } from "ionic2-city-picker/dist/city-picker.module";
 import { UpgradeProvider } from '../providers/upgrade/upgrade';
 import { WxServiceProvider } from '../providers/wx-service/wx-service';
@@ -59,6 +60,7 @@ import { preApplyParams } from '../pages/BT/preApplyParams';
     HttpModule,
     BrowserModule,
     MeunItemComponentModule,
+    MeunCategoryComponentModule,
     CityPickerModule,
     ionicGalleryModal.GalleryModalModule,
   ],

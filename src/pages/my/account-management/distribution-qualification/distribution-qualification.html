@@ -30,9 +30,9 @@
          <div class="li">
             <div class="name">身份证效期：</div>
             <ng-container *ngIf="!checks">
-               <ion-datetime style="padding: 0;position: relative;color: #999999;" item-end cancelText="取消" doneText="确定" placeholder="请选择" displayFormat="YYYY-MM-DD" [(ngModel)]="params.code_validity_start"></ion-datetime>
+               <ion-datetime style="padding: 0;position: relative;color: #999999;" max="2020" item-end cancelText="取消" doneText="确定" placeholder="请选择" displayFormat="YYYY-MM-DD" [(ngModel)]="params.code_validity_start"></ion-datetime>
                <span style="color: #999999;">&nbsp;&nbsp;-&nbsp;&nbsp;</span>
-               <ion-datetime style="padding: 0;position: relative;color: #999999;" item-end cancelText="取消" doneText="确定" placeholder="请选择" displayFormat="YYYY-MM-DD" [(ngModel)]="params.code_validity_end"></ion-datetime>
+               <ion-datetime style="padding: 0;position: relative;color: #999999;" max="2118" item-end cancelText="取消" doneText="确定" placeholder="请选择" displayFormat="YYYY-MM-DD" [(ngModel)]="params.code_validity_end"></ion-datetime>
             </ng-container>
             <ng-container *ngIf="checks">
                <span style="color:#999;">无</span>
@@ -48,9 +48,9 @@
          <div class="li">
             <div class="name">营业执照效期：</div>
             <ng-container *ngIf="!checks">
-               <ion-datetime style="padding: 0;position: relative;color: #999999;" item-end cancelText="取消" doneText="确定" placeholder="请选择" displayFormat="YYYY-MM-DD" [(ngModel)]="params.zz_validity_start"></ion-datetime>
+               <ion-datetime style="padding: 0;position: relative;color: #999999;" max="2020" item-end cancelText="取消" doneText="确定" placeholder="请选择" displayFormat="YYYY-MM-DD" [(ngModel)]="params.zz_validity_start"></ion-datetime>
                <span style="color: #999999;">&nbsp;&nbsp;-&nbsp;&nbsp;</span>
-               <ion-datetime style="padding: 0;position: relative;color: #999999;" item-end cancelText="取消" doneText="确定" placeholder="请选择" displayFormat="YYYY-MM-DD" [(ngModel)]="params.zz_validity_end"></ion-datetime>
+               <ion-datetime style="padding: 0;position: relative;color: #999999;" max="2118" item-end cancelText="取消" doneText="确定" placeholder="请选择" displayFormat="YYYY-MM-DD" [(ngModel)]="params.zz_validity_end"></ion-datetime>
             </ng-container>
             <ng-container *ngIf="checks">
                <span style="color:#999;">无</span>

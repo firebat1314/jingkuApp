@@ -301,7 +301,15 @@ export class CarPage {
       if (res.status == 1) {
         // this.navCtrl.push('WriteOrdersPage');
         this.httpService.clearFlowOrder().then(() => {
-          this.navCtrl.push('WriteOrdersPage');
+         this.httpService.checkout(null,{showToast:false}).then((res) => {
+            if(res.suppliers_id>0){
+               this.native.openAlertBox(res.info,()=>{
+                  this.navCtrl.push('ParticularsHomePage',{suppliersId:res.suppliers_id})
+               })
+            }else{
+               this.navCtrl.push('WriteOrdersPage');
+            }
+         })
         });
       }
     })

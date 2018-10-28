@@ -2,8 +2,7 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { HttpService } from '../../../providers/http-service';
 import { MineProvider } from '../../../providers/mine/mine';
-
-declare var Swiper;
+import Swiper from 'swiper';
 /**
  * Generated class for the JingkuFinancePage page.
  *
@@ -44,36 +43,40 @@ export class JingkuFinancePage {
       })
    }
    ngAfterViewInit() {
+      let _this = this;
       this.swiper = new Swiper(".jingku-finance-container", {
          // loop: true,
          slidesPerView: "auto",
          centeredSlides: true,
          watchSlidesProgress: true,
-         onProgress: (swiper, progress) => {
-            var b, c, d, scale, es, nub;
-            for (b = 0; b < swiper.slides.length; b++) {
-               c = swiper.slides[b];
-               d = c.progress;
-               scale = 1 - Math.min(Math.abs(.2 * d), 1);
-               es = c.style;
-               // this.element.nativeElement.style.height = c.offsetHeight+'px';
-               es.opacity = 1 - Math.min(Math.abs(d / 2), 1);
-               es.webkitTransform = es.MsTransform = es.msTransform = es.MozTransform = es.OTransform = es.transform = "translate3d(0px,0," + -Math.abs(150 * d) + "px)";
-               // nub = this.element.nativeElement.querySelector('.page-nub').style;
-               // console.log(c.progress,es.opacity)
-               // nub.webkitTransform = es.MsTransform = es.msTransform = es.MozTransform = es.OTransform = nub.transform = 'scaleX(' + es.opacity + ')';
-               this.activeIndex = swiper.activeIndex; 
+         on: {
+            progress: function (progress) {
+               var b, c, d, scale, es, nub;
+               for (b = 0; b < this.slides.length; b++) {
+                  c = this.slides[b];
+                  d = c.progress;
+                  scale = 1 - Math.min(Math.abs(.2 * d), 1);
+                  es = c.style;
+                  // this.element.nativeElement.style.height = c.offsetHeight+'px';
+                  es.opacity = 1 - Math.min(Math.abs(d / 2), 1);
+                  es.webkitTransform = es.MsTransform = es.msTransform = es.MozTransform = es.OTransform = es.transform = "translate3d(0px,0," + -Math.abs(150 * d) + "px)";
+                  // nub = this.element.nativeElement.querySelector('.page-nub').style;
+                  // console.log(c.progress,es.opacity)
+                  // nub.webkitTransform = es.MsTransform = es.msTransform = es.MozTransform = es.OTransform = nub.transform = 'scaleX(' + es.opacity + ')';
+                  _this.activeIndex = this.activeIndex;
+               }
+            },
+            setTransition: function (event) {
+               for (var c = 0; c < this.slides.length; c++) {
+                  let es = this.slides[c].style;
+                  es.webkitTransitionDuration = es.MsTransitionDuration = es.msTransitionDuration = es.MozTransitionDuration = es.OTransitionDuration = es.transitionDuration = event + "ms"
+               }
+            },
+            slideChange: function (event) {
+               _this.activeIndex = this.activeIndex;
             }
          },
-         onSetTransition: function (a, b) {
-            for (var c = 0; c < a.slides.length; c++) {
-               let es = a.slides[c].style;
-               es.webkitTransitionDuration = es.MsTransitionDuration = es.msTransitionDuration = es.MozTransitionDuration = es.OTransitionDuration = es.transitionDuration = b + "ms"
-            }
-         },
-         onSlideChangeEnd: (swiper) => {
-            this.activeIndex = swiper.activeIndex; //切换结束时，告诉我现在是第几个slide
-         }
+
       })
    }
    checkTab(index) {

@@ -209,8 +209,8 @@ export class HttpService {
    suppliersBouns(data?: Object) {//使用优惠券
       return this.http.get(IP + '/Flow/suppliers_bouns', data, { showLoading: true })
    }
-   checkout(data?: Object) {//购物车去结算
-      return this.http.get(IP + '/Flow/checkout', data, { showLoading: false })
+   checkout(data?: Object,options?: HttpOptions) {//购物车去结算
+      return this.http.get(IP + '/Flow/checkout', data, { showLoading: false,...options })
    }
    delNoShop(data?: Object) {//删除未选中的商品
       return this.http.post(IP + '/Flow/del_no_shop', data, { showLoading: true })
