@@ -1,6 +1,7 @@
 import { Component, Input, ElementRef, Renderer } from '@angular/core';
 import { NavController, Platform } from 'ionic-angular';
 import { Storage } from '@ionic/storage';
+import Swiper from 'swiper';
 
 /**
  * Generated class for the SwiperNewmComponent component.
@@ -8,7 +9,6 @@ import { Storage } from '@ionic/storage';
  * See https://angular.io/docs/ts/latest/api/core/index/ComponentMetadata-class.html
  * for more info on Angular Components.
  */
-declare var Swiper: any;
 
 @Component({
   selector: 'swiper-newm',

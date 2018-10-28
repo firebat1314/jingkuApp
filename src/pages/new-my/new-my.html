@@ -171,7 +171,7 @@
                     </span>
                     <span class="txt">优惠券</span>
                 </a>
-            <a navPush="AccountJifenPage">
+            <a navPush="AccountJifenPage" [navParams]="{number:userInfo?.data?.integral}">
                     <span class="icon_num">
                         {{userInfo?.data?.integral||'--'}}
                     </span>

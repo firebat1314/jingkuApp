@@ -40,12 +40,11 @@ meun-item {
                 justify-content: flex-start;
                 flex-wrap: wrap;
                 .tap {
-                    padding: 7px 0;
+                    padding: 7px 20px;
                     margin: 0 3.5% 3.5% 0;
                     border-radius: 3px;
                     background-color: #f5f6fa;
                     border: 1px solid transparent;
-                    width: 31%;
                     color: #4d4d4d;
                     font-size: 1rem;
                     transition: background-color 400ms;
@@ -54,10 +53,7 @@ meun-item {
                     justify-content: center;
                     overflow: hidden;
                     text-align: center;
-                    
-                    &:nth-child(3n) {
-                        margin-right: 0;
-                    }
+            
                     &.selected {
                         // background: #ccc url(../assets/images/images/toggle-mune_03_03.png) right bottom no-repeat;
                         color: #3f69a5;

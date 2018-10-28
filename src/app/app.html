@@ -1,6 +1,12 @@
-<ion-menu class="main-menu" side="right" type="overlay" swipeEnabled="false" [content]="content">
+<ion-menu class="main-menu" side="right" type="overlay" swipeEnabled="false" [content]="content" id="list">
 
-    <meun-item></meun-item>
+   <meun-item></meun-item>
 
 </ion-menu>
+<ion-menu class="main-menu" side="right" type="overlay" swipeEnabled="false" [content]="content" id="category">
+
+   <meun-category></meun-category>
+   
+</ion-menu>
+
 <ion-nav [root]="rootPage" [rootParams]="rootParams" #content></ion-nav>

@@ -1,0 +1,21 @@
+<ion-content>
+   <div class="head">
+      <div class="img">
+         <img [src]="data?.thumb" alt="">
+      </div>
+      <span>{{data?.cat_name}}</span>
+   </div>
+   <div class="background"></div>
+   <ion-list>
+      <button ion-item (click)="goBrandListPage({cat_id:0})" style="padding-left: 0;">
+         <span style="padding-left: 16px;">
+            全部
+         </span>
+      </button>
+      <button ion-item (click)="goBrandListPage(item)" *ngFor="let item of data?.cat_list" style="padding-left: 0;">
+         <span style="padding-left: 16px;">
+            {{ item?.cat_name }}
+         </span>
+      </button>
+   </ion-list>
+</ion-content>

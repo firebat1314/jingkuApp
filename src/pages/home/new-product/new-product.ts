@@ -43,13 +43,18 @@ export class NewProductPage {
                var box = e.el.nativeElement.querySelector(".brand_list");
                var ul = box.children[0];
                var lis = ul.children;
+               var between = 6;
 
-               var width = box.offsetWidth / lis.length - 6;//初始每个图片宽度
+               var width = box.offsetWidth / lis.length - between;//初始每个图片宽度
 
-               for (let i = 0; i < lis.length; i++) {
+               /* for (let i = 0; i < lis.length; i++) {
                   animate(lis[i], { "width": Math.floor(width) });
+               } */
+               for (var j = 0; j < lis.length; j++) {
+                  animate(lis[j], { "width": Math.floor((box.offsetWidth - lis[j].getElementsByTagName('img')[0].width) / (lis.length - 1)) - between });
                }
-               // animate(lis[0], { "width": 200 });
+               var imgWidth = lis[0].getElementsByTagName('img')[0].width;
+               animate(lis[0], { "width": Math.floor(imgWidth) });
 
                //循环遍历 lis 绑定背景图
                for (let i = 0; i < lis.length; i++) {
@@ -65,7 +70,7 @@ export class NewProductPage {
                      } */
 
                      for (let j = 0; j < lis.length; j++) {
-                        animate(lis[j], { "width": Math.floor((box.offsetWidth - img.width) / (lis.length - 1)) - 6 },function(){
+                        animate(lis[j], { "width": Math.floor((box.offsetWidth - img.width) / (lis.length - 1)) - between },function(){
                            lis[j].onclick = null;
                         });
                      }
@@ -83,11 +88,11 @@ export class NewProductPage {
 
                //鼠标离开box 所有的li宽度 渐渐地 变为240
 
-               box.onmouseout = function () {
+               /* box.onmouseout = function () {
                   for (var i = 0; i < lis.length; i++) {
                      animate(lis[i], { "width": Math.floor(width) });
                   }
-               };
+               }; */
                function animate(obj, json, done?) {
                   clearInterval(obj.timer);
                   obj.timer = setInterval(function () {

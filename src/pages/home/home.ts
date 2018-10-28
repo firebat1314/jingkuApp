@@ -39,7 +39,7 @@ export class HomePage {
    categoryAds: any;
 
    schemeUrl: string;
-   
+
    category;
    categoryI = 0;
    @ViewChild(Content) content: Content;

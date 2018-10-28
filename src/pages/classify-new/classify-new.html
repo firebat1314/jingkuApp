@@ -6,54 +6,69 @@
 -->
 <ion-header>
 
-    <ion-navbar>
-        <form (click)="goSearchPage()">
-            <ion-searchbar style="pointer-events: none;" [(ngModel)]="searchkey" name="search" placeholder="搜索镜库商品" mode="ios" type="search"></ion-searchbar>
-        </form>
-        <!-- <ion-buttons right tappable (click)="presentPopover($event)">
-        <button ion-button clear icon-only icon-left>
-            <ion-icon name="ios-add-circle-outline"></ion-icon>
-        </button>
-    </ion-buttons> -->
-        <ion-buttons right>
-            <button ion-button clear icon-only icon-left right navPush="MessagePage">
-        <ion-icon name="mess"></ion-icon>
-      </button>
-        </ion-buttons>
-    </ion-navbar>
+   <ion-navbar>
+      <form (click)="goSearchPage()">
+         <ion-searchbar style="pointer-events: none;" [(ngModel)]="searchkey" name="search" placeholder="搜索镜库商品" mode="ios" type="search"></ion-searchbar>
+      </form>
+      <!-- <ion-buttons right tappable (click)="presentPopover($event)">
+            <button ion-button clear icon-only icon-left>
+                  <ion-icon name="ios-add-circle-outline"></ion-icon>
+            </button>
+         </ion-buttons> -->
+      <ion-buttons right>
+         <button ion-button clear icon-only icon-left right navPush="MessagePage">
+            <ion-icon name="mess"></ion-icon>
+         </button>
+      </ion-buttons>
+   </ion-navbar>
 
 </ion-header>
 
 <ion-content style="width: 25%;" class="left">
 
-    <div class="list1">
-        <div class="text_wrap" *ngFor="let item of getCategorys;let i = index;" tappable (click)="clickItem(item)" [class.selected]="selectedId == item.cat_id">
-            <div class="inner_text">{{item.cat_name}}</div>
-        </div>
-    </div>
+   <div class="list1">
+      <div class="text_wrap" *ngFor="let item of getCategorys;let i = index;" tappable (click)="clickItem(item)" [class.selected]="selectedId == item.cat_id">
+         <div class="inner_text">{{item.cat_name}}</div>
+      </div>
+   </div>
 </ion-content>
 <ion-content padding-horizontal class="right" style="width: 75%;left: 0;right: 0;left: initial;">
-    <ion-refresher (ionRefresh)="doRefresh($event)" pullMax="60">
-        <ion-refresher-content refreshingSpinner="1" pullingIcon="0"></ion-refresher-content>
-    </ion-refresher>
+   <ion-refresher (ionRefresh)="doRefresh($event)" pullMax="60">
+      <ion-refresher-content refreshingSpinner="1" pullingIcon="0"></ion-refresher-content>
+   </ion-refresher>
 
-    <div class="list2">
-        <div class="list2_item" *ngFor="let item of childrenCaCtegory">
+   <div class="list2">
+      <ng-container *ngIf="selectedId!=6">
+         <div class="list2_item" *ngFor="let item of childrenCaCtegory">
             <div class="list2_header" tappable (click)="goBrandList(item)">
-                {{item.cat_name}}
+               {{item.cat_name}}
             </div>
             <div class="list3">
-                <div class="brand" tappable (click)="goBrandList(item1)" *ngFor="let item1 of item.cat_list ">
-                    <div class="brand_img">
-                        <img [img-lazy-load]="item1.thumb" alt="">
-                    </div>
-                    <div class="brand_name">{{item1.cat_name}}</div>
-                </div>
+               <div class="brand" tappable (click)="goBrandList(item1)" *ngFor="let item1 of item.cat_list ">
+                  <div class="brand_img">
+                     <img [img-lazy-load]="item1.thumb" alt="">
+                  </div>
+                  <div class="brand_name">{{item1.cat_name}}</div>
+               </div>
             </div>
-        </div>
-    </div>
+         </div>
+      </ng-container>
+      <ng-container *ngIf="selectedId==6">
+         <div class="list2_item" margin-top>
+            <div class="list3">
+               <div class="brand" tappable (click)="openCategoryMeun(item)" *ngFor="let item of childrenCaCtegory">
+                  <div class="brand_img">
+                     <img [img-lazy-load]="item.thumb" alt="">
+                  </div>
+                  <div class="brand_name">{{item.cat_name}}</div>
+               </div>
+            </div>
+         </div>
+      </ng-container>
 
-    <ion-fab right bottom tappable>
-        <button ion-fab color="jingku1" mini goBackTop scroll-to-top></button>
-    </ion-fab>
+   </div>
+
+   <ion-fab right bottom tappable>
+      <button ion-fab color="jingku1" mini goBackTop scroll-to-top></button>
+   </ion-fab>
 </ion-content>

@@ -11,7 +11,7 @@ export class goodsSpectaclesParams {
    zhujing = '';//所选的柱镜
    zhouwei = '';//所填写的轴位
    price = '0.00';
-   subtotal: '0.00';
+   subtotal= '0.00';
 }
 
 @IonicPage()
