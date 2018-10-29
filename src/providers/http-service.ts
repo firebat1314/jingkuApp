@@ -578,7 +578,7 @@ export class HttpService {
       rec_id?: Array<string>;
       pian_rec?: Array<string>;
    }) {
-      return this.http.post(IP + '/Machining/machining_goods', data, { showLoading: true })
+      return this.http.post(IP + '/Machining/machining_goods', data, { showLoading: false })
    }
    //确定选择镜片
    select_goods_type(data: {

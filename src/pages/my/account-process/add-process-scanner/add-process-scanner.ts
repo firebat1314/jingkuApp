@@ -4,6 +4,7 @@ import { HttpService } from '../../../../providers/http-service';
 import { Native } from '../../../../providers/native';
 import { InAppBrowser } from '@ionic-native/in-app-browser';
 import { AccountProcessProvider } from '../account-process-provider';
+import Swiper from 'swiper';
 
 /**
  * Generated class for the AddProcessPage page.
@@ -32,6 +33,7 @@ export class AddProcessScannerPage {
 
    @ViewChild(Content) myContent: Content;
    flag: any;
+   pageswiper: any;
    constructor(
       private navCtrl: NavController,
       private navParams: NavParams,
@@ -40,6 +42,7 @@ export class AddProcessScannerPage {
       private modalCtrl: ModalController,
       private ib: InAppBrowser,
       private thisProvider: AccountProcessProvider,
+      public element: ElementRef,
    ) {
    }
 
@@ -103,6 +106,44 @@ export class AddProcessScannerPage {
             };
             this.list = list;
             console.log(this.list)
+            let element = this.element.nativeElement.querySelector('.swiper-container');
+            let pagination = this.element.nativeElement.querySelector('.swiper-pagination');
+            setTimeout(() => {
+               if (this.edit) {
+                  this.pageswiper = new Swiper(element, {
+                     autoHeight: true,
+                     resistanceRatio:0.9,
+                     pagination: {
+                        el: pagination,
+                     }
+                  })
+               } else {
+                  this.pageswiper = new Swiper(element, {
+                     pagination: {
+                        el: pagination,
+                     },
+                     slidesPerView: "auto",
+                     slidesOffsetBefore: '8',
+                     on: {
+                        progress: function (b) {
+                           /* for (let i = 0; i < this.slides.length; i++) {
+                              let slide = this.slides.eq(i);
+                              let slideProgress = this.slides[i].progress;
+                              let prevIndent = 4 == i ? .3228 : .0898;
+                              let scale = 1 > Math.abs(slideProgress + prevIndent) ? .1 * (1 - Math.abs(slideProgress + prevIndent)) + 1 : 1;
+                              slide.transform("scale3d(" + scale + "," + scale + ",1)")
+                           } */
+                        },
+                        setTransition: function (b) {
+                           // for (let a = 0; a < this.slides.length; a++) this.slides.eq(a).transition(b)
+                        },
+                        touchEnd: function () {
+                           // -1515 > this.translate && alert("\u8df3\u8f6c")
+                        }
+                     }
+                  })
+               }
+            }, 300);
          } else if (res.status == -2) {
             // this.native.showToast(res.info);
             // this.navCtrl.pop().catch(() => { history.back() });
@@ -135,8 +176,9 @@ export class AddProcessScannerPage {
          });
          this.list.push(new orderParams(true));
          setTimeout(() => {
-            this.myContent.scrollToBottom();
-         }, 800);
+            this.pageswiper.update();
+            this.pageswiper.slideTo(this.list.length - 1);
+         }, 300);
       })
 
    }
@@ -146,6 +188,9 @@ export class AddProcessScannerPage {
          this.list.splice(index, 1);
          // this.native.showToast('删除成功');
          this.getRecIds();
+         setTimeout(() => {
+            this.pageswiper.update();
+         }, 300);
       } else {
          if (this.list.length > 1) {
             this.native.openAlertBox('删除加工单', () => {
@@ -153,6 +198,10 @@ export class AddProcessScannerPage {
                   if (res.status == 1) {
                      this.list.splice(index, 1);
                      this.getRecIds();
+                     setTimeout(() => {
+                        this.pageswiper.update();
+                        this.pageswiper.slideTo(this.list.length - 1);
+                     }, 300);
                   } else {
                      this.native.showToast(res.info);
                   }
