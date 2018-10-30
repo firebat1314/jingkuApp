@@ -15,74 +15,79 @@
          </button>
       </ion-buttons>
    </ion-navbar>
-   <ion-toolbar no-padding>
-      <div class="coupon-types">
-         <div class="left">
-            <div class="type" tappable [class.on]="couponSelect==0" (click)="segmentChange(0);showmark=false;">全部({{data?.counts[-1]||0}})</div>
-            <div class="type" tappable [class.on]="couponSelect==1" (click)="segmentChange(1);showmark=false;">商品券({{data?.counts[0]||0}})</div>
-            <div class="type" tappable [class.on]="couponSelect==2" (click)="segmentChange(2);showmark=false;">店铺券({{data?.counts[2]||0}})</div>
-            <div class="type" tappable [class.on]="couponSelect==3" (click)="segmentChange(3);showmark=false;">全平台券({{data?.counts[3]||0}})</div>
-            <div class="type" tappable [class.on]="couponSelect==4" (click)="segmentChange(4);showmark=false;">运费券({{data?.counts[4]||0}})</div>
-
+   <ion-toolbar no-padding class="mytoolbar">
+      <div class="coupon-types" id="top">
+         <div class="swiper-container" id="nav">
+            <div class="left swiper-wrapper">
+               <div class="swiper-slide" *ngFor="let item of category">
+                  <span class="type" tappable (click)="couponSelect=item.cat_id;showmark=false;">{{item.cat_name}}({{data?.counts[item.cat_id-1]||0}})</span>
+               </div>
+               <div class="bar">
+                  <div class="color"></div>
+               </div>
+            </div>
          </div>
          <div class="right" (click)="showmark = !showmark">
-            <ion-icon name="ios-list"></ion-icon>
+            <img src="assets/icon/discount-coupon_03.png" width="20" alt="">
          </div>
-
       </div>
    </ion-toolbar>
 </ion-header>
 
 <div class="mark" *ngIf="showmark" fadeIn tappable (click)="showmark=false">
+   <div class="title" *ngIf="category?.list?.length">- 全部{{category?.list?.length}}个分类 -</div>
    <div class="type-wrap" (click)="$event.stopPropagation()">
-      <button ion-button small round tappable [class.on]="couponSelect==0" (click)="segmentChange(0);showmark=false;">全部类型({{data?.counts[-1]||0}})</button>
-      <button ion-button small round tappable [class.on]="couponSelect==1" (click)="segmentChange(1);showmark=false;">商品优惠券({{data?.counts[0]||0}})</button>
-      <button ion-button small round tappable [class.on]="couponSelect==2" (click)="segmentChange(2);showmark=false;">店铺优惠券({{data?.counts[1]||0}})</button>
-      <button ion-button small round tappable [class.on]="couponSelect==3" (click)="segmentChange(3);showmark=false;">全平台优惠券({{data?.counts[2]||0}})</button>
-      <button ion-button small round tappable [class.on]="couponSelect==4" (click)="segmentChange(4);showmark=false;">运费优惠券({{data?.counts[3]||0}})</button>
+      <button *ngFor="let item of category;let index=index;" ion-button small round tappable [class.on]="couponSelect==item.cat_id" (click)="showmark=false;slideTo(index)"><em></em>{{item.cat_name}}({{data?.counts[item.cat_id-1]||0}})</button>
    </div>
 </div>
 
 <ion-content>
-   <div class="no-coupon" *ngIf="data?.data.length==0">
-      <div class="img">
-          <img src="./assets/images/images/coupon_4_03.png" alt="">
-      </div>
-      <div class="title">没有优惠券哦！</div>
-  </div>
-   <div class="supplier" *ngFor="let supp of data?.data">
-      <div class="head">
-         <div class="left">
-            <div class="logo">
-               <img [img-lazy-load]="supp?.supplier_info?.logo" alt="">
-            </div>
-            <div class="name">{{supp?.supplier_info?.suppliers_name}}</div>
-         </div>
-         <div class="right">
-            <button *ngIf="supp.suppliers_id!=-1" (click)="getPrivilege(supp.suppliers_id)">进店</button>
-         </div>
-      </div>
-      <div class="coupon-wrap" *ngFor="let item of supp?.list">
-         <div class="check" *ngIf="isEdit">
-            <ion-checkbox tappable color="jingku1" [(ngModel)]="item.selected" mode="ios"></ion-checkbox>
-         </div>
-         <div class="coupon">
-            <div class="left">
+   <div class="swiper-container" id="page">
+      <div class="swiper-wrapper">
+         <div class="swiper-slide slidepage" *ngFor="let item of category;let index = index;">
+            <div class="no-coupon" *ngIf="item?.mylist&&!item?.mylist?.data?.length">
                <div class="img">
-                  <img [img-lazy-load]="supp?.supplier_info?.logo" alt="">
+                  <img src="./assets/images/images/coupon_4_03.png" alt="">
                </div>
-               <div class="center">
-                  <div class="info">¥<span class="bigfont">{{item.type_money}}</span>&nbsp;&nbsp;满{{item.min_goods_amount}}可用</div>
-                  <div class="title">{{item.apply_type_name}}</div>
-                  <div class="time">{{item.use_end_date}}</div>
-               </div>
+               <div class="title">没有优惠券哦</div>
             </div>
-            <div class="right">
-               <button ion-button small round block (click)="getPrivilege(item.suppliers_id)">去使用</button>
+            <div class="supplier" *ngFor="let supp of item?.mylist?.data">
+               <div class="head">
+                  <div class="left">
+                     <div class="logo">
+                        <img [img-lazy-load]="supp?.supplier_info?.logo" alt="">
+                     </div>
+                     <div class="name">{{supp?.supplier_info?.suppliers_name}}</div>
+                  </div>
+                  <div class="right">
+                     <button *ngIf="supp.suppliers_id!=-1" (click)="getPrivilege(supp.suppliers_id)">进店</button>
+                  </div>
+               </div>
+               <div class="coupon-wrap" *ngFor="let item of supp?.list">
+                  <div class="check" *ngIf="isEdit">
+                     <ion-checkbox tappable color="jingku1" [(ngModel)]="item.selected" mode="ios"></ion-checkbox>
+                  </div>
+                  <div class="coupon">
+                     <div class="left">
+                        <div class="img">
+                           <img [img-lazy-load]="supp?.supplier_info?.logo" alt="">
+                        </div>
+                        <div class="center">
+                           <div class="info">¥<span class="bigfont">{{item.type_money}}</span>&nbsp;&nbsp;满{{item.min_goods_amount}}可用</div>
+                           <div class="title">{{item.apply_type_name}}</div>
+                           <div class="time">{{item.use_end_date}}</div>
+                        </div>
+                     </div>
+                     <div class="right">
+                        <button ion-button small round block (click)="getPrivilege(item.suppliers_id)">去使用</button>
+                     </div>
+                  </div>
+               </div>
             </div>
          </div>
       </div>
    </div>
+
 
    <ion-fab right bottom>
       <button ion-fab color="jingku1" mini goBackTop scroll-to-top></button>

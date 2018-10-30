@@ -65,7 +65,7 @@ export class ChooseLensLPage {
             str_type: 'zuo'
          }).then((res) => {
             if (res.status) {
-               this.viewCtrl.dismiss(res.data, 'submit');
+               this.viewCtrl.dismiss(res, 'submit');
             }
          })
       } else {
