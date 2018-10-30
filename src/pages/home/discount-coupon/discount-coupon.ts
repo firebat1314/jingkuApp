@@ -1,4 +1,4 @@
-import { Component, ViewChild } from '@angular/core';
+import { Component, ViewChild, ElementRef } from '@angular/core';
 import { NavController, NavParams, Events, Content, IonicPage, FabButton } from 'ionic-angular';
 import { HttpService } from "../../../providers/http-service";
 import { Native } from "../../../providers/native";
@@ -30,7 +30,8 @@ export class DiscountCouponPage {
       public navParams: NavParams,
       public native: Native,
       public events: Events,
-      public httpService: HttpService
+      public httpService: HttpService,
+      public el: ElementRef,
    ) { }
 
    ionViewDidLoad() {
@@ -63,7 +64,9 @@ export class DiscountCouponPage {
                   let clientWidth = 0; //Nav的可视宽度
                   let startPosition;
 
-                  that.navSwiper = new Swiper('#nav', {
+                  let nav = that.el.nativeElement.querySelector('#nav');
+                  let page = that.el.nativeElement.querySelector('#page');
+                  that.navSwiper = new Swiper(nav, {
                      slidesPerView: 'auto',
                      freeMode: true,
                      on: {
@@ -83,16 +86,18 @@ export class DiscountCouponPage {
                      },
                   });
 
-                  that.pageSwiper = new Swiper('#page', {
+                  that.pageSwiper = new Swiper(page, {
                      watchSlidesProgress: true,
                      on: {
                         slideChange: function () {
                            that.activeIndex = this.activeIndex;
                            if (this.activeIndex == 0) {
+                              that.couponSelect = 0;
                               if (this.data) {
                                  that.getCouponData();
                               }
                            } else {
+                              that.couponSelect = that.category.list[this.activeIndex - 1].cat_id;
                               if (!that.category.list[this.activeIndex - 1].mylist) {
                                  that.httpService.coupon({
                                     cat: that.category.list[this.activeIndex - 1].cat_id,
@@ -188,28 +193,28 @@ export class DiscountCouponPage {
    slideTo(index) {
       this.pageSwiper.slideTo(index);
    }
-   getPrivilege(is_get, type_id, suppliers_id) {
-      if (is_get == 1 || is_get == 2) {
-         if (suppliers_id == 0) {
-            this.navCtrl.push('BrandListPage', { keyword: '镜库' })
-         } else if (suppliers_id < 0) {
-            this.navCtrl.push('BrandListPage', { keyword: '' })
-         } else {
-            this.navCtrl.push('ParticularsHomePage', { suppliersId: suppliers_id })
-         }
-      } else if (is_get == 0) {
+   getPrivilege(item) {
+      if (item.is_get == 1 || item.is_get == 2) {
+         this.toUse(item.suppliers_id);
+      } else if (item.is_get == 0) {
          this.native.openAlertBox('确认领取优惠券', () => {
-            this.httpService.sendByUser({ type_id: type_id }).then((res) => {
+            this.httpService.sendByUser({ type_id: item.type_id }).then((res) => {
                if (res.status == 1) {
                   this.native.showToast('领取优惠券成功');
-                  is_get = 1
+                  item.is_get = 1
                }
             })
          })
       }
    }
-   goParticularsHomePage(suppliers_id) {
-      this.navCtrl.push('ParticularsHomePage', { suppliersId: suppliers_id })
+   toUse(suppliers_id) {
+      if (suppliers_id == 0) {
+         this.navCtrl.push('BrandListPage', { keyword: '镜库' })
+      } else if (suppliers_id < 0) {
+         this.navCtrl.push('BrandListPage', { keyword: '' })
+      } else {
+         this.navCtrl.push('ParticularsHomePage', { suppliersId: suppliers_id })
+      }
    }
    goClassPage(value) {
       this.navCtrl.pop().catch(res => { history.back() });

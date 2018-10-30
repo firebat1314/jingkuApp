@@ -87,7 +87,7 @@ export class AddProcessPage {
             setTimeout(() => {
                if (this.edit) {
                   this.pageswiper = new Swiper(element, {
-                     resistanceRatio:0.9,
+                     resistanceRatio: 0.9,
                      autoHeight: true,
                      pagination: {
                         el: pagination,
@@ -99,7 +99,8 @@ export class AddProcessPage {
                         el: pagination,
                      },
                      slidesPerView: "auto",
-                     slidesOffsetBefore: '8',
+                     // slidesOffsetBefore: '8',
+                     // slidesOffsetAfter: '8',
                      on: {
                         progress: function (b) {
                            /* for (let i = 0; i < this.slides.length; i++) {
@@ -119,7 +120,7 @@ export class AddProcessPage {
                      }
                   })
                }
-            }, 300);
+            }, 200);
          }
       })
    }
@@ -182,10 +183,56 @@ export class AddProcessPage {
       let modal = this.modalCtrl.create('ChooseLensRPage', { order_id: this.order_id, rec_id: rec_id, rec_ids: this.rec_ids, pian_rec: pian_rec }, { cssClass: '' });
       modal.onDidDismiss((data, role) => {
          if (role == 'submit') {
-            item.R = data;
-            if (data) {
-               item.showBody = true;
+            if (data.is_cutting == 1) {
+
+               item.R = data.cutting.R;
+               item.L = data.cutting.L;
+               item.J = data.cutting.jia;
+
+               pian_rec = [];
+               pian_rec.push(item.R.rec_id)
+               pian_rec.push(item.L.rec_id)
+
+               let rec_id = null
+               let mach_type = null
+               let pinpai = null
+               let xinghao = null
+               let beizhu = null
+               if (item.J) {
+                  rec_id = item.J.rec_id;//选中多的镜片ID
+                  mach_type = item.J.mach_type;//加工类型
+                  pinpai = item.J.pinpai;//镜架品牌
+                  xinghao = item.J.xinghao;//镜架型号
+                  beizhu = item.J.beizhu;//镜架型号
+               }
+
+               let modal = this.modalCtrl.create('PopoverMachiningPage', {
+                  rec_id: rec_id,
+                  mach_type: mach_type,
+                  pinpai: pinpai,
+                  xinghao: xinghao,
+                  beizhu: beizhu,
+                  pian_rec: pian_rec
+               }, { cssClass: '' });
+               modal.onDidDismiss((data, role) => {
+                  if (data) {
+                     item.J = data;
+                     setTimeout(() => {
+                        this.pageswiper.update();
+                     }, 300);
+                  }
+               })
+               
+               setTimeout(() => {
+                  modal.present();
+               }, 500);
+
+            } else {
+               item.R = data.data;
             }
+            setTimeout(() => {
+               this.pageswiper.update();
+            }, 800);
          }
       })
       modal.present();
@@ -200,10 +247,56 @@ export class AddProcessPage {
       let modal = this.modalCtrl.create('ChooseLensLPage', { order_id: this.order_id, rec_id: rec_id, rec_ids: this.rec_ids, pian_rec: pian_rec }, { cssClass: '' });
       modal.onDidDismiss((data, role) => {
          if (role == 'submit') {
-            item.L = data;
-            if (data) {
-               item.showBody = true;
+            if (data.is_cutting == 1) {//切边商品选择一个自动填充其他
+                  
+               item.R = data.cutting.R;
+               item.L = data.cutting.L;
+               item.J = data.cutting.jia;
+
+               pian_rec = [];
+               pian_rec.push(item.R.rec_id)
+               pian_rec.push(item.L.rec_id)
+
+               let rec_id = null
+               let mach_type = null
+               let pinpai = null
+               let xinghao = null
+               let beizhu = null
+               if (item.J) {
+                  rec_id = item.J.rec_id;//选中多的镜片ID
+                  mach_type = item.J.mach_type;//加工类型
+                  pinpai = item.J.pinpai;//镜架品牌
+                  xinghao = item.J.xinghao;//镜架型号
+                  beizhu = item.J.beizhu;//镜架型号
+               }
+
+               let modal = this.modalCtrl.create('PopoverMachiningPage', {
+                  rec_id: rec_id,
+                  mach_type: mach_type,
+                  pinpai: pinpai,
+                  xinghao: xinghao,
+                  beizhu: beizhu,
+                  pian_rec: pian_rec
+               }, { cssClass: '' });
+               modal.onDidDismiss((data, role) => {
+                  if (data) {
+                     item.J = data;
+                     setTimeout(() => {
+                        this.pageswiper.update();
+                     }, 300);
+                  }
+               })
+               
+               setTimeout(() => {
+                  modal.present();
+               }, 800);
+               
+            } else {
+               item.L = data.data;
             }
+            setTimeout(() => {
+               this.pageswiper.update();
+            }, 300);
          }
       })
       modal.present();
@@ -244,9 +337,9 @@ export class AddProcessPage {
       modal.onDidDismiss((data, role) => {
          if (role == 'submit') {
             item.J = data;
-            if (data) {
-               item.showBody = true;
-            }
+            setTimeout(() => {
+               this.pageswiper.update();
+            }, 300);
          }
       })
       modal.present();

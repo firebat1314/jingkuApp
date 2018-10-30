@@ -209,8 +209,8 @@ export class HttpService {
    suppliersBouns(data?: Object) {//使用优惠券
       return this.http.get(IP + '/Flow/suppliers_bouns', data, { showLoading: true })
    }
-   checkout(data?: Object,options?: HttpOptions) {//购物车去结算
-      return this.http.get(IP + '/Flow/checkout', data, { showLoading: false,...options })
+   checkout(data?: Object, options?: HttpOptions) {//购物车去结算
+      return this.http.get(IP + '/Flow/checkout', data, { showLoading: false, ...options })
    }
    delNoShop(data?: Object) {//删除未选中的商品
       return this.http.post(IP + '/Flow/del_no_shop', data, { showLoading: true })
@@ -248,8 +248,8 @@ export class HttpService {
    userInfo(data?: Object) {//（2）获取用户资料
       return this.http.get(IP + '/User/user_info', data, { showLoading: false })
    }
-   getUserBonus(data?: Object) {//（3）个人中心优惠券
-      return this.http.get(IP + '/User/get_user_bonus', data, { showLoading: true })
+   getUserBonus(data?: Object, options?: HttpOptions) {//（3）个人中心优惠券
+      return this.http.get(IP + '/User/get_user_bonus', data, { showLoading: true,...options })
    }
    editPwd(data?: Object) {//（4）修改密码
       return this.http.post(IP + '/User/edit_pwd', data, { showLoading: false })

@@ -66,7 +66,7 @@
                   <img *ngIf="item.is_get==1" src="./assets/images/images/coupon_center_1_03.png" alt="">
                   <img *ngIf="item.is_get==2" style="width: 4.7rem;" src="./assets/images/images/coupon_center_1_04.png" alt="">
                </div>
-               <div class="left" tappable (click)="getPrivilege(1,item.type_id,item.suppliers_id)">
+               <div class="left" tappable (click)="toUse(item.suppliers_id)">
                   <div class="img">
                      <img src="{{item.logo}}" alt="">
                   </div>
@@ -79,14 +79,14 @@
                   <div style="width: 60px;height: 60px;">
                      <my-canvas [baifen]="item.baifen.slice(0,-1)" *ngIf="item.is_get==0"></my-canvas>
                   </div>
-                  <div ion-button small round block class="click touse" *ngIf="item.is_get==0" (click)="getPrivilege(0,item.type_id,item.suppliers_id)">点击领劵</div>
-                  <div ion-button small round block class="touse" *ngIf="item.is_get==1" (click)="getPrivilege(1,item.type_id,item.suppliers_id)">去使用</div>
-                  <div ion-button small round block class="touse" *ngIf="item.is_get==2" (click)="getPrivilege(2,item.type_id,item.suppliers_id)">进店看看</div>
+                  <div ion-button small round block class="click touse" *ngIf="item.is_get==0" (click)="getPrivilege(item)">点击领劵</div>
+                  <div ion-button small round block class="touse" *ngIf="item.is_get==1" (click)="getPrivilege(item)">去使用</div>
+                  <div ion-button small round block class="touse" *ngIf="item.is_get==2" (click)="getPrivilege(item)">进店看看</div>
                </div>
             </div>
          </div>
          <div class="swiper-slide slidepage" *ngFor="let item of category?.list;let index = index;">
-            <div class="no-coupon" *ngIf="!item?.mylist?.list?.length">
+            <div class="no-coupon" *ngIf="item?.mylist&&!item?.mylist?.list?.length">
                <div class="img">
                   <img img-lazy-load="./assets/icon/no-coupon.png" alt="">
                </div>
@@ -99,7 +99,7 @@
                   <img *ngIf="subitem.is_get==1" src="./assets/images/images/coupon_center_1_03.png" alt="">
                   <img *ngIf="subitem.is_get==2" style="width: 4.7rem;" src="./assets/images/images/coupon_center_1_04.png" alt="">
                </div>
-               <div class="left" tappable (click)="getPrivilege(1,subitem.type_id,subitem.suppliers_id)">
+               <div class="left" tappable (click)="toUse(subitem.suppliers_id)">
                   <div class="img">
                      <img src="{{subitem.logo}}" alt="">
                   </div>
@@ -112,9 +112,9 @@
                   <div style="width: 60px;height: 60px;">
                      <my-canvas [baifen]="subitem.baifen.slice(0,-1)" *ngIf="subitem.is_get==0"></my-canvas>
                   </div>
-                  <div ion-button small round block class="click touse" *ngIf="subitem.is_get==0" (click)="getPrivilege(0,subitem.type_id,subitem.suppliers_id)">点击领劵</div>
-                  <div ion-button small round block class="touse" *ngIf="subitem.is_get==1" (click)="getPrivilege(1,subitem.type_id,subitem.suppliers_id)">去使用</div>
-                  <div ion-button small round block class="touse" *ngIf="subitem.is_get==2" (click)="getPrivilege(2,subitem.type_id,subitem.suppliers_id)">进店看看</div>
+                  <div ion-button small round block class="click touse" *ngIf="subitem.is_get==0" (click)="getPrivilege(subitem)">点击领劵</div>
+                  <div ion-button small round block class="touse" *ngIf="subitem.is_get==1" (click)="getPrivilege(subitem)">去使用</div>
+                  <div ion-button small round block class="touse" *ngIf="subitem.is_get==2" (click)="getPrivilege(subitem)">进店看看</div>
                </div>
             </div>
          </div>

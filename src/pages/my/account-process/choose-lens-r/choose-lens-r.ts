@@ -63,7 +63,7 @@ export class ChooseLensRPage {
             str_type: 'you',
          }).then((res) => {
             if (res.status) {
-               this.viewCtrl.dismiss(res.data, 'submit');
+               this.viewCtrl.dismiss(res, 'submit');
             }
          })
       } else {
