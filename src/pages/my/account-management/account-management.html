@@ -6,48 +6,54 @@
 -->
 <ion-header>
 
-    <ion-navbar>
-        <ion-title>账户管理</ion-title>
-        <ion-buttons end>
-			<button ion-button icon-only navPush="CompanyListPage">
-				<span style="color: #0070c9;">切换企业</span>
-			</button>
-		</ion-buttons>
-    </ion-navbar>
+   <ion-navbar>
+      <ion-title>账户管理</ion-title>
+      <ion-buttons end>
+         <button ion-button icon-only navPush="CompanyListPage">
+            <span style="color: #0070c9;">切换企业</span>
+         </button>
+      </ion-buttons>
+   </ion-navbar>
 
 </ion-header>
 
 
 <ion-content>
-    <button ion-item mode="ios" navPush="AccountInfoPage" no-lines>
-        <ion-avatar item-left>
-             <img img-lazy-load="{{avatar}}">
-        </ion-avatar>
-        <h2>{{username}}</h2>
-    </button>
-    <div class="background"></div>
-    <ion-list>
-        <button ion-item mode="ios" navPush="AccountInfoPage">
-            个人信息
-        </button>
-        <button ion-item mode="ios" navPush="MemberCenterPage">
-            会员中心
-        </button>
-        <button ion-item mode="ios" navPush="ShippingAddressPage">
-            地址管理
-        </button>
-        <button ion-item mode="ios" navPush="CompanyInfoPage">
-            企业信息
-        </button>
-        <button ion-item mode="ios" navPush="DistributionQualificationPage">
-            铺货资质
-        </button>
-        <button ion-item mode="ios" navPush="AccountSecurityPage">
-            账号安全
-        </button>
-        <button ion-item mode="ios" navPush="StaffManagementPage">
-            员工管理
-        </button>
-    </ion-list>
-    <button large ion-button block pull color="light" (click)="signOut()" margin-vertical>退出登录</button>
+   <button ion-item mode="ios" navPush="AccountInfoPage" no-lines>
+      <ion-avatar item-left>
+         <img img-lazy-load="{{avatar}}">
+      </ion-avatar>
+      <h2>{{username}}</h2>
+   </button>
+   <div class="background"></div>
+   <ion-list>
+      <button ion-item mode="ios" navPush="AccountInfoPage">
+         个人信息
+      </button>
+      <button ion-item mode="ios" navPush="MemberCenterPage">
+         会员中心
+      </button>
+      <button ion-item mode="ios" navPush="ShippingAddressPage">
+         地址管理
+      </button>
+      <button ion-item mode="ios" navPush="CompanyInfoPage">
+         企业信息
+      </button>
+      <button ion-item mode="ios" navPush="DistributionQualificationPage">
+         铺货资质
+      </button>
+      <button ion-item mode="ios" navPush="AccountSecurityPage">
+         账号安全
+      </button>
+      <button ion-item mode="ios" navPush="StaffManagementPage">
+         员工管理
+      </button>
+   </ion-list>
+   <!-- <button large ion-button block pull color="light" (click)="signOut()" margin-vertical>退出登录</button> -->
 </ion-content>
+
+<ion-footer >
+   <ion-toolbar no-padding>
+      <div ion-button full large no-margin color="jingku1" (click)="signOut()">退出登录</div>
+   </ion-toolbar>
+</ion-footer>

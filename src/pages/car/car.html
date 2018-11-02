@@ -4,7 +4,7 @@
   See http://ionicframework.com/docs/v2/components/#navigation for more info on
   Ionic pages and navigation.
 -->
-<ion-header>
+<!-- <ion-header>
 
    <ion-navbar>
       <ion-title>购物车</ion-title>
@@ -13,7 +13,7 @@
       </ion-buttons>
    </ion-navbar>
 
-</ion-header>
+</ion-header> -->
 
 
 <ion-content>
@@ -21,31 +21,37 @@
       <ion-refresher-content refreshingSpinner="1" pullingIcon="0"></ion-refresher-content>
    </ion-refresher>
    <nothing backgroundImg="url(./assets/icon/no-cart.png)" *ngIf="carDetails?.suppliers_goods_list.length==0"></nothing>
+   <div class="top-head" *ngIf="carDetails&&carDetails?.suppliers_goods_list?.length!=0">
+      <div class="title">
+         <div class="txt">购物车</div>
+         <div class="num">共{{carDetails?.goods_count || 0}}件宝贝</div>
+      </div>
+      <div class="btn">
+         <button (click)="isEdit=!isEdit;">{{isEdit?'完成':'管理'}}</button>
+      </div>
+   </div>
    <ion-list>
       <!-- ——————————————————————— 店铺 ——————————————————————— -->
       <div class="single-shop" *ngFor="let item1 of carDetails?.suppliers_goods_list">
          <div class="single-shop-head" tappable navPush="ParticularsHomePage" [navParams]="{suppliersId:item1.suppliers_id}">
-            <ion-checkbox *ngIf="!isEdit" color="jingku1" tappable (click)="checkGoods(item1.suppliers_id,1,item1.is_select==1?0:1);"
-               [checked]="item1?.is_select==1" mode="ios" margin-left></ion-checkbox>
-            <ion-checkbox *ngIf="isEdit" color="jingku1" (click)="check1(item1,carDetails)" [(ngModel)]="item1.selected"
-               mode="ios" margin-left></ion-checkbox>
-            <ion-item mode="ios" no-lines>
-               <ion-icon color="colorsix" name="shop"></ion-icon>
+            <div class="checkswrap">
+               <ion-checkbox *ngIf="!isEdit" color="jingku1" tappable (click)="checkGoods(item1.suppliers_id,1,item1.is_select==1?0:1);" [checked]="item1?.is_select==1" mode="ios"></ion-checkbox>
+               <ion-checkbox *ngIf="isEdit" color="jingku1" (click)="check1(item1,carDetails)" [(ngModel)]="item1.selected" mode="ios"></ion-checkbox>
+            </div>
+            <div>
                <span>{{item1.title}}</span>
                <ion-icon color="colorsix" name="ios-arrow-forward"></ion-icon>
                <!--<button item-right ion-button clear color="danger">优惠券???</button>-->
-            </ion-item>
+            </div>
          </div>
          <!-- ——————————————————————— 商品 ——————————————————————— -->
          <div class="single-shop-goods" [class.disable]="!item2.in_area_id||item2.is_on_sale=='0'" *ngFor="let item2 of item1.goods_list ">
             <div class="single-shop-goods-head">
-               <div *ngIf="(item2.in_area_id&&item2.is_on_sale!='0')||isEdit">
-                  <ion-checkbox margin-left *ngIf="!isEdit" tappable (click)="checkGoods(item2.cutting_id>0?item2.g_parent_id:item2.goods_id,item2.cutting_id>0?3:0,item2.is_select==1?0:1)"
-                     [checked]="item2?.is_select==1" color="jingku1" mode="ios"></ion-checkbox>
-                  <ion-checkbox margin-left *ngIf="isEdit" tappable color="jingku1" (click)="check2(item2,item1)"
-                     [(ngModel)]="item2.selected" mode="ios"></ion-checkbox>
+               <div class="checkswrap" *ngIf="(item2.in_area_id&&item2.is_on_sale!='0')||isEdit">
+                  <ion-checkbox *ngIf="!isEdit" tappable (click)="checkGoods(item2.cutting_id>0?item2.g_parent_id:item2.goods_id,item2.cutting_id>0?3:0,item2.is_select==1?0:1)" [checked]="item2?.is_select==1" color="jingku1" mode="ios"></ion-checkbox>
+                  <ion-checkbox *ngIf="isEdit" tappable color="jingku1" (click)="check2(item2,item1)" [(ngModel)]="item2.selected" mode="ios"></ion-checkbox>
                </div>
-               <ion-item margin-left no-lines (click)="goParticularPage(item2)">
+               <ion-item no-lines (click)="goParticularPage(item2)">
                   <ion-thumbnail item-left tappable>
                      <img img-lazy-load="{{item2.goods_thumb}}">
                   </ion-thumbnail>
@@ -58,14 +64,11 @@
             <!-- ——————————————————————— 商品属性 ——————————————————————— -->
             <div class="single-shop-goods-body">
                <div class="item-wrap" *ngFor="let item3 of item2.attrs;">
-                  <div margin-left *ngIf="(item2.in_area_id&&item2.is_on_sale!='0')||isEdit">
-                     <ion-checkbox margin-right *ngIf="!isEdit&&!(item3.cutting_id>0)" [(ngModel)]="item3.is_select"
-                        [checked]="item3.is_select" tappable color="jingku1" (click)="checkGoodsAttr(item3.rec_id,item3.is_select==1?1:0)"
-                        mode="ios"></ion-checkbox>
-                     <ion-checkbox margin-right *ngIf="isEdit&&!(item3.cutting_id>0)" [(ngModel)]="item3.selected"
-                        (click)="check3(item3,item2,item1)" tappable color="jingku1" mode="ios"></ion-checkbox>
+                  <div class="checkswrap" *ngIf="(item2.in_area_id&&item2.is_on_sale!='0')||isEdit">
+                     <ion-checkbox *ngIf="!isEdit&&!(item3.cutting_id>0)" [(ngModel)]="item3.is_select" [checked]="item3.is_select" tappable color="jingku1" (click)="checkGoodsAttr(item3.rec_id,item3.is_select==1?1:0)" mode="ios"></ion-checkbox>
+                     <ion-checkbox *ngIf="isEdit&&!(item3.cutting_id>0)" [(ngModel)]="item3.selected" (click)="check3(item3,item2,item1)" tappable color="jingku1" mode="ios"></ion-checkbox>
                   </div>
-                  <div class="sliding-item-box" [style.marginLeft]="item3.cutting_id>0?'36px':'8px'">
+                  <div class="sliding-item-box" [style.marginLeft]="item3.cutting_id>0?'36px':'0'">
                      <ion-item-sliding>
                         <ion-item no-lines>
                            <div class="goodsinfo">
@@ -86,9 +89,7 @@
                                  </div>
                                  <div class="price" *ngIf="!item3?.cha_price&&mine?.showPrice">¥{{item3?.goods_price}}</div>&nbsp;
                                  <div class="number">
-                                    <count-input [minValue]="item3?.goods_properties?.number||1" [maxValue]="item3?.product_number=='-1'?item2?.g_goods_number:item3?.product_number"
-                                       [rank]="item3?.goods_properties?.number" (valueChange)="numberChangeI($event,item3)"
-                                       [value]="item3?.goods_number" [hasBorder]="true"></count-input>
+                                    <count-input [minValue]="item3?.goods_properties?.number||1" [maxValue]="item3?.product_number=='-1'?item2?.g_goods_number:item3?.product_number" [rank]="item3?.goods_properties?.number" (valueChange)="numberChangeI($event,item3)" [value]="item3?.goods_number" [hasBorder]="true"></count-input>
                                  </div>
                               </div>
                               <div style="font-size: 1rem;color: #e60000;" *ngIf="item3?.gift_list?.title">{{item3?.gift_list?.title}}</div>
@@ -104,37 +105,38 @@
          </div>
          <div class="single-shop-little-result">
             <span>共{{item1?.goods_count}}件</span>
-            <span *ngIf="mine?.showPrice">
+            <ng-container *ngIf="mine?.showPrice">
                <span class="fgx">|</span>
                <span>小计：</span>
                <span class="red">¥{{item1?.goods_price_total}}</span>
-            </span>
+            </ng-container>
          </div>
-         <div class="background"></div>
       </div>
    </ion-list>
 </ion-content>
 <ion-footer>
-   <div class="car-accounts" *ngIf="carDetails&&carDetails?.suppliers_goods_list?.length!=0">
-      <div class="left">
-         <label tappable class="select-all" margin-horizontal>
-            <ion-checkbox color="jingku1" *ngIf="!isEdit" tappable (click)="checkGoods(null,2,carDetails.total.is_select?0:1)"
-               [checked]="carDetails.total.is_select" margin-right color="jingku1" mode="ios"></ion-checkbox>
-            <ion-checkbox color="jingku1" [(ngModel)]="carDetails.selected" (click)="checkAll()" *ngIf="isEdit" mode="ios"
-               margin-right></ion-checkbox>
-            全选
-         </label>
-         <div *ngIf="!isEdit&&mine?.showPrice" class="price">
-            <div class="total">合计：¥{{carDetails?.total?.goods_amount | tofixed}}</div>
-            <div class="subtotal" *ngIf="carDetails?.total?.reduce_price!=0">
-               总额：¥{{carDetails?.total?.old_price_amount | tofixed}} 立减：¥{{carDetails?.total?.reduce_price | tofixed}}
+   <ion-toolbar>
+      <div class="car-accounts"><!--  *ngIf="carDetails&&carDetails?.suppliers_goods_list?.length!=0" -->
+         <div class="left">
+            <label tappable class="select-all ">
+               <div class="checkswrap">
+                  <ion-checkbox color="jingku1" *ngIf="!isEdit" tappable (click)="checkGoods(null,2,carDetails?.total?.is_select?0:1)" [checked]="carDetails?.total?.is_select" color="jingku1" mode="ios"></ion-checkbox>
+                  <ion-checkbox color="jingku1" [(ngModel)]="carDetails.selected" (click)="checkAll()" *ngIf="isEdit" mode="ios"></ion-checkbox>
+               </div>
+               <span>全选</span>
+            </label>
+            <div *ngIf="!isEdit&&mine?.showPrice" class="price">
+               <div class="total">合计：<em>¥{{carDetails?.total?.goods_amount || '0.00' | tofixed}}</em></div>
+               <div class="subtotal" *ngIf="carDetails?.total?.reduce_price!=0">
+                  总额：<em>¥{{carDetails?.total?.old_price_amount || '0.00' | tofixed}}</em> 立减：<em>¥{{carDetails?.total?.reduce_price || '0.00' | tofixed}}</em>
+               </div>
             </div>
          </div>
+         <div *ngIf="!isEdit" class="right" tappable (click)="goAccounts()">去结算（{{carDetails?.total?.real_goods_count || 0}}）</div>
+         <div *ngIf="isEdit" class="attention-and-delete">
+            <button ion-button outline round color="jingku1" (click)="beCareFor()">移入关注</button>
+            <button ion-button outline round color="jingku1" (click)="dropCartGoodsSelect()">删除</button>
+         </div>
       </div>
-      <div *ngIf="!isEdit" class="right" tappable (click)="goAccounts()">去结算（{{carDetails?.total?.real_goods_count}}）</div>
-      <div *ngIf="isEdit" class="attention-and-delete">
-         <button ion-button outline color="jingku1" (click)="beCareFor()">移入关注</button>
-         <button ion-button color="jingku1" (click)="dropCartGoodsSelect()">　删除　</button>
-      </div>
-   </div>
+   </ion-toolbar>
 </ion-footer>

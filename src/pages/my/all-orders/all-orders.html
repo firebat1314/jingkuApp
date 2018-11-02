@@ -35,7 +35,6 @@
    <div class="single-shop" *ngFor="let item of orderList;let index = index;">
       <img *ngIf="item?.order_status==5&&item?.pay_status==2&&item?.shipping_status==2" style="position: absolute;top: 0;right: 18px;width: 57px;z-index: 101;pointer-events: none;opacity: 0.5;" src="./assets/icon/order-ok.png" alt="">
       <ion-item-divider>
-         <ion-icon *ngIf="item.suppliers_name" item-left name="shop"></ion-icon>
          <div *ngIf="item.suppliers_name" class="shop-title" tappable (click)="goParticularsHomePage(item.suppliers_id)">
             {{item.suppliers_name}}&nbsp;
             <ion-icon color="colorsix" name="ios-arrow-forward"></ion-icon>
@@ -93,7 +92,7 @@
       </ion-item>
       <div class="result">
          <span class="count">共{{item.goods_number}}件商品&nbsp;&nbsp;</span>
-         <span style="color: #4d4d4d;" *ngIf="mine?.showPrice">需付款：
+         <span *ngIf="mine?.showPrice">{{item?.pay_status==2?'实付款：':'需付款：'}}
 				<span class="price">¥{{item.total_fee}}</span>
          </span>
       </div>

@@ -1,9 +1,91 @@
 ion-tabs {
-   
-   .tab-button[aria-selected=true]{
+
+   .tab-button[aria-selected=true] {
       color: get-color(jingku1) !important;
-      .icon{
+
+      .icon {
          color: get-color(jingku1) !important;
+      }
+   }
+
+   .ion-tab-icon-base {
+      width: 20px !important;
+      height: 20px !important;
+      min-width: 20px !important;
+      margin-bottom: 4px !important;
+   }
+
+   .ion-tab-icon-md-base {
+      width: 25px !important;
+      min-width: 25px !important;
+      height: 25px !important;
+   }
+
+   $tabImageName: 'tab1''tab2''tab3''tab4';
+
+   @for $i from 1 to 5 {
+
+      //for ios  
+      .ion-ios-tab-#{nth($tabImageName, $i)} {
+         @extend .ion-tab-icon-base;
+         content: url("../assets/icon/tabs/#{nth($tabImageName, $i)}_choosed.png");
+      }
+
+      .ion-ios-tab-#{nth($tabImageName, $i)}-outline {
+         @extend .ion-tab-icon-base;
+         content: url("../assets/icon/tabs/#{nth($tabImageName, $i)}.png");
+      }
+
+      // for android  
+      &.tabs-md .tab-button[aria-selected=true] {
+         .ion-md-tab-#{nth($tabImageName, $i)} {
+            @if $i==1 {
+               width: 23px;
+               min-width: 23px !important;
+               height: 23px;
+            }
+
+            @else if $i==2 {
+               width: 25px;
+               min-width: 25px !important;
+               height: 20px;
+               padding: 2px 1px 1px;
+            }
+
+            @else {
+               @extend .ion-tab-icon-md-base;
+            }
+
+            content: url("../assets/icon/tabs/#{nth($tabImageName, $i)}_choosed.png");
+         }
+      }
+
+      &.tabs-md .tab-button[aria-selected=false] {
+         .ion-md-tab-#{nth($tabImageName, $i)} {
+            @if $i==1 {
+               width: 24px;
+               min-width: 24px !important;
+               height: 24px;
+            }
+
+            @else if $i==2 {
+               width: 25px;
+               min-width: 25px !important;
+               height: 18px;
+            }
+
+            @else if $i==3 {
+               width: 22px;
+               min-width: 22px !important;
+               height: 25px;
+            }
+
+            @else {
+               @extend .ion-tab-icon-md-base;
+            }
+
+            content: url("../assets/icon/tabs/#{nth($tabImageName, $i)}.png");
+         }
       }
    }
 }
