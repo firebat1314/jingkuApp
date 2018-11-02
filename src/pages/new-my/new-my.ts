@@ -1,5 +1,5 @@
-import { Component } from '@angular/core';
-import { NavController, ModalController, ViewController, Events, IonicPage, App } from 'ionic-angular';
+import { Component, ViewChild } from '@angular/core';
+import { NavController, ModalController, ViewController, Events, IonicPage, App, Content } from 'ionic-angular';
 import { HttpService } from "../../providers/http-service";
 
 import { Native } from "../../providers/native";
@@ -23,6 +23,8 @@ export class NewMyPage {
    isAndroid = this.native.isAndroid();
    isMobile = this.native.isMobile();
 
+   @ViewChild(Content) myContent: Content;
+
    constructor(
       public viewCtrl: ViewController,
       public navCtrl: NavController,
@@ -43,11 +45,16 @@ export class NewMyPage {
          this.userInfo = data;
       })
    }
-   ionViewDidEnter(){
+   ionViewDidEnter() {
       this.app.setTitle('个人中心');
    }
    ionViewDidLoad() {
       console.log('ionViewDidLoad NewMyPage');
+   }
+   ngAfterViewInit(){
+      /* this.myContent.ionScroll.subscribe((d) => {
+        
+      }); */
    }
    ngOnInit() {
       this.httpService.getByName('usercount').then((res) => {

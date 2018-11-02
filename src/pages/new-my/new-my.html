@@ -4,17 +4,25 @@
   See http://ionicframework.com/docs/components/#navigation for more info on
   Ionic pages and navigation.
 -->
-<ion-header>
+<!-- <ion-header>
 
+   
+</ion-header> -->
+
+
+<ion-content>
+   <ion-refresher (ionRefresh)="doRefresh($event)" pullMax="60">
+      <ion-refresher-content refreshingSpinner="1" pullingIcon="0"></ion-refresher-content>
+   </ion-refresher>
    <div class="my-head">
-      <div class="t_btn">
+      <!-- <div class="t_btn">
          <button color="light" ion-button clear icon-only (click)="goSettingPage()">
-                <ion-icon name="ios-settings-outline"></ion-icon>
-            </button>
+            <ion-icon name="ios-settings-outline"></ion-icon>
+         </button>
          <button color="light" ion-button clear icon-only (click)="goMessagePage()">
-                <ion-icon name="mess"></ion-icon>
-            </button>
-      </div>
+            <ion-icon name="mess"></ion-icon>
+         </button>
+      </div> -->
       <div class="h-body">
          <div class="user_logo" tappable (click)="goAccountManagementPage($event)">
             <img img-lazy-load="{{userInfo?.data?.avatar}}" alt="">
@@ -29,14 +37,15 @@
                   <div class="vip_name">{{userInfo?.data?.user_info?.rank_name||'暂无等级'}}</div>
                </div>
             </div>
-            <!-- <div tappable small (click)="goAccountManagementPage($event)" color="light" ion-button round outline icon-left item-right>
-                    <ion-icon>
-                        <img style="width:1.3rem;" src="./assets/icon/images/user_cener_1_11.png" alt="">
-                    </ion-icon>
-                    账号管理
-                </div> -->
-            <div class="gl_btn" tappable (click)="goAccountManagementPage($event)">
-               <img src="./assets/icon/new_center/10.png" alt=""> 账号管理
+            <div class="gl_btn">
+               <ion-buttons>
+                  <button color="light" ion-button clear icon-only (click)="goSettingPage()" no-margin>
+                     <ion-icon name="ios-settings-outline" style="padding: 0 3px;"></ion-icon>
+                  </button>
+                  <button color="light" ion-button clear icon-only (click)="goMessagePage()" no-margin>
+                     <ion-icon name="mess" style="padding: 0 3px;"></ion-icon>
+                  </button>
+               </ion-buttons>
             </div>
          </div>
       </div>
@@ -59,13 +68,6 @@
          </div>
       </div>
    </div>
-</ion-header>
-
-
-<ion-content>
-   <ion-refresher (ionRefresh)="doRefresh($event)" pullMax="60">
-      <ion-refresher-content refreshingSpinner="1" pullingIcon="0"></ion-refresher-content>
-   </ion-refresher>
    <ng-container fadeIn>
       <div class="fore fore1">
          <div class="title" tappable navPush="AllOrdersPage" [navParams]="{index:0}">
@@ -78,14 +80,14 @@
             <a navPush="AllOrdersPage" [navParams]="{index:1}">
                <span class="icon_num">
                   <img src="./assets/icon/new_center/7.png" alt="">
-                  <ion-badge *ngIf="usercount?.data?.unpay!=''">{{usercount?.data?.unpay}}</ion-badge>
+                  <ion-badge *ngIf="usercount?.data?.unpay!=0">{{usercount?.data?.unpay}}</ion-badge>
                </span>
                <span class="txt">待付款</span>
             </a>
             <a navPush="AllOrdersPage" [navParams]="{index:2}">
                <span class="icon_num">
                   <img src="./assets/icon/new_center/9.png" alt="">
-                  <ion-badge *ngIf="usercount?.data?.collect!=''">{{usercount?.data?.collect}}</ion-badge>
+                  <ion-badge *ngIf="usercount?.data?.collect!=0">{{usercount?.data?.collect}}</ion-badge>
                </span>
                <span class="txt">待收货</span>
             </a>
@@ -93,14 +95,14 @@
             <a navPush="EvaluationListPage">
                <span class="icon_num">
                   <img src="./assets/icon/new_center/comment.png" alt="">
-                  <ion-badge *ngIf="usercount?.data?.comment!=''">{{usercount?.data?.comment}}</ion-badge>
+                  <ion-badge *ngIf="usercount?.data?.comment!=0">{{usercount?.data?.comment}}</ion-badge>
                </span>
                <span class="txt">待评价</span>
             </a>
             <a navPush="AllOrdersPage" [navParams]="{index:3}">
                <span class="icon_num">
                   <img src="./assets/icon/new_center/8.png" alt="">
-                  <ion-badge *ngIf="usercount?.data?.ok!=''">{{usercount?.data?.ok}}</ion-badge>
+                  <ion-badge *ngIf="usercount?.data?.ok!=0">{{usercount?.data?.ok}}</ion-badge>
                </span>
                <span class="txt">已完成</span>
             </a>
@@ -113,7 +115,7 @@
             </a>
          </div>
       </div>
-      <div class="fore fore1">
+      <div class="fore fore2">
          <div class="title" tappable navPush="OrderListDistributionPage" [navParams]="{index:0}">
             <div>
                <span>铺货订单</span>
@@ -122,43 +124,43 @@
          </div>
          <div class="main">
             <a navPush="OrderListDistributionPage" [navParams]="{index:1}">
-                    <span class="icon_num">
-                        <img src="./assets/icon/new_center/14.png" alt="">
-                        <ion-badge *ngIf="usercount?.distribution?.examine>0">{{usercount?.distribution?.examine}}</ion-badge>
-                    </span>
-                    <span class="txt">待审核</span>
-                </a>
+               <span class="icon_num">
+                  <img src="./assets/icon/new_center/14.png" alt="">
+                  <ion-badge *ngIf="usercount?.distribution?.examine>0">{{usercount?.distribution?.examine}}</ion-badge>
+               </span>
+               <span class="txt">待审核</span>
+            </a>
             <a navPush="OrderListDistributionPage" [navParams]="{index:2}">
-                    <span class="icon_num">
-                        <img src="./assets/icon/new_center/13.png" alt="">
-                        <ion-badge *ngIf="usercount?.distribution?.send>0">{{usercount?.distribution?.send}}</ion-badge>
-                    </span>
-                    <span class="txt">待发货</span>
-                </a>
+               <span class="icon_num">
+                  <img src="./assets/icon/new_center/13.png" alt="">
+                  <ion-badge *ngIf="usercount?.distribution?.send>0">{{usercount?.distribution?.send}}</ion-badge>
+               </span>
+               <span class="txt">待发货</span>
+            </a>
             <a navPush="OrderListDistributionPage" [navParams]="{index:3}">
-                    <span class="icon_num">
-                        <img src="./assets/icon/new_center/15.png" alt="">
-                        <ion-badge *ngIf="usercount?.distribution?.collect>0">{{usercount?.distribution?.collect}}</ion-badge>
-                    </span>
-                    <span class="txt">待收货</span>
-                </a>
+               <span class="icon_num">
+                  <img src="./assets/icon/new_center/15.png" alt="">
+                  <ion-badge *ngIf="usercount?.distribution?.collect>0">{{usercount?.distribution?.collect}}</ion-badge>
+               </span>
+               <span class="txt">待收货</span>
+            </a>
             <a navPush="OrderListDistributionPage" [navParams]="{index:4}">
-                    <span class="icon_num">
-                        <img src="./assets/icon/new_center/17.png" alt="">
-                        <ion-badge *ngIf="usercount?.distribution?.ok>0">{{usercount?.distribution?.ok}}</ion-badge>
-                    </span>
-                    <span class="txt">已完成</span>
-                </a>
+               <span class="icon_num">
+                  <img src="./assets/icon/new_center/17.png" alt="">
+                  <ion-badge *ngIf="usercount?.distribution?.ok>0">{{usercount?.distribution?.ok}}</ion-badge>
+               </span>
+               <span class="txt">已完成</span>
+            </a>
             <a navPush="OrderListDistributionPage" [navParams]="{index:5}">
-                    <span class="icon_num">
-                        <img src="./assets/icon/new_center/16.png" alt="">
-                        <ion-badge *ngIf="usercount?.distribution?.effect>0">{{usercount?.distribution?.effect}}</ion-badge>
-                    </span>
-                    <span class="txt">生效中</span>
-                </a>
+               <span class="icon_num">
+                  <img src="./assets/icon/new_center/16.png" alt="">
+                  <ion-badge *ngIf="usercount?.distribution?.effect>0">{{usercount?.distribution?.effect}}</ion-badge>
+               </span>
+               <span class="txt">生效中</span>
+            </a>
          </div>
       </div>
-      <div class="fore fore2">
+      <div class="fore fore3">
          <div class="title">
             <div>
                <span>镜库资产</span>
@@ -166,30 +168,30 @@
          </div>
          <div class="main">
             <a navPush="CouponPage">
-                    <span class="icon_num">
-                        {{usercount?.data?.bonus_count||'--'}}
-                    </span>
-                    <span class="txt">优惠券</span>
-                </a>
+               <span class="icon_num">
+                  {{usercount?.data?.bonus_count||'--'}}
+               </span>
+               <span class="txt">优惠券</span>
+            </a>
             <a navPush="AccountJifenPage" [navParams]="{number:userInfo?.data?.integral}">
-                    <span class="icon_num">
-                        {{userInfo?.data?.integral||'--'}}
-                    </span>
-                    <span class="txt">积分</span>
-                </a>
+               <span class="icon_num">
+                  {{userInfo?.data?.integral||'--'}}
+               </span>
+               <span class="txt">积分</span>
+            </a>
             <a navPush="AccountBalancePage">
-                    <span class="icon_num">
-                        {{userInfo?.data?.user_money||'0.00'}}
-                    </span>
-                    <span class="txt">余额</span>
-                </a>
+               <span class="icon_num">
+                  {{userInfo?.data?.user_money||'0.00'}}
+               </span>
+               <span class="txt">余额</span>
+            </a>
 
             <a navPush="JingkuFinancePage">
-                  <span class="icon_num">
-                       立即进入
-                  </span>
-                  <span class="txt">镜库金融</span>
-              </a>
+               <span class="icon_num">
+                  立即进入
+               </span>
+               <span class="txt">镜库金融</span>
+            </a>
             <!-- <a (click)="openXimu()" hideWhen="ios">
                     <span class="icon_num">
                         暂未开放
@@ -204,7 +206,7 @@
                 </a> -->
          </div>
       </div>
-      <div class="fore fore3">
+      <div class="fore fore4">
          <div class="title">
             <div>
                <span>必备工具</span>

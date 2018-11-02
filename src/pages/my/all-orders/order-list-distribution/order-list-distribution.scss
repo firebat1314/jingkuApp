@@ -10,9 +10,12 @@ page-order-list-distribution {
         @include reminderBlankPage();
     }
     .single-shop {
-        margin-bottom: 10px;
-        background: #fff;
-        position: relative;
+      margin-bottom: 10px;
+      background: #fff;
+      position: relative;
+      margin: 10px;
+      border-radius: 12px;
+      overflow: hidden;
         >div:last-child {
             border: 0;
         }
@@ -34,7 +37,9 @@ page-order-list-distribution {
                 display: flex;
                 align-items: center;
                 .icon {
-                    margin-top: 2px;
+                  margin-top: 2px;
+                  color: #808080;
+                  font-size: 1.6rem;
                 }
             }
         }
@@ -88,16 +93,21 @@ page-order-list-distribution {
         .result {
             text-align: right;
             padding: 10px;
-            border-bottom: 1px solid #fafafa;
+            border-bottom: 1px solid #f0f0f0;
             font-size: 1.2rem;
             .count {
                 color: #4d4d4d;
             }
             .price {
-                font-size: 1.5rem;
-                span {
-                    font-weight: 600;
-                }
+               font-size: 1.7rem;
+               display: inline-block;
+   
+               &::first-letter {
+                  font-size: 1.4rem;
+               }
+               span {
+                  font-weight: 600;
+               }
             }
         }
         .btn {

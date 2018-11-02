@@ -1,174 +1,199 @@
 ion-app.ios.platform-ios.platform-cordova {
-    page-new-my {
-        .my-head {
-            padding-top: 20px;
-        }
-    }
+   page-new-my {
+      .my-head {
+         padding-top: 20px;
+      }
+   }
 }
 
 page-new-my {
-    .my-head {
-        background: url(../assets/images/images/bannerShop_02.jpg) no-repeat center top;
-        background-size: cover;
-        color: #fff;
-        position: relative;
-        .t_btn {
-            display: flex;
-            justify-content: space-between;
-        }
-        .h-body {
+   .my-head {
+      background: url(../assets/images/images/bannerShop_02.jpg) no-repeat center top;
+      background-size: cover;
+      color: #fff;
+
+      .t_btn {
+         display: flex;
+         justify-content: space-between;
+         top: 0;
+         position: fixed;
+         width: 100%;
+         background: url(../assets/images/images/bannerShop_02.jpg) no-repeat center top;
+         left: 0;
+      }
+
+      .h-body {
+         display: flex;
+         align-items: center;
+         padding: 34px 10px 12px 20px;
+
+         .user_logo {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            margin-right: 13px;
+            overflow: hidden;
             display: flex;
             align-items: center;
-            padding: 10px 10px 25px 20px;
-            .user_logo {
-                width: 68px;
-                height: 68px;
-                border-radius: 50%;
-                margin-right: 13px;
-                overflow: hidden;
-                display: flex;
-                align-items: center;
-                justify-content: center;
-            }
-            .r_wrap {
-                display: flex;
-                justify-content: space-between;
-                align-items: center;
-                flex: 1;
-                .user_info {
-                    .name {
-                        font-size: 1.4rem;
-                    }
-                    .vip {
-                        display: flex;
-                        align-items: center;
-                        margin-top: 10px;
-                        .vip_logo {
-                            width: 17px;
-                            height: 17px;
-                            margin-right: 5px;
-                        }
-                        .vip_name {
-                            font-size: 1.2rem;
-                        }
-                    }
-                }
-                .gl_btn {
-                    border-radius: 64px;
-                    padding: 4px 10px;
-                    border-color: #ffffff;
-                    border-width: 1px;
-                    border-style: solid;
-                    color: #ffffff;
-                    background-color: transparent;
-                    display: flex;
-                    align-items: center;
-                    font-size: 1rem;
-                    img {
-                        width: 14px;
-                        height: 14px;
-                        margin-right: 5px;
-                    }
-                }
-            }
-        }
-        .h_bottom {
+            justify-content: center;
+            border: 1px solid #ffffff;
+            background: rgba(0,0,0,.1);
+         }
+
+         .r_wrap {
             display: flex;
-            position: relative;
-            bottom: 0;
-            padding: 10px 0;
-            background: rgba(0, 0, 0, 0.1);
-            >div {
-                width: 25%;
-                text-align: center;
-                border-right: 1px solid #307ebf;
-                &:last-child {
-                    border-right: none;
-                }
-                >span {
-                    display: block;
-                    font-size: 1.6rem;
-                    &.icon_num {}
-                    &.txt {
-                        font-size: 1.2rem;
-                        margin-top: 5px;
-                    }
-                }
+            justify-content: space-between;
+            align-items: center;
+            flex: 1;
+
+            .user_info {
+               .name {
+                  font-size: 1.6rem;
+               }
+
+               .vip {
+                  display: flex;
+                  align-items: center;
+                  margin-top: 10px;
+                  padding: 2px 8px;
+                  background: rgba(0, 0, 0, .2);
+                  border-radius: 34px;
+                  float: left;
+
+                  .vip_logo {
+                     width: 12px;
+                     height: 12px;
+                     margin-right: 5px;
+                     display: none;
+                  }
+
+                  .vip_name {
+                     font-size: 1.2rem;
+                  }
+               }
             }
-        }
-    }
-    .fore {
-        .title {
-            padding: 0 16px;
-            &.activated {
-                background: #e0e0e0;
+
+            .gl_btn {}
+         }
+      }
+
+      .h_bottom {
+         display: flex;
+         position: relative;
+         bottom: 0;
+         padding: 10px 0 40px;
+
+         >div {
+            width: 25%;
+            text-align: center;
+
+            >span {
+               display: block;
+               font-size: 1.6rem;
+
+               &.icon_num {}
+
+               &.txt {
+                  font-size: 1.2rem;
+                  margin-top: 5px;
+               }
             }
-            >div {
-                padding: 13px 0;
-                display: flex;
-                justify-content: space-between;
-                align-items: center;
-                color: #333;
-                border-bottom: 1px #d9d9d9 dashed;
-                .lookall {
-                    background-image: url("data:image/svg+xml;charset=utf-8,<svg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2012%2020'><path%20d='M2,20l-2-2l8-8L0,2l2-2l10,10L2,20z'%20fill='%23c8c7cc'/></svg>");
-                    padding-right: 14px;
-                    background-position: right center;
-                    background-repeat: no-repeat;
-                    background-size: 10px 12px;
-                    color: #999999;
-                    font-size: 12px;
-                }
-            }
-        }
-        .main {
+         }
+      }
+   }
+
+   .fore {
+      margin: 12px;
+      overflow: hidden;
+      border-radius: 16px;
+
+      &.fore1 {
+         margin-top: -20px;
+      }
+
+      .title {
+         padding: 0 16px;
+
+         &.activated {
+            background: #e0e0e0;
+         }
+
+         >div {
+            padding: 13px 0;
             display: flex;
-            justify-content: space-around;
+            justify-content: space-between;
+            align-items: center;
+            color: #333;
+            border-bottom: 1px #d9d9d9 dashed;
+
+            .lookall {
+               background-image: url("data:image/svg+xml;charset=utf-8,<svg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2012%2020'><path%20d='M2,20l-2-2l8-8L0,2l2-2l10,10L2,20z'%20fill='%23c8c7cc'/></svg>");
+               padding-right: 14px;
+               background-position: right center;
+               background-repeat: no-repeat;
+               background-size: 10px 12px;
+               color: #999999;
+               font-size: 12px;
+            }
+         }
+      }
+
+      .main {
+         display: flex;
+         justify-content: space-around;
+         color: #666666;
+
+         >div,
+         >a {
             color: #666666;
-            >div,
-            >a {
-                color: #666666;
-                display: block;
-                width: 25%;
-                text-align: center;
-                align-items: center;
-                display: flex;
-                flex-direction: column;
-                justify-content: space-between;
-                padding: 15px 0;
-                &:last-child {
-                    border-right: none;
-                }
-                >span {
-                    display: block;
-                    &.icon_num {
-                        position: relative;
-                        color: initial;
-                        img {
-                            width: 23px;
-                            height: 23px;
-                        }
-                        .badge {
-                            position: absolute;
-                            top: -8px;
-                            right: -10px;
-                            background: #fff !important;
-                            font-size: 12px;
-                            padding: 2px 4px;
-                            font-weight: normal;
-                        }
-                    }
-                    &.txt {
-                        font-size: 1.3rem;
-                        margin-top: 5px;
-                    }
-                }
+            display: block;
+            width: 25%;
+            text-align: center;
+            align-items: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            padding: 15px 0;
+
+            &:last-child {
+               border-right: none;
             }
-        }
-    }
-    .fore2 {
-        .main {
-            justify-content: flex-start;
-        }
-    }
+
+            >span {
+               display: block;
+
+               &.icon_num {
+                  position: relative;
+                  color: initial;
+
+                  img {
+                     width: 23px;
+                     height: 23px;
+                  }
+
+                  .badge {
+                     position: absolute;
+                     top: -8px;
+                     right: -10px;
+                     background: #fff !important;
+                     font-size: 12px;
+                     padding: 2px 4px;
+                     font-weight: normal;
+                  }
+               }
+
+               &.txt {
+                  font-size: 1.3rem;
+                  margin-top: 5px;
+               }
+            }
+         }
+      }
+   }
+
+   .fore2 {
+      .main {
+         justify-content: flex-start;
+      }
+   }
 }

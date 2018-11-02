@@ -49,8 +49,8 @@ page-distribution {
       }
 
       .img {
-         width: 135px;
-         height: 135px;
+         width: 120px;
+         height: 120px;
          margin-right: 16px;
          position: relative;
          background: #fafafa;
@@ -134,7 +134,7 @@ page-distribution {
                color: #3f69a5;
 
                em {
-                  font-size: 26px;
+                  font-size: 24px;
                   display: inline-block;
 
                   &:first-letter {
@@ -149,7 +149,7 @@ page-distribution {
                   background: #f0f6ff;
                   border: #3f69a5 solid 1px;
                   border-radius: 5px;
-                  padding: 10px 18px;
+                  padding: 8px 16px;
                   outline: none;
                   color: #3f69a5;
                   font-size: 14px;

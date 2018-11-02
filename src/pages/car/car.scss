@@ -1,183 +1,295 @@
 page-car {
-    .list {
-        margin: 0;
-    }
-    @mixin item-style {
-        display: flex;
-        align-items: center;
-        .item.item-block .item-inner {
-            .label {
-                margin: 0;
-            }
-        }
-    }
-    .single-shop {
-        background: #fff;
-        .single-shop-head {
-            display: flex;
-            align-items: center;
-            border-bottom: #fafafa 1px solid;
-            .item {
-                .item-inner {
-                    font-size: 1.5rem;
-                    color: #747474;
-                    .label {
-                        display: flex;
-                        align-items: center;
-                        .icon {
-                            font-size: 2rem;
-                            color: inherit;
-                            margin-top: 2px;
-                        }
-                        span{
-                            margin: 0 5px;
-                        }
-                    }
-                }
-            }
-        }
-        .single-shop-goods {
-            &.disable {
-                .single-shop-goods-head {
-                    .item {
-                        opacity: .4;
-                    }
-                }
-                .single-shop-goods-body {
-                    .item {
-                        .attr,
-                        .bottom {
-                            opacity: .4;
-                            pointer-events: none;
-                        }
-                    }
-                }
-            }
-            .item {
-                padding-left: 0;
-            }
-            position: relative;
-            overflow: hidden;
+   .list {
+      margin: 0;
+   }
+
+   @mixin item-style {
+      display: flex;
+      align-items: center;
+
+      .item.item-block .item-inner {
+         .label {
+            margin: 0;
+         }
+      }
+   }
+
+   .top-head {
+      height: 180px;
+      background: linear-gradient(to bottom right, rgb(97, 161, 234), rgb(0, 112, 201));
+      padding: 34px 16px;
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      color: #ffffff;
+
+      .title {
+         .txt {
+            font-size: 18px;
+            margin-bottom: 6px;
+         }
+      }
+
+      .btn {
+         button {
+            color: rgb(255, 255, 255);
+            background: none;
+            font-size: 15px;
+         }
+      }
+   }
+
+   .checkswrap {
+      padding: 0 10px;
+      display: inherit;
+      .checkbox-ios .checkbox-icon{
+         width: 18px;
+         height: 18px;
+         &.checkbox-checked .checkbox-inner{
+            left: 6px;
+            top: 3px;
+            width: 4px;
+            height: 8px;
+         }
+      }
+   }
+
+   .single-shop {
+      background: #fff;
+      margin: 10px;
+      border-radius: 16px;
+      overflow: hidden;
+
+      &:first-of-type {
+         margin-top: -70px;
+      }
+
+      .single-shop-head {
+         display: flex;
+         align-items: center;
+         padding: 10px 0 0;
+         font-size: 1.5rem;
+         color: #666666;
+
+         .icon {
+            color: #808080;
+            font-size: 15px;
+         }
+      }
+
+      .single-shop-goods {
+         &.disable {
             .single-shop-goods-head {
-                @include item-style;
-                .label {
-                    h2 {
-                        text-overflow: -o-ellipsis-lastline;
-                        overflow: hidden;
-                        text-overflow: ellipsis;
-                        display: -webkit-box;
-                        -webkit-line-clamp: 2;
-                        -webkit-box-orient: vertical;
-                        color: #666;
-                        white-space: pre-wrap;
-                        font-size: 1.4rem;
-                    }
-                    .type {
-                        display: inline-block;
-                        color: #e60000;
-                        font-size: 1.2rem;
-                        margin-top: 4px;
-                        white-space: pre-wrap;
-                    }
-                }
+               .item {
+                  opacity: .4;
+               }
             }
+
             .single-shop-goods-body {
-                .item-wrap {
-                    @include item-style;
-                    .sliding-item-box {
-                        width: 100%;
-                    }
-                    margin-bottom: 10px;
-                    .item-inner{
-                       padding-right: 0 !important;
-                    }
-                    .label {
-                        .goodsinfo {
-                            background: #f7f7f7;
-                            padding: 8px 4px 4px 8px;
-                            .attr {
-                                display: flex;
-                                flex-wrap: wrap;
-                                span {
-                                    // width: 33.33%;
-                                    color: #808080;
-                                    font-size: 1.2rem;
-                                    margin-bottom: 10px;
-                                    /* display: inline-block; */
-                                    /* text-align: center; */
-                                    padding-right: 5px;
-                                    margin: 0 6px 5px 0;
-                                }
-                            }
-                            .bottom {
-                                display: flex;
-                                justify-content: space-between;
-                                align-items: center;
-                                .price {
-                                    color: #e60000;
-                                    font-size: 1.3rem;
-                                    .old {
-                                        text-decoration: line-through;
-                                        color: #999;
-                                        margin-left: 6px;
-                                        font-size: 1rem;
-                                    }
-                                }
-                            }
-                        }
-                    }
-                }
+               .item {
+
+                  .attr,
+                  .bottom {
+                     opacity: .4;
+                     pointer-events: none;
+                  }
+               }
             }
-        }
-        .single-shop-little-result {
-            padding: 10px;
-            color: #4d4d4d;
-            border-top: 1px solid #fafafa;
-            display: flex;
-            justify-content: flex-end;
-            align-items: center;
-            font-size: 1.3rem;
-            .fgx {
-                margin: 0 5px;
-                vertical-align: top;
+         }
+
+         .item {
+            padding-left: 0;
+         }
+
+         position: relative;
+         overflow: hidden;
+
+         .single-shop-goods-head {
+            @include item-style;
+            ion-thumbnail img{
+               width: 80px;
+               height: 80px;
+               border: 1px solid #f0f0f0;
             }
-            .red {
-                color: #e60000;
-                font-size: 1.5rem;
+            .label {
+               h2 {
+                  text-overflow: -o-ellipsis-lastline;
+                  overflow: hidden;
+                  text-overflow: ellipsis;
+                  display: -webkit-box;
+                  -webkit-line-clamp: 2;
+                  -webkit-box-orient: vertical;
+                  color: #666;
+                  white-space: pre-wrap;
+                  font-size: 1.4rem;
+               }
+
+               .type {
+                  display: inline-block;
+                  font-size: 1.2rem;
+                  margin-top: 4px;
+                  white-space: pre-wrap;
+                  padding: 2px 8px;
+                  background: rgb(227,237,250);
+                  border-radius: 4px;
+                  color: #3f69a5;
+               }
             }
-        }
-    }
-    ion-footer {
-        .car-accounts {
-            height: 50px;
-            display: flex;
-            justify-content: space-between;
-            background: #fff;
-            white-space: nowrap;
-            >div {
-                display: flex;
-                align-items: center;
-                &.left {
-                    .select-all {
+         }
+
+         .single-shop-goods-body {
+            .item-wrap {
+               @include item-style;
+
+               .sliding-item-box {
+                  margin-right: 8px;
+                  margin-left: 8px;
+                  width: 100%;
+               }
+
+               margin-bottom: 8px;
+
+               .item-inner {
+                  padding-right: 0 !important;
+               }
+
+               .label {
+                  .goodsinfo {
+                     background: #f7f7f7;
+                     padding: 8px;
+
+                     .attr {
                         display: flex;
-                        align-items: center;
-                        color: #808080;
-                    }
-                    .price {
-                        font-size: 1.4rem;
-                        .subtotal {
-                            color: #666;
-                            font-size: 1rem;
+                        flex-wrap: wrap;
+
+                        span {
+                           // width: 33.33%;
+                           color: #808080;
+                           font-size: 1.2rem;
+                           margin-bottom: 10px;
+                           /* display: inline-block; */
+                           /* text-align: center; */
+                           padding-right: 5px;
+                           margin: 0 6px 5px 0;
                         }
-                    }
-                }
-                &.right {
-                    width: 30%;
-                    justify-content: center;
-                    background: get-color(jingku1);
-                    color: #fff;
-                }
+                     }
+
+                     .bottom {
+                        display: flex;
+                        justify-content: space-between;
+                        align-items: center;
+
+                        .price {
+                           color: #e60000;
+                           font-size: 1.3rem;
+
+                           .old {
+                              text-decoration: line-through;
+                              color: #999;
+                              margin-left: 6px;
+                              font-size: 1rem;
+                           }
+                        }
+                     }
+                  }
+               }
             }
-        }
-    }
+         }
+      }
+
+      .single-shop-little-result {
+         padding: 10px;
+         color: #4d4d4d;
+         border-top: 1px solid #fafafa;
+         display: flex;
+         justify-content: flex-end;
+         align-items: center;
+         font-size: 1.3rem;
+
+         .fgx {
+            margin: 0 5px;
+            vertical-align: top;
+         }
+
+         .red {
+            color: #e60000;
+            font-size: 1.5rem;
+            display: inline-block;
+            &::first-letter {
+               font-size: 12px;
+            }
+         }
+      }
+   }
+
+   ion-footer {
+      .car-accounts {
+         height: 50px;
+         display: flex;
+         background: #fff;
+         white-space: nowrap;
+
+         >div {
+            display: flex;
+            align-items: center;
+
+            &.left {
+               flex: 1;
+               display: flex;
+               justify-content: space-between;
+               padding-right: 8px;
+
+               .select-all {
+                  display: flex;
+                  align-items: center;
+                  color: #808080;
+                  font-size: 12px;
+
+                  .checkswrap {
+                     display: inherit;
+                  }
+               }
+
+               .price {
+                  font-size: 1.4rem;
+                  text-align: right;
+                  .total {
+                     color: #808080;
+                     font-size: 1.5rem;
+
+                     em {
+                        color: #e60000;
+                        display: inline-block;
+
+                        &::first-letter {
+                           font-size: 12px;
+                        }
+                     }
+                  }
+
+                  .subtotal {
+                     color: #666;
+                     font-size: 1rem;
+                  }
+               }
+            }
+
+            &.right {
+               justify-content: center;
+               color: #fff;
+               flex-shrink: 0;
+               background: linear-gradient(to bottom right, rgb(97, 161, 234), rgb(0, 112, 201));
+               border-radius: 49px;
+               margin: 4px;
+               padding: 0 14px;
+            }
+         }
+         .attention-and-delete{
+            >button:last-child{
+               color:#e60000;
+               border-color: #e60000;
+            }
+         }
+      }
+   }
 }
