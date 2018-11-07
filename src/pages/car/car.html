@@ -1,29 +1,16 @@
-<!--
-  Generated template for the Car page.
-
-  See http://ionicframework.com/docs/v2/components/#navigation for more info on
-  Ionic pages and navigation.
--->
-<!-- <ion-header>
-
-   <ion-navbar>
-      <ion-title>购物车</ion-title>
-      <ion-buttons right>
-         <button ion-button clear *ngIf="carDetails&&carDetails?.suppliers_goods_list?.length!=0" (click)="isEdit=!isEdit;">{{isEdit?'取消':'编辑'}}</button>
-      </ion-buttons>
-   </ion-navbar>
-
-</ion-header> -->
-
-
 <ion-content>
    <ion-refresher (ionRefresh)="doRefresh($event)" pullMax="60">
       <ion-refresher-content refreshingSpinner="1" pullingIcon="0"></ion-refresher-content>
    </ion-refresher>
    <nothing backgroundImg="url(./assets/icon/no-cart.png)" *ngIf="carDetails?.suppliers_goods_list.length==0"></nothing>
-   <div class="top-head" *ngIf="carDetails&&carDetails?.suppliers_goods_list?.length!=0">
+   <div class="top-head"><!--  *ngIf="carDetails&&carDetails?.suppliers_goods_list?.length!=0" -->
       <div class="title">
-         <div class="txt">购物车</div>
+         <div class="s-title">
+            <div class="backbtn" *ngIf="hasBackBtn" (click)="goback()">
+               <ion-icon name="ios-arrow-back"></ion-icon>
+            </div>
+            <div class="txt">购物车</div>
+         </div>
          <div class="num">共{{carDetails?.goods_count || 0}}件宝贝</div>
       </div>
       <div class="btn">
@@ -114,9 +101,10 @@
       </div>
    </ion-list>
 </ion-content>
-<ion-footer>
+<ion-footer *ngIf="carDetails&&carDetails?.suppliers_goods_list?.length!=0">
    <ion-toolbar>
-      <div class="car-accounts"><!--  *ngIf="carDetails&&carDetails?.suppliers_goods_list?.length!=0" -->
+      <div class="car-accounts">
+         <!--  *ngIf="carDetails&&carDetails?.suppliers_goods_list?.length!=0" -->
          <div class="left">
             <label tappable class="select-all ">
                <div class="checkswrap">

@@ -37,11 +37,12 @@ export class MineProvider {
                   userId: res.data.user_info.user_id,
                   nickName: res.data.user_info.user_name
                }
-               
+
                this.subject.next(this.userInfo);
                this.httpServ.setByName('userInfo', res);
-               this.showPrice = res.data.authority.indexOf('1') > -1;
-               this.canCheckout = res.data.authority.indexOf('2') > -1;
+               
+               this.showPrice = res.data.authority.indexOf('1') > -1;//显示商品价格
+               this.canCheckout = res.data.authority.indexOf('2') > -1;//结算权限
             }
          })
       } else {

@@ -22,12 +22,7 @@ export class CarPage {
    carDetails: any;
    @ViewChild(Content) content: Content;
 
-   // checkedArray: Array<number> = [];//rec_id
-   // goodsAttrIdArray: any = [];
-   // goodsIdArray: Array<number> = [];//goods_id
-
-   // allRecId: Array<number> = [];//rec_id
-   // allGoodsId: Array<number> = [];//goods_id
+   hasBackBtn: boolean = false;
 
    constructor(
       public navCtrl: NavController,
@@ -50,6 +45,9 @@ export class CarPage {
    ionViewDidLeave() {
    }
    ngOnInit() {
+      if (this.navCtrl.length()!=1) {
+         this.hasBackBtn = true;
+      }
       this.events.subscribe('car:update', () => {
          this.getFlowGoods();
       })
@@ -58,6 +56,9 @@ export class CarPage {
       });
    }
    ngOnDestroy() {
+   }
+   goback() {
+      this.navCtrl.pop().catch(() => { history.back() });
    }
    getFlowGoods() {
       return this.httpService.getFlowGoods().then((res) => {
@@ -76,10 +77,6 @@ export class CarPage {
             refresher.complete();
          }, 500);
       })
-      /* setTimeout(() => {
-        refresher.complete();
-      }, 500);
-      this.events.publish('car:update'); */
    }
    /**
     * 加减数量
