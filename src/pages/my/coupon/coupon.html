@@ -35,9 +35,9 @@
 </ion-header>
 
 <div class="mark" *ngIf="showmark" fadeIn tappable (click)="showmark=false">
-   <div class="title" *ngIf="category?.list?.length">- 全部{{category?.list?.length}}个分类 -</div>
+   <div class="title" *ngIf="category?.length">- 全部{{category?.length}}个分类 -</div>
    <div class="type-wrap" (click)="$event.stopPropagation()">
-      <button *ngFor="let item of category;let index=index;" ion-button small round tappable [class.on]="couponSelect==item.cat_id" (click)="showmark=false;slideTo(index)"><em></em>{{item.cat_name}}({{data?.counts[item.cat_id-1]||0}})</button>
+      <button *ngFor="let item of category;let index=index;" ion-button round tappable [class.on]="couponSelect==item.cat_id" (click)="showmark=false;slideTo(index)"><em></em>{{item.cat_name}}({{data?.counts[item.cat_id-1]||0}})</button>
    </div>
 </div>
 

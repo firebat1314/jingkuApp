@@ -126,9 +126,8 @@ export class HomePage {
             var subsection = this.ele.nativeElement.querySelectorAll('.subsection');
             this.content.ionScroll.subscribe((d) => {
                subsection.forEach((div, index) => {
-                  if (!div.myset) {
+                  if (!this.category[index].show) {
                      if (d.scrollTop + d.contentHeight > div.offsetTop) {
-                        div.myset = true;
                         this.category[index].show = true;
                      }
                   }

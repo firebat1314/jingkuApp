@@ -26,7 +26,7 @@
       </div>
       <div class="main-attr" *ngIf="mainAttrs">
          <div class="main-attr-tit">
-            <span>计价单位</span>
+            <span>{{mainAttrs?.name}}</span>
          </div>
          <div class="main-attr-wrap">
             <a class="attr" [class.on]="item.id==checkMainAttrId" *ngFor="let item of mainAttrs?.values" (click)="checkMainAttr(item)">{{item.label}}</a>

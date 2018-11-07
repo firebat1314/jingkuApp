@@ -170,7 +170,7 @@
          <div class="subsection" *ngIf="!item.show" style="min-height: 300px;text-align: center;padding-top: 140px;">
             <ion-spinner name="dots"></ion-spinner>
          </div>
-         <div class="class_list" #class_list fadeIn *ngIf="item.show">
+         <div class="class_list" #class_list fadeIn *ngIf="!!item.show">
             <div class="head">
                <div class="title" tappable (click)="item.selectbrandid = 0;getRecommendGoods(item,0,class_list)">{{item?.Recommend?.info?.name}}</div>
                <div class="brand_list">
