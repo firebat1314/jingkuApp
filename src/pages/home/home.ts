@@ -6,7 +6,7 @@ import { XimuProvider } from '../../providers/ximu/ximu';
 import { MineProvider } from '../../providers/mine/mine';
 import { JpushService } from '../../providers/jpush-service';
 import { Subscription } from 'rxjs/Subscription';
-import { InAppBrowser } from '@ionic-native/in-app-browser';
+import { AccountProcessProvider } from '../my/account-process/account-process-provider';
 
 @IonicPage({
    segment: 'home',
@@ -57,7 +57,8 @@ export class HomePage {
       private jpushServ: JpushService,
       private app: App,
       private ele: ElementRef,
-      private ib: InAppBrowser,
+      private ap: AccountProcessProvider,
+
    ) {
 
    }
@@ -191,11 +192,7 @@ export class HomePage {
    }
    openScanner(e?) {
       e && e.stopPropagation();
-      this.navCtrl.push('ScanPage', {
-         callback: (data) => {
-            this.ib.create(data, '_system');
-         }
-      })
+      this.ap.openScanner().then(res => { console.log(res) });
    }
    tuangou() {
       this.native.showToast('功能还在开发中^_^');

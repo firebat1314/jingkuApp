@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpService } from '../../../providers/http-service';
 import { Native } from '../../../providers/native';
 import { ModalController, App } from 'ionic-angular';
+import { InAppBrowser } from '@ionic-native/in-app-browser';
 
 /*
   Generated class for the AccountProcessProvider provider.
@@ -18,6 +19,7 @@ export class AccountProcessProvider {
       private native: Native,
       private modalCtrl: ModalController,
       private app: App,
+      private ib: InAppBrowser,
    ) {
       console.log('Hello AccountProcessProvider Provider');
    }
@@ -27,14 +29,14 @@ export class AccountProcessProvider {
     * @param index 加工单下标
     * @param type 镜架2或者镜片1
     */
-   openScanner(index, type) {
+   openScanner(index?, type?) {
       return new Promise<any>((resolve, reject) => {
          this.app.getActiveNav().push('ScanPage', {
             callback: (scandata) => {
-               /* 
-               var scandata ;
+               /* var scandata;
                if (this.flag) {
                   this.flag = !this.flag
+                  scandata = '{"group":"5968"}';
                   scandata = '{"machine":"6978","sn":"201001231118900001"}';
                } else {
                   this.flag = !this.flag
@@ -43,7 +45,6 @@ export class AccountProcessProvider {
                try {
                   let json = JSON.parse(scandata);
                   if (json.machine) {
-
                      this.httpService.SpecialMachiningGoodsInfo({ id: json['machine'] }).then(res => {
                         if (res.status == 1) {
                            if (res.is_jingjia > 0 && type == 1) {
@@ -68,9 +69,16 @@ export class AccountProcessProvider {
                            this.native.showToast(res.info);
                         }
                      })
+                  } else if (json.type == 'group') {
+                     this.httpService.QrcodeInfo(json).then(res => {
+                        if (res.status == 1) {
+                           this.app.getActiveNav().push('ParticularsPage', { goodsId: res.id });
+                        }
+                     })
                   }
                } catch (error) {
-                  this.native.showToast('格式错误');
+                  this.ib.create(scandata, '_system');
+                  // this.native.showToast('格式错误');
                }
             }
          })

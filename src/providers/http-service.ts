@@ -897,4 +897,8 @@ export class HttpService {
    CatCoupon(data?, options?: HttpOptions) {
       return this.http.post(IP + '/Index/CatCoupon ', data, { showLoading: true, ...options })
    }
+   /* 普通商品扫码 */
+   QrcodeInfo(data?, options?: HttpOptions) {
+      return this.http.post(IP + '/Index/QrcodeInfo ', data, { showLoading: true, ...options })
+   }
 }
