@@ -21,7 +21,7 @@ export class AppAdvertisingPage {
   data: any;
   ads_img: any;
   timer: any;
-  timeDown: number = 3;
+  timeDown: number = 4;
 
   constructor(
     public navCtrl: NavController,

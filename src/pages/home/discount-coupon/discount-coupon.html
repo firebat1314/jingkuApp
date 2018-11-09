@@ -15,7 +15,7 @@
             </button>
         </ion-buttons> -->
    </ion-navbar>
-   <ion-toolbar no-padding class="mytoolbar">
+   <ion-toolbar class="mytoolbar" no-padding>
       <div class="coupon-types" id="top">
          <div class="swiper-container" id="nav">
             <div class="left swiper-wrapper">
@@ -33,23 +33,22 @@
          <div class="right" (click)="showmark = !showmark">
             <img src="assets/icon/discount-coupon_03.png" width="20" alt="">
          </div>
-
       </div>
-
    </ion-toolbar>
-
 </ion-header>
 
 <div class="mark" *ngIf="showmark" fadeIn tappable (click)="showmark=false">
    <div class="title" *ngIf="category?.list?.length">- 全部{{category?.list?.length}}个分类 -</div>
    <div class="type-wrap" (click)="$event.stopPropagation()">
-      <button ion-button small round tappable [class.on]="couponSelect==0" (click)="couponSelect=0;showmark=false;slideTo(0)"><em></em>全部</button>
-      <button ion-button small round tappable *ngFor="let item of category?.list;let index=index;" [class.on]="couponSelect==item.cat_id" (click)="couponSelect=item.cat_id;showmark=false;slideTo(index+1)"><em></em>{{item.cat_name}}</button>
+      <button ion-button round tappable [class.on]="couponSelect==0" (click)="couponSelect=0;showmark=false;slideTo(0)"><em></em>全部</button>
+      <button ion-button round tappable *ngFor="let item of category?.list;let index=index;" [class.on]="couponSelect==item.cat_id" (click)="couponSelect=item.cat_id;showmark=false;slideTo(index+1)"><em></em>{{item.cat_name}}</button>
    </div>
 </div>
 
-<ion-content parallax-header>
-
+<ion-content fullscreen>
+   <!-- <div class="ads_imgs">
+      <img [ads-click]="ads" *ngFor="let ads of data?.bannerone" [img-lazy-load]="ads?.ad_img" defaultSrc="./assets/images/images/640-320.jpg" width="100%" alt="">
+   </div> -->
    <div class="swiper-container" id="page">
       <div class="swiper-wrapper">
          <div class="swiper-slide slidepage">

@@ -3,6 +3,7 @@ import { Subject } from 'rxjs/Subject';
 import { Observable } from 'rxjs/Observable';
 import { HttpService } from '../http-service';
 import { Native } from '../native';
+import { Events } from 'ionic-angular';
 
 /*
   Generated class for the MineProvider provider.
@@ -16,10 +17,12 @@ export class MineProvider {
    showPrice: boolean;
    userInfo: any;
    subject: Subject<any> = new Subject<any>();
+   flowGoodsNumer: any;
 
    constructor(
       private httpServ: HttpService,
       private native: Native,
+      private events: Events,
    ) {
       console.log('Hello MineProvider Provider');
    }
@@ -48,6 +51,14 @@ export class MineProvider {
       } else {
          this.subject.next(this.userInfo);
       }
+   }
+   get_flow_goods_number() {
+      return this.httpServ.get_flow_goods_number().then((res) => {
+         if (res.status == 1) {
+            this.flowGoodsNumer = res;
+            this.events.publish('flow_goods_number', res);
+         }
+      })
    }
    unsubscribe() {
       // this.subject.unsubscribe()

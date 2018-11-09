@@ -11,7 +11,7 @@ import { UpgradeProvider } from '../providers/upgrade/upgrade';
 import { IP } from '../providers/constants';
 import { HttpService } from '../providers/http-service';
 
-declare var _hmt;
+declare let _hmt;
 @Component({
    templateUrl: 'app.html'
 })
@@ -87,21 +87,23 @@ export class MyApp {
          if (e._cssClass == 'ion-page') {
             setTimeout(() => {
                if (this.native.isMobileweb()) {
-                  //百度统计 
-                  if (IP.indexOf('new') > -1) {
-                     //百度账号 15733128449
-                     _hmt.push(['_setAccount', '132db54c145d04b9c27a03e2cd28200c']);
-                     _hmt.push(['_trackPageview', '/' + location.hash]);
-                     //百度账号 镜库科技
-                     _hmt.push(['_setAccount', '817930cdefe1732f6a0cfff75e3ca4ae']);
-                     _hmt.push(['_trackPageview', '/' + location.hash]);
-                  } else {
-                     //百度账号 15733128449
-                     _hmt.push(['_setAccount', '2d2e5da3c0f5c5cd693f193b8dfab54e']);
-                     _hmt.push(['_trackPageview', '/' + location.hash]);
-                     //百度账号 镜库科技
-                     _hmt.push(['_setAccount', 'e46d288858f5b97ae7ecc8924d67d3f0']);
-                     _hmt.push(['_trackPageview', '/' + location.hash]);
+                  if (typeof _hmt != 'undefined') {
+                     //百度统计 
+                     if (IP.indexOf('new') > -1) {
+                        //百度账号 15733128449
+                        _hmt.push(['_setAccount', '132db54c145d04b9c27a03e2cd28200c']);
+                        _hmt.push(['_trackPageview', '/' + location.hash]);
+                        //百度账号 镜库科技
+                        _hmt.push(['_setAccount', '817930cdefe1732f6a0cfff75e3ca4ae']);
+                        _hmt.push(['_trackPageview', '/' + location.hash]);
+                     } else {
+                        //百度账号 15733128449
+                        _hmt.push(['_setAccount', '2d2e5da3c0f5c5cd693f193b8dfab54e']);
+                        _hmt.push(['_trackPageview', '/' + location.hash]);
+                        //百度账号 镜库科技
+                        _hmt.push(['_setAccount', 'e46d288858f5b97ae7ecc8924d67d3f0']);
+                        _hmt.push(['_trackPageview', '/' + location.hash]);
+                     }
                   }
                }
                if (this.native.isWeixin()) {
