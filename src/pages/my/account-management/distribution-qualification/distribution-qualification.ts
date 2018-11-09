@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, Events } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, Events, ActionSheetController } from 'ionic-angular';
 import { Native } from '../../../../providers/native';
 import { HttpService } from '../../../../providers/http-service';
 
@@ -29,6 +29,7 @@ export class DistributionQualificationPage {
       public events: Events,
       public httpService: HttpService,
       public native: Native,
+      public actionSheetCtrl: ActionSheetController
    ) {
    }
 
@@ -114,5 +115,32 @@ export class DistributionQualificationPage {
             });
          }
       })
+   }
+   openActionSheet(datetimeComponent,param) {
+      let actionSheet = this.actionSheetCtrl.create({
+         title: '有效期',
+         buttons: [
+            {
+               text: '永久',
+               handler: () => {
+                  this.params[param] = '永久';
+               }
+            },
+            {
+               text: '非永久',
+               handler: () => {
+                  datetimeComponent.open();
+               }
+            },
+            {
+               text: '取消',
+               role: 'cancel',
+               handler: () => {
+               }
+            }
+         ]
+      });
+
+      actionSheet.present();
    }
 }
