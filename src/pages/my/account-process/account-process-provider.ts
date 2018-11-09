@@ -37,11 +37,13 @@ export class AccountProcessProvider {
                if (this.flag) {
                   this.flag = !this.flag
                   scandata = '{"group":"5968"}';
+                  scandata = 'https://www.baidu.com/s?ie=utf-8&f=8&rsv_bp=1&tn=25017023_10_pg&wd=%E4%BA%8C%E7%BB%B4%E7%A0%81%E9%93%BE%E6%8E%A5%E6%8F%90%E5%8F%96%E5%8F%82%E6%95%B0&oq=%25E4%25BA%258C%25E7%25BB%25B4%25E7%25A0%2581%25E9%2593%25BE%25E6%258E%25A5%25E6%258F%2590%25E5%258F%2596&rsv_pq=ec5134980003234a&rsv_t=dddch%2BtI6rvD3r15%2BSDXFQMjqfTHKpF3NwNsg6kbAai0mD9khyY0DJxw3UB3MbqXniFkKvw&rqlang=cn&rsv_enter=1&inputT=52293&sug=%25E4%25BA%258C%25E7%25BB%25B4%25E7%25A0%2581&rsv_sug3=53&rsv_sug1=40&rsv_sug7=100&bs=%E4%BA%8C%E7%BB%B4%E7%A0%81%E9%93%BE%E6%8E%A5%E6%8F%90%E5%8F%96'
                   scandata = '{"machine":"6978","sn":"201001231118900001"}';
                } else {
                   this.flag = !this.flag
                   scandata = '{"machine":"11103","sn":"501000711126500001"}';
                } */
+               // var scandata = 'http://newapp.jingkoo.net/App/Index/QrcodeInfo/ceshi/1/type/opc?token=Ap54zgak9rmO0No'
                try {
                   let json = JSON.parse(scandata);
                   if (json.machine) {
@@ -75,13 +77,45 @@ export class AccountProcessProvider {
                            this.app.getActiveNav().push('ParticularsPage', { goodsId: res.id });
                         }
                      })
+                  } else {
+
                   }
                } catch (error) {
-                  this.ib.create(scandata, '_system');
+                  let json = this.parseURL(decodeURIComponent(scandata));
+                  if (json['token']) {
+                     this.httpService.QrcodeInfo({
+                        type: 'opc',
+                        parameter: json['token']
+                     }).then(res => {
+                        if (res.status == 1) {
+                           this.app.getActiveNav().push('ParticularsPage', { goodsId: res.goods_id, sn: res['product_sn'] });
+                        }
+                     })
+                  } else {
+                     this.ib.create(scandata, '_system');
+                  }
+                  // this.ib.create(scandata, '_system');
                   // this.native.showToast('格式错误');
                }
             }
          })
       });
+   }
+   parseURL = (url) => {
+
+      if (url && url.indexOf("?") == -1) return {}
+
+      var startIndex = url.indexOf("?") + 1;
+      var str = url.substr(startIndex);
+      var strs = str.split("&");
+      var param = {}
+      for (var i = 0; i < strs.length; i++) {
+         var result = strs[i].split("=");
+         var key = result[0];
+         var value = result[1];
+         param[key] = value;
+      }
+      return param
+
    }
 }

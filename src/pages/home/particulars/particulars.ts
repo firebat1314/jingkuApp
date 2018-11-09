@@ -32,7 +32,8 @@ export class ParticularsPage {
 
    cutId = this.navParams.get('cutId');//切边镜架商品id
    dId = this.navParams.get('dId');//切边镜架商品id
-   isActivity = this.navParams.get('isActivity') == 1 ? 1 : 0;//是否为活动商品
+   isActivity = this.navParams.get('isActivity') == 1;//是否为活动商品
+   product_sn = this.navParams.get('sn') != ':sn' ? this.navParams.get('sn') : null;//是否为活动商品
 
    @ViewChild('myContent') myContent: Content;
    commentType: any = 0;
@@ -261,6 +262,7 @@ export class ParticularsPage {
          cutId: this.cutId,
          dId: this.dId,
          isActivity: this.isActivity,
+         sn: this.product_sn,
          callback: {
             navCtrl: this.navCtrl,
             refresher: (id) => {
@@ -302,7 +304,7 @@ export class ParticularsPage {
       this.native.openCallNumber(this.getGoodsInfo.supplier_info.mobile, false);
    }
    goAccountServicePage() {
-      this.QimoChat.qimoChatSDK(this.getGoodsInfo.supplier_info.access_id, this.getGoodsInfo.supplier_info.name, this.getGoodsInfo.supplier_info.logo, );
+      this.QimoChat.qimoChatSDK(this.getGoodsInfo.supplier_info.access_id, this.getGoodsInfo.supplier_info.name, this.getGoodsInfo.supplier_info.logo);
    }
    goParticularsHome() {
       this.navCtrl.push('ParticularsHomePage', { suppliersId: this.getGoodsInfo.supplier_info.id });
