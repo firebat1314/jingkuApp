@@ -4,6 +4,7 @@ import { DiscountCouponPage } from "./discount-coupon";
 import { MyCanvasComponentModule } from "../../../components/my-canvas/my-canvas.module";
 import { ImgLazyLoadDirectiveModule } from '../../../directives/img-lazy-load/img-lazy-load.module';
 import { ScrollToTopDirectiveModule } from '../../../directives/scroll-to-top/scroll-to-top.module';
+import { AdsClickDirectiveModule } from '../../../directives/ads-click/ads-click.module';
 
 @NgModule({
   declarations: [DiscountCouponPage],
@@ -11,7 +12,8 @@ import { ScrollToTopDirectiveModule } from '../../../directives/scroll-to-top/sc
     IonicPageModule.forChild(DiscountCouponPage),
     MyCanvasComponentModule,
     ImgLazyLoadDirectiveModule,
-    ScrollToTopDirectiveModule
+    ScrollToTopDirectiveModule,
+    AdsClickDirectiveModule
   ]
 })
 

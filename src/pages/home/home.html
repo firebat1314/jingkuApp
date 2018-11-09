@@ -125,10 +125,10 @@
          </div>
       </div>
       <!--—————————————————————————————————————————— 镜库闪购 ——————————————————————————————————————————-->
-      <div *ngIf="!fastbuyData" style="min-height: 200px;text-align: center;padding: 80px;">
+      <!-- <div *ngIf="!fastbuyData" style="min-height: 200px;text-align: center;padding: 80px;">
          <ion-spinner name="dots"></ion-spinner>
-      </div>
-      <div fadeIn *ngIf="userInfo&&userInfo?.data?.user_info?.is_test!=1&&fastbuyData?.data?.length" class="shan_gou home-content">
+      </div> -->
+      <div fadeIn *ngIf="userInfo&&userInfo?.data?.user_info?.is_test!=1" class="shan_gou home-content">
          <div class="title">
             <span class="txt">镜库闪购</span>
          </div>
@@ -153,7 +153,7 @@
       <div *ngIf="!brand_street" style="min-height: 200px;text-align: center;padding: 80px;">
          <ion-spinner name="dots"></ion-spinner>
       </div>
-      <div class="brand_street home-content" fadeIn *ngIf="brand_street?.data?.length">
+      <div class="brand_street home-content" fadeIn *ngIf="brand_street">
          <div class="title">
             <span class="txt" tappable (click)="goBrandPage()">品牌街区</span>&nbsp;
             <ion-icon tappable (click)="goBrandPage()" name="ios-arrow-dropright"></ion-icon>

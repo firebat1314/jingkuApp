@@ -1,5 +1,5 @@
 import { Component, ViewChild, ElementRef } from '@angular/core';
-import { NavController, NavParams, Events, Content, IonicPage, FabButton } from 'ionic-angular';
+import { NavController, NavParams, Events, Content, IonicPage, FabButton, ScrollEvent } from 'ionic-angular';
 import { HttpService } from "../../../providers/http-service";
 import { Native } from "../../../providers/native";
 import Swiper from 'swiper';
@@ -45,6 +45,13 @@ export class DiscountCouponPage {
       this.showmark = false;
    }
    ngAfterViewInit() {
+      this.content.ionScroll.subscribe((d:ScrollEvent)=>{
+         let top = this.el.nativeElement.querySelector('.mytoolbar');
+         let slide = this.el.nativeElement.querySelector('#page .swiper-slide');
+         if(d.scrollTop>top.offsetTop){
+         }else{
+         }
+      })
 
    }
    getCategory() {
@@ -89,8 +96,30 @@ export class DiscountCouponPage {
                   that.pageSwiper = new Swiper(page, {
                      watchSlidesProgress: true,
                      on: {
+                        init: function () {
+                           let infiniteScroll = true;
+                           this.slides.eq(0).on('scroll', function (d) {
+                              if (infiniteScroll) {
+                                 if (d.target.scrollHeight - d.target.scrollTop < d.target.offsetHeight + 200) {
+                                    infiniteScroll = false;
+                                    if (that.data.page < that.data.pages) {
+                                       that.httpService.coupon({
+                                          cat: 0,
+                                          page: ++that.data.page
+                                       }).then((res) => {
+                                          infiniteScroll = true;
+                                          if (res.status == 1) {
+                                             that.data.list = [...that.data.list, ...res.list];
+                                          }
+                                       })
+                                    }
+                                 }
+                              }
+                           })
+                        },
                         slideChange: function () {
                            that.activeIndex = this.activeIndex;
+
                            if (this.activeIndex == 0) {
                               that.couponSelect = 0;
                               if (this.data) {
@@ -109,6 +138,41 @@ export class DiscountCouponPage {
                                  })
                               }
                            }
+
+                           let infiniteScroll = true;
+                           this.slides.eq(this.activeIndex).on('scroll', function (d) {
+                              if (infiniteScroll) {
+                                 if (d.target.scrollHeight - d.target.scrollTop < d.target.offsetHeight + 200) {
+                                    infiniteScroll = false;
+                                    if (that.activeIndex == 0) {
+                                       infiniteScroll = false;
+                                       if (that.data.page < that.data.pages) {
+                                          that.httpService.coupon({
+                                             cat: 0,
+                                             page: ++that.data.page
+                                          }).then((res) => {
+                                             infiniteScroll = true;
+                                             if (res.status == 1) {
+                                                that.data.list = [...that.data.list, ...res.list];
+                                             }
+                                          })
+                                       }
+                                    } else {
+                                       if (that.category.list[that.activeIndex - 1].mylist.page < that.category.list[that.activeIndex - 1].mylist.pages) {
+                                          that.httpService.coupon({
+                                             cat: that.category.list[that.activeIndex - 1].cat_id,
+                                             page: ++that.category.list[that.activeIndex - 1].mylist.page
+                                          }).then((res) => {
+                                             infiniteScroll = true;
+                                             if (res.status == 1) {
+                                                that.category.list[that.activeIndex - 1].mylist.list = [...that.category.list[that.activeIndex - 1].mylist.list, ...res.list];
+                                             }
+                                          })
+                                       }
+                                    }
+                                 }
+                              }
+                           })
                         },
                         touchMove: function () {
                            // let progress = this.progress;
@@ -216,32 +280,5 @@ export class DiscountCouponPage {
          this.navCtrl.push('ParticularsHomePage', { suppliersId: suppliers_id })
       }
    }
-   goClassPage(value) {
-      this.navCtrl.pop().catch(res => { history.back() });
-      this.navCtrl.parent.select(1);
-      this.events.publish('classify:selectSegment', value);
-   }
 
-   flag: boolean = true;
-   doInfinite(infiniteScroll) {
-      if (this.data.page < this.data.pages) {
-         this.httpService.coupon({ page: ++this.data.page }).then((res) => {
-            if (res.status == 1) {
-               Array.prototype.push.apply(this.data.list, res.list);
-            }
-            setTimeout(() => {
-               infiniteScroll.complete();
-            }, 500);
-         })
-      } else {
-         this.flag = false;
-      }
-   }
-   segmentChange() {
-
-   }
-
-   scrollToTop() {
-      this.content.scrollToTop();
-   }
 }

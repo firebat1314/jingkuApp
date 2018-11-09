@@ -73,7 +73,6 @@ export class MyApp {
             }
          }
       })
-
    }
    ngOnDestroy() {
       this.events.unsubscribe("signOut");

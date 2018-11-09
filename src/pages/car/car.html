@@ -3,7 +3,7 @@
       <ion-refresher-content refreshingSpinner="1" pullingIcon="0"></ion-refresher-content>
    </ion-refresher>
    <nothing backgroundImg="url(./assets/icon/no-cart.png)" *ngIf="carDetails?.suppliers_goods_list.length==0"></nothing>
-   <div class="top-head"><!--  *ngIf="carDetails&&carDetails?.suppliers_goods_list?.length!=0" -->
+   <div class="top-head" *ngIf="carDetails&&carDetails?.suppliers_goods_list?.length!=0"><!--   -->
       <div class="title">
          <div class="s-title">
             <div class="backbtn" *ngIf="hasBackBtn" (click)="goback()">
@@ -123,7 +123,7 @@
          <div *ngIf="!isEdit" class="right" tappable (click)="goAccounts()">去结算（{{carDetails?.total?.real_goods_count || 0}}）</div>
          <div *ngIf="isEdit" class="attention-and-delete">
             <button ion-button outline round color="jingku1" (click)="beCareFor()">移入关注</button>
-            <button ion-button outline round color="jingku1" (click)="dropCartGoodsSelect()">删除</button>
+            <button ion-button outline round color="danger" (click)="dropCartGoodsSelect()">删除</button>
          </div>
       </div>
    </ion-toolbar>
