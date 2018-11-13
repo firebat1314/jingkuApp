@@ -181,14 +181,11 @@ export class CouponPage {
    slideTo(index) {
       this.pageSwiper.slideTo(index);
    }
-   getPrivilege(suppliers_id) {
-      if (suppliers_id == 0) {
-         this.navCtrl.push('BrandListPage', { keyword: '镜库' })
-      } else if (suppliers_id < 0) {
-         this.navCtrl.push('BrandListPage', { keyword: '' })
-      } else {
-         this.navCtrl.push('ParticularsHomePage', { suppliersId: suppliers_id })
-      }
+   getPrivilege(type_id) {
+      this.navCtrl.push('BrandListPage', {
+         keyword: '',
+         type_id: type_id
+      })
    }
    segmentChange() {
       return this.httpService.getUserBonus({ bonus_type: 0 }).then((res) => {

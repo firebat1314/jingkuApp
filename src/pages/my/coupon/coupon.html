@@ -60,7 +60,7 @@
                      <div class="name">{{supp?.supplier_info?.suppliers_name}}</div>
                   </div>
                   <div class="right">
-                     <button *ngIf="supp.suppliers_id!=-1" (click)="getPrivilege(supp.suppliers_id)">进店</button>
+                     <button *ngIf="supp.suppliers_id!=-1" navPush="ParticularsHomePage" [navParams]="{suppliersId: item.suppliers_id}">进店</button>
                   </div>
                </div>
                <div class="coupon-wrap" *ngFor="let item of supp?.list">
@@ -79,7 +79,7 @@
                         </div>
                      </div>
                      <div class="right">
-                        <button ion-button small round block (click)="getPrivilege(item.suppliers_id)">去使用</button>
+                        <button ion-button small round block (click)="getPrivilege(item.type_id)">去使用</button>
                      </div>
                   </div>
                </div>

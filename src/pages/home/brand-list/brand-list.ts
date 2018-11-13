@@ -33,12 +33,13 @@ export class BrandListPage {
       size: 30,
       page: 1,
       brand_id: null,
-      cat_id: this.navParams.get('listId'),
+      cat_id: null,
       order: null,
       stort: 'DESC',
       keywords: '',
       supplier_id: null,
-      type: null
+      type: null,
+      bonus_id: null
    }
    @ViewChild(Content) content: Content;
    constructor(
@@ -62,6 +63,7 @@ export class BrandListPage {
       this.paramsData.supplier_id = this.navParams.get('supplierId') == ':supplierId' ? null : this.navParams.get('supplierId');
       this.paramsData.keywords = this.navParams.get('keyword') == ':keyword' ? '' : this.navParams.get('keyword');
       this.paramsData.type = this.navParams.get('type') == ':type' ? null : this.navParams.get('type');
+      this.paramsData.bonus_id = this.navParams.get('type_id') == ':type_id' ? null : this.navParams.get('type_id');
       this.isCut = this.navParams.get('cut') == ':cut' ? null : this.navParams.get('cut');
       this.isDistribution = this.navParams.get('isDistribution') == ':isDistribution' ? null : this.navParams.get('isDistribution');
 
@@ -261,7 +263,7 @@ export class BrandListPage {
 		} */
          this.getListData();
       }
-      if(this.mytool == 'goods_sort'){
+      if (this.mytool == 'goods_sort') {
          this.paramsData.order = 'goods_sort';
          this.paramsData.stort = 'DESC';
          this.getListData();
@@ -300,7 +302,7 @@ export class BrandListPage {
    }
    openMenu(e) {
       e.stopPropagation();
-      this.menuCtrl.enable(true,'list');
+      this.menuCtrl.enable(true, 'list');
 
       this.menuCtrl.toggle();
    }
