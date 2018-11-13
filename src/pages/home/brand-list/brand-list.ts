@@ -263,7 +263,7 @@ export class BrandListPage {
 		} */
          this.getListData();
       }
-      if(this.mytool == 'goods_sort'){
+      if (this.mytool == 'goods_sort') {
          this.paramsData.order = 'goods_sort';
          this.paramsData.stort = 'DESC';
          this.getListData();
@@ -302,7 +302,7 @@ export class BrandListPage {
    }
    openMenu(e) {
       e.stopPropagation();
-      this.menuCtrl.enable(true,'list');
+      this.menuCtrl.enable(true, 'list');
 
       this.menuCtrl.toggle();
    }

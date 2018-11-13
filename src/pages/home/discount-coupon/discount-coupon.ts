@@ -58,6 +58,8 @@ export class DiscountCouponPage {
       this.httpService.CatCoupon().then(res => {
          if (res.status == 1) {
             this.category = res;
+            // this.category.list.push({cat_name:'太阳眼镜',cat_id:'2'})
+            // this.category.list.push({cat_name:'太阳眼镜',cat_id:'3'})
             this.getCouponData();
 
             setTimeout(() => {
@@ -212,7 +214,6 @@ export class DiscountCouponPage {
                            }
                            //导航居中
                            let navActiveSlideLeft = that.navSwiper.slides[activeIndex].offsetLeft //activeSlide距左边的距离
-
                            that.navSwiper.setTransition(tSpeed)
 
                            if (navActiveSlideLeft < (clientWidth - parseInt(activeNavWidth)) / 2) {

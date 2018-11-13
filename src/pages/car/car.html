@@ -2,21 +2,20 @@
    <ion-refresher (ionRefresh)="doRefresh($event)" pullMax="60">
       <ion-refresher-content refreshingSpinner="1" pullingIcon="0"></ion-refresher-content>
    </ion-refresher>
-   <nothing backgroundImg="url(./assets/icon/no-cart.png)" *ngIf="carDetails?.suppliers_goods_list.length==0"></nothing>
-   <div class="top-head" *ngIf="carDetails&&carDetails?.suppliers_goods_list?.length!=0"><!--   -->
+   <div class="top-head" [class.hasgoods]="carDetails&&carDetails?.suppliers_goods_list?.length!=0">
+      <!--   -->
       <div class="title">
          <div class="s-title">
-            <div class="backbtn" *ngIf="hasBackBtn" (click)="goback()">
-               <ion-icon name="ios-arrow-back"></ion-icon>
-            </div>
+            <ion-icon name="ios-arrow-back" class="backbtn" *ngIf="hasBackBtn" tappable (click)="goback()"></ion-icon>
             <div class="txt">购物车</div>
          </div>
-         <div class="num">共{{carDetails?.goods_count || 0}}件宝贝</div>
+         <div class="btn">
+            <button (click)="isEdit=!isEdit;">{{isEdit?'完成':'管理'}}</button>
+         </div>
       </div>
-      <div class="btn">
-         <button (click)="isEdit=!isEdit;">{{isEdit?'完成':'管理'}}</button>
-      </div>
+      <div class="num">共{{carDetails?.goods_count || 0}}件宝贝</div>
    </div>
+   <nothing backgroundImg="url(./assets/icon/no-cart.png)" *ngIf="carDetails?.suppliers_goods_list.length==0"></nothing>
    <ion-list>
       <!-- ——————————————————————— 店铺 ——————————————————————— -->
       <div class="single-shop" *ngFor="let item1 of carDetails?.suppliers_goods_list">
