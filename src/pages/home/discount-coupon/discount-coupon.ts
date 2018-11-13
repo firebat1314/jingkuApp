@@ -45,11 +45,11 @@ export class DiscountCouponPage {
       this.showmark = false;
    }
    ngAfterViewInit() {
-      this.content.ionScroll.subscribe((d:ScrollEvent)=>{
+      this.content.ionScroll.subscribe((d: ScrollEvent) => {
          let top = this.el.nativeElement.querySelector('.mytoolbar');
          let slide = this.el.nativeElement.querySelector('#page .swiper-slide');
-         if(d.scrollTop>top.offsetTop){
-         }else{
+         if (d.scrollTop > top.offsetTop) {
+         } else {
          }
       })
 
@@ -218,7 +218,9 @@ export class DiscountCouponPage {
                            if (navActiveSlideLeft < (clientWidth - parseInt(activeNavWidth)) / 2) {
                               that.navSwiper.setTranslate(0)
                            } else if (navActiveSlideLeft > navWidth - (parseInt(activeNavWidth) + clientWidth) / 2) {
-                              that.navSwiper.setTranslate(clientWidth - navWidth)
+                              if (navWidth > clientWidth) {
+                                 that.navSwiper.setTranslate(clientWidth - navWidth)
+                              }
                            } else {
                               that.navSwiper.setTranslate((clientWidth - parseInt(activeNavWidth)) / 2 - navActiveSlideLeft)
                            }
@@ -259,7 +261,7 @@ export class DiscountCouponPage {
    }
    getPrivilege(item) {
       if (item.is_get == 1 || item.is_get == 2) {
-         this.toUse(item.suppliers_id);
+         this.toUse(item.type_id);
       } else if (item.is_get == 0) {
          this.native.openAlertBox('确认领取优惠券', () => {
             this.httpService.sendByUser({ type_id: item.type_id }).then((res) => {
@@ -271,14 +273,11 @@ export class DiscountCouponPage {
          })
       }
    }
-   toUse(suppliers_id) {
-      if (suppliers_id == 0) {
-         this.navCtrl.push('BrandListPage', { keyword: '镜库' })
-      } else if (suppliers_id < 0) {
-         this.navCtrl.push('BrandListPage', { keyword: '' })
-      } else {
-         this.navCtrl.push('ParticularsHomePage', { suppliersId: suppliers_id })
-      }
+   toUse(type_id) {
+      this.navCtrl.push('BrandListPage', {
+         keyword: '',
+         type_id: type_id
+      })
    }
 
 }
