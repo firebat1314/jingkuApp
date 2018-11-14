@@ -24,10 +24,10 @@
     <h4 margin >我的会员</h4>
     <div class="level" margin-horizontal>
         <div class="number">
-            <span style="color: #5169b5;">{{data?.rank_points||'0'}}</span>/{{data?.max_points||'0'}}</div>
+            <span style="color: #5169b5;">{{data?.rank_points||'0'}}</span>/{{data?.rank_up||'0'}}</div>
         <div class="progress">
             <div class="bg">
-                <div class="show" [ngStyle]="{'width.%':data?.bai}"></div>
+                <div class="show" [ngStyle]="{'width.%':data?.rank_bai}"></div>
             </div>
         </div>
         <div class="vip-list">
