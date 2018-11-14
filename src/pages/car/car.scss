@@ -1,6 +1,8 @@
-.ios {
-   .top-head {
-      padding-top: 30px;
+ion-app.ios.platform-ios.platform-cordova {
+   page-car {
+      .top-head {
+         padding-top: 30px !important;
+      }
    }
 }
 
@@ -28,17 +30,30 @@ page-car {
 
    .top-head {
       height: auto;
-      padding: 22px 12px 12px;
+      padding: 12px;
       background: linear-gradient(to bottom right, rgb(97, 161, 234), rgb(0, 112, 201));
-
       color: #ffffff;
 
       &.hasgoods {
          height: 180px;
-         padding: 22px 16px 38px;
+         padding-bottom: 38px !important;
+
+         .title {
+            justify-content: space-between !important;
+         }
+         .s-title{
+            // margin-left: 40px;
+         }
+         .backbtn {
+            position: initial !important;
+         }
 
          .num {
-            display: block;
+            display: block !important;
+         }
+
+         .btn {
+            display: block !important;
          }
       }
 
@@ -46,7 +61,8 @@ page-car {
 
          display: flex;
          align-items: center;
-         justify-content: space-between;
+         justify-content: center;
+         position: relative;
 
          .s-title {
             display: flex;
@@ -54,6 +70,9 @@ page-car {
             justify-content: space-between;
 
             .backbtn {
+               position: absolute;
+               left: 0;
+               top: -2px;
                font-size: 21px;
                margin-right: 8px;
                border-radius: 50%;
@@ -68,10 +87,13 @@ page-car {
 
             .txt {
                font-size: 18px;
+               white-space: nowrap;
             }
          }
 
          .btn {
+            display: none;
+
             button {
                color: rgb(255, 255, 255);
                background: none;
@@ -111,7 +133,7 @@ page-car {
       overflow: hidden;
 
       &:first-of-type {
-         margin-top: -74px;
+         margin-top: -78px;
       }
 
       .single-shop-head {
