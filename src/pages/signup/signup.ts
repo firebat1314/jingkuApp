@@ -35,6 +35,7 @@ export class SignupPage {
       private alertCtrl: AlertController,
       public httpService: HttpService
    ) {
+      console.log(this.signupInfo)
    }
    ngOnInit() {
       this.getSkey();
@@ -121,9 +122,9 @@ export class SignupPage {
       })
    }
    toLoginPage() {
-      this.navCtrl.pop().catch(res => { 
+      this.navCtrl.pop().catch(res => {
          this.navCtrl.push('LoginPage')
-       });
+      });
    }
    goHelperDetailsPage() {
       this.navCtrl.push('HelperDetailsPage', { article_id: 35 })

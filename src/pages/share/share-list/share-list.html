@@ -1,0 +1,49 @@
+<!--
+  Generated template for the ShareListPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+   <ion-navbar>
+      <ion-title>用户列表</ion-title>
+   </ion-navbar>
+   <ion-toolbar class="segment-style">
+      <ion-segment mode="md" [(ngModel)]="selectorbar" color="jingku1">
+         <ion-segment-button [value]="0">
+            已邀请
+         </ion-segment-button>
+         <ion-segment-button [value]="1">
+            已完成
+         </ion-segment-button>
+      </ion-segment>
+
+   </ion-toolbar>
+</ion-header>
+
+
+<ion-content [ngSwitch]="selectorbar">
+   <ion-list *ngSwitchCase="0">
+      <div style="text-align: center;color: #999999;padding: 22px 0 ;" *ngIf="data1&&!data1?.list?.length">还没有用户哦~</div>
+      <ion-item style="height: 70px;" *ngFor="let item of data1?.list">
+         <ion-avatar item-start>
+            <img style="width: 45px;height: 45px;" [img-lazy-load]="item?.avatar">
+         </ion-avatar>
+         <h2 style="margin-bottom: 6px;">{{item?.user_name}}</h2>
+         <!-- <h3>{{item?.mobile_phone}}</h3> -->
+         <p>{{item?.reg_time}}</p>
+      </ion-item>
+   </ion-list>
+   <ion-list *ngSwitchCase="1">
+      <div style="text-align: center;color: #999999;padding: 22px 0 ;" *ngIf="data2&&!data2?.list?.length">还没有用户哦~</div>
+      <ion-item style="height: 70px;" *ngFor="let item of data2?.list">
+         <ion-avatar item-start>
+            <img style="width: 45px;height: 45px;" [img-lazy-load]="item?.avatar">
+         </ion-avatar>
+         <h2 style="margin-bottom: 6px;">{{item?.user_name}}</h2>
+         <!-- <h3>{{item?.mobile_phone}}</h3> -->
+         <p>{{item?.reg_time}}</p>
+      </ion-item>
+   </ion-list>
+</ion-content>
