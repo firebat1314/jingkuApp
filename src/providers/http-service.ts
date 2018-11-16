@@ -901,4 +901,8 @@ export class HttpService {
    Share(data?, options?: HttpOptions) {
       return this.http.post(IP + '/Public/Share ', data, { showLoading: false, ...options })
    }
+   /* 已推荐 */
+   ShareList(data?, options?: HttpOptions) {
+      return this.http.post(IP + '/user/ShareList ', data, { showLoading: false, ...options })
+   }
 }

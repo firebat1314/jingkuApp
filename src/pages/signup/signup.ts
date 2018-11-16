@@ -25,7 +25,8 @@ export class SignupPage {
       password: '',
       cpassword: '',
       phone_code: '',
-      str_verify: ''
+      str_verify: '',
+      signup: this.sharing
    };
    constructor(
       public navCtrl: NavController,
@@ -34,6 +35,7 @@ export class SignupPage {
       private alertCtrl: AlertController,
       public httpService: HttpService
    ) {
+      console.log(this.signupInfo)
    }
    ngOnInit() {
       this.getSkey();
@@ -120,9 +122,9 @@ export class SignupPage {
       })
    }
    toLoginPage() {
-      this.navCtrl.pop().catch(res => { 
+      this.navCtrl.pop().catch(res => {
          this.navCtrl.push('LoginPage')
-       });
+      });
    }
    goHelperDetailsPage() {
       this.navCtrl.push('HelperDetailsPage', { article_id: 35 })
