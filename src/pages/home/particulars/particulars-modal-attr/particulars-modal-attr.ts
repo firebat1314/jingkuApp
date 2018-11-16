@@ -227,7 +227,7 @@ export class ParticularsModalAttrPage {
             this.attrsList = res;
          })
       } else {
-         this.httpServ.getAttrList({ goods_id: this.goodsId, attr: this.checkMainAttrId, isActivity: this.isActivity, sn: this.scannerId > 0 ? this.sn : null }).then((res) => {
+         this.httpServ.getAttrList({ goods_id: this.goodsId, attr: this.checkMainAttrId, isActivity: this.isActivity, sn:  this.sn  }).then((res) => {
             this.attrsList = res;
             if(this.scannerId>0){
                try {

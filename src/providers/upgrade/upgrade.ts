@@ -16,69 +16,66 @@ import { Native } from '../native';
 @Injectable()
 export class UpgradeProvider {
 
-  constructor(
-    private alertCtrl: AlertController,
-    private native: Native,
-    private httpService: HttpService,
-    private iab: InAppBrowser,
-    private platform: Platform,
-    private appVersion: AppVersion,
-  ) {
-    console.log('Hello UpgradeProvider Provider');
-  }
+   constructor(
+      private alertCtrl: AlertController,
+      private native: Native,
+      private httpService: HttpService,
+      private iab: InAppBrowser,
+      private platform: Platform,
+      private appVersion: AppVersion,
+   ) {
+      console.log('Hello UpgradeProvider Provider');
+   }
 
-  /**
-* 检查app是否需要升级
-*/
-  detectionUpgrade() {
-    //这里连接后台获取app最新版本号,然后与当前app版本号(this.getVersionNumber())对比
-    //版本号不一样就需要申请,不需要升级就return
-    this.httpService.versionInfo().then((res) => {
-      this.appVersion.getVersionNumber().then((version) => {
-        console.log(version);
-        if (this.native.isIos()) {
-          if (String(version) < res.ios.version) {
-            if (res.ios.must) {
-              this.alertCtrl.create({
-                title: '升级',
-                subTitle: '发现新版本,是否立即升级？',
-                message: '',
-                enableBackdropDismiss: false,
-                buttons: [
-                  {
-                    text: '确定',
-                    handler: () => {
-                      this.iab.create(res.ios.url, '_system');
-                      setTimeout(() => {
-                        this.platform.exitApp();
-                      }, 400);
-                      return false;
-                    }
+   /**
+ * 检查app是否需要升级
+ */
+   detectionUpgrade() {
+      //这里连接后台获取app最新版本号,然后与当前app版本号(this.getVersionNumber())对比
+      //版本号不一样就需要申请,不需要升级就return
+      this.httpService.versionInfo().then((res) => {
+         this.appVersion.getVersionNumber().then((version) => {
+            console.log(version);
+            if (this.native.isAndroid()) {
+               if (String(version) < res.android.version) {
+                  if (res.android.must) {
+                     this.alertCtrl.create({
+                        title: '升级',
+                        subTitle: '发现新版本,是否立即升级？',
+                        message: '',
+                        enableBackdropDismiss: false,
+                        buttons: [
+                           {
+                              text: '确定',
+                              handler: () => {
+                                 this.iab.create(res.android.url, '_system');
+                                 return false;
+                              }
+                           }
+                        ]
+                     }).present();
+                  } else {
+                     this.alertCtrl.create({
+                        title: '升级',
+                        subTitle: '发现新版本,是否立即升级？',
+                        message: '',
+                        enableBackdropDismiss: false,
+                        buttons: [{ text: '取消' },
+                        {
+                           text: '确定',
+                           handler: () => {
+                              this.iab.create(res.android.url, '_system');
+                              return false;
+                           }
+                        }
+                        ]
+                     }).present();
                   }
-                ]
-              }).present();
-            } else {
-              this.alertCtrl.create({
-                title: '升级',
-                subTitle: '发现新版本,是否立即升级？',
-                message: '',
-                enableBackdropDismiss: false,
-                buttons: [{ text: '取消' },
-                {
-                  text: '确定',
-                  handler: () => {
-                    this.iab.create(res.ios.url, '_system');
-                    return false;
-                  }
-                }
-                ]
-              }).present();
+               }
             }
-          }
-        }
-      }).catch(err => {
-         console.log('getVersionNumber:' + err);
-       });
-    })
-  }
+         }).catch(err => {
+            console.log('getVersionNumber:' + err);
+         });
+      })
+   }
 }

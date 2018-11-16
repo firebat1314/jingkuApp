@@ -48,7 +48,7 @@ ion-app {
 .cameraView .fixed-content,
 
 .cameraView .scroll-content {
-    transition: all .3s;
+    transition: all 100ms;
     background: transparent none !important;
     .tabbar.show-tabbar {
       opacity: 0;
