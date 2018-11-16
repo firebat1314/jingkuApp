@@ -1,0 +1,101 @@
+page-share {
+   .scroll-content {
+      background: rgb(241, 244, 251) !important;
+   }
+
+   .mark{
+      
+   }
+   .main-card {
+      min-height: 100%;
+      background: #ffffff;
+      border-radius: 8px;
+      text-align: center;
+      overflow: hidden;
+
+      .section1 {
+         padding: 40px 0;
+         margin: 0 8px;
+         border-bottom: 1px dashed #f0f0f0;
+
+         .title {
+            color: #7e97fc;
+            font-size: 20px;
+            font-weight: 500;
+         }
+
+         .subtitle {
+            color: #7e97fc;
+            margin-bottom: 30px;
+            font-size: 16px;
+            font-weight: 500;
+         }
+
+         .card {
+            position: relative;
+            width: 286px;
+            margin: 0 auto;
+            margin-bottom: 30px;
+
+            .price {
+               position: absolute;
+               top: 10px;
+               left: 10px;
+               color: #ffffff;
+               position: absolute;
+               top: 15px;
+               left: 30px;
+
+               em {
+                  font-size: 58px;
+                  color: rgba(255, 255, 255, .9);
+                  text-shadow: 4px 4px 8px rgba(0, 0, 0, .2);
+                  // background: linear-gradient(to bottom,rgba(255,255,255,1),rgba(255,255,255,.5));
+                  // -webkit-background-clip: text;
+                  // color: transparent;
+               }
+            }
+         }
+
+         .btn {
+            background: url(../assets/icon/share_02.png) no-repeat center/100%;
+            width: 230px;
+            height: 44px;
+            color: #ffffff;
+            border-radius: 20px;
+            font-size: 14px;
+         }
+      }
+   }
+
+   .section2 {
+
+      .title {
+         text-align: left;
+         font-size: 16px;
+         padding: 16px;
+      }
+
+      .data {
+         display: flex;
+         justify-content: space-around;
+
+         >div {
+            .s1 {
+               margin-bottom: 4px;
+               color: #666666;
+
+               em {
+                  color: #7e97fc;
+                  margin-right: 2px;
+                  font-size: 22px;
+               }
+            }
+
+            .s2 {
+               color: #999999;
+            }
+         }
+      }
+   }
+}

@@ -16,7 +16,7 @@ import { Native } from "../../../../../providers/native";
 })
 export class AddressPage {
 
-  placeholder: any = this.navParams.data;
+  placeholder: any = this.navParams.get('data');
   userAddress: any = this.placeholder;
   constructor(
     public navCtrl: NavController,
@@ -24,7 +24,7 @@ export class AddressPage {
     public httpServive: HttpService,
     public native: Native,
     public events: Events
-  ) { }
+  ) {}
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad AddressPage');

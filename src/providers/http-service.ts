@@ -897,4 +897,8 @@ export class HttpService {
    CatCoupon(data?, options?: HttpOptions) {
       return this.http.post(IP + '/Index/CatCoupon ', data, { showLoading: true, ...options })
    }
+   /* 推荐有礼 */
+   Share(data?, options?: HttpOptions) {
+      return this.http.post(IP + '/Public/Share ', data, { showLoading: false, ...options })
+   }
 }

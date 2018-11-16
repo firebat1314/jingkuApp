@@ -36,7 +36,7 @@ export class MyApp {
       private wxService: WxServiceProvider,
       private httpServ: HttpService,
    ) {
-
+      // window.location.href = 'jingku://123123123';
       this.initializeApp();
       //用户失效事件
       this.events.subscribe('signOut', () => {
@@ -106,13 +106,8 @@ export class MyApp {
                      }
                   }
                }
-               if (this.native.isWeixin()) {
-                  this.wxService.config(location.href, {
-                     title: '镜库科技', // 分享标题
-                     link: location.href, // 分享链接，该链接域名或路径必须与当前页面对应的公众号JS安全域名一致
-                  })
-               }
-            }, 300);
+            }, 1000);
+            this.wxService.config({ title: document.title });
          }
       })
    }
@@ -126,7 +121,6 @@ export class MyApp {
          this.native.isAndroid() ? this.statusBar.styleLightContent() : this.statusBar.styleDefault();
          this.splashScreen.hide();
 
-         //———————————————————————— 初次进入app引导页面 ————————————————————————
          if (this.native.isMobile()) {
             //———————————————————————— app更新 ————————————————————————
             this.upgradeProvider.detectionUpgrade();
@@ -134,6 +128,7 @@ export class MyApp {
                if (!result) {
                   this.rootPage = 'WelcomePage';
                } else {
+                  //———————————————————————— 初次进入app引导页面 ————————————————————————
                   this.rootPage = 'AppAdvertisingPage';
                }
             })
@@ -143,20 +138,20 @@ export class MyApp {
                location.href = 'https://www.jingku.cn/default.html';
                return;
             }
-            // this.rootPage = 'WellcomeNewmPage';
-            this.storage.get('hasLoggedIn').then((result) => {
-               if (result) {
-                  this.rootPage = 'TabsPage';//TabsPage//WellcomeNewmPage
-                  // this.nav.setRoot('TabsPage', {}, { animate: true, direction: 'forward' });
-               } else {
-                  if (location.href.indexOf('signup') > -1) {
-                     // this.rootPage = 'SignupPage';
+            if (location.href.indexOf('signup') > -1) {
+               // this.rootPage = 'SignupPage';
+            } else {
+               // this.rootPage = 'WellcomeNewmPage';
+               this.storage.get('hasLoggedIn').then((result) => {
+                  if (result) {
+                     this.rootPage = 'TabsPage';//TabsPage//WellcomeNewmPage
+                     // this.nav.setRoot('TabsPage', {}, { animate: true, direction: 'forward' });
                   } else {
                      this.rootPage = 'WellcomeNewmPage';
+                     // this.nav.setRoot('LoginPage', {}, { animate: true, direction: 'forward' });
                   }
-                  // this.nav.setRoot('LoginPage', {}, { animate: true, direction: 'forward' });
-               }
-            });
+               });
+            }
          }
          //———————————————————————— 注册返回按键事件 ————————————————————————
          this.platform.registerBackButtonAction((): any => {

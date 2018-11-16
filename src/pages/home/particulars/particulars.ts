@@ -50,7 +50,6 @@ export class ParticularsPage {
       private element: ElementRef,
       private renderer: Renderer,
    ) {
-
    }
    ngOnInit() {
       console.log("商品ID:", this.goodsId);
@@ -105,14 +104,12 @@ export class ParticularsPage {
          // console.log("商品详情信息", res);
          this.showLoading = false;
          if (res.status == 1) {
-            if (this.native.isWeixin()) {
-               this.wxService.config(location.href, {
-                  title: '镜库科技', // 分享标题
-                  desc: res.data.goods_name, // 分享描述
-                  link: location.href, // 分享链接，该链接域名或路径必须与当前页面对应的公众号JS安全域名一致
-                  imgUrl: res.data.goods_thumb, // 分享图标
-               })
-            }
+            this.wxService.config({
+               title: res.data.goods_name, // 分享标题
+               desc: '', // 分享描述
+               link: location.href, // 分享链接，该链接域名或路径必须与当前页面对应的公众号JS安全域名一致
+               imgUrl: res.data.goods_thumb, // 分享图标
+            })
             this.getGoodsInfo = res;
             this.getRegionName(res);
             this.is_dingzhi = res.data.isdingzhi == 1 ? true : false;//定制商品
@@ -302,7 +299,7 @@ export class ParticularsPage {
       this.native.openCallNumber(this.getGoodsInfo.supplier_info.mobile, false);
    }
    goAccountServicePage() {
-      this.QimoChat.qimoChatSDK(this.getGoodsInfo.supplier_info.access_id, this.getGoodsInfo.supplier_info.name, this.getGoodsInfo.supplier_info.logo, );
+      this.QimoChat.qimoChatSDK(this.getGoodsInfo.supplier_info.access_id, this.getGoodsInfo.supplier_info.name, this.getGoodsInfo.supplier_info.logo);
    }
    goParticularsHome() {
       this.navCtrl.push('ParticularsHomePage', { suppliersId: this.getGoodsInfo.supplier_info.id });

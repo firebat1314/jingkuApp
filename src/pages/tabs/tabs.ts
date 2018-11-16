@@ -28,17 +28,15 @@ export class TabsPage {
     
   }
   ionViewCanEnter(){
-     
+    return this.mine.changeUser().then(res=>{
+       return true;
+    });
   }
   ngOnInit(){
     this.getCarCount();
     this.events.subscribe('car:update', () => {
       this.getCarCount();
     })
-    /* this.mine.currentUser.subscribe(data => {
-      this.httpService.setByName('userInfo', data);
-    }) */
-    this.mine.changeUser();
   }
   getCarCount() {
     this.httpService.get_flow_goods_number().then((res) => {//获取购物车数量
