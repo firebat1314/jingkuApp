@@ -32,18 +32,16 @@ export class TabsPage {
 
    }
    ionViewCanEnter() {
-
+      return this.mine.changeUser().then(res=>{
+         return true;
+      });
    }
    ngOnInit() {
       this.getCarCount();
       this.events.subscribe('car:update', () => {
          this.getCarCount();
       })
-      /* this.mine.currentUser.subscribe(data => {
-        this.httpService.setByName('userInfo', data);
-      }) */
-      this.mine.changeUser();
-
+  
       if (this.native.isMobile()) {
          this.httpService.getStorage('watched_privacy_policy').then(res => {
             if (!res) {

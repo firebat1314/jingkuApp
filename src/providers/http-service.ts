@@ -249,7 +249,7 @@ export class HttpService {
       return this.http.get(IP + '/User/user_info', data, { showLoading: false })
    }
    getUserBonus(data?: Object, options?: HttpOptions) {//（3）个人中心优惠券
-      return this.http.get(IP + '/User/get_user_bonus', data, { showLoading: true,...options })
+      return this.http.get(IP + '/User/get_user_bonus', data, { showLoading: true, ...options })
    }
    editPwd(data?: Object) {//（4）修改密码
       return this.http.post(IP + '/User/edit_pwd', data, { showLoading: false })
@@ -900,5 +900,9 @@ export class HttpService {
    /* 普通商品扫码 */
    QrcodeInfo(data?, options?: HttpOptions) {
       return this.http.post(IP + '/Index/QrcodeInfo ', data, { showLoading: true, ...options })
+   }
+   /* 推荐有礼 */
+   Share(data?, options?: HttpOptions) {
+      return this.http.post(IP + '/Public/Share ', data, { showLoading: false, ...options })
    }
 }

@@ -46,7 +46,7 @@
          公司名称
          <ion-note item-right>{{userInfo?.data?.user_info?.company || '点击设置'}}</ion-note>
       </ion-item>
-      <ion-item tappable [navPush]="AddressPage" [navParams]="userInfo?.data?.user_info?.address" mode="ios" detail-push>
+      <ion-item tappable [navPush]="AddressPage" [navParams]="{data:userInfo?.data?.user_info?.address}" mode="ios" detail-push>
          所在地
          <ion-note item-right>{{userInfo?.data?.user_info?.address || '点击设置'}}</ion-note>
       </ion-item>

@@ -64,7 +64,7 @@ export class MineProvider {
       // this.subject.unsubscribe()
    }
    changeUser() {
-      this.httpServ.userInfo().then((res) => {
+      return this.httpServ.userInfo().then((res) => {
          if (res.status) {
             this.userInfo = res;
 

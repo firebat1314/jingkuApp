@@ -84,7 +84,6 @@ export class MyApp {
          this.native.isAndroid() ? this.statusBar.styleLightContent() : this.statusBar.styleDefault();
          this.splashScreen.hide();
 
-         //———————————————————————— 初次进入app引导页面 ————————————————————————
          if (this.native.isMobile()) {
             if(this.native.isAndroid()){
                this.upgradeProvider.detectionUpgrade();
@@ -93,6 +92,7 @@ export class MyApp {
                if (!result) {
                   this.rootPage = 'WelcomePage';
                } else {
+                  //———————————————————————— 初次进入app引导页面 ————————————————————————
                   this.rootPage = 'AppAdvertisingPage';
                }
             })
@@ -101,20 +101,20 @@ export class MyApp {
                location.href = 'https://www.jingku.cn/default.html';
                return;
             }
-            // this.rootPage = 'WellcomeNewmPage';//TabsPage//WellcomeNewmPage
-            this.storage.get('hasLoggedIn').then((result) => {
-               if (result) {
-                  this.rootPage = 'TabsPage';//TabsPage//WellcomeNewmPage
-                  // this.nav.setRoot('TabsPage', {}, { animate: true, direction: 'forward' });
-               } else {
-                  if (location.href.indexOf('signup') > -1) {
-                     // this.rootPage = 'SignupPage';
+            if (location.href.indexOf('signup') > -1) {
+               // this.rootPage = 'SignupPage';
+            } else {
+               // this.rootPage = 'WellcomeNewmPage';
+               this.storage.get('hasLoggedIn').then((result) => {
+                  if (result) {
+                     this.rootPage = 'TabsPage';//TabsPage//WellcomeNewmPage
+                     // this.nav.setRoot('TabsPage', {}, { animate: true, direction: 'forward' });
                   } else {
                      this.rootPage = 'WellcomeNewmPage';
+                     // this.nav.setRoot('LoginPage', {}, { animate: true, direction: 'forward' });
                   }
-                  // this.nav.setRoot('LoginPage', {}, { animate: true, direction: 'forward' });
-               }
-            });
+               });
+            }
          }
          // 初始化极光推送
          this.jpushServ.init();
