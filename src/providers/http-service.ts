@@ -249,7 +249,7 @@ export class HttpService {
       return this.http.get(IP + '/User/user_info', data, { showLoading: false })
    }
    getUserBonus(data?: Object, options?: HttpOptions) {//（3）个人中心优惠券
-      return this.http.get(IP + '/User/get_user_bonus', data, { showLoading: true,...options })
+      return this.http.get(IP + '/User/get_user_bonus', data, { showLoading: true, ...options })
    }
    editPwd(data?: Object) {//（4）修改密码
       return this.http.post(IP + '/User/edit_pwd', data, { showLoading: false })
@@ -480,8 +480,8 @@ export class HttpService {
     * 申请加工
     * @param 
     */
-   glassMachining(data?: Object) {
-      return this.http.post(IP + '/Machining/glass_machining', data, { showLoading: true })
+   glassMachining(data?: Object, options?: HttpOptions) {
+      return this.http.post(IP + '/Machining/glass_machining', data, { showLoading: true, ...options })
    }
    /**
     * 闪购
@@ -904,5 +904,13 @@ export class HttpService {
    /* 已推荐 */
    ShareList(data?, options?: HttpOptions) {
       return this.http.post(IP + '/user/ShareList ', data, { showLoading: false, ...options })
+   }
+   /* 选择来镜加工优惠券 */
+   suppliers_bouns(data?, options?: HttpOptions) {
+      return this.http.post(IP + '/Machining/suppliers_bouns ', data, { showLoading: true, ...options })
+   }
+   /* 选择扫码加工优惠券 */
+   special_suppliers_bouns(data?, options?: HttpOptions) {
+      return this.http.post(IP + '/SpecialMachining/suppliers_bouns ', data, { showLoading: true, ...options })
    }
 }

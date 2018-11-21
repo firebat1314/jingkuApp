@@ -6,6 +6,7 @@ import { XimuProvider } from '../../providers/ximu/ximu';
 import { MineProvider } from '../../providers/mine/mine';
 import { Subscription } from 'rxjs/Subscription';
 import { InAppBrowser } from '@ionic-native/in-app-browser';
+import Swiper from 'swiper';
 
 @IonicPage({
    segment: 'home',
@@ -42,6 +43,7 @@ export class HomePage {
    category;
    categoryI = 0;
    @ViewChild(Content) content: Content;
+   btntool: any;
 
    constructor(
       public navCtrl: NavController,
@@ -90,6 +92,23 @@ export class HomePage {
 
       this.currentUser = this.mine.currentUser.subscribe(data => {
          this.userInfo = data;
+
+         var container = this.ele.nativeElement.querySelector('.btn-tool-swiper-container');
+         var pagination = container.querySelector('.pagination');
+         setTimeout(() => {
+            if (this.btntool) {
+               this.btntool.update();
+            } else {
+               this.btntool = new Swiper(container, {
+                  slidesPerView: 5,//一行显示3个
+                  slidesPerColumn: 2,//显示2行
+                  slidesPerColumnFill: 'row',
+                  pagination: {
+                     el: pagination
+                  },
+               })
+            }
+         }, 200);
       })
       this.mine.getUser();
       this.getHomeData().then(() => {

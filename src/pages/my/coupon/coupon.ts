@@ -37,6 +37,9 @@ export class CouponPage {
       }, {
          cat_name: '运费券',
          cat_id: 4
+      }, {
+         cat_name: '来镜加工',
+         cat_id: 5
       }
    ];
    constructor(

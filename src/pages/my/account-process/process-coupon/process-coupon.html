@@ -1,0 +1,56 @@
+<!--
+  Generated template for the UsecouponPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+   <ion-navbar>
+      <ion-buttons left>
+         <button ion-button icon-only (click)="confirm()">
+            <ion-icon name="ios-arrow-back"></ion-icon>
+         </button>
+      </ion-buttons>
+      <ion-title>使用优惠券</ion-title>
+   </ion-navbar>
+
+</ion-header>
+
+<ion-content>
+
+   <ng-container *ngIf="data">
+      <ng-container>
+         <div class="no-coupon" *ngIf="!data?.length">
+            <div class="img">
+               <img src="./assets/images/images/coupon_4_03.png" alt="">
+            </div>
+            <div class="title">您还没有优惠券哦！</div>
+         </div>
+         <ng-container *ngFor="let item of data">
+            <ng-container *ngIf="item?.bonus_list?.length">
+               <div style="margin: 10px;color: #666;">{{item.suppliers_name}}</div>
+               <ng-container *ngFor="let bonus of item.bonus_list">
+                  <div class="coupon" (click)="suppliersBouns(item.suppliers_id,bonus,item.bonus_list)">
+                     <div class="head">
+                        <div class="price">￥<span>{{bonus.type_money}}</span></div>
+                        <div class="canbe">满{{bonus.min_goods_amount}}元可用</div>
+                     </div>
+                     <div class="main">
+                        <div class="name"><span>{{bonus.type_name}}</span></div>
+                        <div>{{bonus.suppliers_name}}</div>
+                        <div class="time">{{bonus.use_end_date}}</div>
+                     </div>
+                     <div class="coupon-check">
+                        <ion-checkbox color="jingku1" [checked]="bonus.selected"></ion-checkbox>
+                     </div>
+                  </div>
+               </ng-container>
+            </ng-container>
+         </ng-container>
+      </ng-container>
+   </ng-container>
+</ion-content>
+<ion-footer slideInUp>
+   <div ion-button full large no-margin color="jingku1" (click)="confirm()">确定</div>
+</ion-footer>
