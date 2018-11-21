@@ -51,8 +51,8 @@ export class AddProcessPage {
    ngAfterViewInit() {
 
    }
-   getData() {
-      this.httpService.glassMachining({ order_id: this.order_id }).then((res) => {
+   getData(showLoading = true) {
+      this.httpService.glassMachining({ order_id: this.order_id }, { showLoading: showLoading }).then((res) => {
          if (res.status) {
             this.data = res;
             if (res.machining) {
@@ -85,6 +85,10 @@ export class AddProcessPage {
             let element = this.element.nativeElement.querySelector('.swiper-container');
             let pagination = this.element.nativeElement.querySelector('.swiper-pagination');
             setTimeout(() => {
+               if (this.pageswiper) {
+                  this.pageswiper.update();
+                  return;
+               }
                if (this.edit) {
                   this.pageswiper = new Swiper(element, {
                      resistanceRatio: 0.9,
@@ -95,34 +99,24 @@ export class AddProcessPage {
                   })
                } else {
                   this.pageswiper = new Swiper(element, {
+                     slidesPerView: "auto",
                      pagination: {
                         el: pagination,
                      },
-                     slidesPerView: "auto",
-                     // slidesOffsetBefore: '8',
-                     // slidesOffsetAfter: '8',
-                     on: {
-                        progress: function (b) {
-                           /* for (let i = 0; i < this.slides.length; i++) {
-                              let slide = this.slides.eq(i);
-                              let slideProgress = this.slides[i].progress;
-                              let prevIndent = 4 == i ? .3228 : .0898;
-                              let scale = 1 > Math.abs(slideProgress + prevIndent) ? .1 * (1 - Math.abs(slideProgress + prevIndent)) + 1 : 1;
-                              slide.transform("scale3d(" + scale + "," + scale + ",1)")
-                           } */
-                        },
-                        setTransition: function (b) {
-                           // for (let a = 0; a < this.slides.length; a++) this.slides.eq(a).transition(b)
-                        },
-                        touchEnd: function () {
-                           // -1515 > this.translate && alert("\u8df3\u8f6c")
-                        }
-                     }
                   })
                }
             }, 200);
          }
       })
+   }
+   userBonus() {
+      this.modalCtrl.create('ProcessCouponPage', {
+         data: this.data.suppliers_list,
+         order_id: this.order_id,
+         callback: () => {
+            this.getData(false);
+         }
+      }).present();
    }
    addOrder() {
       this.getRecIds();
@@ -222,7 +216,7 @@ export class AddProcessPage {
                      }, 300);
                   }
                })
-               
+
                setTimeout(() => {
                   modal.present();
                }, 500);
@@ -248,7 +242,7 @@ export class AddProcessPage {
       modal.onDidDismiss((data, role) => {
          if (role == 'submit') {
             if (data.is_cutting == 1) {//切边商品选择一个自动填充其他
-                  
+
                item.R = data.cutting.R;
                item.L = data.cutting.L;
                item.J = data.cutting.jia;
@@ -286,11 +280,11 @@ export class AddProcessPage {
                      }, 300);
                   }
                })
-               
+
                setTimeout(() => {
                   modal.present();
                }, 800);
-               
+
             } else {
                item.L = data.data;
             }

@@ -8,6 +8,10 @@
 
 
 <ion-content>
+   <div class="user-bonus" tappable (click)="userBonus()" *ngIf="!edit&&data&&data?.suppliers_list?.length">
+      <span class="usetxt">选择优惠券</span>
+      <span class="price" *ngIf="data?.bonus_amount>0">- {{data?.bonus_amount_format}}</span>
+   </div>
 
    <div class="swiper-container" id="page" [class.confirm]="!edit">
       <div class="swiper-wrapper">

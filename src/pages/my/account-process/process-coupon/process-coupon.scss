@@ -1,0 +1,8 @@
+page-process-coupon {
+    .no-coupon {
+        @include reminderBlankPage();
+    }
+    .coupon {
+        @include coupon;
+    }
+}

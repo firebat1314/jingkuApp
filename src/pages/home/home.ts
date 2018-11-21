@@ -7,6 +7,7 @@ import { MineProvider } from '../../providers/mine/mine';
 import { JpushService } from '../../providers/jpush-service';
 import { Subscription } from 'rxjs/Subscription';
 import { AccountProcessProvider } from '../my/account-process/account-process-provider';
+import Swiper from 'swiper';
 
 @IonicPage({
    segment: 'home',
@@ -43,6 +44,7 @@ export class HomePage {
    category;
    categoryI = 0;
    @ViewChild(Content) content: Content;
+   btntool: any;
 
    constructor(
       public navCtrl: NavController,
@@ -97,6 +99,23 @@ export class HomePage {
             console.log('setAlias', data.data.user_info.user_name)
          });
          this.jpushServ.addTags([data.data.user_info.mobile_phone])
+
+         var container = this.ele.nativeElement.querySelector('.btn-tool-swiper-container');
+         var pagination = container.querySelector('.pagination');
+         setTimeout(() => {
+            if (this.btntool) {
+               this.btntool.update();
+            } else {
+               this.btntool = new Swiper(container, {
+                  slidesPerView: 5,//一行显示3个
+                  slidesPerColumn: 2,//显示2行
+                  slidesPerColumnFill: 'row',
+                  pagination: {
+                     el: pagination
+                  },
+               })
+            }
+         }, 200);
       })
       this.mine.getUser();
       this.getHomeData().then(() => {

@@ -30,6 +30,10 @@
 			<span class="name">加工单号</span>
 			<span class="value">{{data?.mach_info?.sn||'无'}}</span>
 		</div>
+		<div *ngIf="data?.mach_info?.bonus>0">
+			<span class="name">优惠金额</span>
+			<span class="value" style="color: #e60000;">{{data?.mach_info?.bonus_format||'无'}}</span>
+		</div>
 		<div>
 			<span class="name">加工费用</span>
 			<span class="value" style="color: #e60000;">{{data?.mach_info?.amount_format||'无'}}</span>

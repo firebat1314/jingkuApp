@@ -58,7 +58,9 @@ export class ChooseLensLPage {
    }
 
    submit() {
-      if (this.rec_id && !this.scannerData) {
+      if (this.scannerData) {
+         this.viewCtrl.dismiss(this.scannerData, 'submit');
+      } else {
          this.httpService.select_goods_type({
             goods_rec: this.rec_id,
             type: '1',
@@ -68,8 +70,6 @@ export class ChooseLensLPage {
                this.viewCtrl.dismiss(res, 'submit');
             }
          })
-      } else {
-         this.viewCtrl.dismiss(this.scannerData, 'submit');
       }
    }
 }

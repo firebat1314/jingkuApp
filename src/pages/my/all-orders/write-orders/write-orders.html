@@ -135,7 +135,7 @@
                 <ion-note item-end *ngIf="!noteStatus">填写备注信息</ion-note>
                 <ion-note item-end *ngIf="noteStatus">已填写备注，点击查看</ion-note>
             </ion-item>
-            <ion-item *ngIf="data?.cart_machining==1" style="border-bottom:none;">
+            <ion-item *ngIf="data?.cart_machining==1&&scanner!=1" style="border-bottom:none;">
                <ion-label>来镜加工</ion-label>
                <ion-toggle mode="ios" color="jingku1" [(ngModel)]="data.jump_machining" (ionChange)="change_machining(data.jump_machining)"></ion-toggle>
            </ion-item>
@@ -145,10 +145,14 @@
                 <span>商品金额：</span>
                 <span class="price">¥{{data?.total?.formated_goods_price}}</span>
             </div>
-            <div *ngIf="data?.total?.machining_amount_formated">
-                <span>加工费用：</span>
-                <span class="price">¥{{data?.total?.machining_amount_formated}}</span>
-            </div>
+            <div *ngIf="scanner==1">
+               <span>加工费用：</span>
+               <span class="price">+ {{data?.total?.old_machining_amount_formated}}</span>
+           </div>
+           <div *ngIf="scanner==1">
+              <span>加工优惠：</span>
+              <span class="price">- {{data?.total?.machining_bouns_amount_formated}}</span>
+          </div>
             <div>
                 <span>运费：</span>
                 <span class="price">+ {{data?.total?.suppliers_shipping_fee_formated}}</span>

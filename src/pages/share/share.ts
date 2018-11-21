@@ -40,17 +40,16 @@ export class SharePage {
    }
 
    ngOnInit() {
-
+      setTimeout(() => {
+         this.wxService.config({
+            title: '我正在使用镜库，推荐给你。30元代金券一并奉上', // 分享标题
+            desc: '眼镜业B2B专业服务平台', // 分享描述
+            link: IP + '/#/nav/n4/signup/' + this.mine.userInfo.data.UserShare, // 分享链接，该链接域名或路径必须与当前页面对应的公众号JS安全域名一致
+         })
+      }, 400)
       this.mine.userInfo && this.httpServ.Share({ signup: this.mine.userInfo.data.UserShare }).then(res => {
          if (res.status == 1) {
             this.data = res;
-            setTimeout(() => {
-               this.wxService.config({
-                  title: '我正在使用镜库，推荐给你。30元代金券一并奉上', // 分享标题
-                  desc: '眼镜业B2B专业服务平台', // 分享描述
-                  link: IP + '/#/nav/n4/signup/' + this.mine.userInfo.data.UserShare, // 分享链接，该链接域名或路径必须与当前页面对应的公众号JS安全域名一致
-               })
-            }, 400)
          }
       })
    }
