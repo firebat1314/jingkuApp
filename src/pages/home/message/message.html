@@ -6,32 +6,51 @@
 -->
 <ion-header>
 
-    <ion-navbar>
-        <ion-title>消息</ion-title>
-    </ion-navbar>
+   <ion-navbar>
+      <ion-title>消息</ion-title>
+   </ion-navbar>
 
 </ion-header>
 
 
 <ion-content>
 
-    <ion-list>
-        <ion-item tappable (click)="goMessageDetailsPage(1)">
-            <ion-avatar item-left>
-                <img src="./assets/icon/images/messageCenter_01_03.png">
-            </ion-avatar>
-            <h3>物流通知</h3>
-            <p>{{wuLiuTidings?.list?.msg}}</p>
-            <ion-note item-right>{{wuLiuTidings?.list?.add_time}}</ion-note>
-        </ion-item>
-        <ion-item tappable (click)="goMessageDetailsPage(2)">
-            <ion-avatar item-left>
-                <img src="./assets/icon/images/messageCenter_01_06.png">
-            </ion-avatar>
-            <h3>消息通知</h3>
-            <p>{{userTidings?.list?.msg_content}}</p>
-            <ion-note item-right *ngIf="userTidings?.list?.number!=0">{{userTidings?.list?.dateline}}</ion-note>
-        </ion-item>
-    </ion-list>
+   <ion-list>
+      <ion-item tappable (click)="goMessageDetailsPage(1)">
+         <div class="img" item-left style="background: rgb(255,153,3);">
+            <img src="./assets/icon/images/messageCenter_01_03.png">
+         </div>
+         <h3>物流通知</h3>
+         <p>{{wuLiuTidings?.list?.msg}}</p>
+         <ion-note item-right>{{wuLiuTidings?.list?.add_time}}</ion-note>
+      </ion-item>
+      <ion-item tappable (click)="goMessageDetailsPage(2)">
+         <div class="img" item-left style="background: rgb(118,189,61);">
+            <img src="./assets/icon/images/messageCenter_01_06.png">
+         </div>
+         <h3>消息通知</h3>
+         <p>{{userTidings?.list?.msg_content}}</p>
+         <ion-note item-right *ngIf="userTidings?.list?.number!=0">{{userTidings?.list?.dateline}}</ion-note>
+      </ion-item>
+      <ion-item-sliding *ngFor="let item of customeServ.recentSessMap | keys">
+         <ion-item tappable (click)="CustomeServicesPage(item)">
+            <div class="img" item-left>
+               <img src="{{item.SessionImage}}">
+               <div class="unread" *ngIf="item.UnreadMsgCount>0">{{item.UnreadMsgCount<100?item.UnreadMsgCount:'99+'}}</div>
+            </div>
+            <h3>{{item.SessionNick}}</h3>
+            <p>{{item.MsgShow}}</p>
+
+            <div class="right" item-right>
+               <ion-note *ngIf="userTidings?.list?.number!=0">{{item.MsgTimeStamp}}</ion-note>
+            </div>
+         </ion-item>
+         <ion-item-options side="right">
+            <button ion-button color="danger" (click)="customeServ.delItem(item)">删除</button>
+         </ion-item-options>
+      </ion-item-sliding>
+
+
+   </ion-list>
 
 </ion-content>

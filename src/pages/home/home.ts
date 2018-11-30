@@ -8,6 +8,7 @@ import { JpushService } from '../../providers/jpush-service';
 import { Subscription } from 'rxjs/Subscription';
 import { AccountProcessProvider } from '../my/account-process/account-process-provider';
 import Swiper from 'swiper';
+import { CustomeServicesProvider } from '../../providers/custome-services/custome-services';
 
 @IonicPage({
    segment: 'home',
@@ -20,7 +21,6 @@ import Swiper from 'swiper';
 export class HomePage {
    showPrice: boolean;
    userInfo: any;
-   currentUser: Subscription;
 
    data: any;//indexs
    fastbuyData: any;//闪购商品
@@ -56,11 +56,10 @@ export class HomePage {
       private ximu: XimuProvider,
       private mine: MineProvider,
       private modalCtrl: ModalController,
-      private jpushServ: JpushService,
       private app: App,
       private ele: ElementRef,
       private ap: AccountProcessProvider,
-
+      private customeServ: CustomeServicesProvider,
    ) {
 
    }
@@ -93,31 +92,25 @@ export class HomePage {
          this.category = res;
       })
 
-      this.currentUser = this.mine.currentUser.subscribe(data => {
-         this.userInfo = data;
-         this.jpushServ.setAlias(data.data.user_info.user_name).then(res => {
-            console.log('setAlias', data.data.user_info.user_name)
-         });
-         this.jpushServ.addTags([data.data.user_info.mobile_phone])
+      /* 专区按钮组swiper排列 */
+      var container = this.ele.nativeElement.querySelector('.btn-tool-swiper-container');
+      var pagination = container.querySelector('.pagination');
+      setTimeout(() => {
+         if (this.btntool) {
+            this.btntool.update();
+         } else {
+            this.btntool = new Swiper(container, {
+               slidesPerView: 5,//一行显示3个
+               slidesPerColumn: 2,//显示2行
+               slidesPerColumnFill: 'row',
+               pagination: {
+                  el: pagination
+               },
+            })
+         }
+      }, 200);
 
-         var container = this.ele.nativeElement.querySelector('.btn-tool-swiper-container');
-         var pagination = container.querySelector('.pagination');
-         setTimeout(() => {
-            if (this.btntool) {
-               this.btntool.update();
-            } else {
-               this.btntool = new Swiper(container, {
-                  slidesPerView: 5,//一行显示3个
-                  slidesPerColumn: 2,//显示2行
-                  slidesPerColumnFill: 'row',
-                  pagination: {
-                     el: pagination
-                  },
-               })
-            }
-         }, 200);
-      })
-      this.mine.getUser();
+
       this.getHomeData().then(() => {
          console.log('首页加载完成');
       }).catch((res) => {
@@ -126,7 +119,6 @@ export class HomePage {
    }
    ngOnDestroy() {
       this.events.unsubscribe('home:update');
-      this.currentUser.unsubscribe();
    }
    getHomeData() {
       this.httpService.presell({ type: 'is_promote', cat_id: 0 }, { showLoading: false, showToast: false }).then((res) => {

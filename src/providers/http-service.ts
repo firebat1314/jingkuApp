@@ -917,4 +917,17 @@ export class HttpService {
    special_suppliers_bouns(data?, options?: HttpOptions) {
       return this.http.post(IP + '/SpecialMachining/suppliers_bouns ', data, { showLoading: true, ...options })
    }
+   /* 云通讯客服 */
+   CustomerService(data?, options?: HttpOptions) {
+      return this.http.post(IP + '/Index/CustomerService ', data, { showLoading: false, ...options })
+   }
+   /* 商品信息 */
+   CustomerServiceCustom(data?, options?: HttpOptions) {
+      return this.http.post(IP + '/Index/CustomerServiceCustom ', data, { showLoading: false, ...options })
+   }
+   /* 云通讯参数 */
+   TxImInfo(data?, options?: HttpOptions) {
+      return this.http.post(IP + '/User/TxImInfo ', data, { showLoading: false, ...options })
+   }
+
 }

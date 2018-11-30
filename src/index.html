@@ -2,25 +2,25 @@
 <html lang="en" dir="ltr">
 
 <head>
-    <meta charset="UTF-8">
-    <title>镜库</title>
-    <meta name="viewport" content="viewport-fit=cover, width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <meta name="format-detection" content="telephone=no">
-    <meta name="msapplication-tap-highlight" content="no">
-    <!-- <meta http-equiv="Expires" content="0">
+   <meta charset="UTF-8">
+   <title>镜库</title>
+   <meta name="viewport" content="viewport-fit=cover, width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+   <meta name="format-detection" content="telephone=no">
+   <meta name="msapplication-tap-highlight" content="no">
+   <!-- <meta http-equiv="Expires" content="0">
 	<meta http-equiv="Pragma" content="no-cache">
 	<meta http-equiv="Cache-control" content="no-cache, no-store, must-revalidate">
     <meta http-equiv="Cache" content="no-cache"> -->
 
-    <link rel="icon" type="image/x-icon" href="assets/icon/jingku.ico">
-    <link rel="manifest" href="manifest.json">
-    <meta name="theme-color" content="#4e8ef7">
+   <link rel="icon" type="image/x-icon" href="assets/icon/jingku.ico">
+   <link rel="manifest" href="manifest.json">
+   <meta name="theme-color" content="#4e8ef7">
 
-    <!-- cordova.js required for cordova apps -->
-    <script src="cordova.js"></script>
+   <!-- cordova.js required for cordova apps -->
+   <script src="cordova.js"></script>
 
-    <!--un-comment this code to enable service worker-->
-    <!-- <script>
+   <!--un-comment this code to enable service worker-->
+   <!-- <script>
         if ('serviceWorker' in navigator) {
             navigator.serviceWorker.register('service-worker.js')
                 .then(() => console.log('service worker installed'))
@@ -28,48 +28,50 @@
         }
     </script> -->
 
-    <link rel="stylesheet" href="build/main.css?t=201810301">
+   <link rel="stylesheet" href="build/main.css?t=201810301">
 
 </head>
 
 <body>
 
-    <!-- Ionic's root component and where the app will load -->
-    <ion-app></ion-app>
+   <!-- Ionic's root component and where the app will load -->
+   <ion-app></ion-app>
 
-    <script src="./assets/plugin/clipboard.min.js?t=201810301"></script>
-    <script src="./assets/plugin/wow.js?t=201810301"></script>
-    <script src="./assets/plugin/TouchSlide.1.1.js?t=201810301"></script>
-    <!-- <script src="./assets/plugin/zepto.js"></script> -->
-    <script src="./assets/plugin/jquery-3.2.1.min.js?t=201810301"></script>
-    <!-- <script src="./assets/plugin/pingpp.js?t=201810301"></script> -->
-    <!-- <script src="./assets/plugin/geete.js"></script> -->
+   <script type="text/javascript" src="./assets/plugin/clipboard.min.js?t=201811131"></script>
+   <script type="text/javascript" src="./assets/plugin/wow.js?t=201811131"></script>
+   <script type="text/javascript" src="./assets/plugin/TouchSlide.1.1.js?t=201811131"></script>
+   <!-- <script src="./assets/plugin/zepto.js"></script> -->
+   <script type="text/javascript" src="./assets/plugin/jquery-3.2.1.min.js?t=201811131"></script>
+   <!-- <script src="./assets/plugin/pingpp.js?t=201811131"></script> -->
+   <!-- <script src="./assets/plugin/geete.js"></script> -->
 
-    <script src="./assets/plugin/jweixin-1.2.0.js?t=201810301"></script>
+   <!-- <script type="text/javascript" src="./assets/plugin/jweixin-1.2.0.js?t=201811131"></script> -->
+   <script type="text/javascript" src="./assets/plugin/sdk/json2.js"></script>
+   <script type="text/javascript" src="./assets/plugin/sdk/webim.min.js"></script>
+   <script type="text/javascript" src="./assets/plugin/md5/spark-md5.js"></script>
 
-    <!-- The polyfills js is generated during the build process -->
-    <script src="build/polyfills.js?t=201810301"></script>
-    <!-- The vendor js is generated during the build process
+   <!-- The polyfills js is generated during the build process -->
+   <script type="text/javascript" src="build/polyfills.js?t=201811131"></script>
+   <!-- The vendor js is generated during the build process
        and includes all files in the node_modules directory -->
-    <script src="build/vendor.js?t=201810301"></script>
+   <script type="text/javascript" src="build/vendor.js?t=201811131"></script>
 
-    <!-- The bundle js is generated during the build process -->
+   <!-- The bundle js is generated during the build process -->
 
-    <script src="build/main.js?t=201810301"></script>
-    <!--网站图标 -->
-    <script>
-        setTimeout(function () {
-            var links = document.getElementsByTagName('link');
-            var linksLength = links.length;
-            for (var i = 0; i < linksLength; i++) {
-                if ('icon' === links[i].rel) {
-                    links[i].type = 'image/x-icon';
-                    links[i].href = 'assets/icon/jingku.ico';
-                }
+   <script src="build/main.js?t=201810301"></script>
+   <!--网站图标 -->
+   <script>
+      setTimeout(function() {
+         var links = document.getElementsByTagName('link');
+         var linksLength = links.length;
+         for (var i = 0; i < linksLength; i++) {
+            if ('icon' === links[i].rel) {
+               links[i].type = 'image/x-icon';
+               links[i].href = 'assets/icon/jingku.ico';
             }
-            links = null;
-        }, 200);
-    </script>
+         }
+      }, 200);
+   </script>
 </body>
 
 </html>

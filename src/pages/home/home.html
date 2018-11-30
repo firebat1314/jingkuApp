@@ -13,6 +13,7 @@
       <ion-buttons end>
          <button ion-button clear icon-only icon-left right navPush="MessagePage">
             <ion-icon style="font-size: 2.2rem;" name="mess"></ion-icon>
+            <div class="unread" *ngIf="customeServ.sumTotal>0">{{customeServ.sumTotal<100?customeServ.sumTotal:'99+'}}</div>
          </button>
       </ion-buttons>
       <!-- <ion-buttons right tappable (click)="presentPopover($event)">
@@ -50,32 +51,32 @@
                   </div>
                   <span>团购</span>
                </div>
-               <div tappable class="swiper-slide" *ngIf="userInfo&&userInfo?.data?.user_info?.is_test!=1" navPush="NewProductPage">
+               <div tappable class="swiper-slide" *ngIf="mine.userInfo&&mine.userInfo?.data?.user_info?.is_test!=1" navPush="NewProductPage">
                   <!-- NewProductPage -->
                   <div class="img">
                      <img img-lazy-load="./assets/icon/home/home_icon2.png" alt="">
                   </div>
                   <span>新品</span>
                </div>
-               <div tappable class="swiper-slide" *ngIf="userInfo&&userInfo?.data?.user_info?.is_test!=1" (click)="goFastbuyPage()">
+               <div tappable class="swiper-slide" *ngIf="mine.userInfo&&mine.userInfo?.data?.user_info?.is_test!=1" (click)="goFastbuyPage()">
                   <div class="img">
                      <img img-lazy-load="./assets/icon/home/home_icon9.png" alt="">
                   </div>
                   <span>闪购</span>
                </div>
-               <div tappable class="swiper-slide" *ngIf="userInfo&&userInfo?.data?.user_info?.is_test!=1" (click)="goDiscountCouponPage();">
+               <div tappable class="swiper-slide" *ngIf="mine.userInfo&&mine.userInfo?.data?.user_info?.is_test!=1" (click)="goDiscountCouponPage();">
                   <div class="img">
                      <img img-lazy-load="./assets/icon/home/home_icon3.png" alt="">
                   </div>
                   <span>优惠券</span>
                </div>
-               <div tappable class="swiper-slide" *ngIf="userInfo&&userInfo?.data?.user_info?.is_test!=1" (click)="goBrandPage()">
+               <div tappable class="swiper-slide" *ngIf="mine.userInfo&&mine.userInfo?.data?.user_info?.is_test!=1" (click)="goBrandPage()">
                   <div class="img">
                      <img img-lazy-load="./assets/icon/home/home_icon7.png" alt="">
                   </div>
                   <span>品牌</span>
                </div>
-               <div tappable class="swiper-slide" navPush="DistributionPage" *ngIf="userInfo?.data?.ywy?.is_ywy===2||userInfo?.data?.ywy?.is_ywy===1">
+               <div tappable class="swiper-slide" navPush="DistributionPage" *ngIf="mine.userInfo?.data?.ywy?.is_ywy===2||mine.userInfo?.data?.ywy?.is_ywy===1">
                   <div class="img">
                      <img img-lazy-load="./assets/icon/home/home_icon8.png" alt="">
                   </div>
@@ -105,12 +106,12 @@
                   </div>
                   <span>镜库设计</span>
                </div>
-               <div tappable class="swiper-slide" navPush="SharePage">
+               <!-- <div tappable class="swiper-slide" navPush="SharePage">
                   <div class="img">
                      <img img-lazy-load="./assets/icon/home/home_icon11.png" alt="">
                   </div>
                   <span>分享有礼</span>
-               </div>
+               </div> -->
             </div>
             <div class="pagination"></div>
          </div>
@@ -123,7 +124,7 @@
             </div> -->
       </div>
       <!--—————————————————————————————————————————— 广告位 ——————————————————————————————————————————-->
-      <div fadeIn *ngIf="userInfo&&userInfo?.data?.user_info?.is_test!=1" class="ad_wrap">
+      <div fadeIn *ngIf="mine.userInfo&&mine.userInfo?.data?.user_info?.is_test!=1" class="ad_wrap">
          <div class="line1">
             <img img-lazy-load="{{getBrands?.ad_img}}" [ads-click]="getBrands" defaultSrc="./assets/images/images/640-360.jpg" alt="">
          </div>
@@ -140,7 +141,7 @@
       <!-- <div *ngIf="!fastbuyData" style="min-height: 200px;text-align: center;padding: 80px;">
          <ion-spinner name="dots"></ion-spinner>
       </div> -->
-      <div fadeIn *ngIf="userInfo&&userInfo?.data?.user_info?.is_test!=1" class="shan_gou home-content">
+      <div fadeIn *ngIf="mine.userInfo&&mine.userInfo?.data?.user_info?.is_test!=1" class="shan_gou home-content">
          <div class="title">
             <span class="txt">镜库闪购</span>
          </div>

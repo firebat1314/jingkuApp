@@ -2,8 +2,26 @@ page-home {
    img {
       width: 100%;
    }
+
+   .unread {
+      position: absolute;
+      top: -3px;
+      right: -4px;
+      width: 20px;
+      height: 20px;
+      background: #e60000;
+      color: #ffffff;
+      border-radius: 50%;
+      font-size: 1rem;
+      white-space: nowrap;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+   }
+
    .searchform {
       position: relative;
+
       .scannericon {
          position: absolute;
          width: 35px;
@@ -19,18 +37,22 @@ page-home {
          right: 8px;
       }
    }
+
    .home-content {
       background: #fff;
       margin-bottom: 10px;
    }
+
    .banner-wrapper {
       background: #fff;
+
       button.swiper-pagination-bullet {
          border-radius: 50%;
          border-color: transparent;
          background: #666;
          opacity: .5;
       }
+
       ion-slide {
          img {
             max-width: 100%;
@@ -41,16 +63,19 @@ page-home {
          }
       }
    }
+
    .btn-tool {
       background-color: #fff;
       margin-bottom: 10px;
       padding: 12px 8px;
-      .swiper-slide{
+
+      .swiper-slide {
          flex-direction: column;
          align-items: center;
          color: #666;
          margin-bottom: 10px;
          font-size: 14px;
+
          .img {
             width: 55px;
             height: 55px;
@@ -62,40 +87,49 @@ page-home {
             box-shadow: 0px 0 20px #f5f5f5;
          }
       }
-      .pagination{
+
+      .pagination {
          text-align: center;
          font-size: 0;
       }
-      .swiper-pagination-bullet{
+
+      .swiper-pagination-bullet {
          height: 2px;
          width: 16px;
          background: #999999;
       }
    }
+
    /*———————————————————————————————— 广告位 ————————————————————————————————*/
    .ad_wrap {
       background: #fff;
       margin-bottom: 10px;
       display: flex;
+
       img {
          display: block;
       }
+
       .line1 {
          margin-right: 4px;
          display: flex;
          flex-direction: column;
          flex: 1;
+
          img {
             height: 100%;
          }
       }
+
       .line2 {
          flex: 1;
+
          >div:first-child {
             margin-bottom: 4px;
          }
       }
    }
+
    /*———————————————————————————————— 闪购商品 ————————————————————————————————*/
    .shan_gou {
       .title {
@@ -105,37 +139,47 @@ page-home {
          align-items: center;
          justify-content: center;
       }
+
       .main {
          padding: 0 10px;
+
          .scroll_wrap {
             overflow-y: scroll;
             display: flex;
+
             .item {
                text-align: center;
                margin-right: 10px;
                min-width: 100px;
+
                &:last-child {
                   margin-right: 0;
                }
+
                .img {
                   width: 100px;
                   height: 100px;
                   display: flex;
                   align-items: center;
                }
+
                .txt {
                   padding: 8px 0;
+
                   .price {
                      color: #e60000;
                      font-size: 1.3rem;
+
                      &:first-letter {
                         font-size: 1.2rem;
                      }
                   }
+
                   .old_price {
                      font-size: 1.2rem;
                      text-decoration: line-through;
                      color: #999;
+
                      &:first-letter {
                         font-size: 1.1rem;
                      }
@@ -144,6 +188,7 @@ page-home {
             }
          }
       }
+
       .see_more {
          color: #666;
          font-size: 1.2rem;
@@ -153,6 +198,7 @@ page-home {
          justify-content: center;
       }
    }
+
    /*———————————————————————————————— 品牌街区 ————————————————————————————————*/
    .brand_street {
       .title {
@@ -162,23 +208,29 @@ page-home {
          align-items: center;
          justify-content: center;
       }
+
       .main {
          display: flex;
          overflow-x: scroll;
          margin: 0 10px;
+
          >div {
             min-width: 241px;
             margin-right: 1.6rem;
+
             &:last-child {
                margin-right: 0;
             }
+
             img {
                max-height: 200px;
                border-radius: 3px;
             }
+
             span {
                color: #808080;
             }
+
             h3 {
                color: #666;
                font-size: 1.4rem;
@@ -188,26 +240,31 @@ page-home {
          }
       }
    }
+
    /*———————————————————————————————— 分类 ————————————————————————————————*/
    .class_list {
       .head {
          padding: 14px 10px;
          display: flex;
          background: #fff;
+
          .title {
             border-left: solid 5px #3f69a5;
             padding-left: 6px;
          }
+
          .brand_list {
             flex: 1;
             display: flex;
             overflow-x: scroll;
             padding-left: 16px;
             margin-left: 8px;
+
             >.brand {
                flex-shrink: 0;
                padding-right: 16px;
                color: #666666;
+
                &.on {
                   color: #3f69a5;
                }

@@ -2,23 +2,56 @@ import { Injectable } from '@angular/core';
 import 'rxjs/add/operator/map';
 import { Native } from '../native';
 import { HttpService } from '../http-service';
+import { CustomeServicesProvider } from '../custome-services/custome-services';
+import { App } from 'ionic-angular';
 
 declare let qimoChatClick;
 declare var cordova: any;
 /*
-  Generated class for the QimoChatProvider provider.
+  Generated class for the ChatProvider provider.
 
   See https://angular.io/docs/ts/latest/guide/dependency-injection.html
   for more info on providers and Angular DI.
 */
 @Injectable()
-export class QimoChatProvider {
+export class ChatProvider {
 
    constructor(
       public native: Native,
       public httpService: HttpService,
+      public customeServ: CustomeServicesProvider,
+      private app: App,
    ) {
-      console.log('Hello QimoChatProvider Provider');
+      console.log('Hello ChatProvider Provider');
+   }
+   webim(params?: { supplier_id?: any; goods_id?: number; cutId?: any; dId?: any; isActivity?: number; order_id?: any; }, cbok?: any) {
+      console.log(this.customeServ.recentSessMap)
+      this.httpService.CustomerService(params || {}, { showLoading: true }).then(res => {
+         if (res.status == 1) {
+            // this.customeServ.initRecentContactList(() => {
+            if (params) {
+               this.httpService.CustomerServiceCustom({
+                  order_id: params.order_id,
+                  goods_id: params.goods_id,
+                  suppliers_id: params.supplier_id,
+                  group_id: this.customeServ.selType == 'GROUP' ? this.customeServ.selToID : undefined,
+                  identifier: this.customeServ.loginInfo.identifier,
+               }).then(res => {
+
+               })
+            }
+            if (res.group_id) {
+               this.customeServ.initInfoMapByMyGroups(() => {
+                  this.app.getActiveNav().push('CustomeServicesPage', { parmas: encodeURIComponent(JSON.stringify(this.customeServ.infoMap['GROUP_' + res.group_id])) })
+               })
+            } else if (res.userId) {
+               this.customeServ.initInfoMapByMyFriends(() => {
+                  this.app.getActiveNav().push('CustomeServicesPage', { parmas: encodeURIComponent(JSON.stringify(this.customeServ.infoMap['C2C_' + res.userId])) })
+               })
+            }
+            // }, () => { });
+         }
+      })
    }
    qimoChatClick(options?: any) {
       this.native.showLoading();
@@ -42,8 +75,7 @@ export class QimoChatProvider {
       };
    }
    qimoChatSDK(access_id?, supplier_name?, supplier_avatar?, successCallback?) {
-      this.native.showToast('该功能整改中^-^');
-      /* if (typeof cordova != "undefined") {
+      if (typeof cordova != "undefined") {
          this.httpService.getByName('userInfo').then((userInfo) => {
             cordova.exec(
                (response) => {
@@ -51,16 +83,10 @@ export class QimoChatProvider {
                   successCallback ? successCallback(response) : null;
                },
                (msg) => {
-                  this.native && this.native.showToast(msg, null, true);
+                  this.native.showToast(msg, null, true);
                },
                "ShowMessage",
-               "mydream", [
-                  (userInfo.data.avatar || 'error'),
-                  (userInfo.data.user_info.user_id || 'error'),
-                  (userInfo.data.user_info.user_name || 'error'),
-                  (access_id || 'b441f710-80d9-11e7-8ddd-b18e4f0e2471'),
-                  (supplier_name || '镜库网'),
-                  (supplier_avatar || 'https://m.jingku.cn/assets/icon/avatar_default.jpg')])
+               "mydream", [(userInfo.data.avatar || '出错'), (userInfo.data.user_info.user_id || '出错'), (userInfo.data.user_info.user_name || '出错'), (access_id || 'b441f710-80d9-11e7-8ddd-b18e4f0e2471'), supplier_name || '镜库网', supplier_avatar || 'https://m.jingku.cn/assets/icon/avatar_default.jpg'])
          });
       } else {
          this.native.showLoading();
@@ -81,6 +107,6 @@ export class QimoChatProvider {
                qimo.onload = qimo['onreadystatechange'] = null;
             }
          };
-      } */
+      }
    }
 }

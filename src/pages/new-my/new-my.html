@@ -25,16 +25,16 @@
       </div> -->
       <div class="h-body">
          <div class="user_logo" tappable (click)="goAccountManagementPage($event)">
-            <img img-lazy-load="{{userInfo?.data?.avatar}}" alt="">
+            <img img-lazy-load="{{mine.userInfo?.data?.avatar}}" alt="">
          </div>
          <div class="r_wrap">
             <div class="user_info">
-               <div class="name">{{userInfo?.data?.username}}</div>
+               <div class="name">{{mine.userInfo?.data?.username}}</div>
                <div class="vip" tappable navPush="MemberCenterPage" (click)="$event.stopPropagation()">
                   <div class="vip_logo">
-                     <img img-lazy-load="{{userInfo?.data?.user_info?.rank_icon}}" alt="">
+                     <img img-lazy-load="{{mine.userInfo?.data?.user_info?.rank_icon}}" alt="">
                   </div>
-                  <div class="vip_name">{{userInfo?.data?.user_info?.rank_name||'暂无等级'}}</div>
+                  <div class="vip_name">{{mine.userInfo?.data?.user_info?.rank_name||'暂无等级'}}</div>
                </div>
             </div>
             <div class="gl_btn">
@@ -45,6 +45,7 @@
                   <button color="light" ion-button clear icon-only (click)="goMessagePage()" no-margin>
                      <ion-icon name="mess" style="padding: 0 3px;"></ion-icon>
                   </button>
+                  <div class="unread" *ngIf="customeServ.sumTotal>0">{{customeServ.sumTotal<100?customeServ.sumTotal:'99+'}}</div>
                </ion-buttons>
             </div>
          </div>
@@ -173,15 +174,15 @@
                </span>
                <span class="txt">优惠券</span>
             </a>
-            <a navPush="AccountJifenPage" [navParams]="{number:userInfo?.data?.integral}">
+            <a navPush="AccountJifenPage" [navParams]="{number:mine.userInfo?.data?.integral}">
                <span class="icon_num">
-                  {{userInfo?.data?.integral||'--'}}
+                  {{mine.userInfo?.data?.integral||'--'}}
                </span>
                <span class="txt">积分</span>
             </a>
             <a navPush="AccountBalancePage">
                <span class="icon_num">
-                  {{userInfo?.data?.user_money||'0.00'}}
+                  {{mine.userInfo?.data?.user_money||'0.00'}}
                </span>
                <span class="txt">余额</span>
             </a>
@@ -213,7 +214,7 @@
             </div>
          </div>
          <div class="main">
-            <a (click)="goMySalesmanPage()" *ngIf="userInfo&&userInfo?.data?.ywy?.is_ywy===2">
+            <a (click)="goMySalesmanPage()" *ngIf="mine.userInfo&&mine.userInfo?.data?.ywy?.is_ywy===2">
                <span class="icon_num">
                   <img src="./assets/icon/new_center/2.png" alt="">
                </span>
