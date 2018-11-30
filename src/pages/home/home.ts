@@ -7,6 +7,7 @@ import { MineProvider } from '../../providers/mine/mine';
 import { Subscription } from 'rxjs/Subscription';
 import { InAppBrowser } from '@ionic-native/in-app-browser';
 import Swiper from 'swiper';
+import { CustomeServicesProvider } from '../../providers/custome-services/custome-services';
 
 @IonicPage({
    segment: 'home',
@@ -19,7 +20,6 @@ import Swiper from 'swiper';
 export class HomePage {
    showPrice: boolean;
    userInfo: any;
-   currentUser: Subscription;
 
    data: any;//indexs
    fastbuyData: any;//闪购商品
@@ -58,6 +58,7 @@ export class HomePage {
       private app: App,
       private ele: ElementRef,
       private ib: InAppBrowser,
+      private customeServ: CustomeServicesProvider,
    ) {
 
    }
@@ -90,27 +91,25 @@ export class HomePage {
          this.category = res;
       })
 
-      this.currentUser = this.mine.currentUser.subscribe(data => {
-         this.userInfo = data;
+      /* 专区按钮组swiper排列 */
+      var container = this.ele.nativeElement.querySelector('.btn-tool-swiper-container');
+      var pagination = container.querySelector('.pagination');
+      setTimeout(() => {
+         if (this.btntool) {
+            this.btntool.update();
+         } else {
+            this.btntool = new Swiper(container, {
+               slidesPerView: 5,//一行显示3个
+               slidesPerColumn: 2,//显示2行
+               slidesPerColumnFill: 'row',
+               pagination: {
+                  el: pagination
+               },
+            })
+         }
+      }, 200);
 
-         var container = this.ele.nativeElement.querySelector('.btn-tool-swiper-container');
-         var pagination = container.querySelector('.pagination');
-         setTimeout(() => {
-            if (this.btntool) {
-               this.btntool.update();
-            } else {
-               this.btntool = new Swiper(container, {
-                  slidesPerView: 5,//一行显示3个
-                  slidesPerColumn: 2,//显示2行
-                  slidesPerColumnFill: 'row',
-                  pagination: {
-                     el: pagination
-                  },
-               })
-            }
-         }, 200);
-      })
-      this.mine.getUser();
+
       this.getHomeData().then(() => {
          console.log('首页加载完成');
       }).catch((res) => {
@@ -119,7 +118,6 @@ export class HomePage {
    }
    ngOnDestroy() {
       this.events.unsubscribe('home:update');
-      this.currentUser.unsubscribe();
    }
    getHomeData() {
       this.httpService.presell({ type: 'is_promote', cat_id: 0 }, { showLoading: false, showToast: false }).then((res) => {

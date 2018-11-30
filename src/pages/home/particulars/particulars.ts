@@ -4,7 +4,7 @@ import { NavController, NavParams, ModalController, Events, IonicPage, Content, 
 import { HttpService } from "../../../providers/http-service";
 import { Native } from "../../../providers/native";
 import { WxServiceProvider } from '../../../providers/wx-service/wx-service';
-import { QimoChatProvider } from '../../../providers/qimo-chat/qimo-chat';
+import { ChatProvider } from '../../../providers/chat/chat';
 import { MineProvider } from '../../../providers/mine/mine';
 import { GalleryModal } from 'ionic-gallery-modal';
 
@@ -45,7 +45,7 @@ export class ParticularsPage {
       public native: Native,
       private events: Events,
       private wxService: WxServiceProvider,
-      private QimoChat: QimoChatProvider,
+      private chat: ChatProvider,
       private mine: MineProvider,
       private element: ElementRef,
       private renderer: Renderer,
@@ -299,7 +299,14 @@ export class ParticularsPage {
       this.native.openCallNumber(this.getGoodsInfo.supplier_info.mobile, false);
    }
    goAccountServicePage() {
-      this.QimoChat.qimoChatSDK(this.getGoodsInfo.supplier_info.access_id, this.getGoodsInfo.supplier_info.name, this.getGoodsInfo.supplier_info.logo);
+      // this.chat.qimoChatSDK(this.getGoodsInfo.supplier_info.access_id, this.getGoodsInfo.supplier_info.name, this.getGoodsInfo.supplier_info.logo);
+      this.chat.webim({
+         supplier_id: this.getGoodsInfo.supplier_info.id,
+         goods_id: this.goodsId,
+         cutId: this.cutId,
+         dId: this.dId,
+         isActivity: this.isActivity
+      });
    }
    goParticularsHome() {
       this.navCtrl.push('ParticularsHomePage', { suppliersId: this.getGoodsInfo.supplier_info.id });

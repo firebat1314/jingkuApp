@@ -26,24 +26,55 @@ page-message {
    }
 
    .item.item-block {
-      height: 6rem;
-      border-bottom: 1px solid #dedede;
 
-      .item-inner {
-         border-bottom: none;
-      }
-      h3{
-         font-size: 1.5rem !important;
+      h3 {
+         font-size: 1.4rem !important;
          margin-bottom: 6px !important;
-      }
-      img {
-         width: 43px !important;
-         height: 43px !important;
+         color: #000000;
       }
 
-      ion-note {
-         margin-top: 5px;
-         margin-bottom: 30px;
+      .img {
+         width: 50px !important;
+         height: 50px !important;
+         border-radius: 5px;
+         display: flex;
+         align-items: center;
+         justify-content: center;
+         background: rgba(0, 0, 0, .1);
+         position: relative;
+
+         .unread {
+            position: absolute;
+            top: -5px;
+            right: -10px;
+            width: 20px;
+            height: 20px;
+            background: #e60000;
+            color: #ffffff;
+            border-radius: 50%;
+            font-size: 1rem;
+            white-space: nowrap;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+         }
+      }
+
+      .right {
+
+         display: flex;
+         align-items: flex-end;
+         flex-direction: column;
+
+         ion-note {
+            margin-bottom: 8px;
+         }
+
+         .badge {
+            // border-color: #f53d3d !important;
+            // color: #f53d3d !important;
+         }
+
       }
 
       p {

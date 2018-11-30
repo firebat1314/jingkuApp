@@ -4,10 +4,11 @@ import { HttpService } from "../../providers/http-service";
 
 import { Native } from "../../providers/native";
 import { InAppBrowser } from '@ionic-native/in-app-browser';
-import { QimoChatProvider } from '../../providers/qimo-chat/qimo-chat';
+import { ChatProvider } from '../../providers/chat/chat';
 import { XimuProvider } from '../../providers/ximu/ximu';
 import { MineProvider } from '../../providers/mine/mine';
 import { Subscription } from 'rxjs/Subscription';
+import { CustomeServicesProvider } from '../../providers/custome-services/custome-services';
 
 @IonicPage()
 @Component({
@@ -15,7 +16,6 @@ import { Subscription } from 'rxjs/Subscription';
    templateUrl: 'new-my.html'
 })
 export class NewMyPage {
-   currentUser: Subscription;
    usercount: any;
    userInfo: any;
    baitiao: any;
@@ -34,15 +34,13 @@ export class NewMyPage {
       public native: Native,
       public app: App,
       private iab: InAppBrowser,
-      private QimoChat: QimoChatProvider,
+      private chat: ChatProvider,
       private ximu: XimuProvider,
       private mine: MineProvider,
+      private customeServ: CustomeServicesProvider,
    ) {
       this.events.subscribe('my:update', () => {
          this.httpResult();
-      })
-      this.currentUser = this.mine.currentUser.subscribe(data => {
-         this.userInfo = data;
       })
    }
    ionViewDidEnter() {
@@ -60,16 +58,12 @@ export class NewMyPage {
       this.httpService.getByName('usercount').then((res) => {
          if (res) this.usercount = res;
       });
-      this.httpService.getByName('userInfo').then((res) => {
-         if (res) this.userInfo = res;
-      });
       this.httpService.getByName('userBaitiao').then((res) => {
          if (res) this.baitiao = res;
       });
       this.httpResult();
    }
    ngOnDestroy() {
-      this.currentUser.unsubscribe();
       this.events.unsubscribe('my:update');
    }
    httpResult() {
@@ -86,7 +80,7 @@ export class NewMyPage {
       })
    }
    bindWeixin() {
-      this.httpService.weixingetOauthRedirect({ user_id: this.userInfo.data.user_info.user_id }).then((res) => {
+      this.httpService.weixingetOauthRedirect({ user_id: this.mine.userInfo.data.user_info.user_id }).then((res) => {
          if (res.status == 1) {
             location.href = res.url;
          }
@@ -116,10 +110,11 @@ export class NewMyPage {
       this.navCtrl.push('AccountProcessPage');
    }
    goAccountServicePage() {
-      this.QimoChat.qimoChatSDK();
+      // this.chat.qimoChatSDK();
+      this.chat.webim();
    }
    goMySalesmanPage() {
-      this.navCtrl.push('MySalesmanPage', { salesman: this.userInfo.data.ywy })
+      this.navCtrl.push('MySalesmanPage', { salesman: this.mine.userInfo.data.ywy })
    }
    goAccountManagementPage(event) {
       event.stopPropagation();

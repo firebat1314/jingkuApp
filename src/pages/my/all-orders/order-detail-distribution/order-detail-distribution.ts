@@ -4,7 +4,7 @@ import { MineProvider } from '../../../../providers/mine/mine';
 import { HttpService } from '../../../../providers/http-service';
 import { Native } from '../../../../providers/native';
 import { InAppBrowser } from '@ionic-native/in-app-browser';
-import { QimoChatProvider } from '../../../../providers/qimo-chat/qimo-chat';
+import { ChatProvider } from '../../../../providers/chat/chat';
 
 /**
  * Generated class for the OrderDetailDistributionPage page.
@@ -41,7 +41,7 @@ export class OrderDetailDistributionPage {
     private mine: MineProvider,
     private iab: InAppBrowser,
     private alertCtrl: AlertController,
-    private QimoChat: QimoChatProvider,
+    private chat: ChatProvider,
   ) {
   }
 
@@ -186,7 +186,10 @@ export class OrderDetailDistributionPage {
   }
 
   goAccountServicePage() {
-    this.QimoChat.qimoChatSDK(this.data.order.access_id, this.data.order.suppliers_name, this.data.order.suppliers_logo, );
+   //  this.chat.qimoChatSDK(this.data.order.access_id, this.data.order.suppliers_name, this.data.order.suppliers_logo, );
+    this.chat.webim({
+      order_id:this.orderId
+   });
   }
 
   buyAgain(order_id) {

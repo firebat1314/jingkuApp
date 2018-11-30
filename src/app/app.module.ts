@@ -28,12 +28,14 @@ import { MeunCategoryComponentModule } from '../components/meun-category/meun-ca
 import { CityPickerModule } from "ionic2-city-picker/dist/city-picker.module";
 import { UpgradeProvider } from '../providers/upgrade/upgrade';
 import { WxServiceProvider } from '../providers/wx-service/wx-service';
-import { QimoChatProvider } from '../providers/qimo-chat/qimo-chat';
+import { ChatProvider } from '../providers/chat/chat';
 import { XimuProvider } from '../providers/ximu/ximu';
 import * as ionicGalleryModal from 'ionic-gallery-modal';
 import { HAMMER_GESTURE_CONFIG } from '@angular/platform-browser';
 import { MineProvider } from '../providers/mine/mine';
 import { preApplyParams } from '../pages/BT/preApplyParams';
+import { CustomeServicesProvider } from '../providers/custome-services/custome-services';
+
 @NgModule({
   declarations: [
     MyApp
@@ -86,11 +88,12 @@ import { preApplyParams } from '../pages/BT/preApplyParams';
     File,
     InAppBrowser,
     WxServiceProvider,
-    QimoChatProvider,
+    ChatProvider,
     XimuProvider,
     {provide: HAMMER_GESTURE_CONFIG,useClass: ionicGalleryModal.GalleryModalHammerConfig,},
     MineProvider,
-    preApplyParams
+    preApplyParams,
+    CustomeServicesProvider
   ]
 })
 export class AppModule { }

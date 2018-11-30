@@ -28,7 +28,7 @@ export class TabsPage {
     
   }
   ionViewCanEnter(){
-    return this.mine.changeUser().then(res=>{
+    return this.mine.getUser().then(res=>{
        return true;
     });
   }
