@@ -10,8 +10,10 @@ import { WxServiceProvider } from '../providers/wx-service/wx-service';
 import { UpgradeProvider } from '../providers/upgrade/upgrade';
 import { IP } from '../providers/constants';
 import { HttpService } from '../providers/http-service';
+import { CustomeServicesProvider } from '../providers/custome-services/custome-services';
 
 declare let _hmt;
+declare let webim;
 @Component({
    templateUrl: 'app.html'
 })
@@ -35,6 +37,7 @@ export class MyApp {
       private app: App,
       private wxService: WxServiceProvider,
       private httpServ: HttpService,
+      private customeServ: CustomeServicesProvider,
    ) {
       // window.location.href = 'jingku://123123123';
       this.initializeApp();
@@ -43,6 +46,8 @@ export class MyApp {
          this.storage.remove('hasLoggedIn');
          this.storage.remove("token");
          this.storage.remove("login_info");
+         this.customeServ.webimLogout();
+
          if (this.native.isMobile()) {
             this.nav.setRoot('LoginPage', {}, { animate: true, });
          } else {

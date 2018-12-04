@@ -431,7 +431,10 @@ export class CustomeServicesProvider {
             this.native.showToast(err.ErrorInfo);
          });
    }
-
+   webimLogout() {
+      webim.logout();
+      this.sumTotal = 0;
+   }
 
    //将我的好友资料（昵称和头像）保存在infoMap
    initInfoMapByMyFriends = (cbOK) => {
@@ -715,10 +718,8 @@ export class CustomeServicesProvider {
    delItem = (item: RecentSessMap) => {
       let selSess = webim.MsgStore.sessByTypeId(item.SessionType, item.SessionId)
       if (item.SessionType == 'C2C') {
-         item.SessionType = 1;
          webim.setAutoRead(selSess, true, false)
       } else {
-         item.SessionType = 2;
          webim.groupMsgReaded({
             "GroupId": item.SessionId,
             "MsgReadedSeq": selSess ? selSess._impl.curMaxMsgSeq : null
@@ -727,10 +728,10 @@ export class CustomeServicesProvider {
       webim.deleteChat(
          {
             'To_Account': item.SessionId,
-            'chatType': item.SessionType
+            'chatType': item.SessionType == 'C2C' ? 1 : 2
          },
          (resp) => {
-            console.log('已经删除' + item);
+            console.log('已经删除' + item.SessionId);
             delete this.recentSessMap[item.SessionType + '_' + item.SessionId];
          }
       );
@@ -746,9 +747,7 @@ export class CustomeServicesProvider {
 
 
       //设置当前会话的已读消息标记
-      console.log(this.selSess)
-      webim.setAutoRead(this.selSess, true, true);
-
+      // webim.setAutoRead(this.selSess, true, true);
 
       /* //保存当前的消息输入框内容到草稿
       //获取消息内容
@@ -772,10 +771,9 @@ export class CustomeServicesProvider {
             this.recentSessMap[this.selType + "_" + this.selToID].UnreadMsgCount = 0;
          }
       }, 300);
-      
+
       let sessMap = webim.MsgStore.sessMap(); //获取到之前已经保存的消息
       let sessCS = webim.SESSION_TYPE.GROUP + this.selToID;
-      console.log(sessMap,sessCS)
       if (sessMap && sessMap[sessCS]) { //判断之前是否保存过消息
          this.selType = webim.SESSION_TYPE.GROUP
          // bindScrollHistoryEvent.init();
@@ -788,6 +786,7 @@ export class CustomeServicesProvider {
             }
          }
          this.selSess = webim.MsgStore.sessByTypeId(this.selType, this.selToID);
+         // console.log(this.selSess)
          webim.setAutoRead(this.selSess, true, true);
 
          let sessMapOld = sessMap[sessCS]._impl.msgs.sort(compare('time'));
@@ -1221,7 +1220,7 @@ export class CustomeServicesProvider {
          })
          setTimeout(() => {
             this.event.publish('im:addMsg');
-         }, 300);
+         }, 100);
       }
    }
 

@@ -107,7 +107,7 @@ export class HomePage {
                },
             })
          }
-      }, 200);
+      }, 500);
 
 
       this.getHomeData().then(() => {

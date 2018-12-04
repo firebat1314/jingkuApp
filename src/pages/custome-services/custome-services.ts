@@ -45,25 +45,32 @@ export class CustomeServicesPage {
 
    ngOnInit() {
       if (webim.checkLogin()) {
-         this.customeServ.onSelSess(this.parmas.selType,this.parmas.selToID);
+         this.customeServ.onSelSess(this.parmas.selType, this.parmas.selToID);
 
       } else {
          this.events.subscribe('im:login', () => {
-            this.customeServ.onSelSess(this.parmas.selType,this.parmas.selToID);
+            this.customeServ.onSelSess(this.parmas.selType, this.parmas.selToID);
          })
       }
 
       var aDelete = this.ele.nativeElement;
 
       this.renderer.listen(aDelete, 'click', (event) => {
-         
-         if(event.target.dataset.goodsid){
-            this.navCtrl.push('ParticularsPage',{goodsId:event.target.dataset.goodsid})
+
+         if (event.target.dataset.goodsid) {
+            this.navCtrl.push('ParticularsPage', { goodsId: event.target.dataset.goodsid })
          }
          event.stopPropagation();
 
       });
 
+      let msgflow = this.ele.nativeElement.getElementsByClassName("message")[0];
+
+      this.events.subscribe('im:addMsg', () => {
+         console.warn('im:addMsg')
+         // this.content.scrollToBottom(0);
+         msgflow.scrollTop = msgflow.scrollHeight;
+      })
       /* if (this.parmas.suppliers_id) {
       this.httpServ.CustomerService({
          order_id: this.parmas.order_id,
@@ -79,12 +86,7 @@ export class CustomeServicesPage {
       webim.setAutoRead(this.customeServ.selSess, false, false);
    }
    ngAfterViewInit() {
-      let msgflow = this.ele.nativeElement.getElementsByClassName("scroll-content")[0];
-
-      this.events.subscribe('im:addMsg', () => {
-         console.warn('im:addMsg')
-         this.content.scrollToBottom(0);
-      })
+      let msgflow = this.ele.nativeElement.getElementsByClassName("message")[0];
 
       msgflow.onscroll = () => {
          if (msgflow.scrollTop == 0) {
