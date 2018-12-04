@@ -1,10 +1,11 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, ActionSheetController } from 'ionic-angular';
 import { MineProvider } from '../../providers/mine/mine';
 import { HttpService } from '../../providers/http-service';
 import { Native } from '../../providers/native';
 import { WxServiceProvider } from '../../providers/wx-service/wx-service';
 import { IP } from '../../providers/constants';
+import { Clipboard } from '@ionic-native/clipboard';
 
 
 /**
@@ -24,6 +25,7 @@ import { IP } from '../../providers/constants';
 export class SharePage {
    data: any;
    showMark: boolean = false;
+   shareUrl = 'http://m.jingku.cn/#/nav/n4/signup/' + this.mine.userInfo.data.UserShare;
 
    constructor(
       public navCtrl: NavController,
@@ -32,6 +34,9 @@ export class SharePage {
       public httpServ: HttpService,
       private wxService: WxServiceProvider,
       private native: Native,
+      public actionSheetCtrl: ActionSheetController,
+      public clipboard: Clipboard
+      
    ) {
    }
 
@@ -59,26 +64,95 @@ export class SharePage {
          this.showMark = true;
       } else if (this.native.isMobile()) {
          (<any>window).Wechat.isInstalled((installed) => {
-            this.native.showToast("Wechat installed: " + (installed ? "Yes" : "No"));
+            console.log("Wechat installed: " + (installed ? "Yes" : "No"));
          }, function (reason) {
-            this.native.showToast("Failed: " + reason);
+            console.log("Failed: " + reason);
          });
-         (<any>window).Wechat.share({
-            message: {
-               title: "我正在使用镜库，推荐给你。30元代金券一并奉上",
-               description: "眼镜业B2B专业服务平台.",
-               thumb: IP + "/assets/icon/jingku_logo.png",
-               media: {
-                  type: (<any>window).Wechat.Type.WEBPAGE,
-                  webpageUrl: IP + '/#/nav/n4/signup/' + this.mine.userInfo.data.UserShare
+         let actionSheet = this.actionSheetCtrl.create({
+            title: '分享到',
+            buttons: [
+               {
+                  text: '微信好友',
+                  handler: () => {
+                     (<any>window).Wechat.share({
+                        message: {
+                           title: "我正在使用镜库，推荐给你。30元代金券一并奉上",
+                           description: "眼镜业B2B专业服务平台.",
+                           thumb: "https://m.jingku.cn/assets/icon/jingku_logo.png",
+                           media: {
+                              type: (<any>window).Wechat.Type.WEBPAGE,
+                              webpageUrl: this.shareUrl
+                           }
+                        },
+                        scene: (<any>window).Wechat.Scene.SESSION   // share to Timeline
+                     }, function () {
+                        this.native.showToast("分享成功");
+                     }, function (reason) {
+                        this.native.showToast("分享失败" + reason);
+                     });
+                  }
+               },
+               {
+                  text: '朋友圈',
+                  handler: () => {
+
+                     (<any>window).Wechat.share({
+                        message: {
+                           title: "我正在使用镜库，推荐给你。30元代金券一并奉上",
+                           description: "眼镜业B2B专业服务平台.",
+                           thumb: "https://m.jingku.cn/assets/icon/jingku_logo.png",
+                           media: {
+                              type: (<any>window).Wechat.Type.WEBPAGE,
+                              webpageUrl: this.shareUrl
+                           }
+                        },
+                        scene: (<any>window).Wechat.Scene.TIMELINE   // share to Timeline
+                     }, function () {
+                        this.native.showToast("分享成功");
+                     }, function (reason) {
+                        this.native.showToast("分享失败" + reason);
+                     });
+                  }
+               },
+               {
+                  text: '复制链接',
+                  handler: () => {
+                     var textArea = document.createElement("textarea");
+                     textArea.style.position = 'fixed';
+                     textArea.style.top = '0';
+                     textArea.style.left = '0';
+                     textArea.style.width = '0';
+                     textArea.style.height = '0';
+                     textArea.style.padding = '0';
+                     textArea.style.border = 'none';
+                     textArea.style.outline = 'none';
+                     textArea.style.boxShadow = 'none';
+                     textArea.style.background = 'transparent';
+                     textArea.value = 'http://newm.jingkoo.net/#/nav/n4/signup/' + this.mine.userInfo.data.UserShare;
+                     document.body.appendChild(textArea);
+                     textArea.select();
+
+                     try {
+                        var successful = document.execCommand('copy');
+                        var msg = successful ? '成功复制到剪贴板' : '该浏览器不支持点击复制到剪贴板';
+                        // this.native.showToast(msg);
+                     } catch (err) {
+                        this.clipboard.copy(this.shareUrl);
+                        // this.native.showToast('该浏览器不支持点击复制到剪贴板');
+                     }
+
+                     document.body.removeChild(textArea);
+                  }
+               },
+               {
+                  text: '取消',
+                  role: 'cancel',
+                  handler: () => {
+                  }
                }
-            },
-            scene: (<any>window).Wechat.Scene.TIMELINE   // share to Timeline
-         }, function () {
-            alert("Success");
-         }, function (reason) {
-            alert("Failed: " + reason);
+            ]
          });
+         actionSheet.present();
       } else {
          this.native.showToast('请在镜库公众号或者app打开')
       }

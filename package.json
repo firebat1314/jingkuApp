@@ -28,6 +28,7 @@
     "@ionic-native/badge": "^3.14.0",
     "@ionic-native/call-number": "^3.4.4",
     "@ionic-native/camera": "^3.10.3",
+    "@ionic-native/clipboard": "^4.17.0",
     "@ionic-native/core": "^4.12.2",
     "@ionic-native/file": "^3.5.0",
     "@ionic-native/file-transfer": "^4.1.0",
@@ -44,7 +45,8 @@
     "alloycrop": "^1.0.4",
     "call-number": "0.0.2",
     "clipboard": "^2.0.1",
-    "cordova-android": "6.3.0",
+    "cordova-android": "6.2.3",
+    "cordova-clipboard": "^1.2.1",
     "cordova-ios": "~4.5.5",
     "cordova-plugin-add-swift-support": "^1.7.2",
     "cordova-plugin-app-version": "^0.1.9",
@@ -53,7 +55,7 @@
     "cordova-plugin-compat": "^1.2.0",
     "cordova-plugin-customurlscheme": "^4.3.0",
     "cordova-plugin-device": "^1.1.4",
-    "cordova-plugin-file": "^6.0.1",
+    "cordova-plugin-file": "^4.3.3",
     "cordova-plugin-file-transfer": "^1.7.1",
     "cordova-plugin-http": "^1.2.0",
     "cordova-plugin-inappbrowser": "^1.7.2",
@@ -141,13 +143,10 @@
       "cordova-plugin-splashscreen": {},
       "mx.ferreyra.callnumber": {},
       "cordova-plugin-badge": {},
-      "cordova-plugin-file-transfer": {},
       "cordova-plugin-inappbrowser": {},
       "cordova-plugin-statusbar": {},
       "cordova-plugin-camera": {},
-      "cordova-plugin-pingpp": {},
       "call-number": {},
-      "cordova-plugin-file": {},
       "cordova-plugin-jcore": {},
       "jpush-phonegap-plugin": {
         "APP_KEY": "e889e9b93cf3bfac71e966ec"
@@ -165,7 +164,10 @@
       "cordova-plugin-network-information": {},
       "cordova-plugin-wechat": {
         "WECHATAPPID": "wx437bb3d85af781ba"
-      }
+      },
+      "cordova-plugin-pingpp": {},
+      "cordova-clipboard": {},
+      "cordova-plugin-file": {}
     }
   }
 }

@@ -24,6 +24,7 @@ import { File } from '@ionic-native/file';
 import { InAppBrowser } from '@ionic-native/in-app-browser';
 import { JPush } from '@jiguang-ionic/jpush';
 import { QRScanner } from '@ionic-native/qr-scanner';
+import { Clipboard } from '@ionic-native/clipboard';
 /*———————————————————————————————— 插件 ————————————————————————————————*/
 import { MeunItemComponentModule } from "../components/meun-item/meun-item.module";
 import { MeunCategoryComponentModule } from '../components/meun-category/meun-category.module';
@@ -39,67 +40,68 @@ import { preApplyParams } from '../pages/BT/preApplyParams';
 import { CustomeServicesProvider } from '../providers/custome-services/custome-services';
 
 @NgModule({
-  declarations: [
-    MyApp,
-  ],
-  imports: [
-    IonicModule.forRoot(MyApp, {
-      platforms: {
-        ios: {
-         scrollAssist:true,
-         autoFocusAssist:true,
-         scrollPadding:true
-        },
-        android:{
-          backButtonIcon:'ios-arrow-back'
-        }
-      },
-      backButtonText: '',
-      // mode: 'ios',
-      tabsHideOnSubPages: true,
-      tabsPlacement: 'bottom',
-      swipeBackEnabled: true,
-      // activator: "highlight",
-    }),
-    IonicStorageModule.forRoot(),
-    HttpModule,
-    BrowserModule,
-    MeunItemComponentModule,
-    MeunCategoryComponentModule,
-    CityPickerModule,
-    ionicGalleryModal.GalleryModalModule,
-  ],
-  bootstrap: [IonicApp],
-  entryComponents: [
-    MyApp
-  ],
-  providers: [
-    JPush,
-    UserData,
-    Native,
-    HttpService,
-    JpushService,
-    UpgradeProvider,
-    Camera,
-    QRScanner,
-    ImagePicker,
-    AppVersion,
-    Toast,
-    CallNumber,
-    StatusBar,
-    SplashScreen,
-    Badge,
-    Transfer,
-    File,
-    InAppBrowser,
-    WxServiceProvider,
-    ChatProvider,
-    XimuProvider,
-    {provide: HAMMER_GESTURE_CONFIG,useClass: ionicGalleryModal.GalleryModalHammerConfig,},
-    { provide: ErrorHandler, useClass: IonicErrorHandler },
-    MineProvider,
-    preApplyParams,
-    CustomeServicesProvider
-  ]
+   declarations: [
+      MyApp,
+   ],
+   imports: [
+      IonicModule.forRoot(MyApp, {
+         platforms: {
+            ios: {
+               scrollAssist: true,
+               autoFocusAssist: true,
+               scrollPadding: true
+            },
+            android: {
+               backButtonIcon: 'ios-arrow-back'
+            }
+         },
+         backButtonText: '',
+         // mode: 'ios',
+         tabsHideOnSubPages: true,
+         tabsPlacement: 'bottom',
+         swipeBackEnabled: true,
+         // activator: "highlight",
+      }),
+      IonicStorageModule.forRoot(),
+      HttpModule,
+      BrowserModule,
+      MeunItemComponentModule,
+      MeunCategoryComponentModule,
+      CityPickerModule,
+      ionicGalleryModal.GalleryModalModule,
+   ],
+   bootstrap: [IonicApp],
+   entryComponents: [
+      MyApp
+   ],
+   providers: [
+      JPush,
+      UserData,
+      Native,
+      HttpService,
+      JpushService,
+      UpgradeProvider,
+      Camera,
+      QRScanner,
+      ImagePicker,
+      AppVersion,
+      Toast,
+      CallNumber,
+      StatusBar,
+      SplashScreen,
+      Badge,
+      Transfer,
+      File,
+      InAppBrowser,
+      WxServiceProvider,
+      ChatProvider,
+      XimuProvider,
+      { provide: HAMMER_GESTURE_CONFIG, useClass: ionicGalleryModal.GalleryModalHammerConfig, },
+      { provide: ErrorHandler, useClass: IonicErrorHandler },
+      MineProvider,
+      preApplyParams,
+      Clipboard,
+      CustomeServicesProvider
+   ]
 })
 export class AppModule { }
