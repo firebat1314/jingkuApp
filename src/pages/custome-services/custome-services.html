@@ -13,7 +13,7 @@
 </ion-header>
 
 
-<ion-content tappable (click)="showfacebox=false;showaddbox=false;content.resize()">
+<ion-content tappable (click)="showfacebox=false;showaddbox=false;showsendbtn=false;content.resize()">
 
    <div class="message">
       <div class="show" *ngFor="let msg of customeServ.currMsg" [class.my]="msg.isSelfSend">
@@ -41,10 +41,11 @@
    <ion-toolbar>
       <!-- <img class="voice" src="./assets/icon/voice.png" alt=""> -->
       <form (ngSubmit)="sendMsg(input_msg)">
-         <input type="text" #input_msg class="input_msg" [(ngModel)]="text" autocomplete="off" name="sendmsg" placeholder="请输入您想要咨询的问题" (click)="showfacebox=false;showaddbox=false;content.resize()" />
+         <input type="text" #input_msg class="input_msg" (focus)="showsendbtn=true" [(ngModel)]="text" autocomplete="off" name="sendmsg" placeholder="请输入您想要咨询的问题" (click)="showfacebox=false;showaddbox=false;content.resize()" />
          <img class="face" tappable (click)="showfacebox=!showfacebox;showaddbox=false;content.resize()" src="./assets/icon/emoji.png" alt="">
       </form>
       <img class="add" src="./assets/icon/add_contacts.png" tappable (click)="showaddbox=!showaddbox;showfacebox=false;content.resize()">
+      <button class="sendbtn" *ngIf="showsendbtn" (click)="sendMsg(input_msg)">发送</button>
    </ion-toolbar>
    <div class="addbox" *ngIf="showaddbox">
       <div class="btns">

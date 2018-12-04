@@ -29,19 +29,6 @@ export class MineProvider {
       private jpushServ: JpushService,
    ) {
       console.log('Hello MineProvider Provider');
-      this.httpServ.TxImInfo().then(res => {
-         if (res.status == 1) {
-            this.customeServ.webimLogin({
-               // identifier: "ceshi_2891",
-               identifier: res.txim.identifier, //当前用户ID,必须是否字符串类型，必填
-               // usersig: "eJxlkE1PgzAAhu-8ioYrxrV1xdabOhQWWDSaLezSMGilbOOjLaIx-neVmUji*XmS9*PDAQC4z-HTeZbnTV9bbt9b4YIr4EL37A*2rSp4ZvmFLv5B8dYqLXgmrdAjxIRhCKeKKkRtlVS-Qi5MqTimDE0cU*z5mDMqaA4hIvTS96eKehlhEqS30eMi3ewDP1yYXu96Cjdxp2WaDdstI1FKKpreNFF7qDwcrIeovE4ONig7yCy23qq-2xn-GDbdTJplJVd1QtbxEC-vy4eZF04irTqe7kBkjinFjJEJfRXaqKY*rf7uixBi8Ge68*l8AbEDXmQ_",
-               userSig: res.txim.usersig,
-               //当前用户身份凭证，必须是字符串类型，必填
-               identifierNick: res.txim.user_name, //当前用户昵称，不用填写，登录接口会返回用户的昵称，如果没有设置，则返回用户的id
-               headurl: res.txim.avatar //当前用户默认头像，选填，如果设置过头像，则可以通过拉取个人资料接口来得到头像信息
-            });
-         }
-      })
    }
    get currentUser(): Observable<any> {
       return this.subject.asObservable();
@@ -65,6 +52,11 @@ export class MineProvider {
 
                this.showPrice = res.data.authority.indexOf('1') > -1;//显示商品价格
                this.canCheckout = res.data.authority.indexOf('2') > -1;//结算权限
+
+               this.jpushServ.setAlias(res.data.user_info.user_name).then(res => {
+                  console.log('setAlias', res.data.user_info.user_name)
+               });
+               this.jpushServ.addTags([res.data.user_info.mobile_phone])
             }
          })
       });
@@ -85,10 +77,6 @@ export class MineProvider {
          if (res.status) {
             this.userInfo = res;
 
-            this.jpushServ.setAlias(res.data.user_info.user_name).then(res => {
-               console.log('setAlias', res.data.user_info.user_name)
-            });
-            this.jpushServ.addTags([res.data.user_info.mobile_phone])
             /* qimo全局配置 */
             window['qimoClientId'] = {
                userId: res.data.user_info.user_id,

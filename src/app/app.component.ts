@@ -9,8 +9,11 @@ import { Native } from "../providers/native";
 import { UpgradeProvider } from '../providers/upgrade/upgrade';
 import { JpushService } from '../providers/jpush-service';
 import { HttpService } from '../providers/http-service';
+import { CustomeServicesProvider } from '../providers/custome-services/custome-services';
 
 declare var BaiduMobStat: any;
+declare let _hmt;
+declare let webim;
 @Component({
    templateUrl: 'app.html'
 })
@@ -34,6 +37,7 @@ export class MyApp {
       private jpushServ: JpushService,
       private app: App,
       private httpServ: HttpService,
+      private customeServ: CustomeServicesProvider,
    ) {
       //———————————————————————— app更新 ————————————————————————
       this.initializeApp();
@@ -42,8 +46,12 @@ export class MyApp {
          this.storage.remove('hasLoggedIn');
          this.storage.remove("token");
          this.storage.remove("login_info");
+
          this.jpushServ.deleteAlias();//删除推送别名
          this.jpushServ.cleanTags();//删除推送标签
+         
+         this.customeServ.webimLogout();
+
          if (this.native.isMobile()) {
             this.nav.setRoot('LoginPage', {}, { animate: true, });
          } else {
