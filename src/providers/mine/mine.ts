@@ -32,32 +32,34 @@ export class MineProvider {
       return this.subject.asObservable();
    }
    getUser() {
-      return this.httpServ.getByName('userInfo').then((res) => {
-         if (res) {
-            this.userInfo = res;
-            return res;
-         }
-
-         return this.httpServ.userInfo().then((res) => {
-            if (res.status) {
+      return new Promise((resolve, reject) => {
+         this.httpServ.getByName('userInfo').then((res) => {
+            if (res) {
                this.userInfo = res;
-
-               /* qimo全局配置 */
-               window['qimoClientId'] = {
-                  userId: res.data.user_info.user_id,
-                  nickName: res.data.user_info.user_name
-               }
-
-               this.subject.next(this.userInfo);
-               this.httpServ.setByName('userInfo', res);
-
-               this.showPrice = res.data.authority.indexOf('1') > -1;//显示商品价格
-               this.canCheckout = res.data.authority.indexOf('2') > -1;//结算权限
-               
-               return res;
+               resolve(res);
             }
-         })
-      });
+
+            this.httpServ.userInfo().then((res) => {
+               if (res.status) {
+                  this.userInfo = res;
+
+                  /* qimo全局配置 */
+                  window['qimoClientId'] = {
+                     userId: res.data.user_info.user_id,
+                     nickName: res.data.user_info.user_name
+                  }
+
+                  this.subject.next(this.userInfo);
+                  this.httpServ.setByName('userInfo', res);
+
+                  this.showPrice = res.data.authority.indexOf('1') > -1;//显示商品价格
+                  this.canCheckout = res.data.authority.indexOf('2') > -1;//结算权限
+
+                  resolve(res);
+               }
+            })
+         });
+      })
    }
    get_flow_goods_number() {
       return this.httpServ.get_flow_goods_number().then((res) => {

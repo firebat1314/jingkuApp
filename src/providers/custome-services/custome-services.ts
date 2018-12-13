@@ -1195,6 +1195,33 @@ export class CustomeServicesProvider {
             }
          });
       }
+      
+      let CUSTOM = null;
+      for (let i = 0; i < msg.getElems().length; i++) {
+         let elem = msg.getElems()[i];
+         let type = elem.getType(); //获取元素类型
+         let content = elem.getContent(); //获取元素对象
+         switch (type) {
+            case webim.MSG_ELEMENT_TYPE.CUSTOM:
+               let ext = content.getExt(); //扩展信息
+               let strs = ext.split("&");
+               let param: any = {}
+               for (let i = 0; i < strs.length; i++) {
+                  let result = strs[i].split("=");
+                  let key = result[0];
+                  let value = result[1];
+                  param[key] = value;
+               }
+               CUSTOM = param;
+               msgContent = null;
+               break;
+        
+            default:
+               webim.Log.error('未知消息元素类型: elemType=' + type);
+               break;
+         }
+      }
+
       if (prepend) {
          this.currMsg.unshift({
             originMsgData: msg,
@@ -1205,7 +1232,8 @@ export class CustomeServicesProvider {
             time: webim.Tool.formatTimeStamp(msg.getTime()),
             sending: msg.sending,
             msgContent: msgContent,
-            random: msg.random
+            random: msg.random,
+            custom:CUSTOM
          })
       } else {
          this.currMsg.push({
@@ -1216,7 +1244,8 @@ export class CustomeServicesProvider {
             time: webim.Tool.formatTimeStamp(msg.getTime()),
             sending: msg.sending,
             msgContent: msgContent,
-            random: msg.random
+            random: msg.random,
+            custom:CUSTOM
          })
          setTimeout(() => {
             this.event.publish('im:addMsg');

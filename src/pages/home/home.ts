@@ -82,7 +82,7 @@ export class HomePage {
                },
             })
          }
-      }, 500);
+      }, 100);
    }
    ionViewDidLoad() {
       console.log('ionViewDidLoad HomePage');
