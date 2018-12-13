@@ -46,7 +46,7 @@
                            <span *ngIf="!item?.J">
                               <img img-lazy-load="./assets/icon/add_cccccc.png" style="width: 30px" alt="">
                            </span>
-                           <img *ngIf="item?.J" [img-lazy-load]="(item?.J?.rec_id)?(item?.J?.goods_thumb):'./assets/icon/avatar_default.jpg'" alt="">
+                           <img *ngIf="item?.J" [img-lazy-load]="(item?.J?.goods_thumb)?(item?.J?.goods_thumb):'./assets/icon/avatar_default.jpg'" alt="">
                         </div>
                         <div class="txt">镜架</div>
                      </div>

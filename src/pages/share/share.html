@@ -20,10 +20,10 @@
    <div class="main-card" fadeIn *ngIf="data">
       <div class="section1">
          <div class="title">邀请好友加入镜库</div>
-         <div class="subtitle">邀请1个好友奖{{data?.bonus_info?.type_money}}元</div>
+         <div class="subtitle">邀请1个好友奖{{data?.type_money}}元</div>
          <div class="card">
             <img src="./assets/icon/share_01.png">
-            <div class="price"><em>{{data?.bonus_info?.type_money}}</em>元</div>
+            <div class="price"><em>{{data?.type_money}}</em>元</div>
          </div>
          <button class="btn" (click)="sharing()">立即邀请</button>
       </div>

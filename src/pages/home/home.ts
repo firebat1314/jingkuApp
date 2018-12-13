@@ -66,6 +66,23 @@ export class HomePage {
    }
    ionViewDidEnter() {
       this.app.setTitle('首页');
+      /* 专区按钮组swiper排列 */
+      var container = this.ele.nativeElement.querySelector('.btn-tool-swiper-container');
+      var pagination = container.querySelector('.pagination');
+      setTimeout(() => {
+         if (this.btntool) {
+            this.btntool.update();
+         } else {
+            this.btntool = new Swiper(container, {
+               slidesPerView: 5,//一行显示3个
+               slidesPerColumn: 2,//显示2行
+               slidesPerColumnFill: 'row',
+               pagination: {
+                  el: pagination
+               },
+            })
+         }
+      }, 500);
    }
    ionViewDidLoad() {
       console.log('ionViewDidLoad HomePage');
@@ -90,25 +107,6 @@ export class HomePage {
       this.httpService.getStorage('category').then((res) => {
          this.category = res;
       })
-
-      /* 专区按钮组swiper排列 */
-      var container = this.ele.nativeElement.querySelector('.btn-tool-swiper-container');
-      var pagination = container.querySelector('.pagination');
-      setTimeout(() => {
-         if (this.btntool) {
-            this.btntool.update();
-         } else {
-            this.btntool = new Swiper(container, {
-               slidesPerView: 5,//一行显示3个
-               slidesPerColumn: 2,//显示2行
-               slidesPerColumnFill: 'row',
-               pagination: {
-                  el: pagination
-               },
-            })
-         }
-      }, 500);
-
 
       this.getHomeData().then(() => {
          console.log('首页加载完成');

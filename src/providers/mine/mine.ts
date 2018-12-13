@@ -33,9 +33,12 @@ export class MineProvider {
    }
    getUser() {
       return this.httpServ.getByName('userInfo').then((res) => {
-         if (res) this.userInfo = res;
+         if (res) {
+            this.userInfo = res;
+            return res;
+         }
 
-         this.httpServ.userInfo().then((res) => {
+         return this.httpServ.userInfo().then((res) => {
             if (res.status) {
                this.userInfo = res;
 
@@ -50,6 +53,8 @@ export class MineProvider {
 
                this.showPrice = res.data.authority.indexOf('1') > -1;//显示商品价格
                this.canCheckout = res.data.authority.indexOf('2') > -1;//结算权限
+               
+               return res;
             }
          })
       });
