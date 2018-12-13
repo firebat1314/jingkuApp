@@ -7,7 +7,7 @@ page-custome-services {
       padding: 12px;
       overflow: auto;
       height: 100%;
-      
+
       .show {
          padding-bottom: 16px;
 
@@ -67,16 +67,7 @@ page-custome-services {
                   >img {
                      vertical-align: bottom;
                   }
-                  .goods{
-                     display: flex;
-                     align-items: center;
-                     img{
-                        max-width: 100px;
-                        max-height: 100px;
-                        flex-shrink: 0;
-                        margin-right: 10px;
-                     }
-                  }
+
                }
 
                &:after {
@@ -129,7 +120,8 @@ page-custome-services {
                   .content {
                      background: rgba(20, 117, 247, 1);
                      color: #ffffff;
-                     a{
+
+                     a {
                         color: #ffffff;
                      }
                   }
@@ -151,6 +143,79 @@ page-custome-services {
             }
 
          }
+
+         &.custom {
+
+
+            .msg {
+
+               .avatar {}
+
+               .msg-main {
+
+                  .content_o {
+                     background: #fff;
+                     border-radius: 5px;
+                     padding: 8px;
+
+                     .goods,
+                     .order {
+                        display: flex;
+                        text-decoration: none;
+
+                        img {
+                           display: block;
+                           min-width: 100px;
+                           min-height: 100px;
+                           max-width: 100px;
+                           max-height: 100px;
+                           border: 1px solid #f0f0f0;
+                        }
+
+                        .info {
+                           margin: 8px;
+                           display: flex;
+                           flex-direction: column;
+
+                           .name {
+                              text-align: left;
+                              width: 100%;
+                              margin-bottom: 10px;
+                              flex: 1;
+                           }
+
+                           .bottom {
+                              display: flex;
+                              align-items: center;
+                              justify-content: space-between;
+
+                              .price {
+                                 color: #ff0000;
+                              }
+
+                              .status {
+                                 color: #1676F7;
+                                 background: #D2E6F9;
+                                 padding: 4px 8px;
+                                 border-radius: 27px;
+                              }
+                           }
+                        }
+                     }
+                  }
+
+                  &:after {
+                     display: none;
+                  }
+               }
+
+               .spinner {}
+
+               .icon {}
+            }
+
+         }
+
       }
    }
 
@@ -171,8 +236,8 @@ page-custome-services {
 
                .input_msg {
                   height: 100%;
-                  width: 100%;   
-                   background: none;
+                  width: 100%;
+                  background: none;
                   border: 0;
                }
 
@@ -195,7 +260,8 @@ page-custome-services {
                height: 28px;
                margin: 12px 8px 12px 10px;
             }
-            .sendbtn{
+
+            .sendbtn {
                background: #1475f7;
                color: #ffffff;
                padding: 8px 10px;

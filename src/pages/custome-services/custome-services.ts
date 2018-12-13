@@ -53,17 +53,6 @@ export class CustomeServicesPage {
          })
       }
 
-      var aDelete = this.ele.nativeElement;
-
-      this.renderer.listen(aDelete, 'click', (event) => {
-
-         if (event.target.dataset.goodsid) {
-            this.navCtrl.push('ParticularsPage', { goodsId: event.target.dataset.goodsid })
-         }
-         event.stopPropagation();
-
-      });
-
       let msgflow = this.ele.nativeElement.getElementsByClassName("message")[0];
 
       this.events.subscribe('im:addMsg', () => {
@@ -102,6 +91,9 @@ export class CustomeServicesPage {
       }
    }
    sendMsg($t) {
+      if(!$t.value){
+         return;
+      }
       this.customeServ.onSendMsg($t.value);
       $t.value = '';
    }
