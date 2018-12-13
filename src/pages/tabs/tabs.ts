@@ -35,7 +35,11 @@ export class TabsPage {
    }
    ionViewCanEnter() {
       return this.mine.getUser().then(res => {
-         return true;
+         if(res){
+            return true;
+         }else{
+            
+         }
       });
    }
    ngOnInit() {

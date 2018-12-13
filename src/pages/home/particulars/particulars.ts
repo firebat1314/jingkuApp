@@ -32,7 +32,7 @@ export class ParticularsPage {
 
    cutId = this.navParams.get('cutId');//切边镜架商品id
    dId = this.navParams.get('dId');//切边镜架商品id
-   isActivity = this.navParams.get('isActivity') == 1;//是否为活动商品
+   isActivity = this.navParams.get('isActivity') == 1?1:0;//是否为活动商品
    product_sn = this.navParams.get('sn') != ':sn' ? this.navParams.get('sn') : null;//是否为活动商品
 
    @ViewChild('myContent') myContent: Content;
