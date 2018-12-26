@@ -925,5 +925,9 @@ export class HttpService {
    TxImInfo(data?, options?: HttpOptions) {
       return this.http.post(IP + '/User/TxImInfo ', data, { showLoading: false, ...options })
    }
+   /* 切换会话：发送来源 */
+   CustomerServiceGroupSource(data?, options?: HttpOptions) {
+      return this.http.post(IP + '/Index/CustomerServiceGroupSource ', data, { showLoading: false, ...options })
+   }
 
 }

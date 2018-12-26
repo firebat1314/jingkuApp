@@ -34,7 +34,7 @@ export class ChatProvider {
                   order_id: params.order_id,
                   goods_id: params.goods_id,
                   suppliers_id: params.supplier_id,
-                  group_id: this.customeServ.selType == 'GROUP' ? this.customeServ.selToID : undefined,
+                  group_id: this.customeServ.selType == 'GROUP' ? res.group_id : undefined,
                   identifier: this.customeServ.loginInfo.identifier,
                }).then(res => {
 

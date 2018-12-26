@@ -43,7 +43,7 @@
 				{{item.status}}
 				<!-- <ion-icon name="ios-trash-outline"></ion-icon> -->
 			</button>
-         <button item-end ion-button clear icon-only *ngIf="item.order_status == 2" (click)="deleteOrder(item.order_id,index)">
+         <button item-end ion-button clear icon-only *ngIf="item.order_status == 2 || (item?.order_status==5&&item?.pay_status==2&&item?.shipping_status==2)" (click)="deleteOrder(item.order_id,index)">
 				<ion-icon name="ios-trash-outline"></ion-icon>
 			</button>
       </ion-item-divider>
@@ -55,13 +55,13 @@
             <div class="my-content">
                <div class="left" *ngIf="goods.cutting_id==0">
                   <h2>{{goods.goods_name}}</h2>
-                  <span *ngIf="item.qiujing">球镜：{{goods.qiujing}}
+                  <span *ngIf="goods.qiujing">球镜：{{goods.qiujing}}
 							<br/>
 						</span>
                   <span *ngIf="goods.zhujing">柱镜：{{goods.zhujing}}
 							<br/>
 						</span>
-                  <span *ngIf="goods.zhouwei">轴位：{{item.zhouwei}}
+                  <span *ngIf="goods.zhouwei">轴位：{{goods.zhouwei}}
 							<br/>
 						</span>
                   <div [innerHtml]="goods.goods_attr"></div>

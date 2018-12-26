@@ -23,30 +23,36 @@
             </div>
          </div>
          <div class="msg">
-            <div class="avatar">
-               <img img-lazy-load="{{msg?.fromAccountImage}}" alt="">
+            <div class="msghead">
+               <span class="usename">{{msg.fromAccountNick}}</span>&nbsp;&nbsp;
+               <!-- <span class="msgtime">{{msg.time}}</span> -->
             </div>
-            <div class="msg-main">
-               <div class="content" *ngIf="msg.msgContent" [innerHTML]="msg.msgContent | bypassSecurityTrustHtml"></div>
-               <div class="content_o" *ngIf="msg.custom">
-                  <div class="order" *ngIf="msg.custom?.order_id">
-                     <img [img-lazy-load]="msg.custom?.img" />
-                     <div class="info">
-                        <div class="name" *ngIf="msg.custom?.order_sn">订单编号：{{msg.custom.order_sn}}</div>
-                        <div class="bottom">
-                           <div class="price">
-                              <ng-container *ngIf="msg.custom?.order_amount">{{msg.custom.total_fee}}</ng-container>
-                           </div>
-                           <div class="status" *ngIf="msg.custom?.status">
-                              {{msg.custom.status}}
+            <div class="msgbody">
+               <div class="avatar">
+                  <img img-lazy-load="{{msg?.fromAccountImage}}" alt="">
+               </div>
+               <div class="msg-main">
+                  <div class="content" *ngIf="msg.msgContent" [innerHTML]="msg.msgContent | bypassSecurityTrustHtml"></div>
+                  <div class="content_o" *ngIf="msg.custom">
+                     <div class="order" *ngIf="msg.custom?.order_id">
+                        <img [img-lazy-load]="msg.custom?.img" />
+                        <div class="info">
+                           <div class="name" *ngIf="msg.custom?.order_sn">订单编号：{{msg.custom.order_sn}}</div>
+                           <div class="bottom">
+                              <div class="price">
+                                 <ng-container *ngIf="msg.custom?.order_amount">{{msg.custom.total_fee}}</ng-container>
+                              </div>
+                              <div class="status" *ngIf="msg.custom?.status">
+                                 {{msg.custom.status}}
+                              </div>
                            </div>
                         </div>
                      </div>
-                  </div>
-                  <div class="goods" *ngIf="msg.custom?.goods_id" tappable navPush="ParticularsPage" [navParams]="{goodsId:msg.custom?.goods_id}">
-                     <img [img-lazy-load]="msg.custom?.img" />
-                     <div class="info">
-                        <div class="name" *ngIf="msg.custom?.goods_name">{{msg.custom.goods_name}}</div>
+                     <div class="goods" *ngIf="msg.custom?.goods_id" tappable navPush="ParticularsPage" [navParams]="{goodsId:msg.custom?.goods_id}">
+                        <img [img-lazy-load]="msg.custom?.img" />
+                        <div class="info">
+                           <div class="name" *ngIf="msg.custom?.goods_name">{{msg.custom.goods_name}}</div>
+                        </div>
                      </div>
                   </div>
                </div>
