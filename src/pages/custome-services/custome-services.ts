@@ -52,7 +52,7 @@ export class CustomeServicesPage {
             this.customeServ.onSelSess(this.parmas.selType, this.parmas.selToID);
          })
       }
-
+      this.httpServ.CustomerServiceGroupSource({group_id:this.parmas.selToID});
       let msgflow = this.ele.nativeElement.getElementsByClassName("message")[0];
 
       this.events.subscribe('im:addMsg', () => {

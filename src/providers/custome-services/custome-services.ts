@@ -1160,6 +1160,10 @@ export class CustomeServicesProvider {
          }
       }
 
+      //过滤系统通知
+      if ('@TIM#SYSTEM' == fromAccountNick) {
+         return;
+      }
       //解析消息
 
       //获取消息子类型
@@ -1195,7 +1199,7 @@ export class CustomeServicesProvider {
             }
          });
       }
-      
+
       let CUSTOM = null;
       for (let i = 0; i < msg.getElems().length; i++) {
          let elem = msg.getElems()[i];
@@ -1215,7 +1219,7 @@ export class CustomeServicesProvider {
                CUSTOM = param;
                msgContent = null;
                break;
-        
+
             default:
                webim.Log.error('未知消息元素类型: elemType=' + type);
                break;
@@ -1233,7 +1237,7 @@ export class CustomeServicesProvider {
             sending: msg.sending,
             msgContent: msgContent,
             random: msg.random,
-            custom:CUSTOM
+            custom: CUSTOM
          })
       } else {
          this.currMsg.push({
@@ -1245,7 +1249,7 @@ export class CustomeServicesProvider {
             sending: msg.sending,
             msgContent: msgContent,
             random: msg.random,
-            custom:CUSTOM
+            custom: CUSTOM
          })
          setTimeout(() => {
             this.event.publish('im:addMsg');
