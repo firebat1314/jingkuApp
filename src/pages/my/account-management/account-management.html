@@ -48,6 +48,10 @@
       <button ion-item mode="ios" navPush="StaffManagementPage">
          员工管理
       </button>
+      <ion-item  mode="ios" no-detail>
+         版本信息
+         <ion-note item-end *ngIf="version">{{version}}</ion-note>
+      </ion-item>
    </ion-list>
    <!-- <button large ion-button block pull color="light" (click)="signOut()" margin-vertical>退出登录</button> -->
 </ion-content>

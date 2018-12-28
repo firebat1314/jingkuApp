@@ -3,6 +3,7 @@ import { NavController, NavParams, Events, IonicPage, App } from 'ionic-angular'
 import { HttpService } from "../../../providers/http-service";
 import { Native } from "../../../providers/native";
 import { JpushService } from '../../../providers/jpush-service';
+import { AppVersion } from '@ionic-native/app-version';
 /*
   Generated class for the AccountManagement page.
 
@@ -19,6 +20,7 @@ export class AccountManagementPage {
 
    avatar: any;
    username: any;
+   version: any;
    constructor(
       public navCtrl: NavController,
       public navParams: NavParams,
@@ -26,6 +28,7 @@ export class AccountManagementPage {
       public httpService: HttpService,
       public app: App,
       public native: Native,
+      private appVersion: AppVersion,
    ) {
       this.events.subscribe('my:update', res => {
          this.avatar = res;
@@ -35,6 +38,11 @@ export class AccountManagementPage {
      this.events.unsubscribe('my:update');
    } */
    ngOnInit() {
+      this.appVersion.getVersionNumber().then((version) => {
+         this.version = 'v' + version;
+      }).catch(err => {
+         console.log('getVersionNumber:' + err);
+      });
       this.httpService.getStorage('username').then((res) => {
          if (res) {
             this.httpService.getStorage(res + '_userInfo').then((res) => {
