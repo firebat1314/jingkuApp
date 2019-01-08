@@ -7231,6 +7231,9 @@ var webim = { // namespace object webim
         window.open(Resources.downloadMap["uuid_" + uuid]);
     };
 
+    webim.downFileUrl = function (uuid) {
+        return Resources.downloadMap["uuid_" + uuid];
+    };
     //检查是否登录
     webim.checkLogin = function (cbErr, isNeedCallBack) {
         return checkLogin(cbErr, isNeedCallBack);

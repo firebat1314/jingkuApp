@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Native } from '../native';
 import { Events } from 'ionic-angular';
+import { InAppBrowser } from '@ionic-native/in-app-browser';
 
 declare let webim: any;
 
@@ -45,6 +46,7 @@ export class CustomeServicesProvider {
    sumTotal: number;//会话未读总数
 
    constructor(
+      private ib: InAppBrowser,
       private native: Native,
       private event: Events
    ) {
@@ -1200,24 +1202,50 @@ export class CustomeServicesProvider {
          });
       }
 
-      let CUSTOM = null;
+      let msgItem: any = {
+         originMsgData: msg,
+         fromAccountNick: fromAccountNick,
+         fromAccountImage: fromAccountImage,
+         isSelfSend: isSelfSend,
+         sessType: sessType,
+         time: webim.Tool.formatTimeStamp(msg.getTime()),
+         sending: msg.sending,
+         msgContent: msgContent,
+         random: msg.random,
+      }
       for (let i = 0; i < msg.getElems().length; i++) {
          let elem = msg.getElems()[i];
          let type = elem.getType(); //获取元素类型
          let content = elem.getContent(); //获取元素对象
          switch (type) {
             case webim.MSG_ELEMENT_TYPE.CUSTOM:
+               msgItem.msg_element_type = 'CUSTOM';
                let ext = content.getExt(); //扩展信息
                let strs = ext.split("&");
-               let param: any = {}
                for (let i = 0; i < strs.length; i++) {
                   let result = strs[i].split("=");
                   let key = result[0];
                   let value = result[1];
-                  param[key] = value;
+                  msgItem.custom[key] = value;
                }
-               CUSTOM = param;
-               msgContent = null;
+               msgItem.msgContent = null;
+               break;
+            case webim.MSG_ELEMENT_TYPE.FILE:
+               msgItem.msg_element_type = 'FILE';
+               let fileSize, unitStr;
+               fileSize = content.getSize();
+               unitStr = "Byte";
+               if (fileSize >= 1024) {
+                  fileSize = Math.round(fileSize / 1024);
+                  unitStr = "KB";
+               }
+               msgItem.file = {
+                  uuid: content.uuid,
+                  name: content.name,
+                  fileSize: fileSize,
+                  unitStr: unitStr
+               };
+               msgItem.msgContent = null;
                break;
 
             default:
@@ -1227,36 +1255,19 @@ export class CustomeServicesProvider {
       }
 
       if (prepend) {
-         this.currMsg.unshift({
-            originMsgData: msg,
-            fromAccountNick: fromAccountNick,
-            fromAccountImage: fromAccountImage,
-            isSelfSend: isSelfSend,
-            sessType: sessType,
-            time: webim.Tool.formatTimeStamp(msg.getTime()),
-            sending: msg.sending,
-            msgContent: msgContent,
-            random: msg.random,
-            custom: CUSTOM
-         })
+         this.currMsg.unshift(msgItem);
       } else {
-         this.currMsg.push({
-            fromAccountNick: fromAccountNick,
-            fromAccountImage: fromAccountImage,
-            isSelfSend: isSelfSend,
-            sessType: sessType,
-            time: webim.Tool.formatTimeStamp(msg.getTime()),
-            sending: msg.sending,
-            msgContent: msgContent,
-            random: msg.random,
-            custom: CUSTOM
-         })
+         this.currMsg.push(msgItem);
          setTimeout(() => {
             this.event.publish('im:addMsg');
          }, 100);
       }
    }
+   onDownFile(uuid) {
+      let downFileUrl = webim.downFileUrl(uuid);
+      this.ib.create(downFileUrl, '_system');
 
+   }
    //把消息转换成Html
 
    convertMsgtoHtml(msg) {
