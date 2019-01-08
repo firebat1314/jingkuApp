@@ -1,7 +1,8 @@
 meun-category {
-   .scroll-content{
+   .scroll-content {
       background: #ffffff !important;
    }
+
    .head {
       display: flex;
       align-items: center;
@@ -9,6 +10,7 @@ meun-category {
       padding: 10px;
       background: #ffffff;
       margin-top: 20px;
+
       .img {
          border: 1px solid #f0f0f0;
          margin-right: 16px;
@@ -18,5 +20,18 @@ meun-category {
          width: 80px;
          height: 80px;
       }
+   }
+
+   .push {
+      position: absolute;
+      top: 0px;
+      right: 0px;
+      font-size: 20px;
+      color: #ccc;
+      display: flex;
+      height: 100%;
+      align-items: center;
+      width: 45px;
+      justify-content: center;
    }
 }

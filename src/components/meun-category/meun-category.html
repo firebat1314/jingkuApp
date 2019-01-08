@@ -7,15 +7,32 @@
    </div>
    <div class="background"></div>
    <ion-list>
-      <button ion-item (click)="goBrandListPage({cat_id:data?.cat_id})" style="padding-left: 0;">
+      <ion-item (click)="goBrandListPage({cat_id:data?.cat_id})" style="padding-left: 0;">
          <span style="padding-left: 16px;">
             全部
          </span>
-      </button>
-      <button ion-item (click)="goBrandListPage(item)" *ngFor="let item of data?.cat_list" style="padding-left: 0;">
-         <span style="padding-left: 16px;">
-            {{ item?.cat_name }}
-         </span>
-      </button>
+      </ion-item>
+      <ng-container *ngFor="let item of data?.cat_list">
+         <ion-item (click)="goBrandListPage(item);" style="padding-left: 0;">
+            <span style="padding-left: 16px;">
+               {{ item?.cat_name }}
+            </span>
+            <div class="push" *ngIf="item?.cat_list?.length" (click)="$event.stopPropagation();item.showList3 = !item.showList3;">
+               <ion-icon [name]="!item.showList3?'ios-arrow-forward-outline':'ios-arrow-down-outline'"></ion-icon>
+            </div>
+         </ion-item>
+         <ion-list style="margin-bottom: 0px;" *ngIf="item?.showList3">
+            <ng-container *ngFor="let list3 of item?.cat_list">
+               <ion-item style="background: #f0f0f0;" (click)="goBrandListPage(list3)">
+                  <span style="padding-left: 16px;">
+                     {{ list3?.cat_name }}
+                  </span>
+                  <!-- <div class="push">
+                     <ion-icon name="ios-arrow-forward-outline"></ion-icon>
+                  </div> -->
+               </ion-item>
+            </ng-container>
+         </ion-list>
+      </ng-container>
    </ion-list>
 </ion-content>
