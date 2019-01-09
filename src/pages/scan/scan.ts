@@ -42,7 +42,7 @@ export class ScanPage {
                // camera permission was granted
                // start scanning
                let scanSub = this.qrScanner.scan().subscribe((text) => {
-                  this.qrScanner.destroy(); // hide camera preview
+                  // this.qrScanner.destroy(); // hide camera preview
                   this.navCtrl.pop().then(() => {
                      this.callback && this.callback(text);
                   });

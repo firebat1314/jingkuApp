@@ -44,39 +44,49 @@ export class AccountProcessProvider {
              scandata = '{"machine":"11103","sn":"501000711126500001"}';
           } */
           // var scandata = 'http://www.bjshiweilai.com/base/center/open/qrcode?token=nBPYgyDlQjMbv7N'
+
           try {
             let json = JSON.parse(scandata);
             if (json.machine) {
-              this.httpService.SpecialMachiningGoodsInfo({ id: json['machine'] }).then(res => {
-                if (res.status == 1) {
-                  if (res.is_jingjia > 0 && type == 1) {
-                    return this.native.showToast('请扫描镜片商品');
-                  } else if (res.is_jingpian > 0 && type == 2) {
-                    return this.native.showToast('请扫描镜架商品');
-                  }
-                  let modal = this.modalCtrl.create('ParticularsModalAttrPage', {
-                    headData: res.info,
-                    scannerId: json['machine'],
-                    sn: json['sn'],//
-                    cutId: json['machine'],//这里为任意值用于判断切边
-                    scannerIndex: index
-                  }, { cssClass: 'my-modal-style' });
-                  modal.onDidDismiss((data, role) => {
-                    if (role == 'openScanner') {
-                      resolve(data);
+              if (type == 3) {//type == 3用于判断是否从首页点扫码
+                this.app.getActiveNav().push('ParticularsPage', { goodsId: json['machine'] });
+              } else {
+                this.httpService.SpecialMachiningGoodsInfo({ id: json['machine'] }).then(res => {
+                  if (res.status == 1) {
+                    if (res.is_jingjia > 0 && type == 1) {
+                      return this.native.showToast('请扫描镜片商品');
+                    } else if (res.is_jingpian > 0 && type == 2) {
+                      return this.native.showToast('请扫描镜架商品');
                     }
-                  });
-                  modal.present();
-                } else {
-                  this.native.showToast(res.info);
-                }
-              })
+
+                    let modal = this.modalCtrl.create('ParticularsModalAttrPage', {
+                      headData: res.info,
+                      scannerId: json['machine'],
+                      sn: json['sn'],//
+                      cutId: json['machine'],//这里为任意值用于判断切边
+                      scannerIndex: index
+                    }, { cssClass: 'my-modal-style' });
+                    modal.onDidDismiss((data, role) => {
+                      if (role == 'openScanner') {
+                        resolve(data);
+                      }
+                    });
+                    modal.present();
+                  } else {
+                    this.native.showToast(res.info);
+                  }
+                })
+              }
             } else if (json.type == 'group') {
-              this.httpService.QrcodeInfo(json).then(res => {
-                if (res.status == 1) {
-                  this.app.getActiveNav().push('ParticularsPage', { goodsId: res.id });
-                }
-              })
+              if (type == 3) {//type == 3用于判断是否从首页点扫码
+                this.httpService.QrcodeInfo(json).then(res => {
+                  if (res.status == 1) {
+                    this.app.getActiveNav().push('ParticularsPage', { goodsId: res.id });
+                  }
+                })
+              } else {
+                this.native.showToast('请扫描正确的商品');
+              }
             } else {
 
             }

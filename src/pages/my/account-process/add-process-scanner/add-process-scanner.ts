@@ -212,7 +212,8 @@ export class AddProcessScannerPage {
       modal.onDidDismiss((data, role) => {
          if (role == 'submit') {
             item.showBody = true;
-            item.R = data;
+            this.getData(index);
+            // item.R = data;
          }
       })
       modal.present();
@@ -232,7 +233,8 @@ export class AddProcessScannerPage {
       modal.onDidDismiss((data, role) => {
          if (role == 'submit') {
             item.showBody = true;
-            item.L = data;
+            this.getData(index);
+            // item.L = data;
          }
       })
       modal.present();

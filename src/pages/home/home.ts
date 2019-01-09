@@ -201,7 +201,7 @@ export class HomePage {
    }
    openScanner(e?) {
       e && e.stopPropagation();
-      this.ap.openScanner().then(res => { console.log(res) });
+      this.ap.openScanner(null,3).then(res => { console.log(res) });
    }
    tuangou() {
       this.native.showToast('功能还在开发中^_^');
