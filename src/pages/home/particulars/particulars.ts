@@ -38,6 +38,7 @@ export class ParticularsPage {
    @ViewChild('myContent') myContent: Content;
    commentType: any = 0;
    commentData: any;
+   distributionInfo: any;
    constructor(
       public navCtrl: NavController,
       public navParams: NavParams,
@@ -68,6 +69,7 @@ export class ParticularsPage {
       } else if (this.dId > 0) {
          this.http.info_d({ id: this.dId }).then(res => {
             if (res.status) {
+               this.distributionInfo = res;
                this.goodsId = res.info.goods_id;
                this.getHttpDetails();
             }
@@ -204,6 +206,7 @@ export class ParticularsPage {
          getBonus: this.getGoodsInfo.bonus,
          sendto: this.getGoodsInfo.sale_city,
          GoodsInfo: this.getGoodsInfo.data,
+         distributionInfo: this.distributionInfo,
          promotion: this.getGoodsInfo.promotion,
          goodsId: this.goodsId
       }, { cssClass: 'my-modal-style' });

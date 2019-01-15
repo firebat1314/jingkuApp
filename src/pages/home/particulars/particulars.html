@@ -10,8 +10,8 @@
       <ion-title>商品详情</ion-title>
       <ion-buttons right>
          <button ion-button clear icon-only icon-left right open-more="MoreMenuPage">
-                <ion-icon name="ios-more"></ion-icon>
-            </button>
+            <ion-icon name="ios-more"></ion-icon>
+         </button>
       </ion-buttons>
    </ion-navbar>
 
@@ -22,7 +22,8 @@
    <ion-refresher (ionRefresh)="doRefresh($event)" pullMax="60">
       <ion-refresher-content refreshingSpinner="1" pullingIcon="0"></ion-refresher-content>
    </ion-refresher>
-   <ion-spinner *ngIf="showLoading" style="z-index: 1000;position: fixed;top: 0;left: 0;right: 0;bottom: 0;margin: auto;" name="circles"></ion-spinner>
+   <ion-spinner *ngIf="showLoading" style="z-index: 1000;position: fixed;top: 0;left: 0;right: 0;bottom: 0;margin: auto;"
+      name="circles"></ion-spinner>
    <ng-container *ngIf="getGoodsInfo?.data">
       <swiper [data]="getGoodsInfo?.gallery"></swiper>
       <div class="price_time" *ngIf="getGoodsInfo?.data?.is_pre==1 && getGoodsInfo?.data?.down_time>0">
@@ -48,38 +49,40 @@
          <div class="body" *ngIf="mine?.showPrice">
             批发价：
             <span class="now-price">
-                        <span first-letter class="number">{{getGoodsInfo?.data?.shop_price_formated}}</span>
-				</span>
-				<span first-letter class="old-price">{{getGoodsInfo?.data?.old_shop_price}}</span>&nbsp;
-				<span class="rush-icon" *ngIf="getGoodsInfo?.data?.is_pre==1 && getGoodsInfo?.data?.down_time>0">预售</span>
-				<span class="rush-icon" *ngIf="getGoodsInfo?.promotion?.type_name">{{getGoodsInfo?.promotion?.type_name}}</span>
-			</div>
-			<div class="bottom" *ngIf="getGoodsInfo?.data?.market_price!=0&&mine?.showPrice">
-				<div>建议零售价：
-					<span class="offer-price" first-letter>¥{{getGoodsInfo?.data?.market_price}}</span>
-				</div>
-				<!-- <div>商品编号&nbsp;：{{getGoodsInfo?.data?.goods_sn}}</div> -->
-			</div>
-		</div>
-		<div class="fore price-info" *ngIf="getGoodsInfo?.price_section?.length!=0&&mine?.showPrice">
-			<div class="main">
-				<div class="info-item" *ngFor="let item of getGoodsInfo?.price_section">
-					<span *ngIf="item.max_num">{{item.number+'-'}}{{item.max_num}}</span>
-					<span *ngIf="!item.max_num">大于{{item.number}}</span>
-					<span>{{item.format_price}}</span>
-				</div>
-			</div>
-			<div class="right">
-				<ion-icon name="ios-arrow-forward"></ion-icon>
-			</div>
-		</div>
-		<div class="fore coupon" *ngIf="dId!=1">
-			<button ion-item *ngIf="getGoodsInfo?.bonus?.length" [disabled]="!getGoodsInfo?.bonus?.length" class="button-coupon" (click)="presentModal('优惠券')">
+               <span first-letter class="number">{{getGoodsInfo?.data?.shop_price_formated}}</span>
+            </span>
+            <span first-letter class="old-price">{{getGoodsInfo?.data?.old_shop_price}}</span>&nbsp;
+            <span class="rush-icon" *ngIf="getGoodsInfo?.data?.is_pre==1 && getGoodsInfo?.data?.down_time>0">预售</span>
+            <span class="rush-icon" *ngIf="getGoodsInfo?.promotion?.type_name">{{getGoodsInfo?.promotion?.type_name}}</span>
+         </div>
+         <div class="bottom" *ngIf="getGoodsInfo?.data?.market_price!=0&&mine?.showPrice">
+            <div>建议零售价：
+               <span class="offer-price" first-letter>¥{{getGoodsInfo?.data?.market_price}}</span>
+            </div>
+            <!-- <div>商品编号&nbsp;：{{getGoodsInfo?.data?.goods_sn}}</div> -->
+         </div>
+      </div>
+      <div class="fore price-info" *ngIf="getGoodsInfo?.price_section?.length!=0&&mine?.showPrice">
+         <div class="main">
+            <div class="info-item" *ngFor="let item of getGoodsInfo?.price_section">
+               <span *ngIf="item.max_num">{{item.number+'-'}}{{item.max_num}}</span>
+               <span *ngIf="!item.max_num">大于{{item.number}}</span>
+               <span>{{item.format_price}}</span>
+            </div>
+         </div>
+         <div class="right">
+            <ion-icon name="ios-arrow-forward"></ion-icon>
+         </div>
+      </div>
+      <div class="fore coupon" *ngIf="dId!=1">
+         <button ion-item *ngIf="getGoodsInfo?.bonus?.length" [disabled]="!getGoodsInfo?.bonus?.length" class="button-coupon"
+            (click)="presentModal('优惠券')">
             <span style="color: #808080;">领券</span>
             <span *ngFor="let item of getGoodsInfo?.bonus" class="coupon-show">{{"满"+item.min_goods_amount.slice(1)+'减'+item.int_type_money}}</span>
             <ion-note item-right>{{(!getGoodsInfo?.bonus?.length)?'无优惠券':'点击领取'}}</ion-note>
          </button>
-         <button ion-item no-lines class="button-chuxiao" *ngIf="getGoodsInfo?.promotion?.length" [disabled]="!getGoodsInfo?.promotion?.length" (click)="presentModal('促销')">
+         <button ion-item no-lines class="button-chuxiao" *ngIf="getGoodsInfo?.promotion?.length" [disabled]="!getGoodsInfo?.promotion?.length"
+            (click)="presentModal('促销')">
             <span style="color: #808080;">促销&nbsp;</span>
             <div>
                <p class="list-show" *ngFor="let item of getGoodsInfo?.promotion">
@@ -106,7 +109,8 @@
             <span style="color: #808080;">送至&nbsp;&nbsp;</span>{{region_name||'选择地址'}}
             <span class="nogoods"></span>
          </button>
-         <div class="bottom" *ngIf="getGoodsInfo?.data?.additional?.is_true||getGoodsInfo?.data?.additional?.is_hdfk||getGoodsInfo?.data?.additional?.is_inv" tappable (click)="presentModal('商品服务保障')">
+         <div class="bottom" *ngIf="getGoodsInfo?.data?.additional?.is_true||getGoodsInfo?.data?.additional?.is_hdfk||getGoodsInfo?.data?.additional?.is_inv||distributionInfo?.info?.zz_img"
+            tappable (click)="presentModal('商品服务保障')">
             <ion-note *ngIf="getGoodsInfo?.data?.additional?.is_true">
                <img src="./assets/icon/images/particulars_05_03.png" alt=""> 正品保障
             </ion-note>
@@ -115,6 +119,9 @@
             </ion-note>
             <ion-note *ngIf="getGoodsInfo?.data?.additional?.is_inv">
                <img src="./assets/icon/images/particulars_2_16.png" alt=""> 可退换货
+            </ion-note>
+            <ion-note *ngIf="distributionInfo?.info?.zz_img">
+               <img src="./assets/icon/images/chanpingzizhi.png" alt=""> 产品资质
             </ion-note>
             <!--<ion-note>
                         <ion-icon color="danger" name="baitiao1"></ion-icon> 白条支付
@@ -177,14 +184,20 @@
                      <ion-icon>
                         <img src="./assets/icon/images/particulars_2_18.png">
                      </ion-icon>
-                     普通发票
+                     <span>普通发票</span>
                   </ion-note>
                   <ion-note *ngIf="getGoodsInfo?.supplier_info?.inv_type==2||getGoodsInfo?.supplier_info?.inv_type==3">
                      <ion-icon>
                         <img src="./assets/icon/images/particulars_2_19.png">
                      </ion-icon>
-                     增值发票
+                     <span>增值发票</span>
                   </ion-note>
+               </p>
+               <p *ngIf="getGoodsInfo?.supplier_info?.shipping_notice">
+                  <ion-note>营业时间：{{getGoodsInfo.supplier_info.shipping_notice}}</ion-note>
+               </p>
+               <p *ngIf="getGoodsInfo?.supplier_info?.shipping_duty_notice">
+                  <ion-note>值班时间：{{getGoodsInfo.supplier_info.shipping_duty_notice}}</ion-note>
                </p>
             </ion-item>
          </div>
@@ -203,7 +216,8 @@
             </div>
          </div>
          <div class="btn">
-            <a (click)="goAccountServicePage(getGoodsInfo?.supplier_info?.access_id)" ion-button icon-left color="gray" outline>
+            <a (click)="goAccountServicePage(getGoodsInfo?.supplier_info?.access_id)" ion-button icon-left color="gray"
+               outline>
                <ion-icon>
                   <img width="21" src="./assets/icon/images/dd-2.png" alt="">
                </ion-icon>
@@ -268,7 +282,8 @@
       </div>
       <!--————————————————————————图文详情————————————————————————-->
       <div class="fore pic-and-arguments">
-         <ion-segment style="background: #ffffff;" color="jingku1" [(ngModel)]="selectPicArguments" (ionChange)="picArgumentsChange($event)" mode="md">
+         <ion-segment style="background: #ffffff;" color="jingku1" [(ngModel)]="selectPicArguments" (ionChange)="picArgumentsChange($event)"
+            mode="md">
             <ion-segment-button value="pic">
                商品介绍
             </ion-segment-button>
