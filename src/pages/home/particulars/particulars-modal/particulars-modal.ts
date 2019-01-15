@@ -1,9 +1,10 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams, ViewController, Events, IonicPage } from 'ionic-angular';
+import { NavController, NavParams, ViewController, Events, IonicPage, ModalController } from 'ionic-angular';
 
 // import { CityPage } from "../../city/city"
 import { HttpService } from "../../../../providers/http-service";
 import { Native } from "../../../../providers/native";
+import { GalleryModal } from 'ionic-gallery-modal';
 /*
   Generated class for the ParticularsModal page.
 
@@ -21,6 +22,7 @@ export class ParticularsModalPage {
   getBonus = this.navParams.get('getBonus');
   sendto = this.navParams.get('sendto');;
   GoodsInfo = this.navParams.get('GoodsInfo');
+  distributionInfo = this.navParams.get('distributionInfo');
   promotion = this.navParams.get('promotion');
   constructor(
     public navCtrl: NavController,
@@ -28,6 +30,7 @@ export class ParticularsModalPage {
     public viewCtrl: ViewController,
     public httpService: HttpService,
     public events: Events,
+    public modalCtrl: ModalController,
     public native: Native
   ) {
     this.events.subscribe('particulars:update', () => {
@@ -105,4 +108,16 @@ export class ParticularsModalPage {
     this.viewCtrl.dismiss(data);
   }
 
+  zzImgDownload(imgs){
+    var arr = new Array();
+      if (imgs.length) {
+         imgs.forEach(element => {
+            arr.push({ url: element });
+         });
+      }
+    this.modalCtrl.create(GalleryModal, {
+      photos: arr,
+      initialSlide: 0,
+   }).present();
+  }
 }

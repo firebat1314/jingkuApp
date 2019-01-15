@@ -47,7 +47,7 @@
         </ion-list>
     </div>
     <div *ngIf="title=='商品服务保障'">
-        <ion-list *ngIf="GoodsInfo?.additional?.is_true||GoodsInfo?.additional?.is_hdfk||GoodsInfo?.additional?.is_inv">
+        <ion-list *ngIf="GoodsInfo?.additional?.is_true||GoodsInfo?.additional?.is_hdfk||GoodsInfo?.additional?.is_inv||distributionInfo?.info?.zz_img">
             <ion-item *ngIf="GoodsInfo?.additional?.is_true">
                 <img width="25" item-left src="./assets/icon/images/particulars_05_03.png">
                 <h2>正品保障</h2>
@@ -59,6 +59,10 @@
             <ion-item *ngIf="GoodsInfo?.additional?.is_inv">
                 <img width="25" item-left src="./assets/icon/images/particulars_2_16.png">
                 <h2>可退换货</h2>
+            </ion-item>
+            <ion-item detail-push (click)="zzImgDownload(distributionInfo?.info?.zz_img)" *ngIf="distributionInfo?.info?.zz_img">
+                <img width="25" item-left src="./assets/icon/images/chanpingzizhi.png">
+                <h2>产品资质</h2>
             </ion-item>
         </ion-list>
     </div>
