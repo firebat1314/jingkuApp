@@ -186,4 +186,35 @@ export class AllOrdersPage {
          }
       })
    }
+   cancelApply(order) {
+      const prompt = this.alertCtrl.create({
+         title: '申请取消',
+         // message: "请填写备注",
+         inputs: [
+            {
+               name: 'note',
+               placeholder: '请填写备注'
+            },
+         ],
+         buttons: [
+            {
+               text: '取消',
+               handler: data => {
+               }
+            },
+            {
+               text: '提交',
+               handler: data => {
+                  this.httpService.cancelApply({ order_id: order.order_id, note: data.note }).then(res => {
+                     if (res.status == 1) {
+                        this.native.showToast(res.info);
+                        order.isOrderCancel = 2;
+                     }
+                  })
+               }
+            }
+         ]
+      });
+      prompt.present();
+   }
 }

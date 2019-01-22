@@ -111,6 +111,8 @@ export class MyApp {
             }
             if (location.href.indexOf('signup') > -1) {
                // this.rootPage = 'SignupPage';
+            } else if (location.href.indexOf('custome-services') > -1) {
+
             } else {
                // this.rootPage = 'WellcomeNewmPage';
                this.storage.get('hasLoggedIn').then((result) => {
@@ -119,7 +121,7 @@ export class MyApp {
                      // this.nav.setRoot('TabsPage', {}, { animate: true, direction: 'forward' });
                   } else {
                      this.rootPage = 'WellcomeNewmPage';
-                     // this.nav.setRoot('LoginPage', {}, { animate: true, direction: 'forward' });
+                     // this.nav.setRoot('WellcomeNewmPage', {}, { animate: true, direction: 'forward' });
                   }
                });
             }

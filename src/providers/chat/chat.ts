@@ -30,15 +30,17 @@ export class ChatProvider {
          if (res.status == 1) {
             // this.customeServ.initRecentContactList(() => {
             if (params) {
-               this.httpService.CustomerServiceCustom({
-                  order_id: params.order_id,
-                  goods_id: params.goods_id,
-                  suppliers_id: params.supplier_id,
-                  group_id: this.customeServ.selType == 'GROUP' ? res.group_id : undefined,
-                  identifier: this.customeServ.loginInfo.identifier,
-               }).then(res => {
-
-               })
+               if(params.order_id || params.goods_id){
+                  this.httpService.CustomerServiceCustom({
+                     order_id: params.order_id,
+                     goods_id: params.goods_id,
+                     suppliers_id: params.supplier_id,
+                     group_id: this.customeServ.selType == 'GROUP' ? res.group_id : undefined,
+                     identifier: this.customeServ.loginInfo.identifier,
+                  }).then(res => {
+   
+                  })
+               }
             }
             if (res.group_id) {
                this.customeServ.initInfoMapByMyGroups(() => {

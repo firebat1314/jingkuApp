@@ -933,5 +933,13 @@ export class HttpService {
    CustomerServiceGroupSource(data?, options?: HttpOptions) {
       return this.http.post(IP + '/Index/CustomerServiceGroupSource ', data, { showLoading: false, ...options })
    }
-
+   /* crm客服链接 */
+   newcrmlogin(data?, options?: HttpOptions) {
+      return this.http.post(IP + '/Login/newcrmlogin ', data, { showLoading: false, ...options })
+   }
+   /* 申请取消 */
+   cancelApply(data?, options?: HttpOptions) {
+      return this.http.post(IP + '/User/cancelApply ', data, { showLoading: false, ...options })
+   }
+   
 }
