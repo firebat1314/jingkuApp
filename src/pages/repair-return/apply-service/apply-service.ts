@@ -33,7 +33,7 @@ export class ApplyServicePage {
   }
   type_note_txt: string = '';
   data;
-   return_imgs: Array<any>;
+  return_imgs: Array<any> = [];
   constructor(
     public navCtrl: NavController,
     public navParams: NavParams,
@@ -101,18 +101,21 @@ export class ApplyServicePage {
     modal.present();
   }
   goServiceOrderDetailsPage() {
-    let member=[],rec_id=[]
+    let member = [], rec_id = []
     this.data.order_goods.forEach(item => {
       item.forEach(item1 => {
-        if (item1.goods_number) {
-          member.push(item1.goods_number);
+        if (item1.member) {
+          member.push(item1.member);
+          rec_id.push(item1.rec_id);
+        } else {
+          member.push(1);
           rec_id.push(item1.rec_id);
         }
       })
     })
     this.params.rec_ids = {
-      member:member,
-      rec_id:rec_id
+      member: member,
+      rec_id: rec_id
     }
     this.params.return_img = this.return_imgs;
     // this.native.showToast('提交成功',800,false)

@@ -11,12 +11,20 @@
    </ion-navbar>
 
 </ion-header>
-<div class="mark" style="position: fixed;height: 100%;width: 100%;background: rgba(0,0,0,.5);z-index: 10;" *ngIf="showMark" (click)="showMark=!showMark">
-   <img style="position: absolute;right: 15px;top: 15px;width: 80px;" src="./assets/icon/share_03.png">
+<div class="mark" *ngIf="showMark" (click)="showMark=!showMark">
+   <div (click)="$event.stopPropagation()">
+      <qr-code size="300" [value]="href"></qr-code>
+      <div style="    color: #fff;
+         text-align: center;
+         margin-top: 20px;
+         font-size: 17px;
+         line-height: 26px;"
+         *ngIf="mine?.userInfo.data.UserShare">长按发送或保存本地 <!-- 邀请码：<span>{{mine.userInfo.data.UserShare}}</span> --><!-- <br>长按复制 --></div>
+   </div>
+   <!-- <img style="position: absolute;right: 15px;top: 15px;width: 80px;" src="./assets/icon/share_03.png"> -->
 </div>
 
 <ion-content padding>
-
    <div class="main-card" fadeIn *ngIf="data">
       <div class="section1">
          <div class="title">邀请好友加入镜库</div>

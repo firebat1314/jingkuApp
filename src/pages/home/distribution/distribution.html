@@ -16,7 +16,8 @@
 <ion-content>
    <div *ngIf="data" fadeIn>
       <div class="top_img header-image">
-         <img [ads-click]="ads" *ngFor="let ads of category?.bannerone" [img-lazy-load]="ads?.ad_img" defaultSrc="./assets/images/images/640-320.jpg" width="100%" alt="">
+         <img [ads-click]="ads" *ngFor="let ads of category?.bannerone" [img-lazy-load]="ads?.ad_img" defaultSrc="./assets/images/images/640-320.jpg"
+            width="100%" alt="">
       </div>
       <div class="main-content">
 
@@ -31,23 +32,52 @@
 
          <no-goods *ngIf="data&&!goodsList?.length"></no-goods>
          <ul class="purchase-box">
-            <li class="wrp" *ngFor="let cleAll of goodsList" tappable (click)="goParticularsPage(cleAll.id)">
-               <div class="img">
-                  <img [img-lazy-load]="cleAll.goods_img" />
-               </div>
-               <div class="txt">
-                  <div class="tt-4">
-                     <span>铺货</span>
-                  </div>
-                  <div class="tt-2">
-                     {{cleAll.name}}
-                  </div>
-                  <div class="tt-1">
-                     <div class="cx"><em *ngIf="mine?.showPrice">{{cleAll.shop_price}}</em></div>
-                     <div class="suzi"><button (click)="openAttr($event,cleAll.id)">立即铺货</button></div>
-                  </div>
-               </div>
+
+            <li class="wrp" *ngFor="let cleAll of goodsList">
+               <ion-slides class="slide-title" loop='false' autoplay='false' [pager]="cleAll.link_good.length"
+                  paginationClickable='true'>
+                  <ion-slide>
+                     <div class="goods-wrap" [ngStyle]="{'padding-bottom':cleAll.link_good.length?'32px':'16px'}"
+                        tappable (click)="goParticularsPage(cleAll.id)">
+                        <div class="img">
+                           <img [img-lazy-load]="cleAll.goods_img" />
+                        </div>
+                        <div class="txt">
+                           <div class="tt-4">
+                              <span>铺货</span>
+                           </div>
+                           <div class="tt-2">
+                              {{cleAll.name}}
+                           </div>
+                           <div class="tt-1">
+                              <div class="cx"><em *ngIf="mine?.showPrice">{{cleAll.shop_price}}</em></div>
+                              <div class="suzi"><button (click)="openAttr($event,cleAll.id)">立即铺货</button></div>
+                           </div>
+                        </div>
+                     </div>
+                  </ion-slide>
+                  <ion-slide *ngFor="let link_good of cleAll.link_good; let i = index;">
+                     <div class="goods-wrap" tappable (click)="goParticularsPage(cleAll.id+'-'+link_good.id)">
+                        <div class="img">
+                           <img [img-lazy-load]="link_good.goods_img" />
+                        </div>
+                        <div class="txt">
+                           <div class="tt-4">
+                              <span>铺货</span>
+                           </div>
+                           <div class="tt-2">
+                              {{link_good.name}}
+                           </div>
+                           <div class="tt-1">
+                              <div class="cx"><em *ngIf="mine?.showPrice">{{link_good.shop_price}}</em></div>
+                              <div class="suzi"><button (click)="openAttr($event,cleAll.id+'-'+link_good.id)">立即铺货</button></div>
+                           </div>
+                        </div>
+                     </div>
+                  </ion-slide>
+               </ion-slides>
             </li>
+
          </ul>
       </div>
    </div>

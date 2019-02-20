@@ -1,0 +1,22 @@
+<!--
+  Generated template for the ShowSpecialPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+   <ion-navbar>
+      <ion-title>专题页</ion-title>
+   </ion-navbar>
+
+</ion-header>
+
+
+<ion-content>
+   <div gird style="overflow: hidden;" class="img-wrap">
+      <div *ngFor="let item of data?.banner" [ads-click]="item" class="img img1">
+         <img style="display: block;" [img-lazy-load]="item.ad_img" alt="{{item.ad_name}}">
+      </div>
+   </div>
+</ion-content>

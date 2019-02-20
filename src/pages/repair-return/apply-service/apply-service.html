@@ -27,7 +27,7 @@
                         <p>
                             <span>价格：{{'¥'+item.goods_price}}</span>
                             <span>数量：
-                                <count-input value="1" (valueChange)="this.params.rec_ids[rec_id]=$event" minValue="1" [maxValue]="item.goods_number"
+                                <count-input value="1" [(value)]="item.member" minValue="1" [maxValue]="item.goods_number"
                                     [rank]="item?.goods_properties?.number"></count-input>
                             </span>
                         </p>

@@ -58,7 +58,12 @@
             <ion-item>
                 <ion-label color="primary" fixed>
                     <span ion-text color="google">*</span>　确认密码</ion-label>
-                <ion-input autocomplete="off" autocorrect="off" required clearInput [(ngModel)]="signupInfo.cpassword" name="cpassword" type="password" placeholder="请确认密码"></ion-input>
+                <ion-input autocomplete="off" autocorrect="off" required clearInput [(ngModel)]="signupInfo.cpassword" name="ssscpassword" type="password" placeholder="请确认密码"></ion-input>
+            </ion-item>
+            <ion-item *ngIf="sharing">
+                <ion-label color="primary" fixed>
+                    <span ion-text color="google">　</span>  邀请码</ion-label>
+                <ion-input autocomplete="off" autocorrect="off" required clearInput disabled [(ngModel)]="sharing" name="sharing" placeholder="邀请码"></ion-input>
             </ion-item>
         </ion-list>
         <div class="tool" padding-horizontal>

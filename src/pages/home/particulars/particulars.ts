@@ -31,8 +31,9 @@ export class ParticularsPage {
    is_dingzhi: boolean = false;//定制商品
 
    cutId = this.navParams.get('cutId');//切边镜架商品id
-   dId = this.navParams.get('dId');//切边镜架商品id
-   isActivity = this.navParams.get('isActivity') == 1?1:0;//是否为活动商品
+   dId: any = this.navParams.get('dId') && this.navParams.get('dId').split('-')[0];//切边镜架商品id
+   linkID: any = this.navParams.get('dId') && this.navParams.get('dId').split('-')[1] || null;//铺货
+   isActivity = this.navParams.get('isActivity') == 1 ? 1 : 0;//是否为活动商品
    product_sn = this.navParams.get('sn') != ':sn' ? this.navParams.get('sn') : null;//是否为活动商品
 
    @ViewChild('myContent') myContent: Content;
@@ -67,7 +68,7 @@ export class ParticularsPage {
             }
          })
       } else if (this.dId > 0) {
-         this.http.info_d({ id: this.dId }).then(res => {
+         this.http.info_d({ id: this.dId, linkid: this.linkID }).then(res => {
             if (res.status) {
                this.distributionInfo = res;
                this.goodsId = res.info.goods_id;
@@ -260,7 +261,7 @@ export class ParticularsPage {
          headData: this.getGoodsInfo.data,
          id: this.goodsId,
          cutId: this.cutId,
-         dId: this.dId,
+         dId: this.dId + "-" + this.linkID,
          isActivity: this.isActivity,
          sn: this.product_sn,
          callback: {

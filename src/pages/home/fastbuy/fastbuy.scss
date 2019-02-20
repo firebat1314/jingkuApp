@@ -1,4 +1,25 @@
 page-fastbuy {
+   $slide-height-small: 41px;
+    $slide-height-large: 50px;
+    .slides {
+        width: 100%;
+        color: #666666;
+        padding: 0;
+    }
+    .slide-title-unit {
+        font-size: 14px;
+        white-space: nowrap;
+        width: 60%;
+        height: $slide-height-small;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 0 auto;
+    }
+    .slide-title-active {
+        color: #3f69a5;
+        border-bottom: 2px solid #3f69a5;
+    }
    .quick_buy {
       .top_menu {
          overflow: hidden;
@@ -35,12 +56,19 @@ page-fastbuy {
          }
       }
    }
-
+   .purchase-box{
+      background: #fff;
+   }
    .wrp {
       background: #fff;
-      padding: 16px;
-      margin-bottom: 10px;
+      padding: 8px 0;
+      margin: 0 16px;
       display: flex;
+      border-bottom: 1px solid #f0f0f0;
+      &:last-child{
+         border: none;
+         margin-bottom: 70px;
+      }
 
       .img {
          width: 146px;
@@ -58,11 +86,11 @@ page-fastbuy {
             line-height: 30px;
             font-size: 12px;
             position: absolute;
-            padding-right: 8px;
-            top: 10px;
+            text-align: center;
+            bottom: 0px;
             left: 0px;
-            background-color: rgba(0, 0, 0, .5);
-            border-radius: 0 17.5px 17.5px 0;
+            width: 100%;
+            background-color: rgba(0, 0, 0, .6);
 
             countdown {
                display: inline-block;
@@ -73,18 +101,6 @@ page-fastbuy {
                   color: #fff;
                   min-width: initial;
                }
-            }
-
-            &:before {
-               content: "";
-               display: inline-block;
-               width: 17px;
-               height: 17px;
-               background: url(../assets/icon/sg/time_ico.png) center center no-repeat;
-               background-size: 100%;
-               margin-left: 5px;
-               position: relative;
-               top: 3px;
             }
          }
 
@@ -113,13 +129,13 @@ page-fastbuy {
             align-items: flex-end;
             font-size: 12px;
             flex: 1;
-            white-space: nowrap;
-           
+
             .cx {
-               color: #3f69a5;
+               color: #155FC5;
+               margin-right: 8px;
 
                em {
-                  font-size: 26px;
+                  font-size: 22px;
                   display: inline-block;
 
                   &:first-letter {
@@ -138,9 +154,19 @@ page-fastbuy {
          }
 
          .tt-3 {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+
+            .has-been-sold {
+               font-size: 14px;
+               color: #333333;
+               font-weight: 600;
+            }
+
             button {
-               background: #3f69a5;
-               border-radius: 5px;
+               background: #155FC5;
+               border-radius: 2px;
                padding: 10px 24px;
                border: none;
                outline: none;
