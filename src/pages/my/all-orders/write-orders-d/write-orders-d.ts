@@ -23,7 +23,8 @@ export class WriteOrdersDPage {
    paymentMothdID: any;
    paymentMothdDesc: any;
    data: any;
-   dId: number = this.navParams.get('dId');
+   dId: any = this.navParams.get('dId')&&this.navParams.get('dId').split('-')[0];
+   linkID: any = this.navParams.get('dId')&&this.navParams.get('dId').split('-')[1];//铺货
    //选中地址
    defaultShipping: any;
    //选中的快递
@@ -57,7 +58,7 @@ export class WriteOrdersDPage {
       this.getHttpData();
    }
    getHttpData() {
-      this.httpService.checkout_d({ id: this.dId }).then(res => {
+      this.httpService.checkout_d({ id: this.dId,linkid:this.linkID }).then(res => {
          if (res.status == 1) {
             this.data = res;
             //选中地址
@@ -195,6 +196,7 @@ export class WriteOrdersDPage {
                label: sArr
             },
             id: this.dId
+            ,linkid:this.linkID
          }).then((res) => {
             if (res.info == '请先完善收货信息') {
                this.openOrderModalShippingPage();

@@ -937,5 +937,9 @@ export class HttpService {
    cancelApply(data?, options?: HttpOptions) {
       return this.http.post(IP + '/User/cancelApply ', data, { showLoading: false, ...options })
    }
-   
+   /* 专题页广告 */
+   showSpecial(data?, options?: HttpOptions) {
+      return this.http.post(IP + '/Index/newAds ', data, { showLoading: true, ...options })
+   }
+    
 }

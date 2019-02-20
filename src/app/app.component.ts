@@ -112,7 +112,8 @@ export class MyApp {
                   }
                }
             }, 1000);
-            this.wxService.config({ title: document.title });
+
+            // this.wxService.config({ title: document.title });
          }
       })
    }

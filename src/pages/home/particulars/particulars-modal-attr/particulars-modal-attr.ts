@@ -23,7 +23,8 @@ export class ParticularsModalAttrPage {
    // isLjdz: any;//来镜定制
    goodsId: any = this.navParams.get('id');
    cutId: any = this.navParams.get('cutId');
-   dId: any = this.navParams.get('dId');
+   dId: any = this.navParams.get('dId')&&this.navParams.get('dId').split('-')[0];
+   linkID: any = this.navParams.get('dId')&&this.navParams.get('dId').split('-')[1];//铺货
    headData: any = this.navParams.get('headData');
    callback: any = this.navParams.get('callback');
    isActivity = this.navParams.get('isActivity');//是否为活动商品
@@ -113,7 +114,7 @@ export class ParticularsModalAttrPage {
             }
          })
       } else if (this.dId > 0) {
-         this.httpServ.info_d({ id: this.dId }).then(res => {
+         this.httpServ.info_d({ id: this.dId,linkid:this.linkID }).then(res => {
             if (res.status) {
                this.distributionInfo = res;
                this.goodsId = res.info.goods_id;
@@ -178,7 +179,7 @@ export class ParticularsModalAttrPage {
             }
          })
       } else if (this.dId > 0) {
-         this.httpServ.get_goods_attribute_d({ goods_id: goods_id, id: this.dId }, { showLoading: false }).then((res) => {
+         this.httpServ.get_goods_attribute_d({ goods_id: goods_id, id: this.dId,linkid:this.linkID }, { showLoading: false }).then((res) => {
             if (res.status == 1) {
                this.type = res.goods_type;
                this.goods_attribute = res;
@@ -221,7 +222,7 @@ export class ParticularsModalAttrPage {
    getAttrList() {
       //默认选中商品主属性的属性值
       if (this.dId > 0) {
-         this.httpServ.get_attr_list_d({ goods_id: this.goodsId, attr: this.checkMainAttrId, id: this.dId }).then((res) => {
+         this.httpServ.get_attr_list_d({ goods_id: this.goodsId, attr: this.checkMainAttrId, id: this.dId,linkid:this.linkID }).then((res) => {
             this.attrsList = res;
          })
       } else {
@@ -595,7 +596,7 @@ export class ParticularsModalAttrPage {
       });
    }
    goWriteOrdersDPage() {
-      this.httpServ.checkout_d({ id: this.dId }).then(res => {
+      this.httpServ.checkout_d({ id: this.dId,linkid:this.linkID }).then(res => {
          if (res.status == -1) {
             this.alertCtrl.create({
                cssClass: 'alert-style',
@@ -613,7 +614,7 @@ export class ParticularsModalAttrPage {
             }).present();
          } else {
             this.viewCtrl.dismiss((navCtrl) => {
-               navCtrl.push('WriteOrdersDPage', { dId: this.dId })
+               navCtrl.push('WriteOrdersDPage', { dId: this.dId+'-'+this.linkID })
             });
          }
       })

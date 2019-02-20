@@ -32,7 +32,8 @@ page-new-product {
 
       .brand_list {
          margin: 8px 10px 0;
-          ul.accordion {
+
+         ul.accordion {
             position: relative;
             overflow: hidden;
             height: 180px;
@@ -46,6 +47,7 @@ page-new-product {
                position: relative;
                cursor: pointer;
                text-align: center;
+
                img {
                   max-width: initial;
                   max-height: initial;
@@ -74,7 +76,7 @@ page-new-product {
 
          .goods {
             overflow: hidden;
-            box-shadow: 0 0 4px rgba(0, 0, 0, .1);
+            // box-shadow: 0 0 4px rgba(0, 0, 0, .1);
             margin: 12px;
             margin-top: 0;
             background-color: #ffffff;
@@ -107,14 +109,31 @@ page-new-product {
                   flex: 1;
                }
 
+               .price {
+                  font-size: 22px;
+                  color: #e60000;
+                  display: flex;
+                  align-items: center;
+
+                  .label {
+                     color: #155FC5;
+                     font-size: 12px;
+                     border: 1px solid #155FC5;
+                     padding: 2px 5px;
+                     margin-right: 10px;
+                     display: inline-block;
+                     border-radius: 5px;
+                     // background: #ffffff;
+                  }
+               }
+
                .bottom {
                   display: flex;
                   justify-content: space-between;
                   align-items: center;
 
-                  .price {
-                     font-size: 22px;
-                     color: #e60000;
+                  .remain {
+                     margin-left: 8px;
                   }
 
                   .buy {
@@ -135,19 +154,24 @@ page-new-product {
          flex-wrap: wrap;
          padding-left: 3%;
          padding-bottom: 10px;
+
          .goods {
+            box-shadow: 0 0 4px rgba(0, 0, 0, .1);
             flex-direction: column;
             overflow: hidden;
             width: 47%;
             margin: 0 0 3%;
             margin-right: 3%;
             padding: 10px;
-            .img{
+
+            .img {
                margin: 8px auto;
             }
-            .info{
+
+            .info {
                margin: 0;
-               .name{
+
+               .name {
                   font-size: 1.4rem !important;
                   white-space: pre-wrap;
                   overflow: hidden;
@@ -157,10 +181,16 @@ page-new-product {
                   -webkit-line-clamp: 2;
                   color: #666666;
                }
-               .price{
+
+               .price {
                   font-size: 16px !important;
+                  display: flex;
+                  justify-content: space-between;
+                  padding: 0 4px;
+                  margin-bottom: 5px;
                }
-               .buy{
+
+               .buy {
                   width: 28px
                }
             }
