@@ -33,8 +33,8 @@
         </ion-item>
     </ion-list>
 
-    <ion-fab right bottom *ngIf="data?.pages">
-        <button ion-fab mini goBackTop scroll-to-top></button>
+    <ion-fab right bottom *ngIf="data?.pages" scroll-to-top>
+        <button ion-fab mini goBackTop></button>
     </ion-fab>
     <ion-infinite-scroll (ionInfinite)="doInfinite($event)" *ngIf="flag">
         <ion-infinite-scroll-content></ion-infinite-scroll-content>

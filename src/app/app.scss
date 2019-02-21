@@ -18,9 +18,10 @@
 } */
 
 @import "../theme/reset";
+
 html {
-  // -webkit-overflow-scrolling: auto;
-  /* body {
+   // -webkit-overflow-scrolling: auto;
+   /* body {
         position: absolute !important;
     } */
 }
@@ -48,116 +49,125 @@ ion-app {
 .cameraView .fixed-content,
 
 .cameraView .scroll-content {
-    transition: all 100ms;
-    background: transparent none !important;
-    .tabbar.show-tabbar {
+   transition: all 100ms;
+   background: transparent none !important;
+
+   .tabbar.show-tabbar {
       opacity: 0;
-    }
+   }
 }
-.cameraView ion-modal{
-  opacity: 0 !important;
+
+.cameraView ion-modal {
+   opacity: 0 !important;
 }
 
 .cameraView page-scan.show-page {
-  opacity: 1 !important;
+   opacity: 1 !important;
 }
 
 .cameraView ng-component.show-page {
-  opacity: 1 !important;
-}
-.cameraView .show-page {
-  opacity: 0 !important;
+   opacity: 1 !important;
 }
 
-.ios ion-header > .toolbar.statusbar-padding:first-child{
-  padding-top: calc(20px + 4px);
-  min-height: calc(44px + 20px);
+.cameraView .show-page {
+   opacity: 0 !important;
+}
+
+.ios ion-header>.toolbar.statusbar-padding:first-child {
+   padding-top: calc(20px + 4px);
+   min-height: calc(44px + 20px);
 }
 
 .tabs .tabbar {
-  background: #fff;
+   background: #fff;
 }
 
 .ios .badge {
-  border-width: 0.5px;
+   border-width: 0.5px;
 }
-img{
+
+img {
    max-width: 100%;
    max-height: 100%;
 }
 
 .badge {
-    border: 1px solid #1375c6 !important;
-    color: #1375c6 !important;
-    background: #ffffff !important;
-    padding: 0px 6px;
-    line-height: 14px;
+   border: 1px solid #1375c6 !important;
+   color: #1375c6 !important;
+   background: #ffffff !important;
+   padding: 0px 6px;
+   line-height: 14px;
 }
 
 .bar-button-md {
-  padding: 0;
-  margin: 0;
-  min-width: 32px;
-  .icon {
-    font-size: 3rem;
-  }
+   padding: 0;
+   margin: 0;
+   min-width: 32px;
+
+   .icon {
+      font-size: 3rem;
+   }
 }
 
 .detail-push {
-  background-image: url("data:image/svg+xml;charset=utf-8,<svg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2012%2020'><path%20d='M2,20l-2-2l8-8L0,2l2-2l10,10L2,20z'%20fill='%23c8c7cc'/></svg>");
-  padding-right: 32px;
-  background-position: right 14px center;
-  background-repeat: no-repeat;
-  background-size: 14px 14px;
+   background-image: url("data:image/svg+xml;charset=utf-8,<svg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2012%2020'><path%20d='M2,20l-2-2l8-8L0,2l2-2l10,10L2,20z'%20fill='%23c8c7cc'/></svg>");
+   padding-right: 32px;
+   background-position: right 14px center;
+   background-repeat: no-repeat;
+   background-size: 14px 14px;
 }
 
 /*———————————————————————————————————— 隐藏滚动条 ————————————————————————————————————*/
 
 ::-webkit-scrollbar {
-  display: none !important;
+   display: none !important;
 }
 
 /*———————————————————————————————————— 隐藏滚动条 ————————————————————————————————————*/
 
 rating {
-  font-size: 14px !important;
-  li {
-    padding: 0px 1px !important;
-    color: #e5e5e5 !important;
-    .ion-ios-star {
-      color: #d6a916 !important;
-    }
-  }
+   font-size: 14px !important;
+
+   li {
+      padding: 0px 1px !important;
+      color: #e5e5e5 !important;
+
+      .ion-ios-star {
+         color: #d6a916 !important;
+      }
+   }
 }
 
 /*————————————————————————————————————  ————————————————————————————————————*/
 
 .content {
-  background: $content-bg;
-  .scroll-content {
-    background: $content-bg;
-  }
+   background: $content-bg;
+
+   .scroll-content {
+      background: $content-bg;
+   }
 }
 
 ion-modal {
-  .content .scroll-content {
-    background: initial;
-  }
-  .gallery-modal {
-    fitted-image {
-      width: 100%;
-      height: 100%;
-      .fitted-image {
-        width: 100%;
-        height: 100%;
+   .content .scroll-content {
+      background: initial;
+   }
+
+   .gallery-modal {
+      fitted-image {
+         width: 100%;
+         height: 100%;
+
+         .fitted-image {
+            width: 100%;
+            height: 100%;
+         }
       }
-    }
-  }
+   }
 }
 
-[goBackTop],
-[scroll-to-top] {
-  background: url(../assets/icon/scroll-to-top-icon.png) center/100% 100% no-repeat;
+[goBackTop] {
+   background: url(../assets/icon/scroll-to-top-icon.png) center/100% 100% no-repeat;
 }
 
 /* 
@@ -166,26 +176,27 @@ ion-modal {
 } */
 
 [border-f0] {
-  border: 1px solid #f0f0f0;
+   border: 1px solid #f0f0f0;
 }
 
 [first-letter] {
-  display: inline-block;
-  &:first-letter {
-    font-size: 1.2rem;
-  }
+   display: inline-block;
+
+   &:first-letter {
+      font-size: 1.2rem;
+   }
 }
 
 [fadeIn] {
-  animation: fadeIn 500ms;
+   animation: fadeIn 500ms;
 }
 
 [slideInUp] {
-  animation: slideInUp 500ms;
+   animation: slideInUp 500ms;
 }
 
 [slideOutDown] {
-  animation: slideOutDown 500ms;
+   animation: slideOutDown 500ms;
 }
 
 /* 
@@ -194,59 +205,60 @@ ion-thumbnail {
 } */
 
 .item-ios {
-  color: #333;
+   color: #333;
 }
 
 .item-divider-ios {
-  background: #fff;
+   background: #fff;
 }
 
 //ParallaxHeader 指令样式
 .header-image {
-  img {
-    display: block;
-    width: 100%;
-  }
+   img {
+      display: block;
+      width: 100%;
+   }
 }
 
 .main-content {
-    width: 100%;
+   width: 100%;
 }
 
 .gobacktop {
-  .button-inner {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    line-height: initial;
-    font-size: 12px;
-  }
+   .button-inner {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      line-height: initial;
+      font-size: 12px;
+   }
 }
 
 .fore {
-  margin-bottom: 10px;
-  background: #fff;
+   margin-bottom: 10px;
+   background: #fff;
 }
 
 /*———————————————————————————————————— 城市选择 ————————————————————————————————————*/
 
 .picker-opt {
-  text-overflow: initial;
+   text-overflow: initial;
 }
 
 .picker-opts {
-  max-width: none !important;
+   max-width: none !important;
 }
 
 /*———————————————————————————————————— input item 输入框 ————————————————————————————————————*/
 
 .item.item-label-fixed.item-input {
-  min-height: 62px;
-  ion-label[fixed] {
-    flex-basis: 68px;
-    min-width: 68px;
-  }
+   min-height: 62px;
+
+   ion-label[fixed] {
+      flex-basis: 68px;
+      min-width: 68px;
+   }
 }
 
 /*————————————————————————————————————工具栏————————————————————————————————————*/
@@ -261,7 +273,7 @@ ion-thumbnail {
 } */
 
 .toolbar-md {
-  padding: 0 4px;
+   padding: 0 4px;
 }
 
 /*ion-toolbar {
@@ -271,7 +283,7 @@ ion-thumbnail {
 /*————————————————————————————————————item border颜色————————————————————————————————————*/
 
 .item.item-block .item-inner {
-  border-bottom-color: #e0e0e0;
+   border-bottom-color: #e0e0e0;
 }
 
 /* [padding] h1:first-child,
@@ -287,11 +299,13 @@ ion-thumbnail {
 /*————————————————————————————————————搜索框图标————————————————————————————————————*/
 
 .searchbar-ios {
-  min-height: initial;
-  .searchbar-ios-cancel {
-    margin: 0;
-  }
-  /* .searchbar-search-icon {
+   min-height: initial;
+
+   .searchbar-ios-cancel {
+      margin: 0;
+   }
+
+   /* .searchbar-search-icon {
         top: 12px;
     } */
 }
@@ -299,61 +313,64 @@ ion-thumbnail {
 /*————————————————————————————————————下拉刷新CSS————————————————————————————————————*/
 
 ion-refresher-content[state=ready] .refresher-pulling-icon {
-  transform: none;
+   transform: none;
 }
 
 .refresher-refreshing .spinner {
-  margin-top: 10px;
-  background: url(../assets/icon/refreshing.gif) center center no-repeat;
-  background-size: auto 80%;
-  height: 40px;
-  width: 160px;
+   margin-top: 10px;
+   background: url(../assets/icon/refreshing.gif) center center no-repeat;
+   background-size: auto 80%;
+   height: 40px;
+   width: 160px;
 }
 
 .refresher-refreshing {
-  height: 100%;
+   height: 100%;
 }
 
 .refresher-pulling {
-  .refresher-pulling-icon {
-    margin-top: 10px;
-    background: url(../assets/icon/refreshing1.jpg) center center no-repeat;
-    background-size: auto 80%;
-    height: 40px;
-  }
-  height: 100%;
+   .refresher-pulling-icon {
+      margin-top: 10px;
+      background: url(../assets/icon/refreshing1.jpg) center center no-repeat;
+      background-size: auto 80%;
+      height: 40px;
+   }
+
+   height: 100%;
 }
 
 /*————————————————————————————————————时间选择器CSS————————————————————————————————————*/
 
 .picker-md .picker-toolbar {
-  justify-content: space-between;
-  background: #fafafa;
+   justify-content: space-between;
+   background: #fafafa;
 }
 
 /*————————————————————————————————————loading CSS————————————————————————————————————*/
 
 .loading-style {
-  pointer-events: none;
-  .loading-wrapper {
-    background: none;
-    box-shadow: none;
-  }
+   pointer-events: none;
+
+   .loading-wrapper {
+      background: none;
+      box-shadow: none;
+   }
 }
 
 /*————————————————————————————————————无数据显示页 CSS————————————————————————————————————*/
 
 .nodata-show {
-  height: 100%;
-  margin-top: 60px;
-  display: flex;
-  background: #fff;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  img {
-    width: 13rem;
-  }
+   height: 100%;
+   margin-top: 60px;
+   display: flex;
+   background: #fff;
+   flex-direction: column;
+   justify-content: center;
+   align-items: center;
+
+   img {
+      width: 13rem;
+   }
 }
 
 /*————————————————————————————————————itemCSS————————————————————————————————————*/
@@ -363,14 +380,14 @@ ion-refresher-content[state=ready] .refresher-pulling-icon {
 /*————————————————————————————————————android导航栏字体居中————————————————————————————————————*/
 
 .title-md {
-  position: absolute;
-  top: 0;
-  left: 0;
-  padding: 0 90px 1px;
-  width: 100%;
-  height: 100%;
-  text-align: center;
-  z-index: -1;
+   position: absolute;
+   top: 0;
+   left: 0;
+   padding: 0 90px 1px;
+   width: 100%;
+   height: 100%;
+   text-align: center;
+   z-index: -1;
 }
 
 /*————————————————————————————————————轮播图按钮style————————————————————————————————————*/
@@ -380,49 +397,50 @@ ion-refresher-content[state=ready] .refresher-pulling-icon {
 } */
 
 button.swiper-pagination-bullet {
-  border: 1px solid get-color(jingku1);
+   border: 1px solid get-color(jingku1);
 }
 
 .swiper-pagination-bullet {
-  width: 10px;
-  height: 10px;
-  display: inline-block;
-  border-radius: 2px;
-  background: #fff;
-  pointer-events: auto;
-  opacity: 1;
+   width: 10px;
+   height: 10px;
+   display: inline-block;
+   border-radius: 2px;
+   background: #fff;
+   pointer-events: auto;
+   opacity: 1;
 }
 
 .swiper-pagination-bullet-active {
-  background: get-color(jingku1) !important;
-  opacity: 1 !important;
+   background: get-color(jingku1) !important;
+   opacity: 1 !important;
 }
 
 /*————————————————————————————————————间隔背景————————————————————————————————————*/
 
 .background {
-  height: 10px;
-  background: #f7f7f7;
+   height: 10px;
+   background: #f7f7f7;
 }
 
 /*————————————————————————————————————modalCSS————————————————————————————————————*/
 
 .my-modal-style {
-  ion-backdrop {
-    visibility: visible;
-  }
-  @media not screen and (min-width: 768px) and (min-height: 600px) {
-    .modal-wrapper {
-      border-radius: 10px 10px 0 0;
-      position: absolute;
-      top: initial;
-      left: 0;
-      width: 100%;
-      height: 80%;
-      bottom: 0;
-      overflow: hidden;
-    }
-  }
+   ion-backdrop {
+      visibility: visible;
+   }
+
+   @media not screen and (min-width: 768px) and (min-height: 600px) {
+      .modal-wrapper {
+         border-radius: 10px 10px 0 0;
+         position: absolute;
+         top: initial;
+         left: 0;
+         width: 100%;
+         height: 80%;
+         bottom: 0;
+         overflow: hidden;
+      }
+   }
 }
 
 /*————————————————————————————————————alterCSS————————————————————————————————————*/
@@ -439,18 +457,20 @@ button.swiper-pagination-bullet {
 } */
 
 .alert-ios,
-.alert-md,
-  {
-  .alert-head {
-    .alert-title {
-      color: get-color(primary);
-      font-size: 16px;
-    }
-    /* .alert-sub-title {
+.alert-md
+   {
+   .alert-head {
+      .alert-title {
+         color: get-color(primary);
+         font-size: 16px;
+      }
+
+      /* .alert-sub-title {
             margin-top: 14px;
         } */
-  }
-  /*     .alert-message:empty {
+   }
+
+   /*     .alert-message:empty {
         padding: 0;
     }
     .alert-button-group {
@@ -470,97 +490,112 @@ button.swiper-pagination-bullet {
         }
     } */
 }
+
 /*———————————————————————————————————— 隐私政策弹窗 ————————————————————————————————————*/
 
-.privacy_policy{
-   .alert-message{
+.privacy_policy {
+   .alert-message {
       text-align: left;
       max-height: initial;
       white-space: pre-wrap;
-      .look_privacy_policy{
+
+      .look_privacy_policy {
          margin-top: 10px;
          text-align: left;
          color: #333333;
-         .privacy_policy_a{
+
+         .privacy_policy_a {
             color: #1da1f4;
          }
       }
    }
 }
+
 /*————————————————————————————————————segment-style————————————————————————————————————*/
 
 .ios .segment-style {
-  // border-bottom: 0.5px solid #e0e0e0;
-  // border-top: 0.5px solid #e0e0e0;
-  .segment-md .segment-button {
-    border-right: 0.5px solid #e0e0e0;
-  }
+
+   // border-bottom: 0.5px solid #e0e0e0;
+   // border-top: 0.5px solid #e0e0e0;
+   .segment-md .segment-button {
+      border-right: 0.5px solid #e0e0e0;
+   }
 }
 
 .segment-style {
-  min-height: 46px; // border-bottom: 1px solid #e0e0e0;
-  // border-top: 1px solid #e0e0e0;
-  display: flex;
-  .segment-button.segment-activated {
-    color: #3f69a5 !important;
-  }
-  .segment-button {
-    height: 1.9rem;
-    line-height: 1.9rem;
-  }
-  .segment-md .segment-button {
-    border: none;
-    font-size: 1.4rem;
-    border-right: 1px solid #e0e0e0;
-    &:last-child {
+   min-height: 46px; // border-bottom: 1px solid #e0e0e0;
+   // border-top: 1px solid #e0e0e0;
+   display: flex;
+
+   .segment-button.segment-activated {
+      color: #3f69a5 !important;
+   }
+
+   .segment-button {
+      height: 1.9rem;
+      line-height: 1.9rem;
+   }
+
+   .segment-md .segment-button {
       border: none;
-    }
-  }
-  &.toolbar-ios {
-    .segment-button {
-      max-width: initial;
-    }
-  }
-  .bar-buttons-md[right] {
-    position: absolute;
-    right: 0;
-  }
+      font-size: 1.4rem;
+      border-right: 1px solid #e0e0e0;
+
+      &:last-child {
+         border: none;
+      }
+   }
+
+   &.toolbar-ios {
+      .segment-button {
+         max-width: initial;
+      }
+   }
+
+   .bar-buttons-md[right] {
+      position: absolute;
+      right: 0;
+   }
 }
 
 /*———————————————————————————————————— 功能菜单 ————————————————————————————————————*/
 
 .popover-menu {
-  .popover-content {
-    width: 145px;
-    background: rgba(0, 0, 0, 0.7); // background: #7a7a7a;
-    border-radius: 5px;
-  }
-  .popover-arrow {
-    &:after {
-      // background: #7a7a7a;
-      background: rgba(0, 0, 0, 0.7);
-    }
-  }
+   .popover-content {
+      width: 145px;
+      background: rgba(0, 0, 0, 0.7); // background: #7a7a7a;
+      border-radius: 5px;
+   }
+
+   .popover-arrow {
+      &:after {
+         // background: #7a7a7a;
+         background: rgba(0, 0, 0, 0.7);
+      }
+   }
 }
 
 .platform-cordova#chatIframe {}
 
 #chatIframe {
-  .header {
-    background-color: red
-  }
+   .header {
+      background-color: red
+   }
 }
-.m-clip-box{
-   img{
+
+.m-clip-box {
+   img {
       max-width: initial !important;
       max-height: initial !important;
    }
-   a{
+
+   a {
       width: 35% !important;
       bottom: 55px !important;
-      &:first-of-type{
-      background: #3f69a5 !important;
-      color: #ffffff;
+
+      &:first-of-type {
+         background: #3f69a5 !important;
+         color: #ffffff;
       }
    }
 }
@@ -568,151 +603,158 @@ button.swiper-pagination-bullet {
 /*———————————————————————————————————— ios-title-style ————————————————————————————————————*/
 
 .toolbar-title-ios {
-  font-weight: 500;
+   font-weight: 500;
 }
 
 @keyframes fadeIn {
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
+   from {
+      opacity: 0;
+   }
+
+   to {
+      opacity: 1;
+   }
 }
 
 @keyframes fadeout {
-  from {
-    opacity: 1;
-  }
-  to {
-    opacity: 0;
-  }
+   from {
+      opacity: 1;
+   }
+
+   to {
+      opacity: 0;
+   }
 }
 
 .fade-in-item {
-  animation: fadeIn 800ms;
+   animation: fadeIn 800ms;
 }
 
 // Fab Button Settings Animation
 ion-fab {
-  transition: all 300ms !important;
-  &.fab-button-fadein {
-    opacity: 1 !important;
-    pointer-events: auto;
-  }
-  &.fab-button-fadeout {
-    opacity: 0;
-    pointer-events: none;
-  }
-  .fab {
-    transition: all 300ms !important;
-    bottom: 0px;
-    ion-icon {
-      margin-top: 2px;
-      display: block;
-    }
-    &.fab-button-out {
-      bottom: -80px !important;
-      animation: fade-out 300ms ease-in;
-    }
-    &.fab-button-in {
-      animation: fade-out 300ms ease-in;
-      bottom: 0 !important;
-    }
-    &.fab-button-fadein {
+   transition: all 300ms !important;
+
+   &.fab-button-fadein {
       opacity: 1 !important;
       pointer-events: auto;
-    }
-    &.fab-button-fadeout {
+   }
+
+   &.fab-button-fadeout {
       opacity: 0;
       pointer-events: none;
-    }
-  }
+   }
+
+   .fab {
+      transition: all 300ms !important;
+
+      &.fab-button-fadein {
+         opacity: 1 !important;
+         visibility: visible;
+      }
+
+      &.fab-button-fadeout {
+         opacity: 0 !important;
+         visibility: hidden;
+      }
+
+      .fab {
+         transition: all 300ms !important;
+         bottom: 0px;
+
+         ion-icon {
+            margin-top: 2px;
+            display: block;
+         }
+      }
+   }
 }
 
 /*iconfont*/
 
 @font-face {
-  font-family: "Ionicons";
-  src: url('../assets/myFont/iconfont.eot?t=1496227677882');
-  /* IE9*/
-  src: url('../assets/myFont/iconfont.eot?t=1496227677882#iefix') format('embedded-opentype'), /* IE6-IE8 */
-  url('../assets/myFont/iconfont.woff?t=1496227677882') format('woff'), /* chrome, firefox */
-  url('../assets/myFont/iconfont.ttf?t=1496227677882') format('truetype'), /* chrome, firefox, opera, Safari, Android, iOS 4.2+*/
-  url('../assets/myFont/iconfont.svg?t=1496227677882#iconfont') format('svg');
-  /* iOS 4.1- */
+   font-family: "Ionicons";
+   src: url('../assets/myFont/iconfont.eot?t=1496227677882');
+   /* IE9*/
+   src: url('../assets/myFont/iconfont.eot?t=1496227677882#iefix') format('embedded-opentype'),
+      /* IE6-IE8 */
+      url('../assets/myFont/iconfont.woff?t=1496227677882') format('woff'),
+      /* chrome, firefox */
+      url('../assets/myFont/iconfont.ttf?t=1496227677882') format('truetype'),
+      /* chrome, firefox, opera, Safari, Android, iOS 4.2+*/
+      url('../assets/myFont/iconfont.svg?t=1496227677882#iconfont') format('svg');
+   /* iOS 4.1- */
 }
 
 .icon {
-  font-family: "Ionicons";
-  display: inline-block;
-  font-style: normal;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+   font-family: "Ionicons";
+   display: inline-block;
+   font-style: normal;
+   -webkit-font-smoothing: antialiased;
+   -moz-osx-font-smoothing: grayscale;
 }
 
 .ion-md-sousuo1:before,
 .ion-ios-sousuo1:before,
 .ion-ios-sousuo1-outline:before {
-  content: "\e61d";
+   content: "\e61d";
 }
 
 .ion-md-xiaoxi:before,
 .ion-ios-xiaoxi:before,
 .ion-ios-xiaoxi-outline:before {
-  content: "\e6b6";
+   content: "\e6b6";
 }
 
 .ion-md-iconserverarea:before,
 .ion-ios-iconserverarea:before,
 .ion-ios-iconserverarea-outline:before {
-  content: "\e607";
+   content: "\e607";
 }
 
 .ion-md-mess:before,
 .ion-ios-mess:before,
 .ion-ios-mess-outline:before {
-  content: "\e663";
+   content: "\e663";
 }
 
 .ion-md-shop:before,
 .ion-ios-shop:before,
 .ion-ios-shop-outline:before {
-  content: "\e62b";
+   content: "\e62b";
 }
 
 .ion-md-liebiao:before,
 .ion-ios-liebiao:before,
 .ion-ios-liebiao-outline:before {
-  content: "\e62c";
+   content: "\e62c";
 }
 
 .ion-md-search:before,
 .ion-ios-search:before,
 .ion-ios-search-outline:before {
-  content: "\e67a";
+   content: "\e67a";
 }
 
 .ion-md-bao1:before,
 .ion-ios-bao1:before,
 .ion-ios-bao1-outline:before {
-  content: "\e63e";
+   content: "\e63e";
 }
 
 .ion-md-list-:before,
 .ion-ios-list-:before,
 .ion-ios-list--outline:before {
-  content: "\e60b";
+   content: "\e60b";
 }
 
 .ion-md-sort-up-copy:before,
 .ion-ios-sort-up-copy:before,
 .ion-ios-sort-up-copy-outline:before {
-  content: "\e603";
+   content: "\e603";
 }
 
 .ion-md-sort1:before,
 .ion-ios-sort1:before,
 .ion-ios-sort1-outline:before {
-  content: "\e604";
+   content: "\e604";
 }

@@ -945,5 +945,17 @@ export class HttpService {
    showSpecial(data?, options?: HttpOptions) {
       return this.http.post(IP + '/Index/newAds ', data, { showLoading: true, ...options })
    }
-    
+   /* 加工单 */
+   barCodeInfo(data?, options?: HttpOptions) {
+      return this.http.post(IP + '/Machining/barCodeInfo ', data, { showLoading: true, ...options })
+   }
+   /* 加工单 */
+   barCodeList(data?, options?: HttpOptions) {
+      return this.http.post(IP + '/Machining/barCodeList ', data, { showLoading: true, ...options })
+   }
+   /* 加工单 */
+   barCodeBinding(data?, options?: HttpOptions) {
+      return this.http.post(IP + '/Machining/barCodeBinding ', data, { showLoading: true, ...options })
+   }
+   
 }
