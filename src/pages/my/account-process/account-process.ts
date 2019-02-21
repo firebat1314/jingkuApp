@@ -9,7 +9,9 @@ import { MineProvider } from '../../../providers/mine/mine';
   See http://ionicframework.com/docs/v2/components/#navigation for more info on
   Ionic pages and navigation.
 */
-@IonicPage()
+@IonicPage({
+  segment: 'account-process/:sn'
+})
 @Component({
   selector: 'page-account-process',
   templateUrl: 'account-process.html'
@@ -24,6 +26,7 @@ export class AccountProcessPage {
    * 4：已完成
    */
   jgSegment: number = 1;
+  sn = this.navParams.get('sn') == ":sn" ? false : this.navParams.get('sn');
   constructor(
     public navCtrl: NavController,
     public navParams: NavParams,
@@ -41,11 +44,19 @@ export class AccountProcessPage {
     })
     this.checkList();
   }
-  ngOnDestroy(){
+  ngOnDestroy() {
     this.events.unsubscribe('AccountProcessPage');
   }
   checkList() {
     if (this.infiniteScroll) this.infiniteScroll.enable(true);
+
+    if (this.sn) {
+      this.httpService.barCodeInfo({ sn: 506745874895 }).then(res => {
+        this.httpService.barCodeList({ sn: 506745874895 }).then(res => {
+
+        })
+      })
+    }
     if (this.jgSegment == 1) {//
       return this.httpService.machining({ page: 1 }).then((res) => {
         if (res.status == 1) {

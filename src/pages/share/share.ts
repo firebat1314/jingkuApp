@@ -40,7 +40,7 @@ export class SharePage {
    }
 
    ngOnInit() {
-      this.href = 'http://192.168.1.47:8100/#/nav/n4/signup/' + this.mine.userInfo.data.UserShare;
+      this.href = IP + '/#/nav/n4/signup/' + this.mine.userInfo.data.UserShare;
       this.mine.userInfo && this.httpServ.Share({ signup: this.mine.userInfo.data.UserShare }).then(res => {
          if (res.status == 1) {
             this.data = res;

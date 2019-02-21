@@ -89,8 +89,8 @@
    </div>
 
 
-   <ion-fab right bottom>
-      <button ion-fab color="jingku1" mini goBackTop scroll-to-top></button>
+   <ion-fab right bottom scroll-to-top>
+      <button ion-fab color="jingku1" mini goBackTop></button>
    </ion-fab>
    <ion-infinite-scroll (ionInfinite)="doInfinite($event)" *ngIf="flag">
       <ion-infinite-scroll-content></ion-infinite-scroll-content>
