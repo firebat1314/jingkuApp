@@ -8,7 +8,7 @@
       </ion-buttons>
       <form class="searchform" (click)="goSearchPage()">
          <ion-searchbar style="pointer-events: none;" placeholder="搜索镜库商品" mode="ios"></ion-searchbar>
-         <ion-icon *ngIf="native.isMobile()" class="scannericon" name="ios-qr-scanner" (click)="openScanner($event)"></ion-icon>
+         <ion-icon class="scannericon" name="ios-qr-scanner" (click)="openScanner($event)"></ion-icon>
       </form>
       <ion-buttons end>
          <button ion-button clear icon-only icon-left right navPush="MessagePage">

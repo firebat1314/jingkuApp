@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { NavController, NavParams, IonicPage, Events } from 'ionic-angular';
 import { HttpService } from '../../../providers/http-service';
 import { MineProvider } from '../../../providers/mine/mine';
+import { Native } from '../../../providers/native';
 
 /*
   Generated class for the AccountProcess page.
@@ -26,14 +27,20 @@ export class AccountProcessPage {
    * 4：已完成
    */
   jgSegment: number = 1;
-  sn = this.navParams.get('sn') == ":sn" ? false : this.navParams.get('sn');
+  sn: any;
+  isReturns: any;
+
   constructor(
     public navCtrl: NavController,
     public navParams: NavParams,
     public httpService: HttpService,
     public events: Events,
+    public native: Native,
     public mine: MineProvider,
-  ) { }
+  ) {
+    this.sn = navParams.get('sn') && this.navParams.get('sn') != ":sn" ? this.navParams.get('sn').split('-')[0] : false;
+    this.isReturns = navParams.get('sn') && this.navParams.get('sn') != ":sn" ? this.navParams.get('sn').split('-')[1] == 1 : false;
+  }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad AccountProcessPage');
@@ -46,15 +53,26 @@ export class AccountProcessPage {
   }
   ngOnDestroy() {
     this.events.unsubscribe('AccountProcessPage');
+    this.events.unsubscribe('repair-return:update');
   }
   checkList() {
     if (this.infiniteScroll) this.infiniteScroll.enable(true);
-
     if (this.sn) {
-      this.httpService.barCodeInfo({ sn: 506745874895 }).then(res => {
-        this.httpService.barCodeList({ sn: 506745874895 }).then(res => {
-
+      this.events.subscribe('repair-return:update', () => {
+        this.httpService.barCodeList({ sn: this.sn }, { showLoading: false }).then(res => {
+          if (res.status == 1) {
+            this.data = res;
+          }
         })
+      });
+      return this.httpService.barCodeList({ sn: this.sn }).then(res => {
+        if (res.status == 1) {
+          this.data = res;
+        } else {
+          this.navCtrl.pop().catch(() => {
+            this.navCtrl.goToRoot({ animate: true });
+          })
+        }
       })
     }
     if (this.jgSegment == 1) {//
@@ -104,8 +122,12 @@ export class AccountProcessPage {
   }
   scroll(infiniteScroll, data?) {
     this.infiniteScroll = infiniteScroll;
+    if (this.sn) {
+      this.infiniteScroll.enable(false);
+      return;
+    }
     if (this.data.page < this.data.pages) {
-      this.httpService.machining(Object.assign({ page: ++this.data.page }, data)).then((res) => {
+      this.httpService.machining(Object.assign({ page: ++this.data.page }, data), { showLoading: false }).then((res) => {
         if (res.status == 1) {
           Array.prototype.push.apply(this.data.list, res.list);
         }
@@ -121,9 +143,24 @@ export class AccountProcessPage {
     this.navCtrl.push('ParticularsPage', { goodsId: goods_id })
   }
   goWatchPage(mid) {
-    this.navCtrl.push('WatchPage', { mid: mid })
+    if (this.isReturns) {
+      this.navCtrl.push('ServiceOrderDetailsPage', { return_id: mid })
+    } else {
+      this.navCtrl.push('WatchPage', { mid: mid })
+    }
   }
   toPay(id) {
     this.navCtrl.push('PaymentMethodPage', { log_id: id, type: 'mach' })
+  }
+  /* 绑定编码 */
+  barCodeBinding(id) {
+    this.httpService.barCodeBinding({ sn: this.sn, id: id }).then(res => {
+      if (res.status == 1) {
+        this.native.showToast(res.info);
+        this.navCtrl.pop().catch(() => {
+          this.navCtrl.goToRoot({ animate: true });
+        })
+      }
+    })
   }
 }

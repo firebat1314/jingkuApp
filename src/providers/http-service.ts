@@ -473,8 +473,8 @@ export class HttpService {
    /**
     * 来镜加工 User/machining
     */
-   machining(data?: Object) {
-      return this.http.get(IP + '/User/machining', data, { showLoading: true })
+   machining(data?: Object, options?: HttpOptions) {
+      return this.http.get(IP + '/User/machining', data, { showLoading: true, ...options })
    }
    /**
     * 申请加工
@@ -957,5 +957,5 @@ export class HttpService {
    barCodeBinding(data?, options?: HttpOptions) {
       return this.http.post(IP + '/Machining/barCodeBinding ', data, { showLoading: true, ...options })
    }
-   
+
 }

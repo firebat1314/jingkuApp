@@ -24,10 +24,9 @@ page-account-process {
                 margin-left: 0;
             }
         }
-        .item {
-            border-top: 1px solid #e0e0e0;
-            &:first-child {
-                border: 0;
+        ion-item.item {
+            &:first-of-type {
+                border-top: 1px solid #e0e0e0;
             }
             .my-content {
                 display: flex;
@@ -63,7 +62,7 @@ page-account-process {
         .result {
             text-align: right;
             padding: 10px;
-            border-top: 1px solid #e0e0e0;
+            border-top: 1px dashed #e0e0e0;
             .count {
                 color: #4d4d4d;
             }
@@ -77,9 +76,10 @@ page-account-process {
         .btn {
             text-align: right;
             padding: 10px;
-            border-top: 1px solid #e0e0e0;
+            border-top: 1px dashed #e0e0e0;
             .button {
-                width: 90px;
+                width: 70px;
+                height: 35px;
                 /* &:first-child {
                     border-color: #b6b6b6;
                 } */

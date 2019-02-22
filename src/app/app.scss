@@ -635,39 +635,23 @@ ion-fab {
    transition: all 300ms !important;
 
    &.fab-button-fadein {
-      opacity: 1 !important;
-      pointer-events: auto;
+       opacity: 1 !important;
+       visibility: visible;
    }
-
    &.fab-button-fadeout {
-      opacity: 0;
-      pointer-events: none;
+       opacity: 0 !important;
+       visibility: hidden;
    }
-
    .fab {
-      transition: all 300ms !important;
-
-      &.fab-button-fadein {
-         opacity: 1 !important;
-         visibility: visible;
-      }
-
-      &.fab-button-fadeout {
-         opacity: 0 !important;
-         visibility: hidden;
-      }
-
-      .fab {
-         transition: all 300ms !important;
-         bottom: 0px;
-
-         ion-icon {
-            margin-top: 2px;
-            display: block;
-         }
-      }
+       transition: all 300ms !important;
+       bottom: 0px;
+       ion-icon {
+           margin-top: 2px;
+           display: block;
+       }
    }
 }
+
 
 /*iconfont*/
 

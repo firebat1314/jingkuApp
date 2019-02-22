@@ -44,7 +44,8 @@ export class AccountProcessProvider {
              scandata = '{"machine":"11103","sn":"501000711126500001"}';
           } */
           // var scandata = 'http://www.bjshiweilai.com/base/center/open/qrcode?token=nBPYgyDlQjMbv7N'
-
+          // var scandata = 'https://m.jingku.cn/#/nav/n4/tabs/tabs/t0/my/account-process/009749054685'//来镜加工
+          // var scandata = 'https://m.jingku.cn/#/nav/n4/tabs/tabs/t0/my/account-process/506745974895'//返修退换货
           try {
             let json = JSON.parse(scandata);
             if (json.machine) {
@@ -92,9 +93,26 @@ export class AccountProcessProvider {
             }
           } catch (error) {
             try {
-              let json = this.parseURL(decodeURIComponent(scandata));
-              let domain = decodeURIComponent(scandata).split('/')[2];
-              if (json['token']) {
+              let data = decodeURIComponent(scandata);
+              let json = this.parseURL(data);
+              let domain = data.split('/')[2];
+              if (domain == 'm.jingku.cn' && data.indexOf('account-process') > -1) {//加工单绑定编码
+                let sn = data.split('/')[data.split('/').length - 1];//'https://m.jingku.cn/#/nav/n4/tabs/tabs/t0/my/account-process/897548954086'
+                this.httpService.barCodeInfo({ sn: sn }).then(res => {
+                  if (res.status == 1) {
+                    if (res.CodeInfo.target_id > 0) {//条码已被绑定跳对应详情
+                      this.native.showToast('该条码已被绑定');
+                      if (res.CodeInfo.type === '0') {//来镜加工列表
+                        this.app.getActiveNav().push('WatchPage', { mid: res.CodeInfo.target_id });
+                      } else if (res.CodeInfo.type === '1') {//退换货列表
+                        this.app.getActiveNav().push('ServiceOrderDetailsPage', { return_id: res.CodeInfo.target_id });
+                      }
+                    } else {//去绑定编码
+                      this.app.getActiveNav().push('AccountProcessPage', { sn: sn + "-" + res.CodeInfo.type });
+                    }
+                  }
+                })
+              } else if (json['token']) {//扫商品组
                 this.httpService.QrcodeInfo({
                   type: 'opc',
                   parameter: json['token'],
