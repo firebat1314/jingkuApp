@@ -6,80 +6,93 @@
 -->
 <ion-header>
 
-    <ion-navbar>
-        <ion-title>来镜加工</ion-title>
-    </ion-navbar>
-    <ion-toolbar class="segment-style">
-        <ion-segment (ionChange)="myContent.scrollToTop(0);checkList()" [(ngModel)]="jgSegment" mode="md">
-            <ion-segment-button [value]="1">
-                全部
-            </ion-segment-button>
-            <ion-segment-button [value]="2">
-                未支付
-            </ion-segment-button>
-            <ion-segment-button [value]="3">
-                已支付
-            </ion-segment-button>
-            <ion-segment-button [value]="4">
-                已完成
-            </ion-segment-button>
-        </ion-segment>
-    </ion-toolbar>
+   <ion-navbar>
+      <ion-title>{{isReturns?'退换货':'来镜加工'}}</ion-title>
+   </ion-navbar>
+   <ion-toolbar *ngIf="!sn" class="segment-style">
+      <ion-segment (ionChange)="myContent.scrollToTop(0);checkList()" [(ngModel)]="jgSegment" mode="md">
+         <ion-segment-button [value]="1">
+            全部
+         </ion-segment-button>
+         <ion-segment-button [value]="2">
+            未支付
+         </ion-segment-button>
+         <ion-segment-button [value]="3">
+            已支付
+         </ion-segment-button>
+         <ion-segment-button [value]="4">
+            已完成
+         </ion-segment-button>
+      </ion-segment>
+   </ion-toolbar>
 </ion-header>
 
 
 <ion-content #myContent>
-    <ion-refresher (ionRefresh)="doRefresh($event)" pullMax="60">
-        <ion-refresher-content refreshingSpinner="1" pullingIcon="0"></ion-refresher-content>
-    </ion-refresher>
-    <ng-container *ngIf="data">
+   <ion-refresher (ionRefresh)="doRefresh($event)" pullMax="60">
+      <ion-refresher-content refreshingSpinner="1" pullingIcon="0"></ion-refresher-content>
+   </ion-refresher>
+   <ng-container *ngIf="data">
 
-        <no-goods title="暂无订单" *ngIf="!data?.list?.length"></no-goods>
-        <div class="single-shop" *ngFor="let item of data?.list">
-            <ion-item-divider tappable (click)="goWatchPage(item.mid)">
-                <ion-icon *ngIf="1" item-left>
+      <no-goods title="暂无订单" *ngIf="!data?.list?.length"></no-goods>
+      <div class="single-shop" *ngFor="let item of data?.list">
+         <ion-item-divider tappable (click)="goWatchPage(item.mid)">
+            <!-- <ion-icon *ngIf="1" item-left>
                     <img width="25" height="25" src="./assets/icon/order_num.png" alt="">
-                </ion-icon>
-                <div class="shop-title" tappable>
-                    来镜加工单号：{{item.sn}}
-                </div>
-                <!-- <button item-right ion-button clear color="danger" icon-right>
+                </ion-icon> -->
+            <div class="shop-title" tappable>
+               {{isReturns?'退换货单号：':'来镜加工单号：'}}{{item.sn}}
+            </div>
+            <!-- <button item-right ion-button clear color="danger" icon-right>
                     {{1}}
                     <ion-icon name="ios-trash-outline"></ion-icon>
                 </button> -->
-            </ion-item-divider>
-            <ion-item no-lines tappable *ngFor="let goods of item.pian_goods" (click)="goParticularsPage(goods.goods_id)">
-                <ion-thumbnail item-left>
-                    <img [img-lazy-load]="goods.goods_img">
-                </ion-thumbnail>
-                <div class="my-content">
-                    <div class="left">
-                        <div>商品编号：{{goods.goods_sn}}</div>
-                        <div>商品名称：{{goods.goods_name}}</div>
-                        <div>数量：{{goods.goods_number}}</div>
-                    </div>
-                </div>
-            </ion-item>
-            <!-- 多个商品样式 -->
-            <ion-item no-lines style="overflow-x:scroll" tappable *ngIf="0">
-                <ion-thumbnail item-left>
-                    <img [img-lazy-load]="1">
-                </ion-thumbnail>
-            </ion-item>
-            <div class="result">
-                <span class="count">共{{item.count}}件商品</span>&nbsp;&nbsp;<span class="price" *ngIf="mine?.showPrice">合计: <span>{{item.amount}}</span></span>
-            </div>
-            <div class="btn">
-                <button color="gray" outline ion-button (click)="goWatchPage(item.mid)">查看</button><!--  *ngIf="item.is_pay=='1'" -->
-                <button color="jingku1" ion-button outline (click)="toPay(item.log_id)" *ngIf="item.is_pay=='0'">去支付</button>
-            </div>
-        </div>
-    </ng-container>
-    <ion-fab right bottom tappable scroll-to-top>
-        <button ion-fab color="jingku1" mini goBackTop></button>
-    </ion-fab>
+         </ion-item-divider>
+         <ng-container>
 
-    <ion-infinite-scroll threshold="40%" (ionInfinite)="doInfinite($event)">
-        <ion-infinite-scroll-content></ion-infinite-scroll-content>
-    </ion-infinite-scroll>
+         </ng-container>
+         <ng-container *ngFor="let goods of sn?item.goods:item.pian_goods;let index = index;">
+            <ion-item no-lines *ngIf="item.showMore||index<3" tappable (click)="goParticularsPage(goods.goods_id)">
+               <ion-thumbnail item-left>
+                  <img [img-lazy-load]="goods.goods_img">
+               </ion-thumbnail>
+               <div class="my-content">
+                  <div class="left">
+                     <div>商品编号：{{goods.goods_sn}}</div>
+                     <div>商品名称：{{goods.goods_name}}</div>
+                     <div>数量：{{goods.goods_number}}</div>
+                  </div>
+               </div>
+            </ion-item>
+         </ng-container>
+         <div style="text-align: center;padding: 8px 0;color: #808080;font-size: 12px;" *ngIf="!item.showMore&&item?.goods?.length>3"
+            (click)="item.showMore=true">显示其余{{item.goods.length-3}}件<ion-icon name="ios-arrow-down" style="margin-left: 4px;font-size: 12px;"></ion-icon>
+         </div>
+         <!-- 多个商品样式 -->
+         <ion-item no-lines style="overflow-x:scroll" tappable *ngIf="0">
+            <ion-thumbnail item-left>
+               <img [img-lazy-load]="1">
+            </ion-thumbnail>
+         </ion-item>
+         <div class="result" *ngIf="!sn">
+            <span class="count">共{{item.count}}件商品</span>&nbsp;&nbsp;<span class="price" *ngIf="mine?.showPrice">合计:
+               <span>{{item.amount}}</span></span>
+         </div>
+         <div class="btn" *ngIf="!sn">
+            <button small color="gray" outline ion-button (click)="goWatchPage(item.mid)">查看</button><!--  *ngIf="item.is_pay=='1'" -->
+            <button small color="jingku1" ion-button outline (click)="toPay(item.log_id)" *ngIf="item.is_pay=='0'">去支付</button>
+         </div>
+         <div class="btn" *ngIf="sn">
+            <button small color="gray" outline ion-button (click)="goWatchPage(item.id)">查看</button><!--  *ngIf="item.is_pay=='1'" -->
+            <button small color="jingku1" ion-button outline (click)="barCodeBinding(item.id)">绑定</button>
+         </div>
+      </div>
+   </ng-container>
+   <ion-fab right bottom tappable scroll-to-top>
+      <button ion-fab color="jingku1" mini goBackTop></button>
+   </ion-fab>
+
+   <ion-infinite-scroll threshold="40%" (ionInfinite)="doInfinite($event)">
+      <ion-infinite-scroll-content></ion-infinite-scroll-content>
+   </ion-infinite-scroll>
 </ion-content>
