@@ -10,31 +10,25 @@
       <ion-title>闪购</ion-title>
    </ion-navbar>
 
-   <ion-toolbar no-padding>
-      <ion-slides class="slide-title" loop='false' autoplay='false' [initialSlide]='0' pager='false' [slidesPerView]="4"
-         paginationHide='true' paginationClickable='true'>
-         <ion-slide [style.pointerEvents]="selected==0?'none':'auto'">
-            <div tappable (click)="getData(0)">
-               <span class="slide-title-unit" [ngClass]="{'slide-title-active': selected == 0}">全部</span>
-            </div>
-         </ion-slide>
-         <ion-slide *ngFor="let slide of category?.data; let i = index;" [style.pointerEvents]="selected==slide.cat_id?'none':'auto'">
-            <div tappable (click)="getData(slide.cat_id)">
-               <span class="slide-title-unit" [ngClass]="{'slide-title-active': selected == slide.cat_id}">{{slide.cat_name}}</span>
-            </div>
-         </ion-slide>
-      </ion-slides>
-   </ion-toolbar>
 </ion-header>
 
 
 <ion-content parallax-header>
    <div *ngIf="data" fadeIn>
       <div class="top_img header-image">
-         <img [ads-click]="ads" *ngFor="let ads of category?.bannerone" [img-lazy-load]="ads?.ad_img" defaultSrc="./assets/images/images/640-320.jpg"
-            width="100%" alt="">
+         <img [ads-click]="ads" *ngFor="let ads of category?.bannerone" [img-lazy-load]="ads?.ad_img" defaultSrc="./assets/images/images/640-320.jpg" width="100%" alt="">
       </div>
       <div class="main-content">
+
+         <div class="quick_buy">
+            <ul class="top_menu">
+               <li class="menu_ico" tappable (click)="getData(0)" [ngClass]="{'meon':selected==0}">全部</li>
+               <ng-container *ngFor="let item of category?.data">
+                  <li class="menu_ico" tappable (click)="getData(item.cat_id)" [ngClass]="{'meon':selected==item.cat_id}">{{item.cat_name}}</li>
+               </ng-container>
+            </ul>
+         </div>
+
 
          <no-goods *ngIf="data&&!data?.data?.length"></no-goods>
          <ul class="purchase-box">
@@ -50,10 +44,10 @@
                      {{cleAll.name}}
                   </div>
                   <div class="tt-1" *ngIf="mine?.showPrice">
-                     <div class="cx"><em>{{cleAll.promote_price}}</em></div>&nbsp;<div class="suzi">原价：<em>¥{{cleAll.shop_price}}</em></div>
+                     <div class="cx"><span>促销价&nbsp;</span><em>{{cleAll.promote_price}}</em></div>
+                     <div class="suzi">&nbsp;<em>¥{{cleAll.shop_price}}</em></div>
                   </div>
                   <div class="tt-3">
-                     <div class="has-been-sold">已抢{{cleAll.sales_number||0}}件</div>
                      <button>立即抢购</button>
                   </div>
                </div>
@@ -66,7 +60,7 @@
             {{data?.page}}/{{data?.pages}}
         </button>
     </ion-fab>-->
-   <ion-fab right bottom>
+   <ion-fab right bottom scroll-to-top>
       <button ion-fab color="jingku1" (click)="scrollToTop()" mini goBackTop></button>
    </ion-fab>
    <ion-infinite-scroll threshold="20%" (ionInfinite)="doInfinite($event)">
