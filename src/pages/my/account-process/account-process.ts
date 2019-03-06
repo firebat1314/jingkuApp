@@ -39,17 +39,41 @@ export class AccountProcessPage {
     public mine: MineProvider,
   ) {
     this.sn = navParams.get('sn') && this.navParams.get('sn') != ":sn" ? this.navParams.get('sn').split('-')[0] : false;
-    this.isReturns = navParams.get('sn') && this.navParams.get('sn') != ":sn" ? this.navParams.get('sn').split('-')[1] == 1 : false;
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad AccountProcessPage');
   }
   ngOnInit() {
+
     this.events.subscribe('AccountProcessPage', () => {
       this.checkList();
     })
-    this.checkList();
+    if (this.sn&&this.native.isMobileweb()) {
+      this.httpService.barCodeInfo({ sn: this.sn }).then(res => {
+        if (res.status == 1) {
+          if (res.CodeInfo.type === '0') {//来镜加工
+            this.isReturns = false;
+            if (res.CodeInfo.target_id > 0) {//条码已被绑定跳对应详情
+              this.native.showToast('该条码已被绑定');
+              this.navCtrl.setPages([{ page: 'WatchPage', params: { mid: res.CodeInfo.target_id } }]);
+            } else {
+              this.checkList();
+            }
+          } else if (res.CodeInfo.type === '1') {//退换货
+            this.isReturns = true;
+            if (res.CodeInfo.target_id > 0) {//条码已被绑定跳对应详情
+              this.native.showToast('该条码已被绑定');
+              this.navCtrl.setPages([{ page: 'ServiceOrderDetailsPage', params: { return_id: res.CodeInfo.target_id } }]);
+            } else {
+              this.checkList();
+            }
+          }
+        }
+      })
+    } else {
+      this.checkList();
+    }
   }
   ngOnDestroy() {
     this.events.unsubscribe('AccountProcessPage');

@@ -158,12 +158,13 @@ page-discount-coupon {
                em {
                   border-left: 1px solid #3f69a5;
                   width: 10px;
-                  height: 6px;
+                  height: 5px;
                   border-bottom: 1px solid #3f69a5;
                   transform: rotateZ(-45deg);
                   display: block;
-                  margin-top: -2px;
+                  margin-top: -4px;
                   margin-right: 4px;
+                  flex-shrink: 0;
                }
             }
          }

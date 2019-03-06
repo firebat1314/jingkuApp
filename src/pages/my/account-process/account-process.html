@@ -7,7 +7,7 @@
 <ion-header>
 
    <ion-navbar>
-      <ion-title>{{isReturns?'退换货':'来镜加工'}}</ion-title>
+      <ion-title>{{sn?isReturns===true?'退换货':isReturns===false?'来镜加工':'':'来镜加工'}}</ion-title>
    </ion-navbar>
    <ion-toolbar *ngIf="!sn" class="segment-style">
       <ion-segment (ionChange)="myContent.scrollToTop(0);checkList()" [(ngModel)]="jgSegment" mode="md">
