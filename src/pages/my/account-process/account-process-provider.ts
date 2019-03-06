@@ -3,6 +3,7 @@ import { HttpService } from '../../../providers/http-service';
 import { Native } from '../../../providers/native';
 import { ModalController, App } from 'ionic-angular';
 import { InAppBrowser } from '@ionic-native/in-app-browser';
+import { IP } from '../../../providers/constants';
 
 /*
   Generated class for the AccountProcessProvider provider.
@@ -96,7 +97,7 @@ export class AccountProcessProvider {
               let data = decodeURIComponent(scandata);
               let json = this.parseURL(data);
               let domain = data.split('/')[2];
-              if (domain == 'm.jingku.cn' && data.indexOf('account-process') > -1) {//加工单绑定编码
+              if (data.indexOf('account-process') > -1) {//加工单绑定编码
                 let sn = data.split('/')[data.split('/').length - 1];//'https://m.jingku.cn/#/nav/n4/tabs/tabs/t0/my/account-process/897548954086'
                 this.httpService.barCodeInfo({ sn: sn }).then(res => {
                   if (res.status == 1) {
