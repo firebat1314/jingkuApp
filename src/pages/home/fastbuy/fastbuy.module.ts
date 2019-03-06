@@ -5,6 +5,7 @@ import { CountdownComponentModule } from "../../../components/countdown/countdow
 import { ImgLazyLoadDirectiveModule } from "../../../directives/img-lazy-load/img-lazy-load.module";
 import { NoGoodsComponentModule } from "../../../components/no-goods/no-goods.module";
 import { AdsClickDirectiveModule } from '../../../directives/ads-click/ads-click.module';
+import { ScrollToTopDirectiveModule } from '../../../directives/scroll-to-top/scroll-to-top.module';
 
 @NgModule({
   declarations: [FastbuyPage],
@@ -13,7 +14,8 @@ import { AdsClickDirectiveModule } from '../../../directives/ads-click/ads-click
     CountdownComponentModule,
     ImgLazyLoadDirectiveModule,
     NoGoodsComponentModule,
-    AdsClickDirectiveModule
+    AdsClickDirectiveModule,
+    ScrollToTopDirectiveModule,
   ]
 })
 
