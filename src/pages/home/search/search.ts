@@ -17,6 +17,7 @@ import { ViewController } from 'ionic-angular/navigation/view-controller';
 export class SearchPage {
    page: any = 1;
    data: any;
+   myHomeSearchinfo:string='';
    myHomeSearch: String = this.navParams.get('key') || '';
    goodsTypeSelect = this.navParams.get('type') || '1';
    @ViewChild(Searchbar) mySearchBar: Searchbar;
@@ -82,11 +83,18 @@ export class SearchPage {
    ionCancel() {
       this.navCtrl.pop({ animate: false }).catch(() => { history.back(); });
    }
+   minides
    goodsTypeChange() {
       setTimeout(() => {
          this.mySearchBar.setFocus();
       }, 500);
       let type = 'goods';
+      
+      if(this.goodsTypeSelect=="4"){
+         this.minides=true
+   }else{
+      this.minides=false
+   }
       switch (this.goodsTypeSelect) {
          case '1': type = 'goods'; break;
          case '2': type = 'cutting'; break;
@@ -99,6 +107,21 @@ export class SearchPage {
             this.searchData = res;
          }
       })
+   }
+   suppliers_listinfo
+
+   suppliers_listinfolenths
+   
+   alinks(){
+      this.httpService.categoryGoods({keywords:this.myHomeSearchinfo}).then((res)=>{
+      //   console.log(res.suppliers_list)
+      console.log(res)
+         this.suppliers_listinfo=res.suppliers_list
+         this.suppliers_listinfolenths=res.suppliers_list.length
+         // this.suppliers_listinfoID=res.suppliers_list.id
+         console.log(this.suppliers_listinfo)
+      })
+      // this.routers.navigate(['/indexpage']);
    }
    searchKeyChange(e) {
       this.httpService.searchList({ keywords: this.myHomeSearch }).then(res => {
@@ -144,5 +167,9 @@ export class SearchPage {
             });
          }
       });
+   }
+   goParticularsHome(suppliers_listinfoID,showloading=true) {
+
+      this.navCtrl.push('ParticularsHomePage', { suppliersId: suppliers_listinfoID });
    }
 }

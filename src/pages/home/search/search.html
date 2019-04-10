@@ -5,17 +5,35 @@
   Ionic pages and navigation.
 -->
 <ion-header>
-
-   <ion-toolbar style="background: #ffffff;">
-      <form action="" (ngSubmit)="searchbar($event)">
-         <ion-searchbar [(ngModel)]="myHomeSearch" (ionChange)="searchKeyChange($event)" name="myHomeSearch" [placeholder]="goodsTypeSelect==1?'搜索普通商品':goodsTypeSelect==2?'搜索切边眼镜':goodsTypeSelect==3?'搜索铺货商品':'搜索镜库商品'" mode="ios" debounce="0" type="search"></ion-searchbar>
-      </form>
-      <ion-buttons end>
-         <button ion-button clear (click)="ionCancel()">
-               取消
-            </button>
-      </ion-buttons>
-   </ion-toolbar>
+<div *ngIf="!minides">
+      <ion-toolbar style="background: #ffffff;">
+            <form action="" (ngSubmit)="searchbar($event)">
+               <ion-searchbar [(ngModel)]="myHomeSearch" (ionChange)="searchKeyChange($event)" name="myHomeSearch" [placeholder]="goodsTypeSelect==1?'搜索普通商品':goodsTypeSelect==2?'搜索切边眼镜':goodsTypeSelect==4?'搜索商铺':goodsTypeSelect==3?'搜索铺货商品':'搜索镜库商品'" mode="ios" debounce="0" type="search"></ion-searchbar>
+            </form>
+            <ion-buttons end>
+               <button ion-button clear (click)="ionCancel()">
+                     取消
+                  </button>
+            </ion-buttons>
+         </ion-toolbar>
+</div>
+<div *ngIf="minides">
+      <ion-toolbar style="background: #ffffff;" >
+            <form action=""  (ngSubmit)="alinks()">
+    
+               <ion-searchbar  [(ngModel)]="myHomeSearchinfo" name="myHomeSearch" [placeholder]="goodsTypeSelect==1?'搜索普通商品':goodsTypeSelect==4?'搜索商铺':goodsTypeSelect==2?'搜索切边眼镜':goodsTypeSelect==3?'搜索铺货商品':'搜索镜库商品'" mode="ios" debounce="0" type="search"></ion-searchbar>
+            </form>
+            <!-- <form action="" *ngIf="minides==true"> -->
+               <!-- <ion-searchbar [(ngModel)]="myHomeSearch" (ionChange)="searchKeyChange($event)" name="myHomeSearch" [placeholder]="goodsTypeSelect==1?'搜索普通商品':goodsTypeSelect==4?'搜索商铺':goodsTypeSelect==2?'搜索切边眼镜':goodsTypeSelect==3?'搜索铺货商品':'搜索镜库商品'" mode="ios" debounce="0" type="search"></ion-searchbar> -->
+            <!-- </form> -->
+            <ion-buttons end>
+               <button ion-button clear (click)="ionCancel()">
+                     取消
+                  </button>
+            </ion-buttons>
+         </ion-toolbar>
+</div>
+ 
    <ion-toolbar mode="md" no-padding>
       <ion-segment mode="md" color="jingku1" [(ngModel)]="goodsTypeSelect" (ionChange)="goodsTypeChange()">
          <ion-segment-button value="1">
@@ -27,47 +45,63 @@
          <ion-segment-button value="3">
             铺货商品
          </ion-segment-button>
+         <ion-segment-button value="4">
+            搜索商铺
+         </ion-segment-button>
       </ion-segment>
    </ion-toolbar>
 </ion-header>
 
 
 <ion-content>
-   <ng-container *ngIf="myHomeSearch">
-      <ion-list class="history">
-         <ion-item *ngFor="let item of searchData?.good_data;let i = index" tappable (click)="myHomeSearch=item.goods_name;searchbar()">
-            <h2 style="font-size: 1.3rem;color: #999999;">{{item?.goods_name}}</h2>
-         </ion-item>
-      </ion-list>
-   </ng-container>
-   <ng-container *ngIf="!myHomeSearch">
-      <ng-container *ngIf="data?.data?.length">
-         <div class="head">
-            <div>热门搜索</div>
-            <div tappable (click)="getNewBatch()" *ngIf="data?.pagers>1">换一换</div>
-         </div>
-         <div class="btns">
-            <button *ngFor="let item of data?.data;let i=index" tappable (click)="nowIndex=i;myHomeSearch=item.title;searchbar()">{{item.title}}</button>
-         </div>
-         <div class="background"></div>
-      </ng-container>
-      <ng-container *ngIf="historyData?.data?.length">
-         <div class="head">
-            <div>历史搜索</div>
-         </div>
-         <ion-list class="history">
-            <ion-item-sliding #slidingItem *ngFor="let item of historyData?.data;let i = index">
-               <ion-item tappable (click)="myHomeSearch=item.search_name;searchbar()">
-                  <h2 style="font-size: 1.3rem;color: #999999;">{{item?.search_name}}</h2>
-               </ion-item>
-               <ion-item-options side="right">
-                  <button ion-button color="danger" (click)="delItem(item.id,slidingItem)">删除</button>
-               </ion-item-options>
-            </ion-item-sliding>
-         </ion-list>
-         <button class="clear_history" (click)="delItems()">
-            <ion-icon name="ios-trash-outline"></ion-icon>清空历史记录
-         </button>
-      </ng-container>
-   </ng-container>
+   <div *ngIf="!minides">
+         <ng-container *ngIf="myHomeSearch">
+               <ion-list class="history">
+                  <ion-item *ngFor="let item of searchData?.good_data;let i = index" tappable (click)="myHomeSearch=item.goods_name;searchbar()">
+                     <h2 style="font-size: 1.3rem;color: #999999;">{{item?.goods_name}}</h2>
+                  </ion-item>
+               </ion-list>
+            </ng-container>
+            <ng-container *ngIf="!myHomeSearch">
+               <ng-container *ngIf="data?.data?.length">
+                  <div class="head">
+                     <div>热门搜索</div>
+                     <div tappable (click)="getNewBatch()" *ngIf="data?.pagers>1">换一换</div>
+                  </div>
+                  <div class="btns">
+                     <button *ngFor="let item of data?.data;let i=index" tappable (click)="nowIndex=i;myHomeSearch=item.title;searchbar()">{{item.title}}</button>
+                  </div>
+                  <div class="background"></div>
+               </ng-container>
+               <ng-container *ngIf="historyData?.data?.length">
+                  <div class="head">
+                     <div>历史搜索</div>
+                  </div>
+                  <ion-list class="history">
+                     <ion-item-sliding #slidingItem *ngFor="let item of historyData?.data;let i = index">
+                        <ion-item tappable (click)="myHomeSearch=item.search_name;searchbar()">
+                           <h2 style="font-size: 1.3rem;color: #999999;">{{item?.search_name}}</h2>
+                        </ion-item>
+                        <ion-item-options side="right">
+                           <button ion-button color="danger" (click)="delItem(item.id,slidingItem)">删除</button>
+                        </ion-item-options>
+                     </ion-item-sliding>
+                  </ion-list>
+                  <button class="clear_history" (click)="delItems()">
+                     <ion-icon name="ios-trash-outline"></ion-icon>清空历史记录
+                  </button>
+               </ng-container>
+            </ng-container>
+   </div>
+
+   <div *ngIf="minides">
+         <ul *ngIf="suppliers_listinfolenths !=0">
+            <li *ngFor="let afroinfo of suppliers_listinfo" class="minidesli" (click)="goParticularsHome(afroinfo.id)"><img src="{{afroinfo.logo}}" alt="" class="minidesimg">      <p class="minidesp"><span>{{afroinfo.company}}</span></p>
+         
+            </li>
+         </ul>
+         <ul *ngIf="suppliers_listinfolenths ==0" >
+         <li class="suppliersp">暂无此商铺</li>
+         </ul>
+            </div>
 </ion-content>
