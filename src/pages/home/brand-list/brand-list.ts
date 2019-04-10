@@ -66,6 +66,7 @@ export class BrandListPage {
       this.paramsData.bonus_id = this.navParams.get('type_id') == ':type_id' ? null : this.navParams.get('type_id');
       this.isCut = this.navParams.get('cut') == ':cut' ? null : this.navParams.get('cut');
       this.isDistribution = this.navParams.get('isDistribution') == ':isDistribution' ? null : this.navParams.get('isDistribution');
+      console.log(this.isDistribution)
 
       this.getListData();
       this.getCarNumver();
@@ -118,6 +119,7 @@ export class BrandListPage {
             }
          })
       } else if (this.isDistribution > 0) {
+         debugger
          return this.httpService.category_goods_d(Object.assign(this.paramsData, { page: 1 }), { showLoading: showLoading }).then((res) => {
             if (res.status == 1) {
                this.data = res;

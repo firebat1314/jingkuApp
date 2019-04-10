@@ -57,3 +57,29 @@ page-search {
       }
    }
 }
+.minidesli{
+   width: 100%;
+   display: block;
+   margin-left: 5%;
+   margin-top: 3%;
+}
+.minidesimg{
+   width: 10%;
+   border-radius: 50%;
+   float: left;
+   display: inline-block;
+   min-height: 10px;
+}
+.minidesp{
+   float: left;
+   line-height: 42px;
+   border-bottom: 1px solid #CCC;
+   width: 85%;
+   display: inline-block;
+   margin-left: 2%;
+}
+.suppliersp{
+   text-align: -webkit-center;
+   line-height: 30;
+   
+}

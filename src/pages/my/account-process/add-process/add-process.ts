@@ -51,10 +51,12 @@ export class AddProcessPage {
    ngAfterViewInit() {
 
    }
+   poplmonet
    getData(showLoading = true) {
       this.httpService.glassMachining({ order_id: this.order_id }, { showLoading: showLoading }).then((res) => {
          if (res.status) {
             this.data = res;
+            this.poplmonet=res.machining_price
             if (res.machining) {
                this.list = [];
                for (let i = 0; i < res.machining.length; i++) {
