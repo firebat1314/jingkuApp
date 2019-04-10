@@ -8,7 +8,8 @@
       </ion-thumbnail>
       <h2 margin-right>{{headData?.goods_name}}</h2>
       <p class="goods_sn">商品编号：{{headData?.goods_sn}}</p>
-      <p class="shop_price" *ngIf="mine.showPrice">{{headData?.shop_price_formated | prefix}}</p>
+      <p class="shop_price" style="color: #eecd60;font-size: 1.4rem;" *ngIf="mine.showPrice">{{headData?.shop_price_formated | prefix}}</p>
+      <p class="goods_sn" *ngIf="headData?.is_batch" style="color: #e60000;">温馨提示，批量下单请使用电脑进行下单</p>
    </ion-item>
    
    <!-- ————————————————————————————————— 普通护理液镜架商品 ————————————————————————————————— -->
