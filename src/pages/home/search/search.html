@@ -21,7 +21,7 @@
       <ion-toolbar style="background: #ffffff;" >
             <form action=""  (ngSubmit)="alinks()">
     
-               <ion-searchbar  [(ngModel)]="myHomeSearchinfo" name="myHomeSearch" [placeholder]="goodsTypeSelect==1?'搜索普通商品':goodsTypeSelect==4?'搜索商铺':goodsTypeSelect==2?'搜索切边眼镜':goodsTypeSelect==3?'搜索铺货商品':'搜索镜库商品'" mode="ios" debounce="0" type="search"></ion-searchbar>
+               <ion-searchbar  [(ngModel)]="myHomeSearchinfo" (ionChange)="searchKeyChange($event)" name="myHomeSearch" [placeholder]="goodsTypeSelect==1?'搜索普通商品':goodsTypeSelect==4?'搜索商铺':goodsTypeSelect==2?'搜索切边眼镜':goodsTypeSelect==3?'搜索铺货商品':'搜索镜库商品'" mode="ios" debounce="0" type="search"></ion-searchbar>
             </form>
             <!-- <form action="" *ngIf="minides==true"> -->
                <!-- <ion-searchbar [(ngModel)]="myHomeSearch" (ionChange)="searchKeyChange($event)" name="myHomeSearch" [placeholder]="goodsTypeSelect==1?'搜索普通商品':goodsTypeSelect==4?'搜索商铺':goodsTypeSelect==2?'搜索切边眼镜':goodsTypeSelect==3?'搜索铺货商品':'搜索镜库商品'" mode="ios" debounce="0" type="search"></ion-searchbar> -->

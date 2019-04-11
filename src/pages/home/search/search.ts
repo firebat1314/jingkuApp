@@ -124,11 +124,23 @@ export class SearchPage {
       // this.routers.navigate(['/indexpage']);
    }
    searchKeyChange(e) {
+     if(e.placeholder=="搜索商铺"){
+      this.httpService.categoryGoods({keywords:this.myHomeSearchinfo}).then((res)=>{
+         //   console.log(res.suppliers_list)
+         console.log(res)
+            this.suppliers_listinfo=res.suppliers_list
+            this.suppliers_listinfolenths=res.suppliers_list.length
+            // this.suppliers_listinfoID=res.suppliers_list.id
+            console.log(this.suppliers_listinfo)
+         })
+     }else{
       this.httpService.searchList({ keywords: this.myHomeSearch }).then(res => {
          if (res.status) {
             this.searchData = res;
          }
       })
+     }
+ 
    }
    getHotSearch() {
       this.httpService.getHotSearch({
