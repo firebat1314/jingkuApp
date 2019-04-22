@@ -125,5 +125,5 @@
     <plugin name="cordova-clipboard" spec="^1.2.1" />
     <plugin name="cordova-plugin-file" spec="^4.3.3" />
     <engine name="ios" spec="~4.5.5" />
-    <engine name="android" spec="6.2.3" />
+    <engine name="android" spec="^7.1.4" />
 </widget>

@@ -268,6 +268,11 @@ export class BrandListPage {
          this.paramsData.stort = 'DESC';
          this.getListData();
       }
+      if(this.mytool == 'new'){
+         this.paramsData.order = 'new';
+         this.paramsData.stort = 'DESC';
+         this.getListData();
+      }
       if (this.mytool == 'sales_num') {
 
          this.paramsData.order = 'sales_num';

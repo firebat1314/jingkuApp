@@ -23,9 +23,7 @@
     
                <ion-searchbar  [(ngModel)]="myHomeSearchinfo" (ionChange)="searchKeyChange($event)" name="myHomeSearch" [placeholder]="goodsTypeSelect==1?'搜索普通商品':goodsTypeSelect==4?'搜索商铺':goodsTypeSelect==2?'搜索切边眼镜':goodsTypeSelect==3?'搜索铺货商品':'搜索镜库商品'" mode="ios" debounce="0" type="search"></ion-searchbar>
             </form>
-            <!-- <form action="" *ngIf="minides==true"> -->
-               <!-- <ion-searchbar [(ngModel)]="myHomeSearch" (ionChange)="searchKeyChange($event)" name="myHomeSearch" [placeholder]="goodsTypeSelect==1?'搜索普通商品':goodsTypeSelect==4?'搜索商铺':goodsTypeSelect==2?'搜索切边眼镜':goodsTypeSelect==3?'搜索铺货商品':'搜索镜库商品'" mode="ios" debounce="0" type="search"></ion-searchbar> -->
-            <!-- </form> -->
+        
             <ion-buttons end>
                <button ion-button clear (click)="ionCancel()">
                      取消
@@ -95,12 +93,12 @@
    </div>
 
    <div *ngIf="minides">
-         <ul *ngIf="suppliers_listinfolenths !=0">
-            <li *ngFor="let afroinfo of suppliers_listinfo" class="minidesli" (click)="goParticularsHome(afroinfo.id)"><img src="{{afroinfo.logo}}" alt="" class="minidesimg">      <p class="minidesp"><span>{{afroinfo.company}}</span></p>
+         <ul *ngIf="suppliers_listinfolenths !=[]">
+            <li *ngFor="let afroinfo of suppliers_listinfo" class="minidesli" (click)="goParticularsHome(afroinfo.id)"><img src="{{afroinfo.logo}}" alt="" class="minidesimg">      <p class="minidesp"><span>{{afroinfo.name}}</span></p>
          
             </li>
          </ul>
-         <ul *ngIf="suppliers_listinfolenths ==0" >
+         <ul *ngIf="suppliers_listinfolenths ==[]" >
          <li class="suppliersp">暂无此商铺</li>
          </ul>
             </div>

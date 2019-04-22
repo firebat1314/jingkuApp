@@ -106,11 +106,14 @@
          <button ion-button outline style="padding: 0 16px;" round small color="jingku1" navPush="OrderWuliuPage" [navParams]="{orderId:item.order_id}" *ngIf="(item.order_status==1&&item.pay_status==2)||(item.order_status==5&&item.pay_status==2&&item.shipping_status==1)||(item.order_status==5&&item.pay_status==2&&item.shipping_status==2)">物流跟踪</button>
          <button ion-button outline style="padding: 0 16px;" round small color="jingku1" (click)="buyAgain(item.order_id)" *ngIf="(item.order_status==5 && item.pay_status==2 && item.shipping_status==2)||(item.order_status==2 && item.pay_status==0 && item.shipping_status==0)">再次购买</button>
          <button ion-button outline style="padding: 0 16px;" round small color="jingku1" (click)="stopCancel(item)" *ngIf="item.pay_status==2 && item.shipping_status==2 && item.is_stop==0" [disabled]="item.isOrderCancel==2">{{item.isOrderCancel==1?'申请终止':'已申请'}}</button>
+         <button ion-button outline style="padding: 0 16px;" round small color="jingku1" (click)="stopCancel(item)" *ngIf="item.is_stop==1" [disabled]=true>已终止</button>
          <button ion-button outline style="padding: 0 16px;" round small color="jingku1" (click)="toPay(item)" *ngIf="item.pay_status == 0 && item.order_status!=4 && item.order_status!=2 && item.order_status!=3 && item.order_status!=7 && item.order_status!=8 && item.order_status!=0">去支付</button>
          <button ion-button outline style="padding: 0 16px;" round small color="jingku1" (click)="confirmReceipt(item.order_id)" *ngIf="(item.order_status==5 || item.order_status==1) && item.pay_status==2 && item.shipping_status==1">确认收货</button>
          <button ion-button outline style="padding: 0 16px;" round small color="jingku1" (click)="goAddProcess(item.order_parent)" *ngIf="item.is_glassMachining > 0">来镜加工</button>
          <button ion-button outline style="padding: 0 16px;" round small color="jingku1" (click)="viewerContract(item.order_id)" *ngIf="item.contractid">查看合同</button>
+         <!-- <button ion-button outline style="padding: 0 16px;" round small color="jingku1" (click)="cancelApplyht(item.order_id)" *ngIf="item.shipping_status==2">终止合同</button> -->
          <button ion-button outline style="padding: 0 16px;" round small color="jingku1" (click)="sealContract(item.order_id)" *ngIf="(item.seal_status==0||item.seal_status==1)&&item.pay_status==2">盖章</button>
+
          <!-- <button ion-button outline color="jingku1" (click)="downloadContract(item.order_id)" *ngIf="item.contractid">下载合同</button> -->
       </div>
    </div>

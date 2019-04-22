@@ -154,7 +154,8 @@
             <div class="eye frame">
                <div class="h_title">镜架</div>
                <div class="t_labels">
-                  <div class="lab">镜架来源：{{item?.frame_from_goods?'订单选择':'客户自备'}}</div>
+                  <div class="lab" *ngIf="item.frame_from_name =='客户自备'">镜架来源：客户自备</div>
+                  <div  class="lab" *ngIf="item.frame_from_name!='客户自备'">镜架来源：订单选择</div>
                   <div class="lab">镜架品牌：{{item?.frame_attr?.pinpai||'无'}}</div>
                   <div class="lab">镜架型号：{{item?.frame_attr?.xinghao||'无'}}</div>
                   <div class="lab">加工类型：{{item?.frame_attr?.mach_type_name||'无'}}</div>

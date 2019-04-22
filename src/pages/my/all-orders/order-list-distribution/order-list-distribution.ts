@@ -71,6 +71,7 @@ export class OrderListDistributionPage {
          default: type = ''; break;
       }
       return this.httpService.order_d({ page: 1, type: type }, { showLoading: showLoading }).then((res) => {
+         console.log(res)
          this.showLoading = false;
          if (res.status == 1) {
             // this.orderData_all = res;
@@ -164,6 +165,16 @@ export class OrderListDistributionPage {
          })
       })
    }
+   // cancelApplyht(orderid){
+   //    this.native.openAlertBox('终止合同', () => {
+   //       this.httpService.cancelApply({ order_id: orderid }).then((res) => {
+   //          if (res.status == 1) {
+   //             this.native.showToast('终止合同成功');
+   //             this.getByPageIndex();
+   //          }
+   //       })
+   //    })
+   // }
    goParticularsHomePage(id) {
       this.navCtrl.push('ParticularsHomePage', { suppliersId: id })
    }
