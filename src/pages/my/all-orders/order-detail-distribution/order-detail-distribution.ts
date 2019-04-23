@@ -25,7 +25,7 @@ export class OrderDetailDistributionPage {
 
   data: any;
   orderId: any = this.navParams.get('order_id');
-
+  ordersid:any;
   payBtn: boolean = false;
   shippingBtn: boolean = false;
   confirmBtn: boolean = false;
@@ -61,6 +61,7 @@ export class OrderDetailDistributionPage {
         this.data = res;
         // this.showBtn();
         this.content.resize();
+        this.ordersid=res.order.order_id
       }
     })
   }
@@ -216,7 +217,7 @@ export class OrderDetailDistributionPage {
     })
   }
   photoplays(){
-    this.navCtrl.push('photoplayPage',{ order_id: "22695" });
+    this.navCtrl.push('photoplayPage',{ order_id: this.ordersid });
   
   }
 }

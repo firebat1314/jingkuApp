@@ -96,9 +96,8 @@ export class photoplayPage {
      item.img.splice(i, 1);
   }
   distri_order_consinfo(){
-    this.httpService.distri_order_cons()
 
-    this.httpService.distri_order_cons({ order_id: 1111,id:111111 }).then((res) => {
+    this.httpService.distri_order_cons({ order_id: this.orderId }).then((res) => {
       if (res.status == 1) {
        console.log(res)
       }
