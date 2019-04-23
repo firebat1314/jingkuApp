@@ -42,6 +42,7 @@ export class DistributionQualificationPage {
       });
    }
    getData() {
+      debugger
       this.httpService.get_enterprise_info().then((res) => {
          if (res.status) {
             this.data = res;
@@ -75,6 +76,7 @@ export class DistributionQualificationPage {
       })
    }
    getCityName(province, city, district) {
+      debugger
       let arr = [];
       for (let p = 0; p < this.cityData.length; p++) {
          if (this.cityData[p].code == province) {
@@ -101,11 +103,13 @@ export class DistributionQualificationPage {
     * @param event
     */
    cityChange(event) {
+      debugger
       this.params.city = event.city.value;
       this.params.province = event.province.value;
       this.params.district = event.region.value;
    }
    submit() {
+      debugger
       this.httpService.Distribution_info(this.params).then((res) => {
          if (res.status) {
             this.native.openAlertBox(res.info, () => {
@@ -117,6 +121,7 @@ export class DistributionQualificationPage {
       })
    }
    openActionSheet(datetimeComponent,param) {
+      debugger
       let actionSheet = this.actionSheetCtrl.create({
          title: '有效期',
          buttons: [

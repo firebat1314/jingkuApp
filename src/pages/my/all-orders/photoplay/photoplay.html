@@ -1,0 +1,44 @@
+<!--
+  Generated template for the EvaluationPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+    <ion-navbar>
+       <ion-title>评论晒单</ion-title>
+    </ion-navbar>
+ 
+ </ion-header>
+ 
+ 
+ <ion-content>
+    <form #evaluation="ngForm">
+     
+      
+          <ng-container *ngFor="let item of orderData?.goods_list;let index = index;">
+                <div class="imgs">
+                   <div class="add-zhizhao click" style="position: relative; " item-center icon-top>
+                      <img style="height: 24px;margin-bottom: 10px;" src="./assets/icon/evaluation.png" alt="">
+                      <span>选择图片</span>
+                      <input type="file" (get-image)="selectImgs($event,item)" style="width:100%;height:100%;position: absolute;opacity: 0;top:0;left: 0;">
+                   </div>
+                   <div class="add-zhizhao show" *ngFor="let img of item?.img;let i = index;">
+                      <input type="hidden" [value]="img" name="goods_list[{{index}}].img[i]">
+                      <img style="height: 80%;" [img-lazy-load]="img.base64" alt="">
+                      <span class="delete-icon" tappable (click)="deletePic(index,item)"></span>
+                   </div>
+                </div>
+             <!-- </fieldset> -->
+             <div  class="ptotoplay_detile">
+                <span class="ptotoplay_detiletit">供货商反馈信息：</span> <p  class="ptotoplay_detilecon">不满意</p>
+                <span class="ptotoplay_detiletit">供货商满意程度</span> <p class="ptotoplay_detilecon">不满意</p>
+              </div>
+          </ng-container>
+          <ion-buttons class="protoplay_detlitbut">
+              <button ion-button clear right color="jingku1" *ngIf="orderData&&is_true" (click)="submit(evaluation)"    style="color: aliceblue;">提交</button>
+           </ion-buttons>
+    </form>
+    
+ </ion-content>

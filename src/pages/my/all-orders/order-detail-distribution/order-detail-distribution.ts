@@ -215,4 +215,8 @@ export class OrderDetailDistributionPage {
       }
     })
   }
+  photoplays(){
+    this.navCtrl.push('photoplayPage',{ order_id: "22695" });
+  
+  }
 }

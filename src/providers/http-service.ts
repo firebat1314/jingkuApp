@@ -957,5 +957,9 @@ export class HttpService {
    barCodeBinding(data?, options?: HttpOptions) {
       return this.http.post(IP + '/Machining/barCodeBinding ', data, { showLoading: true, ...options })
    }
+   // 铺货订单反馈:newapp.jingkoo.net/user/distri_order_con    
+   distri_order_cons(data?, options?: HttpOptions) {
+      return this.http.post(IP + '/user/distri_order_con', data, { showLoading: true, ...options })
+   }
 
 }
