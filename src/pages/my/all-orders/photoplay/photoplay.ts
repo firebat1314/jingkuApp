@@ -22,12 +22,14 @@ declare var ClipboardJS: any;
   templateUrl: 'photoplay.html',
 })
 export class photoplayPage {
-
+   distri_order_con_info
   data: any;
+  ids:any;
   orderId: any = this.navParams.get('order_id');
-
-  
-
+  contents:any;
+  is_nices:any;
+  imgs:any;
+ 
   @ViewChild(Content) content: Content
   constructor(
     public navCtrl: NavController,
@@ -55,54 +57,104 @@ export class photoplayPage {
 
 
   orderData = null;
-  /* 是否可以评论 */
+
   is_true = null;
 
-  /* this.params = {
-     content: null,
-     comment_rank: null,
-     accord_rank: null,
-     service_rank: null,
-     delivery_rank: null,
-     comment_label: null,
-     img: null,
-  }; */
-  /* 是否可以评论 */
-  ngOnInit() {
-     this.httpServ.commentIsComment({
-        order_id: this.orderId
-     }).then((res) => {
-        if (res.status == 1) {
-           this.is_true = res.is_true;
-        }
-     })
-     this.httpServ.orderInfo({
-        order_id: this.orderId
-     }).then((res) => {
-        if (res.status == 1) {
-           this.orderData = res;
-        }
-     })
-    this.distri_order_consinfo()
-  }
 
+  ngOnInit() {
+this.distri_order_consinfo()
+  }
+  items={
+   img:[]
+  }
+ 
   selectImgs(img, item) {
-     if (!item.img) {
-        item.img = [];
+     if (this.items.img==[]) {
+       img = [];
      }
-     item.img.push(img);
+     this.items.img.push(img);
   }
   deletePic(i, item) {
-     item.img.splice(i, 1);
+     debugger
+     this.items.img.splice(i, 1);
   }
   distri_order_consinfo(){
 
     this.httpService.distri_order_cons({ order_id: this.orderId }).then((res) => {
       if (res.status == 1) {
        console.log(res)
+       this.contents=res.content
+       this.is_nices=res.is_nice
+       this.imgs=res.img
+       this.ids=res.id
+      }
+      if(res.status==0){
+         this.distri_order_con_info=true;
+         
+      }else{
+         this.distri_order_con_info=false;
       }
    })
   }
+
+  dissbale=true;
+  
+  submit() {
+   this.dissbale=false;
+    if(this.distri_order_con_info==true){  //新增接口
+      let sitems={
+         img: [],
+         order_id: this.orderId
+        }
+         if (this.items.img) {
+            for (let j = 0; j < this.items.img.length; j++) {
+               const img = this.items.img[j];
+               // params.goods_list[i].img[j] = img.img_url;
+               sitems.img.push(this.items.img[j]['img_url'])
+            }
+         }
+         console.log(sitems)
+         
+         this.httpServ.distri_order_consinfo(sitems,this.orderId).then((res) => {
+            if(res.status==1){
+               this.native.showToast('反馈成功')
+               this.dissbale=true
+               this.distri_order_consinfo()
+            }
+         })
+         
+    }else{   //修改接口
+      let sitems={
+         img: [],
+         order_id: this.orderId,
+         id:this.ids
+        }
+         if (this.items.img) {
+            for (let j = 0; j < this.items.img.length; j++) {
+               const img = this.items.img[j];
+               // params.goods_list[i].img[j] = img.img_url;
+               sitems.img.push(this.items.img[j]['img_url'])
+            }
+         }
+         console.log(sitems)
+         
+         this.httpServ.distri_order_consinfo(sitems,this.orderId).then((res) => {
+            if(res.status==1){
+               this.native.showToast('反馈成功')
+               this.dissbale=true
+               this.distri_order_consinfo()
+            }
+         })
+      
+    }
+    
+     
+}
+distri_order_conss(){
+   this.httpServ.distri_order_cons().then((res)=>{
+
+   })
+}
 
 }
 

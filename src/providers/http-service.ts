@@ -961,5 +961,9 @@ export class HttpService {
    distri_order_cons(data?, options?: HttpOptions) {
       return this.http.get(IP + '/user/distri_order_con', data, { showLoading: true, ...options })
    }
+   // 提交铺货订单反馈
+   distri_order_consinfo(data?, options?: HttpOptions) {
+      return this.http.post(IP + '/user/distri_order_con', data, { showLoading: true, ...options })
+   }
 
 }

@@ -167,7 +167,7 @@
                 <button ion-button round small outline color="jingku2" (click)="confirmReceipt(data?.order?.order_id)" *ngIf="data?.order?.order_status == '5' && data?.order?.shipping_status=='1'">确认收货</button>
                 <button ion-button round small outline color="jingku1" (click)="sealContract(data?.order?.order_id)" *ngIf="(data?.order?.seal_status==0||data?.order?.seal_status==1)&&data?.order?.pay_status==2">盖章</button>
                 <button ion-button round small outline color="jingku1" (click)="viewerContract(data?.order?.order_id)" *ngIf="data?.order?.contractid">查看合同</button>
-                <button ion-button round small outline color="jingku1" (click)="photoplays(data?.order?.order_id)">陈列照片</button>
+                <button ion-button round small outline color="jingku1" (click)="photoplays(data?.order?.order_id)" *ngIf="data?.order?. is_stop==0 && data?.order?.contractid">陈列照片</button>
                 <button ion-button round small color="jingku1" (click)="buyAgain(data?.order?.order_id)" *ngIf="(data?.order?.order_status==5 && data?.order?.pay_status==2 && data?.order?.shipping_status==2)||(data?.order?.order_status==2 && data?.order?.pay_status==0 && data?.order?.shipping_status==0)">再次购买</button>
             </div>
         </div>
