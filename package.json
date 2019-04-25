@@ -103,8 +103,8 @@
   "description": "jingku project",
   "cordova": {
     "platforms": [
-      "ios",
-      "android"
+      "android",
+      "ios"
     ],
     "cordovaPlatforms": [],
     "description": "jingku project",
