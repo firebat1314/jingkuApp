@@ -1,0 +1,62 @@
+<!--
+  Generated template for the EvaluationPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+    <ion-navbar>
+       <ion-title>陈列照片</ion-title>
+    </ion-navbar>
+ 
+ </ion-header>
+ 
+ 
+ <ion-content>
+    <form #evaluation="ngForm">
+     <p style="height: 44px;  line-height: 50px;  font-size: 16px;   margin-left: 10px;">陈列照片</p>
+         <div style="    display: table-cell;">
+               <div *ngFor="let img of imgs;let i = index;"class="add-zhizhao show" style="float: left; margin-left: 10px;"><img style="height: 80%;" [img-lazy-load]="img" alt="" style="        width: 70.92px;  height: 64px;">
+                 </div>
+           </div> 
+          <ng-container>
+           <p style="height: 44px;  line-height: 72px;  font-size: 16px;   margin-left: 10px;">上传陈列</p>
+                <div class="imgs">
+                    
+         
+                  <div class="add-zhizhao click" style="position: relative; " item-center icon-top>
+                        <img style="height: 24px;margin-bottom: 10px;" src="./assets/icon/evaluation.png" alt="">
+                        <span>选择图片</span>
+                        <input type="file" (get-image)="selectImgs($event,item)" style="width:100%;height:100%;position: absolute;opacity: 0;top:0;left: 0;">
+                     </div>
+            
+                   <div class="add-zhizhao show" *ngFor="let img of items.img;let i = index;" >
+                      <!-- <input type="hidden" [value]="img" name="goods_list[{{index}}].img[i]"> -->
+                      <img style="height: 80%;" [img-lazy-load]="img.base64" alt="" >
+                      <span class="delete-icon" tappable (click)="deletePic(index,imgs)"></span>
+                      
+                   </div>
+                  
+                </div> 
+             <!-- </fieldset> -->
+             <div  class="ptotoplay_detile">
+                <span class="ptotoplay_detiletit" >供货商反馈信息：</span>
+                <p *ngIf="distri_order_con_info==true"  class="ptotoplay_detilecon">暂无反馈</p>
+                <p  class="ptotoplay_detilecon" *ngIf="distri_order_con_info !=true">{{contents}}</p>
+                <span class="ptotoplay_detiletit">供货商满意程度</span> 
+                <p *ngIf="distri_order_con_info==true"  class="ptotoplay_detilecon">暂无反馈</p>
+                <p  class="ptotoplay_detilecon" *ngIf="distri_order_con_info !=true &&is_nices==0">不满意</p>
+                <p  class="ptotoplay_detilecon" *ngIf="distri_order_con_info !=true &&is_nices==1">中等</p>
+                <p  class="ptotoplay_detilecon" *ngIf="distri_order_con_info !=true &&is_nices==2">满意</p>
+              </div>
+          </ng-container>
+          <ion-buttons class="protoplay_detlitbut" *ngIf="distri_order_con_info==true" (click)="submit(evaluation)">
+              <button ion-button clear right color="jingku1"     style="color: aliceblue;" [disabled]="! dissbale">提交</button>
+           </ion-buttons>
+           <ion-buttons class="protoplay_detlitbut" *ngIf=" !distri_order_con_info==true" (click)="submit(evaluation)">
+            <button ion-button clear right color="jingku1"     style="color: aliceblue;" [disabled]="! dissbale">修改</button>
+         </ion-buttons>
+    </form>
+    
+ </ion-content>

@@ -262,4 +262,8 @@ export class OrderListDistributionPage {
          }
       })
    }
+   photoplays(ordersid){
+      this.navCtrl.push('photoplayPage',{ order_id: ordersid });
+    
+    }
 }

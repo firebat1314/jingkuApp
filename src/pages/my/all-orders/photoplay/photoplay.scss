@@ -1,0 +1,159 @@
+
+page-photoplay{
+    rating {
+		font-size: 18px !important;
+	}
+	.head {
+		display: flex;
+		background: #fff;
+		padding: 10px;
+		.img {
+			width: 80px;
+			height: 80px;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			overflow: hidden;
+			margin-right: 10px;
+			border: 1px solid #f0f0f0;
+         border-radius: 5px;
+         flex-shrink: 0;
+			img {
+				max-width: 100%;
+			}
+		}
+		.pinjia {
+			span {
+				display: block;
+				margin-bottom: 10px;
+			}
+		}
+		.star {
+			display: flex;
+			font-size: 18px;
+			color: #e5e5e5;
+			margin-top: 10px;
+			.icon {
+				margin-right: 10px;
+			}
+			.on {
+				color: #d6a916;
+			}
+		}
+	}
+	.user-input {
+		background: #fafafa;
+		position: relative;
+		textarea {
+			height: 10rem;
+			color: #4d4d4d;
+			background: #f8f8f8;
+			width: 100%;
+			border: none;
+			resize: none;
+			padding: 10px;
+			font-size: 1.2rem;
+		}
+		span {
+			position: absolute;
+			right: 8px;
+			font-size: 1rem;
+			bottom: 8px;
+			color: #666;
+		}
+	}
+	.imgs {
+		display: flex;
+		align-items: center;
+		white-space: nowrap;
+		overflow-x: auto;
+		padding: 10px;
+		margin-bottom: 10px;
+		.dredge-more-city-tit {
+			align-self: flex-start;
+		}
+		.add-zhizhao {
+			height: 80px;
+			width: 80px;
+			display: flex;
+			font-size: 1.3rem;
+			flex-direction: column;
+			align-items: center;
+			background: #fff;
+			border-radius: 3px;
+			color: #999;
+			justify-content: center;
+			margin-right: 10px;
+			box-shadow: 0 0px 13px rgba(0, 0, 0, 0.05);
+         flex-shrink: 0;
+         position: relative;
+			&:last-child {
+				margin-right: 0px;
+			}
+			.delete-icon {
+				background: url(../assets/icon/images/close-circled.png) no-repeat center center/100%;
+				position: absolute;
+				top: -7px;
+				right: -7px;
+				width: 18px;
+				height: 18px;
+				border-radius: 50%;
+			}
+			ion-icon {
+				font-size: 3rem;
+			}
+		}
+	}
+	.other {
+		background: #fff;
+		padding: 10px 16px;
+		padding-left: 36px;
+		color: #666666;
+		border-bottom: 1px solid #f0f0f0;
+		>div {
+			padding: 10px 0;
+			display: flex;
+			>div:first-child {
+				flex: 1;
+			}
+		}
+	}
+	.is_anonymity {
+		margin-bottom: 64px;
+		background: #fff;
+		>label {
+			padding: 14px 20px;
+			display: flex;
+			align-items: center;
+			.checkbox {
+				margin-right: 8px;
+			}
+		}
+    }
+    .ptotoplay_detile{
+        margin-top: 7%; padding: 10px;border-bottom: 1px solid #CCC;
+    }
+    .ptotoplay_detiletit{
+        color: #3d3d3d;
+        font-size: 15px;
+        line-height: 35px;
+        height: 35px;
+        display: inline-block;
+    }
+    .ptotoplay_detilecon{
+        color: #606060;
+        font-size: 13px;
+        line-height: 13px;
+        height: 15px;
+        display: block;
+    }
+    .protoplay_detlitbut{
+        width: 96%;
+        text-align: center;
+        background: #66a6fe;
+        margin-left: 2%;
+        color: #FFF;
+        margin-top: 6%;
+    }
+    
+}

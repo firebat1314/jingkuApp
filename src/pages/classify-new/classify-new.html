@@ -38,7 +38,7 @@
    </ion-refresher>
 
    <div class="list2">
-      <ng-container *ngIf="selectedId!=6">
+      <ng-container *ngIf="selectedId!=6 && selectedId!=5 &&selectedId!=4 ">
          <div class="list2_item" *ngFor="let item of childrenCaCtegory">
             <div class="list2_header" tappable (click)="goBrandList(item)">
                {{item.cat_name}}
@@ -53,10 +53,10 @@
             </div>
          </div>
       </ng-container>
-      <ng-container *ngIf="selectedId==6">
+      <ng-container *ngIf="selectedId==6 ||selectedId ==5 ||selectedId ==4   ">
          <div class="list2_item" margin-top>
             <div class="list3">
-               <div class="brand" tappable (click)="openCategoryMeun(item)" *ngFor="let item of childrenCaCtegory">
+               <div class="brand" style="width:30%" tappable (click)="openCategoryMeun(item)" *ngFor="let item of childrenCaCtegory">
                   <div class="brand_img">
                      <img [img-lazy-load]="item.thumb" alt="">
                   </div>
