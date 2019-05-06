@@ -147,7 +147,7 @@ this.distri_order_consinfo()
          })
       
     }
-    
+   //  this.navCtrl.push('photoplayPage',{ order_id: this.orderId });
      
 }
 distri_order_conss(){

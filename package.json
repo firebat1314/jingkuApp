@@ -140,7 +140,6 @@
       "cordova-plugin-device": {},
       "cordova-plugin-x-toast": {},
       "cordova-plugin-screen-orientation": {},
-      "cordova-plugin-splashscreen": {},
       "mx.ferreyra.callnumber": {},
       "cordova-plugin-badge": {},
       "cordova-plugin-inappbrowser": {},
@@ -158,14 +157,17 @@
         "ANDROID_PATHPREFIX": "/"
       },
       "cordova-plugin-qrscanner": {},
-      "cordova-plugin-ionic-webview": {},
       "cordova-plugin-ionic-keyboard": {},
       "cordova-plugin-app-version": {},
       "cordova-plugin-network-information": {},
       "cordova-plugin-pingpp": {},
       "cordova-clipboard": {},
       "cordova-plugin-file": {},
-      "cordova-plugin-whitelist": {}
+      "cordova-plugin-whitelist": {},
+      "cordova-plugin-ionic-webview": {
+        "ANDROID_SUPPORT_ANNOTATIONS_VERSION": "27.+"
+      },
+      "cordova-plugin-splashscreen": {}
     }
   }
 }

@@ -61,6 +61,7 @@
             <div class="lab" (click)="mach_type = 2" *ngIf="data?.settings?.is_half==1" [ngClass]="{'on':mach_type == 2}">半框</div>
             <div class="lab" (click)="mach_type = 3" *ngIf="data?.settings?.is_cut==1" [ngClass]="{'on':mach_type == 3}">无框切边</div>
             <div class="lab" (click)="mach_type = 4" *ngIf="data?.settings?.is_punch==1" [ngClass]="{'on':mach_type == 4}">无框打孔</div>
+            <div class="lab" (click)="mach_type = 5" *ngIf="data?.settings?.is_color==1" [ngClass]="{'on':mach_type == 5}">染色加工</div>
          </div>
          <div class="m_list">
             <div class="li">

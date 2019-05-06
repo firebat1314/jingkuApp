@@ -27,7 +27,8 @@ export class AccountWithdrawPage {
     open_bank: '',
     name: '',
     amount: '',
-    desc: ''
+    desc: '',
+    password:''
   }
 
   constructor(

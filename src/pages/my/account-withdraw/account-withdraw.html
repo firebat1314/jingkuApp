@@ -33,6 +33,14 @@
             <ion-item>
                 <ion-label color="primary" fixed>
                     <span ion-text color="google">*</span>
+                    <span>提现密码：</span>
+                </ion-label>
+                <ion-input autocomplete="off" autocorrect="off" required clearInput type="password" placeholder="请填写提现密码" [(ngModel)]="formData.password" name="bank"></ion-input>
+            </ion-item>
+
+            <ion-item>
+                <ion-label color="primary" fixed>
+                    <span ion-text color="google">*</span>
                     <span>提现银行：</span>
                 </ion-label>
                 <ion-input autocomplete="off" autocorrect="off" disabled required type="text" placeholder="请填写提现银行" [(ngModel)]="open_bank.name" name="bank_holder" (click)="openbank.open()"></ion-input>
