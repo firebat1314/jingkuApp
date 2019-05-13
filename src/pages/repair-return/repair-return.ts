@@ -223,6 +223,8 @@ export class RepairReturnPage {
       ]
     });
     actionSheet.present();
+
+    // this.navCtrl.push('batchapplicationPage');
   }
   clickWarn(e) {
     e.stopPropagation();

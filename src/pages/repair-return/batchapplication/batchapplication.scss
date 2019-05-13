@@ -1,0 +1,34 @@
+batchapplication {
+    $defaultColor: #cbcbcb;
+    $color: #50c65f;
+    .scroll-content {
+        background: #F5F5F5 !important;
+        padding: 0 22px;    
+    }
+    .mysearchbar {
+        @include mysearchbar;
+    }
+    .shopping_title{
+        font-size: 26px;
+        font-weight:400;
+color:rgba(51,51,51,1);
+    }
+   .shopping_title_ico{    font-size: 50px;
+        transform: rotate(-45deg);
+        color: #3F69A5;
+    }
+        .searhbartit{
+            width: 100%;
+            background: #F5F5F5;
+            height: 4rem;
+            position: relative;
+        }
+      .mysearchbarcon  {
+            position: absolute;
+            top: 0.5rem;
+            border-radius: 32%;
+            width: 94%;
+            left: 0.7rem;
+        }
+   
+}

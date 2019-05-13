@@ -1,0 +1,36 @@
+<!--
+  Generated template for the ServiceOrderDetailsPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+    <ion-navbar>
+        <ion-title>添加商品</ion-title>
+        <ion-buttons right>
+            <button ion-button clear icon-only icon-left right open-more="MoreMenuPage">
+                <ion-icon name="ios-more"></ion-icon>
+            </button>
+        </ion-buttons>
+    </ion-navbar>
+</ion-header>
+
+<ion-content>
+        <div class="searhbartit">
+        <ion-toolbar class="mysearchbar">
+                <form action=""  class="searchform mysearchbarcon">
+                    <ion-searchbar mode="ios" [ngModelOptions]="{standalone: true}" [(ngModel)]="options" (keypress)="searchOrder($event)"
+                        placeholder="请输入订单号或者商品编号" animated="true" showCancelButton cancelButtonText="取消" ></ion-searchbar>
+                </form>
+            </ion-toolbar>
+        </div>
+            <p class="shopping_title">添加商品  <ion-icon name="close-circle" class="shopping_title_ico"></ion-icon></p>
+            
+</ion-content>
+
+<!-- <ion-footer *ngIf="data?.repair_info?.return_status==0">
+    <ion-toolbar>
+        <button ion-button color="jingku1" float-right outline (click)="cancelApply(data?.repair_info?.return_id)">取消申请</button>
+    </ion-toolbar>
+</ion-footer> -->   

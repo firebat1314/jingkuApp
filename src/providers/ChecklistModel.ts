@@ -49,7 +49,7 @@ export class RadiolistModel {
          this.item.max_price = null;
       } else {
          this.item.min_price = Number(item.min_price);
-         this.item.max_price = Number(item.max_price);
+         this.item.max_price = Number(item.max_price);   
          for (let i = 0; i < items.length; i++) {
             items[i].selected = 0;
          }

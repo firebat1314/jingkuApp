@@ -44,7 +44,7 @@
             抱歉，没有查询相关信息！
         </div>
         <div class="order" *ngFor="let item of order?.list">
-            <div class="order-head">
+            <div class="order-head">    
                 <span>订单编号：{{item.order_sn}}</span>
                 <span>下单时间：{{item.add_time}}</span>
             </div>
@@ -66,7 +66,10 @@
             </div>
             <div class="order-foot">
                 <!-- <label tappable><ion-checkbox color="jingku1" mode="ios" [(ngModel)]="item.selected"></ion-checkbox>全选</label> -->
-                <span *ngIf="item.huan_end==0&&item.tui_end==0&&item.xiu_end==0" class="mj_ico1">不可售后</span>
+                <span *ngIf="item.huan_end==0&&item.tui_end==0&&item.xiu_end==0" class="mj_ico1">不可售后
+                       <!-- <ion-icon *ngIf="(item.huan_end==0&&item.tui_end==0&&item.xiu_end==0)" style="font-size: 23px;color: #666666;" class="checkbox"
+                name="ios-help-circle-outline" (click)="clickWarn($event)"></ion-icon>  -->
+                </span>
                 <span *ngIf="item.huan_end==1" class="mj_ico1">可换货</span>
                 <span *ngIf="item.tui_end==1" class="mj_ico1">可退货</span>
                 <span *ngIf="item.xiu_end==1" class="mj_ico1">可维修</span>
