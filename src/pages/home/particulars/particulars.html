@@ -63,10 +63,18 @@
          </div>
       </div>
       <div class="fore price-info" *ngIf="getGoodsInfo?.price_section?.length!=0&&mine?.showPrice">
+      <div class="cgl_price_info">
+            <span>
+                  采购量
+               </span>
+               <span style="padding:0">
+                  优 &nbsp;&nbsp;惠
+               </span>
+      </div> 
          <div class="main">
             <div class="info-item" *ngFor="let item of getGoodsInfo?.price_section">
-               <span *ngIf="item.max_num">{{item.number+'-'}}{{item.max_num}}</span>
-               <span *ngIf="!item.max_num">大于{{item.number}}</span>
+              <span *ngIf="item.max_num">{{item.number+'-'}}{{item.max_num}}</span>
+              <span *ngIf="!item.max_num">大于{{item.number}}</span>
                <span>{{item.format_price}}</span>
             </div>
          </div>

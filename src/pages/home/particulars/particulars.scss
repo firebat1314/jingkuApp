@@ -804,4 +804,15 @@ page-particulars {
       top: -44px;
       left: 0;
    }
+   .cgl_price_info{
+      width: 20%;
+      display: inline-block;
+      float: left;
+      font-size: 1.4rem;
+      padding-left: 4%;
+   }
+   .cgl_price_info span{
+      padding-top: 17%;
+    display: inline-block;
+   }
 }

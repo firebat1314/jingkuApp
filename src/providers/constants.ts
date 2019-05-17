@@ -18,4 +18,4 @@ export const version = '1.1.4';
 
 export const version_m = '1.1.1';
 
-export const phone_nember = '400-080-5118';
+export const phone_nember = '400-080-5118'; 
