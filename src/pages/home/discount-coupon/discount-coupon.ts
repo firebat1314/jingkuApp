@@ -268,7 +268,7 @@ export class DiscountCouponPage {
             this.httpService.sendByUser({ type_id: item.type_id }).then((res) => {
                if (res.status == 1) {
                   this.native.showToast('领取优惠券成功');
-                  item.is_get = 1
+                  this.getCategory();
                }
             })
          })

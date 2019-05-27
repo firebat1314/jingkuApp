@@ -58,6 +58,7 @@ export class DistributionPage {
             this.selected = id;
             this.data = res;
             this.goodsList = res.goods;
+            console.log(this.goodsList)
          }
       })
    }

@@ -15,19 +15,21 @@
 
 <ion-content parallax-header>
    <div *ngIf="data" fadeIn>
+         <div class="quick_buy">
+               <ul class="top_menu">
+                  <li class="menu_ico" tappable (click)="getData(0)" [ngClass]="{'meon':selected==0}">全部</li>
+                  <li class="menu_icotwo"></li>
+                  <ng-container *ngFor="let item of category?.data">
+                     <li class="menu_ico" tappable (click)="getData(item.cat_id)" [ngClass]="{'meon':selected==item.cat_id}">{{item.cat_name}}</li>
+                  </ng-container>
+               </ul>
+            </div>
       <div class="top_img header-image">
          <img [ads-click]="ads" *ngFor="let ads of category?.bannerone" [img-lazy-load]="ads?.ad_img" defaultSrc="./assets/images/images/640-320.jpg" width="100%" alt="">
       </div>
       <div class="main-content">
 
-         <div class="quick_buy">
-            <ul class="top_menu">
-               <li class="menu_ico" tappable (click)="getData(0)" [ngClass]="{'meon':selected==0}">全部</li>
-               <ng-container *ngFor="let item of category?.data">
-                  <li class="menu_ico" tappable (click)="getData(item.cat_id)" [ngClass]="{'meon':selected==item.cat_id}">{{item.cat_name}}</li>
-               </ng-container>
-            </ul>
-         </div>
+   
 
 
          <no-goods *ngIf="data&&!data?.data?.length"></no-goods>

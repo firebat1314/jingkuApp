@@ -45,6 +45,7 @@ export class ParticularsModalPage {
   dredgeMoreCity() {
     this.dismiss('goDredgeMoreCityPage');
   }
+  is_getss
   getPrivilege(item, event) {
     if (item.is_get == 1) {
       this.native.showToast('已经领取过了哦');
@@ -52,10 +53,37 @@ export class ParticularsModalPage {
       this.httpService.sendByUser({ type_id: item.type_id }).then((res) => {
         if (res.status) {
           this.native.showToast('领取成功');
-          this.getBonus[event].is_get = 1;
+          this.httpService.goodsInfos({ goods_id: this.goodsId }).then((res) => {
+              
+            
+            if (res.status == 1) {
+              this.is_getss=res.bonus
+           // for(var i =0;i<res.bonus.length;i++){
+             
+           // }
+              console.log(res)
+            }
+          
+        
+         })
         }
       });
     }
+  }
+  ngOnInit(){
+    this.httpService.goodsInfos({ goods_id: this.goodsId }).then((res) => {
+              
+            
+      if (res.status == 1) {
+        this.is_getss=res.bonus
+     // for(var i =0;i<res.bonus.length;i++){
+       
+     // }
+        console.log(res)
+      }
+    
+  
+   })
   }
   getAreaData() {
     return this.httpService.goodsInfos({ goods_id: this.goodsId }).then((res) => {

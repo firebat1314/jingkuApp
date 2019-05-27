@@ -7,7 +7,7 @@
 <ion-header>
 
     <ion-navbar>
-        <ion-title>添加商品</ion-title>
+        <ion-title>批量申请售后</ion-title>
         <ion-buttons right>
             <button ion-button clear icon-only icon-left right open-more="MoreMenuPage">
                 <ion-icon name="ios-more"></ion-icon>
@@ -25,8 +25,49 @@
                 </form>
             </ion-toolbar>
         </div>
-            <p class="shopping_title">添加商品  <ion-icon name="close-circle" class="shopping_title_ico"></ion-icon></p>
-            
+            <!-- <p class="shopping_title">添加商品  <ion-icon name="close-circle" class="shopping_title_ico"></ion-icon></p> -->
+            <div style="border:1px solid #E6E6E6;    margin-bottom: 1.7rem;"></div>
+            <div style=" padding: 0 0.8rem; " (click)="csdds()">
+                    <div class="contents_add">
+                             <div class="contents_addimg">
+                                <img src=".../../../../../assets/images/jifen.jpg" alt="">
+                             </div>  
+                             <div class="contents_addtext">
+                                        <p class="contents_addtit">
+                                            商品名称商品名称商品名称商品名称商品名称商品名称
+                                        </p>
+                                        <p><span class="contents_addmon"> 退款金额：</span><span class="contents_addmub">¥5000</span>   </p>
+                                        <p><span class="contents_addmon">退款数量：</span><span class="contents_addmub">50</span></p>
+                             </div>
+
+                    </div>
+                    <div class="contents_add">
+                        <div class="contents_addimg">
+                           <img src=".../../../../../assets/images/jifen.jpg" alt="">
+                        </div>  
+                        <div class="contents_addtext">
+                                   <p class="contents_addtit">
+                                       商品名称商品名称商品名称商品名称商品名称商品名称
+                                   </p>
+                                   <p><span class="contents_addmon"> 退款金额：</span><span class="contents_addmub">¥5000</span>   </p>
+                                   <p><span class="contents_addmon">退款数量：</span><span class="contents_addmub">50</span></p>
+                        </div>
+
+               </div>
+               <div class="contents_add">
+                <div class="contents_addimg">
+                   <img src=".../../../../../assets/images/jifen.jpg" alt="">
+                </div>  
+                <div class="contents_addtext">
+                           <p class="contents_addtit">
+                               商品名称商品名称商品名称商品名称商品名称商品名称
+                           </p>
+                           <p><span class="contents_addmon"> 退款金额：</span><span class="contents_addmub">¥5000</span>   </p>
+                           <p><span class="contents_addmon">退款数量：</span><span class="contents_addmub">50</span></p>
+                </div>
+
+       </div>
+            </div>
 </ion-content>
 
 <!-- <ion-footer *ngIf="data?.repair_info?.return_status==0">

@@ -10,13 +10,20 @@ import { Native } from '../../../providers/native';
  * on Ionic pages and navigation.
  */
 @IonicPage({
-  segment:'batchapplication'
+  segment:'chooseaftersalegoods'
 })
 @Component({
-  selector: 'batchapplication',
-  templateUrl: 'batchapplication.html',
+  selector: 'chooseaftersalegoods',
+  templateUrl: 'chooseaftersalegoods.html',
 })
-export class batchapplicationPage {
+export class chooseaftersalegoodsPage {
+  item3:{
+    goods_properties:{
+      number:2,
+      goods_number:1,
+    }
+
+  }
 
   return_id = this.navParams.get('return_id');
   constructor(
@@ -32,9 +39,9 @@ export class batchapplicationPage {
   ionViewDidLoad() {
     console.log('ionViewDidLoad ServiceOrderDetailsPage');
   }
+  sublime(){
+    // alert(1111)
+    this.navCtrl.push('forsubmissionPage'); 
+  }
 
-csdds(){
-  this.navCtrl.push('chooseaftersalegoodsPage');
-  // alert(111)
-}
 }

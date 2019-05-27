@@ -1,0 +1,167 @@
+chooseaftersalegoods {
+    $defaultColor: #cbcbcb;
+    $color: #50c65f;
+    .scroll-content {
+        background: #F5F5F5 !important;
+        font-size: 0.91rem;
+    }
+    .mysearchbar {
+        @include mysearchbar;
+    }
+    .chooseaftersalegoods_con{
+        margin:1rem 1rem;
+    }
+
+//     .shopping_title{
+//         font-size: 26px;
+//         font-weight:400;
+// color:rgba(51,51,51,1);
+//     }
+//    .shopping_title_ico{    font-size: 50px;
+//         transform: rotate(-45deg);
+//         color: #3F69A5;
+//     }
+//         .searhbartit{
+            // width: 100%;
+            // background: #F5F5F5;
+            // height: 4rem;
+            // position: relative;
+            // margin-bottom: 0.5rem;
+//         }
+//       .mysearchbarcon  {
+//             position: absolute;
+//             top: 0.5rem;
+//             border-radius: 32%;
+//             width: 94%;
+//             left: 0.7rem;
+//         }
+        .contents_add{
+              height: 7.79rem;
+            width: 100%;
+            border-radius: 2%;
+            background: #FFFFFF;
+            margin-bottom: 1.6rem;
+        }
+        .contents_addimg{
+            float: left;
+        }
+        .contents_addimg img{
+            width: 5.8rem;
+            height: 5.8rem;
+            margin-top: 1rem;
+            margin-left: 0.79rem;
+            margin-right: 0.875rem;
+        }
+        .contents_addtext{
+            width: 15.58rem;
+            float: left;
+            margin-top: 1rem;
+        }
+        .contents_addtit{
+            font-size: 0.91rem;
+            color: #333333;
+        }
+        .contents_addmon{
+            color: #808080;
+            font-size: 0.8rem;
+        }
+  .contents_addmub {
+    color:#4D4D4D;
+    font-size: 0.8rem;
+   }
+   .num{
+    height: 2.3rem;
+}
+.shop-tabs-item-img {
+    height: 2.3rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    float: left;
+    img {
+        text-align: center;
+        width: 20px;
+        max-height: 100%;
+    }
+}
+.shop-tabs-item-text{
+    float: left;
+    padding-top: 0.4rem;
+    margin-left: 0.83rem;
+}
+.order_details_info{
+    width: 100%;
+    height: 12rem;
+    display: block;
+    width: 100%;
+    height: 3rem;
+    padding-left: 0.8rem;
+    display: block;
+    padding-top: 0.6rem !important;
+    border-bottom: 1px solid #F2F2F2;
+}
+.checkswrap{float: left; 
+    margin-right: 0.79rem;
+    height: 13.16rem;
+    margin-left: 0.8rem;}
+.ordernumber{   
+        float: left;
+    width: 72%;
+    margin-top: 0 !important;
+}
+.box_ordernumber p,.box_ordernumber{
+    margin-bottom: 0.7rem;
+    margin-top: 0.91rem;
+        // padding-top: 0.83rem;
+
+}
+
+.contents_add_box{
+    height: 17.5rem;
+    overflow: hidden;
+    background: #FFF;
+    border-radius: 2%;
+    margin-bottom: 0.8rem;
+}
+.number{
+    float: right;
+    margin-right: 1.2rem;
+}
+.viewmore{
+    border-radius: 2%;
+    width: 100%;
+    background: #FFF;
+    height: 2.7rem;
+    line-height: 2.7rem;
+    text-align: -webkit-center;
+    margin-bottom: 0.8rem;
+}
+.easons_forrefund_bz{
+    background: #FFF;
+    height: 13.3rem;
+    width: 100%;
+    border-radius: 2%;
+    padding-left: 0.83rem;
+    padding-top: 1.29rem;
+    margin-bottom: 0.8rem;
+}
+.easons_forrefund_bz p{
+    margin-bottom: 0.7rem;
+    margin-top: 0.91rem;
+}
+.easons_forrefund_bzk{
+    width: 76%;
+    border: 1px solid #CCC;
+    border-radius: 3%;
+    height: 2.91rem;
+}
+.submit{
+    width: 100%;
+    height: 3.33rem;
+    background: #3F69A5;
+    border-radius: 2%;
+    color:#FFF;
+    line-height: 3.33rem;
+    text-align: center;
+}
+}

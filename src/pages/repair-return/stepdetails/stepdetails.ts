@@ -10,13 +10,21 @@ import { Native } from '../../../providers/native';
  * on Ionic pages and navigation.
  */
 @IonicPage({
-  segment:'batchapplication'
+  segment:'stepdetails'
 })
 @Component({
-  selector: 'batchapplication',
-  templateUrl: 'batchapplication.html',
+  selector: 'stepdetails',
+  templateUrl: 'stepdetails.html',
 })
-export class batchapplicationPage {
+export class stepdetailsPage {
+  cityName: string = '请选择'; //初始化城市名
+  item3:{
+    goods_properties:{
+      number:2,
+      goods_number:1,
+    }
+
+  }
 
   return_id = this.navParams.get('return_id');
   constructor(
@@ -32,9 +40,13 @@ export class batchapplicationPage {
   ionViewDidLoad() {
     console.log('ionViewDidLoad ServiceOrderDetailsPage');
   }
-
-csdds(){
-  this.navCtrl.push('chooseaftersalegoodsPage');
-  // alert(111)
-}
+  csdds(){
+    this.navCtrl.push('chooseaftersalegoodsPage');
+    // alert(111)
+  }
+  sbumit(){
+    this.navCtrl.push('chooseaftersalegoodsPage');
+  }
+  returnState:1;
+  
 }

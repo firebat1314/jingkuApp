@@ -1,0 +1,106 @@
+<!--
+  Generated template for the ServiceOrderDetailsPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+    <ion-navbar>
+        <ion-title>选择商品</ion-title>
+        <ion-buttons right>
+            <button ion-button clear icon-only icon-left right open-more="MoreMenuPage">
+                <ion-icon name="ios-more"></ion-icon>
+            </button>
+        </ion-buttons>
+    </ion-navbar>
+</ion-header>
+
+<ion-content>
+   <div class="chooseaftersalegoods_con">
+
+  
+    <div class="contents_add">
+        <div class="contents_addimg">
+           <img src=".../../../../../assets/images/jifen.jpg" alt="">
+        </div>  
+        <div class="contents_addtext">
+                   <p class="contents_addtit">
+                       商品名称商品名称商品名称商品名称商品名称商品名称
+                   </p>
+                   <p><span class="contents_addmon"> 退款金额：</span><span class="contents_addmub">¥5000</span>   </p>
+                   <p><span class="contents_addmon">退款数量：</span><span class="contents_addmub">50</span></p>
+        </div>
+
+    </div>
+    <div class="contents_add_box">
+        <div class="order_details_info">
+                <div class="num shop-tabs-item-img">
+                        <img src="./assets/icon/store-home/shop.png" *ngIf="classShop!='shopHome'" alt="">
+                        <img src="./assets/icon/store-home/shop1.png" *ngIf="classShop=='shopHome'" alt="">
+                    </div>
+                    <p class="shop-tabs-item-text">供货商名称：北京沙福隆官方旗舰店</p>
+        </div>
+          <div class="box_ordernumber">
+          
+           <div>
+            <div class="checkswrap">
+                <ion-checkbox color="jingku1" tappable  [checked]="item1?.is_select==1" mode="ios"></ion-checkbox>
+                <ion-checkbox *ngIf="isEdit" color="jingku1" (click)="check1(item1,carDetails)" [(ngModel)]="item1.selected" mode="ios"></ion-checkbox>
+             </div>
+           <p class="ordernumber"> 订单编号：234324234234234234</p> 
+           </div>     
+           <p style="display: -webkit-inline-box;"> 下单时间：2019-02-02 </p> 
+            <p> 订单金额：￥500</p>     
+            <p>  商品数量：50</p>     
+            <p style="    float: left; ">  可退数量：50   </p>     
+            <div class="number">
+                <count-input [minValue]="item3?.goods_properties?.number||1" [maxValue]="2" [rank]="item3?.goods_properties?.number"  [value]="item3?.goods_number" [hasBorder]="true"></count-input>
+             </div>
+          </div>
+         
+    </div>
+  <!-- 第二个店铺 -->
+  <div class="contents_add_box">
+    <div class="order_details_info">
+            <div class="num shop-tabs-item-img">
+                    <img src="./assets/icon/store-home/shop.png" *ngIf="classShop!='shopHome'" alt="">
+                    <img src="./assets/icon/store-home/shop1.png" *ngIf="classShop=='shopHome'" alt="">
+                </div>
+                <p class="shop-tabs-item-text">供货商名称：北京沙福隆官方旗舰店</p>
+    </div>
+      <div class="box_ordernumber">
+      
+       <div>
+        <div class="checkswrap">
+            <ion-checkbox color="jingku1" tappable  [checked]="item1?.is_select==1" mode="ios"></ion-checkbox>
+            <ion-checkbox *ngIf="isEdit" color="jingku1" (click)="check1(item1,carDetails)" [(ngModel)]="item1.selected" mode="ios"></ion-checkbox>
+         </div>
+       <p class="ordernumber"> 订单编号：234324234234234234</p> 
+       </div>     
+       <p style="display: -webkit-inline-box;"> 下单时间：2019-02-02 </p> 
+        <p> 订单金额：￥500</p>     
+        <p>  商品数量：50</p>     
+        <p style="    float: left; ">  可退数量：50   </p>     
+        <div class="number">
+            <count-input [minValue]="item3?.goods_properties?.number||1" [maxValue]="2" [rank]="item3?.goods_properties?.number"  [value]="item3?.goods_number" [hasBorder]="true"></count-input>
+         </div>
+      </div>
+     
+</div>
+<div class="viewmore"> 查看更多</div>
+<div class="easons_forrefund_bz">
+    <p>退款原因： <input type="text" class="easons_forrefund_bzk"></p>
+    <p>退款金额：￥300</p>
+    <p>上传图片：</p>
+</div>
+<div class="submit" (click)="sublime()">提交</div>
+</div> 
+
+</ion-content>
+
+<!-- <ion-footer *ngIf="data?.repair_info?.return_status==0">
+    <ion-toolbar>
+        <button ion-button color="jingku1" float-right outline (click)="cancelApply(data?.repair_info?.return_id)">取消申请</button>
+    </ion-toolbar>
+</ion-footer> -->   

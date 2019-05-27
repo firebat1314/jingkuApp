@@ -48,6 +48,7 @@ export class EvaluationOverPage {
             this.httpServ.commentCommentReckon({ suppliers_id: this.suppliers_id }).then(res => {
                if (res.status == 1) {
                   this.reckon = res;
+                  
                }
             })
          }

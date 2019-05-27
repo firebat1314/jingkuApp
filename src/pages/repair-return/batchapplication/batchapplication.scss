@@ -3,7 +3,7 @@ batchapplication {
     $color: #50c65f;
     .scroll-content {
         background: #F5F5F5 !important;
-        padding: 0 22px;    
+       
     }
     .mysearchbar {
         @include mysearchbar;
@@ -22,6 +22,7 @@ color:rgba(51,51,51,1);
             background: #F5F5F5;
             height: 4rem;
             position: relative;
+            margin-bottom: 0.5rem;
         }
       .mysearchbarcon  {
             position: absolute;
@@ -30,5 +31,38 @@ color:rgba(51,51,51,1);
             width: 94%;
             left: 0.7rem;
         }
-   
+        .contents_add{
+              height: 7.79rem;
+            width: 100%;
+            border-radius: 2%;
+            background: #FFFFFF;
+            margin-bottom: 1.6rem;
+        }
+        .contents_addimg{
+            float: left;
+        }
+        .contents_addimg img{
+            width: 5.8rem;
+            height: 5.8rem;
+            margin-top: 1rem;
+            margin-left: 0.79rem;
+            margin-right: 0.875rem;
+        }
+        .contents_addtext{
+            width: 15.58rem;
+            float: left;
+            margin-top: 1rem;
+        }
+        .contents_addtit{
+            font-size: 0.91rem;
+            color: #333333;
+        }
+        .contents_addmon{
+            color: #808080;
+            font-size: 0.8rem;
+        }
+  .contents_addmub {
+    color:#4D4D4D;
+    font-size: 0.8rem;
+   }
 }

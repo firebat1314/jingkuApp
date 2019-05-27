@@ -19,20 +19,21 @@
 <ion-content class="outer-content">
     <div class="privilege" *ngIf="title=='优惠券'">
         <!--<p style="padding-left: 10px;" *ngIf="getBonus&&getBonus.length!=0">可领优惠券</p>-->
-        <button class="main" *ngFor="let item of getBonus;let i = index" [ngClass]="{'cantget':item.is_get == 1||item.is_get == 2}">
+        <button class="main" *ngFor="let items of is_getss;let i = index" [ngClass]="{'cantget':items.is_get == 1||items.is_get == 2}">
             <div class="left">
-                <div><span class="price">¥<span>{{item.int_type_money}}</span></span>【满{{item.min_goods_amount}}可用】</div>
-                <div>{{item.suppliers_name}}</div>
-                <div>{{item.use_start_date}}--{{item.use_end_date}}</div>
+                <div><span class="price">¥<span>{{items.int_type_money}}</span></span>【满{{items.min_goods_amount}}可用】</div>
+                <div>{{items.suppliers_name}}</div>
+                <div>{{items.use_start_date}}--{{items.use_end_date}}</div>
             </div>
-            <div class="right">
-                <my-canvas *ngIf="item.is_get==0" [baifen]="item.baifen.slice(0,-1)"></my-canvas>
-                <div *ngIf="item.is_get==0" ion-button small round block class="click" tappable (click)="getPrivilege(item,i)">点击领劵</div>
+         
+            <div class="right" >
+                <my-canvas *ngIf="items.is_get==0" [baifen]="items.baifen.slice(0,-1)"></my-canvas>
+                <div *ngIf="items.is_get==0" ion-button small round block class="click" tappable (click)="getPrivilege(items,i)">点击领劵</div>
                 
-                <img *ngIf="item.is_get==1" src="./assets/icon/images/particulars_coupon_02_03.png" width="60" height="60" alt="">
-                <div *ngIf="item.is_get==1" ion-button small round block class="click" tappable (click)="getPrivilege(item,i)">已领取</div>
+                <img *ngIf="items.is_get==1" src="./assets/icon/images/particulars_coupon_02_03.png" width="60" height="60" alt="">
+                <div *ngIf="items.is_get==1" ion-button small round block class="click" tappable (click)="getPrivilege(items,i)">已领取</div>
 
-                <div *ngIf="item.is_get==2" ion-button small round block class="click" tappable (click)="getPrivilege(item,i)">已抢光</div>
+                <div *ngIf="items.is_get==2" ion-button small round block class="click" tappable (click)="getPrivilege(items,i)">已抢光</div>
             </div>
         </button>
     </div>
