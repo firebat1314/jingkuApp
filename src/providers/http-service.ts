@@ -416,6 +416,10 @@ export class HttpService {
    indexs(data?: Object) {//首页统一
       return this.http.get(IP + '/Index/indexs', data, { showLoading: false })
    }
+   // 首页广告弹窗
+   advertisingwindow(data?:object){
+      return this.http.get(IP+'/Index/ad_tan',data) 
+   }
    suppliersIndex(data?: Object) {//店铺首页
       return this.http.post(IP + '/Category/suppliers_index', data, { showLoading: true })
    }

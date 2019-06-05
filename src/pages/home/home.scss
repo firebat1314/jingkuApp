@@ -2,7 +2,31 @@ page-home {
    img {
       width: 100%;
    }
+   .mark {
+      position: fixed;
+      height: 100%;
+      width: 100%;
+      background: rgba(0, 0, 0, .7);
+      z-index: 10;
+      background-repeat: no-repeat;
+      background-size: 100% 100%;
+      text-align: -webkit-center;
+      >div {
+         // width: 200px;
+         margin: auto;
 
+         span {
+            user-select: text;
+         }
+      }
+      .yaoqingshuoming{
+           width: 100%;
+          text-align: -webkit-center;
+          background: #FFF;
+          border-radius: 2% 2% 0 0;
+         }
+   
+   }
    .unread {
       position: absolute;
       top: -3px;

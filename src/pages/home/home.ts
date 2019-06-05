@@ -90,6 +90,7 @@ export class HomePage {
       console.log('ionViewDidLoad HomePage');
    }
    ngOnInit() {
+      this.advertisingwindows()
       this.events.subscribe('home:update', () => {
          this.getHomeData()
       });
@@ -196,6 +197,20 @@ export class HomePage {
          if (res.status == 1) {
             this.content.scrollTo(0, dom.offsetTop);
             item.Recommend = res;
+         }
+      })
+   }
+   showMarks: boolean = true;
+   hideMark(){
+      this.showMarks = false;
+   }
+   ad_imgs=""
+   herfs=""
+   advertisingwindows(){
+      this.httpService.advertisingwindow().then((res)=>{
+         if(res.status==1){
+          this.ad_imgs= res.ads[0].ad_img;
+          this.herfs=res.ads[0]
          }
       })
    }

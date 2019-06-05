@@ -146,85 +146,85 @@ export class RepairReturnPage {
    * @param 
    */
   submitAll() {
-    let order_ids = [];
-    let rec_ids = [];
-    for (var i in this.order.list) {
-      if (this.order.list[i].selected) {
-        order_ids.push(this.order.list[i].order_id);
-        rec_ids.push(this.order.list[i].rec_id);
-      }
-    }
-    if (!order_ids.length || !rec_ids.length) {
-      this.native.showToast('请选择订单');
-      return;
-    }
-    let actionSheet = this.actionSheetCtrl.create({
-      title: '服务类型',
-      buttons: [
-        {
-          text: '退货',
-          role: '',
-          handler: () => {
-            console.log('1');
-            this.httpService.isGoodsRepair({
-              orders: {
-                order_ids: order_ids.join(','),
-                rec_ids: rec_ids.join(',')
-              }, type: 1
-            }).then((res) => {
-              if (res.status) {
-                this.navCtrl.push('ApplyServicePage', {
-                  order_ids: order_ids.join(','), rec_ids: rec_ids.join(','), type: 1
-                });
-              }
-            })
-          }
-        }, {
-          text: '换货',
-          handler: () => {
-            console.log('2');
-            this.httpService.isGoodsRepair({
-              orders: {
-                order_ids: order_ids.join(','),
-                rec_ids: rec_ids.join(',')
-              }, type: 2
-            }).then((res) => {
-              if (res.status) {
-                this.navCtrl.push('ApplyServicePage', {
-                  order_ids: order_ids.join(','), rec_ids: rec_ids.join(','), type: 2
-                });
-              }
-            })
-          }
-        }, {
-          text: '维修',
-          handler: () => {
-            console.log('3');
-            this.httpService.isGoodsRepair({
-              orders: {
-                order_ids: order_ids.join(','),
-                rec_ids: rec_ids.join(',')
-              }, type: 3
-            }).then((res) => {
-              if (res.status) {
-                this.navCtrl.push('ApplyServicePage', {
-                  order_ids: order_ids.join(','), rec_ids: rec_ids.join(','), type: 3
-                });
-              }
-            })
-          }
-        }, {
-          text: '取消',
-          role: 'cancel',
-          handler: () => {
+    // let order_ids = [];
+    // let rec_ids = [];
+    // for (var i in this.order.list) {
+    //   if (this.order.list[i].selected) {
+    //     order_ids.push(this.order.list[i].order_id);
+    //     rec_ids.push(this.order.list[i].rec_id);
+    //   }
+    // }
+    // if (!order_ids.length || !rec_ids.length) {
+    //   this.native.showToast('请选择订单');
+    //   return;
+    // }
+    // let actionSheet = this.actionSheetCtrl.create({
+    //   title: '服务类型',
+    //   buttons: [
+    //     {
+    //       text: '退货',
+    //       role: '',
+    //       handler: () => {
+    //         console.log('1');
+    //         this.httpService.isGoodsRepair({
+    //           orders: {
+    //             order_ids: order_ids.join(','),
+    //             rec_ids: rec_ids.join(',')
+    //           }, type: 1
+    //         }).then((res) => {
+    //           if (res.status) {
+    //             this.navCtrl.push('ApplyServicePage', {
+    //               order_ids: order_ids.join(','), rec_ids: rec_ids.join(','), type: 1
+    //             });
+    //           }
+    //         })
+    //       }
+    //     }, {
+    //       text: '换货',
+    //       handler: () => {
+    //         console.log('2');
+    //         this.httpService.isGoodsRepair({
+    //           orders: {
+    //             order_ids: order_ids.join(','),
+    //             rec_ids: rec_ids.join(',')
+    //           }, type: 2
+    //         }).then((res) => {
+    //           if (res.status) {
+    //             this.navCtrl.push('ApplyServicePage', {
+    //               order_ids: order_ids.join(','), rec_ids: rec_ids.join(','), type: 2
+    //             });
+    //           }
+    //         })
+    //       }
+    //     }, {
+    //       text: '维修',
+    //       handler: () => {
+    //         console.log('3');
+    //         this.httpService.isGoodsRepair({
+    //           orders: {
+    //             order_ids: order_ids.join(','),
+    //             rec_ids: rec_ids.join(',')
+    //           }, type: 3
+    //         }).then((res) => {
+    //           if (res.status) {
+    //             this.navCtrl.push('ApplyServicePage', {
+    //               order_ids: order_ids.join(','), rec_ids: rec_ids.join(','), type: 3
+    //             });
+    //           }
+    //         })
+    //       }
+    //     }, {
+    //       text: '取消',
+    //       role: 'cancel',
+    //       handler: () => {
 
-          }
-        }
-      ]
-    });
-    actionSheet.present();
+    //       }
+    //     }
+    //   ]
+    // });
+    // actionSheet.present();
 
-    // this.navCtrl.push('batchapplicationPage');
+    this.navCtrl.push('batchapplicationPage');
   }
   clickWarn(e) {
     e.stopPropagation();

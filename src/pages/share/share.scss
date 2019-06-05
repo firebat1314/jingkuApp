@@ -2,27 +2,92 @@ page-share {
    .scroll-content {
       background: rgb(241, 244, 251) !important;
    }
-
+   .bander_tit{
+      width: 100%;
+      height: auto;
+      background: #EBDDF8;
+   }
+   .bander_img{
+      display: block;
+      width: 100%;
+   }
+   .zhuanqiangonglue{
+      text-align: -webkit-center;
+    margin-top: -20%;
+    padding-bottom: 6.77%;
+   }
+   .con_img img{
+      width: 91%;
+   }
+   .con_img{
+      text-align: center
+   }
+   .yaoqingbuzhouimg{
+      padding-bottom: 6.77%;
+   }
+   .wodeyaoqing{
+      background-image: url(../assets/icon/wodeyaoqing.png);
+      width: 100%;
+      height: 154px;
+      background-size: 91% 100%;
+      background-repeat: no-repeat;
+      background-position: center;
+      // text-align: center;
+      .shuliang{
+         margin-bottom: 3%;  
+        padding-top: 11%;
+         margin-left: 14%;
+      }
+      .zhuce{
+         font-size:1.7rem;
+         margin-left: 14%;
+      }
+      em{
+         color: #732CE5;
+         font-size: 3rem;
+      }
+   }
+   .lijizhuce{
+      width: 100%;
+      height: 110px;
+      background-size: 71% 50%;
+      background-repeat: no-repeat;
+      background-position: center;
+      background-image: url(../assets/icon/lijiyaoqing.png);
+      cursor: pointer;
+      
+     
+   }
    .mark {
       position: fixed;
       height: 100%;
       width: 100%;
-      background: rgba(0, 0, 0, .7);
+      // background: rgba(0, 0, 0, .7);
+      background-image: url(../assets/icon/fenxianghaibao.png);
       z-index: 10;
-
+      background-repeat: no-repeat;
+      background-size: 100% 100%;
+      text-align: -webkit-center;
       >div {
-         width: 200px;
+         // width: 200px;
          margin: auto;
 
          span {
             user-select: text;
          }
       }
-
+      .yaoqingshuoming{
+           width: 100%;
+          text-align: -webkit-center;
+          background: #FFF;
+          border-radius: 2% 2% 0 0;
+         }
       qr-code {
          display: block;
-         height: 200px;
-         margin-top: 92px;
+         height: 90px;
+         width: 25%;
+         // margin-top: 92px;
+         text-align: -webkit-center;
 
          border-radius: 6px;
          overflow: hidden;

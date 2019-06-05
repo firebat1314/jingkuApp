@@ -289,6 +289,7 @@ export class CarPage {
 
       var arr = []
       for (let i = 0, item = this.carDetails.suppliers_goods_list; i < item.length; i++) {
+         debugger
          for (let k = 0; k < item[i].goods_list.length; k++) {
             if (!item[i].goods_list[k].is_select) {
                arr.push(item[i].goods_list[k].goods_id)

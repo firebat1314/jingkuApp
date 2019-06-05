@@ -12,20 +12,29 @@
 
 </ion-header>
 <div class="mark" *ngIf="showMark" (click)="showMark=!showMark">
-   <div (click)="$event.stopPropagation()">
-      <qr-code size="300" [value]="href"></qr-code>
-      <div style="    color: #fff;
+   <div (click)="$event.stopPropagation()" style="width:91%; position: relative;">
+      <div style=" margin-top: 113%;"></div>
+      <span style="      position: absolute;  width: 20px; height: 20px;border-radius: 100%; background: #2f6be3; top: 30%; left: -2%;"></span>
+      <span style="    position: absolute; width: 20px; height: 20px;  border-radius: 100%; background: #2f6be3;  top: 30%; right: -2%;"></span>
+      <div class="yaoqingshuoming"><p style="    padding-top: 5%;   padding-bottom: 3%;">邀请好友来注册可得20元优惠券</p>
+      <p style="padding-bottom: 2.5%;">好友下单还可再得30元优惠券</p>
+      </div>
+      <!-- <div style=""></div> -->
+     <div style="    background: #FFF;     padding-bottom: 15%;  padding-top: 14%;"><qr-code size="300" [value]="href"></qr-code></div> 
+      <!-- <div style="    color: #fff;
          text-align: center;
-         margin-top: 20px;
          font-size: 17px;
          line-height: 26px;"
-         *ngIf="mine?.userInfo.data.UserShare">长按发送或保存本地 <!-- 邀请码：<span>{{mine.userInfo.data.UserShare}}</span> --><!-- <br>长按复制 --></div>
+         *ngIf="mine?.userInfo.data.UserShare">长按发送或保存本地 </div> -->
+          <!-- 邀请码：<span>{{mine.userInfo.data.UserShare}}</span> --><!-- <br>长按复制 -->
+        
    </div>
    <!-- <img style="position: absolute;right: 15px;top: 15px;width: 80px;" src="./assets/icon/share_03.png"> -->
 </div>
 
-<ion-content padding>
-   <div class="main-card" fadeIn *ngIf="data">
+
+<ion-content>
+   <!-- <div class="main-card" fadeIn *ngIf="data">
       <div class="section1">
          <div class="title">邀请好友加入镜库</div>
          <div class="subtitle">邀请1个好友奖{{data?.type_money}}元</div>
@@ -52,5 +61,35 @@
             </div>
          </div>
       </div>
+   </div> -->
+   <div class="bander_con"><div><img class="bander_img" src="../assets/icon/yaoqingbander.png" alt=""></div>
+   <div class="bander_tit">
+      <!-- ----------------------------------------------------------------------------------------------------赚钱攻略------------------------------------------------ -->
+      <div class="jieqiangonglue con_img">
+         <div class="zhuanqiangonglue"><img src="../assets/icon/111111111.png" alt=""></div>
+      </div>
+       <!-- ----------------------------------------------------------------------------------------------------邀请步骤   ------------------------------------------------ -->
+      <div class="yaoqingbuzhou con_img">
+         <div class="yaoqingbuzhouimg"><img src="../assets/icon/222222.png" alt=""></div>
+      </div>
+       <!-- ----------------------------------------------------------------------------------------------------我的邀请------------------------------------------------ -->
+       <div class="wodeyaoqing">
+          <div>
+               <div class="shuliang">
+                     <span style="margin-right: 18%;"><em>{{data?.list?.yyq||0}}</em>人</span>
+                     <span style="margin-right: 20%;"><em>{{data?.list?.ywc||0}}</em>人</span>
+                     <span style="    padding-left: 6%;"><em>{{data?.list?.yhjl||0}}</em>元</span>
+                </div> 
+                <div class="zhuce">
+                     <span style="margin-right: 13%;">注册</span>
+                     <span style="margin-right: 16%;">首单</span>
+                     <span>优惠券总金额</span>
+                </div> 
+          </div>
+       </div>
+       <!-- --------------------------------------------------------------------------------------------------------注册按钮----------------------------------------------------------------- -->
+       <div class="lijizhuce"  (click)="sharing()">
+       </div>
+   </div>
    </div>
 </ion-content>
