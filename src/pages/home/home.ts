@@ -206,11 +206,13 @@ export class HomePage {
    }
    ad_imgs=""
    herfs=""
+   resk=""
    advertisingwindows(){
       this.httpService.advertisingwindow().then((res)=>{
          if(res.status==1){
           this.ad_imgs= res.ads[0].ad_img;
-          this.herfs=res.ads[0]
+          this.herfs=res.ads[0];
+          this.resk=res.ads[0].ad_img
          }
       })
    }

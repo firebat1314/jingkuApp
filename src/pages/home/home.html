@@ -24,17 +24,21 @@
       </ion-buttons> -->
    </ion-navbar>
 </ion-header>
-<div class="mark" *ngIf="showMarks" (click)="showMarks=!showMarks">
-   <div (click)="$event.stopPropagation()" style="width:91%; position: relative;    top: 25%;">
-    <!-- <a href="{{herfs}}"> <img src={{ad_imgs}} alt=""></a> -->
-    <img img-lazy-load="{{herfs.ad_img}}" [ads-click]="herfs" alt="">
-    <img src="../assets/icon/bai-tiao/cc.png" style="margin-right: 5px;  width: 23px;     top: 12%;  position: absolute; right: 0;" (click)="hideMark()">
-   </div>
+
    <!-- <img style="position: absolute;right: 15px;top: 15px;width: 80px;" src="./assets/icon/share_03.png"> -->
 
-  
+   <div *ngIf="resk">
+      <div class="mark" (click)="resk=!resk">
+         <div (click)="$event.stopPropagation()" style="width:91%; position: relative;    top: 25%;">
+          <!-- <a href="{{herfs}}"> <img src={{ad_imgs}} alt=""></a> -->
+          <img img-lazy-load="{{herfs.ad_img}}" [ads-click]="herfs" alt="">
+          <img src="../assets/icon/bai-tiao/cc.png" style="margin-right: 5px;  width: 23px;     top: 12%;  position: absolute; right: 0;" (click)="resk=!resk">
+         </div>
+         <!-- <img style="position: absolute;right: 15px;top: 15px;width: 80px;" src="./assets/icon/share_03.png"> -->
+      </div>
+   </div>
    
-</div>
+
 <ion-content #myContent>
    <ion-refresher (ionRefresh)="doRefresh($event)" pullMax="60">
       <ion-refresher-content refreshingSpinner="1" pullingIcon="0"></ion-refresher-content>
