@@ -61,12 +61,12 @@
          <div class="btn-tool-swiper-container">
             <div class="swiper-wrapper">
 
-               <div tappable class="swiper-slide" (click)="tuangou()">
+               <!-- <div tappable class="swiper-slide" (click)="tuangou()">
                   <div class="img">
                      <img img-lazy-load="./assets/icon/home/home_icon1.png" alt="">
                   </div>
                   <span>团购</span>
-               </div>
+               </div> -->
                <div tappable class="swiper-slide" *ngIf="mine.userInfo&&mine.userInfo?.data?.user_info?.is_test!=1" navPush="NewProductPage">
                   <!-- NewProductPage -->
                   <div class="img">
@@ -89,6 +89,7 @@
                <div tappable class="swiper-slide" *ngIf="mine.userInfo&&mine.userInfo?.data?.user_info?.is_test!=1" (click)="goBrandPage()">
                   <div class="img">
                      <img img-lazy-load="./assets/icon/home/home_icon7.png" alt="">
+       
                   </div>
                   <span>品牌</span>
                </div>
@@ -103,6 +104,12 @@
                      <img img-lazy-load="./assets/icon/home/home_icon4.png" alt="">
                   </div>
                   <span>充值</span>
+               </div>
+               <div tappable class="swiper-slide" *ngIf="native.isMobile()" navPush="AddProcessScannerPage">
+                  <div class="img">
+                     <img img-lazy-load="./assets/icon/home/home_icon6.png" alt="">
+                  </div>
+                  <span>来镜加工</span>
                </div>
                <div tappable class="swiper-slide" (click)="goIntegralstorePage();">
                   <div class="img">
@@ -122,12 +129,7 @@
                   </div>
                   <span>分享有礼</span>
                </div>
-               <div tappable class="swiper-slide" *ngIf="native.isMobile()" navPush="AddProcessScannerPage">
-                  <div class="img">
-                     <img img-lazy-load="./assets/icon/home/home_icon6.png" alt="">
-                  </div>
-                  <span>整镜加工</span>
-               </div>
+             
             </div>
             <div class="pagination"></div>
          </div>
