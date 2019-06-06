@@ -102,6 +102,8 @@ export class RechargePage {
             this.navCtrl.removeView(nav, { animate: false });
           });
         } else {
+          debugger
+          console.log(result)
           that.native.showToast('充值失败');
         }
       })
