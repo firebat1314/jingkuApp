@@ -46,7 +46,9 @@ export class SharePage {
    }
 
    ngOnInit() {
-      this.href = IP + '/#/nav/n4/signup/' + this.mine.userInfo.data.UserShare;
+      this.href = 'https://m.jingku.cn' + '/#/nav/n4/signup/' + this.mine.userInfo.data.UserShare;
+      console.log(this.href)
+      debugger
       this.mine.userInfo && this.httpServ.Share({ signup: this.mine.userInfo.data.UserShare }).then(res => {
          if (res.status == 1) {
             this.data = res;

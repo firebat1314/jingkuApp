@@ -98,12 +98,6 @@
                   </div>
                   <span>铺货</span>
                </div>
-               <div tappable class="swiper-slide" *ngIf="native.isMobile()" navPush="AddProcessScannerPage">
-                  <div class="img">
-                     <img img-lazy-load="./assets/icon/home/home_icon6.png" alt="">
-                  </div>
-                  <span>整镜加工</span>
-               </div>
                <div tappable class="swiper-slide" (click)="goRechargePage()" *ngIf="!native.isMiniprogram()">
                   <div class="img">
                      <img img-lazy-load="./assets/icon/home/home_icon4.png" alt="">
@@ -127,6 +121,12 @@
                      <img img-lazy-load="./assets/icon/home/home_icon11.png" alt="">
                   </div>
                   <span>分享有礼</span>
+               </div>
+               <div tappable class="swiper-slide" *ngIf="native.isMobile()" navPush="AddProcessScannerPage">
+                  <div class="img">
+                     <img img-lazy-load="./assets/icon/home/home_icon6.png" alt="">
+                  </div>
+                  <span>整镜加工</span>
                </div>
             </div>
             <div class="pagination"></div>
