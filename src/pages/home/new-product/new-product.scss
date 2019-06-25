@@ -62,13 +62,17 @@ page-new-product {
          overflow: hidden;
          padding-top: 10%;
          margin-bottom: 10%;
-         margin-left: 8%;
+         margin-left: 5%;
          .brand_list_logo{
+            display: inline-block;
+            float: left;
+            width: 56%;
             img{
                width: 48px;
                height: 48px;
                border-radius: 100%;
                float: left;
+               margin-right: 7%;
             }
             .brand_list_labels{
                width: 40%;
@@ -83,6 +87,7 @@ page-new-product {
                font-weight: 700;
                font-size: 1.2rem;
                width: 100%;
+               padding-bottom: 10%;
                display: inline-block;
             }
          }

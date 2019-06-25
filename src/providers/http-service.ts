@@ -1019,4 +1019,8 @@ plusviwe(data?, options?: HttpOptions){
 venuenews(data?, options?: HttpOptions){
    return this.http.post(IP+'/venue/news', data, { showLoading: true, ...options })
 }
+//判断是否是plus
+pluswhether(data?, options?: HttpOptions){
+   return this.http.post(IP+'/plus/whether', data, { showLoading: true, ...options })
+}
 }

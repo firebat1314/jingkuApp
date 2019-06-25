@@ -100,6 +100,7 @@ export class AdddOrdersPage {
       });
    }
    goOrdersDetailPage(item) {
+      debugger
       // this.navCtrl.push('ChooseLensRPage', { order_id: orderId,pian_rec: [],rec_ids: [],type: "you",rec_id: null
       // });de
 
@@ -136,7 +137,7 @@ export class AdddOrdersPage {
       this.infiniteScroll = infiniteScroll;
       if (this.orderData.page < this.orderData.pages) {
          var p = this.orderData.page;
-         this.httpService.order({ page: ++p, type: type }, { showLoading: false }).then((res) => {
+         this.httpService.showmachiningorder({ page: ++p, type: type }, { showLoading: false }).then((res) => {
             if (res.status == 1) {
                this.orderData = res;
                this.orderList = this.orderList.concat(res.list);

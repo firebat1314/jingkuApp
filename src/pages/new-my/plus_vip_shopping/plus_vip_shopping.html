@@ -4,19 +4,19 @@
   See http://ionicframework.com/docs/components/#navigation for more info on
   Ionic pages and navigation.
 -->
+
 <ion-header>
 
-   <ion-navbar>
-       <ion-title>PLUS</ion-title>
-       <ion-buttons right>
-           <button ion-button clear icon-only icon-left right open-more="MoreMenuPage">
-               <ion-icon name="ios-more"></ion-icon>
-           </button>
-       </ion-buttons>
-   </ion-navbar>
-</ion-header>
-
-
+      <ion-navbar>
+          <ion-title>PLUS会员首页</ion-title>
+          <ion-buttons right>
+               <button ion-button clear icon-only icon-left right open-more="MoreMenuPage">
+                   <ion-icon name="ios-more"></ion-icon>
+               </button>
+           </ion-buttons>
+      </ion-navbar>
+  
+  </ion-header>
 <ion-content>
    <!-- <ion-refresher (ionRefresh)="doRefresh($event)" pullMax="60">
       <ion-refresher-content refreshingSpinner="1" pullingIcon="0"></ion-refresher-content>
@@ -51,7 +51,7 @@
                      <div class="vip_logo">
                         <img img-lazy-load="{{mine.userInfo?.data?.user_info?.rank_icon}}" alt="">
                      </div>
-                     <div class="vip_name">{{usertimes?.end_time}} &nbsp;&nbsp;到期</div>
+                     <div class="vip_name" *ngIf="usertimesa==true">{{usertimes?.end_time}} &nbsp;&nbsp;到期</div>
                   </div>
                  
                 
@@ -68,7 +68,7 @@
                <span class="enjoy-privileges_title"></span><p>PLUS会员<em>6大</em>尊享特权</p><span class="enjoy-privileges_title"></span>  
                <div class="enjoy_privileges_iconconnet">
                   <ul class="enjoy_privileges_iconlist">
-                     <li class="look_more" (click)="gotoplusinfo()"><span>查看更多 ></span></li>
+                     <li class="look_more" (click)="gotoplusinfo()" style="margin: 0"><span>查看更多 ></span></li>
                      <li style="margin: 0">
                            <span class="privileges_iconlist_img"> <img src="../../../assets/icon/jifen.png" alt=""></span>
                            <span class="privileges_iconlist_title">双倍</span>
@@ -97,7 +97,7 @@
                      <li>
                            <span class="privileges_iconlist_img"><img src="../../../assets/icon/gengduo.png" alt=""></span>
                         <span class="privileges_iconlist_title">..........</span>
-                     <span class="privileges_iconlist_content">尽情期待</span>
+                     <span class="privileges_iconlist_content">敬请期待</span>
                      </li>
                   </ul>
                </div>
@@ -108,7 +108,7 @@
           <div class="recharge">
                <span class="recharge_title"></span><p>服务类型</p><span class="recharge_title"></span>  
                   <ul class="recharge_content">
-                     <li  *ngFor="let img of kaimg;let i=index"   class=' recharge_list {{i == idss? "border_ccc" : ""}}'  (click)="aaa(i,img.price_format,img.id)">
+                     <li  *ngFor="let img of kaimg;let i=index"   class=' recharge_list {{i == idss? "border_ccc" : ""}}'  (click)="aaa(i,img.price_format,img.id,img.discount)">
                          
                            <img src={{img.cover}} alt="">
                         <!-- <span class="recharge_time">年卡</span>
@@ -122,8 +122,8 @@
     <!-- ----------------------------------------------------------------------------------------------结算-------------------------------------------------------------- -->
             <div class="settlement">
                    <ul class="settlement_ul">
-                      <li class="settlement_list">   <span class="settlement_list_tit">活动价</span>  <span class="settlement_list_yellow">{{price_formats || morenjiage}}<em>198/年</em></span></li>
-                     <li class="settlement_list"><span class="settlement_list_tit">已享优惠</span><span class="settlement_list_yellow">￥99<em>198/年</em></span> <span class="youhui">&nbsp;&nbsp;优惠 &nbsp;&nbsp;</span></li>
+                      <li class="settlement_list" *ngIf="discoun==0.00">   <span class="settlement_list_tit">活动价</span>  <span class="settlement_list_yellow">{{price_formats || morenjiage}}<em>198/年</em></span></li>
+                     <li class="settlement_list" *ngIf="discoun==0.00"><span class="settlement_list_tit">已享优惠</span><span class="settlement_list_yellow">￥{{discoun}}<em>198/年</em></span> <span class="youhui">&nbsp;&nbsp;优惠 &nbsp;&nbsp;</span></li>
                      <li class="settlement_list"><span class="settlement_list_tit">优惠后金额</span><span class="settlement_list_mon">{{price_formats || morenjiage}}</span> <span class="youhui"></span></li>
                   
                    </ul>
@@ -135,15 +135,15 @@
                      <label tappable class="select-all "  >
                            <div class="checkswrap">
                               <!-- <ion-checkbox color="jingku1" tappable (click)="checkGoods(null,2,carDetails?.total?.is_select?0:1)"  color="jingku1" mode="ios"></ion-checkbox> -->
-                              <ion-checkbox color="jingku1" (click)="checkAll()" mode="ios"></ion-checkbox>
+                              <ion-checkbox color="jingku1"  [(ngModel)]="receiptTool" (ionChange)="flag=true;" mode="ios" name="aasd"></ion-checkbox>
                            </div>
-                           <p>已阅读协议</p><br>
+                           <p style="display: inline-block">已阅读协议</p><br>
                         
                         </label>
-                        <p (click)="gotohetong()" class="xieyi">协议协议协议</p>
+                        <p (click)="gotohetong()" class="xieyi">《镜库PLUS用户正式期协议》</p>
                  </div> 
                  <div class="settlement_btn_zhifu" (click)="zhifu()">
-                   <span> 立即支付<em>￥99/年</em></span>
+                   <span> 立即支付<em>{{price_formats || morenjiage}}</em></span>
                  </div>
             </div>
    <ng-container fadeIn>

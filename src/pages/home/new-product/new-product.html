@@ -9,7 +9,17 @@
    <ion-navbar>
       <ion-title>新品专区</ion-title>
    </ion-navbar>
-
+   <ion-toolbar class="mytoolbar" no-padding>
+      <div class="quick_buy">
+            <ul class="top_menu">
+               <li class="menu_ico" tappable (click)="getData(0,'brand')" [ngClass]="{'meon':selected==0}">全部</li>
+               <li class="menu_icotwo"></li>
+               <ng-container *ngFor="let item of category">
+                  <li class="menu_ico" tappable (click)="getData(item.cat_id,'brand')" [ngClass]="{'meon':selected==item.cat_id}">{{item.cat_name}}</li>
+               </ng-container>
+            </ul>
+         </div>
+   </ion-toolbar>
 </ion-header>
 
 
@@ -24,16 +34,7 @@
    <div class="receiptSskFor" *ngSwitchCase="'receiptSskFor'" [ngStyle]="{background:suoquList&&!suoquList?.data?.length?'url(./assets/images/images/invoice.png) no-repeat center 100px':'none'}">
      
          <!-- 分类按钮 -->
-         <div class="quick_buy">
-               <ul class="top_menu">
-                  <li class="menu_ico" tappable (click)="getData(0,'brand')" [ngClass]="{'meon':selected==0}">全部</li>
-                  <li class="menu_icotwo"></li>
-                  <ng-container *ngFor="let item of category">
-                     <li class="menu_ico" tappable (click)="getData(item.cat_id,'brand')" [ngClass]="{'meon':selected==item.cat_id}">{{item.cat_name}}</li>
-                  </ng-container>
-               </ul>
-            </div>
-      
+     
             <!-- 列表 -->
             <div class="brand_list_array" >
                   <div class="brand_list" *ngFor="let brand_lists of brands">
@@ -41,14 +42,15 @@
                         <div class="brand_list_content">
                               <span class="brand_list_logo">
                                  <img src={{brand_lists.logo}} alt="" (click)="searchbar(brand_lists.label,brand_lists.label_id)">
-                                 <div class="brand_list_labels">
+                                 <div class="brand_list_labels" (click)="searchbar(brand_lists.label,brand_lists.label_id)">
                                        <span class="brand_list_label" style="    padding-top: 4%;">{{brand_lists?.label}}</span>
+                                       <span  class="brand_list_newyear">品牌新品</span>
                                  </div>
                                
                            </span>  
-                              <!-- <span class="brand_list_number"  >
+                              <span class="brand_list_number"  (click)="searchbar(brand_lists.label,brand_lists.label_id)" >
                               上新数量{{brand_lists ?.count}} >
-                              </span> -->
+                              </span>
                         </div>
                         <ul  class="goods_list" >
                            <li *ngFor="let goodslist of brand_lists.items" class="goods_list_array" (click)="gotoplays(goodslist.goods_id)">
@@ -64,16 +66,7 @@
   <!-- 店铺上新 -->
   <div class="receiptList" *ngSwitchCase="'receiptList'" [ngStyle]="{background:suoquList&&!invoiceList?.data?.length?'url(./assets/images/images/invoice.png) no-repeat center 200px':'none'}">
    <!-- badner图 -->
-      <!-- 分类按钮 -->
-      <div class="quick_buy">
-            <ul class="top_menu">
-               <li class="menu_ico" tappable (click)="getData(0,'supplier')" [ngClass]="{'meon':selected==0}">全部</li>
-               <li class="menu_icotwo"></li>
-               <ng-container *ngFor="let item of category">
-                  <li class="menu_ico" tappable (click)="getData(item.cat_id,'supplier')" [ngClass]="{'meon':selected==item.cat_id}">{{item.cat_name}}</li>
-               </ng-container>
-            </ul>
-         </div>
+    
               <!-- 列表 -->
               <div class="brand_list_array" >
                <div class="brand_list" *ngFor="let brand_lists of brands">
@@ -83,7 +76,7 @@
                               <img src={{brand_lists.logo}} alt="" (click)="goParticularsHomePage(brand_lists.label_id)">
                               <div class="brand_list_labels">
                                     <span class="brand_list_label">{{brand_lists?.label}}</span>
-                                    <span  class="brand_list_newyear">本月新品</span>
+                                    <span  class="brand_list_newyear">店铺新品</span>
                               </div>
                             
                         </span>  
@@ -106,11 +99,13 @@
       <ion-toolbar no-padding>
             <ion-toolbar class="segment-style">
                   <ion-segment mode="md" [(ngModel)]="receiptTool" (ionChange)="flag=true;getHttpData();myContent.scrollToTop(0)">
-                      <ion-segment-button value="receiptSskFor">
-                          品牌
+                      <ion-segment-button value="receiptSskFor" style="height: 50px;">
+                         <img src="../../../assets/icon/pinpai_new.png" alt="" style="    width: 15%;">
+                     <p> 品牌上新</p> 
                       </ion-segment-button>
-                      <ion-segment-button value="receiptList">
-                          店铺
+                      <ion-segment-button value="receiptList"  style="height: 50px;">
+                           <img src="../../../assets/icon/dianpu.png" alt="" style="    width: 15%;">
+                        <p> 店铺上新</p> 
                       </ion-segment-button>
                   </ion-segment>
               </ion-toolbar>

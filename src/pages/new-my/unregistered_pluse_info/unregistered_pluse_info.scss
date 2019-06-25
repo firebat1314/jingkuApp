@@ -46,7 +46,7 @@ page_unregistered_pluse_info {
          flex: 1;
 
          .user_info {
-            width: 58%;
+            width: 96%;
             .name {
                font-size: 1.6rem;
             }
@@ -75,7 +75,6 @@ page_unregistered_pluse_info {
                margin-left: 3%;
                img{
                   width: 80%;
-                  height: 80%;
                }
             }
          }
@@ -190,14 +189,14 @@ page_unregistered_pluse_info {
         width: 100%;
          text-align: center;
          background: #FFF;
-         padding-bottom: 10%;
-         padding-top: 10%;
+         padding-top: 2%;
          border-bottom: 1px solid #CCC;
          .enjoy_privileges_iconlist{
             li{
               display: inline-block;
               margin-left: 10%;
               width: 22%;
+              margin-bottom: 10%;
              .privileges_iconlist_title{display: block;text-align: center;white-space: nowrap;font-size: 1.7rem}
              .privileges_iconlist_content{display: block;text-align: center;white-space: nowrap;color: #CCC}
              
@@ -631,6 +630,7 @@ border-left: none;
           text-align: -webkit-center;
           padding-right: 8%;
           .zaixiankefu{
+            padding-bottom: 10%;
             display: inline-block;
             width: 40%;
             padding-top: 5%;
@@ -649,6 +649,7 @@ border-left: none;
             }
           }
           .dianhuakefu{
+            padding-bottom: 10%;
             display: inline-block;
             width: 40%;
             padding-top: 5%;
@@ -692,4 +693,36 @@ border-left: none;
       }
     }
   }
+  .vip_plus{
+		width: 100px;
+		height: 50px;
+		display: flex;
+	}
+	.vip_plus .crown{
+		width: 30px;
+		height: 30px;
+		border-radius: 100px;
+		position: relative;
+		top: 10px;
+		z-index: 2;
+		background: #fff;
+		background: linear-gradient(to bottom, #000000 0%,#797979 100%);
+	}
+	.vip_plus .crown img{
+		width: 60%;
+	    height: 60%;
+	    margin-top: 20%;
+	}
+	.vip_plus .crownText{
+		width: 50px;
+		height: 20px;
+		text-align: center;
+		position: relative;
+		left: -10%;
+		top: 15px;
+		font-size: 13px;
+		line-height: 20px;
+		background: linear-gradient(to bottom, #000000 0%,#797979 100%);
+		color:#f0eeb8;
+	}
 }

@@ -9,7 +9,17 @@
    <ion-navbar>
       <ion-title>闪购</ion-title>
    </ion-navbar>
-
+   <ion-toolbar class="mytoolbar" no-padding >
+   <div class="quick_buy">
+         <ul class="top_menu">
+            <li class="menu_ico" tappable (click)="getData(0)" [ngClass]="{'meon':selected==0}">全部</li>
+            <li class="menu_icotwo"></li>
+            <ng-container *ngFor="let item of category?.data?.cate">
+               <li class="menu_ico" tappable (click)="getData(item.cat_id)" [ngClass]="{'meon':selected==item.cat_id}">{{item.cat_name}}</li>
+            </ng-container>
+         </ul>
+      </div>
+      </ion-toolbar>
 </ion-header>
 
 
@@ -17,15 +27,7 @@
  
   
       <div *ngIf="data" fadeIn>
-      <div class="quick_buy">
-            <ul class="top_menu">
-               <li class="menu_ico" tappable (click)="getData(0)" [ngClass]="{'meon':selected==0}">全部</li>
-               <li class="menu_icotwo"></li>
-               <ng-container *ngFor="let item of category?.data?.cate">
-                  <li class="menu_ico" tappable (click)="getData(item.cat_id)" [ngClass]="{'meon':selected==item.cat_id}">{{item.cat_name}}</li>
-               </ng-container>
-            </ul>
-         </div>
+  
    <div class="top_img header-image">
       <img   [img-lazy-load]="category?.data?.response?.poster" defaultSrc="./assets/images/images/640-320.jpg" width="100%" alt="">
    </div>
@@ -38,7 +40,7 @@
       <ul class="purchase-box">
          <li class="wrp" *ngFor="let cleAll of data" tappable (click)="goParticularsPage(cleAll.goods_id)">
             <div class="img">
-               <img [img-lazy-load]="cleAll.image" />
+               <img [img-lazy-load]="cleAll.image"  >
             </div>
             <div class="txt">
                <div class="tt-2">

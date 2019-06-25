@@ -5,35 +5,43 @@
   Ionic pages and navigation.
 -->
 <ion-header style="    text-align: -webkit-center;background: #FFF;">
- <ion-toolbar class="segment-style">
-    <div style="    height: 1.2rem;">
-    </div>
-          <ion-segment mode="md" [(ngModel)]="receiptTool" (ionChange)="flag=true;" style="    width: 50%; border: 1px solid #CCC;">
-               <ion-segment-button value="receiptSskFor"  style="    font-size: 1.7rem; height: 3rem;line-height: 3rem;">
-                     限时闪购
-                    </ion-segment-button>
-              <ion-segment-button value="receiptList" style="    font-size: 1.7rem; height: 3rem;line-height: 3rem;">
-                  活动促销
-              </ion-segment-button>
-            
-          </ion-segment>
-          <div style="    height: 1.2rem;"></div>
-      </ion-toolbar>
+   <ion-navbar>
+         <ion-toolbar class="segment-style">
+               <div style="    height: 1.2rem;">
+               </div>
+                     <ion-segment mode="md" [(ngModel)]="receiptTool" (ionChange)="flag=true;" style="    width: 58%; border: 1px solid #CCC;" (click)="receiptTools()">
+                          <ion-segment-button value="receiptSskFor"  style="    font-size: 1.7rem; height: 3rem;line-height: 3rem;">
+                                限时闪购
+                               </ion-segment-button>
+                         <ion-segment-button value="receiptList" style="    font-size: 1.7rem; height: 3rem;line-height: 3rem;">
+                             活动促销
+                         </ion-segment-button>
+                       
+                     </ion-segment>
+                     <div style="    height: 1.2rem;"></div>
+                     
+                 </ion-toolbar>
+   </ion-navbar>
+
 </ion-header>
 
 
-<ion-content parallax-header  #myContent [ngSwitch]="receiptTool">
+<ion-content  #myContent [ngSwitch]="receiptTool">
+      <ion-toolbar class="mytoolbar" no-padding  *ngIf="trynow" >
+            <div class="quick_buy" >
+                  <ul class="top_menu">
+                     <li class="menu_ico" tappable (click)="getData(0)" [ngClass]="{'meon':selected==0}">全部</li>
+                     <li class="menu_icotwo"></li>
+                     <ng-container *ngFor="let item of category?.data">
+                        <li class="menu_ico" tappable (click)="getData(item.cat_id)" [ngClass]="{'meon':selected==item.cat_id}">{{item.cat_name}}</li>
+                     </ng-container>
+                  </ul>
+               </div>
+               </ion-toolbar>
+   
       <div class="receiptList" *ngSwitchCase="'receiptSskFor'" [ngStyle]="{background:suoquList&&!suoquList?.data?.length?'url(./assets/images/images/invoice.png) no-repeat center 100px':'none'}">
          <div *ngIf="data" fadeIn>
-         <div class="quick_buy">
-               <ul class="top_menu">
-                  <li class="menu_ico" tappable (click)="getData(0)" [ngClass]="{'meon':selected==0}">全部</li>
-                  <li class="menu_icotwo"></li>
-                  <ng-container *ngFor="let item of category?.data">
-                     <li class="menu_ico" tappable (click)="getData(item.cat_id)" [ngClass]="{'meon':selected==item.cat_id}">{{item.cat_name}}</li>
-                  </ng-container>
-               </ul>
-            </div>
+        
       <div class="top_img header-image">
          <img [ads-click]="ads" *ngFor="let ads of category?.bannerone" [img-lazy-load]="ads?.ad_img" defaultSrc="./assets/images/images/640-320.jpg" width="100%" alt="">
       </div>

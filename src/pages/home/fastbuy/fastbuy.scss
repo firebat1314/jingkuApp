@@ -1,6 +1,8 @@
 page-fastbuy {
    .quick_buy {
+ 
       .top_menu {
+         border-top: 1px solid #CCB;
          overflow: hidden;
          overflow-x: scroll;
          // padding-bottom: 10px;
@@ -34,10 +36,9 @@ page-fastbuy {
             }
          }
          li.menu_icotwo{
-            height: 3rem;
+            height: 4rem;
             width: 1px;
             border-left: 1px solid #E2E2E2;
-            margin-top: 0.6rem;
          }
       }
    }
@@ -137,7 +138,7 @@ page-fastbuy {
          background: #fff;
    
          button.swiper-pagination-bullet {
-            border-radius: 50%;
+            border-radius: 54%;
             border-color: transparent;
             background: #666;
             opacity: .5;

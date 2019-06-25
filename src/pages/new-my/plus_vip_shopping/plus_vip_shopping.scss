@@ -48,7 +48,7 @@ page-plus-vip-shopping {
             flex: 1;
 
             .user_info {
-               width: 58%;
+               width: 70%;
                .name {
                   font-size: 1.6rem;
                }
@@ -164,7 +164,6 @@ page-plus-vip-shopping {
        text-align: center;
        background: #FFF;
        border-radius: 3%;
-       padding-bottom: 10%;
        padding-top: 10%;
 
        .enjoy_privileges_iconlist{
@@ -172,12 +171,13 @@ page-plus-vip-shopping {
           .look_more{
             position: absolute;
             right: 4%;
-            top: -14%;
+            top: -10%;
           }
           li{
             display: inline-block;
             margin-left: 10%;
             width: 22%;
+            padding-bottom: 10%;
            .privileges_iconlist_title{display: block;text-align: center;white-space: nowrap;font-size: 1.7rem}
            .privileges_iconlist_content{display: block;text-align: center;white-space: nowrap;color: #CCC}
            
@@ -339,10 +339,9 @@ page-plus-vip-shopping {
          width: 50%;
          display: inline-block;
          border: 1px solid #CCC;
-         padding: 7% 0%;
          text-align: -webkit-center;
-         padding-left: 18%;
          background: #FFF; 
+         padding: 2% 0%;
       }
       .settlement_btn_zhifu{
          width: 49%;
@@ -363,11 +362,11 @@ page-plus-vip-shopping {
 
          .checkswrap {
             display: inherit;
-            float: left;
          }
       }
       .xieyi{
-         color: blue;
+         color: #d4990f;
+         font-size: 1.2rem;
       }
    
    }

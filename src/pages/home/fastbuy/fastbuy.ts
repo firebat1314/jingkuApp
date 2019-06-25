@@ -25,6 +25,7 @@ export class FastbuyPage {
    data: any;
    selected = 0;
    page = 1;
+   trynow:boolean=true;
    @ViewChild(Content) content: Content;
    @ViewChild(FabButton) fabButton: FabButton;
    constructor(
@@ -71,6 +72,16 @@ export class FastbuyPage {
  
    scrollToTop() {
       this.content.scrollToTop();
+   }
+  
+
+   receiptTools(){
+      if(this.receiptTool=='receiptSskFor'){
+         this.trynow=true
+      }else{
+         this.trynow=false
+      }
+      
    }
    doInfinite(infiniteScroll) {
       this.infiniteScroll = infiniteScroll;

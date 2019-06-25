@@ -21,5 +21,7 @@ export class plushetongPage {
    ngOnInit() {
    
    }
-  
+   gotoshopping(){
+      this.navCtrl.push('plusVipShoppingPage')
+   }
 }

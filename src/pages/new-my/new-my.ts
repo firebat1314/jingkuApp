@@ -142,6 +142,15 @@ export class NewMyPage {
    }
    // 去往plus会员购买页面方法
    gotoplus(){
-     this.navCtrl.push('plusVipShoppingPage')
+      this.httpService.pluswhether().then((res)=>{
+         if(res.status==1){
+         if(  res.response.plus==true) {
+            this.navCtrl.push('unregisteredPluseInfoPage')    //已开通页面
+         }else{
+            this.navCtrl.push('plusInfoPage')  //未开通页面
+         }
+         }
+      })
+     
    }
 }

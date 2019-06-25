@@ -84,7 +84,7 @@
                  </div>
               </ion-item>
            </ng-container>
-           <ion-item class="item-for-goods" style="overflow-x:scroll;background-color: #fafafa;" no-lines tappable (click)="goOrdersDetailPage(item.order_id)" *ngIf="item.goods.length>1">
+           <ion-item class="item-for-goods" style="overflow-x:scroll;background-color: #fafafa;" no-lines tappable (click)="goOrdersDetailPage(item)" *ngIf="item.goods.length>1">
               <!--  (click)="$event.stopPropagation();goParticularsPage(goods.goods_id);"  -->
               <ion-thumbnail item-left style="border-width: 0;" *ngFor="let goods of item.goods">
                  <img [img-lazy-load]="goods.original_img">
