@@ -41,13 +41,15 @@ page-fastbuy {
          }
       }
    }
-
+// .purchase-box :nth-child(3n){background:orange;}
    .wrp {
       background: #fff;
       padding: 16px;
       margin-bottom: 10px;
       display: flex;
-
+      display: inline-block;
+    width: 48%;
+  margin:2% 1%;
       .img {
          width: 146px;
          height: 146px;
@@ -58,41 +60,9 @@ page-fastbuy {
          justify-content: center;
          align-items: center;
          flex-shrink: 0;
+         display: block;
+         width: 100%;
 
-         .time_d {
-            color: #fff;
-            line-height: 30px;
-            font-size: 12px;
-            position: absolute;
-            padding-right: 8px;
-            top: 10px;
-            left: 0px;
-            background-color: rgba(0, 0, 0, .5);
-            border-radius: 0 17.5px 17.5px 0;
-
-            countdown {
-               display: inline-block;
-
-               span {
-                  margin: 0;
-                  background: initial;
-                  color: #fff;
-                  min-width: initial;
-               }
-            }
-
-            &:before {
-               content: "";
-               display: inline-block;
-               width: 17px;
-               height: 17px;
-               background: url(../assets/icon/sg/time_ico.png) center center no-repeat;
-               background-size: 100%;
-               margin-left: 5px;
-               position: relative;
-               top: 3px;
-            }
-         }
 
       }
 
@@ -102,6 +72,8 @@ page-fastbuy {
          color: #666666;
          flex: 1;
          margin: 10px 0;
+         display: block;
+         width: 100%;
 
          .tt-2 {
             font-size: 14px;
@@ -110,7 +82,7 @@ page-fastbuy {
             text-overflow: ellipsis;
             display: -webkit-box;
             -webkit-box-orient: vertical;
-            -webkit-line-clamp: 2;
+            -webkit-line-clamp: 1;
          }
 
          .tt-1 {
@@ -120,12 +92,13 @@ page-fastbuy {
             font-size: 12px;
             flex: 1;
             white-space: nowrap;
-           
+           display: block;
             .cx {
+               display: block;
                color: #3f69a5;
 
                em {
-                  font-size: 26px;
+                  font-size: 20px;
                   display: inline-block;
 
                   &:first-letter {
@@ -136,6 +109,7 @@ page-fastbuy {
             }
 
             .suzi {
+               display: block;
                em {
                   text-decoration: line-through;
                   color: #666666;
@@ -144,16 +118,116 @@ page-fastbuy {
          }
 
          .tt-3 {
+            float: right;
             button {
                background: #3f69a5;
                border-radius: 5px;
-               padding: 10px 24px;
+               padding: 10px ;
                border: none;
                outline: none;
                color: #ffffff;
                font-size: 14px;
             }
          }
+      }
+   }
+   .activityPromotion{
+     
+      .banner-wrapper {
+         background: #fff;
+   
+         button.swiper-pagination-bullet {
+            border-radius: 50%;
+            border-color: transparent;
+            background: #666;
+            opacity: .5;
+         }
+   
+         ion-slide {
+            img {
+               max-width: 100%;
+               margin: 0 auto;
+               display: block;
+               min-height: 100px;
+               width: 100%;
+            }
+         }
+      }
+      .activityPromotion_title{
+         .activityPromotion_img{
+            position: relative;
+            width: 100%;
+            background: #FFF;
+            height: 32rem;
+            ul{
+               border: 1px solid #CCC;
+               position: absolute;
+               bottom: -53%;
+               text-align: -webkit-center;
+               margin-left: 7%;
+               width: 85%;
+               background: #FFF;
+               li{
+                  display: inline-block;
+                  width: 30%;
+                  margin-left: 2%;
+                  margin-top: 5%;
+                  margin-bottom: 5%;
+                  position: relative;
+                  span{
+                     width: 100%;
+                     display: inline-block;
+                     background: #CCC;
+                     height: 26%;
+                     padding-top: 5%;
+                     padding-bottom: 5%;
+                     font-size: 1.7rem;
+                     color: red;
+                     white-space: nowrap;
+                     em{
+                        text-decoration: line-through;
+                        color: #666666;
+                        font-size: 1.2rem;
+                     }
+                  }
+               }
+            }
+         }
+      }
+   }
+   
+   .time_d {
+      color: #fff;
+      line-height: 30px;
+      font-size: 12px;
+      position: absolute;
+      padding-right: 8px;
+      top: 10px;
+      left: 0px;
+      background-color: rgba(0, 0, 0, .5);
+      border-radius: 0 17.5px 17.5px 0;
+
+      countdown {
+         display: inline-block;
+
+         span {
+            margin: 0;
+            background: initial;
+            color: #fff;
+            min-width: initial;
+         }
+      }
+
+      &:before {
+         content: "";
+         display: inline-block;
+         width: 17px;
+         height: 17px;
+         background: url(../assets/icon/sg/time_ico.png) center center no-repeat;
+         background-size: 100%;
+         margin-left: 5px;
+         position: relative;
+         top: 3px;
       }
    }
 }

@@ -89,6 +89,7 @@ export class MeunItemComponent {
 	}
 	confirm() {
 		var filter = [];
+		debugger
 		this.filterParams.filter = '';
 		var data = this.data.goods_attr_arr[3]?this.data.goods_attr_arr[3].data:[];
 		for (let i = 0; i < data.length; i++) {

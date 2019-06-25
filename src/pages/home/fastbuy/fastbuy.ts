@@ -2,7 +2,7 @@ import { Component, ViewChild, ElementRef } from '@angular/core';
 import { NavController, NavParams, Content, IonicPage, FabButton } from 'ionic-angular';
 import { HttpService } from "../../../providers/http-service";
 import { MineProvider } from '../../../providers/mine/mine';
-
+import Swiper from 'swiper';
 /*
   Generated class for the Fastbuy page.
 
@@ -15,9 +15,12 @@ import { MineProvider } from '../../../providers/mine/mine';
    templateUrl: 'fastbuy.html'
 })
 export class FastbuyPage {
+
+   bannerImgs;//轮播图
+   response:any;
    infiniteScroll: any;
    size: any = 10;
-
+   receiptTool: any = 'receiptSskFor';//or receiptSskFor or receiptList or receiptInfo
    category: any;
    data: any;
    selected = 0;
@@ -35,9 +38,11 @@ export class FastbuyPage {
       this.httpService.getCategoryPromote().then((data) => {
          if (data.status) {
             this.category = data;
+            console.log(this.category,'111111111111111111111111111111111111111111111')
          }
       })
       this.getData(this.selected);
+      this.venues()
    }
    ionViewDidLoad() {
       console.log('ionViewDidLoad FastbuyPage');
@@ -50,6 +55,7 @@ export class FastbuyPage {
       });
    }
    getData(id) {
+      debugger
       this.page = 1;
 
       this.infiniteScroll ? this.infiniteScroll.enable(true) : null;
@@ -61,9 +67,8 @@ export class FastbuyPage {
          }
       })
    }
-   goParticularsPage(id) {
-      this.navCtrl.push('ParticularsPage', { goodsId: id, isActivity: 1 })
-   }
+ 
+ 
    scrollToTop() {
       this.content.scrollToTop();
    }
@@ -80,5 +85,22 @@ export class FastbuyPage {
             this.infiniteScroll.complete();
          }, 500);
       })
+   }
+   goParticularsPage(id) {
+      this.navCtrl.push('ParticularsPage', { goodsId: id, isActivity: 1 })
+   }
+   // 限时专场
+   venues(){
+      return this.httpService.venue().then((res)=>{
+         // console.log(res)
+         this.bannerImgs = res.data.banner;
+         this.response=res.data.response;
+         console.log(this.response)
+      })
+   }
+   // 详情页
+   gotoinfo(id){
+      console.log(id)
+      this.navCtrl.push('fastbuy_infonPage',{venumid:id})
    }
 }

@@ -59,7 +59,7 @@ export class BrandListPage {
    }
    ngOnInit() {
       this.paramsData.cat_id = this.navParams.get('listId') == ':listId' ? null : this.navParams.get('listId');
-      this.paramsData.brand_id = this.navParams.get('brandId') == ':brandId' ? null : this.navParams.get('brandId');
+      this.paramsData.brand_id = this.navParams.get('brandId') == ':brandId' ? null : this.navParams.get('brandId') ||this.navParams.data.brand_id;
       this.paramsData.supplier_id = this.navParams.get('supplierId') == ':supplierId' ? null : this.navParams.get('supplierId');
       this.paramsData.keywords = this.navParams.get('keyword') == ':keyword' ? '' : this.navParams.get('keyword');
       this.paramsData.type = this.navParams.get('type') == ':type' ? null : this.navParams.get('type');

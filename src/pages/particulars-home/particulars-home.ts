@@ -416,6 +416,7 @@ export class ParticularsHomePage {
    }
 
    goParticularsPage(goods_id) {
+      debugger
       this.navCtrl.push('ParticularsPage', { goodsId: goods_id })
    }
    goParticularsHomeDetails() {

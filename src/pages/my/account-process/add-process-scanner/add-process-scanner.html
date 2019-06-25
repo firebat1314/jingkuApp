@@ -1,192 +1,362 @@
-<ion-header>
+<!-- <ion-header>
 
    <ion-navbar>
       <ion-title>{{edit?'来镜加工':'确认信息'}}</ion-title>
    </ion-navbar>
 
-</ion-header>
+</ion-header> -->
 
+<ion-header>
 
-<ion-content>
-   <div class="user-bonus" tappable (click)="userBonus()" *ngIf="!edit&&data&&data?.suppliers_list?.length">
-      <span class="usetxt">选择优惠券</span>
-      <span class="price" *ngIf="data?.bonus_amount>0">- {{data?.bonus_amount_format}}</span>
-   </div>
-
-   <div class="swiper-container" id="page" [class.confirm]="!edit">
-      <div class="swiper-wrapper">
-         <div class="swiper-slide slidepage" *ngFor="let item of list;let i = index;">
-            <div class="main_cfd">
-               <header *ngIf="edit" tappable (click)="item.showBody = !item.showBody">
-                  <div class="head_title">
-                     添加工单
-                  </div>
-                  <div class="icon-tool">
-                     <ion-icon name="ios-add-circle" tappble (click)="addOrder()"></ion-icon>
-                  </div>
-               </header>
-               <section>
-                  <div class="choose" *ngIf="edit">
-                     <ng-container *ngIf="item?.R||item?.L">
-                        <div tappable (click)="edit?goChooseLensRPage(item,i,1):item.showBody = !item.showBody">
-                           <div class="icon">
-                              <span *ngIf="!item?.R">R</span>
-                              <img *ngIf="item?.R" [img-lazy-load]="item?.R?.goods_thumb" alt="">
-                           </div>
-                           <div class="txt">眼镜片-右眼(R)</div>
-                        </div>
-                        <div tappable (click)="edit?goChooseLensLPage(item,i,1):item.showBody = !item.showBody">
-                           <div class="icon">
-                              <span *ngIf="!item?.L">L</span>
-                              <img *ngIf="item?.L" [img-lazy-load]="item?.L?.goods_thumb" alt="">
-                           </div>
-                           <div class="txt">眼镜片-左眼(L)</div>
-                        </div>
-                     </ng-container>
-                     <ng-container *ngIf="!(item?.R||item?.L)">
-                        <div tappable (click)="goChooseLensRPage(item,i,1)">
-                           <div class="icon">
-                              <span>
-                                 <img img-lazy-load="./assets/icon/add_cccccc.png" style="width: 30px;" alt="">
-                              </span>
-                           </div>
-                           <div class="txt">眼镜片</div>
-                        </div>
-                     </ng-container>
-                     <div tappable (click)="edit?goChooseFramePage(item,i,2):item.showBody = !item.showBody">
-                        <div class="icon">
-                           <span *ngIf="!item?.J">
-                              <img img-lazy-load="./assets/icon/add_cccccc.png" style="width: 30px;" alt="">
-                           </span>
-                           <img *ngIf="item?.J" [img-lazy-load]="(item?.J?.goods_thumb)?(item?.J?.goods_thumb):'./assets/icon/avatar_default.jpg'" alt="">
-                        </div>
-                        <div class="txt">镜架</div>
-                     </div>
-                  </div>
-                  <div class="card-main">
-                     <table>
-                        <tr>
-                           <td class="name" width=175>
-                              <span>加工处方单{{i+1}}</span>
-                              <ion-icon tappable (click)="removeOrder($event,i)" *ngIf="edit&&list.length>1" name="ios-trash-outline"></ion-icon>
-                           </td>
-                           <td style="color: #3f69a5;">右眼</td>
-                           <td style="color: #3f69a5;">左眼</td>
-                        </tr>
-                        <tr>
-                           <td class="name">球镜</td>
-                           <td style="color: #3f69a5;">{{item?.R?.qiujing || '--'}}</td>
-                           <td style="color: #3f69a5;">{{item?.L?.qiujing|| '--'}}</td>
-                        </tr>
-                        <tr>
-                           <td class="name">柱镜</td>
-                           <td style="color: #3f69a5;">{{item?.R?.zhujing || '--'}}</td>
-                           <td style="color: #3f69a5;">{{item?.L?.zhujing || '--'}}</td>
-                        </tr>
-                        <tr>
-                           <td class="name">轴位</td>
-                           <td>
-                              <div ion-item [attr.detail-push]="edit">
-                                 <ion-input autocomplete="off" autocorrect="off" [readonly]="!edit" class="inp" clearInput [(ngModel)]="item.rzhouxiang" [placeholder]="edit?'请填写':'无'" type="text"></ion-input>
-                              </div>
-                           </td>
-                           <td>
-                              <div ion-item [attr.detail-push]="edit">
-                                 <ion-input autocomplete="off" autocorrect="off" [readonly]="!edit" class="inp" clearInput [(ngModel)]="item.lzhouxiang" [placeholder]="edit?'请填写':'无'" type="text"></ion-input>
-                              </div>
-                           </td>
-                        </tr>
-                        <tr>
-                           <td class="name">ADD</td>
-                           <td>
-                              <div ion-item [attr.detail-push]="edit">
-                                 <ion-input autocomplete="off" autocorrect="off" [readonly]="!edit" class="inp" clearInput [(ngModel)]="item.radd" [placeholder]="edit?'请填写':'无'" type="text"></ion-input>
-                              </div>
-                           </td>
-                           <td>
-                              <div ion-item [attr.detail-push]="edit">
-                                 <ion-input autocomplete="off" autocorrect="off" [readonly]="!edit" class="inp" clearInput [(ngModel)]="item.ladd" [placeholder]="edit?'请填写':'无'" type="text"></ion-input>
-                              </div>
-                           </td>
-                        </tr>
-                        <tr>
-                           <td class="name">近用瞳距</td>
-                           <td>
-                              <div ion-item [attr.detail-push]="edit">
-                                 <ion-input autocomplete="off" autocorrect="off" [readonly]="!edit" class="inp" clearInput [(ngModel)]="item.rjytj" [placeholder]="edit?'请填写':'无'" type="text"></ion-input>
-                              </div>
-                           </td>
-                           <td>
-                              <div ion-item [attr.detail-push]="edit">
-                                 <ion-input autocomplete="off" autocorrect="off" [readonly]="!edit" class="inp" clearInput [(ngModel)]="item.ljytj" [placeholder]="edit?'请填写':'无'" type="text"></ion-input>
-                              </div>
-                           </td>
-                        </tr>
-                        <tr>
-                           <td class="name">瞳距</td>
-                           <td>
-                              <div ion-item [attr.detail-push]="edit">
-                                 <ion-input autocomplete="off" autocorrect="off" [readonly]="!edit" class="inp" clearInput [(ngModel)]="item.rtongju" [placeholder]="edit?'请填写':'无'" type="text"></ion-input>
-                              </div>
-                           </td>
-                           <td>
-                              <div ion-item [attr.detail-push]="edit">
-                                 <ion-input autocomplete="off" autocorrect="off" [readonly]="!edit" class="inp" clearInput [(ngModel)]="item.ltongju" [placeholder]="edit?'请填写':'无'" type="text"></ion-input>
-                              </div>
-                           </td>
-                        </tr>
-                        <tr>
-                           <td class="name">瞳高</td>
-                           <td>
-                              <div ion-item [attr.detail-push]="edit">
-                                 <ion-input autocomplete="off" autocorrect="off" [readonly]="!edit" class="inp" clearInput [(ngModel)]="item.rtonggao" [placeholder]="edit?'请填写':'无'" type="text"></ion-input>
-                              </div>
-                           </td>
-                           <td>
-                              <div ion-item [attr.detail-push]="edit">
-                                 <ion-input autocomplete="off" autocorrect="off" [readonly]="!edit" class="inp" clearInput [(ngModel)]="item.ltonggao" [placeholder]="edit?'请填写':'无'" type="text"></ion-input>
-                              </div>
-                           </td>
-                        </tr>
-                     </table>
-
-                     <div *ngIf="item?.J" class="eye frame">
-                        <div class="h_title">镜架</div>
-                        <div class="t_labels">
-                           <div class="lab" *ngIf="item?.J?.is_pinpai==1">镜架品牌：{{item?.J?.pinpai||'无'}}</div>
-                           <div class="lab" *ngIf="item?.J?.is_xinghao==1">镜架型号：{{item?.J?.xinghao||'无'}}</div>
-                           <div class="lab">加工类型：{{item?.J?.mach_type_name||'无'}}</div>
-                        </div>
-                        <div class="m_list">
-                           <div class="li" *ngIf="item?.J?.is_pinpai==0">
-                              <div class="name">镜架品牌</div>
-                              <ion-input autocomplete="off" autocorrect="off" [readonly]="!edit" class="inp" clearInput [(ngModel)]="item.J.pinpai" [placeholder]="edit?'请填写':'无'" type="text"></ion-input>
-                           </div>
-                           <div class="li" *ngIf="item?.J?.is_xinghao==0">
-                              <div class="name">镜架型号</div>
-                              <ion-input autocomplete="off" autocorrect="off" [readonly]="!edit" class="inp" clearInput [(ngModel)]="item.J.xinghao" [placeholder]="edit?'请填写':'无'" type="text"></ion-input>
-                           </div>
-                           <div class="li" [style.display]="!edit&&!item?.J?.beizhu?'none':'flex'">
-                              <div class="name">镜架备注</div>
-                              <ion-input autocomplete="off" autocorrect="off" [readonly]="!edit" class="inp" clearInput [(ngModel)]="item.J.beizhu" [placeholder]="edit?'请填写':'无'" type="text"></ion-input>
-                           </div>
-                        </div>
-                     </div>
-                  </div>
-               </section>
-
+      <ion-navbar>
+          <ion-title>{{edit?'来镜加工':'确认信息'}}</ion-title>
+      </ion-navbar>
+      <ion-toolbar class="segment-style">
+          <ion-segment mode="md" [(ngModel)]="receiptTool" (ionChange)="flag=true;myContent.scrollToTop(0)">
+               <ion-segment-button value="receiptSskFor">
+                     来镜加工
+                    </ion-segment-button>
+              <ion-segment-button value="receiptList">
+                  全镜加工
+              </ion-segment-button>
+            
+          </ion-segment>
+      </ion-toolbar>
+  </ion-header>
+<ion-content  #myContent [ngSwitch]="receiptTool">
+      <div class="receiptList" *ngSwitchCase="'receiptSskFor'" [ngStyle]="{background:suoquList&&!suoquList?.data?.length?'url(./assets/images/images/invoice.png) no-repeat center 100px':'none'}">
+         <div class="user-bonus" tappable (click)="userBonus()" *ngIf="!edit&&data&&data?.suppliers_list?.length">
+               <span class="usetxt">选择优惠券</span>
+               <span class="price" *ngIf="data?.bonus_amount>0">- {{data?.bonus_amount_format}}</span>
             </div>
-         </div>
-         <div class="nomore">
-            没有更多加工单了哦
-         </div>
+            <div class="user-bonus_fee"    *ngIf="!edit&&data&&data?.suppliers_list?.length">
+                  <span class="usetxt">加工费用：</span>
+                  <span style="color:red">{{poplmonet}}</span>
+               </div>  
+            <div class="swiper-container" id="page" [class.confirm]="!edit">
+               <div class="swiper-wrapper">
+                  <div class="swiper-slide slidepage" *ngFor="let item of list;let i = index;">
+                     <div class="main_cfd">
+                        <header *ngIf="edit" tappable (click)="item.showBody = !item.showBody">
+                           <div class="head_title">
+                              添加工单
+                           </div>
+                           <div class="icon-tool">
+                              <ion-icon name="ios-add-circle" tappble (click)="addOrder()"></ion-icon>
+                           </div>
+                        </header>
+                        <section>
+                           <div class="choose" *ngIf="edit">
+                              <div tappable (click)="edit?goChooseLensRPagelist(item):item.showBody = !item.showBody">
+                                 <div class="icon">
+                                    <span *ngIf="!itemlist">R</span>
+                                    <img *ngIf="itemlist" [img-lazy-load]="itemlist?.goods_thumb" alt="">
+                                 </div>
+                                 <div class="txt">眼镜片-右眼(R)</div>
+                              </div>
+                              <div tappable (click)="edit?goChooseLensLPagelist(item):item.showBody = !item.showBody">
+                                 <div class="icon">
+                                    <span *ngIf="!item?.L">L</span>
+                                    <img *ngIf="item?.L" [img-lazy-load]="item?.L?.goods_thumb" alt="">
+                                 </div>
+                                 <div class="txt">眼镜片-左眼(L)</div>
+                              </div>
+                              <div tappable (click)="edit?goChooseFramelistsPage(item):item.showBody = !item.showBody">
+                                 <div class="icon">
+                                    <span *ngIf="!item?.J">
+                                       <img img-lazy-load="./assets/icon/add_cccccc.png" style="width: 30px" alt="">
+                                    </span>
+                                    <img *ngIf="item?.J" [img-lazy-load]="(item?.J?.goods_thumb)?(item?.J?.goods_thumb):'./assets/icon/avatar_default.jpg'" alt="">
+                                 </div>
+                                 <div class="txt">镜架</div>
+                              </div>
+                           </div>
+                           <div class="card-main">
+                              <table>
+                                 <tr>
+                                    <td class="name" width=175>
+                                       <span>加工处方单{{i+1}}</span>
+                                       <ion-icon tappable (click)="removeOrder($event,i)" *ngIf="edit&&list.length>1" name="ios-trash-outline"></ion-icon>
+                                    </td>
+                                    <td style="color: #3f69a5;">右眼</td>
+                                    <td style="color: #3f69a5;">左眼</td>
+                                 </tr>
+                                 <tr>
+                                    <td class="name">球镜</td>
+                                    <td style="color: #3f69a5;">{{itemlist?.qiujing || '--'}}</td>
+                                    <td style="color: #3f69a5;">{{item?.L?.qiujing|| '--'}}</td>
+                                 </tr>
+                                 <tr>
+                                    <td class="name">柱镜</td>
+                                    <td style="color: #3f69a5;">{{itemlist?.zhujing || '--'}}</td>
+                                    <td style="color: #3f69a5;">{{item?.L?.zhujing || '--'}}</td>
+                                 </tr>
+                                 <tr>
+                                    <td class="name">轴位</td>
+                                    <td>
+                                       <div ion-item [attr.detail-push]="edit">
+                                          <ion-input autocomplete="off" autocorrect="off" [readonly]="!edit" class="inp" clearInput [(ngModel)]="item.rzhouxiang" [placeholder]="edit?'请填写':'无'" type="text"></ion-input>
+                                       </div>
+                                    </td>
+                                    <td>
+                                       <div ion-item [attr.detail-push]="edit">
+                                          <ion-input autocomplete="off" autocorrect="off" [readonly]="!edit" class="inp" clearInput [(ngModel)]="item.lzhouxiang" [placeholder]="edit?'请填写':'无'" type="text"></ion-input>
+                                       </div>
+                                    </td>
+                                 </tr>
+                                 <tr>
+                                    <td class="name">ADD</td>
+                                    <td>
+                                       <div ion-item [attr.detail-push]="edit">
+                                          <ion-input autocomplete="off" autocorrect="off" [readonly]="!edit" class="inp" clearInput [(ngModel)]="item.radd" [placeholder]="edit?'请填写':'无'" type="text"></ion-input>
+                                       </div>
+                                    </td>
+                                    <td>
+                                       <div ion-item [attr.detail-push]="edit">
+                                          <ion-input autocomplete="off" autocorrect="off" [readonly]="!edit" class="inp" clearInput [(ngModel)]="item.ladd" [placeholder]="edit?'请填写':'无'" type="text"></ion-input>
+                                       </div>
+                                    </td>
+                                 </tr>
+                                 <tr>
+                                    <td class="name">近用瞳距</td>
+                                    <td>
+                                       <div ion-item [attr.detail-push]="edit">
+                                          <ion-input autocomplete="off" autocorrect="off" [readonly]="!edit" class="inp" clearInput [(ngModel)]="item.rjytj" [placeholder]="edit?'请填写':'无'" type="text"></ion-input>
+                                       </div>
+                                    </td>
+                                    <td>
+                                       <div ion-item [attr.detail-push]="edit">
+                                          <ion-input autocomplete="off" autocorrect="off" [readonly]="!edit" class="inp" clearInput [(ngModel)]="item.ljytj" [placeholder]="edit?'请填写':'无'" type="text"></ion-input>
+                                       </div>
+                                    </td>
+                                 </tr>
+                                 <tr>
+                                    <td class="name">瞳距</td>
+                                    <td>
+                                       <div ion-item [attr.detail-push]="edit">
+                                          <ion-input autocomplete="off" autocorrect="off" [readonly]="!edit" class="inp" clearInput [(ngModel)]="item.rtongju" [placeholder]="edit?'请填写':'无'" type="text"></ion-input>
+                                       </div>
+                                    </td>
+                                    <td>
+                                       <div ion-item [attr.detail-push]="edit">
+                                          <ion-input autocomplete="off" autocorrect="off" [readonly]="!edit" class="inp" clearInput [(ngModel)]="item.ltongju" [placeholder]="edit?'请填写':'无'" type="text"></ion-input>
+                                       </div>
+                                    </td>
+                                 </tr>
+                                 <tr>
+                                    <td class="name">瞳高</td>
+                                    <td>
+                                       <div ion-item [attr.detail-push]="edit">
+                                          <ion-input autocomplete="off" autocorrect="off" [readonly]="!edit" class="inp" clearInput [(ngModel)]="item.rtonggao" [placeholder]="edit?'请填写':'无'" type="text"></ion-input>
+                                       </div>
+                                    </td>
+                                    <td>
+                                       <div ion-item [attr.detail-push]="edit">
+                                          <ion-input autocomplete="off" autocorrect="off" [readonly]="!edit" class="inp" clearInput [(ngModel)]="item.ltonggao" [placeholder]="edit?'请填写':'无'" type="text"></ion-input>
+                                       </div>
+                                    </td>
+                                 </tr>
+                              </table>
+         
+                              <div *ngIf="item?.J" class="eye frame">
+                                 <div class="h_title">镜架</div>
+                                 <div class="t_labels">
+                                    <div class="lab" *ngIf="!is_scanner">镜架来源：{{item?.J?.rec_id?'订单选择':'客户自备'}}</div>
+                                    <div class="lab">镜架品牌：{{item?.J?.pinpai||'无'}}</div>
+                                    <div class="lab">镜架型号：{{item?.J?.xinghao||'无'}}</div>
+                                    <div class="lab">加工类型：{{item?.J?.mach_type_name||'无'}}</div>
+                                    <div class="lab">镜架备注：{{item?.J?.beizhu||'无'}}</div>
+                                 </div>
+                              </div>
+                           </div>
+                        </section>
+         
+                     </div>
+                  </div>
+                  
+                  <div class="nomore">
+                        没有更多加工单了哦
+                     </div>
+               </div>
+               <div class="swiper-pagination"></div>
+            </div>
+         
+            <ion-fab bottom right class="addBtn" scroll-to-top>
+               <button ion-fab mini color="jingku1" goBackTop></button>
+            </ion-fab>
+            
       </div>
-      <div class="swiper-pagination"></div>
-   </div>
+      <div class="receiptSskFor" *ngSwitchCase="'receiptList'" [ngStyle]="{background:suoquList&&!suoquList?.data?.length?'url(./assets/images/images/invoice.png) no-repeat center 100px':'none'}">
+         <div class="user-bonus" tappable (click)="userBonus()" *ngIf="!edit&&data&&data?.suppliers_list?.length">
+               <span class="usetxt">选择优惠券</span>
+               <span class="price" *ngIf="data?.bonus_amount>0">- {{data?.bonus_amount_format}}</span>
+            </div>
+         
+            <div class="swiper-container" id="page" [class.confirm]="!edit">
+               <div class="swiper-wrapper">
+                  <div class="swiper-slide slidepage" *ngFor="let item of list;let i = index;">
+                     <div class="main_cfd">
+                        <header *ngIf="edit" tappable (click)="item.showBody = !item.showBody">
+                           <div class="head_title">
+                              添加工单
+                           </div>
+                           <div class="icon-tool">
+                              <ion-icon name="ios-add-circle" tappble (click)="addOrder()"></ion-icon>
+                           </div>
+                        </header>
+                        <section>
+                           <div class="choose" *ngIf="edit">
+                                 <ng-container >
+                                       <div tappable (click)="goChooseLensRPage(item,i,1)" style="flex: 0.4">
+                                          <div class="icon">
+                                             <span>
+                                                <img img-lazy-load="./assets/icon/add_sss.png" style="width: 30px;" alt="">
+                                             </span>
+                                          </div>
+                                          <div class="txt" style="text-align: -webkit-center;">镜片扫码</div>
+                                       </div>
+                                    </ng-container>
+                            
+                              <ng-container>
+                                 <div tappable (click)="edit?goChooseFramePage(item,i,2):item.showBody = !item.showBody" style="flex: 0.4">
+                                       <div class="icon">
+                                          <span *ngIf="!item?.J">
+                                             <img img-lazy-load="./assets/icon/add_sss.png" style="width: 30px;" alt="">
+                                          </span>
+                                          <img *ngIf="item?.J" [img-lazy-load]="(item?.k?.goods_thumb)?(item?.k?.goods_thumb):'./assets/icon/avatar_default.jpg'" alt="">
+                                       </div>
+                                       <div class="txt" style="text-align: -webkit-center;">镜架扫码</div>
+                                    </div>
+                                 </ng-container>
+                              </div>
+                           
+                           <div class="card-main">
+                              <table>
+                                 <tr>
+                                    <td class="name" width=175>
+                                       <span>加工处方单{{i+1}}</span>
+                                       <ion-icon tappable (click)="removeOrder($event,i)" *ngIf="edit&&list.length>1" name="ios-trash-outline"></ion-icon>
+                                    </td>
+                                    <td style="color: #3f69a5;">右眼</td>
+                                    <td style="color: #3f69a5;">左眼</td>
+                                 </tr>
+                                 <tr>
+                                    <td class="name">球镜</td>
+                                    <td style="color: #3f69a5;">{{item?.R?.qiujing || '--'}}</td>
+                                    <td style="color: #3f69a5;">{{item?.L?.qiujing|| '--'}}</td>
+                                 </tr>
+                                 <tr>
+                                    <td class="name">柱镜</td>
+                                    <td style="color: #3f69a5;">{{item?.R?.zhujing || '--'}}</td>
+                                    <td style="color: #3f69a5;">{{item?.L?.zhujing || '--'}}</td>
+                                 </tr>
+                                 <tr>
+                                    <td class="name">轴位</td>
+                                    <td>
+                                       <div ion-item [attr.detail-push]="edit">
+                                          <ion-input autocomplete="off" autocorrect="off" [readonly]="!edit" class="inp" clearInput [(ngModel)]="item.rzhouxiang" [placeholder]="edit?'请填写':'无'" type="text"></ion-input>
+                                       </div>
+                                    </td>
+                                    <td>
+                                       <div ion-item [attr.detail-push]="edit">
+                                          <ion-input autocomplete="off" autocorrect="off" [readonly]="!edit" class="inp" clearInput [(ngModel)]="item.lzhouxiang" [placeholder]="edit?'请填写':'无'" type="text"></ion-input>
+                                       </div>
+                                    </td>
+                                 </tr>
+                                 <tr>
+                                    <td class="name">ADD</td>
+                                    <td>
+                                       <div ion-item [attr.detail-push]="edit">
+                                          <ion-input autocomplete="off" autocorrect="off" [readonly]="!edit" class="inp" clearInput [(ngModel)]="item.radd" [placeholder]="edit?'请填写':'无'" type="text"></ion-input>
+                                       </div>
+                                    </td>
+                                    <td>
+                                       <div ion-item [attr.detail-push]="edit">
+                                          <ion-input autocomplete="off" autocorrect="off" [readonly]="!edit" class="inp" clearInput [(ngModel)]="item.ladd" [placeholder]="edit?'请填写':'无'" type="text"></ion-input>
+                                       </div>
+                                    </td>
+                                 </tr>
+                                 <tr>
+                                    <td class="name">近用瞳距</td>
+                                    <td>
+                                       <div ion-item [attr.detail-push]="edit">
+                                          <ion-input autocomplete="off" autocorrect="off" [readonly]="!edit" class="inp" clearInput [(ngModel)]="item.rjytj" [placeholder]="edit?'请填写':'无'" type="text"></ion-input>
+                                       </div>
+                                    </td>
+                                    <td>
+                                       <div ion-item [attr.detail-push]="edit">
+                                          <ion-input autocomplete="off" autocorrect="off" [readonly]="!edit" class="inp" clearInput [(ngModel)]="item.ljytj" [placeholder]="edit?'请填写':'无'" type="text"></ion-input>
+                                       </div>
+                                    </td>
+                                 </tr>
+                                 <tr>
+                                    <td class="name">瞳距</td>
+                                    <td>
+                                       <div ion-item [attr.detail-push]="edit">
+                                          <ion-input autocomplete="off" autocorrect="off" [readonly]="!edit" class="inp" clearInput [(ngModel)]="item.rtongju" [placeholder]="edit?'请填写':'无'" type="text"></ion-input>
+                                       </div>
+                                    </td>
+                                    <td>
+                                       <div ion-item [attr.detail-push]="edit">
+                                          <ion-input autocomplete="off" autocorrect="off" [readonly]="!edit" class="inp" clearInput [(ngModel)]="item.ltongju" [placeholder]="edit?'请填写':'无'" type="text"></ion-input>
+                                       </div>
+                                    </td>
+                                 </tr>
+                                 <tr>
+                                    <td class="name">瞳高</td>
+                                    <td>
+                                       <div ion-item [attr.detail-push]="edit">
+                                          <ion-input autocomplete="off" autocorrect="off" [readonly]="!edit" class="inp" clearInput [(ngModel)]="item.rtonggao" [placeholder]="edit?'请填写':'无'" type="text"></ion-input>
+                                       </div>
+                                    </td>
+                                    <td>
+                                       <div ion-item [attr.detail-push]="edit">
+                                          <ion-input autocomplete="off" autocorrect="off" [readonly]="!edit" class="inp" clearInput [(ngModel)]="item.ltonggao" [placeholder]="edit?'请填写':'无'" type="text"></ion-input>
+                                       </div>
+                                    </td>
+                                 </tr>
+                              </table>
+         
+                              <div *ngIf="item?.J" class="eye frame">
+                                 <div class="h_title">镜架</div>
+                                 <div class="t_labels">
+                                    <div class="lab" *ngIf="item?.J?.is_pinpai==1">镜架品牌：{{item?.J?.pinpai||'无'}}</div>
+                                    <div class="lab" *ngIf="item?.J?.is_xinghao==1">镜架型号：{{item?.J?.xinghao||'无'}}</div>
+                                    <div class="lab">加工类型：{{item?.J?.mach_type_name||'无'}}</div>
+                                 </div>
+                                 <div class="m_list">
+                                    <div class="li" *ngIf="item?.J?.is_pinpai==0">
+                                       <div class="name">镜架品牌</div>
+                                       <ion-input autocomplete="off" autocorrect="off" [readonly]="!edit" class="inp" clearInput [(ngModel)]="item.J.pinpai" [placeholder]="edit?'请填写':'无'" type="text"></ion-input>
+                                    </div>
+                                    <div class="li" *ngIf="item?.J?.is_xinghao==0">
+                                       <div class="name">镜架型号</div>
+                                       <ion-input autocomplete="off" autocorrect="off" [readonly]="!edit" class="inp" clearInput [(ngModel)]="item.J.xinghao" [placeholder]="edit?'请填写':'无'" type="text"></ion-input>
+                                    </div>
+                                    <div class="li" [style.display]="!edit&&!item?.J?.beizhu?'none':'flex'">
+                                       <div class="name">镜架备注</div>
+                                       <ion-input autocomplete="off" autocorrect="off" [readonly]="!edit" class="inp" clearInput [(ngModel)]="item.J.beizhu" [placeholder]="edit?'请填写':'无'" type="text"></ion-input>
+                                    </div>
+                                 </div>
+                              </div>
+                           </div>
+                        </section>
+                        
+         
+                     </div>
+                  </div>
+                  <div class="nomore">
+                     没有更多加工单了哦
+                  </div>
+               </div>
+               <div class="swiper-pagination"></div>
+            </div>
+         
+            <ion-fab bottom right class="addBtn" scroll-to-top>
+               <button ion-fab mini color="jingku1" goBackTop></button>
+            </ion-fab>
+     </div>
 
-   <ion-fab bottom right class="addBtn" scroll-to-top>
-      <button ion-fab mini color="jingku1" goBackTop></button>
-   </ion-fab>
 
 </ion-content>
 

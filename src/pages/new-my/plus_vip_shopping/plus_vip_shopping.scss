@@ -1,0 +1,408 @@
+ion-app.ios.platform-ios.platform-cordova {
+   page-plus-vip-shopping {
+      .my-head {
+         padding-top: 20px;
+      }
+   }
+}
+
+page-plus-vip-shopping {
+   .my-head { 
+         background: #eeba45;
+      background-size: cover;
+      color: #fff;
+
+      .t_btn {
+         display: flex;
+         justify-content: space-between;
+         top: 0;
+         position: fixed;
+         width: 100%;
+         background: url(../assets/images/images/bannerShop_02.jpg) no-repeat center top;
+         left: 0;
+      }
+
+      .h-body {
+         display: flex;
+         align-items: center;
+         padding: 34px 10px 12px 20px;
+         position: relative;
+
+         .user_logo {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            margin-right: 13px;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 1px solid #ffffff;
+            background: rgba(0, 0, 0, .1);
+         }
+
+         .r_wrap {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex: 1;
+
+            .user_info {
+               width: 58%;
+               .name {
+                  font-size: 1.6rem;
+               }
+
+               .vip {
+                  display: flex;
+                  align-items: center;
+                  border-radius: 34px;
+                  float: left;
+
+                  .vip_logo {
+                     width: 12px;
+                     height: 12px;
+                     margin-right: 5px;
+                     display: none;
+                  }
+
+                  .vip_name {
+                     font-size: 1.2rem;
+                  }
+               }
+               .vip_plus{
+                  background: rgba(0, 0,0,0);
+                  cursor: pointer;
+                  float: left;
+                  margin-left: 3%;
+                  // img{
+                  //    width: 80%;
+                  //    height: 80%;
+                  // }
+               }
+            }
+            .duihuanma{
+               position: absolute;
+               right: 3%;
+               bottom: 5%;
+            }
+            .gl_btn {
+               position: relative;
+               top: -26px;
+
+               .unread {
+                  position: absolute;
+                  top: -3px;
+                  right: -4px;
+                  width: 20px;
+                  height: 20px;
+                  background: #e60000;
+                  color: #ffffff;
+                  border-radius: 50%;
+                  font-size: 1rem;
+                  white-space: nowrap;
+                  display: flex;
+                  align-items: center;
+                  justify-content: center;
+               }
+
+               .button {
+                  margin-left: 4px;
+
+
+               }
+            }
+         }
+      }
+
+      .h_bottom {
+         display: flex;
+         position: relative;
+         bottom: 0;
+         padding: 10px 0 40px;
+
+         >div {
+            width: 25%;
+            text-align: center;
+
+            >span {
+               display: block;
+               font-size: 1.6rem;
+
+               &.icon_num {}
+
+               &.txt {
+                  font-size: 1.2rem;
+                  margin-top: 5px;
+               }
+            }
+         }
+      }
+   }
+   // 6大特权
+   .enjoy-privileges{
+      text-align: -webkit-center;
+      margin-bottom: 3%;
+      p{
+         display: inline-block;
+         margin:5%;
+         font-weight: 600;
+         em{
+           color: #c19c21;
+           font-size: 2.5rem;
+         }
+      }
+      .enjoy-privileges_title{
+         display: inline-block;
+         width: 15%;
+         height: 1px;
+         border-top: 1px solid #CCC;
+         padding-top: 1%;
+      }
+    .enjoy_privileges_iconconnet{
+      width: 90%;
+       text-align: center;
+       background: #FFF;
+       border-radius: 3%;
+       padding-bottom: 10%;
+       padding-top: 10%;
+
+       .enjoy_privileges_iconlist{
+          position: relative;
+          .look_more{
+            position: absolute;
+            right: 4%;
+            top: -14%;
+          }
+          li{
+            display: inline-block;
+            margin-left: 10%;
+            width: 22%;
+           .privileges_iconlist_title{display: block;text-align: center;white-space: nowrap;font-size: 1.7rem}
+           .privileges_iconlist_content{display: block;text-align: center;white-space: nowrap;color: #CCC}
+           
+            .privileges_iconlist_img{
+               width: 60px;
+               height: 60px;
+               border-radius: 50%;
+               // margin-right: 13px;
+               // overflow: hidden;
+               display: inline-block;
+               border: 1px solid #ffffff;
+               background: #c19c21;
+               margin-left: 10%;
+               img{
+                  width: 68%;
+                  /* height: 40px; */
+                  margin-top: 17%;
+                }
+            }
+      
+           
+          }
+       }
+    }
+   }
+
+   //服务类型
+   .recharge{
+      width: 100%;
+      background: #FFF;
+      text-align: center;
+      padding-top: 10%;
+      margin-bottom: 3%;
+      
+     .recharge_title {
+      display: inline-block;
+      width: 15%;
+      height: 1px;
+      border-top: 1px solid #CCC;
+      padding-top: 1%;
+     }
+     p{
+        display: inline-block;
+        margin: 0 10%;
+     }
+     .recharge_content{
+      -webkit-overflow-scrolling: touch;
+      overflow-x: scroll;
+      white-space: nowrap;
+      padding: 10% 0;
+      .recharge_list{
+         position: relative;
+         width: 40%;
+         // border: 1px solid #CCC;
+         display: inline-block;
+         text-align: -webkit-auto;
+         margin-left: 4%;
+         padding:0;
+        img{
+         display: block;  
+        }
+         .recharge_time{
+                font-size: 1.7rem;
+                margin-top: 5%;
+                display: block;
+                margin-bottom: 10%;
+         }
+         .recharge_money{
+            display: block;
+                font-size: 1.7rem;
+                margin-bottom: 5%;
+                em{
+                   font-size: 2.7rem;
+                   font-weight: 600;
+
+                }
+         }
+         .recharge_low_money{
+               display: block;
+               color: #CCC;
+               text-decoration: line-through;
+               margin-bottom: 15%;
+
+         }
+         .recharge_cuxiao{
+            width: 100%;
+            background: url(../../../assets/icon/yellow_icon.png) no-repeat;
+            background-size: auto 100%;
+            padding: 2px;
+            display: inline-block;
+            text-align: -webkit-center;
+            margin-bottom: 15%;
+
+         }
+         .shouchong{
+            background: url(../../../assets/icon/shouchong.png) no-repeat;
+            position: absolute;
+            background-size: 100% 100%;
+            padding: 2px;
+            display: inline-block;
+            text-align: -webkit-center;
+            top: -11%;
+            left: 3%;
+           color: #a7946e;
+         }
+      }
+      .border_ccc{
+         border: 5px solid orange;
+      }
+     }
+ 
+
+   }
+// 结算页面
+   .settlement{
+      width: 100%;
+      background: #FFF;
+      padding-bottom: 3.5rem;
+            .settlement_ul{
+               padding-left: 5%;
+                  .settlement_list{
+                     width: 95%;
+                     border-bottom: 1px solid #CCC;
+                     padding: 1.5rem 0;
+                     padding-left: 3%;
+                     .settlement_list_tit{
+                     width: 30%;
+                     display: inline-block;
+                    
+                     }
+                     em{
+                        text-decoration: line-through;
+                        color: #CCC;
+                     }
+                     .youhui{
+                        background: url(../../../assets/icon/youhui.png) no-repeat;
+                        background-size: 100% 100%;
+                        padding: 2px;
+                        display: inline-block;
+                        text-align: -webkit-center;
+                       color: #e50000;
+                     }
+                     .settlement_list_mon{
+                        font-size: 1.9rem;
+                     }
+                    .settlement_list_yellow{
+                       color: #c19c21;
+                       font-size: 1.7rem;
+                       font-weight: 800;
+                    }
+                  }
+            }
+   }
+   //结算按钮
+   .settlement_btn{
+      position: relative;
+      background: #d4990f;
+      .settlement_btn_xieyi{
+         width: 50%;
+         display: inline-block;
+         border: 1px solid #CCC;
+         padding: 7% 0%;
+         text-align: -webkit-center;
+         padding-left: 18%;
+         background: #FFF; 
+      }
+      .settlement_btn_zhifu{
+         width: 49%;
+         display: inline-block; 
+         text-align: inherit;
+         border-left: none;
+         display: inline-block;
+         background: #d4990f;
+         color: #FFF;
+         padding-left: 13%;
+         position: absolute;
+         top: 39%;
+      }
+      .select-all {
+         align-items: center;
+         color: #808080;
+         font-size: 12px;
+
+         .checkswrap {
+            display: inherit;
+            float: left;
+         }
+      }
+      .xieyi{
+         color: blue;
+      }
+   
+   }
+
+   .vip_plus{
+		width: 100px;
+		height: 50px;
+		display: flex;
+	}
+	.vip_plus .crown{
+		width: 30px;
+		height: 30px;
+		border-radius: 100px;
+		position: relative;
+		top: 10px;
+		z-index: 2;
+		background: #fff;
+		background: linear-gradient(to bottom, #000000 0%,#797979 100%);
+	}
+	.vip_plus .crown img{
+		width: 60%;
+	    height: 60%;
+	    margin-left: 20%;
+	    margin-top: 20%;
+	}
+	.vip_plus .crownText{
+		width: 50px;
+		height: 20px;
+		text-align: center;
+		position: relative;
+		left: -10%;
+		top: 15px;
+		font-size: 13px;
+		line-height: 20px;
+		background: linear-gradient(to bottom, #000000 0%,#797979 100%);
+		color:#f0eeb8;
+	}
+}

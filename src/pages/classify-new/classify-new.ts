@@ -127,12 +127,14 @@ export class ClassifyNewPage {
       this.navCtrl.push('MoreBrandPage', { data: data })
    }
    openCategoryMeun(item) {
+      debugger
       this.menuCtrl.enable(true, 'category');
       this.events.publish('classifyNew:cateFilter', item);
       this.menuCtrl.toggle();
 
    }
    goBrandList(item) {
+      debugger
       if (this.is_cutting > 0) {
          this.navCtrl.push('BrandListPage', { brandId: item.brand_id, cut: 1 })
       } else {

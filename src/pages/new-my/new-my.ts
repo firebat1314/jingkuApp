@@ -140,4 +140,8 @@ export class NewMyPage {
       // this.native.showToast('该功能现仅在安卓客户端开放', null, true);
       // }
    }
+   // 去往plus会员购买页面方法
+   gotoplus(){
+     this.navCtrl.push('plusVipShoppingPage')
+   }
 }

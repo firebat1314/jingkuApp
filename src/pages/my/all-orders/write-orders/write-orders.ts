@@ -316,6 +316,7 @@ export class WriteOrdersPage {
       //     })
       //   })
       // } else {
+         debugger
       this.done().then((res) => {
          console.log(res)
          if (res.status == 1) {

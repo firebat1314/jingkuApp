@@ -128,7 +128,6 @@ export class SearchPage {
          this.httpService.categoryGoods({keywords:this.myHomeSearchinfo,is_info:1}).then((res)=>{
             //   console.log(res.suppliers_list)
             console.log(res)
-            // debugger
                this.suppliers_listinfo=res.suppliers_list
                this.suppliers_listinfolenths=res.suppliers_list
                // this.suppliers_listinfoID=res.suppliers_list.id

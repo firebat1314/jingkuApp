@@ -12,15 +12,16 @@ forsubmission {
         margin:1rem 1rem;
     }
     .add_goods{
-        width: 6.66rem;
-        height: 2.08rem;
+        width: 8.66rem;
+        height: 3.08rem;
         background: #3F69A5;
         border-radius: 2%;
-        color:#FFF;
+        color: #FFF;
         margin: 0.84rem;
         float: right;
         text-align: -webkit-center;
-        line-height: 2.08rem;
+        line-height: 3.08rem;
+        font-size: 1.6rem;
     }
 .price{
     display: block;
@@ -36,6 +37,7 @@ forsubmission {
         color: #FFF;
         text-align: center;
         line-height: 3.33rem;
+        font-size: 1.6rem;
       
     }
 }

@@ -1,0 +1,107 @@
+<!--
+  Generated template for the AllOrders page.
+
+  See http://ionicframework.com/docs/v2/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+        <ion-navbar>
+           <ion-title>所有订单</ion-title>
+           <ion-buttons right>
+              <button ion-button clear icon-only icon-left right open-more="MoreMenuPage">
+                     <ion-icon name="ios-more"></ion-icon>
+                 </button>
+           </ion-buttons>
+        </ion-navbar>
+        <!-- <ion-toolbar no-padding>
+           <img-tabs #mytabs [slidesPerView]="5" [selectedIndex]="pageIndex" [slides]="['全部', '待付款', '待收货', '已完成','已取消']" (slideClick)="checkTab($event)"></img-tabs>
+        </ion-toolbar> -->
+     </ion-header>
+     
+     <ion-content #myContent>
+        <ion-refresher (ionRefresh)="doRefresh($event)" pullMax="60">
+           <ion-refresher-content refreshingSpinner="1" pullingIcon="0"></ion-refresher-content>
+        </ion-refresher>
+     
+        <ion-spinner *ngIf="showLoading" style="z-index: 1000;position: fixed;top: 0;left: 0;right: 0;bottom: 0;margin: auto;" name="circles"></ion-spinner>
+        <div class="no-log" *ngIf="orderData&&!orderList?.length">
+           <div class="img">
+              <img src="./assets/icon/no-log.png" alt="">
+           </div>
+           <div class="message">您还没有相关订单</div>
+        </div>
+     
+        <div class="single-shop" *ngFor="let item of orderList;let index = index;">
+           <img *ngIf="item?.order_status==5&&item?.pay_status==2&&item?.shipping_status==2" style="position: absolute;top: 0;right: 18px;width: 57px;z-index: 101;pointer-events: none;opacity: 0.5;" src="./assets/icon/order-ok.png" alt="">
+           <ion-item-divider>
+              <div *ngIf="item.order_sn" class="shop-title" tappable (click)="goParticularsHomePage(item.suppliers_id)">
+           <img src="./assets/icon/text.png" alt="" style="width: 5%;  margin-right: 3%;">    <span style="margin-right: 3%;">订单编号&nbsp; :</span>  {{item.order_sn}}&nbsp;
+                 
+              </div>
+              <button *ngIf="item?.order_status!=5" item-end ion-button clear color="danger" icon-right>
+               <ion-icon color="colorsix" name="ios-arrow-forward"></ion-icon>
+                     <!-- <ion-icon name="ios-trash-outline"></ion-icon> -->
+                 </button>
+              <button item-end ion-button clear icon-only *ngIf="item.order_status == 2 || (item?.order_status==5&&item?.pay_status==2&&item?.shipping_status==2)" (click)="deleteOrder(item.order_id,index)">
+                     <ion-icon name="ios-trash-outline"></ion-icon>
+                 </button>
+           </ion-item-divider>
+           <ng-container *ngIf="item.goods.length==1">
+              <ion-item class="item-for-goods" style="background-color: #fafafa;" no-lines tappable (click)="goOrdersDetailPage(item)" *ngFor="let goods of item.goods">
+                 <ion-thumbnail item-left>
+                    <img [img-lazy-load]="goods?.original_img">
+                 </ion-thumbnail>
+                 <div class="my-content">
+                    <div class="left" *ngIf="goods.cutting_id==0">
+                       <h2>{{goods.goods_name}}</h2>
+                       <span *ngIf="goods.qiujing">球镜：{{goods.qiujing}}
+                                 <br/>
+                             </span>
+                       <span *ngIf="goods.zhujing">柱镜：{{goods.zhujing}}
+                                 <br/>
+                             </span>
+                       <span *ngIf="goods.zhouwei">轴位：{{goods.zhouwei}}
+                                 <br/>
+                             </span>
+                       <div [innerHtml]="goods.goods_attr"></div>
+                    </div>
+                    <div class="left" *ngIf="goods.cutting_id>0">
+                       <h2>{{goods.cutting_name}}</h2>
+                       <div>
+                          <p *ngFor="let cut_attrs of goods.cutting_attr">
+                             <span *ngFor="let cut_attr of cut_attrs">{{cut_attr}}</span>
+                          </p>
+                       </div>
+                    </div>
+                    <div class="right">
+                       <div class="price color" *ngIf="!(goods.is_price>0)&&mine?.showPrice">{{goods.format_goods_price}}</div>
+                       <div class="price color" *ngIf="goods.is_price>0&&mine?.showPrice">{{goods.reduce_price}}
+                          <p class="old">{{goods.format_goods_price}}</p>
+                       </div> 
+                       <div class="count">x{{goods.goods_number}}</div>
+                    </div>
+                 </div>
+              </ion-item>
+           </ng-container>
+           <ion-item class="item-for-goods" style="overflow-x:scroll;background-color: #fafafa;" no-lines tappable (click)="goOrdersDetailPage(item.order_id)" *ngIf="item.goods.length>1">
+              <!--  (click)="$event.stopPropagation();goParticularsPage(goods.goods_id);"  -->
+              <ion-thumbnail item-left style="border-width: 0;" *ngFor="let goods of item.goods">
+                 <img [img-lazy-load]="goods.original_img">
+              </ion-thumbnail>
+           </ion-item>
+           <div class="result">
+              <span class="count">共{{item.goods_number}}件商品&nbsp;&nbsp;</span>
+              <span *ngIf="mine?.showPrice">{{item?.pay_status==2?'实付款：':'需付款：'}}
+                     <span class="price">¥{{item.total_fee}}</span>
+              </span>
+           </div>
+        </div>
+     
+        <ion-fab right bottom tappable scroll-to-top>
+           <button ion-fab color="jingku1" mini goBackTop ></button>
+        </ion-fab>
+        <ion-infinite-scroll threshold="250%" (ionInfinite)="doInfinite($event)">
+           <ion-infinite-scroll-content></ion-infinite-scroll-content> 
+        </ion-infinite-scroll>
+     </ion-content>

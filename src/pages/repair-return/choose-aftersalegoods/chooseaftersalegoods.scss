@@ -11,6 +11,9 @@ chooseaftersalegoods {
     .chooseaftersalegoods_con{
         margin:1rem 1rem;
     }
+    .price{
+        display: block;
+    }
 
 //     .shopping_title{
 //         font-size: 26px;
@@ -99,6 +102,7 @@ chooseaftersalegoods {
     display: block;
     padding-top: 0.6rem !important;
     border-bottom: 1px solid #F2F2F2;
+    padding-bottom: 1rem;
 }
 .checkswrap{float: left; 
     margin-right: 0.79rem;
@@ -117,11 +121,11 @@ chooseaftersalegoods {
 }
 
 .contents_add_box{
-    height: 17.5rem;
     overflow: hidden;
     background: #FFF;
     border-radius: 2%;
     margin-bottom: 0.8rem;
+    font-size: 1.6rem;
 }
 .number{
     float: right;
@@ -135,6 +139,7 @@ chooseaftersalegoods {
     line-height: 2.7rem;
     text-align: -webkit-center;
     margin-bottom: 0.8rem;
+    font-size: 1.6rem;
 }
 .easons_forrefund_bz{
     background: #FFF;
@@ -143,6 +148,7 @@ chooseaftersalegoods {
     border-radius: 2%;
     padding-left: 0.83rem;
     padding-top: 1.29rem;
+    font-size: 1.6rem;
     margin-bottom: 0.8rem;
 }
 .easons_forrefund_bz p{
@@ -163,5 +169,6 @@ chooseaftersalegoods {
     color:#FFF;
     line-height: 3.33rem;
     text-align: center;
+    font-size: 1.6rem;
 }
 }

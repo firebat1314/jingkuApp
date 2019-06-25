@@ -474,6 +474,10 @@ export class HttpService {
    rechargeMoney(data?: Object) {//新充值
       return this.http.post(IP + '/User/recharge_money', data, { showLoading: true })
    }
+   // http://m.jingkoo.net/user/show_machining_order
+   showmachiningorder(data?: Object, options?: HttpOptions      ){
+      return this.http.post(IP+'/user/show_machining_order', data ,options)
+   }
    /**
     * 来镜加工 User/machining
     */
@@ -494,6 +498,15 @@ export class HttpService {
    getCategoryPromote(data?: Object) {
       return this.http.post(IP + '/Index/getCategoryPromote', data, { showLoading: false })
    }
+   // 活动专场商品列表
+   promotions(data?: Object){
+      return this.http.post(IP + '/venue/promotion', data, { showLoading: false })
+   }
+   // 活动专场信息
+   venueinfo(data?: Object){
+      return this.http.post(IP + '/venue/info', data, { showLoading: false })
+   }
+
    /**
     * 预售
     * @param 
@@ -507,6 +520,10 @@ export class HttpService {
     */
    alignBuy(data?: Object) {
       return this.http.post(IP + '/User/align_buy', data, { showLoading: true })
+   }
+   // http://app.jingkoo.net/user/machining_goods
+   machininglist(data?:object){
+      return this.http.post(IP+'/user/machining_goods',data,{showLoading:true})
    }
    /**
     * 极验验证
@@ -969,5 +986,37 @@ export class HttpService {
    distri_order_consinfo(data?, options?: HttpOptions) {
       return this.http.post(IP + '/user/distri_order_con', data, { showLoading: true, ...options })
    }
-
+   // http://app.jingkoo.net/venue
+   venue(data?, options?: HttpOptions){
+      return this.http.post(IP + '/venue', data, { showLoading: true, ...options })
+   }
+// plushu
+plusindex(data?, options?: HttpOptions){
+   return this.http.post(IP + '/plus/open', data, { showLoading: true, ...options })
+}
+// http://app.jingkoo.net/plus/payment
+// plus支付
+plusPayment(data?, options?: HttpOptions){
+ return this.http.post(IP+'/plus/payment', data, { showLoading: true, ...options })
+}
+//兑换码激活
+exchanges(data?, options?: HttpOptions){
+   return this.http.post(IP+'/plus/exchange', data, { showLoading: true, ...options })
+}
+//已开通plus会员首页
+yikaotong(data?, options?: HttpOptions){
+ return this.http.get(IP+'/plus', data, { showLoading: true, ...options })
+}
+//领取Plus会员优惠券与运费券
+plusbonus(data?, options?: HttpOptions){
+   return this.http.post(IP+'/plus/bonus', data, { showLoading: true, ...options })
+}
+//未开通plus页面优惠券展示
+plusviwe(data?, options?: HttpOptions){
+   return this.http.post(IP+'/plus/view', data, { showLoading: true, ...options })
+}
+//新品
+venuenews(data?, options?: HttpOptions){
+   return this.http.post(IP+'/venue/news', data, { showLoading: true, ...options })
+}
 }

@@ -40,7 +40,7 @@ export class forsubmissionPage {
     console.log('ionViewDidLoad ServiceOrderDetailsPage');
   }
   csdds(){
-    this.navCtrl.push('chooseaftersalegoodsPage');
+    this.navCtrl.push('batchapplicationPage');
     // alert(111)
   }
   sbumit(){

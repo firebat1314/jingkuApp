@@ -53,6 +53,7 @@ export class AddProcessPage {
    }
    poplmonet
    getData(showLoading = true) {
+      debugger
       this.httpService.glassMachining({ order_id: this.order_id }, { showLoading: showLoading }).then((res) => {
          if (res.status) {
             this.data = res;

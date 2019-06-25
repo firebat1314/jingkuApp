@@ -9,7 +9,7 @@
    <ion-navbar>
       <ion-buttons left>
          <button ion-button icon-only (click)="viewCtrl.dismiss()">
-				<ion-icon name="ios-arrow-back"></ion-icon>
+				<ion-icon name="ios-arrow-back" *ngIf=" !navParams?.data.casss"></ion-icon>
 			</button>
       </ion-buttons>
       <ion-title>选择镜片-右眼</ion-title>

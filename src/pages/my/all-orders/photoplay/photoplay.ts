@@ -75,7 +75,6 @@ this.distri_order_consinfo()
      this.items.img.push(img);
   }
   deletePic(i, item) {
-     debugger
      this.items.img.splice(i, 1);
   }
   distri_order_consinfo(){

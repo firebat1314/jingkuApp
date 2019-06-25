@@ -13,67 +13,106 @@
 </ion-header>
 
 
-<ion-content>
-   <div *ngIf="data" FadeIn>
-      <div class="fore1 banner">
-         <ng-container *ngFor="let item of data?.banner">
-            <img [img-lazy-load]="item.ad_img" [ads-click]="item" alt="">
-         </ng-container>
-      </div>
-      <div class="newbrandin" *ngIf="data?.new_goods?.length>0">
-         <div class="title">
-            <div class="en">NEW BRAND</div>
-            <div class="ch">新品牌入驻</div>
+<ion-content #myContent [ngSwitch]="receiptTool">
+          <!-- badner图 -->
+          <div class="fore1 banner">
+            <ng-container *ngFor="let item of data?.banner">
+               <img [img-lazy-load]="item.ad_img" [ads-click]="item" alt="">
+            </ng-container>
          </div>
-         <div class="brand_list">
-            <ul class="accordion">
-               <ng-container *ngFor="let item of data?.new_goods;let index = index;">
-                  <li>
-                     <a href="javascript:;"><img [img-lazy-load]="item.ad_img" alt=""></a>
-                  </li>
+<!-- 品牌上新 -->
+   <div class="receiptSskFor" *ngSwitchCase="'receiptSskFor'" [ngStyle]="{background:suoquList&&!suoquList?.data?.length?'url(./assets/images/images/invoice.png) no-repeat center 100px':'none'}">
+     
+         <!-- 分类按钮 -->
+         <div class="quick_buy">
+               <ul class="top_menu">
+                  <li class="menu_ico" tappable (click)="getData(0,'brand')" [ngClass]="{'meon':selected==0}">全部</li>
+                  <li class="menu_icotwo"></li>
+                  <ng-container *ngFor="let item of category">
+                     <li class="menu_ico" tappable (click)="getData(item.cat_id,'brand')" [ngClass]="{'meon':selected==item.cat_id}">{{item.cat_name}}</li>
+                  </ng-container>
+               </ul>
+            </div>
+      
+            <!-- 列表 -->
+            <div class="brand_list_array" >
+                  <div class="brand_list" *ngFor="let brand_lists of brands">
+                        <!-- 图片logo -->
+                        <div class="brand_list_content">
+                              <span class="brand_list_logo">
+                                 <img src={{brand_lists.logo}} alt="" (click)="searchbar(brand_lists.label,brand_lists.label_id)">
+                                 <div class="brand_list_labels">
+                                       <span class="brand_list_label" style="    padding-top: 4%;">{{brand_lists?.label}}</span>
+                                 </div>
+                               
+                           </span>  
+                              <!-- <span class="brand_list_number"  >
+                              上新数量{{brand_lists ?.count}} >
+                              </span> -->
+                        </div>
+                        <ul  class="goods_list" >
+                           <li *ngFor="let goodslist of brand_lists.items" class="goods_list_array" (click)="gotoplays(goodslist.goods_id)">
+                                 <span class="goodslist_img"><img src={{goodslist?.images}} alt=""></span>
+                                 <span class="goodslist_money">{{goodslist.shop_price}}</span>
+                           </li>
+                        </ul>
+                           <!--  -->
+                     </div>
+            </div>
+          
+  </div>
+  <!-- 店铺上新 -->
+  <div class="receiptList" *ngSwitchCase="'receiptList'" [ngStyle]="{background:suoquList&&!invoiceList?.data?.length?'url(./assets/images/images/invoice.png) no-repeat center 200px':'none'}">
+   <!-- badner图 -->
+      <!-- 分类按钮 -->
+      <div class="quick_buy">
+            <ul class="top_menu">
+               <li class="menu_ico" tappable (click)="getData(0,'supplier')" [ngClass]="{'meon':selected==0}">全部</li>
+               <li class="menu_icotwo"></li>
+               <ng-container *ngFor="let item of category">
+                  <li class="menu_ico" tappable (click)="getData(item.cat_id,'supplier')" [ngClass]="{'meon':selected==item.cat_id}">{{item.cat_name}}</li>
                </ng-container>
             </ul>
          </div>
-      </div>
-      <div class="commodity" *ngIf="data?.top_tui?.list?.length">
-         <div class="title">
-            <div class="en">COMMODITY</div>
-            <div class="ch">精选商品</div>
-         </div>
-         <div class="goods-list">
-            <div class="goods" *ngFor="let item of data?.top_tui?.list" navPush="ParticularsPage" [navParams]="{goodsId:item.goods_id}">
-               <div class="img">
-                  <img [img-lazy-load]="item.goods_img" alt="">
-               </div>
-               <div class="info">
-                  <div class="name">{{item.goods_name}}</div>
-                  <div class="bottom">
-                     <div class="price"><span *ngIf="mine?.showPrice">¥{{item.shop_price}}</span></div>
-                     <div class="buy"><img [img-lazy-load]="'./assets/icon/add_cart.png'"></div>
+              <!-- 列表 -->
+              <div class="brand_list_array" >
+               <div class="brand_list" *ngFor="let brand_lists of brands">
+                     <!-- 图片logo -->
+                     <div class="brand_list_content">
+                           <span class="brand_list_logo">
+                              <img src={{brand_lists.logo}} alt="" (click)="goParticularsHomePage(brand_lists.label_id)">
+                              <div class="brand_list_labels">
+                                    <span class="brand_list_label">{{brand_lists?.label}}</span>
+                                    <span  class="brand_list_newyear">本月新品</span>
+                              </div>
+                            
+                        </span>  
+                           <span class="brand_list_number" (click)="goParticularsHomePage(brand_lists.label_id)">
+                           上新数量{{brand_lists ?.count}} >
+                           </span>
+                     </div>
+                     <ul  class="goods_list">
+                        <li *ngFor="let goodslist of brand_lists.items" class="goods_list_array" (click)="gotoplays(goodslist.goods_id)">
+                              <span class="goodslist_img"><img src={{goodslist.images}} alt=""></span>
+                              <span class="goodslist_money">{{goodslist.shop_price}}</span>
+                        </li>
+                     </ul>
+                        <!--  -->
                   </div>
-               </div>
-            </div>
          </div>
-      </div>
-      <div class="new_product" *ngIf="data?.new_tui?.list?.length">
-         <div class="title">
-            <div class="en">NEW PRODUCT</div>
-            <div class="ch">新品上架</div>
-         </div>
-         <div class="goods-list ">
-            <div class="goods" *ngFor="let item of data?.new_tui?.list" navPush="ParticularsPage" [navParams]="{goodsId:item.goods_id}">
-               <div class="img">
-                  <img [img-lazy-load]=item.goods_img alt="">
-               </div>
-               <div class="info">
-                  <div class="name">{{item.goods_name}}</div>
-                  <div class="bottom">
-                     <div class="price"><span *ngIf="mine?.showPrice">¥{{item.shop_price}}</span></div>
-                     <div class="buy"><img [img-lazy-load]="'./assets/icon/add_cart.png'"></div>
-                  </div>
-               </div>
-            </div>
-         </div>
-      </div>
-   </div>
+  </div>
 </ion-content>
+<ion-footer>
+      <ion-toolbar no-padding>
+            <ion-toolbar class="segment-style">
+                  <ion-segment mode="md" [(ngModel)]="receiptTool" (ionChange)="flag=true;getHttpData();myContent.scrollToTop(0)">
+                      <ion-segment-button value="receiptSskFor">
+                          品牌
+                      </ion-segment-button>
+                      <ion-segment-button value="receiptList">
+                          店铺
+                      </ion-segment-button>
+                  </ion-segment>
+              </ion-toolbar>
+      </ion-toolbar>
+   </ion-footer>

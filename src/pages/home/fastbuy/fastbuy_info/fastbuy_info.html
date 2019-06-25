@@ -1,0 +1,65 @@
+<!--
+  Generated template for the GlassesDesign page.
+
+  See http://ionicframework.com/docs/v2/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+   <ion-navbar>
+      <ion-title>闪购</ion-title>
+   </ion-navbar>
+
+</ion-header>
+
+
+<ion-content>
+ 
+  
+      <div *ngIf="data" fadeIn>
+      <div class="quick_buy">
+            <ul class="top_menu">
+               <li class="menu_ico" tappable (click)="getData(0)" [ngClass]="{'meon':selected==0}">全部</li>
+               <li class="menu_icotwo"></li>
+               <ng-container *ngFor="let item of category?.data?.cate">
+                  <li class="menu_ico" tappable (click)="getData(item.cat_id)" [ngClass]="{'meon':selected==item.cat_id}">{{item.cat_name}}</li>
+               </ng-container>
+            </ul>
+         </div>
+   <div class="top_img header-image">
+      <img   [img-lazy-load]="category?.data?.response?.poster" defaultSrc="./assets/images/images/640-320.jpg" width="100%" alt="">
+   </div>
+   <div class="main-content">
+
+
+
+
+      <!-- <no-goods *ngIf="data&&!data?.data?.length"></no-goods> -->
+      <ul class="purchase-box">
+         <li class="wrp" *ngFor="let cleAll of data" tappable (click)="goParticularsPage(cleAll.goods_id)">
+            <div class="img">
+               <img [img-lazy-load]="cleAll.image" />
+            </div>
+            <div class="txt">
+               <div class="tt-2">
+                  {{cleAll.goods_name}}
+               </div>
+               <div class="tt-1" *ngIf="mine?.showPrice">
+                  <div class="cx"><em>{{cleAll?.price_format}}</em></div>
+               </div>
+               
+               <div class="tt-3">
+                  <button>立即抢购</button>
+               </div>
+            </div>
+         </li>
+      </ul>
+   </div>
+      </div>
+      <ion-fab right bottom scroll-to-top>
+         <button ion-fab color="jingku1" (click)="scrollToTop()" mini goBackTop></button>
+      </ion-fab>
+      <ion-infinite-scroll threshold="20%" (ionInfinite)="doInfinite($event)">
+         <ion-infinite-scroll-content></ion-infinite-scroll-content>
+      </ion-infinite-scroll>
+</ion-content>

@@ -1,0 +1,51 @@
+page_plus_duihuan {
+    $defaultColor: #cbcbcb;
+    $color: #50c65f;
+.duihuanma{
+  text-align: -webkit-center;
+  height: 100%;
+  background: #FFF;
+  padding-top: 7%;
+  .duihuanma_content{
+    width: 90%;
+    background: #f5f5f5;
+    border-radius: 5%;
+    padding: 5%;
+    .duihuanma_span{
+      display: block;
+      margin-bottom: 10%;
+      p{
+        display: inline-block;
+        font-size: 1.8rem;
+        color: #be8b18;
+        float: left;
+        margin-left: -1%;
+        padding-top: 5%;
+      }
+      input{
+        background: #FFF;
+        border-radius: 3%;
+        width: 80%;
+        height: 66%;
+        border: none;
+        font-size: 1.7rem;
+        padding: 5% 2%;
+      }
+    }
+    .duihuanma_jihuo{
+      background: #787778;
+      padding: 5% 0;
+      text-align: -webkit-center;
+      color: #FFF;
+      font-size: 1.7rem;
+      border-radius: 3%;
+      border-radius: 25rem;
+    }
+  }
+}
+.shiyongxuzhi p{
+  margin: 1% 5%;
+}
+  
+ 
+}

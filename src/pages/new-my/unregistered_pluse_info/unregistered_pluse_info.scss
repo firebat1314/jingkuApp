@@ -1,0 +1,695 @@
+page_unregistered_pluse_info {
+    $defaultColor: #cbcbcb;
+    $color: #50c65f;
+    .my-head { 
+      background: #eeba45;
+      background-size: cover;
+      color: #fff;
+      margin-bottom: 5%;
+      margin-top: 5%;
+      width: 90%;
+      border-radius: 2%;
+
+   .t_btn {
+      display: flex;
+      justify-content: space-between;
+      top: 0;
+      position: fixed;
+      width: 100%;
+      background: url(../assets/images/images/bannerShop_02.jpg) no-repeat center top;
+      left: 0;
+   }
+
+   .h-body {
+      display: flex;
+      align-items: center;
+      padding: 34px 10px 12px 20px;
+      position: relative;
+
+      .user_logo {
+         width: 60px;
+         height: 60px;
+         border-radius: 50%;
+         margin-right: 13px;
+         overflow: hidden;
+         display: flex;
+         align-items: center;
+         justify-content: center;
+         border: 1px solid #ffffff;
+         background: rgba(0, 0, 0, .1);
+      }
+
+      .r_wrap {
+         display: flex;
+         justify-content: space-between;
+         align-items: center;
+         flex: 1;
+
+         .user_info {
+            width: 58%;
+            .name {
+               font-size: 1.6rem;
+            }
+
+            .vip {
+               display: flex;
+               align-items: center;
+               border-radius: 34px;
+               float: left;
+
+               .vip_logo {
+                  width: 12px;
+                  height: 12px;
+                  margin-right: 5px;
+                  display: none;
+               }
+
+               .vip_name {
+                  font-size: 1.2rem;
+               }
+            }
+            .vip_plus{
+               background: rgba(0, 0,0,0);
+               cursor: pointer;
+               float: left;
+               margin-left: 3%;
+               img{
+                  width: 80%;
+                  height: 80%;
+               }
+            }
+         }
+         .xufei{
+          position: absolute;
+          right: 0;
+          top: 6px;
+          /* opacity: 1; */
+          width: 31%;
+          height: 57%;
+          border: 1px solid #CCC;
+          border-radius: 100% 0 0 100%/194%;
+          background: #d5990e;
+          padding-top: 3%;
+          em{
+            font-size: 1.7rem;
+
+          }
+          .vip_name{
+            font-size:1.2rem;
+            color: #eeba45;
+          }
+         }
+         .duihuanma{
+            position: absolute;
+            right: 3%;
+            bottom: 5%;
+         }
+         .gl_btn {
+            position: relative;
+            top: -26px;
+
+            .unread {
+               position: absolute;
+               top: -3px;
+               right: -4px;
+               width: 20px;
+               height: 20px;
+               background: #e60000;
+               color: #ffffff;
+               border-radius: 50%;
+               font-size: 1rem;
+               white-space: nowrap;
+               display: flex;
+               align-items: center;
+               justify-content: center;
+            }
+
+            .button {
+               margin-left: 4px;
+
+
+            }
+         }
+      }
+   }
+
+   .h_bottom {
+      display: flex;
+      position: relative;
+      bottom: 0;
+      padding: 10px 0 40px;
+
+      >div {
+         width: 25%;
+         text-align: center;
+
+         >span {
+            display: block;
+            font-size: 1.6rem;
+
+            &.icon_num {}
+
+            &.txt {
+               font-size: 1.2rem;
+               margin-top: 5px;
+            }
+         }
+      }
+   }
+}
+    .plus_haibao{
+      background: #FFF;
+      background-size: 100% 100%;
+      padding: 2px;
+      display: inline-block;
+      text-align: -webkit-center;
+    //   六大优惠
+       .enjoy-privileges{
+        text-align: -webkit-center;
+        margin-bottom: 3%;
+        width: 95%;
+        background: #FFFF;
+        padding-bottom: 5%;
+        p{
+           display: inline-block;
+           margin:5%;
+           font-weight: 600;
+           em{
+             color: #c19c21;
+             font-size: 2.5rem;
+           }
+        }
+        .enjoy-privileges_title{
+           display: inline-block;
+           width: 15%;
+           height: 1px;
+           border-top: 1px solid #CCC;
+           padding-top: 1%;
+        }
+      .enjoy_privileges_iconconnet{
+        width: 100%;
+         text-align: center;
+         background: #FFF;
+         padding-bottom: 10%;
+         padding-top: 10%;
+         border-bottom: 1px solid #CCC;
+         .enjoy_privileges_iconlist{
+            li{
+              display: inline-block;
+              margin-left: 10%;
+              width: 22%;
+             .privileges_iconlist_title{display: block;text-align: center;white-space: nowrap;font-size: 1.7rem}
+             .privileges_iconlist_content{display: block;text-align: center;white-space: nowrap;color: #CCC}
+             
+              .privileges_iconlist_img{
+                 width: 60px;
+                 height: 60px;
+                 border-radius: 50%;
+                 // margin-right: 13px;
+                 // overflow: hidden;
+                 display: inline-block;
+                 border: 1px solid #ffffff;
+                 background: #c19c21;
+                 margin-left: 10%;
+                 img{
+                    width: 68%;
+                    /* height: 40px; */
+                    margin-top: 17%;
+                  }
+              }
+        
+             
+            }
+         }
+      }
+      .enjoy_privileges_kaiyuan{
+        background: #c19c21;
+        width: 80%;
+        padding: 4% 0;
+        margin-top: 8%;
+        border-radius: 50px;
+
+      }
+     }
+  
+    }
+      //  会员专享券
+      .cxclusive_vouchers{
+        width: 100%;
+        background: #FFF;
+        padding-top: 6%;
+        padding-bottom: 6%;
+        margin-bottom: 5%;
+        .cxclusive_vouchers_tit{
+            width: 100%;
+    padding-bottom: 6%;
+    text-align: -webkit-center;
+            span{
+                width: 15%;
+                height: 1px;
+                border-top: 1px solid #CCC;
+                padding-top: 4px;
+                display: inline-block;
+            }
+            p{
+                font-weight: 600;
+                display: inline-block;
+                margin: 0 8%;
+                em{
+                    color: #c19c21;
+                }
+            }
+        }
+        .cxclusive_vouchers_conyent{
+            .cxclusive_vouchers_list{
+                overflow-x: scroll;
+    white-space: nowrap;
+          
+            .cxclusive_vouchers_yilingqu_money{
+                display: inline-block;
+                width: 44%;
+                position: relative;
+                border: 1px solid #CCC;
+               
+                margin-left: 5%;
+                text-align: -webkit-left;
+                padding-left: 5%;
+                .cxclusive_vouchers_yilingqu_icon{
+                    background: url(../../../assets/icon/PLssUS1.png) no-repeat;
+                    position: absolute;
+                    background-size: 100% 100%;
+                    padding: 2px;
+                    display: inline-block;
+                    text-align: -webkit-center;
+                    left: -1%;
+                    height: 21%;
+                    top: -3%;
+                    width: 22%;
+                }
+                .cxclusive_vouchers_yilingqu_jine{
+                    display: block;
+                    margin-bottom: 2%;
+                    margin-top: 12%;
+                    color: #CCC;
+                }
+                .cxclusive_vouchers_yilingqu_tiaojian{
+                    display: block;
+                    margin-top: 2%;
+                    color: #CCC;
+                }
+                .cxclusive_vouchers_yilingqu_pinlei{
+                    display: block;
+                    margin-top: 2%;
+                    overflow: hidden;
+                    text-overflow: ellipsis;
+                    white-space: nowrap;
+                    width: 80%;
+                    padding-bottom: 10%;
+                    color: #CCC;
+                }
+                .cxclusive_vouchers_yilingqu_logo{
+                    background: url(../../../assets/icon/yilingqu.png) no-repeat;
+                    position: absolute;
+                    background-size: 100% 100%;
+                    padding: 2px;
+                    display: inline-block;
+                    text-align: -webkit-center;
+                    right: 0;
+                    height: 100%;
+                    top: 0;
+                    width: 22%;
+                }
+                .cxclusive_vouchers_weilingqu_icon{
+                  background: url(../../../assets/icon/PLUS.png) no-repeat;
+                  position: absolute;
+                  background-size: 100% 100%;
+                  padding: 2px;
+                  display: inline-block;
+                  text-align: -webkit-center;
+                  left: -1%;
+                  height: 21%;
+                  top: -3%;
+                  width: 22%;
+              }
+
+              .cxclusive_vouchers_weilingqu_jine{
+                  display: block;
+                  margin-bottom: 2%;
+                  margin-top: 12%;
+              }
+              .cxclusive_vouchers_weilingqu_tiaojian{
+                  display: block;
+                  margin-top: 2%;
+              }
+              .cxclusive_vouchers_weilingqu_pinlei{
+                  display: block;
+                  margin-top: 2%;
+                  overflow: hidden;
+                  text-overflow: ellipsis;
+                  white-space: nowrap;
+                  width: 80%;
+                  padding-bottom: 10%;
+              }
+                .cxclusive_vouchers_weilingqu_logo{
+                  background: url(../../../assets/icon/weilingqu.png) no-repeat;
+                  position: absolute;
+                  background-size: 100% 100%;
+                  padding: 2px;
+                  display: inline-block;
+                  text-align: -webkit-center;
+                  right: 0;
+                  height: 100%;
+                  top: 0;
+                  width: 22%;
+              }
+            }
+        }
+            .cxclusive_vouchers_weilingu_money{
+               
+                display: inline-block;
+                width: 44%;
+                position: relative;
+                border: 1px solid #c19c21;
+                margin-left: 5%;
+                text-align: -webkit-left;
+                padding-left: 5%;
+              
+            }
+        }
+    }
+    //任意领取
+    .rbitrary_back{
+      width: 100%;
+      background: #FFF;
+      margin-bottom: 5%;
+    }
+   .rbitrary_collection{
+    width: 100%;
+    background: url(../../../assets/images/images/hundred-back.png) no-repeat 50%;
+    background-size: 100% 100%;
+    -webkit-background-size: 100% 100%;
+    overflow: hidden;
+    padding: 5% 0 10%;
+    .hundred-inner {
+      width: 90%;
+      // height: 15.4667rem;
+      background: #fff;
+      border-radius: 5px;
+      text-align: center;
+      margin: 0 auto;
+      display: block;
+      .hundred-coupon{
+    color: #2e3244;
+    padding: 8% 0;
+      }
+     .coupon-box {
+        width: 100%;
+        height: 100%;
+        display: -webkit-box;
+      }
+     .coupon-ul {
+      width: 100%;   
+      .idss{
+        background:rgb(230,230,230) !important;
+        border:1px solid rgb(230,230,230) !important;
+      }         
+      .coupon-li{
+        
+        width: 30%;
+        background: #fffbf0;
+        margin: 0 0 .64rem .8rem;
+        position: relative;
+        text-align: center;
+        display: inline;
+        float: left;
+        border:1px solid #cfae68;
+       
+        
+          .coupon-line{
+            width: 100%;
+            height: 1px;
+            border-bottom: 1px dashed #e5cc8f;
+            margin: 0 0 10% 0;
+          
+        }
+        .circle-left{
+          width: 10%;
+          height: 20%;
+          background: #FFF;
+          position: absolute;
+    border-radius: 0 100% 100% 0;
+          top: 27%;
+          left:-1%;
+          border: 1px solid #cfae68;
+border-left: none;
+
+          
+        }
+        .no_left{
+          border: 1px solid rgb(230,230,230) !important;
+          border-left: none !important;
+        }
+        .no_right{
+          border: 1px solid rgb(230,230,230) !important;
+          border-right: none !important;
+        }
+        .no_all{
+          color: rgb(102,102,102 ) !important;
+        }
+        .no_line{
+          border-bottom: 1px dashed rgb(230, 230,230) !important;
+        }
+        .no_denomiantion{
+          color: rgb(102,102,102 ) !important;
+        }
+       .coupon-all {
+          padding-top: 10%;
+          color: #ce9e34;
+        }
+        .coupon-denomiantion{
+          color: #ce9e34;
+          font-size: 1.8rem;
+        }
+        .circle-right{
+          width: 10%;
+          height: 20%;
+          background: #FFF;
+          position: absolute;
+          border-radius: 100% 0 0 100%;
+          top: 27%;
+          right: -1%;
+          border: 1px solid #cfae68;
+          border-right: none;
+
+
+
+        }
+      }
+     } 
+    }
+   }
+   .coupon-kaitong{
+    text-align: center;
+    padding: 6% 0;
+    color: #ce9e34;
+    font-size: 1.6rem;
+   }
+   .rbitrary_quanpin{
+     span{
+      height: 2.3rem;
+      width: 100%;
+      display: inline-block;
+      border-left: 0.3rem solid #c19c21;
+      line-height: 2.3rem;
+      padding-left: 11%;
+      margin-bottom: 3%;
+      margin-top: 3%;
+      margin-left: 3%;
+     }
+   }
+  //  反双倍积分 
+  .back-integral {
+    background: #FFF;
+    margin-bottom: 5%;
+      .back-title{
+        span{
+          height: 2.3rem;
+          width: 100%;
+          display: inline-block;
+          border-left: 0.3rem solid #c19c21;
+          line-height: 2.3rem;
+          padding-left: 11%;
+          margin-bottom: 3%;
+          margin-top: 3%;
+          margin-left: 3%;
+         }
+      }
+      .back-content{
+        width: 100%;
+        text-align: -webkit-center;
+        img{
+          width: 90%;
+        }
+      }
+      .gotomoney{
+        text-align: center;
+        padding: 6% 0;
+        color: #ce9e34;
+        font-size: 1.6rem;
+      }
+  }
+  // 优先解决售后问题
+  .sale-service{
+    width: 100%;
+    background: #FFF;
+    .sale-title{
+      border-bottom: 1px solid #CCC;
+      margin-bottom: 5%;
+      span{
+        height: 2.3rem;
+        width: 100%;
+        display: inline-block;
+        border-left: 0.3rem solid #c19c21;
+        line-height: 2.3rem;
+        padding-left: 11%;
+        margin-bottom: 3%;
+        margin-top: 3%;
+        margin-left: 3%;
+       }
+    }
+    .sale_contents{
+      text-align: -webkit-center;
+
+      .sale_content{
+        width: 90%;
+        background: #f4ca49  ;
+        padding-top: 10%;
+        .sale_tuihuo{
+          font-size: 2.0rem;
+          color: #FFF;
+          margin-bottom: 5%;
+        }
+        .sale_shouhou{
+          font-size: 2.0rem;
+          /* color: #FFF; */
+          margin-bottom: 5%;
+      
+        }
+        .sale_img{
+          padding-bottom: 10%;
+          .sale_kefu{
+            display: inline-block;
+    background: #FFF;
+    width: 20%;
+    border-radius: 100%;
+    padding: 2%;
+    float: left;
+    margin-left: 25%;
+          }
+          .sale_songhuo{
+            width: 20%;
+            display: inline-block;
+            background: #FFF;
+            border-radius: 100%;
+            padding: 2%;
+          }
+        }
+      }
+    }
+    .gotomoney{
+      text-align: center;
+      padding: 6% 0;
+      color: #ce9e34;
+      font-size: 1.6rem;
+    }
+
+  }
+  // 在线客服
+  .aftersale{
+    background: #FFF;
+    margin-bottom: 10%;
+    .aftersale-title{
+        span{
+          height: 2.3rem;
+          width: 100%;
+          display: inline-block;
+          border-left: 0.3rem solid #c19c21;
+          line-height: 2.3rem;
+          padding-left: 11%;
+          margin-bottom: 3%;
+          margin-top: 3%;
+          margin-left: 3%;
+        }
+    }
+    .aftersale-content{
+      width: 100%;
+        background: #f4ca49  ;
+        padding-top: 10%;
+        padding-bottom: 10%;
+        .aftersale-img{
+          width: 100%;
+          text-align: -webkit-center;
+          padding-right: 8%;
+          .zaixiankefu{
+            display: inline-block;
+            width: 40%;
+            padding-top: 5%;
+            background: #FFF;
+            border-radius: 7%;
+            .zaixiankefu_logo{
+              display: inline-block;
+              background: #f4ca49;
+              border-radius: 100%;
+              padding: 9%;
+              width: 50%;
+            }
+            .zaixiankefu_text{
+              color:#f4ca49;
+              font-size:1.7rem;
+            }
+          }
+          .dianhuakefu{
+            display: inline-block;
+            width: 40%;
+            padding-top: 5%;
+            background: #FFF;
+            border-radius: 7%;
+            float: right;
+            .dianhuakefu_logo{
+              display: inline-block;
+              background: #f4ca49;
+              border-radius: 100%;
+              padding: 9%;
+              width: 50%;
+            }
+            .dianhuakefu_text{
+              color:#f4ca49;
+              font-size: 1.7rem;
+            }
+          }
+        }
+    }
+    .gotomoney{
+      text-align: center;
+      padding: 6% 0;
+      color: #ce9e34;
+      font-size: 1.6rem;
+    }
+  }
+  // 立刻开通
+  .open-immediately{
+    width: 100%;
+    padding-top: 10%;
+    background: #FFF;
+    div{
+     width: 100%;
+    background: #f4ca49;
+    padding-top: 5%;
+    padding-bottom: 5%;
+    text-align: center;
+      em{
+        font-size: 1.7rem;
+      }
+    }
+  }
+}

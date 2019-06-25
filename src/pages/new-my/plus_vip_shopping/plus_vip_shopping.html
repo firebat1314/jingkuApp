@@ -1,0 +1,153 @@
+<!--
+  Generated template for the NewMyPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+   <ion-navbar>
+       <ion-title>PLUS</ion-title>
+       <ion-buttons right>
+           <button ion-button clear icon-only icon-left right open-more="MoreMenuPage">
+               <ion-icon name="ios-more"></ion-icon>
+           </button>
+       </ion-buttons>
+   </ion-navbar>
+</ion-header>
+
+
+<ion-content>
+   <!-- <ion-refresher (ionRefresh)="doRefresh($event)" pullMax="60">
+      <ion-refresher-content refreshingSpinner="1" pullingIcon="0"></ion-refresher-content>
+   </ion-refresher> -->
+   <!-- ----------------------------------------------------------------------------------------------顶部bander-------------------------------------------------------------- -->
+   <div class="my-head">
+         <!-- <div class="t_btn">
+            <button color="light" ion-button clear icon-only (click)="goSettingPage()">
+               <ion-icon name="ios-settings-outline"></ion-icon>
+            </button>
+            <button color="light" ion-button clear icon-only (click)="goMessagePage()">
+               <ion-icon name="mess"></ion-icon>
+            </button>
+         </div> -->
+         <div class="h-body">
+            <div class="user_logo" tappable (click)="goAccountManagementPage($event)">
+               <img img-lazy-load="{{mine.userInfo?.data?.avatar}}" alt="">
+            </div>
+            <div class="r_wrap">
+               <div class="user_info">
+                  <div class="name">
+                     <div style="float: left;padding-top: 10%;">{{mine.userInfo?.data?.username}}</div>
+                        <div class="vip_plus"> 
+
+                           <div class="crown"><img src="../../../assets/icon/PLUS_huangguan.png"></div>
+                           <div class="crownText" *ngIf="usertimes?.member_type=='month'">月卡</div>
+                           <div class="crownText" *ngIf="usertimes?.member_type=='quarter'">季度卡</div>
+                           <div class="crownText" *ngIf="usertimes?.member_type=='year'">年卡</div>
+                        </div>
+                  </div>
+                  <div class="vip" tappable navPush="MemberCenterPage" (click)="$event.stopPropagation()">
+                     <div class="vip_logo">
+                        <img img-lazy-load="{{mine.userInfo?.data?.user_info?.rank_icon}}" alt="">
+                     </div>
+                     <div class="vip_name">{{usertimes?.end_time}} &nbsp;&nbsp;到期</div>
+                  </div>
+                 
+                
+               </div>
+               <div class="duihuanma" (click)="gotopluspage()">
+                     兑换码开通>>
+                  </div>
+            </div>
+         </div>
+      </div>
+         <!-- ----------------------------------------------------------------------------------------------会员6大尊享特权-------------------------------------------------------------- -->
+         <div class="enjoy-privileges">
+            
+               <span class="enjoy-privileges_title"></span><p>PLUS会员<em>6大</em>尊享特权</p><span class="enjoy-privileges_title"></span>  
+               <div class="enjoy_privileges_iconconnet">
+                  <ul class="enjoy_privileges_iconlist">
+                     <li class="look_more" (click)="gotoplusinfo()"><span>查看更多 ></span></li>
+                     <li style="margin: 0">
+                           <span class="privileges_iconlist_img"> <img src="../../../assets/icon/jifen.png" alt=""></span>
+                           <span class="privileges_iconlist_title">双倍</span>
+                           <span class="privileges_iconlist_content">双倍积分</span>
+                     </li>
+                     <li>
+                            <span class="privileges_iconlist_img"><img src="../../../assets/icon/youhuiquan.png" alt=""></span>  
+                          <span class="privileges_iconlist_title">100元</span>
+                           <span class="privileges_iconlist_content">会员专属券</span>
+                     </li>
+                     <li>
+                           <span class="privileges_iconlist_img"><img src="../../../assets/icon/yunfeiquan.png" alt=""></span>
+                           <span class="privileges_iconlist_title">10张</span>
+                           <span class="privileges_iconlist_content">会员运费券</span>
+                     </li>
+                     <li style="margin: 0">
+                        <span class="privileges_iconlist_img">   <img src="../../../assets/icon/kefu (2).png" alt=""></span>
+                        <span class="privileges_iconlist_title">客服</span>
+                         <span class="privileges_iconlist_content">会员专属客服</span>
+                     </li>
+                     <li>
+                           <span class="privileges_iconlist_img"><img src="../../../assets/icon/biaoqian.png" alt=""></span>
+                           <span class="privileges_iconlist_title">标签</span>
+                           <span class="privileges_iconlist_content">专属标签</span>
+                     </li>
+                     <li>
+                           <span class="privileges_iconlist_img"><img src="../../../assets/icon/gengduo.png" alt=""></span>
+                        <span class="privileges_iconlist_title">..........</span>
+                     <span class="privileges_iconlist_content">尽情期待</span>
+                     </li>
+                  </ul>
+               </div>
+         </div>
+
+
+          <!-- ----------------------------------------------------------------------------------------------充值-------------------------------------------------------------- -->
+          <div class="recharge">
+               <span class="recharge_title"></span><p>服务类型</p><span class="recharge_title"></span>  
+                  <ul class="recharge_content">
+                     <li  *ngFor="let img of kaimg;let i=index"   class=' recharge_list {{i == idss? "border_ccc" : ""}}'  (click)="aaa(i,img.price_format,img.id)">
+                         
+                           <img src={{img.cover}} alt="">
+                        <!-- <span class="recharge_time">年卡</span>
+                        <span class="recharge_money">￥<em>99</em>/年</span>
+                        <span class="recharge_low_money">￥119/年</span>
+                        <span class="recharge_cuxiao">1111</span>
+                        <span class="shouchong">首充6.1元</span> -->
+                     </li>
+                  </ul>
+          </div>
+    <!-- ----------------------------------------------------------------------------------------------结算-------------------------------------------------------------- -->
+            <div class="settlement">
+                   <ul class="settlement_ul">
+                      <li class="settlement_list">   <span class="settlement_list_tit">活动价</span>  <span class="settlement_list_yellow">{{price_formats || morenjiage}}<em>198/年</em></span></li>
+                     <li class="settlement_list"><span class="settlement_list_tit">已享优惠</span><span class="settlement_list_yellow">￥99<em>198/年</em></span> <span class="youhui">&nbsp;&nbsp;优惠 &nbsp;&nbsp;</span></li>
+                     <li class="settlement_list"><span class="settlement_list_tit">优惠后金额</span><span class="settlement_list_mon">{{price_formats || morenjiage}}</span> <span class="youhui"></span></li>
+                  
+                   </ul>
+            </div>
+
+
+            <div class="settlement_btn">
+                 <div class="settlement_btn_xieyi" >
+                     <label tappable class="select-all "  >
+                           <div class="checkswrap">
+                              <!-- <ion-checkbox color="jingku1" tappable (click)="checkGoods(null,2,carDetails?.total?.is_select?0:1)"  color="jingku1" mode="ios"></ion-checkbox> -->
+                              <ion-checkbox color="jingku1" (click)="checkAll()" mode="ios"></ion-checkbox>
+                           </div>
+                           <p>已阅读协议</p><br>
+                        
+                        </label>
+                        <p (click)="gotohetong()" class="xieyi">协议协议协议</p>
+                 </div> 
+                 <div class="settlement_btn_zhifu" (click)="zhifu()">
+                   <span> 立即支付<em>￥99/年</em></span>
+                 </div>
+            </div>
+   <ng-container fadeIn>
+ 
+   </ng-container>
+   <!-- git 测试 -->
+</ion-content>

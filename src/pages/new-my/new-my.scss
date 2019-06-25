@@ -71,6 +71,14 @@ page-new-my {
                      font-size: 1.2rem;
                   }
                }
+               .vip_plus{
+                  background: rgba(0, 0,0,0);
+                  cursor: pointer;
+                  img{
+                     width: 80%;
+                     height: 80%;
+                  }
+               }
             }
 
             .gl_btn {
@@ -126,7 +134,32 @@ page-new-my {
          }
       }
    }
-
+.plus_rukou{
+   position: relative;
+   width: 94%;
+   height: 43px;
+   top: -4%;
+   margin-left: 3%;
+   background-image: url(../../assets/icon/plus_rukou.png);
+   background-size: cover;
+   background-repeat: no-repeat;
+   color: #e9cd98;
+   padding: 0% 5% 0 5%;
+   overflow: hidden;
+   .plus_logo{
+      margin-top: 3%;
+      display: inline-block;
+      img{
+         width: 22%;
+      }
+   }
+   .look{
+      float: right;
+      margin-top: 3%;
+      display: inline-block;
+      overflow: hidden;
+   }
+}
    .fore {
       margin: 12px;
       overflow: hidden;

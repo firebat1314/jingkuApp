@@ -1,0 +1,47 @@
+<!--
+  Generated template for the ServiceOrderDetailsPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+      <ion-navbar>
+         <ion-title>推荐有礼</ion-title>
+      </ion-navbar>
+   
+   </ion-header>
+
+<ion-content>
+   <div class="duihuanma">
+         <div class="duihuanma_content">
+               <span class="duihuanma_span">
+                  <p>激活码</p> <input type="text" placeholder="请输入激活兑换码" [(ngModel)]="duihuanma">
+               </span>
+              <div class="duihuanma_jihuo" (click)="exchangess()">
+                  兑换码激活
+              </div> 
+            </div>
+            <div class="duihuanma_content" style="    margin-top: 5%;  text-align: -webkit-auto;    padding: 5% 0;">
+                  <h5 style="text-align: center; font-size: 1.7rem;   padding: 2% 0;  background: #e3e3e3;    margin-bottom: 6%;">使用须知</h5>
+                  <div class="shiyongxuzhi">
+                     <p>1登录镜库账号后，输入激活码即可激活plus专属会员</p>
+                    <p>2激活成功后立即升级为镜库plus专属会员，享受镜库的专属服务 </p>
+                     <p>3请在专属会员有效期内使用,过期作废，不可退款</p>
+                     <p> 4此卡严禁倒卖、转让，不可兑换现金，请妥善保管遗失泄露等不补</p>
+                     <p> 5更多问题，请联系镜库客服</p>
+
+
+                  </div>
+            </div>
+   </div>
+
+
+     
+</ion-content>
+
+<!-- <ion-footer *ngIf="data?.repair_info?.return_status==0">
+    <ion-toolbar>
+        <button ion-button color="jingku1" float-right outline (click)="cancelApply(data?.repair_info?.return_id)">取消申请</button>
+    </ion-toolbar>
+</ion-footer> -->   

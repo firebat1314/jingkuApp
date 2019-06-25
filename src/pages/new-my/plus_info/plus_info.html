@@ -1,0 +1,182 @@
+<!--
+  Generated template for the ServiceOrderDetailsPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+    <ion-navbar>
+        <ion-title>批量申请售后</ion-title>
+        <ion-buttons right>
+            <button ion-button clear icon-only icon-left right open-more="MoreMenuPage">
+                <ion-icon name="ios-more"></ion-icon>
+            </button>
+        </ion-buttons>
+    </ion-navbar>
+</ion-header>
+
+<ion-content>
+      <div class="plus_haibao">
+          <!-- ---------------------------------------------------------------------------------------------六大权益 -->
+         <div>
+             <img src="../../../assets/icon/plus_icon.png" alt="" style="    margin-top: 5%;">
+            <p style="color: #f5d364;margin: 3% 0;">开通PLUS会员，享受专属特权</p>
+         </div>
+                  
+                   <div class="enjoy-privileges">
+                    <div class="enjoy_privileges_iconconnet">
+                       <ul class="enjoy_privileges_iconlist">
+                          <li style="margin: 0">
+                                <span class="privileges_iconlist_img"> <img src="../../../assets/icon/jifen.png" alt=""></span>
+                                <span class="privileges_iconlist_title">双倍</span>
+                                <span class="privileges_iconlist_content">双倍积分</span>
+                          </li>
+                          <li>
+                                 <span class="privileges_iconlist_img"><img src="../../../assets/icon/youhuiquan.png" alt=""></span>  
+                               <span class="privileges_iconlist_title">100元</span>
+                                <span class="privileges_iconlist_content">会员专属券</span>
+                          </li>
+                          <li>
+                                <span class="privileges_iconlist_img"><img src="../../../assets/icon/yunfeiquan.png" alt=""></span>
+                                <span class="privileges_iconlist_title">10张</span>
+                                <span class="privileges_iconlist_content">会员运费券</span>
+                          </li>
+                          <li style="margin: 0">
+                             <span class="privileges_iconlist_img">   <img src="../../../assets/icon/kefu (2).png" alt=""></span>
+                             <span class="privileges_iconlist_title">客服</span>
+                              <span class="privileges_iconlist_content">会员专属客服</span>
+                          </li>
+                          <li>
+                                <span class="privileges_iconlist_img"><img src="../../../assets/icon/biaoqian.png" alt=""></span>
+                                <span class="privileges_iconlist_title">标签</span>
+                                <span class="privileges_iconlist_content">专属标签</span>
+                          </li>
+                          <li>
+                                <span class="privileges_iconlist_img"><img src="../../../assets/icon/gengduo.png" alt=""></span>
+                             <span class="privileges_iconlist_title">..........</span>
+                          <span class="privileges_iconlist_content">尽情期待</span>
+                          </li>
+                       </ul>
+                      
+                    </div>
+                <div class="enjoy_privileges_kaiyuan" (click)="gotomoney()">开通PLUS正式会员</div>
+              </div>
+            </div>
+                <!-- ---------------------------------------------------------------------------------------------plus会员专享券 -->
+                <div class="cxclusive_vouchers">
+                    <div class="cxclusive_vouchers_tit"> <span></span><p><em>限时福利</em>PLUS会员专享券</p><span></span></div>  
+                    <div class="cxclusive_vouchers_conyent">
+                        <ul class="cxclusive_vouchers_list">
+
+                            <li class="cxclusive_vouchers_yilingqu_money" *ngFor="let bonus of usershipping" (click)="gotomoney()">
+                                            <span class="cxclusive_vouchers_weilingqu_icon" *ngIf="bonus.receive==true"></span>
+                                            <span class="cxclusive_vouchers_weilingqu_jine" *ngIf="bonus.receive==true">{{bonus?.total}}</span>
+                                            <span class="cxclusive_vouchers_weilingqu_tiaojian" *ngIf="bonus.receive==true">{{bonus?.describe}}</span>
+                                            <span class="cxclusive_vouchers_weilingqu_pinlei" *ngIf="bonus.receive==true">{{bonus?.describe}}</span>
+                                            <span class="cxclusive_vouchers_weilingqu_logo" *ngIf="bonus.receive==true"></span>
+                                            <span class="cxclusive_vouchers_yilingqu_icon"*ngIf="bonus.receive==false"></span>
+                                            <span class="cxclusive_vouchers_yilingqu_jine" *ngIf="bonus.receive==false">{{bonus?.total}}</span>
+                                            <span class="cxclusive_vouchers_yilingqu_tiaojian" *ngIf="bonus.receive==false">{{bonus?.describe}}</span>
+                                            <span class="cxclusive_vouchers_yilingqu_pinlei"*ngIf="bonus.receive==false">{{bonus?.describe}}</span>
+                                            <span class="cxclusive_vouchers_yilingqu_logo" *ngIf="bonus.receive==false"></span>
+                              </li>
+                        </ul>
+                    </div> 
+                </div>
+<!--  --------------------------------------------------------------------------------------------任意领取---------------------------- -->
+                <div class="rbitrary_back">
+                    <div class="rbitrary_quanpin">
+                        <span>每月100元全品类</span>
+                    </div>
+                    <div class="rbitrary_collection">
+                        <div class="hundred-inner">
+                                <h4 class="hundred-coupon">5种面额任意领</h4>
+                                <div class="coupon-box">
+                                    <ul class="coupon-ul cf" style="width: 100%;">
+                                <li class="coupon-li fl"  style="width: 30%" *ngFor="let usershippings of userbonus" (click)="getPrivilege(usershippings.bonus)">
+                                    <i class="circle-left"></i>
+                                    <i class="circle-right"></i>
+                                    <p class="coupon-all">{{usershippings.titla}}</p>
+                                    <p class="coupon-line"></p>
+                                    <p class="coupon-denomiantion"><span class="moner-simple">￥</span>{{usershippings.total}}</p>
+                                    <p class="coupon-usable">{{usershippings.describe}}</p>
+                            </li>
+                       
+                                    </ul>
+                                </div>
+                                <p style="    padding: 5%;">注：每月100元额度进当月有效</p>
+                        </div>
+                </div>
+                <p class="coupon-kaitong" (click)="gotomoney()">开通领取  ></p>
+                </div>
+              
+    
+                
+ <!--  --------------------------------------------------------------------------------------------2倍购物返积分---------------------------- -->               
+            <div class="back-integral">
+                    <div class="back-title">
+                            <span>2倍购物返积分</span>
+                        </div>
+                        <div class="back-content">
+                            <img src="../../../assets/icon/shopping-jifen.png" alt="">
+                        </div>
+                        <div class="gotomoney" (click)="gotomoney()">
+                            开通立享优惠>
+                        </div>
+            </div>
+      <!--  --------------------------------------------------------------------------------------------优选解决售后问题---------------------------- -->               
+            <div class="sale-service">
+                    <div class="sale-title">
+                            <span>优选解决售后问题</span>
+                    </div>
+                    <div class="sale_contents">
+                            <div class="sale_content">
+                                    <p class="sale_tuihuo">退货 &nbsp;· &nbsp;取货&nbsp;·&nbsp;换货&nbsp;·&nbsp;维修</p>
+                                    <p class="sale_shouhou"> -为您打造优质的京东售后体验-</p>
+                                    <div class="sale_img">
+                                        <span class="sale_kefu"><img src="../../../assets/icon/plus_kefu.png" alt=""></span>
+                                        <span class="sale_songhuo"><img src="../../../assets/icon/plus_songhuo.png" alt=""></span>
+                                    </div>
+                                </div>
+                    </div>
+                    <div class="gotomoney" (click)="gotomoney()">
+                            开通立享优惠>
+                        </div>
+            </div>
+  <!--  --------------------------------------------------------------------------------------------专享客服---------------------------- -->  
+  <div class="aftersale">
+        <div class="aftersale-title">
+                <span>优选解决售后问题</span>
+        </div>
+        <div class="aftersale-content">
+                   <div class="aftersale-img">
+                       <span class="zaixiankefu">
+                <span class="zaixiankefu_logo"> <img src="../../../assets/icon/plus_kefu-icon.png" alt=""></span>   
+                    <p class="zaixiankefu_text">在线客服</p>
+                    <p style="  padding: 0 17%;">文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字</p></span>
+                       <span  class="dianhuakefu">
+                           <span class="dianhuakefu_logo"><img src="../../../assets/icon/xiaoxi.png" alt=""></span>
+                    <p class="dianhuakefu_text">电话客服</p>
+                    <p style="    padding: 0 17%;">文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字</p>
+                    </span>
+                   </div> 
+        </div>
+        <div class="gotomoney" (click)="gotomoney()">
+                开通立享优惠>
+            </div>
+  </div>  
+  <!--  --------------------------------------------------------------------------------------------立即开通---------------------------- -->  
+  <div class="open-immediately" (click)="gotomoney()">
+      <div>
+          <em>立刻开通</em> 
+      </div>
+  </div>
+     
+</ion-content>
+
+<!-- <ion-footer *ngIf="data?.repair_info?.return_status==0">
+    <ion-toolbar>
+        <button ion-button color="jingku1" float-right outline (click)="cancelApply(data?.repair_info?.return_id)">取消申请</button>
+    </ion-toolbar>
+</ion-footer> -->   
