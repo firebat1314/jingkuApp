@@ -117,7 +117,7 @@
                                        
                                         <span class="cxclusive_vouchers_weilingqu_icon" *ngIf="bonus.receive==true"></span>
                                         <span class="cxclusive_vouchers_weilingqu_jine" *ngIf="bonus.receive==true">{{bonus?.total}}</span>
-                                        <span class="cxclusive_vouchers_weilingqu_tiaojian" *ngIf="bonus.receive==true">{{bonus?.describe}}</span>
+                                        <span class="cxclusive_vouchers_weilingqu_tiaojian" *ngIf="bonus.receive==true">运费券</span>
                                         <span class="cxclusive_vouchers_weilingqu_pinlei" *ngIf="bonus.receive==true">{{bonus?.describe}}</span>
                                         <span class="cxclusive_vouchers_weilingqu_logo" *ngIf="bonus.receive==true"></span>
                                         <span class="cxclusive_vouchers_yilingqu_icon"*ngIf="bonus.receive==false"></span>
@@ -143,7 +143,7 @@
                                                     <div  class="coupon-li fl  {{usershippings.receive==false ? 'idss':''}}"  >
                                                             <i class="circle-left no_left"  *ngIf="usershippings.receive==false"></i>
                                                             <i class="circle-right no_right"  *ngIf="usershippings.receive==false"></i>
-                                                            <p class="coupon-all no_all"  *ngIf="usershippings.receive==false">{{usershippings.titla}}</p>
+                                                            <p class="coupon-all no_all"  *ngIf="usershippings.receive==false">=&nbsp;全品类&nbsp;=</p>
                                                             <p class="coupon-line no_line"  *ngIf="usershippings.receive==false"></p>
                                                             <p class="coupon-denomiantion no_denomiantion"  *ngIf="usershippings.receive==false"><span class="moner-simple">￥</span>{{usershippings.total}}</p>
                                                             <p class="coupon-usable no_usable"  *ngIf="usershippings.receive==false">{{usershippings.describe}}</p>
@@ -153,7 +153,7 @@
         
                                                             <i class="circle-left"  *ngIf="usershippings.receive==true"></i>
                                                             <i class="circle-right"  *ngIf="usershippings.receive==true"></i>
-                                                            <p class="coupon-all"  *ngIf="usershippings.receive==true">{{usershippings.titla}}</p>
+                                                            <p class="coupon-all"  *ngIf="usershippings.receive==true">=&nbsp;全品类&nbsp;=</p>
                                                             <p class="coupon-line "  *ngIf="usershippings.receive==true"></p>
                                                             <p class="coupon-denomiantion"  *ngIf="usershippings.receive==true"><span class="moner-simple">￥</span>{{usershippings.total}}</p>
                                                             <p class="coupon-usable"  *ngIf="usershippings.receive==true">{{usershippings.describe}}</p>

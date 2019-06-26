@@ -122,8 +122,8 @@
     <!-- ----------------------------------------------------------------------------------------------结算-------------------------------------------------------------- -->
             <div class="settlement">
                    <ul class="settlement_ul">
-                      <li class="settlement_list" *ngIf="discoun==0.00">   <span class="settlement_list_tit">活动价</span>  <span class="settlement_list_yellow">{{price_formats || morenjiage}}<em>198/年</em></span></li>
-                     <li class="settlement_list" *ngIf="discoun==0.00"><span class="settlement_list_tit">已享优惠</span><span class="settlement_list_yellow">￥{{discoun}}<em>198/年</em></span> <span class="youhui">&nbsp;&nbsp;优惠 &nbsp;&nbsp;</span></li>
+                      <li class="settlement_list" *ngIf="disconas !=0.00">   <span class="settlement_list_tit">活动价</span>  <span class="settlement_list_yellow">{{price_formats || morenjiage}}<em>198/年</em></span></li>
+                     <li class="settlement_list" *ngIf="disconas !=0.00"><span class="settlement_list_tit">已享优惠</span><span class="settlement_list_yellow">￥{{disconas}}<em>198/年</em></span> <span class="youhui">&nbsp;&nbsp;优惠 &nbsp;&nbsp;</span></li>
                      <li class="settlement_list"><span class="settlement_list_tit">优惠后金额</span><span class="settlement_list_mon">{{price_formats || morenjiage}}</span> <span class="youhui"></span></li>
                   
                    </ul>

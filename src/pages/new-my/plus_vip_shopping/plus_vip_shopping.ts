@@ -37,7 +37,7 @@ export class plusVipShoppingPage {
    ngOnInit() {
       this.plusindexs();
       this.yikaotongxufei()
-      // this.aaa()
+    
    }
    zhifu(){
       debugger
@@ -80,11 +80,14 @@ export class plusVipShoppingPage {
      })
      
     }
+    disconas:any
    plusindexs(){
       return this.httpService.plusindex().then((res)=>{
          if(res.status==1){
             this.kaimg=res.response.service.plus
             this.morenjiage=this.kaimg[0].price_format
+            this.disconas=this.kaimg[0].discount
+            
          }
       
       })
@@ -100,7 +103,10 @@ export class plusVipShoppingPage {
    aaa(index,price_format,order_id,discoun){
      
       this.price_formats=price_format
-      this.discoun=discoun
+      if(discoun==undefined){
+         this.disconas=discoun;
+      }
+      this.disconas=discoun
       debugger
      this.idss=index
      this.orderids=order_id;
