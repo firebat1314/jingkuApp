@@ -229,6 +229,7 @@ export class ParticularsPage {
 	 * 除商品属性 弹窗
 	 */
    presentModalAttr() {
+      // if()
       this.openAttrModal();
 		/* if(this.cutId){
 			this.http.cutting_info({ id: this.cutId }).then(res => {

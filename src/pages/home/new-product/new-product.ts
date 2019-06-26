@@ -97,7 +97,7 @@ export class NewProductPage {
 		filter: null
 	}
    searchbar(searchkey,label_id) {
-    this.navCtrl.push('BrandListPage',{brand_id:label_id });
+    this.navCtrl.push('BrandListPage',{brand_id:label_id,order: "new" });
          // this.navCtrl.push('BrandListPage', { listId:label_id})
       
          

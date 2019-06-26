@@ -4,29 +4,50 @@
   See http://ionicframework.com/docs/v2/components/#navigation for more info on
   Ionic pages and navigation.
 -->
-<ion-header style="    text-align: -webkit-center;background: #FFF;">
+<!-- <ion-header style="    text-align: -webkit-center;background: #FFF;">
    <ion-navbar>
-         <ion-toolbar class="segment-style">
-               <div style="    height: 1.2rem;">
-               </div>
-                     <ion-segment mode="md" [(ngModel)]="receiptTool" (ionChange)="flag=true;" style="    width: 58%; border: 1px solid #CCC;" (click)="receiptTools()">
-                          <ion-segment-button value="receiptSskFor"  style="    font-size: 1.7rem; height: 3rem;line-height: 3rem;">
-                                限时闪购
-                               </ion-segment-button>
-                         <ion-segment-button value="receiptList" style="    font-size: 1.7rem; height: 3rem;line-height: 3rem;">
-                             活动促销
+      <ion-toolbar class="segment-style">
+         <div style="    height: 1.2rem;">
+         </div>
+               <ion-segment mode="md" [(ngModel)]="receiptTool" (ionChange)="flag=true;" style="    width: 58%; border: 1px solid #CCC;" (click)="receiptTools()">
+                    <ion-segment-button value="receiptSskFor"  style="    font-size: 1.7rem; height: 3rem;line-height: 3rem;">
+                          限时闪购
                          </ion-segment-button>
-                       
-                     </ion-segment>
-                     <div style="    height: 1.2rem;"></div>
-                     
-                 </ion-toolbar>
+                   <ion-segment-button value="receiptList" style="    font-size: 1.7rem; height: 3rem;line-height: 3rem;">
+                       活动促销
+                   </ion-segment-button>
+                 
+               </ion-segment>
+               <div style="    height: 1.2rem;"></div>
+               
+           </ion-toolbar>
    </ion-navbar>
 
+</ion-header> -->
+
+
+
+<ion-header>
+
+
+   <ion-toolbar class="segment-style">
+         <div style="    height: 1.2rem;"></div>
+       <ion-segment mode="md"  [(ngModel)]="receiptTool"  style="    width: 58%; border: 1px solid #CCC;" (click)="receiptTools()" (ionChange)="flag=true;myContent.scrollToTop(0)">
+         <ion-segment-button value="receiptSskFor"  style="    font-size: 1.7rem; height: 3rem;line-height: 3rem;">
+            限时闪购
+           </ion-segment-button>
+     <ion-segment-button value="receiptList" style="    font-size: 1.7rem; height: 3rem;line-height: 3rem;">
+         活动促销
+     </ion-segment-button>
+         
+       </ion-segment>
+       <div style="    height: 1.2rem;"></div>
+   </ion-toolbar>
 </ion-header>
 
 
-<ion-content  #myContent [ngSwitch]="receiptTool">
+
+<ion-content parallax-header #myContent [ngSwitch]="receiptTool">
       <ion-toolbar class="mytoolbar" no-padding  *ngIf="trynow" >
             <div class="quick_buy" >
                   <ul class="top_menu">

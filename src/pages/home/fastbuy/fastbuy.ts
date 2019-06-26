@@ -56,7 +56,6 @@ export class FastbuyPage {
       });
    }
    getData(id) {
-      debugger
       this.page = 1;
 
       this.infiniteScroll ? this.infiniteScroll.enable(true) : null;
@@ -104,6 +103,7 @@ export class FastbuyPage {
    venues(){
       return this.httpService.venue().then((res)=>{
          // console.log(res)
+         debugger
          this.bannerImgs = res.data.banner;
          this.response=res.data.response;
          console.log(this.response)

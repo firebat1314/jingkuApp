@@ -178,7 +178,8 @@ this.ass()
       this.getRecIds();
       for (let index = 0; index < this.list.length; index++) {
          const element = this.list[index];
-         if (!element.R || !element.L || !element.J) {
+         debugger
+         if (!this.itemlist|| !element.L || !element.J) {
             this.native.showToast('请完善加工单' + (index + 1) + '信息');
             return;
          }

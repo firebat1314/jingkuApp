@@ -26,7 +26,9 @@ export class fastbuy_infonPage {
   banner: any;
   category:any;
   data:any;
+  selected = 0;
   page=0;
+  responsetitle:any;
   @ViewChild(Content)
   content: Content;
   venumid: number = this.navParams.get('venumid');//3994 5676//商品id
@@ -38,10 +40,13 @@ export class fastbuy_infonPage {
     this.httpService.venueinfo({venue:this.venumid}).then((data) => {
       if (data.status) {
          this.category = data;
+         this.responsetitle=data.data.response.title
+         debugger
          console.log(this.category)
       }
    })
     this.promotion()
+    this.getData(this.selected);
   }
 
   scrollToTop() {
@@ -55,19 +60,20 @@ export class fastbuy_infonPage {
   }
   //点击分类
   getData(id) {
+    debugger
     this.page = 1;
-
+    this.infiniteScroll ? this.infiniteScroll.enable(true) : null;
 
     this.httpService.promotions({ venue:this.venumid , cate: id }).then((res) => {
        if (res.status == 1) {
           this.data = res.response.list;
+          this.selected = id;
        }
     })
  }
 //  翻页
 infiniteScroll
 size=10;
-selected
 doInfinite(infiniteScroll) {
   this.infiniteScroll = infiniteScroll;
   this.httpService.promotions({ num: this.size, page: ++this.page,}, ).then((res) => {

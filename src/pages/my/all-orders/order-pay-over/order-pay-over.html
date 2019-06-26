@@ -46,9 +46,9 @@
 				</div>
 				<div class="main">
 					<h2>{{item.suppliers_name}}</h2>
-					<button ion-button icon-left small outline color="jingku1" style="font-size: 1rem;" (click)="collectStore(item)" [ngClass]="{'heart':item.supp_select}">
+					<button ion-button icon-left small outline color="jingku1" style="font-size: 1rem;" (click)="collectStore(item)" [ngClass]="{'heart':item.supp_select}" *ngIf="item.suppliers_id != '0'">
 						<ion-icon [name]="item.supp_select?'ios-heart':'ios-heart-outline'"></ion-icon>
-						<span>{{item.supp_select?'已关注':'关注'}}</span>
+						<span *ngIf="item.suppliers_id != '0'">{{item.supp_select?'已关注':'关注'}}</span>
 					</button>
 				</div>
 			</div>

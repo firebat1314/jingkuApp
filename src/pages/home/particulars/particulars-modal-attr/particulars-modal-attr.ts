@@ -221,6 +221,8 @@ export class ParticularsModalAttrPage {
       }
    }
    /* 获取普通商品属性 */
+
+   goodsnumber:any;
    getAttrList() {
       //默认选中商品主属性的属性值
       if (this.dId > 0) {
@@ -230,6 +232,7 @@ export class ParticularsModalAttrPage {
       } else {
          this.httpServ.getAttrList({ goods_id: this.goodsId, attr: this.checkMainAttrId, isActivity: this.isActivity, sn:  this.sn  }).then((res) => {
             this.attrsList = res;
+            this.goodsnumber=res.data[0].goods_id.minbuy_number
             if(this.scannerId>0){
                try {
                   this.scanner_select = res.data[0];

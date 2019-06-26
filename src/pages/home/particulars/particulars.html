@@ -58,8 +58,9 @@
          <div class="bottom" *ngIf="getGoodsInfo?.data?.market_price!=0&&mine?.showPrice">
             <div>建议零售价：
                <span class="offer-price" first-letter>¥{{getGoodsInfo?.data?.market_price}}</span>
+               <div style="color: red;">最低起购量&nbsp;：{{getGoodsInfo?.data?.minbuy_number}}</div>
             </div>
-            <!-- <div>商品编号&nbsp;：{{getGoodsInfo?.data?.goods_sn}}</div> -->
+           
          </div>
       </div>
       <div class="fore price-info" *ngIf="getGoodsInfo?.price_section?.length!=0&&mine?.showPrice">
