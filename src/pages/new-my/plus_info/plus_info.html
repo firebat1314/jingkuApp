@@ -72,12 +72,12 @@
                             <li class="cxclusive_vouchers_yilingqu_money" *ngFor="let bonus of usershipping" (click)="gotomoney()">
                                             <span class="cxclusive_vouchers_weilingqu_icon" *ngIf="bonus.receive==true"></span>
                                             <span class="cxclusive_vouchers_weilingqu_jine" *ngIf="bonus.receive==true">{{bonus?.total}}</span>
-                                            <span class="cxclusive_vouchers_weilingqu_tiaojian" *ngIf="bonus.receive==true">{{bonus?.describe}}</span>
+                                            <span class="cxclusive_vouchers_weilingqu_tiaojian" *ngIf="bonus.receive==true">运费券</span>
                                             <span class="cxclusive_vouchers_weilingqu_pinlei" *ngIf="bonus.receive==true">{{bonus?.describe}}</span>
                                             <span class="cxclusive_vouchers_weilingqu_logo" *ngIf="bonus.receive==true"></span>
                                             <span class="cxclusive_vouchers_weilingqu_icon"*ngIf="bonus.receive==false"></span>
                                             <span class="cxclusive_vouchers_weilingqu_jine" *ngIf="bonus.receive==false">{{bonus?.total}}</span>
-                                            <span class="cxclusive_vouchers_weilingqu_tiaojian" *ngIf="bonus.receive==false">{{bonus?.describe}}</span>
+                                            <span class="cxclusive_vouchers_weilingqu_tiaojian" *ngIf="bonus.receive==false">运费券</span>
                                             <span class="cxclusive_vouchers_weilingqu_pinlei"*ngIf="bonus.receive==false">{{bonus?.describe}}</span>
                                             <span class="cxclusive_vouchers_yilingqu_logo" *ngIf="bonus.receive==false"></span>
                               </li>
