@@ -462,8 +462,14 @@ border-left: none;
           color: rgb(102,102,102 ) !important;
         }
        .coupon-all {
-          padding-top: 10%;
-          color: #ce9e34;
+        padding-top: 10%;
+        color: #ce9e34;
+        height: 4rem;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        display: -webkit-box;
+        -webkit-box-orient: vertical;
+        -webkit-line-clamp: 2;
         }
         .coupon-denomiantion{
           color: #ce9e34;

@@ -75,10 +75,10 @@
                                             <span class="cxclusive_vouchers_weilingqu_tiaojian" *ngIf="bonus.receive==true">{{bonus?.describe}}</span>
                                             <span class="cxclusive_vouchers_weilingqu_pinlei" *ngIf="bonus.receive==true">{{bonus?.describe}}</span>
                                             <span class="cxclusive_vouchers_weilingqu_logo" *ngIf="bonus.receive==true"></span>
-                                            <span class="cxclusive_vouchers_yilingqu_icon"*ngIf="bonus.receive==false"></span>
-                                            <span class="cxclusive_vouchers_yilingqu_jine" *ngIf="bonus.receive==false">{{bonus?.total}}</span>
-                                            <span class="cxclusive_vouchers_yilingqu_tiaojian" *ngIf="bonus.receive==false">{{bonus?.describe}}</span>
-                                            <span class="cxclusive_vouchers_yilingqu_pinlei"*ngIf="bonus.receive==false">{{bonus?.describe}}</span>
+                                            <span class="cxclusive_vouchers_weilingqu_icon"*ngIf="bonus.receive==false"></span>
+                                            <span class="cxclusive_vouchers_weilingqu_jine" *ngIf="bonus.receive==false">{{bonus?.total}}</span>
+                                            <span class="cxclusive_vouchers_weilingqu_tiaojian" *ngIf="bonus.receive==false">{{bonus?.describe}}</span>
+                                            <span class="cxclusive_vouchers_weilingqu_pinlei"*ngIf="bonus.receive==false">{{bonus?.describe}}</span>
                                             <span class="cxclusive_vouchers_yilingqu_logo" *ngIf="bonus.receive==false"></span>
                               </li>
                         </ul>
@@ -105,7 +105,7 @@
                        
                                     </ul>
                                 </div>
-                                <p style="    padding: 5%;">注：每月100元额度进当月有效</p>
+                                <p style="    padding: 5%;">注：每月100元额度仅当月有效</p>
                         </div>
                 </div>
                 <p class="coupon-kaitong" (click)="gotomoney()">开通领取  ></p>
@@ -152,7 +152,7 @@
         <div class="aftersale-content">
                    <div class="aftersale-img">
                        <span class="zaixiankefu">
-                <span class="zaixiankefu_logo"> <img src="../../../assets/icon/xiaoxi.png" alt=""></span>   
+                <span class="zaixiankefu_logo"> <img src="../../../assets/icon/xiaoxi.png" alt="" style="width: 36px; height: 40px;"></span>   
                     <p class="zaixiankefu_text">在线客服</p>
                     <p style="  padding: 0 17%;">plus专属客服    <br>       优先解答疑问  </p></span>
                        <span  class="dianhuakefu">

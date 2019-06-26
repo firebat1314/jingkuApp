@@ -26,26 +26,12 @@
 </ion-header> -->
 
 
-
 <ion-header>
 
-
-   <ion-toolbar class="segment-style">
-         <div style="    height: 1.2rem;"></div>
-       <ion-segment mode="md"  [(ngModel)]="receiptTool"  style="    width: 58%; border: 1px solid #CCC;" (click)="receiptTools()" (ionChange)="flag=true;myContent.scrollToTop(0)">
-         <ion-segment-button value="receiptSskFor"  style="    font-size: 1.7rem; height: 3rem;line-height: 3rem;">
-            限时闪购
-           </ion-segment-button>
-     <ion-segment-button value="receiptList" style="    font-size: 1.7rem; height: 3rem;line-height: 3rem;">
-         活动促销
-     </ion-segment-button>
-         
-       </ion-segment>
-       <div style="    height: 1.2rem;"></div>
-   </ion-toolbar>
-</ion-header>
-
-
+      <ion-navbar>
+         <ion-title>闪购专区</ion-title>
+      </ion-navbar>
+   </ion-header>
 
 <ion-content parallax-header #myContent [ngSwitch]="receiptTool">
       <ion-toolbar class="mytoolbar" no-padding  *ngIf="trynow" >
@@ -149,3 +135,24 @@
       <ion-infinite-scroll-content></ion-infinite-scroll-content>
    </ion-infinite-scroll>
 </ion-content>
+<ion-footer>
+      <ion-toolbar no-padding>
+            <ion-toolbar class="segment-style">
+               
+ 
+     
+       <ion-segment mode="md"  [(ngModel)]="receiptTool"  (click)="receiptTools()" (ionChange)="flag=true;myContent.scrollToTop(0)">
+         <ion-segment-button value="receiptSskFor" style="    height: 50px;">
+            <img src="../../../assets/icon/PLUS_huangguan.png" alt="" style="    width: 15%;"><br>
+            限时闪购
+           </ion-segment-button>
+     <ion-segment-button value="receiptList" style="    height: 50px;">
+         <img src="../../../assets/icon/PLUS_huangguan.png" alt="" style="    width: 15%;"><br>
+         活动促销
+     </ion-segment-button>
+         
+       </ion-segment>
+    
+              </ion-toolbar>
+      </ion-toolbar>
+   </ion-footer>
